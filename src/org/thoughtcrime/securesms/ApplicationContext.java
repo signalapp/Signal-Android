@@ -170,20 +170,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeLogging();
     initializeCrashHandling();
     initializeDependencyInjection();
-    initializeJobManager();
-    initializeMessageRetrieval();
-    initializeExpiringMessageManager();
-    initializeTypingStatusRepository();
-    initializeTypingStatusSender();
-    initializeSignedPreKeyCheck();
-    initializePeriodicTasks();
-    initializeWebRtc();
-    initializePendingMessages();
-    initializeUnidentifiedDeliveryAbilityRefresh();
-    initializeBlobProvider();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki
+    // ========
     broadcaster = new Broadcaster(this);
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
@@ -194,10 +184,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       FriendRequestProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
-      MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
-      SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, threadDB, this);
       SyncMessagesProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
+    MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
+    SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, threadDB, this);
     setUpP2PAPIIfNeeded();
     LokiPushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     if (setUpStorageAPIIfNeeded()) {
@@ -210,6 +200,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     lokiPublicChatManager = new LokiPublicChatManager(this);
     updateOpenGroupProfilePicturesIfNeeded();
     registerForFCMIfNeeded(false);
+    // ========
+    initializeJobManager();
+    initializeMessageRetrieval();
+    initializeExpiringMessageManager();
+    initializeTypingStatusRepository();
+    initializeTypingStatusSender();
+    initializeSignedPreKeyCheck();
+    initializePeriodicTasks();
+    initializeWebRtc();
+    initializePendingMessages();
+    initializeUnidentifiedDeliveryAbilityRefresh();
+    initializeBlobProvider();
   }
 
   @Override

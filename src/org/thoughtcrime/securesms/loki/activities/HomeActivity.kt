@@ -154,21 +154,21 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             adapter.typingThreadIDs = threadIDs ?: setOf()
         })
         // Set up remaining components if needed
+        val application = ApplicationContext.getInstance(this)
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
+        val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
+        val userDB = DatabaseFactory.getLokiUserDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val sessionResetImpl = LokiSessionResetImplementation(this)
         if (userPublicKey != null) {
-            val application = ApplicationContext.getInstance(this)
-            val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
-            val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
-            val userDB = DatabaseFactory.getLokiUserDatabase(this)
-            val sessionResetImpl = LokiSessionResetImplementation(this)
             FriendRequestProtocol.configureIfNeeded(apiDB, userPublicKey)
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
             SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
-            MultiDeviceProtocol.configureIfNeeded(apiDB)
-            SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
             SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.lokiPublicChatManager.startPollersIfNeeded()
         }
+        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
+        MultiDeviceProtocol.configureIfNeeded(apiDB)
         // TODO: Temporary hack to unbork existing clients
         val allContacts = DatabaseFactory.getRecipientDatabase(this).allAddresses.map {
             MultiDeviceProtocol.shared.getMasterDevice(it.serialize()) ?: it.serialize()

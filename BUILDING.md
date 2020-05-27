@@ -56,7 +56,7 @@ Setting up a development environment
 4. In the SDK Tools tab of the SDK Manager, make sure that the "Android Support Repository" is installed, and that the latest "Android SDK build-tools" are installed. Click "OK" to return to the Quickstart panel.
 5. From the Quickstart panel, choose "Checkout from Version Control" then "git".
 6. Paste the URL for the session-android project when prompted (https://github.com/loki-project/session-android.git).
-7. Android studio should detect the presence of a project file and ask you whether to open it. Click "yes".
+7. Android Studio should detect the presence of a project file and ask you whether to open it. Click "yes".
 9. Default config options should be good enough.
 9. Project initialisation and build should proceed.
 
