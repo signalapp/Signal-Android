@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.Closeable;
@@ -90,15 +91,21 @@ public class IncomingMessageProcessor {
       }
     }
 
-    private @NonNull String processMessage(@NonNull SignalServiceEnvelope envelope) {
+    private @Nullable String processMessage(@NonNull SignalServiceEnvelope envelope) {
       Log.i(TAG, "Received message. Inserting in PushDatabase.");
 
-      long                  id  = pushDatabase.insert(envelope);
-      PushDecryptMessageJob job = new PushDecryptMessageJob(context, id);
+      long id  = pushDatabase.insert(envelope);
 
-      jobManager.add(job);
+      if (id > 0) {
+        PushDecryptMessageJob job = new PushDecryptMessageJob(context, id);
 
-      return job.getId();
+        jobManager.add(job);
+
+        return job.getId();
+      } else {
+        Log.w(TAG, "The envelope was already present in the PushDatabase.");
+        return null;
+      }
     }
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {

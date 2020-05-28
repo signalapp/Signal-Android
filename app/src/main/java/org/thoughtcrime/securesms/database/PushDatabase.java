@@ -50,7 +50,7 @@ public class PushDatabase extends Database {
     Optional<Long> messageId = find(envelope);
 
     if (messageId.isPresent()) {
-      return messageId.get();
+      return -1;
     } else {
       ContentValues values = new ContentValues();
       values.put(TYPE, envelope.getType());
