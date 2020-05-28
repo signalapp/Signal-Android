@@ -21,8 +21,6 @@ import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.loki.utilities.*
 
 class NewConversationButtonSetView : RelativeLayout {
@@ -215,7 +213,7 @@ class NewConversationButtonSetView : RelativeLayout {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 if (isExpanded) {
-                    if (sessionButton.contains(touch)) { delegate?.createNewPrivateChat(); collapse()}
+                    if (sessionButton.contains(touch)) { delegate?.createNewPrivateChat(); collapse() }
                     else if (closedGroupButton.contains(touch)) { delegate?.createNewClosedGroup(); collapse() }
                     else if (openGroupButton.contains(touch)) { delegate?.joinOpenGroup(); collapse() }
                     else if (mainButton.contains(touch)) { collapse() }
@@ -254,7 +252,7 @@ class NewConversationButtonSetView : RelativeLayout {
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 val distanceFromRestPosition = touch.distanceTo(buttonRestPosition)
                 if (distanceFromRestPosition > (minDragDistance + mainButton.collapsedSize / 2)) {
-                    if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat(); collapse()}
+                    if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat(); collapse() }
                     else if (closedGroupButton.contains(touch) || touch.isRightOf(closedGroupButton, dragMargin)) { delegate?.createNewClosedGroup(); collapse() }
                     else if (openGroupButton.contains(touch) || touch.isLeftOf(openGroupButton, dragMargin)) { delegate?.joinOpenGroup(); collapse() }
                     else {
@@ -273,6 +271,7 @@ class NewConversationButtonSetView : RelativeLayout {
         }
         previousAction = event.action
         return true
+    }
 
     private fun expand() {
         val buttonsExcludingMainButton = listOf( sessionButton, closedGroupButton, openGroupButton )
