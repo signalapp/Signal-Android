@@ -1683,6 +1683,7 @@
   <string name="preferences_app_protection__change_your_pin">更改 PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 令信息以 Signal 加密方式保存，这样只有你可以访问它。重新安装 Signal 时，可恢复你的个人资料、设置和联系人。</string>
   <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">请验证你的 Signal 安全码</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <string name="AppProtectionPreferenceFragment_none">无</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">注册锁定 PIN 密码不是您刚刚收到的短信验证码。请输入之前在应用中设置的 PIN。</string>

@@ -163,6 +163,7 @@
   <string name="ConversationItem_read_more"> আরো পড়ুন</string>
   <string name="ConversationItem_download_more"> আরো ডাউনলোড করুন</string>
   <string name="ConversationItem_pending"> মুলতুবী</string>
+  <string name="ConversationItem_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string>
@@ -769,6 +770,7 @@
   <string name="ThreadRecord_view_once_photo">একবার দেখার যোগ্য ছবি</string>
   <string name="ThreadRecord_view_once_video">একবার দেখার যোগ্য ভিডিও</string>
   <string name="ThreadRecord_view_once_media">একবার দেখা যাবে এমন মিডিয়া</string>
+  <string name="ThreadRecord_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal এ যোগ দিয়েছেন!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">অদৃশ্য হওয়া বার্তাগুলি অক্ষম করা হয়েছে</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">অদৃশ্য হয়ে যাওয়া বার্তার সময়টি %s এ সেট করা হয়েছে</string>
@@ -877,6 +879,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">আপনার একবার দেখার যোগ্য ছবিতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">আপনার একবার দেখার যোগ্য ভিডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">আপনার স্টিকারে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <string name="MessageNotifier_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">সচারচর</string>
   <string name="NotificationChannel_calls">কল সমূহ</string>
@@ -1612,6 +1615,7 @@
   <string name="preferences_app_protection__change_your_pin">আপনার পিন পরিবর্তন করুন</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
   <string name="preferences_app_protection__confirm_pin">পিনটি সমর্থন করুন</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">আপনার Signal পিনটি নিশ্চিত করুন</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">রেজিস্ট্রেশন লক পিনটি আপনি সদ্য প্রাপ্ত এসএমএস যাচাইকরণ কোডের সাথে মিলছে না। আপনি পূর্বে অ্যাপ্লিকেশনটিতে কনফিগার করা পিনটি প্রবেশ করুন।</string>

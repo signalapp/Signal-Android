@@ -1862,6 +1862,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pievienojiet papildus drošību ievadīt PIN reģistrējoties Signal no jauna.</string>
   <string name="preferences_app_protection__turn_off">Izslēgt</string>
   <string name="preferences_app_protection__confirm_pin">Apstiprināt PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Apstipriniet Signal PIN</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Reģistrācijas bloķēšanas iestatīšanas laikā notikusi kļūda.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Reģistrācijas bloķēšanas atiestatīšanas laikā notikusi kļūda.</string>

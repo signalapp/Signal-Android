@@ -1819,6 +1819,7 @@
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">امنیت بیشتر با افزودن درخواست پین Signal برای ثبت‌نام دوباره</string>
   <string name="preferences_app_protection__turn_off">خاموش</string>
   <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">رمز Signal خود را تائید کنید</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">قفل ثبت‌نام فعال نشد.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">قفل ثبت‌نام غیرفعال نشد.</string>

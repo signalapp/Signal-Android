@@ -701,7 +701,7 @@
   <string name="DeviceProvisioningActivity_content_intro">Het kan dan</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Al je berichten lezen
-        \n• Berichten onder jouw naam verzenden
+        \n• Berichten uit jouw naam verzenden
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Apparaat wordt gekoppeld</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat wordt gekoppeld …</string>
@@ -1023,7 +1023,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
-  <string name="MessageNotifier_locked_message">Versleuteld bericht</string>
+  <string name="MessageNotifier_locked_message">Nieuw bericht, ontgrendel Signal om het weer te geven</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
@@ -1308,7 +1308,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="one">%1$s is toegevoegd aan de groep.</item>
     <item quantity="other">%1$s zijn toegevoegd aan de groep.</item>
   </plurals>
-  <string name="GroupUtil_group_name_is_now">De groepsnaam is vanaf nu ‘%1$s’.</string>
+  <string name="GroupUtil_group_name_is_now">De groepsnaam is vanaf nu “%1$s”.</string>
   <!--profile_group_share_view-->
   <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tik hier om je profielnaam en -foto voor deze groep zichtbaar te maken</string>
   <!--prompt_passphrase_activity-->
@@ -1435,9 +1435,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="arrays__settings_default">Gebruik systeemstandaard</string>
   <string name="arrays__enabled">Ingeschakeld</string>
   <string name="arrays__disabled">Uitgeschakeld</string>
-  <string name="arrays__name_and_message">Naam en bericht</string>
-  <string name="arrays__name_only">Alleen naam</string>
-  <string name="arrays__no_name_or_message">Geen naam en geen bericht</string>
+  <string name="arrays__name_and_message">De naam van de afzender en berichtinhoud</string>
+  <string name="arrays__name_only">Alleen de naam van de afzender</string>
+  <string name="arrays__no_name_or_message">Niet de naam van de afzender en geen berichtinhoud</string>
   <string name="arrays__images">Afbeeldingen</string>
   <string name="arrays__audio">Geluid</string>
   <string name="arrays__video">Video</string>
@@ -1873,8 +1873,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
   <string name="preferences_app_protection__pin_reminders">Pincode-herinneringen</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Door dit in te schakelen voeg je extra beveiliging toe. Je zult dan wanneer je je huidige telefoonnummer opnieuw probeert te registreren pas na 7 dagen het invoeren van je pincode kunnen overslaan. Hierdoor kan niemand behalve jij Signal registreren met je huidige telefoonnummer.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet opnieuw in kunt stellen. Zonder je pincode verlies je misschien Signal-gegevens wanneer je je telefoonnummer opnieuw registreert. Je zult naarmate tijd verstrijkt krijg je minder herinneringen te zien.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Gebruik je pincode voor twee-factor-authenticatie. Ieder wie je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet opnieuw in kunt stellen. Zonder je pincode verlies je misschien Signal-gegevens wanneer je je telefoonnummer opnieuw registreert. Naarmate tijd verstrijkt krijg je minder vaak herinneringen te zien.</string>
   <string name="preferences_app_protection__turn_off">Uitschakelen</string>
   <string name="preferences_app_protection__confirm_pin">Bevestig pincode</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Je Signal-pincode bevestigen</string>

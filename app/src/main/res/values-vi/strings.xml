@@ -1760,6 +1760,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Thêm một lớp bảo mật bằng cách yêu cầu điền mã PIN Signal khi ai đó đăng kí lại số điện thoại của bạn với Signal.</string>
   <string name="preferences_app_protection__turn_off">Tắt</string>
   <string name="preferences_app_protection__confirm_pin">Xác nhận mã PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Xác nhận mã PIN Signal</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Không thể bật khóa đăng kí.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Không thể tắt khóa đăng kí.</string>
