@@ -17,9 +17,6 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
 
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
-    assert  getSupportActionBar() != null;
-    getSupportActionBar().hide();
-
     AlertDialog dialog = new AlertDialog.Builder(this)
         .setTitle(getString(R.string.DeviceProvisioningActivity_link_a_signal_device))
         .setMessage(getString(R.string.DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner))
