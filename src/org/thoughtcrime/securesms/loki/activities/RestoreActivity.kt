@@ -46,14 +46,14 @@ class RestoreActivity : BaseActionBarActivity() {
         termsExplanation.setSpan(object : ClickableSpan() {
 
             override fun onClick(widget: View) {
-                openURL("https://getsession.org/legal/#tos")
+                openURL("https://getsession.org/terms-of-service/")
             }
         }, 40, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(object : ClickableSpan() {
 
             override fun onClick(widget: View) {
-                openURL("https://getsession.org/legal/#privacy-policy")
+                openURL("https://getsession.org/privacy-policy/")
             }
         }, 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsTextView.movementMethod = LinkMovementMethod.getInstance()
