@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.InitialMessageRetriever;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
@@ -162,7 +163,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull MessageNotifier provideMessageNotifier() {
-    return new DefaultMessageNotifier();
+    return new OptimizedMessageNotifier(new DefaultMessageNotifier());
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

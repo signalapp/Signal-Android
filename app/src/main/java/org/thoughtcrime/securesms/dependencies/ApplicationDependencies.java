@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.BuildConfig;
@@ -61,13 +62,15 @@ public class ApplicationDependencies {
   private static InitialMessageRetriever      initialMessageRetriever;
   private static MessageNotifier              messageNotifier;
 
+  @MainThread
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
       throw new IllegalStateException("Already initialized!");
     }
 
-    ApplicationDependencies.application = application;
-    ApplicationDependencies.provider    = provider;
+    ApplicationDependencies.application     = application;
+    ApplicationDependencies.provider        = provider;
+    ApplicationDependencies.messageNotifier = provider.provideMessageNotifier();
   }
 
   public static @NonNull Application getApplication() {
@@ -251,11 +254,6 @@ public class ApplicationDependencies {
 
   public static synchronized @NonNull MessageNotifier getMessageNotifier() {
     assertInitialization();
-
-    if (messageNotifier == null) {
-      messageNotifier = provider.provideMessageNotifier();
-    }
-
     return messageNotifier;
   }
 
