@@ -55,7 +55,7 @@ public class WebRtcAudioOutputToggleButton extends AppCompatImageView {
       List<WebRtcAudioOutput> availableModes = buildOutputModeList(isHeadsetAvailable, isHandsetAvailable);
 
       if (availableModes.size() > 2 || !isHandsetAvailable) showPicker(availableModes);
-      else                                                  setAudioOutput(OUTPUT_MODES.get((outputIndex + 1) % OUTPUT_MODES.size()));
+      else                                                  setAudioOutput(OUTPUT_MODES.get((outputIndex + 1) % OUTPUT_MODES.size()), true);
     });
   }
 
@@ -83,13 +83,16 @@ public class WebRtcAudioOutputToggleButton extends AppCompatImageView {
     this.isHeadsetAvailable = isHeadsetAvailable;
   }
 
-  public void setAudioOutput(@NonNull WebRtcAudioOutput audioOutput) {
+  public void setAudioOutput(@NonNull WebRtcAudioOutput audioOutput, boolean notifyListener) {
     int oldIndex = outputIndex;
     outputIndex = resolveAudioOutputIndex(OUTPUT_MODES.lastIndexOf(audioOutput));
 
     if (oldIndex != outputIndex) {
       refreshDrawableState();
-      notifyListener();
+
+      if (notifyListener) {
+        notifyListener();
+      }
     }
   }
 
@@ -100,7 +103,7 @@ public class WebRtcAudioOutputToggleButton extends AppCompatImageView {
   private void showPicker(@NonNull List<WebRtcAudioOutput> availableModes) {
     RecyclerView       rv      = new RecyclerView(getContext());
     AudioOutputAdapter adapter = new AudioOutputAdapter(audioOutput -> {
-                                                          setAudioOutput(audioOutput);
+                                                          setAudioOutput(audioOutput, true);
                                                           hidePicker();
                                                         },
                                                         availableModes);
@@ -138,7 +141,8 @@ public class WebRtcAudioOutputToggleButton extends AppCompatImageView {
       isHandsetAvailable = savedState.getBoolean(STATE_HANDSET_ENABLED);
 
       setAudioOutput(OUTPUT_MODES.get(
-          resolveAudioOutputIndex(savedState.getInt(STATE_OUTPUT_INDEX)))
+          resolveAudioOutputIndex(savedState.getInt(STATE_OUTPUT_INDEX))),
+          false
       );
 
       super.onRestoreInstanceState(savedState.getParcelable(STATE_PARENT));

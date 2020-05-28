@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.webrtc.audio;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -109,7 +110,15 @@ public class IncomingRinger {
       mediaPlayer.setOnErrorListener(new MediaPlayerErrorListener());
       mediaPlayer.setDataSource(context, ringtoneUri);
       mediaPlayer.setLooping(true);
-      mediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
+
+      if (Build.VERSION.SDK_INT <= 21) {
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
+      } else {
+        mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
+                                                          .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                                          .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION_SIGNALLING)
+                                                          .build());
+      }
 
       return mediaPlayer;
     } catch (IOException e) {

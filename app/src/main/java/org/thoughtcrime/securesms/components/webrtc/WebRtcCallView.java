@@ -196,10 +196,6 @@ public class WebRtcCallView extends FrameLayout {
     micToggle.setChecked(isMicEnabled, false);
   }
 
-  public void setAudioOutput(WebRtcAudioOutput output) {
-    audioToggle.setAudioOutput(output);
-  }
-
   public void setRemoteVideoEnabled(boolean isRemoteVideoEnabled) {
     if (isRemoteVideoEnabled) {
       remoteRenderContainer.setVisibility(View.VISIBLE);
@@ -333,7 +329,7 @@ public class WebRtcCallView extends FrameLayout {
       audioToggle.setControlAvailability(webRtcControls.enableHandsetInAudioToggle(),
                                          webRtcControls.enableHeadsetInAudioToggle());
 
-      audioToggle.setAudioOutput(webRtcControls.getAudioOutput());
+      audioToggle.setAudioOutput(webRtcControls.getAudioOutput(), false);
     }
 
     if (webRtcControls.displayCameraToggle()) {

@@ -25,19 +25,21 @@ public class SignalAudioManager {
   private final int       connectedSoundId;
   private final int       disconnectedSoundId;
 
+  private final AudioManagerCompat audioManagerCompat;
+
   public SignalAudioManager(@NonNull Context context) {
-    this.context             = context.getApplicationContext();
-    this.incomingRinger      = new IncomingRinger(context);
-    this.outgoingRinger      = new OutgoingRinger(context);
-    this.soundPool           = new SoundPool(1, AudioManager.STREAM_VOICE_CALL, 0);
+    this.context            = context.getApplicationContext();
+    this.incomingRinger     = new IncomingRinger(context);
+    this.outgoingRinger     = new OutgoingRinger(context);
+    this.audioManagerCompat = AudioManagerCompat.create(context);
+    this.soundPool          = audioManagerCompat.createSoundPool();
 
     this.connectedSoundId    = this.soundPool.load(context, R.raw.webrtc_completed, 1);
     this.disconnectedSoundId = this.soundPool.load(context, R.raw.webrtc_disconnected, 1);
   }
 
   public void initializeAudioForCall() {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
-    audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
+    audioManagerCompat.requestCallAudioFocus();
   }
 
   public void startIncomingRinger(@Nullable Uri ringtoneUri, boolean vibrate) {
@@ -89,14 +91,8 @@ public class SignalAudioManager {
       soundPool.play(disconnectedSoundId, 1.0f, 1.0f, 0, 0, 1.0f);
     }
 
-    if (audioManager.isBluetoothScoOn()) {
-      audioManager.setBluetoothScoOn(false);
-      audioManager.stopBluetoothSco();
-    }
-
-    audioManager.setSpeakerphoneOn(false);
-    audioManager.setMicrophoneMute(false);
     audioManager.setMode(AudioManager.MODE_NORMAL);
-    audioManager.abandonAudioFocus(null);
+
+    audioManagerCompat.abandonCallAudioFocus();
   }
 }

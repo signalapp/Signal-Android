@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BluetoothStateManager {
 
-  private static final String TAG = BluetoothStateManager.class.getSimpleName();
+  private static final String TAG = Log.tag(BluetoothStateManager.class);
 
   private enum ScoConnection {
     DISCONNECTED,
