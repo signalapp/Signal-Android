@@ -431,6 +431,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     Log.i(TAG, "handleOutgoingCall():");
+    EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
 
     initializeVideo();
 
@@ -1042,6 +1043,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     RemotePeer remotePeer = getRemotePeer(intent);
 
     Log.i(TAG, "handleEndedReceivedOfferWhileActive(): call_id: " + remotePeer.getCallId());
+
+    if (activePeer == null) {
+      Log.w(TAG, "handleEndedReceivedOfferWhileActive(): ignoring call with null activePeer");
+      return;
+    }
+
     switch (activePeer.getState()) {
       case DIALING:
       case REMOTE_RINGING: setCallInProgressNotification(TYPE_OUTGOING_RINGING,    activePeer); break;
