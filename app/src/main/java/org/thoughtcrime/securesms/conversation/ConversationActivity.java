@@ -43,6 +43,7 @@ import android.provider.Telephony;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -163,6 +164,7 @@ import org.thoughtcrime.securesms.invites.InviteReminderRepository;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
@@ -870,6 +872,28 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     return false;
+  }
+
+  @Override
+  public boolean onMenuOpened(int featureId, Menu menu) {
+    if (menu == null) {
+      return super.onMenuOpened(featureId, null);
+    }
+
+    if (!SignalStore.uiHints().hasSeenGroupSettingsMenuToast()) {
+      MenuItem settingsMenuItem = menu.findItem(R.id.menu_group_settings);
+
+      if (settingsMenuItem != null && settingsMenuItem.isVisible()) {
+        Toast toast = Toast.makeText(this, R.string.ConversationActivity__more_options_now_in_group_settings, Toast.LENGTH_SHORT);
+
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+
+        SignalStore.uiHints().markHasSeenGroupSettingsMenuToast();
+      }
+    }
+
+    return super.onMenuOpened(featureId, menu);
   }
 
   @Override

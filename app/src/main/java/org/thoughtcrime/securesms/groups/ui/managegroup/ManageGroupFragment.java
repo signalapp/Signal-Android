@@ -108,12 +108,6 @@ public class ManageGroupFragment extends Fragment {
   }
 
   @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setHasOptionsMenu(true);
-  }
-
-  @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
                                      @Nullable ViewGroup container,
                                      @Nullable Bundle savedInstanceState)
@@ -188,7 +182,10 @@ public class ManageGroupFragment extends Fragment {
     avatar.setFallbackPhotoProvider(fallbackPhotoProvider);
 
     toolbar.setNavigationOnClickListener(v -> requireActivity().finish());
+    toolbar.setOnMenuItemClickListener(this::onMenuItemSelected);
+    toolbar.inflateMenu(R.menu.manage_group_fragment);
 
+    viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> toolbar.getMenu().findItem(R.id.action_edit).setVisible(canEdit));
     viewModel.getTitle().observe(getViewLifecycleOwner(), toolbar::setTitle);
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
@@ -306,13 +303,10 @@ public class ManageGroupFragment extends Fragment {
 
   @Override
   public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-    inflater.inflate(R.menu.manage_group_fragment, menu);
 
-    viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> menu.findItem(R.id.action_edit).setVisible(canEdit));
   }
 
-  @Override
-  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+  public boolean onMenuItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.action_edit) {
       startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getPushGroupId()));
       return true;
