@@ -21,8 +21,6 @@ import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.loki.utilities.*
 
 class NewConversationButtonSetView : RelativeLayout {
@@ -209,22 +207,25 @@ class NewConversationButtonSetView : RelativeLayout {
     // region Interaction
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val touch = PointF(event.x, event.y)
-        val expandedButton = expandedButton
         val allButtons = listOf( mainButton, sessionButton, closedGroupButton, openGroupButton )
         val buttonsExcludingMainButton = listOf( sessionButton, closedGroupButton, openGroupButton )
         if (allButtons.none { it.contains(touch) }) { return false }
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                if (isExpanded) {
+                    if (sessionButton.contains(touch)) { delegate?.createNewPrivateChat(); collapse() }
+                    else if (closedGroupButton.contains(touch)) { delegate?.createNewClosedGroup(); collapse() }
+                    else if (openGroupButton.contains(touch)) { delegate?.joinOpenGroup(); collapse() }
+                    else if (mainButton.contains(touch)) { collapse() }
+                } else {
+                    isExpanded = !isExpanded
+                    expand()
+                }
                 val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     vibrator.vibrate(VibrationEffect.createOneShot(50, DEFAULT_AMPLITUDE))
                 } else {
                     vibrator.vibrate(50)
-                }
-                if (!isExpanded && mainButton.contains(touch)) {
-                    expand()
-                } else if (buttonsExcludingMainButton.none { it.contains(touch) }) {
-                    collapse()
                 }
             }
             MotionEvent.ACTION_MOVE -> {
@@ -249,16 +250,22 @@ class NewConversationButtonSetView : RelativeLayout {
                 }
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                if (previousAction == MotionEvent.ACTION_MOVE || isExpanded) {
+                val distanceFromRestPosition = touch.distanceTo(buttonRestPosition)
+                if (distanceFromRestPosition > (minDragDistance + mainButton.collapsedSize / 2)) {
+                    if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat(); collapse() }
+                    else if (closedGroupButton.contains(touch) || touch.isRightOf(closedGroupButton, dragMargin)) { delegate?.createNewClosedGroup(); collapse() }
+                    else if (openGroupButton.contains(touch) || touch.isLeftOf(openGroupButton, dragMargin)) { delegate?.joinOpenGroup(); collapse() }
+                    else {
+                        isExpanded = !isExpanded
+                        if (!isExpanded) { collapse() }
+                    }
+                } else {
+                    val currentPosition = PointF(mainButton.x, mainButton.y)
+                    mainButton.animatePositionChange(currentPosition, buttonRestPosition)
+                    val endAlpha = 1.0f
+                    mainButton.animateAlphaChange(mainButton.alpha, endAlpha)
                     expandedButton?.collapse()
                     this.expandedButton = null
-                    collapse()
-                    val distanceFromRestPosition = touch.distanceTo(buttonRestPosition)
-                    if (event.action == MotionEvent.ACTION_UP && distanceFromRestPosition > (minDragDistance + mainButton.collapsedSize / 2)) {
-                        if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat() }
-                        else if (closedGroupButton.contains(touch) || touch.isRightOf(closedGroupButton, dragMargin)) { delegate?.createNewClosedGroup() }
-                        else if (openGroupButton.contains(touch) || touch.isLeftOf(openGroupButton, dragMargin)) { delegate?.joinOpenGroup() }
-                    }
                 }
             }
         }
