@@ -59,7 +59,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       Context      context      = contextReference.get();
       String       directory    = null;
 
-      if (!StorageUtil.canWriteInSignalStorageDir()) {
+      if (!StorageUtil.canWriteInSessionStorageDir()) {
         return new Pair<>(WRITE_ACCESS_FAILURE, null);
       }
 
