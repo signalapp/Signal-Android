@@ -1906,6 +1906,9 @@
     <string name="conversation_list_batch__menu_select_all">Select all</string>
     <string name="conversation_list_batch_archive__menu_archive_selected">Archive selected</string>
     <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Unarchive selected</string>
+    <string name="conversation_list_batch__menu_unarchive_selected">Unarchive selected</string>
+    <string name="conversation_list_batch__menu_mark_as_read">Mark as read</string>
+    <string name="conversation_list_batch__menu_mark_as_unread">Mark as unread</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Settings shortcut</string>

@@ -21,8 +21,9 @@ import android.widget.LinearLayout;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.views.DarkOverflowToolbar;
 
-public class ContactFilterToolbar extends Toolbar {
+public class ContactFilterToolbar extends DarkOverflowToolbar {
   private   OnFilterChangedListener listener;
 
   private EditText        searchText;

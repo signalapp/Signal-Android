@@ -326,7 +326,7 @@
     <style name="Signal.Toolbar.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="srcCompat">@drawable/ic_more_vert_24</item>
         <item name="android:src">@null</item>
-        <item name="android:tint">?icon_tint</item>
+        <item name="android:tint">@color/core_white</item>
     </style>
 
     <style name="Signal.Toolbar.Overflow.Conversation">

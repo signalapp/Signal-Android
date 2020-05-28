@@ -24,10 +24,13 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase.Extra;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Preconditions;
+
+import java.util.Objects;
 
 /**
  * Represents an entry in the {@link org.thoughtcrime.securesms.database.ThreadDatabase}.
@@ -47,6 +50,7 @@ public final class ThreadRecord {
   private final Extra     extra;
   private final long      count;
   private final int       unreadCount;
+  private final boolean   forcedUnread;
   private final int       distributionType;
   private final boolean   archived;
   private final long      expiresIn;
@@ -66,6 +70,7 @@ public final class ThreadRecord {
     this.extra                = builder.extra;
     this.count                = builder.count;
     this.unreadCount          = builder.unreadCount;
+    this.forcedUnread         = builder.forcedUnread;
     this.distributionType     = builder.distributionType;
     this.archived             = builder.archived;
     this.expiresIn            = builder.expiresIn;
@@ -102,6 +107,14 @@ public final class ThreadRecord {
 
   public int getUnreadCount() {
     return unreadCount;
+  }
+
+  public boolean isForcedUnread() {
+    return forcedUnread;
+  }
+
+  public boolean isRead() {
+    return unreadCount == 0 && !forcedUnread;
   }
 
   public long getDate() {
@@ -188,6 +201,7 @@ public final class ThreadRecord {
     private Extra     extra;
     private long      count;
     private int       unreadCount;
+    private boolean   forcedUnread;
     private int       distributionType;
     private boolean   archived;
     private long      expiresIn;
@@ -262,6 +276,11 @@ public final class ThreadRecord {
       return this;
     }
 
+    public Builder setForcedUnread(boolean forcedUnread) {
+      this.forcedUnread = forcedUnread;
+      return this;
+    }
+
     public Builder setDistributionType(int distributionType) {
       this.distributionType = distributionType;
       return this;
@@ -283,10 +302,12 @@ public final class ThreadRecord {
     }
 
     public ThreadRecord build() {
-      Preconditions.checkArgument(threadId > 0);
-      Preconditions.checkArgument(date > 0);
-      Preconditions.checkNotNull(body);
-      Preconditions.checkNotNull(recipient);
+      if (distributionType == ThreadDatabase.DistributionTypes.CONVERSATION) {
+        Preconditions.checkArgument(threadId > 0);
+        Preconditions.checkArgument(date > 0);
+        Preconditions.checkNotNull(body);
+        Preconditions.checkNotNull(recipient);
+      }
       return new ThreadRecord(this);
     }
   }

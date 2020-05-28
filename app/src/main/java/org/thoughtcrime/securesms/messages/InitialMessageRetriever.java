@@ -8,7 +8,6 @@ import androidx.annotation.WorkerThread;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.List;

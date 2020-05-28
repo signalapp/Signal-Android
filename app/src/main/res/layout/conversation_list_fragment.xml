@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="?android:windowBackground">
 
-  <androidx.appcompat.widget.Toolbar
+  <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
@@ -66,7 +66,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-  </androidx.appcompat.widget.Toolbar>
+  </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 
   <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar_basic"

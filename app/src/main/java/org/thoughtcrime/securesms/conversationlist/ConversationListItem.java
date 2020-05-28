@@ -170,7 +170,7 @@ public class ConversationListItem extends RelativeLayout
 
       this.fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), name, highlightSubstring));
     } else {
-      this.fromView.setText(recipient.get(), unreadCount == 0);
+      this.fromView.setText(recipient.get(), thread.isRead());
     }
 
     if (typingThreads.contains(threadId)) {
@@ -190,17 +190,17 @@ public class ConversationListItem extends RelativeLayout
         groupAddedBy.observeForever(groupAddedByObserver);
       }
 
-      this.subjectView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
-      this.subjectView.setTextColor(unreadCount == 0 ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_subject_color)
-                                                     : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
+      this.subjectView.setTypeface(thread.isRead() ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
+      this.subjectView.setTextColor(thread.isRead() ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_subject_color)
+                                                    : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
     }
 
     if (thread.getDate() > 0) {
       CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
       dateView.setText(date);
-      dateView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
-      dateView.setTextColor(unreadCount == 0 ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_date_color)
-                                             : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
+      dateView.setTypeface(thread.isRead() ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
+      dateView.setTextColor(thread.isRead() ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_date_color)
+                                            : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
     }
 
     if (thread.isArchived()) {
@@ -292,7 +292,7 @@ public class ConversationListItem extends RelativeLayout
 
   private void setBatchMode(boolean batchMode) {
     this.batchMode = batchMode;
-    setSelected(batchMode && selectedThreads.contains(threadId));
+    setSelected(batchMode && selectedThreads.contains(thread.getThreadId()));
   }
 
   public Recipient getRecipient() {
@@ -301,6 +301,10 @@ public class ConversationListItem extends RelativeLayout
 
   public long getThreadId() {
     return threadId;
+  }
+
+  public @NonNull ThreadRecord getThread() {
+    return thread;
   }
 
   public int getUnreadCount() {
@@ -368,12 +372,12 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private void setUnreadIndicator(ThreadRecord thread) {
-    if (thread.isOutgoing() || thread.getUnreadCount() == 0) {
+    if ((thread.isOutgoing() && !thread.isForcedUnread()) || thread.isRead()) {
       unreadIndicator.setVisibility(View.GONE);
       return;
     }
 
-    unreadIndicator.setText(String.valueOf(unreadCount));
+    unreadIndicator.setText(unreadCount > 0 ? String.valueOf(unreadCount) : " ");
     unreadIndicator.setVisibility(View.VISIBLE);
   }
 
