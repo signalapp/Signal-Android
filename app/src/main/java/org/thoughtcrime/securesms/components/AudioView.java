@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -29,6 +30,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
+import org.thoughtcrime.securesms.audio.AudioWaveForm;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.logging.Log;
@@ -57,6 +59,10 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
            private final boolean             autoRewind;
 
   @Nullable private final TextView timestamp;
+  @Nullable private final TextView duration;
+
+  @ColorInt private final int waveFormPlayedBarsColor;
+  @ColorInt private final int waveFormUnplayedBarsColor;
 
   @Nullable private SlideClickListener downloadListener;
   @Nullable private AudioSlidePlayer   audioSlidePlayer;
@@ -91,6 +97,7 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
       this.circleProgress  = findViewById(R.id.circle_progress);
       this.seekBar         = findViewById(R.id.seek);
       this.timestamp       = findViewById(R.id.timestamp);
+      this.duration        = findViewById(R.id.duration);
 
       lottieDirection = REVERSE;
       this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
@@ -98,6 +105,10 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
 
       setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE),
               typedArray.getColor(R.styleable.AudioView_backgroundTintColor, Color.WHITE));
+
+      this.waveFormPlayedBarsColor   = typedArray.getColor(R.styleable.AudioView_waveformPlayedBarsColor, Color.WHITE);
+      this.waveFormUnplayedBarsColor = typedArray.getColor(R.styleable.AudioView_waveformUnplayedBarsColor, Color.WHITE);
+
       container.setBackgroundColor(typedArray.getColor(R.styleable.AudioView_widgetBackground, Color.TRANSPARENT));
     } finally {
       if (typedArray != null) {
@@ -141,6 +152,28 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     }
 
     this.audioSlidePlayer = AudioSlidePlayer.createFor(getContext(), audio, this);
+
+    if (seekBar instanceof WaveFormSeekBarView) {
+      WaveFormSeekBarView waveFormView = (WaveFormSeekBarView) seekBar;
+      waveFormView.setColors(waveFormPlayedBarsColor, waveFormUnplayedBarsColor);
+      if (android.os.Build.VERSION.SDK_INT >= 23) {
+        new AudioWaveForm(getContext(), audio).generateWaveForm(
+          data -> {
+            waveFormView.setWaveData(data.getWaveForm());
+            if (duration != null) {
+              long durationSecs = data.getDuration(TimeUnit.SECONDS);
+              duration.setText(getContext().getResources().getString(R.string.AudioView_duration, durationSecs / 60, durationSecs % 60));
+              duration.setVisibility(VISIBLE);
+            }
+          },
+          e -> waveFormView.setWaveMode(false));
+      } else {
+        waveFormView.setWaveMode(false);
+        if (duration != null) {
+          duration.setVisibility(GONE);
+        }
+      }
+    }
   }
 
   public void cleanup() {
@@ -231,6 +264,9 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
 
     if (this.timestamp != null) {
       this.timestamp.setTextColor(foregroundTint);
+    }
+    if (this.duration != null) {
+      this.duration.setTextColor(foregroundTint);
     }
     this.seekBar.getProgressDrawable().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
     this.seekBar.getThumb().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);

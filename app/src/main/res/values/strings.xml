@@ -1166,6 +1166,9 @@
     <!-- ViewOnceMessageActivity -->
     <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
+    <!-- AudioView -->
+    <string name="AudioView_duration" translatable="false">%1$02d:%2$02d</string>
+
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>

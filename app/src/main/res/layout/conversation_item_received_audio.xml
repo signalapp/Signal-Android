@@ -4,9 +4,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/audio_view"
-        android:layout_width="210dp"
+        android:layout_width="@dimen/message_audio_width"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:foregroundTintColor="@color/white"
         app:backgroundTintColor="@color/blue_500"
+        app:waveformPlayedBarsColor="@color/core_white"
+        app:waveformUnplayedBarsColor="@color/transparent_white_40"
         tools:visibility="visible"/>

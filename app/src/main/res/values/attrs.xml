@@ -339,6 +339,8 @@
         <attr name="widgetBackground" format="color"/>
         <attr name="foregroundTintColor" format="color" />
         <attr name="backgroundTintColor" format="color" />
+        <attr name="waveformPlayedBarsColor" format="color" />
+        <attr name="waveformUnplayedBarsColor" format="color" />
         <attr name="small" format="boolean" />
         <attr name="autoRewind" format="boolean" />
     </declare-styleable>

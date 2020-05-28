@@ -34,6 +34,7 @@
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="message_bubble_horizontal_padding">12dp</dimen>
     <dimen name="message_bubble_top_padding">6dp</dimen>
+    <dimen name="message_bubble_top_padding_audio">12dp</dimen>
     <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
     <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">8dp</dimen>
@@ -45,6 +46,7 @@
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
+    <dimen name="message_audio_width">260dp</dimen>
 
     <dimen name="reactions_bubble_margin">-37dp</dimen>
     <dimen name="reactions_bubble_size">32dp</dimen>
@@ -162,4 +164,6 @@
     <dimen name="group_manage_fragment_card_vertical_padding">12dp</dimen>
     <dimen name="group_manage_fragment_row_height">52dp</dimen>
     <dimen name="group_manage_fragment_row_horizontal_padding">16dp</dimen>
+
+    <dimen name="wave_form_bar_width">2dp</dimen>
 </resources>
