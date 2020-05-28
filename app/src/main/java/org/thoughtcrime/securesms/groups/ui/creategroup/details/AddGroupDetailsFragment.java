@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.groups.ui.creategroup.details;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFrag
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -109,8 +111,7 @@ public class AddGroupDetailsFragment extends Fragment {
 
     initializeViewModel();
 
-    avatar.setOnClickListener(v -> AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_AVATAR, true)
-                                                                           .show(getChildFragmentManager(), "BOTTOM"));
+    avatar.setOnClickListener(v -> showAvatarSelectionBottomSheet());
     members.setRecipientClickListener(this::handleRecipientClick);
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
@@ -240,6 +241,15 @@ public class AddGroupDetailsFragment extends Fragment {
     create.animate()
           .setDuration(animate ? 300 : 0)
           .alpha(isEnabled ? 1f : 0.5f);
+  }
+
+  private void showAvatarSelectionBottomSheet() {
+    Permissions.with(this)
+               .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .onAnyResult(() -> AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_AVATAR, true)
+                                                                          .show(getChildFragmentManager(), "BOTTOM"))
+               .execute();
   }
 
   public interface Callback {
