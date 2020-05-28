@@ -118,6 +118,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
+            android:name="org.thoughtcrime.securesms.loki.activities.PathActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="org.thoughtcrime.securesms.loki.activities.QRCodeActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -40,6 +40,14 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp" />
 
+            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+                android:id="@+id/pathStatusView"
+                android:layout_width="@dimen/small_profile_picture_size"
+                android:layout_height="@dimen/small_profile_picture_size"
+                android:background="@color/red"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
