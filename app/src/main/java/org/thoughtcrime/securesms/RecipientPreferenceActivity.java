@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -35,7 +36,11 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -69,7 +74,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -100,8 +104,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private static final String PREFERENCE_ABOUT                 = "pref_key_number";
   private static final String PREFERENCE_CUSTOM_NOTIFICATIONS  = "pref_key_recipient_custom_notifications";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicDarkToolbarTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicDarkToolbarTheme();
 
   private ImageView               avatar;
   private GlideRequests           glideRequests;
@@ -120,7 +123,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   @Override
   public void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -135,14 +137,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     setHeader(recipient.get());
     recipient.observe(this, this::setHeader);
 
-    getSupportLoaderManager().initLoader(0, null, this);
+    LoaderManager.getInstance(this).initLoader(0, null, this);
   }
 
   @Override
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -165,10 +166,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void initializeToolbar() {
-    this.toolbarLayout        = ViewUtil.findById(this, R.id.collapsing_toolbar);
-    this.avatar               = ViewUtil.findById(this, R.id.avatar);
-    this.threadPhotoRailView  = ViewUtil.findById(this, R.id.recent_photos);
-    this.threadPhotoRailLabel = ViewUtil.findById(this, R.id.rail_label);
+    this.toolbarLayout        = findViewById(R.id.collapsing_toolbar);
+    this.avatar               = findViewById(R.id.avatar);
+    this.threadPhotoRailView  = findViewById(R.id.recent_photos);
+    this.threadPhotoRailLabel = findViewById(R.id.rail_label);
 
     this.toolbarLayout.setExpandedTitleColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
     this.toolbarLayout.setCollapsedTitleTextColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
@@ -189,7 +190,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
     );
 
-    Toolbar toolbar = ViewUtil.findById(this, R.id.toolbar);
+    Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setLogo(null);
@@ -215,6 +216,20 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                  .fallback(fallbackPhoto.asCallCard(this))
                  .error(fallbackPhoto.asCallCard(this))
                  .diskCacheStrategy(DiskCacheStrategy.ALL)
+                 .addListener(new RequestListener<Drawable>() {
+                   @Override
+                   public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                     avatar.setOnClickListener(null);
+                     return false;
+                   }
+
+                   @Override
+                   public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                     avatar.setOnClickListener(v -> startActivity(AvatarPreviewActivity.intentFromRecipientId(RecipientPreferenceActivity.this, recipient.getId()),
+                                                                  AvatarPreviewActivity.createTransitionBundle(RecipientPreferenceActivity.this, avatar)));
+                     return false;
+                   }
+                 })
                  .into(this.avatar);
 
     if (contactPhoto == null) this.avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);

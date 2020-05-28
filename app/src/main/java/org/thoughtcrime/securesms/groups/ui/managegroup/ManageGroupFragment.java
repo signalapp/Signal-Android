@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
@@ -189,7 +190,14 @@ public class ManageGroupFragment extends Fragment {
     viewModel.getTitle().observe(getViewLifecycleOwner(), toolbar::setTitle);
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
-    viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), avatar::setRecipient);
+    viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), groupRecipient -> {
+      avatar.setRecipient(groupRecipient);
+      avatar.setOnClickListener(v -> {
+        FragmentActivity activity = requireActivity();
+        activity.startActivity(AvatarPreviewActivity.intentFromRecipientId(activity, groupRecipient.getId()),
+                               AvatarPreviewActivity.createTransitionBundle(activity, avatar));
+      });
+    });
 
     viewModel.getGroupViewState().observe(getViewLifecycleOwner(), vs -> {
       if (vs == null) return;

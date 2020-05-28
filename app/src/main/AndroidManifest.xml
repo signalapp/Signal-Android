@@ -347,10 +347,15 @@
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-        <activity android:name=".MediaPreviewActivity"
+    <activity android:name=".MediaPreviewActivity"
               android:label="@string/AndroidManifest__media_preview"
               android:windowSoftInputMode="stateHidden"
               android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".AvatarPreviewActivity"
+              android:label="@string/AndroidManifest__media_preview"
+              android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".mediaoverview.MediaOverviewActivity"
