@@ -96,13 +96,13 @@ class NewConversationButtonSetView : RelativeLayout {
 
         fun expand() {
             animateImageViewColorChange(R.color.new_conversation_button_collapsed_background, R.color.accent)
-            animateImageViewSizeChange(R.dimen.new_conversation_button_collapsed_size, R.dimen.new_conversation_button_expanded_size)
+            imageView.animateSizeChange(R.dimen.new_conversation_button_collapsed_size, R.dimen.new_conversation_button_expanded_size, animationDuration)
             animateImageViewPositionChange(collapsedImageViewPosition, expandedImageViewPosition)
         }
 
         fun collapse() {
             animateImageViewColorChange(R.color.accent, R.color.new_conversation_button_collapsed_background)
-            animateImageViewSizeChange(R.dimen.new_conversation_button_expanded_size, R.dimen.new_conversation_button_collapsed_size)
+            imageView.animateSizeChange(R.dimen.new_conversation_button_expanded_size, R.dimen.new_conversation_button_collapsed_size, animationDuration)
             animateImageViewPositionChange(expandedImageViewPosition, collapsedImageViewPosition)
         }
 
@@ -115,21 +115,6 @@ class NewConversationButtonSetView : RelativeLayout {
             animation.addUpdateListener { animator ->
                 val color = animator.animatedValue as Int
                 drawable.color = ColorStateList.valueOf(color)
-            }
-            animation.start()
-        }
-
-        private fun animateImageViewSizeChange(@DimenRes startSizeID: Int, @DimenRes endSizeID: Int) {
-            val layoutParams = imageView.layoutParams
-            val startSize = resources.getDimension(startSizeID)
-            val endSize = resources.getDimension(endSizeID)
-            val animation = ValueAnimator.ofObject(FloatEvaluator(), startSize, endSize)
-            animation.duration = animationDuration
-            animation.addUpdateListener { animator ->
-                val size = animator.animatedValue as Float
-                layoutParams.width = size.toInt()
-                layoutParams.height = size.toInt()
-                imageView.layoutParams = layoutParams
             }
             animation.start()
         }
