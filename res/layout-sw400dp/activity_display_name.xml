@@ -39,6 +39,7 @@
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/very_large_spacing"
+        android:inputType="textCapWords"
         android:hint="@string/activity_display_name_edit_text_hint" />
 
     <View
