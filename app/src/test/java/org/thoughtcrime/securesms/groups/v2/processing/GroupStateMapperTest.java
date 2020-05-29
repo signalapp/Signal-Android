@@ -115,7 +115,7 @@ public final class GroupStateMapperTest {
   }
 
   @Test
-  public void apply_maximum_group_versions() {
+  public void apply_maximum_group_revisions() {
     DecryptedGroup currentState = state(Integer.MAX_VALUE - 2);
     GroupLogEntry  log1         = logEntry(Integer.MAX_VALUE - 1);
     GroupLogEntry  log2         = logEntry(Integer.MAX_VALUE);
@@ -132,15 +132,15 @@ public final class GroupStateMapperTest {
     assertThat(actual.getHistory(), is(expected.getHistory()));
   }
 
-  private static GroupLogEntry logEntry(int version) {
-    return new GroupLogEntry(state(version), change(version));
+  private static GroupLogEntry logEntry(int revision) {
+    return new GroupLogEntry(state(revision), change(revision));
   }
 
-  private static DecryptedGroup state(int version) {
-    return DecryptedGroup.newBuilder().setVersion(version).build();
+  private static DecryptedGroup state(int revision) {
+    return DecryptedGroup.newBuilder().setRevision(revision).build();
   }
 
-  private static DecryptedGroupChange change(int version) {
-    return DecryptedGroupChange.newBuilder().setVersion(version).build();
+  private static DecryptedGroupChange change(int revision) {
+    return DecryptedGroupChange.newBuilder().setRevision(revision).build();
   }
 }

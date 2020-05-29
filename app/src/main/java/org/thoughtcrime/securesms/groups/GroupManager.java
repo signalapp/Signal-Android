@@ -147,13 +147,13 @@ public final class GroupManager {
   @WorkerThread
   public static void updateGroupFromServer(@NonNull Context context,
                                            @NonNull GroupMasterKey groupMasterKey,
-                                           int version,
+                                           int revision,
                                            long timestamp,
                                            @Nullable byte[] signedGroupChange)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      updater.updateLocalToServerVersion(version, timestamp, signedGroupChange);
+      updater.updateLocalToServerRevision(revision, timestamp, signedGroupChange);
     }
   }
 

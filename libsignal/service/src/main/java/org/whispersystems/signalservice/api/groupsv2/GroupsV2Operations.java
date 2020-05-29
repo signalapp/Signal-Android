@@ -83,7 +83,7 @@ public final class GroupsV2Operations {
     final GroupOperations   groupOperations   = forGroup(groupSecretParams);
 
     Group.Builder group = Group.newBuilder()
-                               .setVersion(0)
+                               .setRevision(0)
                                .setPublicKey(ByteString.copyFrom(groupSecretParams.getPublicParams().serialize()))
                                .setTitle(groupOperations.encryptTitle(title))
                                .setDisappearingMessagesTimer(groupOperations.encryptTimer(0))
@@ -281,7 +281,7 @@ public final class GroupsV2Operations {
                            .setTitle(decryptTitle(group.getTitle()))
                            .setAvatar(group.getAvatar())
                            .setAccessControl(group.getAccessControl())
-                           .setVersion(group.getVersion())
+                           .setRevision(group.getRevision())
                            .addAllMembers(decryptedMembers)
                            .addAllPendingMembers(decryptedPendingMembers)
                            .setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(decryptDisappearingMessagesTimer(group.getDisappearingMessagesTimer())))
@@ -322,12 +322,12 @@ public final class GroupsV2Operations {
       }
 
       // Field 2
-      builder.setVersion(actions.getVersion());
+      builder.setRevision(actions.getRevision());
 
       // Field 3
       for (GroupChange.Actions.AddMemberAction addMemberAction : actions.getAddMembersList()) {
         try {
-          builder.addNewMembers(decryptMember(addMemberAction.getAdded()).setJoinedAtVersion(actions.getVersion()));
+          builder.addNewMembers(decryptMember(addMemberAction.getAdded()).setJoinedAtRevision(actions.getRevision()));
         } catch (InvalidInputException e) {
           throw new InvalidGroupStateException(e);
         }
@@ -354,7 +354,7 @@ public final class GroupsV2Operations {
           UUID uuid = decryptUuid(ByteString.copyFrom(presentation.getUuidCiphertext().serialize()));
           builder.addModifiedProfileKeys(DecryptedMember.newBuilder()
                                                         .setRole(Member.Role.UNKNOWN)
-                                                        .setJoinedAtVersion(-1)
+                                                        .setJoinedAtRevision(-1)
                                                         .setUuid(UuidUtil.toByteString(uuid))
                                                         .setProfileKey(ByteString.copyFrom(decryptProfileKey(ByteString.copyFrom(presentation.getProfileKeyCiphertext().serialize()), uuid).serialize())));
         } catch (InvalidInputException e) {
@@ -398,7 +398,7 @@ public final class GroupsV2Operations {
         UUID       uuid       = clientZkGroupCipher.decryptUuid(profileKeyCredentialPresentation.getUuidCiphertext());
         ProfileKey profileKey = clientZkGroupCipher.decryptProfileKey(profileKeyCredentialPresentation.getProfileKeyCiphertext(), uuid);
         builder.addPromotePendingMembers(DecryptedMember.newBuilder()
-                                                        .setJoinedAtVersion(-1)
+                                                        .setJoinedAtRevision(-1)
                                                         .setRole(Member.Role.DEFAULT)
                                                         .setUuid(UuidUtil.toByteString(uuid))
                                                         .setProfileKey(ByteString.copyFrom(profileKey.serialize())));
@@ -441,7 +441,7 @@ public final class GroupsV2Operations {
 
         return DecryptedMember.newBuilder()
                               .setUuid(UuidUtil.toByteString(uuid))
-                              .setJoinedAtVersion(member.getJoinedAtVersion())
+                              .setJoinedAtRevision(member.getJoinedAtRevision())
                               .setProfileKey(decryptProfileKeyToByteString(member.getProfileKey(), uuid))
                               .setRole(member.getRole());
       } else {
@@ -451,7 +451,7 @@ public final class GroupsV2Operations {
 
         return DecryptedMember.newBuilder()
                               .setUuid(UuidUtil.toByteString(uuid))
-                              .setJoinedAtVersion(member.getJoinedAtVersion())
+                              .setJoinedAtRevision(member.getJoinedAtRevision())
                               .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                               .setRole(member.getRole());
       }

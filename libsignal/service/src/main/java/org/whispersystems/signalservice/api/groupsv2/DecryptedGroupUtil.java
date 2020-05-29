@@ -171,7 +171,7 @@ public final class DecryptedGroupUtil {
     if (removed) {
       return builder.clearMembers()
                     .addAllMembers(decryptedMembers)
-                    .setVersion(revision)
+                    .setRevision(revision)
                     .build();
     } else {
       return group;
@@ -181,7 +181,7 @@ public final class DecryptedGroupUtil {
   public static DecryptedGroup apply(DecryptedGroup group, DecryptedGroupChange change)
       throws NotAbleToApplyChangeException
   {
-    if (change.getVersion() != group.getVersion() + 1) {
+    if (change.getRevision() != group.getRevision() + 1) {
       throw new NotAbleToApplyChangeException();
     }
 
@@ -266,7 +266,7 @@ public final class DecryptedGroupUtil {
              .build());
     }
 
-    return builder.setVersion(change.getVersion()).build();
+    return builder.setRevision(change.getRevision()).build();
   }
 
   private static int indexOfUuid(List<DecryptedMember> memberList, ByteString uuid) {

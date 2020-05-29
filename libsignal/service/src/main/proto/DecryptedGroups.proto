@@ -13,10 +13,10 @@ import "Groups.proto";
 // Decrypted version of Member
 // Keep field numbers in step
 message DecryptedMember {
-  bytes       uuid            = 1;
-  Member.Role role            = 2;
-  bytes       profileKey      = 3;
-  uint32      joinedAtVersion = 5;
+  bytes       uuid             = 1;
+  Member.Role role             = 2;
+  bytes       profileKey       = 3;
+  uint32      joinedAtRevision = 5;
 }
 
 message DecryptedPendingMember {
@@ -44,7 +44,7 @@ message DecryptedGroup {
            string                 avatar                    = 3;
            DecryptedTimer         disappearingMessagesTimer = 4;
            AccessControl          accessControl             = 5;
-           uint32                 version                   = 6;
+           uint32                 revision                  = 6;
   repeated DecryptedMember        members                   = 7;
   repeated DecryptedPendingMember pendingMembers            = 8;
 }
@@ -53,7 +53,7 @@ message DecryptedGroup {
 // Keep field numbers in step
 message DecryptedGroupChange {
            bytes                         editor                = 1;
-           uint32                        version               = 2;
+           uint32                        revision              = 2;
   repeated DecryptedMember               newMembers            = 3;
   repeated bytes                         deleteMembers         = 4;
   repeated DecryptedModifyMemberRole     modifyMemberRoles     = 5;

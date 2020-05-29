@@ -25,11 +25,11 @@ message Member {
     ADMINISTRATOR = 2;
   }
 
-  bytes  userId          = 1;
-  Role   role            = 2;
-  bytes  profileKey      = 3;
-  bytes  presentation    = 4;
-  uint32 joinedAtVersion = 5;
+  bytes  userId           = 1;
+  Role   role             = 2;
+  bytes  profileKey       = 3;
+  bytes  presentation     = 4;
+  uint32 joinedAtRevision = 5;
 }
 
 message PendingMember {
@@ -56,7 +56,7 @@ message Group {
            string        avatar                    = 3;
            bytes         disappearingMessagesTimer = 4;
            AccessControl accessControl             = 5;
-           uint32        version                   = 6;
+           uint32        revision                  = 6;
   repeated Member        members                   = 7;
   repeated PendingMember pendingMembers            = 8;
 }
@@ -115,7 +115,7 @@ message GroupChange {
     }
 
              bytes                                 sourceUuid                      = 1;
-             uint32                                version                         = 2;
+             uint32                                revision                        = 2;
     repeated AddMemberAction                       addMembers                      = 3;
     repeated DeleteMemberAction                    deleteMembers                   = 4;
     repeated ModifyMemberRoleAction                modifyMemberRoles               = 5;

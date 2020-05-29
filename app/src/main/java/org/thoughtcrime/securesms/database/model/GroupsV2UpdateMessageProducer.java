@@ -56,7 +56,7 @@ final class GroupsV2UpdateMessageProducer {
       return context.getString(R.string.MessageRecord_s_invited_you_to_the_group, describe(selfPending.get().getAddedByUuid()));
     }
 
-    if (group.getVersion() == 0) {
+    if (group.getRevision() == 0) {
       Optional<DecryptedMember> foundingMember = DecryptedGroupUtil.firstMember(group.getMembersList());
       if (foundingMember.isPresent()) {
         ByteString foundingMemberUuid = foundingMember.get().getUuid();

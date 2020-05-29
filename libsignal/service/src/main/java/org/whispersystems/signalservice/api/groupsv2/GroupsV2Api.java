@@ -103,7 +103,7 @@ public final class GroupsV2Api {
       DecryptedGroup       decryptedGroup  = groupOperations.decryptGroup(change.getGroupState());
       DecryptedGroupChange decryptedChange = groupOperations.decryptChange(change.getGroupChange(), false);
 
-      if (decryptedChange.getVersion() != decryptedGroup.getVersion()) {
+      if (decryptedChange.getRevision() != decryptedGroup.getRevision()) {
         throw new InvalidGroupStateException();
       }
 

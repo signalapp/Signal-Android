@@ -157,7 +157,7 @@ public abstract class MessageRecord extends DisplayRecord {
       DecryptedGroupV2Context        decryptedGroupV2Context = DecryptedGroupV2Context.parseFrom(decoded);
       GroupsV2UpdateMessageProducer  updateMessageProducer   = new GroupsV2UpdateMessageProducer(context, descriptionStrategy, Recipient.self().getUuid().get());
 
-      if (decryptedGroupV2Context.hasChange() && decryptedGroupV2Context.getGroupState().getVersion() > 0) {
+      if (decryptedGroupV2Context.hasChange() && decryptedGroupV2Context.getGroupState().getRevision() > 0) {
         DecryptedGroupChange change  = decryptedGroupV2Context.getChange();
         List<String>         strings = updateMessageProducer.describeChange(change);
         StringBuilder        result  = new StringBuilder();

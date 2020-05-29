@@ -336,7 +336,7 @@ public final class GroupDatabase extends Database {
       }
       groupId.requireV2();
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
-      contentValues.put(V2_REVISION, groupState.getVersion());
+      contentValues.put(V2_REVISION, groupState.getRevision());
       contentValues.put(V2_DECRYPTED_GROUP, groupState.toByteArray());
       contentValues.put(MEMBERS, serializeV2GroupMembers(groupState));
     } else {
@@ -394,7 +394,7 @@ public final class GroupDatabase extends Database {
     UUID              uuid              = Recipient.self().getUuid().get();
 
     contentValues.put(TITLE, title);
-    contentValues.put(V2_REVISION, decryptedGroup.getVersion());
+    contentValues.put(V2_REVISION, decryptedGroup.getRevision());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
     contentValues.put(MEMBERS, serializeV2GroupMembers(decryptedGroup));
     contentValues.put(ACTIVE, DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid).isPresent() ||

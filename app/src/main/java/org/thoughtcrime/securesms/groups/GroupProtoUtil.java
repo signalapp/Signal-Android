@@ -15,11 +15,11 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.util.UUIDUtil;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.util.List;
 import java.util.UUID;
@@ -29,19 +29,19 @@ public final class GroupProtoUtil {
   private GroupProtoUtil() {
   }
 
-  public static int findVersionWeWereAdded(@NonNull DecryptedGroup group, @NonNull UUID uuid)
+  public static int findRevisionWeWereAdded(@NonNull DecryptedGroup group, @NonNull UUID uuid)
       throws GroupNotAMemberException
   {
     ByteString bytes = UuidUtil.toByteString(uuid);
     for (DecryptedMember decryptedMember : group.getMembersList()) {
       if (decryptedMember.getUuid().equals(bytes)) {
-        return decryptedMember.getJoinedAtVersion();
+        return decryptedMember.getJoinedAtRevision();
       }
     }
     for (DecryptedPendingMember decryptedMember : group.getPendingMembersList()) {
       if (decryptedMember.getUuid().equals(bytes)) {
         // Assume latest, we don't have any information about when pending members were invited
-        return group.getVersion();
+        return group.getRevision();
       }
     }
     throw new GroupNotAMemberException();
@@ -52,10 +52,10 @@ public final class GroupProtoUtil {
                                                                       @Nullable DecryptedGroupChange plainGroupChange,
                                                                       @Nullable GroupChange signedServerChange)
   {
-    int version = plainGroupChange != null ? plainGroupChange.getVersion() : decryptedGroup.getVersion();
+    int revision = plainGroupChange != null ? plainGroupChange.getRevision() : decryptedGroup.getRevision();
     SignalServiceProtos.GroupContextV2.Builder contextBuilder = SignalServiceProtos.GroupContextV2.newBuilder()
                                                                                                   .setMasterKey(ByteString.copyFrom(masterKey.serialize()))
-                                                                                                  .setRevision(version);
+                                                                                                  .setRevision(revision);
 
     if (signedServerChange != null) {
       contextBuilder.setGroupChange(signedServerChange.toByteString());

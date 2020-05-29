@@ -545,9 +545,9 @@ public final class GroupsV2UpdateMessageProducerTest {
 
     private final DecryptedGroup.Builder builder;
 
-    GroupStateBuilder(@NonNull UUID foundingMember, int version) {
+    GroupStateBuilder(@NonNull UUID foundingMember, int revision) {
     builder = DecryptedGroup.newBuilder()
-                            .setVersion(version)
+                            .setRevision(revision)
                             .addMembers(DecryptedMember.newBuilder()
                                                        .setUuid(UuidUtil.toByteString(foundingMember)));
     }

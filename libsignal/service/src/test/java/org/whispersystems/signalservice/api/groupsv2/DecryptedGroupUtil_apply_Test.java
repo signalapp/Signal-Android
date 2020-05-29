@@ -27,15 +27,15 @@ import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.withP
 public final class DecryptedGroupUtil_apply_Test {
 
   @Test
-  public void apply_version() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
+  public void apply_revision() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(9)
+                                                                     .setRevision(9)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(10)
+                                                                           .setRevision(10)
                                                                            .build());
 
-    assertEquals(10, newGroup.getVersion());
+    assertEquals(10, newGroup.getRevision());
   }
 
   @Test
@@ -44,16 +44,16 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember member2 = member(UUID.randomUUID());
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .addMembers(member1)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .addNewMembers(member2)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .addMembers(member1)
                                .addMembers(member2)
                                .build(),
@@ -66,17 +66,17 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember member2 = member(UUID.randomUUID());
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(13)
+                                                                     .setRevision(13)
                                                                      .addMembers(member1)
                                                                      .addMembers(member2)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(14)
+                                                                           .setRevision(14)
                                                                            .addDeleteMembers(member1.getUuid())
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(14)
+                               .setRevision(14)
                                .addMembers(member2)
                                .build(),
                  newGroup);
@@ -88,18 +88,18 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember member2 = member(UUID.randomUUID());
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(13)
+                                                                     .setRevision(13)
                                                                      .addMembers(member1)
                                                                      .addMembers(member2)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(14)
+                                                                           .setRevision(14)
                                                                            .addDeleteMembers(member1.getUuid())
                                                                            .addDeleteMembers(member2.getUuid())
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(14)
+                               .setRevision(14)
                                .build(),
                  newGroup);
   }
@@ -110,11 +110,11 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember member2 = member(UUID.randomUUID());
 
     DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                           .setVersion(13)
+                                           .setRevision(13)
                                            .addMembers(member1)
                                            .build(),
                              DecryptedGroupChange.newBuilder()
-                                                 .setVersion(14)
+                                                 .setRevision(14)
                                                  .addDeleteMembers(member2.getUuid())
                                                  .build());
   }
@@ -125,18 +125,18 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember member2 = admin(UUID.randomUUID());
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(13)
+                                                                     .setRevision(13)
                                                                      .addMembers(member1)
                                                                      .addMembers(member2)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(14)
+                                                                           .setRevision(14)
                                                                            .addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder().setUuid(member1.getUuid()).setRole(Member.Role.ADMINISTRATOR))
                                                                            .addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder().setUuid(member2.getUuid()).setRole(Member.Role.DEFAULT))
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(14)
+                               .setRevision(14)
                                .addMembers(asAdmin(member1))
                                .addMembers(asMember(member2))
                                .build(),
@@ -153,17 +153,17 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember member2b     = withProfileKey(member2a, profileKey2b);
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(13)
+                                                                     .setRevision(13)
                                                                      .addMembers(member1)
                                                                      .addMembers(member2a)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(14)
+                                                                           .setRevision(14)
                                                                            .addModifiedProfileKeys(member2b)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(14)
+                               .setRevision(14)
                                .addMembers(member1)
                                .addMembers(member2b)
                                .build(),
@@ -176,16 +176,16 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedPendingMember pending = pendingMember(UUID.randomUUID());
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .addMembers(member1)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .addNewPendingMembers(pending)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .addMembers(member1)
                                .addPendingMembers(pending)
                                .build(),
@@ -199,19 +199,19 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedPendingMember pending     = pendingMember(pendingUuid);
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .addMembers(member1)
                                                                      .addPendingMembers(pending)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
                                                                                                                                  .setUuidCipherText(ProtoTestUtils.encrypt(pendingUuid))
                                                                                                                                  .build())
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .addMembers(member1)
                                .build(),
                  newGroup);
@@ -226,17 +226,17 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember        member2      = member(pending2Uuid, profileKey2);
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .addMembers(member1)
                                                                      .addPendingMembers(pending2)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .addPromotePendingMembers(member2)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .addMembers(member1)
                                .addMembers(member2)
                                .build(),
@@ -252,17 +252,17 @@ public final class DecryptedGroupUtil_apply_Test {
     DecryptedMember        member2      = withProfileKey(admin(pending2Uuid), profileKey2);
 
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .addMembers(member1)
                                                                      .addPendingMembers(pending2)
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .addPromotePendingMembers(member2)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .addMembers(member1)
                                .addMembers(member2)
                                .build(),
@@ -272,16 +272,16 @@ public final class DecryptedGroupUtil_apply_Test {
   @Test
   public void title() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .setTitle("Old title")
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .setNewTitle(DecryptedString.newBuilder().setValue("New title").build())
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .setTitle("New title")
                                .build(),
                  newGroup);
@@ -290,16 +290,16 @@ public final class DecryptedGroupUtil_apply_Test {
   @Test
   public void avatar() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .setAvatar("https://cnd/oldavatar")
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .setNewAvatar(DecryptedString.newBuilder().setValue("https://cnd/newavatar").build())
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .setAvatar("https://cnd/newavatar")
                                .build(),
                  newGroup);
@@ -308,16 +308,16 @@ public final class DecryptedGroupUtil_apply_Test {
   @Test
   public void timer() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(100))
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .setNewTimer(DecryptedTimer.newBuilder().setDuration(2000))
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(2000))
                                .build(),
                  newGroup);
@@ -326,19 +326,19 @@ public final class DecryptedGroupUtil_apply_Test {
   @Test
   public void attribute_access() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .setAccessControl(AccessControl.newBuilder()
                                                                                                     .setAttributes(AccessControl.AccessRequired.ADMINISTRATOR)
                                                                                                     .setMembers(AccessControl.AccessRequired.MEMBER)
                                                                                                     .build())
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .setNewAttributeAccess(AccessControl.AccessRequired.MEMBER)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .setAccessControl(AccessControl.newBuilder()
                                                               .setAttributes(AccessControl.AccessRequired.MEMBER)
                                                               .setMembers(AccessControl.AccessRequired.MEMBER)
@@ -350,19 +350,19 @@ public final class DecryptedGroupUtil_apply_Test {
   @Test
   public void membership_access() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .setAccessControl(AccessControl.newBuilder()
                                                                                                     .setAttributes(AccessControl.AccessRequired.ADMINISTRATOR)
                                                                                                     .setMembers(AccessControl.AccessRequired.MEMBER)
                                                                                                     .build())
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .setNewMemberAccess(AccessControl.AccessRequired.ADMINISTRATOR)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .setAccessControl(AccessControl.newBuilder()
                                                               .setAttributes(AccessControl.AccessRequired.ADMINISTRATOR)
                                                               .setMembers(AccessControl.AccessRequired.ADMINISTRATOR)
@@ -374,20 +374,20 @@ public final class DecryptedGroupUtil_apply_Test {
   @Test
   public void change_both_access_levels() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                                                     .setVersion(10)
+                                                                     .setRevision(10)
                                                                      .setAccessControl(AccessControl.newBuilder()
                                                                                                     .setAttributes(AccessControl.AccessRequired.ADMINISTRATOR)
                                                                                                     .setMembers(AccessControl.AccessRequired.MEMBER)
                                                                                                     .build())
                                                                      .build(),
                                                        DecryptedGroupChange.newBuilder()
-                                                                           .setVersion(11)
+                                                                           .setRevision(11)
                                                                            .setNewAttributeAccess(AccessControl.AccessRequired.MEMBER)
                                                                            .setNewMemberAccess(AccessControl.AccessRequired.ADMINISTRATOR)
                                                                            .build());
 
     assertEquals(DecryptedGroup.newBuilder()
-                               .setVersion(11)
+                               .setRevision(11)
                                .setAccessControl(AccessControl.newBuilder()
                                                               .setAttributes(AccessControl.AccessRequired.MEMBER)
                                                               .setMembers(AccessControl.AccessRequired.ADMINISTRATOR)

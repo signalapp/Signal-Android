@@ -31,13 +31,13 @@ final class GlobalGroupState {
     return history;
   }
 
-  int getLatestVersionNumber() {
+  int getLatestRevisionNumber() {
     if (history.isEmpty()) {
       if (localState == null) {
         throw new AssertionError();
       }
-      return localState.getVersion();
+      return localState.getRevision();
     }
-    return history.get(history.size() - 1).getGroup().getVersion();
+    return history.get(history.size() - 1).getGroup().getRevision();
   }
 }

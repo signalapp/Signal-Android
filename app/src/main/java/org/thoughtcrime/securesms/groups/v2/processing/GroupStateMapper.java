@@ -12,20 +12,20 @@ final class GroupStateMapper {
 
   static final int LATEST = Integer.MAX_VALUE;
 
-  private static final Comparator<GroupLogEntry> BY_VERSION = (o1, o2) -> Integer.compare(o1.getGroup().getVersion(), o2.getGroup().getVersion());
+  private static final Comparator<GroupLogEntry> BY_REVISION = (o1, o2) -> Integer.compare(o1.getGroup().getRevision(), o2.getGroup().getRevision());
 
   private GroupStateMapper() {
   }
 
   /**
-   * Given an input {@link GlobalGroupState} and a {@param maximumVersionToApply}, returns a result
-   * containing what the new local group state should be, and any remaining version history to apply.
+   * Given an input {@link GlobalGroupState} and a {@param maximumRevisionToApply}, returns a result
+   * containing what the new local group state should be, and any remaining revision history to apply.
    * <p>
    * Function is pure.
-   * @param maximumVersionToApply Use {@link #LATEST} to apply the very latest.
+   * @param maximumRevisionToApply Use {@link #LATEST} to apply the very latest.
    */
   static @NonNull AdvanceGroupStateResult partiallyAdvanceGroupState(@NonNull GlobalGroupState inputState,
-                                                                     int maximumVersionToApply)
+                                                                     int maximumRevisionToApply)
   {
     final ArrayList<GroupLogEntry> statesToApplyNow    = new ArrayList<>(inputState.getHistory().size());
     final ArrayList<GroupLogEntry> statesToApplyLater  = new ArrayList<>(inputState.getHistory().size());
@@ -34,20 +34,20 @@ final class GroupStateMapper {
 
     for (GroupLogEntry entry : inputState.getHistory()) {
       if (inputState.getLocalState() != null &&
-          inputState.getLocalState().getVersion() >= entry.getGroup().getVersion())
+          inputState.getLocalState().getRevision() >= entry.getGroup().getRevision())
       {
         continue;
       }
 
-      if (entry.getGroup().getVersion() > maximumVersionToApply) {
+      if (entry.getGroup().getRevision() > maximumRevisionToApply) {
         statesToApplyLater.add(entry);
       } else {
         statesToApplyNow.add(entry);
       }
     }
 
-    Collections.sort(statesToApplyNow,   BY_VERSION);
-    Collections.sort(statesToApplyLater, BY_VERSION);
+    Collections.sort(statesToApplyNow,   BY_REVISION);
+    Collections.sort(statesToApplyLater, BY_REVISION);
 
     if (statesToApplyNow.size() > 0) {
       newLocalState = statesToApplyNow.get(statesToApplyNow.size() - 1)

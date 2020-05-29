@@ -13,7 +13,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -150,8 +149,8 @@ public final class GroupsV2StateProcessor {
 
       if (signedGroupChange != null &&
           localState != null &&
-          localState.getVersion() + 1 == signedGroupChange.getVersion() &&
-          revision == signedGroupChange.getVersion())
+          localState.getRevision() + 1 == signedGroupChange.getRevision() &&
+          revision == signedGroupChange.getRevision())
       {
         try {
           Log.i(TAG, "Applying P2P group change");
@@ -188,7 +187,7 @@ public final class GroupsV2StateProcessor {
 
       GlobalGroupState remainingWork = advanceGroupStateResult.getNewGlobalGroupState();
       if (remainingWork.getHistory().size() > 0) {
-        Log.i(TAG, String.format(Locale.US, "There are more versions on the server for this group, not applying at this time, V[%d..%d]", newLocalState.getVersion() + 1, remainingWork.getLatestVersionNumber()));
+        Log.i(TAG, String.format(Locale.US, "There are more revisions on the server for this group, not applying at this time, V[%d..%d]", newLocalState.getRevision() + 1, remainingWork.getLatestRevisionNumber()));
       }
 
       return new GroupUpdateResult(GroupState.GROUP_UPDATED, newLocalState);
@@ -206,10 +205,10 @@ public final class GroupsV2StateProcessor {
                                                    .requireV2GroupProperties()
                                                    .getDecryptedGroup();
 
-      DecryptedGroup       simulatedGroupState  = DecryptedGroupUtil.removeMember(decryptedGroup, selfUuid, decryptedGroup.getVersion() + 1);
+      DecryptedGroup       simulatedGroupState  = DecryptedGroupUtil.removeMember(decryptedGroup, selfUuid, decryptedGroup.getRevision() + 1);
       DecryptedGroupChange simulatedGroupChange = DecryptedGroupChange.newBuilder()
                                                                       .setEditor(UuidUtil.toByteString(UuidUtil.UNKNOWN_UUID))
-                                                                      .setVersion(simulatedGroupState.getVersion())
+                                                                      .setRevision(simulatedGroupState.getRevision())
                                                                       .addDeleteMembers(UuidUtil.toByteString(selfUuid))
                                                                       .build();
 
@@ -315,8 +314,8 @@ public final class GroupsV2StateProcessor {
       if (latestOnly || !GroupProtoUtil.isMember(selfUuid, latestServerGroup.getMembersList())) {
         history = Collections.singletonList(new GroupLogEntry(latestServerGroup, null));
       } else {
-        int versionWeWereAdded = GroupProtoUtil.findVersionWeWereAdded(latestServerGroup, selfUuid);
-        int logsNeededFrom     = localState != null ? Math.max(localState.getVersion(), versionWeWereAdded) : versionWeWereAdded;
+        int revisionWeWereAdded = GroupProtoUtil.findRevisionWeWereAdded(latestServerGroup, selfUuid);
+        int logsNeededFrom      = localState != null ? Math.max(localState.getRevision(), revisionWeWereAdded) : revisionWeWereAdded;
 
         history = getFullMemberHistory(selfUuid, logsNeededFrom);
       }
@@ -324,9 +323,9 @@ public final class GroupsV2StateProcessor {
       return new GlobalGroupState(localState, history);
     }
 
-    private List<GroupLogEntry> getFullMemberHistory(@NonNull UUID selfUuid, int logsNeededFrom) throws IOException {
+    private List<GroupLogEntry> getFullMemberHistory(@NonNull UUID selfUuid, int logsNeededFromRevision) throws IOException {
       try {
-        Collection<DecryptedGroupHistoryEntry> groupStatesFromRevision = groupsV2Api.getGroupHistory(groupSecretParams, logsNeededFrom, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
+        Collection<DecryptedGroupHistoryEntry> groupStatesFromRevision = groupsV2Api.getGroupHistory(groupSecretParams, logsNeededFromRevision, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
         ArrayList<GroupLogEntry>               history                 = new ArrayList<>(groupStatesFromRevision.size());
 
         for (DecryptedGroupHistoryEntry entry : groupStatesFromRevision) {

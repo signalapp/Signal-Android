@@ -375,7 +375,7 @@ final class GroupManagerV2 {
       final GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
       final GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
       final int                             nextRevision      = v2GroupProperties.getGroupRevision() + 1;
-      final GroupChange.Actions             changeActions     = change.setVersion(nextRevision).build();
+      final GroupChange.Actions             changeActions     = change.setRevision(nextRevision).build();
       final DecryptedGroupChange            decryptedChange;
       final DecryptedGroup                  decryptedGroupState;
 
@@ -427,11 +427,11 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    void updateLocalToServerVersion(int version, long timestamp, @Nullable byte[] signedGroupChange)
+    void updateLocalToServerRevision(int revision, long timestamp, @Nullable byte[] signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
       new GroupsV2StateProcessor(context).forGroup(groupMasterKey)
-                                         .updateLocalGroupToRevision(version, timestamp, getDecryptedGroupChange(signedGroupChange));
+                                         .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange));
     }
 
     private DecryptedGroupChange getDecryptedGroupChange(@Nullable byte[] signedGroupChange) {
