@@ -1699,7 +1699,7 @@
     <string name="fragment_enter_session_id_edit_text_hint">Enter your Session ID</string>
 
     <string name="activity_display_name_title_2">Pick your display name</string>
-    <string name="activity_display_name_explanation">This will be your name when you use Session.</string>
+    <string name="activity_display_name_explanation">This will be your name when you use Session. It can be your real name, an alias, or anything else you like.</string>
     <string name="activity_display_name_edit_text_hint">Enter a display name</string>
     <string name="activity_display_name_display_name_missing_error">Please pick a display name</string>
     <string name="activity_display_name_display_name_invalid_error">Please pick a display name that consists of only a-z, A-Z, 0-9 and _ characters</string>
@@ -1708,9 +1708,9 @@
     <string name="activity_pn_mode_title">Push Notifications</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
     <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-    <string name="activity_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google\’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
+    <string name="activity_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\'ll be notified of new messages reliably and immediately. Using FCM means that your IP address and device token will be exposed to Google. If you use push notifications for other apps, this will already be the case. Your IP address and device token will also be exposed to Loki, but your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
     <string name="activity_pn_mode_background_polling_option_title">Background Polling</string>
-    <string name="activity_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full privacy protection, but message notifications may be significantly delayed.</string>
+    <string name="activity_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full metadata protection, but message notifications may be significantly delayed.</string>
     <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
     <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
 
@@ -1724,9 +1724,9 @@
     <string name="sheet_pn_mode_title">Push Notifications</string>
     <string name="sheet_pn_mode_explanation">Session now features two ways to handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
     <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-    <string name="sheet_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google\’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
+    <string name="sheet_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\'ll be notified of new messages reliably and immediately. Using FCM means that your IP address and device token will be exposed to Google. If you use push notifications for other apps, this will already be the case. Your IP address and device token will also be exposed to Loki, but your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
     <string name="sheet_pn_mode_background_polling_option_title">Background Polling</string>
-    <string name="sheet_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full privacy protection, but message notifications may be significantly delayed.</string>
+    <string name="sheet_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full metadata protection, but message notifications may be significantly delayed.</string>
     <string name="sheet_pn_mode_recommended_option_tag">Recommended</string>
     <string name="sheet_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
     <string name="sheet_pn_mode_confirm_button_title">Confirm</string>
@@ -1734,12 +1734,20 @@
 
     <string name="activity_seed_title">Your Recovery Phrase</string>
     <string name="activity_seed_title_2">Meet your recovery phrase</string>
-    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\’t give it to anyone. To restore your Session ID, launch Session and tap Continue your Session.</string>
+    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\’t give it to anyone.</string>
     <string name="activity_seed_reveal_button_title">Hold to reveal</string>
 
     <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
     <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
     <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
+
+    <string name="activity_path_title">Path</string>
+    <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the Service Nodes currently being used by your device:</string>
+    <string name="activity_path_device_row_title">You</string>
+    <string name="activity_path_guard_node_row_title">Guard Node</string>
+    <string name="activity_path_service_node_row_title">Service Node</string>
+    <string name="activity_path_destination_row_title">Destination</string>
+    <string name="activity_path_rebuild_path_button_title">Rebuild Path</string>
 
     <string name="activity_create_private_chat_title">New Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
@@ -1796,7 +1804,7 @@
 
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
     <string name="preferences_notifications_use_fcm_option_title">Use FCM</string>
-    <string name="preferences_notifications_use_fcm_option_explanation">Using Firebase Cloud Messaging allows for more reliable push notifications, but exposes your IP to Google.</string>
+    <string name="preferences_notifications_use_fcm_option_explanation">Using Firebase Cloud Messaging allows for more reliable push notifications, but exposes your IP and device token to Google and Loki.</string>
 
     <string name="dialog_link_device_slave_mode_title_1">Waiting for Authorization</string>
     <string name="dialog_link_device_slave_mode_title_2">Device Link Authorized</string>
@@ -1820,7 +1828,7 @@
     <string name="dialog_seed_explanation">This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device.</string>
 
     <string name="dialog_clear_all_data_title">Clear All Data</string>
-    <string name="dialog_clear_all_data_explanation">This will permanently delete your Session ID, including all messages, sessions, and contacts.</string>
+    <string name="dialog_clear_all_data_explanation">This will permanently delete your messages, sessions, and contacts.</string>
 
     <string name="activity_qr_code_title">QR Code</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>

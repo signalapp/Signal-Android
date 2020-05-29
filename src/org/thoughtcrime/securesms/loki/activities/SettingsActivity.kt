@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.loki.activities
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -31,6 +29,8 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.dialogs.ClearAllDataDialog
 import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
+import org.thoughtcrime.securesms.loki.utilities.fadeIn
+import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -147,7 +147,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun updateProfile(isUpdatingProfilePicture: Boolean) {
-        showLoader()
+        loader.fadeIn()
         val promises = mutableListOf<Promise<*, Exception>>()
         val displayName = displayNameToBeUploaded
         if (displayName != null) {
@@ -187,23 +187,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 profilePictureView.update()
             }
             profilePictureToBeUploaded = null
-            hideLoader()
+            loader.fadeOut()
         }
-    }
-
-    private fun showLoader() {
-        loader.visibility = View.VISIBLE
-        loader.animate().setDuration(150).alpha(1.0f).start()
-    }
-
-    private fun hideLoader() {
-        loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
-
-            override fun onAnimationEnd(animation: Animator?) {
-                super.onAnimationEnd(animation)
-                loader.visibility = View.GONE
-            }
-        })
     }
     // endregion
 

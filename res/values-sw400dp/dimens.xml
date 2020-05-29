@@ -5,6 +5,7 @@
     <dimen name="medium_button_height">44dp</dimen>
     <dimen name="tab_bar_height">48dp</dimen>
     <dimen name="setting_button_height">72dp</dimen>
+    <dimen name="path_row_height">72dp</dimen>
     <!-- Session -->
 
     <dimen name="album_total_width">300dp</dimen>

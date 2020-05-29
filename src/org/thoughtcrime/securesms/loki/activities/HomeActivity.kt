@@ -101,6 +101,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         profileButton.hexEncodedPublicKey = hexEncodedPublicKey
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
+        pathStatusViewContainer.setOnClickListener { showPath() }
         // Set up seed reminder view
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
@@ -259,6 +260,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun openSettings() {
         val intent = Intent(this, SettingsActivity::class.java)
+        show(intent)
+    }
+
+    private fun showPath() {
+        val intent = Intent(this, PathActivity::class.java)
         show(intent)
     }
 

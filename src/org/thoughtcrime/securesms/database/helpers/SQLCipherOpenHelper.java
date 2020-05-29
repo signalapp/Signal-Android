@@ -82,8 +82,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV6                           = 27;
   private static final int lokiV7                           = 28;
   private static final int lokiV8                           = 29;
+  private static final int lokiV9                           = 30;
 
-  private static final int    DATABASE_VERSION = lokiV8; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV9; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -131,7 +132,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     }
     db.execSQL(StickerDatabase.CREATE_TABLE);
 
-    db.execSQL(LokiAPIDatabase.getCreateSwarmCacheTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreatePathCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSwarmCacheCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
@@ -580,6 +583,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV8) {
         db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampTableCommand());
+      }
+
+      if (oldVersion < lokiV9) {
+        db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheCommand());
+        db.execSQL(LokiAPIDatabase.getCreatePathCacheCommand());
       }
 
       db.setTransactionSuccessful();

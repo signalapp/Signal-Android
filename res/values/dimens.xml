@@ -33,6 +33,10 @@
     <dimen name="dialog_corner_radius">8dp</dimen>
     <dimen name="dialog_button_corner_radius">4dp</dimen>
     <dimen name="pn_option_corner_radius">8dp</dimen>
+    <dimen name="path_status_view_size">8dp</dimen>
+    <dimen name="path_row_height">56dp</dimen>
+    <dimen name="path_row_dot_size">8dp</dimen>
+    <dimen name="path_row_expanded_dot_size">16dp</dimen>
 
     <!-- Distances -->
     <dimen name="small_spacing">8dp</dimen>
