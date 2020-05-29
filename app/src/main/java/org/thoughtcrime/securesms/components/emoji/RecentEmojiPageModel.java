@@ -22,20 +22,21 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 public class RecentEmojiPageModel implements EmojiPageModel {
-  private static final String TAG                  = RecentEmojiPageModel.class.getSimpleName();
-  private static final String EMOJI_LRU_PREFERENCE = "pref_recent_emoji2";
-  private static final int    EMOJI_LRU_SIZE       = 50;
+  private static final String TAG            = RecentEmojiPageModel.class.getSimpleName();
+  private static final int    EMOJI_LRU_SIZE = 50;
 
   private final SharedPreferences     prefs;
+  private final String                preferenceName;
   private final LinkedHashSet<String> recentlyUsed;
 
-  public RecentEmojiPageModel(Context context) {
-    this.prefs        = PreferenceManager.getDefaultSharedPreferences(context);
-    this.recentlyUsed = getPersistedCache();
+  public RecentEmojiPageModel(Context context, @NonNull String preferenceName) {
+    this.prefs          = PreferenceManager.getDefaultSharedPreferences(context);
+    this.preferenceName = preferenceName;
+    this.recentlyUsed   = getPersistedCache();
   }
 
   private LinkedHashSet<String> getPersistedCache() {
-    String serialized = prefs.getString(EMOJI_LRU_PREFERENCE, "[]");
+    String serialized = prefs.getString(preferenceName, "[]");
     try {
       CollectionType collectionType = TypeFactory.defaultInstance()
                                                  .constructCollectionType(LinkedHashSet.class, String.class);
@@ -90,7 +91,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
         try {
           String serialized = JsonUtils.toJson(latestRecentlyUsed);
           prefs.edit()
-               .putString(EMOJI_LRU_PREFERENCE, serialized)
+               .putString(preferenceName, serialized)
                .apply();
         } catch (IOException e) {
           Log.w(TAG, e);

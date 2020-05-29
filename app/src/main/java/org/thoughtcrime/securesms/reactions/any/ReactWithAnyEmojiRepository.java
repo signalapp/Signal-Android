@@ -17,13 +17,15 @@ import java.util.List;
 
 final class ReactWithAnyEmojiRepository {
 
+  private static final String RECENT_STORAGE_KEY = "reactions_recent_emoji";
+
   private final Context              context;
   private final RecentEmojiPageModel recentEmojiPageModel;
   private final List<EmojiPageModel> emojiPageModels;
 
   ReactWithAnyEmojiRepository(@NonNull Context context) {
     this.context              = context;
-    this.recentEmojiPageModel = new RecentEmojiPageModel(context);
+    this.recentEmojiPageModel = new RecentEmojiPageModel(context, RECENT_STORAGE_KEY);
     this.emojiPageModels      = new LinkedList<>();
 
     emojiPageModels.add(recentEmojiPageModel);
