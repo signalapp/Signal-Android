@@ -34,6 +34,8 @@ public class RestStrategy extends MessageRetrievalStrategy {
     QueueFindingJobListener queueListener = new QueueFindingJobListener();
 
     try (IncomingMessageProcessor.Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
+      jobManager.addListener(job -> job.getParameters().getQueue() != null && job.getParameters().getQueue().startsWith(PushProcessMessageJob.QUEUE_PREFIX), queueListener);
+
       int jobCount = enqueuePushDecryptJobs(processor, startTime, timeout);
 
       if (jobCount == 0) {
@@ -42,8 +44,6 @@ public class RestStrategy extends MessageRetrievalStrategy {
       } else {
         Log.d(TAG, jobCount + " PushDecryptMessageJob(s) were enqueued.");
       }
-
-      jobManager.addListener(job -> job.getParameters().getQueue() != null && job.getParameters().getQueue().startsWith(PushProcessMessageJob.QUEUE_PREFIX), queueListener);
 
       long        timeRemainingMs = blockUntilQueueDrained(PushDecryptMessageJob.QUEUE, TimeUnit.SECONDS.toMillis(10));
       Set<String> processQueues   = queueListener.getQueues();

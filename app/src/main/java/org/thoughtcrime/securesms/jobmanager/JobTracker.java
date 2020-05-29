@@ -37,14 +37,6 @@ public class JobTracker {
    */
   synchronized void addListener(@NonNull JobFilter filter, @NonNull JobListener listener) {
     jobListeners.add(new ListenerInfo(filter, listener));
-
-    Stream.of(jobInfos.values())
-          .filter(info -> info.getJobState() != null)
-          .filter(info -> filter.matches(info.getJob()))
-          .forEach(state-> {
-            //noinspection ConstantConditions We already filter for nulls above
-            listenerExecutor.execute(() -> listener.onStateChanged(state.getJob(), state.getJobState()));
-          });
   }
 
   /**
