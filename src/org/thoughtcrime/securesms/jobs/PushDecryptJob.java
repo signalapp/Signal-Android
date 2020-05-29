@@ -984,7 +984,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         InsertResult result = insertResult.get();
 
         // Loki - Cache the user hex encoded public key (for mentions)
-        MentionManagerUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(result.getThreadId(), context);
+        MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(result.getThreadId(), context);
         MentionsManager.shared.cache(textMessage.getSender().serialize(), result.getThreadId());
 
         // Loki - Store message server ID

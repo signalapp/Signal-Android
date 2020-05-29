@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserHexEncodedPublicKeyCacheIfNeeded
+import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
@@ -46,14 +46,14 @@ class ConversationView : LinearLayout {
     // region Updating
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
-        populateUserHexEncodedPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a terrible place to do this
+        populateUserPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a terrible place to do this
         unreadMessagesIndicatorView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
         if (thread.recipient.isGroupRecipient) {
             if ("Session Public Chat" == thread.recipient.name) {
                 profilePictureView.hexEncodedPublicKey = ""
                 profilePictureView.isRSSFeed = true
             } else {
-                val users = MentionsManager.shared.userHexEncodedPublicKeyCache[thread.threadId]?.toList() ?: listOf()
+                val users = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
                 profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""

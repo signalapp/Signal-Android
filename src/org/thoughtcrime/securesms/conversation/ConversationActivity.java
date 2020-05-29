@@ -463,7 +463,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return Unit.INSTANCE;
     });
 
-    MentionManagerUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, this);
+    MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
 
     LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {

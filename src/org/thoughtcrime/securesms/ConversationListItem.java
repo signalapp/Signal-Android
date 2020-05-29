@@ -272,7 +272,7 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private @NonNull CharSequence getTrimmedSnippet(@NonNull CharSequence snippet) {
-    MentionManagerUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, getContext()); // TODO: Terrible place to do this, but okay for now
+    MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, getContext()); // TODO: Terrible place to do this, but okay for now
     snippet = MentionUtilities.highlightMentions(snippet, threadId, getContext());
     return snippet.length() <= MAX_SNIPPET_LENGTH ? snippet : snippet.subSequence(0, MAX_SNIPPET_LENGTH);
   }
