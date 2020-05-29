@@ -77,13 +77,7 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
 
         switch (status.getStatusCode()) {
           case CommonStatusCodes.SUCCESS:
-            Optional<String> code = VerificationCodeParser.parse(context, (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE));
-            if (code.isPresent()) {
-              Log.i(TAG, "Received verification code.");
-              handleVerificationCodeReceived(code.get());
-            } else {
-              Log.w(TAG, "Could not parse verification code.");
-            }
+            RegistrationSmsHandler.handleRegistrationSms(context, (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE));
             break;
           case CommonStatusCodes.TIMEOUT:
             Log.w(TAG, "Hit a timeout waiting for the SMS to arrive.");
@@ -93,9 +87,5 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
         Log.w(TAG, "SmsRetrieverReceiver received the wrong action?");
       }
     }
-  }
-
-  private void handleVerificationCodeReceived(@NonNull String code) {
-    EventBus.getDefault().post(new ReceivedSmsEvent(code));
   }
 }
