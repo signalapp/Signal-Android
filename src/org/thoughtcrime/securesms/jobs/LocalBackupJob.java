@@ -65,13 +65,13 @@ public class LocalBackupJob extends BaseJob {
     GenericForegroundService.startForegroundTask(context,
                                                  context.getString(R.string.LocalBackupJob_creating_backup),
                                                  NotificationChannels.BACKUPS,
-                                                 R.drawable.ic_signal_backup);
-
+                                                 R.drawable.ic_launcher_foreground);
+// maybe create a new backup symbol like ic_signal_backup
     try {
       String backupPassword  = BackupPassphrase.get(context);
       File   backupDirectory = StorageUtil.getBackupDirectory();
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
-      String fileName        = String.format("signal-%s.backup", timestamp);
+      String fileName        = String.format("session-%s.backup", timestamp);
       File   backupFile      = new File(backupDirectory, fileName);
 
       if (backupFile.exists()) {
