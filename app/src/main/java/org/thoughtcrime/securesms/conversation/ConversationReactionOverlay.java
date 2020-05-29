@@ -120,8 +120,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
                        .map(e -> findViewById(e.viewId))
                        .toArray(EmojiImageView[]::new);
 
-    customEmojiIndex = FeatureFlags.reactWithAnyEmoji() ? ReactionEmoji.values().length - 1
-                                                        : ReactionEmoji.values().length;
+    customEmojiIndex = ReactionEmoji.values().length - 1;
 
     distanceFromTouchDownPointToTopOfScrubberDeadZone    = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_top);
     distanceFromTouchDownPointToBottomOfScrubberDeadZone = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_bottom);
