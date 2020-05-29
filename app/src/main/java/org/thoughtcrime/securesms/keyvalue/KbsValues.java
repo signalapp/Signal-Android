@@ -3,8 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -18,6 +17,7 @@ public final class KbsValues {
   public  static final String V2_LOCK_ENABLED              = "kbs.v2_lock_enabled";
   private static final String MASTER_KEY                   = "kbs.registration_lock_master_key";
   private static final String TOKEN_RESPONSE               = "kbs.token_response";
+  private static final String PIN                          = "kbs.pin";
   private static final String LOCK_LOCAL_PIN_HASH          = "kbs.registration_lock_local_pin_hash";
   private static final String LAST_CREATE_FAILED_TIMESTAMP = "kbs.last_create_failed_timestamp";
 
@@ -37,12 +37,13 @@ public final class KbsValues {
          .remove(V2_LOCK_ENABLED)
          .remove(TOKEN_RESPONSE)
          .remove(LOCK_LOCAL_PIN_HASH)
+         .remove(PIN)
          .remove(LAST_CREATE_FAILED_TIMESTAMP)
          .commit();
   }
 
   /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */
-  public synchronized void setKbsMasterKey(@NonNull KbsPinData pinData, @NonNull String localPinHash) {
+  public synchronized void setKbsMasterKey(@NonNull KbsPinData pinData, @NonNull String pin) {
     MasterKey masterKey     = pinData.getMasterKey();
     String    tokenResponse;
     try {
@@ -54,9 +55,16 @@ public final class KbsValues {
     store.beginWrite()
          .putString(TOKEN_RESPONSE, tokenResponse)
          .putBlob(MASTER_KEY, masterKey.serialize())
-         .putString(LOCK_LOCAL_PIN_HASH, localPinHash)
+         .putString(LOCK_LOCAL_PIN_HASH, PinHashing.localPinHash(pin))
+         .putString(PIN, pin)
          .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
          .commit();
+  }
+
+  synchronized void setPinIfNotPresent(@NonNull String pin) {
+    if (store.getString(PIN, null) == null) {
+      store.beginWrite().putString(PIN, pin).commit();
+    }
   }
 
   /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */

@@ -130,7 +130,7 @@ public final class SignalPinReminderDialog {
 
           if (PinHashing.verifyLocalPinHash(localHash, text)) {
             dialog.dismiss();
-            mainCallback.onReminderCompleted(callback.hadWrongGuess());
+            mainCallback.onReminderCompleted(text, callback.hadWrongGuess());
           }
         } else {
           submit.setEnabled(false);
@@ -149,10 +149,10 @@ public final class SignalPinReminderDialog {
       boolean hadWrongGuess = false;
 
       @Override
-      public void onPinCorrect() {
+      public void onPinCorrect(@NonNull String pin) {
         Log.i(TAG, "Correct PIN entry.");
         dialog.dismiss();
-        mainCallback.onReminderCompleted(hadWrongGuess);
+        mainCallback.onReminderCompleted(pin, hadWrongGuess);
       }
 
       @Override
@@ -188,7 +188,7 @@ public final class SignalPinReminderDialog {
       if (pin.length() < KbsConstants.MINIMUM_PIN_LENGTH) return;
 
       if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
-        callback.onPinCorrect();
+        callback.onPinCorrect(pin);
       } else {
         callback.onPinWrong();
       }
@@ -200,7 +200,7 @@ public final class SignalPinReminderDialog {
     void verifyPin(@Nullable String pin, @NonNull PinVerifier.Callback callback);
 
     interface Callback {
-      void onPinCorrect();
+      void onPinCorrect(@NonNull String pin);
       void onPinWrong();
       boolean hadWrongGuess();
     }
@@ -212,6 +212,6 @@ public final class SignalPinReminderDialog {
 
   public interface Callback {
     void onReminderDismissed(boolean includedFailure);
-    void onReminderCompleted(boolean includedFailure);
+    void onReminderCompleted(@NonNull String pin, boolean includedFailure);
   }
 }

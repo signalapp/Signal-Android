@@ -164,12 +164,12 @@ public final class Megaphones {
                             }
 
                             @Override
-                            public void onReminderCompleted(boolean includedFailure) {
+                            public void onReminderCompleted(@NonNull String pin, boolean includedFailure) {
                               Log.i(TAG, "[PinReminder] onReminderCompleted(" + includedFailure + ")");
                               if (includedFailure) {
-                                SignalStore.pinValues().onEntrySuccessWithWrongGuess();
+                                SignalStore.pinValues().onEntrySuccessWithWrongGuess(pin);
                               } else {
-                                SignalStore.pinValues().onEntrySuccess();
+                                SignalStore.pinValues().onEntrySuccess(pin);
                               }
 
                               controller.onMegaphoneSnooze(Event.PIN_REMINDER);

@@ -28,7 +28,7 @@ public final class PinValues {
     this.store = store;
   }
 
-  public void onEntrySuccess() {
+  public void onEntrySuccess(@NonNull String pin) {
     long nextInterval = SignalPinReminders.getNextInterval(getCurrentInterval());
     Log.i(TAG, "onEntrySuccess() nextInterval: " + nextInterval);
 
@@ -36,9 +36,11 @@ public final class PinValues {
          .putLong(LAST_SUCCESSFUL_ENTRY, System.currentTimeMillis())
          .putLong(NEXT_INTERVAL, nextInterval)
          .apply();
+
+    SignalStore.kbsValues().setPinIfNotPresent(pin);
   }
 
-  public void onEntrySuccessWithWrongGuess() {
+  public void onEntrySuccessWithWrongGuess(@NonNull String pin) {
     long nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
     Log.i(TAG, "onEntrySuccessWithWrongGuess() nextInterval: " + nextInterval);
 
@@ -46,6 +48,8 @@ public final class PinValues {
          .putLong(LAST_SUCCESSFUL_ENTRY, System.currentTimeMillis())
          .putLong(NEXT_INTERVAL, nextInterval)
          .apply();
+
+    SignalStore.kbsValues().setPinIfNotPresent(pin);
   }
 
   public void onEntrySkipWithWrongGuess() {
@@ -91,6 +95,14 @@ public final class PinValues {
 
   public @NonNull PinKeyboardType getKeyboardType() {
     return PinKeyboardType.fromCode(store.getString(KEYBOARD_TYPE, null));
+  }
+
+  public void setNextReminderIntervalToAtMost(long maxInterval) {
+    if (store.getLong(NEXT_INTERVAL, 0) > maxInterval) {
+      store.beginWrite()
+           .putLong(NEXT_INTERVAL, maxInterval)
+           .apply();
+    }
   }
 
   /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState} */

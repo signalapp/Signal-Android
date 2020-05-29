@@ -103,7 +103,7 @@ public final class PinState {
       Log.i(TAG, "Registration Lock V2");
       TextSecurePreferences.setV1RegistrationLockEnabled(context, false);
       SignalStore.kbsValues().setV2RegistrationLockEnabled(true);
-      SignalStore.kbsValues().setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
+      SignalStore.kbsValues().setKbsMasterKey(kbsData, pin);
       SignalStore.pinValues().resetPinReminders();
       resetPinRetryCount(context, pin, kbsData);
     } else if (hasPinToRestore) {
@@ -124,7 +124,7 @@ public final class PinState {
    * Invoked when the user is going through the PIN restoration flow (which is separate from reglock).
    */
   public static synchronized void onSignalPinRestore(@NonNull Context context, @NonNull KbsPinData kbsData, @NonNull String pin) {
-    SignalStore.kbsValues().setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
+    SignalStore.kbsValues().setKbsMasterKey(kbsData, pin);
     SignalStore.kbsValues().setV2RegistrationLockEnabled(false);
     SignalStore.pinValues().resetPinReminders();
     SignalStore.storageServiceValues().setNeedsAccountRestore(false);
@@ -160,7 +160,7 @@ public final class PinState {
     HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
     KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
 
-    kbsValues.setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
+    kbsValues.setKbsMasterKey(kbsData, pin);
     TextSecurePreferences.clearRegistrationLockV1(context);
     SignalStore.pinValues().setKeyboardType(keyboard);
     SignalStore.pinValues().resetPinReminders();
@@ -269,7 +269,7 @@ public final class PinState {
 
     pinChangeSession.enableRegistrationLock(masterKey);
 
-    kbsValues.setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
+    kbsValues.setKbsMasterKey(kbsData, pin);
     kbsValues.setV2RegistrationLockEnabled(true);
     TextSecurePreferences.clearRegistrationLockV1(context);
     TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
@@ -294,7 +294,7 @@ public final class PinState {
 
     pinChangeSession.enableRegistrationLock(masterKey);
 
-    kbsValues.setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
+    kbsValues.setKbsMasterKey(kbsData, pin);
     TextSecurePreferences.clearRegistrationLockV1(context);
 
     updateState(buildInferredStateFromOtherFields());
@@ -333,7 +333,7 @@ public final class PinState {
       HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
       KbsPinData                        newData          = pinChangeSession.setPin(hashedPin, masterKey);
 
-      kbsValues.setKbsMasterKey(newData, PinHashing.localPinHash(pin));
+      kbsValues.setKbsMasterKey(newData, pin);
       TextSecurePreferences.clearRegistrationLockV1(context);
 
       Log.i(TAG, "Pin set/attempts reset on KBS");
