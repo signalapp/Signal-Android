@@ -1579,6 +1579,7 @@
   <string name="preferences_app_protection__change_your_pin">Gantos PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN njagi supados informasi disimpen kangge enkripsi Signal, dados sampeyan mawon ingkang saged ngakses. Profil, panatanan, lan kontak bakal dipulihaken kala sampeyan masangaken Signal malih.</string>
   <string name="preferences_app_protection__confirm_pin">Konfirmasi PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Konfirmasiaken PIN Signal sampeyan</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN klintu. Cobi malih.</string>
   <string name="AppProtectionPreferenceFragment_none">Mboten enten</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran mboten sami kaliyan kode verifikasi SMS ingkang nembe sampeyan tampi. Lebetaken PIN ingkang sampeyan tetapaken ing aplikasi saderengipun.</string>

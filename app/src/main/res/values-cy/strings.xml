@@ -1710,7 +1710,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ychwanegu atodiad</string>
   <string name="conversation__menu_edit_group">Golygu grŵp</string>
-  <string name="conversation__menu_manage_group">Rheoli grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Rheoli grŵp</string> -->
   <string name="conversation__menu_leave_group">Gadael y grŵp</string>
   <string name="conversation__menu_view_all_media">Pob cyfrwng</string>
   <string name="conversation__menu_conversation_settings">Gosodiadau sgwrsio</string>

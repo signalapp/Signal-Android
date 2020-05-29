@@ -1663,7 +1663,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adăugați atașament</string>
   <string name="conversation__menu_edit_group">Editează grupul</string>
-  <string name="conversation__menu_manage_group">Administrați grupul</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Administrați grupul</string> -->
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
   <string name="conversation__menu_view_all_media">Toate fișierele media</string>
   <string name="conversation__menu_conversation_settings">Setări conversaţie</string>

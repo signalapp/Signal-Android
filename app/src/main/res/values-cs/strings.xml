@@ -1707,7 +1707,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Přidat přílohu</string>
   <string name="conversation__menu_edit_group">Editovat skupinu</string>
-  <string name="conversation__menu_manage_group">Spravovat skupinu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Spravovat skupinu</string> -->
   <string name="conversation__menu_leave_group">Opustit skupinu</string>
   <string name="conversation__menu_view_all_media">Všechna média</string>
   <string name="conversation__menu_conversation_settings">Nastavení konverzace</string>

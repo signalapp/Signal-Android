@@ -1615,7 +1615,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ajouter un fichier joint</string>
   <string name="conversation__menu_edit_group">Modifier le groupe</string>
-  <string name="conversation__menu_manage_group">Gérer le groupe</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Gérer le groupe</string> -->
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_view_all_media">Tous les médias</string>
   <string name="conversation__menu_conversation_settings">Paramètres de la conversation</string>

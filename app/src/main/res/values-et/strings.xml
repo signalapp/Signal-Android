@@ -1624,7 +1624,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lisa manus</string>
   <string name="conversation__menu_edit_group">Muuda gruppi</string>
-  <string name="conversation__menu_manage_group">Halda gruppi</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Halda gruppi</string> -->
   <string name="conversation__menu_leave_group">Lahku grupist</string>
   <string name="conversation__menu_view_all_media">Kogu meedia</string>
   <string name="conversation__menu_conversation_settings">Vestluse seaded</string>

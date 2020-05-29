@@ -1624,7 +1624,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
   <string name="conversation__menu_edit_group">Redigér gruppe</string>
-  <string name="conversation__menu_manage_group">Håndtering af gruppe</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Håndtering af gruppe</string> -->
   <string name="conversation__menu_leave_group">Forlad gruppe</string>
   <string name="conversation__menu_view_all_media">Alle mediefiler</string>
   <string name="conversation__menu_conversation_settings">Samtale indstillinger</string>

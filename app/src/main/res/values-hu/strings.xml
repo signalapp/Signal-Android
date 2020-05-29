@@ -1627,7 +1627,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Melléklet hozzáadása</string>
   <string name="conversation__menu_edit_group">Csoport szerkesztése</string>
-  <string name="conversation__menu_manage_group">Csoport kezelése</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Csoport kezelése</string> -->
   <string name="conversation__menu_leave_group">Kilépés a csoportból</string>
   <string name="conversation__menu_view_all_media">Összes médiafájl</string>
   <string name="conversation__menu_conversation_settings">Beszélgetés beállításai</string>

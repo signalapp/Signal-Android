@@ -1708,7 +1708,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">הוסף צרופה</string>
   <string name="conversation__menu_edit_group">ערוך קבוצה</string>
-  <string name="conversation__menu_manage_group">נהל קבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">נהל קבוצה</string> -->
   <string name="conversation__menu_leave_group">עזוב קבוצה</string>
   <string name="conversation__menu_view_all_media">כל המדיה</string>
   <string name="conversation__menu_conversation_settings">הגדרות שיחה</string>

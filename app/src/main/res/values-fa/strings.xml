@@ -1573,7 +1573,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">افزودن پیوست</string>
   <string name="conversation__menu_edit_group">ویرایش گروه</string>
-  <string name="conversation__menu_manage_group">مدیریت گروه</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">مدیریت گروه</string> -->
   <string name="conversation__menu_leave_group">ترک گروه</string>
   <string name="conversation__menu_view_all_media">تمام رسانه‌ها</string>
   <string name="conversation__menu_conversation_settings">تنظیمات مکالمه</string>

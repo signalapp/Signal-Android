@@ -1579,7 +1579,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">新增附件檔案</string>
   <string name="conversation__menu_edit_group">編輯群組</string>
-  <string name="conversation__menu_manage_group">管理群組</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">管理群組</string> -->
   <string name="conversation__menu_leave_group">離開對話群組</string>
   <string name="conversation__menu_view_all_media">所有的媒體</string>
   <string name="conversation__menu_conversation_settings">對話設定</string>

@@ -1616,7 +1616,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
   <string name="conversation__menu_edit_group">Επεξεργασία ομάδας</string>
-  <string name="conversation__menu_manage_group">Διαχείριση ομάδας</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Διαχείριση ομάδας</string> -->
   <string name="conversation__menu_leave_group">Αποχώρηση απ\' την ομάδα</string>
   <string name="conversation__menu_view_all_media">Όλα τα πολυμέσα</string>
   <string name="conversation__menu_conversation_settings">Επιλογές συνομιλίας</string>

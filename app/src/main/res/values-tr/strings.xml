@@ -1610,7 +1610,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eklenti ekle</string>
   <string name="conversation__menu_edit_group">Grubu düzenle</string>
-  <string name="conversation__menu_manage_group">Grubu yönet</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Grubu yönet</string> -->
   <string name="conversation__menu_leave_group">Gruptan ayrıl</string>
   <string name="conversation__menu_view_all_media">Tüm içerik</string>
   <string name="conversation__menu_conversation_settings">Sohbet ayarları</string>

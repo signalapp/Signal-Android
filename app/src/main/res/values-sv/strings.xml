@@ -1618,7 +1618,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lägg till bilaga</string>
   <string name="conversation__menu_edit_group">Ändra grupp</string>
-  <string name="conversation__menu_manage_group">Hantera grupp</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Hantera grupp</string> -->
   <string name="conversation__menu_leave_group">Lämna grupp</string>
   <string name="conversation__menu_view_all_media">Alla media</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>

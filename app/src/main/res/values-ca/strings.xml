@@ -1618,7 +1618,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>
   <string name="conversation__menu_edit_group">Edita el grup</string>
-  <string name="conversation__menu_manage_group">Gestioneu el grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Gestioneu el grup</string> -->
   <string name="conversation__menu_leave_group">Abandona el grup</string>
   <string name="conversation__menu_view_all_media">Tot el contingut</string>
   <string name="conversation__menu_conversation_settings">Configuració de la conversa</string>

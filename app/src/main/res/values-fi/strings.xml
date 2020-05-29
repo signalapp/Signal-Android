@@ -1618,7 +1618,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lisää liite</string>
   <string name="conversation__menu_edit_group">Muokkaa ryhmää</string>
-  <string name="conversation__menu_manage_group">Hallinnoi ryhmää</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Hallinnoi ryhmää</string> -->
   <string name="conversation__menu_leave_group">Poistu ryhmästä</string>
   <string name="conversation__menu_view_all_media">Kaikki media</string>
   <string name="conversation__menu_conversation_settings">Keskustelun asetukset</string>

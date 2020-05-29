@@ -1562,7 +1562,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付ファイルを追加</string>
   <string name="conversation__menu_edit_group">グループを編集</string>
-  <string name="conversation__menu_manage_group">グループの管理</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">グループの管理</string> -->
   <string name="conversation__menu_leave_group">グループを抜ける</string>
   <string name="conversation__menu_view_all_media">すべてのメディア</string>
   <string name="conversation__menu_conversation_settings">会話設定</string>
@@ -1824,6 +1824,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">登録ロック PIN が違います</string>
   <string name="RegistrationActivity_too_many_attempts">試行数が多すぎます</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">登録ロック PIN の無効な試行回数が多すぎます。1 日経ってからもう一度お試しください。</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">試行回数が多すぎます。再度お試しください。</string>
   <string name="RegistrationActivity_error_connecting_to_service">サービスへの接続中にエラーが発生しました</string>
   <string name="RegistrationActivity_oh_no">おっと！</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">登録ロック PIN 無しでこの電話番号を登録するには、最後に Signal を使用した日から 7日間待つ必要があります。登録可能になるまであと %d 日です。</string>

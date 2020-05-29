@@ -1624,7 +1624,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Aggiungi allegato</string>
   <string name="conversation__menu_edit_group">Modifica il gruppo</string>
-  <string name="conversation__menu_manage_group">Gestisci gruppo</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Gestisci gruppo</string> -->
   <string name="conversation__menu_leave_group">Abbandona il gruppo</string>
   <string name="conversation__menu_view_all_media">Tutti i file multimediali</string>
   <string name="conversation__menu_conversation_settings">Impostazioni conversazione</string>

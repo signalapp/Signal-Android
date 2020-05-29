@@ -1699,7 +1699,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodaj priponko</string>
   <string name="conversation__menu_edit_group">Uredi skupino</string>
-  <string name="conversation__menu_manage_group">Uredi skupino</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Uredi skupino</string> -->
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_view_all_media">Vsa multimedijska sporočila</string>
   <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>

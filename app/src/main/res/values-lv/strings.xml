@@ -1617,7 +1617,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pievienot pielikumu</string>
   <string name="conversation__menu_edit_group">Rediģēt grupu</string>
-  <string name="conversation__menu_manage_group">Pārvaldīt grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Pārvaldīt grupu</string> -->
   <string name="conversation__menu_leave_group">Pamest grupu</string>
   <string name="conversation__menu_view_all_media">Visi multimediji</string>
   <string name="conversation__menu_conversation_settings">Sarunas iestatījumi</string>

@@ -1623,7 +1623,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Aldoni kunsendaĵon</string>
   <string name="conversation__menu_edit_group">Modifi grupon</string>
-  <string name="conversation__menu_manage_group">Administri grupon</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Administri grupon</string> -->
   <string name="conversation__menu_leave_group">Forlasi la grupon</string>
   <string name="conversation__menu_view_all_media">Ĉiuj aŭvidaĵoj</string>
   <string name="conversation__menu_conversation_settings">Agordoj pri interparolo</string>

@@ -1701,7 +1701,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Добавить вложение</string>
   <string name="conversation__menu_edit_group">Редактировать группу</string>
-  <string name="conversation__menu_manage_group">Управлять группой</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Управлять группой</string> -->
   <string name="conversation__menu_leave_group">Покинуть группу</string>
   <string name="conversation__menu_view_all_media">Все медиа-файлы</string>
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>

@@ -1700,7 +1700,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodaj załącznik</string>
   <string name="conversation__menu_edit_group">Edytuj grupę</string>
-  <string name="conversation__menu_manage_group">Zarządzaj grupą</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Zarządzaj grupą</string> -->
   <string name="conversation__menu_leave_group">Opuść grupę</string>
   <string name="conversation__menu_view_all_media">Wszystkie multimedia</string>
   <string name="conversation__menu_conversation_settings">Ustawienia konwersacji</string>

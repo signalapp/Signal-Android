@@ -1404,7 +1404,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ភ្ជាប់ឯកសារបន្ថែម</string>
   <string name="conversation__menu_edit_group">កែប្រែក្រុម</string>
-  <string name="conversation__menu_manage_group">គ្រប់គ្រងក្រុម</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">គ្រប់គ្រងក្រុម</string> -->
   <string name="conversation__menu_leave_group">ចាកចេញពីក្រុម</string>
   <string name="conversation__menu_view_all_media">ព័ត៌មានទាំងអស់</string>
   <string name="conversation__menu_conversation_settings">កំណត់ការសន្ទនា</string>

@@ -1559,7 +1559,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Tambahkan lampiran</string>
   <string name="conversation__menu_edit_group">Ubah grup</string>
-  <string name="conversation__menu_manage_group">Pengaturan grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Pengaturan grup</string> -->
   <string name="conversation__menu_leave_group">Keluar grup</string>
   <string name="conversation__menu_view_all_media">Semua media</string>
   <string name="conversation__menu_conversation_settings">Pengaturan percakapan</string>

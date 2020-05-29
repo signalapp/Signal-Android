@@ -1666,7 +1666,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodajte prilog</string>
   <string name="conversation__menu_edit_group">Uredi grupu</string>
-  <string name="conversation__menu_manage_group">Uredi grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Uredi grupu</string> -->
   <string name="conversation__menu_leave_group">Napusti grupu</string>
   <string name="conversation__menu_view_all_media">Svi prilozi</string>
   <string name="conversation__menu_conversation_settings">Podešavanja</string>

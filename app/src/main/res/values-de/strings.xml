@@ -1613,7 +1613,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Anhang hinzufügen</string>
   <string name="conversation__menu_edit_group">Gruppe bearbeiten</string>
-  <string name="conversation__menu_manage_group">Gruppe verwalten</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Gruppe verwalten</string> -->
   <string name="conversation__menu_leave_group">Gruppe verlassen</string>
   <string name="conversation__menu_view_all_media">Alle Medieninhalte</string>
   <string name="conversation__menu_conversation_settings">Unterhaltungseinstellungen</string>

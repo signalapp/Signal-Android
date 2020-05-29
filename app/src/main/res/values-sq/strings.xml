@@ -1620,7 +1620,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Shto bashkëngjitje</string>
   <string name="conversation__menu_edit_group">Përpunoni grup</string>
-  <string name="conversation__menu_manage_group">Administroni grupin</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Administroni grupin</string> -->
   <string name="conversation__menu_leave_group">Braktise grupin</string>
   <string name="conversation__menu_view_all_media">Krejt mediat</string>
   <string name="conversation__menu_conversation_settings">Rregullime bisedash</string>

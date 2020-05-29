@@ -1626,7 +1626,7 @@ Du er à jour!</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
   <string name="conversation__menu_edit_group">Rediger gruppa</string>
-  <string name="conversation__menu_manage_group">Handter gruppe</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Handter gruppe</string> -->
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
   <string name="conversation__menu_view_all_media">All media</string>
   <string name="conversation__menu_conversation_settings">Samtaleinnstillingar</string>

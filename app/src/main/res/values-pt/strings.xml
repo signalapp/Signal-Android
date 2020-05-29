@@ -1620,7 +1620,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
   <string name="conversation__menu_edit_group">Editar o grupo</string>
-  <string name="conversation__menu_manage_group">Administrar grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Administrar grupo</string> -->
   <string name="conversation__menu_leave_group">Abandonar grupo</string>
   <string name="conversation__menu_view_all_media">Toda a multimédia</string>
   <string name="conversation__menu_conversation_settings">Definições de conversa</string>
