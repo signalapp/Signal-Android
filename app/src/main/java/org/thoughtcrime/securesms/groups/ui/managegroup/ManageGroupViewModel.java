@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.groups.ui.managegroup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,7 +16,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.BlockUnblockDialog;
+import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.ExpirationDialog;
+import org.thoughtcrime.securesms.PushContactSelectionActivity;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
@@ -209,6 +215,20 @@ public class ManageGroupViewModel extends ViewModel {
   @WorkerThread
   private void showErrorToast(@NonNull GroupChangeFailureReason e) {
     Util.runOnMain(() -> Toast.makeText(context, GroupErrors.getUserDisplayMessage(e), Toast.LENGTH_LONG).show());
+  }
+
+  public void onAddMembersClick(@NonNull Fragment fragment, int resultCode) {
+    manageGroupRepository.getGroupCapacity(capacity -> {
+      int remainingCapacity = capacity.getRemainingCapacity();
+      if (remainingCapacity <= 0) {
+        Toast.makeText(fragment.requireContext(), R.string.ContactSelectionListFragment_the_group_is_full, Toast.LENGTH_SHORT).show();
+      } else {
+        Intent intent = new Intent(fragment.requireActivity(), PushContactSelectionActivity.class);
+        intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_PUSH);
+        intent.putExtra(ContactSelectionListFragment.SELECTION_LIMIT, remainingCapacity);
+        fragment.startActivityForResult(intent, resultCode);
+      }
+    });
   }
 
   static final class GroupViewState {

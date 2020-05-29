@@ -6,7 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroup;
+import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -21,6 +24,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
@@ -45,6 +49,18 @@ final class ManageGroupRepository {
 
   void getGroupState(@NonNull Consumer<GroupStateResult> onGroupStateLoaded) {
     SignalExecutors.BOUNDED.execute(() -> onGroupStateLoaded.accept(getGroupState()));
+  }
+
+  void getGroupCapacity(@NonNull Consumer<GroupCapacityResult> onGroupCapacityLoaded) {
+    SimpleTask.run(SignalExecutors.BOUNDED, () -> {
+      GroupDatabase.GroupRecord groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupId).get();
+      if (groupRecord.isV2Group()) {
+        DecryptedGroup decryptedGroup = groupRecord.requireV2GroupProperties().getDecryptedGroup();
+        return new GroupCapacityResult(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), FeatureFlags.gv2GroupCapacity());
+      } else {
+        return new GroupCapacityResult(groupRecord.getMembers().size(), 0, ContactSelectionListFragment.NO_LIMIT);
+      }
+    }, onGroupCapacityLoaded::accept);
   }
 
   @WorkerThread
@@ -149,6 +165,22 @@ final class ManageGroupRepository {
 
     Recipient getRecipient() {
       return recipient;
+    }
+  }
+
+  static final class GroupCapacityResult {
+    private final int fullMembers;
+    private final int pendingMembers;
+    private final int totalCapacity;
+
+    GroupCapacityResult(int fullMembers, int pendingMembers, int totalCapacity) {
+      this.fullMembers    = fullMembers;
+      this.pendingMembers = pendingMembers;
+      this.totalCapacity  = totalCapacity;
+    }
+
+    public int getRemainingCapacity() {
+      return totalCapacity - fullMembers - pendingMembers;
     }
   }
 

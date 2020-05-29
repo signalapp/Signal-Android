@@ -23,14 +23,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
-import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PushContactSelectionActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -225,11 +223,7 @@ public class ManageGroupFragment extends Fragment {
     disappearingMessagesRow.setOnClickListener(v -> viewModel.handleExpirationSelection());
     blockGroup.setOnClickListener(v -> viewModel.blockAndLeave(requireActivity()));
 
-    addMembers.setOnClickListener(v -> {
-      Intent intent = new Intent(requireActivity(), PushContactSelectionActivity.class);
-      intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_PUSH);
-      startActivityForResult(intent, PICK_CONTACT);
-    });
+    addMembers.setOnClickListener(v -> viewModel.onAddMembersClick(this, PICK_CONTACT));
 
     viewModel.getMembershipRights().observe(getViewLifecycleOwner(), r -> {
         if (r != null) {

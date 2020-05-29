@@ -44,6 +44,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
                                                                   : ContactsCursorLoader.DisplayMode.FLAG_PUSH;
 
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
+    intent.putExtra(ContactSelectionListFragment.SELECTION_LIMIT, FeatureFlags.gv2GroupCapacity() - 1);
 
     return intent;
   }

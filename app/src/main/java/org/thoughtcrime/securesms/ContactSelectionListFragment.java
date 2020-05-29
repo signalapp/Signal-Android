@@ -29,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.CycleInterpolator;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
@@ -67,7 +68,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -81,6 +81,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Fragment for selecting a one or more contacts from a list.
@@ -94,13 +95,16 @@ public final class ContactSelectionListFragment extends    Fragment
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(ContactSelectionListFragment.class);
 
-  private static final int CHIP_GROUP_EMPTY_COUNT        = 1;
+  private static final int CHIP_GROUP_EMPTY_CHILD_COUNT  = 1;
   private static final int CHIP_GROUP_REVEAL_DURATION_MS = 150;
 
-  public static final String DISPLAY_MODE = "display_mode";
-  public static final String MULTI_SELECT = "multi_select";
-  public static final String REFRESHABLE  = "refreshable";
-  public static final String RECENTS      = "recents";
+  public static final int NO_LIMIT = Integer.MAX_VALUE;
+
+  public static final String DISPLAY_MODE    = "display_mode";
+  public static final String MULTI_SELECT    = "multi_select";
+  public static final String REFRESHABLE     = "refreshable";
+  public static final String RECENTS         = "recents";
+  public static final String SELECTION_LIMIT = "selection_limit";
 
   private ConstraintLayout            constraintLayout;
   private TextView                    emptyText;
@@ -116,12 +120,14 @@ public final class ContactSelectionListFragment extends    Fragment
   private ContactSelectionListAdapter cursorRecyclerViewAdapter;
   private ChipGroup                   chipGroup;
   private HorizontalScrollView        chipGroupScrollContainer;
+  private TextView                    groupLimit;
 
   @Nullable private FixedViewsAdapter headerAdapter;
   @Nullable private FixedViewsAdapter footerAdapter;
   @Nullable private ListCallback      listCallback;
   @Nullable private ScrollCallback    scrollCallback;
             private GlideRequests     glideRequests;
+            private int               selectionLimit;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -185,13 +191,27 @@ public final class ContactSelectionListFragment extends    Fragment
     showContactsProgress     = view.findViewById(R.id.progress);
     chipGroup                = view.findViewById(R.id.chipGroup);
     chipGroupScrollContainer = view.findViewById(R.id.chipGroupScrollContainer);
+    groupLimit               = view.findViewById(R.id.group_limit);
     constraintLayout         = view.findViewById(R.id.container);
 
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
 
+    selectionLimit = requireActivity().getIntent().getIntExtra(SELECTION_LIMIT, NO_LIMIT);
+
+    updateGroupLimit(getChipCount());
+
     return view;
+  }
+
+  private void updateGroupLimit(int childCount) {
+    if (selectionLimit != NO_LIMIT) {
+      groupLimit.setText(String.format(Locale.getDefault(), "%d/%d", childCount, selectionLimit));
+      groupLimit.setVisibility(View.VISIBLE);
+    } else {
+      groupLimit.setVisibility(View.GONE);
+    }
   }
 
   @Override
@@ -408,6 +428,12 @@ public final class ContactSelectionListFragment extends    Fragment
                                                                  : SelectedContact.forPhone(contact.getRecipientId().orNull(), contact.getNumber());
 
       if (!isMulti() || !cursorRecyclerViewAdapter.isSelectedContact(selectedContact)) {
+        if (selectionLimitReached()) {
+          Toast.makeText(requireContext(), R.string.ContactSelectionListFragment_the_group_is_full, Toast.LENGTH_SHORT).show();
+          groupLimit.animate().scaleX(1.3f).scaleY(1.3f).setInterpolator(new CycleInterpolator(0.5f)).start();
+          return;
+        }
+
         if (contact.isUsernameType()) {
           AlertDialog loadingDialog = SimpleProgressDialog.show(requireContext());
 
@@ -447,6 +473,10 @@ public final class ContactSelectionListFragment extends    Fragment
       }}
   }
 
+  private boolean selectionLimitReached() {
+    return getChipCount() >= selectionLimit;
+  }
+
   private void markContactSelected(@NonNull SelectedContact selectedContact, @NonNull ContactSelectionListItem listItem) {
     cursorRecyclerViewAdapter.addSelectedContact(selectedContact);
     listItem.setChecked(true);
@@ -469,7 +499,9 @@ public final class ContactSelectionListFragment extends    Fragment
       }
     }
 
-    if (chipGroup.getChildCount() == CHIP_GROUP_EMPTY_COUNT) {
+    updateGroupLimit(getChipCount());
+
+    if (getChipCount() == 0) {
       setChipGroupVisibility(ConstraintSet.GONE);
     }
   }
@@ -477,7 +509,7 @@ public final class ContactSelectionListFragment extends    Fragment
   private void addChipForContact(@NonNull ContactSelectionListItem contact, @NonNull SelectedContact selectedContact) {
     final ContactChip chip = new ContactChip(requireContext());
 
-    if (chipGroup.getChildCount() == CHIP_GROUP_EMPTY_COUNT) {
+    if (getChipCount() == 0) {
       setChipGroupVisibility(ConstraintSet.VISIBLE);
     }
 
@@ -503,10 +535,21 @@ public final class ContactSelectionListFragment extends    Fragment
 
     LiveRecipient recipient = contact.getRecipient();
     if (recipient != null) {
-      chip.setAvatar(glideRequests, recipient.get(), () -> chipGroup.addView(chip));
+      chip.setAvatar(glideRequests, recipient.get(), () -> addChip(chip));
     } else {
-      chipGroup.addView(chip);
+      addChip(chip);
     }
+  }
+
+  private void addChip(@NonNull ContactChip chip) {
+    chipGroup.addView(chip);
+    updateGroupLimit(getChipCount());
+  }
+
+  private int getChipCount() {
+    int count = chipGroup.getChildCount() - CHIP_GROUP_EMPTY_CHILD_COUNT;
+    if (count < 0) throw new AssertionError();
+    return count;
   }
 
   private void registerChipRecipientObserver(@NonNull ContactChip chip, @Nullable LiveRecipient recipient) {

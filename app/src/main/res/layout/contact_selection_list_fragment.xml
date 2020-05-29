@@ -110,6 +110,17 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/group_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/chipGroupScrollContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="999/999"
+        tools:visibility="visible" />
+
     <HorizontalScrollView
         android:id="@+id/chipGroupScrollContainer"
         android:layout_width="match_parent"
@@ -122,7 +133,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_limit"
         tools:visibility="visible">
 
         <com.google.android.material.chip.ChipGroup
