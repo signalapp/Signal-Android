@@ -1610,6 +1610,7 @@
   <string name="preferences_app_protection__change_your_pin">Canza lambobin sirri</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Ka/ki tsare bayanai da ka/kika ajiye da Signal domin ya Zaman to kai/ke kadai ne/ceke damar isonshi. Furofayil, saiti, da lambobin sadarwarka/ki za su dawo saitin ainihi idan ka/kika sake girka Signal. </string>
   <string name="preferences_app_protection__confirm_pin">Tabbatar da lambar sirri</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Tabbatar. I lambobin sirrin Signal dinka/ki. </string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwadawa.</string>
   <string name="AppProtectionPreferenceFragment_none">Babu.</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Lambar sirrin rijista ba daya bane da lambar sirrin tabbatarwar SMS da ka/kika samu. Dan shigar da lambar sirrin that ka/kika fara sakawa a manhajar.</string>

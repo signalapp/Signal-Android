@@ -1693,6 +1693,7 @@
   <string name="preferences_app_protection__change_your_pin">ನಿಮ್ಮ ಪಿನ್ ಬದಲಾಯಿಸಿ</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು Signal ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಪುನಃಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ.</string>
   <string name="preferences_app_protection__confirm_pin">ಪಿನ್ ದೃಢೀಕರಿಸಿ</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ದೃಡಪಡಿಸಿ</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">ತಪ್ಪಾದ ಪಿನ್. ಮತ್ತೆ  ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="AppProtectionPreferenceFragment_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನೀವು ಇದೀಗ ಸ್ವೀಕರಿಸಿದ ಎಸ್‌ಎಂಎಸ್ ದೃಢೀಕರಣ ಕೋಡ್‌ನಂತೆಯೇ ಇರುವುದಿಲ್ಲ. ದಯವಿಟ್ಟು ನೀವು ಈ ಹಿಂದೆ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಕಾನ್ಫಿಗರ್ ಮಾಡಿದ ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>

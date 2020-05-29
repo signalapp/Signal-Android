@@ -587,7 +587,7 @@
   <string name="MediaRepository_all_media">Archivos multimedia</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconocid@</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Se ha recibido un mensaje cifrado usando una versión de Signal antigua que ya no está disponible. Por favor, solicita a esta persona que actualice a la versión más reciente y reenvíe el mensaje.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal antigua que ya no está disponible. Por favor, solicita a esta persona a actualizar a la versión más reciente y a reenviar el mensaje.</string>
   <string name="MessageRecord_left_group">Has abandonado el grupo.</string>
   <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
   <string name="MessageRecord_you_called">Has llamado</string>

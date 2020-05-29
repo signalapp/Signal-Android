@@ -1435,9 +1435,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="arrays__settings_default">Gebruik systeemstandaard</string>
   <string name="arrays__enabled">Ingeschakeld</string>
   <string name="arrays__disabled">Uitgeschakeld</string>
-  <string name="arrays__name_and_message">De naam van de afzender en berichtinhoud</string>
+  <string name="arrays__name_and_message">Zowel naam als berichtinhoud</string>
   <string name="arrays__name_only">Alleen de naam van de afzender</string>
-  <string name="arrays__no_name_or_message">Niet de naam van de afzender en geen berichtinhoud</string>
+  <string name="arrays__no_name_or_message">Geen naam en geen berichtinhoud</string>
   <string name="arrays__images">Afbeeldingen</string>
   <string name="arrays__audio">Geluid</string>
   <string name="arrays__video">Video</string>
