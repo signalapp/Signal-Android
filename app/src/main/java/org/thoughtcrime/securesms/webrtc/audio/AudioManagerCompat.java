@@ -17,7 +17,14 @@ public abstract class AudioManagerCompat {
 
   private static final String TAG = Log.tag(AudioManagerCompat.class);
 
+  private static final int AUDIOFOCUS_GAIN = AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE;
+
   protected final AudioManager audioManager;
+
+  @SuppressWarnings("CodeBlock2Expr")
+  protected final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = focusChange -> {
+    Log.i(TAG, "onAudioFocusChangeListener: " + focusChange);
+  };
 
   private AudioManagerCompat(@NonNull Context context) {
     audioManager = ServiceUtil.getAudioManager(context);
@@ -66,8 +73,9 @@ public abstract class AudioManagerCompat {
         return;
       }
 
-      audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+      audioFocusRequest = new AudioFocusRequest.Builder(AUDIOFOCUS_GAIN)
                                                .setAudioAttributes(AUDIO_ATTRIBUTES)
+                                               .setOnAudioFocusChangeListener(onAudioFocusChangeListener)
                                                .build();
 
       int result = audioManager.requestAudioFocus(audioFocusRequest);
@@ -129,7 +137,7 @@ public abstract class AudioManagerCompat {
 
     @Override
     public void requestCallAudioFocus() {
-      int result = audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+      int result = audioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_VOICE_CALL, AUDIOFOCUS_GAIN);
 
       if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
         Log.w(TAG, "Audio focus not granted. Result code: " + result);
@@ -138,7 +146,7 @@ public abstract class AudioManagerCompat {
 
     @Override
     public void abandonCallAudioFocus() {
-      int result = audioManager.abandonAudioFocus(null);
+      int result = audioManager.abandonAudioFocus(onAudioFocusChangeListener);
 
       if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
         Log.w(TAG, "Audio focus abandon failed. Result code: " + result);
