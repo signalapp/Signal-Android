@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.util.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -16,16 +17,21 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     private val userPublicKey get() = TextSecurePreferences.getLocalNumber(context)
 
     companion object {
-        // Snode pool
+        // Snode pool cache
         private val snodePoolCache = "loki_snode_pool_cache"
         private val dummyKey = "dummy_key"
         private val snodePoolKey = "snode_pool_key"
-        @JvmStatic val createSnodePoolCacheTableCommand = "CREATE TABLE $snodePoolCache ($dummyKey TEXT PRIMARY KEY, $snodePoolKey TEXT);"
+        @JvmStatic val createSnodePoolCacheCommand = "CREATE TABLE $snodePoolCache ($dummyKey TEXT PRIMARY KEY, $snodePoolKey TEXT);"
+        // Path cache
+        private val pathCache = "loki_path_cache"
+        private val indexPath = "index_path"
+        private val snode = "snode"
+        @JvmStatic val createPathCacheCommand = "CREATE TABLE $pathCache ($indexPath TEXT PRIMARY KEY, $snode TEXT);"
         // Swarm cache
         private val swarmCache = "loki_api_swarm_cache"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
         private val swarm = "swarm"
-        @JvmStatic val createSwarmCacheTableCommand = "CREATE TABLE $swarmCache ($hexEncodedPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
+        @JvmStatic val createSwarmCacheCommand = "CREATE TABLE $swarmCache ($hexEncodedPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
         // Last message hash value cache
         private val lastMessageHashValueCache = "loki_api_last_message_hash_value_cache"
         private val target = "target"
@@ -80,7 +86,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
                 val address = components[0]
                 val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
                 val ed25519Key = components.getOrNull(2) ?: return@mapNotNull null
-                val x25519Key = components.getOrNull(3)?: return@mapNotNull null
+                val x25519Key = components.getOrNull(3) ?: return@mapNotNull null
                 LokiAPITarget(address, port, LokiAPITarget.KeySet(ed25519Key, x25519Key))
             }
         }?.toSet() ?: setOf()
@@ -100,6 +106,61 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(snodePoolCache, row, "${Companion.dummyKey} = ?", wrap("dummy_key"))
     }
 
+    override fun getPaths(): List<List<LokiAPITarget>> {
+        val database = databaseHelper.readableDatabase
+        fun get(indexPath: String): LokiAPITarget? {
+            return database.get(pathCache, "${Companion.indexPath} = ?", wrap(indexPath)) { cursor ->
+                val snodeAsString = cursor.getString(cursor.getColumnIndexOrThrow(snode))
+                val components = snodeAsString.split("-")
+                val address = components[0]
+                val port = components.getOrNull(1)?.toIntOrNull()
+                val ed25519Key = components.getOrNull(2)
+                val x25519Key = components.getOrNull(3)
+                if (port != null && ed25519Key != null && x25519Key != null) {
+                    LokiAPITarget(address, port, LokiAPITarget.KeySet(ed25519Key, x25519Key))
+                } else {
+                    null
+                }
+            }
+        }
+        val path0Snode0 = get("0-0") ?: return listOf(); val path0Snode1 = get("0-1") ?: return listOf()
+        val path0Snode2 = get("0-2") ?: return listOf(); val path1Snode0 = get("1-0") ?: return listOf()
+        val path1Snode1 = get("1-1") ?: return listOf(); val path1Snode2 = get("1-2") ?: return listOf()
+        return listOf( listOf( path0Snode0, path0Snode1, path0Snode2 ), listOf( path1Snode0, path1Snode1, path1Snode2 ) )
+    }
+
+    fun clearPaths() {
+        val database = databaseHelper.writableDatabase
+        fun delete(indexPath: String) {
+            database.delete(pathCache, "${Companion.indexPath} = ?", wrap(indexPath))
+        }
+        delete("0-0"); delete("0-1")
+        delete("0-2"); delete("1-0")
+        delete("1-1"); delete("1-2")
+    }
+
+    override fun setPaths(newValue: List<List<LokiAPITarget>>) {
+        // FIXME: This is a bit of a dirty approach that assumes 2 paths of length 3 each. We should do better than this.
+        if (newValue.count() != 2) { return }
+        val path0 = newValue[0]
+        val path1 = newValue[1]
+        if (path0.count() != 3 || path1.count() != 3) { return }
+        Log.d("Loki", "Persisting onion request paths to database.")
+        val database = databaseHelper.writableDatabase
+        fun set(indexPath: String ,snode: LokiAPITarget) {
+            var snodeAsString = "${snode.address}-${snode.port}"
+            val keySet = snode.publicKeySet
+            if (keySet != null) {
+                snodeAsString += "-${keySet.ed25519Key}-${keySet.x25519Key}"
+            }
+            val row = wrap(mapOf(Companion.indexPath to indexPath, Companion.snode to snodeAsString))
+            database.insertOrUpdate(pathCache, row, "${Companion.indexPath} = ?", wrap(indexPath))
+        }
+        set("0-0", path0[0]); set("0-1", path0[1])
+        set("0-2", path0[2]); set("1-0", path1[0])
+        set("1-1", path1[1]); set("1-2", path1[2])
+    }
+
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
         val database = databaseHelper.readableDatabase
         return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
@@ -109,7 +170,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
                 val address = components[0]
                 val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
                 val ed25519Key = components.getOrNull(2) ?: return@mapNotNull null
-                val x25519Key = components.getOrNull(3)?: return@mapNotNull null
+                val x25519Key = components.getOrNull(3) ?: return@mapNotNull null
                 LokiAPITarget(address, port, LokiAPITarget.KeySet(ed25519Key, x25519Key))
             }
         }?.toSet()

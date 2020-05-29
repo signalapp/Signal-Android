@@ -21,6 +21,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.animateSizeChange
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
@@ -167,6 +168,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun rebuildPath() {
+        DatabaseFactory.getLokiAPIDatabase(this).clearPaths()
         OnionRequestAPI.guardSnodes = setOf()
         OnionRequestAPI.paths = listOf()
         OnionRequestAPI.buildPaths()

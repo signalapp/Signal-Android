@@ -132,8 +132,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     }
     db.execSQL(StickerDatabase.CREATE_TABLE);
 
-    db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateSwarmCacheTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreatePathCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSwarmCacheCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
@@ -585,7 +586,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV9) {
-        db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheCommand());
+        db.execSQL(LokiAPIDatabase.getCreatePathCacheCommand());
       }
 
       db.setTransactionSuccessful();
