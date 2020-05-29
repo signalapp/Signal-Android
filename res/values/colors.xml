@@ -28,6 +28,7 @@
     <color name="new_conversation_button_collapsed_background">#1F1F1F</color>
     <color name="pn_option_background">#1B1B1B</color>
     <color name="pn_option_border">#212121</color>
+    <color name="paths_building">#FFCE3A</color>
     <!-- Session -->
 
     <!-- Loki -->

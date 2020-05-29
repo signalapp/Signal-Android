@@ -1,10 +1,13 @@
 package org.thoughtcrime.securesms.loki.activities
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.content.LocalBroadcastManager
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -19,34 +22,88 @@ import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.animateSizeChange
+import org.thoughtcrime.securesms.loki.utilities.fadeIn
+import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
 import org.whispersystems.signalservice.loki.api.onionrequests.Snode
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
+    private val broadcastReceivers = mutableListOf<BroadcastReceiver>()
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_path)
         supportActionBar!!.title = resources.getString(R.string.activity_path_title)
-        val youRow = getPathRow("You", null, LineView.Location.Top, 1000, 4000)
-        val path = OnionRequestAPI.paths.firstOrNull() ?: return finish()
-        val pathRows = path.mapIndexed { index, snode ->
-            val isGuardSnode = (OnionRequestAPI.guardSnodes.contains(snode))
-            getPathRow(snode, LineView.Location.Middle, index.toLong() * 1000 + 2000, 4000, isGuardSnode)
+        rebuildPathButton.setOnClickListener { rebuildPath() }
+        update(false)
+        registerObservers()
+    }
+
+    private fun registerObservers() {
+        val buildingPathsReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+
+            override fun onReceive(context: Context, intent: Intent) {
+                handleBuildingPathsEvent()
+            }
         }
-        val destinationRow = getPathRow("Destination", null, LineView.Location.Bottom, 5000, 4000)
-        pathRowsContainer.addView(youRow)
-        for (pathRow in pathRows) {
-            pathRowsContainer.addView(pathRow)
+        broadcastReceivers.add(buildingPathsReceiver)
+        LocalBroadcastManager.getInstance(this).registerReceiver(buildingPathsReceiver, IntentFilter("buildingPaths"))
+        val pathsBuiltReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+
+            override fun onReceive(context: Context, intent: Intent) {
+                handlePathsBuiltEvent()
+            }
         }
-        pathRowsContainer.addView(destinationRow)
+        broadcastReceivers.add(pathsBuiltReceiver)
+        LocalBroadcastManager.getInstance(this).registerReceiver(pathsBuiltReceiver, IntentFilter("pathsBuilt"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_path, menu)
         return true
+    }
+
+    override fun onDestroy() {
+        for (receiver in broadcastReceivers) {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver)
+        }
+        super.onDestroy()
+    }
+    // endregion
+
+    // region Updating
+    private fun handleBuildingPathsEvent() { update(false) }
+    private fun handlePathsBuiltEvent() { update(false) }
+
+    private fun update(isAnimated: Boolean) {
+        pathRowsContainer.removeAllViews()
+        if (OnionRequestAPI.paths.count() >= OnionRequestAPI.pathCount) {
+            val path = OnionRequestAPI.paths.firstOrNull() ?: return finish()
+            val dotAnimationRepeatInterval = path.count().toLong() * 1000 + 2000
+            val pathRows = path.mapIndexed { index, snode ->
+                val isGuardSnode = (OnionRequestAPI.guardSnodes.contains(snode))
+                getPathRow(snode, LineView.Location.Middle, index.toLong() * 1000 + 2000, dotAnimationRepeatInterval, isGuardSnode)
+            }
+            val youRow = getPathRow("You", null, LineView.Location.Top, 1000, dotAnimationRepeatInterval)
+            val destinationRow = getPathRow("Destination", null, LineView.Location.Bottom, path.count().toLong() * 1000 + 2000, dotAnimationRepeatInterval)
+            val rows = listOf( youRow ) + pathRows + listOf( destinationRow )
+            for (row in rows) {
+                pathRowsContainer.addView(row)
+            }
+            if (isAnimated) {
+                spinner.fadeOut()
+            } else {
+                spinner.alpha = 0.0f
+            }
+        } else {
+            if (isAnimated) {
+                spinner.fadeIn()
+            } else {
+                spinner.alpha = 1.0f
+            }
+        }
     }
     // endregion
 
@@ -107,6 +164,12 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun rebuildPath() {
+        OnionRequestAPI.guardSnodes = setOf()
+        OnionRequestAPI.paths = listOf()
+        OnionRequestAPI.buildPaths()
     }
     // endregion
 

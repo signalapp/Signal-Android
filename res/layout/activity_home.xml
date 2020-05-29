@@ -40,13 +40,21 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp" />
 
-            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
-                android:id="@+id/pathStatusView"
+            <RelativeLayout
+                android:id="@+id/pathStatusViewContainer"
                 android:layout_width="@dimen/small_profile_picture_size"
                 android:layout_height="@dimen/small_profile_picture_size"
-                android:background="@color/red"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true" >
+
+                <org.thoughtcrime.securesms.loki.views.PathStatusView
+                    android:layout_width="@dimen/path_status_view_size"
+                    android:layout_height="@dimen/path_status_view_size"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
