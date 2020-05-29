@@ -10,9 +10,12 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public abstract class AudioManagerCompat {
+
+  private static final String TAG = Log.tag(AudioManagerCompat.class);
 
   protected final AudioManager audioManager;
 
@@ -59,7 +62,8 @@ public abstract class AudioManagerCompat {
     @Override
     public void requestCallAudioFocus() {
       if (audioFocusRequest != null) {
-        throw new IllegalStateException("Already focused.");
+        Log.w(TAG, "Already requested audio focus. Ignoring...");
+        return;
       }
 
       audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
@@ -69,20 +73,21 @@ public abstract class AudioManagerCompat {
       int result = audioManager.requestAudioFocus(audioFocusRequest);
 
       if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-        throw new IllegalStateException("Got " + result);
+        Log.w(TAG, "Audio focus not granted. Result code: " + result);
       }
     }
 
     @Override
     public void abandonCallAudioFocus() {
       if (audioFocusRequest == null) {
-        throw new IllegalStateException("Not focused.");
+        Log.w(TAG, "Don't currently have audio focus. Ignoring...");
+        return;
       }
 
       int result = audioManager.abandonAudioFocusRequest(audioFocusRequest);
 
       if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-        throw new IllegalStateException("Got " + result);
+        Log.w(TAG, "Audio focus abandon failed. Result code: " + result);
       }
 
       audioFocusRequest = null;
@@ -127,7 +132,7 @@ public abstract class AudioManagerCompat {
       int result = audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
       if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-        throw new IllegalStateException("Got " + result);
+        Log.w(TAG, "Audio focus not granted. Result code: " + result);
       }
     }
 
@@ -136,7 +141,7 @@ public abstract class AudioManagerCompat {
       int result = audioManager.abandonAudioFocus(null);
 
       if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-        throw new IllegalStateException("Got " + result);
+        Log.w(TAG, "Audio focus abandon failed. Result code: " + result);
       }
     }
   }
