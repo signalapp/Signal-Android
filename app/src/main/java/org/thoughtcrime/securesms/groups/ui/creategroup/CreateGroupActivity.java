@@ -29,8 +29,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
   private View next;
 
-  public static Intent newIntent(@NonNull Context context) {
-    if (!FeatureFlags.newGroupUI() || !FeatureFlags.groupsV2create()) {
+  public static Intent newIntent(@NonNull Context context, boolean forceV1) {
+    if (forceV1 || !FeatureFlags.newGroupUI() || !FeatureFlags.groupsV2create()) {
       return new Intent(context, GroupCreateActivity.class);
     }
 

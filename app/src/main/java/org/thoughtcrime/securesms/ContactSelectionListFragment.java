@@ -251,7 +251,11 @@ public final class ContactSelectionListFragment extends    Fragment
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
     if (listCallback != null && FeatureFlags.newGroupUI()) {
-      headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback));
+      if (FeatureFlags.groupsV2create() && FeatureFlags.groupsV2internalTest()) {
+        headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback), createNewGroupsV1GroupItem(listCallback));
+      } else {
+        headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback));
+      }
       headerAdapter.hide();
       concatenateAdapter.addAdapter(headerAdapter);
     }
@@ -288,7 +292,14 @@ public final class ContactSelectionListFragment extends    Fragment
   private View createNewGroupItem(@NonNull ListCallback listCallback) {
     View view = LayoutInflater.from(requireContext())
                               .inflate(R.layout.contact_selection_new_group_item, (ViewGroup) requireView(), false);
-    view.setOnClickListener(v -> listCallback.onNewGroup());
+    view.setOnClickListener(v -> listCallback.onNewGroup(false));
+    return view;
+  }
+
+  private View createNewGroupsV1GroupItem(@NonNull ListCallback listCallback) {
+    View view = LayoutInflater.from(requireContext())
+                              .inflate(R.layout.contact_selection_new_group_v1_item, (ViewGroup) requireView(), false);
+    view.setOnClickListener(v -> listCallback.onNewGroup(true));
     return view;
   }
 
@@ -592,7 +603,7 @@ public final class ContactSelectionListFragment extends    Fragment
 
   public interface ListCallback {
     void onInvite();
-    void onNewGroup();
+    void onNewGroup(boolean forceV1);
   }
 
   public interface ScrollCallback {

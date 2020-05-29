@@ -66,6 +66,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2                  = "android.groupsv2";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create";
   private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
+  private static final String GROUPS_V2_INTERNAL_TEST    = "android.groupsv2.internalTest";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -89,7 +90,8 @@ public final class FeatureFlags {
       GROUPS_V2,
       GROUPS_V2_CREATE,
       GROUPS_V2_CAPACITY,
-      NEW_GROUP_UI
+      NEW_GROUP_UI,
+      GROUPS_V2_INTERNAL_TEST
   );
 
   /**
@@ -290,6 +292,11 @@ public final class FeatureFlags {
    */
   public static int gv2GroupCapacity() {
     return getInteger(GROUPS_V2_CAPACITY, 100);
+  }
+
+  /** Groups v2 UI for internal testing. */
+  public static boolean groupsV2internalTest() {
+    return groupsV2() && getBoolean(GROUPS_V2_INTERNAL_TEST, false);
   }
 
   /** Only for rendering debug info. */

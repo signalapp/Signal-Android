@@ -83,10 +83,10 @@ public class NewConversationActivity extends ContactSelectionActivity
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case android.R.id.home:   super.onBackPressed(); return true;
-    case R.id.menu_refresh:   handleManualRefresh(); return true;
-    case R.id.menu_new_group: handleCreateGroup();   return true;
-    case R.id.menu_invite:    handleInvite();        return true;
+    case android.R.id.home:   super.onBackPressed();   return true;
+    case R.id.menu_refresh:   handleManualRefresh();   return true;
+    case R.id.menu_new_group: handleCreateGroup(true); return true;
+    case R.id.menu_invite:    handleInvite();          return true;
     }
 
     return false;
@@ -97,8 +97,8 @@ public class NewConversationActivity extends ContactSelectionActivity
     onRefresh();
   }
 
-  private void handleCreateGroup() {
-    startActivity(CreateGroupActivity.newIntent(this));
+  private void handleCreateGroup(boolean forceV1) {
+    startActivity(CreateGroupActivity.newIntent(this, forceV1));
   }
 
   private void handleInvite() {
@@ -121,8 +121,8 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public void onNewGroup() {
-    handleCreateGroup();
+  public void onNewGroup(boolean forceV1) {
+    handleCreateGroup(forceV1);
     finish();
   }
 }
