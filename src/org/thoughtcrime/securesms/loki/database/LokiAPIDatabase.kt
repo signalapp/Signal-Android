@@ -16,6 +16,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     private val userPublicKey get() = TextSecurePreferences.getLocalNumber(context)
 
     companion object {
+        // Snode pool
+        private val snodePoolCache = "loki_snode_pool_cache"
+        private val dummyKey = "dummy_key"
+        private val snodePoolKey = "snode_pool_key"
+        @JvmStatic val createSnodePoolCacheTableCommand = "CREATE TABLE $snodePoolCache ($dummyKey TEXT PRIMARY KEY, $snodePoolKey TEXT);"
         // Swarm cache
         private val swarmCache = "loki_api_swarm_cache"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
@@ -64,6 +69,35 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val publicKey = "public_key"
         private val timestamp = "timestamp"
         @JvmStatic val createSessionRequestTimestampTableCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
+    }
+
+    override fun getSnodePool(): Set<LokiAPITarget> {
+        val database = databaseHelper.readableDatabase
+        return database.get(snodePoolCache, "${Companion.dummyKey} = ?", wrap("dummy_key")) { cursor ->
+            val snodePoolAsString = cursor.getString(cursor.getColumnIndexOrThrow(snodePoolKey))
+            snodePoolAsString.split(", ").mapNotNull { snodeAsString ->
+                val components = snodeAsString.split("-")
+                val address = components[0]
+                val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
+                val ed25519Key = components.getOrNull(2) ?: return@mapNotNull null
+                val x25519Key = components.getOrNull(3)?: return@mapNotNull null
+                LokiAPITarget(address, port, LokiAPITarget.KeySet(ed25519Key, x25519Key))
+            }
+        }?.toSet() ?: setOf()
+    }
+
+    override fun setSnodePool(newValue: Set<LokiAPITarget>) {
+        val database = databaseHelper.writableDatabase
+        val snodePoolAsString = newValue.joinToString(", ") { snode ->
+            var string = "${snode.address}-${snode.port}"
+            val keySet = snode.publicKeySet
+            if (keySet != null) {
+                string += "-${keySet.ed25519Key}-${keySet.x25519Key}"
+            }
+            string
+        }
+        val row = wrap(mapOf(Companion.dummyKey to "dummy_key", snodePoolKey to snodePoolAsString))
+        database.insertOrUpdate(snodePoolCache, row, "${Companion.dummyKey} = ?", wrap("dummy_key"))
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {

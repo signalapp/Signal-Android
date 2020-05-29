@@ -181,6 +181,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     LokiSessionResetImplementation sessionResetImpl = new LokiSessionResetImplementation(this);
     if (userPublicKey != null) {
+      LokiSwarmAPI.Companion.configureIfNeeded(apiDB);
+      LokiAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
       FriendRequestProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
