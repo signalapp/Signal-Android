@@ -132,7 +132,7 @@ public final class AudioWaveForm {
               presentationTimeUs,
               sawInputEOS ? MediaCodec.BUFFER_FLAG_END_OF_STREAM : 0);
 
-            if (!sawInputEOS) {
+            if (!sawInputEOS && (totalDurationUs != 0)) {
               int barSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
               inputSamples[barSampleIndex]++;
               sawInputEOS = !extractor.advance();
@@ -158,7 +158,10 @@ public final class AudioWaveForm {
             }
 
             ByteBuffer buf = codecOutputBuffers[outputBufferIndex];
-            int barIndex = (int) ((wave.length * info.presentationTimeUs) / totalDurationUs) - 1;
+            int barIndex = 0;
+            if (totalDurationUs != 0) {
+              barIndex = (int) ((wave.length * info.presentationTimeUs) / totalDurationUs) - 1;
+            }
             long total = 0;
             for (int i = 0; i < info.size; i += 2 * 4) {
               short aShort = buf.getShort(i);
