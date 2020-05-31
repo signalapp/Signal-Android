@@ -59,9 +59,7 @@ The form and manner of this distribution makes it eligible for export under the 
 
 ## License
 
-Copyright 2011 Whisper Systems
-
-Copyright 2013-2020 Open Whisper Systems
+Copyright 2013-2020 Signal
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
 
