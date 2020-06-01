@@ -1329,7 +1329,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="view_fake_chat_bubble_5">Los amigos no dejan que sus amigos usen messengers riesgosos. De nada.</string>
 
   <string name="activity_register_title">Saluda a tu ID de Session</string>
-  <string name="activity_register_explanation">Tu id de session es la dirección única que las personas pueden usar para contactarte en session. Por diseño, tu ID de session es totalmente anónima y privada, sin vínculo con tu identidad real.</string>
+  <string name="activity_register_explanation">Tu ID de session es la dirección única que las personas pueden usar para contactarte en session. Por diseño, tu ID de session es totalmente anónima y privada, sin vínculo con tu identidad real.</string>
   <string name="activity_register_public_key_copied_message">Copiado en el portapapeles</string>
 
   <string name="activity_restore_title">Restaura tu cuenta</string>
