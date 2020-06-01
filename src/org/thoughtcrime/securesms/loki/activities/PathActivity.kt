@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
-import org.whispersystems.signalservice.loki.api.onionrequests.Snode
+import org.whispersystems.signalservice.loki.api.Snode
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()
@@ -168,7 +168,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun rebuildPath() {
-        DatabaseFactory.getLokiAPIDatabase(this).clearPaths()
+        DatabaseFactory.getLokiAPIDatabase(this).clearOnionRequestPaths()
         OnionRequestAPI.guardSnodes = setOf()
         OnionRequestAPI.paths = listOf()
         OnionRequestAPI.buildPaths()

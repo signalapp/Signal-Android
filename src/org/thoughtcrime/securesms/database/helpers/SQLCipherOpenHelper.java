@@ -133,16 +133,16 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(StickerDatabase.CREATE_TABLE);
 
     db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheCommand());
-    db.execSQL(LokiAPIDatabase.getCreatePathCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateOnionRequestPathCacheCommand());
     db.execSQL(LokiAPIDatabase.getCreateSwarmCacheCommand());
-    db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateDeviceLinkTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateUserCountTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateOpenGroupAuthTokenCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateDeviceLinkCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateUserCountCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampCacheCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageFriendRequestTableCommand());
@@ -515,9 +515,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV1) {
-        db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
-        db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
-        db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreateOpenGroupAuthTokenCacheCommand());
+        db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDCacheCommand());
+        db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDCacheCommand());
       }
 
       if (oldVersion < lokiV2) {
@@ -525,7 +525,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV3) {
-        db.execSQL(LokiAPIDatabase.getCreateDeviceLinkTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreateDeviceLinkCacheCommand());
         db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
 
         db.execSQL("ALTER TABLE groups ADD COLUMN avatar_url TEXT");
@@ -537,7 +537,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV5) {
-        db.execSQL(LokiAPIDatabase.getCreateUserCountTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreateUserCountCacheCommand());
       }
 
       if (oldVersion < lokiV6) {
@@ -582,12 +582,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV8) {
-        db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampCacheCommand());
       }
 
       if (oldVersion < lokiV9) {
         db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheCommand());
-        db.execSQL(LokiAPIDatabase.getCreatePathCacheCommand());
+        db.execSQL(LokiAPIDatabase.getCreateOnionRequestPathCacheCommand());
       }
 
       db.setTransactionSuccessful();
