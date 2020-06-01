@@ -385,7 +385,6 @@ public final class StorageSyncHelper {
   }
 
   public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @NonNull Recipient self) {
-
     SignalAccountRecord account = new SignalAccountRecord.Builder(self.getStorageServiceId())
                                                          .setProfileKey(self.getProfileKey())
                                                          .setGivenName(self.getProfileName().getGivenName())
