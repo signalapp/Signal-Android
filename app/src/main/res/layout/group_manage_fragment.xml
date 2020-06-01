@@ -448,14 +448,14 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical|start"
                         android:text="@string/ManageGroupActivity_pending_group_invites"
-                        android:textAppearance="@style/TextAppearance.Signal.Body2" />
+                        android:textAppearance="@style/Signal.Text.Body" />
 
                     <TextView
                         android:id="@+id/pending_members_count"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical|end"
-                        android:textAppearance="@style/TextAppearance.Signal.Body2"
+                        android:textAppearance="@style/Signal.Text.Body"
                         android:textColor="@color/ultramarine_text_button"
                         tools:text="@string/ManageGroupActivity_none" />
 
