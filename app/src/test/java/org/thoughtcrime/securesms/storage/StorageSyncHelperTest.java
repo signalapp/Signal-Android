@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyDifferenceResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.MergeResult;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -47,7 +48,7 @@ import static org.thoughtcrime.securesms.testutil.TestHelpers.byteListOf;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.setOf;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ Recipient.class })
+@PrepareForTest({ Recipient.class, FeatureFlags.class})
 public final class StorageSyncHelperTest {
 
   private static final UUID UUID_A    = UuidUtil.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
@@ -76,6 +77,7 @@ public final class StorageSyncHelperTest {
     mockStatic(Recipient.class);
     when(Recipient.self()).thenReturn(SELF);
     Log.initialize(new Log.Logger[0]);
+    mockStatic(FeatureFlags.class);
   }
 
   @Test
@@ -242,6 +244,8 @@ public final class StorageSyncHelperTest {
 
   @Test
   public void resolveConflict_complex() {
+    when(FeatureFlags.uuids()).thenReturn(true);
+
     SignalContactRecord remote1 = contact(1, UUID_A, null, "a");
     SignalContactRecord local1  = contact(2, UUID_A, E164_A, "a");
 
