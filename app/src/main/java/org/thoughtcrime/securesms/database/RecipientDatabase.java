@@ -760,8 +760,7 @@ public class RecipientDatabase extends Database {
     List<RecipientSettings> out   = new ArrayList<>();
 
     String[] columns = ArrayUtils.concat(RECIPIENT_FULL_PROJECTION,
-      new String[]{ GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID,
-                    GroupDatabase.TABLE_NAME + "." + GroupDatabase.V2_MASTER_KEY });
+      new String[]{GroupDatabase.TABLE_NAME + "." + GroupDatabase.V2_MASTER_KEY });
 
     try (Cursor cursor = db.query(table, columns, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
