@@ -190,8 +190,8 @@ dependencies {
     implementation "com.github.ybq:Android-SpinKit:1.4.0"
 }
 
-def canonicalVersionCode = 50
-def canonicalVersionName = "1.2.0"
+def canonicalVersionCode = 51
+def canonicalVersionName = "1.2.1"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
