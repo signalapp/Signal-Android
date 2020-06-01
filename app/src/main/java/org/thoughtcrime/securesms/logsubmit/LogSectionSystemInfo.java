@@ -10,9 +10,14 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
+import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -50,6 +55,9 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Memory       : ").append(getMemoryUsage()).append("\n");
     builder.append("Memclass     : ").append(getMemoryClass(context)).append("\n");
     builder.append("OS Host      : ").append(Build.HOST).append("\n");
+    builder.append("Censored     : ").append(CensorshipUtil.isCensored(context)).append("\n");
+    builder.append("Play Services: ").append(getPlayServicesString(context)).append("\n");
+    builder.append("FCM          : ").append(!TextSecurePreferences.isFcmDisabled(context)).append("\n");
     builder.append("First Version: ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
     builder.append("App          : ");
     try {
@@ -140,5 +148,10 @@ public class LogSectionSystemInfo implements LogSection {
 
   private static String getSigningString(@NonNull Context context) {
     return AppSignatureUtil.getAppSignature(context).or("Unknown");
+  }
+
+  private static String getPlayServicesString(@NonNull Context context) {
+    int result = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
+    return result == ConnectionResult.SUCCESS ? "true" : "false (" + result + ")";
   }
 }
