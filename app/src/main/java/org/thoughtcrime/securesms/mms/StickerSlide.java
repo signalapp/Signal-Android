@@ -23,7 +23,7 @@ public class StickerSlide extends Slide {
   }
 
   public StickerSlide(Context context, Uri uri, long size, @NonNull StickerLocator stickerLocator) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_WEBP, size, WIDTH, HEIGHT, true, null, null, stickerLocator, null, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_WEBP, size, WIDTH, HEIGHT, true, null, null, stickerLocator, null, null, false, false));
   }
 
   @Override

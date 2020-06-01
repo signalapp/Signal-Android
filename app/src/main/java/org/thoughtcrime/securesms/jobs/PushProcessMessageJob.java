@@ -1634,6 +1634,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                            null,
                                            stickerLocator,
                                            null,
+                                           null,
                                            null));
     } else {
       return Optional.of(PointerAttachment.forPointer(Optional.of(sticker.get().getAttachment()), stickerLocator).get());

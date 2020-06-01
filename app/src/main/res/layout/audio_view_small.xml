@@ -4,7 +4,6 @@
     tools:context="org.thoughtcrime.securesms.components.AudioView">
 
     <LinearLayout
-        android:id="@+id/audio_widget_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

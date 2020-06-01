@@ -42,7 +42,7 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption, @Nullable BlurHash blurHash) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, blurHash, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, blurHash, null, false, false));
   }
 
   @Override

@@ -37,7 +37,7 @@ public class VideoSlide extends Slide {
   }
 
   public VideoSlide(Context context, Uri uri, long dataSize, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(uri), null, caption, null, null, false, false, transformProperties));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(uri), null, caption, null, null, null, false, false, transformProperties));
   }
 
   public VideoSlide(Context context, Attachment attachment) {

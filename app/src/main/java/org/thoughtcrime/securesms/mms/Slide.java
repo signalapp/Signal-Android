@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.thoughtcrime.securesms.audio.AudioHash;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -155,10 +156,11 @@ public abstract class Slide {
                                                          @Nullable String         caption,
                                                          @Nullable StickerLocator stickerLocator,
                                                          @Nullable BlurHash       blurHash,
+                                                         @Nullable AudioHash      audioHash,
                                                                    boolean        voiceNote,
                                                                    boolean        quote)
   {
-    return constructAttachmentFromUri(context, uri, defaultMime, size, width, height, hasThumbnail, fileName, caption, stickerLocator, blurHash, voiceNote, quote, null);
+    return constructAttachmentFromUri(context, uri, defaultMime, size, width, height, hasThumbnail, fileName, caption, stickerLocator, blurHash, audioHash, voiceNote, quote, null);
   }
 
   protected static Attachment constructAttachmentFromUri(@NonNull  Context        context,
@@ -172,6 +174,7 @@ public abstract class Slide {
                                                          @Nullable String         caption,
                                                          @Nullable StickerLocator stickerLocator,
                                                          @Nullable BlurHash       blurHash,
+                                                         @Nullable AudioHash      audioHash,
                                                                    boolean        voiceNote,
                                                                    boolean        quote,
                                                          @Nullable AttachmentDatabase.TransformProperties transformProperties)
@@ -192,6 +195,7 @@ public abstract class Slide {
                              caption,
                              stickerLocator,
                              blurHash,
+                             audioHash,
                              transformProperties);
   }
 

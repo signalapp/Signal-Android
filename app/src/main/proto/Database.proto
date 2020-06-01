@@ -41,3 +41,8 @@ message TemporalAuthCredentialResponse {
 message TemporalAuthCredentialResponses {
     repeated TemporalAuthCredentialResponse credentialResponse = 1;
 }
+
+message AudioWaveFormData {
+    int64 durationUs = 1;
+    bytes waveForm   = 2;
+}

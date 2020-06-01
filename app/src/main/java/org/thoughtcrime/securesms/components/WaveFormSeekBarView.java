@@ -88,9 +88,8 @@ public final class WaveFormSeekBarView extends AppCompatSeekBar {
     if (!Arrays.equals(data, this.data)) {
       this.data        = data;
       this.dataSetTime = System.currentTimeMillis();
-      setWaveMode(data.length > 0);
-      invalidate();
     }
+    setWaveMode(data.length > 0);
   }
 
   public void setWaveMode(boolean waveMode) {
@@ -101,7 +100,9 @@ public final class WaveFormSeekBarView extends AppCompatSeekBar {
 
   @Override
   protected void onDraw(Canvas canvas) {
-    drawWave(canvas);
+    if (waveMode) {
+      drawWave(canvas);
+    }
     super.onDraw(canvas);
   }
 

@@ -4,6 +4,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.audio.AudioHash;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -24,7 +25,7 @@ public class PointerAttachment extends Attachment {
                             int width, int height, long uploadTimestamp, @Nullable String caption, @Nullable StickerLocator stickerLocator,
                             @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null);
+    super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null, null);
   }
 
   @Nullable
