@@ -332,7 +332,7 @@ public class MessageSender {
       ApplicationDependencies.getJobManager().add(RemoteDeleteSendJob.create(context, messageId, isMms));
       onMessageSent();
     } catch (NoSuchMessageException e) {
-      Log.w(TAG, "[sendNewReaction] Could not find message! Ignoring.");
+      Log.w(TAG, "[sendRemoteDelete] Could not find message! Ignoring.");
     }
   }
 
