@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.gcm;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.firebase.messaging.RemoteMessage;
@@ -70,24 +72,28 @@ public class FcmFetchService extends Service {
   }
 
   private void fetch() {
+    retrieveMessages(this);
+
+    if (activeCount.decrementAndGet() == 0) {
+      Log.e(TAG, "stopping");
+      stopSelf();
+    }
+  }
+
+  static void retrieveMessages(@NonNull Context context) {
     BackgroundMessageRetriever retriever = ApplicationDependencies.getBackgroundMessageRetriever();
-    boolean                    success   = retriever.retrieveMessages(this, new RestStrategy(), new RestStrategy());
+    boolean                    success   = retriever.retrieveMessages(context, new RestStrategy(), new RestStrategy());
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.");
     } else {
       if (Build.VERSION.SDK_INT >= 26) {
         Log.w(TAG, "Failed to retrieve messages. Scheduling on the system JobScheduler (API " + Build.VERSION.SDK_INT + ").");
-        FcmJobService.schedule(this);
+        FcmJobService.schedule(context);
       } else {
         Log.w(TAG, "Failed to retrieve messages. Scheduling on JobManager (API " + Build.VERSION.SDK_INT + ").");
-        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(this));
+        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(context));
       }
-    }
-
-    if (activeCount.decrementAndGet() == 0) {
-      Log.e(TAG, "stopping");
-      stopSelf();
     }
   }
 }
