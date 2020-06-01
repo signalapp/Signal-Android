@@ -1671,6 +1671,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
   <string name="preferences_app_protection__turn_off">Skru av</string>
   <string name="preferences_app_protection__confirm_pin">Bekreft PIN-koden</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Bekreft Signal PIN-kode</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringslås-PIN-koden er ikke den samme som SMS-bekreftelseskoden du nettopp har mottatt. Vennligst skriv inn PIN-koden du tidligere konfigurert i programmet.</string>

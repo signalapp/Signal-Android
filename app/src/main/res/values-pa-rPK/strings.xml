@@ -1653,6 +1653,7 @@
   <string name="preferences_app_protection__change_your_pin">اپنی پن تبدیل کرو</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پن Signal دے نال ذخیرہ کیتی جانکاری نوں خفیہ کاری توں محفوظ رکھدا اے ایس لئی صرف تساں ایس تائیں رسائی حاصل کر سکدے او۔ جدوں تساں Signal نوں دوبارہ انسٹال کر دے او تے تساں دی پروفائل، ترتیباں تے رابطے بحال ہو جان گے۔</string>
   <string name="preferences_app_protection__confirm_pin">پن دی تصدیق کرو</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">اپنی Signal پن دی تصدیق کرو</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">غلط پن۔ فیر کوشش کرو</string>
   <string name="AppProtectionPreferenceFragment_none">کوئی نئیں</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن تے تہانوں ہنی موصول ہویا SMS تصدیقی کوڈ اک ورگا نئیں اے۔ مہربانی کر کے درخاست اچ اپناں پہلاں تشکیل دتا ہویا پن درج کرو۔</string>

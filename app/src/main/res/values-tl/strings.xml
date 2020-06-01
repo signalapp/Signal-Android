@@ -166,6 +166,7 @@
   <string name="ConversationItem_read_more">  Magbasa pa</string>
   <string name="ConversationItem_download_more">  Mag-download pa</string>
   <string name="ConversationItem_pending">  Nakabinbin</string>
+  <string name="ConversationItem_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">I-reset ang secure na sesyon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Maaari itong makatulong kung ika\'y nagkakaproblema sa encryption ng pag-uusap na ito. Ang iyong mga mensahe ay pananatilihin.</string>
@@ -721,6 +722,7 @@
   <string name="RegistrationActivity_country_code_description">Country code</string>
   <string name="RegistrationActivity_call">Tawag</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Kung makalimutan mo ang iyong PIN sa Signal kapag nagrehistro kang muli, hindi mo mabubuksan ang iyong account sa loob ng 7 araw.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Tingnan ang Larawan</string>
   <string name="RevealableMessageView_view_video">Tingnan ang Video</string>
@@ -813,6 +815,7 @@
   <string name="ThreadRecord_view_once_photo">View-once na larawan</string>
   <string name="ThreadRecord_view_once_video">View-once na video</string>
   <string name="ThreadRecord_view_once_media">View-once na media</string>
+  <string name="ThreadRecord_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
   <string name="ThreadRecord_s_is_on_signal">Nasa Signal si %s!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Naka-disable ang mga naglalahong mensahe</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Nakatakda ang oras ng naglalahong mensahe sa %s</string>
@@ -922,6 +925,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Nag-react ng %1$s sa iyong view-once na larawan.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Nag-react ng %1$s sa iyong view-once na video.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Nag-react ng %1$s sa iyong sticker.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Default</string>
   <string name="NotificationChannel_calls">Mga Tawag</string>
@@ -1577,6 +1581,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Lumikha ng bagong PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Mapapalitan mo ang iyong PIN hangga\'t rehistrado ang device na ito.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Likhain ang iyong PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Panapanatiling encrypted ng PIN ang mga impormasyong naka-imbak sa Signal upang ikaw lang ang maka-access nito. Ang iyong profile, mga setting, at kontak ay mare-restore kapag nagre-install ka ng Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pumili ng mas malakas na PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Hindi tugma ang mga PIN. Subukang muli.</string>
@@ -1587,6 +1592,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Lumilikha ng PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ipinakikilala ang mga PIN</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Panapanatiling encrypted ng PIN ang mga impormasyong naka-imbak sa Signal upang ikaw lang ang maka-access nito. Ang iyong profile, mga setting, at kontak ay mare-restore kapag nagre-install ka ng Signal.</string>
   <string name="KbsSplashFragment__learn_more">Matuto pa</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Lock sa Pagpaparehistro = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Ang iyong Lock sa Pagpaparehistro ay tinatawag na ngayong PIN, at mas marami itong nagagawa. I-update ito ngayon.</string>
@@ -1715,7 +1721,9 @@
   <string name="preferences_app_protection__signal_pin">PIN ng Signal</string>
   <string name="preferences_app_protection__create_a_pin">Lumikha ng PIN</string>
   <string name="preferences_app_protection__change_your_pin">Baguhin ang iyong PIN</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Panapanatiling encrypted ng PIN ang mga impormasyong naka-imbak sa Signal upang ikaw lang ang maka-access nito. Ang iyong profile, mga setting, at kontak ay mare-restore kapag nagre-install ka ng Signal.</string>
   <string name="preferences_app_protection__confirm_pin">Kumpirmahin ang PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Kumpirmahin ang PIN ng iyong Signal</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Hindi tama ang PIN. Subukang muli.</string>
   <string name="AppProtectionPreferenceFragment_none">Wala</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Ang Lock PIN sa Pagpaparehistro ay hindi kapareho ng verification code sa SMS na iyong natanggap. Pakilagay ang PIN na nakaraan mong na-configure sa application.</string>

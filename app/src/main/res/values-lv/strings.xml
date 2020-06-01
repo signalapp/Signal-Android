@@ -1025,7 +1025,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Atveriet Signālu, lai pārbaudītu, vai nav nesenu nelasītu paziņojumu.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakts</string>
-  <string name="MessageNotifier_reacted_s_to_s">Reaģēja %1$s uz %2$s</string>
+  <string name="MessageNotifier_reacted_s_to_s">Reaģēja %1$s uz “%2$s”</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reaģēja %1$s  uz Jūsu video.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reaģēja %1$s uz Jūsu attēlu</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reaģēja %1$s uz Jūsu failu. </string>

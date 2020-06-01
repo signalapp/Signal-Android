@@ -1868,6 +1868,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__turn_off">Poista käytöstä</string>
   <string name="preferences_app_protection__confirm_pin">Vahvista PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Vahvista Signal PIN-koodisi</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pistä PIN-koodi muistiin tai tallenna se turvallisesti, sillä sitä ei voi palauttaa. Jos PIN-koodi unohtuu ja Signal rekisteröidään uudelleen, tietoja voi kadota.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Väärä PIN-koodi. Yritä uudelleen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Rekisteröinnin lukitusta ei voitu ottaa käyttöön.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Rekisteröinnin lukitusta ei voitu poistaa käytöstä.</string>

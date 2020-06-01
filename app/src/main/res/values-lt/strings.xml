@@ -85,8 +85,9 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Užblokuoti ir išeiti iš %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Užblokuoti %1$s?</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupės dalyviai nebegalės vėl pridėti jūsų į šią grupę.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupės dalyviai galės ir vėl jus pridėti į šią grupę.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Jūs daugiau nebegausite žinučių ar atnaujinimų iš šios grupės, o nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupės nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupės nariai galės ir vėl jus pridėti į šią grupę.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
   <string name="BlockUnblockDialog_unblock_s">Atblokuoti %1$s?</string>
@@ -187,7 +188,7 @@
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Apgailestaujame, pridedant priedą, įvyko klaida.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Gavėjas nėra tinkamas SMS ar el. pašto adresas!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Žinutė tuščia!</string>
-  <string name="ConversationActivity_group_members">Grupės dalyviai</string>
+  <string name="ConversationActivity_group_members">Grupės nariai</string>
   <string name="ConversationActivity_invalid_recipient">Neteisingas gavėjas!</string>
   <string name="ConversationActivity_added_to_home_screen">Pridėta į pradžios ekraną</string>
   <string name="ConversationActivity_calls_not_supported">Skambučiai nepalaikomi</string>
@@ -203,7 +204,7 @@
   <string name="ConversationActivity_unblock_this_contact_question">Atblokuoti šį adresatą?</string>
   <string name="ConversationActivity_unblock_this_group_question">Atblokuoti šią grupę?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Jūs ir vėl galėsite gauti žinutes ir priimti skambučius nuo šio adresato.</string>
-  <string name="ConversationActivity_unblock_this_group_description">Esami dalyviai ir vėl galės pridėti jus į grupę.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Esami nariai ir vėl galės pridėti jus į grupę.</string>
   <string name="ConversationActivity_unblock">Atblokuoti</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera neprieinama</string>
@@ -233,6 +234,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Jūs išeisite iš šios grupės ir ji bus ištrinta iš visų jūsų įrenginių.</string>
   <string name="ConversationActivity_delete">Ištrinti</string>
   <string name="ConversationActivity_delete_and_leave">Ištrinti ir išeiti</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Norint skambinti %1$s, Signal reikia prieigos prie jūsų mikrofono</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų mikrofono ir kameros.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -285,6 +288,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ištrinama</string>
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės…</string>
+  <string name="ConversationFragment_delete_for_me">Ištrinti man</string>
   <string name="ConversationFragment_delete_for_everyone">Ištrinti visiems</string>
   <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
@@ -394,12 +398,13 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nauja grupė</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Taisyti grupę</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Tvarkyti grupę</string>
   <string name="GroupCreateActivity_group_name_hint">Grupės pavadinimas</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nauja MMS grupė</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Jūs pasirinkote adresatą, kuris nepalaiko Signal grupių, taigi, ši grupė bus MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Jūs nesate užsiregistravę Signal žinutėms ir skambučiams, taigi, Signal grupės yra išjungtos. Prašome pabandyti registruotis skyrelyje Nustatymai (angl. Settings) &gt; Išplėstiniai (angl. Advanced).</string>
   <string name="GroupCreateActivity_contacts_no_members">Jums jūsų grupėje reikalingas bent vienas žmogus!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Vieno iš jūsų grupės dalyvių numerį nepavyksta perskaityti teisingai. Prašome tai ištaisyti arba pašalinti tą adresatą ir bandyti dar kartą.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Vieno iš jūsų grupės narių numerį nepavyksta perskaityti teisingai. Prašome tai ištaisyti arba pašalinti tą adresatą ir bandyti dar kartą.</string>
   <string name="GroupCreateActivity_avatar_content_description">Grupės avataras</string>
   <string name="GroupCreateActivity_menu_apply_button">Taikyti</string>
   <string name="GroupCreateActivity_creating_group">Kuriama %1$s…</string>
@@ -407,24 +412,45 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nepavyko pridėti %1$s, kadangi tai nėra Signal naudotojas.</string>
   <string name="GroupCreateActivity_loading_group_details">Įkeliama išsamesnė grupės informacija…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esate grupėje.</string>
-  <string name="GroupCreateActivity_remove_member_description">Šalinti dalyvį</string>
+  <string name="GroupCreateActivity_remove_member_description">Šalinti narį</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bendrinti jūsų profilio vardą ir nuotrauką su šia grupe?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti savo profilio vardą ir nuotrauką matomą visiems esamiems ir būsimiems šios grupės dalyviams?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti savo profilio vardą ir nuotrauką matomą visiems esamiems ir būsimiems šios grupės nariams?</string>
   <string name="GroupShareProfileView_make_visible">Padaryti matomą</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Jūs</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">Bet kas</string>
-  <string name="GroupManagement_access_level_all_members">Visi dalyviai</string>
+  <string name="GroupManagement_access_level_all_members">Visi nariai</string>
   <string name="GroupManagement_access_level_only_admins">Tik administratoriai</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Jūs neturite laukiančių pakvietimų.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Kitų grupės narių pakvietimai</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nėra laukiančių kitų grupės narių pakvietimų.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Išsamesnė žmonių, kuriuos pakvietė kiti grupės nariai, informacija nėra rodoma. Jei pakviesti asmenys pasirinks prisijungti, tuomet tuo metu, jų informacija bus pradėta bendrinti su grupe. Kol jie neprisijungs, jie nematys jokių grupėje esančių žinučių.</string>
+  <string name="PendingMembersActivity_cancel_invite">Atšaukti pakvietimą</string>
+  <string name="PendingMembersActivity_cancel_invites">Atšaukti pakvietimus</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Atšaukti pakvietimą</item>
+    <item quantity="few">Atšaukti %1$d pakvietimus</item>
+    <item quantity="many">Atšaukti %1$d pakvietimų</item>
+    <item quantity="other">Atšaukti %1$d pakvietimą</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Klaida atšaukiant pakvietimą</item>
+    <item quantity="few">Klaida atšaukiant pakvietimus</item>
+    <item quantity="many">Klaida atšaukiant pakvietimus</item>
+    <item quantity="other">Klaida atšaukiant pakvietimus</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Suteikti šiai grupei pavadinimą</string>
   <string name="AddGroupDetailsFragment__create">Kurti</string>
-  <string name="AddGroupDetailsFragment__members">Dalyviai</string>
+  <string name="AddGroupDetailsFragment__members">Nariai</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grupės pavadinimas (būtina)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Šis laukas yra būtinas.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupės reikalauja bent dviejų narių.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Grupės sukūrimas nepavyko.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Vėliau bandykite dar kartą.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Jūs pasirinkote adresatą, kuris nepalaiko Signal grupių, taigi, ši grupė bus MMS.</string>
@@ -432,6 +458,8 @@
   <string name="AddGroupDetailsFragment__sms_contact">SMS adresatas</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
+  <string name="ManageGroupActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Kas gali keisti grupės narystes</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Kas gali taisyti grupės informaciją</string>
   <string name="ManageGroupActivity_block_group">Užblokuoti grupę</string>
   <string name="ManageGroupActivity_leave_group">Išeiti iš grupės</string>
@@ -440,13 +468,15 @@
   <string name="ManageGroupActivity_until_s">Iki %1$s</string>
   <string name="ManageGroupActivity_off">Išjungta</string>
   <string name="ManageGroupActivity_on">Įjungta</string>
-  <string name="ManageGroupActivity_add_members">Pridėti narių</string>
-  <string name="ManageGroupActivity_view_all_members">Rodyti visus dalyvius</string>
+  <string name="ManageGroupActivity_add_members">Pridėti narius</string>
+  <string name="ManageGroupActivity_view_all_members">Rodyti visus narius</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jūs neturite teisių to daryti</string>
   <string name="ManageGroupActivity_not_capable">Kažkas iš jūsų pridėtų asmenų nepalaiko naujų grupių ir turi atsinaujinti Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepavyko atnaujinti grupės</string>
-  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs nesate šios grupės dalyvis</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs nesate šios grupės narys</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pasirinkite, kas gali keisti grupės pavadinimą ir nuotrauką</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s pakvietė 1 žmogų</item>
     <item quantity="few">%1$s pakvietė %2$d žmones</item>
@@ -460,6 +490,13 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Pranešimų garsas</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibruoti</string>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Ar norite atšaukti pakvietimą, kurį išsiuntėte naudotojui %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Ar norite atšaukti pakvietimą, kurį išsiuntė %1$s?</item>
+    <item quantity="few">Ar norite atšaukti %2$d pakvietimus, kuriuos išsiuntė %1$s?</item>
+    <item quantity="many">Ar norite atšaukti %2$d pakvietimų, kuriuos išsiuntė %1$s?</item>
+    <item quantity="other">Ar norite atšaukti %2$d pakvietimą, kurį išsiuntė %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
   <string name="CropImageActivity_profile_avatar">Avataras</string>
@@ -619,24 +656,53 @@
   <string name="MessageRecord_you_created_the_group">Jūs sukūrėte grupę.</string>
   <string name="MessageRecord_group_updated">Grupė atnaujinta.</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Jūs pridėjote %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s pridėjo naudotoją %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s pridėjo jus į grupę.</string>
   <string name="MessageRecord_you_joined_the_group">Jūs prisijungėte prie grupės.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s prisijungė prie grupės.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Jūs pašalinote %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s pašalino naudotoją %2$s.</string>
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s pašalino jus iš grupės.</string>
   <string name="MessageRecord_you_left_the_group">Jūs išėjote iš grupės.</string>
   <string name="MessageRecord_s_left_the_group">%1$s išėjo iš grupės.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Jūs paskyrėte %1$s administratoriumi.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s paskyrė %2$s administratoriumi.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s paskyrė jus administratoriumi.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Jūs panaikinote %1$s turėtas administratoriaus teises.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s panaikino jūsų, kaip administratoriaus, teises.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s panaikino %2$s turėtas administratoriaus teises.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Jūs pakvietėte %1$s į grupę.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s pakvietė jus į grupę.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s pakvietė 1 žmogų į grupę.</item>
+    <item quantity="few">%1$s pakvietė %2$d žmones į grupę.</item>
+    <item quantity="many">%1$s pakvietė %2$d žmonių į grupę.</item>
+    <item quantity="other">%1$s pakvietė %2$d žmogų į grupę.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Jūs panaikinote pakvietimą prisijungti prie grupės.</item>
+    <item quantity="few">Jūs panaikinote %1$d pakvietimus prisijungti prie grupės.</item>
+    <item quantity="many">Jūs panaikinote %1$d pakvietimų prisijungti prie grupės.</item>
+    <item quantity="other">Jūs panaikinote %1$d pakvietimą prisijungti prie grupės.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s panaikino pakvietimą prisijungti prie grupės.</item>
+    <item quantity="few">%1$s panaikino %2$d pakvietimus prisijungti prie grupės.</item>
+    <item quantity="many">%1$s panaikino %2$d pakvietimų prisijungti prie grupės.</item>
+    <item quantity="other">%1$s panaikino %2$d pakvietimą prisijungti prie grupės.</item>
+  </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kažkas atmetė pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atmetėte pakvietimą prisijungti prie grupės.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Jūs priėmėte pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s priėmė pakvietimą prisijungti prie grupės.</string>
-  <string name="MessageRecord_you_added_invited_member_s">Jūs pridėjote pakviestą dalyvį %1$s.</string>
-  <string name="MessageRecord_s_added_invited_member_s">%1$s pridėjo pakviestą dalyvį %2$s.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Jūs pridėjote pakviestą narį %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s pridėjo pakviestą narį %2$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Jūs pakeitėte grupės pavadinimą į \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s pakeitė grupės pavadinimą į \"%2$s\".</string>
@@ -644,7 +710,11 @@
   <string name="MessageRecord_you_changed_the_group_avatar">Jūs pakeitėte grupės avatarą.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s pakeitė grupės avatarą.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės informaciją į \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės informaciją į \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės narystes į \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės narystes į \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
@@ -658,23 +728,23 @@
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti naudotojui %1$s rašyti jums žinutes? Šis naudotojas nežinos, kad jūs matėte jo žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite prisijungti prie grupės %1$s? Kiti asmenys nežinos, kad jūs matėte jų žinutes tol, kol nesutiksite.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs buvote pakviesti prisijungti prie grupės %1$s. Ar norite leisti šios grupės dalyviams rašyti jums žinutes?</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs buvote pakviesti prisijungti prie grupės %1$s. Ar norite leisti šios grupės nariams rašyti jums žinutes?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atblokuokite %1$s, norėdami vieni kitiems rašyti žinutes bei skambinti.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atblokuokite, norėdami leisti grupės dalyviams vėl pridėti jus į šią grupę.</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės dalyvis</string>
-  <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių dalyvis</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s grupių dalyvis</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atblokuokite, norėdami leisti grupės nariams vėl pridėti jus į šią grupę.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės narys</string>
+  <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių narys</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s grupių narys</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="one">%1$d dalyvis</item>
-    <item quantity="few">%1$d dalyviai</item>
-    <item quantity="many">%1$d dalyvių</item>
-    <item quantity="other">%1$d dalyvis</item>
+    <item quantity="one">%1$d narys</item>
+    <item quantity="few">%1$d nariai</item>
+    <item quantity="many">%1$d narių</item>
+    <item quantity="other">%1$d narys</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d dalyvis (+ pakviesta dar %2$d)</item>
-    <item quantity="few">%1$d dalyviai (+ pakviesta dar %2$d)</item>
-    <item quantity="many">%1$d dalyvių (+ pakviesta dar %2$d)</item>
-    <item quantity="other">%1$d dalyvis (+ pakviesta dar %2$d)</item>
+    <item quantity="one">%1$d narys (+ pakviesta dar %2$d)</item>
+    <item quantity="few">%1$d nariai (+ pakviesta dar %2$d)</item>
+    <item quantity="many">%1$d narių (+ pakviesta dar %2$d)</item>
+    <item quantity="other">%1$d narys (+ pakviesta dar %2$d)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">dar %d</item>
@@ -726,15 +796,26 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Neteisingas PIN</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Praleisti PIN kodo įrašą?</string>
   <string name="PinRestoreEntryFragment_need_help">Reikia pagalbos?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Jūsų PIN kodas yra %1$d ar daugiau skaitmenų kodas, kuris gali būti sudarytas iš skaičių arba raidžių ir skaičių.\n\nJei negalite prisiminti savo PIN kodo, galite susikurti naują. Galite registruotis ir naudotis savo paskyra, tačiau prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, savo profilio informaciją.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jei negalite prisiminti savo PIN kodo, galite susikurti naują. Galite registruotis ir naudotis savo paskyra, tačiau prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, savo profilio informaciją.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Sukurti naują PIN kodą</string>
   <string name="PinRestoreEntryFragment_contact_support">Susisiekti su palaikymu</string>
   <string name="PinRestoreEntryFragment_cancel">Atsisakyti</string>
   <string name="PinRestoreEntryFragment_skip">Praleisti</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Jums liko %1$d bandymas. Jei išnaudosite visus bandymus, galėsite susikurti naują PIN kodą. Galėsite registruotis ir naudotis savo paskyra, bet prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, profilio informaciją.</item>
+    <item quantity="few">Jums liko %1$d bandymai. Jei išnaudosite visus bandymus, galėsite susikurti naują PIN kodą. Galėsite registruotis ir naudotis savo paskyra, bet prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, profilio informaciją.</item>
+    <item quantity="many">Jums liko %1$d bandymų. Jei išnaudosite visus bandymus, galėsite susikurti naują PIN kodą. Galėsite registruotis ir naudotis savo paskyra, bet prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, profilio informaciją.</item>
+    <item quantity="other">Jums liko %1$d bandymas. Jei išnaudosite visus bandymus, galėsite susikurti naują PIN kodą. Galėsite registruotis ir naudotis savo paskyra, bet prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, profilio informaciją.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registracija - Reikia pagalbos su PIN kodu Android įrenginyje</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Įvesti tekstinį PIN kodą</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Įvesti skaitinį PIN kodą</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Susikurti PIN kodą</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Jums nebeliko PIN kodo spėjimų, bet vis dar galite gauti prieigą prie savo Signal paskyros, susikurdami naują PIN kodą. Siekiant apsaugoti jūsų privatumą, saugumo sumetimais jūsų paskyra bus atkurta be įrašytos profilio informacijos ir įrašytų nustatymų.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Sukurti naują PIN kodą</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
@@ -772,7 +853,9 @@
   <string name="RedPhone_got_it">Supratau</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Bakstelėkite čia, norėdami įjungti savo vaizdą</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų kameros</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Skambinama…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal balso skambutis…</string>
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis…</string>
@@ -822,6 +905,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Įjungti registracijos užraktą?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Išjungti registracijos užraktą?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jeigu registruodamiesi su Signal, vėl pamiršite savo Signal PIN kodą, tuomet 7 dienoms būsite užblokuoti nuo savo paskyros.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Įjungti</string>
   <string name="RegistrationLockV2Dialog_turn_off">Išjungti</string>
   <!--RevealableMessageView-->
@@ -929,6 +1013,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">Nepavyko apdoroti žinutės</string>
   <string name="ThreadRecord_message_request">Žinutės užklausa</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s pridėjo jus į grupę</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s pakvietė jus į grupę</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite, norėdami atnaujinti</string>
@@ -1075,6 +1160,8 @@
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Norėdami atsiliepti į skambutį nuo %s, suteikite Signal prieigą prie mikrofono.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Norint skambinti ar gauti skambučius, Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atsiliepta susietame įrenginyje.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Atmesta susietame įrenginyje.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Užimta susietame įrenginyje.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Jūsų pokalbio su %1$s saugumo numeris pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo adresatu.</string>
@@ -1087,6 +1174,7 @@
   <string name="WebRtcCallScreen__answer_without_video">Atsiliepti be vaizdo</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Garso išvestis</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefono ausinė</string>
   <string name="WebRtcAudioOutputToggle__speaker">Garsiakalbis</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1341,7 +1429,7 @@
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Norėdami gauti patvirtinimo kodą, įveskite savo mobiliojo telefono numerį. Gali būti taikomi mobiliojo ryšio paslaugos teikėjo mokesčiai.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Įveskite vardą ar numerį</small></string>
-  <string name="recipients_panel__add_members">Pridėti dalyvius</string>
+  <string name="recipients_panel__add_members">Pridėti narius</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Siuntėjo jūsų adresatų sąraše nėra</string>
   <string name="unknown_sender_view__block">UŽBLOKUOTI</string>
@@ -1620,11 +1708,12 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridėti priedą</string>
   <string name="conversation__menu_edit_group">Taisyti grupę</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Tvarkyti grupę</string> -->
   <string name="conversation__menu_leave_group">Išeiti iš grupės</string>
   <string name="conversation__menu_view_all_media">Visa medija</string>
   <string name="conversation__menu_conversation_settings">Pokalbio nustatymai</string>
   <string name="conversation__menu_add_shortcut">Pridėti į pradžios ekraną</string>
-  <string name="conversation__menu_pending_members">Laukiantys dalyviai</string>
+  <string name="conversation__menu_pending_members">Laukiantys nariai</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Išskleisti iškylantįjį langą</string>
   <!--conversation_callable_insecure-->
@@ -1723,18 +1812,23 @@
     <item quantity="other">PIN kode privalo būti bent %1$d skaitmuo</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Sukurti naują PIN kodą</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Kol šis įrenginys yra registruotas, galite keisti savo PIN kodą.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Susikurti PIN kodą</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pasirinkite stipresnį PIN kodą</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kodai nesutampa. Bandykite dar kartą.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Patvirtinkite savo PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN kodo sukūrimas nepavyko</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Jūsų PIN kodas nebuvo įrašytas. Vėliau, jūsų bus paprašyta susikurti PIN kodą.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN kodas sukurtas.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Pakartokite PIN kodą</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Kuriamas PIN kodas…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Pristatome PIN kodus</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti.</string>
   <string name="KbsSplashFragment__learn_more">Sužinoti daugiau</string>
-  <string name="KbsSplashFragment__registration_lock_equals_pin">Registracijos užraktas = PIN</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Registracijos užraktas = PIN kodas</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Dabar, registracijos užraktas yra vadinamas PIN kodu ir jis atlieka daugiau. Atnaujinkite jį dabar.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Skaitykite daugiau apie PIN kodus.</string>
   <string name="KbsSplashFragment__update_pin">Atnaujinti PIN kodą</string>
@@ -1794,9 +1888,11 @@
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Gerai</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s gaus iš jūsų žinutės užklausą. Galėsite skambinti, kai jūsų žinutės užklausa bus priimta.</string>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__create_a_pin">Sukurti PIN kodą</string>
-  <string name="KbsMegaphone__create_pin">Susikurkite PIN kodą</string>
+  <string name="KbsMegaphone__create_a_pin">Susikurkite PIN kodą</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal.</string>
+  <string name="KbsMegaphone__create_pin">Susikurti PIN kodą</string>
   <string name="KbsMegaphone__introducing_pins">Pristatome PIN kodus</string>
   <string name="KbsMegaphone__update_pin">Atnaujinti PIN kodą</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
@@ -1872,43 +1968,49 @@
   <string name="preferences_app_protection__create_a_pin">Sukurti PIN kodą</string>
   <string name="preferences_app_protection__change_your_pin">Keisti PIN kodą</string>
   <string name="preferences_app_protection__pin_reminders">PIN kodo priminimai</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pridėti papildomą saugumą ir, norint vėl registruoti jūsų telefono numerį su Signal, reikalauti jūsų Signal PIN kodo.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Priminimai padeda jums įsiminti PIN kodą, nes jo neįmanoma atkurti. Bėgant laikui, jūsų bus klausiama vis rečiau.</string>
   <string name="preferences_app_protection__turn_off">Išjungti</string>
   <string name="preferences_app_protection__confirm_pin">Patvirtinkite PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Patvirtinkite savo Signal PIN kodą</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Įsiminkite arba laikykite savo PIN kodą saugioje vietoje, nes jo neįmanoma atkurti. Jei pamiršite savo PIN kodą, galite prarasti duomenis, kai iš naujo registruosite savo Signal paskyrą.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nepavyko įjungti registracijos užrakto.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nepavyko išjungti registracijos užrakto.</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registracijos užrakto PIN nėra tas pats, kas jūsų gautas SMS patvirtinimo kodas. Įveskite PIN, kurį esate anksčiau sukonfigūravę programėlėje.</string>
-  <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN</string>
-  <string name="registration_activity__forgot_pin">Pamiršote PIN?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN yra sudarytas iš keturių ar daugiau skaitmenų. Jei pamiršite savo PIN, galite iki septynių dienų būti užblokuoti nuo savo paskyros.</string>
-  <string name="registration_lock_dialog_view__enter_pin">Įveskite PIN</string>
-  <string name="registration_lock_dialog_view__confirm_pin">Patvirtinkite PIN</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Įveskite savo Registracijos užrakto PIN</string>
-  <string name="registration_lock_reminder_view__enter_pin">Įveskite PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Įjungti Registracijos užrakto PIN, kurio bus reikalaujama, norint vėl registruoti šį telefono numerį su Signal.</string>
-  <string name="preferences_app_protection__registration_lock_pin">Registracijos užrakto PIN</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registracijos užrakto PIN kodas nėra tas pats, kas jūsų gautas SMS patvirtinimo kodas. Įveskite PIN, kurį esate anksčiau sukonfigūravę programėlėje.</string>
+  <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN kodas</string>
+  <string name="registration_activity__forgot_pin">Pamiršote PIN kodą?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN kodas yra sudarytas iš keturių ar daugiau skaitmenų. Jei pamiršite savo PIN, galite iki septynių dienų būti užblokuoti nuo savo paskyros.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Įveskite PIN kodą</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Patvirtinkite PIN kodą</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Įveskite savo Registracijos užrakto PIN kodą</string>
+  <string name="registration_lock_reminder_view__enter_pin">Įveskite PIN kodą</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Įjungti Registracijos užrakto PIN kodą, kurio bus reikalaujama, norint vėl registruoti šį telefono numerį su Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Registracijos užrakto PIN kodas</string>
   <string name="preferences_app_protection__registration_lock">Registracijos užraktas</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Privalote įvesti savo Registracijos užrakto PIN</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Jūsų PIN kode yra bent %d skaitmenys ar simboliai</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">Neteisingas Registracijojs užrakto PIN</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Neteisingas Registracijos užrakto PIN kodas</string>
   <string name="RegistrationActivity_too_many_attempts">Per daug bandymų</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Jūs atlikote per daug neteisingų Registracijos užrakto PIN bandymų. Po vienos dienos bandykite dar kartą.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Atlikote per daug bandymų. Vėliau bandykite dar kartą.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Klaida, jungiantis prie paslaugos</string>
   <string name="RegistrationActivity_oh_no">O, ne!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Šio telefono numerio registracija be jūsų Registracijos užrakto PIN bus įmanoma praėjus 7 dienoms nuo to laiko, kai šis telefono numeris paskutinį kartą buvo aktyvus Signal. Jums liko %d dienos.</string>
-  <string name="RegistrationActivity_registration_lock_pin">Registracijos užrakto PIN</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Šiam telefono numeriui yra įjungtas Registracijos užraktas. Įveskite Registracijos užrakto PIN.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Jūsų telefono numeriui yra įjungtas Registracijos užraktas. Norint jums padėti įsiminti Registracijos užrakto PIN, Signal periodiškai prašys jūsų jį patvirtinti.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Aš pamiršau savo PIN.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Pamirštas PIN?</string>
+  <string name="RegistrationActivity_registration_lock_pin">Registracijos užrakto PIN kodas</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Šiam telefono numeriui yra įjungtas Registracijos užraktas. Įveskite Registracijos užrakto PIN kodą.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Jūsų telefono numeriui yra įjungtas Registracijos užraktas. Norint jums padėti įsiminti Registracijos užrakto PIN kodą, Signal periodiškai prašys jūsų jį patvirtinti.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Aš pamiršau savo PIN kodą.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Pamirštas PIN kodas?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registracijos užraktas padeda apsaugoti jūsų telefono numerį nuo neteisėtų registracijos bandymų. Ši ypatybė bet kuriuo metu gali būti išjungta jūsų Signal privatumo nustatymuose.</string>
   <string name="RegistrationLockDialog_registration_lock">Registracijos užraktas</string>
   <string name="RegistrationLockDialog_enable">Įjungti</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Registracijos užrakto PIN kodas privalo būti bent %d skaitmenų.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Du įvesti PIN kodai nesutampa.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Klaida, jungiantis prie paslaugos</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Išjungti Registracijos užrakto PIN?</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Išjungti Registracijos užrakto PIN kodą?</string>
   <string name="RegistrationLockDialog_disable">Išjungti</string>
   <string name="RegistrationActivity_pin_incorrect">Neteisingas PIN kodas</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Jums liko bandymų: %d</string>
@@ -1924,9 +2026,11 @@
   <string name="RecipientBottomSheet_block">Užblokuoti</string>
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
   <string name="RecipientBottomSheet_view_safety_number">Rodyti saugumo numerį</string>
+  <string name="RecipientBottomSheet_make_group_admin">Paskirti grupės administratoriumi</string>
   <string name="RecipientBottomSheet_remove_as_admin">Pašalinti iš administratorių</string>
   <string name="RecipientBottomSheet_remove_from_group">Šalinti iš grupės</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Pašalinti %1$s iš grupės administratorių?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s galės taisyti šią grupę ir jos narių sąrašą</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Šalinti %1$s iš \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Šalinti</string>
   <string name="GroupRecipientListItem_admin">Administratorius</string>

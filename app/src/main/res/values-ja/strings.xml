@@ -791,7 +791,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">登録ロックを有効にしますか?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">登録ロックを無効にしますか?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal に再度登録するとき、Signal PIN を忘れた場合は7日間アカウントを使用できません。</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal に再度登録するとき、Signal PINを忘れた場合は7日間アカウントを使用できなくなります。</string>
   <string name="RegistrationLockV2Dialog_turn_on">オン</string>
   <string name="RegistrationLockV2Dialog_turn_off">オフ</string>
   <!--RevealableMessageView-->
@@ -1338,7 +1338,7 @@
   <string name="HelpFragment__tell_us_whats_going_on">お問い合わせ内容</string>
   <string name="HelpFragment__include_debug_log">デバッグログを添付</string>
   <string name="HelpFragment__whats_this">詳細情報</string>
-  <string name="HelpFragment__how_do_you_feel">どんな感じですか? (任意)</string>
+  <string name="HelpFragment__how_do_you_feel">気分はどうですか? (任意)</string>
   <string name="HelpFragment__support_info">Support Info</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
   <string name="HelpFragment__debug_log">Debug Log:</string>
@@ -1660,14 +1660,14 @@
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">このデバイスが登録されている間は PIN を変更することができます。</string>
   <string name="CreateKbsPinFragment__create_your_pin">PIN を作成</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN を使用してあなたの情報をあなただけがアクセス可能な形で暗号化して保存できます。PIN を使用すると Signal をインストールし直した際、あなたのプロフィール・設定・連絡先を復元することができます。</string>
-  <string name="CreateKbsPinFragment__choose_a_stronger_pin">強固な PIN を選択</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">強固なPINを選択</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN が一致しません。再度試してください。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN を確認してください。</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN の作成に失敗しました</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN は保存されませんでした。後ほど PIN の作成ダイアログが表示されます。</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN を作成しました。</string>
-  <string name="ConfirmKbsPinFragment__re_enter_your_pin">PIN を再入力</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">PINを再入力</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PIN を作成しています…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN のご紹介</string>
@@ -1720,7 +1720,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">OK</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN を作成</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal で保管される情報を PIN で暗号化できます。</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal で保管される情報をPINで暗号化できます。</string>
   <string name="KbsMegaphone__create_pin">PIN を作成</string>
   <string name="KbsMegaphone__introducing_pins">PIN のご紹介</string>
   <string name="KbsMegaphone__update_pin">PIN をアップデート</string>
@@ -1794,12 +1794,12 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android の画面ロックや指紋認証で Signal へのアクセスをロックします</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックの非アクティブタイムアウト</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-  <string name="preferences_app_protection__create_a_pin">PIN を作成</string>
-  <string name="preferences_app_protection__change_your_pin">PIN を変更</string>
+  <string name="preferences_app_protection__create_a_pin">PINを作成</string>
+  <string name="preferences_app_protection__change_your_pin">PINを変更</string>
   <string name="preferences_app_protection__pin_reminders">PINリマインダー</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN はあなたの情報を暗号化された状態で保管され、あなただけがアクセスすることができます。Signal を再インストールした時、あなたのプロフィール、設定、連絡先は復元されます。</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">登録ロックを有効にすると追加のセキュリティ対策として、あなたの電話番号で Signal に再度登録する際に Signal PIN の入力を求めるようになります。</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">リマインダーはPINの暗記を手助けします。PINは復元できませんので。質問回数は徐々に減らしていきます。</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">登録ロックを有効にすると追加のセキュリティ対策として、あなたの電話番号で Signal に再度登録する際にSignal PINの入力を求めるようになります。</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PINを復元することはできないのでリマインダーはPINを覚えるための手助けをします。回数は徐々に減らしていきます。</string>
   <string name="preferences_app_protection__turn_off">オフ</string>
   <string name="preferences_app_protection__confirm_pin">PIN を再入力してください</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Signal PINの確認</string>
@@ -1858,8 +1858,8 @@
   <string name="RecipientBottomSheet_make_group_admin">グループ管理者を作成</string>
   <string name="RecipientBottomSheet_remove_as_admin">管理者から削除</string>
   <string name="RecipientBottomSheet_remove_from_group">グループから削除</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">グループ管理者から %1$s を削除しますか？</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">%2$s から %1$s を削除しますか？</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">グループ管理者から %1$s を削除しますか?</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">%2$s から %1$s を削除しますか?</string>
   <string name="RecipientBottomSheet_remove">削除</string>
   <string name="GroupRecipientListItem_admin">管理者</string>
   <!--EOF-->

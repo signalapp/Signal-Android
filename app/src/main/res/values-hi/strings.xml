@@ -1608,6 +1608,7 @@
   <string name="preferences_app_protection__change_your_pin">अपना पिन बदलें</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">पिन Signal द्वारा संग्रहीत जानकारी को एन्क्रिप्ट रखता है, ताकी सिर्फ़ आप उसे देख पाएँ। आपका प्रोफ़ाइल, सेटिंग्स, और संपर्क, अपके Signal इंस्टाॅल के बाद, पुनः स्थापित हो जाऐंगे।</string>
   <string name="preferences_app_protection__confirm_pin">पिन की पुष्टि करें</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">अपना Signal पिन कि पुष्टि करें</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">गलत पिन। पुनः प्रयास करें।</string>
   <string name="AppProtectionPreferenceFragment_none">कुछ नहीं</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">पंजीकरण लॉक पिन आपके द्वारा प्राप्त किए गए एसएमएस सत्यापन कोड जैसा नहीं है। कृपया उस पिन को दर्ज करें जिसे आपने पहले एप्लिकेशन में कॉन्फ़िगर किया था।</string>

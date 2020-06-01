@@ -46,6 +46,7 @@
 <!-- mk --><item>Macedonian македонски јазик</item>
 <!-- hu --><item>Magyar</item>
 <!-- ms --><item>Malay (Bahasa Melayu)</item>
+<!-- ml --><item>Malayalam മലയാളം</item>
 <!-- mr --><item>Marathi मराठी</item>
 <!-- nl --><item>Nederlands</item>
 <!-- nb --><item>Norsk (bokmål)</item>
@@ -119,6 +120,7 @@
       <item>mk</item>
       <item>hu</item>
       <item>ms</item>
+      <item>ml</item>
       <item>mr</item>
       <item>nl</item>
       <item>nb</item>

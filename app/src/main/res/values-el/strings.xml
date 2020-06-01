@@ -111,7 +111,7 @@
   <string name="CameraContacts_signal_contacts">Επαφές Signal</string>
   <string name="CameraContacts_signal_groups">Ομάδες Signal</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Μπορείς να μοιραστείς το πολύ με %d συνομιλίες.</string>
-  <string name="CameraContacts_select_signal_recipients">Επιλογή παραληπτών/τριών Signal</string>
+  <string name="CameraContacts_select_signal_recipients">Επιλογή παραληπτών Signal</string>
   <string name="CameraContacts_no_signal_contacts">Δεν υπάρχουν επαφές Signal</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Μπορείς να στείλεις φωτογραφίες σε επαφές Signal μόνο χρησιμοποιώντας το κουμπί της κάμερας.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Δεν βρήκες αυτόν ή αυτήν που ψάχνεις;</string>
@@ -381,7 +381,7 @@
   <string name="GroupCreateActivity_menu_apply_button">Εφαρμογή</string>
   <string name="GroupCreateActivity_creating_group">Δημιουργία %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Ενημέρωση %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Δεν μπορέσαμε να προσθέσουμε τον/την %1$s επειδή δεν είναι χρήστης/τρια του Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Δεν μπορέσαμε να προσθέσουμε τον/την %1$s επειδή δεν είναι χρήστης του Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Φόρτωση λεπτομέρειων ομάδας…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Είσαι ήδη μέλος αυτής της ομάδας.</string>
   <string name="GroupCreateActivity_remove_member_description">Αφαίρεση μέλους</string>
@@ -574,14 +574,14 @@
   <string name="MediaSendActivity_camera_unavailable">Η κάμερα δεν είναι διαθέσιμη.</string>
   <string name="MediaSendActivity_message_to_s">Μήνυμα προς τον/την %s</string>
   <string name="MediaSendActivity_message">Μήνυμα</string>
-  <string name="MediaSendActivity_select_recipients">Επιλογή παραληπτών/τριών</string>
+  <string name="MediaSendActivity_select_recipients">Επιλογή παραληπτών</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να τις εμφανίσει. </string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Επαφών για την εμφάνιση των επαφών σου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τις \"Επαφές\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Δεν μπορείς να μοιραστείς πάνω από %d αντικείμενο.</item>
     <item quantity="other">Δεν μπορείς να μοιραστείς πάνω από %d αντικείμενα.</item>
   </plurals>
-  <string name="MediaSendActivity_select_recipients_description">Επιλογή παραληπτών/τριών</string>
+  <string name="MediaSendActivity_select_recipients_description">Επιλογή παραληπτών</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Πάτα εδώ για να κάνεις αυτό το μήνυμα να εξαφανιστεί αφού διαβαστεί.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Όλα τα πολυμέσα</string>
@@ -800,7 +800,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που έγραψες (%s)
 δεν είναι έγκυρος.</string>
   <string name="RegistrationActivity_missing_google_play_services">Υπηρεσίες Google Play που λείπουν</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Αυτή η συσκευή δεν έχει τις Υπηρεσίες Google Play. Μπορείς και πάλι να χρησιμοποιήσεις το Signal, αλλά αυτή η διαμόρφωση μπορεί να οδηγήσει σε μειωμένη αξιοπιστία και επιδόσεις.\n\nΑν δεν είσαι προηγμένος/η χρήστης/τρια, αν δεν έχεις εγκαταστήσει κάποιο εναλλακτικό Android ROM, ή αν νομίζεις πως βλέπεις αυτό το μήνυμα από λάθος, παρακαλώ επικοινώνησε με το support@signal.org για να σε βοηθήσουμε με την αποσφαλμάτωση.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Αυτή η συσκευή δεν έχει τις Υπηρεσίες Google Play. Μπορείς και πάλι να χρησιμοποιήσεις το Signal, αλλά αυτή η διαμόρφωση μπορεί να οδηγήσει σε μειωμένη αξιοπιστία και επιδόσεις.\n\nΑν δεν είσαι προηγμένος/η χρήστης, αν δεν έχεις εγκαταστήσει κάποιο εναλλακτικό Android ROM, ή αν νομίζεις πως βλέπεις αυτό το μήνυμα από λάθος, παρακαλώ επικοινώνησε με το support@signal.org για να σε βοηθήσουμε με την αποσφαλμάτωση.</string>
   <string name="RegistrationActivity_i_understand">Καταλαβαίνω</string>
   <string name="RegistrationActivity_play_services_error">Σφάλμα υπηρεσιών Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Οι υπηρεσίες Google Play αναβαθμίζονται ή είναι προσωρινά μη διαθέσιμες. Παρακαλώ ξαναπροσπάθησε.</string>
@@ -1148,7 +1148,7 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Το Signal χρειάζεται τα δικαιώματα Επαφών για την εμφάνιση των επαφών σου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τις \"Επαφές\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Σφάλμα κατά τη λήψη επαφών, έλεγξε τη σύνδεσή σου στο δίκτυο</string>
   <string name="ContactSelectionListFragment_username_not_found">Το όνομα χρήστη δε βρέθηκε</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Ο/Η \"%1$s\" δεν είναι χρήστης/τρια του Signal. Παρακαλώ επιβεβαίωσε το όνομα χρήστη και ξαναδοκίμασε.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Ο/Η \"%1$s\" δεν είναι χρήστης του Signal. Παρακαλώ επιβεβαίωσε το όνομα χρήστη και ξαναδοκίμασε.</string>
   <string name="ContactSelectionListFragment_okay">Εντάξει</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Καμία φραγμένη επαφή</string>
