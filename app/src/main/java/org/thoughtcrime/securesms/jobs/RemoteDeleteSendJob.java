@@ -158,7 +158,7 @@ public class RemoteDeleteSendJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    Log.w(TAG, "Failed to send the reaction to all recipients! (" + (initialRecipientCount - recipients.size() + "/" + initialRecipientCount + ")") );
+    Log.w(TAG, "Failed to send remote delete to all recipients! (" + (initialRecipientCount - recipients.size() + "/" + initialRecipientCount + ")") );
   }
 
   private @NonNull List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations, long targetSentTimestamp)
