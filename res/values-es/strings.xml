@@ -1300,5 +1300,198 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>
   <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
   <string name="recipient_preferences__about">Info</string>
-  <!--EOF-->
+
+
+
+
+
+  <!-- Session -->
+  <string name="continue_2">Continuar</string>
+  <string name="copy">Copiar</string>
+  <string name="invalid_url">URL no válida</string>
+  <string name="copied_to_clipboard">Copiado en el portapapeles</string>
+  <string name="device_linking_failed">No se pudo vincular el dispositivo.</string>
+  <string name="next">Siguiente</string>
+  <string name="share">Compartir</string>
+  <string name="invalid_session_id">ID de Session no válida</string>
+  <string name="cancel">Cancelar</string>
+
+  <string name="activity_landing_title_2">Tu Session comienza aquí...</string>
+  <string name="activity_landing_register_button_title">Crear ID de Session</string>
+  <string name="activity_landing_restore_button_title">Continúa tu sesión</string>
+  <string name="activity_landing_link_button_title">Vincular a una cuenta existente</string>
+  <string name="activity_landing_device_unlinked_dialog_title">Tu dispositivo se ha desvinculado correctamente</string>
+
+  <string name="view_fake_chat_bubble_1">¿Qué es Session?</string>
+  <string name="view_fake_chat_bubble_2">Es una aplicación de mensajería descentralizada y cifrada</string>
+  <string name="view_fake_chat_bubble_3">¿Entonces no recopila mi información personal ni los metadatos de mi conversación? ¿Cómo funciona?</string>
+  <string name="view_fake_chat_bubble_4">Utiliza una combinación de enrutamiento anónimo avanzado y tecnologías de cifrado de extremo a extremo.</string>
+  <string name="view_fake_chat_bubble_5">Los amigos no dejan que sus amigos usen messengers riesgosos. De nada.</string>
+
+  <string name="activity_register_title">Saluda a tu ID de Session</string>
+  <string name="activity_register_explanation">Tu ID de Session es la dirección única que las personas pueden usar para contactarte en Session. Sin conexión con tu identidad real, tu ID de Session es totalmente anónimo y privado por diseño.</string>
+  <string name="activity_register_public_key_copied_message">Copiado en el portapapeles</string>
+
+  <string name="activity_restore_title">Restaura tu cuenta</string>
+  <string name="activity_restore_explanation">Ingresa la frase de recuperación que se te dio cuando te registraste para restaurar tu cuenta.</string>
+  <string name="activity_restore_seed_edit_text_hint">Ingresa tu frase de recuperación</string>
+
+  <string name="activity_link_device_title">Vincular dispositivo</string>
+  <string name="activity_link_device_enter_session_id_tab_title">Session ID</string>
+  <string name="activity_link_device_scan_qr_code_tab_title">Escanear código QR</string>
+  <string name="activity_link_device_scan_qr_code_explanation">Ve a Ajustes &gt; Dispositivos &gt; Vincular un dispositivo en tu otro dispositivo y después escanea el código QR que aparece para iniciar el proceso de vinculación.</string>
+
+  <string name="fragment_enter_session_id_title">Vincula tu dispositivo</string>
+  <string name="fragment_enter_session_id_explanation">Ve a Ajustes &gt; Dispositivos &gt; Vincular un dispositivo en tu otro dispositivo y después ingresa tu ID de Session aquí para iniciar el proceso de vinculación.</string>
+  <string name="fragment_enter_session_id_edit_text_hint">Ingresa tu ID de Session</string>
+
+  <string name="activity_display_name_title_2">Elige tu nombre para mostrar</string>
+  <string name="activity_display_name_explanation">Este será tu nombre cuando uses Session.</string>
+  <string name="activity_display_name_edit_text_hint">Ingresa un nombre para mostrar</string>
+  <string name="activity_display_name_display_name_missing_error">Por favor, elige un nombre para mostrar</string>
+  <string name="activity_display_name_display_name_invalid_error">Por favor, elige un nombre para mostrar que contenga solo caracteres a-z, A-Z, 0-9 y _</string>
+  <string name="activity_display_name_display_name_too_long_error">Por favor, elige un nombre para mostrar más corto</string>
+
+  <string name="activity_pn_mode_title">Notificaciones push</string>
+  <string name="activity_pn_mode_explanation">Hay dos formas en que Session puede manejar las notificaciones push. Asegúrate de leer las descripciones cuidadosamente antes de elegir.</string>
+  <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
+  <string name="activity_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir las notificaciones push. Recibirás notificaciones de nuevos mensajes de manera confiable e inmediata. Usar FCM significa que este dispositivo se comunicará directamente con los servidores de Google para recuperar las notificaciones push, lo que expondrá tu dirección IP a Google. A tus mensajes se les seguirá realizando enrutamiento cebolla y cifrado de extremo a extremo, por lo que el contenido de tus mensajes permanecerá completamente privado.</string>
+  <string name="activity_pn_mode_background_polling_option_title">Sondeo en segundo plano</string>
+  <string name="activity_pn_mode_background_polling_option_explanation">Ocasionalmente, Session revisará si hay nuevos mensajes en segundo plano. Esto garantiza una protección total de la privacidad, pero las notificaciones de mensajes pueden retrasarse significativamente.</string>
+  <string name="activity_pn_mode_recommended_option_tag">Recomendado</string>
+  <string name="activity_pn_mode_no_option_picked_dialog_title">Por favor, elige una opción</string>
+
+  <string name="activity_home_empty_state_message">Aún no tienes contactos</string>
+  <string name="activity_home_empty_state_button_title">Iniciar una sesión</string>
+  <string name="activity_home_leave_group_dialog_message">¿Seguro que quieres salir de este grupo?</string>
+  <string name="activity_home_leaving_group_failed_message">No pudiste salir del grupo</string>
+  <string name="activity_home_delete_conversation_dialog_message">¿Seguro que quieres eliminar esta conversación?</string>
+  <string name="activity_home_conversation_deleted_message">Conversación eliminada</string>
+
+  <string name="sheet_pn_mode_title">Notificaciones push</string>
+  <string name="sheet_pn_mode_explanation">Session ahora tiene dos formas de manejar las notificaciones push. Asegúrate de leer las descripciones cuidadosamente antes de elegir.</string>
+  <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
+  <string name="sheet_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir las notificaciones push. Recibirás notificaciones de nuevos mensajes de manera confiable e inmediata. Usar FCM significa que este dispositivo se comunicará directamente con los servidores de Google para recuperar las notificaciones push, lo que expondrá tu dirección IP a Google. A tus mensajes se les seguirá realizando enrutamiento cebolla y cifrado de extremo a extremo, por lo que el contenido de tus mensajes permanecerá completamente privado.</string>
+  <string name="sheet_pn_mode_background_polling_option_title">Sondeo en segundo plano</string>
+  <string name="sheet_pn_mode_background_polling_option_explanation">Ocasionalmente, Session revisará si hay nuevos mensajes en segundo plano. Esto garantiza una protección total de la privacidad, pero las notificaciones de mensajes pueden retrasarse significativamente.</string>
+  <string name="sheet_pn_mode_recommended_option_tag">Recomendado</string>
+  <string name="sheet_pn_mode_no_option_picked_dialog_title">Por favor, elige una opción</string>
+  <string name="sheet_pn_mode_confirm_button_title">Confirmar</string>
+  <string name="sheet_pn_mode_skip_button_title">Omitir</string>
+
+  <string name="activity_seed_title">Tu frase de recuperación</string>
+  <string name="activity_seed_title_2">Conoce tu frase de recuperación</string>
+  <string name="activity_seed_explanation">Tu frase de recuperación es la clave maestra de tu ID de Session; puedes usarla para restaurar tu ID de Session si pierdes el acceso a tu dispositivo. Guarda tu frase de recuperación en un lugar seguro y no se la des a nadie. Para restaurar tu ID de Session, inicia Session y toca Continúa tu sesión.</string>
+  <string name="activity_seed_reveal_button_title">Mantén presionado para revelar</string>
+
+  <string name="view_seed_reminder_subtitle_1">Protege tu cuenta guardando tu frase de recuperación</string>
+  <string name="view_seed_reminder_subtitle_2">Toca y mantén presionadas las palabras redactadas para revelar tu frase de recuperación, después guárdala de manera segura para proteger tu ID de Session.</string>
+  <string name="view_seed_reminder_subtitle_3">Asegúrate de guardar tu frase de recuperación en un lugar seguro</string>
+
+  <string name="activity_create_private_chat_title">Nueva sesión</string>
+  <string name="activity_create_private_chat_enter_session_id_tab_title">Session ID</string>
+  <string name="activity_create_private_chat_scan_qr_code_tab_title">Escanear código QR</string>
+  <string name="activity_create_private_chat_scan_qr_code_explanation">Escanea el código QR de un usuario para iniciar una sesión. Los códigos QR se pueden encontrar tocando el icono del código QR en los ajustes de la cuenta.</string>
+
+  <string name="fragment_enter_public_key_edit_text_hint">Ingresa el ID de Session del destinatario</string>
+  <string name="fragment_enter_public_key_explanation">Los usuarios pueden compartir su ID de Session yendo a los ajustes de su cuenta y tocando Compartir ID de Session, o compartiendo su código QR.</string>
+
+  <string name="activity_create_closed_group_title">Nuevo grupo cerrado</string>
+  <string name="activity_create_closed_group_edit_text_hint">Ingresa un nombre de grupo</string>
+  <string name="activity_create_closed_group_explanation">Los grupos cerrados admiten hasta 10 miembros y brindan las mismas protecciones de privacidad que las sesiones individuales.</string>
+  <string name="activity_create_closed_group_empty_state_message">Aún no tienes contactos</string>
+  <string name="activity_create_closed_group_empty_state_button_title">Iniciar una sesión</string>
+  <string name="activity_create_closed_group_group_name_missing_error">Por favor, ingresa un nombre de grupo</string>
+  <string name="activity_create_closed_group_group_name_too_long_error">Por favor, ingresa un nombre de grupo más corto</string>
+  <string name="activity_create_closed_group_not_enough_group_members_error">Por favor, elige al menos 2 miembros del grupo</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">Un grupo cerrado no puede tener más de 10 miembros</string>
+  <string name="activity_create_closed_group_invalid_session_id_error">Uno de los miembros de tu grupo tiene un ID de Session no válido</string>
+
+  <string name="activity_join_public_chat_title">Únete al grupo abierto</string>
+  <string name="activity_join_public_chat_error">No te pudiste unir al grupo</string>
+  <string name="activity_join_public_chat_enter_group_url_tab_title">URL de grupo abierto</string>
+  <string name="activity_join_public_chat_scan_qr_code_tab_title">Escanear código QR</string>
+  <string name="activity_join_public_chat_scan_qr_code_explanation">Escanea el código QR del grupo abierto al que quieras unirte</string>
+
+  <string name="fragment_enter_chat_url_edit_text_hint">Ingresa una URL de grupo abierto</string>
+  <string name="fragment_enter_chat_url_privacy_warning">Cualquier persona puede unirse a los grupos abiertos y no brindan protección de privacidad completa</string>
+
+  <string name="activity_settings_title">Ajustes</string>
+  <string name="activity_settings_display_name_edit_text_hint">Ingresa un nombre para mostrar</string>
+  <string name="activity_settings_display_name_missing_error">Por favor, elige un nombre para mostrar</string>
+  <string name="activity_settings_invalid_display_name_error">Por favor, elige un nombre para mostrar que contenga solo caracteres a-z, A-Z, 0-9 y _</string>
+  <string name="activity_settings_display_name_too_long_error">Por favor, elige un nombre para mostrar más corto</string>
+  <string name="activity_settings_privacy_button_title">Privacidad</string>
+  <string name="activity_settings_notifications_button_title">Notificaciones</string>
+  <string name="activity_settings_chats_button_title">Chats</string>
+  <string name="activity_settings_devices_button_title">Dispositivos</string>
+  <string name="activity_settings_recovery_phrase_button_title">Frase de recuperación</string>
+  <string name="activity_settings_clear_all_data_button_title">Borrar datos</string>
+
+  <string name="activity_notification_settings_title">Notificaciones</string>
+
+  <string name="activity_privacy_settings_title">Privacidad</string>
+
+  <string name="activity_chat_settings_title">Chats</string>
+
+  <string name="activity_linked_devices_title">Dispositivos</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_title">Límite de dispositivos alcanzado</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">Actualmente no está permitido vincular más de un dispositivo.</string>
+  <string name="activity_linked_devices_unlinking_failed_message">No se pudo desvincular el dispositivo.</string>
+  <string name="activity_linked_devices_unlinking_successful_message">Tu dispositivo se ha desvinculado correctamente</string>
+  <string name="activity_linked_devices_linking_failed_message">No se pudo vincular el dispositivo.</string>
+
+  <string name="preferences_notifications_strategy_category_title">Estrategia de notificación</string>
+  <string name="preferences_notifications_use_fcm_option_title">Utilizar FCM</string>
+  <string name="preferences_notifications_use_fcm_option_explanation">El uso de Firebase Cloud Messaging permite notificaciones push más confiables, pero expone tu IP a Google.</string>
+
+  <string name="dialog_link_device_slave_mode_title_1">Esperando la autorización</string>
+  <string name="dialog_link_device_slave_mode_title_2">Vinculación de dispositivo autorizada</string>
+  <string name="dialog_link_device_slave_mode_explanation_1">Por favor, revisa que las siguientes palabras coincidan con las que aparecen en tu otro dispositivo.</string>
+  <string name="dialog_link_device_slave_mode_explanation_2">Tu dispositivo se ha vinculado correctamente</string>
+
+  <string name="dialog_link_device_master_mode_title_1">Esperando el dispositivo</string>
+  <string name="dialog_link_device_master_mode_title_2">Solicitud de vinculación recibida</string>
+  <string name="dialog_link_device_master_mode_title_3">Autorizando la vinculación de dispositivo</string>
+  <string name="dialog_link_device_master_mode_explanation_1">Descarga Session en tu otro dispositivo y toca Vincular a una cuenta existente en la parte inferior de la pantalla de inicio. Si ya tienes una cuenta en tu otro dispositivo, primero deberás eliminar esa cuenta.</string>
+  <string name="dialog_link_device_master_mode_explanation_2">Por favor, revisa que las siguientes palabras coincidan con las que aparecen en tu otro dispositivo.</string>
+  <string name="dialog_link_device_master_mode_explanation_3">Espera mientras se crea la vinculación del dispositivo. Esto puede tomar hasta un minuto.</string>
+  <string name="dialog_link_device_master_mode_authorize_button_title">Autorizar</string>
+
+  <string name="fragment_device_list_bottom_sheet_change_name_button_title">Cambiar nombre</string>
+  <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Desvincular dispositivo</string>
+
+  <string name="dialog_edit_device_name_edit_text_hint">Ingresa un nombre</string>
+
+  <string name="dialog_seed_title">Tu frase de recuperación</string>
+  <string name="dialog_seed_explanation">Esta es tu frase de recuperación. Con ella, puedes restaurar o migrar tu ID de Session a un nuevo dispositivo.</string>
+
+  <string name="dialog_clear_all_data_title">Borrar todos los datos</string>
+  <string name="dialog_clear_all_data_explanation">Esto eliminará permanentemente tu ID de Session, incluyendo todos los mensajes, sesiones y contactos.</string>
+
+  <string name="activity_qr_code_title">Código QR</string>
+  <string name="activity_qr_code_view_my_qr_code_tab_title">Ver mi código QR</string>
+  <string name="activity_qr_code_view_scan_qr_code_tab_title">Escanear código QR</string>
+  <string name="activity_qr_code_view_scan_qr_code_explanation">Escanea el código QR de una persona para comenzar una conversación con ella</string>
+
+  <string name="fragment_view_my_qr_code_explanation">Este es tu código QR. Otros usuarios pueden escanearlo para iniciar una sesión contigo.</string>
+  <string name="fragment_view_my_qr_code_share_title">Compartir código QR</string>
+
+  <string name="view_friend_request_accept_button_title">Aceptar</string>
+  <string name="view_friend_request_reject_button_title">Rechazar</string>
+  <string name="view_friend_request_incoming_pending_message">%1$s te envió una solicitud de sesión</string>
+  <string name="view_friend_request_incoming_accepted_message">Has aceptado la solicitud de sesión de %1$s</string>
+  <string name="view_friend_request_incoming_declined_message">Has rechazado la solicitud de sesión de %1$s</string>
+  <string name="view_friend_request_incoming_expired_message">La solicitud de sesión de %1$s ha expirado</string>
+  <string name="view_friend_request_outgoing_pending_message">Le has enviado una solicitud de sesión a %1$s</string>
+  <string name="view_friend_request_outgoing_accepted_message">%1$s aceptó tu solicitud de sesión</string>
+  <string name="view_friend_request_outgoing_expired_message">Tu solicitud de sesión para %1$s ha expirado</string>
+
+  <string name="session_reset_banner_message">¿Quieres restaurar tu sesión con %s?</string>
+  <string name="session_reset_banner_dismiss_button_title">Descartar</string>
+  <string name="session_reset_banner_restore_button_title">Restaurar</string>
+
+  <string name="fragment_contact_selection_contacts_title">Contactos</string>
+  <string name="fragment_contact_selection_closed_groups_title">Grupos cerrados</string>
+  <string name="fragment_contact_selection_open_groups_title">Grupos abiertos</string>
 </resources>
