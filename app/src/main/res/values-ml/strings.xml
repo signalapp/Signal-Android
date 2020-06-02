@@ -542,8 +542,11 @@
   <string name="MediaOverviewActivity_image">ചിത്രം</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s അയച്ചത്</string>
   <string name="MediaOverviewActivity_sent_by_you">നിങ്ങൾ അയച്ചത്</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s %2$s-ന് അയച്ചത്.</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s നിങ്ങൾക്ക് അയച്ചത്.</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">അവതരിപ്പിക്കുന്നു റീയാക്ഷനുകൾ</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">നിങ്ങൾക്ക് എന്തുതോന്നുന്നുവെന്ന് വേഗത്തിൽ പങ്കിടാൻ ഏത് സന്ദേശവും ടാപ്പുചെയ്ത് പിടിക്കുക.</string>
   <string name="Megaphones_remind_me_later">പിന്നീട് എന്നെ ഓർമ്മിപ്പിക്കുക</string>
   <string name="Megaphones_verify_your_signal_pin">നിങ്ങളുടെ Signal PIN പരിശോധിക്കുക</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">നിങ്ങളുടെ PIN സ്ഥിരീകരിക്കാൻ ഞങ്ങൾ ഇടയ്ക്കിടെ നിങ്ങളോട് ആവശ്യപ്പെടുന്നതിനാൽ നിങ്ങൾ അത് ഓർക്കും.</string>
@@ -597,6 +600,8 @@
   <string name="MessageRecord_s_joined_signal">%s Signal-ലിൽ ഉണ്ട്!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">സന്ദേശങ്ങൾ അപ്രത്യക്ഷമാകുന്നത് നിങ്ങൾ സജീവമല്ലാതാക്കിയിട്ടുണ്ട്.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ അപ്രാപ്തമാക്കി.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">അപ്രത്യക്ഷമായ സന്ദേശ ടൈമർ %1$s ആയി നിങ്ങൾ സജ്ജമാക്കി.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">അപ്രത്യക്ഷമായ സന്ദേശ ടൈമർ %1$s %2$s ആയി സജ്ജമാക്കി.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">നിങ്ങൾ ഗ്രൂപ്പ് സൃഷ്ടിച്ചു.</string>
   <string name="MessageRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
@@ -649,22 +654,41 @@
   <string name="MessageRecord_you_changed_the_group_avatar">നിങ്ങൾ ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">ഗ്രൂപ്പ് വിവരം ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകുമെന്ന് നിങ്ങൾ \"%1$s\" എന്നതിലേക്ക് മാറ്റി.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">ഗ്രൂപ്പ് വിവരം ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകുമെന്ന് %1$s \"%2$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">ആർക്കാണ് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാനാകുമെന്ന് നിങ്ങൾ  \"%1$s\" എന്നതിലേക്ക് മാറ്റി.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">ആർക്കാണ് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാനാകുമെന്ന് %1$s \"%2$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ പരിശോധിച്ചുറപ്പിച്ചതായി അടയാളപ്പെടുത്തി</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് പരിശോധിച്ചുറപ്പിച്ചതായി അടയാളപ്പെടുത്തി</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>
   <string name="MessageRequestBottomView_delete">ഇല്ലാതാക്കുക </string>
   <string name="MessageRequestBottomView_block">ബ്ലോക്ക്</string>
   <string name="MessageRequestBottomView_unblock">തടഞ്ഞത് മാറ്റുക</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">നിങ്ങൾക്ക് %1$s-നെ സന്ദേശമയയ്ക്കാൻ അനുവദിക്കണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">നിങ്ങൾക്ക് %1$s ഗ്രൂപ്പിൽ ചേരാൻ താൽപ്പര്യമുണ്ടോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങളെ ക്ഷണിച്ചു. ഈ ഗ്രൂപ്പിലെ അംഗങ്ങളെ നിങ്ങൾക്ക് സന്ദേശമയയ്ക്കാൻ അനുവദിക്കണോ?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും %1$s-നെ അൺബ്ലോക്ക് ചെയ്യുക.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ ഗ്രൂപ്പ് അംഗങ്ങളെ അനുവദിക്കുന്നതിന് അൺബ്ലോക്ക് ചെയ്യുക.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s അംഗം</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s, %2$s എന്നിവയിലെ അംഗം</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, %3$s എന്നിവയിലെ അംഗം</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d അംഗം</item>
     <item quantity="other">%1$d അംഗങ്ങൾ</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d അംഗം (+%2$d ക്ഷണിക്കപ്പെട്ട)</item>
+    <item quantity="other">%1$d അംഗങ്ങൾ (+%2$d ക്ഷണിക്കപ്പെട്ട)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d മറ്റുള്ളവ</item>
+    <item quantity="other">%d മറ്റുള്ളവർ</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">പാസ്‌ഫ്രെയ്‌സുകൾ പൊരുത്തപ്പെടുന്നില്ല!</string>
@@ -675,6 +699,9 @@
   <string name="DeviceProvisioningActivity_cancel">റദ്ദാക്കുക</string>
   <string name="DeviceProvisioningActivity_continue">തുടരുക</string>
   <string name="DeviceProvisioningActivity_content_intro">അതിന് കഴിയും</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+  • നിങ്ങളുടെ എല്ലാ സന്ദേശങ്ങളും വായിക്കുക
+ \n• നിങ്ങളുടെ പേരിൽ സന്ദേശങ്ങൾ അയയ്‌ക്കുക</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ഉപകരണം ലിങ്കുചെയ്യുന്നു</string>
   <string name="DeviceProvisioningActivity_content_progress_content">പുതിയ ഉപകരണം ലിങ്കുചെയ്യുന്നു…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">ഉപകരണം അംഗീകരിച്ചു!</string>
@@ -690,6 +717,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">നിങ്ങളുടെ സന്ദേശങ്ങൾ‌ കാലഹരണപ്പെടില്ല.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ഈ സംഭാഷണത്തിൽ അയച്ചതും സ്വീകരിച്ചതുമായ സന്ദേശങ്ങൾ കണ്ടുകഴിഞ്ഞാൽ അവ %s കഴിഞ്ഞാൽ അപ്രത്യക്ഷമാകും.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ഐക്കൺ</string>
@@ -699,6 +727,7 @@
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">മാപ്പ്</string>
   <string name="PlacePickerActivity_not_a_valid_address">സാധുവായ വിലാസമല്ല</string>
+  <string name="PlacePickerActivity_drop_pin">ഡ്രോപ്പ് പിൻ</string>
   <string name="PlacePickerActivity_accept_address">വിലാസം സ്വീകരിക്കുക</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">നിങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്ത Google Play Services പതിപ്പ് ശരിയായി പ്രവർത്തിക്കുന്നില്ല. Google Play Services വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്ത് വീണ്ടും ശ്രമിക്കുക.</string>
@@ -827,6 +856,8 @@
   <string name="Slide_audio">ഓഡിയോ</string>
   <string name="Slide_video">വീഡിയോ</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">ഈ സന്ദേശം പ്രോസസ്സ് ചെയ്യാൻ കഴിഞ്ഞില്ല കാരണം ഇത് Signal-ന്റെ പുതിയ പതിപ്പിൽ നിന്ന് അയച്ചതാണ്. നിങ്ങൾ അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം ഈ സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ നിങ്ങളുടെ കോൺടാക്റ്റിനോട് ആവശ്യപ്പെടാം.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">ഇൻകമിംഗ് സന്ദേശം കൈകാര്യം ചെയ്യുന്നതിൽ പിശക്.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">സ്റ്റിക്കറുകൾ</string>
   <!--StickerManagementAdapter-->
@@ -878,8 +909,13 @@ grūpp ap‌ḍē</string>
   <string name="ThreadRecord_view_once_media">ഒരു തവണ-ദൃശ്യമാകുന്ന മീഡിയ</string>
   <string name="ThreadRecord_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="ThreadRecord_s_is_on_signal">%s സിഗ്നലിൽ ഉണ്ട്!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ പ്രവർത്തനരഹിതമാക്കി</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">അപ്രത്യക്ഷമാകുന്ന സന്ദേശ സമയം %s ആയി  സജ്ജമാക്കി</string>
   <string name="ThreadRecord_safety_number_changed">സുരക്ഷാ നമ്പർ മാറ്റി</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
+  <string name="ThreadRecord_you_marked_verified">നിങ്ങൾ സ്ഥിരീകരിച്ചതായി അടയാളപ്പെടുത്തി</string>
+  <string name="ThreadRecord_you_marked_unverified">നിങ്ങൾ സ്ഥിരീകരിക്കാത്തതായി അടയാളപ്പെടുത്തി</string>
+  <string name="ThreadRecord_message_could_not_be_processed">സന്ദേശം പ്രോസസ്സ് ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
   <string name="ThreadRecord_message_request">സന്ദേശത്തിനുള്ള അപേക്ഷ</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് ചേർത്തു</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു</string>
@@ -947,6 +983,7 @@ grūpp ap‌ḍē</string>
   <string name="MediaPreviewActivity_unssuported_media_type">പിന്തുണയ്‌ക്കാത്ത മീഡിയ തരം</string>
   <string name="MediaPreviewActivity_draft">ഡ്രാഫ്റ്റ്</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ബാഹ്യ  സ്റ്റോറേജിലെക് സംരക്ഷിക്കുന്നതിന് Signal-ന് സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">അനുമതിയില്ലാതെ ബാഹ്യ സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കാൻ കഴിയില്ല</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">സന്ദേശം ഇല്ലാതാക്കണോ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ഇത് ഈ സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
   <!--MessageNotifier-->

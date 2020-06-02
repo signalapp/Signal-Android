@@ -1278,6 +1278,10 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pakiusap na hangga\'t maaari ay ipaliwanag ng mabuti upang matulungan kaming maunawaan ang isyu.</string>
   <string name="HelpFragment__no_email_app_found">Walang nahanap na app na pang-email.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Mga Aktibidad</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Mga Bagay</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Mga Simbulo</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Mga Watawat</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">I-import</string>
   <string name="arrays__use_default">Gamitin ang default</string>

@@ -35,7 +35,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Gaituta</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Ukitu zure SMS aplikazio lehenetsia aldatzeko</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Desgaituta</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal zure SMS aplikazio lehenetsia izan dadin, ukitu.</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Bilakatu Signal zure SMS aplikazio lehenetsia.</string>
   <string name="ApplicationPreferencesActivity_on">piztuta</string>
   <string name="ApplicationPreferencesActivity_On">Aktibatuta</string>
   <string name="ApplicationPreferencesActivity_off">desaktibatuta</string>
@@ -524,7 +524,7 @@
   <string name="MediaOverviewActivity_Newest">Berriena</string>
   <string name="MediaOverviewActivity_Oldest">Zaharrena</string>
   <string name="MediaOverviewActivity_Storage_used">Erabilitako biltegia</string>
-  <string name="MediaOverviewActivity_All_storage_use">Gordailuaren erabilera dena</string>
+  <string name="MediaOverviewActivity_All_storage_use">Biltegiaren erabilera guztia</string>
   <string name="MediaOverviewActivity_Grid_view_description">Sareta ikuspegia</string>
   <string name="MediaOverviewActivity_List_view_description">Zerrenda ikuspegia</string>
   <string name="MediaOverviewActivity_Selected_description">Hautatua</string>
@@ -1542,16 +1542,16 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_chats__when_roaming">Ibiltaritzako datuak erabiltzerakoan</string>
   <string name="preferences_chats__media_auto_download">Multimedia edukien deskargatze automatikoa</string>
   <string name="preferences_chats__message_trimming">Mezu murrizketa </string>
-  <string name="preferences_storage__storage_usage">Gordailuaren erabilera</string>
+  <string name="preferences_storage__storage_usage">Biltegiaren erabilera</string>
   <string name="preferences_storage__photos">Argazkiak</string>
   <string name="preferences_storage__videos">Bideoak</string>
   <string name="preferences_storage__files">Fitxategiak</string>
   <string name="preferences_storage__audio">Audioa</string>
-  <string name="preferences_storage__review_storage">Berrikusi gordailua</string>
+  <string name="preferences_storage__review_storage">Berrikusi biltegia</string>
   <string name="preferences_advanced__use_system_emoji">Erabili sistemaren emojiak</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desaktibatu Signalen emoji integratuak</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Signal zerbizariren bitartez birtransmititu dei guztiak; horrela ez diozu erakutsiko zure IP helbidea kontaktuari. Gaitzeak deiaren kalitatea gutxiagotuko du.</string>
-  <string name="preferences_advanced__always_relay_calls">Deiak  beti birtransmititu</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Birtransmititu dei guztiak Signal zerbitzari baten bitartez; horrela ez diozu erakutsiko zure IP helbidea kontaktuari. Aktibatzeak deiaren kalitatea gutxiagotuko du.</string>
+  <string name="preferences_advanced__always_relay_calls">Birtransmititu deiak beti</string>
   <string name="preferences_app_protection__app_access">App-erako sarrera</string>
   <string name="preferences_app_protection__communication">Komunikazioa</string>
   <string name="preferences_chats__chats">Txatak</string>
@@ -1570,7 +1570,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_communication__sealed_sender_display_indicators">Erakutsi adierazpenak</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">\"Igorle zigilatuta\" aukera erabiliz bidali diren mezuetan egoera-ikono bat erakutsi \"mezuaren xehetasunak\" aukeratzen duzunean .</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Edozeinengandik onartu</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Igorle zigilatuta gaitu kontaktuak ez diren eta zure profila partekatu ez duzun pertsonengandik sartzen diren mezuetarako.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Nahiz eta zure kontaktuetan ez egon eta beraiekin zure profila ez partekatu, gaitu igorle zigilatuta horrelako erabiltzaileek bidaltzen dituzten mezuetarako.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Gehiago jakin</string>
   <!--****************************************-->
   <!--menus-->

@@ -1449,6 +1449,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Prosíme, čo najpodrobnejšie popíšte situáciu a pomôžte nám tak porozumieť vášmu problému.</string>
   <string name="HelpFragment__no_email_app_found">Nenašla sa žiadna e-mailová aplikácia.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktivity</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekty</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboly</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlajky</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import</string>
   <string name="arrays__use_default">Použiť predvolené</string>

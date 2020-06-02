@@ -778,7 +778,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">Réponse</string>
   <string name="RedPhone_ending_call">Fin de l’appel</string>
-  <string name="RedPhone_dialing">Numérotation</string>
+  <string name="RedPhone_dialing">Composition</string>
   <string name="RedPhone_ringing">Sonnerie</string>
   <string name="RedPhone_busy">Occupé</string>
   <string name="RedPhone_connected">Connecté</string>

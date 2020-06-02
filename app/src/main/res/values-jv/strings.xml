@@ -1179,6 +1179,10 @@
   <string name="HelpFragment__help">Pitulungan</string>
   <string name="HelpFragment__next">Salajengipun</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Kagiatan</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Barang</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Tandha</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Gendera</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor</string>
   <string name="arrays__use_default">Ginakaken default</string>
