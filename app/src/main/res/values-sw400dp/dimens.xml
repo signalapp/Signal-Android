@@ -11,4 +11,6 @@
     <dimen name="album_5_total_height">250dp</dimen>
     <dimen name="album_5_cell_size_big">149dp</dimen>
     <dimen name="album_5_cell_size_small">99dp</dimen>
+
+    <dimen name="message_audio_width">260dp</dimen>
 </resources>
