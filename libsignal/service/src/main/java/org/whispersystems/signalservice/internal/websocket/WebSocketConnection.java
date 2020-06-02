@@ -12,6 +12,7 @@ import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
+import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class WebSocketConnection extends WebSocketListener {
   private static final int    KEEPALIVE_TIMEOUT_SECONDS = 55;
 
   private final LinkedList<WebSocketRequestMessage>              incomingRequests = new LinkedList<>();
-  private final Map<Long, SettableFuture<Pair<Integer, String>>> outgoingRequests = new HashMap<>();
+  private final Map<Long, OutgoingRequest> outgoingRequests = new HashMap<>();
 
   private final String                        wsUri;
   private final TrustStore                    trustStore;
@@ -94,7 +95,7 @@ public class WebSocketConnection extends WebSocketListener {
   }
 
   public synchronized void connect() {
-    Log.i(TAG, "WSC connect()...");
+    Log.i(TAG, "connect()");
 
     if (client == null) {
       String filledUri;
@@ -137,7 +138,7 @@ public class WebSocketConnection extends WebSocketListener {
   }
 
   public synchronized void disconnect() {
-    Log.i(TAG, "WSC disconnect()...");
+    Log.i(TAG, "disconnect()");
 
     if (client != null) {
       client.close(1000, "OK");
@@ -169,7 +170,7 @@ public class WebSocketConnection extends WebSocketListener {
     else                                                   return incomingRequests.removeFirst();
   }
 
-  public synchronized Future<Pair<Integer, String>> sendRequest(WebSocketRequestMessage request) throws IOException {
+  public synchronized ListenableFuture<WebsocketResponse> sendRequest(WebSocketRequestMessage request) throws IOException {
     if (client == null || !connected) throw new IOException("No connection!");
 
     WebSocketMessage message = WebSocketMessage.newBuilder()
@@ -177,8 +178,8 @@ public class WebSocketConnection extends WebSocketListener {
                                                .setRequest(request)
                                                .build();
 
-    SettableFuture<Pair<Integer, String>> future = new SettableFuture<>();
-    outgoingRequests.put(request.getId(), future);
+    SettableFuture<WebsocketResponse> future = new SettableFuture<>();
+    outgoingRequests.put(request.getId(), new OutgoingRequest(future, System.currentTimeMillis()));
 
     if (!client.send(ByteString.of(message.toByteArray()))) {
       throw new IOException("Write failed!");
@@ -222,7 +223,7 @@ public class WebSocketConnection extends WebSocketListener {
   @Override
   public synchronized void onOpen(WebSocket webSocket, Response response) {
     if (client != null && keepAliveSender == null) {
-      Log.i(TAG, "onConnected()");
+      Log.i(TAG, "onOpen() connected");
       attempts        = 0;
       connected       = true;
       keepAliveSender = new KeepAliveSender();
@@ -234,18 +235,21 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public synchronized void onMessage(WebSocket webSocket, ByteString payload) {
-    Log.d(TAG, "WSC onMessage()");
     try {
       WebSocketMessage message = WebSocketMessage.parseFrom(payload.toByteArray());
 
-      Log.d(TAG, "Message Type: " + message.getType().getNumber());
-
       if (message.getType().getNumber() == WebSocketMessage.Type.REQUEST_VALUE)  {
+        Log.d(TAG, "onMessage() -- incoming request");
         incomingRequests.add(message.getRequest());
       } else if (message.getType().getNumber() == WebSocketMessage.Type.RESPONSE_VALUE) {
-        SettableFuture<Pair<Integer, String>> listener = outgoingRequests.get(message.getResponse().getId());
-        if (listener != null) listener.set(new Pair<>(message.getResponse().getStatus(),
-                                                      new String(message.getResponse().getBody().toByteArray())));
+        OutgoingRequest listener = outgoingRequests.get(message.getResponse().getId());
+        if (listener != null) {
+          listener.getResponseFuture().set(new WebsocketResponse(message.getResponse().getStatus(),
+                                                                 new String(message.getResponse().getBody().toByteArray())));
+          Log.d(TAG, "onMessage() -- response received in " + (System.currentTimeMillis() - listener.getStartTimestamp()) + " ms");
+        } else {
+          Log.d(TAG, "onMessage() -- response received, but no listener");
+        }
       }
 
       notifyAll();
@@ -256,14 +260,14 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public synchronized void onClosed(WebSocket webSocket, int code, String reason) {
-    Log.i(TAG, "onClose()...");
+    Log.i(TAG, "onClose()");
     this.connected = false;
 
-    Iterator<Map.Entry<Long, SettableFuture<Pair<Integer, String>>>> iterator = outgoingRequests.entrySet().iterator();
+    Iterator<Map.Entry<Long, OutgoingRequest>> iterator = outgoingRequests.entrySet().iterator();
 
     while (iterator.hasNext()) {
-      Map.Entry<Long, SettableFuture<Pair<Integer, String>>> entry = iterator.next();
-      entry.getValue().setException(new IOException("Closed: " + code + ", " + reason));
+      Map.Entry<Long, OutgoingRequest> entry = iterator.next();
+      entry.getValue().getResponseFuture().setException(new IOException("Closed: " + code + ", " + reason));
       iterator.remove();
     }
 
@@ -303,12 +307,12 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public void onMessage(WebSocket webSocket, String text) {
-    Log.d(TAG, "onMessage(text)! " + text);
+    Log.d(TAG, "onMessage(text)");
   }
 
   @Override
   public synchronized void onClosing(WebSocket webSocket, int code, String reason) {
-    Log.i(TAG, "onClosing()!...");
+    Log.i(TAG, "onClosing()");
     webSocket.close(1000, "OK");
   }
 
@@ -350,4 +354,21 @@ public class WebSocketConnection extends WebSocketListener {
     }
   }
 
+  private static class OutgoingRequest {
+    private final SettableFuture<WebsocketResponse> responseFuture;
+    private final long                              startTimestamp;
+
+    private OutgoingRequest(SettableFuture<WebsocketResponse> future, long startTimestamp) {
+      this.responseFuture = future;
+      this.startTimestamp = startTimestamp;
+    }
+
+    SettableFuture<WebsocketResponse> getResponseFuture() {
+      return responseFuture;
+    }
+
+    long getStartTimestamp() {
+      return startTimestamp;
+    }
+  }
 }
