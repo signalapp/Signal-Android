@@ -404,7 +404,7 @@ public final class StorageSyncHelper {
     if (!update.isPresent()) {
       return;
     }
-    applyAccountStorageSyncUpdates(context, update.get().getOld().getId(), update.get().getNew(), true);
+    applyAccountStorageSyncUpdates(context, StorageId.forAccount(Recipient.self().getStorageServiceId()), update.get().getNew(), true);
   }
 
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull StorageId storageId, @NonNull SignalAccountRecord update, boolean fetchProfile) {
