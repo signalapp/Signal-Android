@@ -117,7 +117,7 @@
   <string name="ConversationItem_download_more">  Descargar más</string>
   <string name="ConversationItem_pending">  Pendiente</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar session segura?</string>
+  <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar Session segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes se mantendrán.</string>
   <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
@@ -567,13 +567,13 @@ de intercambio de claves!
 Se recibió un mensaje de intercambio de claves para una versión no válida del protocolo.
 </string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Has recibido un mensaje con unas cifras de seguridad nuevas. Toca para procesarlo y mostrarlo.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Has reiniciado la session segura.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s reinició la session segura.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Has reiniciado la Session segura.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s reinició la Session segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo actualizado</string>
   <string name="ThreadRecord_left_the_group">Abandonar el grupo</string>
-  <string name="ThreadRecord_secure_session_reset">Reinicio de session segura.</string>
+  <string name="ThreadRecord_secure_session_reset">Reinicio de Session segura.</string>
   <string name="ThreadRecord_draft">Borrador:</string>
   <string name="ThreadRecord_called">Has llamado</string>
   <string name="ThreadRecord_called_you">Te ha llamado</string>
@@ -614,10 +614,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">El mensaje ha sido cifrado para una session inexistente</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">El mensaje ha sido cifrado para una Session inexistente</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS cifrado erróneo</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">El mensaje MMS ha sido cifrado para una session inexistente</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">El mensaje MMS ha sido cifrado para una Session inexistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
   <!--OutdatedBuildReminder-->
@@ -1142,7 +1142,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_list_fragment__fab_content_description">Nuevo chat</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada una razón de ser. Comienza a chatear con un amigo.</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar session segura</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar Session segura</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">No silenciar</string>
   <!--conversation_unmuted-->
@@ -1329,7 +1329,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="view_fake_chat_bubble_5">Los amigos no dejan que sus amigos usen messengers riesgosos. De nada.</string>
 
   <string name="activity_register_title">Saluda a tu ID de Session</string>
-  <string name="activity_register_explanation">Tu ID de Session es la dirección única que las personas pueden usar para contactarte en session. Por diseño, tu ID de session es totalmente anónima y privada, sin vínculo con tu identidad real.</string>
+  <string name="activity_register_explanation">Tu ID de Session es la dirección única que las personas pueden usar para contactarte en Session. Por diseño, tu ID de Session es totalmente anónima y privada, sin vínculo con tu identidad real.</string>
   <string name="activity_register_public_key_copied_message">Copiado en el portapapeles</string>
 
   <string name="activity_restore_title">Restaura tu cuenta</string>
@@ -1346,7 +1346,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="fragment_enter_session_id_edit_text_hint">Ingresa tu ID de Session</string>
 
   <string name="activity_display_name_title_2">Elige tu nombre</string>
-  <string name="activity_display_name_explanation">Este será el nombre que se mostrará cuando uses Session.</string>
+  <string name="activity_display_name_explanation">Este será tu nombre al usar Session. Puede ser tu nombre real, un alias, o lo que prefieras.</string>
   <string name="activity_display_name_edit_text_hint">Ingresa un nombre para mostrar</string>
   <string name="activity_display_name_display_name_missing_error">Por favor, elige un nombre para mostrar</string>
   <string name="activity_display_name_display_name_invalid_error">Por favor, elige un nombre para mostrar que contenga solo caracteres a-z, A-Z, 0-9 y _</string>
@@ -1355,14 +1355,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_pn_mode_title">Notificaciones push</string>
   <string name="activity_pn_mode_explanation">Session tiene dos tipos de notificaciones push. Asegúrate de leer cuidadosamente las descripciones antes de elegir.</string>
   <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-  <string name="activity_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir las notificaciones push. Recibirás notificaciones de nuevos mensajes de manera confiable e inmediata. Usar FCM significa que este dispositivo se comunicará directamente con los servidores de Google para recuperar las notificaciones push, lo que expondrá tu dirección IP a Google. A tus mensajes se les seguirá realizando enrutamiento cebolla y cifrado de extremo a extremo, por lo que el contenido de tus mensajes permanecerá completamente privado.</string>
+  <string name="activity_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir notificaciones push. Recibirás notificaciones de nuevos mensajes de manera segura e inmediata. Usar FCM significa que tu dirección IP y device token serán compartidos con Google. Este sería ya el caso si recibes notificaciones push con otras aplicaciones. Tu dirección IP y device token serán compartidos con Loki, pero tus mensajes seguirán teniendo enrutamiento cebolla y encriptación de extremo a extremo, por lo que el contenido de tus mensajes seguirá siendo completamente privado.</string>
   <string name="activity_pn_mode_background_polling_option_title">Sondeo en segundo plano</string>
   <string name="activity_pn_mode_background_polling_option_explanation">Session revisará si hay nuevos mensajes en segundo plano y de manera ocasional. Esto garantiza una protección total de la privacidad, pero las notificaciones de mensajes pueden retrasarse significativamente.</string>
   <string name="activity_pn_mode_recommended_option_tag">Recomendado</string>
   <string name="activity_pn_mode_no_option_picked_dialog_title">Por favor, elige una opción</string>
 
   <string name="activity_home_empty_state_message">Aún no tienes contactos</string>
-  <string name="activity_home_empty_state_button_title">Abrir una session</string>
+  <string name="activity_home_empty_state_button_title">Abrir una Session</string>
   <string name="activity_home_leave_group_dialog_message">¿Seguro que quieres salir de este grupo?</string>
   <string name="activity_home_leaving_group_failed_message">No pudiste salir del grupo</string>
   <string name="activity_home_delete_conversation_dialog_message">¿Seguro que quieres eliminar esta conversación?</string>
@@ -1373,7 +1373,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
   <string name="sheet_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir las notificaciones push. Recibirás notificaciones de nuevos mensajes de manera confiable e inmediata. Usar FCM significa que este dispositivo se comunicará directamente con los servidores de Google para recuperar las notificaciones push, lo que expondrá tu dirección IP a Google. A tus mensajes se les seguirá realizando enrutamiento cebolla y cifrado de extremo a extremo, por lo que el contenido de tus mensajes permanecerá completamente privado.</string>
   <string name="sheet_pn_mode_background_polling_option_title">Sondeo en segundo plano</string>
-  <string name="sheet_pn_mode_background_polling_option_explanation">Ocasionalmente, Session revisará si hay nuevos mensajes en segundo plano. Esto garantiza una protección total de la privacidad, pero las notificaciones de mensajes pueden retrasarse significativamente.</string>
+  <string name="sheet_pn_mode_background_polling_option_explanation">Session revisará si hay nuevos mensajes en segundo plano y de manera ocasional. Esto garantiza una protección total de los metadatos, pero las notificaciónes de nuevos mensajes pueden retrasarse significativamente.</string>
   <string name="sheet_pn_mode_recommended_option_tag">Recomendado</string>
   <string name="sheet_pn_mode_no_option_picked_dialog_title">Por favor, elige una opción</string>
   <string name="sheet_pn_mode_confirm_button_title">Confirmar</string>
@@ -1381,17 +1381,17 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
 
   <string name="activity_seed_title">Tu frase de recuperación</string>
   <string name="activity_seed_title_2">Guarda tu frase de recuperación</string>
-  <string name="activity_seed_explanation">Tu frase de recuperación es la clave maestra de tu ID de Session; puedes usarla para restaurar tu ID de Session si pierdes el acceso a tu dispositivo. Guarda tu frase de recuperación en un lugar seguro y no se la des a nadie. Para restaurar tu ID de Session, inicia Session y toca Continúa tu session.</string>
+  <string name="activity_seed_explanation">Tu frase de recuperación es la llave maestra de tu ID de Session, puedes usarla para recuperar tu ID de Session en caso de pérdida de acceso a tu dispositivo. Guarda tu frase de recuperación en un lugar seguro y no se la digas a nadie.</string>
   <string name="activity_seed_reveal_button_title">Mantén pulsado para revelar</string>
 
   <string name="view_seed_reminder_subtitle_1">Protege tu cuenta guardando tu frase de recuperación</string>
   <string name="view_seed_reminder_subtitle_2">Toca y mantén presionadas las palabras redactadas para revelar tu frase de recuperación, después guárdala de manera segura para proteger tu ID de Session.</string>
   <string name="view_seed_reminder_subtitle_3">Asegúrate de guardar tu frase de recuperación en un lugar seguro</string>
 
-  <string name="activity_create_private_chat_title">Nueva session</string>
+  <string name="activity_create_private_chat_title">Nueva Session</string>
   <string name="activity_create_private_chat_enter_session_id_tab_title">Session ID</string>
   <string name="activity_create_private_chat_scan_qr_code_tab_title">Escanear código QR</string>
-  <string name="activity_create_private_chat_scan_qr_code_explanation">Escanea el código QR de un usuario para iniciar una session. Los códigos QR se pueden encontrar tocando el icono del código QR en los ajustes de la cuenta.</string>
+  <string name="activity_create_private_chat_scan_qr_code_explanation">Escanea el código QR de un usuario para iniciar una Session. Los códigos QR se pueden encontrar tocando el icono del código QR en los ajustes de la cuenta.</string>
 
   <string name="fragment_enter_public_key_edit_text_hint">Ingresa la ID de Session del destinatario</string>
   <string name="fragment_enter_public_key_explanation">Los usuarios pueden compartir su ID de Session yendo a los ajustes de su cuenta y tocando Compartir ID de Session, o compartiendo su código QR.</string>
@@ -1400,7 +1400,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_create_closed_group_edit_text_hint">Ingresa un nombre de grupo</string>
   <string name="activity_create_closed_group_explanation">Los grupos cerrados admiten hasta 10 miembros y brindan las mismas protecciones de privacidad que las sesiones individuales.</string>
   <string name="activity_create_closed_group_empty_state_message">Aún no tienes contactos</string>
-  <string name="activity_create_closed_group_empty_state_button_title">Iniciar una session</string>
+  <string name="activity_create_closed_group_empty_state_button_title">Iniciar una Session</string>
   <string name="activity_create_closed_group_group_name_missing_error">Por favor, ingresa un nombre de grupo</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Por favor, ingresa un nombre de grupo más corto</string>
   <string name="activity_create_closed_group_not_enough_group_members_error">Por favor, elige al menos 2 miembros del grupo</string>
@@ -1474,20 +1474,20 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_qr_code_view_scan_qr_code_tab_title">Escanear código QR</string>
   <string name="activity_qr_code_view_scan_qr_code_explanation">Escanea el código QR de una persona para comenzar una conversación con ella</string>
 
-  <string name="fragment_view_my_qr_code_explanation">Este es tu código QR. Otros usuarios pueden escanearlo para iniciar una session contigo.</string>
+  <string name="fragment_view_my_qr_code_explanation">Este es tu código QR. Otros usuarios pueden escanearlo para iniciar una Session contigo.</string>
   <string name="fragment_view_my_qr_code_share_title">Compartir código QR</string>
 
   <string name="view_friend_request_accept_button_title">Aceptar</string>
   <string name="view_friend_request_reject_button_title">Rechazar</string>
-  <string name="view_friend_request_incoming_pending_message">%1$s te envió una solicitud de session</string>
-  <string name="view_friend_request_incoming_accepted_message">Has aceptado la solicitud de session de %1$s</string>
-  <string name="view_friend_request_incoming_declined_message">Has rechazado la solicitud de session de %1$s</string>
-  <string name="view_friend_request_incoming_expired_message">La solicitud de session de %1$s ha expirado</string>
-  <string name="view_friend_request_outgoing_pending_message">Le has enviado una solicitud de session a %1$s</string>
-  <string name="view_friend_request_outgoing_accepted_message">%1$s aceptó tu solicitud de session</string>
-  <string name="view_friend_request_outgoing_expired_message">Tu solicitud de session para %1$s ha expirado</string>
+  <string name="view_friend_request_incoming_pending_message">%1$s te envió una solicitud de Session</string>
+  <string name="view_friend_request_incoming_accepted_message">Has aceptado la solicitud de Session de %1$s</string>
+  <string name="view_friend_request_incoming_declined_message">Has rechazado la solicitud de Session de %1$s</string>
+  <string name="view_friend_request_incoming_expired_message">La solicitud de Session de %1$s ha expirado</string>
+  <string name="view_friend_request_outgoing_pending_message">Le has enviado una solicitud de Session a %1$s</string>
+  <string name="view_friend_request_outgoing_accepted_message">%1$s aceptó tu solicitud de Session</string>
+  <string name="view_friend_request_outgoing_expired_message">Tu solicitud de Session para %1$s ha expirado</string>
 
-  <string name="session_reset_banner_message">¿Quieres restaurar tu session con %s?</string>
+  <string name="session_reset_banner_message">¿Quieres restaurar tu Session con %s?</string>
   <string name="session_reset_banner_dismiss_button_title">Descartar</string>
   <string name="session_reset_banner_restore_button_title">Restaurar</string>
 
