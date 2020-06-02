@@ -112,7 +112,7 @@ public final class AudioWaveForm {
         Util.runOnMain(() -> onSuccess.accept(fileInfo));
       } catch (IOException e) {
         Log.w(TAG, "Failed to create audio wave form for " + cacheKey, e);
-        onFailure.accept(e);
+        Util.runOnMain(() -> onFailure.accept(e));
       }
     });
   }
