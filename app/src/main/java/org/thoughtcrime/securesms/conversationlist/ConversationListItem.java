@@ -24,6 +24,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
@@ -440,11 +441,17 @@ public class ConversationListItem extends RelativeLayout
     } else if (SmsDatabase.Types.isUnsupportedMessageType(thread.getType())) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_message_could_not_be_processed));
     } else {
-      ThreadDatabase.Extra extra = thread.getExtra();
-      if (extra != null && extra.isViewOnce()) {
-        return new SpannableString(emphasisAdded(getViewOnceDescription(context, thread.getContentType())));
-      } else if (extra != null && extra.isRemoteDelete()) {
-        return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_this_message_was_deleted)));
+      if (TextUtils.isEmpty(thread.getBody())) {
+        ThreadDatabase.Extra extra = thread.getExtra();
+        if (extra != null && extra.isSticker()) {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_sticker)));
+        } else if (extra != null && extra.isViewOnce()) {
+          return new SpannableString(emphasisAdded(getViewOnceDescription(context, thread.getContentType())));
+        } else if (extra != null && extra.isRemoteDelete()) {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_this_message_was_deleted)));
+        } else {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
+        }
       } else {
         return new SpannableString(thread.getBody());
       }

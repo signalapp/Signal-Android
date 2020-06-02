@@ -1117,12 +1117,6 @@
     <string name="ThreadRecord_message_request">Message Request</string>
     <string name="ThreadRecord_s_added_you_to_the_group">%1$s added you to the group</string>
     <string name="ThreadRecord_s_invited_you_to_the_group">%1$s invited you to the group</string>
-    <string name="ThreadRecord_photo">Photo</string>
-    <string name="ThreadRecord_gif">Gif</string>
-    <string name="ThreadRecord_voice_message">Voice Message</string>
-    <string name="ThreadRecord_contact">Contact</string>
-    <string name="ThreadRecord_file">File</string>
-    <string name="ThreadRecord_video">Video</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal update</string>

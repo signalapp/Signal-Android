@@ -757,7 +757,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, ThreadBodyUtil.getFormattedBodyFor(context, record), getAttachmentUriFor(record),
+        updateThread(threadId, count, getFormattedBodyFor(record), getAttachmentUriFor(record),
                      getContentTypeFor(record), getExtrasFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
                      record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
@@ -772,6 +772,15 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
+  }
+
+  private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).getSharedContacts().size() > 0) {
+      Contact contact = ((MmsMessageRecord) messageRecord).getSharedContacts().get(0);
+      return ContactUtil.getStringSummary(context, contact).toString();
+    }
+
+    return messageRecord.getBody();
   }
 
   private @Nullable Uri getAttachmentUriFor(MessageRecord record) {
