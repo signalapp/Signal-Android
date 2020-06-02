@@ -3,10 +3,9 @@ package org.thoughtcrime.securesms.groups.ui.managegroup;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
@@ -46,6 +44,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -93,7 +92,27 @@ public class ManageGroupFragment extends Fragment {
   private final Recipient.FallbackPhotoProvider fallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
     @Override
     public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new ResourceContactPhoto(R.drawable.ic_group_80);
+      return new FallbackContactPhoto() {
+        @Override
+        public Drawable asDrawable(Context context, int color) {
+          return ThemeUtil.getThemedDrawable(context, R.attr.group_resource_placeholder_80);
+        }
+
+        @Override
+        public Drawable asDrawable(Context context, int color, boolean inverted) {
+          return asDrawable(context, color);
+        }
+
+        @Override
+        public Drawable asSmallDrawable(Context context, int color, boolean inverted) {
+          throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Drawable asCallCard(Context context) {
+          throw new UnsupportedOperationException();
+        }
+      };
     }
   };
 
@@ -303,11 +322,6 @@ public class ManageGroupFragment extends Fragment {
     } else {
       customNotificationsRow.setVisibility(View.GONE);
     }
-  }
-
-  @Override
-  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-
   }
 
   public boolean onMenuItemSelected(@NonNull MenuItem item) {

@@ -1017,6 +1017,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleConversationSettings() {
+    if (FeatureFlags.newGroupUI() && isGroupConversation()) {
+      startActivitySceneTransition(ManageGroupActivity.newIntent(this, getRecipient().requireGroupId()),
+                                   titleView.findViewById(R.id.contact_photo_image),
+                                   "avatar");
+      return;
+    }
+
     if (isInMessageRequest()) return;
 
     Intent intent = RecipientPreferenceActivity.getLaunchIntent(this, recipient.getId());
