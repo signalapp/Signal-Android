@@ -1318,7 +1318,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
 
   <string name="activity_landing_title_2">Tu Session comienza aquí...</string>
   <string name="activity_landing_register_button_title">Crear ID de Session</string>
-  <string name="activity_landing_restore_button_title">Continúa tu session</string>
+  <string name="activity_landing_restore_button_title">Continúa tu Session</string>
   <string name="activity_landing_link_button_title">Vincular a una cuenta existente</string>
   <string name="activity_landing_device_unlinked_dialog_title">Tu dispositivo se ha desvinculado correctamente</string>
 
@@ -1329,7 +1329,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="view_fake_chat_bubble_5">Los amigos no dejan que sus amigos usen messengers riesgosos. De nada.</string>
 
   <string name="activity_register_title">Saluda a tu ID de Session</string>
-  <string name="activity_register_explanation">Tu ID de session es la dirección única que las personas pueden usar para contactarte en session. Por diseño, tu ID de session es totalmente anónima y privada, sin vínculo con tu identidad real.</string>
+  <string name="activity_register_explanation">Tu ID de Session es la dirección única que las personas pueden usar para contactarte en session. Por diseño, tu ID de session es totalmente anónima y privada, sin vínculo con tu identidad real.</string>
   <string name="activity_register_public_key_copied_message">Copiado en el portapapeles</string>
 
   <string name="activity_restore_title">Restaura tu cuenta</string>
@@ -1353,8 +1353,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_display_name_display_name_too_long_error">Por favor, elige un nombre para mostrar más corto</string>
 
   <string name="activity_pn_mode_title">Notificaciones push</string>
-  <string name="activity_pn_mode_explanation">Session tiene dos tipos de notificaciones push.
-Asegúrate de leer cuidadosamente las descripciones antes de elegir.</string>
+  <string name="activity_pn_mode_explanation">Session tiene dos tipos de notificaciones push. Asegúrate de leer cuidadosamente las descripciones antes de elegir.</string>
   <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
   <string name="activity_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir las notificaciones push. Recibirás notificaciones de nuevos mensajes de manera confiable e inmediata. Usar FCM significa que este dispositivo se comunicará directamente con los servidores de Google para recuperar las notificaciones push, lo que expondrá tu dirección IP a Google. A tus mensajes se les seguirá realizando enrutamiento cebolla y cifrado de extremo a extremo, por lo que el contenido de tus mensajes permanecerá completamente privado.</string>
   <string name="activity_pn_mode_background_polling_option_title">Sondeo en segundo plano</string>
