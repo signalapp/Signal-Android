@@ -8,6 +8,7 @@ buildscript {
     ext.rss_parser_version = "2.0.4"
     ext.google_services_version = "4.3.3"
     ext.firebase_messaging_version = "18.0.0"
+    ext.opencsv_version = "4.6"
 
     repositories {
         mavenLocal()
@@ -188,6 +189,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
     implementation "com.github.tbruyelle:rxpermissions:0.10.2"
     implementation "com.github.ybq:Android-SpinKit:1.4.0"
+    implementation "com.opencsv:opencsv:$opencsv_version"
 }
 
 def canonicalVersionCode = 52
