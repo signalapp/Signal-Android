@@ -45,10 +45,10 @@
 
     <Button
         style="@style/MediumProminentOutlineButton"
-        android:id="@+id/rebuildPathButton"
+        android:id="@+id/learnMoreButton"
         android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginBottom="@dimen/medium_spacing"
-        android:text="@string/activity_path_rebuild_path_button_title" />
+        android:text="@string/activity_path_learn_more_button_title" />
 
 </LinearLayout>

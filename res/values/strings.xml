@@ -1742,12 +1742,12 @@
     <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
 
     <string name="activity_path_title">Path</string>
-    <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the Service Nodes currently being used by your device:</string>
+    <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the countries your connection is currently being bounced through:</string>
     <string name="activity_path_device_row_title">You</string>
     <string name="activity_path_guard_node_row_title">Guard Node</string>
     <string name="activity_path_service_node_row_title">Service Node</string>
     <string name="activity_path_destination_row_title">Destination</string>
-    <string name="activity_path_rebuild_path_button_title">Rebuild Path</string>
+    <string name="activity_path_learn_more_button_title">Learn More</string>
 
     <string name="activity_create_private_chat_title">New Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>

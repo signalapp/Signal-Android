@@ -34,10 +34,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.dialogs.PNModeBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.push
-import org.thoughtcrime.securesms.loki.utilities.recipient
-import org.thoughtcrime.securesms.loki.utilities.show
+import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
@@ -70,6 +67,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+        IP2Country.configureIfNeeded(this)
         // Process any outstanding deletes
         val threadDatabase = DatabaseFactory.getThreadDatabase(this)
         val archivedConversationCount = threadDatabase.archivedConversationListCount
