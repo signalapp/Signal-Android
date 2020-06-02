@@ -11,8 +11,6 @@ import android.support.v4.content.LocalBroadcastManager
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -21,7 +19,6 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.whispersystems.signalservice.loki.api.Snode
 import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
@@ -34,7 +31,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_path)
         supportActionBar!!.title = resources.getString(R.string.activity_path_title)
-        rebuildPathButton.setOnClickListener { rebuildPath() }
+        learnMoreButton.setOnClickListener { learnMore() }
         update(false)
         registerObservers()
     }
@@ -56,11 +53,6 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         }
         broadcastReceivers.add(pathsBuiltReceiver)
         LocalBroadcastManager.getInstance(this).registerReceiver(pathsBuiltReceiver, IntentFilter("pathsBuilt"))
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_path, menu)
-        return true
     }
 
     override fun onDestroy() {
@@ -145,15 +137,6 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
     // endregion
 
     // region Interaction
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when(id) {
-            R.id.learnMoreButton -> learnMore()
-            else -> { /* Do nothing */ }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun learnMore() {
         try {
             val url = "https://getsession.org/faq/#onion-routing"
@@ -162,13 +145,6 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun rebuildPath() {
-        DatabaseFactory.getLokiAPIDatabase(this).clearOnionRequestPaths()
-        OnionRequestAPI.guardSnodes = setOf()
-        OnionRequestAPI.paths = listOf()
-        OnionRequestAPI.buildPaths()
     }
     // endregion
 

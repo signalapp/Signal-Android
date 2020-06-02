@@ -1747,7 +1747,7 @@
     <string name="activity_path_guard_node_row_title">Guard Node</string>
     <string name="activity_path_service_node_row_title">Service Node</string>
     <string name="activity_path_destination_row_title">Destination</string>
-    <string name="activity_path_rebuild_path_button_title">Rebuild Path</string>
+    <string name="activity_path_learn_more_button_title">Learn More</string>
 
     <string name="activity_create_private_chat_title">New Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
