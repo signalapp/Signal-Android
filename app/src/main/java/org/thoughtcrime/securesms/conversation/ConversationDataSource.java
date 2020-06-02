@@ -63,6 +63,10 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     int                 totalCount     = db.getConversationCount(threadId);
     int                 effectiveCount = params.requestedStartPosition;
 
+    if  (totalCount == 0 || params.requestedStartPosition > totalCount) {
+
+    }
+
     try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.requestedStartPosition, params.requestedLoadSize))) {
       MessageRecord record;
       while ((record = reader.getNext()) != null && effectiveCount < totalCount && !isInvalid()) {
@@ -71,10 +75,12 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
       }
     }
 
-    SizeFixResult result = ensureMultipleOfPageSize(records, params.requestedStartPosition, params.pageSize, totalCount);
+    if (!isInvalid()) {
+      SizeFixResult result = ensureMultipleOfPageSize(records, params.requestedStartPosition, params.pageSize, totalCount);
 
-    callback.onResult(result.messages, params.requestedStartPosition, result.total);
-    Util.runOnMain(dataUpdateCallback::onDataUpdated);
+      callback.onResult(result.messages, params.requestedStartPosition, result.total);
+      Util.runOnMain(dataUpdateCallback::onDataUpdated);
+    }
 
     Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
   }
@@ -104,7 +110,7 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
                                                                  int pageSize,
                                                                  int total)
   {
-    if (records.size() + startPosition == total || records.size() % pageSize == 0) {
+    if (records.size() + startPosition == total || (records.size() != 0 && records.size() % pageSize == 0)) {
       return new SizeFixResult(records, total);
     }
 
