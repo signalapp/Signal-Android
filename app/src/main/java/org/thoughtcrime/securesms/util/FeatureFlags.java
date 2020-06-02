@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
@@ -138,7 +139,9 @@ public final class FeatureFlags {
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_REQUESTS,   (change) -> SignalStore.setMessageRequestEnableTime(change == Change.ENABLED ? System.currentTimeMillis() : 0));
     put(VERSIONED_PROFILES, (change) -> ApplicationDependencies.getJobManager().add(new ProfileUploadJob()));
-    put(GROUPS_V2,          (change) -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
+    put(GROUPS_V2,          (change) -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
+                                                                               .then(new RefreshOwnProfileJob())
+                                                                               .enqueue());
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();

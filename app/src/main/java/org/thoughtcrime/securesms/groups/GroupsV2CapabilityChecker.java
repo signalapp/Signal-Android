@@ -42,25 +42,46 @@ final class GroupsV2CapabilityChecker {
       Recipient            member         = Recipient.resolved(recipientId);
       Recipient.Capability gv2Capability  = member.getGroupsV2Capability();
 
-      if (gv2Capability == Recipient.Capability.UNKNOWN) {
+      if (gv2Capability != Recipient.Capability.SUPPORTED) {
         if (!ApplicationDependencies.getJobManager().runSynchronously(RetrieveProfileJob.forRecipient(member), TimeUnit.SECONDS.toMillis(1000)).isPresent()) {
           throw new IOException("Recipient capability was not retrieved in time");
         }
       }
+    }
+
+    boolean noSelfGV2Support = false;
+    int     noGv2Count       = 0;
+    int     noUuidCount      = 0;
+
+    for (RecipientId recipientId : recipientIdsSet) {
+      Recipient            member        = Recipient.resolved(recipientId);
+      Recipient.Capability gv2Capability = member.getGroupsV2Capability();
 
       if (gv2Capability != Recipient.Capability.SUPPORTED) {
-        Log.i(TAG, "At least one recipient does not support GV2, capability was " + gv2Capability);
-        return false;
+        Log.w(TAG, "At least one recipient does not support GV2, capability was " + gv2Capability);
+
+        noGv2Count++;
+        if (member.isLocalNumber()) {
+          noSelfGV2Support = true;
+        }
+      }
+
+      if (!member.hasUuid()) {
+        noUuidCount++;
       }
     }
 
-    for (RecipientId recipientId : recipientIdsSet) {
-      Recipient member = Recipient.resolved(recipientId);
-
-      if (!member.hasUuid()) {
-        Log.i(TAG, "At least one recipient did not have a UUID known to us");
-        return false;
+    if (noGv2Count + noUuidCount > 0) {
+      if (noUuidCount > 0) {
+        Log.w(TAG, noUuidCount + " recipient(s) did not have a UUID known to us");
       }
+      if (noGv2Count > 0) {
+        Log.w(TAG, noGv2Count + " recipient(s) do not support GV2");
+        if (noSelfGV2Support) {
+          Log.w(TAG, "Self does not support GV2");
+        }
+      }
+      return false;
     }
 
     return true;
