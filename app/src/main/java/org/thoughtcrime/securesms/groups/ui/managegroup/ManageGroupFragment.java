@@ -64,6 +64,7 @@ public class ManageGroupFragment extends Fragment {
   private View                               pendingMembersRow;
   private TextView                           pendingMembersCount;
   private Toolbar                            toolbar;
+  private TextView                           groupName;
   private TextView                           memberCountUnderAvatar;
   private TextView                           memberCountAboveList;
   private AvatarImageView                    avatar;
@@ -115,6 +116,7 @@ public class ManageGroupFragment extends Fragment {
 
     avatar                      = view.findViewById(R.id.group_avatar);
     toolbar                     = view.findViewById(R.id.toolbar);
+    groupName                   = view.findViewById(R.id.group_name);
     memberCountUnderAvatar      = view.findViewById(R.id.member_count);
     memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);
@@ -185,7 +187,7 @@ public class ManageGroupFragment extends Fragment {
     toolbar.inflateMenu(R.menu.manage_group_fragment);
 
     viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> toolbar.getMenu().findItem(R.id.action_edit).setVisible(canEdit));
-    viewModel.getTitle().observe(getViewLifecycleOwner(), toolbar::setTitle);
+    viewModel.getTitle().observe(getViewLifecycleOwner(), groupName::setText);
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
     viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), groupRecipient -> {
