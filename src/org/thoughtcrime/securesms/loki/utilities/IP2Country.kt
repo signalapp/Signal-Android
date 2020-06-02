@@ -14,7 +14,7 @@ import java.io.FileReader
 
 class IP2Country private constructor(private val context: Context) {
     private val pathsBuiltEventReceiver: BroadcastReceiver
-    private val countryNamesCache = mutableMapOf<String, String>()
+    val countryNamesCache = mutableMapOf<String, String>()
 
     private val ipv4Table by lazy {
         loadFile("geolite2_country_blocks_ipv4.csv")
@@ -36,11 +36,11 @@ class IP2Country private constructor(private val context: Context) {
     }
 
     init {
-        preloadCountriesIfNeeded()
+        populateCacheIfNeeded()
         pathsBuiltEventReceiver = object : BroadcastReceiver() {
 
             override fun onReceive(context: Context, intent: Intent) {
-                preloadCountriesIfNeeded()
+                populateCacheIfNeeded()
             }
         }
         LocalBroadcastManager.getInstance(context).registerReceiver(pathsBuiltEventReceiver, IntentFilter("pathsBuilt"))
@@ -67,7 +67,7 @@ class IP2Country private constructor(private val context: Context) {
         return file
     }
 
-    fun getCountry(ip: String): String {
+    private fun cacheCountryForIP(ip: String): String {
         var truncatedIP = ip
         fun getCountryInternal(): String {
             val country = countryNamesCache[ip]
@@ -103,12 +103,13 @@ class IP2Country private constructor(private val context: Context) {
         return getCountryInternal()
     }
 
-    private fun preloadCountriesIfNeeded() {
+    private fun populateCacheIfNeeded() {
         Thread {
             val path = OnionRequestAPI.paths.firstOrNull() ?: return@Thread
             path.forEach { snode ->
-                getCountry(snode.ip) // Preload if needed
+                cacheCountryForIP(snode.ip) // Preload if needed
             }
+            Broadcaster(context).broadcast("onionRequestPathCountriesLoaded")
             Log.d("Loki", "Finished preloading onion request path countries.")
         }.start()
     }

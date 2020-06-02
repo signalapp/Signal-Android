@@ -53,6 +53,14 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         }
         broadcastReceivers.add(pathsBuiltReceiver)
         LocalBroadcastManager.getInstance(this).registerReceiver(pathsBuiltReceiver, IntentFilter("pathsBuilt"))
+        val onionRequestPathCountriesLoadedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+
+            override fun onReceive(context: Context, intent: Intent) {
+                handleOnionRequestPathCountriesLoaded()
+            }
+        }
+        broadcastReceivers.add(onionRequestPathCountriesLoadedReceiver)
+        LocalBroadcastManager.getInstance(this).registerReceiver(onionRequestPathCountriesLoadedReceiver, IntentFilter("onionRequestPathCountriesLoaded"))
     }
 
     override fun onDestroy() {
@@ -66,6 +74,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
     // region Updating
     private fun handleBuildingPathsEvent() { update(false) }
     private fun handlePathsBuiltEvent() { update(false) }
+    private fun handleOnionRequestPathCountriesLoaded() { update(false) }
 
     private fun update(isAnimated: Boolean) {
         pathRowsContainer.removeAllViews()
@@ -131,7 +140,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
 
     private fun getPathRow(snode: Snode, location: LineView.Location, dotAnimationStartDelay: Long, dotAnimationRepeatInterval: Long, isGuardSnode: Boolean): LinearLayout {
         val title = if (isGuardSnode) resources.getString(R.string.activity_path_guard_node_row_title) else resources.getString(R.string.activity_path_service_node_row_title)
-        val subtitle = IP2Country.shared.getCountry(snode.ip)
+        val subtitle = IP2Country.shared.countryNamesCache[snode.ip] ?: "Loading..."
         return getPathRow(title, subtitle, location, dotAnimationStartDelay, dotAnimationRepeatInterval)
     }
     // endregion
