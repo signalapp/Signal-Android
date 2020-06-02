@@ -1089,6 +1089,7 @@
     <string name="SupportEmailUtil_android_version">Android version:</string>
     <string name="SupportEmailUtil_signal_version">Signal version:</string>
     <string name="SupportEmailUtil_signal_package">Signal package:</string>
+    <string name="SupportEmailUtil_registration_lock">Registration lock:</string>
     <string name="SupportEmailUtil_locale">Locale:</string>
 
     <!-- ThreadRecord -->
