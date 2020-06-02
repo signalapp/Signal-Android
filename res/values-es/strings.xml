@@ -211,7 +211,7 @@
     <item quantity="other">¿Eliminar los chats seleccionados?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Esto, borrará de manera permanente tus mensajes, sessions y contactos.</item>
+    <item quantity="one">Esto eliminará permanentemente el chat seleccionado.</item>
     <item quantity="other">Esto eliminará permanentemente los %1$d chats seleccionados.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminar</string>
