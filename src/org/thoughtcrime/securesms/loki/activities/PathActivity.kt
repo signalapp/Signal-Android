@@ -22,12 +22,9 @@ import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.utilities.animateSizeChange
-import org.thoughtcrime.securesms.loki.utilities.fadeIn
-import org.thoughtcrime.securesms.loki.utilities.fadeOut
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
+import org.thoughtcrime.securesms.loki.utilities.*
 import org.whispersystems.signalservice.loki.api.Snode
+import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()
@@ -142,7 +139,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
 
     private fun getPathRow(snode: Snode, location: LineView.Location, dotAnimationStartDelay: Long, dotAnimationRepeatInterval: Long, isGuardSnode: Boolean): LinearLayout {
         val title = if (isGuardSnode) resources.getString(R.string.activity_path_guard_node_row_title) else resources.getString(R.string.activity_path_service_node_row_title)
-        val subtitle = snode.toString().removePrefix("https://").substringBefore(":")
+        val subtitle = IP2Country.shared.getCountry(snode.ip)
         return getPathRow(title, subtitle, location, dotAnimationStartDelay, dotAnimationRepeatInterval)
     }
     // endregion

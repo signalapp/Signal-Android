@@ -67,13 +67,13 @@ class IP2Country private constructor(private val context: Context) {
         return file
     }
 
-    private fun getCountry(ip: String): String {
+    fun getCountry(ip: String): String {
         var truncatedIP = ip
         fun getCountryInternal(): String {
             val country = countryNamesCache[ip]
             if (country != null) { return country }
             val ipv4TableReader = CSVReader(FileReader(ipv4Table.absoluteFile))
-            val countryNamesTableReader = CSVReader(FileReader(ipv4Table.absoluteFile))
+            val countryNamesTableReader = CSVReader(FileReader(countryNamesTable.absoluteFile))
             var ipv4TableLine = ipv4TableReader.readNext()
             while (ipv4TableLine != null) {
                 if (!ipv4TableLine[0].startsWith(truncatedIP)) {
@@ -93,8 +93,8 @@ class IP2Country private constructor(private val context: Context) {
                 }
             }
             if (truncatedIP.contains(".") && !truncatedIP.endsWith(".")) { // The fuzziest we want to go is xxx.x
-                truncatedIP.dropLast(1)
-                if (truncatedIP.endsWith(".")) { truncatedIP.dropLast(1) }
+                truncatedIP = truncatedIP.dropLast(1)
+                if (truncatedIP.endsWith(".")) { truncatedIP = truncatedIP.dropLast(1) }
                 return getCountryInternal()
             } else {
                 return "Unknown Country"
