@@ -140,7 +140,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
 
     private fun getPathRow(snode: Snode, location: LineView.Location, dotAnimationStartDelay: Long, dotAnimationRepeatInterval: Long, isGuardSnode: Boolean): LinearLayout {
         val title = if (isGuardSnode) resources.getString(R.string.activity_path_guard_node_row_title) else resources.getString(R.string.activity_path_service_node_row_title)
-        val subtitle = IP2Country.shared.countryNamesCache[snode.ip] ?: "Loading..."
+        val subtitle = IP2Country.shared.countryNamesCache[snode.ip] ?: "Resolving..."
         return getPathRow(title, subtitle, location, dotAnimationStartDelay, dotAnimationRepeatInterval)
     }
     // endregion
