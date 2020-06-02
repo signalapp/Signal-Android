@@ -16,12 +16,10 @@
  */
 package org.thoughtcrime.securesms.notifications;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,13 +30,13 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -48,25 +46,24 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadBodyUtil;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -521,21 +518,16 @@ public class DefaultMessageNotifier implements MessageNotifier {
         } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
           Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
           body = ContactUtil.getStringSummary(context, contact);
-        } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
-          body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
-          slideDeck = ((MmsMessageRecord) record).getSlideDeck();
         } else if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
           body = SpanUtil.italic(context.getString(getViewOnceDescription((MmsMessageRecord) record)));
         } else if (record.isRemoteDelete()) {
           body = SpanUtil.italic(context.getString(R.string.MessageNotifier_this_message_was_deleted));;
-        } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
-          body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
-          slideDeck = ((MediaMmsMessageRecord) record).getSlideDeck();
-        } else if (record.isMms() && !record.isMmsNotification() && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
-          String message = context.getString(R.string.MessageNotifier_media_message_with_text, body);
-          int italicLength = message.length() - body.length();
-          body = SpanUtil.italic(message, italicLength);
-          slideDeck = ((MediaMmsMessageRecord) record).getSlideDeck();
+        } else if (!record.isMmsNotification()) {
+          body = ThreadBodyUtil.getFormattedBodyFor(context, record);
+
+          if (record.isMms() && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
+            slideDeck = ((MmsMessageRecord) record).getSlideDeck();
+          }
         }
 
         if (threadRecipients == null || !threadRecipients.isMuted()) {
