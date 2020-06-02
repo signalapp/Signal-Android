@@ -64,6 +64,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private final static int STYLE_ATTRIBUTES[] = new int[]{R.attr.contact_selection_push_user,
                                                           R.attr.contact_selection_lay_user};
 
+  public static final int PAYLOAD_SELECTION_CHANGE = 1;
+
   private final boolean           multiSelect;
   private final LayoutInflater    li;
   private final TypedArray        drawables;
@@ -175,6 +177,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   @Override
   public long getHeaderId(int i) {
     if (!isActiveCursor()) return -1;
+    else if (i == -1)      return -1;
 
     int contactType = getContactType(i);
 
@@ -217,6 +220,24 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   }
 
   @Override
+  protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor, @NonNull List<Object> payloads) {
+    if (!arePayloadsValid(payloads)) {
+      throw new AssertionError();
+    }
+
+    String      rawId      = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
+    RecipientId id         = rawId != null ? RecipientId.from(rawId) : null;
+    int         numberType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_TYPE_COLUMN));
+    String      number     = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_COLUMN));
+
+    if (numberType == ContactRepository.NEW_USERNAME_TYPE) {
+      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forUsername(id, number)));
+    } else {
+      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
+    }
+  }
+
+  @Override
   public int getItemViewType(@NonNull Cursor cursor) {
     if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.CONTACT_TYPE_COLUMN)) == ContactRepository.DIVIDER_TYPE) {
       return VIEW_TYPE_DIVIDER;
@@ -224,7 +245,6 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       return VIEW_TYPE_CONTACT;
     }
   }
-
 
   @Override
   public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
@@ -234,6 +254,11 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   @Override
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
     ((TextView)viewHolder.itemView).setText(getSpannedHeaderString(position));
+  }
+
+  @Override
+  protected boolean arePayloadsValid(@NonNull List<Object> payloads) {
+    return payloads.size() == 1 && payloads.get(0).equals(PAYLOAD_SELECTION_CHANGE);
   }
 
   @Override

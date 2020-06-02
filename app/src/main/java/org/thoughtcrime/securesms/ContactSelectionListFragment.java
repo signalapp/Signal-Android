@@ -44,6 +44,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -195,6 +196,12 @@ public final class ContactSelectionListFragment extends    Fragment
     constraintLayout         = view.findViewById(R.id.container);
 
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    recyclerView.setItemAnimator(new DefaultItemAnimator() {
+      @Override
+      public boolean canReuseUpdatedViewHolder(@NonNull RecyclerView.ViewHolder viewHolder) {
+        return true;
+      }
+    });
 
     swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
 
@@ -335,6 +342,10 @@ public final class ContactSelectionListFragment extends    Fragment
     swipeRefresh.setRefreshing(false);
   }
 
+  public boolean hasQueryFilter() {
+    return !TextUtils.isEmpty(cursorFilter);
+  }
+
   public void setRefreshing(boolean refreshing) {
     swipeRefresh.setRefreshing(refreshing);
   }
@@ -455,7 +466,8 @@ public final class ContactSelectionListFragment extends    Fragment
             if (uuid.isPresent()) {
               Recipient recipient = Recipient.externalUsername(requireContext(), uuid.get(), contact.getNumber());
               SelectedContact selected = SelectedContact.forUsername(recipient.getId(), contact.getNumber());
-              markContactSelected(selected, contact);
+              markContactSelected(selected);
+              cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
 
               if (onContactSelectedListener != null) {
                 onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null);
@@ -469,14 +481,16 @@ public final class ContactSelectionListFragment extends    Fragment
             }
           });
         } else {
-          markContactSelected(selectedContact, contact);
+          markContactSelected(selectedContact);
+          cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
 
           if (onContactSelectedListener != null) {
             onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
           }
         }
       } else {
-        markContactUnselected(selectedContact, contact);
+        markContactUnselected(selectedContact);
+        cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
 
         if (onContactSelectedListener != null) {
           onContactSelectedListener.onContactDeselected(contact.getRecipientId(), contact.getNumber());
@@ -488,17 +502,16 @@ public final class ContactSelectionListFragment extends    Fragment
     return getChipCount() >= selectionLimit;
   }
 
-  private void markContactSelected(@NonNull SelectedContact selectedContact, @NonNull ContactSelectionListItem listItem) {
+  private void markContactSelected(@NonNull SelectedContact selectedContact) {
     cursorRecyclerViewAdapter.addSelectedContact(selectedContact);
-    listItem.setChecked(true);
     if (isMulti() && FeatureFlags.newGroupUI()) {
-      addChipForContact(listItem, selectedContact);
+      addChipForSelectedContact(selectedContact);
     }
   }
 
-  private void markContactUnselected(@NonNull SelectedContact selectedContact, @NonNull ContactSelectionListItem listItem) {
+  private void markContactUnselected(@NonNull SelectedContact selectedContact) {
     cursorRecyclerViewAdapter.removeFromSelectedContacts(selectedContact);
-    listItem.setChecked(false);
+    cursorRecyclerViewAdapter.notifyItemRangeChanged(0, cursorRecyclerViewAdapter.getItemCount(), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
     removeChipForContact(selectedContact);
   }
 
@@ -517,17 +530,23 @@ public final class ContactSelectionListFragment extends    Fragment
     }
   }
 
-  private void addChipForContact(@NonNull ContactSelectionListItem contact, @NonNull SelectedContact selectedContact) {
+  private void addChipForSelectedContact(@NonNull SelectedContact selectedContact) {
+    SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
+                   ()       -> Recipient.resolved(selectedContact.getOrCreateRecipientId(requireContext())),
+                   resolved -> addChipForRecipient(resolved, selectedContact));
+  }
+
+  private void addChipForRecipient(@NonNull Recipient recipient, @NonNull SelectedContact selectedContact) {
     final ContactChip chip = new ContactChip(requireContext());
 
     if (getChipCount() == 0) {
       setChipGroupVisibility(ConstraintSet.VISIBLE);
     }
 
-    chip.setText(contact.getChipName());
+    chip.setText(recipient.getShortDisplayName(requireContext()));
     chip.setContact(selectedContact);
     chip.setCloseIconVisible(true);
-    chip.setOnCloseIconClickListener(view -> markContactUnselected(selectedContact, contact));
+    chip.setOnCloseIconClickListener(view -> markContactUnselected(selectedContact));
 
     chipGroup.getLayoutTransition().addTransitionListener(new LayoutTransition.TransitionListener() {
       @Override
@@ -538,18 +557,13 @@ public final class ContactSelectionListFragment extends    Fragment
       public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
         if (view == chip && transitionType == LayoutTransition.APPEARING) {
           chipGroup.getLayoutTransition().removeTransitionListener(this);
-          registerChipRecipientObserver(chip, contact.getRecipient());
+          registerChipRecipientObserver(chip, recipient.live());
           chipGroup.post(ContactSelectionListFragment.this::smoothScrollChipsToEnd);
         }
       }
     });
 
-    LiveRecipient recipient = contact.getRecipient();
-    if (recipient != null) {
-      chip.setAvatar(glideRequests, recipient.get(), () -> addChip(chip));
-    } else {
-      addChip(chip);
-    }
+    chip.setAvatar(glideRequests, recipient, () -> addChip(chip));
   }
 
   private void addChip(@NonNull ContactChip chip) {

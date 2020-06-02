@@ -31,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import org.thoughtcrime.securesms.R;
 
+import java.util.List;
+
 /**
  * RecyclerView.Adapter that manages a Cursor, comparable to the CursorAdapter usable in ListView/GridView.
  */
@@ -173,6 +175,16 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   public abstract VH onCreateItemViewHolder(ViewGroup parent, int viewType);
 
+  @Override
+  public final void onBindViewHolder(@NonNull ViewHolder viewHolder, int position, @NonNull List<Object> payloads) {
+    if (arePayloadsValid(payloads) && !isHeaderPosition(position) && !isFooterPosition(position)) {
+      if (isFastAccessPosition(position)) onBindFastAccessItemViewHolder((VH)viewHolder, position, payloads);
+      else                                onBindItemViewHolder((VH)viewHolder, getCursorAtPositionOrThrow(position), payloads);
+    } else {
+      onBindViewHolder(viewHolder, position);
+    }
+  }
+
   @SuppressWarnings("unchecked")
   @Override
   public final void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
@@ -188,8 +200,17 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   public abstract void onBindItemViewHolder(VH viewHolder, @NonNull Cursor cursor);
 
-  protected void onBindFastAccessItemViewHolder(VH viewHolder, int position) {
+  protected boolean arePayloadsValid(@NonNull List<Object> payloads) {
+    return false;
+  }
 
+  protected void onBindItemViewHolder(VH viewHolder, @NonNull Cursor cursor, @NonNull List<Object> payloads) {
+  }
+
+  protected void onBindFastAccessItemViewHolder(VH viewHolder, int position) {
+  }
+
+  protected void onBindFastAccessItemViewHolder(VH viewHolder, int position, @NonNull List<Object> payloads) {
   }
 
   @Override
