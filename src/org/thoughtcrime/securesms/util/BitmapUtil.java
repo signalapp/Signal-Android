@@ -255,7 +255,7 @@ public class BitmapUtil {
 
   public static InputStream toCompressedJpeg(Bitmap bitmap) {
     ByteArrayOutputStream thumbnailBytes = new ByteArrayOutputStream();
-    bitmap.compress(CompressFormat.JPEG, 85, thumbnailBytes);
+    bitmap.compress(CompressFormat.JPEG, 95, thumbnailBytes);
     return new ByteArrayInputStream(thumbnailBytes.toByteArray());
   }
 
