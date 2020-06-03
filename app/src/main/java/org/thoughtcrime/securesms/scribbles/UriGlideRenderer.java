@@ -129,7 +129,10 @@ final class UriGlideRenderer implements Renderer {
         if (child.getZOrder() == EditorModel.Z_MASK) {
           renderMask = true;
           if (blurPaint == null) {
-            blurPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            blurPaint = new Paint();
+            blurPaint.setAntiAlias(true);
+            blurPaint.setFilterBitmap(true);
+            blurPaint.setDither(true);
           }
           blurPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
           rendererContext.setMaskPaint(blurPaint);
