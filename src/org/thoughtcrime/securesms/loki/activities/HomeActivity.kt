@@ -194,6 +194,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onResume() {
         super.onResume()
+        profileButton.update()
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed || !isMasterDevice) {

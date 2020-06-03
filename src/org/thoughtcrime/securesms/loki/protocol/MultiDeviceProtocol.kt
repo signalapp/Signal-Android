@@ -197,7 +197,7 @@ object MultiDeviceProtocol {
         TextSecurePreferences.setMultiDevice(context, true)
         LokiFileServerAPI.shared.addDeviceLink(deviceLink)
         org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content)
-        org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileKeyUpdateIfNeeded(context, content)
+        org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileKey(context, content)
     }
 
     @JvmStatic

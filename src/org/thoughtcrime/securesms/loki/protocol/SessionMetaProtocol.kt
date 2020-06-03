@@ -4,11 +4,15 @@ import android.content.Context
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
+import java.security.MessageDigest
 
 object SessionMetaProtocol {
 
@@ -39,6 +43,28 @@ object SessionMetaProtocol {
         if (!allUserDevices.contains(sender)) {
             val displayName = rawDisplayName + " (..." + sender.substring(sender.length - 8) + ")"
             DatabaseFactory.getLokiUserDatabase(context).setDisplayName(sender, displayName)
+        } else {
+            DatabaseFactory.getLokiUserDatabase(context).setDisplayName(sender, rawDisplayName)
+        }
+    }
+
+    @JvmStatic
+    fun handleProfileKey(context: Context, content: SignalServiceContent) {
+        val message = content.dataMessage.get()
+        if (!message.profileKey.isPresent) { return }
+
+        /*
+        If we get a profile key then we don't need to map it to the primary device.
+        For now a profile key is mapped one-to-one to avoid secondary devices setting the incorrect avatar for a primary device.
+        */
+        val database = DatabaseFactory.getRecipientDatabase(context)
+        val recipient = Recipient.from(context, Address.fromSerialized(content.sender), false)
+        if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, message.profileKey.get())) {
+            database.setProfileKey(recipient, message.profileKey.get())
+            database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN)
+            val url = content.senderProfilePictureURL.or("")
+            ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, url))
+            handleProfileKeyUpdateIfNeeded(context, content)
         }
     }
 
