@@ -18,9 +18,9 @@ Ensure that the following packages are installed from the Android SDK manager:
 * SDK Platform (All API levels)
 * Android Support Repository
 * Google Repository
-    
+
 In Android studio, this can be done from the Quickstart panel, choose "Configure" then "SDK Manager". In the SDK Tools tab of the SDK Manager, make sure that the "Android Support Repository" is installed, and that the latest "Android SDK build-tools" are installed. Click "OK" to return to the Quickstart panel. You may also need to install API version 28 in the SDK platforms tab.
-    
+
 You will then need to clone and run `./gradlew install` on each of the following repositories IN ORDER:
 
 * https://github.com/loki-project/loki-messenger-android-curve-25519
@@ -40,8 +40,7 @@ Setting up a development environment and building from Android Studio
 3. Paste the URL for the session-android project when prompted (https://github.com/loki-project/session-android.git).
 4. Android Studio should detect the presence of a project file and ask you whether to open it. Click "yes".
 5. Default config options should be good enough.
-6. Right now, the google-services.json file is kept out of the public repository as it contains credentials for Firebase (used for push notifications) authentication. We haven't yet made a way to build the app without this file or without Firebase. Email niels@loki.network to get this file for your build.
-7. Project initialisation and building should proceed.
+6. Project initialization and building should proceed.
 
 Building Session from the command line
 ---------------
