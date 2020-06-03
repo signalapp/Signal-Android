@@ -131,10 +131,6 @@ public class EditProfileFragment extends Fragment {
     initializeProfileAvatar();
     initializeProfileName();
     initializeUsername();
-
-    if (groupId == null) {
-      requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
-    }
   }
 
   @Override
