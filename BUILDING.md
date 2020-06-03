@@ -64,4 +64,6 @@ The following steps should help you (re)build Session from the command line once
 Contributing code
 -----------------
 
+The bulk of the Session code can be found under src/org/thoughtcrime/securesms/loki on this repo and java/main/java/org/whispersystems/signalservice/loki on the session-android-service repo.
+
 Code contributions should be sent via github as pull requests, from feature branches [as explained here](https://help.github.com/articles/using-pull-requests).
