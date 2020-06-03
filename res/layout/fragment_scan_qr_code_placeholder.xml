@@ -16,8 +16,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text"
+            android:layout_marginLeft="@dimen/very_large_spacing"
+            android:layout_marginRight="@dimen/very_large_spacing"
             android:textSize="@dimen/small_font_size"
-            android:text="Session needs camera access to scan QR codes" />
+            android:textAlignment="center"
+            android:text="@string/fragment_scan_qr_code_camera_access_explanation" />
 
         <Button
             style="@style/MediumProminentOutlineButton"
@@ -27,7 +30,7 @@
             android:layout_marginTop="@dimen/medium_spacing"
             android:paddingLeft="@dimen/medium_spacing"
             android:paddingRight="@dimen/medium_spacing"
-            android:text="Grant Camera Access" />
+            android:text="@string/fragment_scan_qr_code_grant_camera_access_button_title" />
 
     </LinearLayout>
 

@@ -1315,6 +1315,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="share">Compartir</string>
   <string name="invalid_session_id">ID de Session no válida</string>
   <string name="cancel">Cancelar</string>
+  <string name="your_session_id">Tu ID de Session</string>
 
   <string name="activity_landing_title_2">Tu Session comienza aquí...</string>
   <string name="activity_landing_register_button_title">Crear ID de Session</string>
@@ -1352,7 +1353,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_display_name_display_name_invalid_error">Por favor, elige un nombre para mostrar que contenga solo caracteres a-z, A-Z, 0-9 y _</string>
   <string name="activity_display_name_display_name_too_long_error">Por favor, elige un nombre para mostrar más corto</string>
 
-  <string name="activity_pn_mode_title">Notificaciones push</string>
+  <string name="activity_pn_mode_title">Notificaciones Push</string>
   <string name="activity_pn_mode_explanation">Session tiene dos tipos de notificaciones push. Asegúrate de leer cuidadosamente las descripciones antes de elegir.</string>
   <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
   <string name="activity_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir notificaciones push. Recibirás notificaciones de nuevos mensajes de manera segura e inmediata. Usar FCM significa que tu dirección IP y device token serán compartidos con Google. Este sería ya el caso si recibes notificaciones push con otras aplicaciones. Tu dirección IP y device token serán compartidos con Loki, pero tus mensajes seguirán teniendo enrutamiento cebolla y encriptación de extremo a extremo, por lo que el contenido de tus mensajes seguirá siendo completamente privado.</string>
@@ -1368,7 +1369,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_home_delete_conversation_dialog_message">¿Seguro que quieres eliminar esta conversación?</string>
   <string name="activity_home_conversation_deleted_message">Conversación eliminada</string>
 
-  <string name="sheet_pn_mode_title">Notificaciones push</string>
+  <string name="sheet_pn_mode_title">Notificaciones Push</string>
   <string name="sheet_pn_mode_explanation">Session ahora tiene dos formas de manejar las notificaciones push. Asegúrate de leer las descripciones cuidadosamente antes de elegir.</string>
   <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
   <string name="sheet_pn_mode_fcm_option_explanation">Session usará el servicio Firebase Cloud Messaging para recibir las notificaciones push. Recibirás notificaciones de nuevos mensajes de manera confiable e inmediata. Usar FCM significa que este dispositivo se comunicará directamente con los servidores de Google para recuperar las notificaciones push, lo que expondrá tu dirección IP a Google. A tus mensajes se les seguirá realizando enrutamiento cebolla y cifrado de extremo a extremo, por lo que el contenido de tus mensajes permanecerá completamente privado.</string>
@@ -1388,6 +1389,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="view_seed_reminder_subtitle_2">Toca y mantén presionadas las palabras redactadas para revelar tu frase de recuperación, después guárdala de manera segura para proteger tu ID de Session.</string>
   <string name="view_seed_reminder_subtitle_3">Asegúrate de guardar tu frase de recuperación en un lugar seguro</string>
 
+  <string name="activity_path_title">Ruta</string>
+  <string name="activity_path_explanation">Session oculta tu dirección IP haciendo rebotar tus mensajes a través de los Nodos de servicio de la red descentralizada de Session. Estos son los países por los que tu conexión está siendo rebotada actualmente.</string>
+  <string name="activity_path_device_row_title">Tú</string>
+  <string name="activity_path_guard_node_row_title">Entry Node</string>
+  <string name="activity_path_service_node_row_title">Service Node</string>
+  <string name="activity_path_destination_row_title">Destino</string>
+  <string name="activity_path_learn_more_button_title">Saber Más</string>
+
   <string name="activity_create_private_chat_title">Nueva Session</string>
   <string name="activity_create_private_chat_enter_session_id_tab_title">Session ID</string>
   <string name="activity_create_private_chat_scan_qr_code_tab_title">Escanear código QR</string>
@@ -1395,6 +1404,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
 
   <string name="fragment_enter_public_key_edit_text_hint">Ingresa la ID de Session del destinatario</string>
   <string name="fragment_enter_public_key_explanation">Los usuarios pueden compartir su ID de Session yendo a los ajustes de su cuenta y pulsando en Compartir ID de Session o compartiendo su código QR</string>
+
+  <string name="fragment_scan_qr_code_camera_access_explanation">Session necesita acceso a la cámara para escanear códigos QR</string>
+  <string name="fragment_scan_qr_code_grant_camera_access_button_title">Permitir acceso a cámara</string>
 
   <string name="activity_create_closed_group_title">Nuevo grupo cerrado</string>
   <string name="activity_create_closed_group_edit_text_hint">Ingresa un nombre de grupo</string>
@@ -1429,6 +1441,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_settings_clear_all_data_button_title">Borrar datos</string>
 
   <string name="activity_notification_settings_title">Notificaciones</string>
+  <string name="activity_notification_settings_style_section_title">Estilo de Notificación</string>
+  <string name="activity_notification_settings_content_section_title">Contenido de Notificación</string>
 
   <string name="activity_privacy_settings_title">Privacidad</string>
 
@@ -1440,6 +1454,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_linked_devices_unlinking_failed_message">No se pudo desvincular el dispositivo.</string>
   <string name="activity_linked_devices_unlinking_successful_message">Tu dispositivo se ha desvinculado correctamente</string>
   <string name="activity_linked_devices_linking_failed_message">No se pudo vincular el dispositivo.</string>
+  <string name="activity_linked_devices_empty_state_message">Aún no has enlazado ningún dispositivo</string>
+  <string name="activity_linked_devices_empty_state_button_title">Enlazar un dispositivo</string>
 
   <string name="preferences_notifications_strategy_category_title">Estrategia de notificación</string>
   <string name="preferences_notifications_use_fcm_option_title">Utilizar FCM</string>

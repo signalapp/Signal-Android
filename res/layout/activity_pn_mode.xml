@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="13sp"
         android:textColor="@color/text"
@@ -36,16 +36,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="@dimen/small_spacing"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:padding="12dp"
+        android:padding="10dp"
         android:orientation="vertical"
         android:background="@drawable/pn_option_background">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/medium_font_size"
+            android:textSize="14sp"
             android:textColor="@color/text"
             android:textStyle="bold"
             android:text="@string/activity_pn_mode_fcm_option_title" />
@@ -74,16 +74,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="@dimen/small_spacing"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:padding="12dp"
+        android:padding="10dp"
         android:orientation="vertical"
         android:background="@drawable/pn_option_background">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/medium_font_size"
+            android:textSize="14sp"
             android:textColor="@color/text"
             android:textStyle="bold"
             android:text="@string/activity_pn_mode_background_polling_option_title" />

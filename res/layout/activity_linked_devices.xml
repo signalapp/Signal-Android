@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_font_size"
             android:textColor="@color/text"
-            android:text="You haven't linked any devices yet" />
+            android:text="@string/activity_linked_devices_empty_state_message" />
 
         <Button
             style="@style/MediumProminentOutlineButton"
@@ -31,7 +31,7 @@
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"
             android:layout_marginTop="@dimen/medium_spacing"
-            android:text="Link a Device (Beta)" />
+            android:text="@string/activity_linked_devices_empty_state_button_title" />
 
     </LinearLayout>
 
