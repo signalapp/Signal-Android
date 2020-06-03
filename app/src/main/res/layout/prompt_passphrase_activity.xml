@@ -26,7 +26,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:theme="@style/TextSecure.DarkActionBar">
 
         <ImageView
                 android:layout_width="wrap_content"
@@ -35,7 +36,6 @@
                 android:layout_gravity="center"/>
 
     </androidx.appcompat.widget.Toolbar>
-
 
     <LinearLayout
             android:layout_width="match_parent"
