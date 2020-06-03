@@ -97,7 +97,7 @@ public final class EditorElement implements Parcelable {
    *
    * @param rendererContext Canvas to draw on to.
    */
-  void draw(@NonNull RendererContext rendererContext) {
+  public void draw(@NonNull RendererContext rendererContext) {
     if (!flags.isVisible() && !flags.isChildrenVisible()) return;
 
     rendererContext.save();
@@ -113,6 +113,7 @@ public final class EditorElement implements Parcelable {
       float alpha = alphaAnimation.getValue();
       if (alpha > 0) {
         rendererContext.setFade(alpha);
+        rendererContext.setChildren(children);
         drawSelf(rendererContext);
         rendererContext.setFade(1f);
       }
@@ -133,7 +134,9 @@ public final class EditorElement implements Parcelable {
 
   private static void drawChildren(@NonNull List<EditorElement> children, @NonNull RendererContext rendererContext) {
     for (EditorElement element : children) {
-      element.draw(rendererContext);
+      if (element.zOrder >= 0) {
+        element.draw(rendererContext);
+      }
     }
   }
 
@@ -250,6 +253,10 @@ public final class EditorElement implements Parcelable {
     scale.setScale(1.2f, 1.2f);
 
     animationMatrix = AnimationMatrix.singlePulse(scale, invalidate);
+  }
+
+  public int getZOrder() {
+    return zOrder;
   }
 
   public interface PerElementFunction {

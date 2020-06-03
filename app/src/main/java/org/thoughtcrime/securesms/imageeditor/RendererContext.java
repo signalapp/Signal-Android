@@ -3,10 +3,16 @@ package org.thoughtcrime.securesms.imageeditor;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Contains all of the information required for a {@link Renderer} to do its job.
@@ -37,6 +43,9 @@ public final class RendererContext {
   private float fade = 1f;
 
   private boolean isEditing = true;
+
+  private List<EditorElement> children = Collections.emptyList();
+  private Paint               maskPaint;
 
   public RendererContext(@NonNull Context context, @NonNull Canvas canvas, @NonNull Ready rendererReady, @NonNull Invalidate invalidate) {
     this.context       = context;
@@ -98,6 +107,22 @@ public final class RendererContext {
 
   public void getCurrent(@NonNull Matrix into) {
     canvasMatrix.getCurrent(into);
+  }
+
+  public void setChildren(@NonNull List<EditorElement> children) {
+    this.children = children;
+  }
+
+  public @NonNull List<EditorElement> getChildren() {
+    return children;
+  }
+
+  public void setMaskPaint(@Nullable Paint maskPaint) {
+    this.maskPaint = maskPaint;
+  }
+
+  public @Nullable Paint getMaskPaint() {
+    return maskPaint;
   }
 
   public interface Ready {

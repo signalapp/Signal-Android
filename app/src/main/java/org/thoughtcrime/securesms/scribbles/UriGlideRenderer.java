@@ -2,13 +2,20 @@ package org.thoughtcrime.securesms.scribbles;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Parcel;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +27,8 @@ import com.bumptech.glide.request.transition.Transition;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
+import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
+import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
@@ -43,8 +52,10 @@ final class UriGlideRenderer implements Renderer {
   private final int     maxWidth;
   private final int     maxHeight;
 
-  @Nullable
-  private Bitmap bitmap;
+  @Nullable private Bitmap         bitmap;
+  @Nullable private Bitmap         blurredBitmap;
+  @Nullable private Paint          blurPaint;
+  @Nullable private BlurMaskFilter blurMaskFilter;
 
   UriGlideRenderer(@NonNull Uri imageUri, boolean decryptable, int maxWidth, int maxHeight) {
     this.imageUri    = imageUri;
@@ -94,14 +105,49 @@ final class UriGlideRenderer implements Renderer {
       int alpha = paint.getAlpha();
       paint.setAlpha(rendererContext.getAlpha(alpha));
 
-      rendererContext.canvas.drawBitmap(bitmap, 0, 0, paint);
+      rendererContext.canvas.drawBitmap(bitmap, 0, 0, rendererContext.getMaskPaint() != null ? rendererContext.getMaskPaint() : paint);
 
       paint.setAlpha(alpha);
 
       rendererContext.restore();
+
+      renderBlurOverlay(rendererContext);
     } else if (rendererContext.isBlockingLoad()) {
       // If failed to load, we draw a black out, in case image was sticker positioned to cover private info.
       rendererContext.canvas.drawRect(Bounds.FULL_BOUNDS, paint);
+    }
+  }
+
+  private void renderBlurOverlay(RendererContext rendererContext) {
+      boolean renderMask = false;
+
+      for (EditorElement child : rendererContext.getChildren()) {
+        if (child.getZOrder() == EditorModel.Z_MASK) {
+          renderMask = true;
+          if (blurMaskFilter == null) {
+            blurMaskFilter = new BlurMaskFilter(4, BlurMaskFilter.Blur.NORMAL); // This blurs edges of the mask shapes
+          }
+          if (blurPaint == null) {
+            blurPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            blurPaint.setMaskFilter(blurMaskFilter);
+          }
+          blurPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+          rendererContext.setMaskPaint(blurPaint);
+          child.draw(rendererContext);
+        }
+      }
+
+    if (renderMask) {
+      rendererContext.save();
+      rendererContext.canvasMatrix.concat(imageProjectionMatrix);
+
+      blurPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
+      blurPaint.setMaskFilter(null);
+      if (blurredBitmap == null) blurredBitmap = blur(bitmap, rendererContext.context);
+      rendererContext.canvas.drawBitmap(blurredBitmap, 0, 0, blurPaint);
+      blurPaint.setXfermode(null);
+
+      rendererContext.restore();
     }
   }
 
@@ -175,6 +221,21 @@ final class UriGlideRenderer implements Renderer {
       matrix.preScale(((float) bitmap.getWidth()) / bitmap.getHeight(), 1);
     }
     return matrix;
+  }
+
+  private static @NonNull Bitmap blur(@NonNull Bitmap bitmap, @NonNull Context context) {
+    RenderScript        rs     = RenderScript.create(context);
+    Allocation          input  = Allocation.createFromBitmap(rs, bitmap);
+    Allocation          output = Allocation.createTyped     (rs, input.getType());
+    ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+
+    script.setRadius(25f);
+    script.setInput(input);
+    script.forEach(output);
+
+    Bitmap blurred = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+    output.copyTo(blurred);
+    return blurred;
   }
 
   public static final Creator<UriGlideRenderer> CREATOR = new Creator<UriGlideRenderer>() {

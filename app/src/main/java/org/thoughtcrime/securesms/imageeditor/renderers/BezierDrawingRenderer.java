@@ -98,6 +98,8 @@ public final class BezierDrawingRenderer extends InvalidateableRenderer implemen
     int alpha = paint.getAlpha();
     paint.setAlpha(rendererContext.getAlpha(alpha));
 
+    paint.setXfermode(rendererContext.getMaskPaint() != null ? rendererContext.getMaskPaint().getXfermode() : null);
+
     bezierLine.draw(canvas, paint);
 
     paint.setAlpha(alpha);
