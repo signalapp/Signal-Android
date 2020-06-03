@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.imageeditor.model.ParcelUtils;
 
 /**
  * A rectangle that will be rendered on the blur mask layer. Intended for blurring faces.
@@ -20,27 +20,24 @@ public class FaceBlurRenderer implements Renderer {
   private static final int CORNER_RADIUS = 0;
 
   private final RectF  faceRect;
-  private final Point  imageDimensions;
-  private final Matrix scaleMatrix;
+  private final Matrix imageProjectionMatrix;
 
-  public FaceBlurRenderer(@NonNull RectF faceRect, @NonNull Matrix matrix) {
-    this.faceRect        = faceRect;
-    this.imageDimensions = new Point(0, 0);
-    this.scaleMatrix = matrix;
+  private FaceBlurRenderer(@NonNull RectF faceRect, @NonNull Matrix imageProjectionMatrix) {
+    this.faceRect              = faceRect;
+    this.imageProjectionMatrix = imageProjectionMatrix;
   }
 
   public FaceBlurRenderer(@NonNull RectF faceRect, @NonNull Point imageDimensions) {
-    this.faceRect        = faceRect;
-    this.imageDimensions = imageDimensions;
-    this.scaleMatrix     = new Matrix();
+    this.faceRect              = faceRect;
+    this.imageProjectionMatrix = new Matrix();
 
-    scaleMatrix.setRectToRect(new RectF(0, 0, this.imageDimensions.x, this.imageDimensions.y), Bounds.FULL_BOUNDS, Matrix.ScaleToFit.CENTER);
+    this.imageProjectionMatrix.setRectToRect(new RectF(0, 0, imageDimensions.x, imageDimensions.y), Bounds.FULL_BOUNDS, Matrix.ScaleToFit.FILL);
   }
 
   @Override
   public void render(@NonNull RendererContext rendererContext) {
     rendererContext.canvas.save();
-    rendererContext.canvas.concat(scaleMatrix);
+    rendererContext.canvas.concat(imageProjectionMatrix);
     rendererContext.canvas.drawRoundRect(faceRect, CORNER_RADIUS, CORNER_RADIUS, rendererContext.getMaskPaint());
     rendererContext.canvas.restore();
   }
@@ -57,25 +54,17 @@ public class FaceBlurRenderer implements Renderer {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
-    dest.writeFloat(faceRect.left);
-    dest.writeFloat(faceRect.top);
-    dest.writeFloat(faceRect.right);
-    dest.writeFloat(faceRect.bottom);
-    dest.writeInt(imageDimensions.x);
-    dest.writeInt(imageDimensions.y);
+    ParcelUtils.writeMatrix(dest, imageProjectionMatrix);
+    ParcelUtils.writeRect(dest, faceRect);
   }
 
   public static final Creator<FaceBlurRenderer> CREATOR = new Creator<FaceBlurRenderer>() {
     @Override
     public FaceBlurRenderer createFromParcel(Parcel in) {
-      float left   = in.readFloat();
-      float top    = in.readFloat();
-      float right  = in.readFloat();
-      float bottom = in.readFloat();
-      int   x      = in.readInt();
-      int   y      = in.readInt();
+      Matrix imageProjection = ParcelUtils.readMatrix(in);
+      RectF  faceRect        = ParcelUtils.readRectF (in);
 
-      return new FaceBlurRenderer(new RectF(left, top, right, bottom), new Point(x, y));
+      return new FaceBlurRenderer(faceRect, imageProjection);
     }
 
     @Override

@@ -604,6 +604,21 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return new Point(width, height);
   }
 
+  @NonNull
+  public Point getOutputSizeMaxWidth(int maxDimension) {
+    PointF outputSize = editorElementHierarchy.getOutputSize(size);
+
+    int width  = Math.min(maxDimension, (int) Math.max(MINIMUM_OUTPUT_WIDTH, outputSize.x));
+    int height = (int) (width * outputSize.y / outputSize.x);
+
+    if (height > maxDimension) {
+      height = maxDimension;
+      width  = (int) (height * outputSize.x / outputSize.y);
+    }
+
+    return new Point(width, height);
+  }
+
   @Override
   public void onReady(@NonNull Renderer renderer, @Nullable Matrix cropMatrix, @Nullable Point size) {
     if (cropMatrix != null && size != null && isRendererOfMainImage(renderer)) {
@@ -819,4 +834,16 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return editorElementHierarchy.getCropEditorElement().getFlags().isVisible();
   }
 
+  /**
+   * Returns a matrix that maps bounds to the crop area.
+   */
+  public Matrix getInverseCropPosition() {
+    Matrix matrix = new Matrix();
+    matrix.set(findRelativeMatrix(editorElementHierarchy.getMainImage(), editorElementHierarchy.getCropEditorElement()));
+    matrix.postConcat(editorElementHierarchy.getFlipRotate().getLocalMatrix());
+
+    Matrix positionRelativeToCrop = new Matrix();
+    matrix.invert(positionRelativeToCrop);
+    return positionRelativeToCrop;
+  }
 }

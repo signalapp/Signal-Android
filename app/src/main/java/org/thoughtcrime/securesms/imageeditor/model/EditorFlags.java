@@ -109,7 +109,7 @@ public final class EditorFlags {
     persistedFlags = flags;
   }
 
-  void reset() {
+  public void reset() {
     restoreState(persistedFlags);
   }
 
