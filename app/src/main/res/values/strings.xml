@@ -522,6 +522,7 @@
 
     <string name="ManageGroupActivity_none">None</string>
     <plurals name="ManageGroupActivity_invited">
+        <item quantity="one">%d invited</item>
         <item quantity="other">%d invited</item>
     </plurals>
 
