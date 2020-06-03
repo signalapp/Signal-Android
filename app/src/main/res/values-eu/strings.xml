@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Artxibatutako elkarrizketak (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Egiaztatua</string>
+  <string name="ConversationTitleView_you">Zu</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profila</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errorea gertatu da profileko argazkia gordetzean</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Aktibatuta</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
   <string name="ManageGroupActivity_view_all_members">Partaide guztiak ikusi</string>
+  <string name="ManageGroupActivity_none">Bat ere ez</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
   <string name="ManageGroupActivity_not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Taldearen abatarra</string>
   <string name="CropImageActivity_profile_avatar">Abatarra</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ukitu eta eutsi ahots mezua grabatzeko, jaregin bidaltzeko.</string>
   <!--InviteActivity-->
@@ -989,6 +993,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signalek Kamera baimena behar du QR kodea eskaneatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ezin da QR kodea eskaneatu Kamera baimen gabe</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Gaizki enkriptatuko mezua</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Existitzen ez den bertsio baterako enkriptatutako mezua</string>
@@ -1144,6 +1149,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="contact_selection_activity__enter_name_or_number">Idatzi izena edo zenbakia</string>
   <string name="contact_selection_activity__invite_to_signal">Gonbidatu Signal erabiltzera</string>
   <string name="contact_selection_activity__new_group">Talde berria</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Garbitu idatzitako testua</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Erakutsi teklatua</string>
@@ -1604,6 +1610,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="conversation_list_batch__menu_select_all">Denak hautatu</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Artxibatze hautatua</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desartxibatze hautatua</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Desartxibatze hautatua</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Irakurritako gisa markatu</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ezarpenen lasterbidea</string>
   <string name="conversation_list_search_description">Bilatu</string>
@@ -1625,7 +1633,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eranskina gehitu</string>
   <string name="conversation__menu_edit_group">Taldea editatu</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Kudeatu taldea</string> -->
   <string name="conversation__menu_leave_group">Taldea utzi</string>
   <string name="conversation__menu_view_all_media">Euskarri guztiak</string>
   <string name="conversation__menu_conversation_settings">Solasaldiaren ezarpenak</string>

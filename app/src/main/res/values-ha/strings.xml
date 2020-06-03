@@ -287,6 +287,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Ajiyayyen hira (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Tabbatacce</string>
+  <string name="ConversationTitleView_you">Kai/Ke</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Furofayil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Kuskure wajen saitin hoton furofayil</string>
@@ -382,6 +383,7 @@
   <string name="ManageGroupActivity_on">Kunna</string>
   <string name="ManageGroupActivity_add_members">Kara membobi</string>
   <string name="ManageGroupActivity_view_all_members">Kalli dukkan membobi</string>
+  <string name="ManageGroupActivity_none">Babu.</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Tanadadden sanarwa</string>
   <string name="CustomNotificationsDialogFragment__messages">Sakwanni</string>
@@ -391,6 +393,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Hoton rukuni</string>
   <string name="CropImageActivity_profile_avatar">Alamar hoto.</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Taba kuma ka/ki rike nan domin daukar sakon mura, sake ka/ki tura</string>
   <!--InviteActivity-->
@@ -817,6 +821,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal na bukatar izinin Kyamara domin yin sikanin QR code, amma an hana wannan damar dindindin. Ci gaba da shigar saitin Signal, Zabi Permissions sannan ka/ki kunna Kyamara.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Sikanin lambar sirri QR ba zai yi ba tareda izinin Kyamara ba.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Sako mai tsari mara kyau</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">An tsare sako don mahadin bayanai da babu shi </string>
@@ -965,6 +970,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Sa suna ko lamba</string>
   <string name="contact_selection_activity__invite_to_signal">Gayyace shi/ta zuwa Signal.</string>
   <string name="contact_selection_activity__new_group">Sabon rukuni</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Goge rubutu</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Nuna allon haruffa</string>
@@ -1391,6 +1397,7 @@
   <string name="conversation_list_batch__menu_select_all">Zabi Duka</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">An zabi ajiyayyen sako</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Fitar da zababbe daga wajen da aka adana</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Fitar da zababbe daga wajen da aka adana</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Saitin gajeren hanya</string>
   <string name="conversation_list_search_description">Duba</string>

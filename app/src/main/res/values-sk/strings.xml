@@ -334,6 +334,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzácie (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Overený</string>
+  <string name="ConversationTitleView_you">Vy</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba pri nastavení profilovej fotky</string>
@@ -455,6 +456,7 @@
   <string name="ManageGroupActivity_on">Zapnuté</string>
   <string name="ManageGroupActivity_add_members">Pridať členov</string>
   <string name="ManageGroupActivity_view_all_members">Zobraziť všetkých členov</string>
+  <string name="ManageGroupActivity_none">Žiadny</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s pozval 1 osobu</item>
     <item quantity="few">%1$s pozval %2$d osoby</item>
@@ -477,6 +479,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Obrázok skupiny</string>
   <string name="CropImageActivity_profile_avatar">Fotka</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Podržte pre záznam hlasovej správy, a pustite pre odoslanie</string>
   <!--InviteActivity-->
@@ -1022,6 +1026,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal potrebuje prístup k fotoaparátu aby mohol naskenovať QR kód, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nedá sa naskenovať QR kód bez povolenia prístupu k fotoaparátu</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Zlá šifrovaná správa</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa šifrovaná pre neexistujúcu reláciu</string>
@@ -1172,6 +1177,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="contact_selection_activity__enter_name_or_number">Zadajte meno alebo číslo</string>
   <string name="contact_selection_activity__invite_to_signal">Pozvať do Signalu</string>
   <string name="contact_selection_activity__new_group">Nová skupina</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Vymazať zadaný text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Zobraziť klávesnicu</string>
@@ -1639,6 +1645,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_list_batch__menu_select_all">Označiť všetko</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Vybratý archív</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnoviť vybrané z archívu</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Obnoviť vybrané z archívu</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Označ ako prečítané</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Skratka pre Nastavenia</string>
   <string name="conversation_list_search_description">Hľadať</string>

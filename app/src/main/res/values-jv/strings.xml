@@ -273,6 +273,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Obrolan ingkang dipunarsipaken (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Dipunverifikasi</string>
+  <string name="ConversationTitleView_you">Sampeyan</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Enten masalah kala masang foto profil</string>
@@ -368,6 +369,7 @@
   <string name="ManageGroupActivity_on">Gesang</string>
   <string name="ManageGroupActivity_add_members">Minggahaken anggota</string>
   <string name="ManageGroupActivity_view_all_members">Tingali anggota sedaya</string>
+  <string name="ManageGroupActivity_none">Mboten enten</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Prungon kustom</string>
   <string name="CustomNotificationsDialogFragment__messages">Pesen</string>
@@ -377,6 +379,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tutul lan tahan kangge ngerekam pesen suwanten, uculaken kangge ngirimaken</string>
   <!--InviteActivity-->
@@ -796,6 +800,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal betah izin Kamera kangge ngescan kode QR, nanging izin kesebat sampun dipuntolak sacara permanen. Bikak panatanan aplikasi, pileh \"Izin\", lajeng aktifaken \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Mboten saged ngescan kode QR tanpa izin Kamera</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Pesen ingkang dipunekripsi sacara awon</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Pesen dipunenkripsi kangge sesi ingkang mboten enten</string>
@@ -943,6 +948,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Lebetaken nami utawi nomer</string>
   <string name="contact_selection_activity__invite_to_signal">Ajak ngginakaken Signal</string>
   <string name="contact_selection_activity__new_group">Grup enggal</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Brusak teks ingkang dipunlebetaken</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Tampilaken keyboard</string>
@@ -1365,6 +1371,7 @@
   <string name="conversation_list_batch__menu_select_all">Pileh sedaya</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arsipaken prakawis ingkang dipunpileh</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Uculaken prakawis ingkang dipunpileh saking arsip</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Uculaken prakawis ingkang dipunpileh saking arsip</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Trabasan panatanan</string>
   <string name="conversation_list_search_description">Padosi</string>

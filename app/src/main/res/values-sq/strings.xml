@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Biseda të arkivuara (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">U verifikua</string>
+  <string name="ConversationTitleView_you">Ju</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gabim në caktim fotoje profili</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
   <string name="ManageGroupActivity_view_all_members">Shihni krejt anëtarët</string>
+  <string name="ManageGroupActivity_none">Asnjë</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">S’keni të drejta për ta bërë këtë</string>
   <string name="ManageGroupActivity_not_capable">Dikush që shtuat, nuk mbulon grupe të reja dhe lypset të përditësojë Signal-in</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">S’u arrit të përditësohej grupi</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grupi</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Që të incizoni një mesazh zanor, prekeni dhe mbajeni të prekur, për ta dërguar, lëshojeni</string>
   <!--InviteActivity-->
@@ -985,6 +989,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Që të mund të skanojë një kod QR, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">S\’arrihet të skanohet kodi QR pa lejim të kamerës</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesazh i fshehtëzuar për sesion që s\’ekziston</string>
@@ -1140,6 +1145,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Jepni emër ose numër</string>
   <string name="contact_selection_activity__invite_to_signal">Ftojeni në Signal</string>
   <string name="contact_selection_activity__new_group">Grup i ri</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Spastro tekstin e dhënë</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Shfaq tastierën</string>
@@ -1599,6 +1605,8 @@
   <string name="conversation_list_batch__menu_select_all">Përzgjidhi krejt</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkivo të përzgjedhurit</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Çarkivo të përzgjedhurit</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Çarkivo të përzgjedhurit</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Shëno si të lexuar</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Shkurtore rregullimesh</string>
   <string name="conversation_list_search_description">Kërko</string>
@@ -1620,7 +1628,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Shto bashkëngjitje</string>
   <string name="conversation__menu_edit_group">Përpunoni grup</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Administroni grupin</string> -->
   <string name="conversation__menu_leave_group">Braktise grupin</string>
   <string name="conversation__menu_view_all_media">Krejt mediat</string>
   <string name="conversation__menu_conversation_settings">Rregullime bisedash</string>

@@ -301,6 +301,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">ಆರ್ಕೈವ್ ಮಾಡಿರುವ ಸಂಭಾಷಣೆಗಳು (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
+  <string name="ConversationTitleView_you">ನೀವು</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ಪ್ರೊಫೈಲ್</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ</string>
@@ -397,6 +398,7 @@
   <string name="ManageGroupActivity_on">ಆನ್</string>
   <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
   <string name="ManageGroupActivity_view_all_members">ಎಲ್ಲಾ ಸದಸ್ಯರನ್ನು ವೀಕ್ಷಿಸಿ</string>
+  <string name="ManageGroupActivity_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <string name="CustomNotificationsDialogFragment__messages">ಸಂದೇಶಗಳು</string>
@@ -406,6 +408,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ಗುಂಪಿನ ಅವತಾರ್</string>
   <string name="CropImageActivity_profile_avatar">ಅವತಾರ್</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು  ಹಿಡಿದುಕೊಳ್ಳಿ, ಕಳುಹಿಸಲು ಅದನ್ನು ಬಿಡಿ</string>
   <!--InviteActivity-->
@@ -851,6 +855,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ಒಂದು QR ಕೋಡ್‌‌ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು  Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಇಲ್ಲದೆ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ಕೆಟ್ಟದಾಗಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿರುವ ಸಂದೇಶ</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲದ ಅವಧಿಗಾಗಿ ಸಂದೇಶ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ</string>
@@ -999,6 +1004,7 @@
   <string name="contact_selection_activity__enter_name_or_number">ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
   <string name="contact_selection_activity__invite_to_signal">Signalಗೆ ಆಮಂತ್ರಿಸಿ</string>
   <string name="contact_selection_activity__new_group">ಹೊಸ ಗುಂಪು</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">ನಮೂದಿಸಿದ ಪಠ್ಯ ತೆರವುಗೊಳಿಸಿ</string>
   <string name="contact_filter_toolbar__show_keyboard_description">ಕೀಬೋರ್ಡ್ ತೋರಿಸು</string>
@@ -1432,6 +1438,7 @@
   <string name="conversation_list_batch__menu_select_all">ಎಲ್ಲಾ ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">ಆರ್ಕೈವ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ಅನ್‌ಆರ್ಕೈವ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">ಅನ್‌ಆರ್ಕೈವ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಶಾರ್ಟ್‌‌ಕಟ್</string>
   <string name="conversation_list_search_description">ಹುಡುಕಿ</string>

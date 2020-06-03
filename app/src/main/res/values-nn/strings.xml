@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtalar (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Godkjent</string>
+  <string name="ConversationTitleView_you">Du</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbildet</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">På</string>
   <string name="ManageGroupActivity_add_members">Legg til medlemmar</string>
   <string name="ManageGroupActivity_view_all_members">Sjå alle medlemmar</string>
+  <string name="ManageGroupActivity_none">Inga</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikkje rettar til å gjera dette</string>
   <string name="ManageGroupActivity_not_capable">Nokon du la til må oppdatera Signal for å få støtte for nye grupper</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Klarte ikkje oppdatera gruppa</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hald for å spela inn talemelding , slepp for å senda</string>
   <!--InviteActivity-->
@@ -988,6 +992,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal treng tilgang til kameraet for å skanna QR-kodar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan ikkje skanna QR-kodar utan kameratilgang</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Dårleg kryptert melding</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ei økt som ikkje finst</string>
@@ -1143,6 +1148,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="contact_selection_activity__enter_name_or_number">Skriv inn namn eller nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Inviter til Signal</string>
   <string name="contact_selection_activity__new_group">Ny gruppe</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tøm tekstfeltet</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>
@@ -1604,6 +1610,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_list_batch__menu_select_all">Vel alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver utval</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Angra arkivering av utval</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Angra arkivering av utval</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snarveg til innstillingar</string>
   <string name="conversation_list_search_description">Søk</string>
@@ -1626,7 +1633,6 @@ Du er à jour!</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
   <string name="conversation__menu_edit_group">Rediger gruppa</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Handter gruppe</string> -->
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
   <string name="conversation__menu_view_all_media">All media</string>
   <string name="conversation__menu_conversation_settings">Samtaleinnstillingar</string>

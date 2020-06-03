@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Conversations archivées (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Confirmé</string>
+  <string name="ConversationTitleView_you">Vous</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erreur de définition de la photo de profil</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Activé</string>
   <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
   <string name="ManageGroupActivity_view_all_members">Visualiser tous les membres</string>
+  <string name="ManageGroupActivity_none">Aucune</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Échec de mise à jour du groupe</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar du groupe</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Touchez et maintenez pour enregistrer un message vocal, relâchez pour l’envoyer.</string>
   <!--InviteActivity-->
@@ -980,6 +984,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de balayer le code QR sans l’autorisation Appareil photo</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mauvais message chiffré</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message chiffré pour une session non existante</string>
@@ -1135,6 +1140,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Saisissez un nom ou un numéro</string>
   <string name="contact_selection_activity__invite_to_signal">Inviter à Signal</string>
   <string name="contact_selection_activity__new_group">Nouveau groupe</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Effacer le texte saisi</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Afficher le clavier</string>
@@ -1594,6 +1600,8 @@
   <string name="conversation_list_batch__menu_select_all">Tout sélectionner</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archiver la sélection</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Désarchiver la sélection</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Désarchiver la sélection</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Marquer comme lu</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
   <string name="conversation_list_search_description">Chercher</string>
@@ -1615,7 +1623,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ajouter un fichier joint</string>
   <string name="conversation__menu_edit_group">Modifier le groupe</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Gérer le groupe</string> -->
+  <string name="conversation__menu_group_settings">Paramètres de groupe</string>
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_view_all_media">Tous les médias</string>
   <string name="conversation__menu_conversation_settings">Paramètres de la conversation</string>

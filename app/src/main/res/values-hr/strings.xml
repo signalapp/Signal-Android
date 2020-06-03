@@ -323,6 +323,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arhivirani razgovori (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Potvrđeno</string>
+  <string name="ConversationTitleView_you">Vi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Greška prilikom postavljanja profilne slike</string>
@@ -454,6 +455,7 @@
   <string name="ManageGroupActivity_on">Uključeno</string>
   <string name="ManageGroupActivity_add_members">Dodaj članove</string>
   <string name="ManageGroupActivity_view_all_members">Vidi sve članove</string>
+  <string name="ManageGroupActivity_none">Nijedno</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemate prava na to</string>
   <string name="ManageGroupActivity_not_capable">Netko koga ste dodali nema podršku za nove grupe i treba ažurirati Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Napuštanje grupe nije uspjelo</string>
@@ -482,6 +484,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupni avatar</string>
   <string name="CropImageActivity_profile_avatar">Slika profila</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pritisnite i držite kako biste snimili glasovnu poruku, pustite za slanje</string>
   <!--InviteActivity-->
@@ -865,6 +869,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nemoguće je skenirati QR kod bez dozvole pristupa kameri.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka kriptirana za nepostojeću sesiju</string>
@@ -996,6 +1001,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
   <string name="contact_selection_activity__invite_to_signal">Pozovi u Signal</string>
   <string name="contact_selection_activity__new_group">Nova grupa</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nema kontakata.</string>
@@ -1412,6 +1418,8 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="conversation_list_batch__menu_select_all">Odaberi sve</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Odabran arhiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Odabrano raspakiranje arhive</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Odabrano raspakiranje arhive</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Označi kao pročitano</string>
   <!--conversation_list-->
   <string name="conversation_list_search_description">Traži</string>
   <!--conversation_list_item_view-->
@@ -1431,7 +1439,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodaj privitak</string>
   <string name="conversation__menu_edit_group">Uredi grupu</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Upravljanje grupom</string> -->
+  <string name="conversation__menu_group_settings">Postavke grupe</string>
   <string name="conversation__menu_leave_group">Napusti grupu</string>
   <string name="conversation__menu_view_all_media">Svi mediji</string>
   <string name="conversation__menu_conversation_settings">Postavke razgovora</string>

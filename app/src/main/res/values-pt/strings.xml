@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificado</string>
+  <string name="ConversationTitleView_you">Você</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir a fotografia de perfil</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
+  <string name="ManageGroupActivity_none">Nenhum</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Não tem permissões para fazer isto</string>
   <string name="ManageGroupActivity_not_capable">Alguém que você adicionou não suporta novos grupos e necessita de atualizar o Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar o grupo</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toque e mantenha para gravar uma mensagem de voz, solte para a enviar.</string>
   <!--InviteActivity-->
@@ -985,6 +989,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, seleccione a aplicação Signal e nas \"Permissões\" ative a \"Câmara\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem encriptada corrompida</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem encriptada para sessão inexistente</string>
@@ -1140,6 +1145,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="contact_selection_activity__enter_name_or_number">Introduza o nome ou número</string>
   <string name="contact_selection_activity__invite_to_signal">Convite para o Signal</string>
   <string name="contact_selection_activity__new_group">Novo grupo</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Limpar o texto introduzido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>
@@ -1599,6 +1605,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_list_batch__menu_select_all">Selecionar tudo</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arquivar selecionado(s)</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desarquivar selecionado(s)</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Desarquivar selecionado(s)</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Marcar como lidas</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atalho para definições</string>
   <string name="conversation_list_search_description">Pesquisar</string>
@@ -1620,7 +1628,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
   <string name="conversation__menu_edit_group">Editar o grupo</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Administrar grupo</string> -->
+  <string name="conversation__menu_group_settings">Definições do grupo</string>
   <string name="conversation__menu_leave_group">Abandonar grupo</string>
   <string name="conversation__menu_view_all_media">Toda a multimédia</string>
   <string name="conversation__menu_conversation_settings">Definições de conversa</string>

@@ -301,6 +301,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">आर्काईव्ह केलेले संभाषण (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
+  <string name="ConversationTitleView_you">आपण</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">प्रोफाईल</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>
@@ -396,6 +397,7 @@
   <string name="ManageGroupActivity_on">चालू</string>
   <string name="ManageGroupActivity_add_members">सदस्य जोडा</string>
   <string name="ManageGroupActivity_view_all_members">सर्व सदस्य बघा</string>
+  <string name="ManageGroupActivity_none">कुठलेही नाही</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">सानुकूल सूचना</string>
   <string name="CustomNotificationsDialogFragment__messages">संदेश</string>
@@ -405,6 +407,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">गट अवतार</string>
   <string name="CropImageActivity_profile_avatar">अवतार</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">व्हॉईस संदेश रेकॉर्ड करण्यासाठी टॅप करा आणि धरून ठेवा, पाठविण्यासाठी सोडा</string>
   <!--InviteActivity-->
@@ -831,6 +835,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR कोड स्कॅन करण्यासाठी Signal ला कॅमेरा परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"कॅमेरा\" सक्षम करा.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कॅमेरा परवानगी विना QR कोड स्कॅन करण्यास अक्षम</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड संदेश</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">अस्तित्वात नसलेल्या सत्रा करिता संदेश एन्क्रिप्टेड आहे</string>
@@ -979,6 +984,7 @@
   <string name="contact_selection_activity__enter_name_or_number">नाव किंवा नंबर प्रविष्ट करा</string>
   <string name="contact_selection_activity__invite_to_signal">Signal वर आमंत्रित करा</string>
   <string name="contact_selection_activity__new_group">नवीन गट</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">प्रविष्ट केलेले मजकूर साफ करा</string>
   <string name="contact_filter_toolbar__show_keyboard_description">कीबोर्ड दाखवा</string>
@@ -1407,6 +1413,7 @@
   <string name="conversation_list_batch__menu_select_all">सर्व निवडा</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">निवडलेले आर्काईव्ह करा</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">निवडलेले अनआर्काईव्ह करा</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">निवडलेले अनआर्काईव्ह करा</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">सेटिंग शॉर्टकट</string>
   <string name="conversation_list_search_description">शोध</string>

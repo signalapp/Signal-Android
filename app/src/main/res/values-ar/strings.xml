@@ -362,6 +362,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">أرشيف المحادثات (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified"> تم التحقق </string>
+  <string name="ConversationTitleView_you">أنت</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">الملف الشخصي</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الملف الشخصي</string>
@@ -487,6 +488,7 @@
   <string name="ManageGroupActivity_on">يعمل</string>
   <string name="ManageGroupActivity_add_members">إضافة أعضاء</string>
   <string name="ManageGroupActivity_view_all_members">استعراض جميع الأعضاء</string>
+  <string name="ManageGroupActivity_none">لا شيء </string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">إشعارات مخصّصة</string>
   <string name="CustomNotificationsDialogFragment__messages">الرسائل</string>
@@ -505,6 +507,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
   <!--InviteActivity-->
@@ -1028,6 +1032,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الكاميرا من أجل مسح رمز الاستجابة السريع QR ولكن تم إيقاف الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق واختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">لا يمكن مسح رمز الإستجابة السريعة QR بدون إذن استخدام الكاميرا</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة سيئة</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">تمّ تشفير الرسالة لجلسة غير موجودة </string>
@@ -1180,6 +1185,7 @@
   <string name="contact_selection_activity__enter_name_or_number">أدخل أسم أو رقم</string>
   <string name="contact_selection_activity__invite_to_signal">ادعُ إلى Signal</string>
   <string name="contact_selection_activity__new_group">مجموعة جديدة</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">امسح النص الذي ادخلته</string>
   <string name="contact_filter_toolbar__show_keyboard_description">إظهار لوحة المفاتيح</string>
@@ -1661,6 +1667,8 @@
   <string name="conversation_list_batch__menu_select_all">اختر الكل</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">تم اختيار الأرشيف</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">فك أرشفة ما تمّ اختياره</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">فك أرشفة ما تمّ اختياره</string>
+  <string name="conversation_list_batch__menu_mark_as_read">اعتبرها مقروءة</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">مختصر للإعدادات</string>
   <string name="conversation_list_search_description">بحث</string>
@@ -1682,6 +1690,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
   <string name="conversation__menu_edit_group">تعديل المجموعة</string>
+  <string name="conversation__menu_group_settings">إعدادات المجموعة</string>
   <string name="conversation__menu_leave_group">أترك المجموعة</string>
   <string name="conversation__menu_view_all_media">جميع الوسائط</string>
   <string name="conversation__menu_conversation_settings">إعدادات المحادثة</string>

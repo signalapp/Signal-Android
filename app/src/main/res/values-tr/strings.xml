@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arşivlenmiş sohbetler (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Doğrulandı</string>
+  <string name="ConversationTitleView_you">Siz</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil fotoğrafı kaydedilirken hata</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Açık</string>
   <string name="ManageGroupActivity_add_members">Üye ekle</string>
   <string name="ManageGroupActivity_view_all_members">Tüm üyeleri görüntüle</string>
+  <string name="ManageGroupActivity_none">Hiçbiri</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Bunu yapma için hakkınız yok</string>
   <string name="ManageGroupActivity_not_capable">Eklediğiniz biri yeni grupları desteklemiyor ve Signal\'i güncellemesi gerekiyor</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Grubu güncelleme başarısız oldu</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
   <string name="CropImageActivity_profile_avatar">Resim</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın</string>
   <!--InviteActivity-->
@@ -979,6 +983,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Bozuk şifrelenmiş ileti</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">İleti var olmayan bir oturum için şifrelenmiş</string>
@@ -1132,6 +1137,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="contact_selection_activity__enter_name_or_number">İsim veya numara girin</string>
   <string name="contact_selection_activity__invite_to_signal">Signal\'e davet et</string>
   <string name="contact_selection_activity__new_group">Yeni grup</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Yazılı metni temizle</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Klavyeyi göster</string>
@@ -1589,6 +1595,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_list_batch__menu_select_all">Hepsini seç</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Seçilenleri arşivle</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilenleri arşivden çıkar</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Seçilenleri arşivden çıkar</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ayarlar kısayolu</string>
   <string name="conversation_list_search_description">Sohbette Ara</string>
@@ -1610,7 +1617,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eklenti ekle</string>
   <string name="conversation__menu_edit_group">Grubu düzenle</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Grubu yönet</string> -->
   <string name="conversation__menu_leave_group">Gruptan ayrıl</string>
   <string name="conversation__menu_view_all_media">Tüm içerik</string>
   <string name="conversation__menu_conversation_settings">Sohbet ayarları</string>

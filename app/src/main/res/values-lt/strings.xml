@@ -337,6 +337,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Archyvuoti pokalbiai (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Patvirtinta(-s)</string>
+  <string name="ConversationTitleView_you">Jūs</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilis</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klaida, nustatant profilio nuotrauką</string>
@@ -470,6 +471,7 @@
   <string name="ManageGroupActivity_on">Įjungta</string>
   <string name="ManageGroupActivity_add_members">Pridėti narius</string>
   <string name="ManageGroupActivity_view_all_members">Rodyti visus narius</string>
+  <string name="ManageGroupActivity_none">Nėra</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jūs neturite teisių to daryti</string>
   <string name="ManageGroupActivity_not_capable">Kažkas iš jūsų pridėtų asmenų nepalaiko naujų grupių ir turi atsinaujinti Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepavyko atnaujinti grupės</string>
@@ -500,6 +502,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
   <string name="CropImageActivity_profile_avatar">Avataras</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Bakstelėkite ir laikykite, kad įrašinėtumėte balso žinutę, atleiskite, kad išsiųstumėte</string>
   <!--InviteActivity-->
@@ -1055,6 +1059,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Blogai šifruota žinutė</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Žinutė šifruota seansui, kurio nėra</string>
@@ -1212,6 +1217,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Įveskite vardą ar numerį</string>
   <string name="contact_selection_activity__invite_to_signal">Pakviesti į Signal</string>
   <string name="contact_selection_activity__new_group">Nauja grupė</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Išvalyti įvestą tekstą</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Rodyti klaviatūrą</string>
@@ -1687,6 +1693,7 @@
   <string name="conversation_list_batch__menu_select_all">Pasirinkti viską</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archyvas pasirinktas</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Išarchyvuoti pasirinktus</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Išarchyvuoti pasirinktus</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Nustatymų šaukinys</string>
   <string name="conversation_list_search_description">Ieškoti</string>
@@ -1708,7 +1715,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridėti priedą</string>
   <string name="conversation__menu_edit_group">Taisyti grupę</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Tvarkyti grupę</string> -->
+  <string name="conversation__menu_group_settings">Grupės nustatymai</string>
   <string name="conversation__menu_leave_group">Išeiti iš grupės</string>
   <string name="conversation__menu_view_all_media">Visa medija</string>
   <string name="conversation__menu_conversation_settings">Pokalbio nustatymai</string>

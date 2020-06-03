@@ -307,6 +307,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">مکالمه‌های بایگانی شده (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">تأیید شده</string>
+  <string name="ConversationTitleView_you">شما</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم تصویر پروفایل</string>
@@ -426,6 +427,7 @@
   <string name="ManageGroupActivity_on">روشن</string>
   <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
   <string name="ManageGroupActivity_view_all_members">نمایش همه اعضا</string>
+  <string name="ManageGroupActivity_none">هیچ‌کدام</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ۱ نفر را دعوت کرد</item>
     <item quantity="other">%1$s %2$d نفر را دعوت کرد</item>
@@ -444,6 +446,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">عکس گروه</string>
   <string name="CropImageActivity_profile_avatar">عکس</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن پیام صوتی ضربه زده و نگه دارید، برای ارسال رها کنید</string>
   <!--InviteActivity-->
@@ -957,6 +961,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید. </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">امکان اسکن کردن کد QR بدون مجوز دوربین وجود ندارد</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">پیام بد رمزگذاری شده</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام برای نشست ناموجود رمزگذاری شد</string>
@@ -1105,6 +1110,7 @@
   <string name="contact_selection_activity__enter_name_or_number">نام یا شماره را وارد کنید</string>
   <string name="contact_selection_activity__invite_to_signal">دعوت به Signal</string>
   <string name="contact_selection_activity__new_group">گروه جدید</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">پاک کردن متن وارد شده</string>
   <string name="contact_filter_toolbar__show_keyboard_description">نمایش صفحه‌کلید</string>
@@ -1552,6 +1558,8 @@
   <string name="conversation_list_batch__menu_select_all">انتخاب همه</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی موارد انتخاب شده</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خارج کردن موارد انتخاب شده از بایگانی</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">خارج کردن موارد انتخاب شده از بایگانی</string>
+  <string name="conversation_list_batch__menu_mark_as_read">علامت گذاری به عنوان خوانده شده</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">میانبر تنظیمات</string>
   <string name="conversation_list_search_description">جستجو</string>
@@ -1573,7 +1581,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">افزودن پیوست</string>
   <string name="conversation__menu_edit_group">ویرایش گروه</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">مدیریت گروه</string> -->
   <string name="conversation__menu_leave_group">ترک گروه</string>
   <string name="conversation__menu_view_all_media">تمام رسانه‌ها</string>
   <string name="conversation__menu_conversation_settings">تنظیمات مکالمه</string>

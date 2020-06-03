@@ -290,6 +290,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">آرکائیو کیتیاں گئیاں گل باتاں (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">تصدیق کیتا ہویا</string>
+  <string name="ConversationTitleView_you">تساں</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفائل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">پروفائل فوٹو ترتیب دین اچ نقص</string>
@@ -385,6 +386,7 @@
   <string name="ManageGroupActivity_on">آن</string>
   <string name="ManageGroupActivity_add_members">ممبر شامل کرو</string>
   <string name="ManageGroupActivity_view_all_members">سارے رکناں نوں ویکھو</string>
+  <string name="ManageGroupActivity_none">کوئی نئیں</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">حسب ضرورت اطلاعواں</string>
   <string name="CustomNotificationsDialogFragment__messages">سنیہے</string>
@@ -394,6 +396,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">گروپ اوتار</string>
   <string name="CropImageActivity_profile_avatar">اوتار</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">اک صوتی سنیہا ریکارڈ کرن لئی بٹن دبو تے پھڑ کے رکھو، گھلن لئی چھڈ دیو</string>
   <!--InviteActivity-->
@@ -820,6 +824,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR کوڈ اسکین کرن لئی Signal نوں کیمرا دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔&lt; مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، "اجازتاں"چنو، تے "کیمرہ" فعال کرو۔</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">کیمرے دی اجازت توں بغیر کیو آر کوڈ اسکین نئیں کر سکدا </string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">خراب خفیہ کیتا سنیہا</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">غیر موجود سیشن لئی سنیہا خفیہ کیتا گیا اے</string>
@@ -968,6 +973,7 @@
   <string name="contact_selection_activity__enter_name_or_number">ناں یا نمبر درج کرو</string>
   <string name="contact_selection_activity__invite_to_signal">Signal تے سدھو</string>
   <string name="contact_selection_activity__new_group">نواں گروپ</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">داخل کیتا متن صاف کرو</string>
   <string name="contact_filter_toolbar__show_keyboard_description">کی بورڈ وکھاؤ</string>
@@ -1394,6 +1400,7 @@
   <string name="conversation_list_batch__menu_select_all">سارے چنو</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">چنیاں ہوئیاں نوں آرکائیو کرو </string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">چنیاں ہوئیاں نوں غیر آرکائیو کرو </string>
+  <string name="conversation_list_batch__menu_unarchive_selected">چنیاں ہوئیاں نوں غیر آرکائیو کرو </string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ترتیباں دا شارٹ کٹ</string>
   <string name="conversation_list_search_description">لبھو</string>

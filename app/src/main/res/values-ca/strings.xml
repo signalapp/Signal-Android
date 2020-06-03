@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Converses arxivades (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificat</string>
+  <string name="ConversationTitleView_you">Vós</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Error en establir la foto del perfil</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Actiu</string>
   <string name="ManageGroupActivity_add_members">Afegiu-hi membres</string>
   <string name="ManageGroupActivity_view_all_members">Mostra\'n tots els membres</string>
+  <string name="ManageGroupActivity_none">Cap</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No teniu permís per fer això.</string>
   <string name="ManageGroupActivity_not_capable">Algú que heu afegit no admet grups nous i cal que actualitzi el Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ha fallat actualitzar el grup.</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Manteniu-ho premut per enregistrar un missatge de veu, deixeu anar per enviar-lo</string>
   <!--InviteActivity-->
@@ -983,6 +987,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">El Signal necessita el permís de la càmera per tal d\'escanejar un codi QR, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi la càmera.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No es pot escanejar un codi QR sense permís de la càmera.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal encriptat</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Missatge encriptat per a una sessió que no existeix</string>
@@ -1138,6 +1143,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="contact_selection_activity__enter_name_or_number">Escriviu un nom o un número</string>
   <string name="contact_selection_activity__invite_to_signal">Convida al Signal</string>
   <string name="contact_selection_activity__new_group">Grup nou</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Neteja el text escrit</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostra el teclat</string>
@@ -1597,6 +1603,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_list_batch__menu_select_all">Selecciona-ho tot</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arxiva la selecció</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">No arxivis la selecció</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">No arxivis la selecció</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Marca com a llegit</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Drecera de configuració</string>
   <string name="conversation_list_search_description">Cerca</string>
@@ -1618,7 +1626,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>
   <string name="conversation__menu_edit_group">Edita el grup</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Gestioneu el grup</string> -->
+  <string name="conversation__menu_group_settings">Configuració del grup</string>
   <string name="conversation__menu_leave_group">Abandona el grup</string>
   <string name="conversation__menu_view_all_media">Tot el contingut</string>
   <string name="conversation__menu_conversation_settings">Configuració de la conversa</string>

@@ -291,6 +291,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">การสนทนาที่ถูกเก็บในที่เก็บถาวร (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ตรวจยืนยันแล้ว</string>
+  <string name="ConversationTitleView_you">คุณ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">โปรไฟล์</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
@@ -408,6 +409,7 @@
   <string name="ManageGroupActivity_on">เปิด</string>
   <string name="ManageGroupActivity_add_members">เพิ่มสมาชิก</string>
   <string name="ManageGroupActivity_view_all_members">ดูสมาชิกทั้งหมด</string>
+  <string name="ManageGroupActivity_none">ไม่มี</string>
   <string name="ManageGroupActivity_edit_name_and_picture">แก้ไขชื่อและภาพ</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">เลือกว่าใครสามารถเพิ่มหรือเชิญสมาชิกใหม่</string>
   <plurals name="GroupMemberList_invited">
@@ -426,6 +428,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">อวตารกลุ่ม</string>
   <string name="CropImageActivity_profile_avatar">อวตาร</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่ออัดข้อความเสียง ปล่อยเพื่อส่ง</string>
   <!--InviteActivity-->
@@ -905,6 +909,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">สแกนรหัส QR ไม่ได้ หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ข้อความที่เข้ารหัสมีความผิดปกติ</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ข้อความถูกเข้ารหัสสำหรับเซสชันที่ไม่มีอยู่</string>
@@ -1052,6 +1057,7 @@
   <string name="contact_selection_activity__enter_name_or_number">ใส่ชื่อหรือหมายเลข</string>
   <string name="contact_selection_activity__invite_to_signal">เชิญมาใช้ Signal</string>
   <string name="contact_selection_activity__new_group">กลุ่มใหม่</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">ล้างข้อความที่พิมพ์เข้าไป</string>
   <string name="contact_filter_toolbar__show_keyboard_description">แสดงคีย์บอร์ด</string>
@@ -1491,6 +1497,7 @@
   <string name="conversation_list_batch__menu_select_all">เลือกทั้งหมด</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">เก็บข้อมูลที่เลือกเข้าที่เก็บถาวร</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">นำข้อมูลที่เลือกออกจากที่เก็บถาวร</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">นำข้อมูลที่เลือกออกจากที่เก็บถาวร</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ตั้งค่าปุ่มลัด</string>
   <string name="conversation_list_search_description">ค้นหา</string>

@@ -286,6 +286,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">已存档对话 (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">已验证</string>
+  <string name="ConversationTitleView_you">您</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">个人资料</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">设置头像出错</string>
@@ -385,6 +386,7 @@
   <string name="ManageGroupActivity_on">开</string>
   <string name="ManageGroupActivity_add_members">添加成员</string>
   <string name="ManageGroupActivity_view_all_members">查看全体群成员</string>
+  <string name="ManageGroupActivity_none">无</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">自定义通知</string>
   <string name="CustomNotificationsDialogFragment__messages">消息</string>
@@ -394,6 +396,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">群组头像</string>
   <string name="CropImageActivity_profile_avatar">头像</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住录制语音，松开发送</string>
   <!--InviteActivity-->
@@ -844,6 +848,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需“相机”权限，来扫描二维码，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">没有“相机”权限，无法扫描二维码</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">不良加密消息</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">加密消息的对话不存在</string>
@@ -991,6 +996,7 @@
   <string name="contact_selection_activity__enter_name_or_number">请输入名称或号码</string>
   <string name="contact_selection_activity__invite_to_signal">邀请使用 Signal</string>
   <string name="contact_selection_activity__new_group">新群组</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">清除已输入文字</string>
   <string name="contact_filter_toolbar__show_keyboard_description">显示键盘</string>
@@ -1430,6 +1436,8 @@
   <string name="conversation_list_batch__menu_select_all">选择全部</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">存档已选择</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">取消存档已选择项目</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">取消存档已选择项目</string>
+  <string name="conversation_list_batch__menu_mark_as_read">标记为已读</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">设置快捷方式</string>
   <string name="conversation_list_search_description">搜索</string>
@@ -1451,6 +1459,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添加附件</string>
   <string name="conversation__menu_edit_group">编辑群组</string>
+  <string name="conversation__menu_group_settings">组群设置</string>
   <string name="conversation__menu_leave_group">离开群组</string>
   <string name="conversation__menu_view_all_media">全部媒体</string>
   <string name="conversation__menu_conversation_settings">对话设置</string>

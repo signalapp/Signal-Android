@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverade konversationer (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verifierat</string>
+  <string name="ConversationTitleView_you">Du</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Det gick inte att ställa in profilbild</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">På</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_view_all_members">Visa alla medlemmar</string>
+  <string name="ManageGroupActivity_none">Ingen</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har inte rätten att göra detta</string>
   <string name="ManageGroupActivity_not_capable">Någon som du har lagt till stöder inte nya grupper och behöver uppdatera Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll in för att spela in ett röstmeddelande, släpp för att skicka</string>
   <!--InviteActivity-->
@@ -983,6 +987,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att skanna QR-koder men den har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Felkrypterat meddelande</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande som krypterats för obefintlig session</string>
@@ -1138,6 +1143,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="contact_selection_activity__enter_name_or_number">Ange namn eller nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Bjud in till Signal</string>
   <string name="contact_selection_activity__new_group">Ny grupp</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Rensa inmatad text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Visa tangentbordet</string>
@@ -1597,6 +1603,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiv valt</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Avarkivera markerade</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Avarkivera markerade</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Markera som läst</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
@@ -1618,7 +1626,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lägg till bilaga</string>
   <string name="conversation__menu_edit_group">Ändra grupp</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Hantera grupp</string> -->
   <string name="conversation__menu_leave_group">Lämna grupp</string>
   <string name="conversation__menu_view_all_media">Alla media</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>

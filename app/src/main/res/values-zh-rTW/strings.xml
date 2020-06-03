@@ -295,6 +295,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">已驗證</string>
+  <string name="ConversationTitleView_you">您</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">個人資訊</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">頭像照片設定出現錯誤</string>
@@ -422,6 +423,7 @@
   <string name="ManageGroupActivity_on">開</string>
   <string name="ManageGroupActivity_add_members">新增成員</string>
   <string name="ManageGroupActivity_view_all_members">檢視所有成員</string>
+  <string name="ManageGroupActivity_none">靜音</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">你沒有權限來做此事</string>
   <string name="ManageGroupActivity_not_capable">你新增的人不支援新群組，需要更新Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">更新群組失敗</string>
@@ -446,6 +448,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">群組的大頭照</string>
   <string name="CropImageActivity_profile_avatar">頭像</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住並保持以錄製語音訊息，鬆開即傳送</string>
   <!--InviteActivity-->
@@ -953,6 +957,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有「相機」的權限，無法掃描 QR code</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">此加密訊息的對話已不存在</string>
@@ -1107,6 +1112,7 @@
   <string name="contact_selection_activity__enter_name_or_number">輸入名字或號碼</string>
   <string name="contact_selection_activity__invite_to_signal">邀請至 Signal</string>
   <string name="contact_selection_activity__new_group">新增群組</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">清除已輸入的文字</string>
   <string name="contact_filter_toolbar__show_keyboard_description">顯示鍵盤</string>
@@ -1558,6 +1564,8 @@
   <string name="conversation_list_batch__menu_select_all">全選</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">已選擇存檔</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">取消存檔已選擇的</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">取消存檔已選擇的</string>
+  <string name="conversation_list_batch__menu_mark_as_read">標示已讀</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">設定捷徑</string>
   <string name="conversation_list_search_description">搜尋</string>
@@ -1579,7 +1587,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">新增附件檔案</string>
   <string name="conversation__menu_edit_group">編輯群組</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">管理群組</string> -->
   <string name="conversation__menu_leave_group">離開對話群組</string>
   <string name="conversation__menu_view_all_media">所有的媒體</string>
   <string name="conversation__menu_conversation_settings">對話設定</string>

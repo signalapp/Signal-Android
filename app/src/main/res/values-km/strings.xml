@@ -289,6 +289,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">សន្ទនារក្សាទុកក្នុងបណ្ណសារ (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">បានផ្ទៀងផ្ទាត់</string>
+  <string name="ConversationTitleView_you">អ្នក</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ការកំណត់រូបថតប្រវត្តរូបមានបញ្ហា</string>
@@ -391,6 +392,7 @@
   <string name="ManageGroupActivity_off">បិទ</string>
   <string name="ManageGroupActivity_on">បើក</string>
   <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
+  <string name="ManageGroupActivity_none">គ្មាន</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">សារជូនដំណឹងផ្សេង</string>
   <string name="CustomNotificationsDialogFragment__messages">សារ</string>
@@ -400,6 +402,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
   <string name="CropImageActivity_profile_avatar">រូបតំណាង</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ចុចអោយជាប់ដើម្បីថតសំឡេងជាសារ ដកដៃចេញដើម្បីផ្ញើ</string>
   <!--InviteActivity-->
@@ -817,6 +821,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីស្កេនកូដ QR ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"កាមេរ៉ា\"។</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">មិនអាចស្កេនកូដ QR ដោយគ្មានការអនុញ្ញាតសិទ្ធប្រើប្រាស់កាមេរ៉ា</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">សារត្រូវបានកាណាល់កូដសម្ងាត់សម្រាប់កំឡុងពេលមិនប្រើប្រាស់</string>
@@ -964,6 +969,7 @@
   <string name="contact_selection_activity__enter_name_or_number">បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</string>
   <string name="contact_selection_activity__invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
   <string name="contact_selection_activity__new_group">ក្រុមថ្មី</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">លុបអក្សរដែលបានបញ្ចូល</string>
   <string name="contact_filter_toolbar__show_keyboard_description">បង្ហាញក្តារចុច</string>
@@ -1383,6 +1389,7 @@
   <string name="conversation_list_batch__menu_select_all">ជ្រើសរើសទាំងអស់</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">ដាក់បណ្ណសារដែលបានជ្រើសរើស</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ដកបណ្ណសារដែលបានជ្រើសរើស</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">ដកបណ្ណសារដែលបានជ្រើសរើស</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ផ្លូវកាត់ ការកំណត់</string>
   <string name="conversation_list_search_description">ស្វែងរក</string>
@@ -1404,7 +1411,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ភ្ជាប់ឯកសារបន្ថែម</string>
   <string name="conversation__menu_edit_group">កែប្រែក្រុម</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">គ្រប់គ្រងក្រុម</string> -->
   <string name="conversation__menu_leave_group">ចាកចេញពីក្រុម</string>
   <string name="conversation__menu_view_all_media">ព័ត៌មានទាំងអស់</string>
   <string name="conversation__menu_conversation_settings">កំណត់ការសន្ទនា</string>

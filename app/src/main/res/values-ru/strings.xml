@@ -337,6 +337,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Архивированные разговоры (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Подтверждён</string>
+  <string name="ConversationTitleView_you">Вы</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профиль</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка при установке фото профиля</string>
@@ -470,6 +471,7 @@
   <string name="ManageGroupActivity_on">Включено</string>
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
   <string name="ManageGroupActivity_view_all_members">Просмотреть всех участников</string>
+  <string name="ManageGroupActivity_none">Нет</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
   <string name="ManageGroupActivity_not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Не удалось обновить группу</string>
@@ -500,6 +502,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Аватар группы</string>
   <string name="CropImageActivity_profile_avatar">Аватар</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Удерживайте, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
   <!--InviteActivity-->
@@ -1048,6 +1052,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к камере для сканирования QR-кода, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Камера».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Не удалось просканировать QR-код из-за отсутствия разрешения на доступ к камере</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Неверное зашифрованное сообщение</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Сообщение зашифровано для несуществующей сессии</string>
@@ -1205,6 +1210,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Введите имя или номер</string>
   <string name="contact_selection_activity__invite_to_signal">Пригласить в Signal</string>
   <string name="contact_selection_activity__new_group">Новая группа</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Стереть введённый текст</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Показать клавиатуру</string>
@@ -1680,6 +1686,8 @@
   <string name="conversation_list_batch__menu_select_all">Выбрать все</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Архивировать выбранное</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Разархивировать выбранное</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Разархивировать выбранное</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Отметить как прочитанное</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ярлык настроек</string>
   <string name="conversation_list_search_description">Поиск</string>
@@ -1701,7 +1709,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Добавить вложение</string>
   <string name="conversation__menu_edit_group">Редактировать группу</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Управлять группой</string> -->
+  <string name="conversation__menu_group_settings">Настройки группы</string>
   <string name="conversation__menu_leave_group">Покинуть группу</string>
   <string name="conversation__menu_view_all_media">Все медиа-файлы</string>
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>

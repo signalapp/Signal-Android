@@ -337,6 +337,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arhivirani pogovori (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Potrjeno</string>
+  <string name="ConversationTitleView_you">Vi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Napaka pri pošiljanju predstavitvene fotografije</string>
@@ -470,6 +471,7 @@
   <string name="ManageGroupActivity_on">Vklopljena</string>
   <string name="ManageGroupActivity_add_members">Dodaj člane</string>
   <string name="ManageGroupActivity_view_all_members">Poglej vse člane</string>
+  <string name="ManageGroupActivity_none">Brez</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nimate pooblastil za to</string>
   <string name="ManageGroupActivity_not_capable">Nekdo, ki ste ga dodali, uporablja zastarelo različico aplikacije Signal, ki ne podpira novih skupin, in jo mora nadgraditi</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Posodobitev skupine ni uspela</string>
@@ -500,6 +502,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar skupine</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Za snemanje glasovnega sporočila se dotaknite in držite, za pošiljanje spustite</string>
   <!--InviteActivity-->
@@ -1046,6 +1050,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Brez dovoljenja za dostop do kamere ne morem skenirati kode QR.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Napačno šifrirano sporočilo</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je bilo šifrirano za neobstoječo sejo</string>
@@ -1203,6 +1208,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="contact_selection_activity__enter_name_or_number">Vnesite ime ali številko …</string>
   <string name="contact_selection_activity__invite_to_signal">Povabi na Signal</string>
   <string name="contact_selection_activity__new_group">Nova skupina</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Izbriši vneseni tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Prikaži tipkovnico</string>
@@ -1678,6 +1684,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_list_batch__menu_select_all">Označi vse</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Premakni izbrano v arhiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Označi kot prebrano</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Bližnjica k nastavitvam</string>
   <string name="conversation_list_search_description">Iskanje</string>
@@ -1699,7 +1707,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodaj priponko</string>
   <string name="conversation__menu_edit_group">Uredi skupino</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Uredi skupino</string> -->
+  <string name="conversation__menu_group_settings">Skupinske nastavitve</string>
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_view_all_media">Vsa multimedijska sporočila</string>
   <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>

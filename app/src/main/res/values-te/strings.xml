@@ -310,6 +310,7 @@
   <string name="ConversationListItemAction_archived_conversations_d"> భద్రపరిచిన సంభాషణలు (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ధృవీకరించబడింది</string>
+  <string name="ConversationTitleView_you">మీరు</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">రూపం</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">రూపచిత్రం సెట్ చేయడంలో లోపం</string>
@@ -428,6 +429,7 @@
   <string name="ManageGroupActivity_on">ఆన్</string>
   <string name="ManageGroupActivity_add_members">సభ్యులు జోడించు</string>
   <string name="ManageGroupActivity_view_all_members">సభ్యులందరినీ చూడండి</string>
+  <string name="ManageGroupActivity_none">ఏదీ కాదు</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$sఒక వ్యక్తిని ఆహ్వానించారు</item>
     <item quantity="other">%1$s%2$dవ్యక్తులను ఆహ్వానించారు</item>
@@ -446,6 +448,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">గ్రూప్ అవతార్</string>
   <string name="CropImageActivity_profile_avatar">అవతారము</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">మాటతో కూడిన సందేశాన్ని రికార్డు చేయుటకు తడుతూనే ఉంచి , పంపుటకు వదిలివేయండి.</string>
   <!--InviteActivity-->
@@ -935,6 +939,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ఒక QR కోడ్ను స్కాన్ చేయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">సరికాని గుప్తీకరించిన సందేశం</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">సందేశం</string>
@@ -1083,6 +1088,7 @@
   <string name="contact_selection_activity__enter_name_or_number">పేరు లేదా నంబరు ఎంటర్ చేయండి</string>
   <string name="contact_selection_activity__invite_to_signal">Signal కు ఆహ్వానించండి</string>
   <string name="contact_selection_activity__new_group">కొత్త సమూహం</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">నమోదు చేసిన వచనాన్ని క్లియర్ చేయండి</string>
   <string name="contact_filter_toolbar__show_keyboard_description">కీబోర్డ్ చూపించు</string>
@@ -1511,6 +1517,7 @@
   <string name="conversation_list_batch__menu_select_all">అన్నీ ఎంచుకో</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">ఎంపిక చేసినది భద్రపరుచు</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ఎంపిక చేసినది బయటపెట్టు</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">ఎంపిక చేసినది బయటపెట్టు</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">సెట్టింగుల సత్వరమార్గం</string>
   <string name="conversation_list_search_description">వెతకండి</string>

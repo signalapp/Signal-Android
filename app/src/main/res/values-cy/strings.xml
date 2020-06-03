@@ -339,6 +339,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationListItemAction_archived_conversations_d">Sgyrsiau wedi\'u harchifo (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Gwiriwyd</string>
+  <string name="ConversationTitleView_you">Chi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Proffil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gwall gosod llun proffil</string>
@@ -472,6 +473,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_on">Ymlaen</string>
   <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
   <string name="ManageGroupActivity_view_all_members">Gweld pob aelod</string>
+  <string name="ManageGroupActivity_none">Dim</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nid oes gennych yr hawl i wneud hyn</string>
   <string name="ManageGroupActivity_not_capable">Nid yw rhywun a ychwanegwyd gennych yn cefnogi grwpiau newydd ac mae angen iddo ddiweddaru Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Wedi methu diweddaru\'r grŵp</string>
@@ -502,6 +504,8 @@ Send neges heb ei ddiogelu?</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Rhithffurf y grŵp</string>
   <string name="CropImageActivity_profile_avatar">Rhithffurf</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tapio a dal i recordio neges lais, rhyddhau i\'w hanfon</string>
   <!--InviteActivity-->
@@ -1057,6 +1061,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Mae ar Signal angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Methu sganio cod QR heb ganiatâd y Camera</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Neges amgryptio gwael</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Neges wedi\'i hamgryptio ar gyfer sesiwn nad yw\'n bodoli</string>
@@ -1214,6 +1219,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="contact_selection_activity__enter_name_or_number">Rhowch enw neu rif</string>
   <string name="contact_selection_activity__invite_to_signal">Gwahodd i Signal</string>
   <string name="contact_selection_activity__new_group">Grŵp newydd</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Clirio\'r testun</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Dangos bysellfwrdd</string>
@@ -1689,6 +1695,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_list_batch__menu_select_all">Dewis popeth</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archif wedi\'i ddewis</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Wedi dewis dadarchifio</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Wedi dewis dadarchifio</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Llwybr byr gosodiadau</string>
   <string name="conversation_list_search_description">Chwilio</string>
@@ -1710,7 +1717,6 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ychwanegu atodiad</string>
   <string name="conversation__menu_edit_group">Golygu grŵp</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Rheoli grŵp</string> -->
   <string name="conversation__menu_leave_group">Gadael y grŵp</string>
   <string name="conversation__menu_view_all_media">Pob cyfrwng</string>
   <string name="conversation__menu_conversation_settings">Gosodiadau sgwrsio</string>

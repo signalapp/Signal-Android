@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Enarĥivigitaj interparoloj (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Konfirmita</string>
+  <string name="ConversationTitleView_you">Vi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eraro dum agordo de profila foto</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Ŝaltita</string>
   <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
   <string name="ManageGroupActivity_view_all_members">Vidi ĉiujn grupanojn</string>
+  <string name="ManageGroupActivity_none">Neniu</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vi ne rajtas fari tion</string>
   <string name="ManageGroupActivity_not_capable">Iu, kiun vi aldonis ne subtenas novajn grupojn kaj bezonas ĝisdatigi sian Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Malsukceso ĝisdatigi la grupon</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
   <string name="CropImageActivity_profile_avatar">Avataro</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi</string>
   <!--InviteActivity-->
@@ -988,6 +992,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ne eblas skani rapidrespondan (QR) kodon sen Fotilo-permeso</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Malbone ĉifrita mesaĝo</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaĝo ĉifrita por neekzistanta seanco</string>
@@ -1143,6 +1148,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="contact_selection_activity__enter_name_or_number">Entajpu nomon aŭ numeron</string>
   <string name="contact_selection_activity__invite_to_signal">Inviti al Signal</string>
   <string name="contact_selection_activity__new_group">Nova grupo</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Viŝi la entajpitan tekston</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Montri la klavaron</string>
@@ -1602,6 +1608,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_list_batch__menu_select_all">Elekti ĉiujn</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Enarĥivigi elektitajn</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Elarĥivigi elektitajn</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Elarĥivigi elektitajn</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ŝparvojo al agordoj</string>
   <string name="conversation_list_search_description">Serĉi</string>
@@ -1623,7 +1630,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Aldoni kunsendaĵon</string>
   <string name="conversation__menu_edit_group">Modifi grupon</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Administri grupon</string> -->
   <string name="conversation__menu_leave_group">Forlasi la grupon</string>
   <string name="conversation__menu_view_all_media">Ĉiuj aŭvidaĵoj</string>
   <string name="conversation__menu_conversation_settings">Agordoj pri interparolo</string>

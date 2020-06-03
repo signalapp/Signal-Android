@@ -300,6 +300,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Mga naka-archive na pag-uusap (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Beripikado</string>
+  <string name="ConversationTitleView_you">Ikaw</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profile</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Nagka-error sa pagtatakda ng iyong profile photo</string>
@@ -399,6 +400,7 @@
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_add_members">Magdagdag ng mga kasapi</string>
   <string name="ManageGroupActivity_view_all_members">Tignan ang lahat ng mga kasapi</string>
+  <string name="ManageGroupActivity_none">Wala</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Custom na mga notipikasyon</string>
   <string name="CustomNotificationsDialogFragment__messages">Mga Mensahe</string>
@@ -408,6 +410,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar ng grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pindutin at huwag bitawan upang mag-record ng voice message, bitawan upang ipadala</string>
   <!--InviteActivity-->
@@ -867,6 +871,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Kailangan ng Signal ang pahintulot sa Camera upang makapag-scan ng QR code, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang  \"Mga Pahintulot\", at i-enable ang \"Camera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Hindi makapag-scan ng QR code nang walang pahintulot sa Camera.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Masamang encrypted na mensahe</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ang mensahe ay naka-encrypt para sa hindi-umiiral na sesyon.</string>
@@ -1015,6 +1020,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Ilagay ang pangalan o numero</string>
   <string name="contact_selection_activity__invite_to_signal">Imbitahan sa Signal</string>
   <string name="contact_selection_activity__new_group">Bagong grupo</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Burahin ang inilagay na text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Ipakita ang keyboard</string>
@@ -1466,6 +1472,7 @@
   <string name="conversation_list_batch__menu_select_all">Piliin lahat</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">I-archive ang pinili</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Tanggalin sa archive ang pinili</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Tanggalin sa archive ang pinili</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Shortcut ng settings</string>
   <string name="conversation_list_search_description">Maghanap</string>

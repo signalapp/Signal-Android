@@ -337,6 +337,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzace (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Ověřeno</string>
+  <string name="ConversationTitleView_you">Vy</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba při nastavení profilové fotografie</string>
@@ -470,6 +471,7 @@
   <string name="ManageGroupActivity_on">Zap.</string>
   <string name="ManageGroupActivity_add_members">Přidat členy</string>
   <string name="ManageGroupActivity_view_all_members">Zobrazit všechny členy</string>
+  <string name="ManageGroupActivity_none">Nic</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
   <string name="ManageGroupActivity_not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
@@ -500,6 +502,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Obrázek skupiny</string>
   <string name="CropImageActivity_profile_avatar">Obrázek</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Klepněte a držte pro nahrání hlasové zprávy, pusťte pro odeslání.</string>
   <!--InviteActivity-->
@@ -1054,6 +1058,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu, aby mohl naskenovat QR kód, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nelze naskenovat QR kód bez přístupu k fotoaparátu.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Zpráva zašifrována pro neexistující konverzaci</string>
@@ -1211,6 +1216,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="contact_selection_activity__enter_name_or_number">Zadejte jméno nebo číslo</string>
   <string name="contact_selection_activity__invite_to_signal">Pozvat do Signalu</string>
   <string name="contact_selection_activity__new_group">Nová skupina</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Vymazat zadaný text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Zobrazit klávesnici</string>
@@ -1686,6 +1692,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="conversation_list_batch__menu_select_all">Označit vše</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archivovat vybrané</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnovit vybrané z archivu</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Obnovit vybrané z archivu</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Zkratka nastavení</string>
   <string name="conversation_list_search_description">Hledat</string>
@@ -1707,7 +1714,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Přidat přílohu</string>
   <string name="conversation__menu_edit_group">Editovat skupinu</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Spravovat skupinu</string> -->
+  <string name="conversation__menu_group_settings">Nastavení skupiny</string>
   <string name="conversation__menu_leave_group">Opustit skupinu</string>
   <string name="conversation__menu_view_all_media">Všechna média</string>
   <string name="conversation__menu_conversation_settings">Nastavení konverzace</string>

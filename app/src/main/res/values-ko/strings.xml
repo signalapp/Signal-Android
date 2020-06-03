@@ -285,6 +285,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">보관된 대화(%d개)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">인증됨</string>
+  <string name="ConversationTitleView_you">나</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">프로필</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>
@@ -384,6 +385,7 @@
   <string name="ManageGroupActivity_on">켜짐</string>
   <string name="ManageGroupActivity_add_members">멤버 추가</string>
   <string name="ManageGroupActivity_view_all_members">모든 멤버 보기</string>
+  <string name="ManageGroupActivity_none">없음</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">맞춤형 알림</string>
   <string name="CustomNotificationsDialogFragment__messages">메시지</string>
@@ -393,6 +395,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">그룹 아바타</string>
   <string name="CropImageActivity_profile_avatar">아바타</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">길게 탭하여 음성 메시지를 녹음하고, 손을 떼어 보내기</string>
   <!--InviteActivity-->
@@ -836,6 +840,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR 코드를 읽으려면 카메라 권한이 필요함</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">잘못된 암호화 메시지</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">존재하지 않는 세션의 암호화 메시지</string>
@@ -983,6 +988,7 @@
   <string name="contact_selection_activity__enter_name_or_number">이름 또는 전화번호 입력</string>
   <string name="contact_selection_activity__invite_to_signal">Signal로 초대</string>
   <string name="contact_selection_activity__new_group">새 그룹</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">입력된 텍스트 삭제</string>
   <string name="contact_filter_toolbar__show_keyboard_description">키보드 표시</string>
@@ -1407,6 +1413,8 @@
   <string name="conversation_list_batch__menu_select_all">모두 선택</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">선택한 대화 보관</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">선택한 대화 보관 취소</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">선택한 대화 보관 취소</string>
+  <string name="conversation_list_batch__menu_mark_as_read">읽음으로 표시</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">설정 단축키</string>
   <string name="conversation_list_search_description">검색</string>

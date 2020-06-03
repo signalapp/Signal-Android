@@ -301,6 +301,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtaler (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verifisert</string>
+  <string name="ConversationTitleView_you">Deg</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved largring av profilbilde</string>
@@ -401,6 +402,7 @@
   <string name="ManageGroupActivity_on">På</string>
   <string name="ManageGroupActivity_add_members">Legg til medlemmer</string>
   <string name="ManageGroupActivity_view_all_members">Se alle medlemmer</string>
+  <string name="ManageGroupActivity_none">Ingen</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Egendefinerte varsler</string>
   <string name="CustomNotificationsDialogFragment__messages">Meldinger</string>
@@ -410,6 +412,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Profilbilde</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å spille inn talemelding , slipp for å sende</string>
   <!--InviteActivity-->
@@ -860,6 +864,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ikke-eksisterende økt</string>
@@ -1003,6 +1008,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="contact_selection_activity__enter_name_or_number">Skriv inn navn eller nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Inviter til Signal</string>
   <string name="contact_selection_activity__new_group">Ny gruppe</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Fjern inntastet tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>
@@ -1444,6 +1450,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_list_batch__menu_select_all">Velg alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver valgte</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Angre arkivering av valgte</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Angre arkivering av valgte</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Innstillinger snarvei</string>
   <string name="conversation_list_search_description">Søk</string>

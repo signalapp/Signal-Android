@@ -291,6 +291,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Mazungumzo yaliyohifadhiwa kwenye jalada  (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Imethibitishwa</string>
+  <string name="ConversationTitleView_you">Wewe</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Wasifa</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Hitilafu kuweka picha ya wasifu</string>
@@ -386,6 +387,7 @@
   <string name="ManageGroupActivity_on">Washwa</string>
   <string name="ManageGroupActivity_add_members">Ongeza wanachama</string>
   <string name="ManageGroupActivity_view_all_members">Tazama Wanachama wote</string>
+  <string name="ManageGroupActivity_none">Hakuna</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Taarifa kaida</string>
   <string name="CustomNotificationsDialogFragment__messages">Jumbe</string>
@@ -395,6 +397,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Kundi la avatar</string>
   <string name="CropImageActivity_profile_avatar">Umbo</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Gonga na shikilia kurekodi ujumbe wa sauti, wachilia kitufe kutuma</string>
   <!--InviteActivity-->
@@ -819,6 +823,7 @@ nambari yako ya simu</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Imeshindwa kuskani msimbo wa QR bila ruhusa ya kamera</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Ujumbe wa msimbo fiche mbaya.</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ujumbe umesimbwa kwa kipindi kisichopo</string>
@@ -967,6 +972,7 @@ nambari yako ya simu</string>
   <string name="contact_selection_activity__enter_name_or_number">Ingiza jina au nambari</string>
   <string name="contact_selection_activity__invite_to_signal">Mwalike kwenye Signal</string>
   <string name="contact_selection_activity__new_group">Kikundi kipya</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Futa matini iliyoingizwa</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Onyesha kicharazio</string>
@@ -1394,6 +1400,7 @@ nambari yako ya simu</string>
   <string name="conversation_list_batch__menu_select_all">Chagua zote</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Jalidi iliyochaguliwa</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ondoa kwenye jalada iliyochaguliwa</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Ondoa kwenye jalada iliyochaguliwa</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Njia mkato ya mipangilio</string>
   <string name="conversation_list_search_description">Tafuta</string>

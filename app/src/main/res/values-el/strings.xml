@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Αρχειοθετημένες συνομιλίες (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Επιβεβαιωμένος</string>
+  <string name="ConversationTitleView_you">Εσύ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Προφίλ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Σφάλμα κατά τον καθορισμό φωτογραφίας προφίλ</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Ενεργοποιημένο</string>
   <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
   <string name="ManageGroupActivity_view_all_members">Προβολή όλων των μελών</string>
+  <string name="ManageGroupActivity_none">Κανένα</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Εικόνα ομάδας</string>
   <string name="CropImageActivity_profile_avatar">Εικόνα προφίλ</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα φωνητικό μήνυμα, άφησε το κουμπί για αποστολή</string>
   <!--InviteActivity-->
@@ -980,6 +984,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Κάμερας για το σκανάρισμα του κωδικού QR, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε την \"Κάμερα\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Δεν μπορούμε να σκανάρουμε τον QR κωδικό χωρίς τα δικαιώματα Κάμερας</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Μήνυμα με πρόβλημα στην κρυπτογράφησή του</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για μη υπάρχουσα συνεδρία</string>
@@ -1135,6 +1140,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Εισαγωγή ονόματος ή αριθμού</string>
   <string name="contact_selection_activity__invite_to_signal">Πρόσκληση στο Signal</string>
   <string name="contact_selection_activity__new_group">Νέα ομάδα</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Καθαρισμός πληκτρολογημένου κειμένου</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Εμφάνιση πληκτρολογίου</string>
@@ -1594,6 +1600,7 @@
   <string name="conversation_list_batch__menu_select_all">Επιλογή όλων</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Αρχειοθέτηση επιλεγμένων</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Απαρχειοθέτηση επιλεγμένων</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Απαρχειοθέτηση επιλεγμένων</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Συντόμευση Ρυθμίσεων</string>
   <string name="conversation_list_search_description">Αναζήτηση</string>
@@ -1616,7 +1623,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
   <string name="conversation__menu_edit_group">Επεξεργασία ομάδας</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Διαχείριση ομάδας</string> -->
   <string name="conversation__menu_leave_group">Αποχώρηση απ\' την ομάδα</string>
   <string name="conversation__menu_view_all_media">Όλα τα πολυμέσα</string>
   <string name="conversation__menu_conversation_settings">Επιλογές συνομιλίας</string>

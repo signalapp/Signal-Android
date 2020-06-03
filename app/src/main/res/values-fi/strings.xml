@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arkistoidut keskustelut (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Varmennettu</string>
+  <string name="ConversationTitleView_you">Sinä</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiili</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Virhe asetettaessa profiilikuvaa</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Päällä</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_view_all_members">Näytä kaikki jäsenet</string>
+  <string name="ManageGroupActivity_none">Ei mitään</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sinulla ei ole oikeuksia tähän</string>
   <string name="ManageGroupActivity_not_capable">Joku lisäämistäsi käyttäjistä ei tue uusia ryhmiä ja hänen on siis päivitettävä Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ryhmän päivitys epäonnistui</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ryhmän kuvake</string>
   <string name="CropImageActivity_profile_avatar">Kuvake</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pidä pohjassa nauhoittaaksesi ääniviestin ja päästä irti lähettääksesi sen</string>
   <!--InviteActivity-->
@@ -983,6 +987,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Viestin salaus on kelvoton</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Viesti salattu olemattomalle istunnolle</string>
@@ -1138,6 +1143,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="contact_selection_activity__enter_name_or_number">Syötä nimi tai numero</string>
   <string name="contact_selection_activity__invite_to_signal">Kutsu Signaliin</string>
   <string name="contact_selection_activity__new_group">Uusi ryhmä</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tyhjennä syötetty teksti</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Näytä näppäimistö</string>
@@ -1403,11 +1409,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
   <string name="HelpFragment__no_email_app_found">Sähköpostiohjelmaa ei löytynyt.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Viimeksi käytetyt</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Hymiöt ja ihmiset</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Luonto</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ruoka</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviteetit</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Toiminta</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Paikat</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Esineet</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbolit</string>
@@ -1597,6 +1603,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_list_batch__menu_select_all">Valitse kaikki</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkistoi valitut</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Palauta valitut arkistosta</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Palauta valitut arkistosta</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Merkitse luetuksi</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Asetukset-pikakuvake</string>
   <string name="conversation_list_search_description">Hae</string>
@@ -1618,7 +1626,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lisää liite</string>
   <string name="conversation__menu_edit_group">Muokkaa ryhmää</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Hallinnoi ryhmää</string> -->
+  <string name="conversation__menu_group_settings">Ryhmän asetukset</string>
   <string name="conversation__menu_leave_group">Poistu ryhmästä</string>
   <string name="conversation__menu_view_all_media">Kaikki media</string>
   <string name="conversation__menu_conversation_settings">Keskustelun asetukset</string>

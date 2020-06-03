@@ -295,6 +295,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">アーカイブ済みの会話 (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">確認済み</string>
+  <string name="ConversationTitleView_you">あなた</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">プロフィール</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール写真の設定中にエラーが発生しました</string>
@@ -422,6 +423,7 @@
   <string name="ManageGroupActivity_on">オン</string>
   <string name="ManageGroupActivity_add_members">メンバーを追加</string>
   <string name="ManageGroupActivity_view_all_members">全てのメンバーを表示</string>
+  <string name="ManageGroupActivity_none">音声なし</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">これを実行する権限がありません</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">グループの更新に失敗しました</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">あなたはこのグループのメンバーではありません</string>
@@ -445,6 +447,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">グループアバター</string>
   <string name="CropImageActivity_profile_avatar">アバター</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">長押しでボイスメッセージを録音、リリースして送信</string>
   <!--InviteActivity-->
@@ -937,6 +941,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR コードをスキャンするには、Signal にカメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューの「アクセス許可」で「カメラ」を有効にしてください。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">カメラへのアクセス許可なしでは QR コードをスキャンできません</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">メッセージの暗号化が不適切です</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています</string>
@@ -1090,6 +1095,7 @@
   <string name="contact_selection_activity__enter_name_or_number">名前もしくは番号を入力</string>
   <string name="contact_selection_activity__invite_to_signal">Signal に招待する</string>
   <string name="contact_selection_activity__new_group">新規グループ</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">テキストを消去</string>
   <string name="contact_filter_toolbar__show_keyboard_description">キーボードを表示</string>
@@ -1541,6 +1547,8 @@
   <string name="conversation_list_batch__menu_select_all">すべて選択</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">選択した会話をアーカイブする</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">選択した会話のアーカイブを解除</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">選択した会話のアーカイブを解除</string>
+  <string name="conversation_list_batch__menu_mark_as_read">既読にする</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">設定のショートカット</string>
   <string name="conversation_list_search_description">検索</string>
@@ -1562,7 +1570,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付ファイルを追加</string>
   <string name="conversation__menu_edit_group">グループを編集</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">グループの管理</string> -->
   <string name="conversation__menu_leave_group">グループを抜ける</string>
   <string name="conversation__menu_view_all_media">すべてのメディア</string>
   <string name="conversation__menu_conversation_settings">会話設定</string>

@@ -309,6 +309,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arhiveeritud vestlused (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Kontrollitud</string>
+  <string name="ConversationTitleView_you">Sina</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>
@@ -438,6 +439,7 @@
   <string name="ManageGroupActivity_on">Sees</string>
   <string name="ManageGroupActivity_add_members">Lisa liikmeid</string>
   <string name="ManageGroupActivity_view_all_members">Näita kõiki liikmeid</string>
+  <string name="ManageGroupActivity_none">Puudub</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sul pole õigusi seda teha</string>
   <string name="ManageGroupActivity_not_capable">Keegi sinu poolt lisatutest ei toeta uusi gruppe ja peab Signal-it uuendama</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Grupi uuendamine ei õnnestunud</string>
@@ -464,6 +466,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
   <string name="CropImageActivity_profile_avatar">Pilt</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Koputa ja hoia all, et salvestada helisõnum, vabasta saatmiseks</string>
   <!--InviteActivity-->
@@ -989,6 +993,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Halb krüptitud sõnum</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
@@ -1144,6 +1149,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Sisesta nimi või number</string>
   <string name="contact_selection_activity__invite_to_signal">Kutsu Signalisse</string>
   <string name="contact_selection_activity__new_group">Uus grupp</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tühjenda sisestatud tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Kuva klaviatuuri</string>
@@ -1603,6 +1609,7 @@
   <string name="conversation_list_batch__menu_select_all">Vali kõik</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arhiveeri valitud</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Võta valitud arhiivist välja</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Võta valitud arhiivist välja</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Seadete otsetee</string>
   <string name="conversation_list_search_description">Otsi</string>
@@ -1624,7 +1631,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lisa manus</string>
   <string name="conversation__menu_edit_group">Muuda gruppi</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Halda gruppi</string> -->
   <string name="conversation__menu_leave_group">Lahku grupist</string>
   <string name="conversation__menu_view_all_media">Kogu meedia</string>
   <string name="conversation__menu_conversation_settings">Vestluse seaded</string>

@@ -337,6 +337,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">שיחות בארכיון (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">מוודא</string>
+  <string name="ConversationTitleView_you">אתה</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">פרופיל</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">שגיאה בהגדרת תמונת פרופיל</string>
@@ -470,6 +471,7 @@
   <string name="ManageGroupActivity_on">מופעל</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_view_all_members">הצג את כל חברי הקבוצה</string>
+  <string name="ManageGroupActivity_none">ללא</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">אין לך את הזכויות לעשות זאת</string>
   <string name="ManageGroupActivity_not_capable">למישהו שהוספת אין תמיכה בקבוצות חדשות והוא צריך לעדכן את Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">נכשל בעדכון הקבוצה</string>
@@ -500,6 +502,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">יצגן קבוצה</string>
   <string name="CropImageActivity_profile_avatar">יצגן</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">הקש והחזק כדי להקליט הודעה קולית, שחרר כדי לשלוח</string>
   <!--InviteActivity-->
@@ -1055,6 +1059,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal צריך את הרשאת המצלמה על מנת לסרוק קוד QR, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">לא היה ניתן לסרוק קוד QR ללא הרשאת מצלמה</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת באופן גרוע</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">הודעה הוצפנה עבור שיח בלתי־קיים</string>
@@ -1212,6 +1217,7 @@
   <string name="contact_selection_activity__enter_name_or_number">הכנס שם או מספר</string>
   <string name="contact_selection_activity__invite_to_signal">הזמן אל Signal</string>
   <string name="contact_selection_activity__new_group">קבוצה חדשה</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">נקה טקסט מוכנס</string>
   <string name="contact_filter_toolbar__show_keyboard_description">הראה מקלדת</string>
@@ -1687,6 +1693,8 @@
   <string name="conversation_list_batch__menu_select_all">בחר הכל</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">אחסן בארכיון נבחרים</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">הוצא מארכיון נבחרים</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">הוצא מארכיון נבחרים</string>
+  <string name="conversation_list_batch__menu_mark_as_read">סמן כנקרא</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">קיצור דרך להגדרות</string>
   <string name="conversation_list_search_description">חפש</string>
@@ -1708,7 +1716,6 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">הוסף צרופה</string>
   <string name="conversation__menu_edit_group">ערוך קבוצה</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">נהל קבוצה</string> -->
   <string name="conversation__menu_leave_group">עזוב קבוצה</string>
   <string name="conversation__menu_view_all_media">כל המדיה</string>
   <string name="conversation__menu_conversation_settings">הגדרות שיחה</string>

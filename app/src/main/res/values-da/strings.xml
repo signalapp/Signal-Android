@@ -310,6 +310,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverede samtaler (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificeret</string>
+  <string name="ConversationTitleView_you">Dig</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fejl opstået ved oprettelse af profilbilledet</string>
@@ -439,6 +440,7 @@
   <string name="ManageGroupActivity_on">Aktiveret</string>
   <string name="ManageGroupActivity_add_members">Tilføj medlemmer</string>
   <string name="ManageGroupActivity_view_all_members">Vis alle medlemmer</string>
+  <string name="ManageGroupActivity_none">Ingen</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikke rettigheder til at gøre dette</string>
   <string name="ManageGroupActivity_not_capable">En person som du tilføjede, understøtter ikke nye grupper og skal opdatere Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Det lykkedes ikke at opdatere gruppen</string>
@@ -465,6 +467,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap og hold for at optage en stemmebesked. Slip for at sende</string>
   <!--InviteActivity-->
@@ -989,6 +993,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ikke muligt at skanne QR-koden. Tilladelse til at tilgå kameraet mangler</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig krypteret besked</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Beskeden er krypteret til en session der ikke findes</string>
@@ -1144,6 +1149,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="contact_selection_activity__enter_name_or_number">Søg navn eller nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Invitér til Signal</string>
   <string name="contact_selection_activity__new_group">Opret ny gruppe</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Fjern tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>
@@ -1603,6 +1609,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="conversation_list_batch__menu_select_all">Markér alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkivér valgte</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Flyt fra arkiv til oversigt</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Flyt fra arkiv til oversigt</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Marker som læst</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvej til Indstillinger</string>
   <string name="conversation_list_search_description">Søg</string>
@@ -1624,7 +1632,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
   <string name="conversation__menu_edit_group">Redigér gruppe</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_manage_group">Håndtering af gruppe</string> -->
+  <string name="conversation__menu_group_settings">Gruppe indstillinger</string>
   <string name="conversation__menu_leave_group">Forlad gruppe</string>
   <string name="conversation__menu_view_all_media">Alle mediefiler</string>
   <string name="conversation__menu_conversation_settings">Samtale indstillinger</string>

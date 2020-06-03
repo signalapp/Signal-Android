@@ -289,6 +289,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">محفوظ شدہ گفتگو(%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">تصدیق شدہ</string>
+  <string name="ConversationTitleView_you">آپ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفائل </string>
   <string name="CreateProfileActivity_error_setting_profile_photo">پروفائل تصویر کو ترتیب دینے میں خرابی </string>
@@ -384,6 +385,7 @@
   <string name="ManageGroupActivity_on">چلائیں</string>
   <string name="ManageGroupActivity_add_members">اراکین شامل کریں</string>
   <string name="ManageGroupActivity_view_all_members">تمام ممبروں کو دیکھیں</string>
+  <string name="ManageGroupActivity_none">کوئی نہیں</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <string name="CustomNotificationsDialogFragment__messages">پیغامات</string>
@@ -393,6 +395,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">اوتار گروپ</string>
   <string name="CropImageActivity_profile_avatar">اوتار</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">وائس پیغام ریکارڈ کرنے کیلئے کلک کریں اور پکڑ کر رکھیں، بھیجنے کیلئے چھوڑ دیں</string>
   <!--InviteActivity-->
@@ -812,6 +816,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal کو QR کوڈ سکین کرنے کیلئے کیمرہ کی اجازت کی ضرورت ہے، لیکن اس کو مستقل طور پر رد کر دیا گیا۔ براہ کرم ایپ کی ترتیبات میں جا کر\"اجازت نامہ\"کا انتخاب کریں اور \"کیمرہ\" کو فعال کریں۔</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">کیمرہ کی اجازت کے بغیر QR کوڈ سکین کرنا ممکن نہیں</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">خفیہ کردہ خراب پیغام </string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">غیر موجود سیشن کیلئے خفیہ کردہ پیغام</string>
@@ -960,6 +965,7 @@
   <string name="contact_selection_activity__enter_name_or_number">نمبر یا نام داخل کریں</string>
   <string name="contact_selection_activity__invite_to_signal">Signal میں مدعو کریں</string>
   <string name="contact_selection_activity__new_group">نیا گروپ</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">داخل کیا گیا ٹیکسٹ صاف کریں</string>
   <string name="contact_filter_toolbar__show_keyboard_description">کی بورڈ دکھائیں</string>
@@ -1387,6 +1393,7 @@
   <string name="conversation_list_batch__menu_select_all">تمام منتخب کریں</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">پس پردہ منتخب کیا گیا</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">غیر پس پردہ منتخب کیا گیا </string>
+  <string name="conversation_list_batch__menu_unarchive_selected">غیر پس پردہ منتخب کیا گیا </string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ترتیبات شارٹ کٹ</string>
   <string name="conversation_list_search_description">تلا ‎ش کر یں</string>

@@ -292,6 +292,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Các cuộc trò chuyện đã lưu trữ (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Đã xác minh</string>
+  <string name="ConversationTitleView_you">Bạn</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Hồ sơ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Lỗi đặt ảnh đại diện</string>
@@ -407,6 +408,7 @@
   <string name="ManageGroupActivity_on">Bật</string>
   <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
   <string name="ManageGroupActivity_view_all_members">Xem tất cả thành viên</string>
+  <string name="ManageGroupActivity_none">Không</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s đã mời %2$d người</item>
   </plurals>
@@ -423,6 +425,8 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ảnh đại diện của nhóm</string>
   <string name="CropImageActivity_profile_avatar">Ảnh đại diện</string>
+  <!--ImageEditorFragment-->
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Nhấn và giữ để ghi âm tin nhắn thoại, thả ra để gửi</string>
   <!--InviteActivity-->
@@ -916,6 +920,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal cần quyền truy cập Máy ảnh để quét mã QR, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Máy ảnh\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Không thể quét mã QR khi không có quyền truy cập Máy ảnh</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Tin nhắn mã hóa kém</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Tin nhắn mã hoá cho phiên không tồn tại</string>
@@ -1063,6 +1068,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="contact_selection_activity__enter_name_or_number">Điền tên hoặc số</string>
   <string name="contact_selection_activity__invite_to_signal">Mời dùng Signal</string>
   <string name="contact_selection_activity__new_group">Tạo nhóm mới</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Xóa văn bản đã nhập </string>
   <string name="contact_filter_toolbar__show_keyboard_description">Hiện bàn phím</string>
@@ -1502,6 +1508,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="conversation_list_batch__menu_select_all">Chọn tất cả</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Lưu trữ mục đã chọn</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Bỏ lưu trữ mục đã chọn</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Bỏ lưu trữ mục đã chọn</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Đánh dấu đã đọc</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Phím tắt cài đặt</string>
   <string name="conversation_list_search_description">Tìm kiếm</string>
