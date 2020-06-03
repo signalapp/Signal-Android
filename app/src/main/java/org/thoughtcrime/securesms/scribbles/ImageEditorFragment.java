@@ -481,8 +481,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     Point       size  = result.imageSize;
 
     if (faces.isEmpty()) {
-      Toast.makeText(requireContext(), R.string.ImageEditorFragment_no_faces_detected, Toast.LENGTH_SHORT).show();
-      imageEditorHud.setBlurFacesToggleEnabled(false);
       cachedFaceDetection = null;
       return;
     }

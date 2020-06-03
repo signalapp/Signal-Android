@@ -559,9 +559,6 @@
     <string name="CropImageActivity_group_avatar">Group avatar</string>
     <string name="CropImageActivity_profile_avatar">Avatar</string>
 
-    <!-- ImageEditorFragment -->
-    <string name="ImageEditorFragment_no_faces_detected">No faces detected</string>
-
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_blur_faces">Blur faces</string>
     <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">New: Blur faces or draw anywhere to blur</string>
