@@ -384,7 +384,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ezin izan da %1$s gehitu Signal erabiltzailea ez delako.</string>
   <string name="GroupCreateActivity_loading_group_details">Taldearen detaileak kargatzen…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Dagoeneko zaude taldean.</string>
-  <string name="GroupCreateActivity_remove_member_description">Ezabatu partaidea</string>
+  <string name="GroupCreateActivity_remove_member_description">Ezabatu kidea</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partekatu zure profileko izena eta argazkia talde honekin?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Zure profileko izena eta argazkia talde honetako egungo eta etorkizuneko kide guztiekin partekatu nahi duzu?</string>
@@ -441,7 +441,7 @@
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
   <string name="ManageGroupActivity_not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
-  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ez zara taldeko partaidea</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ez zara taldeko kidea</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Aukeratu partaide berriak gehitu edo gonbidatu dezakeena</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Aukeratu taldearen izena eta argazkia aldatu dezakeena</string>
@@ -600,8 +600,8 @@
   <string name="MessageRecord_s_joined_signal">%s Signal-en dago!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Mezuen desagerpena ezgaitu duzu.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s-k mezuen desagerpena ezgaitu du.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mezuen desagerpenaren debora %1$s-tan ezarrita</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">Mezuen desagerpenaren debora %2$s-tan ezarri du %1$s-k</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mezuen desagerpenaren denbora %1$s-tan ezarrita</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">Mezuen desagerpenaren denbora %2$s-tan ezarri du %1$s erabiltzaileak</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Taldea sortu duzu.</string>
   <string name="MessageRecord_group_updated">Taldea eguneratu da.</string>
@@ -646,7 +646,7 @@
   <string name="MessageRecord_you_accepted_invite">Taldean sartzeko gonbidapen bat onartu egin duzu.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s erabiltzaileak taldean sartzeko gonbidapen bat onartu du.</string>
   <string name="MessageRecord_you_added_invited_member_s">Gehitu duzu gonbidatuta zegoen %1$s kidea.</string>
-  <string name="MessageRecord_s_added_invited_member_s">%1$s erabiltzaileak gehitu du gonbidatuta zegoen %2$s partaidea.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s erabiltzaileak gehitu du gonbidatuta zegoen %2$s kidea.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Taldearen izena aldatu duzu. Orain \"%1$s\" du izena.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s erabiltzaileak taldearen izena aldatu du. Orain \"%2$s\" du izena.</string>
@@ -675,9 +675,9 @@
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s taldean sartzeko gonbidatua izan zara. Talde honetako kideei zuri mezuak bidaltzen utzi nahi diezu?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$s desblokeatu elkarri mezuak bidaltzeko eta deitzeko.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desblokeatu taldeko kideak zu berriko talde honetan sartzeko gai izan daitezen.</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$s taldearen partaidea</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">%1$s eta %2$s taldeen partaidea</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, eta %3$s taldeen partaidea </string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s taldeko kidea</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s eta %2$s taldeetako kidea</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, eta %3$s taldeetako kidea</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">partaide %1$d</item>
     <item quantity="other">%1$d partaide</item>
@@ -939,7 +939,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal-en dago!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mezuen desagerpena ezgaituta dago</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen debora %s-tan ezarrita</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen denbora %s-tan ezarrita</string>
   <string name="ThreadRecord_safety_number_changed">Seguratsun zenbakia aldatua</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Zure segurtasun zenbakia %s aldatu da.</string>
   <string name="ThreadRecord_you_marked_verified">Egiaztatutzat markatu duzu</string>

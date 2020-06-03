@@ -735,11 +735,17 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">തെറ്റായ പിൻ</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">പിൻ എൻട്രി ഒഴിവാക്കണോ?</string>
   <string name="PinRestoreEntryFragment_need_help">സഹായം ആവശ്യമുണ്ടോ?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">നിങ്ങൾ സൃഷ്ടിച്ച %1$d+ അക്ക കോഡാണ് നിങ്ങളുടെ പിൻ, അത് സംഖ്യാ അല്ലെങ്കിൽ ആൽഫാന്യൂമെറിക് ആകാം. \n\nനിങ്ങളുടെ പിൻ ഓർമിക്കാൻ കഴിയുന്നില്ലെങ്കിൽ, നിങ്ങൾക്ക് പുതിയൊരെണ്ണം സൃഷ്ടിക്കാൻ കഴിയും. നിങ്ങൾക്ക് അക്കൗണ്ട് രജിസ്റ്റർ ചെയ്യാനും ഉപയോഗിക്കാനും കഴിയും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലുള്ള ചില സംരക്ഷിച്ച ക്രമീകരണങ്ങൾ നഷ്‌ടപ്പെടും.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">നിങ്ങൾക്ക് നിങ്ങളുടെ PIN ഓർമ്മിക്കാൻ കഴിയുന്നില്ലായെങ്കിൽ, നിങ്ങൾക്ക് പുതിയ ഒരെണ്ണം സൃഷ്ടിക്കാവുന്നതാണ്.  നിങ്ങൾക്ക് രജിസ്റ്റർ ചെയ്യാനും നിങ്ങളുടെ അക്കൗണ്ട് ഉപയോഗിക്കാനും സാധിക്കും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലെ സേവ് ചെയ്തിട്ടുള്ള ചില സെറ്റിംഗ്സ് നിങ്ങൾക്ക് നഷ്ടമാകും.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">പുതിയ പിൻ സൃഷ്ടിക്കുക</string>
   <string name="PinRestoreEntryFragment_contact_support">കോണ്ടാക്ട് സഹായം</string>
   <string name="PinRestoreEntryFragment_cancel">റദ്ദാക്കുക</string>
   <string name="PinRestoreEntryFragment_skip">ഒഴിവാക്കുക</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">നിങ്ങൾക്ക് %1$d ശ്രമം  ശേഷിക്കുന്നു. നിങ്ങൾക്ക് ശ്രമങ്ങൾ തീർന്നുപോയാൽ, നിങ്ങൾക്ക് ഒരു പുതിയ പിൻ സൃഷ്ടിക്കാൻ കഴിയും. നിങ്ങൾക്ക് രജിസ്റ്റർ ചെയ്യാനും അക്കൗണ്ട് ഉപയോഗിക്കാനും കഴിയും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലുള്ള ചില സംരക്ഷിച്ച ക്രമീകരണങ്ങൾ നഷ്‌ടപ്പെടും.</item>
+    <item quantity="other">നിങ്ങൾക്ക് %1$d ശ്രമങ്ങൾ ശേഷിക്കുന്നു. നിങ്ങൾക്ക് ശ്രമങ്ങൾ തീർന്നുപോയാൽ, നിങ്ങൾക്ക് ഒരു പുതിയ പിൻ സൃഷ്ടിക്കാൻ കഴിയും. നിങ്ങൾക്ക് രജിസ്റ്റർ ചെയ്യാനും അക്കൗണ്ട് ഉപയോഗിക്കാനും കഴിയും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലുള്ള ചില സംരക്ഷിച്ച ക്രമീകരണങ്ങൾ നഷ്‌ടപ്പെടും.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">സിഗ്നൽ രജിസ്ട്രേഷൻ - Android-നായുള്ള പിൻ സഹായം ആവശ്യമുണ്ടോ</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ആൽഫാന്യൂമെറിക് പിൻ നൽകുക</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">സംഖ്യാ പിൻ നൽകുക</string>
   <!--PinRestoreLockedFragment-->
@@ -764,6 +770,7 @@
   <string name="RecipientPreferenceActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="RecipientPreferenceActivity_enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="RecipientPreferenceActivity_disabled">അപ്രാപ്‌തമാക്കി</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">ഒരു സന്ദേശം അയയ്ക്കുകയോ സ്വീകരിക്കുകയോ ചെയ്തുകഴിഞ്ഞാൽ ലഭ്യമാകും.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">പേരിടാത്ത ഗ്രൂപ്പ്</string>
   <!--RedPhone-->
@@ -793,7 +800,11 @@
   <string name="RegistrationActivity_invalid_number">അസാധുവായ നമ്പർ</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">നിങ്ങൾ വ്യക്തമാക്കിയ നമ്പർ
         (%s) അസാധുവാണ്.</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play Services കാണുന്നില്ല</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">ഈ ഉപകരണത്തിന് Google Play Services കാണുന്നില്ല. നിങ്ങൾക്ക് ഇപ്പോഴും Signal ഉപയോഗിക്കാം, പക്ഷേ ഈ കോൺഫിഗറേഷൻ വിശ്വാസ്യതയോ പ്രകടനമോ കുറയാൻ കാരണമായേക്കാം.\n\nനിങ്ങൾ ഒരു നൂതന ഉപയോക്താവല്ലെങ്കിൽ, അഥവാ ഒരു വിപണനാനന്തര Android റോം പ്രവർത്തിപ്പിക്കുന്നില്ല, അല്ലെങ്കിൽ നിങ്ങൾ ഇത് തെറ്റായി കാണുന്നുവെന്ന് വിശ്വസിക്കുന്നുവെങ്കിൽ, പ്രശ്‌നപരിഹാരത്തിന്ദ യവായി  support@signal.org-നെ ബന്ധപ്പെടുക.</string>
   <string name="RegistrationActivity_i_understand">എനിക്ക് മനസിലായി</string>
+  <string name="RegistrationActivity_play_services_error">Play Services പിശക്</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services അപ്‌ഡേറ്റുചെയ്യുന്നു അല്ലെങ്കിൽ താൽക്കാലികമായി ലഭ്യമല്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_terms_and_privacy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
   <string name="RegistrationActivity_no_browser">ഈ ലിങ്ക് തുറക്കാനായില്ല. വെബ് ബ്രൌസർ സറൊന്നും കണ്ടെത്തിയില്ല.</string>
   <string name="RegistrationActivity_more_information">കൂടുതൽ വിവരങ്ങൾ</string>
@@ -986,8 +997,10 @@ grūpp ap‌ḍē</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">അനുമതിയില്ലാതെ ബാഹ്യ സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കാൻ കഴിയില്ല</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">സന്ദേശം ഇല്ലാതാക്കണോ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ഇത് ഈ സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s %2$s-നോട്</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d സംഭാഷണങ്ങളിൽ %1$d പുതിയ സന്ദേശങ്ങൾ</string>
+  <string name="MessageNotifier_most_recent_from_s">ഏറ്റവും പുതിയത്: %1$s നിന്ന്</string>
   <string name="MessageNotifier_locked_message">ലോക്കുചെയ്‌ത സന്ദേശം</string>
   <string name="MessageNotifier_media_message_with_text">മീഡിയ സന്ദേശം: %s</string>
   <string name="MessageNotifier_message_delivery_failed">സന്ദേശ വിതരണം പരാജയപ്പെട്ടു.</string>
@@ -1023,6 +1036,7 @@ grūpp ap‌ḍē</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">സിഗ്നൽ ലോക്ക് ചെയ്യുമ്പോൾ ദ്രുത പ്രതികരണം ലഭ്യമല്ല!</string>
   <string name="QuickResponseService_problem_sending_message">സന്ദേശം അയയ്‌ക്കുന്നതിൽ പ്രശ്‌നം!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_saved_to">%s-ലേക്ക് സംരക്ഷിച്ചു</string>
   <string name="SaveAttachmentTask_saved">സംരക്ഷിച്ചു</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">തിരയൽ</string>
@@ -1092,6 +1106,7 @@ grūpp ap‌ḍē</string>
   <string name="attachment_type_selector__file_description">ഫയൽ</string>
   <string name="attachment_type_selector__gallery">ഗാലറി</string>
   <string name="attachment_type_selector__file">ഫയൽ</string>
+  <string name="attachment_type_selector__drawer_description">അറ്റാച്ചുമെന്റ് ഡ്രോയർ ടോഗിൾ ചെയ്യുക</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">പഴയ പാസ്‌ഫ്രെയ്‌സ്</string>
   <string name="change_passphrase_activity__new_passphrase">പുതിയ പാസ്‌ഫ്രെയ്‌സ്</string>
@@ -1101,6 +1116,7 @@ grūpp ap‌ḍē</string>
   <string name="contact_selection_activity__invite_to_signal">Signalലേക്ക് ക്ഷണിക്കുക</string>
   <string name="contact_selection_activity__new_group">പുതിയ ഗ്രൂപ്പ്</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">നൽകിയ വാചകം മായ്‌ക്കുക</string>
   <string name="contact_filter_toolbar__show_keyboard_description">കീബോർഡ് കാണിക്കുക</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">ഡയൽപാഡ് കാണിക്കുക</string>
   <!--contact_selection_group_activity-->
@@ -1122,17 +1138,26 @@ grūpp ap‌ḍē</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal സന്ദേശം</string>
   <string name="conversation_activity__type_message_sms_insecure">സുരക്ഷിതമല്ലാത്ത SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">സുരക്ഷിതമല്ലാത്ത MMS</string>
   <string name="conversation_activity__from_sim_name">%1$s നിന്ന്</string>
   <string name="conversation_activity__sim_n">സിം %1$d</string>
   <string name="conversation_activity__send">അയയ്‌ക്കുക</string>
+  <string name="conversation_activity__compose_description">സന്ദേശ ഘടന</string>
+  <string name="conversation_activity__emoji_toggle_description">ഇമോജി കീബോർഡ് ടോഗിൾ ചെയ്യുക</string>
+  <string name="conversation_activity__attachment_thumbnail">അറ്റാച്ചുമെന്റ് ലഘുചിത്രം</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">ദ്രുത ക്യാമറ അറ്റാച്ചുമെന്റ് ഡ്രോയർ ടോഗിൾ ചെയ്യുക</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ഓഡിയോ അറ്റാച്ചുമെന്റ് റെക്കോർഡുചെയ്‌ത് അയയ്‌ക്കുക</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ഓഡിയോ അറ്റാച്ചുമെന്റിന്റെ റെക്കോർഡിംഗ് ലോക്ക് ചെയ്യുക</string>
   <string name="conversation_activity__enable_signal_for_sms">SMS-നായി Signal പ്രാപ്തമാക്കുക</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">റദ്ദാക്കാൻ സ്ലൈഡ് ചെയ്യുക</string>
   <string name="conversation_input_panel__cancel">റദ്ദാക്കുക</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">മീഡിയ സന്ദേശം</string>
+  <string name="conversation_item__secure_message_description">സുരക്ഷിത സന്ദേശം</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__send_failed_indicator_description">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു</string>
+  <string name="conversation_item_sent__pending_approval_description">അംഗീകാരം തീർപ്പുകൽപ്പിച്ചിട്ടില്ല</string>
   <string name="conversation_item_sent__delivered_description">കൈമാറി</string>
   <string name="conversation_item_sent__message_read">സന്ദേശം വായിച്ചു</string>
   <!--conversation_item_received-->
@@ -1256,6 +1281,7 @@ grūpp ap‌ḍē</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">സംഭാഷണം ഒച്ചയിലാതാക്കുക</string>
   <string name="recipient_preferences__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
+  <string name="recipient_preferences__custom_notifications_settings">സിസ്റ്റം അറിയിപ്പ് ക്രമീകരണങ്ങൾ</string>
   <string name="recipient_preferences__notification_sound">അറിയിപ്പ് ശബ്‌ദം</string>
   <string name="recipient_preferences__vibrate">വൈബ്രേറ്റ്</string>
   <string name="recipient_preferences__block">ബ്ലോക്ക്</string>
@@ -1310,8 +1336,11 @@ grūpp ap‌ḍē</string>
   <string name="AndroidManifest_remove_photo">ഫോട്ടോ ഇല്ലാതാക്കുക</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">സന്ദേശ അഭ്യർത്ഥനകൾ</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ഉപയോക്താക്കൾക്ക് ഇപ്പോൾ ഒരു പുതിയ സംഭാഷണം സ്വീകരിക്കാൻ തിരഞ്ഞെടുക്കാം. ആരാണ് സന്ദേശമയയ്ക്കുന്നതെന്ന് പ്രൊഫൈൽ പേരുകൾ ആളുകളെ അറിയിക്കുന്നു.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">പ്രൊഫൈൽ പേര് ചേർക്കുക</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">പുതിയത്: സന്ദേശ അഭ്യർത്ഥനകൾ</string>
   <string name="MessageRequestsMegaphone__add_name">പേര് ചേർക്കുക</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">ഒരു പുതിയ സംഭാഷണം സ്വീകരിക്കണോ എന്ന് നിങ്ങൾക്ക് ഇപ്പോൾ തിരഞ്ഞെടുക്കാം. \"അംഗീകരിക്കുക,\" \"ഇല്ലാതാക്കുക\" അല്ലെങ്കിൽ \"ബ്ലോക്ക്\" എന്നതിനുള്ള ഓപ്ഷനുകൾ നിങ്ങൾ കാണും.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">സഹായം</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">നിങ്ങൾ ഇതുവരെ ഞങ്ങളുടെ പതിവുചോദ്യങ്ങൾ വായിച്ചിട്ടുണ്ടോ?</string>
@@ -1359,8 +1388,12 @@ grūpp ap‌ḍē</string>
   <string name="arrays__audio">ഓഡിയോ</string>
   <string name="arrays__video">വീഡിയോ</string>
   <string name="arrays__small">ചെറുത്</string>
+  <string name="arrays__normal">സാധാരണ</string>
   <string name="arrays__large">വലുത്</string>
+  <string name="arrays__extra_large">അധിക വലുത്</string>
   <string name="arrays__default">സ്ഥിരസ്ഥിതി</string>
+  <string name="arrays__high">ഉയർന്ന</string>
+  <string name="arrays__max">പരമാവധി</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%dh</item>
@@ -1375,6 +1408,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__enable_passphrase">പാസ്‌ഫ്രെയ്‌സ് സ്‌ക്രീൻ ലോക്ക് പ്രവർത്തനക്ഷമമാക്കുക</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">റീസന്റ് ലിസ്റ്റിലും അപ്ലിക്കേഷനിലും സ്‌ക്രീൻഷോട്ടുകൾ തടയുക</string>
   <string name="preferences__notifications">അറിയിപ്പുകൾ</string>
+  <string name="preferences__system_notification_settings">സിസ്റ്റം അറിയിപ്പ് ക്രമീകരണങ്ങൾ</string>
   <string name="preferences__led_color">LED നിറം</string>
   <string name="preferences__led_color_unknown">അജ്ഞാതം</string>
   <string name="preferences__pref_led_blink_title">എൽഇഡി ബ്ലിങ്ക് പാറ്റേൺ</string>
@@ -1394,6 +1428,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__magenta">മജന്ത</string>
   <string name="preferences__white">വെള്ള</string>
   <string name="preferences__none">ഒന്നുമില്ല</string>
+  <string name="preferences__normal">സാധാരണ</string>
   <string name="preferences__help">സഹായം</string>
   <string name="preferences__advanced">അഡ്വാൻസ്‌ഡ്`</string>
   <string name="preferences__privacy">സ്വകാര്യത</string>
