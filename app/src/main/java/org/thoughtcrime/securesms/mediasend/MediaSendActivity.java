@@ -319,6 +319,9 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     MediaSendFragment sendFragment  = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
 
     if (sendFragment == null || !sendFragment.isVisible() || !hud.isInputOpen()) {
+      if (captionAndRail != null) {
+        captionAndRail.setVisibility(View.VISIBLE);
+      }
       super.onBackPressed();
     } else {
       hud.hideCurrentInput(composeText);
