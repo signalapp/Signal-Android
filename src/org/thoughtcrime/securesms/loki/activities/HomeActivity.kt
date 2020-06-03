@@ -67,7 +67,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-        IP2Country.configureIfNeeded(this)
         // Process any outstanding deletes
         val threadDatabase = DatabaseFactory.getThreadDatabase(this)
         val archivedConversationCount = threadDatabase.archivedConversationListCount
@@ -168,6 +167,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
         MultiDeviceProtocol.configureIfNeeded(apiDB)
+        IP2Country.configureIfNeeded(this)
         // TODO: Temporary hack to unbork existing clients
         val allContacts = DatabaseFactory.getRecipientDatabase(this).allAddresses.map {
             MultiDeviceProtocol.shared.getMasterDevice(it.serialize()) ?: it.serialize()
