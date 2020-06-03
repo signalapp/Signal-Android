@@ -71,7 +71,16 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
-                android:src="@drawable/ic_brush_highlight_32" />
+                android:src="@drawable/ic_brush_highlight_32"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/scribble_blur_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_image_editor_blur" />
 
             <ImageView
                 android:id="@+id/scribble_sticker_button"
@@ -163,6 +172,35 @@
             android:src="@drawable/ic_crop_lock_32"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/scribble_blur_toggle_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="42dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:orientation="horizontal"
+            android:background="@drawable/transparent_black_pill"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="@string/ImageEditorHud_auto_blur_faces"
+                android:textColor="@color/core_white"/>
+
+            <Switch
+                android:id="@+id/scribble_blur_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

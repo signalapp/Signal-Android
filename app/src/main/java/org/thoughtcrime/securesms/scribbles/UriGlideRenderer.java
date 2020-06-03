@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.scribbles;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -29,9 +28,11 @@ import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.concurrent.ExecutionException;
 
@@ -42,12 +43,16 @@ import java.util.concurrent.ExecutionException;
  */
 final class UriGlideRenderer implements Renderer {
 
+  private static final String TAG = Log.tag(UriGlideRenderer.class);
+
   private static final int PREVIEW_DIMENSION_LIMIT = 2048;
+  private static final int MAX_BLUR_DIMENSION      = 300;
 
   private final Uri     imageUri;
   private final Paint   paint                 = new Paint();
   private final Matrix  imageProjectionMatrix = new Matrix();
   private final Matrix  temp                  = new Matrix();
+  private final Matrix  blurScaleMatrix       = new Matrix();
   private final boolean decryptable;
   private final int     maxWidth;
   private final int     maxHeight;
@@ -55,7 +60,6 @@ final class UriGlideRenderer implements Renderer {
   @Nullable private Bitmap         bitmap;
   @Nullable private Bitmap         blurredBitmap;
   @Nullable private Paint          blurPaint;
-  @Nullable private BlurMaskFilter blurMaskFilter;
 
   UriGlideRenderer(@NonNull Uri imageUri, boolean decryptable, int maxWidth, int maxHeight) {
     this.imageUri    = imageUri;
@@ -124,12 +128,8 @@ final class UriGlideRenderer implements Renderer {
       for (EditorElement child : rendererContext.getChildren()) {
         if (child.getZOrder() == EditorModel.Z_MASK) {
           renderMask = true;
-          if (blurMaskFilter == null) {
-            blurMaskFilter = new BlurMaskFilter(4, BlurMaskFilter.Blur.NORMAL); // This blurs edges of the mask shapes
-          }
           if (blurPaint == null) {
             blurPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            blurPaint.setMaskFilter(blurMaskFilter);
           }
           blurPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
           rendererContext.setMaskPaint(blurPaint);
@@ -143,7 +143,16 @@ final class UriGlideRenderer implements Renderer {
 
       blurPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
       blurPaint.setMaskFilter(null);
-      if (blurredBitmap == null) blurredBitmap = blur(bitmap, rendererContext.context);
+
+      if (blurredBitmap == null) {
+        blurredBitmap = blur(bitmap, rendererContext.context);
+
+        blurScaleMatrix.setRectToRect(new RectF(0, 0, blurredBitmap.getWidth(), blurredBitmap.getHeight()),
+                                      new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight()),
+                                      Matrix.ScaleToFit.FILL);
+      }
+
+      rendererContext.canvas.concat(blurScaleMatrix);
       rendererContext.canvas.drawBitmap(blurredBitmap, 0, 0, blurPaint);
       blurPaint.setXfermode(null);
 
@@ -197,7 +206,7 @@ final class UriGlideRenderer implements Renderer {
    * Always use this getter, as Bitmap is kept in Glide's LRUCache, so it could have been recycled
    * by Glide. If it has, or was never set, this method returns null.
    */
-  private @Nullable Bitmap getBitmap() {
+  public @Nullable Bitmap getBitmap() {
     if (bitmap != null && bitmap.isRecycled()) {
       bitmap = null;
     }
@@ -223,19 +232,46 @@ final class UriGlideRenderer implements Renderer {
     return matrix;
   }
 
-  private static @NonNull Bitmap blur(@NonNull Bitmap bitmap, @NonNull Context context) {
+  private static @NonNull Bitmap blur(Bitmap bitmap, Context context) {
+    Point  previewSize = scaleKeepingAspectRatio(new Point(bitmap.getWidth(), bitmap.getHeight()), PREVIEW_DIMENSION_LIMIT);
+    Point  blurSize    = scaleKeepingAspectRatio(new Point(previewSize.x / 2, previewSize.y / 2 ), MAX_BLUR_DIMENSION);
+    Bitmap small       = BitmapUtil.createScaledBitmap(bitmap, blurSize.x, blurSize.y);
+
+    Log.d(TAG, "Bitmap: " + bitmap.getWidth() + "x" + bitmap.getHeight() + ", Blur: " + blurSize.x + "x" + blurSize.y);
+
     RenderScript        rs     = RenderScript.create(context);
-    Allocation          input  = Allocation.createFromBitmap(rs, bitmap);
-    Allocation          output = Allocation.createTyped     (rs, input.getType());
+    Allocation          input  = Allocation.createFromBitmap(rs, small);
+    Allocation          output = Allocation.createTyped(rs, input.getType());
     ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
 
     script.setRadius(25f);
     script.setInput(input);
     script.forEach(output);
 
-    Bitmap blurred = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+    Bitmap blurred = Bitmap.createBitmap(small.getWidth(), small.getHeight(), small.getConfig());
     output.copyTo(blurred);
     return blurred;
+  }
+
+  private static @NonNull Point scaleKeepingAspectRatio(@NonNull Point dimens, int maxDimen) {
+    int outX = dimens.x;
+    int outY = dimens.y;
+
+    if (dimens.x > maxDimen || dimens.y > maxDimen) {
+      outX = maxDimen;
+      outY = maxDimen;
+
+      float widthRatio  = dimens.x  / (float) maxDimen;
+      float heightRatio = dimens.y / (float) maxDimen;
+
+      if (widthRatio > heightRatio) {
+        outY = (int) (dimens.y / widthRatio);
+      } else {
+        outX = (int) (dimens.x / heightRatio);
+      }
+    }
+
+    return new Point(outX, outY);
   }
 
   public static final Creator<UriGlideRenderer> CREATOR = new Creator<UriGlideRenderer>() {

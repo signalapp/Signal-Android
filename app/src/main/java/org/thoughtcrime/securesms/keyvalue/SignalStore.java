@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.preference.PreferenceDataStore;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -19,6 +20,7 @@ public final class SignalStore {
   public static void onFirstEverAppLaunch() {
     registrationValues().onFirstEverAppLaunch();
     uiHints().onFirstEverAppLaunch();
+    tooltips().onFirstEverAppLaunch();
   }
 
   public static @NonNull KbsValues kbsValues() {
@@ -41,6 +43,14 @@ public final class SignalStore {
     return new StorageServiceValues(getStore());
   }
 
+  public static @NonNull UiHints uiHints() {
+    return new UiHints(getStore());
+  }
+
+  public static @NonNull TooltipValues tooltips() {
+    return new TooltipValues(getStore());
+  }
+
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {
     return new GroupsV2AuthorizationSignalStoreCache(getStore());
   }
@@ -59,10 +69,6 @@ public final class SignalStore {
 
   public static void setMessageRequestEnableTime(long time) {
     putLong(MESSAGE_REQUEST_ENABLE_TIME, time);
-  }
-
-  public static UiHints uiHints() {
-    return new UiHints(getStore());
   }
 
   public static @NonNull PreferenceDataStore getPreferenceDataStore() {

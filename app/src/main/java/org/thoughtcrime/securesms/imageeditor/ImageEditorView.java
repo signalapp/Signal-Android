@@ -311,7 +311,7 @@ public final class ImageEditorView extends FrameLayout {
   }
 
   private @Nullable EditSession startEdit(@NonNull Matrix inverse, @NonNull PointF point, @Nullable EditorElement selected) {
-    if (mode == Mode.Draw) {
+    if (mode == Mode.Draw || mode == Mode.Blur) {
       return startADrawingSession(point);
     } else {
       return startAMoveAndResizeSession(inverse, point, selected);
@@ -320,7 +320,7 @@ public final class ImageEditorView extends FrameLayout {
 
   private EditSession startADrawingSession(@NonNull PointF point) {
     BezierDrawingRenderer renderer = new BezierDrawingRenderer(color, thickness * Bounds.FULL_BOUNDS.width(), cap, model.findCropRelativeToRoot());
-    EditorElement element          = new EditorElement(renderer, EditorModel.Z_DRAWING);
+    EditorElement element          = new EditorElement(renderer, mode == Mode.Blur ? EditorModel.Z_MASK : EditorModel.Z_DRAWING);
     model.addElementCentered(element, 1);
 
     Matrix elementInverseMatrix = model.findElementInverseMatrix(element, viewMatrix);
@@ -354,10 +354,10 @@ public final class ImageEditorView extends FrameLayout {
     this.mode = mode;
   }
 
-  public void startDrawing(float thickness, @NonNull Paint.Cap cap) {
+  public void startDrawing(float thickness, @NonNull Paint.Cap cap, boolean blur) {
     this.thickness = thickness;
     this.cap       = cap;
-    setMode(Mode.Draw);
+    setMode(blur ? Mode.Blur : Mode.Draw);
   }
 
   public void setDrawingBrushColor(int color) {
@@ -448,12 +448,13 @@ public final class ImageEditorView extends FrameLayout {
   }
 
   private boolean allowTaps() {
-    return !model.isCropping() && mode != Mode.Draw;
+    return !model.isCropping() && mode != Mode.Draw && mode != Mode.Blur;
   }
 
   public enum Mode {
     MoveAndResize,
-    Draw
+    Draw,
+    Blur
   }
 
   public interface DrawingChangedListener {

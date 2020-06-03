@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,15 +15,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
 import org.thoughtcrime.securesms.imageeditor.ImageEditorView;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.FaceBlurRenderer;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -29,15 +35,18 @@ import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
-import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Collections;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -53,6 +62,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private static final int SELECT_STICKER_REQUEST_CODE = 124;
 
   private EditorModel restoredModel;
+
+  private Pair<Uri, FaceDetectionResult> cachedFaceDetection;
 
   @Nullable private EditorElement currentSelection;
             private int           imageMaxHeight;
@@ -84,10 +95,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
   }
 
-  private Uri             imageUri;
-  private Controller      controller;
-  private ImageEditorHud  imageEditorHud;
-  private ImageEditorView imageEditorView;
+  private Uri              imageUri;
+  private Controller       controller;
+  private ImageEditorHud   imageEditorHud;
+  private ImageEditorView  imageEditorView;
 
   public static ImageEditorFragment newInstanceForAvatar(@NonNull Uri imageUri) {
     ImageEditorFragment fragment = newInstance(imageUri);
@@ -168,6 +179,11 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
 
     imageEditorView.setModel(editorModel);
+
+    if (!SignalStore.tooltips().hasSeenBlurHudIconTooltip()) {
+      imageEditorHud.showBlurHudTooltip();
+      SignalStore.tooltips().markBlurHudIconTooltipSeen();
+    }
 
     refreshUniqueColors();
   }
@@ -279,12 +295,22 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       }
 
       case DRAW: {
-        imageEditorView.startDrawing(0.01f, Paint.Cap.ROUND);
+        imageEditorView.startDrawing(0.01f, Paint.Cap.ROUND, false);
         break;
       }
 
       case HIGHLIGHT: {
-        imageEditorView.startDrawing(0.03f, Paint.Cap.SQUARE);
+        imageEditorView.startDrawing(0.03f, Paint.Cap.SQUARE, false);
+        break;
+      }
+
+      case BLUR: {
+        imageEditorView.startDrawing(0.055f, Paint.Cap.ROUND, true);
+        imageEditorHud.setBlurFacesToggleEnabled(imageEditorView.getModel().hasFaceRenderer());
+        if (!SignalStore.tooltips().hasSeenAutoBlurFacesTooltip()) {
+          imageEditorHud.showAutoBlurFacesTooltip();
+          SignalStore.tooltips().markAutoBlurFacesTooltipSeen();
+        }
         break;
       }
 
@@ -317,9 +343,41 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   @Override
+  public void onBlurFacesToggled(boolean enabled) {
+    if (!enabled) {
+      imageEditorView.getModel().clearFaceRenderers();
+      return;
+    }
+
+    if (cachedFaceDetection != null && cachedFaceDetection.first().equals(getUri())) {
+      renderFaceBlurs(cachedFaceDetection.second());
+      return;
+    } else if (cachedFaceDetection != null && !cachedFaceDetection.first().equals(getUri())) {
+      cachedFaceDetection = null;
+    }
+
+    AlertDialog progress = SimpleProgressDialog.show(requireContext());
+
+    SimpleTask.run(() -> {
+      Bitmap bitmap = ((UriGlideRenderer) imageEditorView.getModel().getMainImage().getRenderer()).getBitmap();
+
+      if (bitmap != null) {
+        FaceDetector detector = new FirebaseFaceDetector();
+        return new FaceDetectionResult(detector.detect(bitmap), new Point(bitmap.getWidth(), bitmap.getHeight()));
+      } else {
+        return new FaceDetectionResult(Collections.emptyList(), new Point(0, 0));
+      }
+    }, result -> {
+      renderFaceBlurs(result);
+      progress.dismiss();
+    });
+  }
+
+  @Override
   public void onUndo() {
     imageEditorView.getModel().undo();
     refreshUniqueColors();
+    imageEditorHud.setBlurFacesToggleEnabled(imageEditorView.getModel().hasFaceRenderer());
   }
 
   @Override
@@ -396,7 +454,30 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     imageEditorHud.setUndoAvailability(undoAvailable);
   }
 
-   private final ImageEditorView.TapListener selectionListener = new ImageEditorView.TapListener() {
+  private void renderFaceBlurs(@NonNull FaceDetectionResult result) {
+    List<RectF> faces = result.rects;
+    Point       size  = result.imageSize;
+
+    if (faces.isEmpty()) {
+      Toast.makeText(requireContext(), R.string.ImageEditorFragment_no_faces_detected, Toast.LENGTH_SHORT).show();
+      imageEditorHud.setBlurFacesToggleEnabled(false);
+      cachedFaceDetection = null;
+      return;
+    }
+
+    imageEditorView.getModel().pushUndoPoint();
+
+    for (RectF face : faces) {
+      FaceBlurRenderer faceBlurRenderer = new FaceBlurRenderer(face, size);
+      imageEditorView.getModel().addElementWithoutPushUndo(new EditorElement(faceBlurRenderer, EditorModel.Z_MASK));
+    }
+
+    imageEditorView.invalidate();
+
+    cachedFaceDetection = new Pair<>(getUri(), result);
+  }
+
+  private final ImageEditorView.TapListener selectionListener = new ImageEditorView.TapListener() {
 
      @Override
      public void onEntityDown(@Nullable EditorElement editorElement) {
@@ -448,5 +529,15 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     void onRequestFullScreen(boolean fullScreen, boolean hideKeyboard);
 
     void onDoneEditing();
+  }
+
+  private static class FaceDetectionResult {
+    private final List<RectF> rects;
+    private final Point       imageSize;
+
+    private FaceDetectionResult(@NonNull List<RectF> rects, @NonNull Point imageSize) {
+      this.rects     = rects;
+      this.imageSize = imageSize;
+    }
   }
 }

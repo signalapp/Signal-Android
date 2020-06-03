@@ -4,15 +4,19 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.scribbles.widget.ColorPaletteAdapter;
 import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
 
@@ -34,6 +38,7 @@ public final class ImageEditorHud extends LinearLayout {
   private ImageView                cropAspectLock;
   private View                     drawButton;
   private View                     highlightButton;
+  private View                     blurButton;
   private View                     textButton;
   private View                     stickerButton;
   private View                     undoButton;
@@ -41,6 +46,8 @@ public final class ImageEditorHud extends LinearLayout {
   private View                     deleteButton;
   private View                     confirmButton;
   private View                     doneButton;
+  private View                     blurToggleContainer;
+  private Switch                   blurToggle;
   private VerticalSlideColorPicker colorPicker;
   private RecyclerView             colorPalette;
 
@@ -74,21 +81,24 @@ public final class ImageEditorHud extends LinearLayout {
     inflate(getContext(), R.layout.image_editor_hud, this);
     setOrientation(VERTICAL);
 
-    cropButton       = findViewById(R.id.scribble_crop_button);
-    cropFlipButton   = findViewById(R.id.scribble_crop_flip);
-    cropRotateButton = findViewById(R.id.scribble_crop_rotate);
-    cropAspectLock   = findViewById(R.id.scribble_crop_aspect_lock);
-    colorPalette     = findViewById(R.id.scribble_color_palette);
-    drawButton       = findViewById(R.id.scribble_draw_button);
-    highlightButton  = findViewById(R.id.scribble_highlight_button);
-    textButton       = findViewById(R.id.scribble_text_button);
-    stickerButton    = findViewById(R.id.scribble_sticker_button);
-    undoButton       = findViewById(R.id.scribble_undo_button);
-    saveButton       = findViewById(R.id.scribble_save_button);
-    deleteButton     = findViewById(R.id.scribble_delete_button);
-    confirmButton    = findViewById(R.id.scribble_confirm_button);
-    colorPicker      = findViewById(R.id.scribble_color_picker);
-    doneButton       = findViewById(R.id.scribble_done_button);
+    cropButton          = findViewById(R.id.scribble_crop_button);
+    cropFlipButton      = findViewById(R.id.scribble_crop_flip);
+    cropRotateButton    = findViewById(R.id.scribble_crop_rotate);
+    cropAspectLock      = findViewById(R.id.scribble_crop_aspect_lock);
+    colorPalette        = findViewById(R.id.scribble_color_palette);
+    drawButton          = findViewById(R.id.scribble_draw_button);
+    highlightButton     = findViewById(R.id.scribble_highlight_button);
+    blurButton          = findViewById(R.id.scribble_blur_button);
+    textButton          = findViewById(R.id.scribble_text_button);
+    stickerButton       = findViewById(R.id.scribble_sticker_button);
+    undoButton          = findViewById(R.id.scribble_undo_button);
+    saveButton          = findViewById(R.id.scribble_save_button);
+    deleteButton        = findViewById(R.id.scribble_delete_button);
+    confirmButton       = findViewById(R.id.scribble_confirm_button);
+    colorPicker         = findViewById(R.id.scribble_color_picker);
+    doneButton          = findViewById(R.id.scribble_done_button);
+    blurToggleContainer = findViewById(R.id.scribble_blur_toggle_container);
+    blurToggle          = findViewById(R.id.scribble_blur_toggle);
 
     cropAspectLock.setOnClickListener(v -> {
       eventListener.onCropAspectLock(!eventListener.isCropAspectLocked());
@@ -105,11 +115,13 @@ public final class ImageEditorHud extends LinearLayout {
   }
 
   private void initializeVisibilityMap() {
-    setVisibleViewsWhenInMode(Mode.NONE, drawButton, highlightButton, textButton, stickerButton, cropButton, undoButton, saveButton);
+    setVisibleViewsWhenInMode(Mode.NONE, drawButton, blurButton, textButton, stickerButton, cropButton, undoButton, saveButton);
 
     setVisibleViewsWhenInMode(Mode.DRAW, confirmButton, undoButton, colorPicker, colorPalette);
 
     setVisibleViewsWhenInMode(Mode.HIGHLIGHT, confirmButton, undoButton, colorPicker, colorPalette);
+
+    setVisibleViewsWhenInMode(Mode.BLUR, confirmButton, undoButton, blurToggleContainer);
 
     setVisibleViewsWhenInMode(Mode.TEXT, confirmButton, deleteButton, colorPicker, colorPalette);
 
@@ -152,11 +164,13 @@ public final class ImageEditorHud extends LinearLayout {
     colorPalette.setAdapter(colorPaletteAdapter);
 
     drawButton.setOnClickListener(v -> setMode(Mode.DRAW));
+    blurButton.setOnClickListener(v -> setMode(Mode.BLUR));
     highlightButton.setOnClickListener(v -> setMode(Mode.HIGHLIGHT));
     textButton.setOnClickListener(v -> setMode(Mode.TEXT));
     stickerButton.setOnClickListener(v -> setMode(Mode.INSERT_STICKER));
     saveButton.setOnClickListener(v -> eventListener.onSave());
     doneButton.setOnClickListener(v -> eventListener.onDone());
+    blurToggle.setOnCheckedChangeListener((button, enabled) -> eventListener.onBlurFacesToggled(enabled));
   }
 
   public void setUpForAvatarEditing() {
@@ -184,6 +198,26 @@ public final class ImageEditorHud extends LinearLayout {
 
   public void setActiveColor(int color) {
     colorPicker.setActiveColor(color);
+  }
+
+  public void setBlurFacesToggleEnabled(boolean enabled) {
+    blurToggle.setChecked(enabled);
+  }
+
+  public void showBlurHudTooltip() {
+    TooltipPopup.forTarget(blurButton)
+                .setText(R.string.ImageEditorHud_new_auto_blur_faces_and_blur_brush)
+                .setBackgroundTint(ContextCompat.getColor(getContext(), R.color.core_ultramarine))
+                .setTextColor(ContextCompat.getColor(getContext(), R.color.core_white))
+                .show(TooltipPopup.POSITION_BELOW);
+  }
+
+  public void showAutoBlurFacesTooltip() {
+    TooltipPopup.forTarget(blurToggleContainer)
+                .setText(R.string.ImageEditorHud_draw_to_blur_or_try_auto_blur)
+                .setBackgroundTint(ContextCompat.getColor(getContext(), R.color.core_ultramarine))
+                .setTextColor(ContextCompat.getColor(getContext(), R.color.core_white))
+                .show(TooltipPopup.POSITION_ABOVE);
   }
 
   public void setEventListener(@Nullable EventListener eventListener) {
@@ -267,6 +301,7 @@ public final class ImageEditorHud extends LinearLayout {
     TEXT,
     DRAW,
     HIGHLIGHT,
+    BLUR,
     MOVE_DELETE,
     INSERT_STICKER,
   }
@@ -274,6 +309,7 @@ public final class ImageEditorHud extends LinearLayout {
   public interface EventListener {
     void onModeStarted(@NonNull Mode mode);
     void onColorChange(int color);
+    void onBlurFacesToggled(boolean enabled);
     void onUndo();
     void onDelete();
     void onSave();
@@ -293,6 +329,10 @@ public final class ImageEditorHud extends LinearLayout {
 
     @Override
     public void onColorChange(int color) {
+    }
+
+    @Override
+    public void onBlurFacesToggled(boolean enabled) {
     }
 
     @Override

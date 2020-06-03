@@ -29,7 +29,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
     if (challenge != null) {
       handlePushChallenge(challenge);
     } else {
-      handleReceivedNotification(getApplicationContext());
+      handleReceivedNotification(ApplicationDependencies.getApplication());
     }
   }
 
@@ -37,7 +37,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
   public void onNewToken(String token) {
     Log.i(TAG, "onNewToken()");
 
-    if (!TextSecurePreferences.isPushRegistered(getApplicationContext())) {
+    if (!TextSecurePreferences.isPushRegistered(ApplicationDependencies.getApplication())) {
       Log.i(TAG, "Got a new FCM token, but the user isn't registered.");
       return;
     }

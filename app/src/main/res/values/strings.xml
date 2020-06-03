@@ -558,6 +558,14 @@
     <string name="CropImageActivity_group_avatar">Group avatar</string>
     <string name="CropImageActivity_profile_avatar">Avatar</string>
 
+    <!-- ImageEditorFragment -->
+    <string name="ImageEditorFragment_no_faces_detected">No faces detected</string>
+
+    <!-- ImageEditorHud -->
+    <string name="ImageEditorHud_auto_blur_faces">Auto-blur faces</string>
+    <string name="ImageEditorHud_new_auto_blur_faces_and_blur_brush">New: Auto-blur faces and blur brush</string>
+    <string name="ImageEditorHud_draw_to_blur_or_try_auto_blur">Draw to blur, or try auto-blur</string>
+
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
 
