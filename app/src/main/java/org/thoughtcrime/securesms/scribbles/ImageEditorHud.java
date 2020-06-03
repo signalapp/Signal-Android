@@ -201,7 +201,9 @@ public final class ImageEditorHud extends LinearLayout {
   }
 
   public void setBlurFacesToggleEnabled(boolean enabled) {
+    blurToggle.setOnCheckedChangeListener(null);
     blurToggle.setChecked(enabled);
+    blurToggle.setOnCheckedChangeListener((button, value) -> eventListener.onBlurFacesToggled(value));
   }
 
   public void showBlurHudTooltip() {
