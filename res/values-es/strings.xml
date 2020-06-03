@@ -1053,7 +1053,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__chats">Chats y multimedia</string>
   <string name="preferences__conversation_length_limit">Límite de longitud de chat</string>
   <string name="preferences__trim_all_conversations_now">Recortar ahora todos los chats</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todos lo chats e imponer los límites de longitud</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todos lo chats e aplicar los límites de longitud</string>
   <string name="preferences__linked_devices">Dispositivos enlazados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
@@ -1070,7 +1070,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__read_receipts">Notificaciones de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás ver cuando otros contactos lean tus mensajes.</string>
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo tus contactos están tecleando. </string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuando tus contactos están tecleando. </string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar al teclado desactivar el aprendizaje personalizado</string>
   <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
@@ -1362,7 +1362,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_pn_mode_no_option_picked_dialog_title">Por favor, elige una opción</string>
 
   <string name="activity_home_empty_state_message">Aún no tienes contactos</string>
-  <string name="activity_home_empty_state_button_title">Abrir una Session</string>
+  <string name="activity_home_empty_state_button_title">Empieza una Session</string>
   <string name="activity_home_leave_group_dialog_message">¿Seguro que quieres salir de este grupo?</string>
   <string name="activity_home_leaving_group_failed_message">No pudiste salir del grupo</string>
   <string name="activity_home_delete_conversation_dialog_message">¿Seguro que quieres eliminar esta conversación?</string>
@@ -1391,16 +1391,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_create_private_chat_title">Nueva Session</string>
   <string name="activity_create_private_chat_enter_session_id_tab_title">Session ID</string>
   <string name="activity_create_private_chat_scan_qr_code_tab_title">Escanear código QR</string>
-  <string name="activity_create_private_chat_scan_qr_code_explanation">Escanea el código QR de un usuario para iniciar una Session. Los códigos QR se pueden encontrar tocando el icono del código QR en los ajustes de la cuenta.</string>
+  <string name="activity_create_private_chat_scan_qr_code_explanation">Escanea el código QR de un usuario para empezar una Session. Los códigos QR se pueden encontrar tocando el icono del código QR en los ajustes de la cuenta.</string>
 
   <string name="fragment_enter_public_key_edit_text_hint">Ingresa la ID de Session del destinatario</string>
-  <string name="fragment_enter_public_key_explanation">Los usuarios pueden compartir su ID de Session yendo a los ajustes de su cuenta y tocando Compartir ID de Session, o compartiendo su código QR.</string>
+  <string name="fragment_enter_public_key_explanation">Los usuarios pueden compartir su ID de Session yendo a los ajustes de su cuenta y pulsando en Compartir ID de Session o compartiendo su código QR</string>
 
   <string name="activity_create_closed_group_title">Nuevo grupo cerrado</string>
   <string name="activity_create_closed_group_edit_text_hint">Ingresa un nombre de grupo</string>
   <string name="activity_create_closed_group_explanation">Los grupos cerrados admiten hasta 10 miembros y brindan las mismas protecciones de privacidad que las sesiones individuales.</string>
   <string name="activity_create_closed_group_empty_state_message">Aún no tienes contactos</string>
-  <string name="activity_create_closed_group_empty_state_button_title">Iniciar una Session</string>
+  <string name="activity_create_closed_group_empty_state_button_title">Empezar una Session</string>
   <string name="activity_create_closed_group_group_name_missing_error">Por favor, ingresa un nombre de grupo</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Por favor, ingresa un nombre de grupo más corto</string>
   <string name="activity_create_closed_group_not_enough_group_members_error">Por favor, elige al menos 2 miembros del grupo</string>
@@ -1414,7 +1414,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_join_public_chat_scan_qr_code_explanation">Escanea el código QR del grupo abierto al que quieras unirte</string>
 
   <string name="fragment_enter_chat_url_edit_text_hint">Ingresa una URL de grupo abierto</string>
-  <string name="fragment_enter_chat_url_privacy_warning">Cualquier persona puede unirse a los grupos abiertos y no brindan protección de privacidad completa</string>
+  <string name="fragment_enter_chat_url_privacy_warning">Cualquiera puede unirse a los grupos abiertos. Esto no brinda una protección completa de privacidad</string>
 
   <string name="activity_settings_title">Ajustes</string>
   <string name="activity_settings_display_name_edit_text_hint">Ingresa un nombre para mostrar</string>
@@ -1443,7 +1443,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
 
   <string name="preferences_notifications_strategy_category_title">Estrategia de notificación</string>
   <string name="preferences_notifications_use_fcm_option_title">Utilizar FCM</string>
-  <string name="preferences_notifications_use_fcm_option_explanation">El uso de Firebase Cloud Messaging permite notificaciones push más confiables, pero expone tu IP a Google.</string>
+  <string name="preferences_notifications_use_fcm_option_explanation">El uso de Firebase Cloud Messaging permite notificaciones push más seguras, pero expone tu IP a Google.</string>
 
   <string name="dialog_link_device_slave_mode_title_1">Esperando la autorización</string>
   <string name="dialog_link_device_slave_mode_title_2">Vinculación de dispositivo autorizada</string>
@@ -1474,7 +1474,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="activity_qr_code_view_scan_qr_code_tab_title">Escanear código QR</string>
   <string name="activity_qr_code_view_scan_qr_code_explanation">Escanea el código QR de una persona para comenzar una conversación con ella</string>
 
-  <string name="fragment_view_my_qr_code_explanation">Este es tu código QR. Otros usuarios pueden escanearlo para iniciar una Session contigo.</string>
+  <string name="fragment_view_my_qr_code_explanation">Este es tu código QR. Otros usuarios pueden escanearlo para empezar una Session contigo.</string>
   <string name="fragment_view_my_qr_code_share_title">Compartir código QR</string>
 
   <string name="view_friend_request_accept_button_title">Aceptar</string>
