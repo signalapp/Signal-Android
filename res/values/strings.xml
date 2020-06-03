@@ -1598,9 +1598,6 @@
     <string name="activity_profile_title">Set Your Display Name</string>
     <string name="activity_profile_display_name_edit_text_hint">Your Display Name</string>
     <string name="activity_profile_display_name_edit_text_description">Display Name</string>
-    <!-- Notification settings activity -->
-    <string name="activity_notification_settings_style_section_title">Notification Style</string>
-    <string name="activity_notification_settings_content_section_title">Notification Content</string>
     <!-- Contact selection activity -->
     <string name="activity_contact_selection_search_bar_placeholder">Search by name or public key</string>
     <!-- New conversation activity -->
@@ -1668,6 +1665,7 @@
     <string name="share">Share</string>
     <string name="invalid_session_id">Invalid Session ID</string>
     <string name="cancel">Cancel</string>
+    <string name="your_session_id">Your Session ID</string>
 
     <string name="activity_landing_title_2">Your Session begins here...</string>
     <string name="activity_landing_register_button_title">Create Session ID</string>
@@ -1757,6 +1755,9 @@
     <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
     <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping "Share Session ID", or by sharing their QR code.</string>
 
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
+
     <string name="activity_create_closed_group_title">New Closed Group</string>
     <string name="activity_create_closed_group_edit_text_hint">Enter a group name</string>
     <string name="activity_create_closed_group_explanation">Closed groups support up to 10 members and provide the same privacy protections as one-on-one sessions.</string>
@@ -1790,6 +1791,8 @@
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
 
     <string name="activity_notification_settings_title">Notifications</string>
+    <string name="activity_notification_settings_style_section_title">Notification Style</string>
+    <string name="activity_notification_settings_content_section_title">Notification Content</string>
 
     <string name="activity_privacy_settings_title">Privacy</string>
 
@@ -1801,6 +1804,8 @@
     <string name="activity_linked_devices_unlinking_failed_message">Couldn\'t unlink device.</string>
     <string name="activity_linked_devices_unlinking_successful_message">Your device was unlinked successfully</string>
     <string name="activity_linked_devices_linking_failed_message">Couldn\'t link device.</string>
+    <string name="activity_linked_devices_empty_state_message">You haven\'t linked any devices yet</string>
+    <string name="activity_linked_devices_empty_state_button_title">Link a Device (Beta)</string>
 
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
     <string name="preferences_notifications_use_fcm_option_title">Use FCM</string>
