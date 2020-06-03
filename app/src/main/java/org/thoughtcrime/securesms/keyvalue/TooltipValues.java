@@ -7,7 +7,6 @@ import org.whispersystems.signalservice.api.storage.StorageKey;
 public class TooltipValues {
 
   private static final String BLUR_HUD_ICON   = "tooltip.blur_hud_icon";
-  private static final String AUTO_BLUR_FACES = "tooltip.auto_blur_faces";
 
   private final KeyValueStore store;
 
@@ -24,13 +23,5 @@ public class TooltipValues {
 
   public void markBlurHudIconTooltipSeen() {
     store.beginWrite().putBoolean(BLUR_HUD_ICON, true).apply();
-  }
-
-  public boolean hasSeenAutoBlurFacesTooltip() {
-    return store.getBoolean(AUTO_BLUR_FACES, false);
-  }
-
-  public void markAutoBlurFacesTooltipSeen() {
-    store.beginWrite().putBoolean(AUTO_BLUR_FACES, true).apply();
   }
 }

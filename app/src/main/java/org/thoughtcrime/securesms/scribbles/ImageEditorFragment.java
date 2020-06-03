@@ -306,12 +306,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       }
 
       case BLUR: {
-        imageEditorView.startDrawing(0.055f, Paint.Cap.ROUND, true);
+        imageEditorView.startDrawing(0.052f, Paint.Cap.ROUND, true);
         imageEditorHud.setBlurFacesToggleEnabled(imageEditorView.getModel().hasFaceRenderer());
-        if (!SignalStore.tooltips().hasSeenAutoBlurFacesTooltip()) {
-          imageEditorHud.showAutoBlurFacesTooltip();
-          SignalStore.tooltips().markAutoBlurFacesTooltipSeen();
-        }
         break;
       }
 
@@ -348,11 +344,13 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     EditorModel   model     = imageEditorView.getModel();
     EditorElement mainImage = model.getMainImage();
     if (mainImage == null) {
+      imageEditorHud.hideBlurToast();
       return;
     }
 
     if (!enabled) {
       model.clearFaceRenderers();
+      imageEditorHud.hideBlurToast();
       return;
     }
 
@@ -361,6 +359,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     if (cachedFaceDetection != null) {
       if (cachedFaceDetection.first().equals(getUri()) && cachedFaceDetection.second().position.equals(inverseCropPosition)) {
         renderFaceBlurs(cachedFaceDetection.second());
+        imageEditorHud.showBlurToast();
         return;
       } else {
         cachedFaceDetection = null;
@@ -392,6 +391,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       mainImage.getFlags().reset();
       renderFaceBlurs(result);
       progress.dismiss();
+      imageEditorHud.showBlurToast();
     });
   }
 

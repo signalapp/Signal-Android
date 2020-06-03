@@ -173,18 +173,32 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <TextView
+            android:id="@+id/scribble_blur_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/ImageEditorHud_draw_to_blur_additional_faces_or_areas"
+            app:layout_constraintBottom_toTopOf="@id/scribble_blur_toggle_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:background="@drawable/scribble_toast_background"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
         <LinearLayout
             android:id="@+id/scribble_blur_toggle_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="42dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:orientation="horizontal"
             android:background="@drawable/transparent_black_pill"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/scribble_blur_help_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -192,7 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="6dp"
-                android:text="@string/ImageEditorHud_auto_blur_faces"
+                android:text="@string/ImageEditorHud_blur_faces"
                 android:textColor="@color/core_white"/>
 
             <Switch
@@ -202,6 +216,24 @@
                 android:checked="false"
                 android:saveEnabled="false"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/scribble_blur_help_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ImageEditorHud_draw_anywhere_to_blur"
+            android:padding="14dp"
+            android:gravity="center"
+            android:textColor="@color/core_white"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/scribble_blur_toggle_hud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="scribble_blur_toggle_container, scribble_blur_help_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
