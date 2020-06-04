@@ -92,7 +92,11 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.lifecycle:common-java8:1.1.1'
 
-    implementation "com.google.firebase:firebase-messaging:$firebase_messaging_version"
+    implementation "com.google.firebase:firebase-messaging:$firebase_messaging_version" {
+           exclude group: 'com.google.firebase', module: 'firebase-core'
+           exclude group: 'com.google.firebase', module: 'firebase-analytics'
+           exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
+    }
 
     implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
