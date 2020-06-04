@@ -168,7 +168,7 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
             }
             waveFormView.setWaveData(data.getWaveForm());
           },
-          e -> waveFormView.setWaveMode(false));
+          () -> waveFormView.setWaveMode(false));
       } else {
         waveFormView.setWaveMode(false);
         if (duration != null) {

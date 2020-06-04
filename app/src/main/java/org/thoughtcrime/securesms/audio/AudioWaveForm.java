@@ -54,19 +54,19 @@ public final class AudioWaveForm {
   private static final Executor                        AUDIO_DECODER_EXECUTOR = new SerialExecutor(SignalExecutors.BOUNDED);
 
   @AnyThread
-  public void getWaveForm(@NonNull Consumer<AudioFileInfo> onSuccess, @NonNull Consumer<IOException> onFailure) {
+  public void getWaveForm(@NonNull Consumer<AudioFileInfo> onSuccess, @NonNull Runnable onFailure) {
     Uri        uri        = slide.getUri();
     Attachment attachment = slide.asAttachment();
 
     if (uri == null) {
       Log.w(TAG, "No uri");
-      Util.runOnMain(() -> onFailure.accept(null));
+      Util.runOnMain(onFailure);
       return;
     }
 
     if (!(attachment instanceof DatabaseAttachment)) {
       Log.i(TAG, "Not yet in database");
-      Util.runOnMain(() -> onFailure.accept(null));
+      Util.runOnMain(onFailure);
       return;
     }
 
@@ -110,9 +110,9 @@ public final class AudioWaveForm {
 
         WAVE_FORM_CACHE.put(cacheKey, fileInfo);
         Util.runOnMain(() -> onSuccess.accept(fileInfo));
-      } catch (IOException e) {
+      } catch (Throwable e) {
         Log.w(TAG, "Failed to create audio wave form for " + cacheKey, e);
-        Util.runOnMain(() -> onFailure.accept(e));
+        Util.runOnMain(onFailure);
       }
     });
   }
@@ -126,9 +126,8 @@ public final class AudioWaveForm {
   @RequiresApi(api = 23)
   private @NonNull AudioFileInfo generateWaveForm(@NonNull Uri uri) throws IOException {
     try (MediaInput dataSource = DecryptableUriMediaInput.createForUri(context, uri)) {
-      long[] wave         = new long[BAR_COUNT];
-      int[]  waveSamples  = new int[BAR_COUNT];
-      int[]  inputSamples = new int[BAR_COUNT * SAMPLES_PER_BAR];
+      long[] wave        = new long[BAR_COUNT];
+      int[]  waveSamples = new int[BAR_COUNT];
 
       MediaExtractor extractor = dataSource.createExtractor();
 
@@ -194,15 +193,12 @@ public final class AudioWaveForm {
 
             if (!sawInputEOS) {
               int barSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-              inputSamples[barSampleIndex]++;
               sawInputEOS = !extractor.advance();
-              if (inputSamples[barSampleIndex] > 0) {
-                int nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-                while (!sawInputEOS && nextBarSampleIndex == barSampleIndex) {
-                  sawInputEOS = !extractor.advance();
-                  if (!sawInputEOS) {
-                    nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-                  }
+              int nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
+              while (!sawInputEOS && nextBarSampleIndex == barSampleIndex) {
+                sawInputEOS = !extractor.advance();
+                if (!sawInputEOS) {
+                  nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
                 }
               }
             }
