@@ -126,7 +126,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
                   .navigate(RestoreBackupFragmentDirections.actionNoBackupFound());
       } else {
         restoreBackupSize.setText(getString(R.string.RegistrationActivity_backup_size_s, Util.getPrettyFileSize(backup.getSize())));
-        restoreBackupTime.setText(getString(R.string.RegistrationActivity_backup_timestamp_s, DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.US, backup.getTimestamp())));
+        restoreBackupTime.setText(getString(R.string.RegistrationActivity_backup_timestamp_s, DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), backup.getTimestamp())));
 
         restoreButton.setOnClickListener((v) -> handleRestore(v.getContext(), backup));
       }
