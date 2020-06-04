@@ -1465,16 +1465,17 @@ public class RecipientDatabase extends Database {
 
   public @Nullable Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
     query = TextUtils.isEmpty(query) ? "*" : query;
-    query = "%" + query + "%";
+    query = "*" + query + "*";
+    query = accentuatedChar(query);
 
     String   selection = BLOCKED     + " = ? AND " +
                          REGISTERED  + " = ? AND " +
                          GROUP_ID    + " IS NULL AND " +
                          "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
                          "(" +
-                           PHONE     + " LIKE ? OR " +
-                           SORT_NAME + " LIKE ? OR " +
-                           USERNAME  + " LIKE ?" +
+                           "lower("  + PHONE     + ") GLOB ? OR " +
+                           "lower("  + SORT_NAME + ") GLOB ? OR " +
+                           "lower("  + USERNAME  + ") GLOB ?" +
                          ")";
     String[] args;
 
@@ -1504,7 +1505,8 @@ public class RecipientDatabase extends Database {
 
   public @Nullable Cursor queryNonSignalContacts(@NonNull String query) {
     query = TextUtils.isEmpty(query) ? "*" : query;
-    query = "%" + query + "%";
+    query = "*" + query + "*";
+    query = accentuatedChar(query);
 
     String   selection = BLOCKED    + " = ? AND " +
                          REGISTERED + " != ? AND " +
@@ -1512,9 +1514,9 @@ public class RecipientDatabase extends Database {
                          SYSTEM_DISPLAY_NAME + " NOT NULL AND " +
                          "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL) AND " +
                          "(" +
-                           PHONE               + " LIKE ? OR " +
-                           EMAIL               + " LIKE ? OR " +
-                           SYSTEM_DISPLAY_NAME + " LIKE ?" +
+                           "lower("  + PHONE               + ") GLOB ? OR " +
+                           "lower("  + EMAIL               + ") GLOB ? OR " +
+                           "lower("  + SYSTEM_DISPLAY_NAME + ") GLOB ?" +
                          ")";
     String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query };
     String   orderBy   = SYSTEM_DISPLAY_NAME + ", " + PHONE;
@@ -1524,18 +1526,31 @@ public class RecipientDatabase extends Database {
 
   public @Nullable Cursor queryAllContacts(@NonNull String query) {
     query = TextUtils.isEmpty(query) ? "*" : query;
-    query = "%" + query + "%";
+    query = "*" + query + "*";
+    query = accentuatedChar(query);
 
     String   selection = BLOCKED + " = ? AND " +
                          "(" +
-                           SORT_NAME + " LIKE ? OR " +
-                           USERNAME  + " LIKE ? OR " +
-                           PHONE     + " LIKE ? OR " +
-                           EMAIL     + " LIKE ?" +
+                           "lower("  + SORT_NAME + ") GLOB ? OR " +
+                           "lower("  + USERNAME  + ") GLOB ? OR " +
+                           "lower("  + PHONE     + ") GLOB ? OR " +
+                           "lower("  + EMAIL     + ") GLOB ?" +
                          ")";
     String[] args      = new String[] { "0", query, query, query, query };
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
+  }
+
+  private @NonNull String accentuatedChar(@NonNull String query) {
+    return query.toLowerCase()
+            .replaceAll("[a]", "[aáàâäãåÁÀÂÄÃÅ]")
+            .replaceAll("[e]", "[eéèêëÉÈÊË]")
+            .replaceAll("[i]", "[iíìîïÍÌÎÏ]")
+            .replaceAll("[o]", "[oóòôöõÓÒÔÖÕ]")
+            .replaceAll("[u]", "[uúùûüÚÙÛÜ]")
+            .replaceAll("[n]", "[nñÑ]")
+            .replaceAll("[c]", "[cçÇ]")
+            .replaceAll("[y]", "[yýÿÝŸ]");
   }
 
   public @NonNull List<Recipient> getRecipientsForMultiDeviceSync() {
