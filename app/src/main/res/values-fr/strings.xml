@@ -230,6 +230,7 @@
   <string name="ConversationActivity_delete_and_leave">Supprimer et quitter</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone et à votre appareil photo.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Désormais plus d’options dans paramètre « Paramètres du groupe »</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -425,6 +426,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
   <string name="AddGroupDetailsFragment__remove">Supprimer</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Supprimer %1$s de ce groupe ?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitations de groupe en attente</string>
@@ -439,6 +441,7 @@
   <string name="ManageGroupActivity_on">Activé</string>
   <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
   <string name="ManageGroupActivity_view_all_members">Visualiser tous les membres</string>
+  <string name="ManageGroupActivity_see_all">Tout voir</string>
   <string name="ManageGroupActivity_none">Aucune</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
@@ -467,7 +470,12 @@
   <string name="CropImageActivity_group_avatar">Avatar du groupe</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Aucun visage n’a été détecté</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Rendre les visages flous</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nouveau : Rendez les visages flous ou dessinez n’importe où pour les rendre flous.</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Dessinez n’importe où pour rendre flou.</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Dessinez pour rendre d’autres visages et zones flous</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Touchez et maintenez pour enregistrer un message vocal, relâchez pour l’envoyer.</string>
   <!--InviteActivity-->
@@ -917,6 +925,7 @@
   <string name="SupportEmailUtil_android_version">Version d’Android :</string>
   <string name="SupportEmailUtil_signal_version">Version de Signal :</string>
   <string name="SupportEmailUtil_signal_package">Paquet Signal :</string>
+  <string name="SupportEmailUtil_registration_lock">Blocage de l’inscription :</string>
   <string name="SupportEmailUtil_locale">Paramètres régionaux :</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Le groupe a été mis à jour</string>
@@ -1156,6 +1165,7 @@
   <string name="ContactSelectionListFragment_username_not_found">Le nom d’utilisateur est introuvable</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">« %1$s » n’est pas un utilisateur de Signal. Veuillez confirmer le nom d’utilisateur et ressayer.</string>
   <string name="ContactSelectionListFragment_okay">Valider</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">Le groupe est plein</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact n’est bloqué</string>
   <!--contact_selection_list_fragment-->
@@ -1602,6 +1612,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Désarchiver la sélection</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Désarchiver la sélection</string>
   <string name="conversation_list_batch__menu_mark_as_read">Marquer comme lu</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Marquer comme non lu</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
   <string name="conversation_list_search_description">Chercher</string>

@@ -479,7 +479,7 @@
   <string name="ImageEditorHud_blur_faces">Sfoca volti</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nuovo: sfoca volti o disegna ovunque per sfocare</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">Disegna ovunque per sfocare</string>
-  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Disegna per sfocare facce o aree aggiuntive</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Disegna per sfocare volti o aree aggiuntive</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tieni premuto per registrare un messaggio vocale, rilascia per inviare</string>
   <!--InviteActivity-->

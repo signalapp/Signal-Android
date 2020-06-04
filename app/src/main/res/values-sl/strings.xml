@@ -236,6 +236,7 @@
   <string name="ConversationActivity_delete_and_leave">Izbriši in zapusti</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Za klic uporabnika %1$s, potrebuje Signal dostop do mikrofona</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Za klic uporabnika %1$s, potrebuje Signal dostop do mikrofona in kamere.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Več možnosti odslej v \"Nastavitvah skupine\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprebrano sporočilo</item>
@@ -457,6 +458,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Izbrali ste stik, ki ne uporablja skupin Signal, zato bo to skupina MMS</string>
   <string name="AddGroupDetailsFragment__remove">Odstrani</string>
   <string name="AddGroupDetailsFragment__sms_contact">Stik SMS</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Želite odstraniti uporabnika %1$s iz skupine?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Izginjajoča sporočila</string>
   <string name="ManageGroupActivity_pending_group_invites">Čakajoča povabila v skupine</string>
@@ -471,7 +473,14 @@
   <string name="ManageGroupActivity_on">Vklopljena</string>
   <string name="ManageGroupActivity_add_members">Dodaj člane</string>
   <string name="ManageGroupActivity_view_all_members">Poglej vse člane</string>
+  <string name="ManageGroupActivity_see_all">Prikaz vseh</string>
   <string name="ManageGroupActivity_none">Brez</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d povabljen</item>
+    <item quantity="two">%d povabljena</item>
+    <item quantity="few">%d povabljeni</item>
+    <item quantity="other">%d povabljenih</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nimate pooblastil za to</string>
   <string name="ManageGroupActivity_not_capable">Nekdo, ki ste ga dodali, uporablja zastarelo različico aplikacije Signal, ki ne podpira novih skupin, in jo mora nadgraditi</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Posodobitev skupine ni uspela</string>
@@ -503,7 +512,12 @@
   <string name="CropImageActivity_group_avatar">Avatar skupine</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Ni zaznanih obrazov</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Zabris obrazov</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Novo: zabrišite obraze ali s potegom prsta katerikoli del slike</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Za zabris potegnite s prstom kjerkoli</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Za zabris drugih delov slike potegnite s prstom</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Za snemanje glasovnega sporočila se dotaknite in držite, za pošiljanje spustite</string>
   <!--InviteActivity-->
@@ -983,6 +997,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SupportEmailUtil_android_version">Različica Android:</string>
   <string name="SupportEmailUtil_signal_version">Različica Signal:</string>
   <string name="SupportEmailUtil_signal_package">Paket Signal:</string>
+  <string name="SupportEmailUtil_registration_lock">Zaklep prijave:</string>
   <string name="SupportEmailUtil_locale">Jezik:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina je posodobljena</string>
@@ -1224,6 +1239,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ContactSelectionListFragment_username_not_found">Uporabniško ime ni bilo najdeno</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ni uporabnik storitve Signal. Preverite uporabniško ime in poskusite znova.</string>
   <string name="ContactSelectionListFragment_okay">Okej</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">Skupina je polna</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih uporabnikov</string>
   <!--contact_selection_list_fragment-->
@@ -1686,6 +1702,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
   <string name="conversation_list_batch__menu_mark_as_read">Označi kot prebrano</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Označi kot neprebrano</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Bližnjica k nastavitvam</string>
   <string name="conversation_list_search_description">Iskanje</string>

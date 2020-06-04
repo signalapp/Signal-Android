@@ -467,7 +467,11 @@
   <string name="CropImageActivity_group_avatar">Groepsafbeelding</string>
   <string name="CropImageActivity_profile_avatar">Profielfoto</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Er zijn geen gezichten gedetecteerd</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Vervaag gezichten</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Teken waar je maar wilt om iets te vervagen</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Teken om meer gezichten of gebieden te vervagen</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tik en houd vast om een audiobericht op te nemen, laat los om te verzenden</string>
   <!--InviteActivity-->
@@ -1615,6 +1619,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Selectie dearchiveren</string>
   <string name="conversation_list_batch__menu_mark_as_read">Markeren als gelezen</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Voor mij als ongelezen markeren</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snelkoppeling naar instellingen</string>
   <string name="conversation_list_search_description">Zoeken</string>

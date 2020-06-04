@@ -476,6 +476,10 @@
   <!--ImageEditorFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Keine Gesichter erkannt</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Gesichter verwischen</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Neu: Verwische Gesichter oder zeichne zum Verwischen in beliebige Bereiche</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Zeichne zum Verwischen in beliebige Bereiche</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Zeichne zum Verwischen weiterer Gesichter oder Bereiche</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Antippen und halten zur Aufnahme einer Sprachnachricht, loslassen zum Senden</string>
   <!--InviteActivity-->
