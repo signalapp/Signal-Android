@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 app:labeledEditText_background="@color/white"
-                app:labeledEditText_label="Phone Number"
+                app:labeledEditText_label="@string/RegistrationActivity_phone_number_description"
                 app:labeledEditText_textLayout="@layout/phone_text" />
         </LinearLayout>
 
