@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
 import org.thoughtcrime.securesms.imageeditor.ImageEditorView;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
@@ -478,7 +479,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   private void renderFaceBlurs(@NonNull FaceDetectionResult result) {
     List<RectF> faces = result.rects;
-    Point       size  = result.imageSize;
 
     if (faces.isEmpty()) {
       cachedFaceDetection = null;
@@ -487,10 +487,22 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     imageEditorView.getModel().pushUndoPoint();
 
+    Matrix faceMatrix = new Matrix();
+
     for (RectF face : faces) {
-      FaceBlurRenderer faceBlurRenderer = new FaceBlurRenderer(face, size);
-      EditorElement element = new EditorElement(faceBlurRenderer, EditorModel.Z_MASK);
-      element.getLocalMatrix().set(result.position);
+      FaceBlurRenderer faceBlurRenderer = new FaceBlurRenderer();
+      EditorElement    element          = new EditorElement(faceBlurRenderer, EditorModel.Z_MASK);
+      Matrix           localMatrix      = element.getLocalMatrix();
+
+      faceMatrix.setRectToRect(Bounds.FULL_BOUNDS, face, Matrix.ScaleToFit.FILL);
+
+      localMatrix.set(result.position);
+      localMatrix.preConcat(faceMatrix);
+
+      element.getFlags().setEditable(false)
+                        .setSelectable(false)
+                        .persist();
+
       imageEditorView.getModel().addElementWithoutPushUndo(element);
     }
 
@@ -555,13 +567,15 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   private static class FaceDetectionResult {
     private final List<RectF> rects;
-    private final Point       imageSize;
     private final Matrix      position;
 
     private FaceDetectionResult(@NonNull List<RectF> rects, @NonNull Point imageSize, @NonNull Matrix position) {
-      this.rects     = rects;
-      this.imageSize = imageSize;
-      this.position  = new Matrix(position);
+      this.rects    = rects;
+      this.position = new Matrix(position);
+
+      Matrix imageProjectionMatrix = new Matrix();
+      imageProjectionMatrix.setRectToRect(new RectF(0, 0, imageSize.x, imageSize.y), Bounds.FULL_BOUNDS, Matrix.ScaleToFit.FILL);
+      this.position.preConcat(imageProjectionMatrix);
     }
   }
 }
