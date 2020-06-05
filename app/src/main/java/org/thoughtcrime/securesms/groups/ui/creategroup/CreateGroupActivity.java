@@ -29,8 +29,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
   private View next;
 
-  public static Intent newIntent(@NonNull Context context, boolean forceV1) {
-    if (forceV1 || !FeatureFlags.newGroupUI() || !FeatureFlags.groupsV2create()) {
+  public static Intent newIntent(@NonNull Context context) {
+    if (!FeatureFlags.newGroupUI()) {
       return new Intent(context, GroupCreateActivity.class);
     }
 
@@ -44,7 +44,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
                                                                   : ContactsCursorLoader.DisplayMode.FLAG_PUSH;
 
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
-    intent.putExtra(ContactSelectionListFragment.TOTAL_CAPACITY, FeatureFlags.gv2GroupCapacity() - 1);
+    intent.putExtra(ContactSelectionListFragment.TOTAL_CAPACITY, FeatureFlags.groupsV2create() ? FeatureFlags.gv2GroupCapacity() - 1
+                                                                                               : ContactSelectionListFragment.NO_LIMIT);
 
     return intent;
   }

@@ -738,7 +738,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
-      } else if (isActiveV2Group()) {
+      } else if (isActiveV2Group() || isActiveGroup() && FeatureFlags.newGroupUI()) {
         inflater.inflate(R.menu.conversation_push_group_v2_options, menu);
       } else if (isActiveGroup()) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
@@ -753,8 +753,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
-    if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-    else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
+    if (!FeatureFlags.newGroupUI()) {
+      if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
+      else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
+    }
 
     if (isSingleConversation() && getRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);

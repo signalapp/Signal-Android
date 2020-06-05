@@ -78,7 +78,7 @@ public class MainNavigator {
   }
 
   public void goToGroupCreation() {
-    activity.startActivity(CreateGroupActivity.newIntent(activity, true));
+    activity.startActivity(CreateGroupActivity.newIntent(activity));
   }
 
   public void goToInvite() {
