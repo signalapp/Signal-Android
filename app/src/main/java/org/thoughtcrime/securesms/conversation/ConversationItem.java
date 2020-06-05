@@ -285,6 +285,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   @Override
   protected void onDetachedFromWindow() {
     ConversationSwipeAnimationHelper.update(this, 0f, 1f);
+    unbind();
     super.onDetachedFromWindow();
   }
 

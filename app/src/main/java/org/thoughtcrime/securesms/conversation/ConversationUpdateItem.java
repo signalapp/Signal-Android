@@ -88,6 +88,12 @@ public class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
+  protected void onDetachedFromWindow() {
+    unbind();
+    super.onDetachedFromWindow();
+  }
+
+  @Override
   public void setEventListener(@Nullable EventListener listener) {
     // No events to report yet
   }
