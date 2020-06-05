@@ -102,7 +102,7 @@
         app:cpb_colorIndicator="@color/white"
         app:cpb_colorProgress="@color/StickerPreviewActivity_install_button_color"
         app:cpb_cornerRadius="4dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_selectorIdle="@drawable/progress_button_state_light"
         app:cpb_textIdle="@string/StickerPackPreviewActivity_install"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/sticker_install_list"

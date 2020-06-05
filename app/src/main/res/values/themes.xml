@@ -431,10 +431,13 @@
 
         <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_light</item>
         <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_light</item>
+        <item name="contact_selection_checkbox_background">@drawable/contact_selection_checkbox_light</item>
 
         <item name="chipStyle">@style/Signal.Chip.Action.Light</item>
 
         <item name="colorControlNormal">@color/core_grey_90</item>
+
+        <item name="circular_progress_button_state">@drawable/progress_button_state_light</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -722,10 +725,13 @@
 
         <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_dark</item>
         <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_dark</item>
+        <item name="contact_selection_checkbox_background">@drawable/contact_selection_checkbox_dark</item>
 
         <item name="chipStyle">@style/Signal.Chip.Action</item>
 
         <item name="colorControlNormal">@color/core_white</item>
+
+        <item name="circular_progress_button_state">@drawable/progress_button_state_dark</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">

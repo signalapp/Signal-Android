@@ -55,7 +55,7 @@
       app:cpb_colorIndicator="@color/white"
       app:cpb_colorProgress="@color/core_ultramarine"
       app:cpb_cornerRadius="4dp"
-      app:cpb_selectorIdle="@drawable/progress_button_state"
+      app:cpb_selectorIdle="@drawable/progress_button_state_light"
       app:cpb_textIdle="@string/UsernameEditFragment_submit"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"

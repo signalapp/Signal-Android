@@ -6,7 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
+import com.annimon.stream.Stream;
+import com.google.protobuf.ByteString;
+
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
+import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -18,7 +22,9 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
+import org.thoughtcrime.securesms.groups.GroupProtoUtil;
 import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
+import org.thoughtcrime.securesms.groups.ui.AddMembersResultCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.logging.Log;
@@ -27,9 +33,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 final class ManageGroupRepository {
 
@@ -55,10 +64,17 @@ final class ManageGroupRepository {
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       GroupDatabase.GroupRecord groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupId).get();
       if (groupRecord.isV2Group()) {
-        DecryptedGroup decryptedGroup = groupRecord.requireV2GroupProperties().getDecryptedGroup();
-        return new GroupCapacityResult(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), FeatureFlags.gv2GroupCapacity());
+        DecryptedGroup    decryptedGroup = groupRecord.requireV2GroupProperties().getDecryptedGroup();
+        List<RecipientId> pendingMembers = Stream.of(decryptedGroup.getPendingMembersList())
+                                                 .map(member -> GroupProtoUtil.uuidByteStringToRecipientId(member.getUuid()))
+                                                 .toList();
+        List<RecipientId> members        = new LinkedList<>(groupRecord.getMembers());
+
+        members.addAll(pendingMembers);
+
+        return new GroupCapacityResult(members, FeatureFlags.gv2GroupCapacity());
       } else {
-        return new GroupCapacityResult(groupRecord.getMembers().size(), 0, ContactSelectionListFragment.NO_LIMIT);
+        return new GroupCapacityResult(groupRecord.getMembers(), ContactSelectionListFragment.NO_LIMIT);
       }
     }, onGroupCapacityLoaded::accept);
   }
@@ -130,10 +146,11 @@ final class ManageGroupRepository {
     });
   }
 
-  void addMembers(@NonNull List<RecipientId> selected, @NonNull GroupChangeErrorCallback error) {
+  void addMembers(@NonNull List<RecipientId> selected, @NonNull AddMembersResultCallback addMembersResultCallback, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GroupManager.addMembers(context, groupId, selected);
+        addMembersResultCallback.onMembersAdded(selected.size());
       } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
         Log.w(TAG, e);
         error.onError(GroupChangeFailureReason.NO_RIGHTS);
@@ -169,18 +186,20 @@ final class ManageGroupRepository {
   }
 
   static final class GroupCapacityResult {
-    private final int fullMembers;
-    private final int pendingMembers;
-    private final int totalCapacity;
+    private final List<RecipientId> members;
+    private final int               totalCapacity;
 
-    GroupCapacityResult(int fullMembers, int pendingMembers, int totalCapacity) {
-      this.fullMembers    = fullMembers;
-      this.pendingMembers = pendingMembers;
+    GroupCapacityResult(@NonNull List<RecipientId> members, int totalCapacity) {
+      this.members        = members;
       this.totalCapacity  = totalCapacity;
     }
 
-    public int getRemainingCapacity() {
-      return totalCapacity - fullMembers - pendingMembers;
+    public @NonNull List<RecipientId> getMembers() {
+      return members;
+    }
+
+    public int getTotalCapacity() {
+      return totalCapacity;
     }
   }
 

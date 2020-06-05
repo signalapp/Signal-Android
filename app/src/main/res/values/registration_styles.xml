@@ -8,7 +8,7 @@
         <item name="cpb_cornerRadius">4dp</item>
         <item name="cpb_colorIndicator">@color/white</item>
         <item name="cpb_colorProgress">@color/core_ultramarine</item>
-        <item name="cpb_selectorIdle">@drawable/progress_button_state</item>
+        <item name="cpb_selectorIdle">@drawable/progress_button_state_light</item>
     </style>
 
     <style name="Signal.Text.Headline.Registration">

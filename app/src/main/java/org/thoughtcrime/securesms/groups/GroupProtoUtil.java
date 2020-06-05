@@ -17,6 +17,7 @@ import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
@@ -87,6 +88,18 @@ public final class GroupProtoUtil {
 
     return Recipient.externalPush(context, uuid, null);
   }
+
+  @WorkerThread
+  public static @NonNull RecipientId uuidByteStringToRecipientId(@NonNull ByteString uuidByteString) {
+    UUID uuid = UUIDUtil.deserialize(uuidByteString.toByteArray());
+
+    if (uuid.equals(GroupsV2Operations.UNKNOWN_UUID)) {
+      return RecipientId.UNKNOWN;
+    }
+
+    return RecipientId.from(uuid, null);
+  }
+
 
   public static boolean isMember(@NonNull UUID uuid, @NonNull List<DecryptedMember> membersList) {
     ByteString uuidBytes = UuidUtil.toByteString(uuid);

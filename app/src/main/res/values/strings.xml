@@ -490,6 +490,13 @@
         <item quantity="other">Error canceling invites</item>
     </plurals>
 
+    <!-- AddMembersActivity -->
+    <string name="AddMembersActivity__done">Done</string>
+    <plurals name="AddMembersActivity__add_d_members_to_s">
+        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
+        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+    </plurals>
+
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Name this group</string>
     <string name="AddGroupDetailsFragment__create">Create</string>
@@ -524,6 +531,10 @@
     <plurals name="ManageGroupActivity_invited">
         <item quantity="one">%d invited</item>
         <item quantity="other">%d invited</item>
+    </plurals>
+    <plurals name="ManageGroupActivity_added">
+        <item quantity="one">%d member added.</item>
+        <item quantity="other">%d members added.</item>
     </plurals>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>

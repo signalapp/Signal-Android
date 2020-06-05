@@ -247,7 +247,7 @@ public final class GroupManager {
     } else {
       GroupDatabase.GroupRecord groupRecord = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
       List<RecipientId>         members     = groupRecord.getMembers();
-      byte[]                    avatar      = Util.readFully(AvatarHelper.getAvatar(context, groupRecord.getRecipientId()));
+      byte[]                    avatar      = groupRecord.hasAvatar() ? Util.readFully(AvatarHelper.getAvatar(context, groupRecord.getRecipientId())) : null;
       Set<RecipientId>          addresses   = new HashSet<>(members);
 
       addresses.addAll(newMembers);

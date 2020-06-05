@@ -98,6 +98,12 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.checkBox.setChecked(selected);
   }
 
+  @Override
+  public void setEnabled(boolean enabled) {
+    super.setEnabled(enabled);
+    this.checkBox.setEnabled(enabled);
+  }
+
   public void unbind(GlideRequests glideRequests) {
     if (recipient != null) {
       recipient.removeForeverObserver(this);

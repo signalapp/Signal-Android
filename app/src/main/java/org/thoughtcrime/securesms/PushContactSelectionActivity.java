@@ -45,16 +45,24 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
     getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     super.onCreate(icicle, ready);
 
+    initializeToolbar();
+  }
+
+  protected void initializeToolbar() {
     getToolbar().setNavigationIcon(R.drawable.ic_check_24);
     getToolbar().setNavigationOnClickListener(v -> {
-      Intent                resultIntent     = getIntent();
-      List<SelectedContact> selectedContacts = contactsFragment.getSelectedContacts();
-      List<RecipientId>     recipients       = Stream.of(selectedContacts).map(sc -> sc.getOrCreateRecipientId(this)).toList();
-
-      resultIntent.putParcelableArrayListExtra(KEY_SELECTED_RECIPIENTS, new ArrayList<>(recipients));
-
-      setResult(RESULT_OK, resultIntent);
-      finish();
+      onFinishedSelection();
     });
+  }
+
+  protected final void onFinishedSelection() {
+    Intent                resultIntent     = getIntent();
+    List<SelectedContact> selectedContacts = contactsFragment.getSelectedContacts();
+    List<RecipientId>     recipients       = Stream.of(selectedContacts).map(sc -> sc.getOrCreateRecipientId(this)).toList();
+
+    resultIntent.putParcelableArrayListExtra(KEY_SELECTED_RECIPIENTS, new ArrayList<>(recipients));
+
+    setResult(RESULT_OK, resultIntent);
+    finish();
   }
 }

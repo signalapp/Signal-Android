@@ -27,7 +27,7 @@
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/check_box"
-            android:background="@drawable/contact_selection_checkbox"
+            android:background="?attr/contact_selection_checkbox_background"
             android:button="@null"
             android:layout_width="22dp"
             android:layout_height="22dp"

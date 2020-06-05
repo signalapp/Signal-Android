@@ -51,6 +51,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.google.android.material.chip.ChipGroup;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
@@ -83,6 +85,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Fragment for selecting a one or more contacts from a list.
@@ -101,11 +104,12 @@ public final class ContactSelectionListFragment extends    Fragment
 
   public static final int NO_LIMIT = Integer.MAX_VALUE;
 
-  public static final String DISPLAY_MODE    = "display_mode";
-  public static final String MULTI_SELECT    = "multi_select";
-  public static final String REFRESHABLE     = "refreshable";
-  public static final String RECENTS         = "recents";
-  public static final String SELECTION_LIMIT = "selection_limit";
+  public static final String DISPLAY_MODE      = "display_mode";
+  public static final String MULTI_SELECT      = "multi_select";
+  public static final String REFRESHABLE       = "refreshable";
+  public static final String RECENTS           = "recents";
+  public static final String TOTAL_CAPACITY    = "total_capacity";
+  public static final String CURRENT_SELECTION = "current_selection";
 
   private ConstraintLayout            constraintLayout;
   private TextView                    emptyText;
@@ -129,6 +133,7 @@ public final class ContactSelectionListFragment extends    Fragment
   @Nullable private ScrollCallback    scrollCallback;
             private GlideRequests     glideRequests;
             private int               selectionLimit;
+            private Set<RecipientId>  currentSelection;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -205,16 +210,17 @@ public final class ContactSelectionListFragment extends    Fragment
 
     swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
 
-    selectionLimit = requireActivity().getIntent().getIntExtra(SELECTION_LIMIT, NO_LIMIT);
+    selectionLimit   = requireActivity().getIntent().getIntExtra(TOTAL_CAPACITY, NO_LIMIT);
+    currentSelection = getCurrentSelection();
 
     updateGroupLimit(getChipCount());
 
     return view;
   }
 
-  private void updateGroupLimit(int childCount) {
+  private void updateGroupLimit(int chipCount) {
     if (selectionLimit != NO_LIMIT) {
-      groupLimit.setText(String.format(Locale.getDefault(), "%d/%d", childCount, selectionLimit));
+      groupLimit.setText(String.format(Locale.getDefault(), "%d/%d", currentSelection.size() + chipCount, selectionLimit));
       groupLimit.setVisibility(View.VISIBLE);
     } else {
       groupLimit.setVisibility(View.GONE);
@@ -242,6 +248,13 @@ public final class ContactSelectionListFragment extends    Fragment
     return cursorRecyclerViewAdapter.getSelectedContactsCount();
   }
 
+  private Set<RecipientId> getCurrentSelection() {
+    List<RecipientId> currentSelection = requireActivity().getIntent().getParcelableArrayListExtra(CURRENT_SELECTION);
+
+    return currentSelection == null ? Collections.emptySet()
+                                    : Collections.unmodifiableSet(Stream.of(currentSelection).collect(Collectors.toSet()));
+  }
+
   private boolean isMulti() {
     return requireActivity().getIntent().getBooleanExtra(MULTI_SELECT, false);
   }
@@ -253,7 +266,8 @@ public final class ContactSelectionListFragment extends    Fragment
                                                                 glideRequests,
                                                                 null,
                                                                 new ListClickListener(),
-                                                                isMulti());
+                                                                isMulti(),
+                                                                currentSelection);
 
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
@@ -546,7 +560,13 @@ public final class ContactSelectionListFragment extends    Fragment
     chip.setText(recipient.getShortDisplayName(requireContext()));
     chip.setContact(selectedContact);
     chip.setCloseIconVisible(true);
-    chip.setOnCloseIconClickListener(view -> markContactUnselected(selectedContact));
+    chip.setOnCloseIconClickListener(view -> {
+      markContactUnselected(selectedContact);
+
+      if (onContactSelectedListener != null) {
+        onContactSelectedListener.onContactDeselected(Optional.of(recipient.getId()), recipient.getE164().orNull());
+      }
+    });
 
     chipGroup.getLayoutTransition().addTransitionListener(new LayoutTransition.TransitionListener() {
       @Override

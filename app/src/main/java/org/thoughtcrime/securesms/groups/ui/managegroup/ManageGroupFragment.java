@@ -19,7 +19,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModelProviders;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -44,6 +47,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
@@ -322,6 +326,8 @@ public class ManageGroupFragment extends Fragment {
     } else {
       customNotificationsRow.setVisibility(View.GONE);
     }
+
+    viewModel.getSnackbarEvents().observe(getViewLifecycleOwner(), this::handleSnackbarEvent);
   }
 
   public boolean onMenuItemSelected(@NonNull MenuItem item) {
@@ -349,12 +355,24 @@ public class ManageGroupFragment extends Fragment {
     if (context == null) return;
     if (this.cursorFactory != null) {
       Cursor cursor = this.cursorFactory.create();
+      getViewLifecycleOwner().getLifecycle().addObserver(new LifecycleCursorWrapper(cursor));
+
       threadPhotoRailView.setCursor(GlideApp.with(context), cursor);
       groupMediaCard.setVisibility(cursor.getCount() > 0 ? View.VISIBLE : View.GONE);
     } else {
       threadPhotoRailView.setCursor(GlideApp.with(context), null);
       groupMediaCard.setVisibility(View.GONE);
     }
+  }
+
+  private void handleSnackbarEvent(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {
+    Snackbar.make(requireView(), buildSnackbarString(snackbarEvent), Snackbar.LENGTH_SHORT).show();
+  }
+
+  private @NonNull String buildSnackbarString(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {
+    return getResources().getQuantityString(R.plurals.ManageGroupActivity_added,
+                                            snackbarEvent.getNumberOfMembersAdded(),
+                                            snackbarEvent.getNumberOfMembersAdded());
   }
 
   @Override
