@@ -242,7 +242,7 @@
     </style>
 
     <style name="Button.Borderless" parent="Base.Widget.AppCompat.Button.Borderless">
-        <item name="android:textColor">@color/core_ultramarine</item>
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
     <!-- RedPhone -->

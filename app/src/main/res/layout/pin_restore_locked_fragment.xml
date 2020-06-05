@@ -49,7 +49,7 @@
 
     <Button
         android:id="@+id/pin_locked_learn_more"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        style="@style/Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

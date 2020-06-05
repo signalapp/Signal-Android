@@ -461,7 +461,7 @@
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
         <item name="invite_edit_text_background">@drawable/invite_edit_text_background_dark</item>
-        <item name="invite_share_icon">@drawable/ic_share_solid_24</item>
+        <item name="invite_share_icon">@drawable/ic_share_solid_24_dark</item>
 
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>

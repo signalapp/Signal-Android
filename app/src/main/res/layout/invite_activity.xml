@@ -114,7 +114,7 @@
                       android:orientation="horizontal">
 
             <Button android:id="@+id/cancel_sms_button"
-                    style="@style/Widget.AppCompat.Button.Borderless"
+                    style="@style/Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/InviteActivity_cancel" />

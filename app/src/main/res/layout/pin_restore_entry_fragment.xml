@@ -61,13 +61,12 @@
 
         <Button
             android:id="@+id/pin_restore_forgot_pin"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            style="@style/Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:text="@string/PinRestoreEntryFragment_need_help"
-            android:textColor="@color/core_ultramarine"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +75,7 @@
 
         <Button
             android:id="@+id/pin_restore_keyboard_toggle"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            style="@style/Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"

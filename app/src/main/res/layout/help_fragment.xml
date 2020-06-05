@@ -77,7 +77,6 @@
                 android:text="@string/HelpFragment__whats_this"
                 android:textAllCaps="false"
                 android:textAppearance="@style/Signal.Text.Body"
-                android:textColor="@color/core_ultramarine"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"

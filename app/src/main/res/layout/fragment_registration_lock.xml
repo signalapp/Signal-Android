@@ -61,20 +61,19 @@
 
         <Button
             android:id="@+id/kbs_lock_forgot_pin"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            style="@style/Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:text="@string/RegistrationLockFragment__forgot_pin"
-            android:textColor="@color/core_ultramarine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input_label" />
 
         <Button
             android:id="@+id/kbs_lock_keyboard_toggle"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            style="@style/Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
