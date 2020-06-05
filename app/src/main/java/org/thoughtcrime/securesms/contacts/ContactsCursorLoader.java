@@ -115,52 +115,73 @@ public class ContactsCursorLoader extends CursorLoader {
   private List<Cursor> getUnfilteredResults() {
     ArrayList<Cursor> cursorList = new ArrayList<>();
 
-    if (recents) {
-      Cursor recentConversations = getRecentConversationsCursor();
-      if (recentConversations.getCount() > 0) {
-        cursorList.add(getRecentsHeaderCursor());
-        cursorList.add(recentConversations);
-        cursorList.add(getContactsHeaderCursor());
-      }
-    }
-    cursorList.addAll(getContactsCursors());
+    addRecentsSection(cursorList);
+    addContactsSection(cursorList);
+
     return cursorList;
   }
 
   private List<Cursor> getFilteredResults() {
     ArrayList<Cursor> cursorList = new ArrayList<>();
 
-    if (groupsEnabled(mode)) {
-      Cursor groups = getGroupsCursor();
-      if (groups.getCount() > 0) {
-        List<Cursor> contacts = getContactsCursors();
-        if (!isCursorListEmpty(contacts)) {
-          cursorList.add(getContactsHeaderCursor());
-          cursorList.addAll(contacts);
-          cursorList.add(getGroupsHeaderCursor());
-        }
-        cursorList.add(groups);
-      } else {
-        cursorList.addAll(getContactsCursors());
-      }
-    } else {
-      cursorList.addAll(getContactsCursors());
+    addContactsSection(cursorList);
+    addGroupsSection(cursorList);
+    addNewNumberSection(cursorList);
+    addUsernameSearchSection(cursorList);
+
+    return cursorList;
+  }
+
+  private void addRecentsSection(@NonNull List<Cursor> cursorList) {
+    if (!recents) {
+      return;
     }
 
+    Cursor recentConversations = getRecentConversationsCursor();
+
+    if (recentConversations.getCount() > 0) {
+      cursorList.add(getRecentsHeaderCursor());
+      cursorList.add(recentConversations);
+    }
+  }
+
+  private void addContactsSection(@NonNull List<Cursor> cursorList) {
+    List<Cursor> contacts = getContactsCursors();
+
+    if (!isCursorListEmpty(contacts)) {
+      cursorList.add(getContactsHeaderCursor());
+      cursorList.addAll(getContactsCursors());
+    }
+  }
+
+  private void addGroupsSection(@NonNull List<Cursor> cursorList) {
+    if (!groupsEnabled(mode)) {
+      return;
+    }
+
+    Cursor groups = getGroupsCursor();
+
+    if (groups.getCount() > 0) {
+      cursorList.add(getGroupsHeaderCursor());
+      cursorList.add(getGroupsCursor());
+    }
+  }
+
+  private void addNewNumberSection(@NonNull List<Cursor> cursorList) {
     if (FeatureFlags.usernames() && NumberUtil.isVisuallyValidNumberOrEmail(filter)) {
       cursorList.add(getPhoneNumberSearchHeaderCursor());
       cursorList.add(getNewNumberCursor());
     } else if (!FeatureFlags.usernames() && NumberUtil.isValidSmsOrEmail(filter)){
-      cursorList.add(getContactsHeaderCursor());
+      cursorList.add(getPhoneNumberSearchHeaderCursor());
       cursorList.add(getNewNumberCursor());
     }
+  }
 
+  private void addUsernameSearchSection(@NonNull List<Cursor> cursorList) {
     if (FeatureFlags.usernames() && UsernameUtil.isValidUsernameForSearch(filter)) {
       cursorList.add(getUsernameSearchHeaderCursor());
       cursorList.add(getUsernameSearchCursor());
     }
-
-    return cursorList;
   }
 
   private Cursor getRecentsHeaderCursor() {
