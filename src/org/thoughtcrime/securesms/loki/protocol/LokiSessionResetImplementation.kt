@@ -26,8 +26,8 @@ class LokiSessionResetImplementation(private val context: Context) : LokiSession
     }
 
     override fun validatePreKeySignalMessage(sender: String, message: PreKeySignalMessage) {
-        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getPreKeyRecord(sender)
-        check(preKeyRecord != null) { "Received a background message from a user without an associated pre key record." }
+        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getPreKeyRecord(sender) ?: return
+        // TODO: Checking that the pre key record isn't null is causing issues when it shouldn't
         check(preKeyRecord.id == (message.preKeyId ?: -1)) { "Received a background message from an unknown source." }
     }
 }
