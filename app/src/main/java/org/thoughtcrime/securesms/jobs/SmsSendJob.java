@@ -66,6 +66,11 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
+  public void onAdded() {
+    DatabaseFactory.getSmsDatabase(context).markAsSending(messageId);
+  }
+
+  @Override
   public void onSend() throws NoSuchMessageException, TooManyRetriesException {
     if (runAttempt >= MAX_ATTEMPTS) {
       warn(TAG, "Hit the retry limit. Failing.");

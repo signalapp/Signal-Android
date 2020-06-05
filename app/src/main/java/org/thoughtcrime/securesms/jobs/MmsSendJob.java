@@ -114,6 +114,11 @@ public final class MmsSendJob extends SendJob {
   }
 
   @Override
+  public void onAdded() {
+    DatabaseFactory.getMmsDatabase(context).markAsSending(messageId);
+  }
+
+  @Override
   public void onSend() throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
