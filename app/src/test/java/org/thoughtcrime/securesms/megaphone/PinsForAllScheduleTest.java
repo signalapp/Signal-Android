@@ -104,25 +104,10 @@ public class PinsForAllScheduleTest extends BaseUnitTest {
   }
 
   @Test
-  public void whenUserIsANewInstallAndFlagIsDisabled_whenIShouldDisplay_thenIExpectFalse() {
-    // GIVEN
-    when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(true);
-    when(kbsValues.hasPin()).thenReturn(true);
-    when(FeatureFlags.pinsForAll()).thenReturn(false);
-
-    // WHEN
-    boolean result = testSubject.shouldDisplay(0, 0, 0, System.currentTimeMillis());
-
-    // THEN
-    assertFalse(result);
-  }
-
-  @Test
   public void whenUserIsANewInstallAndFlagIsEnabled_whenIShouldDisplay_thenIExpectFalse() {
     // GIVEN
     when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(true);
     when(kbsValues.hasPin()).thenReturn(true);
-    when(FeatureFlags.pinsForAll()).thenReturn(true);
 
     // WHEN
     boolean result = testSubject.shouldDisplay(0, 0, 0, System.currentTimeMillis());
@@ -135,7 +120,6 @@ public class PinsForAllScheduleTest extends BaseUnitTest {
   public void whenUserIsNotANewInstallAndFlagIsEnabled_whenIShouldDisplay_thenIExpectTrue() {
     // GIVEN
     when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(false);
-    when(FeatureFlags.pinsForAll()).thenReturn(true);
 
     // WHEN
     boolean result = testSubject.shouldDisplay(0, 0, 0, System.currentTimeMillis());
@@ -145,23 +129,9 @@ public class PinsForAllScheduleTest extends BaseUnitTest {
   }
 
   @Test
-  public void whenUserIsNotANewInstallAndFlagIsNotEnabled_whenIShouldDisplay_thenIExpectFalse() {
-    // GIVEN
-    when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(false);
-    when(FeatureFlags.pinsForAll()).thenReturn(false);
-
-    // WHEN
-    boolean result = testSubject.shouldDisplay(0, 0, 0, System.currentTimeMillis());
-
-    // THEN
-    assertFalse(result);
-  }
-
-  @Test
   public void whenKillSwitchEnabled_whenIShouldDisplay_thenIExpectFalse() {
     // GIVEN
     when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(false);
-    when(FeatureFlags.pinsForAll()).thenReturn(true);
     when(FeatureFlags.pinsForAllMegaphoneKillSwitch()).thenReturn(true);
 
     // WHEN

@@ -129,15 +129,4 @@
 
   </PreferenceCategory>
 
-  <PreferenceCategory
-      android:key="prefs_lock_v1"
-      android:title="@string/preferences_app_protection__registration_lock">
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:key="pref_registration_lock"
-        android:summary="@string/preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required"
-        android:title="@string/preferences_app_protection__registration_lock_pin" />
-  </PreferenceCategory>
-
-
 </PreferenceScreen>

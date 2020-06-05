@@ -13,10 +13,6 @@ final class SignalPinReminderSchedule implements MegaphoneSchedule {
       return false;
     }
 
-    if (!FeatureFlags.pinsForAll()) {
-      return false;
-    }
-
     if (!SignalStore.pinValues().arePinRemindersEnabled()) {
       return false;
     }

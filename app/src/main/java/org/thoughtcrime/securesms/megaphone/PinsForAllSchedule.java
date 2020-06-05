@@ -68,7 +68,7 @@ class PinsForAllSchedule implements MegaphoneSchedule {
       return false;
     }
 
-    return FeatureFlags.pinsForAll();
+    return true;
   }
 
   private static boolean pinCreationFailedDuringRegistration() {

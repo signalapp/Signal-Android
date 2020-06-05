@@ -87,11 +87,6 @@ public class StorageSyncJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
-    if (!FeatureFlags.pinsForAll()) {
-      Log.i(TAG, "Not enabled. Skipping.");
-      return;
-    }
-
     if (!SignalStore.kbsValues().hasPin()) {
       Log.i(TAG, "Doesn't have a PIN. Skipping.");
       return;
