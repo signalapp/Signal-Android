@@ -126,6 +126,7 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
+import org.thoughtcrime.securesms.conversation.ConversationGroupViewModel.GroupActiveState;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -339,6 +340,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private ConversationStickerViewModel stickerViewModel;
   private ConversationViewModel        viewModel;
   private InviteReminderModel          inviteReminderModel;
+  private ConversationGroupViewModel   groupViewModel;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -406,6 +408,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeSearchObserver();
     initializeStickerObserver();
     initializeViewModel();
+    initializeGroupViewModel();
+    initializeEnabledCheck();
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
@@ -485,7 +489,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onResume(this);
 
     EventBus.getDefault().register(this);
-    initializeEnabledCheck();
     initializeMmsEnabledCheck();
     initializeIdentityRecords();
     composeText.setTransport(sendButton.getSelectedTransport());
@@ -704,8 +707,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
+    GroupActiveState groupActiveState = groupViewModel.getGroupActiveState().getValue();
+    boolean isActiveGroup             = groupActiveState != null && groupActiveState.isActiveGroup();
+    boolean isActiveV2Group           = groupActiveState != null && groupActiveState.isActiveV2Group();
+
     if (isInMessageRequest()) {
-      if (isActiveGroup()) {
+      if (isActiveGroup) {
         inflater.inflate(R.menu.conversation_message_requests_group, menu);
       }
 
@@ -741,9 +748,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
-      } else if (isActiveV2Group() || isActiveGroup() && FeatureFlags.newGroupUI()) {
+      } else if (isActiveV2Group || isActiveGroup && FeatureFlags.newGroupUI()) {
         inflater.inflate(R.menu.conversation_push_group_v2_options, menu);
-      } else if (isActiveGroup()) {
+      } else if (isActiveGroup) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
     }
@@ -789,10 +796,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
-    if (isActiveV2Group()) {
+    if (isActiveV2Group) {
       hideMenuItem(menu, R.id.menu_mute_notifications);
       hideMenuItem(menu, R.id.menu_conversation_settings);
-    } else if (isActiveGroup()) {
+    } else if (isActiveGroup) {
       hideMenuItem(menu, R.id.menu_conversation_settings);
     }
 
@@ -1187,7 +1194,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     LeaveGroupDialog.handleLeavePushGroup(ConversationActivity.this,
                                           getLifecycle(),
                                           getRecipient().requireGroupId().requirePush(),
-                                          this::initializeEnabledCheck);
+                                          null);
   }
 
   private void handleEditPushGroupV1() {
@@ -1417,10 +1424,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeEnabledCheck() {
-    boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
-    inputPanel.setEnabled(enabled);
-    sendButton.setEnabled(enabled);
-    attachButton.setEnabled(enabled);
+    groupViewModel.getGroupActiveState().observe(this, state -> {
+      boolean enabled = state == null || !(isPushGroupConversation() && !state.isActiveGroup());
+      inputPanel.setEnabled(enabled);
+      sendButton.setEnabled(enabled);
+      attachButton.setEnabled(enabled);
+    });
   }
 
   private ListenableFuture<Boolean> initializeDraftFromDatabase() {
@@ -1851,6 +1860,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.viewModel = ViewModelProviders.of(this, new ConversationViewModel.Factory()).get(ConversationViewModel.class);
   }
 
+  private void initializeGroupViewModel() {
+    groupViewModel = ViewModelProviders.of(this, new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
+    recipient.observe(this, groupViewModel::onRecipientChange);
+    groupViewModel.getGroupActiveState().observe(this, unused -> invalidateOptionsMenu());
+  }
+
   private void showStickerIntroductionTooltip() {
     TextSecurePreferences.setMediaKeyboardMode(this, MediaKeyboardMode.STICKER);
     inputPanel.setMediaKeyboardToggleMode(true);
@@ -1947,6 +1962,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
       invalidateOptionsMenu();
+    }
+
+    if (groupViewModel != null) {
+      groupViewModel.onRecipientChange(recipient);
     }
   }
 
@@ -2203,13 +2222,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getId());
     return record.isPresent() && record.get().isActive();
-  }
-
-  private boolean isActiveV2Group() {
-    if (!isGroupConversation()) return false;
-
-    Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getId());
-    return record.isPresent() && record.get().isActive() && record.get().isV2Group();
   }
 
   @SuppressWarnings("SimplifiableIfStatement")
