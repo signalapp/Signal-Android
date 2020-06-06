@@ -180,10 +180,10 @@
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Redactar mensaje</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lo sentimos, ha habido un fallo al adjuntar el archivo.</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">¡El destinatario no es un número que pueda recibir SMS o un correo válido!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">¡Esta persona no tiene un número que pueda recibir SMS o un correo válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
   <string name="ConversationActivity_group_members">Participantes del grupo</string>
-  <string name="ConversationActivity_invalid_recipient">¡Destinatario inválido!</string>
+  <string name="ConversationActivity_invalid_recipient">¡Destinatari* inválid*!</string>
   <string name="ConversationActivity_added_to_home_screen">Añadido a la pantalla de inicio</string>
   <string name="ConversationActivity_calls_not_supported">Llamadas no disponibles</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
@@ -590,14 +590,14 @@
   <string name="MediaSendActivity_camera_unavailable">Cámara no disponible.</string>
   <string name="MediaSendActivity_message_to_s">Mensaje para %s</string>
   <string name="MediaSendActivity_message">Mensaje</string>
-  <string name="MediaSendActivity_select_recipients">Seleccionar destinatarios</string>
+  <string name="MediaSendActivity_select_recipients">Seleccionar destinatari*s</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal necesita acceso a tus contactos para poder mostrarlos.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal necesita acceso a tus contactos para poder mostrarlos. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones»  y en «Permisos» activa «Contactos».</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">No se puede compartir más de %d objeto.</item>
     <item quantity="other">No se pueden compartir más de %d objetos.</item>
   </plurals>
-  <string name="MediaSendActivity_select_recipients_description">Seleccionar destinatarios</string>
+  <string name="MediaSendActivity_select_recipients_description">Seleccionar destinatari*s</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Toca aquí para hacer desaparecer este mensaje tras ser visto.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Archivos multimedia</string>
@@ -798,7 +798,7 @@
   <string name="RedPhone_ringing">Llamando</string>
   <string name="RedPhone_busy">Ocupado</string>
   <string name="RedPhone_connected">Conectado</string>
-  <string name="RedPhone_recipient_unavailable">Destinatario no disponible</string>
+  <string name="RedPhone_recipient_unavailable">Persona no disponible</string>
   <string name="RedPhone_network_failed">¡Fallo de red!</string>
   <string name="RedPhone_number_not_registered">¡Número no registrado!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">¡El número marcado no admite llamadas seguras!</string>
@@ -1659,7 +1659,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Añadir a contactos</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista de destinatarios</string>
+  <string name="convesation_group_options__recipients_list">Lista de participantes</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Chat</string>
   <string name="conversation_group_options__broadcast">Transmisión</string>

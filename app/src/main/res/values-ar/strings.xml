@@ -132,6 +132,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
   <string name="ClearProfileActivity_remove_profile_photo">حذف صورة الملف الشخصي؟</string>
+  <string name="ClearProfileActivity_remove_group_photo">أأحذف صورة المجموعة؟</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
   <string name="CommunicationActions_no_email_app_found">لم يعثر على أي تطبيق للبريد الإلكتروني.</string>
@@ -239,6 +240,9 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">سوف تغادر هذه المجموعة، ثم ستُحذَف من كل أجهزتك.</string>
   <string name="ConversationActivity_delete">حذف  </string>
   <string name="ConversationActivity_delete_and_leave">حذف ومغادرة</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">للاتصال ب%1$s يحتاج سغنال الوصول إلى ميكروفونك.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">للاتصال ب%1$s يحتاج سغنال الوصول إلى ميكروفونك وكاميرتك.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">ثمة خيارات إضافية الآن في \"إعدادات المجموعة\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">%d رسالة غير مقروءة</item>
@@ -424,6 +428,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
   <string name="GroupCreateActivity_actionbar_edit_title">تعديل المجموعة</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">أدرْ المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات Signal وبالتالي ستكون هذه المجموعة متعددة الوسائط.</string>
@@ -474,24 +479,52 @@
     <item quantity="other">خطأ في إلغاء الدعوات</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">سمّ هذه المجموعة</string>
   <string name="AddGroupDetailsFragment__create">إنشاء</string>
   <string name="AddGroupDetailsFragment__members">الأعضاء</string>
   <string name="AddGroupDetailsFragment__group_name_required">اسم المجموعة (ضروري)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">هذا الحقل مطلوب.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">يشترط للمجموعات أن يكون لها على الأقل عضوان/عضوتان.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">فشل إنشاء المجموعة.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">حاول مرة أخرى لاحقا.</string>
   <string name="AddGroupDetailsFragment__remove">إزالة</string>
+  <string name="AddGroupDetailsFragment__sms_contact">جهة اتصال عبر الرسائل القصيرة (SMS)</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">أأزيل %1$s من هذه المجموعة؟</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">الرسائل المُختفية</string>
   <string name="ManageGroupActivity_pending_group_invites">دعوات معلّقة</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">من يستطيع تعديل عضوية المجموعة</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">من يستطيع تعديل معلومات المجموعة</string>
+  <string name="ManageGroupActivity_block_group">حظر المجموعة</string>
   <string name="ManageGroupActivity_leave_group">أترك المجموعة</string>
   <string name="ManageGroupActivity_mute_notifications">كتم الإشعارات</string>
   <string name="ManageGroupActivity_custom_notifications">إشعارات مخصّصة</string>
+  <string name="ManageGroupActivity_until_s">حتى %1$s</string>
   <string name="ManageGroupActivity_off">مغلق</string>
   <string name="ManageGroupActivity_on">يعمل</string>
   <string name="ManageGroupActivity_add_members">إضافة أعضاء</string>
   <string name="ManageGroupActivity_view_all_members">استعراض جميع الأعضاء</string>
+  <string name="ManageGroupActivity_see_all">مشاهدة الكل</string>
   <string name="ManageGroupActivity_none">لا شيء </string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="zero">دُعي %d</item>
+    <item quantity="one">دُعي %d</item>
+    <item quantity="two">دُعي %d</item>
+    <item quantity="few">دُعي %d</item>
+    <item quantity="many">دُعي %d</item>
+    <item quantity="other">دُعي %d</item>
+  </plurals>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ليس لك صلاحية القيام بذلك</string>
+  <string name="ManageGroupActivity_not_capable">أحد الذين دعوتهم لا يدعم المجموعات الجديدة ويتعيّن عليهم تحديث سغنال</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">فشل تحديث المجموعة</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">لست عضو/ة في المجموعة</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">عدّل الاسم والصورة</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">اختر من بإمكانه إضافة الأعضاء والعضوات الجدد ودعوتهم</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">اختر من بإمكانه تغيير اسم المجموعة وصورتها.</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">إشعارات مخصّصة</string>
   <string name="CustomNotificationsDialogFragment__messages">الرسائل</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">استخدم إشعارات مُخصّصة</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">صوت التنبيه</string>
   <string name="CustomNotificationsDialogFragment__vibrate">الاهتزاز</string>
   <!--GV2 Invite cancellation confirmation-->
@@ -508,7 +541,12 @@
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">لم تُكتشف أي وجوه</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">ضبّب الوجوه</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">جديد: ضبّب الوجوه أو ارسم في أي مكان لتضبيبه</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">ارسم في أي مكان لتضبيبه</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">ارسم لتضبيب مزيدٍ من الأوجه والأماكن</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
   <!--InviteActivity-->
@@ -706,6 +744,7 @@
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">لقد قبلت الدعوة إلى المجموعة.</string>
   <string name="MessageRecord_s_accepted_invite">قبل %1$s  دعوة إلى المجموعة.</string>
+  <string name="MessageRecord_you_added_invited_member_s">أضفت العضو المدعوّ %1$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">لقد قمت بتغيير اسم المجموعة إلى \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">قام %1$s  بتغيير اسم المجموعة إلى \"%2$s \".</string>
@@ -813,6 +852,7 @@
   <string name="RatingManager_later">فيما بعد</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">عفوا، يبدو أنّ تطبيق Play Store غير مثبّت على جهازك. </string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">الكل · %1$d </string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -840,7 +880,11 @@
   <string name="RedPhone_got_it">عُلم</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">اضغط هنا لتشغيل الفيديو منك. </string>
+  <string name="WebRtcCallActivity__signal_s">%1$s سغنال</string>
+  <string name="WebRtcCallActivity__calling">يتّصل…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">مكالمة سغنال صوتية…</string>
+  <string name="WebRtcCallView__signal_video_call">مكالمة سغنال مرئية…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>
@@ -957,6 +1001,7 @@
   <string name="SubmitDebugLogActivity_submit">تقديم</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجل</string>
   <string name="SubmitDebugLogActivity_success">تمّ بنجاح!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">انسخـ/ـي هذا الرابط وأضفـ(ـيـ)ـه إلى بلاغك أو إلى بريد الدعم:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
   <string name="SubmitDebugLogActivity_ok">موافق</string>
   <string name="SubmitDebugLogActivity_share">شارك</string>
@@ -966,6 +1011,8 @@
   <string name="SupportEmailUtil_device_info">معلومات الجهاز:</string>
   <string name="SupportEmailUtil_android_version">إصدار اﻷندرويد</string>
   <string name="SupportEmailUtil_signal_version">إصدار Signal:</string>
+  <string name="SupportEmailUtil_signal_package">حزمة سغنال:</string>
+  <string name="SupportEmailUtil_registration_lock">قفل التسجيل:</string>
   <string name="SupportEmailUtil_locale">محلي :</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">تم تحديث المجموعة</string>
@@ -1139,6 +1186,9 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">للإجابة على مكالمة %s يجب السماح ل Signal بالوصول إلى المايكروفون في جهازك.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل استقبال أو تلقّي المكالمات، ولكن الإذن لم يُمنح بشكل دائم. الرجاء زيارة إعدادات التطبيق، واختيار \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">أجاب على جهازٍ مرتبط.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">رُفض على جهازٍ مرتبط.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">مشغول على جهازٍ مرتبط.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">تم تغيير رقم السلامة مع %1$s، وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة تثبيت Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم السامة مع جهة الاتصال هذه.</string>
@@ -1146,8 +1196,12 @@
   <string name="WebRtcCallScreen_accept">موافقة</string>
   <string name="WebRtcCallScreen_end_call">إنهاء المكالمة</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">رفض</string>
   <string name="WebRtcCallScreen__answer">أجب</string>
+  <string name="WebRtcCallScreen__answer_without_video">أجِب بلا فيديو</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__audio_output">مُخرج الصوت</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">سماعة الهاتف الأذنية</string>
   <string name="WebRtcAudioOutputToggle__speaker">السمّاعة</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <!--WebRtcCallControls-->
@@ -1201,6 +1255,7 @@
   <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المستخدم</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ليس مستخدم ل Signal. يرجى التحقق من اسم المستخدم والمحاولة ثانية.</string>
   <string name="ContactSelectionListFragment_okay">حسنًا</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">المجموعة ممتلئة</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>
   <!--contact_selection_list_fragment-->
@@ -1250,6 +1305,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ …</string>
   <string name="country_selection_fragment__search">بحث</string>
+  <string name="country_selection_fragment__no_matching_countries">لا توجد دولة مطابقة</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">مسح رمز الاستجابة السريع المبين على الجهاز لربطه.</string>
   <!--device_link_fragment-->
@@ -1390,6 +1446,7 @@
   <string name="CreateProfileActivity__username">اسم المستخدم</string>
   <string name="CreateProfileActivity__create_a_username">يرجى إنشاء اسم المستخدم</string>
   <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">عدّل اسم المجموعة وصورتها</string>
   <string name="EditProfileFragment__group_name">أسم المجموعة</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">الملفّات المتعدّدة الوسائط التي تّم مشاركتها</string>
@@ -1479,6 +1536,15 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">يُرجى أن تكون وصفيًا قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
   <string name="HelpFragment__no_email_app_found">لم يعثر على أي تطبيق للبريد الإلكتروني.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">أُستخدم مؤخرا</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ابتسامات وأشخاص</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">طبيعة</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">طعام</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">أنشطة</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">أماكن</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">أشياء</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">رموز</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">أعلام</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
@@ -1669,6 +1735,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">فك أرشفة ما تمّ اختياره</string>
   <string name="conversation_list_batch__menu_unarchive_selected">فك أرشفة ما تمّ اختياره</string>
   <string name="conversation_list_batch__menu_mark_as_read">اعتبرها مقروءة</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">علَم أنها غير مقروءة</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">مختصر للإعدادات</string>
   <string name="conversation_list_search_description">بحث</string>
@@ -1794,6 +1861,7 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">فشل إنشاء الرقم التعريفي الشخصي</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">لم يتم حفظ الرقم التعريفي الشخصي الخاص بك. سنطلب منك إنشاء رقم تعريفي شخصي لاحقا.</string>
   <string name="ConfirmKbsPinFragment__pin_created">تم إنشاء الرقم التعريفي الشخصي.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">أعد إدخال رقم التعريف الشخصي</string>
   <string name="ConfirmKbsPinFragment__creating_pin">جاري إنشاء الرقم التعريفي الشخصي</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
@@ -1845,6 +1913,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">حسنًا</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">الأرقام التعريفية الشخصية تجعل المعلومات المخزّنة مع سغنال مُعمّاة.</string>
   <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="KbsMegaphone__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
   <string name="KbsMegaphone__update_pin">تحديث الرقم التعريفي الشخصي</string>
@@ -1919,11 +1988,16 @@
   <string name="preferences_app_protection__signal_pin">الرقم التعريفي الشخصي ل Signal</string>
   <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="preferences_app_protection__change_your_pin">ر غيِّر رقم التعريف الشخصي الخاص بك</string>
+  <string name="preferences_app_protection__pin_reminders">تذكيرات الرقم التعريفي الشخصي</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">تساعدك التذكيرات في تذكر رقم التعريف الشخصي لأنه لا يمكن استرداده. سيُطلب منك أقل مرات بمرور الوقت.</string>
   <string name="preferences_app_protection__turn_off">أطفيء</string>
   <string name="preferences_app_protection__confirm_pin">تأكيد الرقم التعريفي الشخصي</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">قم بتأكيد رقم التعريف الشخصي الخاص بك</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">تأكّد(ي) من حفز الرقم التعريفي الشخصي أو تخزينه في مكانٍ آمن إذ لا يمكن استعادته.  في حال نسيان الرقم التعريفي الشخصي، قد تخسر/ين البيانات عند إعادة تسجيل حساب سغنال.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذّر تفعيل قفل التسجيل.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذّر تعطيل قفل التسجيل.</string>
   <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">الرقم التعريفي الشخصي لحماية التسجيل مختلف عن رمز التحقق في رسالة SMS التي استقبلتها الآن. يُرجى إدخال الرقم التعريفي الشخصي الذي قمت بتحديده في إعدادات التطبيق من قبل.</string>
   <string name="registration_activity__registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل</string>
@@ -1941,6 +2015,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل غير صحيح</string>
   <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">لقد قمت بمحاولات عديدة لإدخال الرقم التعريفي الشخصي. الرجاء المحاولة مرة أخرى بعد يوم.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">قمت بمحاولات كثيرة. يُرجى المحاولة لاحقا.</string>
   <string name="RegistrationActivity_error_connecting_to_service">عطل في الاتصال بالخدمة</string>
   <string name="RegistrationActivity_oh_no">أوه لا!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">إمكانية التسجيل بهذا الرقم على Signal سيكون متاحًا بدون الرقم التعريفي الشخصي بعد مرور 7 أيام على آخر نشاط للرقم على Signal. تبقّى أمامك %d يوم.</string>
@@ -1950,6 +2025,7 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">لقد نسيتُ الرّقم التعريفي الشّخصي.</string>
   <string name="RegistrationLockDialog_forgotten_pin">هل نسيت الرّقم التعريفي الشّخصي؟</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">الرقم التعريفي الشخصي لحماية التسجيل يحمي رقم هاتفك من محاولات غير مصرّحة  للتسجيل في الخدمة. يمكن إلغاء هذه الخاصية في أي وقت عبر إعدادات الخصوصية في تطبيق Signal.</string>
+  <string name="RegistrationLockDialog_registration_lock">قفل التسحيل</string>
   <string name="RegistrationLockDialog_enable">تفعيل</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">الرقم التعريفي الشخصي لحماية التسجيل يجب أن يتكون من %d رقما على الأقل.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">الأرقام التي أدخلتها غير متطابقة.</string>
@@ -1970,6 +2046,11 @@
   <string name="RecipientBottomSheet_block">حظر</string>
   <string name="RecipientBottomSheet_unblock">رفع الحظر</string>
   <string name="RecipientBottomSheet_view_safety_number">عرض رقم السلامة</string>
+  <string name="RecipientBottomSheet_make_group_admin">اجعلهـ/ـا إداريـ/ـة للمجموعة</string>
+  <string name="RecipientBottomSheet_remove_as_admin">أزل من كونه إداريًا</string>
+  <string name="RecipientBottomSheet_remove_from_group">أزل من المجموعة</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">أأزيل %1$s من كونه إداريًا في المجموعة؟</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">أأزيل %1$s من \"%2$s\"؟</string>
   <string name="RecipientBottomSheet_remove">إزالة</string>
   <string name="GroupRecipientListItem_admin">مشرف</string>
   <!--EOF-->

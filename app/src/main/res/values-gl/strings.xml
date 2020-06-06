@@ -221,6 +221,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo e será eliminado de todos os teus dispositivos.</string>
   <string name="ConversationActivity_delete">Eliminar</string>
   <string name="ConversationActivity_delete_and_leave">Eliminar e saír</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para chamar a %1$s, Signal necesita acceder ao teu micrófono.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar a %1$s, Signal necesita acceder ao teu micrófono e cámara.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaxe sen ler</item>
@@ -389,6 +391,11 @@
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">Crear</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Nome do grupo (obrigatorio)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Este campo é obrigatorio.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Os grupos deben ter ao menos dous membros.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Erro ao crear o grupo.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Volver tentar máis tarde.</string>
   <string name="AddGroupDetailsFragment__remove">Eliminar</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Desaparición das mensaxes</string>
@@ -398,7 +405,9 @@
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_add_members">Engadir membros</string>
+  <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
   <string name="ManageGroupActivity_none">Ningún</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Erro ao actualizar o grupo</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Personalizar notificacións</string>
   <string name="CustomNotificationsDialogFragment__messages">Mensaxes</string>
@@ -409,6 +418,7 @@
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Ningunha cara detectada</string> -->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toca e mantén premido para gravar unha mensaxe de voz; solta para enviar</string>
@@ -556,6 +566,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membros</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d máis</item>
     <item quantity="other">%d máis</item>
@@ -605,6 +619,7 @@
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorrecto</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Omitir o PIN?</string>
+  <string name="PinRestoreEntryFragment_need_help">Necesitas axuda?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">O teu PIN é un código de  +%1$d díxitos creado por ti que pode ter letras e números.\n\nSe non lembras o PIN, podes crear un novo. Podes rexistrar e usar a túa conta pero perderás algúns axustes gardados como a información do perfil.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Se non lembras o PIN, podes crear un novo. Podes rexistrar e usar a túa conta pero perderás algúns axustes gardados como a información de perfil.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Crear Novo PIN</string>
@@ -654,6 +669,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">O número que marcaches non admite chamadas de voz seguras!</string>
   <string name="RedPhone_got_it">Entendo</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para chamar a %1$s, Signal necesita acceder á túa cámara</string>
   <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Elixe o teu país</string>
@@ -687,6 +703,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Erro ao verificar o CAPTCHA</string>
   <string name="RegistrationActivity_next">Seguinte</string>
   <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Continuar (quédanche %d intentos)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Continuar (derradeiro intento!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leva a túa privacidade contigo.\nSé ti mesmo/a en cada mensaxe.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insire o teu número de teléfono para comezar</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación. Pode supoñer algunha tarifa por parte do operador.</string>
@@ -761,6 +779,8 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado ao portapapeis</string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_android_version">Versión de Android:</string>
+  <string name="SupportEmailUtil_signal_version">Versión de Signal:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo actualizado</string>
   <string name="ThreadRecord_left_the_group">Abandonou o grupo</string>
@@ -912,7 +932,9 @@
   <string name="WebRtcCallScreen_accept">Aceptar</string>
   <string name="WebRtcCallScreen_end_call">Finalizar chamada</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Rexeitar</string>
   <string name="WebRtcCallScreen__answer">Responder</string>
+  <string name="WebRtcCallScreen__answer_without_video">Responder sen vídeo</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__speaker">Altofalante</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
@@ -1187,6 +1209,7 @@
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Eliminar fotografía</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__add_name">Engadir nome</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Axuda</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Xa comprobaches as PMF?</string>
@@ -1197,6 +1220,12 @@
   <string name="HelpFragment__how_do_you_feel">Como te sintes? (Optativo)</string>
   <string name="HelpFragment__no_email_app_found">Non se atopou app para email.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natureza</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Alimentación</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Actividades</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbolos</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bandeiras</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticonas</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Utilizar o predeterminado</string>
@@ -1542,6 +1571,14 @@
     <item quantity="one">Se esgotas os intentos a conta quedará bloqueada durante %1$d día. Após %1$d día de inactividade, poderás voltar a rexistrala sen precisar PIN. A conta será eliminada e o contido borrado.</item>
     <item quantity="other">Se esgotas os intentos a conta será bloqueada durante %1$d días. Tras %1$d días de inactividade, podes voltar a rexistrala sen precisar PIN. A conta será eliminada e todo o contido borrado.</item>
   </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Quédache%1$d intento.</item>
+    <item quantity="other">Quédanche %1$d intentos.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">%1$d intento pendente.</item>
+    <item quantity="other">%1$d intentos pendentes.</item>
+  </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
@@ -1633,8 +1670,9 @@
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Debes inserir o PIN de bloqueo do rexistro</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">O teu PIN ten %d díxitos ou caracteres como mínimo</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueo do rexistro incorrecto</string>
-  <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
+  <string name="RegistrationActivity_too_many_attempts">Demasiados intentos</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Inseriches incorrectamente o PIN de bloqueo do rexistro demasiadas veces. Téntao outra vez así que pase un día.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Levas demasiados intentos. Téntao máis tarde.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erro ao conectarse ao servizo</string>
   <string name="RegistrationActivity_oh_no">Vaites!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">O rexistro deste número de teléfono será posible sen o PIN de bloqueo do rexistro após 7 días desde que o número estivo activo en Signal. Quedan %d días.</string>

@@ -1702,9 +1702,9 @@
   <string name="conversation_list_batch__menu_select_all">Выбрать все</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Архивировать выбранное</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Разархивировать выбранное</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">Разархивировать выбранные</string>
-  <string name="conversation_list_batch__menu_mark_as_read">Отметить как прочитанные</string>
-  <string name="conversation_list_batch__menu_mark_as_unread">Отметить как непрочитанные</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Разархивировать выбранное</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Отметить как прочитанное</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Отметить как непрочитанное</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ярлык настроек</string>
   <string name="conversation_list_search_description">Поиск</string>

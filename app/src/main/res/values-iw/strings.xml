@@ -236,6 +236,7 @@
   <string name="ConversationActivity_delete_and_leave">מחק ועזוב</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">כדי להתקשר אל %1$s, היישום Signal צריך גישה אל המיקרופון שלך</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">כדי להתקשר אל %1$s, היישום Signal צריך גישה אל המיקרופון והמצלמה שלך</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">עוד אפשרויות עכשיו ב\"הגדרות קבוצה\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -457,6 +458,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">בחרת איש קשר שאין לו תמיכה בקבוצות Signal, אז קבוצה זו תהיה MMS.</string>
   <string name="AddGroupDetailsFragment__remove">הסר</string>
   <string name="AddGroupDetailsFragment__sms_contact">שלח מסרון אל איש קשר</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">להסיר את %1$s מקבוצה זו?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">הודעות נעלמות</string>
   <string name="ManageGroupActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
@@ -471,7 +473,14 @@
   <string name="ManageGroupActivity_on">מופעל</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_view_all_members">הצג את כל חברי הקבוצה</string>
+  <string name="ManageGroupActivity_see_all">ראה הכל</string>
   <string name="ManageGroupActivity_none">ללא</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d הוזמן</item>
+    <item quantity="two">%d הוזמנו</item>
+    <item quantity="many">%d הוזמנו</item>
+    <item quantity="other">%d הוזמנו</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">אין לך את הזכויות לעשות זאת</string>
   <string name="ManageGroupActivity_not_capable">למישהו שהוספת אין תמיכה בקבוצות חדשות והוא צריך לעדכן את Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">נכשל בעדכון הקבוצה</string>
@@ -503,7 +512,12 @@
   <string name="CropImageActivity_group_avatar">יצגן קבוצה</string>
   <string name="CropImageActivity_profile_avatar">יצגן</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">פרצופים לא התגלו</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">טשטש פרצופים</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">חדש: טשטש פרצופים או צייר בכל מקום כדי לטשטש</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">צייר בכל מקום כדי לטשטש</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">צייר כדי לטשטש פרצופים נוספים או אזורים נוספים</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">הקש והחזק כדי להקליט הודעה קולית, שחרר כדי לשלוח</string>
   <!--InviteActivity-->
@@ -992,6 +1006,7 @@
   <string name="SupportEmailUtil_android_version">גרסת Android:</string>
   <string name="SupportEmailUtil_signal_version">גרסת Signal:</string>
   <string name="SupportEmailUtil_signal_package">חבילת Signal:</string>
+  <string name="SupportEmailUtil_registration_lock">נעילת הרשמה:</string>
   <string name="SupportEmailUtil_locale">מַקָּם:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">קבוצה עודכנה</string>
@@ -1233,6 +1248,7 @@
   <string name="ContactSelectionListFragment_username_not_found">שם משתמש לא נמצא</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" הוא לא משתמש Signal. אנא בדוק את שם המשתמש ונסה שוב.</string>
   <string name="ContactSelectionListFragment_okay">בסדר</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">הקבוצה מלאה</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים</string>
   <!--contact_selection_list_fragment-->
@@ -1695,6 +1711,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">הוצא מארכיון נבחרים</string>
   <string name="conversation_list_batch__menu_unarchive_selected">הוצא מארכיון נבחרים</string>
   <string name="conversation_list_batch__menu_mark_as_read">סמן כנקרא</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">סמן כלא נקרא</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">קיצור דרך להגדרות</string>
   <string name="conversation_list_search_description">חפש</string>
@@ -1716,6 +1733,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">הוסף צרופה</string>
   <string name="conversation__menu_edit_group">ערוך קבוצה</string>
+  <string name="conversation__menu_group_settings">הגדרות קבוצה</string>
   <string name="conversation__menu_leave_group">עזוב קבוצה</string>
   <string name="conversation__menu_view_all_media">כל המדיה</string>
   <string name="conversation__menu_conversation_settings">הגדרות שיחה</string>

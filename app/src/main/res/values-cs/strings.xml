@@ -236,6 +236,7 @@
   <string name="ConversationActivity_delete_and_leave">Smazat a opustit</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal potřebuje přístup k vašemu mikrofonu, pro volání %1$s</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal potřebuje přístup k vašemu mikrofonu a fotoaparátu, pro volání %1$s.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Více možností nyní v \"Nastavení skupiny\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
@@ -457,6 +458,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vybrali jste kontakt, který nepodporuje Signal, takže tato skupina bude MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Odebrat</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Odebrat %1$s z této skupiny?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zmizení zpráv</string>
   <string name="ManageGroupActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string>
@@ -471,7 +473,14 @@
   <string name="ManageGroupActivity_on">Zap.</string>
   <string name="ManageGroupActivity_add_members">Přidat členy</string>
   <string name="ManageGroupActivity_view_all_members">Zobrazit všechny členy</string>
+  <string name="ManageGroupActivity_see_all">Vidět vše</string>
   <string name="ManageGroupActivity_none">Nic</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d pozvaný</item>
+    <item quantity="few">%d pozvaní</item>
+    <item quantity="many">%d pozvaných</item>
+    <item quantity="other">%d pozvaných</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
   <string name="ManageGroupActivity_not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
@@ -503,7 +512,12 @@
   <string name="CropImageActivity_group_avatar">Obrázek skupiny</string>
   <string name="CropImageActivity_profile_avatar">Obrázek</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Nebyly detekovány žádné tváře</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Rozostřit tváře</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nové: Rozostřit tváře nebo kreslením kdekoli rozostřit</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Kreslením kdekoli rozostřit</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Kreslením rozostřit další tváře nebo oblasti</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Klepněte a držte pro nahrání hlasové zprávy, pusťte pro odeslání.</string>
   <!--InviteActivity-->
@@ -991,6 +1005,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SupportEmailUtil_android_version">Verze Androidu:</string>
   <string name="SupportEmailUtil_signal_version">Verze Signalu:</string>
   <string name="SupportEmailUtil_signal_package">Signal balíček:</string>
+  <string name="SupportEmailUtil_registration_lock">Zámek registrace:</string>
   <string name="SupportEmailUtil_locale">Jazyk:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina upravena</string>
@@ -1232,6 +1247,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ContactSelectionListFragment_username_not_found">Uživatelské jméno nebylo nalezeno</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" není uživatel Signalu. Prosím zkontrolujte uživatelské jméno a zkuste to znovu.</string>
   <string name="ContactSelectionListFragment_okay">V pořádku</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">Skupina je plná</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Žádné blokované kontakty</string>
   <!--contact_selection_list_fragment-->
@@ -1693,6 +1709,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="conversation_list_batch_archive__menu_archive_selected">Archivovat vybrané</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnovit vybrané z archivu</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Obnovit vybrané z archivu</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Označit jako přečtené</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Označit jako nepřečtené</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Zkratka nastavení</string>
   <string name="conversation_list_search_description">Hledat</string>

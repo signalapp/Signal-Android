@@ -230,7 +230,7 @@
   <string name="ConversationActivity_delete_and_leave">حذف و ترک گروه</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">برای تماس با %1$s، Signal به دسترسی میکروفون شما نیاز دارد.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">برای تماس با %1$s، سیگنال به دسترسی میکروفون و دوربین شما نیاز دارد.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">گزینه‌های بیشتر هم اکنون در «تنظیمات گروه»</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">امکانات بیشتر هم اکنون در «تنظیمات گروه»</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d پیام خوانده نشده</item>
@@ -562,7 +562,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">ارسال شده توسط شما به %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">معرفی واکنش‌ها</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">با نگاه داشتن دست خود بر روی هر پیام‌ی احساستان را به‌ اشتراک بگذارید.</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">با نگاه داشتن دست خود بر روی هر پیام‌ احساستان را به‌ اشتراک بگذارید.</string>
   <string name="Megaphones_remind_me_later">بعداً به من یادآوری کن</string>
   <string name="Megaphones_verify_your_signal_pin">پین Signal خود را تأیید کنید</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">پین هرازچندگاهی از شما پرسیده می‌شود تا آن را فراموش نکنید.</string>
@@ -991,7 +991,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d کاراکتر باشند.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دیگر کاربران Signal می‌توانند از طریق نام کاربری و بدون نیاز به دانستن شمارهٔ همراه شما درخواستِ پیام ارسال کنند. انتخاب نام کاربری اختیاری است.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دیگر کاربران Signal می‌توانند بدون نیاز به دانستن شمارهٔ همراه شما به نام کاربری شما درخواستِ پیام ارسال کنند. انتخاب نام کاربری اختیاری است.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی Signal است. لطفاً پیش از تأیید شمارهٔ امنیتی شما از او بخواهید به‌روزرسانی کند.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای نسخهٔ جدیدتر Signal با یک کد QR ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>
@@ -1407,7 +1407,7 @@
   <string name="MessageRequestsMegaphone__add_profile_name">افزودن نام پروفایل</string>
   <string name="MessageRequestsMegaphone__new_message_requests">جدید: درخواست‌های تبادل پیام</string>
   <string name="MessageRequestsMegaphone__add_name">افزودن اسم</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">شما اکنون می‌توانید مکالمهٔ جدید را قبول یا رد کنید. گزینه‌های «قبول»، «حذف» و «مسدود» نشان داده خواهند شد.</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">شما اکنون می‌توانید مکالمهٔ جدید را قبول یا رد کنید. گزینه‌های «قبول»، «حذف» و «مسدودسازی» نشان داده خواهند شد.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">راهنمایی</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">آیا قسمت پرسش‌های متداول را خوانده‌اید؟</string>

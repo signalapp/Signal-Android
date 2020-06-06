@@ -441,6 +441,7 @@
   <string name="ManageGroupActivity_on">Päällä</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_view_all_members">Näytä kaikki jäsenet</string>
+  <string name="ManageGroupActivity_see_all">Näytä kaikki</string>
   <string name="ManageGroupActivity_none">Ei mitään</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d kutsuttu</item>

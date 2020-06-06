@@ -443,6 +443,10 @@
   <string name="ManageGroupActivity_view_all_members">Visualiser tous les membres</string>
   <string name="ManageGroupActivity_see_all">Tout voir</string>
   <string name="ManageGroupActivity_none">Aucune</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d invité</item>
+    <item quantity="other">%d invité</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Échec de mise à jour du groupe</string>
@@ -1797,7 +1801,7 @@
     <item quantity="other">Il reste %1$d essais.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">D’accord</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Valider</string>
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s recevra une demande de message de votre part. Vous pourrez appeler une fois la demande de message acceptée.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Créer un NIP</string>

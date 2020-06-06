@@ -192,7 +192,7 @@
   <string name="ConversationActivity_transport_insecure_sms">Osäkert SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Vi kan byta till Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Vi kan använda Signal %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp</string>
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sluta blockera denna kontakt?</string>
@@ -230,6 +230,7 @@
   <string name="ConversationActivity_delete_and_leave">Ta bort och lämna</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">För att ringa %1$s behöver Signal åtkomst till din mikrofon</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">För att ringa %1$s behöver Signal åtkomst till din mikrofon och kamera.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Fler alternativ nu i \"Gruppinställningar\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d oläst meddelande</item>
@@ -425,6 +426,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valt en kontakt som inte stöder Signal-grupper, så den här gruppen kommer använda MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Ta bort</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ta bort %1$s från denna grupp?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageGroupActivity_pending_group_invites">Väntande gruppinbjudningar</string>
@@ -439,7 +441,12 @@
   <string name="ManageGroupActivity_on">På</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_view_all_members">Visa alla medlemmar</string>
+  <string name="ManageGroupActivity_see_all">Se alla</string>
   <string name="ManageGroupActivity_none">Ingen</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d inbjuden</item>
+    <item quantity="other">%d inbjudna</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har inte rätten att göra detta</string>
   <string name="ManageGroupActivity_not_capable">Någon som du har lagt till stöder inte nya grupper och behöver uppdatera Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
@@ -467,7 +474,12 @@
   <string name="CropImageActivity_group_avatar">Gruppavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Inga ansikten detekterades</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Oskärpa ansikten</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nytt: Oskärpa ansikten eller dra var som helst för att oskärpa</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Rita var som helst för att oskärpa</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Rita för att oskärpa ytterligare ansikten eller områden</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll in för att spela in ett röstmeddelande, släpp för att skicka</string>
   <!--InviteActivity-->
@@ -488,7 +500,7 @@
     <item quantity="one">Skicka %d SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Vi kan byta till Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Vi kan använda Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra prata okrypterat.</string>
   <!--Job-->
@@ -920,6 +932,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SupportEmailUtil_android_version">Android version:</string>
   <string name="SupportEmailUtil_signal_version">Signal version:</string>
   <string name="SupportEmailUtil_signal_package">Signal-paket:</string>
+  <string name="SupportEmailUtil_registration_lock">Registreringslås:</string>
   <string name="SupportEmailUtil_locale">Språk:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppen uppdaterad</string>
@@ -1159,6 +1172,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ContactSelectionListFragment_username_not_found">Användarnamn hittades inte</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" är inte en Signal-användare. Vänligen kontrollera användarnamnet och försök igen.</string>
   <string name="ContactSelectionListFragment_okay">Okej</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">Gruppen är full</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter</string>
   <!--contact_selection_list_fragment-->
@@ -1605,6 +1619,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Avarkivera markerade</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Avarkivera markerade</string>
   <string name="conversation_list_batch__menu_mark_as_read">Markera som läst</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Markera som oläst</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
@@ -1626,6 +1641,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lägg till bilaga</string>
   <string name="conversation__menu_edit_group">Ändra grupp</string>
+  <string name="conversation__menu_group_settings">Gruppinställningar</string>
   <string name="conversation__menu_leave_group">Lämna grupp</string>
   <string name="conversation__menu_view_all_media">Alla media</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>

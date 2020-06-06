@@ -951,6 +951,7 @@ grūpp ap‌ḍē</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ബ്ലോക്ക് ചെയ്ത കോൺടാക്റ്റുകൾക്ക് മേലിൽ നിങ്ങൾക്ക് സന്ദേശങ്ങൾ അയയ്‌ക്കാനോ നിങ്ങളെ വിളിക്കാനോ കഴിയില്ല.</string>
   <string name="UnknownSenderView_block">ബ്ലോക്ക്</string>
   <string name="UnknownSenderView_share_profile_with_s">%s-മായി പ്രൊഫൈൽ പങ്കിടുക?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പങ്കിടാനുള്ള എളുപ്പവഴി അയച്ചയാളെ നിങ്ങളുടെ കോൺടാക്റ്റുകളിൽ ചേർക്കുക എന്നതാണ്. നിങ്ങൾ‌ക്ക് താൽ‌പ്പര്യമില്ലെങ്കിൽ‌, നിങ്ങളുടെ പ്രൊഫൈൽ‌ വിവരങ്ങൾ‌ ഇപ്പോഴും ഈ രീതിയിൽ പങ്കിടാൻ‌ കഴിയും.</string>
   <string name="UnknownSenderView_share_profile">പ്രൊഫൈൽ പങ്കിടുക</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">സന്ദേശം അയയ്ക്കുക?</string>
@@ -974,6 +975,7 @@ grūpp ap‌ḍē</string>
   <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">മറ്റ് Signal ഉപയോക്താക്കൾക്ക് നിങ്ങളുടെ ഫോൺ നമ്പർ അറിയാതെ തന്നെ നിങ്ങളുടെ അദ്വിതീയ യൂസേർനേമ്ലേക്ക് സന്ദേശ അഭ്യർത്ഥനകൾ അയയ്ക്കാൻ കഴിയും. ഒരു ഉപയോക്തൃനാമം തിരഞ്ഞെടുക്കുന്നത് ഓപ്ഷണലാണ്.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ പഴയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. നിങ്ങളുടെ സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിനുമുമ്പ് അപ്‌ഡേറ്റ് ചെയ്യാൻ അവരോട് ആവശ്യപ്പെടുക.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു ഇത് പൊരുത്തപ്പെടാത്ത QR കോഡ് ഫോർ‌മാറ്റാണ്. താരതമ്യം ചെയ്യാൻ അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">സ്‌കാൻ ചെയ്‌ത ക്യുആർ കോഡ് ശരിയായി ഫോർമാറ്റുചെയ്‌ത സുരക്ഷാ നമ്പർ വെരിഫിക്കേഷൻ കോഡല്ല. വീണ്ടും സ്കാൻ ചെയ്യാൻ ശ്രമിക്കുക.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">സുരക്ഷാ നമ്പർ പങ്കിടുക…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">ഞങ്ങളുടെ സിഗ്നൽ സുരക്ഷാ നമ്പർ:</string>
@@ -1232,6 +1234,12 @@ grūpp ap‌ḍē</string>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല</string>
+  <string name="IdentityUtil_unverified_banner_two">%1$s, %2$s എന്നിവരുമായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല </string>
+  <string name="IdentityUtil_unverified_banner_many">%1$s, %2$s, %3$s എന്നിവരുമായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല</string>
+  <string name="IdentityUtil_unverified_dialog_one">%1$s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല. ഒന്നുകിൽ ആരെങ്കിലും നിങ്ങളുടെ ആശയവിനിമയം തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുന്നു അല്ലെങ്കിൽ %1$s Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തു എന്നാണ് ഇതിനർത്ഥം.</string>
+  <string name="IdentityUtil_unverified_dialog_two">%1$s, %2$s എന്നിവരുമായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല. ഒന്നുകിൽ ആരെങ്കിലും നിങ്ങളുടെ ആശയവിനിമയം തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുന്നു അല്ലെങ്കിൽ അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തു എന്നാണ് ഇതിനർത്ഥം.</string>
+  <string name="IdentityUtil_unverified_dialog_many">%1$s, %2$s, %3$s എന്നിവരുമായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല. ഒന്നുകിൽ ആരെങ്കിലും നിങ്ങളുടെ ആശയവിനിമയം തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുന്നു അല്ലെങ്കിൽ അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തു എന്നാണ് ഇതിനർത്ഥം.</string>
   <string name="IdentityUtil_untrusted_dialog_one">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
   <string name="IdentityUtil_untrusted_dialog_two">%1$s-നും %2$s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
   <string name="IdentityUtil_untrusted_dialog_many">%1$s-നും, %2$s-നും, %3$s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
@@ -1289,6 +1297,7 @@ grūpp ap‌ḍē</string>
   <string name="prompt_passphrase_activity__unlock">അൺലോക്കുചെയ്യുക</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">നിങ്ങളുടെ വയർലെസ് കാരിയർ വഴി മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും കൈമാറാൻ Signal-ന് MMS ക്രമീകരണങ്ങൾ ആവശ്യമാണ്. നിങ്ങളുടെ ഉപകരണം ഈ വിവരങ്ങൾ ലഭ്യമാക്കുന്നില്ല, ഇത് ലോക്കുചെയ്‌ത ഉപകരണങ്ങൾക്കും മറ്റ് നിയന്ത്രിത കോൺഫിഗറേഷനുകൾക്കും ഇടയ്ക്കിടെ ശരിയാണ്.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും അയയ്‌ക്കാൻ, \'ശരി\' ടാപ്പുചെയ്‌ത് അഭ്യർത്ഥിച്ച ക്രമീകരണങ്ങൾ പൂർത്തിയാക്കുക. \'നിങ്ങളുടെ കാരിയർ APN\' എന്നതിനായി തിരയുന്നതിലൂടെ നിങ്ങളുടെ കാരിയറിനായുള്ള MMS ക്രമീകരണങ്ങൾ സാധാരണയായി കണ്ടെത്താനാകും. നിങ്ങൾ ഇത് ഒരു തവണ ചെയ്താൽ മതി.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_next">അടുത്തത്</string>
   <string name="CreateProfileActivity__username">യൂസേർനേമ്</string>
@@ -1502,6 +1511,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences_advanced__use_system_emoji">സിസ്റ്റം ഇമോജി ഉപയോഗിക്കുക</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">നിങ്ങളുടെ കോൺ‌ടാക്റ്റിലേക്ക് നിങ്ങളുടെ ഐ‌പി വിലാസം വെളിപ്പെടുത്തുന്നത് ഒഴിവാക്കാൻ സിഗ്നൽ സെർവർ വഴി എല്ലാ കോളുകളും റിലേ ചെയ്യുക. പ്രവർത്തനക്ഷമമാക്കുന്നത് കോൾ നിലവാരം കുറയ്ക്കും.</string>
   <string name="preferences_advanced__always_relay_calls">എല്ലായ്പ്പോഴും കോളുകൾ റിലേ ചെയ്യുക</string>
+  <string name="preferences_app_protection__communication">ആശയവിനിമയം</string>
   <string name="preferences_chats__chats">ചാറ്റുകൾ</string>
   <string name="preferences_notifications__messages">സന്ദേശങ്ങൾ</string>
   <string name="preferences_notifications__events">ഇവന്റുകൾ</string>
@@ -1509,14 +1519,17 @@ grūpp ap‌ḍē</string>
   <string name="preferences_notifications__calls">കോളുകൾ</string>
   <string name="preferences_notifications__ringtone">റിംഗ്‌ടോൺ</string>
   <string name="preferences_chats__message_text_size">സന്ദേശ ഫോണ്ട് വലുപ്പം</string>
+  <string name="preferences_events__contact_joined_signal">കോൺ‌ടാക്റ്റ് Signal-ൽ ചേർന്നു</string>
   <string name="preferences_notifications__priority">മുൻഗണന</string>
   <string name="preferences_communication__category_sealed_sender">അയയ്ക്കുന്ന ആളിനെ സീൽ ചെയ്തിരിക്കുന്നു</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">ആരിൽ നിന്നും അനുവദിക്കുക</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">കോൺടാക്ടുകൾ അല്ലാത്തവരിൽ നിന്നും നിങ്ങളുടെ പ്രൊഫൈൽ പങ്കിടാത്തവരായ ആളുകളിൽ നിന്നും വരുന്ന സന്ദേശങ്ങൾക്കായി സീൽ ചെയ്യപ്പെട്ട സെൻഡർ പ്രാപ്തമാക്കുക.</string>
   <string name="preferences_communication__sealed_sender_learn_more">കൂടുതലറിവ് നേടുക</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
+  <string name="contact_selection_list__unknown_contact">പുതിയ സന്ദേശം…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">വിളിക്കുക</string>
   <!--conversation_callable_secure-->
@@ -1524,23 +1537,31 @@ grūpp ap‌ḍē</string>
   <string name="conversation_callable_secure__menu_video">Signal വീഡിയോ കോൾ</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">സന്ദേശ വിശദാംശങ്ങൾ</string>
+  <string name="conversation_context__menu_copy_text">വാചകം പകർത്തുക</string>
   <string name="conversation_context__menu_delete_message">സന്ദേശം ഇല്ലാതാക്കുക</string>
   <string name="conversation_context__menu_forward_message">സന്ദേശം ഫോർവേഡ് ചെയ്യുക</string>
   <string name="conversation_context__menu_resend_message">സന്ദേശം വീണ്ടും അയയ്‌ക്കുക</string>
   <string name="conversation_context__menu_reply_to_message">സന്ദേശത്തിന് മറുപടി നൽകുക</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">ഒന്നിലധികം തിരഞ്ഞെടുക്കുക</string>
   <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">അറ്റാച്ചുമെന്റ് സേവ് ചെയ്യുക</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">സന്ദേശങ്ങൾ‌ കാലഹരണപ്പെടുന്നു</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ക്ഷണിക്കുക</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">തിരഞ്ഞെടുത്തത് ഇല്ലാതാക്കുക</string>
   <string name="conversation_list_batch__menu_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">ആർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">അനാർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">അനാർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
   <!--conversation_list-->
   <string name="conversation_list_search_description">തിരയൽ</string>
   <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__archived">ആർക്കൈവുചെയ്‌യ്തത്</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ഇൻ‌ബോക്സ് പൂജ്യം</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">പുതിയ സംഭാഷണം</string>
@@ -1571,6 +1592,7 @@ grūpp ap‌ḍē</string>
   <string name="text_secure_normal__invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <string name="text_secure_normal__help">സഹായം</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് കാലഹരണപ്പെട്ടു</string>
   <plurals name="reminder_header_outdated_build_details">

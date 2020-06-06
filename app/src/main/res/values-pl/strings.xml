@@ -479,7 +479,7 @@
     <item quantity="one">%d zaproszony</item>
     <item quantity="few">%d zaproszonych</item>
     <item quantity="many">%d zaproszonych</item>
-    <item quantity="other">%dzaproszonych </item>
+    <item quantity="other">%d zaproszonych</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nie masz uprawnień, aby to zrobić</string>
   <string name="ManageGroupActivity_not_capable">Ktoś, kogo dodałeś, nie obsługuje nowych grup i musi zaktualizować Signal.</string>

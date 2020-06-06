@@ -230,6 +230,7 @@
   <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal heeft toegang nodig tot je microfoon en camera om %1$s te bellen.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsinstellingen’</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -398,7 +399,7 @@
   <string name="GroupManagement_access_level_only_admins">Uitsluitend beheerders</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
-  <string name="PendingMembersActivity_people_you_invited">Personen wie jij hebt uitgenodigd</string>
+  <string name="PendingMembersActivity_people_you_invited">Personen wie door jou zijn uitgenodigd</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen uitnodiging in afwachting van je reactie.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Uitnodigingen door andere leden verzonden</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
@@ -425,6 +426,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
   <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s van deze groep verwijderen?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zelfwissende berichten</string>
   <string name="ManageGroupActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
@@ -439,11 +441,16 @@
   <string name="ManageGroupActivity_on">Aan</string>
   <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
   <string name="ManageGroupActivity_view_all_members">Alle leden weergeven</string>
+  <string name="ManageGroupActivity_see_all">Alles weergeven</string>
   <string name="ManageGroupActivity_none">Niets</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d genodigde</item>
+    <item quantity="other">%d genodigden</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
-  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent niet lid van deze groep</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Naam en afbeelding aanpassen</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Kies wie nieuwe leden kan toevoegen of uitnodigen</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Kies wie de naam en afbeelding van het groepsgesprek kan aanpassen</string>
@@ -470,6 +477,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Er zijn geen gezichten gedetecteerd</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Vervaag gezichten</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nieuw: Vervaag gezichten of teken om andere dingen te vervagen</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">Teken waar je maar wilt om iets te vervagen</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Teken om meer gezichten of gebieden te vervagen</string>
   <!--InputPanel-->
@@ -932,6 +940,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SupportEmailUtil_android_version">Android-versie:</string>
   <string name="SupportEmailUtil_signal_version">Signal-versie:</string>
   <string name="SupportEmailUtil_signal_package">Signal-pakket:</string>
+  <string name="SupportEmailUtil_registration_lock">Registratievergrendeling:</string>
   <string name="SupportEmailUtil_locale">Taalgebied:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Groep aangepast</string>
@@ -1134,7 +1143,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__contact">Contactpersoon</string>
+  <string name="attachment_type_selector__contact">Contact­persoon</string>
   <string name="attachment_type_selector__contact_description">Contactpersoon</string>
   <string name="attachment_type_selector__camera">Camera</string>
   <string name="attachment_type_selector__camera_description">Camera</string>
@@ -1171,6 +1180,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam niet gevonden</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw.</string>
   <string name="ContactSelectionListFragment_okay">Oké</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">De groep is vol</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contactpersonen</string>
   <!--contact_selection_list_fragment-->
