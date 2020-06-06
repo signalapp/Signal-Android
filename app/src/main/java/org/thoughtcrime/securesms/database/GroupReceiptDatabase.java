@@ -11,6 +11,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -67,14 +68,24 @@ public class GroupReceiptDatabase extends Database {
               new String[] {String.valueOf(mmsId), recipientId.serialize(), String.valueOf(status)});
   }
 
-  public void setUnidentified(RecipientId recipientId, long mmsId, boolean unidentified) {
-    SQLiteDatabase db     = databaseHelper.getWritableDatabase();
-    ContentValues  values = new ContentValues(1);
-    values.put(UNIDENTIFIED, unidentified ? 1 : 0);
+  public void setUnidentified(Collection<Pair<RecipientId, Boolean>> results, long mmsId) {
+    SQLiteDatabase db  = databaseHelper.getWritableDatabase();
 
-    db.update(TABLE_NAME, values, MMS_ID + " = ? AND " + RECIPIENT_ID + " = ?",
-              new String[] {String.valueOf(mmsId), recipientId.serialize()});
+    db.beginTransaction();
+    try {
+      String query = MMS_ID + " = ? AND " + RECIPIENT_ID + " = ?";
 
+      for (Pair<RecipientId, Boolean> result : results) {
+        ContentValues values = new ContentValues(1);
+        values.put(UNIDENTIFIED, result.second() ? 1 : 0);
+
+        db.update(TABLE_NAME, values, query, new String[]{ String.valueOf(mmsId), result.first().serialize()});
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   public @NonNull List<GroupReceiptInfo> getGroupReceiptInfo(long mmsId) {

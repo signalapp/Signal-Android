@@ -1216,9 +1216,10 @@ public final class PushProcessMessageJob extends BaseJob {
       }
     }
 
-    for (Recipient member : members) {
-      receiptDatabase.setUnidentified(member.getId(), messageId, message.isUnidentified(member.requireServiceId()));
-    }
+    List<org.whispersystems.libsignal.util.Pair<RecipientId, Boolean>> unidentifiedStatus = Stream.of(members)
+                                                                                                  .map(m -> new org.whispersystems.libsignal.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId())))
+                                                                                                  .toList();
+    receiptDatabase.setUnidentified(unidentifiedStatus, messageId);
   }
 
   private void handleTextMessage(@NonNull SignalServiceContent content,

@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -58,7 +59,10 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class PushGroupSendJob extends PushSendJob {
@@ -165,21 +169,25 @@ public class PushGroupSendJob extends PushSendJob {
         RecipientUtil.shareProfileIfFirstSecureMessage(context, groupRecipient);
       }
 
-      List<RecipientId> target;
+      List<Recipient> target;
 
-      if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient).getId());
-      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).toList();
+      if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient));
+      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> Recipient.resolved(nf.getRecipientId(context))).toList();
       else                                         target = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
+
+      Map<String, Recipient> idByE164 = Stream.of(target).filter(Recipient::hasE164).collect(Collectors.toMap(Recipient::requireE164, r -> r));
+      Map<UUID, Recipient>   idByUuid = Stream.of(target).filter(Recipient::hasUuid).collect(Collectors.toMap(Recipient::requireUuid, r -> r));
 
       List<SendMessageResult>   results = deliver(message, groupRecipient, target);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
-      List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Recipient.externalPush(context, result.getAddress()).getId())).toList();
-      List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Recipient.externalPush(context, result.getAddress()).getId(), result.getIdentityFailure().getIdentityKey())).toList();
-      Set<RecipientId>          successIds               = Stream.of(results).filter(result -> result.getSuccess() != null).map(SendMessageResult::getAddress).map(a -> Recipient.externalPush(context, a).getId()).collect(Collectors.toSet());
-      List<NetworkFailure>      resolvedNetworkFailures  = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
-      List<IdentityKeyMismatch> resolvedIdentityFailures = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
-      List<SendMessageResult>   successes                = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
+      List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(findId(result.getAddress(), idByE164, idByUuid))).toList();
+      List<IdentityKeyMismatch>        identityMismatches        = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(findId(result.getAddress(), idByE164, idByUuid), result.getIdentityFailure().getIdentityKey())).toList();
+      List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
+      List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(findId(result.getAddress(), idByE164, idByUuid), result.getSuccess().isUnidentified())).toList();
+      Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
+      List<NetworkFailure>             resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
+      List<IdentityKeyMismatch>        resolvedIdentityFailures = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
 
       for (NetworkFailure resolvedFailure : resolvedNetworkFailures) {
         database.removeFailure(messageId, resolvedFailure);
@@ -199,11 +207,7 @@ public class PushGroupSendJob extends PushSendJob {
         database.addMismatchedIdentity(messageId, mismatch.getRecipientId(context), mismatch.getIdentityKey());
       }
 
-      for (SendMessageResult success : successes) {
-        DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(Recipient.externalPush(context, success.getAddress()).getId(),
-                                                                         messageId,
-                                                                         success.getSuccess().isUnidentified());
-      }
+      DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(successUnidentifiedStatus, messageId);
 
       if (existingNetworkFailures.isEmpty() && networkFailures.isEmpty() && identityMismatches.isEmpty() && existingIdentityMismatches.isEmpty()) {
         database.markAsSent(messageId, true);
@@ -245,7 +249,20 @@ public class PushGroupSendJob extends PushSendJob {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
-  private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull Recipient groupRecipient, @NonNull List<RecipientId> destinations)
+  private static @NonNull RecipientId findId(@NonNull SignalServiceAddress address,
+                                             @NonNull Map<String, Recipient> byE164,
+                                             @NonNull Map<UUID, Recipient> byUuid)
+  {
+    if (address.getNumber().isPresent() && byE164.containsKey(address.getNumber().get())) {
+      return Objects.requireNonNull(byE164.get(address.getNumber().get())).getId();
+    } else if (address.getUuid().isPresent() && byUuid.containsKey(address.getUuid().get())) {
+      return Objects.requireNonNull(byUuid.get(address.getUuid().get())).getId();
+    } else {
+      throw new IllegalStateException("Found an address that was never provided!");
+    }
+  }
+
+  private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     rotateSenderCertificateIfNecessary();
 
@@ -256,13 +273,12 @@ public class PushGroupSendJob extends PushSendJob {
     Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
     List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
     List<Preview>                              previews           = getPreviewsFor(message);
-    List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(Recipient::resolved).map(this::getPushAddress).toList();
+    List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
     List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
     List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
     boolean                                    isRecipientUpdate  = destinations.size() != DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId).size();
 
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations)
-                                                                      .map(Recipient::resolved)
                                                                       .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))
                                                                       .toList();
 
@@ -330,17 +346,17 @@ public class PushGroupSendJob extends PushSendJob {
     }
   }
 
-  private @NonNull List<RecipientId> getGroupMessageRecipients(@NonNull GroupId groupId, long messageId) {
+  private @NonNull List<Recipient> getGroupMessageRecipients(@NonNull GroupId groupId, long messageId) {
     List<GroupReceiptInfo> destinations = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId);
 
     if (!destinations.isEmpty()) {
-      return Stream.of(destinations).map(GroupReceiptInfo::getRecipientId).toList();
+      return Stream.of(destinations).map(GroupReceiptInfo::getRecipientId).map(Recipient::resolved).toList();
     }
 
-    List<RecipientId> members = Stream.of(DatabaseFactory.getGroupDatabase(context)
-                                                         .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
-                                      .map(Recipient::getId)
-                                      .toList();
+    List<Recipient> members = Stream.of(DatabaseFactory.getGroupDatabase(context)
+                                                       .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
+                                    .map(Recipient::resolve)
+                                    .toList();
 
     if (members.size() > 0) {
       Log.w(TAG, "No destinations found for group message " + groupId + " using current group membership");
