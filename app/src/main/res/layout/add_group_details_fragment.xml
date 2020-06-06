@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
+        android:textAlignment="viewStart"
         android:text="@string/AddGroupDetailsFragment__members"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
         android:textColor="?attr/title_text_color_secondary"
