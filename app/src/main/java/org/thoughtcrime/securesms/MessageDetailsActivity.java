@@ -34,6 +34,8 @@ import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
+
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -270,7 +272,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
     toFrom.setText(toFromRes);
     conversationItem.bind(messageRecord, Optional.absent(), Optional.absent(), glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient, null, false);
+    Parcelable state = recipientsList.onSaveInstanceState();
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, glideRequests, messageRecord, recipients, isPushGroup));
+    recipientsList.onRestoreInstanceState(state);
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
