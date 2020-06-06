@@ -93,11 +93,11 @@ public final class LiveGroup {
   }
 
   public LiveData<Boolean> selfCanEditGroupAttributes() {
-    return LiveDataUtil.combineLatest(isSelfAdmin(), getAttributesAccessControl(), this::applyAccessControl);
+    return LiveDataUtil.combineLatest(selfMemberLevel(), getAttributesAccessControl(), LiveGroup::applyAccessControl);
   }
 
   public LiveData<Boolean> selfCanAddMembers() {
-    return LiveDataUtil.combineLatest(isSelfAdmin(), getMembershipAdditionAccessControl(), this::applyAccessControl);
+    return LiveDataUtil.combineLatest(selfMemberLevel(), getMembershipAdditionAccessControl(), LiveGroup::applyAccessControl);
   }
 
   /**
@@ -123,11 +123,28 @@ public final class LiveGroup {
                                                           fullMemberCount);
   }
 
-  private boolean applyAccessControl(boolean isAdmin, @NonNull GroupAccessControl rights) {
+  private LiveData<MemberLevel> selfMemberLevel() {
+    return Transformations.map(groupRecord, g -> {
+      if (g.isAdmin(Recipient.self())) {
+        return MemberLevel.ADMIN;
+      } else {
+        return g.isActive() ? MemberLevel.MEMBER
+                            : MemberLevel.NOT_A_MEMBER;
+      }
+    });
+  }
+
+  private static boolean applyAccessControl(@NonNull MemberLevel memberLevel, @NonNull GroupAccessControl rights) {
     switch (rights) {
-      case ALL_MEMBERS: return true;
-      case ONLY_ADMINS: return isAdmin;
+      case ALL_MEMBERS: return memberLevel != MemberLevel.NOT_A_MEMBER;
+      case ONLY_ADMINS: return memberLevel == MemberLevel.ADMIN;
       default:          throw new AssertionError();
     }
+  }
+
+  private enum MemberLevel {
+    NOT_A_MEMBER,
+    MEMBER,
+    ADMIN
   }
 }
