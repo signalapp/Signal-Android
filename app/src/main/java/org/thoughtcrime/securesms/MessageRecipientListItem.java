@@ -81,21 +81,43 @@ public class MessageRecipientListItem extends RelativeLayout
     this.deliveryStatusView       = findViewById(R.id.delivery_status);
   }
 
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    observeMember();
+  }
+
+  @Override
+  protected void onDetachedFromWindow() {
+    unsubscribeFromMember();
+    super.onDetachedFromWindow();
+  }
+
   public void set(final GlideRequests glideRequests,
                   final MessageRecord record,
                   final RecipientDeliveryStatus member,
                   final boolean isPushGroup)
   {
-    if (this.member != null) this.member.getRecipient().live().removeForeverObserver(this);
+    unsubscribeFromMember();
 
     this.glideRequests = glideRequests;
     this.member        = member;
+    observeMember();
 
-    member.getRecipient().live().observeForever(this);
     fromView.setText(member.getRecipient());
     contactPhotoImage.setAvatar(glideRequests, member.getRecipient(), false);
     setIssueIndicators(record, isPushGroup);
     unidentifiedDeliveryIcon.setVisibility(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()) && member.isUnidentified() ? VISIBLE : GONE);
+  }
+
+  private void observeMember() {
+    if (isAttachedToWindow() && member != null && member.getRecipient() != null) {
+      member.getRecipient().live().observeForever(this);
+    }
+  }
+
+  private void unsubscribeFromMember() {
+    if (member != null && member.getRecipient() != null) member.getRecipient().live().removeForeverObserver(this);
   }
 
   private void setIssueIndicators(final MessageRecord record,
@@ -162,7 +184,7 @@ public class MessageRecipientListItem extends RelativeLayout
   }
 
   public void unbind() {
-    if (this.member != null && this.member.getRecipient() != null) this.member.getRecipient().live().removeForeverObserver(this);
+    unsubscribeFromMember();
   }
 
   @Override
