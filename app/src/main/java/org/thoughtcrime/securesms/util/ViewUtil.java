@@ -181,6 +181,12 @@ public final class ViewUtil {
     view.requestLayout();
   }
 
+  public static void updateLayoutParamsIfNonNull(@Nullable View view, int width, int height) {
+    if (view != null) {
+      updateLayoutParams(view, width, height);
+    }
+  }
+
   public static int getLeftMargin(@NonNull View view) {
     if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
       return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin;

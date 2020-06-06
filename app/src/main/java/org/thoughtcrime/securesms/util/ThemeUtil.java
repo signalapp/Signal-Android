@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,7 +36,7 @@ public class ThemeUtil {
     return false;
   }
 
-  public static int getThemedColor(@NonNull Context context, @AttrRes int attr) {
+  public static @ColorInt int getThemedColor(@NonNull Context context, @AttrRes int attr) {
     TypedValue typedValue = new TypedValue();
     Resources.Theme theme = context.getTheme();
 

@@ -167,8 +167,8 @@ public class ConversationFragment extends Fragment {
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
 
-    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received, parent, 10);
-    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent, parent, 10);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_multimedia, parent, 10);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_multimedia, parent, 10);
     CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
     CachedInflater.from(context).cacheUntilLimit(R.layout.cursor_adapter_header_footer_view, parent, 2);
   }

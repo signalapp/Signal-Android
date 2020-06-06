@@ -99,8 +99,7 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
       this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
       this.seekBar.setOnSeekBarChangeListener(new SeekBarModifiedListener());
 
-      setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE),
-              typedArray.getColor(R.styleable.AudioView_backgroundTintColor, Color.WHITE));
+      setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE));
 
       this.waveFormPlayedBarsColor   = typedArray.getColor(R.styleable.AudioView_waveformPlayedBarsColor, Color.WHITE);
       this.waveFormUnplayedBarsColor = typedArray.getColor(R.styleable.AudioView_waveformUnplayedBarsColor, Color.WHITE);
@@ -255,7 +254,7 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     }
   }
 
-  public void setTint(int foregroundTint, int backgroundTint) {
+  public void setTint(int foregroundTint) {
     post(()-> this.playPauseButton.addValueCallback(new KeyPath("**"),
                                                     LottieProperty.COLOR_FILTER,
                                                     new LottieValueCallback<>(new SimpleColorFilter(foregroundTint))));

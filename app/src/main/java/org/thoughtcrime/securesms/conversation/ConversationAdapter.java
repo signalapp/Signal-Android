@@ -72,12 +72,14 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
 
   private static final String TAG = Log.tag(ConversationAdapter.class);
 
-  private static final int MESSAGE_TYPE_OUTGOING    = 0;
-  private static final int MESSAGE_TYPE_INCOMING    = 1;
-  private static final int MESSAGE_TYPE_UPDATE      = 2;
-  private static final int MESSAGE_TYPE_HEADER      = 3;
-  private static final int MESSAGE_TYPE_FOOTER      = 4;
-  private static final int MESSAGE_TYPE_PLACEHOLDER = 5;
+  private static final int MESSAGE_TYPE_OUTGOING_MULTIMEDIA = 0;
+  private static final int MESSAGE_TYPE_OUTGOING_TEXT       = 1;
+  private static final int MESSAGE_TYPE_INCOMING_MULTIMEDIA = 2;
+  private static final int MESSAGE_TYPE_INCOMING_TEXT       = 3;
+  private static final int MESSAGE_TYPE_UPDATE              = 4;
+  private static final int MESSAGE_TYPE_HEADER              = 5;
+  private static final int MESSAGE_TYPE_FOOTER              = 6;
+  private static final int MESSAGE_TYPE_PLACEHOLDER         = 7;
 
   private static final long HEADER_ID   = Long.MIN_VALUE;
   private static final long FOOTER_ID   = Long.MIN_VALUE + 1;
@@ -136,9 +138,9 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
     } else if (messageRecord.isUpdate()) {
       return MESSAGE_TYPE_UPDATE;
     } else if (messageRecord.isOutgoing()) {
-      return MESSAGE_TYPE_OUTGOING;
+      return messageRecord.isMms() ? MESSAGE_TYPE_OUTGOING_MULTIMEDIA : MESSAGE_TYPE_OUTGOING_TEXT;
     } else {
-      return MESSAGE_TYPE_INCOMING;
+      return messageRecord.isMms() ? MESSAGE_TYPE_INCOMING_MULTIMEDIA : MESSAGE_TYPE_INCOMING_TEXT;
     }
   }
 
@@ -167,8 +169,10 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   @Override
   public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
-      case MESSAGE_TYPE_INCOMING:
-      case MESSAGE_TYPE_OUTGOING:
+      case MESSAGE_TYPE_INCOMING_TEXT:
+      case MESSAGE_TYPE_INCOMING_MULTIMEDIA:
+      case MESSAGE_TYPE_OUTGOING_TEXT:
+      case MESSAGE_TYPE_OUTGOING_MULTIMEDIA:
       case MESSAGE_TYPE_UPDATE:
         long start = System.currentTimeMillis();
 
@@ -189,7 +193,7 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
 
         itemView.setEventListener(clickListener);
 
-        Log.d(TAG, "Inflate time: " + (System.currentTimeMillis() - start));
+        Log.d(TAG, String.format(Locale.US, "Inflate time: %d ms for View type: %d", System.currentTimeMillis() - start, viewType));
         return new ConversationViewHolder(itemView);
       case MESSAGE_TYPE_PLACEHOLDER:
         View v = new FrameLayout(parent.getContext());
@@ -206,8 +210,10 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     switch (getItemViewType(position)) {
-      case MESSAGE_TYPE_INCOMING:
-      case MESSAGE_TYPE_OUTGOING:
+      case MESSAGE_TYPE_INCOMING_TEXT:
+      case MESSAGE_TYPE_INCOMING_MULTIMEDIA:
+      case MESSAGE_TYPE_OUTGOING_TEXT:
+      case MESSAGE_TYPE_OUTGOING_MULTIMEDIA:
       case MESSAGE_TYPE_UPDATE:
         ConversationViewHolder conversationViewHolder = (ConversationViewHolder) holder;
         MessageRecord          messageRecord          = Objects.requireNonNull(getItem(position));
@@ -424,8 +430,10 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
    */
   @MainThread
   static void initializePool(@NonNull RecyclerView.RecycledViewPool pool) {
-    pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING, 15);
-    pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING_TEXT, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING_MULTIMEDIA, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING_TEXT, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING_MULTIMEDIA, 15);
     pool.setMaxRecycledViews(MESSAGE_TYPE_PLACEHOLDER, 15);
     pool.setMaxRecycledViews(MESSAGE_TYPE_HEADER, 1);
     pool.setMaxRecycledViews(MESSAGE_TYPE_FOOTER, 1);
@@ -464,12 +472,14 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
     return hasFooter() && position == (getItemCount() - 1);
   }
 
-  private @LayoutRes int getLayoutForViewType(int viewType) {
+  private static @LayoutRes int getLayoutForViewType(int viewType) {
     switch (viewType) {
-      case MESSAGE_TYPE_OUTGOING: return R.layout.conversation_item_sent;
-      case MESSAGE_TYPE_INCOMING: return R.layout.conversation_item_received;
-      case MESSAGE_TYPE_UPDATE:   return R.layout.conversation_item_update;
-      default:                    throw new IllegalArgumentException("Unknown type!");
+      case MESSAGE_TYPE_OUTGOING_TEXT:       return R.layout.conversation_item_sent_text_only;
+      case MESSAGE_TYPE_OUTGOING_MULTIMEDIA: return R.layout.conversation_item_sent_multimedia;
+      case MESSAGE_TYPE_INCOMING_TEXT:       return R.layout.conversation_item_received_text_only;
+      case MESSAGE_TYPE_INCOMING_MULTIMEDIA: return R.layout.conversation_item_received_multimedia;
+      case MESSAGE_TYPE_UPDATE:              return R.layout.conversation_item_update;
+      default:                               throw new IllegalArgumentException("Unknown type!");
     }
   }
 

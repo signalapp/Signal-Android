@@ -282,9 +282,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       if (messageRecord.isGroupAction()) {
         conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_update, itemParent, false);
       } else if (messageRecord.isOutgoing()) {
-        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_sent, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_sent_multimedia, itemParent, false);
       } else {
-        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received_multimedia, itemParent, false);
       }
       itemParent.addView(conversationItem);
     }
