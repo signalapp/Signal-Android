@@ -377,6 +377,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     if (recipient != null) {
       recipient.removeForeverObserver(this);
     }
+    if (conversationRecipient != null) {
+      conversationRecipient.removeForeverObserver(this);
+    }
   }
 
   public MessageRecord getMessageRecord() {
