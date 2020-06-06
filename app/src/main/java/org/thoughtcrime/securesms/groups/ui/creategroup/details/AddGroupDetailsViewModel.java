@@ -14,11 +14,9 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.HashSet;
@@ -32,9 +30,9 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   private final DefaultValueLiveData<Set<RecipientId>>             deleted           = new DefaultValueLiveData<>(new HashSet<>());
   private final MutableLiveData<String>                            name              = new MutableLiveData<>("");
   private final MutableLiveData<byte[]>                            avatar            = new MutableLiveData<>();
-  private final LiveData<Boolean>                                  isMms;
   private final SingleLiveEvent<GroupCreateResult>                 groupCreateResult = new SingleLiveEvent<>();
-  private final LiveData<Boolean>                                  canSubmitForm     = Transformations.map(name, name -> !TextUtils.isEmpty(name));
+  private final LiveData<Boolean>                                  isMms;
+  private final LiveData<Boolean>                                  canSubmitForm;
   private final AddGroupDetailsRepository                          repository;
 
   private AddGroupDetailsViewModel(@NonNull RecipientId[] recipientIds,
@@ -44,8 +42,10 @@ public final class AddGroupDetailsViewModel extends ViewModel {
 
     MutableLiveData<List<GroupMemberEntry.NewGroupCandidate>> initialMembers = new MutableLiveData<>();
 
-    members = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
-    isMms   = Transformations.map(members, this::isAnyForcedSms);
+    LiveData<Boolean> isValidName = Transformations.map(name, name -> !TextUtils.isEmpty(name));
+    members       = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
+    isMms         = Transformations.map(members, this::isAnyForcedSms);
+    canSubmitForm = LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName);
 
     repository.resolveMembers(recipientIds, initialMembers::postValue);
   }
@@ -93,10 +93,10 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     List<GroupMemberEntry.NewGroupCandidate> members     = Objects.requireNonNull(this.members.getValue());
     Set<RecipientId>                         memberIds   = Stream.of(members).map(member -> member.getMember().getId()).collect(Collectors.toSet());
     byte[]                                   avatarBytes = avatar.getValue();
-    String                                   groupName   = name.getValue();
     boolean                                  isGroupMms  = isMms.getValue() == Boolean.TRUE;
+    String                                   groupName   = isGroupMms ? "" : name.getValue();
 
-    if (TextUtils.isEmpty(groupName)) {
+    if (!isGroupMms && TextUtils.isEmpty(groupName)) {
       groupCreateResult.postValue(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_INVALID_NAME));
       return;
     }

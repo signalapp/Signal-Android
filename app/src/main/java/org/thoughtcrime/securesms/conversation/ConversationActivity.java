@@ -1019,8 +1019,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleConversationSettings() {
-    if (FeatureFlags.newGroupUI() && isGroupConversation()) {
-      startActivitySceneTransition(ManageGroupActivity.newIntent(this, getRecipient().requireGroupId()),
+    if (FeatureFlags.newGroupUI() && isPushGroupConversation()) {
+      startActivitySceneTransition(ManageGroupActivity.newIntent(this, getRecipient().requireGroupId().requirePush()),
                                    titleView.findViewById(R.id.contact_photo_image),
                                    "avatar");
       return;
@@ -1190,7 +1190,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleManagePushGroup() {
-    startActivityForResult(ManageGroupActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId()), GROUP_EDIT);
+    startActivityForResult(ManageGroupActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId().requirePush()), GROUP_EDIT);
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {

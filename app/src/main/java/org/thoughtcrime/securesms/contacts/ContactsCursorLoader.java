@@ -300,7 +300,7 @@ public class ContactsCursorLoader extends CursorLoader {
   private Cursor getNewNumberCursor() {
     MatrixCursor newNumberCursor = new MatrixCursor(CONTACT_PROJECTION, 1);
     newNumberCursor.addRow(new Object[] { null,
-                                          getContext().getString(R.string.contact_selection_list__unknown_contact),
+                                          getUnknownContactTitle(),
                                           filter,
                                           ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                           "\u21e2",
@@ -311,12 +311,17 @@ public class ContactsCursorLoader extends CursorLoader {
   private Cursor getUsernameSearchCursor() {
     MatrixCursor cursor = new MatrixCursor(CONTACT_PROJECTION, 1);
     cursor.addRow(new Object[] { null,
-                                 getContext().getString(R.string.contact_selection_list__unknown_contact),
+                                 getUnknownContactTitle(),
                                  filter,
                                  ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                  "\u21e2",
                                  ContactRepository.NEW_USERNAME_TYPE});
     return cursor;
+  }
+
+  private String getUnknownContactTitle() {
+    return getContext().getString(newConversation(mode) ? R.string.contact_selection_list__unknown_contact
+                                                        : R.string.contact_selection_list__unknown_contact_add_to_group);
   }
 
   private @NonNull Cursor filterNonPushContacts(@NonNull Cursor cursor) {
@@ -353,6 +358,10 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private static boolean selfEnabled(int mode) {
     return flagSet(mode, DisplayMode.FLAG_SELF);
+  }
+
+  private static boolean newConversation(int mode) {
+    return groupsEnabled(mode);
   }
 
   private static boolean pushEnabled(int mode) {

@@ -11,8 +11,8 @@
         android:layout_height="?actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24"
-        app:title="@string/AddGroupDetailsFragment__name_this_group"
-        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        tools:title="@string/AddGroupDetailsFragment__name_this_group" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/group_avatar"

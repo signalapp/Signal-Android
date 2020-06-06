@@ -499,6 +499,7 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Name this group</string>
+    <string name="AddGroupDetailsFragment__create_group">Create group</string>
     <string name="AddGroupDetailsFragment__create">Create</string>
     <string name="AddGroupDetailsFragment__members">Members</string>
     <string name="AddGroupDetailsFragment__group_name_required">Group name (required)</string>
@@ -1895,6 +1896,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">New message to…</string>
+    <string name="contact_selection_list__unknown_contact_add_to_group">Add to group</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_callable_insecure__menu_call">Call</string>
