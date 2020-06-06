@@ -789,6 +789,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isActiveV2Group()) {
       hideMenuItem(menu, R.id.menu_mute_notifications);
       hideMenuItem(menu, R.id.menu_conversation_settings);
+    } else if (isActiveGroup()) {
+      hideMenuItem(menu, R.id.menu_conversation_settings);
     }
 
     searchViewItem = menu.findItem(R.id.menu_search);
