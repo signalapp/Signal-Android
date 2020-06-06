@@ -24,6 +24,9 @@ public interface JobStorage {
   @NonNull List<JobSpec> getPendingJobsWithNoDependenciesInCreatedOrder(long currentTime);
 
   @WorkerThread
+  @NonNull List<JobSpec> getJobsInQueue(@NonNull String queue);
+
+  @WorkerThread
   int getJobInstanceCount(@NonNull String factoryKey);
 
   @WorkerThread

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Build;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
@@ -138,7 +139,33 @@ public class JobManager implements ConstraintObserver.Notifier {
     jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
 
     executor.execute(() -> {
-      jobController.submitJobWithExistingDependencies(job, dependsOn);
+      jobController.submitJobWithExistingDependencies(job, dependsOn, null);
+      wakeUp();
+    });
+  }
+
+  /**
+   * Enqueues a single job that depends on a collection of job ID's, as well as any unfinished
+   * items in the specified queue.
+   */
+  public void add(@NonNull Job job, @Nullable String dependsOnQueue) {
+    jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
+
+    executor.execute(() -> {
+      jobController.submitJobWithExistingDependencies(job, Collections.emptyList(), dependsOnQueue);
+      wakeUp();
+    });
+  }
+
+  /**
+   * Enqueues a single job that depends on a collection of job ID's, as well as any unfinished
+   * items in the specified queue.
+   */
+  public void add(@NonNull Job job, @NonNull Collection<String> dependsOn, @Nullable String dependsOnQueue) {
+    jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
+
+    executor.execute(() -> {
+      jobController.submitJobWithExistingDependencies(job, dependsOn, dependsOnQueue);
       wakeUp();
     });
   }

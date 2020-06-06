@@ -43,7 +43,7 @@ public class PushTextSendJob extends PushSendJob {
   private long messageId;
 
   public PushTextSendJob(long messageId, @NonNull Recipient recipient) {
-    this(constructParameters(recipient), messageId);
+    this(constructParameters(recipient, false), messageId);
   }
 
   private PushTextSendJob(@NonNull Job.Parameters parameters, long messageId) {

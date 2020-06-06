@@ -71,9 +71,9 @@ public abstract class PushSendJob extends SendJob {
     super(parameters);
   }
 
-  protected static Job.Parameters constructParameters(@NonNull Recipient recipient) {
+  protected static Job.Parameters constructParameters(@NonNull Recipient recipient, boolean hasMedia) {
     return new Parameters.Builder()
-                         .setQueue(recipient.getId().toQueueKey())
+                         .setQueue(recipient.getId().toQueueKey(hasMedia))
                          .addConstraint(NetworkConstraint.KEY)
                          .setLifespan(TimeUnit.DAYS.toMillis(1))
                          .setMaxAttempts(Parameters.UNLIMITED)

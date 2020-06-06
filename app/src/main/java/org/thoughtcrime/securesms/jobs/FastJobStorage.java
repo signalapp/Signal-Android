@@ -108,6 +108,14 @@ public class FastJobStorage implements JobStorage {
     }
   }
 
+  @Override
+  public synchronized @NonNull List<JobSpec> getJobsInQueue(@NonNull String queue) {
+    return Stream.of(jobs)
+                 .filter(j -> queue.equals(j.getQueueKey()))
+                 .sorted((j1, j2) -> Long.compare(j1.getCreateTime(), j2.getCreateTime()))
+                 .toList();
+  }
+
   private Optional<JobSpec> getMigrationJob() {
     return Optional.fromNullable(Stream.of(jobs)
                                        .filter(j -> Job.Parameters.MIGRATION_QUEUE_KEY.equals(j.getQueueKey()))

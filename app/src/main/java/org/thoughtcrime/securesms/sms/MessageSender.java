@@ -251,9 +251,9 @@ public class MessageSender {
         if (isLocalSelfSend(context, recipient, false)) {
           sendLocalMediaSelf(context, messageId);
         } else if (isGroupPushSend(recipient)) {
-          jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), null), messageDependsOnIds);
+          jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), null, true), messageDependsOnIds, recipient.getId().toQueueKey());
         } else {
-          jobManager.add(new PushMediaSendJob(messageId, recipient), messageDependsOnIds);
+          jobManager.add(new PushMediaSendJob(messageId, recipient), messageDependsOnIds, recipient.getId().toQueueKey());
         }
       }
 
@@ -407,8 +407,8 @@ public class MessageSender {
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     if (uploadJobIds.size() > 0) {
-      Job groupSend = new PushGroupSendJob(messageId, recipient.getId(), filterRecipientId);
-      jobManager.add(groupSend, uploadJobIds);
+      Job groupSend = new PushGroupSendJob(messageId, recipient.getId(), filterRecipientId, !uploadJobIds.isEmpty());
+      jobManager.add(groupSend, uploadJobIds, uploadJobIds.isEmpty() ? null : recipient.getId().toQueueKey());
     } else {
       PushGroupSendJob.enqueue(context, jobManager, messageId, recipient.getId(), filterRecipientId);
     }

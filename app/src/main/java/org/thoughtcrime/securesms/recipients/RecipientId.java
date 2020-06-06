@@ -110,7 +110,11 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
   }
 
   public @NonNull String toQueueKey() {
-    return "RecipientId::" + id;
+    return toQueueKey(false);
+  }
+
+  public @NonNull String toQueueKey(boolean forMedia) {
+    return "RecipientId::" + id + (forMedia ? "::MEDIA" : "");
   }
 
   @Override

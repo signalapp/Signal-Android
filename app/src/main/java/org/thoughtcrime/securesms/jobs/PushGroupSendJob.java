@@ -73,9 +73,9 @@ public class PushGroupSendJob extends PushSendJob {
   private long        messageId;
   private RecipientId filterRecipient;
 
-  public PushGroupSendJob(long messageId, @NonNull RecipientId destination, @Nullable RecipientId filterRecipient) {
+  public PushGroupSendJob(long messageId, @NonNull RecipientId destination, @Nullable RecipientId filterRecipient, boolean hasMedia) {
     this(new Job.Parameters.Builder()
-                           .setQueue(destination.toQueueKey())
+                           .setQueue(destination.toQueueKey(hasMedia))
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
@@ -112,7 +112,7 @@ public class PushGroupSendJob extends PushSendJob {
       OutgoingMediaMessage   message                     = database.getOutgoingMessage(messageId);
       Set<String>            attachmentUploadIds         = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddress), attachmentUploadIds);
+      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddress, !attachmentUploadIds.isEmpty()), attachmentUploadIds, attachmentUploadIds.isEmpty() ? null : destination.toQueueKey());
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);

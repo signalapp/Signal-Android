@@ -464,6 +464,29 @@ public class FastJobStorageTest {
     assertTrue(result.isEmpty());
   }
 
+  @Test
+  public void getJobsInQueue_empty() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    List<JobSpec> result = subject.getJobsInQueue("x");
+
+    assertTrue(result.isEmpty());
+  }
+
+  @Test
+  public void getJobsInQueue_singleJob() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    List<JobSpec> result = subject.getJobsInQueue("q1");
+
+    assertEquals(1, result.size());
+    assertEquals("id1", result.get(0).getId());
+  }
+
   private JobDatabase noopDatabase() {
     JobDatabase database = mock(JobDatabase.class);
 
