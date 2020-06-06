@@ -56,8 +56,8 @@ public class MainNavigator {
     return false;
   }
 
-  public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, int startingPosition) {
-    Intent intent = ConversationActivity.buildIntent(activity, recipientId, threadId, distributionType, startingPosition);
+  public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, int startingPosition, boolean highlightStartPosition) {
+    Intent intent = ConversationActivity.buildIntent(activity, recipientId, threadId, distributionType, startingPosition, highlightStartPosition);
 
     activity.startActivity(intent);
     activity.overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out);

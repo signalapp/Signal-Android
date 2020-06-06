@@ -281,13 +281,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_EXTRA         = "recipient_id";
-  public static final String THREAD_ID_EXTRA         = "thread_id";
-  public static final String TEXT_EXTRA              = "draft_text";
-  public static final String MEDIA_EXTRA             = "media_list";
-  public static final String STICKER_EXTRA           = "sticker_extra";
-  public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
-  public static final String STARTING_POSITION_EXTRA = "starting_position";
+  public static final String RECIPIENT_EXTRA                   = "recipient_id";
+  public static final String THREAD_ID_EXTRA                   = "thread_id";
+  public static final String TEXT_EXTRA                        = "draft_text";
+  public static final String MEDIA_EXTRA                       = "media_list";
+  public static final String STICKER_EXTRA                     = "sticker_extra";
+  public static final String DISTRIBUTION_TYPE_EXTRA           = "distribution_type";
+  public static final String STARTING_POSITION_EXTRA           = "starting_position";
+  public static final String HIGHLIGHT_STARTING_POSITION_EXTRA = "highlight_starting_position";
 
   private static final int PICK_GALLERY        = 1;
   private static final int PICK_DOCUMENT       = 2;
@@ -355,13 +356,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                             @NonNull RecipientId recipientId,
                                             long threadId,
                                             int distributionType,
-                                            int startingPosition)
+                                            int startingPosition,
+                                            boolean highlightStartingPosition)
   {
     Intent intent = new Intent(context, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
     intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, startingPosition);
+    intent.putExtra(ConversationActivity.HIGHLIGHT_STARTING_POSITION_EXTRA, highlightStartingPosition);
 
     return intent;
   }

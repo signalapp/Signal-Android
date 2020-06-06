@@ -217,6 +217,7 @@ public class ConversationFragment extends Fragment {
     this.conversationViewModel = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
     conversationViewModel.getMessages().observe(this, list -> {
       if (getListAdapter() != null) {
+        Log.i(TAG, "submitList");
         getListAdapter().submitList(list);
       }
     });
@@ -283,6 +284,7 @@ public class ConversationFragment extends Fragment {
     super.onResume();
 
     if (list.getAdapter() != null) {
+      Log.i(TAG, "onResume notifyDataSetChanged");
       list.getAdapter().notifyDataSetChanged();
     }
   }
@@ -905,8 +907,15 @@ public class ConversationFragment extends Fragment {
   private void scrollToStartingPosition(int startingPosition) {
     list.post(() -> {
       list.getLayoutManager().scrollToPosition(startingPosition);
-      getListAdapter().pulseHighlightItem(startingPosition);
+
+      if (shouldHighlightStartingPosition()) {
+        getListAdapter().pulseHighlightItem(startingPosition);
+      }
     });
+  }
+
+  private boolean shouldHighlightStartingPosition() {
+    return requireActivity().getIntent().getBooleanExtra(ConversationActivity.HIGHLIGHT_STARTING_POSITION_EXTRA, false);
   }
 
   private void scrollToLastSeenPosition(int lastSeenPosition) {
