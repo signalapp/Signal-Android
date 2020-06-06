@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.LRUCache;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -41,6 +42,6 @@ public class EarlyReceiptCache {
 
   public synchronized Map<RecipientId, Long> remove(long timestamp) {
     Map<RecipientId, Long> receipts = cache.remove(timestamp);
-    return receipts != null ? receipts : new HashMap<>();
+    return receipts != null ? receipts : Collections.emptyMap();
   }
 }
