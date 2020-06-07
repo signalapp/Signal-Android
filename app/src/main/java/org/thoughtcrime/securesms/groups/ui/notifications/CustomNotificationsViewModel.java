@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 public final class CustomNotificationsViewModel extends ViewModel {
@@ -27,7 +28,7 @@ public final class CustomNotificationsViewModel extends ViewModel {
   private CustomNotificationsViewModel(@NonNull GroupId groupId, @NonNull CustomNotificationsRepository repository) {
     this.liveGroup              = new LiveGroup(groupId);
     this.repository             = repository;
-    this.hasCustomNotifications = Transformations.map(liveGroup.getGroupRecipient(), recipient -> recipient.getNotificationChannel() != null);
+    this.hasCustomNotifications = Transformations.map(liveGroup.getGroupRecipient(), recipient -> recipient.getNotificationChannel() != null || !NotificationChannels.supported());
     this.isVibrateEnabled       = Transformations.map(liveGroup.getGroupRecipient(), Recipient::getMessageVibrate);
     this.notificationSound      = Transformations.map(liveGroup.getGroupRecipient(), Recipient::getMessageRingtone);
 

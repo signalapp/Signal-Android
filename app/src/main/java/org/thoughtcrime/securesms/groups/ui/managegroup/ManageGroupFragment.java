@@ -314,19 +314,17 @@ public class ManageGroupFragment extends Fragment {
       }
     });
 
+    customNotificationsRow.setVisibility(View.VISIBLE);
+
+    customNotificationsRow.setOnClickListener(v -> CustomNotificationsDialogFragment.create(groupId)
+                                                                                    .show(requireFragmentManager(), "CUSTOM_NOTIFICATIONS"));
+
+    //noinspection CodeBlock2Expr
     if (NotificationChannels.supported()) {
-      customNotificationsRow.setVisibility(View.VISIBLE);
-
-      customNotificationsRow.setOnClickListener(v -> CustomNotificationsDialogFragment.create(groupId)
-                                                                                      .show(requireFragmentManager(), "CUSTOM_NOTIFICATIONS"));
-
-      //noinspection CodeBlock2Expr
       viewModel.hasCustomNotifications().observe(getViewLifecycleOwner(), hasCustomNotifications -> {
         customNotificationsButton.setText(hasCustomNotifications ? R.string.ManageGroupActivity_on
                                                                  : R.string.ManageGroupActivity_off);
       });
-    } else {
-      customNotificationsRow.setVisibility(View.GONE);
     }
 
     viewModel.getSnackbarEvents().observe(getViewLifecycleOwner(), this::handleSnackbarEvent);

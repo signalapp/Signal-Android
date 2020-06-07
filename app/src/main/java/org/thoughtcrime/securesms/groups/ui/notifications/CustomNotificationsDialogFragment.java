@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public class CustomNotificationsDialogFragment extends DialogFragment {
@@ -122,6 +123,11 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
       soundSelector.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
       vibrateSwitch.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
     });
+
+    if (!NotificationChannels.supported()) {
+      customNotificationsSwitch.setVisibility(View.GONE);
+      view.findViewById(R.id.custom_notifications_enable_label).setVisibility(View.GONE);
+    }
 
     CompoundButton.OnCheckedChangeListener onVibrateSwitchCheckChangedListener = (buttonView, isChecked) -> {
       viewModel.setMessageVibrate(isChecked ? RecipientDatabase.VibrateState.ENABLED : RecipientDatabase.VibrateState.DISABLED);

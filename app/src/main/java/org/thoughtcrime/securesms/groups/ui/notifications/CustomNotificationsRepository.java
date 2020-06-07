@@ -30,11 +30,13 @@ class CustomNotificationsRepository {
       Recipient         recipient         = getRecipient();
       RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
 
-      recipientDatabase.setMessageRingtone(recipient.getId(), NotificationChannels.getMessageRingtone(context, recipient));
-      recipientDatabase.setMessageVibrate(recipient.getId(), NotificationChannels.getMessageVibrate(context, recipient) ? RecipientDatabase.VibrateState.ENABLED
-                                                                                                                        : RecipientDatabase.VibrateState.DISABLED);
+      if (NotificationChannels.supported()) {
+        recipientDatabase.setMessageRingtone(recipient.getId(), NotificationChannels.getMessageRingtone(context, recipient));
+        recipientDatabase.setMessageVibrate(recipient.getId(), NotificationChannels.getMessageVibrate(context, recipient) ? RecipientDatabase.VibrateState.ENABLED
+                                                                                                                          : RecipientDatabase.VibrateState.DISABLED);
 
-      NotificationChannels.ensureCustomChannelConsistency(context);
+        NotificationChannels.ensureCustomChannelConsistency(context);
+      }
 
       onLoaded.run();
     });
