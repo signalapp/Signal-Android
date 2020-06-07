@@ -796,6 +796,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
+    if (FeatureFlags.newGroupUI()) {
+      hideMenuItem(menu, R.id.menu_group_recipients);
+    }
+
     if (isActiveV2Group) {
       hideMenuItem(menu, R.id.menu_mute_notifications);
       hideMenuItem(menu, R.id.menu_conversation_settings);
