@@ -206,7 +206,7 @@ public class ManageGroupFragment extends Fragment {
 
     avatar.setFallbackPhotoProvider(fallbackPhotoProvider);
 
-    toolbar.setNavigationOnClickListener(v -> requireActivity().finish());
+    toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
     toolbar.setOnMenuItemClickListener(this::onMenuItemSelected);
     toolbar.inflateMenu(R.menu.manage_group_fragment);
 

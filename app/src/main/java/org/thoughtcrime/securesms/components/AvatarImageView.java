@@ -163,7 +163,8 @@ public final class AvatarImageView extends AppCompatImageView {
     if (quickContactEnabled) {
       super.setOnClickListener(v -> {
         if (FeatureFlags.newGroupUI() && recipient.isPushGroup()) {
-          getContext().startActivity(ManageGroupActivity.newIntent(getContext(), recipient.requireGroupId().requirePush()));
+          getContext().startActivity(ManageGroupActivity.newIntent(getContext(), recipient.requireGroupId().requirePush()),
+                                     ManageGroupActivity.createTransitionBundle(getContext(), this));
         } else {
           getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId()));
         }

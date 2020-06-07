@@ -1,10 +1,14 @@
 package org.thoughtcrime.securesms.groups.ui.managegroup;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
@@ -22,6 +26,14 @@ public class ManageGroupActivity extends PassphraseRequiredActionBarActivity {
     Intent intent = new Intent(context, ManageGroupActivity.class);
     intent.putExtra(GROUP_ID, groupId.toString());
     return intent;
+  }
+
+  public static @Nullable Bundle createTransitionBundle(@NonNull Context activityContext, @NonNull View from) {
+    if (activityContext instanceof Activity) {
+      return ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) activityContext, from, "avatar").toBundle();
+    } else {
+      return null;
+    }
   }
 
   @Override
