@@ -415,7 +415,7 @@
     <item quantity="other">Einladungen konnten nicht abgebrochen werden</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">Benenne diese Gruppe</string>
+  <string name="AddGroupDetailsFragment__name_this_group">Gib dieser Gruppe einen Namen</string>
   <string name="AddGroupDetailsFragment__create">Erstellen</string>
   <string name="AddGroupDetailsFragment__members">Mitglieder</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppenname (erforderlich)</string>
@@ -461,7 +461,7 @@
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Personalisierte Benachrichtigungen</string>
   <string name="CustomNotificationsDialogFragment__messages">Nachrichten</string>
-  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Personalisierte Benachrichtigungen verwenden</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Personalisierte Benachrichtigungen</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Benachrichtigungston</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibration</string>
   <!--GV2 Invite cancellation confirmation-->

@@ -473,7 +473,7 @@
   <string name="ManageGroupActivity_on">Włączone</string>
   <string name="ManageGroupActivity_add_members">Dodaj członków</string>
   <string name="ManageGroupActivity_view_all_members">Zobacz wszystkich członków</string>
-  <string name="ManageGroupActivity_see_all">Zobacz wszystkich</string>
+  <string name="ManageGroupActivity_see_all">Zobacz wszystkie</string>
   <string name="ManageGroupActivity_none">Brak</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d zaproszony</item>
@@ -872,7 +872,7 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Dotknij tutaj, aby włączyć wideo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do aparatu</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Dzwonię…</string>
+  <string name="WebRtcCallActivity__calling">Łączenie…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Połączenie głosowe Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal…</string>
@@ -947,7 +947,7 @@
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Przypomnimy Ci o tym ponownie jutro.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Przypomnimy Ci o tym ponownie za kilka dni.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Przypomnimy Ci o tym ponownie za tydzień.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Przypomnimy Ci o tym ponownie za kilka tygodni.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Przypomnimy Ci o tym ponownie za dwa tygodnie.</string>
   <!--Slide-->
   <string name="Slide_image">Obraz</string>
   <string name="Slide_sticker">Naklejka</string>
@@ -1369,7 +1369,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="log_submit_activity__button_submit">Wyślij</string>
   <string name="log_submit_activity__button_got_it">Rozumiem</string>
   <string name="log_submit_activity__button_compose_email">Utwórz email</string>
-  <string name="log_submit_activity__this_log_will_be_posted_online">Ten log zostanie opublikowany publicznie online, aby umożliwić współtwórcą jego sprawdzenie. Możesz go przejrzeć i edytować przed przesłaniem.</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Ten log zostanie upubliczniony online, aby umożliwić twórcom aplikacji jego sprawdzenie. Możesz go przejrzeć i edytować przed przesłaniem.</string>
   <string name="log_submit_activity__loading_logs">Wczytywanie logów…</string>
   <string name="log_submit_activity__uploading_logs">Przesyłanie logów…</string>
   <string name="log_submit_activity__choose_email_app">Wybierz aplikację email</string>

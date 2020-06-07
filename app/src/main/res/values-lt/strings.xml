@@ -236,6 +236,7 @@
   <string name="ConversationActivity_delete_and_leave">Ištrinti ir išeiti</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Norint skambinti %1$s, Signal reikia prieigos prie jūsų mikrofono</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų mikrofono ir kameros.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Dabar, daugiau parinkčių \"Grupės nustatymuose\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -457,6 +458,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Jūs pasirinkote adresatą, kuris nepalaiko Signal grupių, taigi, ši grupė bus MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Šalinti</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS adresatas</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Pašalinti %1$s iš šios grupės?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageGroupActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
@@ -471,7 +473,14 @@
   <string name="ManageGroupActivity_on">Įjungta</string>
   <string name="ManageGroupActivity_add_members">Pridėti narius</string>
   <string name="ManageGroupActivity_view_all_members">Rodyti visus narius</string>
+  <string name="ManageGroupActivity_see_all">Rodyti visus</string>
   <string name="ManageGroupActivity_none">Nėra</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d pakviestas</item>
+    <item quantity="few">%d pakviesti</item>
+    <item quantity="many">%d pakviestų</item>
+    <item quantity="other">%d pakviestas</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jūs neturite teisių to daryti</string>
   <string name="ManageGroupActivity_not_capable">Kažkas iš jūsų pridėtų asmenų nepalaiko naujų grupių ir turi atsinaujinti Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepavyko atnaujinti grupės</string>
@@ -503,7 +512,12 @@
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
   <string name="CropImageActivity_profile_avatar">Avataras</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Neaptikta jokių veidų</string> -->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Sulieti veidus</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nauja: Suliekite veidus arba pieškite ten, kur norite sulieti</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Pieškite ten, kur norite sulieti</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Pieškite norėdami sulieti pridėtinius veidus ar sritis</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Bakstelėkite ir laikykite, kad įrašinėtumėte balso žinutę, atleiskite, kad išsiųstumėte</string>
   <!--InviteActivity-->
@@ -992,6 +1006,7 @@
   <string name="SupportEmailUtil_android_version">Android versija:</string>
   <string name="SupportEmailUtil_signal_version">Signal versija:</string>
   <string name="SupportEmailUtil_signal_package">Signal paketas:</string>
+  <string name="SupportEmailUtil_registration_lock">Registracijos užraktas:</string>
   <string name="SupportEmailUtil_locale">Lokalė:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupė atnaujinta</string>
@@ -1233,6 +1248,7 @@
   <string name="ContactSelectionListFragment_username_not_found">Naudotojo vardas nerastas</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nėra Signal naudotojas. Patikrinkite naudotojo vardą ir bandykite dar kartą.</string>
   <string name="ContactSelectionListFragment_okay">Gerai</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">Grupė pilna</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų adresatų</string>
   <!--contact_selection_list_fragment-->
@@ -1694,6 +1710,8 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Archyvas pasirinktas</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Išarchyvuoti pasirinktus</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Išarchyvuoti pasirinktus</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Žymėti kaip skaitytą</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Žymėti kaip neskaitytą</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Nustatymų šaukinys</string>
   <string name="conversation_list_search_description">Ieškoti</string>

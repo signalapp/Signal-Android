@@ -344,7 +344,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">このデバイスは Play Service をサポートしていません。Signal が非アクティブ状態でもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有先</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">複数の添付は画像と動画のみに対応されています。</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">画像と動画以外のファイルを複数添付することはできません。</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを取得しています…</string>
   <!--GcmRefreshJob-->
@@ -1078,6 +1078,7 @@
   <string name="WebRtcCallScreen__answer_without_video">ビデオなしで応答</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">音声出力</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">受話口</string>
   <string name="WebRtcAudioOutputToggle__speaker">スピーカー</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

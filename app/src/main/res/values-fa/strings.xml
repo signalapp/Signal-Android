@@ -159,7 +159,7 @@
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">ارسال ناموفق بود، برای جزئیات ضربه بزنید</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">پیام تبادل کلید دریافت شد، برای ادامه، صفحه را لمس کنید.</string>
-  <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرده است.</string>
+  <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ارسال ناموفق بود، برای ارتباط ناامن ضربه بزنید</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">برگشت به حالت پیامک رمزگذاری نشده؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت فراپیام رمزگذاری نشده؟</string>
@@ -188,7 +188,7 @@
   <string name="ConversationActivity_calls_not_supported">تماس‌ پشتیبانی نمی‌شود</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">این دستگاه قابلیت پشتیبانی از عملیات‌ شماره‌گیری را ندارد.</string>
   <string name="ConversationActivity_leave_group">ترک گروه؟</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا مطمئن‌اید که می‌خواهید این گروه را ترک کنید؟</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا مطمئنید که می‌خواهید این گروه را ترک کنید؟</string>
   <string name="ConversationActivity_transport_insecure_sms">پیامک ناامن</string>
   <string name="ConversationActivity_transport_insecure_mms">فراپیام ناامن</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -313,9 +313,9 @@
   <string name="ConversationTitleView_you">شما</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم تصویر پروفایل</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم عکس پروفایل</string>
   <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
-  <string name="CreateProfileActivity_profile_photo">تصویر پروفایل</string>
+  <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل‌های Signal به صورت سرتاسر رمزگذاری می‌شوند و سرویس Signal هیچگاه به این اطلاعات دسترسی ندارد.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
@@ -389,7 +389,7 @@
   <string name="GroupCreateActivity_remove_member_description">حذف عضو گروه</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک‌گذاری نام و عکس پروفایل خود با این گروه؟</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و عکس پروفایل شما برای همهٔ اعضای فعلی و کسانی که در آینده عضو این گروه می‌شوند آشکار شود؟</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و عکس پروفایل شما به همهٔ اعضای کنونی و آتی این گروه نشان داده شود؟</string>
   <string name="GroupShareProfileView_make_visible">آشکار کن</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">شما</string>
@@ -477,9 +477,9 @@
   <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">چهره‌ای تشخیص داده نشد</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">محو کردن چهره‌ها</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">جدید: چهر‌ه‌ها را محو کنید یا هرجایی را برای محو کردن لمس کنید</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">هرجایی را برای محو کردن لمس کنید</string>
-  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">برای محو کردن چهره‌ها و قسمت‌های دیگر لمس کنید</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">جدید: چهره‌ها را محو کنید یا روی هر ناحیه‌‌ای برای محو کردن ترسیم کنید</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">برای محو کردن روی هر ناحیه‌ای ترسیم کنید</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">برای محو کردن روی چهره‌ها و نواحی دیگر ترسیم کنید</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن پیام صوتی ضربه زده و نگه دارید، برای ارسال رها کنید</string>
   <!--InviteActivity-->
@@ -684,7 +684,7 @@
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">پذیرش</string>
   <string name="MessageRequestBottomView_delete">حذف</string>
-  <string name="MessageRequestBottomView_block">مسدود کردن</string>
+  <string name="MessageRequestBottomView_block">مسدودسازی</string>
   <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">می‌خواهید به %1$s اجازه دهید به شما پیام دهد؟ تا زمانی که شما این درخواست را قبول نکنید آن‌ها متوجه نمی‌شوند که شما پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به گروه %1$s بپیوندید؟ تا زمانی که شما این درخواست را قبول نکنید آن‌ها متوجه نمی‌شوند که شما پیام‌شان را خوانده‌اید.</string>
@@ -783,7 +783,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">شما</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block">مسدود سازی</string>
+  <string name="RecipientPreferenceActivity_block">مسدودسازی</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">خطا در ترک گروه</string>
   <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
@@ -1325,7 +1325,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">نام گروه اکنون \'%1$s\' است.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">آیا می‌خواهید نام و تصویر نمایه خود را برای این گروه آشکار کنید؟</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">نام و عکس پروفایل شما به این این گروه نشان داده شود؟</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">باز کردن قفل</string>
   <!--prompt_mms_activity-->
@@ -1348,7 +1348,7 @@
   <string name="recipient_preferences__custom_notifications_settings">تنظیمات اعلان سیستم</string>
   <string name="recipient_preferences__notification_sound">صدا اعلان</string>
   <string name="recipient_preferences__vibrate">لرزش</string>
-  <string name="recipient_preferences__block">مسدود سازی</string>
+  <string name="recipient_preferences__block">مسدودسازی</string>
   <string name="recipient_preferences__color">رنگ</string>
   <string name="recipient_preferences__view_safety_number">نمایش شماره امنیتی</string>
   <string name="recipient_preferences__chat_settings">تنظیمات گفتگو</string>
