@@ -19,7 +19,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -84,6 +83,7 @@ public class ManageGroupFragment extends Fragment {
   private View                               disappearingMessagesRow;
   private TextView                           disappearingMessages;
   private TextView                           blockGroup;
+  private TextView                           unblockGroup;
   private TextView                           leaveGroup;
   private TextView                           addMembers;
   private SwitchCompat                       muteNotificationsSwitch;
@@ -157,6 +157,7 @@ public class ManageGroupFragment extends Fragment {
     disappearingMessagesRow     = view.findViewById(R.id.disappearing_messages_row);
     disappearingMessages        = view.findViewById(R.id.disappearing_messages);
     blockGroup                  = view.findViewById(R.id.blockGroup);
+    unblockGroup                = view.findViewById(R.id.unblockGroup);
     leaveGroup                  = view.findViewById(R.id.leaveGroup);
     addMembers                  = view.findViewById(R.id.add_members);
     muteNotificationsUntilLabel = view.findViewById(R.id.group_mute_notifications_until);
@@ -247,6 +248,7 @@ public class ManageGroupFragment extends Fragment {
 
     disappearingMessagesRow.setOnClickListener(v -> viewModel.handleExpirationSelection());
     blockGroup.setOnClickListener(v -> viewModel.blockAndLeave(requireActivity()));
+    unblockGroup.setOnClickListener(v -> viewModel.unblock(requireActivity()));
 
     addMembers.setOnClickListener(v -> viewModel.onAddMembersClick(this, PICK_CONTACT));
 
@@ -328,6 +330,12 @@ public class ManageGroupFragment extends Fragment {
     }
 
     viewModel.getSnackbarEvents().observe(getViewLifecycleOwner(), this::handleSnackbarEvent);
+
+    viewModel.getCanLeaveGroup().observe(getViewLifecycleOwner(), canLeave -> leaveGroup.setVisibility(canLeave ? View.VISIBLE : View.GONE));
+    viewModel.getCanBlockGroup().observe(getViewLifecycleOwner(), canBlock -> {
+      blockGroup.setVisibility(canBlock ? View.VISIBLE : View.GONE);
+      unblockGroup.setVisibility(canBlock ? View.GONE : View.VISIBLE);
+    });
   }
 
   public boolean onMenuItemSelected(@NonNull MenuItem item) {

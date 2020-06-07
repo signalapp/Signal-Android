@@ -61,6 +61,10 @@ public final class LiveGroup {
     return Transformations.map(groupRecord, g -> g.isAdmin(Recipient.self()));
   }
 
+  public LiveData<Boolean> isActive() {
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::isActive);
+  }
+
   public LiveData<Boolean> getRecipientIsAdmin(@NonNull RecipientId recipientId) {
     return LiveDataUtil.mapAsync(groupRecord, g -> g.isAdmin(Recipient.resolved(recipientId)));
   }

@@ -558,6 +558,21 @@
                         android:textColor="@color/core_red" />
 
                     <TextView
+                        android:id="@+id/unblockGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/group_manage_fragment_row_height"
+                        android:background="?selectableItemBackground"
+                        android:gravity="center_vertical|start"
+                        android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:text="@string/ManageGroupActivity_unblock_group"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Signal.Text.Body"
+                        android:textColor="@color/core_red"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <TextView
                         android:id="@+id/leaveGroup"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/group_manage_fragment_row_height"

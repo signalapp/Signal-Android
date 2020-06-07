@@ -67,6 +67,8 @@ public class ManageGroupViewModel extends ViewModel {
   private final LiveData<Boolean>                           hasCustomNotifications;
   private final LiveData<Boolean>                           canCollapseMemberList;
   private final DefaultValueLiveData<CollapseState>         memberListCollapseState   = new DefaultValueLiveData<>(CollapseState.COLLAPSED);
+  private final LiveData<Boolean>                           canLeaveGroup;
+  private final LiveData<Boolean>                           canBlockGroup;
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -99,6 +101,8 @@ public class ManageGroupViewModel extends ViewModel {
                                                          recipient -> new MuteState(recipient.getMuteUntil(), recipient.isMuted()));
     this.hasCustomNotifications    = Transformations.map(this.groupRecipient,
                                                          recipient -> recipient.getNotificationChannel() != null);
+    this.canLeaveGroup             = liveGroup.isActive();
+    this.canBlockGroup             = Transformations.map(this.groupRecipient, recipient -> !recipient.isBlocked());
   }
 
   @WorkerThread
@@ -172,8 +176,16 @@ public class ManageGroupViewModel extends ViewModel {
     return snackbarEvents;
   }
 
-  public LiveData<Boolean> getCanCollapseMemberList() {
+  LiveData<Boolean> getCanCollapseMemberList() {
     return canCollapseMemberList;
+  }
+
+  LiveData<Boolean> getCanBlockGroup() {
+    return canBlockGroup;
+  }
+
+  LiveData<Boolean> getCanLeaveGroup() {
+    return canLeaveGroup;
   }
 
   void handleExpirationSelection() {
@@ -194,6 +206,11 @@ public class ManageGroupViewModel extends ViewModel {
   void blockAndLeave(@NonNull FragmentActivity activity) {
     manageGroupRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient,
                                        () -> RecipientUtil.block(context, recipient)));
+  }
+
+  void unblock(@NonNull FragmentActivity activity) {
+    manageGroupRepository.getRecipient(recipient -> BlockUnblockDialog.showUnblockFor(activity, activity.getLifecycle(), recipient,
+                                       () -> RecipientUtil.unblock(context, recipient)));
   }
 
   void onAddMembers(List<RecipientId> selected) {

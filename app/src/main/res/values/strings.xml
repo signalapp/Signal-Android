@@ -518,6 +518,7 @@
     <string name="ManageGroupActivity_who_can_edit_group_membership">Who can edit group membership</string>
     <string name="ManageGroupActivity_who_can_edit_group_info">Who can edit group info</string>
     <string name="ManageGroupActivity_block_group">Block group</string>
+    <string name="ManageGroupActivity_unblock_group">Unblock group</string>
     <string name="ManageGroupActivity_leave_group">Leave group</string>
     <string name="ManageGroupActivity_mute_notifications">Mute notifications</string>
     <string name="ManageGroupActivity_custom_notifications">Custom notifications</string>
