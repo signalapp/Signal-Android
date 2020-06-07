@@ -1625,7 +1625,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver utval</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Angra arkivering av utval</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Angra arkivering av utval</string>
-  <string name="conversation_list_batch__menu_mark_as_read">Merk som lesen</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Merk som lesne</string>
   <string name="conversation_list_batch__menu_mark_as_unread">Merk som ulesen</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snarveg til innstillingar</string>

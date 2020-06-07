@@ -753,10 +753,10 @@
   <string name="MessageRequestProfileView_member_of_two_groups">Członek %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Członek %1$s, %2$s i %3$s</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="one">%1$d użytkownik</item>
-    <item quantity="few">%1$d użytkowników</item>
-    <item quantity="many">%1$d użytkowników</item>
-    <item quantity="other">%1$d użytkowników</item>
+    <item quantity="one">%1$d członek</item>
+    <item quantity="few">%1$d członków</item>
+    <item quantity="many">%1$d członków</item>
+    <item quantity="other">%1$d członków</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d członek (+%2$d zaproszony/ch)</item>

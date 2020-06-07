@@ -1575,14 +1575,17 @@ grūpp ap‌ḍē</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">അറ്റാച്മെന്റ്‌  ചേർക്കുക</string>
   <string name="conversation__menu_edit_group">ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക</string>
+  <string name="conversation__menu_group_settings">ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ</string>
   <string name="conversation__menu_leave_group">ഗ്രൂപ്പ് വിടുക</string>
   <string name="conversation__menu_view_all_media">എല്ലാ മീഡിയ</string>
   <string name="conversation__menu_conversation_settings">സംഭാഷണ ക്രമീകരണങ്ങൾ</string>
   <string name="conversation__menu_add_shortcut">ഹോം സ്‌ക്രീനിലേക്ക് ചേർക്കുക</string>
   <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">പോപ്പ്അപ്പ് വികസിപ്പിക്കുക</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
   <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">സ്വീകർത്താക്കളുടെ പട്ടിക</string>
   <string name="conversation_group_options__conversation">സംഭാഷണം</string>
   <string name="conversation_group_options__broadcast">ബ്രോഡ്കാസ്റ്റ്</string>
   <!--text_secure_normal-->
@@ -1593,6 +1596,7 @@ grūpp ap‌ḍē</string>
   <string name="text_secure_normal__help">സഹായം</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">ക്ലിപ്പ്ബോർഡുമായി താരതമ്യം ചെയ്യുക</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് കാലഹരണപ്പെട്ടു</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1601,10 +1605,18 @@ grūpp ap‌ḍē</string>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് ഇന്ന് കാലഹരണപ്പെടും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
   <string name="reminder_header_expired_build">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് കാലഹരണപ്പെട്ടു!</string>
+  <string name="reminder_header_expired_build_details">സന്ദേശങ്ങൾ മേലിൽ അയയ്‌ക്കില്ല. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
+  <string name="reminder_header_sms_default_title">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string>
+  <string name="reminder_header_sms_default_text">നിങ്ങളുടെ സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷൻ സിഗ്നൽ ആക്കാൻ ടാപ്പുചെയ്യുക.</string>
+  <string name="reminder_header_sms_import_title">സിസ്റ്റം SMS ഇറക്കുമതി ചെയ്യുക</string>
+  <string name="reminder_header_sms_import_text">Signal-ന്റെ എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ ഫോണിലേ SMS സന്ദേശങ്ങൾ പകർത്താൻ ടാപ്പുചെയ്യുക.</string>
   <string name="reminder_header_push_title">Signal സന്ദേശങ്ങളും കോളുകളും പ്രാപ്തമാക്കുക</string>
+  <string name="reminder_header_push_text">നിങ്ങളുടെ ആശയവിനിമയ അനുഭവം അപ്‌ഗ്രേഡുചെയ്യു.</string>
   <string name="reminder_header_invite_title">Signalലേക്ക് ക്ഷണിക്കുക</string>
+  <string name="reminder_header_invite_text">%1$s-മായുള്ള നിങ്ങളുടെ സംഭാഷണം അടുത്ത ഘട്ടത്തിലേക്ക് കൊണ്ടുപോകുക.</string>
   <string name="reminder_header_share_title">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക!</string>
   <string name="reminder_header_service_outage_text">Signal ചില സാങ്കേതിക പ്രശ്നങ്ങൾ നേരിടുകയാണ്.  കഴിയുന്നതും വേഗം സേവനം പുനസ്ഥാപിക്കാൻ ഞങ്ങൾ കഠിനപ്രയത്നം നടത്തുകയാണ്.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Android- ന്റെ ഈ പതിപ്പിൽ ഏറ്റവും പുതിയ സിഗ്നൽ സവിശേഷതകൾ പ്രവർത്തിക്കില്ല. ഭാവിയിലെ സിഗ്നൽ അപ്‌ഡേറ്റുകൾ ലഭിക്കുന്നതിന് ഈ ഉപകരണം അപ്‌ഗ്രേഡുചെയ്യുക.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">സംരക്ഷിക്കുക</string>
@@ -1623,6 +1635,8 @@ grūpp ap‌ḍē</string>
   <string name="Insights__title">ഇന്സിഘ്റ്സ്</string>
   <string name="InsightsDashboardFragment__title">ഇന്സിഘ്റ്സ്</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">കഴിഞ്ഞ %2$d ദിവസങ്ങളിൽ നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ നിന്ന് സിഗ്നൽ പ്രോട്ടോക്കോൾ യാന്ത്രികമായി %1$d%%പരിരക്ഷിച്ചു. സിഗ്നൽ ഉപയോക്താക്കൾ തമ്മിലുള്ള സംഭാഷണങ്ങൾ എല്ലായ്പ്പോഴും എൻഡ് ടു എൻഡ് എൻ‌ക്രിപ്റ്റ് ആണ്.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">സിഗ്നൽ ബൂസ്റ്റ്</string>
+  <string name="InsightsDashboardFragment__not_enough_data">മതിയായ ഡാറ്റയില്ല</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ഒരു സംഭാഷണം ആരംഭിക്കുക</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ഈ സ്ഥിതിവിവരക്കണക്കുകൾ നിങ്ങളുടെ ഉപകരണത്തിൽ പ്രാദേശികമായി ജനറേറ്റുചെയ്‌തതാണ്, നിങ്ങൾക്ക് മാത്രമേ ഇത് കാണാൻ കഴിയൂ. അവ ഒരിക്കലും എവിടെയും പകരില്ല.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശങ്ങൾ</string>
@@ -1633,6 +1647,7 @@ grūpp ap‌ḍē</string>
   <string name="InsightsModalFragment__view_insights">ഇൻസൈട്ടൂകൽ കാണുക</string>
   <string name="FirstInviteReminder__title">Signalലേക്ക് ക്ഷണിക്കുക</string>
   <string name="FirstInviteReminder__description">നിങ്ങൾ അയച്ച എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശങ്ങളുടെ എണ്ണം %1$d%% ആയി വർദ്ധിപ്പിക്കാം</string>
+  <string name="SecondInviteReminder__title">നിങ്ങളുടെ സിഗ്നൽ വർദ്ധിപ്പിക്കുക</string>
   <string name="SecondInviteReminder__description">%1$s ക്ഷണിക്കുക</string>
   <string name="InsightsReminder__view_insights">ഇൻസൈട്ടൂകൽ കാണുക</string>
   <string name="InsightsReminder__invite">ക്ഷണിക്കുക</string>
@@ -1768,6 +1783,7 @@ grūpp ap‌ḍē</string>
   <string name="RegistrationActivity_backup_timestamp_s">ബാക്കപ്പ് ടൈംസ്റ്റാമ്പ്: %s</string>
   <string name="BackupDialog_enable_local_backups">ലോക്കൽ ബാക്കപ്പുകൾ പ്രാപ്തമാക്കണോ?</string>
   <string name="BackupDialog_enable_backups">ബാക്കപ്പുകൾ പ്രാപ്തമാക്കുക</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">സ്ഥിരീകരണ ചെക്ക് ബോക്സ് അടയാളപ്പെടുത്തിക്കൊണ്ട് നിങ്ങളുടെ ധാരണ അംഗീകരിക്കുക.</string>
   <string name="BackupDialog_delete_backups">ബാക്കപ്പുകൾ ഇല്ലാതാക്കണോ?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">എല്ലാ പ്രാദേശിക ബാക്കപ്പുകളും അപ്രാപ്‌തമാക്കി ഇല്ലാതാക്കണോ?</string>
   <string name="BackupDialog_delete_backups_statement">ബാക്കപ്പുകൾ ഇല്ലാതാക്കുക</string>
@@ -1794,11 +1810,15 @@ grūpp ap‌ḍē</string>
   <string name="preferences_app_protection__change_your_pin">നിങ്ങളുടെ പിൻ മാറ്റുക</string>
   <string name="preferences_app_protection__pin_reminders">പിൻ ഓർമ്മപ്പെടുത്തലുകൾ</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal എൻക്രിപ്റ്റ് ചെയ്ത് സ്റ്റോർ ചെയ്ത വിവരങ്ങൾ PIN കൾ സൂക്ഷിക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് മാത്രമെ അത് പ്രാപ്യമാവുകയുള്ളു.  നിങ്ങൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈൽ, സെറ്റിംഗ്സ്, കോണ്ടാക്റ്റുകൾ എന്നിവ റീസ്റ്റോർ ചെയ്യപ്പെടും.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">സിഗ്നൽ ഉപയോഗിച്ച് നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങളുടെ സിഗ്നൽ പിൻ ആവശ്യപ്പെടുന്നതിലൂടെ അധിക സുരക്ഷ ചേർക്കുക.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">നിങ്ങളുടെ പിൻ വീണ്ടെടുക്കാൻ കഴിയാത്തതിനാൽ ഓർമ്മിക്കാൻ ഓർമ്മപ്പെടുത്തലുകൾ സഹായിക്കുന്നു. കാലക്രമേണ നിങ്ങളോട് കുറച്ച് തവണ ചോദിക്കും.</string>
   <string name="preferences_app_protection__turn_off">ഓഫ് ആക്കുക</string>
   <string name="preferences_app_protection__confirm_pin">പിൻ സ്ഥിരീകരിക്കുക</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">നിങ്ങളുടെ Signal പിൻ സ്ഥിരീകരിക്കുക</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">നിങ്ങളുടെ PIN വീണ്ടെടുക്കാൻ കഴിയാത്തതിനാൽ നിങ്ങൾ അത് മന:പാഠമാക്കുകയോ സുരക്ഷിതമായി സൂക്ഷിക്കുകയോ ചെയ്യുന്നുവെന്ന് ഉറപ്പാക്കുക. നിങ്ങളുടെ PIN മറന്നാൽ, നിങ്ങളുടെ സിഗ്നൽ അക്ക re ണ്ട് വീണ്ടും രജിസ്റ്റർ ചെയ്യുമ്പോൾ നിങ്ങൾക്ക് ഡാറ്റ നഷ്‌ടപ്പെടാം.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">തെറ്റായ പിൻ. വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് പ്രവർത്തനക്ഷമമാക്കുന്നതിൽ പരാജയപ്പെട്ടു.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് അപ്രാപ്തമാക്കുന്നതിൽ പരാജയപ്പെട്ടു.</string>
   <string name="AppProtectionPreferenceFragment_none">ഒന്നുമില്ല</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">രജിസ്ട്രേഷൻ ലോക്ക് പിൻ നിങ്ങൾക്ക് ഇപ്പോൾ ലഭിച്ച SMS പരിശോധന കോഡിന് സമാനമല്ല. അപ്ലിക്കേഷനിൽ നിങ്ങൾ മുമ്പ് ക്രമീകരിച്ച പിൻ നൽകുക.</string>
   <string name="registration_activity__registration_lock_pin">രജിസ്ട്രേഷൻ ലോക്ക് പിൻ</string>
@@ -1816,7 +1836,9 @@ grūpp ap‌ḍē</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">തെറ്റായ രജിസ്ട്രേഷൻ ലോക്ക് പിൻ</string>
   <string name="RegistrationActivity_too_many_attempts">വളരെയധികം ശ്രമങ്ങൾ</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">നിങ്ങൾ നിരവധി തെറ്റായ രജിസ്ട്രേഷൻ ലോക്ക് പിൻ ശ്രമങ്ങൾ നടത്തി. ഒരു ദിവസത്തിനുള്ളിൽ വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">നിങ്ങൾ വളരെയധികം ശ്രമങ്ങൾ നടത്തി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_error_connecting_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യുന്നതിൽ പിശക്</string>
+  <string name="RegistrationActivity_oh_no">അയ്യോ!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Signal-ൽ ഈ ഫോൺ നമ്പർ അവസാനമായി സജീവമായിട്ട് 7 ദിവസങ്ങൾ കഴിഞ്ഞാൽ നിങ്ങളുടെ രജിസ്ട്രേഷൻ ലോക്ക് പിൻ ഇല്ലാതെ ഈ ഫോൺ നമ്പറിന്റെ രജിസ്ട്രേഷൻ സാധ്യമാകും. നിങ്ങൾക്ക് %d ദിവസങ്ങൾ ശേഷിക്കുന്നു</string>
   <string name="RegistrationActivity_registration_lock_pin">രജിസ്ട്രേഷൻ ലോക്ക് പിൻ</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">ഈ ഫോൺ നമ്പറിൽ രജിസ്ട്രേഷൻ ലോക്ക് ഉണ്ട്. രജിസ്ട്രേഷൻ ലോക്ക് പിൻ നൽകുക.</string>

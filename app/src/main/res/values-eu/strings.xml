@@ -230,6 +230,7 @@
   <string name="ConversationActivity_delete_and_leave">Ezabatu eta utzi</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s erabiltzaileari deitzeko, Signalek zure mikrofonoa erabiltzeko baimena behar du</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s erabiltzaileari deitzeko, Signalek zure mikrofono eta kamera erabiltzeko baimena behar du.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Aukera gehiago orain \"Taldeko ezarpenak\" atalean</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mezu irakurri gabe</item>
@@ -425,6 +426,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Aukeratu duzun kontaktua ez da gai Signal taldeak erabiltzeko; beraz, talde hau MMS motakoa izango da.</string>
   <string name="AddGroupDetailsFragment__remove">Ezabatu</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontaktua</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ezabatu %1$s erabiltzailea talde honetatk?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mezuen desagerpena</string>
   <string name="ManageGroupActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
@@ -439,7 +441,12 @@
   <string name="ManageGroupActivity_on">Aktibatuta</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
   <string name="ManageGroupActivity_view_all_members">Partaide guztiak ikusi</string>
+  <string name="ManageGroupActivity_see_all">Ikusi denak</string>
   <string name="ManageGroupActivity_none">Bat ere ez</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d gonbidatuta</item>
+    <item quantity="other">%d  gonbidatuta</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
   <string name="ManageGroupActivity_not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
@@ -467,8 +474,10 @@
   <string name="CropImageActivity_group_avatar">Taldearen abatarra</string>
   <string name="CropImageActivity_profile_avatar">Abatarra</string>
   <!--ImageEditorFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Ez dira aurpegiak detektatu</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Zirriborrotu aurpegiak</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Berria: zirriborratu aurpegiak eta marraztu edonon zirriborratzeko</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">Marraztu edonon zirriborrotzeko</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Marraztu aurpegi edo area gehiago zirriborrotzeko</string>
   <!--InputPanel-->
@@ -929,6 +938,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SupportEmailUtil_android_version">Android bertsioa:</string>
   <string name="SupportEmailUtil_signal_version">Signal bertsioa:</string>
   <string name="SupportEmailUtil_signal_package">Signal paketea:</string>
+  <string name="SupportEmailUtil_registration_lock">Erregistratzeko blokeoa:</string>
   <string name="SupportEmailUtil_locale">Hizkuntza:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Taldea eguneratu da</string>
@@ -1168,6 +1178,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ContactSelectionListFragment_username_not_found">Erabiltzaile izena ez da aurkitu</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile izena eta saia zaitez berriro.</string>
   <string name="ContactSelectionListFragment_okay">Ados</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">Taldea beteta dago</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeatutako kontaturik ez…</string>
   <!--contact_selection_list_fragment-->
@@ -1615,6 +1626,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desartxibatze hautatua</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Desartxibatze hautatua</string>
   <string name="conversation_list_batch__menu_mark_as_read">Irakurritako gisa markatu</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Irakurri gabe gisa markatu</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ezarpenen lasterbidea</string>
   <string name="conversation_list_search_description">Bilatu</string>
@@ -1636,6 +1648,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eranskina gehitu</string>
   <string name="conversation__menu_edit_group">Taldea editatu</string>
+  <string name="conversation__menu_group_settings">Taldeko ezarpenak</string>
   <string name="conversation__menu_leave_group">Taldea utzi</string>
   <string name="conversation__menu_view_all_media">Euskarri guztiak</string>
   <string name="conversation__menu_conversation_settings">Solasaldiaren ezarpenak</string>

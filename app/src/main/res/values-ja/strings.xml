@@ -435,8 +435,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">グループの更新に失敗しました</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">あなたはこのグループのメンバーではありません</string>
   <string name="ManageGroupActivity_edit_name_and_picture">名前と写真の編集</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">追加または招待する新しいメンバーを選択します</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">グループ名と写真を変更できるメンバーを選択します</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">新しいメンバーを追加、または招待できる人を選択</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">グループ名と写真を変更できるメンバーを選択</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s は%2$d人招待しました</item>
   </plurals>
@@ -447,9 +447,9 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">通知音</string>
   <string name="CustomNotificationsDialogFragment__vibrate">サイレントモード</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">あなたが %1$s に送った招待をキャンセルしたいですか?</string>
+  <string name="GroupManagement_cancel_own_single_invite">あなたが%1$sに送った招待をキャンセルしますか?</string>
   <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="other">%1$s から送られた%2$d件の招待をキャンセルしますか?</item>
+    <item quantity="other">%1$sから送られた%2$d件の招待をキャンセルしますか?</item>
   </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">グループアバター</string>
@@ -980,7 +980,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">タッチして開く。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">タッチして開くか、鍵をタッチして閉じる</string>
-  <string name="KeyCachingService_passphrase_cached">Signal がロック解除されました</string>
+  <string name="KeyCachingService_passphrase_cached">Signalはロックが解除されています</string>
   <string name="KeyCachingService_lock">Signal をロック</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>
@@ -1835,8 +1835,8 @@
   <string name="preferences_app_protection__turn_off">オフ</string>
   <string name="preferences_app_protection__confirm_pin">PIN を再入力してください</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Signal PINの確認</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PINは忘れないようにするか、安全に保管してください。復元はできませんので。PINを忘れると、Signalに登録し直しても、データは失われる可能性があります。</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN が違います。もう一度お試しください。</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PINは忘れないようにするか、安全に保管してください。復元はできませんので。PINを忘れると、Signalに再登録しても、データは失われる可能性があります。</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PINが違います。もう一度お試しください。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">登録ロックを有効にすることに失敗しました。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">登録ロックを無効にすることに失敗しました</string>
   <string name="AppProtectionPreferenceFragment_none">なし</string>
@@ -1856,7 +1856,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">登録ロック PIN が違います</string>
   <string name="RegistrationActivity_too_many_attempts">試行数が多すぎます</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">登録ロック PIN の無効な試行回数が多すぎます。1 日経ってからもう一度お試しください。</string>
-  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">試行回数が多すぎます。再度お試しください。</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">試行回数が多すぎます。あとで再度お試しください。</string>
   <string name="RegistrationActivity_error_connecting_to_service">サービスへの接続中にエラーが発生しました</string>
   <string name="RegistrationActivity_oh_no">おっと！</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">登録ロック PIN 無しでこの電話番号を登録するには、最後に Signal を使用した日から 7日間待つ必要があります。登録可能になるまであと %d 日です。</string>
@@ -1876,7 +1876,7 @@
   <string name="RegistrationActivity_pin_incorrect">PIN が違います</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">あと %d 回試せます</string>
   <string name="preferences_chats__backups">バックアップ</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal はロックされました</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal はロックされています</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">タップしてロック解除</string>
   <string name="RegistrationLockDialog_reminder">リマインダー:</string>
   <string name="recipient_preferences__about">コンタクト情報</string>
