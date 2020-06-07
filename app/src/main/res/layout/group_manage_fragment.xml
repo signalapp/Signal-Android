@@ -306,7 +306,6 @@
                         style="@style/Widget.Signal.Button.TextButton.Ultramarine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:focusableInTouchMode="true"
                         android:gravity="center_vertical"
                         android:minWidth="48dp"
                         android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
