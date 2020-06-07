@@ -1309,7 +1309,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleUnverifiedRecipients() {
-    List<Recipient>      unverifiedRecipients = identityRecords.getUnverifiedRecipients(this);
+    List<Recipient>      unverifiedRecipients = identityRecords.getUnverifiedRecipients();
     List<IdentityRecord> unverifiedRecords    = identityRecords.getUnverifiedRecords();
     String               message              = IdentityUtil.getUnverifiedSendDialogDescription(this, unverifiedRecipients);
 
@@ -1332,7 +1332,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleUntrustedRecipients() {
-    List<Recipient>      untrustedRecipients = identityRecords.getUntrustedRecipients(this);
+    List<Recipient>      untrustedRecipients = identityRecords.getUntrustedRecipients();
     List<IdentityRecord> untrustedRecords    = identityRecords.getUntrustedRecords();
     String               untrustedMessage    = IdentityUtil.getUntrustedSendDialogDescription(this, untrustedRecipients);
 
@@ -1633,31 +1633,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Recipient, Void, Pair<IdentityRecordList, String>>() {
       @Override
       protected @NonNull Pair<IdentityRecordList, String> doInBackground(Recipient... params) {
-        IdentityDatabase   identityDatabase   = DatabaseFactory.getIdentityDatabase(ConversationActivity.this);
-        IdentityRecordList identityRecordList = new IdentityRecordList();
-        List<Recipient>    recipients         = new LinkedList<>();
+        IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(ConversationActivity.this);
+        List<Recipient>                     recipients;
 
         if (params[0].isGroup()) {
-          recipients.addAll(DatabaseFactory.getGroupDatabase(ConversationActivity.this)
-                                           .getGroupMembers(params[0].requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF));
+          recipients = DatabaseFactory.getGroupDatabase(ConversationActivity.this)
+                                      .getGroupMembers(params[0].requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
         } else {
-          recipients.add(params[0]);
+          recipients = Collections.singletonList(params[0]);
         }
 
-        long          startTime  = System.currentTimeMillis();
-        StringBuilder logBuilder = new StringBuilder();
+        long               startTime          =  System.currentTimeMillis();
+        IdentityRecordList identityRecordList = identityDatabase.getIdentities(recipients);
 
-        for (Recipient recipient : recipients) {
-          logBuilder.append(recipient.getId()).append(" ");
-          identityRecordList.add(identityDatabase.getIdentity(recipient.getId()));
-        }
-
-        Log.i(TAG, String.format(Locale.ENGLISH, "Loaded %d identities in %d ms: %s", recipients.size(), System.currentTimeMillis() - startTime, logBuilder.toString()));
+        Log.i(TAG, String.format(Locale.US, "Loaded %d identities in %d ms", recipients.size(), System.currentTimeMillis() - startTime));
 
         String message = null;
 
         if (identityRecordList.isUnverified()) {
-          message = IdentityUtil.getUnverifiedBannerDescription(ConversationActivity.this, identityRecordList.getUnverifiedRecipients(ConversationActivity.this));
+          message = IdentityUtil.getUnverifiedBannerDescription(ConversationActivity.this, identityRecordList.getUnverifiedRecipients());
         }
 
         return new Pair<>(identityRecordList, message);

@@ -1,30 +1,25 @@
 package org.thoughtcrime.securesms.database.identity;
 
-
-import android.content.Context;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class IdentityRecordList {
-
-  private static final String TAG = IdentityRecordList.class.getSimpleName();
+public final class IdentityRecordList {
 
   private final List<IdentityRecord> identityRecords = new LinkedList<>();
 
-  public void add(Optional<IdentityRecord> identityRecord) {
-    if (identityRecord.isPresent()) {
-      identityRecords.add(identityRecord.get());
-    }
+  public void add(@NonNull IdentityRecord identityRecord) {
+    identityRecords.add(identityRecord);
   }
 
-  public void replaceWith(IdentityRecordList identityRecordList) {
+  public void replaceWith(@NonNull IdentityRecordList identityRecordList) {
     identityRecords.clear();
     identityRecords.addAll(identityRecordList.identityRecords);
   }
@@ -59,8 +54,8 @@ public class IdentityRecordList {
     return false;
   }
 
-  public List<IdentityRecord> getUntrustedRecords() {
-    List<IdentityRecord> results = new LinkedList<>();
+  public @NonNull List<IdentityRecord> getUntrustedRecords() {
+    List<IdentityRecord> results = new ArrayList<>(identityRecords.size());
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (isUntrusted(identityRecord)) {
@@ -71,8 +66,8 @@ public class IdentityRecordList {
     return results;
   }
 
-  public List<Recipient> getUntrustedRecipients(Context context) {
-    List<Recipient> untrusted = new LinkedList<>();
+  public @NonNull List<Recipient> getUntrustedRecipients() {
+    List<Recipient> untrusted = new ArrayList<>(identityRecords.size());
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (isUntrusted(identityRecord)) {
@@ -84,7 +79,7 @@ public class IdentityRecordList {
   }
 
   public List<IdentityRecord> getUnverifiedRecords() {
-    List<IdentityRecord> results = new LinkedList<>();
+    List<IdentityRecord> results = new ArrayList<>(identityRecords.size());
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
@@ -95,8 +90,8 @@ public class IdentityRecordList {
     return results;
   }
 
-  public List<Recipient> getUnverifiedRecipients(Context context) {
-    List<Recipient> unverified = new LinkedList<>();
+  public List<Recipient> getUnverifiedRecipients() {
+    List<Recipient> unverified = new ArrayList<>(identityRecords.size());
 
     for (IdentityRecord identityRecord : identityRecords) {
       if (identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
@@ -107,7 +102,7 @@ public class IdentityRecordList {
     return unverified;
   }
 
-  private boolean isUntrusted(IdentityRecord identityRecord) {
+  private static boolean isUntrusted(@NonNull IdentityRecord identityRecord) {
     return !identityRecord.isApprovedNonBlocking() &&
            System.currentTimeMillis() - identityRecord.getTimestamp() < TimeUnit.SECONDS.toMillis(5);
   }
