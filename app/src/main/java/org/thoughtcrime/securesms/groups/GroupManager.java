@@ -68,12 +68,13 @@ public final class GroupManager {
                                               @NonNull  GroupId groupId,
                                               @Nullable byte[]  avatar,
                                                         boolean avatarChanged,
-                                              @Nullable String  name)
+                                              @NonNull  String  name,
+                                                        boolean nameChanged)
     throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     if (groupId.isV2()) {
       try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-        return edit.updateGroupTitleAndAvatar(name, avatar, avatarChanged);
+        return edit.updateGroupTitleAndAvatar(nameChanged ? name : null, avatar, avatarChanged);
       }
     } else {
       List<Recipient> members = DatabaseFactory.getGroupDatabase(context)

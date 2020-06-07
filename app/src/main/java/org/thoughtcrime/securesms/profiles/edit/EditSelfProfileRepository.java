@@ -108,7 +108,18 @@ class EditSelfProfileRepository implements EditProfileRepository {
   }
 
   @Override
-  public void uploadProfile(@NonNull ProfileName profileName, @Nullable String displayName, @Nullable byte[] avatar, boolean avatarChanged, @NonNull Consumer<UploadResult> uploadResultConsumer) {
+  public void getCurrentName(@NonNull Consumer<String> nameConsumer) {
+    nameConsumer.accept("");
+  }
+
+  @Override
+  public void uploadProfile(@NonNull ProfileName profileName,
+                            @NonNull String displayName,
+                            boolean displayNameChanged,
+                            @Nullable byte[] avatar,
+                            boolean avatarChanged,
+                            @NonNull Consumer<UploadResult> uploadResultConsumer)
+  {
     SimpleTask.run(() -> {
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
 

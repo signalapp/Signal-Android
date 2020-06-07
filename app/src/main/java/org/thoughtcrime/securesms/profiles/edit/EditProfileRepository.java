@@ -15,7 +15,14 @@ interface EditProfileRepository {
 
   void getCurrentDisplayName(@NonNull Consumer<String> displayNameConsumer);
 
-  void uploadProfile(@NonNull ProfileName profileName, @Nullable String displayName, @Nullable byte[] avatar, boolean avatarChanged, @NonNull Consumer<UploadResult> uploadResultConsumer);
+  void getCurrentName(@NonNull Consumer<String> nameConsumer);
+
+  void uploadProfile(@NonNull ProfileName profileName,
+                     @NonNull String displayName,
+                     boolean displayNameChanged,
+                     @Nullable byte[] avatar,
+                     boolean avatarChanged,
+                     @NonNull Consumer<UploadResult> uploadResultConsumer);
 
   void getCurrentUsername(@NonNull Consumer<Optional<String>> callback);
 

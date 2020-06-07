@@ -66,15 +66,21 @@ class EditPushGroupProfileRepository implements EditProfileRepository {
   }
 
   @Override
+  public void getCurrentName(@NonNull Consumer<String> nameConsumer) {
+    SimpleTask.run(() -> Recipient.resolved(getRecipientId()).getName(context), nameConsumer::accept);
+  }
+
+  @Override
   public void uploadProfile(@NonNull ProfileName profileName,
-                            @Nullable String displayName,
+                            @NonNull String displayName,
+                            boolean displayNameChanged,
                             @Nullable byte[] avatar,
                             boolean avatarChanged,
                             @NonNull Consumer<UploadResult> uploadResultConsumer)
   {
     SimpleTask.run(() -> {
       try {
-        GroupManager.updateGroup(context, groupId, avatar, avatarChanged, displayName);
+        GroupManager.updateGroup(context, groupId, avatar, avatarChanged, displayName, displayNameChanged);
 
         return UploadResult.SUCCESS;
       } catch (GroupChangeFailedException | GroupInsufficientRightsException | IOException | GroupNotAMemberException | GroupChangeBusyException e) {
