@@ -248,6 +248,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -1643,10 +1644,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           recipients.add(params[0]);
         }
 
+        long          startTime  = System.currentTimeMillis();
+        StringBuilder logBuilder = new StringBuilder();
+
         for (Recipient recipient : recipients) {
-          Log.i(TAG, "Loading identity for: " + recipient.getId());
+          logBuilder.append(recipient.getId()).append(" ");
           identityRecordList.add(identityDatabase.getIdentity(recipient.getId()));
         }
+
+        Log.i(TAG, String.format(Locale.ENGLISH, "Loaded %d identities in %d ms: %s", recipients.size(), System.currentTimeMillis() - startTime, logBuilder.toString()));
 
         String message = null;
 
