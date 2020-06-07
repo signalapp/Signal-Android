@@ -101,7 +101,7 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
 
     Toolbar toolbar = view.findViewById(R.id.custom_notifications_toolbar);
 
-    toolbar.setNavigationOnClickListener(v -> requireActivity().finish());
+    toolbar.setNavigationOnClickListener(v -> dismissAllowingStateLoss());
 
     CompoundButton.OnCheckedChangeListener onCustomNotificationsSwitchCheckChangedListener = (buttonView, isChecked) -> {
       viewModel.setHasCustomNotifications(isChecked);
