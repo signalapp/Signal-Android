@@ -51,6 +51,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -355,13 +356,31 @@ public class SmsDatabase extends MessagingDatabase {
 
   @Override
   public void markExpireStarted(long id, long startedAtTimestamp) {
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(EXPIRE_STARTED, startedAtTimestamp);
+    markExpireStarted(Collections.singleton(id), startedAtTimestamp);
+  }
 
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
+  @Override
+  public void markExpireStarted(Collection<Long> ids, long startedAtTimestamp) {
+    SQLiteDatabase db       = databaseHelper.getWritableDatabase();
+    long           threadId = -1;
 
-    long threadId = getThreadIdForMessage(id);
+    db.beginTransaction();
+    try {
+      for (long id : ids) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(EXPIRE_STARTED, startedAtTimestamp);
+
+        db.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{String.valueOf(id)});
+
+        if (threadId < 0) {
+          threadId = getThreadIdForMessage(id);
+        }
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
 
     DatabaseFactory.getThreadDatabase(context).update(threadId, false);
     notifyConversationListeners(threadId);

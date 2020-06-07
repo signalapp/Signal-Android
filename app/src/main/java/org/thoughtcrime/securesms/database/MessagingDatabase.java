@@ -27,6 +27,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -46,6 +47,7 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public abstract void markExpireStarted(long messageId);
   public abstract void markExpireStarted(long messageId, long startTime);
+  public abstract void markExpireStarted(Collection<Long> messageId, long startTime);
 
   public abstract void markAsSent(long messageId, boolean secure);
   public abstract void markUnidentified(long messageId, boolean unidentified);

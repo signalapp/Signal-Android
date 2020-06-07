@@ -70,12 +70,21 @@ public class MarkReadReceiver extends BroadcastReceiver {
   public static void process(@NonNull Context context, @NonNull List<MarkedMessageInfo> markedReadMessages) {
     if (markedReadMessages.isEmpty()) return;
 
-    List<SyncMessageId> syncMessageIds = new LinkedList<>();
+    List<SyncMessageId>  syncMessageIds    = Stream.of(markedReadMessages)
+                                                   .map(MarkedMessageInfo::getSyncMessageId)
+                                                   .toList();
+    List<ExpirationInfo> mmsExpirationInfo = Stream.of(markedReadMessages)
+                                                   .map(MarkedMessageInfo::getExpirationInfo)
+                                                   .filter(ExpirationInfo::isMms)
+                                                   .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
+                                                   .toList();
+    List<ExpirationInfo> smsExpirationInfo = Stream.of(markedReadMessages)
+                                                   .map(MarkedMessageInfo::getExpirationInfo)
+                                                   .filterNot(ExpirationInfo::isMms)
+                                                   .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
+                                                   .toList();
 
-    for (MarkedMessageInfo messageInfo : markedReadMessages) {
-      scheduleDeletion(context, messageInfo.getExpirationInfo());
-      syncMessageIds.add(messageInfo.getSyncMessageId());
-    }
+    scheduleDeletion(context, smsExpirationInfo, mmsExpirationInfo);
 
     ApplicationDependencies.getJobManager().add(new MultiDeviceReadUpdateJob(syncMessageIds));
 
@@ -95,14 +104,23 @@ public class MarkReadReceiver extends BroadcastReceiver {
     });
   }
 
-  private static void scheduleDeletion(Context context, ExpirationInfo expirationInfo) {
-    if (expirationInfo.getExpiresIn() > 0 && expirationInfo.getExpireStarted() <= 0) {
+  private static void scheduleDeletion(@NonNull Context context,
+                                       @NonNull List<ExpirationInfo> smsExpirationInfo,
+                                       @NonNull List<ExpirationInfo> mmsExpirationInfo)
+  {
+    if (smsExpirationInfo.size() > 0) {
+      DatabaseFactory.getSmsDatabase(context).markExpireStarted(Stream.of(smsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
+    }
+
+    if (mmsExpirationInfo.size() > 0) {
+      DatabaseFactory.getMmsDatabase(context).markExpireStarted(Stream.of(mmsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
+    }
+
+    if (smsExpirationInfo.size() + mmsExpirationInfo.size() > 0) {
       ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
 
-      if (expirationInfo.isMms()) DatabaseFactory.getMmsDatabase(context).markExpireStarted(expirationInfo.getId());
-      else                        DatabaseFactory.getSmsDatabase(context).markExpireStarted(expirationInfo.getId());
-
-      expirationManager.scheduleDeletion(expirationInfo.getId(), expirationInfo.isMms(), expirationInfo.getExpiresIn());
+      Stream.concat(Stream.of(smsExpirationInfo), Stream.of(mmsExpirationInfo))
+            .forEach(info -> expirationManager.scheduleDeletion(info.getId(), info.isMms(), info.getExpiresIn()));
     }
   }
 }

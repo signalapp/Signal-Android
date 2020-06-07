@@ -76,6 +76,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.Closeable;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -570,19 +571,39 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   @Override
-  public void markExpireStarted(long messageId) {
-    markExpireStarted(messageId, System.currentTimeMillis());
+  public void markExpireStarted(long id) {
+    markExpireStarted(id, System.currentTimeMillis());
   }
 
   @Override
-  public void markExpireStarted(long messageId, long startedTimestamp) {
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(EXPIRE_STARTED, startedTimestamp);
+  public void markExpireStarted(long id, long startedTimestamp) {
+    markExpireStarted(Collections.singleton(id), startedTimestamp);
+  }
 
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
+  @Override
+  public void markExpireStarted(Collection<Long> ids, long startedAtTimestamp) {
+    SQLiteDatabase db       = databaseHelper.getWritableDatabase();
+    long           threadId = -1;
 
-    long threadId = getThreadIdForMessage(messageId);
+    db.beginTransaction();
+    try {
+      for (long id : ids) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(EXPIRE_STARTED, startedAtTimestamp);
+
+        db.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{String.valueOf(id)});
+
+        if (threadId < 0) {
+          threadId = getThreadIdForMessage(id);
+        }
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
     notifyConversationListeners(threadId);
   }
 
