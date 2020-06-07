@@ -81,8 +81,8 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   private static final int MESSAGE_TYPE_FOOTER              = 6;
   private static final int MESSAGE_TYPE_PLACEHOLDER         = 7;
 
-  private static final long HEADER_ID   = Long.MIN_VALUE;
-  private static final long FOOTER_ID   = Long.MIN_VALUE + 1;
+  private static final long HEADER_ID = Long.MIN_VALUE;
+  private static final long FOOTER_ID = Long.MIN_VALUE + 1;
 
   private final ItemClickListener clickListener;
   private final GlideRequests     glideRequests;
@@ -99,7 +99,6 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   private MessageRecord recordToPulseHighlight;
   private View          headerView;
   private View          footerView;
-
 
   ConversationAdapter(@NonNull GlideRequests glideRequests,
                       @NonNull Locale locale,
@@ -248,7 +247,7 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   @Override
   public void submitList(@Nullable PagedList<MessageRecord> pagedList) {
     cleanFastRecords();
-    super.submitList(pagedList, this::notifyDataSetChanged);
+    super.submitList(pagedList);
   }
 
   @Override
@@ -341,15 +340,35 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   /**
    * Sets the view the appears at the top of the list (because the list is reversed).
    */
-  void setFooterView(View view) {
+  void setFooterView(@Nullable View view) {
+    boolean hadFooter = hasFooter();
+
     this.footerView = view;
+
+    if (view == null && hadFooter) {
+      notifyItemRemoved(getItemCount());
+    } else if (view != null && hadFooter) {
+      notifyItemChanged(getItemCount() - 1);
+    } else if (view != null) {
+      notifyItemInserted(getItemCount() - 1);
+    }
   }
 
   /**
    * Sets the view that appears at the bottom of the list (because the list is reversed).
    */
-  void setHeaderView(View view) {
+  void setHeaderView(@Nullable View view) {
+    boolean hadHeader = hasHeader();
+
     this.headerView = view;
+
+    if (view == null && hadHeader) {
+      notifyItemRemoved(0);
+    } else if (view != null && hadHeader) {
+      notifyItemChanged(0);
+    } else if (view != null) {
+      notifyItemInserted(0);
+    }
   }
 
   /**

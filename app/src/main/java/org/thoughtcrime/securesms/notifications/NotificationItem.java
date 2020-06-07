@@ -81,12 +81,7 @@ public class NotificationItem {
     Recipient recipient        = threadRecipient != null ? threadRecipient : conversationRecipient;
     int       startingPosition = jumpToMessage ? getStartingPosition(context, threadId, messageReceivedTimestamp) : -1;
 
-    if (!jumpToMessage) {
-      int unreadCount = DatabaseFactory.getMmsSmsDatabase(context).getUnreadCount(threadId);
-      startingPosition = unreadCount > 0 ? unreadCount : -1;
-    }
-
-    Intent intent = ConversationActivity.buildIntent(context, recipient.getId(), threadId, 0, startingPosition, jumpToMessage);
+    Intent intent = ConversationActivity.buildIntent(context, recipient.getId(), threadId, 0, startingPosition);
 
     makeIntentUniqueToPreventMerging(intent);
 

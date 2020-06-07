@@ -54,17 +54,30 @@ class ConversationViewModel extends ViewModel {
     this.onNextMessageLoad      = new CopyOnWriteArrayList<>();
     this.invalidator            = new Invalidator();
 
-    LiveData<Pair<Long, PagedList<MessageRecord>>> messagesForThreadId = Transformations.switchMap(threadId, thread -> {
-      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, thread, invalidator, this::onMessagesUpdated);
+    LiveData<ConversationData> conversationDataForRequestedThreadId = Transformations.switchMap(threadId, thread -> {
+      return conversationRepository.getConversationData(thread, jumpToPosition);
+    });
+
+    LiveData<Pair<Long, PagedList<MessageRecord>>> messagesForThreadId = Transformations.switchMap(conversationDataForRequestedThreadId, data -> {
+      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, data.getThreadId(), invalidator, this::onMessagesUpdated);
       PagedList.Config                           config  = new PagedList.Config.Builder()
                                                                                .setPageSize(25)
                                                                                .setInitialLoadSizeHint(25)
                                                                                .build();
 
+      final int startPosition;
+      if (jumpToPosition > 0) {
+        startPosition = jumpToPosition;
+      } else {
+        startPosition = data.getLastSeenPosition();
+      }
+
+      Log.d(TAG, "Starting at position " + startPosition + " :: " + jumpToPosition + " :: " + data.getLastSeenPosition());
+
       return Transformations.map(new LivePagedListBuilder<>(factory, config).setFetchExecutor(ConversationDataSource.EXECUTOR)
-                                                                            .setInitialLoadKey(Math.max(jumpToPosition, 0))
+                                                                            .setInitialLoadKey(Math.max(startPosition, 0))
                                                                             .build(),
-                                 input -> new Pair<>(thread, input));
+                                 input -> new Pair<>(data.getThreadId(), input));
     });
 
     this.messages = Transformations.map(messagesForThreadId, Pair::second);

@@ -353,24 +353,19 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     getNavigator().goToConversation(threadRecord.getRecipient().getId(),
                                     threadRecord.getThreadId(),
                                     threadRecord.getDistributionType(),
-                                    threadRecord.getUnreadCount(),
-                                    false);
+                                    -1);
   }
 
   @Override
   public void onContactClicked(@NonNull Recipient contact) {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      long threadId    = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdIfExistsFor(contact);
-      int  unreadCount = DatabaseFactory.getMmsSmsDatabase(getContext()).getUnreadCount(threadId);
-
-      return new Pair<>(threadId, unreadCount);
-    }, pair -> {
+      return DatabaseFactory.getThreadDatabase(getContext()).getThreadIdIfExistsFor(contact);
+    }, threadId -> {
       hideKeyboard();
       getNavigator().goToConversation(contact.getId(),
-                                      pair.first(),
+                                      threadId,
                                       ThreadDatabase.DistributionTypes.DEFAULT,
-                                      pair.second(),
-                                      false);
+                                      -1);
     });
   }
 
@@ -384,8 +379,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
       getNavigator().goToConversation(message.conversationRecipient.getId(),
                                       message.threadId,
                                       ThreadDatabase.DistributionTypes.DEFAULT,
-                                      startingPosition,
-                                      true);
+                                      startingPosition);
     });
   }
 
@@ -735,8 +729,8 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     actionMode.setTitle(String.valueOf(defaultAdapter.getBatchSelectionIds().size()));
   }
 
-  private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, int unreadCount) {
-    getNavigator().goToConversation(recipient.getId(), threadId, distributionType, unreadCount, false);
+  private void handleCreateConversation(long threadId, Recipient recipient, int distributionType) {
+    getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
 
   @Override
@@ -770,7 +764,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   @Override
   public void onItemClick(ConversationListItem item) {
     if (actionMode == null) {
-      handleCreateConversation(item.getThreadId(), item.getRecipient(), item.getDistributionType(), item.getUnreadCount());
+      handleCreateConversation(item.getThreadId(), item.getRecipient(), item.getDistributionType());
     } else {
       ConversationListAdapter adapter = (ConversationListAdapter)list.getAdapter();
       adapter.toggleThreadInBatchSet(item.getThread());

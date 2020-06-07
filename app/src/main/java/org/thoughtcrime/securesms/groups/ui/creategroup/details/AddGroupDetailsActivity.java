@@ -63,8 +63,7 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActionBarActivity
                                                      recipientId,
                                                      threadId,
                                                      ThreadDatabase.DistributionTypes.DEFAULT,
-                                                     -1,
-                                                     false);
+                                                     -1);
 
     startActivity(intent);
     setResult(RESULT_OK);

@@ -103,7 +103,10 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     }
 
     callback.onResult(records);
-    Util.runOnMain(dataUpdateCallback::onDataUpdated);
+
+    if (!isInvalid()) {
+      Util.runOnMain(dataUpdateCallback::onDataUpdated);
+    }
 
     Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
   }

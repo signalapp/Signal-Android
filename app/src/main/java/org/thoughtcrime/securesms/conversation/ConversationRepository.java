@@ -52,6 +52,6 @@ class ConversationRepository {
       lastSeen = 0;
     }
 
-    return new ConversationData(lastSeen, lastSeenPosition, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
+    return new ConversationData(threadId, lastSeen, lastSeenPosition, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
   }
 }
