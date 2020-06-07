@@ -43,7 +43,7 @@ public class RefreshOwnProfileJob extends BaseJob {
   public RefreshOwnProfileJob() {
     this(new Parameters.Builder()
                        .addConstraint(NetworkConstraint.KEY)
-                       .setQueue("RefreshOwnProfileJob")
+                       .setQueue(ProfileUploadJob.QUEUE)
                        .setMaxInstances(1)
                        .setMaxAttempts(10)
                        .build());

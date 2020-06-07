@@ -131,10 +131,18 @@ public final class FeatureFlags {
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_REQUESTS,   (change) -> SignalStore.setMessageRequestEnableTime(change == Change.ENABLED ? System.currentTimeMillis() : 0));
-    put(VERSIONED_PROFILES, (change) -> ApplicationDependencies.getJobManager().add(new ProfileUploadJob()));
-    put(GROUPS_V2,          (change) -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
-                                                                               .then(new RefreshOwnProfileJob())
-                                                                               .enqueue());
+    put(VERSIONED_PROFILES, (change) -> {
+      if (change == Change.ENABLED) {
+        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+      }
+    });
+    put(GROUPS_V2, (change) -> {
+      if (change == Change.ENABLED) {
+        ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
+                               .then(new RefreshOwnProfileJob())
+                               .enqueue();
+      }
+    });
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
