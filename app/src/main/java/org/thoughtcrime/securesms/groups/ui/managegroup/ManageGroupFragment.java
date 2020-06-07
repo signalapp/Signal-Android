@@ -76,7 +76,7 @@ public class ManageGroupFragment extends Fragment {
   private View                               accessControlCard;
   private View                               pendingMembersCard;
   private ManageGroupViewModel.CursorFactory cursorFactory;
-  private View                               photoRailLabel;
+  private View                               sharedMediaRow;
   private View                               editGroupAccessRow;
   private TextView                           editGroupAccessValue;
   private View                               editGroupMembershipRow;
@@ -149,7 +149,7 @@ public class ManageGroupFragment extends Fragment {
     groupMediaCard              = view.findViewById(R.id.group_media_card);
     accessControlCard           = view.findViewById(R.id.group_access_control_card);
     pendingMembersCard          = view.findViewById(R.id.group_pending_card);
-    photoRailLabel              = view.findViewById(R.id.rail_label);
+    sharedMediaRow              = view.findViewById(R.id.shared_media_row);
     editGroupAccessRow          = view.findViewById(R.id.edit_group_access_row);
     editGroupAccessValue        = view.findViewById(R.id.edit_group_access_value);
     editGroupMembershipRow      = view.findViewById(R.id.edit_group_membership_row);
@@ -224,7 +224,7 @@ public class ManageGroupFragment extends Fragment {
 
     viewModel.getGroupViewState().observe(getViewLifecycleOwner(), vs -> {
       if (vs == null) return;
-      photoRailLabel.setOnClickListener(v -> startActivity(MediaOverviewActivity.forThread(context, vs.getThreadId())));
+      sharedMediaRow.setOnClickListener(v -> startActivity(MediaOverviewActivity.forThread(context, vs.getThreadId())));
 
       setMediaCursorFactory(vs.getMediaCursorFactory());
 
