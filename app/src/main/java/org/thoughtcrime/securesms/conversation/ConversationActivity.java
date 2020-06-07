@@ -761,10 +761,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
-    if (!FeatureFlags.newGroupUI()) {
-      if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-      else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
-    }
+    if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
+    else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
     if (isSingleConversation() && getRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
