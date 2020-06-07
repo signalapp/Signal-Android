@@ -2312,6 +2312,7 @@
 
     <string name="RecipientBottomSheet_remove_s_from_s">Remove %1$s from "%2$s"?</string>
     <string name="RecipientBottomSheet_remove">Remove</string>
+    <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
 
     <string name="GroupRecipientListItem_admin">Admin</string>
 

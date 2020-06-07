@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Objects;
 
@@ -110,6 +113,12 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
                                           .trim();
       usernameNumber.setText(usernameNumberString);
       usernameNumber.setVisibility(TextUtils.isEmpty(usernameNumberString) ? View.GONE : View.VISIBLE);
+      usernameNumber.setOnLongClickListener(v -> {
+        Util.copyToClipboard(v.getContext(), usernameNumber.getText().toString());
+        ServiceUtil.getVibrator(v.getContext()).vibrate(250);
+        Toast.makeText(v.getContext(), R.string.RecipientBottomSheet_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+        return true;
+      });
 
       boolean blocked = recipient.isBlocked();
       blockButton.setVisibility(blocked ? View.GONE : View.VISIBLE);

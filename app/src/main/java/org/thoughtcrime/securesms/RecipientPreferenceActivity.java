@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,8 +78,10 @@ import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -727,6 +730,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       @Override
       public void onInSecureCallClicked() {
         CommunicationActions.startInsecureCall(requireActivity(), recipient.get());
+      }
+
+      @Override
+      public void onLongClick() {
+        if (recipient.get().hasE164()) {
+          Util.copyToClipboard(requireContext(), recipient.get().requireE164());
+          ServiceUtil.getVibrator(requireContext()).vibrate(250);
+          Toast.makeText(requireContext(), R.string.RecipientBottomSheet_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+        }
       }
     }
 

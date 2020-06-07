@@ -17,6 +17,7 @@ public class ContactPreference extends Preference {
   private ImageView callButton;
   private ImageView secureCallButton;
   private ImageView secureVideoButton;
+  private View      itemView;
 
   private Listener listener;
   private boolean secure;
@@ -50,6 +51,7 @@ public class ContactPreference extends Preference {
   public void onBindViewHolder(PreferenceViewHolder view) {
     super.onBindViewHolder(view);
 
+    this.itemView          = view.itemView;
     this.messageButton     = (ImageView) view.findViewById(R.id.message);
     this.callButton        = (ImageView) view.findViewById(R.id.call);
     this.secureCallButton  = (ImageView) view.findViewById(R.id.secure_call);
@@ -88,13 +90,21 @@ public class ContactPreference extends Preference {
     if (this.secureCallButton != null)  this.secureCallButton.setOnClickListener(v -> listener.onSecureCallClicked());
     if (this.secureVideoButton != null) this.secureVideoButton.setOnClickListener(v -> listener.onSecureVideoClicked());
     if (this.callButton != null)        this.callButton.setOnClickListener(v -> listener.onInSecureCallClicked());
+
+    if (this.itemView != null) {
+      itemView.setOnLongClickListener(v -> {
+        listener.onLongClick();
+        return true;
+      });
+    }
   }
 
   public interface Listener {
-    public void onMessageClicked();
-    public void onSecureCallClicked();
-    public void onSecureVideoClicked();
-    public void onInSecureCallClicked();
+    void onMessageClicked();
+    void onSecureCallClicked();
+    void onSecureVideoClicked();
+    void onInSecureCallClicked();
+    void onLongClick();
   }
 
 }
