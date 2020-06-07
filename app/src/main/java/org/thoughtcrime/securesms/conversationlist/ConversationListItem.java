@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collections;
@@ -446,7 +447,7 @@ public class ConversationListItem extends RelativeLayout
       } else if (extra != null && extra.isRemoteDelete()) {
         return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_this_message_was_deleted)));
       } else {
-        return new SpannableString(thread.getBody());
+        return new SpannableString(Util.emptyIfNull(thread.getBody()));
       }
     }
   }
