@@ -547,8 +547,11 @@ public final class SignalServiceContent {
       }
 
       return SignalServiceCallMessage.forIceUpdates(iceUpdates, isMultiRing, destinationDeviceId);
+    } else if (content.hasLegacyHangup()) {
+      SignalServiceProtos.CallMessage.Hangup hangup = content.getLegacyHangup();
+      return SignalServiceCallMessage.forHangup(new HangupMessage(hangup.getId(), HangupMessage.Type.fromProto(hangup.getType()), hangup.getDeviceId(), content.hasLegacyHangup()), isMultiRing, destinationDeviceId);
     } else if (content.hasHangup()) {
-      SignalServiceProtos.CallMessage.Hangup hangup = content.hasLegacyHangup() ? content.getLegacyHangup() : content.getHangup();
+      SignalServiceProtos.CallMessage.Hangup hangup = content.getHangup();
       return SignalServiceCallMessage.forHangup(new HangupMessage(hangup.getId(), HangupMessage.Type.fromProto(hangup.getType()), hangup.getDeviceId(), content.hasLegacyHangup()), isMultiRing, destinationDeviceId);
     } else if (content.hasBusy()) {
       SignalServiceProtos.CallMessage.Busy busy = content.getBusy();
