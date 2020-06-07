@@ -20,10 +20,12 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
@@ -157,9 +159,15 @@ public final class AvatarImageView extends AppCompatImageView {
     }
   }
 
-  private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
+  private void setAvatarClickHandler(@NonNull final Recipient recipient, boolean quickContactEnabled) {
     if (quickContactEnabled) {
-      super.setOnClickListener(v -> getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId())));
+      super.setOnClickListener(v -> {
+        if (FeatureFlags.newGroupUI() && recipient.isPushGroup()) {
+          getContext().startActivity(ManageGroupActivity.newIntent(getContext(), recipient.requireGroupId().requirePush()));
+        } else {
+          getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId()));
+        }
+      });
     } else {
       super.setOnClickListener(listener);
       setClickable(listener != null);
