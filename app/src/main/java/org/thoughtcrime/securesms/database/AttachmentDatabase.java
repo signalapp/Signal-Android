@@ -37,7 +37,6 @@ import com.bumptech.glide.Glide;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import net.sqlcipher.DatabaseUtils;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.json.JSONArray;
@@ -85,6 +84,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -469,26 +469,58 @@ public class AttachmentDatabase extends Database {
     notifyAttachmentListeners();
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   private void deleteAttachmentOnDisk(@Nullable String data,
                                       @Nullable String thumbnail,
                                       @Nullable String contentType,
                                       @NonNull AttachmentId attachmentId)
   {
-    boolean dataInUse = isDataUsedByAnotherAttachment(data, attachmentId);
+    DataUsageResult dataUsage = getAttachmentFileUsages(data, attachmentId);
 
-    if (dataInUse) {
+    if (dataUsage.hasStrongReference()) {
       Log.i(TAG, "[deleteAttachmentOnDisk] Attachment in use. Skipping deletion. " + data + " " + attachmentId);
-    } else {
-      Log.i(TAG, "[deleteAttachmentOnDisk] No other users of this attachment. Safe to delete. " + data + " " + attachmentId);
+      return;
     }
 
-    if (!TextUtils.isEmpty(data) && !dataInUse) {
-      new File(data).delete();
+    Log.i(TAG, "[deleteAttachmentOnDisk] No other strong uses of this attachment. Safe to delete. " + data + " " + attachmentId);
+
+    if (!TextUtils.isEmpty(data)) {
+      if (new File(data).delete()) {
+        Log.i(TAG, "[deleteAttachmentOnDisk] Deleted attachment file. " + data + " " + attachmentId);
+
+        List<AttachmentId> removableWeakReferences = dataUsage.getRemovableWeakReferences();
+
+        if (removableWeakReferences.size() > 0) {
+          Log.i(TAG, String.format(Locale.US, "[deleteAttachmentOnDisk] Deleting %d weak references for %s", removableWeakReferences.size(), data));
+          SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+          int            deletedCount = 0;
+          database.beginTransaction();
+          try {
+            for (AttachmentId weakReference : removableWeakReferences) {
+              Log.i(TAG, String.format("[deleteAttachmentOnDisk] Deleting weak reference for %s %s", data, weakReference));
+              deletedCount += database.delete(TABLE_NAME, PART_ID_WHERE, weakReference.toStrings());
+            }
+            database.setTransactionSuccessful();
+          } finally {
+            database.endTransaction();
+          }
+          String logMessage = String.format(Locale.US, "[deleteAttachmentOnDisk] Deleted %d/%d weak references for %s", deletedCount, removableWeakReferences.size(), data);
+          if (deletedCount != removableWeakReferences.size()) {
+            Log.w(TAG, logMessage);
+          } else {
+            Log.i(TAG, logMessage);
+          }
+        }
+      } else {
+        Log.w(TAG, "[deleteAttachmentOnDisk] Failed to delete attachment. " + data + " " + attachmentId);
+      }
     }
 
     if (!TextUtils.isEmpty(thumbnail)) {
-      new File(thumbnail).delete();
+      if (new File(thumbnail).delete()) {
+        Log.i(TAG, "[deleteAttachmentOnDisk] Deleted thumbnail. " + data + " " + attachmentId);
+      } else {
+        Log.w(TAG, "[deleteAttachmentOnDisk] Failed to delete attachment. " + data + " " + attachmentId);
+      }
     }
 
     if (MediaUtil.isImageType(contentType) || thumbnail != null) {
@@ -496,17 +528,26 @@ public class AttachmentDatabase extends Database {
     }
   }
 
-  private boolean isDataUsedByAnotherAttachment(@Nullable String data, @NonNull AttachmentId attachmentId) {
-    if (data == null) return false;
+  private @NonNull DataUsageResult getAttachmentFileUsages(@Nullable String data, @NonNull AttachmentId attachmentId) {
+    if (data == null) return DataUsageResult.NOT_IN_USE;
 
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    long           matches  = DatabaseUtils.longForQuery(database,
-                                                         "SELECT count(*) FROM " + TABLE_NAME + " WHERE " + DATA + " = ? AND " + UNIQUE_ID + " != ? AND " + ROW_ID + " != ?;",
-                                                         new String[]{data,
-                                                                      Long.toString(attachmentId.getUniqueId()),
-                                                                      Long.toString(attachmentId.getRowId())});
+    SQLiteDatabase     database  = databaseHelper.getReadableDatabase();
+    String             selection = DATA + " = ? AND " + UNIQUE_ID + " != ? AND " + ROW_ID + " != ?";
+    String[]           args      = {data, Long.toString(attachmentId.getUniqueId()), Long.toString(attachmentId.getRowId())};
+    List<AttachmentId> quoteRows = new LinkedList<>();
 
-    return matches != 0;
+    try (Cursor cursor = database.query(TABLE_NAME, new String[]{ROW_ID, UNIQUE_ID, QUOTE}, selection, args, null, null, null, null)) {
+      while (cursor.moveToNext()) {
+        boolean isQuote = cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1;
+        if (isQuote) {
+          quoteRows.add(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))));
+        } else {
+          return DataUsageResult.IN_USE;
+        }
+      }
+    }
+
+    return new DataUsageResult(quoteRows);
   }
 
   public void insertAttachmentsForPlaceholder(long mmsId, @NonNull AttachmentId attachmentId, @NonNull InputStream inputStream)
@@ -1439,6 +1480,39 @@ public class AttachmentDatabase extends Database {
       this.length = length;
       this.random = random;
       this.hash   = hash;
+    }
+  }
+
+  private static final class DataUsageResult {
+    private final boolean            hasStrongReference;
+    private final List<AttachmentId> removableWeakReferences;
+
+    private static final DataUsageResult IN_USE     = new DataUsageResult(true, Collections.emptyList());
+    private static final DataUsageResult NOT_IN_USE = new DataUsageResult(false, Collections.emptyList());
+
+    DataUsageResult(@NonNull List<AttachmentId> removableWeakReferences) {
+      this(false, removableWeakReferences);
+    }
+
+    private DataUsageResult(boolean hasStrongReference, @NonNull List<AttachmentId> removableWeakReferences) {
+      if (hasStrongReference && removableWeakReferences.size() > 0) {
+        throw new AssertionError();
+      }
+      this.hasStrongReference      = hasStrongReference;
+      this.removableWeakReferences = removableWeakReferences;
+    }
+
+    boolean hasStrongReference() {
+      return hasStrongReference;
+    }
+
+    /**
+     * Entries in here can be removed from the database.
+     * <p>
+     * Only possible to be non-empty when {@link #hasStrongReference} is false.
+     */
+    @NonNull List<AttachmentId> getRemovableWeakReferences() {
+      return removableWeakReferences;
     }
   }
 
