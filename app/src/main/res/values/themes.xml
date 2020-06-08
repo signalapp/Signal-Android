@@ -162,9 +162,7 @@
         <item name="insight_dashboard_bottom_bar_background">@color/core_grey_02</item>
         <item name="insight_progress_background">@color/core_grey_15</item>
 
-        <item name="group_resource_placeholder_80">@drawable/group_resource_placeholder_80</item>
         <item name="resource_placeholder_gradient">@drawable/avatar_gradient_light</item>
-        <item name="resource_placeholder_background">@color/core_ultramarine</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
@@ -456,9 +454,7 @@
         <item name="insight_progress_background">@color/core_grey_60</item>
         <item name="insight_dashboard_bottom_bar_background">@color/core_grey_80</item>
 
-        <item name="group_resource_placeholder_80">@drawable/group_resource_placeholder_80</item>
         <item name="resource_placeholder_gradient">@drawable/avatar_gradient_dark</item>
-        <item name="resource_placeholder_background">@color/core_ultramarine</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>

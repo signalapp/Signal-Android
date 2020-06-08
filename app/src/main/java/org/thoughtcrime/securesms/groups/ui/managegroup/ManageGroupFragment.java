@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.GroupFallbackPhoto80;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
@@ -96,27 +97,7 @@ public class ManageGroupFragment extends Fragment {
   private final Recipient.FallbackPhotoProvider fallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
     @Override
     public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new FallbackContactPhoto() {
-        @Override
-        public Drawable asDrawable(Context context, int color) {
-          return ThemeUtil.getThemedDrawable(context, R.attr.group_resource_placeholder_80);
-        }
-
-        @Override
-        public Drawable asDrawable(Context context, int color, boolean inverted) {
-          return asDrawable(context, color);
-        }
-
-        @Override
-        public Drawable asSmallDrawable(Context context, int color, boolean inverted) {
-          throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public Drawable asCallCard(Context context) {
-          throw new UnsupportedOperationException();
-        }
-      };
+      return new GroupFallbackPhoto80();
     }
   };
 
