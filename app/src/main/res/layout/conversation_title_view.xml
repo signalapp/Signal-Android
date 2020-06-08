@@ -38,7 +38,7 @@
             style="@style/TextSecure.TitleTextStyle.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|start"
             android:drawablePadding="5dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
