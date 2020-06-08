@@ -453,6 +453,7 @@
     <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>
     <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and photo visible to all current and future members of this group?</string>
     <string name="GroupShareProfileView_make_visible">Make visible</string>
+    <string name="GroupShareProfileView_dont_share">Don\'t share</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">You</string>
@@ -1155,6 +1156,7 @@
     <string name="UnknownSenderView_share_profile_with_s">Share profile with %s?</string>
     <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to share your profile information is to add the sender to your contacts. If you do not wish to, you can still share your profile information this way.</string>
     <string name="UnknownSenderView_share_profile">Share profile</string>
+    <string name="UnknownSenderView_dont_share">Don\'t share</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Send message?</string>
@@ -2315,6 +2317,11 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
 
     <string name="GroupRecipientListItem_admin">Admin</string>
+    <string name="GroupShareProfileView_profile_now_visible">Your profile is now visible to members of this group</string>
+    <string name="GroupShareProfileView_profile_not_shared">You can share your profile from the group settings later</string>
+    <string name="ManageGroupActivity_share_profile_with_group_members">Share profile with group members</string>
+    <string name="ManageGroupActivity_share">Share</string>
+    <string name="ManageGroupActivity_shared">Shared</string>
 
     <!-- EOF -->
 

@@ -496,7 +496,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView.setTitle(glideRequests, recipientSnapshot);
     setActionBarColor(recipientSnapshot.getColor());
     setBlockedUserState(recipientSnapshot, isSecureText, isDefaultSms);
-    setGroupShareProfileReminder(recipientSnapshot);
+    if (!FeatureFlags.messageRequests())
+      setGroupShareProfileReminder(recipientSnapshot);
     calculateCharactersRemaining();
 
     if (recipientSnapshot.getGroupId().isPresent() && recipientSnapshot.getGroupId().get().isV2()) {
@@ -1954,7 +1955,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView.setVerified(identityRecords.isVerified());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
     setActionBarColor(recipient.getColor());
-    setGroupShareProfileReminder(recipient);
+    if (!FeatureFlags.messageRequests())
+      setGroupShareProfileReminder(recipient);
     updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     initializeSecurity(isSecureText, isDefaultSms);
@@ -2160,11 +2162,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (FeatureFlags.messageRequests()) {
-      return;
-    }
-
-    if (recipient.isPushGroup() && !recipient.isProfileSharing()) {
+    if (recipient.isPushGroup() && !recipient.hasSeenProfileSharingBanner()) {
       groupShareProfileView.get().setRecipient(recipient);
       groupShareProfileView.get().setVisibility(View.VISIBLE);
     } else if (groupShareProfileView.resolved()) {
@@ -3073,24 +3071,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       switch (displayState) {
         case DISPLAY_MESSAGE_REQUEST:
           messageRequestBottomView.setVisibility(View.VISIBLE);
-          if (groupShareProfileView.resolved()) {
-            groupShareProfileView.get().setVisibility(View.GONE);
-          }
           break;
         case DISPLAY_LEGACY:
-          if (recipient.get().isGroup()) {
-            groupShareProfileView.get().setRecipient(recipient.get());
-            groupShareProfileView.get().setVisibility(View.VISIBLE);
-          }
-          messageRequestBottomView.setVisibility(View.GONE);
-          break;
         case DISPLAY_NONE:
           messageRequestBottomView.setVisibility(View.GONE);
-          if (groupShareProfileView.resolved()) {
-            groupShareProfileView.get().setVisibility(View.GONE);
-          }
           break;
       }
+      setGroupShareProfileReminder(recipient.get());
     }
 
     invalidateOptionsMenu();
