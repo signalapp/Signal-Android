@@ -83,7 +83,15 @@ public class UnknownSenderView extends FrameLayout {
             }
           }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         })
-        .setNegativeButton(android.R.string.cancel, null)
+        .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+          new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+              DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getId(), false);
+              return null;
+            }
+          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        })
         .show();
   }
 
