@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stickers;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -23,6 +24,8 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardPageAdapter.StickerKeyboardPageViewHolder;
 import org.whispersystems.libsignal.util.Pair;
+
+import java.util.List;
 
 /**
  * An individual page of stickers in the {@link StickerKeyboardProvider}.
@@ -125,10 +128,14 @@ public final class StickerKeyboardPageFragment extends Fragment implements Stick
     StickerKeyboardRepository repository = new StickerKeyboardRepository(DatabaseFactory.getStickerDatabase(requireContext()));
     viewModel = ViewModelProviders.of(this, new StickerKeyboardPageViewModel.Factory(requireActivity().getApplication(), repository)).get(StickerKeyboardPageViewModel.class);
 
-    viewModel.getStickers(packId).observe(getViewLifecycleOwner(), stickerRecords -> {
-      if (stickerRecords == null) return;
-
-      adapter.setStickers(stickerRecords, calculateStickerSize(getScreenWidth()));
+    viewModel.getStickers(packId).observe(getViewLifecycleOwner(), new Observer<List<StickerRecord>>() {
+      @Override
+      public void onChanged(List<StickerRecord> stickerRecords) {
+        if (stickerRecords == null) return;
+        adapter.setStickers(stickerRecords, calculateStickerSize(getScreenWidth()));
+        if(packId.equals(RECENT_PACK_ID))
+          viewModel.getStickers(packId).removeObserver(this);
+      }
     });
   }
 
