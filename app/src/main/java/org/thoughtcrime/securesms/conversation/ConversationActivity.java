@@ -207,6 +207,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -594,7 +595,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       handleImageFromDeviceCameraApp();
       break;
     case ADD_CONTACT:
-      onRecipientChanged(recipient.get());
+      SimpleTask.run(() -> {
+        try {
+          DirectoryHelper.refreshDirectoryFor(this, recipient.get(), false);
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to refresh user after adding to contacts.");
+        }
+        return null;
+      }, nothing -> onRecipientChanged(recipient.get()));
       break;
     case PICK_LOCATION:
       SignalPlace place = new SignalPlace(PlacePickerActivity.addressFromData(data));

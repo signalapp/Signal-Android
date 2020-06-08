@@ -870,11 +870,12 @@
         <item name="title_text_color_secondary">@color/core_grey_60</item>
 
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/white</item>
-        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
 
         <item name="recipient_message_icon">@drawable/ic_message_outline_tinted_24</item>
         <item name="recipient_call_icon">@drawable/ic_phone_right_outline_tinted_24</item>
         <item name="recipient_block_icon">@drawable/ic_block_tinted_24</item>
+        <item name="recipient_add_contact_icon">@drawable/ic_plus_24</item>
         <item name="recipient_view_safety_icon">@drawable/ic_info_outline_tinted_24</item>
         <item name="recipient_make_admin_icon">@drawable/ic_group_outline_24</item>
         <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
@@ -896,6 +897,7 @@
         <item name="recipient_message_icon">@drawable/ic_message_solid_tinted_24</item>
         <item name="recipient_call_icon">@drawable/ic_phone_right_solid_tinted_24</item>
         <item name="recipient_block_icon">@drawable/ic_block_tinted_24</item>
+        <item name="recipient_add_contact_icon">@drawable/ic_plus_24</item>
         <item name="recipient_view_safety_icon">@drawable/ic_info_solid_tinted_24</item>
         <item name="recipient_make_admin_icon">@drawable/ic_group_solid_24</item>
         <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>

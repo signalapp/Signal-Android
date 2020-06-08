@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -62,6 +63,16 @@ final class RecipientDialogRepository {
     SimpleTask.run(SignalExecutors.BOUNDED,
                    () -> Recipient.resolved(recipientId),
                    recipientCallback::onRecipient);
+  }
+
+  void refreshRecipient() {
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      try {
+        DirectoryHelper.refreshDirectoryFor(context, Recipient.resolved(recipientId), false);
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to refresh user after adding to contacts.");
+      }
+    });
   }
 
   void getGroupName(@NonNull Consumer<String> stringConsumer) {

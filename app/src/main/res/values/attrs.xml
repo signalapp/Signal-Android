@@ -297,6 +297,7 @@
     <attr name="recipient_message_icon" format="reference"/>
     <attr name="recipient_call_icon" format="reference"/>
     <attr name="recipient_block_icon" format="reference"/>
+    <attr name="recipient_add_contact_icon" format="reference"/>
     <attr name="recipient_view_safety_icon" format="reference"/>
     <attr name="recipient_make_admin_icon" format="reference"/>
     <attr name="recipient_remove_icon" format="reference"/>
