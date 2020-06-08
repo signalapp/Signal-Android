@@ -333,13 +333,65 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/share_profile_card"
+                style="@style/Widget.Signal.CardView.PreferenceRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
+                app:layout_constraintTop_toBottomOf="@id/group_media_card"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/share_profile_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/group_manage_fragment_row_height"
+                        android:background="?selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:id="@+id/share_profile_title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|start"
+                            android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:text="@string/ManageGroupActivity_share_profile_with_group_members"
+                            android:textAlignment="viewStart"
+                            android:textAppearance="@style/Signal.Text.Body" />
+
+                        <TextView
+                            android:id="@+id/share_profile_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:minWidth="48dp"
+                            android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:textAppearance="@style/Signal.Text.Body"
+                            android:textColor="@color/ultramarine_text_button"
+                            tools:text="@string/ManageGroupActivity_share" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/group_access_control_card"
                 style="@style/Widget.Signal.CardView.PreferenceRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/group_media_card"
+                app:layout_constraintTop_toBottomOf="@id/share_profile_card"
                 tools:visibility="visible">
 
                 <LinearLayout

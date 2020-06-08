@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.addmembers.AddMembersActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -70,6 +72,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final DefaultValueLiveData<CollapseState>         memberListCollapseState   = new DefaultValueLiveData<>(CollapseState.COLLAPSED);
   private final LiveData<Boolean>                           canLeaveGroup;
   private final LiveData<Boolean>                           canBlockGroup;
+  private final LiveData<Boolean>                           canShareProfileWithGroup;
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -104,6 +107,7 @@ public class ManageGroupViewModel extends ViewModel {
                                                          recipient -> recipient.getNotificationChannel() != null || !NotificationChannels.supported());
     this.canLeaveGroup             = liveGroup.isActive();
     this.canBlockGroup             = Transformations.map(this.groupRecipient, recipient -> !recipient.isBlocked());
+    this.canShareProfileWithGroup  = Transformations.map(this.groupRecipient, recipient -> !recipient.isProfileSharing());
   }
 
   @WorkerThread
@@ -189,6 +193,10 @@ public class ManageGroupViewModel extends ViewModel {
     return canLeaveGroup;
   }
 
+  LiveData<Boolean> getCanShareProfileWithGroup() {
+    return canShareProfileWithGroup;
+  }
+
   void handleExpirationSelection() {
     manageGroupRepository.getRecipient(groupRecipient ->
                                          ExpirationDialog.show(context,
@@ -207,6 +215,10 @@ public class ManageGroupViewModel extends ViewModel {
   void blockAndLeave(@NonNull FragmentActivity activity) {
     manageGroupRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient,
                                        () -> RecipientUtil.block(context, recipient)));
+  }
+
+  void shareProfile(@NonNull View view) {
+    manageGroupRepository.getRecipient(recipient -> GroupShareProfileView.showShareDialog(context, view, recipient));
   }
 
   void unblock(@NonNull FragmentActivity activity) {

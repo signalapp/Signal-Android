@@ -92,6 +92,8 @@ public class ManageGroupFragment extends Fragment {
   private TextView                           customNotificationsButton;
   private View                               customNotificationsRow;
   private View                               toggleAllMembers;
+  private View                               shareProfileRow;
+  private TextView                           shareProfile;
 
   private final Recipient.FallbackPhotoProvider fallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
     @Override
@@ -166,7 +168,8 @@ public class ManageGroupFragment extends Fragment {
     customNotificationsButton   = view.findViewById(R.id.group_custom_notifications_button);
     customNotificationsRow      = view.findViewById(R.id.group_custom_notifications_row);
     toggleAllMembers            = view.findViewById(R.id.toggle_all_members);
-
+    shareProfileRow             = view.findViewById(R.id.share_profile_row);
+    shareProfile                = view.findViewById(R.id.share_profile_value);
     return view;
   }
 
@@ -333,6 +336,12 @@ public class ManageGroupFragment extends Fragment {
     viewModel.getCanBlockGroup().observe(getViewLifecycleOwner(), canBlock -> {
       blockGroup.setVisibility(canBlock ? View.VISIBLE : View.GONE);
       unblockGroup.setVisibility(canBlock ? View.GONE : View.VISIBLE);
+    });
+
+    shareProfileRow.setOnClickListener(v -> viewModel.shareProfile(getView()));
+    viewModel.getCanShareProfileWithGroup().observe(getViewLifecycleOwner(), canShare -> {
+      shareProfile.setText(canShare ? R.string.ManageGroupActivity_share : R.string.ManageGroupActivity_shared);
+      shareProfileRow.setEnabled(canShare);
     });
   }
 
