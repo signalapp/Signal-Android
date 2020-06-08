@@ -123,16 +123,17 @@ public class IdentityUtil {
     long                 time          = System.currentTimeMillis();
     SmsDatabase          smsDatabase   = DatabaseFactory.getSmsDatabase(context);
     GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    GroupDatabase.Reader reader        = groupDatabase.getGroups();
 
-    GroupDatabase.GroupRecord groupRecord;
+    try (GroupDatabase.Reader reader = groupDatabase.getGroups()) {
+      GroupDatabase.GroupRecord groupRecord;
 
-    while ((groupRecord = reader.getNext()) != null) {
-      if (groupRecord.getMembers().contains(recipientId) && groupRecord.isActive()) {
-        IncomingTextMessage           incoming    = new IncomingTextMessage(recipientId, 1, time, time, null, Optional.of(groupRecord.getId()), 0, false);
-        IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
+      while ((groupRecord = reader.getNext()) != null) {
+        if (groupRecord.getMembers().contains(recipientId) && groupRecord.isActive()) {
+          IncomingTextMessage           incoming    = new IncomingTextMessage(recipientId, 1, time, time, null, Optional.of(groupRecord.getId()), 0, false);
+          IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
 
-        smsDatabase.insertMessageInbox(groupUpdate);
+          smsDatabase.insertMessageInbox(groupUpdate);
+        }
       }
     }
 

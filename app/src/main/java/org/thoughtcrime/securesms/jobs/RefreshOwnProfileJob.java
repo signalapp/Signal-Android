@@ -72,7 +72,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
 
     Recipient            self                 = Recipient.self();
-    ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfile(context, self, getRequestType(self));
+    ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self));
     SignalServiceProfile profile              = profileAndCredential.getProfile();
 
     setProfileName(profile.getName());

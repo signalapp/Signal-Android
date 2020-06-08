@@ -290,9 +290,7 @@ public final class GroupsV2StateProcessor {
 
       if (!updated.isEmpty()) {
         Log.i(TAG, String.format(Locale.US, "Learned %d new profile keys, scheduling profile retrievals", updated.size()));
-        for (RecipientId recipient : updated) {
-          ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(recipient));
-        }
+        RetrieveProfileJob.enqueue(updated);
       }
     }
 

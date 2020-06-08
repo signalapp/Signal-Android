@@ -56,9 +56,11 @@ public final class ProfileName implements Parcelable {
   public @NonNull String serialize() {
     if (isGivenNameEmpty()) {
       return "";
+    } else if (familyName.isEmpty()) {
+      return givenName;
+    } else {
+      return String.format("%s\0%s", givenName, familyName);
     }
-
-    return String.format("%s\0%s", givenName, familyName);
   }
 
   @Override

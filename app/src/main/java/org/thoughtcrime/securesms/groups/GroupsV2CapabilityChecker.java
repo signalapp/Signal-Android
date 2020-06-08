@@ -43,7 +43,7 @@ final class GroupsV2CapabilityChecker {
       Recipient.Capability gv2Capability  = member.getGroupsV2Capability();
 
       if (gv2Capability != Recipient.Capability.SUPPORTED) {
-        if (!ApplicationDependencies.getJobManager().runSynchronously(RetrieveProfileJob.forRecipient(member), TimeUnit.SECONDS.toMillis(1000)).isPresent()) {
+        if (!ApplicationDependencies.getJobManager().runSynchronously(RetrieveProfileJob.forRecipient(member.getId()), TimeUnit.SECONDS.toMillis(1000)).isPresent()) {
           throw new IOException("Recipient capability was not retrieved in time");
         }
       }

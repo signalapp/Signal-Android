@@ -3,9 +3,13 @@ package org.thoughtcrime.securesms.jobmanager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Data {
@@ -74,6 +78,14 @@ public class Data {
   public String[] getStringArray(@NonNull String key) {
     throwIfAbsent(stringArrays, key);
     return stringArrays.get(key);
+  }
+
+  /**
+   * Helper method for {@link #getStringArray(String)} that returns the value as a list.
+   */
+  public List<String> getStringArrayAsList(@NonNull String key) {
+    throwIfAbsent(stringArrays, key);
+    return Arrays.asList(stringArrays.get(key));
   }
 
 
@@ -252,6 +264,14 @@ public class Data {
 
     public Builder putStringArray(@NonNull String key, @NonNull String[] value) {
       stringArrays.put(key, value);
+      return this;
+    }
+
+    /**
+     * Helper method for {@link #putStringArray(String, String[])} that takes a list.
+     */
+    public Builder putStringListAsArray(@NonNull String key, @NonNull List<String> value) {
+      stringArrays.put(key, value.toArray(new String[0]));
       return this;
     }
 

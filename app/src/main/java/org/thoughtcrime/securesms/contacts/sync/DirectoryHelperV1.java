@@ -56,6 +56,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 class DirectoryHelperV1 {
 
@@ -339,10 +342,16 @@ class DirectoryHelperV1 {
 
   private static boolean isUuidRegistered(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
     try {
-      ProfileUtil.retrieveProfile(context, recipient, SignalServiceProfile.RequestType.PROFILE);
+      ProfileUtil.retrieveProfile(context, recipient, SignalServiceProfile.RequestType.PROFILE).get(10, TimeUnit.SECONDS);
       return true;
-    } catch (NotFoundException e) {
-      return false;
+    } catch (ExecutionException e) {
+      if (e.getCause() instanceof NotFoundException) {
+        return false;
+      } else {
+        throw new IOException(e);
+      }
+    } catch (InterruptedException | TimeoutException e) {
+      throw new IOException(e);
     }
   }
 

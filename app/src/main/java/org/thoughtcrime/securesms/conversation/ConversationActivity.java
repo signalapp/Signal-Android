@@ -207,7 +207,6 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -1957,7 +1956,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(recipient.get()));
+    RetrieveProfileJob.enqueueAsync(recipient.getId());
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {

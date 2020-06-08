@@ -59,17 +59,12 @@ public final class GroupCandidateHelper {
       ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
 
       if (profileKey != null) {
-        try {
-          Optional<ProfileKeyCredential> profileKeyCredentialOptional = signalServiceAccountManager.resolveProfileKeyCredential(uuid, profileKey);
+        Optional<ProfileKeyCredential> profileKeyCredentialOptional = signalServiceAccountManager.resolveProfileKeyCredential(uuid, profileKey);
 
-          if (profileKeyCredentialOptional.isPresent()) {
-            candidate = candidate.withProfileKeyCredential(profileKeyCredentialOptional.get());
+        if (profileKeyCredentialOptional.isPresent()) {
+          candidate = candidate.withProfileKeyCredential(profileKeyCredentialOptional.get());
 
-            recipientDatabase.setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());
-          }
-        } catch (VerificationFailedException e) {
-          Log.w(TAG, e);
-          throw new IOException(e);
+          recipientDatabase.setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());
         }
       }
     }

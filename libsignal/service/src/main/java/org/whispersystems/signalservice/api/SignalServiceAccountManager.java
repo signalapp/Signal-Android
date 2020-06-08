@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -78,6 +79,7 @@ import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -89,6 +91,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionMessage;
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisioningVersion;
@@ -705,9 +710,22 @@ public class SignalServiceAccountManager {
   }
 
   public Optional<ProfileKeyCredential> resolveProfileKeyCredential(UUID uuid, ProfileKey profileKey)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, VerificationFailedException
+      throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    return this.pushServiceSocket.retrieveVersionedProfileAndCredential(uuid, profileKey, Optional.absent()).getProfileKeyCredential();
+    try {
+      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(uuid, profileKey, Optional.absent()).get(10, TimeUnit.SECONDS);
+      return credential.getProfileKeyCredential();
+    } catch (InterruptedException | TimeoutException e) {
+      throw new PushNetworkException(e);
+    } catch (ExecutionException e) {
+      if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
+        throw (NonSuccessfulResponseCodeException) e.getCause();
+      } else if (e.getCause() instanceof PushNetworkException) {
+        throw (PushNetworkException) e.getCause();
+      } else {
+        throw new PushNetworkException(e);
+      }
+    }
   }
 
   public void setUsername(String username) throws IOException {

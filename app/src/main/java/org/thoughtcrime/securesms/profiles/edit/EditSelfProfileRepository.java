@@ -33,6 +33,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 class EditSelfProfileRepository implements EditProfileRepository {
 
@@ -149,10 +151,10 @@ class EditSelfProfileRepository implements EditProfileRepository {
   @WorkerThread
   private @NonNull Optional<String> getUsernameInternal() {
     try {
-      SignalServiceProfile profile = ProfileUtil.retrieveProfile(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE).getProfile();
+      SignalServiceProfile profile = ProfileUtil.retrieveProfile(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE).get(5, TimeUnit.SECONDS).getProfile();
       TextSecurePreferences.setLocalUsername(context, profile.getUsername());
       DatabaseFactory.getRecipientDatabase(context).setUsername(Recipient.self().getId(), profile.getUsername());
-    } catch (IOException e) {
+    } catch (TimeoutException | InterruptedException | ExecutionException e) {
       Log.w(TAG, "Failed to retrieve username remotely! Using locally-cached version.");
     }
     return Optional.fromNullable(TextSecurePreferences.getLocalUsername(context));

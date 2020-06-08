@@ -1226,7 +1226,7 @@ public class SignalServiceMessageSender {
           Log.w(TAG, e);
           results.add(SendMessageResult.identityFailure(recipient, ((UntrustedIdentityException) e.getCause()).getIdentityKey()));
         } else if (e.getCause() instanceof UnregisteredUserException) {
-          Log.w(TAG, e);
+          Log.w(TAG, "Found unregistered user.");
           results.add(SendMessageResult.unregisteredFailure(recipient));
         } else if (e.getCause() instanceof PushNetworkException) {
           Log.w(TAG, e);

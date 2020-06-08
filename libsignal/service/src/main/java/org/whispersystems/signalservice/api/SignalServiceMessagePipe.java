@@ -23,6 +23,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.push.AttachmentV2UploadAttributes;
 import org.whispersystems.signalservice.internal.push.AttachmentV3UploadAttributes;
@@ -190,64 +192,63 @@ public class SignalServiceMessagePipe {
     });
   }
 
-  public ProfileAndCredential getProfile(SignalServiceAddress address,
-                                         Optional<ProfileKey> profileKey,
-                                         Optional<UnidentifiedAccess> unidentifiedAccess,
-                                         SignalServiceProfile.RequestType requestType)
+  public ListenableFuture<ProfileAndCredential> getProfile(SignalServiceAddress address,
+                                                           Optional<ProfileKey> profileKey,
+                                                           Optional<UnidentifiedAccess> unidentifiedAccess,
+                                                           SignalServiceProfile.RequestType requestType)
       throws IOException
   {
-    try {
-      List<String> headers = new LinkedList<>();
+    List<String> headers = new LinkedList<>();
 
-      if (unidentifiedAccess.isPresent()) {
-        headers.add("Unidentified-Access-Key:" + Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()));
-      }
+    if (unidentifiedAccess.isPresent()) {
+      headers.add("Unidentified-Access-Key:" + Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()));
+    }
 
-      Optional<UUID>                     uuid           = address.getUuid();
-      SecureRandom                       random         = new SecureRandom();
-      ProfileKeyCredentialRequestContext requestContext = null;
+    Optional<UUID>                     uuid           = address.getUuid();
+    SecureRandom                       random         = new SecureRandom();
+    ProfileKeyCredentialRequestContext requestContext = null;
 
-      WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
-                                                                       .setId(random.nextLong())
-                                                                       .setVerb("GET")
-                                                                       .addAllHeaders(headers);
+    WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
+                                                                     .setId(random.nextLong())
+                                                                     .setVerb("GET")
+                                                                     .addAllHeaders(headers);
 
-      if (uuid.isPresent() && profileKey.isPresent()) {
-        UUID              target               = uuid.get();
-        ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(target);
-        String            version              = profileKeyIdentifier.serialize();
+    if (uuid.isPresent() && profileKey.isPresent()) {
+      UUID              target               = uuid.get();
+      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(target);
+      String            version              = profileKeyIdentifier.serialize();
 
-        if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-          requestContext = clientZkProfile.createProfileKeyCredentialRequestContext(random, target, profileKey.get());
+      if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
+        requestContext = clientZkProfile.createProfileKeyCredentialRequestContext(random, target, profileKey.get());
 
-          ProfileKeyCredentialRequest request           = requestContext.getRequest();
-          String                      credentialRequest = Hex.toStringCondensed(request.serialize());
+        ProfileKeyCredentialRequest request           = requestContext.getRequest();
+        String                      credentialRequest = Hex.toStringCondensed(request.serialize());
 
-          builder.setPath(String.format("/v1/profile/%s/%s/%s", target, version, credentialRequest));
-        } else {
-          builder.setPath(String.format("/v1/profile/%s/%s", target, version));
-        }
+        builder.setPath(String.format("/v1/profile/%s/%s/%s", target, version, credentialRequest));
       } else {
-        builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));
+        builder.setPath(String.format("/v1/profile/%s/%s", target, version));
       }
+    } else {
+      builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));
+    }
 
-      WebSocketRequestMessage requestMessage = builder.build();
+    final ProfileKeyCredentialRequestContext finalRequestContext = requestContext;
+    WebSocketRequestMessage requestMessage = builder.build();
 
-      WebsocketResponse response = websocket.sendRequest(requestMessage).get(10, TimeUnit.SECONDS);
-
-      if (response.getStatus() < 200 || response.getStatus() >= 300) {
-        throw new IOException("Non-successful response: " + response.getStatus());
+    return FutureTransformers.map(websocket.sendRequest(requestMessage), response -> {
+      if (response.getStatus() == 404) {
+        throw new NotFoundException("Not found");
+      } else if (response.getStatus() < 200 || response.getStatus() >= 300) {
+        throw new NonSuccessfulResponseCodeException("Non-successful response: " + response.getStatus());
       }
 
       SignalServiceProfile signalServiceProfile = JsonUtil.fromJson(response.getBody(), SignalServiceProfile.class);
-      ProfileKeyCredential profileKeyCredential = requestContext != null && signalServiceProfile.getProfileKeyCredentialResponse() != null
-                                                  ? clientZkProfile.receiveProfileKeyCredential(requestContext, signalServiceProfile.getProfileKeyCredentialResponse())
-                                                  : null;
+      ProfileKeyCredential profileKeyCredential = finalRequestContext != null && signalServiceProfile.getProfileKeyCredentialResponse() != null
+                                                    ? clientZkProfile.receiveProfileKeyCredential(finalRequestContext, signalServiceProfile.getProfileKeyCredentialResponse())
+                                                    : null;
 
       return new ProfileAndCredential(signalServiceProfile, requestType, Optional.fromNullable(profileKeyCredential));
-    } catch (InterruptedException | ExecutionException | TimeoutException | VerificationFailedException e) {
-      throw new IOException(e);
-    }
+    });
   }
 
   public AttachmentV2UploadAttributes getAttachmentV2UploadAttributes() throws IOException {

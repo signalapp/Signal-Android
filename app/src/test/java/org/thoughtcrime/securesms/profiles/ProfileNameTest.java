@@ -140,7 +140,7 @@ public final class ProfileNameTest {
     String data = name.serialize();
 
     // THEN
-    assertEquals(data, "Given\0");
+    assertEquals(data, "Given");
   }
 
   @Test

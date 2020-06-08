@@ -69,7 +69,6 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
-import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -1450,7 +1449,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
     if (messageProfileKey != null) {
       if (database.setProfileKey(recipient.getId(), messageProfileKey)) {
-        ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(recipient));
+        ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(recipient.getId()));
       }
     } else {
       Log.w(TAG, "Ignored invalid profile key seen in message");

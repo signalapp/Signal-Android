@@ -146,21 +146,6 @@ public class RecipientIdJobMigrationTest {
   }
 
   @Test
-  public void migrate_retrieveProfileJob() throws Exception {
-    JobData testData = new JobData("RetrieveProfileJob", null, new Data.Builder().putString("address", "+16101234567").build());
-    mockRecipientResolve("+16101234567", 1);
-
-    RecipientIdJobMigration subject   = new RecipientIdJobMigration(mock(Application.class));
-    JobData                 converted = subject.migrate(testData);
-
-    assertEquals("RetrieveProfileJob", converted.getFactoryKey());
-    assertNull(converted.getQueueKey());
-    assertEquals("1", converted.getData().getString("recipient"));
-
-    new RetrieveProfileJob.Factory().create(mock(Job.Parameters.class), converted.getData());
-  }
-
-  @Test
   public void migrate_pushGroupSendJob_null() throws Exception {
     JobData testData = new JobData("PushGroupSendJob", "someGroupId", new Data.Builder().putString("filter_address", null)
                                                                                         .putLong("message_id", 123)
