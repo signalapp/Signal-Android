@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.groups.ui.managegroup;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -48,7 +47,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -191,7 +189,12 @@ public class ManageGroupFragment extends Fragment {
     toolbar.setOnMenuItemClickListener(this::onMenuItemSelected);
     toolbar.inflateMenu(R.menu.manage_group_fragment);
 
-    viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> toolbar.getMenu().findItem(R.id.action_edit).setVisible(canEdit));
+    viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> {
+      toolbar.getMenu().findItem(R.id.action_edit).setVisible(canEdit);
+      disappearingMessages.setEnabled(canEdit);
+      disappearingMessagesRow.setEnabled(canEdit);
+    });
+
     viewModel.getTitle().observe(getViewLifecycleOwner(), groupName::setText);
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
@@ -257,7 +260,6 @@ public class ManageGroupFragment extends Fragment {
       editGroupAccessValue.setEnabled(admin);
     });
 
-    viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> disappearingMessages.setEnabled(canEdit));
     viewModel.getCanAddMembers().observe(getViewLifecycleOwner(), canEdit -> addMembers.setVisibility(canEdit ? View.VISIBLE : View.GONE));
 
     groupMemberList.setRecipientClickListener(recipient -> RecipientBottomSheetDialogFragment.create(recipient.getId(), groupId).show(requireFragmentManager(), "BOTTOM"));

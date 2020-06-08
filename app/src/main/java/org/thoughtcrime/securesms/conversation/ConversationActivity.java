@@ -246,7 +246,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
@@ -708,6 +707,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     GroupActiveState groupActiveState = groupViewModel.getGroupActiveState().getValue();
     boolean isActiveGroup             = groupActiveState != null && groupActiveState.isActiveGroup();
     boolean isActiveV2Group           = groupActiveState != null && groupActiveState.isActiveV2Group();
+    boolean isInActiveGroup           = groupActiveState != null && !groupActiveState.isActiveGroup();
 
     if (isInMessageRequest()) {
       if (isActiveGroup) {
@@ -725,10 +725,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isSecureText) {
       if (recipient.get().getExpireMessages() > 0) {
-        inflater.inflate(R.menu.conversation_expiring_on, menu);
+        if (!isInActiveGroup) {
+          inflater.inflate(R.menu.conversation_expiring_on, menu);
+        }
         titleView.showExpiring(recipient);
       } else {
-        inflater.inflate(R.menu.conversation_expiring_off, menu);
+        if (!isInActiveGroup) {
+          inflater.inflate(R.menu.conversation_expiring_off, menu);
+        }
         titleView.clearExpiring();
       }
     }
