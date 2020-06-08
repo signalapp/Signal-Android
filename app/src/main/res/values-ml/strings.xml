@@ -443,6 +443,10 @@
   <string name="ManageGroupActivity_view_all_members">എല്ലാ അംഗങ്ങളെയും കാണുക</string>
   <string name="ManageGroupActivity_see_all">എല്ലാം കാണുക</string>
   <string name="ManageGroupActivity_none">ഒന്നുമില്ല</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d വ്യക്തിയെ ക്ഷണിച്ചു</item>
+    <item quantity="other">%d പേർ ക്ഷണിച്ചു</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ഇത് ചെയ്യുന്നതിന് നിങ്ങൾക്ക് അവകാശമില്ല</string>
   <string name="ManageGroupActivity_not_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ പുതിയ ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കുന്നില്ല, അവർ Signal അപ്‌ഡേറ്റുചെയ്യേണ്ടതുണ്ട്</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
@@ -762,6 +766,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">സംഖ്യാ പിൻ നൽകുക</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">നിങ്ങളുടെ പിൻ സൃഷ്ടിക്കുക</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">നിങ്ങളുടെ നിഗമനങ്ങൾ തീർന്നു, പക്ഷേ ഒരു പുതിയ പിന് സൃഷ്ടിച്ചുകൊണ്ട് നിങ്ങൾക്ക് ഇപ്പോഴും സിഗ്നൽ അക്കൗണ്ടില്ലെക് പ്രവേശിക്കാൻ കഴിയും. നിങ്ങളുടെ സ്വകാര്യതയ്ക്കും സുരക്ഷയ്ക്കുമായി സംരക്ഷിച്ച പ്രൊഫൈൽ വിവരങ്ങളോ ക്രമീകരണങ്ങളോ ഇല്ലാതെ നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കപ്പെടും.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">പുതിയ പിൻ സൃഷ്ടിക്കുക</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ഈ അപ്ലിക്കേഷൻ റേറ്റുചെയ്യുക</string>
@@ -879,6 +884,9 @@
   <string name="Slide_audio">ഓഡിയോ</string>
   <string name="Slide_video">വീഡിയോ</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_secure_session_reset">നിങ്ങൾ സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിച്ചു.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിച്ചു.</string>
+  <string name="SmsMessageRecord_duplicate_message">ഡൂപ്ലകറ്റ് സന്ദേശം.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">ഈ സന്ദേശം പ്രോസസ്സ് ചെയ്യാൻ കഴിഞ്ഞില്ല കാരണം ഇത് Signal-ന്റെ പുതിയ പതിപ്പിൽ നിന്ന് അയച്ചതാണ്. നിങ്ങൾ അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം ഈ സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ നിങ്ങളുടെ കോൺടാക്റ്റിനോട് ആവശ്യപ്പെടാം.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">ഇൻകമിംഗ് സന്ദേശം കൈകാര്യം ചെയ്യുന്നതിൽ പിശക്.</string>
   <!--StickerManagementActivity-->
@@ -922,6 +930,7 @@
   <string name="ThreadRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു
 grūpp ap‌ḍē</string>
   <string name="ThreadRecord_left_the_group">ഗ്രൂപ്പ് വിട്ടു</string>
+  <string name="ThreadRecord_secure_session_reset">സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിച്ചു.</string>
   <string name="ThreadRecord_draft">ഡ്രാഫ്റ്റ്:</string>
   <string name="ThreadRecord_called">നിങ്ങൾ വിളിച്ചു</string>
   <string name="ThreadRecord_called_you">നിങ്ങളെ വിളിച്ചു</string>
@@ -1336,6 +1345,7 @@ grūpp ap‌ḍē</string>
   <string name="unknown_sender_view__add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ചേർക്കരുത്, പക്ഷേ എന്റെ പ്രൊഫൈൽ ദൃശ്യമാക്കുക</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s-നുമായി നിങ്ങളുടെ എൻ‌ക്രിപ്ഷന്റെ സുരക്ഷ പരിശോധിക്കാൻ‌ നിങ്ങൾ‌ താൽ‌പ്പര്യപ്പെടുന്നെങ്കിൽ‌, മുകളിലുള്ള നമ്പറിനെ അവരുടെ ഉപകരണത്തിലെ നമ്പറുമായി താരതമ്യം ചെയ്യുക. പകരമായി, നിങ്ങൾക്ക് അവരുടെ ഫോണിൽ കോഡ് സ്കാൻ ചെയ്യാം അല്ലെങ്കിൽ നിങ്ങളുടെ കോഡ് സ്കാൻ ചെയ്യാൻ ആവശ്യപ്പെടുക. <a href="https://signal.org/redirect/safety-numbers">കൂടുതൽ അറിയുക.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">സ്കാൻ ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
   <string name="verify_display_fragment__loading">ലോഡിംഗ്…</string>
   <string name="verify_display_fragment__verified">പരിശോധിച്ചു </string>
@@ -1429,14 +1439,21 @@ grūpp ap‌ḍē</string>
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences__sms_mms">SMS &amp; MMS</string>
   <string name="preferences__pref_all_sms_title">എല്ലാ SMS-കളും സ്വീകരിക്കുക</string>
   <string name="preferences__pref_all_mms_title">എല്ലാ MMS സ്വീകരിക്കുക</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">എല്ലാ ഇൻകമിംഗ് ടെക്സ്റ്റ് സന്ദേശങ്ങൾക്കും Signal ഉപയോഗിക്കുക</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">എല്ലാ ഇൻകമിംഗ് മൾട്ടിമീഡിയ സന്ദേശങ്ങൾക്കും സിഗ്നൽ ഉപയോഗിക്കുക</string>
+  <string name="preferences__pref_enter_sends_title">എന്റർ കീ അയയ്‌ക്കൽ</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">എന്റർ കീ അമർത്തുന്നത് വാചക സന്ദേശങ്ങൾ അയയ്‌ക്കും</string>
+  <string name="preferences__send_link_previews">ലിങ്ക് പ്രിവ്യൂകൾ</string>
+  <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit, YouTube ലിങ്കുകൾക്കായി പ്രിവ്യൂകൾ പിന്തുണയ്ക്കുന്നു</string>
   <string name="preferences__choose_identity">ഐഡന്റിറ്റി തിരഞ്ഞെടുക്കുക</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">കോൺ‌ടാക്റ്റ് പട്ടികയിൽ‌ നിന്നും നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് എൻ‌ട്രി തിരഞ്ഞെടുക്കുക.</string>
   <string name="preferences__change_passphrase">പാസ്‌ഫ്രെയ്‌സ് മാറ്റുക</string>
   <string name="preferences__change_your_passphrase">നിങ്ങളുടെ പാസ്‌ഫ്രെയ്‌സ് മാറ്റുക</string>
   <string name="preferences__enable_passphrase">പാസ്‌ഫ്രെയ്‌സ് സ്‌ക്രീൻ ലോക്ക് പ്രവർത്തനക്ഷമമാക്കുക</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ഒരു പാസ്‌ഫ്രെയ്‌സ് ഉപയോഗിച്ച് സ്‌ക്രീനും അറിയിപ്പുകളും ലോക്കുചെയ്യുക</string>
   <string name="preferences__screen_security">സ്‌ക്രീൻ സുരക്ഷ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">റീസന്റ് ലിസ്റ്റിലും അപ്ലിക്കേഷനിലും സ്‌ക്രീൻഷോട്ടുകൾ തടയുക</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">നിഷ്‌ക്രിയത്വത്തിന്റെ നിർദ്ദിഷ്ട സമയ ഇടവേളയ്‌ക്ക് ശേഷം Signal സ്വപ്രേരിതമായി ലോക്ക് ചെയ്യുക</string>
@@ -1508,6 +1525,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences_storage__videos">വീഡിയോകൾ</string>
   <string name="preferences_storage__files">ഫയലുകൾ</string>
   <string name="preferences_storage__audio">ഓഡിയോ</string>
+  <string name="preferences_storage__review_storage">സ്റ്റോറജ് അവലോകനം ചെയ്യുക</string>
   <string name="preferences_advanced__use_system_emoji">സിസ്റ്റം ഇമോജി ഉപയോഗിക്കുക</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">നിങ്ങളുടെ കോൺ‌ടാക്റ്റിലേക്ക് നിങ്ങളുടെ ഐ‌പി വിലാസം വെളിപ്പെടുത്തുന്നത് ഒഴിവാക്കാൻ സിഗ്നൽ സെർവർ വഴി എല്ലാ കോളുകളും റിലേ ചെയ്യുക. പ്രവർത്തനക്ഷമമാക്കുന്നത് കോൾ നിലവാരം കുറയ്ക്കും.</string>
   <string name="preferences_advanced__always_relay_calls">എല്ലായ്പ്പോഴും കോളുകൾ റിലേ ചെയ്യുക</string>
@@ -1568,6 +1586,7 @@ grūpp ap‌ḍē</string>
   <string name="conversation_list_fragment__open_camera_description">ക്യാമറ തുറക്കുക</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">നിങ്ങളുടെ ഇൻ‌ബോക്സിന് വീട്ടിലേക്ക് എന്തെങ്കിലും എഴുതാൻ ഉപയോഗിക്കൂ. ഒരു സുഹൃത്തിനു മെസേജ് ചെയ്തുകൊണ്ട് തുടങ്ങൂ.</string>
   <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_reset_secure_session">സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിക്കുക</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">അൺമ്യൂട്ട് ചെയ്യുക</string>
   <!--conversation_unmuted-->

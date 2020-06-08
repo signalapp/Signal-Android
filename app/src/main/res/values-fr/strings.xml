@@ -445,7 +445,7 @@
   <string name="ManageGroupActivity_none">Aucune</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d invité</item>
-    <item quantity="other">%d invité</item>
+    <item quantity="other">%d invités</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>

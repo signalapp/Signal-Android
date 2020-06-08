@@ -449,7 +449,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Cine poate edita apartenența la grup</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Cine poate edita informațiile grupului</string>
   <string name="ManageGroupActivity_block_group">Blocați grupul</string>
-  <string name="ManageGroupActivity_leave_group">Părăseşte grupul</string>
+  <string name="ManageGroupActivity_leave_group">Părăsiți grupul</string>
   <string name="ManageGroupActivity_mute_notifications">Notificări fără sunet</string>
   <string name="ManageGroupActivity_custom_notifications">Notificări personalizate</string>
   <string name="ManageGroupActivity_until_s">Până la %1$s</string>
@@ -1688,7 +1688,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation__menu_add_attachment">Adăugați atașament</string>
   <string name="conversation__menu_edit_group">Editează grupul</string>
   <string name="conversation__menu_group_settings">Setări grup</string>
-  <string name="conversation__menu_leave_group">Părăseşte grupul</string>
+  <string name="conversation__menu_leave_group">Părăsiți grupul</string>
   <string name="conversation__menu_view_all_media">Toate fișierele media</string>
   <string name="conversation__menu_conversation_settings">Setări conversaţie</string>
   <string name="conversation__menu_add_shortcut">Adaugă pe ecranul principal</string>

@@ -1585,11 +1585,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_chats__message_text_size">Tamaño de fuente del mensaje</string>
   <string name="preferences_events__contact_joined_signal">Alguien comienza a usar Signal</string>
   <string name="preferences_notifications__priority">Prioridad</string>
-  <string name="preferences_communication__category_sealed_sender">Remitente sellado</string>
+  <string name="preferences_communication__category_sealed_sender">Remitente confidencial</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Mostrar indicadores</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Mostrar el icono de estado al tocar sobre «Detalles del mensaje» en mensajes entregados usando el remitente sellado.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Mostrar el icono de estado al tocar sobre «Detalles del mensaje» en mensajes entregados usando la característica de remitente confidencial.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de cualquiera</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Al activar la opción, personas en Signal que no estén entre tus contactos y con las que no has compartido tu perfil pueden enviarte mensajes con remitente sellado.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">«Remitente confidencial» es una característica del protocolo de Signal que permite a nuestro servidor no saber quién envía el mensaje. Al contrario que la persona que lo recibe. Activar la opción muestra un icono de estado en la sección «Más detalles» de los mensajes entregados con remitente confidencial.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber más</string>
   <!--****************************************-->
   <!--menus-->

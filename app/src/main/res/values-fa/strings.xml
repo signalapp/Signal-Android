@@ -638,8 +638,8 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s را به مدیر تبدیل کرد.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s شما را به مدیر تبدیل کرد.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">شما امتیازات مدیریت %1$s را لغو کردید.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s امتیازات مدیریت شما را لغو کرد.</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s امتیازات مدیریت %2$s را لغو کرد.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s امتیازات مدیریتی شما را لغو کرد.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s امتیازات مدیریتی %2$s را لغو کرد.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">شما %1$s را به گروه دعوت کردید.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s شما را به گروه دعوت کرد.</string>
@@ -1084,7 +1084,7 @@
   <string name="SaveAttachmentTask_saved">ذخیره شد</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">جستجو</string>
-  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">جستجو برای مکالمه ها، مخاطب ها و پیام ها</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">جستجو برای مکالمه‌ها، مخاطبان و پیام‌ها</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">میانبر نامعتبر</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1330,7 +1330,7 @@
   <string name="prompt_passphrase_activity__unlock">باز کردن قفل</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal برای ارسال پیام‌ها به تنظیمات فراپیام یا فراپیام اپراتور وایرلس شما نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مورد معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدود شده رخ می‌دهد.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'باشه\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات فراپیام برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یک بار نیاز به انجام این کار دارید.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'قبول\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات فراپیام برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یکبار نیاز به انجام این کار دارید.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">نام (اجباری)</string>
   <string name="CreateProfileActivity_last_name_optional">نام خانوادگی (اختیاری)</string>
@@ -1832,7 +1832,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک دارد اما این دسترسی به‌ داده نشده است. لطفاً به تنظیمات برنامه‌ رفته، \"مجوزها\" را انتخاب کنید و \"پیامک\" را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
   <string name="Permissions_not_now">حالا نه</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجوی مخاطبین نیاز به دسترسی به مخاطبان دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجوی مخاطبان نیاز به دسترسی دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
   <string name="conversation_activity__enable_signal_messages">فعال‌سازی پیام های Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">در حال انتقال پایگاه داده Signal</string>
   <string name="PushDecryptJob_new_locked_message">پیام قفل شده جدید</string>
