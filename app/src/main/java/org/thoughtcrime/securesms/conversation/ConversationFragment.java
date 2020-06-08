@@ -219,9 +219,11 @@ public class ConversationFragment extends Fragment {
 
     this.conversationViewModel = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
     conversationViewModel.getMessages().observe(this, list -> {
-      if (getListAdapter() != null) {
+      if (getListAdapter() != null && !list.getDataSource().isInvalid()) {
         Log.i(TAG, "submitList");
         getListAdapter().submitList(list);
+      } else if (list.getDataSource().isInvalid()) {
+        Log.i(TAG, "submitList skipped an invalid list");
       }
     });
     conversationViewModel.getConversationMetadata().observe(this, data -> deferred.defer(() -> presentConversationMetadata(data)));
