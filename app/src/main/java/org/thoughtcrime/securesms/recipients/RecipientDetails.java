@@ -8,7 +8,9 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
+import org.thoughtcrime.securesms.database.RecipientDatabase.ProfileSharingState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
@@ -52,7 +54,7 @@ public class RecipientDetails {
   final byte[]                 profileKeyCredential;
   final String                 profileAvatar;
   final boolean                hasProfileImage;
-  final boolean                profileSharing;
+  final ProfileSharingState profileSharing;
   final boolean                systemContact;
   final boolean                isLocalNumber;
   final String                 notificationChannel;
@@ -98,7 +100,7 @@ public class RecipientDetails {
     this.profileKeyCredential            = settings.getProfileKeyCredential();
     this.profileAvatar                   = settings.getProfileAvatar();
     this.hasProfileImage                 = settings.hasProfileImage();
-    this.profileSharing                  = settings.isProfileSharing();
+    this.profileSharing                  = settings.getProfileSharingState();
     this.systemContact                   = systemContact;
     this.isLocalNumber                   = isLocalNumber;
     this.notificationChannel             = settings.getNotificationChannel();
@@ -145,7 +147,7 @@ public class RecipientDetails {
     this.profileKeyCredential   = null;
     this.profileAvatar          = null;
     this.hasProfileImage        = false;
-    this.profileSharing         = false;
+    this.profileSharing         = ProfileSharingState.UNDECIDED;
     this.systemContact          = true;
     this.isLocalNumber          = false;
     this.notificationChannel    = null;

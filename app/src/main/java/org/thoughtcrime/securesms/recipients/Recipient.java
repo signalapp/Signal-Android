@@ -50,6 +50,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
+import static org.thoughtcrime.securesms.database.RecipientDatabase.ProfileSharingState;
 
 public class Recipient {
 
@@ -87,7 +88,7 @@ public class Recipient {
   private final ProfileName            profileName;
   private final String                 profileAvatar;
   private final boolean                hasProfileImage;
-  private final boolean                profileSharing;
+  private final ProfileSharingState    profileSharing;
   private final String                 notificationChannel;
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
@@ -330,7 +331,7 @@ public class Recipient {
     this.profileName            = ProfileName.EMPTY;
     this.profileAvatar          = null;
     this.hasProfileImage        = false;
-    this.profileSharing         = false;
+    this.profileSharing         = ProfileSharingState.UNDECIDED;
     this.notificationChannel    = null;
     this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
     this.forceSmsSelection      = false;
@@ -603,7 +604,11 @@ public class Recipient {
   }
 
   public boolean isProfileSharing() {
-    return profileSharing;
+    return profileSharing.equals(ProfileSharingState.YES);
+  }
+
+  public boolean hasSeenProfileSharingBanner() {
+    return !profileSharing.equals(ProfileSharingState.UNDECIDED);
   }
 
   public boolean isGroup() {

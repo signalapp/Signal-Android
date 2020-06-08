@@ -225,6 +225,19 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public enum ProfileSharingState {
+    UNDECIDED(0), NO(1), YES(2);
+
+    private final int id;
+    ProfileSharingState(int id) {
+      this.id = id;
+    }
+
+    public static ProfileSharingState fromId(int id) {
+      return values()[id];
+    }
+  }
+
   public enum DirtyState {
     CLEAN(0), UPDATE(1), INSERT(2), DELETE(3);
 
@@ -834,7 +847,7 @@ public class RecipientDatabase extends Database {
     String  profileGivenName           = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_GIVEN_NAME));
     String  profileFamilyName          = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_FAMILY_NAME));
     String  signalProfileAvatar        = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
-    boolean profileSharing             = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
+    int     profileSharing             = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING));
     String  notificationChannel        = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
     int     unidentifiedAccessMode     = cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED_ACCESS_MODE));
     boolean forceSmsSelection          = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
@@ -901,7 +914,7 @@ public class RecipientDatabase extends Database {
                                  systemDisplayName, systemContactPhoto,
                                  systemPhoneLabel, systemContactUri,
                                  ProfileName.fromParts(profileGivenName, profileFamilyName), signalProfileAvatar,
-                                 AvatarHelper.hasAvatar(context, RecipientId.from(id)), profileSharing,
+                                 AvatarHelper.hasAvatar(context, RecipientId.from(id)), ProfileSharingState.fromId(profileSharing),
                                  notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
                                  forceSmsSelection,
                                  Recipient.Capability.deserialize(uuidCapabilityValue),
@@ -1206,9 +1219,13 @@ public class RecipientDatabase extends Database {
   }
 
   public void setProfileSharing(@NonNull RecipientId id, @SuppressWarnings("SameParameterValue") boolean enabled) {
+    setProfileSharingState(id, enabled ? ProfileSharingState.YES : ProfileSharingState.NO);
+  }
+
+  public void setProfileSharingState(@NonNull RecipientId id, @NonNull ProfileSharingState state) {
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
-    if (update(id, contentValues)) {
+    contentValues.put(PROFILE_SHARING, state.id);
+    if(update(id, contentValues)){
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
       StorageSyncHelper.scheduleSyncForDataChange();
@@ -1853,7 +1870,7 @@ public class RecipientDatabase extends Database {
     private final ProfileName                     signalProfileName;
     private final String                          signalProfileAvatar;
     private final boolean                         hasProfileImage;
-    private final boolean                         profileSharing;
+    private final ProfileSharingState             profileSharing;
     private final String                          notificationChannel;
     private final UnidentifiedAccessMode          unidentifiedAccessMode;
     private final boolean                         forceSmsSelection;
@@ -1891,7 +1908,7 @@ public class RecipientDatabase extends Database {
                       @NonNull ProfileName signalProfileName,
                       @Nullable String signalProfileAvatar,
                       boolean hasProfileImage,
-                      boolean profileSharing,
+                      @NonNull ProfileSharingState profileSharing,
                       @Nullable String notificationChannel,
                       @NonNull UnidentifiedAccessMode unidentifiedAccessMode,
                       boolean forceSmsSelection,
@@ -2057,6 +2074,10 @@ public class RecipientDatabase extends Database {
     }
 
     public boolean isProfileSharing() {
+      return profileSharing.equals(ProfileSharingState.YES);
+    }
+
+    public ProfileSharingState getProfileSharingState() {
       return profileSharing;
     }
 

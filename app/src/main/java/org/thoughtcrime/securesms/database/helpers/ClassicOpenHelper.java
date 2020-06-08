@@ -114,7 +114,8 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
   private static final int GROUP_RECEIPT_TRACKING                          = 45;
   private static final int UNREAD_COUNT_VERSION                            = 46;
   private static final int MORE_RECIPIENT_FIELDS                           = 47;
-  private static final int DATABASE_VERSION                                = 47;
+  private static final int PROFILE_SHARING_STATE                           = 48;
+  private static final int DATABASE_VERSION                                = 48;
 
   private static final String TAG = ClassicOpenHelper.class.getSimpleName();
 
@@ -1299,6 +1300,10 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
           }
         }
       }
+    }
+
+    if(oldVersion < PROFILE_SHARING_STATE) {
+      db.execSQL("UPDATE recipient SET profile_sharing = 2 WHERE profile_sharing = 1");
     }
 
     db.setTransactionSuccessful();
