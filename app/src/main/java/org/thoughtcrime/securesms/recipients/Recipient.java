@@ -418,6 +418,15 @@ public class Recipient {
     else                               return Optional.fromNullable(getName(context)).or(getSmsAddress()).or("");
   }
 
+  /**
+   * False iff it {@link #getDisplayName} would fall back to e164, email or unknown.
+   */
+  public boolean hasAUserSetDisplayName(@NonNull Context context) {
+    return !TextUtils.isEmpty(getName(context))            ||
+           !TextUtils.isEmpty(getProfileName().toString()) ||
+           !TextUtils.isEmpty(getDisplayUsername());
+  }
+
   public @NonNull String getDisplayName(@NonNull Context context) {
     return Util.getFirstNonEmpty(getName(context),
                                  getProfileName().toString(),
