@@ -47,14 +47,20 @@ public class GroupReceiptDatabase extends Database {
   public void insert(Collection<RecipientId> recipientIds, long mmsId, int status, long timestamp) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-    for (RecipientId recipientId : recipientIds) {
-      ContentValues values = new ContentValues(4);
-      values.put(MMS_ID, mmsId);
-      values.put(RECIPIENT_ID, recipientId.serialize());
-      values.put(STATUS, status);
-      values.put(TIMESTAMP, timestamp);
+    db.beginTransaction();
+    try {
+      for (RecipientId recipientId : recipientIds) {
+        ContentValues values = new ContentValues(4);
+        values.put(MMS_ID, mmsId);
+        values.put(RECIPIENT_ID, recipientId.serialize());
+        values.put(STATUS, status);
+        values.put(TIMESTAMP, timestamp);
 
-      db.insert(TABLE_NAME, null, values);
+        db.insert(TABLE_NAME, null, values);
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
     }
   }
 
