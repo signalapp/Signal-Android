@@ -1417,6 +1417,12 @@
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal needs access to your contacts in order to display them.</string>
     <string name="contact_selection_list_fragment__show_contacts">Show Contacts</string>
 
+    <!-- contact_selection_list_item -->
+    <plurals name="contact_selection_list_item__number_of_members">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
+
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Signal message</string>
     <string name="conversation_activity__type_message_sms_insecure">Unsecured SMS</string>
