@@ -413,6 +413,8 @@
     <item quantity="one">Daveti iptal etmede hata</item>
     <item quantity="other">Davetleri iptal etmede hata</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Tamam</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Bu grubu adlandır</string>
   <string name="AddGroupDetailsFragment__create">Oluştur</string>
@@ -466,7 +468,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
   <string name="CropImageActivity_profile_avatar">Resim</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın</string>
@@ -675,10 +676,10 @@
   <string name="MessageRequestBottomView_block">Engelle</string>
   <string name="MessageRequestBottomView_unblock">Engeli kaldır</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s kişisinin sizle yazışmasına izin vermek istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s grubuna katılmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s grubuna katılmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s grubuna katılmaya davet edildiniz. Bu grubun üyelerinin size yazmalarına izin vermek istiyor musunuz?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Birbirinizle yazışmak ve aramalar yapmak için %1$s engelini kaldırın.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Grup üyelerinin sizi bu gruba tekrar ekleyebilmeleri için engelini kaldırın.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Birbirinizle yazışmak ve aramalar yapmak için %1$s engelini kaldırın.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Grup üyelerinin sizi bu gruba tekrar ekleyebilmeleri için engelini kaldırın.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grubuna üye</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ve %2$s gruplarına üye</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ve %3$s gruplarına üye</string>
@@ -942,6 +943,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_message_request">İleti İsteği</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s sizi gruba ekledi</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s kişisi sizi gruba davet etti.</string>
+  <string name="ThreadRecord_photo">Fotoğraf</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Sesli İleti</string>
+  <string name="ThreadRecord_contact">Kişi</string>
+  <string name="ThreadRecord_file">Dosya</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal güncellemesi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal\'in yeni sürümü mevcut, güncellemek için dokunun</string>
@@ -1912,6 +1919,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_call">Ara</string>
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Kişilere ekle</string>
   <string name="RecipientBottomSheet_view_safety_number">Güvenlik numarasını görüntüle</string>
   <string name="RecipientBottomSheet_make_group_admin">Grup yöneticisi yap</string>
   <string name="RecipientBottomSheet_remove_as_admin">Grup yöneticiliğinden çıkart</string>
@@ -1919,6 +1927,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s grup yöneticiliğinden çıkartılsın mı?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s bu grubu ve üyelerini düzenleyebilecek.</string>
   <string name="RecipientBottomSheet_remove">Kaldır</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Panoya kopyalandı</string>
   <string name="GroupRecipientListItem_admin">Yönetici</string>
   <!--EOF-->
 </resources>

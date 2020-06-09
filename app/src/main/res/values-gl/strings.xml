@@ -388,7 +388,10 @@
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Persoas que convidaches</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Non tes convites pendentes.</string>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Feito</string>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create_group">Crear grupo</string>
   <string name="AddGroupDetailsFragment__create">Crear</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nome do grupo (obrigatorio)</string>
@@ -417,8 +420,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Ningunha cara detectada</string> -->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toca e mantén premido para gravar unha mensaxe de voz; solta para enviar</string>
@@ -800,6 +801,12 @@
   <string name="ThreadRecord_you_marked_verified">Marcaches como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Marcaches como sen verificar</string>
   <string name="ThreadRecord_message_could_not_be_processed">A mensaxe non se puido procesar</string>
+  <string name="ThreadRecord_photo">Fotografía</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Mensaxe de voz</string>
+  <string name="ThreadRecord_contact">Contacto</string>
+  <string name="ThreadRecord_file">Ficheiro</string>
+  <string name="ThreadRecord_video">Vídeo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualizar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hai dispoñible unha nova versión de Signal; toca para actualizar</string>
@@ -1700,7 +1707,9 @@
   <string name="RecipientBottomSheet_call">Chamar</string>
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Engadir a contactos</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver número de seguranza</string>
   <string name="RecipientBottomSheet_remove">Eliminar</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Copiado ao portapapeis</string>
   <!--EOF-->
 </resources>

@@ -414,8 +414,15 @@
     <item quantity="one">Errore durante l\'annullamento dell\'invito</item>
     <item quantity="other">Errore durante l\'annullamento degli inviti</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Fatto</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Aggiungere \"%1$s\" a \"%2$s\"?</item>
+    <item quantity="other">Aggiungere %3$d membri a \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Dai un nome a questo gruppo</string>
+  <string name="AddGroupDetailsFragment__create_group">Crea gruppo</string>
   <string name="AddGroupDetailsFragment__create">Crea</string>
   <string name="AddGroupDetailsFragment__members">Membri</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nome del gruppo (obbligatorio)</string>
@@ -433,6 +440,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Chi può modificare l\'appartenenza al gruppo</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Chi può modificare le informazioni del gruppo</string>
   <string name="ManageGroupActivity_block_group">Blocca gruppo</string>
+  <string name="ManageGroupActivity_unblock_group">Sblocca gruppo</string>
   <string name="ManageGroupActivity_leave_group">Abbandona il gruppo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenzia notifiche</string>
   <string name="ManageGroupActivity_custom_notifications">Notifiche personalizzate</string>
@@ -446,6 +454,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d invitato</item>
     <item quantity="other">%d invitati</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d membro aggiunto.</item>
+    <item quantity="other">%d membri aggiunti.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Non hai i permessi per farlo</string>
   <string name="ManageGroupActivity_not_capable">Qualcuno che hai aggiunto non supporta i nuovi gruppi e deve aggiornare Signal</string>
@@ -473,8 +485,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del gruppo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Nessun volto rilevato</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Sfoca volti</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nuovo: sfoca volti o disegna ovunque per sfocare</string>
@@ -687,10 +697,10 @@
   <string name="MessageRequestBottomView_block">Blocca</string>
   <string name="MessageRequestBottomView_unblock">Sblocca</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi permettere a %1$s di inviarti messaggi? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi unirti al gruppo %1$s? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi unirti al gruppo %1$s? Non sapranno che hai visto i loro messaggi finché non accetti.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sei stato invitato a unirti al gruppo %1$s. Vuoi che i membri di questo gruppo possano mandarti messaggi?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Sblocca %1$s per scambiarvi messaggi e chiamarvi.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Sblocca per permettere ai membri del gruppo di aggiungerti di nuovo a questo gruppo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Sblocca %1$s per scambiarvi messaggi e chiamarvi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Sblocca per permettere ai membri del gruppo di aggiungerti di nuovo a questo gruppo.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Membro di %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro di %1$s e %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro di %1$s, %2$s, e %3$s</string>
@@ -965,6 +975,12 @@
   <string name="ThreadRecord_message_request">Richiesta di messaggio</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s ti ha aggiunto al gruppo</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s ti ha invitato al gruppo</string>
+  <string name="ThreadRecord_photo">Foto</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Messaggio vocale</string>
+  <string name="ThreadRecord_contact">Contatto</string>
+  <string name="ThreadRecord_file">File</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">È disponibile una nuova versione di Signal, tocca per aggiornare</string>
@@ -1596,6 +1612,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nuovo messaggio a…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Aggiungi al gruppo</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chiama</string>
   <!--conversation_callable_secure-->
@@ -1948,6 +1965,7 @@
   <string name="RecipientBottomSheet_call">Chiama</string>
   <string name="RecipientBottomSheet_block">Blocca</string>
   <string name="RecipientBottomSheet_unblock">Sblocca</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Aggiungi ai contatti</string>
   <string name="RecipientBottomSheet_view_safety_number">Mostra numero di sicurezza</string>
   <string name="RecipientBottomSheet_make_group_admin">Rendi amministratore del gruppo</string>
   <string name="RecipientBottomSheet_remove_as_admin">Rimuovi come amministratore</string>
@@ -1956,6 +1974,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s potrà modificare questo gruppo e i suoi membri</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Rimuovere %1$s da \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Rimuovi</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Copiato negli appunti</string>
   <string name="GroupRecipientListItem_admin">Amministratore</string>
   <!--EOF-->
 </resources>

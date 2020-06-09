@@ -429,8 +429,11 @@
     <item quantity="few">Greška prilikom otkazivanja pozivnica</item>
     <item quantity="other">Greška prilikom otkazivanja pozivnica</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Uredu</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Dodijeli naziv ovoj grupi</string>
+  <string name="AddGroupDetailsFragment__create_group">Stvori grupu</string>
   <string name="AddGroupDetailsFragment__create">Stvori</string>
   <string name="AddGroupDetailsFragment__members">Članovi</string>
   <string name="AddGroupDetailsFragment__group_name_required">Ime grupe (obavezno)</string>
@@ -484,8 +487,10 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupni avatar</string>
   <string name="CropImageActivity_profile_avatar">Slika profila</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Zamuti lica</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Crtajte bilo gdje kako bi zamutili</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Crtajte da zamutite dodatna lica ili područja</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pritisnite i držite kako biste snimili glasovnu poruku, pustite za slanje</string>
   <!--InviteActivity-->
@@ -838,6 +843,12 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_you_marked_unverified">Označili ste nepotvrđenim</string>
   <string name="ThreadRecord_message_could_not_be_processed">Poruku nije moguće obraditi</string>
   <string name="ThreadRecord_message_request">Zahtjev za razgovorom</string>
+  <string name="ThreadRecord_photo">Fotografija</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Glasovna poruka</string>
+  <string name="ThreadRecord_contact">Kontakt</string>
+  <string name="ThreadRecord_file">Datoteka</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ažuriranje</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova inačica Signala je dostupna, pritisnite za ažuriranje</string>
@@ -1245,6 +1256,10 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="HelpFragment__next">Sljedeće</string>
   <string name="HelpFragment__no_email_app_found">Nije pronađena email aplikacija</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktivnosti</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekti</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboli</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Zastave</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz</string>
   <string name="arrays__use_default">Koristi zadano</string>
@@ -1645,11 +1660,13 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="RecipientBottomSheet_call">Poziv</string>
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Dodaj u kontakte</string>
   <string name="RecipientBottomSheet_view_safety_number">Prikaži sigurnosni broj</string>
   <string name="RecipientBottomSheet_make_group_admin">Postavi za administratora</string>
   <string name="RecipientBottomSheet_remove_as_admin">Ukloni administratorske ovlasti</string>
   <string name="RecipientBottomSheet_remove_from_group">Ukloni iz grupe</string>
   <string name="RecipientBottomSheet_remove">Ukloni</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
   <!--EOF-->
 </resources>

@@ -414,8 +414,15 @@
     <item quantity="one">ക്ഷണം റദ്ദാക്കുന്നതിൽ പിശക്</item>
     <item quantity="other">ക്ഷണങ്ങൾ റദ്ദാക്കുന്നതിൽ പിശക്</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">ചെയ്‌തു</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">\"%1$s\"-നെ  \"%2$s\"-ലേക്ക് ചേർക്കുക</item>
+    <item quantity="other">\"%2$s\"-ലേക്ക് %3$d അംഗങ്ങളെ ചേർക്കുക?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ഈ ഗ്രൂപ്പിന് പേര് നൽകുക</string>
+  <string name="AddGroupDetailsFragment__create_group">ഗ്രൂപ്പ് സൃഷ്ടിക്കുക</string>
   <string name="AddGroupDetailsFragment__create">സൃഷ്ടിക്കുക</string>
   <string name="AddGroupDetailsFragment__members">അംഗങ്ങൾ</string>
   <string name="AddGroupDetailsFragment__group_name_required">ഗ്രൂപ്പിന്റെ പേര് (ആവശ്യമാണ്)</string>
@@ -433,6 +440,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">ആർ‌ക്ക് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാൻ‌ കഴിയും</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">ഗ്രൂപ്പ് വിവരങ്ങൾ ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകും</string>
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
+  <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
   <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
   <string name="ManageGroupActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
@@ -446,6 +454,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d വ്യക്തിയെ ക്ഷണിച്ചു</item>
     <item quantity="other">%d പേർ ക്ഷണിച്ചു</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d അംഗം ചേർത്തു.</item>
+    <item quantity="other">%d അംഗങ്ങൾ ചേർത്തു.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ഇത് ചെയ്യുന്നതിന് നിങ്ങൾക്ക് അവകാശമില്ല</string>
   <string name="ManageGroupActivity_not_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ പുതിയ ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കുന്നില്ല, അവർ Signal അപ്‌ഡേറ്റുചെയ്യേണ്ടതുണ്ട്</string>
@@ -473,8 +485,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ഗ്രൂപ്പ് അവതാർ</string>
   <string name="CropImageActivity_profile_avatar">അവതാർ</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">മുഖങ്ങളൊന്നും കണ്ടെത്തിയില്ല</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">മുഖം മങ്ങിക്കുക</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">പുതിയത്: മുഖങ്ങൾ മങ്ങിക്കുക അല്ലെങ്കിൽ മങ്ങിക്കാൻ എവിടെയെങ്കിലും വരയ്ക്കുക</string>
@@ -687,10 +697,10 @@
   <string name="MessageRequestBottomView_block">ബ്ലോക്ക്</string>
   <string name="MessageRequestBottomView_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">നിങ്ങൾക്ക് %1$s-നെ സന്ദേശമയയ്ക്കാൻ അനുവദിക്കണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">നിങ്ങൾക്ക് %1$s ഗ്രൂപ്പിൽ ചേരാൻ താൽപ്പര്യമുണ്ടോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">നിങ്ങൾക്ക് %1$s ഗ്രൂപ്പിൽ ചേരാൻ താൽപ്പര്യമുണ്ടോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങളെ ക്ഷണിച്ചു. ഈ ഗ്രൂപ്പിലെ അംഗങ്ങളെ നിങ്ങൾക്ക് സന്ദേശമയയ്ക്കാൻ അനുവദിക്കണോ?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും %1$s-നെ അൺബ്ലോക്ക് ചെയ്യുക.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ ഗ്രൂപ്പ് അംഗങ്ങളെ അനുവദിക്കുന്നതിന് അൺബ്ലോക്ക് ചെയ്യുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും %1$s-നെ അൺബ്ലോക്ക് ചെയ്യുക.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ ഗ്രൂപ്പ് അംഗങ്ങളെ അനുവദിക്കുന്നതിന് അൺബ്ലോക്ക് ചെയ്യുക.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s അംഗം</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s, %2$s എന്നിവയിലെ അംഗം</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, %3$s എന്നിവയിലെ അംഗം</string>
@@ -839,6 +849,7 @@
   <string name="RegistrationActivity_continue">തുടരുക</string>
   <string name="RegistrationActivity_continue_d_attempts_left">തുടരുക (%d ശ്രമങ്ങൾ ശേഷിക്കുന്നു)</string>
   <string name="RegistrationActivity_continue_last_attempt">തുടരുക (അവസാന ശ്രമം!)</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">സ്വകാര്യത നിങ്ങൾക്കൊപ്പം കൊണ്ടുപോകുക.\nഎല്ലാ സന്ദേശത്തിലും നിങ്ങൾ നിങ്ങളെപ്പോലെ ആകുക.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ആരംഭിക്കുന്നതിന് വേണ്ടി നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ അയച്ച കോഡ് %s-ലേക്ക്  നൽകുക</string>
@@ -884,6 +895,11 @@
   <string name="Slide_audio">ഓഡിയോ</string>
   <string name="Slide_video">വീഡിയോ</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">കേടായ കീ ലഭിച്ചു
+      സന്ദേശം കൈമാറുക!</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+      അസാധുവായ പ്രോട്ടോക്കോൾ പതിപ്പിനായി കീ എക്സ്ചേഞ്ച് സന്ദേശം ലഭിച്ചു.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">പുതിയ സുരക്ഷാ നമ്പറുള്ള സന്ദേശം ലഭിച്ചു. പ്രോസസ്സ് ചെയ്യുന്നതിനും പ്രദർശിപ്പിക്കുന്നതിനും ടാപ്പുചെയ്യുക.</string>
   <string name="SmsMessageRecord_secure_session_reset">നിങ്ങൾ സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിച്ചു.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിച്ചു.</string>
   <string name="SmsMessageRecord_duplicate_message">ഡൂപ്ലകറ്റ് സന്ദേശം.</string>
@@ -952,6 +968,12 @@ grūpp ap‌ḍē</string>
   <string name="ThreadRecord_message_request">സന്ദേശത്തിനുള്ള അപേക്ഷ</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് ചേർത്തു</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു</string>
+  <string name="ThreadRecord_photo">ഫോട്ടോ</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">വോയിസ് മെസേജ്</string>
+  <string name="ThreadRecord_contact">കോൺ‌ടാക്ട്</string>
+  <string name="ThreadRecord_file">ഫയൽ</string>
+  <string name="ThreadRecord_video">വീഡിയോ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal അപ്‌ഡേറ്റ്</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ന്റെ പുതിയ പതിപ്പ് ലഭ്യമാണ്, അപ്‌ഡേറ്റ് ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
@@ -1044,6 +1066,14 @@ grūpp ap‌ḍē</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">സമീപകാല അറിയിപ്പുകൾക്കായി പരിശോധിക്കാൻ Signal തുറക്കുക.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">കോൺ‌ടാക്റ്റ്</string>
+  <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" നോട് %1$sപ്രതികരിച്ചു</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">നിങ്ങളുടെ വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">നിങ്ങളുടെ ചിത്രത്തോട് %1$s പ്രതികരിച്ചു.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">നിങ്ങളുടെ ഫയലിനോട് %1$s പ്രതികരിച്ചു.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന ഫോട്ടോയോട് %1$s പ്രതികരിച്ചു.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">നിങ്ങളുടെ സ്റ്റിക്കറിനോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">സ്ഥിരസ്ഥിതി</string>
@@ -1215,6 +1245,9 @@ grūpp ap‌ḍē</string>
   <string name="device_list_fragment__link_new_device">പുതിയ ഉപകരണം ലിങ്കുചെയ്യുക</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">തുടരുക</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">വായന രസീതുകൾ എത്തി </string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">സന്ദേശങ്ങൾ എപ്പോഴാണ് വായിച്ചിരുന്നത് ഓപ്‌ഷണലായി കാണുകയും പങ്കിടുകയും ചെയ്യുക</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">വായന രസീതുകൾ പ്രാപ്തമാക്കുക</string>
   <!--expiration-->
   <string name="expiration_off">ഓഫ്</string>
   <plurals name="expiration_seconds">
@@ -1308,6 +1341,8 @@ grūpp ap‌ḍē</string>
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">നിങ്ങളുടെ വയർലെസ് കാരിയർ വഴി മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും കൈമാറാൻ Signal-ന് MMS ക്രമീകരണങ്ങൾ ആവശ്യമാണ്. നിങ്ങളുടെ ഉപകരണം ഈ വിവരങ്ങൾ ലഭ്യമാക്കുന്നില്ല, ഇത് ലോക്കുചെയ്‌ത ഉപകരണങ്ങൾക്കും മറ്റ് നിയന്ത്രിത കോൺഫിഗറേഷനുകൾക്കും ഇടയ്ക്കിടെ ശരിയാണ്.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും അയയ്‌ക്കാൻ, \'ശരി\' ടാപ്പുചെയ്‌ത് അഭ്യർത്ഥിച്ച ക്രമീകരണങ്ങൾ പൂർത്തിയാക്കുക. \'നിങ്ങളുടെ കാരിയർ APN\' എന്നതിനായി തിരയുന്നതിലൂടെ നിങ്ങളുടെ കാരിയറിനായുള്ള MMS ക്രമീകരണങ്ങൾ സാധാരണയായി കണ്ടെത്താനാകും. നിങ്ങൾ ഇത് ഒരു തവണ ചെയ്താൽ മതി.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">പേരിൻ്റെ ആദ്യ ഭാഗം (ആവശ്യമാണ്)</string>
+  <string name="CreateProfileActivity_last_name_optional">പേരിൻ്റെ അവസാന ഭാഗം (ഓപ്ഷണൽ)</string>
   <string name="CreateProfileActivity_next">അടുത്തത്</string>
   <string name="CreateProfileActivity__username">യൂസേർനേമ്</string>
   <string name="CreateProfileActivity__create_a_username">ഒരു  യൂസേർനേമ് സൃഷ്ടിക്കുക</string>
@@ -1359,8 +1394,10 @@ grūpp ap‌ḍē</string>
   <string name="message_details_header__sent">അയച്ചു</string>
   <string name="message_details_header__received">ലഭിച്ചു</string>
   <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നു</string>
+  <string name="message_details_header__via">വഴി</string>
   <string name="message_details_header__to">സ്വീകർത്താവ്:</string>
   <string name="message_details_header__from">പ്രേഷിതാവ്:</string>
+  <string name="message_details_header__with">ഇതുമായി:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">പാസ്‌ഫ്രെയ്‌സ് സൃഷ്‌ടിക്കുക</string>
   <string name="AndroidManifest__select_contacts">കോൺടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക</string>
@@ -1426,6 +1463,7 @@ grūpp ap‌ḍē</string>
   <string name="arrays__images">ചിത്രങ്ങൾ</string>
   <string name="arrays__audio">ഓഡിയോ</string>
   <string name="arrays__video">വീഡിയോ</string>
+  <string name="arrays__documents">പ്രമാണങ്ങൾ</string>
   <string name="arrays__small">ചെറുത്</string>
   <string name="arrays__normal">സാധാരണ</string>
   <string name="arrays__large">വലുത്</string>
@@ -1457,6 +1495,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__screen_security">സ്‌ക്രീൻ സുരക്ഷ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">റീസന്റ് ലിസ്റ്റിലും അപ്ലിക്കേഷനിലും സ്‌ക്രീൻഷോട്ടുകൾ തടയുക</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">നിഷ്‌ക്രിയത്വത്തിന്റെ നിർദ്ദിഷ്ട സമയ ഇടവേളയ്‌ക്ക് ശേഷം Signal സ്വപ്രേരിതമായി ലോക്ക് ചെയ്യുക</string>
+  <string name="preferences__inactivity_timeout_passphrase">നിഷ്‌ക്രിയത്വ കാലഹരണപ്പെടൽ പാസ്‌ഫ്രെയ്‌സ്</string>
   <string name="preferences__inactivity_timeout_interval">നിഷ്‌ക്രിയത്വ കാലഹരണപ്പെടൽ ഇടവേള</string>
   <string name="preferences__notifications">അറിയിപ്പുകൾ</string>
   <string name="preferences__system_notification_settings">സിസ്റ്റം അറിയിപ്പ് ക്രമീകരണങ്ങൾ</string>
@@ -1465,6 +1504,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__pref_led_blink_title">എൽഇഡി ബ്ലിങ്ക് പാറ്റേൺ</string>
   <string name="preferences__sound">ശബ്ദം</string>
   <string name="preferences__silent">നിശബ്ദത</string>
+  <string name="preferences__repeat_alerts">അലേർട്ടുകൾ ആവർത്തിക്കുക</string>
   <string name="preferences__never">ഒരിക്കലും വേണ്ട</string>
   <string name="preferences__one_time">ഒരിക്കൽ</string>
   <string name="preferences__two_times">രണ്ടു തവണ</string>
@@ -1514,6 +1554,11 @@ grūpp ap‌ḍē</string>
   <string name="preferences__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
   <string name="preferences__support_wifi_calling">\'WiFi കോളിംഗ്\' അനുയോജ്യത മോഡ്</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">നിങ്ങളുടെ ഉപകരണം WiFi വഴി SMS/MMS ഡെലിവറി ഉപയോഗിക്കുന്നുവെങ്കിൽ പ്രവർത്തനക്ഷമമാക്കുക (നിങ്ങളുടെ ഉപകരണത്തിൽ \'WiFi കോളിംഗ്\' പ്രവർത്തനക്ഷമമാക്കിയാൽ മാത്രം പ്രവർത്തനക്ഷമമാക്കുക)</string>
+  <string name="preferences__incognito_keyboard">ഇൻകോഗ്നിറ്റോ കീബോർഡ്</string>
+  <string name="preferences__read_receipts">വായന രസീതുകൾ</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">വായന രസീതുകൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്നുള്ള വായന രസീതുകൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
+  <string name="preferences__typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്ന് ടൈപ്പിംഗ് സൂചകങ്ങൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
   <string name="preferences_app_protection__blocked_contacts">തടഞ്ഞുവെച്ച കോൺടാക്റ്റുകൾ</string>
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_using_wifi">വൈഫൈ ഉപയോഗിക്കുമ്പോൾ</string>
@@ -1529,10 +1574,12 @@ grūpp ap‌ḍē</string>
   <string name="preferences_advanced__use_system_emoji">സിസ്റ്റം ഇമോജി ഉപയോഗിക്കുക</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">നിങ്ങളുടെ കോൺ‌ടാക്റ്റിലേക്ക് നിങ്ങളുടെ ഐ‌പി വിലാസം വെളിപ്പെടുത്തുന്നത് ഒഴിവാക്കാൻ സിഗ്നൽ സെർവർ വഴി എല്ലാ കോളുകളും റിലേ ചെയ്യുക. പ്രവർത്തനക്ഷമമാക്കുന്നത് കോൾ നിലവാരം കുറയ്ക്കും.</string>
   <string name="preferences_advanced__always_relay_calls">എല്ലായ്പ്പോഴും കോളുകൾ റിലേ ചെയ്യുക</string>
+  <string name="preferences_app_protection__app_access">അപ്ലിക്കേഷൻ ആക്‌സസ്സ്</string>
   <string name="preferences_app_protection__communication">ആശയവിനിമയം</string>
   <string name="preferences_chats__chats">ചാറ്റുകൾ</string>
   <string name="preferences_notifications__messages">സന്ദേശങ്ങൾ</string>
   <string name="preferences_notifications__events">ഇവന്റുകൾ</string>
+  <string name="preferences_notifications__in_chat_sounds">ഇൻ-ചാറ്റ് ശബ്‌ദങ്ങള്‍</string>
   <string name="preferences_notifications__show">കാണിക്കുക</string>
   <string name="preferences_notifications__calls">കോളുകൾ</string>
   <string name="preferences_notifications__ringtone">റിംഗ്‌ടോൺ</string>
@@ -1885,11 +1932,14 @@ grūpp ap‌ḍē</string>
   <string name="RecipientBottomSheet_call">കോൾ ചെയ്യുക</string>
   <string name="RecipientBottomSheet_block">ബ്ലോക്ക്</string>
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>
+  <string name="RecipientBottomSheet_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
   <string name="RecipientBottomSheet_make_group_admin">ഗ്രൂപ്പ് അഡ്‌മിൻ ആക്കുക</string>
   <string name="RecipientBottomSheet_remove_as_admin">അഡ്മിനായി നീക്കംചെയ്യുക</string>
   <string name="RecipientBottomSheet_remove_from_group">ഗ്രൂപ്പിൽ നിന്ന് നീക്കംചെയ്യുക</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s-നെ അഡ്മിൻ സ്ഥാനത്ത് നിന്ന് ഒഴിവാക്കണോ?</string>
   <string name="RecipientBottomSheet_remove">ഒഴിവാക്കുക</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>
   <!--EOF-->
 </resources>

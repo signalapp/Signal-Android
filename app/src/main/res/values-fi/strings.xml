@@ -414,8 +414,15 @@
     <item quantity="one">Kutsun peruminen epäonnistui</item>
     <item quantity="other">Kutsujen peruminen epäonnistui</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Valmis</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Lisää \"%1$s\" ryhmään \"%2$s\"?</item>
+    <item quantity="other">Lisää %3$d jäsentä ryhmään \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nimeä tämä ryhmä</string>
+  <string name="AddGroupDetailsFragment__create_group">Luo ryhmä</string>
   <string name="AddGroupDetailsFragment__create">Luo</string>
   <string name="AddGroupDetailsFragment__members">Jäsenet</string>
   <string name="AddGroupDetailsFragment__group_name_required">Ryhmän nimi (vaaditaan)</string>
@@ -433,6 +440,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Ketkä voivat muokata ryhmän jäsenyyttä</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Ketkä voivat muokata ryhmän tietoja</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
+  <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
   <string name="ManageGroupActivity_leave_group">Poistu ryhmästä</string>
   <string name="ManageGroupActivity_mute_notifications">Mykistä ilmoitukset</string>
   <string name="ManageGroupActivity_custom_notifications">Mukautetut ilmoitukset</string>
@@ -446,6 +454,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d kutsuttu</item>
     <item quantity="other">%d kutsuttu</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d jäsen lisätty.</item>
+    <item quantity="other">%d jäsentä lisätty.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sinulla ei ole oikeuksia tähän</string>
   <string name="ManageGroupActivity_not_capable">Joku lisäämistäsi käyttäjistä ei tue uusia ryhmiä ja hänen on siis päivitettävä Signal</string>
@@ -473,8 +485,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ryhmän kuvake</string>
   <string name="CropImageActivity_profile_avatar">Kuvake</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Kasvoja ei havaittu</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Sumenna kasvot</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Uutta: Sumenna kasvot tai piirrä sumentaaksesi</string>
@@ -687,10 +697,10 @@
   <string name="MessageRequestBottomView_block">Estä</string>
   <string name="MessageRequestBottomView_unblock">Poista esto</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko antaa henkilön %1$s viestiä sinulle? Hän ei tiedä, että olet nähnyt hänen viestinsä, ennen kuin hyväksyt.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä ryhmään %1$s? He eivät tiedä, että olet nähnyt heidän viestinsä, ennen kuin hyväksyt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä ryhmään %1$s? He eivät tiedä, että olet nähnyt heidän viestinsä, ennen kuin hyväksyt.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sinut kutsuttiin liittymään ryhmään %1$s. Haluatko antaa tämän ryhmän jäsenten lähettää sinulle viestejä?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Poista %1$s:n esto voidaksesi lähettää viestejä ja soittaa toisillenne.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Poista esto, jotta ryhmän jäsenet voivat lisätä sinut takaisin ryhmään.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Poista %1$s:n esto voidaksesi lähettää viestejä ja soittaa toisillenne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Poista esto, jotta ryhmän jäsenet voivat lisätä sinut takaisin ryhmään.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Jäsen ryhmässä %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Jäsen ryhmissä %1$s ja %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Jäsen ryhmissä %1$s, %2$s ja %3$s</string>
@@ -959,6 +969,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_message_request">Viestipyyntö</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s lisäsi sinut ryhmään</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s kutsui sinut ryhmään</string>
+  <string name="ThreadRecord_photo">Kuva</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Ääniviesti</string>
+  <string name="ThreadRecord_contact">Yhteystieto</string>
+  <string name="ThreadRecord_file">Tiedosto</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
@@ -1590,6 +1606,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Uusi viesti henkilölle…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Lisää ryhmään</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Soita</string>
   <!--conversation_callable_secure-->
@@ -1942,6 +1959,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_call">Soita</string>
   <string name="RecipientBottomSheet_block">Estä</string>
   <string name="RecipientBottomSheet_unblock">Poista esto</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="RecipientBottomSheet_view_safety_number">Näytä turvanumero</string>
   <string name="RecipientBottomSheet_make_group_admin">Nimitä ryhmän ylläpitäjäksi</string>
   <string name="RecipientBottomSheet_remove_as_admin">Poista ylläpitäjän oikeudet</string>
@@ -1950,6 +1968,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s voi tulevaisuudessa muokata ryhmää ja sen jäseniä</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Poista %1$s ryhmästä \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Poista</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="GroupRecipientListItem_admin">Ylläpitäjä</string>
   <!--EOF-->
 </resources>

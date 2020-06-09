@@ -478,8 +478,11 @@
     <item quantity="many">خطأ في إلغاء الدعوات</item>
     <item quantity="other">خطأ في إلغاء الدعوات</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">تم</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">سمّ هذه المجموعة</string>
+  <string name="AddGroupDetailsFragment__create_group">إنشاء مجموعة</string>
   <string name="AddGroupDetailsFragment__create">إنشاء</string>
   <string name="AddGroupDetailsFragment__members">الأعضاء</string>
   <string name="AddGroupDetailsFragment__group_name_required">اسم المجموعة (ضروري)</string>
@@ -540,8 +543,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">لم تُكتشف أي وجوه</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">ضبّب الوجوه</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">جديد: ضبّب الوجوه أو ارسم في أي مكان لتضبيبه</string>
@@ -767,9 +768,9 @@
   <string name="MessageRequestBottomView_block">حظر</string>
   <string name="MessageRequestBottomView_unblock">رفع الحظر</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود السماح لـ %1$s بأن يكتب إليك ؟ لن يعرف أنك قرأت رسائله حتى توافق على ذلك.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود الانضمام إلى المجموعة %1$s ؟  لن يعرفوا أنك قرأت رسائلهم حتى توافق على ذلك.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">إلغاء حظر %1$s لمراسلة ومكالمة بعضكما.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">إلغاء الحظر للسماح لأعضاء المجموعة بإضافتك مرة أخرى للمجموعة.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود الانضمام إلى المجموعة %1$s ؟  لن يعرفوا أنك قرأت رسائلهم حتى توافق على ذلك.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">إلغاء حظر %1$s لمراسلة ومكالمة بعضكما.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">إلغاء الحظر للسماح لأعضاء المجموعة بإضافتك مرة أخرى للمجموعة.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">عضو في %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو في %1$s و%2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">عضو في %1$s و%2$s و%3$s</string>
@@ -1038,6 +1039,12 @@
   <string name="ThreadRecord_message_could_not_be_processed">لم يمكن معالجة الرسالة</string>
   <string name="ThreadRecord_message_request">طلب مراسلة</string>
   <string name="ThreadRecord_s_added_you_to_the_group">أضافك %1$s للمجموعة</string>
+  <string name="ThreadRecord_photo">صورة</string>
+  <string name="ThreadRecord_gif">صورة متحركة</string>
+  <string name="ThreadRecord_voice_message">رسالة صوتية.</string>
+  <string name="ThreadRecord_contact">جهة اتصال</string>
+  <string name="ThreadRecord_file">ملف</string>
+  <string name="ThreadRecord_video">فيديو</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">تحديث Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">إصدار جديد لـ Signal متوفر، أنقر للتحديث</string>
@@ -2045,6 +2052,7 @@
   <string name="RecipientBottomSheet_call">اتصال</string>
   <string name="RecipientBottomSheet_block">حظر</string>
   <string name="RecipientBottomSheet_unblock">رفع الحظر</string>
+  <string name="RecipientBottomSheet_add_to_contacts">أضف إلى جهات الاتصال</string>
   <string name="RecipientBottomSheet_view_safety_number">عرض رقم السلامة</string>
   <string name="RecipientBottomSheet_make_group_admin">اجعلهـ/ـا إداريـ/ـة للمجموعة</string>
   <string name="RecipientBottomSheet_remove_as_admin">أزل من كونه إداريًا</string>
@@ -2052,6 +2060,7 @@
   <string name="RecipientBottomSheet_remove_s_as_group_admin">أأزيل %1$s من كونه إداريًا في المجموعة؟</string>
   <string name="RecipientBottomSheet_remove_s_from_s">أأزيل %1$s من \"%2$s\"؟</string>
   <string name="RecipientBottomSheet_remove">إزالة</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
   <string name="GroupRecipientListItem_admin">مشرف</string>
   <!--EOF-->
 </resources>

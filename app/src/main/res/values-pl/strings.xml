@@ -446,8 +446,17 @@
     <item quantity="many">Błąd przy anulowaniu zaproszeń</item>
     <item quantity="other">Błąd przy anulowaniu zaproszeń</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Gotowe</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Dodać \"%1$s\" do \"%2$s\"?</item>
+    <item quantity="few">Dodać %3$d członków do \"%2$s\"?</item>
+    <item quantity="many">Dodać %3$d członków do \"%2$s\"?</item>
+    <item quantity="other">Dodać %3$d członków do \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nazwij grupę</string>
+  <string name="AddGroupDetailsFragment__create_group">Utwórz grupę</string>
   <string name="AddGroupDetailsFragment__create">Utwórz</string>
   <string name="AddGroupDetailsFragment__members">Członkowie</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nazwa grupy (wymagane)</string>
@@ -465,6 +474,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Kto może edytować członkostwo w grupie</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Kto może edytować informacje o grupie</string>
   <string name="ManageGroupActivity_block_group">Zablokuj grupę</string>
+  <string name="ManageGroupActivity_unblock_group">Odblokuj grupę</string>
   <string name="ManageGroupActivity_leave_group">Opuść grupę</string>
   <string name="ManageGroupActivity_mute_notifications">Wycisz powiadomienia</string>
   <string name="ManageGroupActivity_custom_notifications">Niestandardowe powiadomienia</string>
@@ -481,13 +491,19 @@
     <item quantity="many">%d zaproszonych</item>
     <item quantity="other">%d zaproszonych</item>
   </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">Dodano %d członka.</item>
+    <item quantity="few">Dodano %d członków.</item>
+    <item quantity="many">Dodano %d członków.</item>
+    <item quantity="other">Dodano %d członków.</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nie masz uprawnień, aby to zrobić</string>
   <string name="ManageGroupActivity_not_capable">Ktoś, kogo dodałeś, nie obsługuje nowych grup i musi zaktualizować Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Aktualizacja grupy nie powiodła się</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nie jesteś członkiem tej grupy</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Edytuj nazwę i zdjęcie</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Wybierz, kto może dodawać lub zapraszać nowych członków</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Wybierz kto może zmienić nazwę i obraz grupy:</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Wybierz kto może zmienić nazwę i zdjęcie grupy</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s zaprosił(a) 1 osobę</item>
     <item quantity="few">%1$s zaprosił(a) %2$d osoby</item>
@@ -511,8 +527,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grupy</string>
   <string name="CropImageActivity_profile_avatar">Awatar</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Nie wykryto twarzy</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rozmyj twarze</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nowość: Rozmyj twarze lub rysuj, aby rozmyć</string>
@@ -745,10 +759,10 @@
   <string name="MessageRequestBottomView_block">Zablokuj</string>
   <string name="MessageRequestBottomView_unblock">Odblokuj</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz pozwolić by %1$s pisał(a) do Ciebie wiadomości? Twój kontakt nie będzie wiedzieć, że przeczytałeś(aś) jego wiadomość, dopóki nie zaakceptujesz.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz dołączyć do grupy %1$s? Członkowie grupy nie będą wiedzieć, że przeczytałeś(aś) ich wiadomość, dopóki nie zaakceptujesz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz dołączyć do grupy %1$s? Członkowie grupy nie będą wiedzieć, że przeczytałeś(aś) ich wiadomość, dopóki nie zaakceptujesz.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Zostałeś(aś) zaproszony(a) do grupy %1$s. Czy chcesz pozwolić członkom tej grupy na wysyłanie Ci wiadomości?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokuj %1$s, abyście mogli wysyłać wiadomości i wykonywać połączenia do siebie nawzajem.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokuj, aby umożliwić członkom grupy, ponowne dodanie Cię do tej grupy.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokuj %1$s, abyście mogli wysyłać wiadomości i wykonywać połączenia do siebie nawzajem.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokuj, aby umożliwić członkom grupy, ponowne dodanie Cię do tej grupy.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Członek %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Członek %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Członek %1$s, %2$s i %3$s</string>
@@ -1025,6 +1039,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_message_request">Prośba o kontakt</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s dodał(a) Cię do grupy</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s zaprosił(a) Cię do grupy.</string>
+  <string name="ThreadRecord_photo">Zdjęcie</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Wiadomość głosowa</string>
+  <string name="ThreadRecord_contact">Kontakt</string>
+  <string name="ThreadRecord_file">Plik</string>
+  <string name="ThreadRecord_video">Wideo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizacja Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostępna jest nowa wersja Signal. Dotknij, aby zaktualizować</string>
@@ -1417,7 +1437,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CreateProfileActivity__username">Nazwa użytkownika</string>
   <string name="CreateProfileActivity__create_a_username">Utwórz nazwę użytkownika</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Edytuj nazwę i obraz grupy</string>
+  <string name="EditProfileFragment__edit_group_name_and_photo">Edytuj nazwę i zdjęcie grupy</string>
   <string name="EditProfileFragment__group_name">Nazwa grupy</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Udostępnione multimedia</string>
@@ -1674,6 +1694,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nowa wiadomość do…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Dodaj do grupy</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Zadzwoń</string>
   <!--conversation_callable_secure-->
@@ -2042,6 +2063,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RecipientBottomSheet_call">Zadzwoń</string>
   <string name="RecipientBottomSheet_block">Zablokuj</string>
   <string name="RecipientBottomSheet_unblock">Odblokuj</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Dodaj do kontaktów</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobacz numer bezpieczeństwa</string>
   <string name="RecipientBottomSheet_make_group_admin">Mianuj administratorem grupy</string>
   <string name="RecipientBottomSheet_remove_as_admin">Usuń administratora</string>
@@ -2050,6 +2072,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s będzie w stanie edytować tę grupę i jej członków</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Usunąć %1$s z \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Usuń</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Skopiowano do schowka</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
   <!--EOF-->
 </resources>

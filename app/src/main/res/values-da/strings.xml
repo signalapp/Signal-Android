@@ -415,8 +415,15 @@
     <item quantity="one">Fejl ved annullering af invitation</item>
     <item quantity="other">Fejl ved annullering af invitationer</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Udført</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Tilføj \"%1$s\" til \"%2$s\"?</item>
+    <item quantity="other">Tilføj %3$d medlemmer til \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Navngiv gruppen</string>
+  <string name="AddGroupDetailsFragment__create_group">Opret gruppe</string>
   <string name="AddGroupDetailsFragment__create">Opret</string>
   <string name="AddGroupDetailsFragment__members">Medlemmer</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppenavn (påkrævet)</string>
@@ -434,6 +441,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Hvem kan redigere gruppemedlemskab</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Hvem kan redigere gruppeinformation</string>
   <string name="ManageGroupActivity_block_group">Blokér gruppe</string>
+  <string name="ManageGroupActivity_unblock_group">Ophæv blokering af gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlad gruppe</string>
   <string name="ManageGroupActivity_mute_notifications">Udsæt notifikationer</string>
   <string name="ManageGroupActivity_custom_notifications">Brugerdefinerede notifikationer</string>
@@ -447,6 +455,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d inviteret</item>
     <item quantity="other">%d inviteret</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d medlem er tilføjet.</item>
+    <item quantity="other">%d medlemmer er tilføjet.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikke rettigheder til at gøre dette</string>
   <string name="ManageGroupActivity_not_capable">En person som du tilføjede, understøtter ikke nye grupper og skal opdatere Signal</string>
@@ -474,8 +486,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Ingen ansigter detekteret</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Slør ansigter</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nyt: Slør ansigter eller tegn hvor du vil, for at sløre</string>
@@ -688,10 +698,10 @@
   <string name="MessageRequestBottomView_block">Blokér</string>
   <string name="MessageRequestBottomView_unblock">Ophæv blokering</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du tillade at %1$s skriver til dig? De vil ikke vide du har læst deres beskeder, før du accepterer</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du deltage i gruppen %1$s? De vil ikke vide du har læst deres beskeder, før du accepterer</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du deltage i gruppen %1$s? De vil ikke vide du har læst deres beskeder, før du accepterer</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du blev inviteret til at deltage i gruppen %1$s. Vil du tillade medlemmer af gruppen at sende dig beskeder?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Fjern blokering af %1$s for at kunne skrive og ringe til hinanden</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Fjern blokering for at tillade medlemmer af gruppen at tilføje dig til gruppen igen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Fjern blokering af %1$s for at kunne skrive og ringe til hinanden</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Fjern blokering for at tillade medlemmer af gruppen at tilføje dig til gruppen igen</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Medlem af %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem af %1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem af %1$s, %2$s og %3$s</string>
@@ -965,6 +975,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ThreadRecord_message_request">Besked forespørgsel</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s tilføjede dig til gruppen</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s inviterede dig til gruppen</string>
+  <string name="ThreadRecord_photo">Billed</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Talebesked</string>
+  <string name="ThreadRecord_contact">Kontakt</string>
+  <string name="ThreadRecord_file">Fil</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Opdater Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tap for at opdatere</string>
@@ -1596,6 +1612,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Ny besked til…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Tilføj til gruppe</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Opkald</string>
   <!--conversation_callable_secure-->
@@ -1949,6 +1966,7 @@ Der er %d dage tilbage</string>
   <string name="RecipientBottomSheet_call">Ring op </string>
   <string name="RecipientBottomSheet_block">Blokér</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokering</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Tilføj til kontakter</string>
   <string name="RecipientBottomSheet_view_safety_number">Vis sikkerhedsnummer</string>
   <string name="RecipientBottomSheet_make_group_admin">Gør til gruppeadministrator</string>
   <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
@@ -1957,6 +1975,7 @@ Der er %d dage tilbage</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s vil være i stand til at redigere gruppen og dens medlemmer</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Fjern %1$s fra \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Kopieret til udklipsholder</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
   <!--EOF-->
 </resources>

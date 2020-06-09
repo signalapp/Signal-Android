@@ -441,7 +441,10 @@
     <item quantity="many">Chyba pri rušení pozvánok</item>
     <item quantity="other">Chyba pri rušení pozvánok</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Hotovo</string>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create_group">Vytvoriť skupinu</string>
   <string name="AddGroupDetailsFragment__create">Vytvoriť</string>
   <string name="AddGroupDetailsFragment__members">Členovia</string>
   <string name="AddGroupDetailsFragment__group_name_required">Názov skupiny (povinné)</string>
@@ -479,7 +482,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Obrázok skupiny</string>
   <string name="CropImageActivity_profile_avatar">Fotka</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Zamažte tváre</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">Kreslite kdekoľvek na zamazanie</string>
@@ -711,9 +713,9 @@
   <string name="MessageRequestBottomView_block">Blokovať</string>
   <string name="MessageRequestBottomView_unblock">Odblokovať</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete umožniť používateľovi %1$s, aby vám poslal správu? Nedozvie sa, že ste videli jeho/jej správy, pokým nepotvrdíte prijatie.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete sa pripojiť k skupine %1$s? Jej členovia sa nedozvú, že ste videli ich správy, pokým nepotvrdíte prijatie.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokovať používateľa %1$s, aby ste si mohli vymieňať správy a navzájom si volať.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokovať, aby ste umožnili členom skupiny znova vás pridať do tejto skupiny.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete sa pripojiť k skupine %1$s? Jej členovia sa nedozvú, že ste videli ich správy, pokým nepotvrdíte prijatie.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokovať používateľa %1$s, aby ste si mohli vymieňať správy a navzájom si volať.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokovať, aby ste umožnili členom skupiny znova vás pridať do tejto skupiny.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Člen skupiny %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Člen skupiny %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Člen skupiny %1$s, %2$s a %3$s</string>
@@ -988,6 +990,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_message_could_not_be_processed">Správu sa nepodarilo spracovať</string>
   <string name="ThreadRecord_message_request">Žiadosť o správu</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s vás pridal/a do skupiny</string>
+  <string name="ThreadRecord_photo">Fotka</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Hlasová správa</string>
+  <string name="ThreadRecord_contact">Kontakt</string>
+  <string name="ThreadRecord_file">Súbor</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -1981,8 +1989,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RecipientBottomSheet_call">Zavolať</string>
   <string name="RecipientBottomSheet_block">Blokovať</string>
   <string name="RecipientBottomSheet_unblock">Odblokovať</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Pridať medzi kontakty</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobraziť bezpečnostné číslo</string>
   <string name="RecipientBottomSheet_remove">Odstrániť</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Skopírované do schránky</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--EOF-->
 </resources>

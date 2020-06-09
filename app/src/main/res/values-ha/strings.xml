@@ -369,6 +369,8 @@
   <string name="PendingMembersActivity_people_you_invited">Mutane da ka/kika gayyata</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Gayyatar wasu membobin rukuni</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Ba\'a nuna wa kowa bayanan mutane da wasu membobin rukuni suka gayyata. Idan waddanda aka gayyata suka shiga mutanen rukuni zasu ga bayanansu a lokacin. Su kuma ba za su ga ko wanne sako a rukunin ba sai sun shiga. </string>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Angama</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">kirkira</string>
   <string name="AddGroupDetailsFragment__members">Membobi</string>
@@ -393,7 +395,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Hoton rukuni</string>
   <string name="CropImageActivity_profile_avatar">Alamar hoto.</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Taba kuma ka/ki rike nan domin daukar sakon mura, sake ka/ki tura</string>
@@ -780,6 +781,12 @@
   <string name="ThreadRecord_you_marked_unverified">Ka/kin shaida cewar ba ingantattce ba</string>
   <string name="ThreadRecord_message_could_not_be_processed">An kasa sarrafa sako</string>
   <string name="ThreadRecord_message_request">Neman izinin sako</string>
+  <string name="ThreadRecord_photo">Hoto</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Sakon murya</string>
+  <string name="ThreadRecord_contact">Lambar sadarwa</string>
+  <string name="ThreadRecord_file">Fayil</string>
+  <string name="ThreadRecord_video">Bidiyo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Sabuntuwar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">An samu sabon Signal, taba domin sabuntarwa</string>
@@ -1663,8 +1670,10 @@
   <string name="RecipientBottomSheet_call">Kira</string>
   <string name="RecipientBottomSheet_block">Toshe</string>
   <string name="RecipientBottomSheet_unblock">Bude</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Sa a lambobin sadarwa</string>
   <string name="RecipientBottomSheet_view_safety_number">Kalli lambar tsari</string>
   <string name="RecipientBottomSheet_remove">Cire</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">An kwafa zuwa allon rubutu</string>
   <string name="GroupRecipientListItem_admin">Mai gudanarwa</string>
   <!--EOF-->
 </resources>

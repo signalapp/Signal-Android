@@ -448,8 +448,11 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Gwall diddymu gwahoddiadau</item>
     <item quantity="other">Gwall diddymu gwahoddiadau</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Wedi Gorffen</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Enwi\'r grŵp hwn</string>
+  <string name="AddGroupDetailsFragment__create_group">Creu grŵp</string>
   <string name="AddGroupDetailsFragment__create">Creu</string>
   <string name="AddGroupDetailsFragment__members">Aelodau</string>
   <string name="AddGroupDetailsFragment__group_name_required">Enw\'r grŵp (angenrheidiol)</string>
@@ -513,8 +516,6 @@ Send neges heb ei ddiogelu?</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Rhithffurf y grŵp</string>
   <string name="CropImageActivity_profile_avatar">Rhithffurf</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Heb ganfod wynebau</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Pylu wynebau</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Newydd: Pylu wynebau neu llunio unrhyw le i bylu</string>
@@ -747,10 +748,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestBottomView_block">Rhwystro</string>
   <string name="MessageRequestBottomView_unblock">Dadrwystro</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ydych chi am adael i %1$s neges i chi? Fyddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Hoffech chi ymuno â grŵp %1$s? Fyddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Hoffech chi ymuno â grŵp %1$s? Fyddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Rydych wedi\'ch gwahodd i ymuno â\'r grŵp %1$s. Ydych chi am adael i aelodau\'r grŵp hwn eich negesu?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Dadrwyst4ro %1$s i negesu a galw eich gilydd.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Dadrwystro i ganiatáu i aelodau\'r grŵp eich ychwanegu at y grŵp hwn eto.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Dadrwyst4ro %1$s i negesu a galw eich gilydd.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Dadrwystro i ganiatáu i aelodau\'r grŵp eich ychwanegu at y grŵp hwn eto.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Aelod o %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Aeolod o %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Aelod o %1$s, %2$s a %3$s</string>
@@ -1035,6 +1036,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_message_request">Cais Neges</string>
   <string name="ThreadRecord_s_added_you_to_the_group">Fe wnaeth %1$s eich ychwanegu chi at y grŵp</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">Fe wnaeth %1$s eich gwahodd i\'r grŵp.</string>
+  <string name="ThreadRecord_photo">Llun</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Neges Llais</string>
+  <string name="ThreadRecord_contact">Cysylltiad</string>
+  <string name="ThreadRecord_file">Ffeil</string>
+  <string name="ThreadRecord_video">Fideo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Diweddariad Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Signal ar gael. Tapiwch i ddiweddaru</string>
@@ -2052,6 +2059,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_call">Galw</string>
   <string name="RecipientBottomSheet_block">Rhwystro</string>
   <string name="RecipientBottomSheet_unblock">Dadrwystro</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Ychwanegu at gysylltiadau</string>
   <string name="RecipientBottomSheet_view_safety_number">Gweld rhif diogelwch</string>
   <string name="RecipientBottomSheet_make_group_admin">Creu gweinyddwr grŵp</string>
   <string name="RecipientBottomSheet_remove_as_admin">Tynnu fel gweinyddwr</string>
@@ -2060,6 +2068,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Bydd %1$s yn gallu golygu\'r grŵp hwn a\'i aelodau</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Tynnu %1$s o \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Tynnu</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <string name="GroupRecipientListItem_admin">Gweinyddwr</string>
   <!--EOF-->
 </resources>

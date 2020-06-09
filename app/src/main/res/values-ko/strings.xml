@@ -371,7 +371,10 @@
   <string name="PendingMembersActivity_people_you_invited">초대한 사람들</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">다른 그룹 멤버들의 초대</string>
   <string name="PendingMembersActivity_missing_detail_explanation">다른 그룹 멤버들이 초대한 사람들의 세부정보는 표시되지 않습니다. 초대된 사람이 참가하기로 했다면, 정보가 즉시 그룹에 공유됩니다. 참가할 때까지 그룹 내 메시지는 볼 수 없습니다. </string>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">확인</string>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create_group">그룹 만들기</string>
   <string name="AddGroupDetailsFragment__create">생성</string>
   <string name="AddGroupDetailsFragment__members">멤버</string>
   <string name="AddGroupDetailsFragment__group_name_required">그룹 이름(필수)</string>
@@ -395,7 +398,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">그룹 아바타</string>
   <string name="CropImageActivity_profile_avatar">아바타</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">길게 탭하여 음성 메시지를 녹음하고, 손을 떼어 보내기</string>
@@ -556,8 +558,8 @@
   <string name="MessageRequestBottomView_block">차단</string>
   <string name="MessageRequestBottomView_unblock">차단 해제</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s가 메시지를 할 수 있도록 할까요? 그들은 당신이 동의할 때까지 당신이 그들의 메시지를 봤는지 확인할 수 없습니다.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 그룹에 참가할까요? 당신이 동의하기 전에는 당신이 그들의 메시지를 봤는지 타인이 알 수 없습니다. </string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$s를 차단 해제하여 서로 전화 및 메시지 교류</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 그룹에 참가할까요? 당신이 동의하기 전에는 당신이 그들의 메시지를 봤는지 타인이 알 수 없습니다. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$s를 차단 해제하여 서로 전화 및 메시지 교류</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 및 %2$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s 및 %3$s 멤버</string>
@@ -799,6 +801,12 @@
   <string name="ThreadRecord_you_marked_unverified">인증되지 않음으로 표시했습니다.</string>
   <string name="ThreadRecord_message_could_not_be_processed">메시지를 처리할 수 없음</string>
   <string name="ThreadRecord_message_request">메시지 요청</string>
+  <string name="ThreadRecord_photo">사진</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">음성 메시지</string>
+  <string name="ThreadRecord_contact">연락처</string>
+  <string name="ThreadRecord_file">파일</string>
+  <string name="ThreadRecord_video">동영상</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 업데이트</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">새 Signal 버전 출시, 탭하여 업데이트</string>
@@ -1715,8 +1723,10 @@
   <string name="RecipientBottomSheet_call">전화</string>
   <string name="RecipientBottomSheet_block">차단</string>
   <string name="RecipientBottomSheet_unblock">차단 해제</string>
+  <string name="RecipientBottomSheet_add_to_contacts">연락처에 추가</string>
   <string name="RecipientBottomSheet_view_safety_number">안전 번호 보기</string>
   <string name="RecipientBottomSheet_remove">삭제</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="GroupRecipientListItem_admin">관리자</string>
   <!--EOF-->
 </resources>

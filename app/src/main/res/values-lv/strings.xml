@@ -419,6 +419,8 @@
   <string name="PendingMembersActivity_missing_detail_explanation">Detaļas par ielūgtajiem no citu grupu lietotājiem netiek rādītas. Ja ielūgtie izvēlas pievienoties, grupai būs piekļuve viņu informācijai. Viņi neredzēs grupas ziņojumus, kamēr nepievienosies grupai.</string>
   <string name="PendingMembersActivity_cancel_invite">Atcelt ielūgumu</string>
   <string name="PendingMembersActivity_cancel_invites">Atcelt ielūgumus</string>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Gatavs</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Izveidojiet grupas nosaukumu</string>
   <string name="AddGroupDetailsFragment__create">Izveidot</string>
@@ -464,7 +466,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupas ikona</string>
   <string name="CropImageActivity_profile_avatar">ikona</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu, atlaist, lai sūtītu</string>
@@ -668,10 +669,10 @@
   <string name="MessageRequestBottomView_block">Bloķēt</string>
   <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vai vēlaties ļaut %1$s Jums nosūtīt ziņu? Viņi nezinās, ka esat redzējis viņu ziņas, kamēr Jūs nebūsiet apstiprinājuši.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vai vēlaties pievienoties grupai %1$s? Viņi nezinās, ka esat redzējis viņu ziņas, kamēr Jūs nebūsiet apstiprinājuši.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vai vēlaties pievienoties grupai %1$s? Viņi nezinās, ka esat redzējis viņu ziņas, kamēr Jūs nebūsiet apstiprinājuši.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs esat uzaicināts pievienoties grupai %1$s. Vai vēlāties, lai grupas dalībnieku varētu nosūtīt Jums ziņojumus?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atbloķējiet %1$s, lai sūtītu ziņas un zvanītu viens otram. </string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atbloķējiet, lai ļautu grupas dalībniekiem Jūs atkal pievienot šai grupai.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atbloķējiet %1$s, lai sūtītu ziņas un zvanītu viens otram. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atbloķējiet, lai ļautu grupas dalībniekiem Jūs atkal pievienot šai grupai.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s dalībnieks</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s un %2$s dalībnieks</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s un %3$s dalībnieks </string>
@@ -938,6 +939,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ThreadRecord_message_request">Ziņas pieprasījums</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s pievienoja Jūs grupai</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$suzaicināja Jūs pievienoties grupai</string>
+  <string name="ThreadRecord_photo">Attēls</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Balss ziņa</string>
+  <string name="ThreadRecord_contact">Kontaktpersona</string>
+  <string name="ThreadRecord_file">Fails</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal aktualizējums</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Ir pieejama jauna Signal versija, pieskarieties, lai atjauninātu</string>
@@ -1917,6 +1924,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_call">Zvanīt</string>
   <string name="RecipientBottomSheet_block">Bloķēt</string>
   <string name="RecipientBottomSheet_unblock">Atbloķēt</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Pievienot kontaktiem</string>
   <string name="RecipientBottomSheet_view_safety_number">Skatīt drošības numuru</string>
   <string name="RecipientBottomSheet_make_group_admin">Izveidot grupas aministratoru</string>
   <string name="RecipientBottomSheet_remove_as_admin">Noņemt grupas administratoru</string>
@@ -1925,6 +1933,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s varēs labot grupu un tās dalībniekus</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Noņemt %1$s no \" %2$s \"?</string>
   <string name="RecipientBottomSheet_remove">Noņemt/Izņemt</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="GroupRecipientListItem_admin">Administrators</string>
   <!--EOF-->
 </resources>

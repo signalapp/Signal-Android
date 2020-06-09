@@ -386,6 +386,8 @@
   <string name="PendingMembersActivity_people_you_invited">Mga taong iyong inimbitahan</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Mga imbitasyon ng iba pang mga kasapi ng grupo</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Ang mga detalye ng mga taong inimbitahan ng ibang kasapi ng grupo ay hindi ipinakita. Kung piliing sumali ng mga inimbitahan, ang kanilang impormasyon ay maibabahagi sa grupo sa puntong iyon. Hindi nila makikita ang anumang mga mensahe sa grupo hanggang sila ay sumali.</string>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Tapos na</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">Lumikha</string>
   <string name="AddGroupDetailsFragment__members">Mga Kasapi</string>
@@ -410,7 +412,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar ng grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pindutin at huwag bitawan upang mag-record ng voice message, bitawan upang ipadala</string>
@@ -577,9 +578,9 @@
   <string name="MessageRequestBottomView_block">I-block</string>
   <string name="MessageRequestBottomView_unblock">I-unblock</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang hayaan si %1$s na makapagpadala ng mensahe sa iyo? Hindi niya malalaman na nakita mo ang kanyang mga mensahe hanggang ito ay iyong tanggapin.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang sumali sa grupong %1$s? Hindi nila malalaman na nakita mo ang kanilang mga mensahe hanggang ito ay iyong tanggapin.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">I-unblock si %1$s upang makapagpadala ng mensahe at matawagan ang isa\'t-isa.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">I-unblock upang hayaan ang mga kasapi ng grupo na isali kang muli sa grupong ito.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang sumali sa grupong %1$s? Hindi nila malalaman na nakita mo ang kanilang mga mensahe hanggang ito ay iyong tanggapin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">I-unblock si %1$s upang makapagpadala ng mensahe at matawagan ang isa\'t-isa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">I-unblock upang hayaan ang mga kasapi ng grupo na isali kang muli sa grupong ito.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Kasapi ng %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Kasapi ng %1$s at %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Kasapi ng %1$s, %2$s, at %3$s</string>
@@ -830,6 +831,12 @@
   <string name="ThreadRecord_message_could_not_be_processed">Hindi maiproseso ang mensahe</string>
   <string name="ThreadRecord_message_request">Pangmensaheng hiling</string>
   <string name="ThreadRecord_s_added_you_to_the_group">Idinagdag ka sa grupo ni %1$s</string>
+  <string name="ThreadRecord_photo">Larawan</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Voice na Mensahe</string>
+  <string name="ThreadRecord_contact">Kontak</string>
+  <string name="ThreadRecord_file">File</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Update sa Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">May bagong bersyon ang Signal, pindutin upang i-update</string>
@@ -1781,8 +1788,10 @@
   <string name="RecipientBottomSheet_call">Tawagan</string>
   <string name="RecipientBottomSheet_block">I-block</string>
   <string name="RecipientBottomSheet_unblock">I-unblock</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Idagdag sa mga kontak</string>
   <string name="RecipientBottomSheet_view_safety_number">Tingnan ang numerong pangkaligtasan</string>
   <string name="RecipientBottomSheet_remove">Tanggalin</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Nakopya na sa clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--EOF-->
 </resources>

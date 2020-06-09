@@ -410,6 +410,8 @@
     <item quantity="one">আমন্ত্রণ বাতিল করতে সমস্যা হয়েছে</item>
     <item quantity="other">আমন্ত্রণ বাতিল করতে সমস্যা হয়েছে</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">শেষ</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">গ্রুপের নাম দিন</string>
   <string name="AddGroupDetailsFragment__create">তৈরি</string>
@@ -460,8 +462,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string>
   <string name="CropImageActivity_profile_avatar">প্রোফাইলের ছবি</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">কোন চেহারা নির্নয় করা যায়নি</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">চেহারা অস্পষ্ট করুন</string>
   <!--InputPanel-->
@@ -888,6 +888,12 @@
   <string name="ThreadRecord_you_marked_unverified">আপনি অযাচাইকৃত চিহ্নিত করেছেন</string>
   <string name="ThreadRecord_message_could_not_be_processed">বার্তাটি প্রক্রিয়া করা যায়নি</string>
   <string name="ThreadRecord_message_request">বার্তার অনুরোধ</string>
+  <string name="ThreadRecord_photo">ছবি</string>
+  <string name="ThreadRecord_gif">জিফ</string>
+  <string name="ThreadRecord_voice_message">ভয়েস বার্তা</string>
+  <string name="ThreadRecord_contact">পরিচিতি</string>
+  <string name="ThreadRecord_file">ফাইল</string>
+  <string name="ThreadRecord_video">ভিডিও</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal আপডেট</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal এর একটি নতুন ভার্সন পাওয়া যাচ্ছে, অাপডেট করতে ট্যাপ করুন</string>
@@ -1774,8 +1780,10 @@
   <string name="RecipientBottomSheet_call">কল করুন</string>
   <string name="RecipientBottomSheet_block">অবরূদ্ধ</string>
   <string name="RecipientBottomSheet_unblock">মূক্ত করুন</string>
+  <string name="RecipientBottomSheet_add_to_contacts">পরিচিতি তালিকায় যোগ করুন</string>
   <string name="RecipientBottomSheet_view_safety_number">নিরাপত্তা নাম্বার দেখুন</string>
   <string name="RecipientBottomSheet_remove">সরান</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
   <string name="GroupRecipientListItem_admin">প্রশাসক</string>
   <!--EOF-->
 </resources>

@@ -398,8 +398,14 @@
   <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="other">錯誤的取消邀請</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">完成</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="other">新增%3$d成員到\"%2$s\"嗎？</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">為群組取一個名稱</string>
+  <string name="AddGroupDetailsFragment__create_group">建立群組</string>
   <string name="AddGroupDetailsFragment__create">建立</string>
   <string name="AddGroupDetailsFragment__members">成員</string>
   <string name="AddGroupDetailsFragment__group_name_required">群組名稱(必要的)</string>
@@ -417,6 +423,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">誰可以編輯群組成員</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">誰可以編輯群組資訊</string>
   <string name="ManageGroupActivity_block_group">封鎖群組</string>
+  <string name="ManageGroupActivity_unblock_group">解封鎖群組</string>
   <string name="ManageGroupActivity_leave_group">離開對話群組</string>
   <string name="ManageGroupActivity_mute_notifications">將通知調整為靜音</string>
   <string name="ManageGroupActivity_custom_notifications">自訂通知</string>
@@ -429,6 +436,9 @@
   <string name="ManageGroupActivity_none">靜音</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="other">%d被邀請了</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="other">%d個成員被新增。</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">你沒有權限來做此事</string>
   <string name="ManageGroupActivity_not_capable">你新增的人不支援新群組，需要更新Signal</string>
@@ -454,8 +464,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">群組的大頭照</string>
   <string name="CropImageActivity_profile_avatar">頭像</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">沒有臉孔被偵測</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">模糊臉部</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">新功能：模糊臉孔或畫任何地方使之模糊</string>
@@ -658,10 +666,10 @@
   <string name="MessageRequestBottomView_block">封鎖</string>
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">你要讓%1$s傳訊息給你嗎？直到你接受，否則他們不會知道你已經看過他們的訊息。</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">你要加入%1$s群組嗎？直到你接受，否則他們不會知道你已經看過他們的訊息。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">你要加入%1$s群組嗎？直到你接受，否則他們不會知道你已經看過他們的訊息。</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">你可以被邀請到%1$s群組。你想讓該群組的成員向你傳送訊息嗎？</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">解除封鎖%1$s以互相傳送訊息及撥打電話。</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">解除封鎖以允許群組成員再次將你加入此群組。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">解除封鎖%1$s以互相傳送訊息及撥打電話。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">解除封鎖以允許群組成員再次將你加入此群組。</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s的成員</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s及%2$s的成員</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s、及%3$s的成員</string>
@@ -927,6 +935,12 @@
   <string name="ThreadRecord_message_request">訊息要求</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s已被加入你的群組</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s邀請你加入到此群組</string>
+  <string name="ThreadRecord_photo">照片</string>
+  <string name="ThreadRecord_gif">動態圖檔</string>
+  <string name="ThreadRecord_voice_message">語音訊息</string>
+  <string name="ThreadRecord_contact">聯絡人</string>
+  <string name="ThreadRecord_file">檔案</string>
+  <string name="ThreadRecord_video">影片</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
@@ -1550,6 +1564,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">給…新訊息</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">新增到群組</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">撥出</string>
   <!--conversation_callable_secure-->
@@ -1894,6 +1909,7 @@
   <string name="RecipientBottomSheet_call">撥打</string>
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>
+  <string name="RecipientBottomSheet_add_to_contacts">新增至聯絡人</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
   <string name="RecipientBottomSheet_make_group_admin">成為群組管理員</string>
   <string name="RecipientBottomSheet_remove_as_admin">以管理員身份移除</string>
@@ -1902,6 +1918,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s將可以編輯此群組及其成員</string>
   <string name="RecipientBottomSheet_remove_s_from_s">從\"%2$s\"移除%1$s嗎？</string>
   <string name="RecipientBottomSheet_remove">移除</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">已複製到剪貼簿</string>
   <string name="GroupRecipientListItem_admin">管理員</string>
   <!--EOF-->
 </resources>

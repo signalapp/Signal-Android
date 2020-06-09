@@ -384,6 +384,8 @@
   <string name="PendingMembersActivity_people_you_invited">ನೀವು ಆಹ್ವಾನಿಸಿದ ಜನರು</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">ಗುಂಪಿನ ಇತರ ಸದಸ್ಯರು ಆಹ್ವಾನಿಸಿದ ಜನರು</string>
   <string name="PendingMembersActivity_missing_detail_explanation">ಗುಂಪಿನ ಇತರ ಸದಸ್ಯರು ಆಹ್ವಾನಿಸಿದ ಜನರ ವಿವರಗಳನ್ನು ತೋರಿಸಲಾಗುವುದಿಲ್ಲ. ಆಹ್ವಾನಿತರು ಸೇರಲು ಆರಿಸಿದರೆ, ಅವರ ಮಾಹಿತಿಯನ್ನು ಆ ಸಮಯದಲ್ಲಿ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಅವರು ಸೇರುವವರೆಗೂ ಅವರು ಗುಂಪಿನಲ್ಲಿ ಯಾವುದೇ ಸಂದೇಶಗಳನ್ನು ನೋಡಲಾಗುವುದಿಲ್ಲ.</string>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">ಮುಗಿದಿದೆ</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">ರಚಿಸಿ</string>
   <string name="AddGroupDetailsFragment__members">ಸದಸ್ಯರು</string>
@@ -408,7 +410,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ಗುಂಪಿನ ಅವತಾರ್</string>
   <string name="CropImageActivity_profile_avatar">ಅವತಾರ್</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು  ಹಿಡಿದುಕೊಳ್ಳಿ, ಕಳುಹಿಸಲು ಅದನ್ನು ಬಿಡಿ</string>
@@ -575,9 +576,9 @@
   <string name="MessageRequestBottomView_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="MessageRequestBottomView_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">ನಿಮಗೆ %1$sರವರು ಸಂದೇಶ ಕಳುಹಿಸುವುದಕ್ಕೆ ಅವಕಾಶ ನೀಡಲು ಬಯಸುತ್ತೀರಾ? ನೀವು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಅವರಿಗೆ ನೀವು ಅವರ ಸಂದೇಶಗಳನ್ನು ಪಡೆದಿದ್ದೀರಿ ಎನ್ನುವುದು ತಿಳಿಯುವುದಿಲ್ಲ.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$sರವರು ಗುಂಪಿಗೆ ಸೇರುವುದನ್ನು ನೀವು ಬಯಸುತ್ತೀರಾ? ನೀವು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಅವರಿಗೆ ನೀವು ಅವರ ಸಂದೇಶಗಳನ್ನು ಪಡೆದಿದ್ದೀರಿ ಎನ್ನುವುದು ತಿಳಿಯುವುದಿಲ್ಲ.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$sಸಂದೇಶಕ್ಕಾಗಿ ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ ಮತ್ತು ಪರಸ್ಪರ ಕರೆ ಮಾಡಿ.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">ನಿಮ್ಮನ್ನು ಈ ಗುಂಪಿಗೆ ಮತ್ತೊಮ್ಮೆ ಸೇರಿಸಲು ಗುಂಪಿನ ಸದಸ್ಯರಿಗೆ ಅವಕಾಶ ನೀಡುವುದಕ್ಕೆ ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$sರವರು ಗುಂಪಿಗೆ ಸೇರುವುದನ್ನು ನೀವು ಬಯಸುತ್ತೀರಾ? ನೀವು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಅವರಿಗೆ ನೀವು ಅವರ ಸಂದೇಶಗಳನ್ನು ಪಡೆದಿದ್ದೀರಿ ಎನ್ನುವುದು ತಿಳಿಯುವುದಿಲ್ಲ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$sಸಂದೇಶಕ್ಕಾಗಿ ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ ಮತ್ತು ಪರಸ್ಪರ ಕರೆ ಮಾಡಿ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">ನಿಮ್ಮನ್ನು ಈ ಗುಂಪಿಗೆ ಮತ್ತೊಮ್ಮೆ ಸೇರಿಸಲು ಗುಂಪಿನ ಸದಸ್ಯರಿಗೆ ಅವಕಾಶ ನೀಡುವುದಕ್ಕೆ ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s  ರ ಸದಸ್ಯ</string>
   <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ಮತ್ತು %2$s  ರ ಸದಸ್ಯ</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, ಮತ್ತು %3$s ರ ಸದಸ್ಯ</string>
@@ -814,6 +815,12 @@
   <string name="ThreadRecord_message_could_not_be_processed">ಸಂದೇಶವನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗಲಿಲ್ಲ</string>
   <string name="ThreadRecord_message_request">ಸಂದೇಶ ವಿನಂತಿ</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$sಅನ್ನು ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
+  <string name="ThreadRecord_photo">ಫೋಟೋ</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">ಧ್ವನಿ ಸಂದೇಶ</string>
+  <string name="ThreadRecord_contact">ಸಂಪರ್ಕ</string>
+  <string name="ThreadRecord_file">ಫೈಲ್</string>
+  <string name="ThreadRecord_video">ವೀಡಿಯೊ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ನವೀಕರಿಸಿ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">ಹೊಸ ಆವೃತ್ತಿ Signal ಲಭ್ಯವಿದೆ, ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
@@ -1747,8 +1754,10 @@
   <string name="RecipientBottomSheet_call">ಕರೆ ಮಾಡಿ</string>
   <string name="RecipientBottomSheet_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="RecipientBottomSheet_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
+  <string name="RecipientBottomSheet_add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು</string>
   <string name="RecipientBottomSheet_view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string>
   <string name="RecipientBottomSheet_remove">ತೆಗೆದುಹಾಕಿ</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <string name="GroupRecipientListItem_admin">ಅಡ್ಮಿನ್‌‌</string>
   <!--EOF-->
 </resources>

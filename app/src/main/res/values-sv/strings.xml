@@ -414,8 +414,15 @@
     <item quantity="one">Fel vid avbrytning av inbjudan</item>
     <item quantity="other">Fel vid avbrytning av inbjudningar</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Klar</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Lägg till \"%1$s\" i \"%2$s\"?</item>
+    <item quantity="other">Lägg till %3$d medlemmar i \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Namnge denna grupp</string>
+  <string name="AddGroupDetailsFragment__create_group">Skapa grupp</string>
   <string name="AddGroupDetailsFragment__create">Skapa</string>
   <string name="AddGroupDetailsFragment__members">Medlemmar</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppnamn (krävs)</string>
@@ -433,6 +440,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Vem kan redigera gruppmedlemskap</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Vem kan redigera gruppinformation</string>
   <string name="ManageGroupActivity_block_group">Blockera grupp</string>
+  <string name="ManageGroupActivity_unblock_group">Sluta blockera grupp</string>
   <string name="ManageGroupActivity_leave_group">Lämna grupp</string>
   <string name="ManageGroupActivity_mute_notifications">Tysta aviseringar</string>
   <string name="ManageGroupActivity_custom_notifications">Anpassade aviseringar</string>
@@ -446,6 +454,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d inbjuden</item>
     <item quantity="other">%d inbjudna</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d medlem tillagd.</item>
+    <item quantity="other">%d medlemmar tillagda.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har inte rätten att göra detta</string>
   <string name="ManageGroupActivity_not_capable">Någon som du har lagt till stöder inte nya grupper och behöver uppdatera Signal</string>
@@ -473,8 +485,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Inga ansikten detekterades</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Oskärpa ansikten</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nytt: Oskärpa ansikten eller dra var som helst för att oskärpa</string>
@@ -687,10 +697,10 @@
   <string name="MessageRequestBottomView_block">Blockera</string>
   <string name="MessageRequestBottomView_unblock">Sluta blockera</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vill du låta %1$s skicka meddelanden till dig? De kommer inte att du veta om du har sett deras meddelanden förrän du accepterar.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vill du gå med i gruppen %1$s? De kommer inte att veta om du har sett deras meddelanden förrän du accepterar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vill du gå med i gruppen %1$s? De kommer inte att veta om du har sett deras meddelanden förrän du accepterar.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du blev inbjuden att gå med i gruppen %1$s. Vill du låta medlemmar i den här gruppen att skicka meddelanden till dig?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Sluta blockera %1$s för att skicka meddelande och ringa varandra.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Sluta blockera för att tillåta gruppmedlemmar att lägga till dig i den här gruppen igen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Sluta blockera %1$s för att skicka meddelande och ringa varandra.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Sluta blockera för att tillåta gruppmedlemmar att lägga till dig i den här gruppen igen.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, och %3$s</string>
@@ -959,6 +969,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_message_request">Meddelandebegäran</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s lade till dig i gruppen</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s bjöd in dig till gruppen.</string>
+  <string name="ThreadRecord_photo">Foto</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Röstmeddelande</string>
+  <string name="ThreadRecord_contact">Kontakt</string>
+  <string name="ThreadRecord_file">Fil</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-uppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version av Signal finns tillgänglig, tryck för att uppdatera</string>
@@ -1590,6 +1606,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nytt meddelande till…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Lägg till i grupp</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Ring</string>
   <!--conversation_callable_secure-->
@@ -1942,6 +1959,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_call">Ring</string>
   <string name="RecipientBottomSheet_block">Blockera</string>
   <string name="RecipientBottomSheet_unblock">Sluta blockera</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Lägg till som kontakt</string>
   <string name="RecipientBottomSheet_view_safety_number">Visa säkerhetsnummer</string>
   <string name="RecipientBottomSheet_make_group_admin">Gör till gruppadminstratör</string>
   <string name="RecipientBottomSheet_remove_as_admin">Ta bort som administratör</string>
@@ -1950,6 +1968,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s kommer att kunna redigera denna grupp och dess medlemmar</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Ta bort %1$s från \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Ta bort</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupRecipientListItem_admin">Administratör</string>
   <!--EOF-->
 </resources>

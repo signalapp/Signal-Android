@@ -414,8 +414,11 @@
     <item quantity="one">Erreur d’annulation de l’invitation</item>
     <item quantity="other">Erreur d’annulation des invitations</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Terminé</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nommez ce groupe</string>
+  <string name="AddGroupDetailsFragment__create_group">Créer un groupe</string>
   <string name="AddGroupDetailsFragment__create">Créer</string>
   <string name="AddGroupDetailsFragment__members">Membres</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nom du groupe (requis)</string>
@@ -473,8 +476,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar du groupe</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Aucun visage n’a été détecté</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rendre les visages flous</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nouveau : Rendez les visages flous ou dessinez n’importe où pour les rendre flous.</string>
@@ -687,10 +688,10 @@
   <string name="MessageRequestBottomView_block">Bloquer</string>
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous autoriser %1$s à échanger des messages avec vous ? La personne ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous vous joindre au groupe %1$s ? Ils ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous vous joindre au groupe %1$s ? Ils ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Vous avez été invité à vous joindre au groupe%1$s. Souhaitez-vous permettre aux membres de ce groupe de vous envoyer des messages ?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Débloquez %1$s pour vous échanger des messages et des appels.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Débloquez pour permettre aux membres du groupe de vous rajouter à ce groupe.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Débloquez %1$s pour vous échanger des messages et des appels.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Débloquez pour permettre aux membres du groupe de vous rajouter à ce groupe.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s et de %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, de%2$s et de %3$s</string>
@@ -956,6 +957,12 @@
   <string name="ThreadRecord_message_request">Demande de message</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s vous a ajouté au groupe</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe</string>
+  <string name="ThreadRecord_photo">Photo</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Message vocal</string>
+  <string name="ThreadRecord_contact">Contact</string>
+  <string name="ThreadRecord_file">Fichier</string>
+  <string name="ThreadRecord_video">Vidéo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée, touchez pour lancer la mise à jour</string>
@@ -1587,6 +1594,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nouveau message à…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Ajouter au groupe</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Appeler</string>
   <!--conversation_callable_secure-->
@@ -1939,6 +1947,7 @@
   <string name="RecipientBottomSheet_call">Appeler</string>
   <string name="RecipientBottomSheet_block">Bloquer</string>
   <string name="RecipientBottomSheet_unblock">Débloquer</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Ajouter aux contacts</string>
   <string name="RecipientBottomSheet_view_safety_number">Afficher le numéro de sécurité</string>
   <string name="RecipientBottomSheet_make_group_admin">Nommer administrateur du groupe</string>
   <string name="RecipientBottomSheet_remove_as_admin">Supprimer en tant qu’administrateur</string>
@@ -1947,6 +1956,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s pourra modifier ce groupe et ses membres</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Supprimer %1$s de « %2$s » ?</string>
   <string name="RecipientBottomSheet_remove">Supprimer</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="GroupRecipientListItem_admin">Administrateur</string>
   <!--EOF-->
 </resources>

@@ -397,8 +397,11 @@
   <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="other">Gagal membatalkan undangan</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Selesai</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Beri nama grup ini</string>
+  <string name="AddGroupDetailsFragment__create_group">Buat grup</string>
   <string name="AddGroupDetailsFragment__create">Buat</string>
   <string name="AddGroupDetailsFragment__members">Anggota-anggota</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nama grup (diperlukan)</string>
@@ -448,7 +451,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ketuk dan tahan untuk merekam pesan suara, lepas untuk mengirim</string>
@@ -640,9 +642,9 @@
   <string name="MessageRequestBottomView_block">Blokir</string>
   <string name="MessageRequestBottomView_unblock">Buka blokir</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Persilahkan %1$s mengirim pesan? Pengirim belum akan menerima notifikasi bahwa Anda telah menerima pesan hingga disetujui.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung dengan grup %1$s? Anggota grup belum akan melihat pesan Anda hingga disetujui.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Berhenti blok %1$s untuk mengirim pesan dan menelepon satu sama lain.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Berhenti blok sehingga anggota grup dapat mengundang Anda kembali.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung dengan grup %1$s? Anggota grup belum akan melihat pesan Anda hingga disetujui.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Berhenti blok %1$s untuk mengirim pesan dan menelepon satu sama lain.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Berhenti blok sehingga anggota grup dapat mengundang Anda kembali.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Anggota dari %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Anggota dari %1$s dan %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Anggota dari %1$s, %2$s, dan %3$s</string>
@@ -903,6 +905,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_message_request">Permintaan Pesan</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$stelah menambahkan Anda ke grup.</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s mengundang Anda ke grup</string>
+  <string name="ThreadRecord_photo">Foto</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Pesan Suara</string>
+  <string name="ThreadRecord_contact">Kontak</string>
+  <string name="ThreadRecord_file">Berkas</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
@@ -1848,11 +1856,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RecipientBottomSheet_call">Panggil</string>
   <string name="RecipientBottomSheet_block">Blokir</string>
   <string name="RecipientBottomSheet_unblock">Buka blokir</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Tambah ke kontak</string>
   <string name="RecipientBottomSheet_view_safety_number">Lihat nomor keamanan</string>
   <string name="RecipientBottomSheet_make_group_admin">Jadikan admin grup</string>
   <string name="RecipientBottomSheet_remove_as_admin">Cabut dari admin</string>
   <string name="RecipientBottomSheet_remove_from_group">Keluarkan dari grup</string>
   <string name="RecipientBottomSheet_remove">Hapus</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Disalin ke papan klip</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--EOF-->
 </resources>

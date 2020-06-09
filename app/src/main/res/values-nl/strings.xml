@@ -414,8 +414,11 @@
     <item quantity="one">Fout bij het annuleren van de uitnodiging</item>
     <item quantity="other">Fout bij het annuleren van de uitnodigingen</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Klaar</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Geef dit groepsgesprek een naam </string>
+  <string name="AddGroupDetailsFragment__create_group">Groep aanmaken</string>
   <string name="AddGroupDetailsFragment__create">Aanmaken</string>
   <string name="AddGroupDetailsFragment__members">Leden</string>
   <string name="AddGroupDetailsFragment__group_name_required">Groepsnaam (vereist)</string>
@@ -473,8 +476,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Groepsafbeelding</string>
   <string name="CropImageActivity_profile_avatar">Profielfoto</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">Er zijn geen gezichten gedetecteerd</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Vervaag gezichten</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nieuw: Vervaag gezichten of teken om andere dingen te vervagen</string>
@@ -687,10 +688,10 @@
   <string name="MessageRequestBottomView_block">Blokkeren</string>
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je %1$s toestaan om je berichten te sturen? Hij of zij zal niet weten dat je zijn of haar berichten hebt gelezen tenzij je toestemming geeft.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van de groep “%1$s”? Ze zullen pas weten of je hun berichten hebt als je toestemming geeft.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van de groep “%1$s”? Ze zullen pas weten of je hun berichten hebt als je toestemming geeft.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Je bent uitgenodigd om lid te worden van de groep “%1$s”. Wil je de leden van die groep toestaan om berichten naar jou te verzenden?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Deblokkeer %1$s om elkaar weer berichten te kunnen sturen en om elkaar te kunnen bellen.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Deblokkeer om groepsleden toe te staan om je opnieuw aan de groep toe te voegen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Deblokkeer %1$s om elkaar weer berichten te kunnen sturen en om elkaar te kunnen bellen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Deblokkeer om groepsleden toe te staan om je opnieuw aan de groep toe te voegen.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Lid van %1$s, %2$s en %3$s</string>
@@ -967,6 +968,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_message_request">Gespreksverzoeken</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s heeft je aan de groep toegevoegd</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s heeft je uitgenodigd voor dit groepsgesprek</string>
+  <string name="ThreadRecord_photo">Afbeelding</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Audiobericht</string>
+  <string name="ThreadRecord_contact">Contact­persoon</string>
+  <string name="ThreadRecord_file">Bestand</string>
+  <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar. Tik hier om bij te werken</string>
@@ -1952,6 +1959,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_call">Bellen</string>
   <string name="RecipientBottomSheet_block">Blokkeren</string>
   <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Aan contactenlijst toevoegen</string>
   <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer bekijken</string>
   <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string>
   <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
@@ -1960,6 +1968,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s zal dit groepsgesprek en de deelnemers kunnen aanpassen</string>
   <string name="RecipientBottomSheet_remove_s_from_s">%1$s verwijderen van “%2$s”?</string>
   <string name="RecipientBottomSheet_remove">Verwijderen</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupRecipientListItem_admin">Beheerder</string>
   <!--EOF-->
 </resources>

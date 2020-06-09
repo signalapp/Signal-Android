@@ -383,7 +383,10 @@
   <string name="GroupMembersDialog_you">Você</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Pronto</string>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create_group">Criar grupo</string>
   <string name="AddGroupDetailsFragment__create">Criar</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nome do grupo (obrigatório)</string>
@@ -407,7 +410,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toque e segure para gravar uma mensagem de voz e solte para enviá-la</string>
@@ -575,9 +577,9 @@
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Quer permitir que o usuário %1$slhe mande mensagens ? Ele não sabe que você viu as mensagens dele, a menos que você aceite. </string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Quer entrar no grupo %1$s? Eles não sabem que você viu as mensagens deles, a menos que você aceite.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Desbloquear o usuário %1$spara lhe enviar mensagens e ligar um para o outro.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloquear para permitir que os membros voltem a lhe adicionar no grupo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Quer entrar no grupo %1$s? Eles não sabem que você viu as mensagens deles, a menos que você aceite.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Desbloquear o usuário %1$spara lhe enviar mensagens e ligar um para o outro.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloquear para permitir que os membros voltem a lhe adicionar no grupo.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s </string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
@@ -825,6 +827,12 @@
   <string name="ThreadRecord_message_could_not_be_processed">A mensagem não pôde ser processada</string>
   <string name="ThreadRecord_message_request">Solicitação de mensagem</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$sfoi adicionado ao grupo</string>
+  <string name="ThreadRecord_photo">Foto</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Mensagem de voz</string>
+  <string name="ThreadRecord_contact">Contato</string>
+  <string name="ThreadRecord_file">Arquivo</string>
+  <string name="ThreadRecord_video">Vídeo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, toque para atualizar</string>
@@ -1770,8 +1778,10 @@
   <string name="RecipientBottomSheet_call">Ligar</string>
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contatos</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver número de segurança</string>
   <string name="RecipientBottomSheet_remove">Remover</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--EOF-->
 </resources>

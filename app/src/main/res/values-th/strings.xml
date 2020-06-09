@@ -391,6 +391,8 @@
   <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="other">พบข้อผิดพลาดระหว่างยกเลิกคำเชิญ</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">เสร็จสิ้น</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">สร้าง</string>
   <string name="AddGroupDetailsFragment__members">สมาชิก</string>
@@ -428,7 +430,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">อวตารกลุ่ม</string>
   <string name="CropImageActivity_profile_avatar">อวตาร</string>
-  <!--ImageEditorFragment-->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่ออัดข้อความเสียง ปล่อยเพื่อส่ง</string>
@@ -616,10 +617,10 @@
   <string name="MessageRequestBottomView_block">ปิดกั้น</string>
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">คุณต้องการปล่อยให้ %1$s ส่งข้อความหาคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">คุณต้องการเข้าร่วมกลุ่ม %1$s หรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">คุณต้องการเข้าร่วมกลุ่ม %1$s หรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">คุณได้ถูกเชิญให้เข้ากลุ่ม %1$s คุณต้องการให้สมาชิกของกลุ่มนี้ส่งข้อความหาคุณได้หรือไม่?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">เลิกปิดกั้น %1$s เพื่อส่งข้อความและโทรหากัน</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">การเลิกปิดกั้นจะอนุญาตให้สมาชิกในกลุ่มสามารถเพิ่มคุณเข้ากลุ่มนี้อีกครั้ง</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">เลิกปิดกั้น %1$s เพื่อส่งข้อความและโทรหากัน</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">การเลิกปิดกั้นจะอนุญาตให้สมาชิกในกลุ่มสามารถเพิ่มคุณเข้ากลุ่มนี้อีกครั้ง</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">สมาชิกของ %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">สมาชิกของ %1$s และ %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">สมาชิกของ %1$s%2$s และ %3$s</string>
@@ -868,6 +869,12 @@
   <string name="ThreadRecord_message_request">คำร้องขอส่งข้อความ</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s เพิ่มคุณเข้ากลุ่ม</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s ได้เชิญคุณเข้ากลุ่ม</string>
+  <string name="ThreadRecord_photo">รูปภาพ</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">ข้อความเสียง</string>
+  <string name="ThreadRecord_contact">ผู้ติดต่อ</string>
+  <string name="ThreadRecord_file">แฟ้ม</string>
+  <string name="ThreadRecord_video">วิดีโอ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">อัปเดต Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal รุ่นใหม่มาแล้ว แตะเพื่อปรับปรุง</string>
@@ -1798,8 +1805,10 @@
   <string name="RecipientBottomSheet_call">โทร</string>
   <string name="RecipientBottomSheet_block">ปิดกั้น</string>
   <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>
+  <string name="RecipientBottomSheet_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
   <string name="RecipientBottomSheet_view_safety_number">ดูหมายเลขความปลอดภัย</string>
   <string name="RecipientBottomSheet_remove">เอาออก</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="GroupRecipientListItem_admin">ผู้ดูแล</string>
   <!--EOF-->
 </resources>

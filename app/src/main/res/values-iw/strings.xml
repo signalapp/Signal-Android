@@ -446,8 +446,11 @@
     <item quantity="many">שגיאה בביטול הזמנות</item>
     <item quantity="other">שגיאה בביטול הזמנות</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">סיים</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">תן שם לקבוצה זו</string>
+  <string name="AddGroupDetailsFragment__create_group">יצירת קבוצה</string>
   <string name="AddGroupDetailsFragment__create">צור</string>
   <string name="AddGroupDetailsFragment__members">חברי קבוצה</string>
   <string name="AddGroupDetailsFragment__group_name_required">שם קבוצה (דרוש)</string>
@@ -511,8 +514,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">יצגן קבוצה</string>
   <string name="CropImageActivity_profile_avatar">יצגן</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">פרצופים לא התגלו</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">טשטש פרצופים</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">חדש: טשטש פרצופים או צייר בכל מקום כדי לטשטש</string>
@@ -745,10 +746,10 @@
   <string name="MessageRequestBottomView_block">חסום</string>
   <string name="MessageRequestBottomView_unblock">בטל חסימה</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">האם אתה רוצה להרשות אל %1$s לשלוח אליך הודעות? הוא לא יידע שראית את ההודעות שלו עד שלא תסכים.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">האם אתה רוצה להצטרף אל הקבוצה %1$s? הקבוצה לא תידע שראית את ההודעות שלה עד שלא תסכים.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">האם אתה רוצה להצטרף אל הקבוצה %1$s? הקבוצה לא תידע שראית את ההודעות שלה עד שלא תסכים.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">הוזמנת להצטרף אל הקבוצה %1$s. האם אתה רוצה לאפשר לחברי הקבוצה הזאת לשלוח לך הודעות?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">בטל חסימה של %1$s כדי להתכתב ולהתקשר אחד לשני.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">בטל חסימה כדי להתיר לחברי קבוצה להוסיף אותך אל קבוצה זו שוב.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">בטל חסימה של %1$s כדי להתכתב ולהתקשר אחד לשני.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">בטל חסימה כדי להתיר לחברי קבוצה להוסיף אותך אל קבוצה זו שוב.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">חבר קבוצה של %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">חבר קבוצה של %1$s ושל %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">חבר קבוצה של %1$s, %2$s ושל %3$s</string>
@@ -1033,6 +1034,12 @@
   <string name="ThreadRecord_message_request">בקשת התכתבות</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s הוסיף אותך אל הקבוצה</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s הזמין אותך אל הקבוצה</string>
+  <string name="ThreadRecord_photo">תמונה</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">הודעה קולית</string>
+  <string name="ThreadRecord_contact">איש קשר</string>
+  <string name="ThreadRecord_file">קובץ</string>
+  <string name="ThreadRecord_video">סרטון</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">עדכון Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">גרסה חדשה של Signal זמינה, הקש כדי לעדכן</string>
@@ -2050,6 +2057,7 @@
   <string name="RecipientBottomSheet_call">התקשר</string>
   <string name="RecipientBottomSheet_block">חסום</string>
   <string name="RecipientBottomSheet_unblock">בטל חסימה</string>
+  <string name="RecipientBottomSheet_add_to_contacts">הוסף לאנשי הקשר</string>
   <string name="RecipientBottomSheet_view_safety_number">הצג מספר בטיחות</string>
   <string name="RecipientBottomSheet_make_group_admin">עשה מנהלן קבוצה</string>
   <string name="RecipientBottomSheet_remove_as_admin">הסר תפקיד מנהלן</string>
@@ -2058,6 +2066,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s יוכל לערוך קבוצה זו ואת חברי הקבוצה שלה</string>
   <string name="RecipientBottomSheet_remove_s_from_s">להסיר את %1$s מן \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">הסר</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupRecipientListItem_admin">מנהלן</string>
   <!--EOF-->
 </resources>

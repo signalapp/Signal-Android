@@ -392,6 +392,8 @@
   <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="other">បញ្ហាក្នុងការបោះបង់ការអញ្ជើញ</item>
   </plurals>
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">បញ្ចប់</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ដាក់ឈ្មោះក្រុមនេះ</string>
   <string name="AddGroupDetailsFragment__create">បង្កើត</string>
@@ -444,8 +446,6 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
   <string name="CropImageActivity_profile_avatar">រូបតំណាង</string>
-  <!--ImageEditorFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ImageEditorFragment_no_faces_detected">មិនអាចកំណត់មុខ</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">ព្រិលមុខ</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">ថ្មី៖ ព្រិលមុខ ឬគូរកន្លែងដើម្បីព្រិល</string>
@@ -647,10 +647,10 @@
   <string name="MessageRequestBottomView_block">រារាំង</string>
   <string name="MessageRequestBottomView_unblock">បើកវិញ</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">តើអ្នកចង់ឲ្យ %1$s ផ្ញើសារមកអ្នក? គេនឹងមិនដឹងថាអ្នកបានមើលសាររបស់គេទេ រហូតអ្នកទទួល។ </string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">តើអ្នកចង់ចូលក្រុមនេះ %1$s? គេនឹងមិនដឹងថាអ្នកបានមើលសាររបស់គេទេ រហូតអ្នកទទួល។ </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">តើអ្នកចង់ចូលក្រុមនេះ %1$s? គេនឹងមិនដឹងថាអ្នកបានមើលសាររបស់គេទេ រហូតអ្នកទទួល។ </string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">អ្នកត្រូវបានអញ្ជើញចូលក្រុមនេះ %1$s។ តើអ្នកចង់ឲ្យសមាជិកក្រុមនេះ ផ្ញើសារមកអ្នកទេ?</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">លែងឃាត់ %1$s ដើម្បីផ្ញើសារ និងហៅគ្នាទៅវិញទៅមក។</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">លែងឃាត់ដើម្បីអនុញ្ញាតសមាជិកក្រុម បន្ថែមអ្នកចូលទៅក្រុមនេះម្តងទៀត។</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">លែងឃាត់ %1$s ដើម្បីផ្ញើសារ និងហៅគ្នាទៅវិញទៅមក។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">លែងឃាត់ដើម្បីអនុញ្ញាតសមាជិកក្រុម បន្ថែមអ្នកចូលទៅក្រុមនេះម្តងទៀត។</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">សមាជិកនៃ %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">សមាជិកនៃ %1$s និង%2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">សមាជិកនៃ %1$s, %2$s, និង%3$s</string>
@@ -905,6 +905,12 @@
   <string name="ThreadRecord_message_request">សារស្នើសុំ</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s បានបន្ថែមអ្នកចូលក្រុមនេះ</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s បានអញ្ជើញអ្នកចូលក្រុមនេះ</string>
+  <string name="ThreadRecord_photo">រូបភាព</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">សារជាសំឡេង</string>
+  <string name="ThreadRecord_contact">ទំនាក់ទំនង</string>
+  <string name="ThreadRecord_file">ឯកសារ</string>
+  <string name="ThreadRecord_video">វីដេអូ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">កំណែថ្មីរបស់ Signal មានហើយ, ចុច ដើម្បីធ្វើបច្ចុប្បន្នភាព។</string>
@@ -1868,6 +1874,7 @@
   <string name="RecipientBottomSheet_call">ហៅចេញ</string>
   <string name="RecipientBottomSheet_block">រារាំង</string>
   <string name="RecipientBottomSheet_unblock">បើកវិញ</string>
+  <string name="RecipientBottomSheet_add_to_contacts">បន្ថែមទៅបញ្ជីទំនាក់ទំនង</string>
   <string name="RecipientBottomSheet_view_safety_number">មើលលេខសុវត្ថិភាព</string>
   <string name="RecipientBottomSheet_make_group_admin">កំណត់អ្នកគ្រប់គ្រងក្រុម</string>
   <string name="RecipientBottomSheet_remove_as_admin">លុបអ្នកគ្រប់គ្រង</string>
@@ -1876,6 +1883,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s នឹងមិនអាចកែប្រែក្រុមនេះ និងសមាជិកទេ</string>
   <string name="RecipientBottomSheet_remove_s_from_s">លុប %1$s ពី \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">លុបចេញ</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="GroupRecipientListItem_admin">អ្នកគ្រប់គ្រង</string>
   <!--EOF-->
 </resources>
