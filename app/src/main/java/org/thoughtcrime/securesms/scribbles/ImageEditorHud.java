@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +19,6 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.scribbles.widget.ColorPaletteAdapter;
 import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -300,10 +298,10 @@ public final class ImageEditorHud extends LinearLayout {
 
   private final VerticalSlideColorPicker.OnColorChangeListener standardOnColorChangeListener = selectedColor -> eventListener.onColorChange(selectedColor);
 
-  private final VerticalSlideColorPicker.OnColorChangeListener highlightOnColorChangeListener = selectedColor -> eventListener.onColorChange(replaceAlphaWith128(selectedColor));
+  private final VerticalSlideColorPicker.OnColorChangeListener highlightOnColorChangeListener = selectedColor -> eventListener.onColorChange(withHighlighterAlpha(selectedColor));
 
-  private static int replaceAlphaWith128(int color) {
-    return color & ~0xff000000 | 0x80000000;
+  private static int withHighlighterAlpha(int color) {
+    return color & ~0xff000000 | 0x60000000;
   }
 
   public void setUndoAvailability(boolean undoAvailable) {
