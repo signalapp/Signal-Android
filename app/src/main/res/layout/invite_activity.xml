@@ -43,7 +43,8 @@
                       android:layout_marginTop="18dp"
                       android:paddingStart="10dp"/>
 
-            <EditText android:id="@+id/invite_text"
+            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                      android:id="@+id/invite_text"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:minLines="2"

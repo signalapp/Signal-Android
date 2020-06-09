@@ -11,7 +11,8 @@
                       android:layout_height="match_parent"
                       android:orientation="horizontal">
 
-            <EditText android:id="@+id/search_view"
+            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                      android:id="@+id/search_view"
                       android:layout_height="wrap_content"
                       android:layout_width="0px"
                       android:layout_weight="1"

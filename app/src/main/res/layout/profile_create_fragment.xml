@@ -86,7 +86,7 @@
                     app:layout_constraintStart_toStartOf="@+id/avatar_background"
                     app:layout_constraintTop_toTopOf="@+id/avatar_background" />
 
-                <TextView
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/name_preview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name_preview">
 
-                    <EditText
+                    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                         android:id="@+id/given_name"
                         style="@style/Signal.Text.Body"
                         android:layout_width="match_parent"
@@ -136,7 +136,7 @@
                         android:inputType="textPersonName"
                         android:singleLine="true" />
 
-                    <EditText
+                    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                         android:id="@+id/family_name"
                         style="@style/Signal.Text.Body"
                         android:layout_width="match_parent"

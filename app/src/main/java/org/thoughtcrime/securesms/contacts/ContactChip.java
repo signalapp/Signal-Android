@@ -16,6 +16,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.chip.Chip;
 
+import org.thoughtcrime.securesms.components.emoji.EmojiFilter;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -26,14 +27,7 @@ public final class ContactChip extends Chip {
 
   public ContactChip(Context context) {
     super(context);
-  }
-
-  public ContactChip(Context context, AttributeSet attrs) {
-    super(context, attrs);
-  }
-
-  public ContactChip(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+    EmojiFilter.appendEmojiFilter(this);
   }
 
   public void setContact(@NonNull SelectedContact contact) {
