@@ -22,7 +22,7 @@ RUN rm /etc/apt/sources.list && \
 RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
-    apt-get update && \
+    apt-get update -o Acquire::Check-Valid-Until=false && \
     apt-get install -y \
         git \
         lib32z1=1:1.2.11.dfsg-1 \
