@@ -44,6 +44,11 @@ public abstract class Database {
 
   protected void notifyConversationListeners(long threadId) {
     context.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
+    notifyVerboseConversationListeners(threadId);
+  }
+
+  protected void notifyVerboseConversationListeners(long threadId) {
+    context.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
   }
 
   protected void notifyConversationListListeners() {
@@ -58,11 +63,15 @@ public abstract class Database {
     context.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
   }
 
-  protected void setNotifyConverationListeners(Cursor cursor, long threadId) {
+  protected void setNotifyConversationListeners(Cursor cursor, long threadId) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getUriForThread(threadId));
   }
 
-  protected void setNotifyConverationListListeners(Cursor cursor) {
+  protected void setNotifyVerboseConversationListeners(Cursor cursor, long threadId) {
+    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId));
+  }
+
+  protected void setNotifyConversationListListeners(Cursor cursor) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.ConversationList.CONTENT_URI);
   }
 

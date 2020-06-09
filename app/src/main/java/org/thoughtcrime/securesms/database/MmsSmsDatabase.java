@@ -162,7 +162,7 @@ public class MmsSmsDatabase extends Database {
     String limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
 
     Cursor cursor = queryTables(PROJECTION, selection, order, limitStr);
-    setNotifyConverationListeners(cursor, threadId);
+    setNotifyConversationListeners(cursor, threadId);
 
     return cursor;
   }
@@ -176,7 +176,7 @@ public class MmsSmsDatabase extends Database {
     String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.MISMATCHED_IDENTITIES + " IS NOT NULL";
 
     Cursor cursor = queryTables(PROJECTION, selection, order, null);
-    setNotifyConverationListeners(cursor, threadId);
+    setNotifyConversationListeners(cursor, threadId);
 
     return cursor;
   }

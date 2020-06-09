@@ -32,8 +32,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -63,7 +61,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -440,7 +437,7 @@ public class ThreadDatabase extends Database {
     }
 
     Cursor cursor = cursors.size() > 1 ? new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) : cursors.get(0);
-    setNotifyConverationListListeners(cursor);
+    setNotifyConversationListListeners(cursor);
     return cursor;
   }
 
@@ -549,7 +546,7 @@ public class ThreadDatabase extends Database {
     String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", 0);
     Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
-    setNotifyConverationListListeners(cursor);
+    setNotifyConversationListListeners(cursor);
 
     return cursor;
   }

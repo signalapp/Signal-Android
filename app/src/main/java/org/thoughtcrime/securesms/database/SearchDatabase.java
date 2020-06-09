@@ -121,7 +121,7 @@ public class SearchDatabase extends Database {
     Cursor cursor = db.rawQuery(MESSAGES_QUERY, new String[] { fullTextSearchQuery,
                                                                fullTextSearchQuery });
 
-    setNotifyConverationListListeners(cursor);
+    setNotifyConversationListListeners(cursor);
     return cursor;
   }
 
@@ -138,7 +138,7 @@ public class SearchDatabase extends Database {
                                                                           fullTextSearchQuery,
                                                                           String.valueOf(threadId) });
 
-    setNotifyConverationListListeners(cursor);
+    setNotifyConversationListListeners(cursor);
     return cursor;
   }
 

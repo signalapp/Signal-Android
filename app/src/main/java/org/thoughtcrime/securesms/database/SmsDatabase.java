@@ -414,19 +414,18 @@ public class SmsDatabase extends MessagingDatabase {
 
   public boolean incrementReceiptCount(SyncMessageId messageId, boolean deliveryReceipt) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
-    Cursor         cursor       = null;
     boolean        foundMessage = false;
 
-    try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE},
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT},
                               DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
-                              null, null, null, null);
+                              null, null, null, null)) {
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
           RecipientId theirRecipientId = messageId.getRecipientId();
           RecipientId outRecipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
           String      columnName       = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
+          boolean     isFirstIncrement = cursor.getLong(cursor.getColumnIndexOrThrow(columnName)) == 0;
 
           if (outRecipientId.equals(theirRecipientId)) {
             long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
@@ -437,7 +436,13 @@ public class SmsDatabase extends MessagingDatabase {
                              new String[] {String.valueOf(cursor.getLong(cursor.getColumnIndexOrThrow(ID)))});
 
             DatabaseFactory.getThreadDatabase(context).update(threadId, false);
-            notifyConversationListeners(threadId);
+
+            if (isFirstIncrement) {
+              notifyConversationListeners(threadId);
+            } else {
+              notifyVerboseConversationListeners(threadId);
+            }
+
             foundMessage = true;
           }
         }
@@ -449,9 +454,6 @@ public class SmsDatabase extends MessagingDatabase {
       }
 
       return foundMessage;
-    } finally {
-      if (cursor != null)
-        cursor.close();
     }
   }
 
@@ -810,9 +812,20 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public Cursor getMessageCursor(long messageId) {
+    Cursor cursor = internalGetMessageCursor(messageId);
+    setNotifyConversationListeners(cursor, getThreadIdForMessage(messageId));
+    return cursor;
+  }
+
+  public Cursor getVerboseMessageCursor(long messageId) {
+    Cursor cursor = internalGetMessageCursor(messageId);
+    setNotifyVerboseConversationListeners(cursor, getThreadIdForMessage(messageId));
+    return cursor;
+  }
+
+  private Cursor internalGetMessageCursor(long messageId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor = db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[] {messageId + ""}, null, null, null);
-    setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
     return cursor;
   }
 
