@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="64dp"
-    android:background="?attr/group_candidate_item_background"
+    android:background="?selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
 

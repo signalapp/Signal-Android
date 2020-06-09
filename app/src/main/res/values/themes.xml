@@ -190,8 +190,6 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
 
-        <item name="group_candidate_item_background">@drawable/group_candidate_item_background_light</item>
-
         <item name="kbs_splash_image">@drawable/ic_kbs_splash_light_svg</item>
 
         <item name="attachment_type_selector_background">@color/white</item>
@@ -485,8 +483,6 @@
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
-
-        <item name="group_candidate_item_background">@drawable/group_candidate_item_background_dark</item>
 
         <item name="tinted_circle_background">@drawable/tinted_circle_dark</item>
 
