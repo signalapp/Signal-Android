@@ -1,7 +1,8 @@
 FROM debian:buster-slim
 
-RUN apt-get update && apt-get install -y \
-        gpg
+RUN apt-get update && \
+    apt-get install -y \
+    gpg
 
 COPY keys/snapshot.debian.org/buster.pubkey /etc/apt/buster.pubkey
 COPY keys/snapshot.debian.org/buster-updates.pubkey /etc/apt/buster-updates.pubkey
@@ -21,7 +22,8 @@ RUN rm /etc/apt/sources.list && \
 RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
-    apt-get update && apt-get install -y \
+    apt-get update && \
+    apt-get install -y \
         git \
         lib32z1=1:1.2.11.dfsg-1 \
         libc6:i386=2.28-10 \
