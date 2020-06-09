@@ -159,14 +159,10 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
     }
 
     private fun handleIsEditingDisplayNameChanged() {
-        cancelButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
-        showQRCodeButton.visibility = if (isEditingDisplayName) View.GONE else View.VISIBLE
-        saveButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
+        cancelEditButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
+        saveEditButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
         displayNameTextView.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
         groupNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
-        val titleTextViewLayoutParams = titleTextView.layoutParams as LinearLayout.LayoutParams
-        titleTextViewLayoutParams.leftMargin = if (isEditingDisplayName) toPx(16, resources) else 0
-        titleTextView.layoutParams = titleTextViewLayoutParams
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (isEditingDisplayName) {
             groupNameEditText.requestFocus()

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background" >
-
+    android:background="@drawable/default_session_background">
 
     <LinearLayout
         android:id="@+id/mainContentContainer"
@@ -23,14 +21,15 @@
             <EditText
                 style="@style/SessionEditText"
                 android:id="@+id/groupNameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/album_total_width"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:textAlignment="center"
                 android:paddingTop="12dp"
-                android:paddingBottom="12dp"
+                android:paddingBottom="@dimen/large_spacing"
                 android:visibility="invisible"
                 android:hint="@string/activity_settings_display_name_edit_text_hint" />
+
 
             <TextView
                 android:id="@+id/displayNameTextView"
@@ -44,6 +43,39 @@
                 android:drawablePadding="@dimen/small_spacing"/>
 
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_weight="2"
+                android:layout_height="0px"
+                android:layout_width="@dimen/large_spacing"/>
+
+            <ImageView
+                android:id="@+id/cancelEditButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_close_white_24dp"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/saveEditButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_check_white_24dp"
+                android:layout_weight="1"
+                android:visibility="gone" />
+
+            <View
+                android:layout_weight="2"
+                android:layout_height="0px"
+                android:layout_width="@dimen/large_spacing"
+                />
+
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
