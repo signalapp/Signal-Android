@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.AsyncTask
@@ -10,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
@@ -28,6 +31,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.GroupEditingOptionsBottomSheet
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -45,6 +49,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         result
     }
     private var isEditingDisplayName = false
+        set(value) { field = value; handleIsEditingDisplayNameChanged() }
     private val selectedMembers: Set<String>
         get() { return editClosedGroupAdapter.selectedMembers }
 
@@ -58,7 +63,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         setContentView(R.layout.activity_edit_closed_group)
         supportActionBar!!.title = resources.getString(R.string.activity_edit_closed_group_title)
         displayNameContainer.setOnClickListener { showEditDisplayNameUI() }
-        displayNameTextView.text = "Get Group Name"
+        displayNameTextView.text = "Get Group Name" // DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
         recyclerView.adapter = editClosedGroupAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         addMembersClosedGroupButton.setOnClickListener { createNewPrivateChat() }
@@ -151,6 +156,24 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
         startActivity(intent)
         finish()
+    }
+
+    private fun handleIsEditingDisplayNameChanged() {
+        cancelButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
+        showQRCodeButton.visibility = if (isEditingDisplayName) View.GONE else View.VISIBLE
+        saveButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
+        displayNameTextView.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
+        groupNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
+        val titleTextViewLayoutParams = titleTextView.layoutParams as LinearLayout.LayoutParams
+        titleTextViewLayoutParams.leftMargin = if (isEditingDisplayName) toPx(16, resources) else 0
+        titleTextView.layoutParams = titleTextViewLayoutParams
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (isEditingDisplayName) {
+            groupNameEditText.requestFocus()
+            inputMethodManager.showSoftInput(groupNameEditText, 0)
+        } else {
+            inputMethodManager.hideSoftInputFromWindow(groupNameEditText.windowToken, 0)
+        }
     }
     // endregion
 

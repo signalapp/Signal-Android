@@ -22,7 +22,7 @@
 
             <EditText
                 style="@style/SessionEditText"
-                android:id="@+id/displayNameEditText"
+                android:id="@+id/groupNameEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -39,13 +39,9 @@
                 android:layout_centerInParent="true"
                 android:textColor="@color/text"
                 android:textSize="@dimen/very_large_font_size"
-                android:textStyle="bold"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_edit_white_24dp"
-                android:gravity="right"/>
+                android:textStyle="bold"
+                android:drawableRight="@drawable/ic_edit_white_24dp"
+                android:drawablePadding="@dimen/small_spacing"/>
 
         </RelativeLayout>
 
