@@ -52,6 +52,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
 
     intent.putExtra(ContactSelectionListFragment.MULTI_SELECT, false);
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
+    intent.putExtra(ContactSelectionListFragment.RECENTS, true);
     intent.putExtra(ContactSelectionActivity.EXTRA_LAYOUT_RES_ID, R.layout.add_to_group_activity);
     intent.putExtra(EXTRA_RECIPIENT_ID, recipientId);
 
