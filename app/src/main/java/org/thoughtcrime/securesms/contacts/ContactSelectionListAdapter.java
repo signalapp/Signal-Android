@@ -101,7 +101,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       super(itemView);
     }
 
-    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean multiSelect);
+    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkboxVisible);
     public abstract void unbind(@NonNull GlideRequests glideRequests);
     public abstract void setChecked(boolean checked);
     public abstract void setEnabled(boolean enabled);
@@ -121,8 +121,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       return (ContactSelectionListItem) itemView;
     }
 
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean multiSelect) {
-      getView().set(glideRequests, recipientId, type, name, number, label, color, multiSelect);
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkBoxVisible) {
+      getView().set(glideRequests, recipientId, type, name, number, label, color, checkBoxVisible);
     }
 
     @Override
@@ -151,7 +151,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     }
 
     @Override
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean multiSelect) {
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkboxVisible) {
       this.label.setText(name);
     }
 
@@ -222,11 +222,13 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     int color = (contactType == ContactRepository.PUSH_TYPE) ? drawables.getColor(0, 0xa0000000) :
                 drawables.getColor(1, 0xff000000);
 
+    boolean currentContact = currentContacts.contains(id);
+
     viewHolder.unbind(glideRequests);
-    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, color, multiSelect);
+    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, color, multiSelect || currentContact);
     viewHolder.setEnabled(true);
 
-    if (currentContacts.contains(id)) {
+    if (currentContact) {
       viewHolder.setChecked(true);
       viewHolder.setEnabled(false);
     } else if (numberType == ContactRepository.NEW_USERNAME_TYPE) {

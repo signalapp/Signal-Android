@@ -484,6 +484,7 @@
 
     <declare-styleable name="ContactFilterToolbar">
         <attr name="searchTextStyle" format="reference" />
+        <attr name="showDialpad" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="SquareImageView">

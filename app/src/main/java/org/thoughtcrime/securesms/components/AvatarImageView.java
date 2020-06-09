@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -162,11 +164,17 @@ public final class AvatarImageView extends AppCompatImageView {
   private void setAvatarClickHandler(@NonNull final Recipient recipient, boolean quickContactEnabled) {
     if (quickContactEnabled) {
       super.setOnClickListener(v -> {
+        Context context = getContext();
         if (FeatureFlags.newGroupUI() && recipient.isPushGroup()) {
-          getContext().startActivity(ManageGroupActivity.newIntent(getContext(), recipient.requireGroupId().requirePush()),
-                                     ManageGroupActivity.createTransitionBundle(getContext(), this));
+          context.startActivity(ManageGroupActivity.newIntent(context, recipient.requireGroupId().requirePush()),
+                                ManageGroupActivity.createTransitionBundle(context, this));
         } else {
-          getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId()));
+          if (context instanceof FragmentActivity) {
+            RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
+                                              .show(((FragmentActivity) context).getSupportFragmentManager(), "BOTTOM");
+          } else {
+            context.startActivity(RecipientPreferenceActivity.getLaunchIntent(context, recipient.getId()));
+          }
         }
       });
     } else {

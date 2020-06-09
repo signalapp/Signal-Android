@@ -120,6 +120,16 @@
             tools:visibility="visible" />
 
         <Button
+            android:id="@+id/rbs_add_to_group_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/RecipientBottomSheet_add_to_a_group"
+            app:drawableStartCompat="?attr/recipient_make_admin_icon" />
+
+        <Button
             android:id="@+id/rbs_view_safety_number_button"
             style="@style/Widget.Signal.Button.TextButton.Drawable"
             android:layout_width="match_parent"

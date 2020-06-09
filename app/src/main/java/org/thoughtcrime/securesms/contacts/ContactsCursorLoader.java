@@ -115,8 +115,12 @@ public class ContactsCursorLoader extends CursorLoader {
   private List<Cursor> getUnfilteredResults() {
     ArrayList<Cursor> cursorList = new ArrayList<>();
 
-    addRecentsSection(cursorList);
-    addContactsSection(cursorList);
+    if (groupsOnly(mode)) {
+      addGroupsSection(cursorList);
+    } else {
+      addRecentsSection(cursorList);
+      addContactsSection(cursorList);
+    }
 
     return cursorList;
   }
@@ -374,6 +378,10 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private static boolean groupsEnabled(int mode) {
     return flagSet(mode, DisplayMode.FLAG_ACTIVE_GROUPS);
+  }
+
+  private static boolean groupsOnly(int mode) {
+    return mode == DisplayMode.FLAG_ACTIVE_GROUPS;
   }
 
   private static boolean flagSet(int mode, int flag) {

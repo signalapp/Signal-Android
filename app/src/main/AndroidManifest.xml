@@ -492,6 +492,9 @@
     <activity android:name=".groups.ui.creategroup.CreateGroupActivity"
               android:theme="@style/TextSecure.LightNoActionBar" />
 
+    <activity android:name=".groups.ui.addtogroup.AddToGroupsActivity"
+              android:theme="@style/TextSecure.LightNoActionBar" />
+
     <activity android:name=".groups.ui.addmembers.AddMembersActivity"
               android:theme="@style/TextSecure.LightNoActionBar" />
 

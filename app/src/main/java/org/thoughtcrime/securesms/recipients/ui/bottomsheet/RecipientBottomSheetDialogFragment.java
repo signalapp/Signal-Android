@@ -50,6 +50,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private Button                   blockButton;
   private Button                   unblockButton;
   private Button                   addContactButton;
+  private Button                   addToGroupButton;
   private Button                   viewSafetyNumberButton;
   private Button                   makeGroupAdminButton;
   private Button                   removeAdminButton;
@@ -93,6 +94,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     blockButton            = view.findViewById(R.id.rbs_block_button);
     unblockButton          = view.findViewById(R.id.rbs_unblock_button);
     addContactButton       = view.findViewById(R.id.rbs_add_contact_button);
+    addToGroupButton       = view.findViewById(R.id.rbs_add_to_group_button);
     viewSafetyNumberButton = view.findViewById(R.id.rbs_view_safety_number_button);
     makeGroupAdminButton   = view.findViewById(R.id.rbs_make_group_admin_button);
     removeAdminButton      = view.findViewById(R.id.rbs_remove_group_admin_button);
@@ -187,6 +189,11 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     removeAdminButton.setOnClickListener(view -> viewModel.onRemoveGroupAdminClicked(requireActivity()));
 
     removeFromGroupButton.setOnClickListener(view -> viewModel.onRemoveFromGroupClicked(requireActivity(), this::dismiss));
+
+    addToGroupButton.setOnClickListener(view -> {
+      dismiss();
+      viewModel.onAddToGroupButton(requireActivity());
+    });
 
     viewModel.getAdminActionBusy().observe(getViewLifecycleOwner(), busy -> {
       adminActionBusy.setVisibility(busy ? View.VISIBLE : View.GONE);

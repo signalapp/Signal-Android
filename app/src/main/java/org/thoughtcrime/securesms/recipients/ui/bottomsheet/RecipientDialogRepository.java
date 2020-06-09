@@ -8,6 +8,7 @@ import androidx.core.util.Consumer;
 
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
@@ -24,6 +25,8 @@ import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 final class RecipientDialogRepository {
@@ -113,6 +116,22 @@ final class RecipientDialogRepository {
                        error.onError(GroupChangeFailureReason.OTHER);
                      }
                      return false;
+                   },
+                   onComplete::accept);
+  }
+
+  void getGroupMembership(@NonNull Consumer<List<RecipientId>> onComplete) {
+    SimpleTask.run(SignalExecutors.UNBOUNDED,
+                   () -> {
+                     GroupDatabase                   groupDatabase   = DatabaseFactory.getGroupDatabase(context);
+                     List<GroupDatabase.GroupRecord> groupRecords    = groupDatabase.getPushGroupsContainingMember(recipientId);
+                     ArrayList<RecipientId>          groupRecipients = new ArrayList<>(groupRecords.size());
+
+                     for (GroupDatabase.GroupRecord groupRecord : groupRecords) {
+                       groupRecipients.add(groupRecord.getRecipientId());
+                     }
+
+                     return groupRecipients;
                    },
                    onComplete::accept);
   }

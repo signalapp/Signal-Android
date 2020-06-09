@@ -67,7 +67,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
                   String number,
                   String label,
                   int color,
-                  boolean multiSelect)
+                  boolean checkboxVisible)
   {
     this.glideRequests = glideRequests;
     this.number        = number;
@@ -90,8 +90,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
     setText(recipientSnapshot, type, name, number, label);
 
-    if (multiSelect) this.checkBox.setVisibility(View.VISIBLE);
-    else             this.checkBox.setVisibility(View.GONE);
+    this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
   }
 
   public void setChecked(boolean selected) {

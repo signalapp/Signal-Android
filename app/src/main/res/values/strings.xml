@@ -449,6 +449,13 @@
     <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
     <string name="GroupCreateActivity_remove_member_description">Remove member</string>
 
+    <!-- AddToGroupActivity -->
+    <string name="AddToGroupActivity_add_member">Add member?</string>
+    <string name="AddToGroupActivity_add_s_to_s">Add \"%1$s\" to \"%2$s\"?</string>
+    <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" added to \"%2$s\".</string>
+    <string name="AddToGroupActivity_add_to_group">Add to group</string>
+    <string name="AddToGroupActivity_add_to_groups">Add to groups</string>
+
     <!-- GroupShareProfileView -->
     <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>
     <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and photo visible to all current and future members of this group?</string>
@@ -2303,6 +2310,7 @@
     <string name="RecipientBottomSheet_block">Block</string>
     <string name="RecipientBottomSheet_unblock">Unblock</string>
     <string name="RecipientBottomSheet_add_to_contacts">Add to contacts</string>
+    <string name="RecipientBottomSheet_add_to_a_group">Add to a group</string>
     <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
     <string name="RecipientBottomSheet_make_group_admin">Make group admin</string>
     <string name="RecipientBottomSheet_remove_as_admin">Remove as admin</string>

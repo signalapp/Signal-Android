@@ -255,7 +255,7 @@ public final class ContactSelectionListFragment extends    Fragment
                                     : Collections.unmodifiableSet(Stream.of(currentSelection).collect(Collectors.toSet()));
   }
 
-  private boolean isMulti() {
+  public boolean isMulti() {
     return requireActivity().getIntent().getBooleanExtra(MULTI_SELECT, false);
   }
 
