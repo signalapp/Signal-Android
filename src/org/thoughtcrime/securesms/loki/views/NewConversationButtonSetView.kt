@@ -14,7 +14,6 @@ import android.os.VibrationEffect
 import android.os.VibrationEffect.DEFAULT_AMPLITUDE
 import android.os.Vibrator
 import android.support.annotation.ColorRes
-import android.support.annotation.DimenRes
 import android.support.annotation.DrawableRes
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -198,12 +197,9 @@ class NewConversationButtonSetView : RelativeLayout {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 if (isExpanded) {
-                    if (sessionButton.contains(touch)) { delegate?.createNewPrivateChat(); collapse() }
-                    else if (closedGroupButton.contains(touch)) { delegate?.createNewClosedGroup(); collapse() }
-                    else if (openGroupButton.contains(touch)) { delegate?.joinOpenGroup(); collapse() }
-                    else if (mainButton.contains(touch)) { collapse() }
+                    if (mainButton.contains(touch)) { collapse() }
                 } else {
-                    isExpanded = !isExpanded
+                    isExpanded = true
                     expand()
                 }
                 val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator
@@ -235,15 +231,17 @@ class NewConversationButtonSetView : RelativeLayout {
                 }
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                val distanceFromRestPosition = touch.distanceTo(buttonRestPosition)
-                if (distanceFromRestPosition > (minDragDistance + mainButton.collapsedSize / 2)) {
+                val mainButtonCenter = PointF(width.toFloat() / 2, height.toFloat() - bottomMargin - mainButton.expandedSize / 2)
+                val distanceFromMainButtonCenter = touch.distanceTo(mainButtonCenter)
+                fun collapse() {
+                    isExpanded = false
+                    this.collapse()
+                }
+                if (distanceFromMainButtonCenter > (minDragDistance + mainButton.collapsedSize / 2)) {
                     if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat(); collapse() }
                     else if (closedGroupButton.contains(touch) || touch.isRightOf(closedGroupButton, dragMargin)) { delegate?.createNewClosedGroup(); collapse() }
                     else if (openGroupButton.contains(touch) || touch.isLeftOf(openGroupButton, dragMargin)) { delegate?.joinOpenGroup(); collapse() }
-                    else {
-                        isExpanded = !isExpanded
-                        if (!isExpanded) { collapse() }
-                    }
+                    else { collapse() }
                 } else {
                     val currentPosition = PointF(mainButton.x, mainButton.y)
                     mainButton.animatePositionChange(currentPosition, buttonRestPosition)
