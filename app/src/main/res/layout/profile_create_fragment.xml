@@ -197,7 +197,7 @@
                     app:layout_constraintTop_toTopOf="@id/profile_overview_username"
                     app:srcCompat="@drawable/ic_compose_solid_24" />
 
-                <TextView
+                <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                     android:id="@+id/description_text"
                     style="@style/Signal.Text.Preview"
                     android:layout_width="match_parent"

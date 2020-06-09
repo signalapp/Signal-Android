@@ -57,9 +57,10 @@ public class MessageRequestsBottomView extends ConstraintLayout {
   public void setRecipient(@NonNull Recipient recipient) {
     if (recipient.isBlocked()) {
       if (recipient.isGroup()) {
-        question.setText(R.string.MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again);
+        question.setText(R.string.MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members);
       } else {
-        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_unblock_s_to_message_and_call_each_other, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
+        String name = recipient.getProfileName().isEmpty() ? recipient.getDisplayName(getContext()) : recipient.getProfileName().getGivenName();
+        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them, HtmlUtil.bold(name)), 0));
       }
       normalButtons.setVisibility(GONE);
       blockedButtons.setVisibility(VISIBLE);
@@ -68,10 +69,11 @@ public class MessageRequestsBottomView extends ConstraintLayout {
         if (recipient.isPushV2Group()) {
           question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_you_were_invited_to_join_the_group_s, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
         } else {
-          question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
+          question.setText(R.string.MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept);
         }
       } else {
-        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
+        String name = recipient.getProfileName().isEmpty() ? recipient.getDisplayName(getContext()) : recipient.getProfileName().getGivenName();
+        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept, HtmlUtil.bold(name)), 0));
       }
       normalButtons.setVisibility(VISIBLE);
       blockedButtons.setVisibility(GONE);
