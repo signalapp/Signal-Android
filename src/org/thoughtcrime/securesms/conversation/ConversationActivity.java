@@ -2066,7 +2066,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (!isSecureText && !isDefaultSms) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setVisibility(View.GONE);
-      makeDefaultSmsButton.setVisibility(View.VISIBLE);
+      makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
     } else {
       inputPanel.setVisibility(View.VISIBLE);

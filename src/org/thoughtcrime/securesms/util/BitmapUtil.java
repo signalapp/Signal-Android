@@ -40,7 +40,7 @@ public class BitmapUtil {
 
   private static final String TAG = BitmapUtil.class.getSimpleName();
 
-  private static final int MAX_COMPRESSION_QUALITY          = 90;
+  private static final int MAX_COMPRESSION_QUALITY          = 95;
   private static final int MIN_COMPRESSION_QUALITY          = 45;
   private static final int MAX_COMPRESSION_ATTEMPTS         = 5;
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
@@ -255,7 +255,7 @@ public class BitmapUtil {
 
   public static InputStream toCompressedJpeg(Bitmap bitmap) {
     ByteArrayOutputStream thumbnailBytes = new ByteArrayOutputStream();
-    bitmap.compress(CompressFormat.JPEG, 85, thumbnailBytes);
+    bitmap.compress(CompressFormat.JPEG, 95, thumbnailBytes);
     return new ByteArrayInputStream(thumbnailBytes.toByteArray());
   }
 

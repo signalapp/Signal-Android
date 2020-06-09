@@ -73,6 +73,7 @@ configurations.all {
     exclude group: "org.whispersystems", module: "signal-protocol-android"
     exclude group: "org.signal", module: "signal-metadata-java"
     exclude group: "org.signal", module: "signal-metadata-android"
+    exclude module: "commons-logging"
 }
 
 dependencies {
@@ -196,8 +197,8 @@ dependencies {
     implementation "com.opencsv:opencsv:$opencsv_version"
 }
 
-def canonicalVersionCode = 53
-def canonicalVersionName = "1.2.1"
+def canonicalVersionCode = 55
+def canonicalVersionName = "1.2.2"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,

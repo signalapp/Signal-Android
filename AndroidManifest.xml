@@ -6,7 +6,7 @@
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview,com.tomergoldst.tooltips,com.klinker.android.send_message,com.takisoft.colorpicker,android.support.v14.preference" />
 
     <permission
-        android:name="network.loki.messenger.ACCESS_SECRETS"
+        android:name="network.loki.messenger.ACCESS_SESSION_SECRETS"
         android:label="Access to TextSecure Secrets"
         android:protectionLevel="signature" />
 
@@ -31,7 +31,7 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="network.loki.messenger.ACCESS_SECRETS" />
+    <uses-permission android:name="network.loki.messenger.ACCESS_SESSION_SECRETS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -672,11 +672,6 @@
         </receiver>
         <!-- Session -->
         <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollWorker">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundOpenGroupPollWorker">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

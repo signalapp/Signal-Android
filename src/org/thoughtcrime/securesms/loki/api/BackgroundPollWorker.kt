@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 class BackgroundPollWorker : PersistentAlarmManagerListener() {
 
     companion object {
-        private val pollInterval = TimeUnit.MINUTES.toMillis(2)
+        private val pollInterval = TimeUnit.MINUTES.toMillis(10)
 
         @JvmStatic
         fun schedule(context: Context) {
@@ -28,21 +28,28 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
     }
 
     override fun onAlarm(context: Context, scheduledTime: Long): Long {
-        if (TextSecurePreferences.isUsingFCM(context)) { return 0L }
         if (scheduledTime != 0L) {
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-            val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
-            try {
-                val applicationContext = context.applicationContext as ApplicationContext
-                val broadcaster = applicationContext.broadcaster
-                LokiAPI.configureIfNeeded(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster)
-                LokiAPI.shared.getMessages().map { messages ->
-                    messages.forEach {
-                        PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
+            if (TextSecurePreferences.isUsingFCM(context)) {
+                val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+                val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
+                try {
+                    val applicationContext = context.applicationContext as ApplicationContext
+                    val broadcaster = applicationContext.broadcaster
+                    LokiAPI.configureIfNeeded(userPublicKey, lokiAPIDatabase, broadcaster)
+                    LokiAPI.shared.getMessages().map { messages ->
+                        messages.forEach {
+                            PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
+                        }
                     }
+                } catch (exception: Throwable) {
+                    // Do nothing
                 }
-            } catch (exception: Throwable) {
-                // Do nothing
+            }
+            val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }
+            for (openGroup in openGroups) {
+                val poller = LokiPublicChatPoller(context, openGroup)
+                poller.stop()
+                poller.pollForNewMessages()
             }
         }
         val nextTime = System.currentTimeMillis() + pollInterval
