@@ -1769,6 +1769,22 @@
     <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 10 members</string>
     <string name="activity_create_closed_group_invalid_session_id_error">One of the members of your group has an invalid Session ID</string>
 
+    <string name="activity_edit_closed_group_title">Edit Closed Group</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name (optional)</string>
+    <string name="activity_edit_closed_group_explanation">Closed groups support up to 10 members and provide the same privacy protections as one-on-one sessions.</string>
+    <string name="activity_edit_closed_group_edit_members">Edit members</string>
+    <string name="activity_edit_closed_group_add_members">Add members</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 2 group members</string>
+    <string name="activity_edit_closed_group_too_many_group_members_error">A closed group cannot have more than 10 members</string>
+    <string name="activity_edit_closed_group_invalid_session_id_error">One of the members of your group has an invalid Session ID</string>
+    <string name="activity_edit_closed_group_confirm_removal">Are you sure you want to remove this user?</string>
+    <string name="activity_edit_closed_group_member_removed">User removed from group</string>
+
+    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="fragment_edit_group_bottom_sheet_admin">Make this user a group admin</string>
+
     <string name="activity_join_public_chat_title">Join Open Group</string>
     <string name="activity_join_public_chat_error">Couldn\'t join group</string>
     <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>

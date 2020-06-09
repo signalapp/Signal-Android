@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background" >
+
+
+    <LinearLayout
+        android:id="@+id/mainContentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/displayNameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/large_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:layout_marginRight="@dimen/large_spacing">
+
+            <EditText
+                style="@style/SessionEditText"
+                android:id="@+id/displayNameEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:visibility="invisible"
+                android:hint="@string/activity_settings_display_name_edit_text_hint" />
+
+            <TextView
+                android:id="@+id/displayNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/text"
+                android:textSize="@dimen/very_large_font_size"
+                android:textStyle="bold"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_edit_white_24dp"
+                android:gravity="right"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/large_spacing"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:layout_marginRight="@dimen/large_spacing"
+            android:layout_marginBottom="@dimen/medium_spacing"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text"
+            android:alpha="0.6"
+            android:textAlignment="center"
+            android:text="@string/activity_edit_closed_group_explanation" />
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/separator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_spacing"
+                android:layout_marginTop="@dimen/small_spacing"
+                android:layout_marginRight="@dimen/massive_spacing"
+                android:layout_marginBottom="@dimen/small_spacing"
+                android:layout_weight="1"
+                android:alpha="0.8"
+                android:text="@string/activity_edit_closed_group_edit_members"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size" />
+
+            <Button
+                android:id="@+id/addMembersClosedGroupButton"
+                style="@style/MediumProminentOutlineButton"
+                android:layout_width="135dp"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_marginTop="@dimen/small_spacing"
+                android:layout_marginRight="@dimen/large_spacing"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginBottom="@dimen/small_spacing"
+                android:layout_weight="1"
+                android:text="@string/activity_edit_closed_group_add_members" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/emptyStateContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+    </LinearLayout>
+
+
+</RelativeLayout>

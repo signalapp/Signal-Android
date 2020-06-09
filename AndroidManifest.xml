@@ -133,6 +133,9 @@
             android:name="org.thoughtcrime.securesms.loki.activities.CreateClosedGroupActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="org.thoughtcrime.securesms.loki.activities.JoinPublicChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />

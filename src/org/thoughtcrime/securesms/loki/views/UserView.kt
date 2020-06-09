@@ -53,7 +53,8 @@ class UserView : LinearLayout {
                 profilePictureView.isRSSFeed = true
             } else {
                 val threadID = GroupManager.getThreadIDFromGroupID(address, context)
-                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
+                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList()
+                        ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
                 profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
@@ -67,7 +68,12 @@ class UserView : LinearLayout {
         profilePictureView.glide = glide
         profilePictureView.update()
         nameTextView.text = user.name ?: "Unknown Contact"
-        tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+        if (user.isGroupRecipient) {
+            // this doesnt work, find out how to work out if the user is a part of the group)
+            tickImageView.setImageResource(R.drawable.ic_edit_white_24dp)
+        } else {
+            tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+        }
     }
     // endregion
 }
