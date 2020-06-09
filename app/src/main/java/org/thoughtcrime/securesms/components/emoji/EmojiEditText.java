@@ -27,7 +27,7 @@ public class EmojiEditText extends AppCompatEditText {
   public EmojiEditText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     if (!TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
-      setFilters(appendEmojiFilter(this.getFilters()));
+      EmojiFilter.appendEmojiFilter(this);
     }
   }
 
@@ -43,20 +43,5 @@ public class EmojiEditText extends AppCompatEditText {
   public void invalidateDrawable(@NonNull Drawable drawable) {
     if (drawable instanceof EmojiDrawable) invalidate();
     else                                   super.invalidateDrawable(drawable);
-  }
-
-  private InputFilter[] appendEmojiFilter(@Nullable InputFilter[] originalFilters) {
-    InputFilter[] result;
-
-    if (originalFilters != null) {
-      result = new InputFilter[originalFilters.length + 1];
-      System.arraycopy(originalFilters, 0, result, 1, originalFilters.length);
-    } else {
-      result = new InputFilter[1];
-    }
-
-    result[0] = new EmojiFilter(this);
-
-    return result;
   }
 }
