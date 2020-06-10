@@ -803,7 +803,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
-    if (FeatureFlags.newGroupUI()) {
+    if (FeatureFlags.newGroupUI() && isPushGroupConversation()) {
       hideMenuItem(menu, R.id.menu_group_recipients);
     }
 
