@@ -8,10 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -116,7 +113,13 @@ public class AddGroupDetailsFragment extends Fragment {
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
     create.setOnClickListener(v -> handleCreateClicked());
-    viewModel.getMembers().observe(getViewLifecycleOwner(), members::setMembers);
+    viewModel.getMembers().observe(getViewLifecycleOwner(), recipients -> {
+      members.setMembers(recipients);
+      if (recipients.isEmpty()) {
+        toast(R.string.AddGroupDetailsFragment__groups_require_at_least_two_members);
+        callback.onNavigationButtonPressed();
+      }
+    });
     viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
@@ -226,6 +229,7 @@ public class AddGroupDetailsFragment extends Fragment {
         break;
       case ERROR_INVALID_MEMBER_COUNT:
         toast(R.string.AddGroupDetailsFragment__groups_require_at_least_two_members);
+        callback.onNavigationButtonPressed();
         break;
       default:
         throw new IllegalStateException("Unexpected error: " + error.getErrorType().name());
