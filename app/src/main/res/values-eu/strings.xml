@@ -285,7 +285,7 @@
   <string name="ConversationListFragment_no_results_found_for_s_">Ez dago emaitzarik \'%s\' bilatuta</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Aukeratutako solasaldia ezabatu?</item>
-    <item quantity="other">Aukeratutako solasaldiak ezabatu?</item>
+    <item quantity="other">Ezabatu aukeratutako solasaldiak?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Honek aukeratutako solasaldia behin betiko ezabatuko du.</item>
@@ -416,6 +416,10 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Eginda</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">\"%1$s\" kidea gehitu \"%2$s\" taldera</item>
+    <item quantity="other">%3$d kideak gehitu \"%2$s\"  taldera?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Eman izena talde honi</string>
   <string name="AddGroupDetailsFragment__create_group">Taldea sortu</string>
@@ -436,6 +440,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Taldearen kide zeintzuk diren edita dezakeena</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Taldearen informazioa edita dezakeena</string>
   <string name="ManageGroupActivity_block_group">Blokeatu taldea</string>
+  <string name="ManageGroupActivity_unblock_group">Desblokeatu taldea</string>
   <string name="ManageGroupActivity_leave_group">Utzi taldea</string>
   <string name="ManageGroupActivity_mute_notifications">Desaktibatu jakinarazpenak</string>
   <string name="ManageGroupActivity_custom_notifications">Jakinarazpen pertsonalizatuak</string>
@@ -449,6 +454,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d gonbidatuta</item>
     <item quantity="other">%d  gonbidatuta</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d kidea gehituta</item>
+    <item quantity="other">%d kideak gehituta</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
   <string name="ManageGroupActivity_not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
@@ -735,7 +744,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Mezuen desagerpena</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetan jaso eta bidalitako mezuak ikusi eta %s gero desagertuko dira.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetan jaso eta bidalitako mezuak ikusi eta %s igaroz gero desagertuko dira.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pasahitza sartu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonoa</string>
@@ -1252,7 +1261,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="expiration_off">Desaktibatuta</string>
   <plurals name="expiration_seconds">
     <item quantity="one">segundo %d</item>
-    <item quantity="other">%d segundo</item>
+    <item quantity="other">%d segundu</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
@@ -1604,6 +1613,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Mezu berria honi…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Gehitu taldera</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Deitu</string>
   <!--conversation_callable_secure-->
@@ -1750,7 +1760,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="one">PINa behintzat zenbaki %1$d izan behar du</item>
-    <item quantity="other">PINa behintzat %1$d zenbakiz osatua izan behar da</item>
+    <item quantity="other">PINa gutxienez%1$d zenbakiz osatua izan behar da</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Sortu PIN berria</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zure PIN-a alda dezakezu gailua erregistratuta dagoen bitartean.</string>

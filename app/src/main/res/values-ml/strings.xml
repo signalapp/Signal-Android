@@ -4,7 +4,7 @@
   <string name="no">അല്ല</string>
   <string name="delete">ഇല്ലാതാക്കുക </string>
   <string name="please_wait">കാത്തിരിക്കൂ…</string>
-  <string name="save">സംരക്ഷിക്കുക</string>
+  <string name="save">സേവ് ചെയ്യുക</string>
   <string name="note_to_self">സ്വന്തം കുറിപ്പുകൾ</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">പുതിയ സന്ദേശം</string>
@@ -15,10 +15,10 @@
   <string name="ApplicationPreferencesActivity_currently_s">ഇപ്പോൾ%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">താങ്കൾ ഒരു രഹസ്യവാക്ക് ഇതു വരെ ക്രമീകരിച്ചിട്ടില്ല!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one"> ഓരോ സംഭാഷണത്തിലുമുള്ള സന്ദേശം %d</item>
-    <item quantity="other"> ഓരോ സംഭാഷണത്തിലുമുള്ള സന്ദേശങ്ങൾ %d</item>
+    <item quantity="one">ഒരു സംഭാഷണത്തിൽ %d സന്ദേശം</item>
+    <item quantity="other">ഒരു സംഭാഷണത്തിൽ %d സന്ദേശങ്ങൾ</item>
   </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">പഴയ സന്ദേശങ്ങളെല്ലാം ഇപ്പോൾ ഇല്ലാതാക്കണോ?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">പഴയ സന്ദേശങ്ങളെല്ലാം ഇല്ലാതാക്കണോ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">ഇത് എല്ലാ സംഭാഷണങ്ങളും ഏറ്റവും പുതിയ സന്ദേശത്തിലേക്ക് ഉടനടി ട്രിം ചെയ്യും.</item>
     <item quantity="other">ഇത് എല്ലാ സംഭാഷണങ്ങളും ഏറ്റവും പുതിയ %dസന്ദേശങ്ങളിലേക്ക് ഉടനടി ട്രിം ചെയ്യും.</item>
@@ -100,7 +100,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ഇൻകമിംഗ് കോൾ</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">ചിത്രം സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു.</string>
+  <string name="CameraActivity_image_save_failure">ചിത്രം സേവ് ചെയ്യാൻ കഴിഞ്ഞില്ല.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">ഫോട്ടോയ്‌ക്കായി ടാപ്പുചെയ്യുക, വീഡിയോയ്‌ക്കായി പിടിക്കുക</string>
   <string name="CameraXFragment_capture_description">ക്യാപ്‌ചർ ചെയ്യുക</string>
@@ -119,7 +119,7 @@
   <string name="CameraContacts__menu_search">തിരയൽ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ഒഴിവാക്കുക</string>
-  <string name="ClearProfileActivity_remove_profile_photo">പ്രൊഫൈല്‍ ചിത്രം ഒഴിവാക്കണോ?</string>
+  <string name="ClearProfileActivity_remove_profile_photo">പ്രൊഫൈല്‍ ഫോട്ടോ ഒഴിവാക്കണോ?</string>
   <string name="ClearProfileActivity_remove_group_photo">ഗ്രൂപ്പ് ഫോട്ടോ നീക്കംചെയ്യണോ?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">വെബ്‌ബ്രൗസറൊന്നും കണ്ടെത്തിയില്ല.</string>
@@ -185,7 +185,7 @@
   <string name="ConversationActivity_group_members">ഗ്രൂപ്പിലെ അംഗങ്ങൾ</string>
   <string name="ConversationActivity_invalid_recipient">അസാധുവായ സ്വീകർത്താവ്!</string>
   <string name="ConversationActivity_added_to_home_screen">ഹോം സ്‌ക്രീനിൽ ചേർത്തു</string>
-  <string name="ConversationActivity_calls_not_supported">കോളുകൾ പിന്തുണയ്‌ക്കുന്നില്ല</string>
+  <string name="ConversationActivity_calls_not_supported">കോളുകൾ അനുവദനീയമല്ല</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ഈ ഉപകരണം ഡയൽ പ്രവർത്തനങ്ങളെ പിന്തുണയ്ക്കുന്നതായി കാണുന്നില്ല.</string>
   <string name="ConversationActivity_leave_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയണോ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയുന്നത് ഉറപ്പാണോ ?</string>
@@ -245,7 +245,7 @@
     <item quantity="one">ഇത് തിരഞ്ഞെടുത്ത സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
     <item quantity="other">ഇത് തിരഞ്ഞെടുത്ത എല്ലാ %1$d സന്ദേശങ്ങളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">സ്റ്റോറേജിലെക് സംരക്ഷിക്കണോ?</string>
+  <string name="ConversationFragment_save_to_sd_card">സ്റ്റോറേജിലെക് സേവ് ചെയ്യണോ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">ഈ മീഡിയയെ സ്റ്റോറേജിലെക് സേവ് ചെയുന്നത് നിങ്ങളുടെ ഉപകരണത്തിലെ മറ്റേതെങ്കിലും അപ്ലിക്കേഷനുകളിലേക്ക് ഇത് ആക്‌സസ് ചെയ്യാൻ അനുവദിക്കും.\n\nതുടരുക?</item>
     <item quantity="other">എല്ലാ %1$d മീഡിയയും സ്റ്റോറേജിലെക് സേവ് ചെയുന്നത് നിങ്ങളുടെ ഉപകരണത്തിലെ മറ്റേതൊരു അപ്ലിക്കേഷനുകളിലേക്കും അവ ആക്‌സസ് ചെയ്യാൻ അനുവദിക്കും.\n\nതുടരുക?</item>
@@ -288,8 +288,8 @@
     <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">ഇത് തിരഞ്ഞെടുത്ത സംഭാഷണം ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
-    <item quantity="other">ഇത് തിരഞ്ഞെടുത്ത എല്ലാ %1$d സംഭാഷണങ്ങളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
+    <item quantity="one">ഇത്, തിരഞ്ഞെടുത്ത സംഭാഷണം ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
+    <item quantity="other">ഇത്, തിരഞ്ഞെടുത്ത എല്ലാ %1$d സംഭാഷണങ്ങളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">ഇല്ലാതാക്കുന്നു</string>
   <string name="ConversationListFragment_deleting_selected_conversations">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കുന്നു…</string>
@@ -303,7 +303,7 @@
     <item quantity="other">%d സംഭാഷണങ്ങൾ ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
   </plurals>
   <string name="ConversationListFragment__your_profile_name_has_been_created">നിങ്ങളുടെ പ്രൊഫൈൽ നാമം സൃഷ്ടിച്ചു.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">നിങ്ങളുടെ പ്രൊഫൈൽ നാമം സേവ് ചെയ്തു.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">നിങ്ങളുടെ പ്രൊഫൈൽ പേര് സേവ് ചെയ്തു.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">കീ കൈമാറ്റ സന്ദേശം</string>
   <!--ConversationListItemAction-->
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal പ്രൊഫൈലുകൾ അവസാനം മുതൽ അവസാനം വരെ എൻ‌ക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു, കൂടാതെ Signal സേവനത്തിന് ഒരിക്കലും ഈ വിവരങ്ങളിലേക്ക് പ്രവേശനം ഇല്ല.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal പ്രൊഫൈലുകൾ എൻഡ് ടു എൻഡ് എൻക്രിപ്റ്റഡ് ആണ്, കൂടാതെ Signal സേവനത്തിന് ഒരിക്കലും ഈ വിവരങ്ങൾ ആക്സസ് ചെയ്യാൻ കഴിയില്ല.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
@@ -363,7 +363,7 @@
   <string name="GcmBroadcastReceiver_retrieving_a_message">ഒരു സന്ദേശം വീണ്ടെടുക്കുന്നു</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">സ്ഥിരമായ Signal ആശയവിനിമയ പരാജയം!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play Services രജിസ്റ്റർ ചെയ്യാൻ Signal ന് കഴിഞ്ഞില്ല. Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കി. Settings - Advanced ൽ വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ശ്രമിക്കുക.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play Services രജിസ്റ്റർ ചെയ്യാൻ Signal ന് കഴിഞ്ഞില്ല. Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കി. Settings &gt; Advanced ൽ വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ശ്രമിക്കുക.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIF പൂർണ്ണ വലിപ്പം വീണ്ടെടുക്കുമ്പോൾ പിശക്</string>
   <!--GiphyFragmentPageAdapter-->
@@ -613,7 +613,7 @@
   <string name="MediaRepository_all_media">എല്ലാ മീഡിയ</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">അജ്ഞാതം</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ഇനി പിന്തുണയ്‌ക്കാത്ത Signal-ന്റെ പഴയ പതിപ്പ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റുചെയ്‌ത ഒരു സന്ദേശം ലഭിച്ചു. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്ത് സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ അയച്ചയാളോട് ആവശ്യപ്പെടുക.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ഇപ്പോൾ പിന്തുണയ്‌ക്കാത്ത Signal-ന്റെ പഴയ പതിപ്പ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റുചെയ്‌ത ഒരു സന്ദേശം ലഭിച്ചു. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്ത് സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ അയച്ചയാളോട് ആവശ്യപ്പെടുക.</string>
   <string name="MessageRecord_left_group">നിങ്ങൾ ഗ്രൂപ്പ് വിട്ടു.</string>
   <string name="MessageRecord_you_updated_group">നിങ്ങൾ ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
   <string name="MessageRecord_you_called">നിങ്ങൾ വിളിച്ചു</string>
@@ -626,8 +626,8 @@
   <string name="MessageRecord_s_joined_signal">%s Signal-ലിൽ ഉണ്ട്!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">സന്ദേശങ്ങൾ അപ്രത്യക്ഷമാകുന്നത് നിങ്ങൾ സജീവമല്ലാതാക്കിയിട്ടുണ്ട്.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ അപ്രാപ്തമാക്കി.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">അപ്രത്യക്ഷമായ സന്ദേശ ടൈമർ %1$s ആയി നിങ്ങൾ സജ്ജമാക്കി.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">അപ്രത്യക്ഷമായ സന്ദേശ ടൈമർ %1$s %2$s ആയി സജ്ജമാക്കി.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">നിങ്ങൾ സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള ടൈമർ %1$s ആയി ക്രമീകരിച്ചു.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള ടൈമർ %2$s ആയി ക്രമീകരിച്ചു.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">നിങ്ങൾ ഗ്രൂപ്പ് സൃഷ്ടിച്ചു.</string>
   <string name="MessageRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
@@ -959,7 +959,7 @@ grūpp ap‌ḍē</string>
   <string name="ThreadRecord_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="ThreadRecord_s_is_on_signal">%s സിഗ്നലിൽ ഉണ്ട്!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ പ്രവർത്തനരഹിതമാക്കി</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">അപ്രത്യക്ഷമാകുന്ന സന്ദേശ സമയം %s ആയി  സജ്ജമാക്കി</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള സമയം %s ആയി ക്രമീകരിച്ചു.</string>
   <string name="ThreadRecord_safety_number_changed">സുരക്ഷാ നമ്പർ മാറ്റി</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
   <string name="ThreadRecord_you_marked_verified">നിങ്ങൾ സ്ഥിരീകരിച്ചതായി അടയാളപ്പെടുത്തി</string>
@@ -1041,7 +1041,7 @@ grūpp ap‌ḍē</string>
   <string name="MediaPreviewActivity_unssuported_media_type">പിന്തുണയ്‌ക്കാത്ത മീഡിയ തരം</string>
   <string name="MediaPreviewActivity_draft">ഡ്രാഫ്റ്റ്</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ബാഹ്യ  സ്റ്റോറേജിലെക് സംരക്ഷിക്കുന്നതിന് Signal-ന് സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
-  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">അനുമതിയില്ലാതെ ബാഹ്യ സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കാൻ കഴിയില്ല</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">അനുമതിയില്ലാതെ ബാഹ്യ സ്റ്റോറേജിലേക്ക് സേവ് ചെയ്യാൻ കഴിയില്ല</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">സന്ദേശം ഇല്ലാതാക്കണോ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ഇത് ഈ സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s %2$s-നോട്</string>
@@ -1086,13 +1086,14 @@ grūpp ap‌ḍē</string>
   <string name="NotificationChannel_group_messages">സന്ദേശങ്ങൾ</string>
   <string name="NotificationChannel_missing_display_name">അജ്ഞാതം</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">പ്രൊഫൈലിന്റെ പേര് സജ്ജമാക്കി.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">സിഗ്നൽ ലോക്ക് ചെയ്യുമ്പോൾ ദ്രുത പ്രതികരണം ലഭ്യമല്ല!</string>
   <string name="QuickResponseService_problem_sending_message">സന്ദേശം അയയ്‌ക്കുന്നതിൽ പ്രശ്‌നം!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_saved_to">%s-ലേക്ക് സംരക്ഷിച്ചു</string>
-  <string name="SaveAttachmentTask_saved">സംരക്ഷിച്ചു</string>
+  <string name="SaveAttachmentTask_saved_to">%s-ലേക്ക് സേവ് ചെയ്തു</string>
+  <string name="SaveAttachmentTask_saved">സേവ് ചെയ്തു</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">തിരയൽ</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">സംഭാഷണങ്ങൾ, കോൺ‌ടാക്റ്റുകൾ, സന്ദേശങ്ങൾ എന്നിവയ്ക്കായി തിരയുക</string>
@@ -1220,6 +1221,7 @@ grūpp ap‌ḍē</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">കോൺ‌ടാക്റ്റിന്റെ ഫോട്ടോ</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
   <string name="audio_view__download_accessibility_description">ഡൌൺലോഡ്</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">ഓഡിയോ</string>
@@ -1318,11 +1320,12 @@ grūpp ap‌ḍē</string>
   <string name="import_fragment__import_system_sms_database">സിസ്റ്റം SMS ഡാറ്റാബേസ് ഇറക്കുമതി ചെയ്യുക</string>
   <string name="import_fragment__import_the_database_from_the_default_system">സ്ഥിരസ്ഥിതി സിസ്റ്റം മെസഞ്ചർ അപ്ലിക്കേഷനിൽ നിന്ന് ഡാറ്റാബേസ് ഇമ്പോർട്ടുചെയ്യുക</string>
   <string name="import_fragment__import_plaintext_backup">പ്ലെയിൻ‌ടെക്സ്റ്റ് ബാക്കപ്പ് ഇമ്പോർട്ടുചെയ്യുക</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">ഒരു പ്ലെയിൻ‌ടെക്സ്റ്റ് ബാക്കപ്പ് ഫയൽ ഇമ്പോർട്ടുചെയ്യുക. \'SMS ബാക്കപ്പ് &amp; റിസ്റ്റോർ\' എന്നതുമായി പൊരുത്തപ്പെടുന്നു.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">പൂർണ്ണ സംഭാഷണം കാണുക</string>
   <string name="load_more_header__loading">ലോഡിംഗ്</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">മാധ്യമങ്ങളൊന്നുമില്ല</string>
+  <string name="media_overview_activity__no_media">ഒന്നുമില്ല</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">കാണുക</string>
   <string name="message_recipients_list_item__resend">വീണ്ടും അയയ്‌ക്കുക</string>
@@ -1419,7 +1422,7 @@ grūpp ap‌ḍē</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">ഒരു പുതിയ സംഭാഷണം സ്വീകരിക്കണോ എന്ന് നിങ്ങൾക്ക് ഇപ്പോൾ തിരഞ്ഞെടുക്കാം. \"അംഗീകരിക്കുക,\" \"ഇല്ലാതാക്കുക\" അല്ലെങ്കിൽ \"ബ്ലോക്ക്\" എന്നതിനുള്ള ഓപ്ഷനുകൾ നിങ്ങൾ കാണും.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">സഹായം</string>
-  <string name="HelpFragment__have_you_read_our_faq_yet">നിങ്ങൾ ഇതുവരെ ഞങ്ങളുടെ പതിവുചോദ്യങ്ങൾ വായിച്ചിട്ടുണ്ടോ?</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">നിങ്ങൾ ഞങ്ങളുടെ പതിവുചോദ്യങ്ങൾ വായിച്ചിട്ടുണ്ടോ?</string>
   <string name="HelpFragment__next">അടുത്തത്</string>
   <string name="HelpFragment__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
   <string name="HelpFragment__tell_us_whats_going_on">എന്താണ് സംഭവിക്കുന്നതെന്ന് ഞങ്ങളോട് പറയുക</string>
@@ -1541,6 +1544,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__storage">സ്റ്റോറേജ്</string>
   <string name="preferences__conversation_length_limit">സംഭാഷണ ദൈർഘ്യ പരിധി</string>
   <string name="preferences__trim_all_conversations_now">എല്ലാ സംഭാഷണങ്ങളും ഇപ്പോൾ ട്രിം ചെയ്യുക</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">എല്ലാ സംഭാഷണങ്ങളിലൂടെയും സ്‌കാൻ ചെയ്‌ത് സംഭാഷണ ദൈർഘ്യ പരിധി നടപ്പിലാക്കുക</string>
   <string name="preferences__linked_devices">ലിങ്കുചെയ്‌ത ഉപകരണങ്ങൾ</string>
   <string name="preferences__light_theme">ലൈറ്റ്</string>
   <string name="preferences__dark_theme">ഡാർക്ക്</string>
@@ -1559,6 +1563,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">വായന രസീതുകൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്നുള്ള വായന രസീതുകൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
   <string name="preferences__typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്ന് ടൈപ്പിംഗ് സൂചകങ്ങൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">വ്യക്തിഗത പഠനം അപ്രാപ്‌തമാക്കുന്നതിന് കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക</string>
   <string name="preferences_app_protection__blocked_contacts">തടഞ്ഞുവെച്ച കോൺടാക്റ്റുകൾ</string>
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_using_wifi">വൈഫൈ ഉപയോഗിക്കുമ്പോൾ</string>
@@ -1566,12 +1571,13 @@ grūpp ap‌ḍē</string>
   <string name="preferences_chats__media_auto_download">മീഡിയ യാന്ത്രിക-ഡൗൺലോഡ്</string>
   <string name="preferences_chats__message_trimming">സന്ദേശം ട്രിമ്മിംഗ്</string>
   <string name="preferences_storage__storage_usage">സ്റ്റോറേജ് ഉപയോഗം</string>
-  <string name="preferences_storage__photos">ഫോട്ടോകൾ</string>
-  <string name="preferences_storage__videos">വീഡിയോകൾ</string>
+  <string name="preferences_storage__photos">ഫോട്ടോ</string>
+  <string name="preferences_storage__videos">വീഡിയോ</string>
   <string name="preferences_storage__files">ഫയലുകൾ</string>
   <string name="preferences_storage__audio">ഓഡിയോ</string>
   <string name="preferences_storage__review_storage">സ്റ്റോറജ് അവലോകനം ചെയ്യുക</string>
   <string name="preferences_advanced__use_system_emoji">സിസ്റ്റം ഇമോജി ഉപയോഗിക്കുക</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ന്റെ അന്തർനിർമ്മിത ഇമോജി സപ്പോർട്ട് പ്രവർത്തനരഹിതമാക്കുക</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">നിങ്ങളുടെ കോൺ‌ടാക്റ്റിലേക്ക് നിങ്ങളുടെ ഐ‌പി വിലാസം വെളിപ്പെടുത്തുന്നത് ഒഴിവാക്കാൻ സിഗ്നൽ സെർവർ വഴി എല്ലാ കോളുകളും റിലേ ചെയ്യുക. പ്രവർത്തനക്ഷമമാക്കുന്നത് കോൾ നിലവാരം കുറയ്ക്കും.</string>
   <string name="preferences_advanced__always_relay_calls">എല്ലായ്പ്പോഴും കോളുകൾ റിലേ ചെയ്യുക</string>
   <string name="preferences_app_protection__app_access">അപ്ലിക്കേഷൻ ആക്‌സസ്സ്</string>
@@ -1583,18 +1589,23 @@ grūpp ap‌ḍē</string>
   <string name="preferences_notifications__show">കാണിക്കുക</string>
   <string name="preferences_notifications__calls">കോളുകൾ</string>
   <string name="preferences_notifications__ringtone">റിംഗ്‌ടോൺ</string>
+  <string name="preferences_chats__show_invitation_prompts">ക്ഷണ പ്രേരണങ്ങൾ കാണിക്കുക</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal ഇല്ലാത്ത കോൺടാക്റ്റുകൾക്കായി ക്ഷണ പ്രേരണങ്ങൾ കാണിക്കുക</string>
   <string name="preferences_chats__message_text_size">സന്ദേശ ഫോണ്ട് വലുപ്പം</string>
   <string name="preferences_events__contact_joined_signal">കോൺ‌ടാക്റ്റ് Signal-ൽ ചേർന്നു</string>
   <string name="preferences_notifications__priority">മുൻഗണന</string>
-  <string name="preferences_communication__category_sealed_sender">അയയ്ക്കുന്ന ആളിനെ സീൽ ചെയ്തിരിക്കുന്നു</string>
+  <string name="preferences_communication__category_sealed_sender">സീൽഡ് സെൻഡർ</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">സൂചകങ്ങൾ കാണിക്കുക</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">സീൽഡ് സെൻഡർ ഉപയോഗിച്ച് കൈമാറിയ സന്ദേശങ്ങളിൽ \"സന്ദേശ വിശദാംശങ്ങൾ\" തിരഞ്ഞെടുക്കുമ്പോൾ ഒരു സ്റ്റാറ്റസ് ഐക്കൺ കാണിക്കുക.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ആരിൽ നിന്നും അനുവദിക്കുക</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">കോൺടാക്ടുകൾ അല്ലാത്തവരിൽ നിന്നും നിങ്ങളുടെ പ്രൊഫൈൽ പങ്കിടാത്തവരായ ആളുകളിൽ നിന്നും വരുന്ന സന്ദേശങ്ങൾക്കായി സീൽ ചെയ്യപ്പെട്ട സെൻഡർ പ്രാപ്തമാക്കുക.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">കോൺടാക്ടുകൾ അല്ലാത്തവരിൽ നിന്നും നിങ്ങളുടെ പ്രൊഫൈൽ പങ്കിടാത്തവരായ ആളുകളിൽ നിന്നും വരുന്ന സന്ദേശങ്ങൾക്കായി സീൽഡ് സെൻഡർ പ്രാപ്തമാക്കുക.</string>
   <string name="preferences_communication__sealed_sender_learn_more">കൂടുതലറിവ് നേടുക</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">പുതിയ സന്ദേശം…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">വിളിക്കുക</string>
   <!--conversation_callable_secure-->
@@ -1620,14 +1631,19 @@ grūpp ap‌ḍē</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">തിരഞ്ഞെടുത്തത് ഇല്ലാതാക്കുക</string>
   <string name="conversation_list_batch__menu_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">ആർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">അനാർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">തിരഞ്ഞെടുത്തത് ആർക്കൈവ് ചെയ്യുക</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">തിരഞ്ഞെടുത്തത് അനാർക്കൈവ് ചെയ്യുക</string>
   <string name="conversation_list_batch__menu_unarchive_selected">അനാർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
+  <string name="conversation_list_batch__menu_mark_as_read">വായിച്ചതായി അടയാളപ്പെടുത്തുക</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">വായിച്ചിട്ടില്ലാത്തതായി അടയാളപ്പെടുത്തുക</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">ഷോർറ്റ്കറ്റ് ക്രമീകരിക്കുന്നു</string>
   <string name="conversation_list_search_description">തിരയൽ</string>
   <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__archived">ആർക്കൈവുചെയ്‌യ്തത്</string>
+  <string name="conversation_list_item_view__contact_photo_image">കോൺ‌ടാക്റ്റിന്റെ ഫോട്ടോ</string>
+  <string name="conversation_list_item_view__archived">തിരഞ്ഞെടുത്തത് അനാർക്കൈവ് ചെയ്യുക</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ഇൻ‌ബോക്സ് പൂജ്യം</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">നിങ്ങൾ എല്ലാം കൈകാര്യം ചെയ്തു!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">പുതിയ സംഭാഷണം</string>
   <string name="conversation_list_fragment__open_camera_description">ക്യാമറ തുറക്കുക</string>
@@ -1646,18 +1662,21 @@ grūpp ap‌ḍē</string>
   <string name="conversation__menu_view_all_media">എല്ലാ മീഡിയ</string>
   <string name="conversation__menu_conversation_settings">സംഭാഷണ ക്രമീകരണങ്ങൾ</string>
   <string name="conversation__menu_add_shortcut">ഹോം സ്‌ക്രീനിലേക്ക് ചേർക്കുക</string>
+  <string name="conversation__menu_pending_members">ശേഷിക്കുന്ന അംഗങ്ങൾ‌</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">പോപ്പ്അപ്പ് വികസിപ്പിക്കുക</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">സ്വീകർത്താക്കളുടെ പട്ടിക</string>
+  <string name="conversation_group_options__delivery">ഡെലിവറി</string>
   <string name="conversation_group_options__conversation">സംഭാഷണം</string>
   <string name="conversation_group_options__broadcast">ബ്രോഡ്കാസ്റ്റ്</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_group">പുതിയ ഗ്രൂപ്പ്</string>
   <string name="text_secure_normal__menu_settings">ക്രമീകരണങ്ങൾ</string>
   <string name="text_secure_normal__menu_clear_passphrase">ലോക്ക്</string>
+  <string name="text_secure_normal__mark_all_as_read">എല്ലാം വായിച്ചതായി അടയാളപ്പെടുത്തുക</string>
   <string name="text_secure_normal__invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <string name="text_secure_normal__help">സഹായം</string>
   <!--verify_display_fragment-->
@@ -1681,11 +1700,13 @@ grūpp ap‌ḍē</string>
   <string name="reminder_header_invite_title">Signalലേക്ക് ക്ഷണിക്കുക</string>
   <string name="reminder_header_invite_text">%1$s-മായുള്ള നിങ്ങളുടെ സംഭാഷണം അടുത്ത ഘട്ടത്തിലേക്ക് കൊണ്ടുപോകുക.</string>
   <string name="reminder_header_share_title">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക!</string>
+  <string name="reminder_header_share_text">കൂടുതൽ‌ ചങ്ങാതിമാർ‌ Signal ഉപയോഗിക്കുമ്പോൾ‌, അത് കൂടുതൽ‌ മികച്ചതാവും.</string>
   <string name="reminder_header_service_outage_text">Signal ചില സാങ്കേതിക പ്രശ്നങ്ങൾ നേരിടുകയാണ്.  കഴിയുന്നതും വേഗം സേവനം പുനസ്ഥാപിക്കാൻ ഞങ്ങൾ കഠിനപ്രയത്നം നടത്തുകയാണ്.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Android- ന്റെ ഈ പതിപ്പിൽ ഏറ്റവും പുതിയ സിഗ്നൽ സവിശേഷതകൾ പ്രവർത്തിക്കില്ല. ഭാവിയിലെ സിഗ്നൽ അപ്‌ഡേറ്റുകൾ ലഭിക്കുന്നതിന് ഈ ഉപകരണം അപ്‌ഗ്രേഡുചെയ്യുക.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
-  <string name="media_preview__save_title">സംരക്ഷിക്കുക</string>
+  <string name="media_preview__save_title">സേവ് ചെയ്യുക</string>
+  <string name="media_preview__forward_title">ഫോർവേഡ് ചെയ്യുക</string>
   <string name="media_preview__all_media_title">എല്ലാ മീഡിയ</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">മീഡിയ പ്രിവ്യൂ</string>
@@ -1698,24 +1719,26 @@ grūpp ap‌ḍē</string>
   <string name="trimmer__old_messages_successfully_deleted">പഴയ സന്ദേശങ്ങൾ ഇല്ലാതാക്കി</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">ഇന്സിഘ്റ്സ്</string>
-  <string name="InsightsDashboardFragment__title">ഇന്സിഘ്റ്സ്</string>
+  <string name="Insights__title">ഉള്‍ക്കാഴ്‌ച</string>
+  <string name="InsightsDashboardFragment__title">ഉള്‍ക്കാഴ്‌ച</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">കഴിഞ്ഞ %2$d ദിവസങ്ങളിൽ നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ നിന്ന് സിഗ്നൽ പ്രോട്ടോക്കോൾ യാന്ത്രികമായി %1$d%%പരിരക്ഷിച്ചു. സിഗ്നൽ ഉപയോക്താക്കൾ തമ്മിലുള്ള സംഭാഷണങ്ങൾ എല്ലായ്പ്പോഴും എൻഡ് ടു എൻഡ് എൻ‌ക്രിപ്റ്റ് ആണ്.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">സിഗ്നൽ ബൂസ്റ്റ്</string>
   <string name="InsightsDashboardFragment__not_enough_data">മതിയായ ഡാറ്റയില്ല</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">അപ്രത്യക്ഷമായതോ ഇല്ലാതാക്കാത്തതോ ആയ കഴിഞ്ഞ %1$d ദിവസങ്ങളിൽ ഔറ്റ്ഗോിങ് സന്ദേശങ്ങളെ അടിസ്ഥാനമാക്കിയാണ് നിങ്ങളുടെ ഉള്‍ക്കാഴ്‌ച ശതമാനം കണക്കാക്കുന്നത്.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ഒരു സംഭാഷണം ആരംഭിക്കുക</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">സുരക്ഷിതമായി ആശയവിനിമയം ആരംഭിക്കുക, എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS സന്ദേശങ്ങളുടെ പരിധിക്കപ്പുറത്തേക്ക് പോകുന്ന പുതിയ സവിശേഷതകൾ Signal-ൽ ചേരാൻ കൂടുതൽ കോൺ‌ടാക്റ്റുകളെ ക്ഷണിച്ചുകൊണ്ട് പ്രാപ്തമാക്കുക.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ഈ സ്ഥിതിവിവരക്കണക്കുകൾ നിങ്ങളുടെ ഉപകരണത്തിൽ പ്രാദേശികമായി ജനറേറ്റുചെയ്‌തതാണ്, നിങ്ങൾക്ക് മാത്രമേ ഇത് കാണാൻ കഴിയൂ. അവ ഒരിക്കലും എവിടെയും പകരില്ല.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശങ്ങൾ</string>
   <string name="InsightsDashboardFragment__cancel">റദ്ദാക്കുക</string>
   <string name="InsightsDashboardFragment__send">അയയ്‌ക്കുക</string>
-  <string name="InsightsModalFragment__title">അവതരിപ്പിക്കുന്നു ഇൻസൈറ്റുകൾ</string>
+  <string name="InsightsModalFragment__title">അവതരിപ്പിക്കുന്നു ഉള്‍ക്കാഴ്‌ചൽ</string>
   <string name="InsightsModalFragment__description">നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ എത്രയെണ്ണം സുരക്ഷിതമായി അയച്ചുവെന്ന് കണ്ടെത്തുക, തുടർന്ന് നിങ്ങളുടെ Signal ശതമാനം വർദ്ധിപ്പിക്കുന്നതിന് പുതിയ കോൺടാക്റ്റുകളെ വേഗത്തിൽ ക്ഷണിക്കുക.</string>
-  <string name="InsightsModalFragment__view_insights">ഇൻസൈട്ടൂകൽ കാണുക</string>
+  <string name="InsightsModalFragment__view_insights">ഉള്‍ക്കാഴ്‌ചകൽ കാണുക</string>
   <string name="FirstInviteReminder__title">Signalലേക്ക് ക്ഷണിക്കുക</string>
   <string name="FirstInviteReminder__description">നിങ്ങൾ അയച്ച എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശങ്ങളുടെ എണ്ണം %1$d%% ആയി വർദ്ധിപ്പിക്കാം</string>
   <string name="SecondInviteReminder__title">നിങ്ങളുടെ സിഗ്നൽ വർദ്ധിപ്പിക്കുക</string>
   <string name="SecondInviteReminder__description">%1$s ക്ഷണിക്കുക</string>
-  <string name="InsightsReminder__view_insights">ഇൻസൈട്ടൂകൽ കാണുക</string>
+  <string name="InsightsReminder__view_insights">ഉള്‍ക്കാഴ്‌ചകൽ കാണുക</string>
   <string name="InsightsReminder__invite">ക്ഷണിക്കുക</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
@@ -1799,6 +1822,7 @@ grūpp ap‌ḍē</string>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ശരി</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s-ന് നിങ്ങളിൽ നിന്ന് ഒരു സന്ദേശ അഭ്യർത്ഥന ലഭിക്കും. നിങ്ങളുടെ സന്ദേശ അഭ്യർത്ഥന സ്വീകരിച്ചുകഴിഞ്ഞാൽ നിങ്ങൾക്ക് വിളിക്കാം.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">ഒരു പിൻ സൃഷ്ടിക്കുക</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">സിഗ്നൽ എൻ‌ക്രിപ്റ്റ് ചെയ്തുകൊണ്ട് സംഭരിച്ചിരിക്കുന്ന വിവരങ്ങൾ PIN-കൾ സൂക്ഷിക്കുന്നു.</string>
@@ -1815,6 +1839,7 @@ grūpp ap‌ḍē</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">നിങ്ങളുടെ പ്രൊഫൈലിന് ഇപ്പോൾ ഒരു ഓപ്‌ഷണൽ അവസാന നാമം ഉൾപ്പെടുത്താൻ കഴിയും.</string>
   <string name="ProfileNamesMegaphone__confirm_name">പേര് സ്ഥിരീകരിക്കുക</string>
   <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">റ്റ്റാൻസ്പോർറ്റ് ഐക്കൺ</string>
   <string name="ConversationListFragment_loading">ലോഡിംഗ്…</string>
   <string name="CallNotificationBuilder_connecting">ബന്ധിപ്പിക്കുന്നു…</string>
   <string name="Permissions_permission_required">അനുമതി ആവശ്യമാണ്</string>
@@ -1858,6 +1883,7 @@ grūpp ap‌ḍē</string>
   <string name="BackupDialog_verify">പരിശോധിക്കുക</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് വിജയകരമായി നൽകി</string>
   <string name="BackupDialog_passphrase_was_not_correct">പാസ്‌ഫ്രെയ്‌സ് ശരിയായിരുന്നില്ല</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ബാക്കപ്പുകൾ സൃഷ്ടിക്കുന്നതിന് Signal-ന് ബാഹ്യ സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">അവസാന ബാക്കപ്പ്: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">പുരോഗതിയിൽ</string>
   <string name="LocalBackupJob_creating_backup"> ബാക്കപ്പ് സൃഷ്‌ടിക്കുന്നു…</string>
@@ -1871,6 +1897,7 @@ grūpp ap‌ḍē</string>
   <string name="BackupUtil_unknown">അജ്ഞാതം</string>
   <string name="preferences_app_protection__screen_lock">സ്‌ക്രീൻ ലോക്ക്</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android സ്‌ക്രീൻ ലോക്ക് അല്ലെങ്കിൽ ഫിംഗർപ്രിന്റ് ഉപയോഗിച്ച് Signal ആക്‌സസ്സ് ലോക്കുചെയ്യുക</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">നിഷ്‌ക്രിയത്വത്തിന് ശേഷം സ്‌ക്രീൻ ലോക്കിനുള്ള സമയം</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">ഒരു പിൻ സൃഷ്ടിക്കുക</string>
   <string name="preferences_app_protection__change_your_pin">നിങ്ങളുടെ പിൻ മാറ്റുക</string>
@@ -1938,6 +1965,8 @@ grūpp ap‌ḍē</string>
   <string name="RecipientBottomSheet_remove_as_admin">അഡ്മിനായി നീക്കംചെയ്യുക</string>
   <string name="RecipientBottomSheet_remove_from_group">ഗ്രൂപ്പിൽ നിന്ന് നീക്കംചെയ്യുക</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s-നെ അഡ്മിൻ സ്ഥാനത്ത് നിന്ന് ഒഴിവാക്കണോ?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">ഈ ഗ്രൂപ്പിനെയും അതിന്റെ അംഗങ്ങളെയും എഡിറ്റുചെയ്യാൻ %1$s-ന് കഴിയും</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">\"%2$s\" യിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
   <string name="RecipientBottomSheet_remove">ഒഴിവാക്കുക</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>

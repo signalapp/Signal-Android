@@ -470,6 +470,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_who_can_edit_group_membership">Pwy all olygu aelodaeth grŵp</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Pwy all olygu manylion grŵp</string>
   <string name="ManageGroupActivity_block_group">Rhwystro\'r grŵp</string>
+  <string name="ManageGroupActivity_unblock_group">Dad-rwystro grŵp</string>
   <string name="ManageGroupActivity_leave_group">Gadael y grŵp</string>
   <string name="ManageGroupActivity_mute_notifications">Tewi hysbysiadau</string>
   <string name="ManageGroupActivity_custom_notifications">Hysbysiadau cyfaddas</string>
@@ -485,6 +486,12 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="two"> %d wedi\'u gwahodd</item>
     <item quantity="many">%d wedi\'u gwahodd</item>
     <item quantity="other">%d wedi\'u gwahodd</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">Wedi ychwanegu %d grŵp</item>
+    <item quantity="two">Wedi ychwanegu %d grŵp</item>
+    <item quantity="many">Wedi ychwanegu %d grŵp</item>
+    <item quantity="other">Wedi ychwanegu %d grŵp</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nid oes gennych yr hawl i wneud hyn</string>
   <string name="ManageGroupActivity_not_capable">Nid yw rhywun a ychwanegwyd gennych yn cefnogi grwpiau newydd ac mae angen iddo ddiweddaru Signal</string>
@@ -1691,6 +1698,7 @@ Send neges heb ei ddiogelu?</string>
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Neges newydd at…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Ychwanegu i grŵp</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Galw</string>
   <!--conversation_callable_secure-->
