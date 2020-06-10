@@ -99,7 +99,7 @@
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">You will no longer receive messages or updates from this group, and members won\'t be able to add you to this group again.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Group members won\'t be able to add you to this group again.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Group members will be able to add you to this group again.</string>
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">You will be able to message and call each other.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">You will be able to message and call each other and your name and photo will be shared with them.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blocked people won\'t be able to call you or send you messages.</string>
     <string name="BlockUnblockDialog_unblock_s">Unblock %1$s?</string>
     <string name="BlockUnblockDialog_unblock">Unblock</string>
