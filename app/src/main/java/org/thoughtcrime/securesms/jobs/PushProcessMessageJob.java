@@ -1772,8 +1772,15 @@ public final class PushProcessMessageJob extends BaseJob {
       } else {
         return sender.isBlocked();
       }
-    } else if (content.getCallMessage().isPresent() || content.getTypingMessage().isPresent()) {
+    } else if (content.getCallMessage().isPresent()) {
       return sender.isBlocked();
+    } else if (content.getTypingMessage().isPresent()) {
+      if (content.getTypingMessage().get().getGroupId().isPresent()) {
+        GroupId groupId = GroupId.push(content.getTypingMessage().get().getGroupId().get());
+        return Recipient.externalGroup(context, groupId).isBlocked();
+      } else {
+        return sender.isBlocked();
+      }
     }
 
     return false;
