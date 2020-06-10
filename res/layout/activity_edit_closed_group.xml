@@ -28,7 +28,7 @@
                 android:paddingTop="12dp"
                 android:paddingBottom="@dimen/large_spacing"
                 android:visibility="invisible"
-                android:hint="@string/activity_settings_display_name_edit_text_hint" />
+                android:hint="@string/activity_edit_closed_group_edit_text_hint" />
 
 
             <TextView

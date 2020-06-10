@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Done"
+        android:title="@string/activity_edit_closed_group_apply_changes"
         android:id="@+id/editClosedGroupButton"
         app:showAsAction="always" />
 

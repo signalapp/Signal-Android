@@ -1164,11 +1164,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleEditPushGroup() {
     Intent intent = new Intent(this, EditClosedGroupActivity.class);
+    String groupID = this.recipient.getAddress().toGroupString();
+    intent.putExtra(EditClosedGroupActivity.GROUP_ID, groupID);
     startActivity(intent);
-//    AlertDialog.Builder alert = new AlertDialog.Builder(this);
-//    alert.setMessage("The ability to add members to a closed group is coming soon.");
-//    alert.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-//    alert.create().show();
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {

@@ -1770,7 +1770,7 @@
     <string name="activity_create_closed_group_invalid_session_id_error">One of the members of your group has an invalid Session ID</string>
 
     <string name="activity_edit_closed_group_title">Edit Closed Group</string>
-    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name (optional)</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
     <string name="activity_edit_closed_group_explanation">Closed groups support up to 10 members and provide the same privacy protections as one-on-one sessions.</string>
     <string name="activity_edit_closed_group_edit_members">Edit members</string>
     <string name="activity_edit_closed_group_add_members">Add members</string>
@@ -1781,6 +1781,7 @@
     <string name="activity_edit_closed_group_invalid_session_id_error">One of the members of your group has an invalid Session ID</string>
     <string name="activity_edit_closed_group_confirm_removal">Are you sure you want to remove this user?</string>
     <string name="activity_edit_closed_group_member_removed">User removed from group</string>
+    <string name="activity_edit_closed_group_apply_changes">Apply</string>
 
     <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
     <string name="fragment_edit_group_bottom_sheet_admin">Make this user a group admin</string>

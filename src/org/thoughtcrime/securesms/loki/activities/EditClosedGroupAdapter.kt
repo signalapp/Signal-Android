@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 
 class EditClosedGroupAdapter(private val context: Context) : RecyclerView.Adapter<EditClosedGroupAdapter.ViewHolder>() {
     lateinit var glide: GlideRequests
-    val selectedMembers = mutableSetOf<String>()
+    private val selectedMembers = mutableSetOf<String>()
     var members = listOf<String>()
         set(value) {
             field = value; notifyDataSetChanged()

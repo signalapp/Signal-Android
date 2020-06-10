@@ -12,12 +12,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.LinearLayout
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
 import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
-import kotlinx.android.synthetic.main.activity_create_closed_group.nameEditText
 import kotlinx.android.synthetic.main.activity_edit_closed_group.*
 import kotlinx.android.synthetic.main.activity_edit_closed_group.displayNameContainer
 import kotlinx.android.synthetic.main.activity_edit_closed_group.displayNameTextView
@@ -31,16 +28,22 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.GroupEditingOptionsBottomSheet
-import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
+import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import java.lang.ref.WeakReference
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberClickListener, LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
         set(value) { field = value; editClosedGroupAdapter.members = value }
+    private lateinit var groupID: String
+    private var membersToRemove = setOf<String>()
+    private var membersToAdd = setOf<String>()
+    private var admins = setOf<String>()
+    private var displayNameToBeUploaded: String? = null
+    private val originalName by lazy { DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title }
 
     private val editClosedGroupAdapter by lazy {
         val result = EditClosedGroupAdapter(this)
@@ -48,22 +51,25 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         result.memberClickListener = this
         result
     }
-    private var isEditingDisplayName = false
+    private var isEditingGroupName = false
         set(value) { field = value; handleIsEditingDisplayNameChanged() }
-    private val selectedMembers: Set<String>
-        get() { return editClosedGroupAdapter.selectedMembers }
 
     companion object {
         public val createNewPrivateChatResultCode = 100
+        @JvmField
+        public val GROUP_ID = "GROUP_ID"
     }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+        groupID = intent.getStringExtra(GROUP_ID)
         setContentView(R.layout.activity_edit_closed_group)
         supportActionBar!!.title = resources.getString(R.string.activity_edit_closed_group_title)
         displayNameContainer.setOnClickListener { showEditDisplayNameUI() }
-        displayNameTextView.text = "Get Group Name" // DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+        displayNameTextView.text = originalName
+        cancelEditButton.setOnClickListener { cancelEditingDisplayName() }
+        saveEditButton.setOnClickListener { saveDisplayName() }
         recyclerView.adapter = editClosedGroupAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         addMembersClosedGroupButton.setOnClickListener { createNewPrivateChat() }
@@ -78,7 +84,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
 
     // region Updating
     override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
-        return CreateClosedGroupLoader(this)
+        return EditClosedGroupLoader(groupID, this)
     }
 
     override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
@@ -112,12 +118,17 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         finish()
     }
     private fun showEditDisplayNameUI() {
-        isEditingDisplayName = true
+        isEditingGroupName = true
+    }
+    private fun cancelEditingDisplayName() {
+        isEditingGroupName = false
     }
 
     override fun onMemberClick(member: String) {
         val bottomSheet = GroupEditingOptionsBottomSheet()
         bottomSheet.onRemoveTapped = {
+            membersToRemove = membersToRemove + member
+            members = members - member
             bottomSheet.dismiss()
         }
  //       bottomSheet.onAdminTapped = {
@@ -126,28 +137,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         bottomSheet.show(supportFragmentManager, "closeBottomSheet")
     }
 
-    private fun modifyClosedGroup() {
-        val name = nameEditText.text.trim()
-        if (name.isEmpty()) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
-        }
-        if (name.length >= 64) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
-        }
 
-        if (selectedMembers.count() < 2) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
-        }
-        if (selectedMembers.count() > 10) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
-        }
-        val recipients = selectedMembers.map {
-            Recipient.from(this, Address.fromSerialized(it), false)
-        }.toSet()
-        val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)
-        val admin = Recipient.from(this, Address.fromSerialized(masterHexEncodedPublicKey), false)
-        CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin )).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
-    }
 
     private fun handleOpenConversation(threadId: Long, recipient: Recipient) {
         val intent = Intent(this, ConversationActivity::class.java)
@@ -159,23 +149,55 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
     }
 
     private fun handleIsEditingDisplayNameChanged() {
-        cancelEditButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
-        saveEditButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
-        displayNameTextView.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
-        groupNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
+        cancelEditButton.visibility = if (isEditingGroupName) View.VISIBLE else View.GONE
+        saveEditButton.visibility = if (isEditingGroupName) View.VISIBLE else View.GONE
+        displayNameTextView.visibility = if (isEditingGroupName) View.INVISIBLE else View.VISIBLE
+        groupNameEditText.visibility = if (isEditingGroupName) View.VISIBLE else View.INVISIBLE
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        if (isEditingDisplayName) {
+        if (isEditingGroupName) {
             groupNameEditText.requestFocus()
             inputMethodManager.showSoftInput(groupNameEditText, 0)
         } else {
             inputMethodManager.hideSoftInputFromWindow(groupNameEditText.windowToken, 0)
         }
     }
+
+    private fun saveDisplayName() {
+        val groupDisplayName = displayNameEditText.text.toString().trim()
+        if (groupDisplayName.isEmpty()) {
+            return Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
+        }
+        if (!groupDisplayName.matches(Regex("[a-zA-Z0-9_]+"))) {
+            return Toast.makeText(this, R.string.activity_settings_invalid_display_name_error, Toast.LENGTH_SHORT).show()
+        }
+        if (groupDisplayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
+            return Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
+        }
+        isEditingGroupName = false
+        displayNameToBeUploaded = groupDisplayName
+    }
+    private fun modifyClosedGroup() {
+        if (originalName == displayNameToBeUploaded && membersToRemove.isEmpty() && membersToAdd.isEmpty()) { /* do nothing, close the activity and return to conversation */ } else {
+            var groupDisplayName = originalName
+            if (originalName != displayNameToBeUploaded) {
+                groupDisplayName = displayNameToBeUploaded.toString()
+            }
+            val finalGroupMembers = members.map {
+                Recipient.from(this, Address.fromSerialized(it), false)
+            }.toSet()
+            val finalGroupAdmins = admins.map {
+                Recipient.from(this, Address.fromSerialized(it), false)
+            }.toSet()
+            GroupManager.updateGroup(this, groupID, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
+            finish()
+        }
+    }
     // endregion
 
     // region Tasks
-    internal class CreateClosedGroupTask(
+    internal class EditClosedGroupTask(
             private val activity: WeakReference<EditClosedGroupActivity>,
+            private val groupID: String,
             private val profilePicture: Bitmap?,
             private val name: String?,
             private val members: Set<Recipient>,
@@ -184,7 +206,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
 
         override fun doInBackground(vararg params: Void?): Optional<GroupManager.GroupActionResult> {
             val activity = activity.get() ?: return Optional.absent()
-            return Optional.of(GroupManager.createGroup(activity, members, profilePicture, name, false, admins))
+            return Optional.of(GroupManager.updateGroup(activity, groupID, members, profilePicture, name, admins))
         }
 
         override fun onPostExecute(result: Optional<GroupManager.GroupActionResult>) {
@@ -199,5 +221,4 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
             }
         }
     }
-    // endregion
 }
