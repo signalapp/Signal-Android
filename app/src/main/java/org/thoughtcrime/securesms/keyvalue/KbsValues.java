@@ -12,7 +12,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
 import java.io.IOException;
 import java.security.SecureRandom;
 
-public final class KbsValues {
+public final class KbsValues extends SignalStoreValues {
 
   public  static final String V2_LOCK_ENABLED              = "kbs.v2_lock_enabled";
   private static final String MASTER_KEY                   = "kbs.registration_lock_master_key";
@@ -21,10 +21,12 @@ public final class KbsValues {
   private static final String LOCK_LOCAL_PIN_HASH          = "kbs.registration_lock_local_pin_hash";
   private static final String LAST_CREATE_FAILED_TIMESTAMP = "kbs.last_create_failed_timestamp";
 
-  private final KeyValueStore store;
-
   KbsValues(KeyValueStore store) {
-    this.store = store;
+    super(store);
+  }
+
+  @Override
+  void onFirstEverAppLaunch() {
   }
 
   /**
@@ -33,13 +35,13 @@ public final class KbsValues {
    * Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}
    */
   public void clearRegistrationLockAndPin() {
-    store.beginWrite()
-         .remove(V2_LOCK_ENABLED)
-         .remove(TOKEN_RESPONSE)
-         .remove(LOCK_LOCAL_PIN_HASH)
-         .remove(PIN)
-         .remove(LAST_CREATE_FAILED_TIMESTAMP)
-         .commit();
+    getStore().beginWrite()
+              .remove(V2_LOCK_ENABLED)
+              .remove(TOKEN_RESPONSE)
+              .remove(LOCK_LOCAL_PIN_HASH)
+              .remove(PIN)
+              .remove(LAST_CREATE_FAILED_TIMESTAMP)
+              .commit();
   }
 
   /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */
@@ -52,43 +54,43 @@ public final class KbsValues {
       throw new AssertionError(e);
     }
 
-    store.beginWrite()
-         .putString(TOKEN_RESPONSE, tokenResponse)
-         .putBlob(MASTER_KEY, masterKey.serialize())
-         .putString(LOCK_LOCAL_PIN_HASH, PinHashing.localPinHash(pin))
-         .putString(PIN, pin)
-         .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
-         .commit();
+    getStore().beginWrite()
+              .putString(TOKEN_RESPONSE, tokenResponse)
+              .putBlob(MASTER_KEY, masterKey.serialize())
+              .putString(LOCK_LOCAL_PIN_HASH, PinHashing.localPinHash(pin))
+              .putString(PIN, pin)
+              .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
+              .commit();
   }
 
   synchronized void setPinIfNotPresent(@NonNull String pin) {
-    if (store.getString(PIN, null) == null) {
-      store.beginWrite().putString(PIN, pin).commit();
+    if (getStore().getString(PIN, null) == null) {
+      getStore().beginWrite().putString(PIN, pin).commit();
     }
   }
 
   /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */
   public synchronized void setV2RegistrationLockEnabled(boolean enabled) {
-    store.beginWrite().putBoolean(V2_LOCK_ENABLED, enabled).apply();
+    putBoolean(V2_LOCK_ENABLED, enabled);
   }
 
   /**
    * Whether or not registration lock V2 is enabled.
    */
   public synchronized boolean isV2RegistrationLockEnabled() {
-    return store.getBoolean(V2_LOCK_ENABLED, false);
+    return getBoolean(V2_LOCK_ENABLED, false);
   }
 
   /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */
   public synchronized void onPinCreateFailure() {
-    store.beginWrite().putLong(LAST_CREATE_FAILED_TIMESTAMP, System.currentTimeMillis()).apply();
+    putLong(LAST_CREATE_FAILED_TIMESTAMP, System.currentTimeMillis());
   }
 
   /**
    * Whether or not the last time the user attempted to create a PIN, it failed.
    */
   public synchronized boolean lastPinCreateFailed() {
-    return store.getLong(LAST_CREATE_FAILED_TIMESTAMP, -1) > 0;
+    return getLong(LAST_CREATE_FAILED_TIMESTAMP, -1) > 0;
   }
 
   /**
@@ -98,13 +100,13 @@ public final class KbsValues {
    * If you only want a key when it's backed up, use {@link #getPinBackedMasterKey()}.
    */
   public synchronized @NonNull MasterKey getOrCreateMasterKey() {
-    byte[] blob = store.getBlob(MASTER_KEY, null);
+    byte[] blob = getStore().getBlob(MASTER_KEY, null);
 
     if (blob == null) {
-      store.beginWrite()
-           .putBlob(MASTER_KEY, MasterKey.createNew(new SecureRandom()).serialize())
-           .commit();
-      blob = store.getBlob(MASTER_KEY, null);
+      getStore().beginWrite()
+                .putBlob(MASTER_KEY, MasterKey.createNew(new SecureRandom()).serialize())
+                .commit();
+      blob = getBlob(MASTER_KEY, null);
     }
 
     return new MasterKey(blob);
@@ -119,7 +121,7 @@ public final class KbsValues {
   }
 
   private synchronized @Nullable MasterKey getMasterKey() {
-    byte[] blob = store.getBlob(MASTER_KEY, null);
+    byte[] blob = getBlob(MASTER_KEY, null);
     return blob != null ? new MasterKey(blob) : null;
   }
 
@@ -133,7 +135,7 @@ public final class KbsValues {
   }
 
   public synchronized @Nullable String getLocalPinHash() {
-    return store.getString(LOCK_LOCAL_PIN_HASH, null);
+    return getString(LOCK_LOCAL_PIN_HASH, null);
   }
 
   public synchronized boolean hasPin() {
@@ -141,7 +143,7 @@ public final class KbsValues {
   }
 
   public synchronized @Nullable TokenResponse getRegistrationLockTokenResponse() {
-    String token = store.getString(TOKEN_RESPONSE, null);
+    String token = getStore().getString(TOKEN_RESPONSE, null);
 
     if (token == null) return null;
 

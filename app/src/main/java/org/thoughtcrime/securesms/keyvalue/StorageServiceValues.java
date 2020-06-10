@@ -8,15 +8,17 @@ import org.whispersystems.signalservice.api.storage.StorageKey;
 
 import java.security.SecureRandom;
 
-public class StorageServiceValues {
+public class StorageServiceValues extends SignalStoreValues {
 
   private static final String LAST_SYNC_TIME        = "storage.last_sync_time";
   private static final String NEEDS_ACCOUNT_RESTORE = "storage.needs_account_restore";
 
-  private final KeyValueStore store;
-
   StorageServiceValues(@NonNull KeyValueStore store) {
-    this.store = store;
+    super(store);
+  }
+
+  @Override
+  void onFirstEverAppLaunch() {
   }
 
   public synchronized StorageKey getOrCreateStorageKey() {
@@ -24,18 +26,18 @@ public class StorageServiceValues {
   }
 
   public long getLastSyncTime() {
-    return store.getLong(LAST_SYNC_TIME, 0);
+    return getLong(LAST_SYNC_TIME, 0);
   }
 
   public void onSyncCompleted() {
-    store.beginWrite().putLong(LAST_SYNC_TIME, System.currentTimeMillis()).apply();
+    putLong(LAST_SYNC_TIME, System.currentTimeMillis());
   }
 
   public boolean needsAccountRestore() {
-    return store.getBoolean(NEEDS_ACCOUNT_RESTORE, false);
+    return getBoolean(NEEDS_ACCOUNT_RESTORE, false);
   }
 
   public void setNeedsAccountRestore(boolean value) {
-    store.beginWrite().putBoolean(NEEDS_ACCOUNT_RESTORE, value).apply();
+    putBoolean(NEEDS_ACCOUNT_RESTORE, value);
   }
 }

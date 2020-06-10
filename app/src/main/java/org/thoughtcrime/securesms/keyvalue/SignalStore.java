@@ -15,7 +15,27 @@ public final class SignalStore {
   private static final String LAST_PREKEY_REFRESH_TIME    = "last_prekey_refresh_time";
   private static final String MESSAGE_REQUEST_ENABLE_TIME = "message_request_enable_time";
 
-  private SignalStore() {}
+  private static final SignalStore INSTANCE = new SignalStore();
+
+  private final KeyValueStore        store;
+  private final KbsValues            kbsValues;
+  private final RegistrationValues   registrationValues;
+  private final PinValues            pinValues;
+  private final RemoteConfigValues   remoteConfigValues;
+  private final StorageServiceValues storageServiceValues;
+  private final UiHints              uiHints;
+  private final TooltipValues        tooltipValues;
+
+  private SignalStore() {
+    this.store                = ApplicationDependencies.getKeyValueStore();
+    this.kbsValues            = new KbsValues(store);
+    this.registrationValues   = new RegistrationValues(store);
+    this.pinValues            = new PinValues(store);
+    this.remoteConfigValues   = new RemoteConfigValues(store);
+    this.storageServiceValues = new StorageServiceValues(store);
+    this.uiHints              = new UiHints(store);
+    this.tooltipValues        = new TooltipValues(store);
+  }
 
   public static void onFirstEverAppLaunch() {
     registrationValues().onFirstEverAppLaunch();
@@ -24,31 +44,31 @@ public final class SignalStore {
   }
 
   public static @NonNull KbsValues kbsValues() {
-    return new KbsValues(getStore());
+    return INSTANCE.kbsValues;
   }
 
   public static @NonNull RegistrationValues registrationValues() {
-    return new RegistrationValues(getStore());
+    return INSTANCE.registrationValues;
   }
 
   public static @NonNull PinValues pinValues() {
-    return new PinValues(getStore());
+    return INSTANCE.pinValues;
   }
 
   public static @NonNull RemoteConfigValues remoteConfigValues() {
-    return new RemoteConfigValues(getStore());
+    return INSTANCE.remoteConfigValues;
   }
 
   public static @NonNull StorageServiceValues storageServiceValues() {
-    return new StorageServiceValues(getStore());
+    return INSTANCE.storageServiceValues;
   }
 
   public static @NonNull UiHints uiHints() {
-    return new UiHints(getStore());
+    return INSTANCE.uiHints;
   }
 
   public static @NonNull TooltipValues tooltips() {
-    return new TooltipValues(getStore());
+    return INSTANCE.tooltipValues;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {
@@ -84,7 +104,7 @@ public final class SignalStore {
   }
 
   private static @NonNull KeyValueStore getStore() {
-    return ApplicationDependencies.getKeyValueStore();
+    return INSTANCE.store;
   }
 
   private static void putBlob(@NonNull String key, byte[] value) {

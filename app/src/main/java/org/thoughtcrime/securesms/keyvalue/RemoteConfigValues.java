@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.logging.Log;
 
-public final class RemoteConfigValues {
+public final class RemoteConfigValues extends SignalStoreValues {
 
   private static final String TAG = Log.tag(RemoteConfigValues.class);
 
@@ -10,33 +12,35 @@ public final class RemoteConfigValues {
   private static final String PENDING_CONFIG  = "pending_remote_config";
   private static final String LAST_FETCH_TIME = "remote_config_last_fetch_time";
 
-  private final KeyValueStore store;
+  RemoteConfigValues(@NonNull KeyValueStore store) {
+    super(store);
+  }
 
-  RemoteConfigValues(KeyValueStore store) {
-    this.store = store;
+  @Override
+  void onFirstEverAppLaunch() {
   }
 
   public String getCurrentConfig() {
-    return store.getString(CURRENT_CONFIG, null);
+    return getString(CURRENT_CONFIG, null);
   }
 
   public void setCurrentConfig(String value) {
-    store.beginWrite().putString(CURRENT_CONFIG, value).apply();
+    putString(CURRENT_CONFIG, value);
   }
 
   public String getPendingConfig() {
-    return store.getString(PENDING_CONFIG, getCurrentConfig());
+    return getString(PENDING_CONFIG, getCurrentConfig());
   }
 
   public void setPendingConfig(String value) {
-    store.beginWrite().putString(PENDING_CONFIG, value).apply();
+    putString(PENDING_CONFIG, value);
   }
 
   public long getLastFetchTime() {
-    return store.getLong(LAST_FETCH_TIME, 0);
+    return getLong(LAST_FETCH_TIME, 0);
   }
 
   public void setLastFetchTime(long time) {
-    store.beginWrite().putLong(LAST_FETCH_TIME, time).apply();
+    putLong(LAST_FETCH_TIME, time);
   }
 }

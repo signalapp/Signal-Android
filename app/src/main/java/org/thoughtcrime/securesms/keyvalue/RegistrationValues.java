@@ -3,22 +3,20 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 
-public final class RegistrationValues {
+public final class RegistrationValues extends SignalStoreValues {
 
   private static final String REGISTRATION_COMPLETE = "registration.complete";
   private static final String PIN_REQUIRED          = "registration.pin_required";
 
-  private final KeyValueStore store;
-
   RegistrationValues(@NonNull KeyValueStore store) {
-    this.store = store;
+    super(store);
   }
 
   public synchronized void onFirstEverAppLaunch() {
-    store.beginWrite()
-         .putBoolean(REGISTRATION_COMPLETE, false)
-         .putBoolean(PIN_REQUIRED, true)
-         .commit();
+    getStore().beginWrite()
+              .putBoolean(REGISTRATION_COMPLETE, false)
+              .putBoolean(PIN_REQUIRED, true)
+              .commit();
   }
 
   public synchronized void clearRegistrationComplete() {
@@ -26,18 +24,18 @@ public final class RegistrationValues {
   }
 
   public synchronized void setRegistrationComplete() {
-    store.beginWrite()
-         .putBoolean(REGISTRATION_COMPLETE, true)
-         .commit();
+    getStore().beginWrite()
+              .putBoolean(REGISTRATION_COMPLETE, true)
+              .commit();
   }
 
   @CheckResult
   public synchronized boolean pinWasRequiredAtRegistration() {
-    return store.getBoolean(PIN_REQUIRED, false);
+    return getStore().getBoolean(PIN_REQUIRED, false);
   }
 
   @CheckResult
   public synchronized boolean isRegistrationComplete() {
-    return store.getBoolean(REGISTRATION_COMPLETE, true);
+    return getStore().getBoolean(REGISTRATION_COMPLETE, true);
   }
 }
