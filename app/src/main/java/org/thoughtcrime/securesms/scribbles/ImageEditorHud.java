@@ -250,6 +250,7 @@ public final class ImageEditorHud extends LinearLayout {
       case NONE:      presentModeNone();      break;
       case CROP:      presentModeCrop();      break;
       case DRAW:      presentModeDraw();      break;
+      case BLUR:      presentModeBlur();      break;
       case HIGHLIGHT: presentModeHighlight(); break;
       case TEXT:      presentModeText();      break;
     }
@@ -284,6 +285,11 @@ public final class ImageEditorHud extends LinearLayout {
   private void presentModeDraw() {
     colorPicker.setOnColorChangeListener(standardOnColorChangeListener);
     colorPicker.setActiveColor(Color.RED);
+  }
+
+  private void presentModeBlur() {
+    colorPicker.setOnColorChangeListener(standardOnColorChangeListener);
+    colorPicker.setActiveColor(Color.BLACK);
   }
 
   private void presentModeHighlight() {
