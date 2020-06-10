@@ -30,16 +30,13 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
 
   private final Context             context;
   private final long                threadId;
-  private final DataUpdatedCallback dataUpdateCallback;
 
   private ConversationDataSource(@NonNull Context context,
                                  long threadId,
-                                 @NonNull Invalidator invalidator,
-                                 @NonNull DataUpdatedCallback dataUpdateCallback)
+                                 @NonNull Invalidator invalidator)
   {
     this.context            = context;
     this.threadId           = threadId;
-    this.dataUpdateCallback = dataUpdateCallback;
 
     ContentObserver contentObserver = new ContentObserver(null) {
       @Override
@@ -82,7 +79,6 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
       SizeFixResult result = ensureMultipleOfPageSize(records, params.requestedStartPosition, params.pageSize, totalCount);
 
       callback.onResult(result.messages, params.requestedStartPosition, result.total);
-      Util.runOnMain(dataUpdateCallback::onDataUpdated);
     }
 
     Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
@@ -103,10 +99,6 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     }
 
     callback.onResult(records);
-
-    if (!isInvalid()) {
-      Util.runOnMain(dataUpdateCallback::onDataUpdated);
-    }
 
     Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
   }
@@ -164,18 +156,16 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     private final Context             context;
     private final long                threadId;
     private final Invalidator         invalidator;
-    private final DataUpdatedCallback callback;
 
-    Factory(Context context, long threadId, @NonNull Invalidator invalidator, @NonNull DataUpdatedCallback callback) {
+    Factory(Context context, long threadId, @NonNull Invalidator invalidator) {
       this.context     = context;
       this.threadId    = threadId;
       this.invalidator = invalidator;
-      this.callback    = callback;
     }
 
     @Override
     public @NonNull DataSource<Integer, MessageRecord> create() {
-      return new ConversationDataSource(context, threadId, invalidator, callback);
+      return new ConversationDataSource(context, threadId, invalidator);
     }
   }
 }

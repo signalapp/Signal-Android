@@ -941,17 +941,15 @@ public class ConversationFragment extends Fragment {
   }
 
   private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
-    if (position >= 0) {
-      list.scrollToPosition(position);
+    int itemCount = getListAdapter() != null ? getListAdapter().getItemCount() : 0;
 
-      if (getListAdapter() == null || getListAdapter().getItem(position) == null) {
-        Log.i(TAG, "[moveToMessagePosition] Position " + position + " not currently populated. Scheduling a jump.");
-        conversationViewModel.scheduleForNextMessageUpdate(() -> {
-          list.scrollToPosition(position);
-          getListAdapter().pulseHighlightItem(position);
-        });
+    if (position >= 0 && position < itemCount) {
+      if (getListAdapter().getItem(position) == null) {
+        conversationViewModel.onConversationDataAvailable(threadId, position);
+        deferred.setDeferred(true);
+        deferred.defer(() -> moveToMessagePosition(position, onMessageNotFound));
       } else {
-        getListAdapter().pulseHighlightItem(position);
+        scrollToStartingPosition(position);
       }
     } else {
       Log.w(TAG, "[moveToMessagePosition] Tried to navigate to message, but it wasn't found.");

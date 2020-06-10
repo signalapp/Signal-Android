@@ -40,7 +40,6 @@ class ConversationViewModel extends ViewModel {
   private final MutableLiveData<Long>              threadId;
   private final LiveData<PagedList<MessageRecord>> messages;
   private final LiveData<ConversationData>         conversationMetadata;
-  private final List<Runnable>                     onNextMessageLoad;
   private final Invalidator                        invalidator;
 
   private int jumpToPosition;
@@ -51,28 +50,31 @@ class ConversationViewModel extends ViewModel {
     this.conversationRepository = new ConversationRepository();
     this.recentMedia            = new MutableLiveData<>();
     this.threadId               = new MutableLiveData<>();
-    this.onNextMessageLoad      = new CopyOnWriteArrayList<>();
     this.invalidator            = new Invalidator();
 
-    LiveData<ConversationData> conversationDataForRequestedThreadId = Transformations.switchMap(threadId, thread -> {
-      return conversationRepository.getConversationData(thread, jumpToPosition);
+    LiveData<ConversationData> metadata = Transformations.switchMap(threadId, thread -> {
+      LiveData<ConversationData> conversationData = conversationRepository.getConversationData(thread, jumpToPosition);
+
+      jumpToPosition = -1;
+
+      return conversationData;
     });
 
-    LiveData<Pair<Long, PagedList<MessageRecord>>> messagesForThreadId = Transformations.switchMap(conversationDataForRequestedThreadId, data -> {
-      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, data.getThreadId(), invalidator, this::onMessagesUpdated);
+    LiveData<Pair<Long, PagedList<MessageRecord>>> messagesForThreadId = Transformations.switchMap(metadata, data -> {
+      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, data.getThreadId(), invalidator);
       PagedList.Config                           config  = new PagedList.Config.Builder()
                                                                                .setPageSize(25)
                                                                                .setInitialLoadSizeHint(25)
                                                                                .build();
 
       final int startPosition;
-      if (jumpToPosition > 0) {
-        startPosition = jumpToPosition;
+      if (data.shouldJumpToMessage()) {
+        startPosition = data.getJumpToPosition();
       } else {
         startPosition = data.getLastSeenPosition();
       }
 
-      Log.d(TAG, "Starting at position " + startPosition + " :: " + jumpToPosition + " :: " + data.getLastSeenPosition());
+      Log.d(TAG, "Starting at position " + startPosition + " :: " + data.getJumpToPosition() + " :: " + data.getLastSeenPosition());
 
       return Transformations.map(new LivePagedListBuilder<>(factory, config).setFetchExecutor(ConversationDataSource.EXECUTOR)
                                                                             .setInitialLoadKey(Math.max(startPosition, 0))
@@ -82,13 +84,9 @@ class ConversationViewModel extends ViewModel {
 
     this.messages = Transformations.map(messagesForThreadId, Pair::second);
 
-    LiveData<Long> threadIdForLoadedMessages = Transformations.distinctUntilChanged(Transformations.map(messagesForThreadId, Pair::first));
+    LiveData<Long> distinctThread = Transformations.distinctUntilChanged(threadId);
 
-    conversationMetadata = Transformations.switchMap(threadIdForLoadedMessages, m -> {
-      LiveData<ConversationData> data = conversationRepository.getConversationData(m, jumpToPosition);
-      jumpToPosition = -1;
-      return data;
-    });
+    conversationMetadata = Transformations.switchMap(distinctThread, thread -> metadata);
   }
 
   void onAttachmentKeyboardOpen() {
@@ -122,22 +120,10 @@ class ConversationViewModel extends ViewModel {
     return conversationMetadata.getValue() != null ? conversationMetadata.getValue().getLastSeenPosition() : 0;
   }
 
-  void scheduleForNextMessageUpdate(@NonNull Runnable runnable) {
-    onNextMessageLoad.add(runnable);
-  }
-
   @Override
   protected void onCleared() {
     super.onCleared();
     invalidator.invalidate();
-  }
-
-  private void onMessagesUpdated() {
-    for (Runnable runnable : onNextMessageLoad) {
-      runnable.run();
-    }
-
-    onNextMessageLoad.clear();
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
