@@ -148,6 +148,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
           startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
         });
       }
+
+      addToGroupButton.setVisibility(recipient.isRegistered() && !recipient.isGroup() ? View.VISIBLE : View.GONE);
     });
 
     viewModel.getAdminActionStatus().observe(getViewLifecycleOwner(), adminStatus -> {
