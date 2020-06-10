@@ -149,6 +149,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         });
       }
 
+      addToGroupButton.setText(groupId == null ? R.string.RecipientBottomSheet_add_to_a_group : R.string.RecipientBottomSheet_add_to_another_group);
       addToGroupButton.setVisibility(recipient.isRegistered() && !recipient.isGroup() ? View.VISIBLE : View.GONE);
     });
 

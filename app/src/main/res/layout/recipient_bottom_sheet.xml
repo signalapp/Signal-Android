@@ -126,9 +126,9 @@
             android:layout_height="56dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_add_to_a_group"
             android:visibility="gone"
             app:drawableStartCompat="?attr/recipient_make_admin_icon"
+            tools:text="@string/RecipientBottomSheet_add_to_a_group"
             tools:visibility="visible" />
 
         <Button

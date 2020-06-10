@@ -2318,6 +2318,7 @@
     <string name="RecipientBottomSheet_unblock">Unblock</string>
     <string name="RecipientBottomSheet_add_to_contacts">Add to contacts</string>
     <string name="RecipientBottomSheet_add_to_a_group">Add to a group</string>
+    <string name="RecipientBottomSheet_add_to_another_group">Add to another group</string>
     <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
     <string name="RecipientBottomSheet_make_group_admin">Make group admin</string>
     <string name="RecipientBottomSheet_remove_as_admin">Remove as admin</string>
