@@ -2,6 +2,9 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar">
+    </style>
+
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.BaseLightNoActionBar">
         <!-- leave empty to allow overriding -->
     </style>
