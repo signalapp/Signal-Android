@@ -70,11 +70,13 @@ class ConversationViewModel extends ViewModel {
       final int startPosition;
       if (data.shouldJumpToMessage()) {
         startPosition = data.getJumpToPosition();
-      } else {
+      } else if (data.shouldScrollToLastSeen()) {
         startPosition = data.getLastSeenPosition();
+      } else {
+        startPosition = data.getLastScrolledPosition();
       }
 
-      Log.d(TAG, "Starting at position " + startPosition + " :: " + data.getJumpToPosition() + " :: " + data.getLastSeenPosition());
+      Log.d(TAG, "Starting at position startPosition: " + startPosition + " jumpToPosition: " + jumpToPosition + " lastSeenPosition: " + data.getLastSeenPosition() + " lastScrolledPosition: " + data.getLastScrolledPosition());
 
       return Transformations.map(new LivePagedListBuilder<>(factory, config).setFetchExecutor(ConversationDataSource.EXECUTOR)
                                                                             .setInitialLoadKey(Math.max(startPosition, 0))

@@ -7,6 +7,7 @@ final class ConversationData {
   private final long    threadId;
   private final long    lastSeen;
   private final int     lastSeenPosition;
+  private final int     lastScrolledPosition;
   private final boolean hasSent;
   private final boolean isMessageRequestAccepted;
   private final boolean hasPreMessageRequestMessages;
@@ -15,18 +16,20 @@ final class ConversationData {
   ConversationData(long threadId,
                    long lastSeen,
                    int lastSeenPosition,
+                   int lastScrolledPosition,
                    boolean hasSent,
                    boolean isMessageRequestAccepted,
                    boolean hasPreMessageRequestMessages,
                    int jumpToPosition)
   {
-     this.threadId                     = threadId;
-     this.lastSeen                     = lastSeen;
-     this.lastSeenPosition             = lastSeenPosition;
-     this.hasSent                      = hasSent;
-     this.isMessageRequestAccepted     = isMessageRequestAccepted;
-     this.hasPreMessageRequestMessages = hasPreMessageRequestMessages;
-     this.jumpToPosition               = jumpToPosition;
+    this.threadId                     = threadId;
+    this.lastSeen                     = lastSeen;
+    this.lastSeenPosition             = lastSeenPosition;
+    this.lastScrolledPosition         = lastScrolledPosition;
+    this.hasSent                      = hasSent;
+    this.isMessageRequestAccepted     = isMessageRequestAccepted;
+    this.hasPreMessageRequestMessages = hasPreMessageRequestMessages;
+    this.jumpToPosition               = jumpToPosition;
   }
 
   public long getThreadId() {
@@ -39,6 +42,10 @@ final class ConversationData {
 
   int getLastSeenPosition() {
     return lastSeenPosition;
+  }
+
+  int getLastScrolledPosition() {
+    return lastScrolledPosition;
   }
 
   boolean hasSent() {
@@ -55,6 +62,10 @@ final class ConversationData {
 
   boolean shouldJumpToMessage() {
     return jumpToPosition >= 0;
+  }
+
+  boolean shouldScrollToLastSeen() {
+    return lastSeenPosition > 0;
   }
 
   int getJumpToPosition() {

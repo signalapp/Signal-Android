@@ -285,6 +285,23 @@ public class ConversationFragment extends Fragment {
   }
 
   @Override
+  public void onPause() {
+    super.onPause();
+    int lastVisiblePosition  = getListLayoutManager().findLastVisibleItemPosition();
+    int firstVisiblePosition = getListLayoutManager().findFirstCompletelyVisibleItemPosition();
+
+    final long lastVisibleMessageTimestamp;
+    if (firstVisiblePosition != 0 && lastVisiblePosition != RecyclerView.NO_POSITION) {
+      MessageRecord message = getListAdapter().getLastVisibleMessageRecord(lastVisiblePosition);
+
+      lastVisibleMessageTimestamp = message != null ? message.getDateReceived() : 0;
+    } else {
+      lastVisibleMessageTimestamp = 0;
+    }
+    SignalExecutors.BOUNDED.submit(() -> DatabaseFactory.getThreadDatabase(requireContext()).setLastScrolled(threadId, lastVisibleMessageTimestamp));
+  }
+
+  @Override
   public void onStop() {
     super.onStop();
     ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
@@ -312,7 +329,7 @@ public class ConversationFragment extends Fragment {
     }
 
     int position = getListAdapter().getAdapterPositionForMessagePosition(conversationViewModel.getLastSeenPosition());
-    scrollToLastSeenPosition(position);
+    scrollToPosition(position);
   }
 
   private void initializeMessageRequestViewModel() {
@@ -886,12 +903,13 @@ public class ConversationFragment extends Fragment {
 
     listener.onCursorChanged();
 
-    int lastSeenPosition = adapter.getAdapterPositionForMessagePosition(conversation.getLastSeenPosition());
+    int lastSeenPosition     = adapter.getAdapterPositionForMessagePosition(conversation.getLastSeenPosition());
+    int lastScrolledPosition = adapter.getAdapterPositionForMessagePosition(conversation.getLastScrolledPosition());
 
     if (conversation.shouldJumpToMessage()) {
       scrollToStartingPosition(conversation.getJumpToPosition());
     } else if (conversation.isMessageRequestAccepted()) {
-      scrollToLastSeenPosition(lastSeenPosition);
+      scrollToPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition);
     } else if (FeatureFlags.messageRequests()) {
       list.post(() -> getListLayoutManager().scrollToPosition(adapter.getItemCount() - 1));
     }
@@ -904,9 +922,9 @@ public class ConversationFragment extends Fragment {
     });
   }
 
-  private void scrollToLastSeenPosition(int lastSeenPosition) {
-    if (lastSeenPosition > 0) {
-      list.post(() -> getListLayoutManager().scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
+  private void scrollToPosition(int position) {
+    if (position > 0) {
+      list.post(() -> getListLayoutManager().scrollToPositionWithOffset(position, list.getHeight()));
     }
   }
 

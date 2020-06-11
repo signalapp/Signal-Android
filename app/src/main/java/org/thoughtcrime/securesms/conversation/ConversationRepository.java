@@ -7,10 +7,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.util.concurrent.Executor;
 
@@ -35,23 +35,29 @@ class ConversationRepository {
   }
 
   private @NonNull ConversationData getConversationDataInternal(long threadId, int jumpToPosition) {
-    Pair<Long, Boolean> lastSeenAndHasSent = DatabaseFactory.getThreadDatabase(context).getLastSeenAndHasSent(threadId);
+    ThreadDatabase.ConversationMetadata metadata = DatabaseFactory.getThreadDatabase(context).getConversationMetadata(threadId);
 
-    long    lastSeen         = lastSeenAndHasSent.first();
-    boolean hasSent          = lastSeenAndHasSent.second();
-    int     lastSeenPosition = 0;
+    long    lastSeen             = metadata.getLastSeen();
+    boolean hasSent              = metadata.hasSent();
+    int     lastSeenPosition     = 0;
+    long    lastScrolled         = metadata.getLastScrolled();
+    int     lastScrolledPosition = 0;
 
     boolean isMessageRequestAccepted     = RecipientUtil.isMessageRequestAccepted(context, threadId);
     boolean hasPreMessageRequestMessages = RecipientUtil.isPreMessageRequestThread(context, threadId);
 
     if (lastSeen > 0) {
-      lastSeenPosition = DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionForLastSeen(threadId, lastSeen);
+      lastSeenPosition = DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionOnOrAfterTimestamp(threadId, lastSeen);
     }
 
     if (lastSeenPosition <= 0) {
       lastSeen = 0;
     }
 
-    return new ConversationData(threadId, lastSeen, lastSeenPosition, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
+    if (lastSeen == 0 && lastScrolled > 0) {
+      lastScrolledPosition = DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionOnOrAfterTimestamp(threadId, lastScrolled);
+    }
+
+    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
   }
 }

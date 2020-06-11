@@ -124,9 +124,9 @@ public class MmsSmsDatabase extends Database {
     return new Pair<>(id, latestQuit);
   }
 
-  public int getMessagePositionForLastSeen(long threadId, long lastSeen) {
+  public int getMessagePositionOnOrAfterTimestamp(long threadId, long timestamp) {
     String[] projection = new String[] { "COUNT(*)" };
-    String   selection  = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + lastSeen;
+    String   selection  = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " >= " + timestamp;
 
     try (Cursor cursor = queryTables(projection, selection, null, null)) {
       if (cursor != null && cursor.moveToNext()) {

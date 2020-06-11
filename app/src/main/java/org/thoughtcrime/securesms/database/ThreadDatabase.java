@@ -90,6 +90,7 @@ public class ThreadDatabase extends Database {
   public  static final String EXPIRES_IN             = "expires_in";
   public  static final String LAST_SEEN              = "last_seen";
   public  static final String HAS_SENT               = "has_sent";
+  private static final String LAST_SCROLLED          = "last_scrolled";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY, " +
                                                                                   DATE                   + " INTEGER DEFAULT 0, " +
@@ -111,7 +112,8 @@ public class ThreadDatabase extends Database {
                                                                                   LAST_SEEN              + " INTEGER DEFAULT 0, " +
                                                                                   HAS_SENT               + " INTEGER DEFAULT 0, " +
                                                                                   READ_RECEIPT_COUNT     + " INTEGER DEFAULT 0, " +
-                                                                                  UNREAD_COUNT           + " INTEGER DEFAULT 0);";
+                                                                                  UNREAD_COUNT           + " INTEGER DEFAULT 0, " +
+                                                                                  LAST_SCROLLED          + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
@@ -120,7 +122,7 @@ public class ThreadDatabase extends Database {
 
   private static final String[] THREAD_PROJECTION = {
       ID, DATE, MESSAGE_COUNT, RECIPIENT_ID, SNIPPET, SNIPPET_CHARSET, READ, UNREAD_COUNT, TYPE, ERROR, SNIPPET_TYPE,
-      SNIPPET_URI, SNIPPET_CONTENT_TYPE, SNIPPET_EXTRAS, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT
+      SNIPPET_URI, SNIPPET_CONTENT_TYPE, SNIPPET_EXTRAS, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT, LAST_SCROLLED
   };
 
   private static final List<String> TYPED_THREAD_PROJECTION = Stream.of(THREAD_PROJECTION)
@@ -618,18 +620,26 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public Pair<Long, Boolean> getLastSeenAndHasSent(long threadId) {
-    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    Cursor         cursor = db.query(TABLE_NAME, new String[]{LAST_SEEN, HAS_SENT}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
+  public void setLastScrolled(long threadId, long lastScrolledTimestamp) {
+    SQLiteDatabase db            = databaseHelper.getWritableDatabase();
+    ContentValues  contentValues = new ContentValues(1);
 
-    try {
+    contentValues.put(LAST_SCROLLED, lastScrolledTimestamp);
+
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(threadId)});
+  }
+
+  public ConversationMetadata getConversationMetadata(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[]{LAST_SEEN, HAS_SENT, LAST_SCROLLED}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
-        return new Pair<>(cursor.getLong(0), cursor.getLong(1) == 1);
+        return new ConversationMetadata(cursor.getLong(cursor.getColumnIndexOrThrow(LAST_SEEN)),
+                                        cursor.getLong(cursor.getColumnIndexOrThrow(HAS_SENT)) == 1,
+                                        cursor.getLong(cursor.getColumnIndexOrThrow(LAST_SCROLLED)));
       }
 
-      return new Pair<>(-1L, false);
-    } finally {
-      if (cursor != null) cursor.close();
+      return new ConversationMetadata(-1L, false, -1);
     }
   }
 
@@ -1058,6 +1068,30 @@ public class ThreadDatabase extends Database {
 
     public int serialize() {
       return value;
+    }
+  }
+
+  public static class ConversationMetadata {
+    private final long    lastSeen;
+    private final boolean hasSent;
+    private final long    lastScrolled;
+
+    public ConversationMetadata(long lastSeen, boolean hasSent, long lastScrolled) {
+      this.lastSeen     = lastSeen;
+      this.hasSent      = hasSent;
+      this.lastScrolled = lastScrolled;
+    }
+
+    public long getLastSeen() {
+      return lastSeen;
+    }
+
+    public boolean hasSent() {
+      return hasSent;
+    }
+
+    public long getLastScrolled() {
+      return lastScrolled;
     }
   }
 }

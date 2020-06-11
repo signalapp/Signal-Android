@@ -510,6 +510,10 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
     }
   }
 
+  public @Nullable MessageRecord getLastVisibleMessageRecord(int position) {
+    return getItem(position - ((hasFooter() && position == getItemCount() - 1) ? 1 : 0));
+  }
+
   static class ConversationViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ConversationViewHolder(final @NonNull V itemView) {
       super(itemView);
