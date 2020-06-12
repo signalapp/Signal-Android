@@ -30,7 +30,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         set(value) { field = value; createClosedGroupAdapter.members = value }
 
     private val createClosedGroupAdapter by lazy {
-        val result = CreateClosedGroupAdapter(this)
+        val result = SelectContactsAdapter(this)
         result.glide = GlideApp.with(this)
         result.memberClickListener = this
         result
@@ -55,14 +55,14 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_create_closed_group, menu)
+        menuInflater.inflate(R.menu.menu_done, menu)
         return members.isNotEmpty()
     }
     // endregion
 
     // region Updating
     override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
-        return CreateClosedGroupLoader(this)
+        return SelectContactsLoader(this)
     }
 
     override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
@@ -85,7 +85,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         when(id) {
-            R.id.createClosedGroupButton -> createClosedGroup()
+            R.id.doneButton -> createClosedGroup()
             else -> { /* Do nothing */ }
         }
         return super.onOptionsItemSelected(item)

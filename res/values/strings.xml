@@ -1781,10 +1781,12 @@
     <string name="activity_edit_closed_group_invalid_session_id_error">One of the members of your group has an invalid Session ID</string>
     <string name="activity_edit_closed_group_confirm_removal">Are you sure you want to remove this user?</string>
     <string name="activity_edit_closed_group_member_removed">User removed from group</string>
-    <string name="activity_edit_closed_group_apply_changes">Apply</string>
+
 
     <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
     <string name="fragment_edit_group_bottom_sheet_admin">Make this user a group admin</string>
+
+    <string name="activity_select_contacts_title">Select Contacts</string>
 
     <string name="activity_join_public_chat_title">Join Open Group</string>
     <string name="activity_join_public_chat_error">Couldn\'t join group</string>
@@ -1877,5 +1879,8 @@
     <string name="fragment_contact_selection_contacts_title">Contacts</string>
     <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
     <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+
+    <string name="menu_apply_button">Apply</string>
+    <string name="menu_done_button">Done</string>
 
 </resources>

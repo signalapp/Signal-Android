@@ -4,7 +4,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.thoughtcrime.securesms.util.AsyncLoader
 
-class CreateClosedGroupLoader(context: Context) : AsyncLoader<List<String>>(context) {
+class SelectContactsLoader(context: Context) : AsyncLoader<List<String>>(context) {
 
     override fun loadInBackground(): List<String> {
         val contacts = ContactUtilities.getAllContacts(context)

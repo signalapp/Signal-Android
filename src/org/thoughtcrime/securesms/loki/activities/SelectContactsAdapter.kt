@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
-class CreateClosedGroupAdapter(private val context: Context) : RecyclerView.Adapter<CreateClosedGroupAdapter.ViewHolder>() {
+class SelectContactsAdapter(private val context: Context) : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
     lateinit var glide: GlideRequests
     val selectedMembers = mutableSetOf<String>()
     var members = listOf<String>()

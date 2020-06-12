@@ -143,6 +143,9 @@
             android:name="org.thoughtcrime.securesms.loki.activities.SeedActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="org.thoughtcrime.securesms.loki.activities.SelectContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="org.thoughtcrime.securesms.loki.activities.PrivacySettingsActivity"
             android:screenOrientation="portrait" />
         <activity

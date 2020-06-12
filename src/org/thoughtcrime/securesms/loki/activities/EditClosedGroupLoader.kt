@@ -12,28 +12,6 @@ class EditClosedGroupLoader(val groupID: String, context: Context) : AsyncLoader
         return members.map {
             it.address.toPhoneString()
         }
+        /* To do: Load admins in the process here */
     }
-
-/* For loading contacts for Add members, and loading admins from group list
-
-    override fun loadContactsInBackground(): List<String> {
-        val contacts = ContactUtilities.getAllContacts(context)
-        // Only show the master devices of the users we are friends with
-        return contacts.filter { contact ->
-            !contact.recipient.isGroupRecipient && contact.isFriend && !contact.isOurDevice && !contact.isSlave
-        }.map {
-            it.recipient.address.toPhoneString()
-        }
-    }
-    override fun loadAdminsInBackground(): List<String> {
-        val contacts = ContactUtilities.getAllContacts(context)
-        // Only show the master devices of the users we are friends with
-        return contacts.filter { contact ->
-            !contact.recipient.isGroupRecipient && contact.isFriend && !contact.isOurDevice && !contact.isSlave
-        }.map {
-            it.recipient.address.toPhoneString()
-        }
-    }
-
- */
 }
