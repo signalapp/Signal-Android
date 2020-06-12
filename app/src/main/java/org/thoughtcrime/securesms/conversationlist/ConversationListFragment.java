@@ -137,7 +137,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
-                                                                      ConversationPagedListAdapter.OnConversationClickListener,
+                                                                      ConversationListAdapter.OnConversationClickListener,
                                                                       ConversationListSearchAdapter.EventListener,
                                                                       MainNavigator.BackHandler,
                                                                       MegaphoneActionController
@@ -167,7 +167,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private View                              toolbarShadow;
   private ConversationListViewModel         viewModel;
   private RecyclerView.Adapter              activeAdapter;
-  private ConversationPagedListAdapter      defaultAdapter;
+  private ConversationListAdapter           defaultAdapter;
   private ConversationListSearchAdapter     searchAdapter;
   private StickyHeaderDecoration            searchAdapterDecoration;
   private ViewGroup                         megaphoneContainer;
@@ -465,7 +465,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeListAdapters() {
-    defaultAdapter          = new ConversationPagedListAdapter(GlideApp.with(this), this);
+    defaultAdapter          = new ConversationListAdapter(GlideApp.with(this), this);
     searchAdapter           = new ConversationListSearchAdapter(GlideApp.with(this), this, Locale.getDefault());
     searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false);
 

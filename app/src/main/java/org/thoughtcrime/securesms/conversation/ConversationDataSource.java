@@ -65,10 +65,6 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     int                 totalCount     = db.getConversationCount(threadId);
     int                 effectiveCount = params.requestedStartPosition;
 
-    if  (totalCount == 0 || params.requestedStartPosition > totalCount) {
-
-    }
-
     try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.requestedStartPosition, params.requestedLoadSize))) {
       MessageRecord record;
       while ((record = reader.getNext()) != null && effectiveCount < totalCount && !isInvalid()) {
@@ -83,7 +79,7 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
       callback.onResult(result.getItems(), params.requestedStartPosition, result.getTotal());
     }
 
-    Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
+    Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | thread: " + threadId + ", start: " + params.requestedStartPosition + ", size: " + params.requestedLoadSize + (isInvalid() ? " -- invalidated" : ""));
   }
 
   @Override
@@ -102,7 +98,7 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
 
     callback.onResult(records);
 
-    Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
+    Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms | thread: " + threadId + ", start: " + params.startPosition + ", size: " + params.loadSize + (isInvalid() ? " -- invalidated" : ""));
   }
 
   static class Factory extends DataSource.Factory<Integer, MessageRecord> {

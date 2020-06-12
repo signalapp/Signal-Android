@@ -69,7 +69,7 @@ class ConversationListViewModel extends ViewModel {
     PagedList.Config                          config  = new PagedList.Config.Builder()
                                                                             .setPageSize(15)
                                                                             .setInitialLoadSizeHint(30)
-                                                                            .setEnablePlaceholders(false)
+                                                                            .setEnablePlaceholders(true)
                                                                             .build();
 
     this.conversationList = new LivePagedListBuilder<>(factory, config).setFetchExecutor(ConversationListDataSource.EXECUTOR)

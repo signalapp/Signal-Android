@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversationlist;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
@@ -16,7 +17,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CachedInflater;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -28,7 +29,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-class ConversationPagedListAdapter extends PagedListAdapter<Conversation, ConversationPagedListAdapter.ConversationViewHolder> {
+class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerView.ViewHolder> {
+
+  private static final int TYPE_THREAD      = 1;
+  private static final int TYPE_ACTION      = 2;
+  private static final int TYPE_PLACEHOLDER = 3;
 
   private enum Payload {
     TYPING_INDICATOR,
@@ -42,7 +47,7 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
   private final Set<Long>                   typingSet = new HashSet<>();
   private       int                         archived;
 
-  protected ConversationPagedListAdapter(@NonNull GlideRequests glideRequests, @NonNull OnConversationClickListener onConversationClickListener) {
+  protected ConversationListAdapter(@NonNull GlideRequests glideRequests, @NonNull OnConversationClickListener onConversationClickListener) {
     super(new ConversationDiffCallback());
 
     this.glideRequests               = glideRequests;
@@ -50,10 +55,10 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
   }
 
   @Override
-  public @NonNull ConversationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    if (viewType == R.layout.conversation_list_item_action) {
+  public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    if (viewType == TYPE_ACTION) {
       ConversationViewHolder holder =  new ConversationViewHolder(LayoutInflater.from(parent.getContext())
-                                                                                .inflate(viewType, parent, false));
+                                                                                .inflate(R.layout.conversation_list_item_action, parent, false));
 
       holder.itemView.setOnClickListener(v -> {
         int position = holder.getAdapterPosition();
@@ -64,9 +69,9 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
       });
 
       return holder;
-    } else {
+    } else if (viewType == TYPE_THREAD) {
       ConversationViewHolder holder =  new ConversationViewHolder(CachedInflater.from(parent.getContext())
-                                                                                .inflate(viewType, parent, false));
+                                                                                .inflate(R.layout.conversation_list_item_view, parent, false));
 
       holder.itemView.setOnClickListener(v -> {
         int position = holder.getAdapterPosition();
@@ -86,11 +91,17 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
         return false;
       });
       return holder;
+    } else if (viewType == TYPE_PLACEHOLDER) {
+      View v = new FrameLayout(parent.getContext());
+      v.setLayoutParams(new FrameLayout.LayoutParams(1, ViewUtil.dpToPx(100)));
+      return new PlaceholderViewHolder(v);
+    } else {
+      throw new IllegalStateException("Unknown type! " + viewType);
     }
   }
 
   @Override
-  public void onBindViewHolder(@NonNull ConversationViewHolder holder, int position, @NonNull List<Object> payloads) {
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
     if (payloads.isEmpty()) {
       onBindViewHolder(holder, position);
     } else {
@@ -99,9 +110,9 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
           Payload payload = (Payload) payloadObject;
 
           if (payload == Payload.SELECTION) {
-            holder.getConversationListItem().setBatchMode(batchMode);
+            ((ConversationViewHolder) holder).getConversationListItem().setBatchMode(batchMode);
           } else {
-            holder.getConversationListItem().updateTypingIndicator(typingSet);
+            ((ConversationViewHolder) holder).getConversationListItem().updateTypingIndicator(typingSet);
           }
         }
       }
@@ -109,9 +120,11 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
   }
 
   @Override
-  public void onBindViewHolder(@NonNull ConversationViewHolder holder, int position) {
-    if (holder.getItemViewType() == R.layout.conversation_list_item_action) {
-      holder.getConversationListItem().bind(new ThreadRecord.Builder(100)
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    if (holder.getItemViewType() == TYPE_ACTION) {
+      ConversationViewHolder casted = (ConversationViewHolder) holder;
+
+      casted.getConversationListItem().bind(new ThreadRecord.Builder(100)
                                                             .setBody("")
                                                             .setDate(100)
                                                             .setRecipient(Recipient.UNKNOWN)
@@ -122,10 +135,11 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
                                             typingSet,
                                             getBatchSelectionIds(),
                                             batchMode);
-    } else {
-      Conversation conversation = Objects.requireNonNull(getItem(position));
+    } else if (holder.getItemViewType() == TYPE_THREAD) {
+      ConversationViewHolder casted       = (ConversationViewHolder) holder;
+      Conversation           conversation = Objects.requireNonNull(getItem(position));
 
-      holder.getConversationListItem().bind(conversation.getThreadRecord(),
+      casted.getConversationListItem().bind(conversation.getThreadRecord(),
                                             glideRequests,
                                             conversation.getLocale(),
                                             typingSet,
@@ -135,8 +149,10 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
   }
 
   @Override
-  public void onViewRecycled(@NonNull ConversationViewHolder holder) {
-    holder.getConversationListItem().unbind();
+  public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+    if (holder instanceof ConversationViewHolder) {
+      ((ConversationViewHolder) holder).getConversationListItem().unbind();
+    }
   }
 
   void setTypingThreads(@NonNull Set<Long> typingThreadSet) {
@@ -184,9 +200,11 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
   @Override
   public int getItemViewType(int position) {
     if (archived > 0 && position == getItemCount() - 1) {
-      return R.layout.conversation_list_item_action;
+      return TYPE_ACTION;
+    } else if (getItem(position) == null) {
+      return TYPE_PLACEHOLDER;
     } else {
-      return R.layout.conversation_list_item_view;
+      return TYPE_THREAD;
     }
   }
 
@@ -241,6 +259,12 @@ class ConversationPagedListAdapter extends PagedListAdapter<Conversation, Conver
     @Override
     public boolean areContentsTheSame(@NonNull Conversation oldItem, @NonNull Conversation newItem) {
       return oldItem.equals(newItem);
+    }
+  }
+
+  private static class PlaceholderViewHolder extends RecyclerView.ViewHolder {
+    PlaceholderViewHolder(@NonNull View itemView) {
+      super(itemView);
     }
   }
 
