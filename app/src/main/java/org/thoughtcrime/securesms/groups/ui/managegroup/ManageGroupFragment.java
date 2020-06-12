@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupRightsDialog;
-import org.thoughtcrime.securesms.groups.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
@@ -45,6 +44,7 @@ import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 
@@ -205,6 +205,8 @@ public class ManageGroupFragment extends Fragment {
         activity.startActivity(AvatarPreviewActivity.intentFromRecipientId(activity, groupRecipient.getId()),
                                AvatarPreviewActivity.createTransitionBundle(activity, avatar));
       });
+      customNotificationsRow.setOnClickListener(v -> CustomNotificationsDialogFragment.create(groupRecipient.getId())
+                                                                                      .show(requireFragmentManager(), "CUSTOM_NOTIFICATIONS"));
     });
 
     viewModel.getGroupViewState().observe(getViewLifecycleOwner(), vs -> {
@@ -298,9 +300,6 @@ public class ManageGroupFragment extends Fragment {
     });
 
     customNotificationsRow.setVisibility(View.VISIBLE);
-
-    customNotificationsRow.setOnClickListener(v -> CustomNotificationsDialogFragment.create(groupId)
-                                                                                    .show(requireFragmentManager(), "CUSTOM_NOTIFICATIONS"));
 
     //noinspection CodeBlock2Expr
     if (NotificationChannels.supported()) {

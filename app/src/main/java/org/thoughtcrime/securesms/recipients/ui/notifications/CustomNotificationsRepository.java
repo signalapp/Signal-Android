@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.notifications;
+package org.thoughtcrime.securesms.recipients.ui.notifications;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,20 +9,20 @@ import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 class CustomNotificationsRepository {
 
-  private final Context context;
-  private final GroupId groupId;
+  private final Context     context;
+  private final RecipientId recipientId;
 
-  CustomNotificationsRepository(@NonNull Context context, @NonNull GroupId groupId) {
-    this.context = context;
-    this.groupId = groupId;
+  CustomNotificationsRepository(@NonNull Context context, @NonNull RecipientId recipientId) {
+    this.context     = context;
+    this.recipientId = recipientId;
   }
 
   void onLoad(@NonNull Runnable onLoaded) {
@@ -94,6 +94,6 @@ class CustomNotificationsRepository {
 
   @WorkerThread
   private @NonNull Recipient getRecipient() {
-    return Recipient.externalGroup(context, groupId).resolve();
+    return Recipient.resolved(recipientId);
   }
 }

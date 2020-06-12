@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.notifications;
+package org.thoughtcrime.securesms.recipients.ui.notifications;
 
 import android.net.Uri;
 
@@ -11,26 +11,25 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 public final class CustomNotificationsViewModel extends ViewModel {
 
-  private final LiveGroup                                liveGroup;
   private final LiveData<Boolean>                        hasCustomNotifications;
   private final LiveData<RecipientDatabase.VibrateState> isVibrateEnabled;
   private final LiveData<Uri>                            notificationSound;
   private final CustomNotificationsRepository            repository;
   private final MutableLiveData<Boolean>                 isInitialLoadComplete = new MutableLiveData<>();
 
-  private CustomNotificationsViewModel(@NonNull GroupId groupId, @NonNull CustomNotificationsRepository repository) {
-    this.liveGroup              = new LiveGroup(groupId);
+  private CustomNotificationsViewModel(@NonNull RecipientId recipientId, @NonNull CustomNotificationsRepository repository) {
+    LiveData<Recipient> recipient = Recipient.live(recipientId).getLiveData();
+
     this.repository             = repository;
-    this.hasCustomNotifications = Transformations.map(liveGroup.getGroupRecipient(), recipient -> recipient.getNotificationChannel() != null || !NotificationChannels.supported());
-    this.isVibrateEnabled       = Transformations.map(liveGroup.getGroupRecipient(), Recipient::getMessageVibrate);
-    this.notificationSound      = Transformations.map(liveGroup.getGroupRecipient(), Recipient::getMessageRingtone);
+    this.hasCustomNotifications = Transformations.map(recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
+    this.isVibrateEnabled       = Transformations.map(recipient, Recipient::getMessageVibrate);
+    this.notificationSound      = Transformations.map(recipient, Recipient::getMessageRingtone);
 
     repository.onLoad(() -> isInitialLoadComplete.postValue(true));
   }
@@ -65,18 +64,18 @@ public final class CustomNotificationsViewModel extends ViewModel {
 
   public static final class Factory implements ViewModelProvider.Factory {
 
-    private final GroupId                       groupId;
+    private final RecipientId                   recipientId;
     private final CustomNotificationsRepository repository;
 
-    public Factory(@NonNull GroupId groupId, @NonNull CustomNotificationsRepository repository) {
-      this.groupId    = groupId;
-      this.repository = repository;
+    public Factory(@NonNull RecipientId recipientId, @NonNull CustomNotificationsRepository repository) {
+      this.recipientId = recipientId;
+      this.repository  = repository;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new CustomNotificationsViewModel(groupId, repository));
+      return modelClass.cast(new CustomNotificationsViewModel(recipientId, repository));
     }
   }
 }

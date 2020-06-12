@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.notifications;
+package org.thoughtcrime.securesms.recipients.ui.notifications;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,15 +23,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+
+import java.util.Objects;
 
 public class CustomNotificationsDialogFragment extends DialogFragment {
 
   private static final short RINGTONE_PICKER_REQUEST_CODE = 13562;
 
-  private static final String ARG_GROUP_ID = "group_id";
+  private static final String ARG_RECIPIENT_ID = "recipient_id";
 
   private SwitchCompat customNotificationsSwitch;
   private View         soundLabel;
@@ -41,11 +43,11 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
 
   private CustomNotificationsViewModel viewModel;
 
-  public static DialogFragment create(@NonNull GroupId groupId) {
+  public static DialogFragment create(@NonNull RecipientId recipientId) {
     DialogFragment fragment = new CustomNotificationsDialogFragment();
     Bundle         args     = new Bundle();
 
-    args.putString(ARG_GROUP_ID, groupId.toString());
+    args.putParcelable(ARG_RECIPIENT_ID, recipientId);
     fragment.setArguments(args);
 
     return fragment;
@@ -85,10 +87,10 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
   }
 
   private void initializeViewModel() {
-    Bundle                               arguments  = requireArguments();
-    GroupId                              groupId    = GroupId.parseOrThrow(arguments.getString(ARG_GROUP_ID, ""));
-    CustomNotificationsRepository        repository = new CustomNotificationsRepository(requireContext(), groupId);
-    CustomNotificationsViewModel.Factory factory    = new CustomNotificationsViewModel.Factory(groupId, repository);
+    Bundle                               arguments   = requireArguments();
+    RecipientId                          recipientId = Objects.requireNonNull(arguments.getParcelable(ARG_RECIPIENT_ID));
+    CustomNotificationsRepository        repository  = new CustomNotificationsRepository(requireContext(), recipientId);
+    CustomNotificationsViewModel.Factory factory     = new CustomNotificationsViewModel.Factory(recipientId, repository);
 
     viewModel = ViewModelProviders.of(this, factory).get(CustomNotificationsViewModel.class);
   }
