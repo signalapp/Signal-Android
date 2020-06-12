@@ -479,7 +479,7 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
     return headerView != null;
   }
 
-  private boolean hasFooter() {
+  public boolean hasFooter() {
     return footerView != null;
   }
 

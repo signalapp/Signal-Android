@@ -552,9 +552,21 @@ public class ThreadDatabase extends Database {
     return positions;
   }
 
+  public Cursor getConversationList(long offset, long limit) {
+    return getConversationList("0", offset, limit);
+  }
+
+  public Cursor getArchivedConversationList(long offset, long limit) {
+    return getConversationList("1", offset, limit);
+  }
+
   private Cursor getConversationList(String archived) {
+    return getConversationList(archived, 0, 0);
+  }
+
+  private Cursor getConversationList(@NonNull String archived, long offset, long limit) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", 0);
+    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", offset, limit);
     Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
     setNotifyConversationListListeners(cursor);
@@ -562,20 +574,24 @@ public class ThreadDatabase extends Database {
     return cursor;
   }
 
+  public int getUnarchivedConversationListCount() {
+    return getConversationListCount(false);
+  }
+
   public int getArchivedConversationListCount() {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = null;
+    return getConversationListCount(true);
+  }
 
-    try {
-      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, ARCHIVED + " = ?",
-                        new String[] {"1"}, null, null, null);
+  private int getConversationListCount(boolean archived) {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    String[]       columns = new String[] { "COUNT(*)" };
+    String         query   = ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0";
+    String[]       args    = new String[] { archived ? "1" : "0" };
 
+    try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0);
       }
-
-    } finally {
-      if (cursor != null) cursor.close();
     }
 
     return 0;
@@ -854,7 +870,11 @@ public class ThreadDatabase extends Database {
     return null;
   }
 
-  private @NonNull String createQuery(@NonNull String where, int limit) {
+  private @NonNull String createQuery(@NonNull String where, long limit) {
+    return createQuery(where, 0, limit);
+  }
+
+  private @NonNull String createQuery(@NonNull String where, long offset, long limit) {
     String projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
     String query =
     "SELECT " + projection + " FROM " + TABLE_NAME +
@@ -867,6 +887,10 @@ public class ThreadDatabase extends Database {
 
     if (limit >  0) {
       query += " LIMIT " + limit;
+    }
+
+    if (offset > 0) {
+      query += " OFFSET " + offset;
     }
 
     return query;

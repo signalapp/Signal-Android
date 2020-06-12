@@ -12,6 +12,7 @@ final class ConversationData {
   private final boolean isMessageRequestAccepted;
   private final boolean hasPreMessageRequestMessages;
   private final int     jumpToPosition;
+  private final int     threadSize;
 
   ConversationData(long threadId,
                    long lastSeen,
@@ -20,7 +21,8 @@ final class ConversationData {
                    boolean hasSent,
                    boolean isMessageRequestAccepted,
                    boolean hasPreMessageRequestMessages,
-                   int jumpToPosition)
+                   int jumpToPosition,
+                   int threadSize)
   {
     this.threadId                     = threadId;
     this.lastSeen                     = lastSeen;
@@ -30,6 +32,7 @@ final class ConversationData {
     this.isMessageRequestAccepted     = isMessageRequestAccepted;
     this.hasPreMessageRequestMessages = hasPreMessageRequestMessages;
     this.jumpToPosition               = jumpToPosition;
+    this.threadSize                   = threadSize;
   }
 
   public long getThreadId() {
@@ -70,5 +73,9 @@ final class ConversationData {
 
   int getJumpToPosition() {
     return jumpToPosition;
+  }
+
+  int getThreadSize() {
+    return threadSize;
   }
 }

@@ -3,11 +3,8 @@ package org.thoughtcrime.securesms.conversation;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,19 +12,15 @@ import androidx.paging.DataSource;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
-import org.thoughtcrime.securesms.conversation.ConversationDataSource.Invalidator;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.whispersystems.libsignal.util.Pair;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 class ConversationViewModel extends ViewModel {
 
@@ -70,10 +63,12 @@ class ConversationViewModel extends ViewModel {
       final int startPosition;
       if (data.shouldJumpToMessage()) {
         startPosition = data.getJumpToPosition();
-      } else if (data.shouldScrollToLastSeen()) {
+      } else if (data.isMessageRequestAccepted() && data.shouldScrollToLastSeen()) {
         startPosition = data.getLastSeenPosition();
-      } else {
+      } else if (data.isMessageRequestAccepted()) {
         startPosition = data.getLastScrolledPosition();
+      } else {
+        startPosition = data.getThreadSize();
       }
 
       Log.d(TAG, "Starting at position startPosition: " + startPosition + " jumpToPosition: " + jumpToPosition + " lastSeenPosition: " + data.getLastSeenPosition() + " lastScrolledPosition: " + data.getLastScrolledPosition());
@@ -86,7 +81,7 @@ class ConversationViewModel extends ViewModel {
 
     this.messages = Transformations.map(messagesForThreadId, Pair::second);
 
-    LiveData<Long> distinctThread = Transformations.distinctUntilChanged(threadId);
+    LiveData<Long> distinctThread = Transformations.distinctUntilChanged(Transformations.map(messagesForThreadId, Pair::first));
 
     conversationMetadata = Transformations.switchMap(distinctThread, thread -> metadata);
   }

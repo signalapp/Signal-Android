@@ -49,4 +49,14 @@ public class ConversationListItemInboxZero extends LinearLayout implements Binda
   {
 
   }
+
+  @Override
+  public void setBatchMode(boolean batchMode) {
+
+  }
+
+  @Override
+  public void updateTypingIndicator(@NonNull Set<Long> typingThreads) {
+
+  }
 }

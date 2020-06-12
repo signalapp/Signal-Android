@@ -55,4 +55,14 @@ public class ConversationListItemAction extends LinearLayout implements Bindable
   public void unbind() {
 
   }
+
+  @Override
+  public void setBatchMode(boolean batchMode) {
+
+  }
+
+  @Override
+  public void updateTypingIndicator(@NonNull Set<Long> typingThreads) {
+
+  }
 }

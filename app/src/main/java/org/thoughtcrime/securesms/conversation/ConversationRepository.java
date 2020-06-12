@@ -35,7 +35,8 @@ class ConversationRepository {
   }
 
   private @NonNull ConversationData getConversationDataInternal(long threadId, int jumpToPosition) {
-    ThreadDatabase.ConversationMetadata metadata = DatabaseFactory.getThreadDatabase(context).getConversationMetadata(threadId);
+    ThreadDatabase.ConversationMetadata metadata   = DatabaseFactory.getThreadDatabase(context).getConversationMetadata(threadId);
+    int                                 threadSize = DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId);
 
     long    lastSeen             = metadata.getLastSeen();
     boolean hasSent              = metadata.hasSent();
@@ -58,6 +59,6 @@ class ConversationRepository {
       lastScrolledPosition = DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionOnOrAfterTimestamp(threadId, lastScrolled);
     }
 
-    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
+    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition, threadSize);
   }
 }

@@ -187,6 +187,53 @@ public final class ThreadRecord {
     else               return true;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ThreadRecord that = (ThreadRecord) o;
+    return threadId == that.threadId                         &&
+           type == that.type                                 &&
+           date == that.date                                 &&
+           deliveryStatus == that.deliveryStatus             &&
+           deliveryReceiptCount == that.deliveryReceiptCount &&
+           readReceiptCount == that.readReceiptCount         &&
+           count == that.count                               &&
+           unreadCount == that.unreadCount                   &&
+           forcedUnread == that.forcedUnread                 &&
+           distributionType == that.distributionType         &&
+           archived == that.archived                         &&
+           expiresIn == that.expiresIn                       &&
+           lastSeen == that.lastSeen                         &&
+           body.equals(that.body)                            &&
+           recipient.equals(that.recipient)                  &&
+           Objects.equals(snippetUri, that.snippetUri)       &&
+           Objects.equals(contentType, that.contentType)     &&
+           Objects.equals(extra, that.extra);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(threadId,
+                        body,
+                        recipient,
+                        type,
+                        date,
+                        deliveryStatus,
+                        deliveryReceiptCount,
+                        readReceiptCount,
+                        snippetUri,
+                        contentType,
+                        extra,
+                        count,
+                        unreadCount,
+                        forcedUnread,
+                        distributionType,
+                        archived,
+                        expiresIn,
+                        lastSeen);
+  }
+
   public static class Builder {
     private long      threadId;
     private String    body;

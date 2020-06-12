@@ -21,7 +21,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -113,6 +112,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
+import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -163,8 +163,7 @@ public class ConversationFragment extends Fragment {
   private ConversationBannerView      emptyConversationBanner;
   private MessageRequestViewModel     messageRequestViewModel;
   private ConversationViewModel       conversationViewModel;
-
-  private Deferred deferred = new Deferred();
+  private SnapToTopDataObserver       snapToTopDataObserver;
 
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
@@ -198,6 +197,8 @@ public class ConversationFragment extends Fragment {
     list.setLayoutManager(layoutManager);
     list.setItemAnimator(null);
 
+    snapToTopDataObserver = new ConversationSnapToTopDataObserver(list, new ConversationScrollRequestValidator());
+
     if (FeatureFlags.messageRequests()) {
       conversationBanner = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
     }
@@ -226,7 +227,7 @@ public class ConversationFragment extends Fragment {
         Log.i(TAG, "submitList skipped an invalid list");
       }
     });
-    conversationViewModel.getConversationMetadata().observe(this, data -> deferred.defer(() -> presentConversationMetadata(data)));
+    conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
 
     return view;
   }
@@ -329,7 +330,7 @@ public class ConversationFragment extends Fragment {
     }
 
     int position = getListAdapter().getAdapterPositionForMessagePosition(conversationViewModel.getLastSeenPosition());
-    scrollToPosition(position);
+    snapToTopDataObserver.requestScrollPosition(position);
   }
 
   private void initializeMessageRequestViewModel() {
@@ -423,7 +424,7 @@ public class ConversationFragment extends Fragment {
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId, () -> clearHeaderIfNotTyping(getListAdapter()));
 
-    deferred.setDeferred(true);
+    snapToTopDataObserver.requestScrollPosition(startingPosition);
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
@@ -442,7 +443,7 @@ public class ConversationFragment extends Fragment {
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
       ConversationAdapter.initializePool(list.getRecycledViewPool());
 
-      adapter.registerAdapterDataObserver(new DataObserver());
+      adapter.registerAdapterDataObserver(snapToTopDataObserver);
 
       setLastSeen(conversationViewModel.getLastSeen());
 
@@ -563,7 +564,7 @@ public class ConversationFragment extends Fragment {
       this.threadId = threadId;
       messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
 
-      deferred.setDeferred(true);
+      snapToTopDataObserver.requestScrollPosition(0);
       conversationViewModel.onConversationDataAvailable(threadId, -1);
       initializeListAdapter();
     }
@@ -883,48 +884,52 @@ public class ConversationFragment extends Fragment {
       return;
     }
 
-    if (FeatureFlags.messageRequests()) {
-      adapter.setFooterView(conversationBanner);
-    } else {
-      adapter.setFooterView(null);
-    }
-
-    setLastSeen(conversation.getLastSeen());
-
-    if (FeatureFlags.messageRequests() && !conversation.hasPreMessageRequestMessages()) {
-      clearHeaderIfNotTyping(adapter);
-    } else {
-      if (!conversation.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-        adapter.setHeaderView(unknownSenderView);
+    Runnable afterScroll = () -> {
+      if (FeatureFlags.messageRequests()) {
+        adapter.setFooterView(conversationBanner);
+        if (!conversation.isMessageRequestAccepted()) {
+          snapToTopDataObserver.requestScrollPosition(adapter.getItemCount() - 1);
+        }
       } else {
-        clearHeaderIfNotTyping(adapter);
+        adapter.setFooterView(null);
       }
-    }
 
-    listener.onCursorChanged();
+      setLastSeen(conversation.getLastSeen());
+
+      if (FeatureFlags.messageRequests() && !conversation.hasPreMessageRequestMessages()) {
+        clearHeaderIfNotTyping(adapter);
+      } else {
+        if (!conversation.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+          adapter.setHeaderView(unknownSenderView);
+        } else {
+          clearHeaderIfNotTyping(adapter);
+        }
+      }
+
+      listener.onCursorChanged();
+    };
 
     int lastSeenPosition     = adapter.getAdapterPositionForMessagePosition(conversation.getLastSeenPosition());
     int lastScrolledPosition = adapter.getAdapterPositionForMessagePosition(conversation.getLastScrolledPosition());
 
-    if (conversation.shouldJumpToMessage()) {
-      scrollToStartingPosition(conversation.getJumpToPosition());
+    if (conversation.getThreadSize() == 0) {
+      afterScroll.run();
+    } else if (conversation.shouldJumpToMessage()) {
+      snapToTopDataObserver.buildScrollPosition(conversation.getJumpToPosition())
+                           .withOnScrollRequestComplete(() -> {
+                             afterScroll.run();
+                             getListAdapter().pulseHighlightItem(conversation.getJumpToPosition());
+                           })
+                           .submit();
     } else if (conversation.isMessageRequestAccepted()) {
-      scrollToPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition);
+      snapToTopDataObserver.buildScrollPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition)
+                           .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight()))
+                           .withOnScrollRequestComplete(afterScroll)
+                           .submit();
     } else if (FeatureFlags.messageRequests()) {
-      list.post(() -> getListLayoutManager().scrollToPosition(adapter.getItemCount() - 1));
-    }
-  }
-
-  private void scrollToStartingPosition(int startingPosition) {
-    list.post(() -> {
-      list.getLayoutManager().scrollToPosition(startingPosition);
-      getListAdapter().pulseHighlightItem(startingPosition);
-    });
-  }
-
-  private void scrollToPosition(int position) {
-    if (position > 0) {
-      list.post(() -> getListLayoutManager().scrollToPositionWithOffset(position, list.getHeight()));
+      snapToTopDataObserver.buildScrollPosition(adapter.getItemCount() - 1)
+                           .withOnScrollRequestComplete(afterScroll)
+                           .submit();
     }
   }
 
@@ -959,22 +964,16 @@ public class ConversationFragment extends Fragment {
   }
 
   private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
-    int itemCount = getListAdapter() != null ? getListAdapter().getItemCount() : 0;
-
-    if (position >= 0 && position < itemCount) {
-      if (getListAdapter().getItem(position) == null) {
-        conversationViewModel.onConversationDataAvailable(threadId, position);
-        deferred.setDeferred(true);
-        deferred.defer(() -> moveToMessagePosition(position, onMessageNotFound));
-      } else {
-        scrollToStartingPosition(position);
-      }
-    } else {
-      Log.w(TAG, "[moveToMessagePosition] Tried to navigate to message, but it wasn't found.");
-      if (onMessageNotFound != null) {
-        onMessageNotFound.run();
-      }
-    }
+    conversationViewModel.onConversationDataAvailable(threadId, position);
+    snapToTopDataObserver.buildScrollPosition(position)
+                         .withOnScrollRequestComplete(() -> getListAdapter().pulseHighlightItem(position))
+                         .withOnInvalidPosition(() -> {
+                           if (onMessageNotFound != null) {
+                             onMessageNotFound.run();
+                           }
+                           Log.w(TAG, "[moveToMessagePosition] Tried to navigate to message, but it wasn't found.");
+                         })
+                         .submit();
   }
 
   private void maybeShowSwipeToReplyTooltip() {
@@ -1070,44 +1069,6 @@ public class ConversationFragment extends Fragment {
     private void bindScrollHeader(StickyHeaderViewHolder headerViewHolder, int positionId) {
       if (((ConversationAdapter)list.getAdapter()).getHeaderId(positionId) != -1) {
         ((ConversationAdapter) list.getAdapter()).onBindHeaderViewHolder(headerViewHolder, positionId);
-      }
-    }
-  }
-
-  private class DataObserver extends RecyclerView.AdapterDataObserver {
-
-    private final Rect rect = new Rect();
-
-    @Override
-    public void onItemRangeInserted(int positionStart, int itemCount) {
-      if (deferred.isDeferred()) {
-        deferred.setDeferred(false);
-        return;
-      }
-
-      if (positionStart == 0 && itemCount == 1 && isTypingIndicatorShowing()) {
-        return;
-      }
-
-      if (list.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-        int firstVisibleItem = getListLayoutManager().findFirstVisibleItemPosition();
-
-        if (firstVisibleItem == 0) {
-          View view = getListLayoutManager().findViewByPosition(0);
-          if (view == null) {
-            return;
-          }
-
-          view.getDrawingRect(rect);
-          list.offsetDescendantRectToMyCoords(view, rect);
-
-          int bottom = rect.bottom;
-          list.getDrawingRect(rect);
-
-          if (bottom <= rect.bottom) {
-            getListLayoutManager().scrollToPosition(0);
-          }
-        }
       }
     }
   }
@@ -1319,6 +1280,52 @@ public class ConversationFragment extends Fragment {
     actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
   }
 
+  private final class ConversationSnapToTopDataObserver extends SnapToTopDataObserver {
+
+    public ConversationSnapToTopDataObserver(@NonNull RecyclerView recyclerView,
+                                             @Nullable ScrollRequestValidator scrollRequestValidator)
+    {
+      super(recyclerView, scrollRequestValidator);
+    }
+
+    @Override
+    public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+      // Do nothing.
+    }
+
+    @Override
+    public void onItemRangeInserted(int positionStart, int itemCount) {
+      if (positionStart == 0 && itemCount == 1 && isTypingIndicatorShowing()) {
+        return;
+      }
+
+      super.onItemRangeInserted(positionStart, itemCount);
+    }
+  }
+
+  private final class ConversationScrollRequestValidator implements SnapToTopDataObserver.ScrollRequestValidator {
+
+    @Override
+    public boolean isPositionStillValid(int position) {
+      if (getListAdapter() == null) {
+        return position >= 0;
+      } else {
+        return position >= 0 && position < getListAdapter().getItemCount();
+      }
+    }
+
+    @Override
+    public boolean isItemAtPositionLoaded(int position) {
+      if (getListAdapter() == null) {
+        return false;
+      } else if (getListAdapter().hasFooter() && position == getListAdapter().getItemCount() - 1) {
+        return true;
+      } else {
+        return getListAdapter().getItem(position) != null;
+      }
+    }
+  }
+
   private class ReactionsToolbarListener implements Toolbar.OnMenuItemClickListener {
 
     private final MessageRecord messageRecord;
@@ -1465,33 +1472,4 @@ public class ConversationFragment extends Fragment {
     }
   }
 
-  private static class Deferred {
-
-    private Runnable deferred;
-    private boolean  isDeferred;
-
-    public void defer(@Nullable Runnable deferred) {
-      this.deferred = deferred;
-      executeIfNecessary();
-    }
-
-    public void setDeferred(boolean isDeferred) {
-      this.isDeferred = isDeferred;
-      executeIfNecessary();
-    }
-
-    public boolean isDeferred() {
-      return isDeferred;
-    }
-
-    private void executeIfNecessary() {
-      if (deferred != null && !isDeferred) {
-        Runnable local = deferred;
-
-        deferred = null;
-
-        local.run();
-      }
-    }
-  }
 }

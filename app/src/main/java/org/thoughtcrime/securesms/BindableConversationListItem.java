@@ -14,4 +14,7 @@ public interface BindableConversationListItem extends Unbindable {
             @NonNull GlideRequests glideRequests, @NonNull Locale locale,
             @NonNull Set<Long> typingThreads,
             @NonNull Set<Long> selectedThreads, boolean batchMode);
+
+  void setBatchMode(boolean batchMode);
+  void updateTypingIndicator(@NonNull Set<Long> typingThreads);
 }
