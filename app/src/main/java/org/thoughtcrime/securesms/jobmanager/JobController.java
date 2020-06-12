@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -148,6 +149,14 @@ class JobController {
         Log.w(TAG, "Tried to cancel JOB::" + id + ", but it could not be found.");
       }
     }
+  }
+
+  @WorkerThread
+  synchronized void cancelAllInQueue(@NonNull String queue) {
+    Stream.of(runningJobs.values())
+          .filter(j -> Objects.equals(j.getParameters().getQueue(), queue))
+          .map(Job::getId)
+          .forEach(this::cancelJob);
   }
 
   @WorkerThread

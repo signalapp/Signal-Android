@@ -151,6 +151,9 @@ public class PushGroupSendJob extends PushSendJob {
     List<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(message.getRecipient());
+    ApplicationDependencies.getJobManager().cancelAllInQueue(TypingSendJob.getQueue(threadId));
+
     if (database.isSent(messageId)) {
       log(TAG, "Message " + messageId + " was already sent. Ignoring.");
       return;

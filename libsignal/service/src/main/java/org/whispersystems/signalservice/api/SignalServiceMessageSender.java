@@ -80,6 +80,7 @@ import org.whispersystems.signalservice.internal.push.StaleDevices;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
+import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -191,7 +192,7 @@ public class SignalServiceMessageSender {
   {
     byte[] content = createReceiptContent(message);
 
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), content, false);
+    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), content, false, null);
   }
 
   /**
@@ -209,16 +210,17 @@ public class SignalServiceMessageSender {
   {
     byte[] content = createTypingContent(message);
 
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, true);
+    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, true, null);
   }
 
   public void sendTyping(List<SignalServiceAddress>             recipients,
                          List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
-                         SignalServiceTypingMessage             message)
+                         SignalServiceTypingMessage             message,
+                         CancelationSignal                      cancelationSignal)
       throws IOException
   {
     byte[] content = createTypingContent(message);
-    sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, true);
+    sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, true, cancelationSignal);
   }
 
 
@@ -235,7 +237,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException
   {
     byte[] content = createCallContent(message);
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), content, false);
+    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), content, false, null);
   }
 
   /**
@@ -253,11 +255,11 @@ public class SignalServiceMessageSender {
   {
     byte[]            content   = createMessageContent(message);
     long              timestamp = message.getTimestamp();
-    SendMessageResult result    = sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false);
+    SendMessageResult result    = sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, null);
 
     if (result.getSuccess() != null && result.getSuccess().isNeedsSync()) {
       byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp, Collections.singletonList(result), false);
-      sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false);
+      sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, null);
     }
 
     if (message.isEndSession()) {
@@ -291,7 +293,7 @@ public class SignalServiceMessageSender {
   {
     byte[]                  content            = createMessageContent(message);
     long                    timestamp          = message.getTimestamp();
-    List<SendMessageResult> results            = sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false);
+    List<SendMessageResult> results            = sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, null);
     boolean                 needsSyncInResults = false;
 
     for (SendMessageResult result : results) {
@@ -303,7 +305,7 @@ public class SignalServiceMessageSender {
 
     if (needsSyncInResults || isMultiDevice.get()) {
       byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.<SignalServiceAddress>absent(), timestamp, results, isRecipientUpdate);
-      sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false);
+      sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, null);
     }
 
     return results;
@@ -347,7 +349,7 @@ public class SignalServiceMessageSender {
     long timestamp = message.getSent().isPresent() ? message.getSent().get().getTimestamp()
                                                    : System.currentTimeMillis();
 
-    sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, content, false);
+    sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, content, false, null);
   }
 
   public void setSoTimeoutMillis(long soTimeoutMillis) {
@@ -478,11 +480,11 @@ public class SignalServiceMessageSender {
                                      .build()
                                      .toByteArray();
 
-    SendMessageResult result = sendMessage(message.getDestination(), getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, false);
+    SendMessageResult result = sendMessage(message.getDestination(), getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, false, null);
 
     if (result.getSuccess().isNeedsSync()) {
       byte[] syncMessage = createMultiDeviceVerifiedContent(message, nullMessage.toByteArray());
-      sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), message.getTimestamp(), syncMessage, false);
+      sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), message.getTimestamp(), syncMessage, false, null);
     }
   }
 
@@ -1200,7 +1202,8 @@ public class SignalServiceMessageSender {
                                               List<Optional<UnidentifiedAccess>> unidentifiedAccess,
                                               long                               timestamp,
                                               byte[]                             content,
-                                              boolean                            online)
+                                              boolean                            online,
+                                              CancelationSignal                  cancelationSignal)
       throws IOException
   {
     long                                   startTime                  = System.currentTimeMillis();
@@ -1211,7 +1214,7 @@ public class SignalServiceMessageSender {
     while (recipientIterator.hasNext()) {
       SignalServiceAddress         recipient = recipientIterator.next();
       Optional<UnidentifiedAccess> access    = unidentifiedAccessIterator.next();
-      futureResults.add(executor.submit(() -> sendMessage(recipient, access, timestamp, content, online)));
+      futureResults.add(executor.submit(() -> sendMessage(recipient, access, timestamp, content, online, cancelationSignal)));
     }
 
     List<SendMessageResult> results = new ArrayList<>(futureResults.size());
@@ -1247,14 +1250,24 @@ public class SignalServiceMessageSender {
                                         Optional<UnidentifiedAccess> unidentifiedAccess,
                                         long                         timestamp,
                                         byte[]                       content,
-                                        boolean                      online)
+                                        boolean                      online,
+                                        CancelationSignal            cancelationSignal)
       throws UntrustedIdentityException, IOException
   {
     long startTime = System.currentTimeMillis();
 
     for (int i = 0; i < RETRY_COUNT; i++) {
+      if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+        throw new CancelationException();
+      }
+
       try {
-        OutgoingPushMessageList            messages         = getEncryptedMessages(socket, recipient, unidentifiedAccess, timestamp, content, online);
+        OutgoingPushMessageList messages = getEncryptedMessages(socket, recipient, unidentifiedAccess, timestamp, content, online);
+
+        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+          throw new CancelationException();
+        }
+
         Optional<SignalServiceMessagePipe> pipe             = this.pipe.get();
         Optional<SignalServiceMessagePipe> unidentifiedPipe = this.unidentifiedPipe.get();
 
@@ -1276,6 +1289,10 @@ public class SignalServiceMessageSender {
             Log.w(TAG, e);
             Log.w(TAG, "[sendMessage] Unidentified pipe failed, falling back...");
           }
+        }
+
+        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+          throw new CancelationException();
         }
 
         SendMessageResponse response = socket.sendMessage(messages, unidentifiedAccess);

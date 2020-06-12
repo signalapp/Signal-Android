@@ -46,6 +46,7 @@ import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 
 import java.util.UUID;
+import java.util.concurrent.Executors;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -91,7 +92,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                             Optional.of(new SecurityEventListener(context)),
                                             provideClientZkOperations().getProfileOperations(),
-                                            SignalExecutors.UNBOUNDED);
+                                            SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16));
   }
 
   @Override

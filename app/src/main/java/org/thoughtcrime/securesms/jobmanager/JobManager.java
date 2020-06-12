@@ -199,6 +199,13 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Cancels all jobs in the specified queue. See {@link #cancel(String)} for details.
+   */
+  public void cancelAllInQueue(@NonNull String queue) {
+    executor.execute(() -> jobController.cancelAllInQueue(queue));
+  }
+
+  /**
    * Runs the specified job synchronously. Beware: All normal dependencies are respected, meaning
    * you must take great care where you call this. It could take a very long time to complete!
    *
