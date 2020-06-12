@@ -323,14 +323,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(userCountCache, row, "$publicChatID = ?", wrap(index))
     }
 
-    fun getSessionRequestTimestamp(publicKey: String): Long? {
+    override fun getSessionRequestTimestamp(publicKey: String): Long? {
         val database = databaseHelper.readableDatabase
         return database.get(sessionRequestTimestampCache, "$LokiAPIDatabase.publicKey = ?", wrap(publicKey)) { cursor ->
             cursor.getInt(LokiAPIDatabase.timestamp)
         }?.toLong()
     }
 
-    fun setSessionRequestTimestamp(publicKey: String, timestamp: Long) {
+    override fun setSessionRequestTimestamp(publicKey: String, timestamp: Long) {
         val database = databaseHelper.writableDatabase
         val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
         database.insertOrUpdate(sessionRequestTimestampCache, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
