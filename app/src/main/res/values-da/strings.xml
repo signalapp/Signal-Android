@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke længere modtage beskeder eller opdateringer fra gruppen, og medlemmer kan ikke tilføje dig til gruppen igen</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlemmer kan ikke tilføje dig til gruppen igen</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Medlemmer af gruppen kan tilføje dig til gruppen igen</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">I vil være i stand til at sende beskeder og ringe til hinanden</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">I vil være i stand til at sende beskeder og ringe til hinanden, og dit navn og foto deles med dem.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokerede personer vil hverken kunne ringe eller sende beskeder til dig</string>
   <string name="BlockUnblockDialog_unblock_s">Fjern blokering af %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Fjern blokering</string>
@@ -318,7 +318,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Fejl opstod ved oprettelse af profil</string>
   <string name="CreateProfileActivity_profile_photo">Profilbillede</string>
   <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiler er end-to-end krypteret, og Signal´s services har ingen adgang til informationen</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil er end-to-end krypteret. Det vil være synlig for dine kontaktpersoner, når du indleder eller accepterer nye samtaler, og når du tilslutter dig nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Vælg avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
@@ -388,6 +388,12 @@
   <string name="GroupCreateActivity_loading_group_details">Henter detaljer for gruppen…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du er allerede med i gruppen</string>
   <string name="GroupCreateActivity_remove_member_description">Fjern medlem</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Tilføj medlem?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Tilføj \"%1$s\" til \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" blev tilføjet \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Tilføj til gruppe</string>
+  <string name="AddToGroupActivity_add_to_groups">Tilføj til grupper</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del dit profilnavn og billede med gruppen?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vil du gøre dit profilnavn og profilbillede synligt, for alle nuværende og fremtidige medlemmer af gruppen?</string>
@@ -697,11 +703,11 @@
   <string name="MessageRequestBottomView_delete">Slet</string>
   <string name="MessageRequestBottomView_block">Blokér</string>
   <string name="MessageRequestBottomView_unblock">Ophæv blokering</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du tillade at %1$s skriver til dig? De vil ikke vide du har læst deres beskeder, før du accepterer</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du deltage i gruppen %1$s? De vil ikke vide du har læst deres beskeder, før du accepterer</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lad %1$s sende dig beskeder og dele dit navn og foto med vedkommende? De ved ikke, at du har set deres besked, før du accepterer det.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lad %1$s sende dig beskeder og dele dit navn og foto med vedkommende? Du modtager ikke nogen beskeder, før du fjerner blokeringen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig denne gruppe og del dit navn og foto med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du blev inviteret til at deltage i gruppen %1$s. Vil du tillade medlemmer af gruppen at sende dig beskeder?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Fjern blokering af %1$s for at kunne skrive og ringe til hinanden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Fjern blokering for at tillade medlemmer af gruppen at tilføje dig til gruppen igen</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af denne gruppe og del dit navn og foto med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem af %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem af %1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem af %1$s, %2$s og %3$s</string>
@@ -1200,6 +1206,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal kræver tilladelse til at tilgå dine kontakter, for at kunne vise dem</string>
   <string name="contact_selection_list_fragment__show_contacts">Vis kontakter</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmer</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signalbesked</string>
   <string name="conversation_activity__type_message_sms_insecure">Standard SMS</string>
@@ -1967,6 +1978,8 @@ Der er %d dage tilbage</string>
   <string name="RecipientBottomSheet_block">Blokér</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokering</string>
   <string name="RecipientBottomSheet_add_to_contacts">Tilføj til kontakter</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Tilføj til en gruppe</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Tilføj til anden gruppe</string>
   <string name="RecipientBottomSheet_view_safety_number">Vis sikkerhedsnummer</string>
   <string name="RecipientBottomSheet_make_group_admin">Gør til gruppeadministrator</string>
   <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>

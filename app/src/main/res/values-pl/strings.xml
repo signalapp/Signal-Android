@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nie będziesz już otrzymywać wiadomości ani aktualizacji z tej grupy, a jej członkowie nie będą mogli ponownie Cię do niej dodać.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Członkowie grupy nie będą mogli ponownie dodać Cię do grupy.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Członkowie grupy będą mogli ponownie dodać Cię do grupy.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Będziecie w stanie wysyłać wiadomości i wykonywać połączenia do siebie nawzajem.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Będziecie w stanie wysyłać wiadomości i wykonywać połączenia do siebie nawzajem, a Twoje imię i zdjęcie zostaną udostępnione temu kontaktowi.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokowane osoby nie będą mogły do Ciebie dzwonić ani wysyłać Ci wiadomości.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokować %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Odblokuj</string>
@@ -345,7 +345,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem ustawiania profilu</string>
   <string name="CreateProfileActivity_profile_photo">Zdjęcie profilowe</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ustaw swój profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profile Signal są szyfrowane end-to-end, a Signal nie ma dostępu do tych informacji.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Twój profil jest szyfrowany metodą end-to-end. Będzie widoczny dla Twoich kontaktów, gdy rozpoczniesz lub zaakceptujesz nowe konwersacje i gdy dołączysz do nowych grup.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ustaw awatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
@@ -415,6 +415,12 @@
   <string name="GroupCreateActivity_loading_group_details">Wczytywanie szczegółów grupy…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Już jesteś w tej grupie.</string>
   <string name="GroupCreateActivity_remove_member_description">Usuń członka</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Dodać członka?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Dodać \"%1$s\" do \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" dodany(a) do \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Dodaj do grupy</string>
+  <string name="AddToGroupActivity_add_to_groups">Dodaj do grup</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Czy chcesz udostępnić swoją nazwę i zdjęcie profilowe w tej grupie?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Czy chcesz, aby Twoja nazwa i zdjęcie profilowe były widoczne dla wszystkich obecnych i przyszłych członków tej grupy?</string>
@@ -758,11 +764,11 @@
   <string name="MessageRequestBottomView_delete">Usuń</string>
   <string name="MessageRequestBottomView_block">Zablokuj</string>
   <string name="MessageRequestBottomView_unblock">Odblokuj</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz pozwolić by %1$s pisał(a) do Ciebie wiadomości? Twój kontakt nie będzie wiedzieć, że przeczytałeś(aś) jego wiadomość, dopóki nie zaakceptujesz.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz dołączyć do grupy %1$s? Członkowie grupy nie będą wiedzieć, że przeczytałeś(aś) ich wiadomość, dopóki nie zaakceptujesz.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Pozwolić %1$s wysyłać do Ciebie wiadomości i udostępnić Twoje imię i zdjęcie temu kontaktowi? Nie będzie on wiedzieć, że przeczytałeś(aś) tę wiadomość, dopóki nie zaakceptujesz.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Pozwolić %1$s wysyłać do Ciebie wiadomości i udostępnić Twoje imię i zdjęcie temu kontaktowi? Nie otrzymasz żadnych wiadomości, dopóki nie odblokujesz.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Czy chcesz dołączyć do tej grupy i udostępnić swoje imię i zdjęcie jej członkom? Członkowie grupy nie będą wiedzieć, że przeczytałeś(aś) ich wiadomość, dopóki nie zaakceptujesz.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Zostałeś(aś) zaproszony(a) do grupy %1$s. Czy chcesz pozwolić członkom tej grupy na wysyłanie Ci wiadomości?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokuj %1$s, abyście mogli wysyłać wiadomości i wykonywać połączenia do siebie nawzajem.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokuj, aby umożliwić członkom grupy, ponowne dodanie Cię do tej grupy.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Czy chcesz odblokować tę grupę i udostępnić swoje imię i zdjęcie jej członkom? Nie otrzymasz żadnych wiadomości, dopóki nie odblokujesz.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Członek %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Członek %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Członek %1$s, %2$s i %3$s</string>
@@ -1266,6 +1272,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal wymaga dostępu do Twoich kontaktów w celu wyświetlenia ich.</string>
   <string name="contact_selection_list_fragment__show_contacts">Pokaż kontakty</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d członek</item>
+    <item quantity="few">%1$d członków</item>
+    <item quantity="many">%1$d członków</item>
+    <item quantity="other">%1$d członków</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Wiadomość Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Nieszyfrowany SMS</string>
@@ -1645,7 +1658,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__signal_messages_and_calls">Wiadomości i połączenia Signal</string>
   <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
-  <string name="preferences__support_wifi_calling">Tryb zgodności \'WiFi Calling\'</string>
+  <string name="preferences__support_wifi_calling">Tryb zgodności \"WiFi Calling\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
   <string name="preferences__incognito_keyboard">Klawiatura w trybie prywatnym</string>
   <string name="preferences__read_receipts">Potwierdzenia przeczytania</string>
@@ -2064,6 +2077,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RecipientBottomSheet_block">Zablokuj</string>
   <string name="RecipientBottomSheet_unblock">Odblokuj</string>
   <string name="RecipientBottomSheet_add_to_contacts">Dodaj do kontaktów</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Dodaj do grupy</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Dodaj do innej grupy</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobacz numer bezpieczeństwa</string>
   <string name="RecipientBottomSheet_make_group_admin">Mianuj administratorem grupy</string>
   <string name="RecipientBottomSheet_remove_as_admin">Usuń administratora</string>

@@ -77,7 +77,6 @@
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s를 차단하고 나갈까요?</string>
   <string name="BlockUnblockDialog_block_s">%1$s를 차단할까요?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">그룹 멤버는 당신을 그룹에 다시 초대 가능합니다. </string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">당신은 이제 서로 메시지를 전송하고 연락할 수 있습니다.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s를 차단 해제할까요?</string>
   <string name="BlockUnblockDialog_unblock">차단 해제</string>
   <string name="BlockUnblockDialog_block">차단</string>
@@ -292,7 +291,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_profile_photo">프로필 사진</string>
   <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal 프로필은 단대단 암호화되며, Signal 서비스는 해당 정보에 접근할 수 없습니다.</string>
   <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">맞춤형 값 사용: %s</string>
@@ -360,6 +358,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s 님은 Signal 사용자가 아니므로 추가할 수 없습니다.</string>
   <string name="GroupCreateActivity_loading_group_details">그룹 세부 정보 로드 중…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">이미 그룹에 있습니다.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">프로필 이름과 사진을 그룹과 공유하시겠습니까?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">프로필 이름과 사진이 그룹의 모든 멤버에게 항상 표시되도록 하시겠습니까?</string>
@@ -557,9 +556,6 @@
   <string name="MessageRequestBottomView_delete">삭제</string>
   <string name="MessageRequestBottomView_block">차단</string>
   <string name="MessageRequestBottomView_unblock">차단 해제</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s가 메시지를 할 수 있도록 할까요? 그들은 당신이 동의할 때까지 당신이 그들의 메시지를 봤는지 확인할 수 없습니다.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 그룹에 참가할까요? 당신이 동의하기 전에는 당신이 그들의 메시지를 봤는지 타인이 알 수 없습니다. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$s를 차단 해제하여 서로 전화 및 메시지 교류</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 및 %2$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s 및 %3$s 멤버</string>
@@ -1017,6 +1013,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal에서 연락처를 표시하려면 연락처 권한이 필요합니다.</string>
   <string name="contact_selection_list_fragment__show_contacts">연락처 표시</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal 메시지</string>
   <string name="conversation_activity__type_message_sms_insecure">비보안 SMS</string>

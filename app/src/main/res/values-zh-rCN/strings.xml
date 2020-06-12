@@ -77,7 +77,6 @@
   <string name="BlockUnblockDialog_block_and_leave_s">屏蔽并离开%1$s?</string>
   <string name="BlockUnblockDialog_block_s">屏蔽%1$s?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">组成员将能够再次将您添加到此组。</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">将可再次接收该联系人的消息和呼叫。</string>
   <string name="BlockUnblockDialog_unblock_s">解除屏蔽%1$s?</string>
   <string name="BlockUnblockDialog_unblock">取消屏蔽</string>
   <string name="BlockUnblockDialog_block">屏蔽</string>
@@ -293,7 +292,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">设置个人资料出错</string>
   <string name="CreateProfileActivity_profile_photo">头像</string>
   <string name="CreateProfileActivity_set_up_your_profile">设置个人资料</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal 个人资料是端到端加密。Signal 服务从无这些信息访问权限。</string>
   <string name="CreateProfileActivity_set_avatar_description">设置头像</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
@@ -361,6 +359,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">无法添加 %1$s，因为他们不是 Signal 用户。</string>
   <string name="GroupCreateActivity_loading_group_details">加载群组详情…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">您已在该群组。</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">是否与该群组分享你的个人资料名称和头像？</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">对于该群组现有和未来成员，你的个人资料名称和头像是否可见？</string>
@@ -557,10 +556,6 @@
   <string name="MessageRequestBottomView_delete">删除</string>
   <string name="MessageRequestBottomView_block">屏蔽</string>
   <string name="MessageRequestBottomView_unblock">取消屏蔽</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">你想让%1$s给你发信息吗? 除非你接受，否则他们不会知道你看过他们的信息。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">你想加入这个小组%1$s吗? 除非你接受，否则他们不会知道你看过他们的信息。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">解除对%1$s消息的阻塞并相互call。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">取消阻止以允许组成员再次将您添加到此组。</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s 和 %3$s 的成员</string>
@@ -1025,6 +1020,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">为了显示联系人，Signal 需要其访问权限。</string>
   <string name="contact_selection_list_fragment__show_contacts">显示联系人</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">发送 Signal 消息</string>
   <string name="conversation_activity__type_message_sms_insecure">未加密短信</string>

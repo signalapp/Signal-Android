@@ -75,7 +75,6 @@
   <string name="BlockedContactsActivity_blocked_contacts">بلاک کردہ رابطے</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گروپ ممبران آپ کو دوبارہ اس گروپ میں شامل کرسکیں گے۔</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">آپ ایک دوسرے کو پیغام بھیجنے اور کال کرنے کے اہل ہوں گے۔</string>
   <string name="BlockUnblockDialog_unblock">ان بلاک</string>
   <string name="BlockUnblockDialog_block">بلاک</string>
   <string name="BlockUnblockDialog_block_and_delete">بلاک کریں اور حذف کریں</string>
@@ -296,7 +295,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">پروفائل ترتیب دینے میں مسئلہ ہو رہا ہے۔</string>
   <string name="CreateProfileActivity_profile_photo">پروفائل کی تصویر</string>
   <string name="CreateProfileActivity_set_up_your_profile">اپنی پروفائل کو ترتیب دیں</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal پروفائل آخر سے آخر تک خفیہ شدہ ہے، اور Signal سروس نے کبھی اس معلومات تک رسائی نہیں کی۔</string>
   <string name="CreateProfileActivity_set_avatar_description">اوتار ترتیب دیں</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">اپنی مرضی سے استعمال کریں؛%s</string>
@@ -360,6 +358,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">جمح نہیں ہو رہے %1$sکیونکہ وہ Signal صارف نہیں ہیں۔</string>
   <string name="GroupCreateActivity_loading_group_details">گروپ کی معلومات لوڈ ہو رہی ہیں۔۔۔</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">آپ پہلے سے اس گروپ میں موجود ہیں</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">پروفائل نام اور تصویر اس گروپ کے ساتھ اشتراک کریں؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">کیا آپ اپنی پروفائل کا نام اور تصویر اس گروپ کے تمام موجودہ اور مستقبل کے اراکین کو دیکھانا چاہتے ہیں؟</string>
@@ -993,6 +992,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal کو ظاہر کرنے کے لئے آپ کے رابطوں تک رسائی کی ضرورت ہے۔</string>
   <string name="contact_selection_list_fragment__show_contacts">رابطے دکھائیں</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal پیغام</string>
   <string name="conversation_activity__type_message_sms_insecure">غیر محفوظ ایس ایم ایس</string>

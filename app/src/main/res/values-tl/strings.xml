@@ -80,7 +80,6 @@
   <string name="BlockUnblockDialog_block_and_leave_s">I-block at umalis sa %1$s?</string>
   <string name="BlockUnblockDialog_block_s">I-block ang %1$s?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ang mga kasapi ng grupong ito ay maaaring isali kang muli sa grupong ito.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Magagawa nyong magpadala ng mensahe at tawagan ang isa\'t-isa.</string>
   <string name="BlockUnblockDialog_unblock_s">I-unblock ang %1$s?</string>
   <string name="BlockUnblockDialog_unblock">I-unblock</string>
   <string name="BlockUnblockDialog_block">I-block</string>
@@ -307,7 +306,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">May problema sa pagtatakda ng iyong profile</string>
   <string name="CreateProfileActivity_profile_photo">Profile photo</string>
   <string name="CreateProfileActivity_set_up_your_profile">I-set up ang iyong profile</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ang mga profile sa Signal ay end-to-end encrypted, at ang serbisyo ng Signal ay walang access sa mga impormasyong ito kahit kailan.</string>
   <string name="CreateProfileActivity_set_avatar_description">Itakda ang avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ang ginagamit: %s</string>
@@ -375,6 +373,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Hindi maidagdag sina %1$s dahil hindi sila gumagamit ng Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Nilo-load ang mga detalye ng grupo…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Nasa grupo ka na.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ibahagi ang iyong profile name at photo sa grupong ito?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ang profile name at photo mo ba ay gusto mong gawing nakikita ng lahat ng kasapi ng grupong ito sa kasalukuyan at hinaharap?</string>
@@ -577,10 +576,6 @@
   <string name="MessageRequestBottomView_delete">Burahin</string>
   <string name="MessageRequestBottomView_block">I-block</string>
   <string name="MessageRequestBottomView_unblock">I-unblock</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang hayaan si %1$s na makapagpadala ng mensahe sa iyo? Hindi niya malalaman na nakita mo ang kanyang mga mensahe hanggang ito ay iyong tanggapin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang sumali sa grupong %1$s? Hindi nila malalaman na nakita mo ang kanilang mga mensahe hanggang ito ay iyong tanggapin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">I-unblock si %1$s upang makapagpadala ng mensahe at matawagan ang isa\'t-isa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">I-unblock upang hayaan ang mga kasapi ng grupo na isali kang muli sa grupong ito.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Kasapi ng %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Kasapi ng %1$s at %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Kasapi ng %1$s, %2$s, at %3$s</string>
@@ -1048,6 +1043,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Kailangan ng Signal ng access sa iyong mga kontak upang maipakita ang mga ito.</string>
   <string name="contact_selection_list_fragment__show_contacts">Ipakita ang mga kontak</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensahe sa Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Hindi secure na SMS</string>

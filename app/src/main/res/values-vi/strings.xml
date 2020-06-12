@@ -79,7 +79,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Bạn sẽ không còn nhận tin nhắn hay cập nhật từ nhóm này, và thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Các thành viên trong nhóm có thể thêm lại bạn vào nhóm.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Các bạn sẽ có thể nhắn tin và gọi cho nhau.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Người dùng bị chặn sẽ không thể gọi hoặc gửi tin nhắn cho bạn.</string>
   <string name="BlockUnblockDialog_unblock_s">Bỏ chặn %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Bỏ chặn</string>
@@ -299,7 +298,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Lỗi thiết lập hồ sơ</string>
   <string name="CreateProfileActivity_profile_photo">Ảnh đại diện</string>
   <string name="CreateProfileActivity_set_up_your_profile">Thiết lập hồ sơ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Hồ sơ Signal được mã hóa đầu cuối và dịch vụ Signal không thể truy cập thông tin này.</string>
   <string name="CreateProfileActivity_set_avatar_description">Đặt ảnh đại diện</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
@@ -368,6 +366,7 @@
   <string name="GroupCreateActivity_loading_group_details">Đang tải chi tiết nhóm…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string>
   <string name="GroupCreateActivity_remove_member_description">Loại bỏ thành viên</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Chia sẻ ảnh đại diện và tên của bạn với nhóm này?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Bạn có muốn tất cả thành viên hiện có và trong tương lai của nhóm thấy ảnh đại diện và tên bạn?</string>
@@ -623,10 +622,6 @@
   <string name="MessageRequestBottomView_delete">Xóa</string>
   <string name="MessageRequestBottomView_block">Chặn</string>
   <string name="MessageRequestBottomView_unblock">Bỏ chặn</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Bạn có muốn cho phép %1$s nhắn tin cho bạn? Họ sẽ không biết bạn đã xem tin nhắn hay chưa cho đến khi bạn chấp nhận.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Bạn có muốn tham gia nhóm %1$s? Họ sẽ không biết bạn đã xem tin nhắn hay chưa cho đến khi bạn chấp nhận.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Bỏ chặn %1$s để nhắn tin và gọi cho nhau.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Bỏ chặn để thành viên nhóm có thể thêm lại bạn vào nhóm.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Thành viên của %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Thành viên của %1$s và %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Thành viên của %1$s, %2$s và %3$s</string>
@@ -1097,6 +1092,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal cần quyền truy cập danh bạ để hiển thị chúng.</string>
   <string name="contact_selection_list_fragment__show_contacts">Hiển thị danh bạ</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Tin nhắn Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS không bảo mật</string>

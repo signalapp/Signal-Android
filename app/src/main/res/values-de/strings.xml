@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du wirst von dieser Gruppe keine Nachrichten oder Aktualisierungen mehr erhalten, und Mitglieder werden dich nicht wieder zu dieser Gruppe hinzufügen können.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppenmitglieder werden dich nicht wieder zu dieser Gruppe hinzufügen können.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppenmitglieder werden dich wieder zu dieser Gruppe hinzufügen können.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ihr werdet einander schreiben und euch anrufen können.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ihr werdet einander schreiben und euch anrufen können und dein Profilname und Profilfoto wird mit ihnen geteilt.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockierte Personen werden dich nicht anrufen oder dir Nachrichten senden können.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s freigeben?</string>
   <string name="BlockUnblockDialog_unblock">Freigeben</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem beim Festlegen des Profils</string>
   <string name="CreateProfileActivity_profile_photo">Profilfoto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Richte dein Profil ein</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-Profile sind Ende-zu-Ende-verschlüsselt. Der Signal-Dienst hat daher niemals Zugriff auf diese Informationen.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dein Profil ist Ende-zu-Ende-verschlüsselt. Es wird für deine Kontakte sichtbar, sobald du neue Unterhaltungen beginnst oder annimmst, oder wenn du neuen Gruppen beitrittst.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar festlegen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalisiert: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Gruppendetails werden geladen …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du bist bereits in der Gruppe.</string>
   <string name="GroupCreateActivity_remove_member_description">Mitglied entfernen</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Mitglied hinzufügen?</string>
+  <string name="AddToGroupActivity_add_s_to_s">»%1$s« zu »%2$s« hinzufügen?</string>
+  <string name="AddToGroupActivity_s_added_to_s">»%1$s« zu »%2$s« hinzugefügt.</string>
+  <string name="AddToGroupActivity_add_to_group">Zur Gruppe hinzufügen</string>
+  <string name="AddToGroupActivity_add_to_groups">Zu Gruppen hinzufügen</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profilname und -foto mit dieser Gruppe teilen?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Möchtest du deinen Profilnamen und dein Profilfoto für alle derzeitigen und zukünftigen Mitglieder dieser Gruppe sichtbar machen?</string>
@@ -696,11 +702,11 @@
   <string name="MessageRequestBottomView_delete">Löschen</string>
   <string name="MessageRequestBottomView_block">Blockieren</string>
   <string name="MessageRequestBottomView_unblock">Freigeben</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du %1$s erlauben, dir Nachrichten zu schreiben? Solange du dies nicht erlaubst, wird diese Person nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du der Gruppe %1$s beitreten? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du erlauben, dass %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen kann? Solange du dies nicht erlaubst, wird diese Person nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Möchtest du erlauben, dass %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen kann? Du wirst keine Nachrichten erhalten, solange du die Unterhaltung nicht freigibst.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du wurdest in die Gruppe %1$s eingeladen. Möchtest du Mitgliedern dieser Gruppe erlauben, dir Nachrichten zu senden?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Gib %1$s frei für gegenseitige Nachrichten und Anrufe.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Gib diese Gruppe frei, um Gruppenmitgliedern zu erlauben, dich ihr erneut hinzuzufügen.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Möchtest du diese Gruppe freigeben und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du wirst keine Nachrichten erhalten, solange du die Gruppe nicht freigibst.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Mitglied von %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Mitglied von %1$s und %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Mitglied von %1$s, %2$s und %3$s</string>
@@ -1189,6 +1195,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal benötigt Zugriff auf deine Kontakte, um sie anzeigen zu können.</string>
   <string name="contact_selection_list_fragment__show_contacts">Kontakte anzeigen</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d Mitglied</item>
+    <item quantity="other">%1$d Mitglieder</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-Nachricht</string>
   <string name="conversation_activity__type_message_sms_insecure">Unverschlüsselte SMS</string>
@@ -1955,6 +1966,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RecipientBottomSheet_block">Blockieren</string>
   <string name="RecipientBottomSheet_unblock">Freigeben</string>
   <string name="RecipientBottomSheet_add_to_contacts">Zu Kontakten hinzufügen</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Zu einer Gruppe hinzufügen</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Zu einer anderen Gruppe hinzufügen</string>
   <string name="RecipientBottomSheet_view_safety_number">Sicherheitsnummer anzeigen</string>
   <string name="RecipientBottomSheet_make_group_admin">Zum Gruppenadmin machen</string>
   <string name="RecipientBottomSheet_remove_as_admin">Als Admin entfernen</string>

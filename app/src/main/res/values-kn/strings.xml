@@ -80,7 +80,6 @@
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s ಅನ್ನು ನಿರ್ಬಂಧಿಸುವುದೇ ಮತ್ತು ತೊರೆಯುವುದೇ?</string>
   <string name="BlockUnblockDialog_block_s">%1$s ನಿರ್ಬಂಧಿಸುವುದೇ?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ಗುಂಪಿನ ಸದಸ್ಯರು ನಿಮ್ಮನ್ನು ಪುನಃ ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ನೀವು ಪರಸ್ಪರ ಸಂದೇಶ ನೀಡಲು ಮತ್ತು ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$sನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="BlockUnblockDialog_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="BlockUnblockDialog_block">ನಿರ್ಬಂಧಿಸಿ</string>
@@ -308,7 +307,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">ಪ್ರೊಫೈಲ್ ಸೆಟ್ಟಿಂಗ್ ಸಮಸ್ಯೆ</string>
   <string name="CreateProfileActivity_profile_photo">ಪ್ರೊಫೈಲ್ ಚಿತ್ರ</string>
   <string name="CreateProfileActivity_set_up_your_profile">ನಿಮ್ಮ ಪ್ರೊಫೈಲನ್ನು ಸ್ಥಾಪಿಸಿ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal ಪ್ರೊಫೈಲ್‌ಗಳನ್ನು ಎಂಡ್‌-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ ಮತ್ತು Signal ಸೇವೆಯು ಈ ಮಾಹಿತಿಗೆ ಎಂದಿಗೂ ಪ್ರವೇಶ ಹೊಂದಿರುವುದಿಲ್ಲ.</string>
   <string name="CreateProfileActivity_set_avatar_description">ಅವತಾರ್ ಹೊಂದಿಸಿ</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ಕಸ್ಟಂ ಬಳಸಲಾಗುತ್ತಿದೆ: %s</string>
@@ -373,6 +371,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ಅವರು Signal ಬಳಕೆದಾರರು ಅಲ್ಲದೇ ಇರುವುದರಿಂದ %1$s ಅನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
   <string name="GroupCreateActivity_loading_group_details">ಗುಂಪಿನ ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">ನೀವು ಈಗಾಗಲೇ ಈ ಗುಂಪಿನಲ್ಲಿದ್ದೀರಿ.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವಿರಾ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ನೀವು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಮಾಡಲು ಹಾಗೂ ಎಲ್ಲ ಸದ್ಯದ ಮತ್ತು ಭವಿಷ್ಯದ ಸದಸ್ಯರುಗಳಿಗೆ ಈ ಗುಂಪಿನಲ್ಲಿ ಫೋಟೊವನ್ನು ಕಾಣುವಂತೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?</string>
@@ -575,10 +574,6 @@
   <string name="MessageRequestBottomView_delete">ಅಳಿಸು</string>
   <string name="MessageRequestBottomView_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="MessageRequestBottomView_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">ನಿಮಗೆ %1$sರವರು ಸಂದೇಶ ಕಳುಹಿಸುವುದಕ್ಕೆ ಅವಕಾಶ ನೀಡಲು ಬಯಸುತ್ತೀರಾ? ನೀವು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಅವರಿಗೆ ನೀವು ಅವರ ಸಂದೇಶಗಳನ್ನು ಪಡೆದಿದ್ದೀರಿ ಎನ್ನುವುದು ತಿಳಿಯುವುದಿಲ್ಲ.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$sರವರು ಗುಂಪಿಗೆ ಸೇರುವುದನ್ನು ನೀವು ಬಯಸುತ್ತೀರಾ? ನೀವು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಅವರಿಗೆ ನೀವು ಅವರ ಸಂದೇಶಗಳನ್ನು ಪಡೆದಿದ್ದೀರಿ ಎನ್ನುವುದು ತಿಳಿಯುವುದಿಲ್ಲ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$sಸಂದೇಶಕ್ಕಾಗಿ ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ ಮತ್ತು ಪರಸ್ಪರ ಕರೆ ಮಾಡಿ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">ನಿಮ್ಮನ್ನು ಈ ಗುಂಪಿಗೆ ಮತ್ತೊಮ್ಮೆ ಸೇರಿಸಲು ಗುಂಪಿನ ಸದಸ್ಯರಿಗೆ ಅವಕಾಶ ನೀಡುವುದಕ್ಕೆ ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s  ರ ಸದಸ್ಯ</string>
   <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ಮತ್ತು %2$s  ರ ಸದಸ್ಯ</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, ಮತ್ತು %3$s ರ ಸದಸ್ಯ</string>
@@ -1032,6 +1027,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ಗೆ  ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲು ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
   <string name="contact_selection_list_fragment__show_contacts">ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಿ</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal ಸಂದೇಶ</string>
   <string name="conversation_activity__type_message_sms_insecure">ಅಸುರಕ್ಷಿತ ಎಸ್‌ಎಂಎಸ್</string>

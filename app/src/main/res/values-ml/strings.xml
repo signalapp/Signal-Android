@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">പഴയ സന്ദേശങ്ങളെല്ലാം ഇല്ലാതാക്കണോ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">ഇത് എല്ലാ സംഭാഷണങ്ങളും ഏറ്റവും പുതിയ സന്ദേശത്തിലേക്ക് ഉടനടി ട്രിം ചെയ്യും.</item>
-    <item quantity="other">ഇത് എല്ലാ സംഭാഷണങ്ങളും ഏറ്റവും പുതിയ %dസന്ദേശങ്ങളിലേക്ക് ഉടനടി ട്രിം ചെയ്യും.</item>
+    <item quantity="other">ഇത് ഏറ്റവും പുതിയ %d സന്ദേശങ്ങളിലേക്ക് എല്ലാ സംഭാഷണങ്ങളും ഉടനടി ട്രിം ചെയ്യും.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">ഇല്ലാതാക്കുക </string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">രഹസ്യവാക്ക് പ്രവർത്തനരഹിതമാക്കണോ?</string>
@@ -75,14 +75,13 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ഓഡിയോ പ്ലേ ചെയ്യുന്നതിൽ പിശക്!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">തടഞ്ഞുവെച്ച കോൺടാക്റ്റുകൾ</string>
+  <string name="BlockedContactsActivity_blocked_contacts">ബ്ലോക്ക് ചെയ്ത കോൺടാക്റ്റുകൾ</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s-നെ ബ്ലോക്ക്യും ഉപേക്ഷിക്കുകയും ചെയ്യണോ?</string>
   <string name="BlockUnblockDialog_block_s">%1$s-നെ ബ്ലോക്ക് ചെയ്യണോ?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">ഈ ഗ്രൂപ്പിൽ നിന്ന് നിങ്ങൾക്ക് മേലിൽ സന്ദേശങ്ങളോ അപ്‌ഡേറ്റുകളോ ലഭിക്കില്ല, അംഗങ്ങൾക്ക് നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയും.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">നിങ്ങൾക്ക് പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും കഴിയും.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ബ്ലോക്ക് ചെയ്ത ആളുകൾക്ക് നിങ്ങളെ വിളിക്കാനോ സന്ദേശങ്ങൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ ബ്ലോക്ക് ചെയ്തത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -317,7 +316,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal പ്രൊഫൈലുകൾ എൻഡ് ടു എൻഡ് എൻക്രിപ്റ്റഡ് ആണ്, കൂടാതെ Signal സേവനത്തിന് ഒരിക്കലും ഈ വിവരങ്ങൾ ആക്സസ് ചെയ്യാൻ കഴിയില്ല.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
@@ -387,6 +385,8 @@
   <string name="GroupCreateActivity_loading_group_details">ഗ്രൂപ്പ് വിശദാംശങ്ങൾ ലോഡുചെയ്യുന്നു…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">നിങ്ങൾ ഇതിനകം ഗ്രൂപ്പിലുണ്ട്.</string>
   <string name="GroupCreateActivity_remove_member_description">അംഗത്തെ നീക്കംചെയ്യുക</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ഈ ഗ്രൂപ്പുമായി നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും പങ്കിടണോ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ഈ ഗ്രൂപ്പിലെ നിലവിലുള്ളതും ഭാവിയിലുള്ളതുമായ എല്ലാ അംഗങ്ങൾക്കും നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും ദൃശ്യമാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
@@ -516,7 +516,7 @@
   <!--Job-->
   <string name="Job_working_in_the_background">പശ്ചാത്തലത്തിൽ പ്രവർത്തിക്കുന്നു…</string>
   <!--LearnMoreTextView-->
-  <string name="LearnMoreTextView_learn_more">കൂടുതലറിവ് നേടുക</string>
+  <string name="LearnMoreTextView_learn_more">കൂടുതൽ അറിയുക</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="MessageDetailsRecipient_new_safety_number">പുതിയ സേഫ്റ്റി നമ്പർ </string>
@@ -610,7 +610,7 @@
   <string name="MediaSendActivity_select_recipients_description">സ്വീകർത്താക്കളെ തിരഞ്ഞെടുക്കുക</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">ഈ സന്ദേശം കണ്ടതിനുശേഷം അത് അപ്രത്യക്ഷമാകാൻ ഇവിടെ ടാപ്പുചെയ്യുക.</string>
   <!--MediaRepository-->
-  <string name="MediaRepository_all_media">എല്ലാ മീഡിയ</string>
+  <string name="MediaRepository_all_media">എല്ലാ മീഡിയകൾ</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">അജ്ഞാതം</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ഇപ്പോൾ പിന്തുണയ്‌ക്കാത്ത Signal-ന്റെ പഴയ പതിപ്പ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റുചെയ്‌ത ഒരു സന്ദേശം ലഭിച്ചു. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്ത് സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ അയച്ചയാളോട് ആവശ്യപ്പെടുക.</string>
@@ -696,11 +696,7 @@
   <string name="MessageRequestBottomView_delete">ഇല്ലാതാക്കുക </string>
   <string name="MessageRequestBottomView_block">ബ്ലോക്ക്</string>
   <string name="MessageRequestBottomView_unblock">തടഞ്ഞത് മാറ്റുക</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">നിങ്ങൾക്ക് %1$s-നെ സന്ദേശമയയ്ക്കാൻ അനുവദിക്കണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">നിങ്ങൾക്ക് %1$s ഗ്രൂപ്പിൽ ചേരാൻ താൽപ്പര്യമുണ്ടോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങളെ ക്ഷണിച്ചു. ഈ ഗ്രൂപ്പിലെ അംഗങ്ങളെ നിങ്ങൾക്ക് സന്ദേശമയയ്ക്കാൻ അനുവദിക്കണോ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും %1$s-നെ അൺബ്ലോക്ക് ചെയ്യുക.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ ഗ്രൂപ്പ് അംഗങ്ങളെ അനുവദിക്കുന്നതിന് അൺബ്ലോക്ക് ചെയ്യുക.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s അംഗം</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s, %2$s എന്നിവയിലെ അംഗം</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, %3$s എന്നിവയിലെ അംഗം</string>
@@ -1193,6 +1189,7 @@ grūpp ap‌ḍē</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal-ന് നിങ്ങളുടെ കോൺടാക്റ്റുകൾ പ്രദർശിപ്പിക്കുന്നതിന് അവയിലേക്ക് ആക്സസ് ആവശ്യമാണ്.</string>
   <string name="contact_selection_list_fragment__show_contacts">കോൺ‌ടാക്റ്റുകൾ കാണിക്കുക</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal സന്ദേശം</string>
   <string name="conversation_activity__type_message_sms_insecure">സുരക്ഷിതമല്ലാത്ത SMS</string>
@@ -1564,7 +1561,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്ന് ടൈപ്പിംഗ് സൂചകങ്ങൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">വ്യക്തിഗത പഠനം അപ്രാപ്‌തമാക്കുന്നതിന് കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക</string>
-  <string name="preferences_app_protection__blocked_contacts">തടഞ്ഞുവെച്ച കോൺടാക്റ്റുകൾ</string>
+  <string name="preferences_app_protection__blocked_contacts">ബ്ലോക്ക് ചെയ്ത കോൺടാക്റ്റുകൾ</string>
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_using_wifi">വൈഫൈ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_roaming">റോമിംഗ് ചെയ്യുമ്പോൾ</string>
@@ -1599,7 +1596,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">സീൽഡ് സെൻഡർ ഉപയോഗിച്ച് കൈമാറിയ സന്ദേശങ്ങളിൽ \"സന്ദേശ വിശദാംശങ്ങൾ\" തിരഞ്ഞെടുക്കുമ്പോൾ ഒരു സ്റ്റാറ്റസ് ഐക്കൺ കാണിക്കുക.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ആരിൽ നിന്നും അനുവദിക്കുക</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">കോൺടാക്ടുകൾ അല്ലാത്തവരിൽ നിന്നും നിങ്ങളുടെ പ്രൊഫൈൽ പങ്കിടാത്തവരായ ആളുകളിൽ നിന്നും വരുന്ന സന്ദേശങ്ങൾക്കായി സീൽഡ് സെൻഡർ പ്രാപ്തമാക്കുക.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">കൂടുതലറിവ് നേടുക</string>
+  <string name="preferences_communication__sealed_sender_learn_more">കൂടുതൽ അറിയുക</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1659,7 +1656,7 @@ grūpp ap‌ḍē</string>
   <string name="conversation__menu_edit_group">ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക</string>
   <string name="conversation__menu_group_settings">ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ</string>
   <string name="conversation__menu_leave_group">ഗ്രൂപ്പ് വിടുക</string>
-  <string name="conversation__menu_view_all_media">എല്ലാ മീഡിയ</string>
+  <string name="conversation__menu_view_all_media">എല്ലാ മീഡിയകൾ</string>
   <string name="conversation__menu_conversation_settings">സംഭാഷണ ക്രമീകരണങ്ങൾ</string>
   <string name="conversation__menu_add_shortcut">ഹോം സ്‌ക്രീനിലേക്ക് ചേർക്കുക</string>
   <string name="conversation__menu_pending_members">ശേഷിക്കുന്ന അംഗങ്ങൾ‌</string>
@@ -1707,7 +1704,7 @@ grūpp ap‌ḍē</string>
   <!--media_preview-->
   <string name="media_preview__save_title">സേവ് ചെയ്യുക</string>
   <string name="media_preview__forward_title">ഫോർവേഡ് ചെയ്യുക</string>
-  <string name="media_preview__all_media_title">എല്ലാ മീഡിയ</string>
+  <string name="media_preview__all_media_title">എല്ലാ മീഡിയകൾ</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">മീഡിയ പ്രിവ്യൂ</string>
   <!--new_conversation_activity-->
@@ -1770,7 +1767,7 @@ grūpp ap‌ḍē</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">അവതരിപ്പിക്കുന്നു PIN-കൾ</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Signal എൻക്രിപ്റ്റ് ചെയ്ത് സ്റ്റോർ ചെയ്ത വിവരങ്ങൾ PIN കൾ സൂക്ഷിക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് മാത്രമെ അത് പ്രാപ്യമാവുകയുള്ളു.  നിങ്ങൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈൽ, സെറ്റിംഗ്സ്, കോണ്ടാക്റ്റുകൾ എന്നിവ റീസ്റ്റോർ ചെയ്യപ്പെടും.</string>
-  <string name="KbsSplashFragment__learn_more">കൂടുതലറിവ് നേടുക</string>
+  <string name="KbsSplashFragment__learn_more">കൂടുതൽ അറിയുക</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">രജിസ്ട്രേഷൻ ലോക്ക് = പിൻ</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">നിങ്ങളുടെ രജിസ്ട്രേഷൻ ലോക്കിനെ ഇപ്പോൾ PIN എന്ന് വിളിക്കുന്നു, മാത്രമല്ല ഇത് കൂടുതൽ ചെയ്യുന്നു. ഇത് ഇപ്പോൾ അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN-കളെക്കുറിച്ച് കൂടുതൽ വായിക്കുക.</string>
@@ -1788,7 +1785,7 @@ grūpp ap‌ḍē</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">നിങ്ങളുടെ സ്വകാര്യതയും സുരക്ഷയും പരിരക്ഷിക്കുന്നതിന് നിങ്ങളുടെ അക്കൗണ്ട് ലോക്കുചെയ്‌തു. നിങ്ങളുടെ അക്കൗണ്ടിലെ %1$d ദിവസങ്ങളുടെ നിഷ്‌ക്രിയത്വത്തിന് ശേഷം നിങ്ങളുടെ PIN ആവശ്യമില്ലാതെ നിങ്ങൾക്ക് ഈ ഫോൺ നമ്പർ വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ കഴിയും. എല്ലാ ഉള്ളടക്കവും ഇല്ലാതാക്കും.
  </string>
   <string name="AccountLockedFragment__next">അടുത്തത്</string>
-  <string name="AccountLockedFragment__learn_more">കൂടുതലറിവ് നേടുക</string>
+  <string name="AccountLockedFragment__learn_more">കൂടുതൽ അറിയുക</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">നിങ്ങളുടെ പിൻ നൽകുക</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">നിങ്ങളുടെ അക്കൗണ്ടിനായി നിങ്ങൾ സൃഷ്‌ടിച്ച പിൻ നൽകുക. ഇത് നിങ്ങളുടെ SMS പരിശോധന കോഡിൽ നിന്ന് വ്യത്യസ്തമാണ്.</string>

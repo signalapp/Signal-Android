@@ -80,7 +80,6 @@
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e sair %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s ?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membros do grupo poderão adicionar você ao grupo novamente</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vocês poderão enfiar mensagem e ligar um para o outro.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s ?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
@@ -307,7 +306,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema ao definir perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Os perfis do Signal são criptografados de ponta a ponta, e o Signal jamais tem acesso a estas informações.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
@@ -375,6 +373,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Você já faz parte do grupo.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Você quer tornar seu nome e foto do perfil visíveis para todos os membros atuais e futuros deste grupo?</string>
@@ -576,10 +575,6 @@
   <string name="MessageRequestBottomView_delete">Excluir</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Quer permitir que o usuário %1$slhe mande mensagens ? Ele não sabe que você viu as mensagens dele, a menos que você aceite. </string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Quer entrar no grupo %1$s? Eles não sabem que você viu as mensagens deles, a menos que você aceite.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Desbloquear o usuário %1$spara lhe enviar mensagens e ligar um para o outro.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloquear para permitir que os membros voltem a lhe adicionar no grupo.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s </string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
@@ -1044,6 +1039,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">O Signal precisa de acesso aos seus contatos para poder exibi-los.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostrar contatos</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensagem no Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>

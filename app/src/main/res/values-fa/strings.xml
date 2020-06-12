@@ -82,7 +82,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">شما دیگر از این گروه پیام و به‌روزرسانی دریافت نخواهید کرد. و اعضا قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">اعضای گروه دیگر قادر نخواهند بود شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما می‌توانید به دیگران پیام دهید و با آنها تماس بگیرید.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس با شما یا ارسال پیام به شما نخواهند بود.</string>
   <string name="BlockUnblockDialog_unblock_s">گروه %1$s از حالت مسدود خارج شود؟</string>
   <string name="BlockUnblockDialog_unblock">رفع مسدودیت</string>
@@ -317,7 +316,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
   <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل‌های Signal به صورت سرتاسر رمزگذاری می‌شوند و سرویس Signal هیچگاه به این اطلاعات دسترسی ندارد.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل شما به صورت سرتاسر رمزنگاری شده است و برای مخاطبان شما، هنگامی که شما مکالمهٔ جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید قابل مشاهده خواهد بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
@@ -387,6 +386,8 @@
   <string name="GroupCreateActivity_loading_group_details">بارگذاری جزئیات گروه…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">شما در حال حاضر در این گروه هستید.</string>
   <string name="GroupCreateActivity_remove_member_description">حذف عضو گروه</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">اضافه کردن به گروه</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک‌گذاری نام و عکس پروفایل خود با این گروه؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و عکس پروفایل شما به همهٔ اعضای کنونی و آتی این گروه نشان داده شود؟</string>
@@ -696,11 +697,8 @@
   <string name="MessageRequestBottomView_delete">حذف</string>
   <string name="MessageRequestBottomView_block">مسدودسازی</string>
   <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">می‌خواهید به %1$s اجازه دهید به شما پیام دهد؟ تا زمانی که شما این درخواست را قبول نکنید آن‌ها متوجه نمی‌شوند که شما پیام‌شان را خوانده‌اید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به گروه %1$s بپیوندید؟ تا زمانی که شما این درخواست را قبول نکنید آن‌ها متوجه نمی‌شوند که شما پیام‌شان را خوانده‌اید.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">شما برای پیوستن به گروه %1$s دعوت شده‌اید. آیا می‌خواهید به اعضای این گروه اجازه دهید که به شما پیام دهند؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$s را از حالت مسدود خارج کنید تا قادر به ارسال پیام و برقراری تماس با یکدیگر باشید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">گروه را از حالت مسدود خارج کنید تا اعضای آن بتوانند دوباره شما را به این گروه اضافه کنند.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">مسدودیت این گروه را برداشته و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که مسدودیت آن‌ها را برندارید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestProfileView_member_of_one_group">عضو %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو %1$s و %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">عضو %1$s، %2$s و %3$s </string>
@@ -1197,6 +1195,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal نیاز به دسترسی به مخاطب های شما دارد تا بتواند آن ها را نمایش دهد.</string>
   <string name="contact_selection_list_fragment__show_contacts">نمایش مخاطب ها</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">پیام Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">پیامک ناامن</string>

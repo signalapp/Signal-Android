@@ -79,7 +79,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Anda tidak lagi dapat menerima pesan atau info terbaru dari grup ini, dan anggota grup tidak dapat menambahkan Anda ke grup ini lagi.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anggota grup tidak dapat lagi menambahkan Anda ke grup ini.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anggota grup dapat mengundang Anda kembali ke dalam grup.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan dapat mengirim pesan dan membuat panggilan satu sama lain.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang yang Anda blokir tidak akan dapat menelepon atau mengirim pesan pada Anda</string>
   <string name="BlockUnblockDialog_unblock_s">Berhenti blok %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Buka blokir</string>
@@ -302,7 +301,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Masalah pengaturan profil</string>
   <string name="CreateProfileActivity_profile_photo">Foto profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Siapkan profil Anda</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profil Signal dienkripsi ujung-ke-ujung, dan layanan Signal tidak pernah memiliki akses ke informasi ini.</string>
   <string name="CreateProfileActivity_set_avatar_description">Pilih avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Gunakan pilihan khusus: %s</string>
@@ -372,6 +370,7 @@
   <string name="GroupCreateActivity_loading_group_details">Memuat detail grup…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Anda sudah berada di grup.</string>
   <string name="GroupCreateActivity_remove_member_description">Hapus anggota</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bagi nama profil dan foto anda di grup ini?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Apakah anda ingin nama dan profil anda ditampilkan untuk semua anggota group saat ini dan yang akan datang? </string>
@@ -641,10 +640,6 @@
   <string name="MessageRequestBottomView_delete">Hapus</string>
   <string name="MessageRequestBottomView_block">Blokir</string>
   <string name="MessageRequestBottomView_unblock">Buka blokir</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Persilahkan %1$s mengirim pesan? Pengirim belum akan menerima notifikasi bahwa Anda telah menerima pesan hingga disetujui.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung dengan grup %1$s? Anggota grup belum akan melihat pesan Anda hingga disetujui.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Berhenti blok %1$s untuk mengirim pesan dan menelepon satu sama lain.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Berhenti blok sehingga anggota grup dapat mengundang Anda kembali.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Anggota dari %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Anggota dari %1$s dan %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Anggota dari %1$s, %2$s, dan %3$s</string>
@@ -1124,6 +1119,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal memerlukan akses ke daftar kontak Anda supaya dapat menampilkannya.</string>
   <string name="contact_selection_list_fragment__show_contacts">Tampilkan kontak</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pesan Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS tanpa enkripsi</string>

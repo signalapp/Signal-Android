@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">S’do të merrni më mesazhe apo përditësime nga ky grup, dhe anëtarët e tij s’do të jenë në gjendje t’ju shtojnë sërish te ky grup.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anëtarët e grupit s’do të jenë në gjendje t’ju rishtojnë te ky grup.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anëtarë të grupit do të jenë në gjendje t’ju rishtojnë te ky grup.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Do të jeni në gjendje t’i shkruani mesazhe dhe t’i bëni thirrje njëri-tjetrit.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Do të jeni në gjendje t’i dërgoni mesazhe dhe t’i bëni thirrje njëri-tjetrit, dhe emri juaj dhe fotoja do të jenë të dukshëm për të.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Personat e bllokuar s’do të jenë në gjendje t’ju bëjnë thirrje apo t’ju dërgojnë mesazhe.</string>
   <string name="BlockUnblockDialog_unblock_s">Të zhbllokohet %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Zhbllokoje</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem në rregullim profili</string>
   <string name="CreateProfileActivity_profile_photo">Foto profili</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilet Signal fshehtëzohen skaj-më-skaj, dhe shërbimi Signal s\’mund të hyjë kurrë në këto të dhëna.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili juaj është i fshehtëzuar skaj-më-skaj. Do të jetë i dukshëm për kontaktet tuaj, kur filloni ose pranoni biseda të reja, dhe kur bëheni anëtar grupesh të rinj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Caktoni avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Po ngarkohen hollësi grupi…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Jeni tashmë te grupi.</string>
   <string name="GroupCreateActivity_remove_member_description">Hiqe anëtarin</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Të shtohet anëtar?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Të shtohet \"%1$s\" te \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" u shtua te \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Shtoje te grupi</string>
+  <string name="AddToGroupActivity_add_to_groups">Shtoni te grupe</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Të ndahet emri dhe fotoja juaj e profilit me këtë grup?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Doni t\’i bëni emrin dhe foton e profilit të dukshme për krejt anëtarët e tanishëm dhe të ardhshëm të këtij grupi?</string>
@@ -696,11 +702,11 @@
   <string name="MessageRequestBottomView_delete">Fshije</string>
   <string name="MessageRequestBottomView_block">Bllokoje</string>
   <string name="MessageRequestBottomView_unblock">Zhbllokoje</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të lejohet %1$s t’ju dërgojë mesazh? S’do ta dijë se e keni parë mesazhin e tij, deri sa të pranoni.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të bëheni pjesë e grupit %1$s? S’do ta dinë se i keni parë mesazhet e tyre, deri sa të pranoni.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Të lejohet %1$s t’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S’do ta dijë se e keni parë mesazhin e tij, para se të pranoni këtë.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Të lejohet %1$s t’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Të bëhet anëtarësim në këtë grup dhe të ndahet emri dhe fotoja juaj me anëtarët e tij? S’do ta dinë se i keni parë mesazhet e tyre, para se të pranoni këtë.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Qetë ftuar në këtë grup nga %1$s. Doni t’i lini anëtarët e këtij grupi t’ju dërgojnë mesazhe?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Zhbllokojeni %1$s që t’i shkruani mesazhe dhe t’i bëni thirrje njëri-tjetrit.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Zhbllokojeni që t’u lejoni anëtarëve të grupit t’ju rishtojnë te ky grup.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Të zhbllokohet ky grup dhe të lejohet të ndajë emrin dhe foton tuaj me anëtarët e tij? S’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Anëtar i %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Anëtar i %1$s dhe %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Anëtar i %1$s, %2$s, dhe %3$s</string>
@@ -1196,6 +1202,11 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Që të mund t\’i shfaqë, Signal-i lyp leje përdorimi të kontakteve.</string>
   <string name="contact_selection_list_fragment__show_contacts">Shfaq Kontaktet</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d anëtar</item>
+    <item quantity="other">%1$d anëtarë</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mesazh Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS e pasiguruar</string>
@@ -1964,6 +1975,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>
   <string name="RecipientBottomSheet_add_to_contacts">Shtoje te kontaktet</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Shtoje te grup</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Shtojeni në grup tjetër</string>
   <string name="RecipientBottomSheet_view_safety_number">Shihni numër sigurie</string>
   <string name="RecipientBottomSheet_make_group_admin">Bëje përgjegjës grupi</string>
   <string name="RecipientBottomSheet_remove_as_admin">Hiqe nga përgjegjës</string>

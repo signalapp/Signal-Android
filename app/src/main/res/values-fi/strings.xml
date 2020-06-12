@@ -82,7 +82,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Et tule vastaanottamaan viestejä tai päivityksiä tältä ryhmältä, eivätkä ryhmän jäsenet voi lisätä sinua takaisin ryhmään.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ryhmän jäsenet eivät enää voi lisätä sinua takaisin tähän ryhmään.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ryhmän jäsenet voivat lisätä sinut takaisin tähän ryhmään.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Voitte jatkossa lähettää viestejä ja soittaa toisillenne.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Estetyt henkilöt eivät voi soittaa sinulle tai lähettää sinulle viestejä.</string>
   <string name="BlockUnblockDialog_unblock_s">Poista %1$s:n esto?</string>
   <string name="BlockUnblockDialog_unblock">Poista esto</string>
@@ -317,7 +316,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Virhe asetettaessa profiilia</string>
   <string name="CreateProfileActivity_profile_photo">Profiilikuva</string>
   <string name="CreateProfileActivity_set_up_your_profile">Aseta profiilisi</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiilit ovat päästä päähän salattuja eikä Signal-palvelulla ole pääsyä näihin tietoihin.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiilisi on päästä päähän salattu. Se näkyy yhteystiedoillesi, kun aloitat tai hyväksyt uusia keskusteluja ja kun liityt uusiin ryhmiin.</string>
   <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
@@ -387,6 +386,12 @@
   <string name="GroupCreateActivity_loading_group_details">Ladataan ryhmän tiedot…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Olet jo ryhmässä.</string>
   <string name="GroupCreateActivity_remove_member_description">Poista jäsen</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Lisää jäsen?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Lisää \"%1$s\" ryhmään \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lisätty ryhmään \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Lisää ryhmään</string>
+  <string name="AddToGroupActivity_add_to_groups">Lisää ryhmiin</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Jaa profiilikuvasi ja -nimesi tämän ryhmän kanssa?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Haluatko tehdä profiilikuvasi ja -nimesi näkyväksi kaikille tämän ryhmän nykyisille ja tuleville jäsenille?</string>
@@ -696,11 +701,11 @@
   <string name="MessageRequestBottomView_delete">Poista</string>
   <string name="MessageRequestBottomView_block">Estä</string>
   <string name="MessageRequestBottomView_unblock">Poista esto</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko antaa henkilön %1$s viestiä sinulle? Hän ei tiedä, että olet nähnyt hänen viestinsä, ennen kuin hyväksyt.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä ryhmään %1$s? He eivät tiedä, että olet nähnyt heidän viestinsä, ennen kuin hyväksyt.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Salli henkilön %1$s lähettää sinulle viestejä ja jaa nimesi ja profiilikuvasi hänelle? Hän ei tiedä että olet nähnyt hänen viestinsä ennen kuin hyväksyt.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Salli henkilön %1$s lähettää sinulle viestejä ja jaa nimesi ja profiilikuvasi hänelle? Et saa viestejä ennen kuin poistat niiden eston.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Liity tähän ryhmään ja jaa nimesi ja profiilikuvasi sen jäsenille? He eivät tiedä että olet nähnyt heidän viestinsä ennen kuin hyväksyt.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sinut kutsuttiin liittymään ryhmään %1$s. Haluatko antaa tämän ryhmän jäsenten lähettää sinulle viestejä?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Poista %1$s:n esto voidaksesi lähettää viestejä ja soittaa toisillenne.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Poista esto, jotta ryhmän jäsenet voivat lisätä sinut takaisin ryhmään.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Poista tämän ryhmän esto ja jaa nimesi ja profiilikuvasi sen jäsenille? Et saa viestejä ennen kuin poistat niiden eston.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Jäsen ryhmässä %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Jäsen ryhmissä %1$s ja %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Jäsen ryhmissä %1$s, %2$s ja %3$s</string>
@@ -1194,6 +1199,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal tarvitsee luvan yhteystietoihisi, jotta se voisi näyttää ne.</string>
   <string name="contact_selection_list_fragment__show_contacts">Näytä yhteystiedot</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d jäsen</item>
+    <item quantity="other">%1$d jäsentä</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-viesti</string>
   <string name="conversation_activity__type_message_sms_insecure">Salaamaton SMS-viesti</string>
@@ -1960,6 +1970,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_block">Estä</string>
   <string name="RecipientBottomSheet_unblock">Poista esto</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lisää yhteystietoihin</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Lisää ryhmään</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Lisää toiseen ryhmään</string>
   <string name="RecipientBottomSheet_view_safety_number">Näytä turvanumero</string>
   <string name="RecipientBottomSheet_make_group_admin">Nimitä ryhmän ylläpitäjäksi</string>
   <string name="RecipientBottomSheet_remove_as_admin">Poista ylläpitäjän oikeudet</string>

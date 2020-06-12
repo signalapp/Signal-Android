@@ -82,7 +82,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">आपणास यापुढे या गटाकडून संदेश किंवा अद्यतने प्राप्त होणार नाहीत आणि सदस्य आपल्याला या गटामध्ये पुन्हा जोडण्यास सक्षम राहणार नाहीत.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">गट सदस्य आपल्याला या गटामध्ये पुन्हा जोडू शकणार नाहीत.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">गट सदस्य आपल्याला पुन्हा या गटात जोडू शकतील.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आपण एकमेकांना संदेश पाठवू आणि कॉल करू शकाल.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$sअनावरोधित करायचे?</string>
   <string name="BlockUnblockDialog_unblock">अनब्लॉक करा</string>
@@ -308,7 +307,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाईल फोटो</string>
   <string name="CreateProfileActivity_set_up_your_profile">आपली प्रोफाईल सेट अप करा</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal प्रोफाईल एंड-टू-एंड एन्क्रिप्टेड असतात, आणि Signal सेवेला या माहितीचा अॅक्सेस कधीही नसतो.</string>
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
@@ -372,6 +370,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s यास जोडू शकले नाही कारण ते Signal वापरकर्ते नाही.</string>
   <string name="GroupCreateActivity_loading_group_details">गट तपशील लोड करत आहे…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">आपण आधीपासून गटात आहात.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">या गटासोबत आपले प्रोफाईल नाव आणि फोटो सामायिक करायचे?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">या गटाच्या सर्व वर्तमान आणि भविष्यातील सदस्यांसाठी आपले प्रोफाईल नाव आणि फोटो आपल्याला दृश्यमान करायचे?</string>
@@ -1012,6 +1011,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">आपले संपर्क दाखविण्यासाठी Signal ला त्यांना अॅक्सेस करण्याची गरज आहे.</string>
   <string name="contact_selection_list_fragment__show_contacts">संपर्क दाखवा</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal संदेश</string>
   <string name="conversation_activity__type_message_sms_insecure">असुरक्षित SMS</string>

@@ -79,10 +79,10 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blockera och lämna %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blockera %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du kommer inte längre att få meddelanden eller uppdateringar från den här gruppen och medlemmarna kommer inte att kunna lägga till dig i den här gruppen igen.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppmedlemmar kommer inte att kunna lägga till dig i den här gruppen igen.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du kommer inte längre att få meddelanden eller uppdateringar från denna grupp och medlemmarna kommer inte att kunna lägga till dig i denna grupp igen.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppmedlemmar kommer inte att kunna lägga till dig i denna grupp igen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppmedlemmar kommer att kunna lägga till dig i denna grupp igen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ni kommer att kunna meddela och ringa varandra.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du kommer att kunna meddela och ringa varandra och ditt namn och foto delas med dem.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockerade personer kommer inte att kunna ringa eller skicka meddelanden till dig.</string>
   <string name="BlockUnblockDialog_unblock_s">Sluta blockera %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Sluta blockera</string>
@@ -188,11 +188,11 @@
   <string name="ConversationActivity_calls_not_supported">Samtal stöds inte</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp-handlingar.</string>
   <string name="ConversationActivity_leave_group">Lämna grupp?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna den här gruppen?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna denna grupp?</string>
   <string name="ConversationActivity_transport_insecure_sms">Osäkert SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Vi kan använda Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Låt oss använda Signal %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp</string>
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sluta blockera denna kontakt?</string>
@@ -225,7 +225,7 @@
   <string name="ConversationActivity_delete_conversation">Radera konversation?</string>
   <string name="ConversationActivity_delete_and_leave_group">Ta bort och lämna gruppen?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Denna konversation kommer att tas bort från alla dina enheter.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du kommer att lämna den här gruppen och den kommer att tas bort från alla dina enheter.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du kommer att lämna denna grupp och den kommer att tas bort från alla dina enheter.</string>
   <string name="ConversationActivity_delete">Ta bort</string>
   <string name="ConversationActivity_delete_and_leave">Ta bort och lämna</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">För att ringa %1$s behöver Signal åtkomst till din mikrofon</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem med att ställa in profilen</string>
   <string name="CreateProfileActivity_profile_photo">Profilbild</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ställ in din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler är ände-till-ände-krypterade och Signal-tjänsten har aldrig tillgång till denna information.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil är ände-till-ände-krypterad. Det kommer att vara synligt för dina kontakter, när du initierar eller accepterar nya konversationer och när du går med i nya grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ställ in avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Läser in gruppdetaljer…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du är redan i gruppen.</string>
   <string name="GroupCreateActivity_remove_member_description">Ta bort medlem</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Lägg till medlem?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Lägg till \"%1$s\" i \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lagd till \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Lägg till i grupp</string>
+  <string name="AddToGroupActivity_add_to_groups">Lägg till i grupper</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Dela ditt profilnamn och bild med denna grupp?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vill du göra ditt profilbild och profilnamn synligt för alla nuvarande och framtida medlemmar i denna grupp?</string>
@@ -430,7 +436,7 @@
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupper kräver minst två medlemmar.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Det gick inte att skapa grupp.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Försök igen senare.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valt en kontakt som inte stöder Signal-grupper, så den här gruppen kommer använda MMS.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valt en kontakt som inte stöder Signal-grupper, så denna grupp kommer använda MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Ta bort</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ta bort %1$s från denna grupp?</string>
@@ -510,7 +516,7 @@
     <item quantity="one">Skicka %d SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Vi kan använda Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Låt oss använda Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra prata okrypterat.</string>
   <!--Job-->
@@ -696,11 +702,8 @@
   <string name="MessageRequestBottomView_delete">Ta bort</string>
   <string name="MessageRequestBottomView_block">Blockera</string>
   <string name="MessageRequestBottomView_unblock">Sluta blockera</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vill du låta %1$s skicka meddelanden till dig? De kommer inte att du veta om du har sett deras meddelanden förrän du accepterar.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vill du gå med i gruppen %1$s? De kommer inte att veta om du har sett deras meddelanden förrän du accepterar.</string> -->
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du blev inbjuden att gå med i gruppen %1$s. Vill du låta medlemmar i den här gruppen att skicka meddelanden till dig?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Sluta blockera %1$s för att skicka meddelande och ringa varandra.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Sluta blockera för att tillåta gruppmedlemmar att lägga till dig i den här gruppen igen.</string> -->
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du blev inbjuden att gå med i gruppen %1$s. Vill du låta medlemmar i denna grupp att skicka meddelanden till dig?</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ta bort blockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har blockerat dem.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, och %3$s</string>
@@ -1194,6 +1197,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal behöver tillgång till dina kontakter för att visa dem.</string>
   <string name="contact_selection_list_fragment__show_contacts">Visa kontakter</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmar</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-meddelande</string>
   <string name="conversation_activity__type_message_sms_insecure">Osäkert SMS</string>
@@ -1960,6 +1968,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_block">Blockera</string>
   <string name="RecipientBottomSheet_unblock">Sluta blockera</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lägg till som kontakt</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Lägg till i en grupp</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Lägg till i en annan grupp</string>
   <string name="RecipientBottomSheet_view_safety_number">Visa säkerhetsnummer</string>
   <string name="RecipientBottomSheet_make_group_admin">Gör till gruppadminstratör</string>
   <string name="RecipientBottomSheet_remove_as_admin">Ta bort som administratör</string>

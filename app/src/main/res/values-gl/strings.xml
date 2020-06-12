@@ -309,7 +309,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemas ao establecer o perfil</string>
   <string name="CreateProfileActivity_profile_photo">Fotografía do perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Establece o teu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Os perfís de Signal están cifrados de principio a fin e o servizo de Signal en ningún momento ten acceso a esta información.</string>
   <string name="CreateProfileActivity_set_avatar_description">Establecer avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
@@ -376,6 +375,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Non se puido engadir a %1$s porque non é usuario de Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Cargando detalles do grupo…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Xa estás no grupo.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartir o teu nome e foto de perfil con este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Queres facer visible o teu nome e fotografía do perfil visible aos actuais e futuros membros deste grupo?</string>
@@ -999,6 +999,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal necesita acceder aos teus contactos para poder mostralos.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostrar contactos</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensaxe de Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS insegura</string>

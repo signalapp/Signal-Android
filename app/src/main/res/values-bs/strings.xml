@@ -85,7 +85,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nećete više primati poruke i obavijesti iz ove grupe, niti će Vas njeni članovi moći ponovo u grupu dodati.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Članovi grupe neće Vas moći ponovo uvrstiti u grupu.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Članovi grupe moći će Vas ponovo uvrstiti u grupu.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći ćete razmjenjivati poruke i pozive.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirane osobe neće Vas više moći zvati niti Vam slati poruke.</string>
   <string name="BlockUnblockDialog_unblock_s">Deblokirati %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Deblokiraj</string>
@@ -198,8 +197,8 @@
   <string name="ConversationActivity_lets_switch_to_signal">Pređimo na Signal %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Greška prilikom napuštanja grupe</string>
   <string name="ConversationActivity_specify_recipient">Molimo odaberite kontakt</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Prestati blokiranje ove osobe?</string>
-  <string name="ConversationActivity_unblock_this_group_question">Prestati blokiranje ove grupe?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Prestati s blokiranjem ove osobe?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Prestati s blokiranjem ove grupe?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ponovo ćete početi dobijati poruke ili pozive od ove osobe.</string>
   <string name="ConversationActivity_unblock_this_group_description">Postojeći članovi moći će Vas ponovo uvrstiti u grupu.</string>
   <string name="ConversationActivity_unblock">Deblokiraj</string>
@@ -331,7 +330,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem kod podešavanja profila</string>
   <string name="CreateProfileActivity_profile_photo">Fotografija profila</string>
   <string name="CreateProfileActivity_set_up_your_profile">Podesite svoj profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profili šifrirani su i Signal ni u jednom trenutku nema pristupa toj informaciji.</string>
   <string name="CreateProfileActivity_set_avatar_description">Postavi sliku profila</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći vlastitu: %s</string>
@@ -401,6 +399,8 @@
   <string name="GroupCreateActivity_loading_group_details">Učitavam detalje o grupi…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Već ste član ove grupe.</string>
   <string name="GroupCreateActivity_remove_member_description">Ukloni člana</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">Uvrsti u grupu</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Želite li da ime i fotografija s Vašeg profila budu prikazani u ovoj grupi?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite li ime i fotografiju Vašega profila učiniti dostupnim svim trenutnim i budućim članovima ove grupe?</string>
@@ -432,8 +432,14 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Uredu</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Uvrstiti \"%1$s\" u \"%2$s\"?</item>
+    <item quantity="few">Uvrstiti %3$d člana u \"%2$s\"?</item>
+    <item quantity="other">Uvrstiti %3$d članova u \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Dodijeli naziv grupi</string>
+  <string name="AddGroupDetailsFragment__create_group">Kreiraj grupu</string>
   <string name="AddGroupDetailsFragment__create">Kreiraj</string>
   <string name="AddGroupDetailsFragment__members">Članovi</string>
   <string name="AddGroupDetailsFragment__group_name_required">Naziv grupe (obavezno)</string>
@@ -451,6 +457,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Ko može regulisati članstvo u grupi</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Ko može mijenjati informacije o grupi</string>
   <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
+  <string name="ManageGroupActivity_unblock_group">Prestani s blokiranjem grupe</string>
   <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
   <string name="ManageGroupActivity_mute_notifications">Stišaj obavještenja</string>
   <string name="ManageGroupActivity_custom_notifications">Korisničke obavijesti</string>
@@ -465,6 +472,11 @@
     <item quantity="one">%d pozvano</item>
     <item quantity="few">%d pozvano</item>
     <item quantity="other">%d pozvano</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">Dodan %d član.</item>
+    <item quantity="few">Dodana %d člana.</item>
+    <item quantity="other">Dodano %d članova.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Niste ovlašteni za to</string>
   <string name="ManageGroupActivity_not_capable">Neko koga ste uvrstili ne podržava nove grupe i treba ažurirati verziju Signala</string>
@@ -715,11 +727,7 @@
   <string name="MessageRequestBottomView_delete">Izbriši</string>
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Hoćete li dopustiti da Vam %1$s šalje poruke? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Želite li pristupiti grupi %1$s? Oni neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Pozvani ste da se pridružite grupi %1$s. Želite li dopustiti članovima grupe da Vam šalju poruke?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Deblokirajte %1$s da biste mogli razmjenjivati poruke i pozive.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Deblokirajte kako biste omogućili članovima grupe da Vas ponovo dodaju u ovu grupu.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Član grupe %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Član grupa %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Član grupa %1$s, %2$s i %3$s</string>
@@ -1225,6 +1233,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signalu je potreban pristup Vašim kontaktima kako bi ih mogao prikazati.</string>
   <string name="contact_selection_list_fragment__show_contacts">Prikaži kontakte</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal poruka</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezaštićen SMS</string>
@@ -1645,6 +1654,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nova poruka za…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Uvrsti u grupu</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Poziv</string>
   <!--conversation_callable_secure-->

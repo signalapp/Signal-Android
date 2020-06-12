@@ -85,7 +85,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nu veți mai putea primi mesaje sau actualizări de la acest grup, iar membrii nu vă vor mai putea adăuga la acest grup.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Membrii grupului nu vă vor mai putea adăuga din nou la acest grup.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membrii grupului vă vor putea adăuga din nou la acest grup.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vei putea să vă trimiteți mesaje și să vă sunați reciproc.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Persoanele blocate nu vor putea să vă sune sau să vă trimită mesaje.</string>
   <string name="BlockUnblockDialog_unblock_s">Deblocați %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Deblochează</string>
@@ -331,7 +330,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemă la setarea profilului</string>
   <string name="CreateProfileActivity_profile_photo">Poză profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurează-ți profilul</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilurile Signal sunt criptate integral, iar serviciul Signal nu are niciodată acces la aceste informații.</string>
   <string name="CreateProfileActivity_set_avatar_description">Setează avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
@@ -401,6 +399,7 @@
   <string name="GroupCreateActivity_loading_group_details">Se încarcă detaliile grupului…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sunteți deja în grup.</string>
   <string name="GroupCreateActivity_remove_member_description">Eliminați membrul</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Distribui numele și poza profilului cu acest grup?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vrei să faci numele și poza profilului tău vizibile pentru toți membrii actuali și viitori ai acestui grup?</string>
@@ -716,11 +715,7 @@
   <string name="MessageRequestBottomView_delete">Șterge</string>
   <string name="MessageRequestBottomView_block">Blochează</string>
   <string name="MessageRequestBottomView_unblock">Deblochează</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Doriți ca %1$s să vă poată trimite mesaje? Nu vor știi că ați văzut mesajul până când ați acceptat.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Doriți să vă alăturați grupului %1$s? Nu vor ști că le-ați văzut mesajele până nu veți accepta.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Ai fost invitat să te alături grupului %1$s. Permiteți membrii acestui grup să vă trimită mesaje?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Deblocați pe %1$s pentru a vă putea trimite mesaje și să va sunați reciproc.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Deblocați pentru a permite membrilor grupului să vă adauge din nou în acest grup.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">Membru al %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membru al %1$s și %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membru al %1$s, %2$s, și %3$s</string>
@@ -1222,6 +1217,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal are nevoie de acces la contactele tale pentru a le afișa.</string>
   <string name="contact_selection_list_fragment__show_contacts">Afișează contactele</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mesaj Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS nesecurizat</string>

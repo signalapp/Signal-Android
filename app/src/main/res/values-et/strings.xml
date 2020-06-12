@@ -82,7 +82,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Sa ei saa enam sellelt grupilt sõnumeid ega värskendusi ja liikmed ei saa sind uuesti sellesse gruppi lisada.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupi liikmetel pole võimalik sind sellesse gruppi uuesti lisada.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupi liikmetel on võimalik sind sellesse gruppi uuesti lisada.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Teil on võimalik üksteisele sõnumeid saata ja helistada.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokeeritud isikutel pole võimalik sulle helistada ega sõnumeid saata.</string>
   <string name="BlockUnblockDialog_unblock_s">Kas eemaldada %1$sblokeering?</string>
   <string name="BlockUnblockDialog_unblock">Eemalda blokeering</string>
@@ -317,7 +316,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Profiili seadistamisel tekkis probleem</string>
   <string name="CreateProfileActivity_profile_photo">Profiilipilt</string>
   <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signali profiilid on otspunktkrüpteeritud ning Signali teenusel ei ole kunagi sellele teabele juurdepääsu.</string>
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
@@ -387,6 +385,8 @@
   <string name="GroupCreateActivity_loading_group_details">Grupi andmete laadimine…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sa oled juba grupis.</string>
   <string name="GroupCreateActivity_remove_member_description">Eemalda liige</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">Lisa gruppi</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Jagad oma profiilinime ja -pilti selle grupiga?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Kas sa tahad teha oma profiilinime ja -pildi nähtavaks kõigile grupi olemasolevatele ja tulevastele liikmetele?</string>
@@ -416,6 +416,10 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Tehtud</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Kas lisada \"%1$s\" liige gruppi \"%2$s\"?</item>
+    <item quantity="other">Kas lisada %3$d liiget gruppi \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Lisa grupile nimi</string>
   <string name="AddGroupDetailsFragment__create_group">Loo grupp</string>
@@ -436,6 +440,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Kes saavad muuta grupi liikmeid</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Kes saavad muuta grupi infot</string>
   <string name="ManageGroupActivity_block_group">Blokeeri grupp</string>
+  <string name="ManageGroupActivity_unblock_group">Eemalda grupi blokeering</string>
   <string name="ManageGroupActivity_leave_group">Lahku grupist</string>
   <string name="ManageGroupActivity_mute_notifications">Vaigista märguanded</string>
   <string name="ManageGroupActivity_custom_notifications">Kohandatud märguanded</string>
@@ -449,6 +454,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d kutsutud</item>
     <item quantity="other">%d kutsutud</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d liige lisatud.</item>
+    <item quantity="other">%d liiget lisatud.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sul pole õigusi seda teha</string>
   <string name="ManageGroupActivity_not_capable">Keegi sinu poolt lisatutest ei toeta uusi gruppe ja peab Signal-it uuendama</string>
@@ -687,11 +696,7 @@
   <string name="MessageRequestBottomView_delete">Kustuta</string>
   <string name="MessageRequestBottomView_block">Blokeeri</string>
   <string name="MessageRequestBottomView_unblock">Eemalda blokeering</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Kas sa lubad kasutajal %1$s sulle sõnumeid saata? Nad ei saa teada, et sa oled nende sõnumeid näinud, kuni sa nõustud.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Kas sa soovid grupiga %1$s liituda? Nad ei tea, et sa oled nende sõnumeid näinud, kuni sa nõustud.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sind kutsuti grupiga %1$s liituma. Kas lubad selle grupi liikmetel sulle sõnumeid saata?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Eemalda %1$s blokeering, et saaks üksteisele sõnumeid saata ja helistada.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Eemalda blokeering, et lubada grupi liikmetel lisada sind uuesti sellesse gruppi.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ja %3$s liige</string>
@@ -1191,6 +1196,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal vajab kontaktide kuvamiseks nendele ligipääsu.</string>
   <string name="contact_selection_list_fragment__show_contacts">Näita kontakte</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signali sõnum</string>
   <string name="conversation_activity__type_message_sms_insecure">Turvamata SMS</string>
@@ -1603,6 +1609,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Uus sõnum kasutajale…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Lisa gruppi</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Kõne</string>
   <!--conversation_callable_secure-->

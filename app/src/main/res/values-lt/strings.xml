@@ -88,7 +88,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Jūs daugiau nebegausite žinučių ar atnaujinimų iš šios grupės, o nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupės nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupės nariai galės ir vėl jus pridėti į šią grupę.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
   <string name="BlockUnblockDialog_unblock_s">Atblokuoti %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Atblokuoti</string>
@@ -345,7 +344,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemos, nustatant profilį</string>
   <string name="CreateProfileActivity_profile_photo">Profilio nuotrauka</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nusistatykite savo profilį</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiliai yra užšifruoti ištisiniu būdu, o Signal paslauga niekada neturi prieigos prie šios informacijos.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jūsų profilis yra šifruotas ištisiniu būdu. Jis bus matomas jūsų adresatams, kai inicijuosite ar priimsite naujus pokalbius, arba, kai prisijungsite prie naujų grupių.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nustatyti avatarą</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
@@ -415,6 +414,8 @@
   <string name="GroupCreateActivity_loading_group_details">Įkeliama išsamesnė grupės informacija…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esate grupėje.</string>
   <string name="GroupCreateActivity_remove_member_description">Šalinti narį</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">Pridėti į grupę</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bendrinti jūsų profilio vardą ir nuotrauką su šia grupe?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti savo profilio vardą ir nuotrauką matomą visiems esamiems ir būsimiems šios grupės nariams?</string>
@@ -758,11 +759,8 @@
   <string name="MessageRequestBottomView_delete">Ištrinti</string>
   <string name="MessageRequestBottomView_block">Užblokuoti</string>
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti naudotojui %1$s rašyti jums žinutes? Šis naudotojas nežinos, kad jūs matėte jo žinutes tol, kol nesutiksite.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite prisijungti prie grupės %1$s? Kiti asmenys nežinos, kad jūs matėte jų žinutes tol, kol nesutiksite.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs buvote pakviesti prisijungti prie grupės %1$s. Ar norite leisti šios grupės nariams rašyti jums žinutes?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atblokuokite %1$s, norėdami vieni kitiems rašyti žinutes bei skambinti.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atblokuokite, norėdami leisti grupės nariams vėl pridėti jus į šią grupę.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atblokuoti šią grupę ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs negausite jokių žinučių tol, kol jų neatblokuosite.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės narys</string>
   <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių narys</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s grupių narys</string>
@@ -1274,6 +1272,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Norint rodyti jūsų adresatus, Signal reikia prieigos prie jų.</string>
   <string name="contact_selection_list_fragment__show_contacts">Rodyti adresatus</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal žinutė</string>
   <string name="conversation_activity__type_message_sms_insecure">Neapsaugota SMS</string>

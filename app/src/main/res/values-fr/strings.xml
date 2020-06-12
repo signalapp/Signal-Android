@@ -82,7 +82,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vous ne recevrez plus ni message ni mise à jour de ce groupe et les membres ne pourront plus vous rajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Les membres du groupe ne pourront plus vous rajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Les membres du groupe pourront vous rajouter à ce groupe.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vous pourrez échanger des messages et des appels.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les personnes bloquées ne pourront ni vous appeler ni vous envoyer de messages.</string>
   <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
   <string name="BlockUnblockDialog_unblock">Débloquer</string>
@@ -317,7 +316,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problème de définition du profil</string>
   <string name="CreateProfileActivity_profile_photo">Photo de profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurez votre profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Les profils Signal sont chiffrés de bout en bout et le service Signal n’a jamais accès à ces renseignements.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Votre profil est chiffré de bout en bout. Il sera visible par vos contacts quand vous lancerez ou accepterez de nouvelles conversations et quand vous vous joindrez à de nouveaux groupes.</string>
   <string name="CreateProfileActivity_set_avatar_description">Définir un avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé utilisé : %s</string>
@@ -387,6 +386,8 @@
   <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Vous faites déjà partie de ce groupe.</string>
   <string name="GroupCreateActivity_remove_member_description">Supprimer le membre</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">Ajouter au groupe</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager vos nom et photo de profil avec ce groupe ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
@@ -416,6 +417,10 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Terminé</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Ajouter « %1$s » à « %2$s » ?</item>
+    <item quantity="other">Ajouter %3$d membres à « %2$s » ?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nommez ce groupe</string>
   <string name="AddGroupDetailsFragment__create_group">Créer un groupe</string>
@@ -436,6 +441,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Qui peut modifier les membres du groupe</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Qui peut personnaliser les renseignements du groupe</string>
   <string name="ManageGroupActivity_block_group">Bloquer le groupe</string>
+  <string name="ManageGroupActivity_unblock_group">Débloquer le groupe</string>
   <string name="ManageGroupActivity_leave_group">Quitter le groupe</string>
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
@@ -449,6 +455,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d invité</item>
     <item quantity="other">%d invités</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d membre a été ajouté.</item>
+    <item quantity="other">%d membres ont été ajoutés.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
@@ -687,11 +697,8 @@
   <string name="MessageRequestBottomView_delete">Supprimer</string>
   <string name="MessageRequestBottomView_block">Bloquer</string>
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous autoriser %1$s à échanger des messages avec vous ? La personne ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous vous joindre au groupe %1$s ? Ils ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Vous avez été invité à vous joindre au groupe%1$s. Souhaitez-vous permettre aux membres de ce groupe de vous envoyer des messages ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Débloquez %1$s pour vous échanger des messages et des appels.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Débloquez pour permettre aux membres du groupe de vous rajouter à ce groupe.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s et de %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, de%2$s et de %3$s</string>
@@ -1182,6 +1189,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal a besoin d’accéder à vos contacts afin de les afficher.</string>
   <string name="contact_selection_list_fragment__show_contacts">Afficher les contacts</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Message Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>

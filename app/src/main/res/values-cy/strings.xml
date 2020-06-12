@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Fyddwch chi ddim yn derbyn negeseuon na diweddariadau gan y grŵp hwn mwyach, ac ni fydd aelodau\'n gallu eich ychwanegu at y grŵp hwn eto.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ni fydd aelodau\'r grŵp yn gallu eich ychwanegu at y grŵp hwn eto.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Bydd aelodau\'r grŵp yn gallu eich ychwanegu at y grŵp hwn eto.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Byddwch chi\'n gallu negesu a galw\'ch gilydd.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bydd modd i chi negesu a galw\'ch gilydd a bydd eich enw a\'ch llun yn cael eu rhannu gyda nhw.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Ni fydd pobl sydd wedi\'u rhwystro\'n gallu eich ffonio nac anfon negeseuon atoch.</string>
   <string name="BlockUnblockDialog_unblock_s">Dadrwystro %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Dadrwystro</string>
@@ -347,7 +347,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateProfileActivity_problem_setting_profile">Anhawster gosod proffil</string>
   <string name="CreateProfileActivity_profile_photo">Llun proffil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Creu eich proffil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae proffiliau Signal wedi eu hamgryprio\'n llwyr ac nid oes gan wasanaeth Signal fynediad i\'r wybodaeth hwn.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae eich proffil wedi ei amgryptio o ben-i-ben. Bydd yn weladwy i\'ch cysylltiadau, pan fyddwch yn cychwyn neu dderbyn sgwrs newydd a phan fyddwch yn ymuno â grwpiau newydd.</string>
   <string name="CreateProfileActivity_set_avatar_description">Gosod rhithffurf</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
@@ -417,6 +417,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupCreateActivity_loading_group_details">Llwytho manylion grŵp…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Rydych eisoes yn y grŵp.</string>
   <string name="GroupCreateActivity_remove_member_description">Dileu aelod</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Ychwanegu aelod?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Ychwanegu \"%1$s\" i \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" wedi\'i ychwanegu i \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Ychwanegu i grŵp</string>
+  <string name="AddToGroupActivity_add_to_groups">Ychwanegu i grwpiau</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Rhannu\'ch enw a\'ch llun proffil gyda\'r grŵp hwn?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Hoffech chi wneud eich enw a\'ch llun proffil yn weladwy i bob aelod cyfredol ac i\'r dyfodol o\'r grŵp hwn?</string>
@@ -450,6 +456,12 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Wedi Gorffen</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Ychwanegu \"%1$s\" i \"%2$s\"?</item>
+    <item quantity="two">Ychwanegu%3$d aelod i \"%2$s\"?</item>
+    <item quantity="many">Ychwanegu%3$d aelod i \"%2$s\"?</item>
+    <item quantity="other">Ychwanegu%3$d aelod i \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Enwi\'r grŵp hwn</string>
   <string name="AddGroupDetailsFragment__create_group">Creu grŵp</string>
@@ -754,11 +766,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestBottomView_delete">Dileu</string>
   <string name="MessageRequestBottomView_block">Rhwystro</string>
   <string name="MessageRequestBottomView_unblock">Dadrwystro</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ydych chi am adael i %1$s neges i chi? Fyddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Hoffech chi ymuno â grŵp %1$s? Fyddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn gwybod eich bod wedi gweld eich neges nes i ch dderbyn.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau? Byddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes eich bod wedi derbyn.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Rydych wedi\'ch gwahodd i ymuno â\'r grŵp %1$s. Ydych chi am adael i aelodau\'r grŵp hwn eich negesu?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Dadrwyst4ro %1$s i negesu a galw eich gilydd.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Dadrwystro i ganiatáu i aelodau\'r grŵp eich ychwanegu at y grŵp hwn eto.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Dadrwystro\'r grŵp a rhannu eich enw a llun gyda\'i aelodau? Fyddwch chi ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Aelod o %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Aeolod o %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Aelod o %1$s, %2$s a %3$s</string>
@@ -1270,6 +1282,13 @@ Send neges heb ei ddiogelu?</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Mae ar Signal angen mynediad i\'ch cysylltiadau er mwyn eu harddangos.</string>
   <string name="contact_selection_list_fragment__show_contacts">Dangos Cysylltiadau</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d aelod</item>
+    <item quantity="two">%1$d aelod</item>
+    <item quantity="many">%1$d aelod</item>
+    <item quantity="other">%1$d aelod</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Neges Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS anniogel</string>
@@ -2068,6 +2087,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_block">Rhwystro</string>
   <string name="RecipientBottomSheet_unblock">Dadrwystro</string>
   <string name="RecipientBottomSheet_add_to_contacts">Ychwanegu at gysylltiadau</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Ychwanegu i grŵp</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Ychwanegu i grŵp arall</string>
   <string name="RecipientBottomSheet_view_safety_number">Gweld rhif diogelwch</string>
   <string name="RecipientBottomSheet_make_group_admin">Creu gweinyddwr grŵp</string>
   <string name="RecipientBottomSheet_remove_as_admin">Tynnu fel gweinyddwr</string>

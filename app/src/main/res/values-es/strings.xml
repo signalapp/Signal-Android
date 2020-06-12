@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">No podrás enviar ni recibir más mensajes en este grupo y sus participantes no podrán agregarte de nuevo al grupo.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">L*s participantes no podrán agregarte de nuevo a este grupo.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">L*s participantes podrán agregarte de nuevo a este grupo.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente. Tu nombre y foto de perfil se compartirá con esta persona.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas bloqueadas no podrán llamarte o enviarte mensajes.</string>
   <string name="BlockUnblockDialog_unblock_s">¿Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Los perfiles de Signal están cifrados de extremo a extremo, por lo que el servidor de Signal no tiene acceso a ningún dato.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de punto a punto. Sólo será visible para tus contactos, o para personas con las que inicies o aceptes un chat y cuando te unas a nuevos grupos. </string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Cargando detalles del grupo …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ya eres participante en el grupo.</string>
   <string name="GroupCreateActivity_remove_member_description">Expulsar participante</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">¿Agregar participante?</string>
+  <string name="AddToGroupActivity_add_s_to_s">¿Agregar a %1$s a «%2$s»?</string>
+  <string name="AddToGroupActivity_s_added_to_s">Se ha agregado a %1$s a «%2$s».</string>
+  <string name="AddToGroupActivity_add_to_group">Agregar al grupo</string>
+  <string name="AddToGroupActivity_add_to_groups">Agregar a grupos</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">¿Deseas compartir tu nombre y foto de perfil con este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">¿Deseas hacer visible tu nombre y foto de perfil a tod*s l*s participantes presentes y futuros de este grupo?</string>
@@ -696,11 +702,11 @@
   <string name="MessageRequestBottomView_delete">Eliminar</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas recibir mensajes de %1$s? No sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte al grupo «%1$s»? L*s participantes no sabrán que has visto sus mensajes hasta que aceptes.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Permitir a %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Permitir %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No recibirás ningún mensaje de esta persona hasta que la desbloquees.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirse a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Te han invitado a participar en el grupo «%1$s». ¿Deseas que participantes de este grupo te envíen mensajes?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Debloquea a %1$s para poder comunicaros.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloquea para permitir a participantes agregarte de nuevo al grupo.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Participa en %1$s y %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Participa en %1$s, %2$s y %3$s</string>
@@ -1200,6 +1206,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal necesita acceso a tus contactos para poder mostrarlos.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostrar personas</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d participante</item>
+    <item quantity="other">%1$d participantes</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensaje de Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS sin cifrado</string>
@@ -1967,6 +1978,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Añadir a contactos</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Agregar a un grupo</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Agregar a otro grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver cifras de seguridad</string>
   <string name="RecipientBottomSheet_make_group_admin">Promover a admin</string>
   <string name="RecipientBottomSheet_remove_as_admin">Retirar permisos de admin</string>

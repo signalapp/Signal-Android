@@ -85,7 +85,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Više nećete primati poruke ili ažuriranja iz ove grupe, a članovi grupe vas neće moći naknadno dodati u grupu.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Članovi grupe neće vas moći ponovno dodati u ovu grupu.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Članovi grupe će Vas moći opet dodati u ovu grupu.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći će te razmjenjivati poruke i pozive.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirani ljudi neće vas moći nazvati i slati vam poruke.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokiraj %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Deblokiraj</string>
@@ -330,7 +329,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem kod postavljanja profila</string>
   <string name="CreateProfileActivity_profile_photo">Profilna slika</string>
   <string name="CreateProfileActivity_set_up_your_profile">Postavite vaš profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profili su zaštićeni s kraja na kraj, te Signal servis nikada nema pristup tim informacijama.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Vaš profil je nekriptiran s kraja na kraj. Bit će vidljiv Vašim kontaktima, kad inicirate ili prihvatite nove razgovore, i kad se pridružite novim grupama.</string>
   <string name="CreateProfileActivity_set_avatar_description">Postavi sliku profila</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
@@ -400,6 +399,7 @@
   <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Već ste u grupi.</string>
   <string name="GroupCreateActivity_remove_member_description">Ukloni člana</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Podijelite svoje ime i profilnu sliku s ovom grupom?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite li učiniti dostupnim svoje ime i profilnu sliku svim trenutnim i budućim članovima ove grupe?</string>
@@ -634,6 +634,7 @@
   <string name="MessageRequestBottomView_delete">Obriši</string>
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite li odblokirati ovu grupu i podijeliti svoje ime i sliku s njenim članovima? Nećete primati poruke iz grupe sve dok ju ne odblokirate.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
@@ -1028,6 +1029,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal zahtjeva pristup vašim kontaktima kako bi ih mogao prikazati.</string>
   <string name="contact_selection_list_fragment__show_contacts">Prikaži kontakte</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal poruka</string>
   <string name="conversation_activity__type_message_sms_insecure">Nesigurni SMS</string>

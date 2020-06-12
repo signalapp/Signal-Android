@@ -79,7 +79,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">你將不再收到來自該群組的訊息或更新，並且成員將無法再次將你新增到該群組。</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">群組成員將無法再次將你新增到該群組中。</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">群組成員將能夠再次將你新增到該群組。</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">你將能夠發訊息並互相打電話。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被封鎖的人將無法給你打電話或向你傳送訊息。</string>
   <string name="BlockUnblockDialog_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="BlockUnblockDialog_unblock">解除封鎖</string>
@@ -303,7 +302,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">個人資訊設定出現問題</string>
   <string name="CreateProfileActivity_profile_photo">頭像照片</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定你的資訊</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal 資料是點對點加密，及Signal 服務絕不會讀取這些資訊。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">你的個人資訊是點對點加密的。 當你傳送或接收新對話以及加入新群組時，你的聯絡人將可看見。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用自訂：%s</string>
@@ -373,6 +372,8 @@
   <string name="GroupCreateActivity_loading_group_details">讀取群組資訊中…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">您已在此群組中</string>
   <string name="GroupCreateActivity_remove_member_description">移除成員</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">新增到群組</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">分享你的個人資訊中的名字及頭像照片給這個群組？</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">你想讓這個群組中，目前及未來的成員，都能夠看見你個人資訊中的名字及頭像照片？</string>
@@ -665,11 +666,8 @@
   <string name="MessageRequestBottomView_delete">刪除</string>
   <string name="MessageRequestBottomView_block">封鎖</string>
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">你要讓%1$s傳訊息給你嗎？直到你接受，否則他們不會知道你已經看過他們的訊息。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">你要加入%1$s群組嗎？直到你接受，否則他們不會知道你已經看過他們的訊息。</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">你可以被邀請到%1$s群組。你想讓該群組的成員向你傳送訊息嗎？</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">解除封鎖%1$s以互相傳送訊息及撥打電話。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">解除封鎖以允許群組成員再次將你加入此群組。</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">取消封鎖此群組並與其成員分享你的名字和照片？ 除非你取消阻止它們，否則你將不會收到任何訊息。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s的成員</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s及%2$s的成員</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s、及%3$s的成員</string>
@@ -1160,6 +1158,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 需要存取你的\"聯絡人\"以顯示聯絡人資訊。</string>
   <string name="contact_selection_list_fragment__show_contacts">顯示聯絡人</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal 訊息</string>
   <string name="conversation_activity__type_message_sms_insecure">不安全的簡訊</string>

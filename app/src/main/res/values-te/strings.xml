@@ -82,7 +82,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">ఇకపై మీరు ఈ సమూహము నుండి సందేశాలను లేదా నవీకరణాలను అందుకోరు, మరియు సమూహములో ఉన్న వారు మిమ్మల్ని తిరిగి అందులో చేర్చలేరు.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">సమూహములో ఉన్న వారు మిమ్మల్ని తిరిగి అందులో చేర్చలేరు.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">సమూహములో ఉన్న వారు మిమ్మల్ని తిరిగి అందులో చేర్చగలరు.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">మీరు ఒకరికొకరు సందేశములు పంపుకోవచ్చు మరియు మాట్లాడుకోవచ్చు.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">అడ్డగింపబడిన వ్యక్తులు మీతో మాట్లాడడం లేదా మీకు సందేశములు పంపడం చేయలేరు.</string>
   <string name="BlockUnblockDialog_unblock_s">అడ్డం తొలగించు 1%1$s</string>
   <string name="BlockUnblockDialog_unblock">అనుమతించు</string>
@@ -317,7 +316,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">రూపాన్ని సెట్ చేయడంలో సమస్య</string>
   <string name="CreateProfileActivity_profile_photo">రూపచిత్రం </string>
   <string name="CreateProfileActivity_set_up_your_profile">మీ రూపంను సెటప్ చేయండి</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal రూపం ఎండ్-టు-ఎండ్ గుప్తీకరించబడ్డాయి మరియు Signal సేవకు ఈ సమాచారానికి ప్రాప్యత లేదు.</string>
   <string name="CreateProfileActivity_set_avatar_description">అవతార్ సెట్ చేయండి</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">అనుకూలీకరణ ఉపయోగించి: %s</string>
@@ -387,6 +385,7 @@
   <string name="GroupCreateActivity_loading_group_details">సమూహ వివరాలను లోడ్ చేస్తోంది…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">మీరు ఇప్పటికే సమూహంలో ఉన్నారు.</string>
   <string name="GroupCreateActivity_remove_member_description">సభ్యుడు లేదా సభ్యురాలిని తొలగించు</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">మీ రూపం పేరు మరియు చిత్రం  ఈ గ్రూపుతో షేర్ చేయాలా?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">మీరు మీ రూపం పేరు మరియు చిత్రం  ఈ సమూహం యొక్క అన్ని ప్రస్తుత మరియు భవిష్యత్తు సభ్యులకు కనిపించాలనుకుంటున్నారా?</string>
@@ -658,10 +657,6 @@
   <string name="MessageRequestBottomView_delete">తొలగించండి</string>
   <string name="MessageRequestBottomView_block">నిరోధించు</string>
   <string name="MessageRequestBottomView_unblock">అనుమతించు</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">మీరు %1$sని మీకు సందేశాలు పంపించగలమంటారా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">మీరు %1$s సమూహంలో చేరాలనుకుంటున్నారా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">ఒకరికొకరు సందేశములు పంపుకోవడానికి మరియు మాట్లాడుకోవడానికి %1$sకి అడ్డుతొలగించండి.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">సమూహములో ఉన్న వారు మిమ్మల్ని అందులో జోడించడానికి అడ్డుతొలగించండి.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">సభ్యుడు %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$sమరియు %2$sసభ్యుడు</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s,%2$s, మరియు%3$s సభ్యుడు</string>
@@ -1117,6 +1112,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">మీ పరిచయాలను Signal ప్రదర్శించడానికి పరిచయాలకు ప్రాప్యత అవసరం</string>
   <string name="contact_selection_list_fragment__show_contacts">పరిచయాలను చూపించు</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal  మెసేజ్</string>
   <string name="conversation_activity__type_message_sms_insecure">భద్రతలేని సందేశం</string>

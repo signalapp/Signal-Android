@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vi ne plu ricevos mesaĝojn kaj ĝisdatigojn el tiu ĉi grupo kaj grupanoj ne plu povos realdoni vin al ĉi tiu grupo.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupanoj ne plu povos realdoni vin al tiu ĉi grupo.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupanoj povos denove aldoni vin al tiu ĉi grupo.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vi povos mesaĝi kaj alvoki unu la alian.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vi povos mesaĝi kaj alvoki unu la alian. Via nomo kaj foto estos videblaj.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
   <string name="BlockUnblockDialog_unblock_s">Ĉu malbloki %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Malbloki</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemo dum agordo de profilo</string>
   <string name="CreateProfileActivity_profile_photo">Profila foto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Agordi vian profilon</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiloj estas tutvojaj ĉifritaj, kaj la Signal-servo neniam povas aliri al tiu informo.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Via profilo estas tutvoje ĉifrita. Ĝi estos videbla de viaj kontaktoj, kiam vi komencas aŭ akceptas novajn interparolojn, kaj kiam vi aliĝas al novaj grupoj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Difini la avataron</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uzante propran: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Ŝargo de la grupdetaloj…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Vi jam estas en la grupo.</string>
   <string name="GroupCreateActivity_remove_member_description">Forigi grupanon</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Ĉu aldoni anon?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Ĉu aldoni „%1$s“ al „%2$s“?</string>
+  <string name="AddToGroupActivity_s_added_to_s">„%1$s“ aldonita al „%2$s“.</string>
+  <string name="AddToGroupActivity_add_to_group">Aldoni al grupo</string>
+  <string name="AddToGroupActivity_add_to_groups">Aldoni al grupoj</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ĉu kunhavigi viajn profilajn nomon kaj foton kun tiu ĉi grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ĉu vi volas videbligi viajn profilajn nomon kaj foton al ĉiuj nunaj kaj venontaj grupanoj?</string>
@@ -696,11 +702,11 @@
   <string name="MessageRequestBottomView_delete">Forigi</string>
   <string name="MessageRequestBottomView_block">Bloki</string>
   <string name="MessageRequestBottomView_unblock">Malbloki</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi? Ili ne scios, ke vi vidas iliajn mesaĝojn, se vi ne akceptas.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al la grupo %1$s? Ili ne scios, ke vi vidas iliajn mesaĝojn, se vi ne akceptas.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Ŝi aŭ li ne scios, ke vi vidis ŝian aŭ lian mesaĝojn ĝis via akcepto.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? La grupo ne scios, ke vi vidis ĝiajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Oni invitis vin aniĝi al la grupo „%1$s“. Ĉu vi volas ricevi mesaĝojn el anoj de tiu grupo?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Malbloki %1$s por povi mesaĝi kaj alvoki unu al la alia.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Malbloki por permesi al grupanoj aldoni vin al tiu grupo denove.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ĉu malbloki tiun grupon kaj kunhavigi vian nomon kaj foton kun la anoj? Vi ne ricevos mesaĝojn, se vi ne malblokas ĝin.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Ano de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Ano de %1$s kaj %2$s </string>
   <string name="MessageRequestProfileView_member_of_many_groups">Ano de %1$s, %2$s kaj %3$s</string>
@@ -1199,6 +1205,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal bezonas aliri viajn kontaktojn por montri ilin.</string>
   <string name="contact_selection_list_fragment__show_contacts">Montri kontaktoj</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d ano</item>
+    <item quantity="other">%1$d anoj</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-mesaĝo</string>
   <string name="conversation_activity__type_message_sms_insecure">Nesekura SMS</string>
@@ -1965,6 +1976,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>
   <string name="RecipientBottomSheet_add_to_contacts">Aldoni al kontaktoj</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Aldoni al grupo</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Aldoni al plia grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Montri sekurigan numeron</string>
   <string name="RecipientBottomSheet_make_group_admin">Estigi grupadministranton</string>
   <string name="RecipientBottomSheet_remove_as_admin">Forigi kiel administranton</string>

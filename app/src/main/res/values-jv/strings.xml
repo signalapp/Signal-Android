@@ -72,7 +72,6 @@
   <string name="BlockedContactsActivity_blocked_contacts">Kontak ingkang dipunblokir</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anggota grup bakal saged minggahaken sampeyan datheng grup niki malih.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Sampeyan bakal saged ngirimaken utawi nampi pesen lan telepon saking panggina niki.</string>
   <string name="BlockUnblockDialog_unblock">Uculaken blokiranipun</string>
   <string name="BlockUnblockDialog_block">Blokir</string>
   <string name="BlockUnblockDialog_block_and_delete">Blokir lan Brusak</string>
@@ -280,7 +279,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Enten masalah kala ngatur profil</string>
   <string name="CreateProfileActivity_profile_photo">Foto profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Aturaken profil sampeyan</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profil Signal dipunenkripsi end-to-end, dadosipun ladosan Signal mboten saged mbikak informasi kasebut.</string>
   <string name="CreateProfileActivity_set_avatar_description">Pasang avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Ginakaken kustom: %s</string>
@@ -344,6 +342,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Mboten saged mewahi %1$s amargi piyambakipun mboten ngginakaken Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Taksih ngunggahi rincian grup…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sampeyan sampun mlebet grup niki.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Unjukaken foto lan nami profil kaliyan grup niki?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Sampeyan kersa menawi foto lan nami profil sampeyan saged ditingali anggota lan bakal anggota grup niki mboten?</string>
@@ -979,6 +978,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal betah mbikak kontak sampeyan kangge nampilaken kontak kasebut.</string>
   <string name="contact_selection_list_fragment__show_contacts">Tampilaken kontak</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pesen Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS ingkang mboten aman</string>

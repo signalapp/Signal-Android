@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ja no rebreu cap més missatge ni novetat d\'aquest grup i els membres no us hi podran tornar a afegir.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Els membres del grup no us hi podran tornar a afegir.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Els membres del grup us podran afegir a aquest grup un altre cop.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Us podreu trucar i enviar missatges.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Us podreu enviar missatges i fer trucades, i compartireu el nom i la fotografia.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les persones blocades no us podran trucar ni enviar missatges.</string>
   <string name="BlockUnblockDialog_unblock_s">Voleu desblocar %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloca</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema en establir el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto del perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Establiu el perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Els perfils del Signal estan encriptats de cap a cap i el servei del Signal no té accés a aquesta informació.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">El perfil està encriptat d\'extrem a extrem. Serà visible per als vostres contactes quan inicieu o accepteu converses noves i quan us afegiu a grups nous.</string>
   <string name="CreateProfileActivity_set_avatar_description">Estableix l\'avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Ús de la personalització: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Es carreguen els detalls del grup…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ja sou dins del grup.</string>
   <string name="GroupCreateActivity_remove_member_description">Suprimeix el membre</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Voleu afegir el membre?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Voleu afegir \"%1$s\" a \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" s\'ha afegit a \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Afegeix-lo al grup</string>
+  <string name="AddToGroupActivity_add_to_groups">Afegeix-lo als grups</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Voleu compartir el nom i la foto del perfil amb aquest grup?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voleu que el nom i la foto del perfil siguin visibles a tots els membres actuals i futurs d\'aquest grup?</string>
@@ -696,11 +702,11 @@
   <string name="MessageRequestBottomView_delete">Suprimeix</string>
   <string name="MessageRequestBottomView_block">Bloca</string>
   <string name="MessageRequestBottomView_unblock">Desbloca</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us enviï missatges? No sabrà que heu vist els seus missatges fins que no ho accepteu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos al grup %1$s? No sabran que heu vist els missatges fins que no ho accepteu.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No sabran que heu vist el missatge fins que no ho accepteu.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No rebreu cap missatge fins que no el desbloqueu.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No sabran que heu vist els seus missatges fins que no ho accepteu.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Se us ha convidat a afegir-vos al grup %1$s. Voleu permetre que els membres d\'aquest grup us enviïn missatges?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Desbloqueu %1$s per poder trucar-vos i enviar-vos missatges.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloqueu-lo per permetre que els membres del grup us hi puguin afegir un altre cop.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Voleu desblocar aquest grup i compartir el nom i la fotografia amb els seus membres? No rebreu cap missatge fins que no el desbloqueu.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, %2$s i %3$s</string>
@@ -1194,6 +1200,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">El Signal necessita accés als contactes per tal de mostrar-los.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostra els contactes</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d membre</item>
+    <item quantity="other">%1$d membres</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Missatge del Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS no segur</string>
@@ -1960,6 +1971,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RecipientBottomSheet_block">Bloca</string>
   <string name="RecipientBottomSheet_unblock">Desbloca</string>
   <string name="RecipientBottomSheet_add_to_contacts">Afegeix als contactes</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Afegeix-lo a un grup</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Afegeix-lo a un altre grup</string>
   <string name="RecipientBottomSheet_view_safety_number">Mostra el número de seguretat</string>
   <string name="RecipientBottomSheet_make_group_admin">Fes adminstrador/a del grup</string>
   <string name="RecipientBottomSheet_remove_as_admin">Suprimeix com a administrador/a</string>

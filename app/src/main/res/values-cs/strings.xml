@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od této skupiny již nebudete dostávat zprávy ani aktualizace a členové vás do této skupiny už nebudou moci znovu přidat.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Členové skupiny vás nebudou moci znovu do této skupiny přidat.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členové skupiny budou moci přidat vás znovu do této skupiny.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete moci vzájemně si posílat zprávy a volat.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete moct si vzájemně posílat zprávy a volat, a budou s nimi sdíleny vaše jméno a fotografie.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudou moci volat ani posílat zprávy.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokovat %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Odblokovat</string>
@@ -345,7 +345,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problém při nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavit váš profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal jsou end-to-end šifrované a služba Signal nemá žádný přístup k těmto informacím.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil je end-to-end šifrován. Bude viditelný pro vaše kontakty, když zahájíte nebo přijmete novou konverzaci a když se připojíte k novým skupinám.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastavit avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
@@ -415,6 +415,12 @@
   <string name="GroupCreateActivity_loading_group_details">Načítám podrobnosti skupiny…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Již jste ve skupině.</string>
   <string name="GroupCreateActivity_remove_member_description">Odstranit člena</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Přidat člena?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Přidat \"%1$s\" do \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" přidán do \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Přidat do skupiny</string>
+  <string name="AddToGroupActivity_add_to_groups">Přidat do skupin</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Sdílet profilové jméno a fotografii s touto skupinou?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Chcete, aby vaše profilové jméno a fotografie byly viditelné všem současným i budoucím členům této skupiny?</string>
@@ -448,8 +454,15 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hotovo</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Přidat \"%1$s\" do \"%2$s\"?</item>
+    <item quantity="few">Přidat %3$d členy do \"%2$s\"?</item>
+    <item quantity="many">Přidat %3$d členů do \"%2$s\"?</item>
+    <item quantity="other">Přidat %3$d členů do \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Pojmenovat tuto skupinu</string>
+  <string name="AddGroupDetailsFragment__create_group">Vytvořit skupinu</string>
   <string name="AddGroupDetailsFragment__create">Vytvořit</string>
   <string name="AddGroupDetailsFragment__members">Členové</string>
   <string name="AddGroupDetailsFragment__group_name_required">Název skupiny (vyžadováno)</string>
@@ -467,6 +480,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Kdo může upravovat členství ve skupině</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Kdo může upravovat informace o skupině</string>
   <string name="ManageGroupActivity_block_group">Zablokovat skupinu</string>
+  <string name="ManageGroupActivity_unblock_group">Odblokovat skupinu</string>
   <string name="ManageGroupActivity_leave_group">Opustit skupinu</string>
   <string name="ManageGroupActivity_mute_notifications">Ztišit upozornění</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastní oznámení</string>
@@ -482,6 +496,12 @@
     <item quantity="few">%d pozvaní</item>
     <item quantity="many">%d pozvaných</item>
     <item quantity="other">%d pozvaných</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d člen přidán.</item>
+    <item quantity="few">%d členové přidáni.</item>
+    <item quantity="many">%d členů přidáno.</item>
+    <item quantity="other">%d členů přidáno.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
   <string name="ManageGroupActivity_not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
@@ -515,8 +535,8 @@
   <string name="CropImageActivity_profile_avatar">Obrázek</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rozostřit tváře</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nové: Rozostřit tváře nebo kreslením kdekoli rozostřit</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">Kreslením kdekoli rozostřit</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nové: Rozostřit tváře nebo kreslením cokoli rozostřit</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Kreslením rozostřit</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Kreslením rozostřit další tváře nebo oblasti</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Klepněte a držte pro nahrání hlasové zprávy, pusťte pro odeslání.</string>
@@ -744,11 +764,11 @@
   <string name="MessageRequestBottomView_delete">Smazat</string>
   <string name="MessageRequestBottomView_block">Blokovat</string>
   <string name="MessageRequestBottomView_unblock">Odblokovat</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete %1$s umožnit posílat vám zprávy? Dokud je nepřijmete, nebudou vědět, že jste jejich zprávy viděl.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete se připojit ke skupině %1$s? Dokud je nepřijmete, nebudou vědět, že jste jejich zprávy viděl.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dovolit %1$s zasílat vám zprávy a sdílet vaše jméno a fotografii? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dovolit %1$s zasílat vám zprávy a sdílet vaše jméno a fotografii? Dokud je neodblokujete, tak žádné zprávy neobdržíte.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Připojit se k této skupině a sdílet vaše jméno a fotografii s jejími členy? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Byl jste pozván, abyste se připojil ke skupině %1$s. Chcete umožnit členům této skupiny posílat vám zprávy?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokovat %1$s pro vzájemné zasílání zpráv a volání.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokováním umožníte členům skupiny přidat vás znovu do této skupiny.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovat tuto skupinu a sdílet vaše jméno a fotografii s jejími členy? Dokud je neodblokujete, tak žádné zprávy neobdržíte.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Člen %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Člen %1$s, %2$s a %3$s</string>
@@ -1259,6 +1279,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal potřebuje přístup k vašim kontaktům, aby je mohl zobrazit.</string>
   <string name="contact_selection_list_fragment__show_contacts">Zobrazit kontakty</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d člen</item>
+    <item quantity="few">%1$d členové</item>
+    <item quantity="many">%1$d členů</item>
+    <item quantity="other">%1$d členů</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Zpráva Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezabezpečená SMS</string>
@@ -1687,6 +1714,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nová zpráva pro…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Přidat do skupiny</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Volat</string>
   <!--conversation_callable_secure-->
@@ -2056,6 +2084,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RecipientBottomSheet_block">Blokovat</string>
   <string name="RecipientBottomSheet_unblock">Odblokovat</string>
   <string name="RecipientBottomSheet_add_to_contacts">Přidat do kontaktů</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Přidat do skupiny</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Přidat do jiné skupiny</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobrazit bezpečnostní kód</string>
   <string name="RecipientBottomSheet_make_group_admin">Nastavit správce skupiny</string>
   <string name="RecipientBottomSheet_remove_as_admin">Odebrat jako správce</string>

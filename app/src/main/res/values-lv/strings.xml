@@ -85,7 +85,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Jūs turpmāk nesaņemsiet ziiņojumus vai atjauninājumus no šīs grupas. Grupas lietotāji nevarēs Jūs pievienot no jauna. </string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupas lietotāji nevarēs Jūs pievienot no jauna. </string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupas dalībnieki varēs jūs atkal pievienot šai grupai.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jūs varēsiet nosūtīt ziņas un piezvanīt viens otram.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Bloķēti lietotāji nevarēs Jums piezvanīt vai nosūtīt ziņojumu.</string>
   <string name="BlockUnblockDialog_unblock_s">Atbloķēt %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Atbloķēt</string>
@@ -330,7 +329,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problēma iestatot profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profila attēls</string>
   <string name="CreateProfileActivity_set_up_your_profile">Iestatiet savu profilu</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profili ir šifrēti (end-to-end) tā, ka Signal servisam nav pieejas šai informācijai. </string>
   <string name="CreateProfileActivity_set_avatar_description">Iestatīt ikonu/avataru</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Lieto pielāgojamu: %s</string>
@@ -400,6 +398,7 @@
   <string name="GroupCreateActivity_loading_group_details">Notiek grupas datu ielāde…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esiet šajā grupā.</string>
   <string name="GroupCreateActivity_remove_member_description">Noņemt lietotāju</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Dalīties ar Jūsu profila attēlu un vārdu šajā grupā?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vai vēlieties padarīt Jūsu profila attēlu un vārdu redzamu visiem grupas pašreizējiem un nākotnes dalībniekiem?</string>
@@ -668,11 +667,7 @@
   <string name="MessageRequestBottomView_delete">Dzēst</string>
   <string name="MessageRequestBottomView_block">Bloķēt</string>
   <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vai vēlaties ļaut %1$s Jums nosūtīt ziņu? Viņi nezinās, ka esat redzējis viņu ziņas, kamēr Jūs nebūsiet apstiprinājuši.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vai vēlaties pievienoties grupai %1$s? Viņi nezinās, ka esat redzējis viņu ziņas, kamēr Jūs nebūsiet apstiprinājuši.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs esat uzaicināts pievienoties grupai %1$s. Vai vēlāties, lai grupas dalībnieku varētu nosūtīt Jums ziņojumus?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atbloķējiet %1$s, lai sūtītu ziņas un zvanītu viens otram. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atbloķējiet, lai ļautu grupas dalībniekiem Jūs atkal pievienot šai grupai.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s dalībnieks</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s un %2$s dalībnieks</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s un %3$s dalībnieks </string>
@@ -1162,6 +1157,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Lai Signāls rādītu Jūsu kontaktpersonas,nepieciešams dot attiecīgu piekļuvi.</string>
   <string name="contact_selection_list_fragment__show_contacts">Rādīt kontaktpersonas</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signāla ziņa</string>
   <string name="conversation_activity__type_message_sms_insecure">Nedroša SMS</string>

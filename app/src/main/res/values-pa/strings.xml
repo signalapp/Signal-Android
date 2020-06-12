@@ -76,7 +76,6 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_s">%1$s ਨੂੰ ਬਲੌਕ ਕਰਨਾ ਹੈ?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਜੋੜਨ ਦੇ ਯੋਗ ਹੋਣਗੇ.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ਤੁਸੀਂ ਇੱਕ ਦੂਜੇ ਨੂੰ ਸੁਨੇਹੇ ਭੇਜ ਸਕੋਗੇ ਅਤੇ ਕਾਲ ਕਰ ਸਕੋਗੇ।</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s ਨੂੰ ਅਣ-ਬਲੌਕ ਕਰਨਾ ਹੈ?</string>
   <string name="BlockUnblockDialog_unblock">ਅਨਬਲੌਕ</string>
   <string name="BlockUnblockDialog_block">ਬਲਾਕ</string>
@@ -297,7 +296,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ</string>
   <string name="CreateProfileActivity_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ</string>
   <string name="CreateProfileActivity_set_up_your_profile">ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਸੈਟਅਪ ਕਰੋ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal ਪ੍ਰੋਫਾਈਲਾਂ ਨੂੰ ਅੰਤ ਤੋਂ ਅੰਤ ਨਾਲ ਐਨਕ੍ਰਿਪਟ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਅਤੇ Signal ਕੋਲ ਇਸ ਦੀ ਜਾਣਕਾਰੀ ਨਹੀਂ ਪਹੁੰਚਦੀ ਹੈ.</string>
   <string name="CreateProfileActivity_set_avatar_description">ਅਵਤਾਰ ਸੈੱਟ ਕਰੋ</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ: %s</string>
@@ -365,6 +363,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਕਿਉਂਕਿ ਉਹ ਇੱਕ Signal ਉਪਭੋਗਤਾ ਨਹੀਂ ਹਨ.</string>
   <string name="GroupCreateActivity_loading_group_details">ਗਰੁੱਪ ਵੇਰਵੇ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">ਤੁਸੀਂ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਗਰੁੱਪ ਵਿੱਚ ਹੋ.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ਕੀ ਇਸ ਸਮੂਹ ਦੇ ਨਾਲ ਤੁਸੀਂ ਆਪਣਾ ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਅਤੇ ਫੋਟੋ ਸਾਂਝੀ ਕਰਨਾ ਚਾਉਂਦੇ ਹੋ ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਨਾਂ ਅਤੇ ਫੋਟੋ ਨੂੰ ਇਸ ਸਮੂਹ ਦੇ ਸਾਰੇ ਮੌਜੂਦਾ ਅਤੇ ਭਵਿੱਖ ਦੇ ਮੈਂਬਰਾਂ ਲਈ ਦ੍ਰਿਸ਼ਤ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
@@ -978,6 +977,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ਨੂੰ ਉਹਨਾਂ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
   <string name="contact_selection_list_fragment__show_contacts">ਸੰਪਰਕ ਦਿਖਾਓ </string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal ਸੁਨੇਹਾ</string>
   <string name="conversation_activity__type_message_sms_insecure">ਅਸੁਰੱਖਿਅਤ ਐਸਐਮਐਸ</string>

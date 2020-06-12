@@ -77,8 +77,9 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">முடக்கப்பட்ட தொடர்புகள்</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">இந்த குழுவிலிருந்து நீங்கள் இனி செய்திகளையோ புதுப்பிப்புகளையோ பெறமாட்டீர்கள், மேலும் உறுப்பினர்கள் உங்களை மீண்டும் இந்தக் குழுவில் சேர்க்க முடியாது.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">குழு உறுப்பினர்கள் உங்களை மீண்டும் இந்த குழுவில் சேர்க்க முடியாது.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">குழு உறுப்பினர்கள் சேர்க்க முடியும் நீங்கள் இந்த குழுவிற்கு மீண்டும்.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">நீங்கள் செய்தி அனுப்ப முடியும் மற்றும் ஒவ்வொன்றையும் அழைக்கவும் மற்றவை.</string>
   <string name="BlockUnblockDialog_unblock">தடைநீக்கு </string>
   <string name="BlockUnblockDialog_block">தடு </string>
   <string name="BlockUnblockDialog_block_and_delete">தடுமற்றும் அழி</string>
@@ -115,11 +116,14 @@
   <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை நீக்கவா?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
+  <string name="CommunicationActions_no_email_app_found">மின்னஞ்சல் பயன்பாடு எதுவும் கிடைக்கவில்லை.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ஒரு செல்லுலார் அழைப்பு ஏற்கனவே செயல்பாட்டில் உள்ளது.</string>
   <string name="CommunicationActions_start_video_call">காணொளி அழைப்பைத் தொடங்கவா?</string>
   <string name="CommunicationActions_start_voice_call">குரல் அழைப்பைத் தொடங்கவா?</string>
   <string name="CommunicationActions_cancel">ரத்து</string>
   <string name="CommunicationActions_call">அழைப்பு</string>
+  <string name="CommunicationActions_insecure_call">பாதுகாப்பற்ற அழைப்பு</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">கேரியர் கட்டணங்கள் பொருந்தக்கூடும். நீங்கள் அழைக்கும் எண் சிக்னலில் பதிவு செய்யப்படவில்லை. இந்த அழைப்பு இணையத்தில் அல்லாமல் உங்கள் மொபைல் கேரியர் வழியாக வைக்கப்படும்.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s உடனான உங்கள் பாதுகாப்பு எண் மாறிவிட்டது. இது, உங்கள் தகவல்தொடர்புகளை யாரேனும் இடைமறிக்க முயற்சிக்கிறார்கள் அல்லது %2$s Signal-ஐ மீண்டும் நிறுவியிருக்கிறார்கள், என்பதை குறிக்கும்.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">இந்த தொடர்புடன் உங்கள் பாதுகாப்பு எண்ணைச் நீங்கள் சரிபார்க்க முடியும்.</string>
@@ -284,6 +288,7 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">உங்கள் சுயவிவரப் பெயர் உருவாக்கப்பட்டது.</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">உங்கள் சுயவிவரப் பெயர் சேமிக்கப்பட்டது.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
@@ -298,13 +303,13 @@
   <string name="CreateProfileActivity_problem_setting_profile">சுயவிவரம் அமைப்பதில் சிக்கல் </string>
   <string name="CreateProfileActivity_profile_photo">சுயவிவர புகைப்படம்</string>
   <string name="CreateProfileActivity_set_up_your_profile">உங்கள் சுயவிவரத்தை அமைக்கவும்</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal சுயவிவரங்கள் இறுதி முதல் இறுதி வரை குறியாக்கம் செய்யப்பட்டுள்ளன, மேலும் Signal சேவைக்கு இந்த தகவலுக்கான அணுகல் இல்லை.</string>
   <string name="CreateProfileActivity_set_avatar_description">அவதாரம் அமைக்கவும்</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் வழக்கம் : %s</string>
   <string name="CustomDefaultPreference_using_default">பயன்படுத்தப்படும் இயல்புநிலை: %s</string>
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">புகைப்படத்தைத் தேர்வுசெய்க</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">புகைப்படத்தை அகற்று</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">இப்போது</string>
@@ -362,6 +367,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signal பயனராக இல்லாததால் 1%1$s ஐ சேர்க்க முடியவில்லை.</string>
   <string name="GroupCreateActivity_loading_group_details">குழு விவரங்கள் ஏற்றப்படுகிறது…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">நீங்கள் குழுவில் ஏற்கனவே உறுப்பினர்.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">இந்த குழுவுடன் உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் பகிரவா?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">இந்த குழுவின் தற்போதைய மற்றும் எதிர்கால உறுப்பினர்கள் அனைவருக்கும் உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் காண விரும்புகிறீர்களா?</string>
@@ -1011,6 +1017,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">உங்கள் தொடர்புகளைக் காண்பிக்க சிக்னலுக்கு அணுகல் தேவை.</string>
   <string name="contact_selection_list_fragment__show_contacts">தொடர்புகளைக் காட்டு</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal செய்தி</string>
   <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பற்ற எஸ்.எம்.எஸ்</string>
@@ -1235,6 +1242,7 @@
   <string name="HelpFragment__help">உதவி</string>
   <string name="HelpFragment__next">அடுத்தது</string>
   <string name="HelpFragment__signal_support">Signal ஆதரவு</string>
+  <string name="HelpFragment__no_email_app_found">மின்னஞ்சல் பயன்பாடு எதுவும் கிடைக்கவில்லை.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">இறக்குமதி செய்</string>

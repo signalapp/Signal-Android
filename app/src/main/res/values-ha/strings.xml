@@ -75,7 +75,6 @@
   <string name="BlockedContactsActivity_blocked_contacts">Tosheshen lambobin sadarwa</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membobin rukuni suna da damar dawowa da kai/ke rukunin. </string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Zaku samu damar aikawa juna sakonni da kiran juna. </string>
   <string name="BlockUnblockDialog_unblock">Bude</string>
   <string name="BlockUnblockDialog_block">Toshe</string>
   <string name="BlockUnblockDialog_block_and_delete">Toshe ka/ki goge</string>
@@ -294,7 +293,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">As samu matsalar saitin furofayil</string>
   <string name="CreateProfileActivity_profile_photo">Hoton furofayil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Saita furofayil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Furofayil don Signal na amfani da tsari, kuma sabis din Signal bashi da daman samun wannan bayanan.</string>
   <string name="CreateProfileActivity_set_avatar_description">Sa alamar hoto.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Amfani da tanadadde: %s</string>
@@ -358,6 +356,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">An kasa sa %1$s sabida basua amfani da Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Ana karban cikakken bayanin rukuni.</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ka/kin riga ka/kin shiga wannan rukunin.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bar membobin rukuninnan suga hoto da sunan furifayil dinka/ki?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ka/ki na so a bayyanawa membobin rukuninnan na yanzu da na gaba hoto da sunan furofayil dinka/ki?</string>
@@ -998,6 +997,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal na bukatar daman samun abokan sadarwarka/ki domin nuna su</string>
   <string name="contact_selection_list_fragment__show_contacts">Nuna lambobin sadarwa</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Sakon Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS mara tsaro</string>

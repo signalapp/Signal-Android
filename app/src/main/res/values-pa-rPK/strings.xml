@@ -78,7 +78,6 @@
   <string name="BlockedContactsActivity_blocked_contacts"> بلاک کیتے گئے رابطے</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گروپ اراکین تساں نوں ایس گروپ اچ دوبارہ شامل کرن دے اہل ہون گے۔</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">تساں اک دوجے نوں سنیہا گھلن تے کال کرن دے اہل ہوو گے۔</string>
   <string name="BlockUnblockDialog_unblock">ان بلاک کرو</string>
   <string name="BlockUnblockDialog_block">بلاک کرو</string>
   <string name="BlockUnblockDialog_block_and_delete">بلاک تے حذف کرو</string>
@@ -297,7 +296,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">پروفائل ترتیب دین اچ مسئلہ</string>
   <string name="CreateProfileActivity_profile_photo">پروفائل فوٹو</string>
   <string name="CreateProfileActivity_set_up_your_profile">اپنا پروفائل ترتیب دیو</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted"> Signal پروفائلز پوری طراں خفیہ کاری کیتے ہوئے ہوندے نیں، تے Signal سروس کدی وی ایہناں معلومات تائیں رسائی حاصل نئیں کر دی اے۔</string>
   <string name="CreateProfileActivity_set_avatar_description">اواتار سیٹ کرو</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">مخصوص ورت رئیا اے : %s</string>
@@ -361,6 +359,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s شامل نئیں کر سکیا کیوں جے اوہ Signal صارف نئیں۔</string>
   <string name="GroupCreateActivity_loading_group_details">گروپ تفصیلاں لوڈ ہو ر‏ئیاں نیں…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">تسیں پہلاں ای گروپ اچ او۔</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ایس گروپ نال تہاڈا پروفائل ناں تے تصویر سانچھی کر‏‏ئی اے دا؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">کیہ تسیں ایس گروپ دے موجودہ تے آن آلیاں ممبراں نوں اپناں پروفائل ناں تے تصویر وکھانا چاہندے او؟</string>
@@ -1001,6 +1000,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal نوں تہادے رابطے وکھان لئی اوہناں تائیں رسائی دی لوڑھ اے۔</string>
   <string name="contact_selection_list_fragment__show_contacts">رابطے وکھاؤ</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal سنیہا </string>
   <string name="conversation_activity__type_message_sms_insecure">غیر محفوظ SMS</string>

@@ -81,7 +81,6 @@
   <string name="BlockUnblockDialog_block_s">Blokker %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke lenger motta meldinger eller oppdateringer fra denne gruppen, og medlemmene vil ikke kunne legge deg til denne gruppen igjen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmer kan legge deg til denne gruppen igjen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du kan sende meldinger og ringe hverandre.</string>
   <string name="BlockUnblockDialog_unblock_s">avblokker %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Skru av blokkering</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
@@ -308,7 +307,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Feil ved lagring av profil</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
   <string name="CreateProfileActivity_set_up_your_profile">Sett opp din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler er kryptert fra ende til ende, og Signal-tjenesten har aldri tilgang til denne informasjonen.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din er ende-til-ende kryptert. Den vil være søkbar for kontaktene dine, når du starter eller godtar nye samtaler, og når du blir medlem av nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Sett avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker selvvalgt: %s</string>
@@ -376,6 +375,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Klarte ikke å legge til %1$s fordi vedkommende ikke bruker Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Laster inn gruppedetaljer </string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du er allerede i gruppen.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Vil du dele profilnavnet og bildet ditt med denne gruppen?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vil du gjøre profilnavn og bilde synlig for alle gjeldende og fremtidige medlemmer av denne gruppa?</string>
@@ -586,6 +586,7 @@
   <string name="MessageRequestBottomView_delete">Slett</string>
   <string name="MessageRequestBottomView_block">Blokker</string>
   <string name="MessageRequestBottomView_unblock">Skru av blokkering</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjerne blokkering av denne gruppen samt dele navn og bilde med medlemmene? Du vil ikke motta noen meldinger før du fjerner blokkeringen av den.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, og %3$s</string>
@@ -1041,6 +1042,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal må ha tilgang til kontaktene dine for å kunne vise dem.</string>
   <string name="contact_selection_list_fragment__show_contacts">Vis Kontakter</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-melding</string>
   <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>

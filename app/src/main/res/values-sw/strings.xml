@@ -78,7 +78,6 @@
   <string name="BlockedContactsActivity_blocked_contacts">Anwani zilizozuiliwa</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Washiriki wa kikundi wataweza kukuongeza kwenye kundi hili tena.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Mtaweza kutumiana ujumbe na kupigiana simu.</string>
   <string name="BlockUnblockDialog_unblock">Fungua</string>
   <string name="BlockUnblockDialog_block">Zuia</string>
   <string name="BlockUnblockDialog_block_and_delete">Zuia na Futa</string>
@@ -298,7 +297,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Hitilafu kuweka wasifu</string>
   <string name="CreateProfileActivity_profile_photo">Picha ya wasifu</string>
   <string name="CreateProfileActivity_set_up_your_profile">Anzisha wasifu wako</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Wasifu za Signal ni za usimbuaji fiche mwisho hadi mwisho, na seva ya huduma ya Signal kamwe haiwezi kufikia habari hizi.</string>
   <string name="CreateProfileActivity_set_avatar_description">Weka umbo</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Inatumia kaida: %s</string>
@@ -362,6 +360,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Haikuweza kuongea %1$s kwa sababu, hatatumii Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Inafungua habari za kundi…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Tayari upo kwenye kikundi</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Shiriki jina la wasifu wako katika kikundi hiki</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Unataka kufanya jina lako la wasifu na picha vionekane kwa wanachama wote wa sasa na wa baadaye wa kikundi hiki?</string>
@@ -1000,6 +999,7 @@ nambari yako ya simu</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal inahitaji upatikanaji wa wawasiliani yako ili kuonyesha.</string>
   <string name="contact_selection_list_fragment__show_contacts">onyesha mawasiliano</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Ujumbe wa Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Ujumbe usio salama</string>

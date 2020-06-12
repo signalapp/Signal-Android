@@ -75,7 +75,6 @@
   <string name="BlockedContactsActivity_blocked_contacts">અવરોધિત સંપર્કો</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ ગ્રુપમાં ફરીથી ઉમેરવામાં સમર્થ હશે.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">તમે એકબીજાને મેસેજ અને કૉલ કરી શકશો.</string>
   <string name="BlockUnblockDialog_unblock">અનાવરોધિત કરો</string>
   <string name="BlockUnblockDialog_block">અવરોધિત કરો</string>
   <string name="BlockUnblockDialog_block_and_delete">બ્લોક કરો અને કાઢી નાખો</string>
@@ -294,7 +293,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">પ્રોફાઇલ ને સેટ કરવામાં સમસ્યા</string>
   <string name="CreateProfileActivity_profile_photo">પ્રોફાઇલ ફોટો</string>
   <string name="CreateProfileActivity_set_up_your_profile">તમારી પ્રોફાઇલ સેટ કરો</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal પ્રોફાઇલ્સ એ એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટેડ હોય છે, અને Signal સેવાની આ માહિતીની એક્સેસ ક્યારેય હોતી નથી.</string>
   <string name="CreateProfileActivity_set_avatar_description">અવતાર સેટ કરો</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">કસ્ટમથી: %s</string>
@@ -358,6 +356,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ઉમેરી શક્યાં નથી કારણ કે તેઓ Signal વપરાશકર્તા નથી.</string>
   <string name="GroupCreateActivity_loading_group_details">ગ્રુપ ની વિગતો લોડ કરી રહ્યું છે…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">તમે ગ્રુપ માં પહેલેથી જ છો.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">આ ગ્રુપ સાથે તમારું પ્રોફાઇલ નામ અને ફોટો શેર કરો?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">શું તમે આ ગ્રુપ ના બધા વર્તમાન અને ભાવિ સભ્યો માટે તમારા પ્રોફાઇલ નામ અને ફોટાને દેખાડવા માંગો છો?</string>
@@ -994,6 +993,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ને તમારા સંપર્કોને પ્રદર્શિત કરવા માટે તેમને એક્સેસની જરૂર છે.</string>
   <string name="contact_selection_list_fragment__show_contacts">સંપર્કો બતાવો</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal મેસેજ</string>
   <string name="conversation_activity__type_message_sms_insecure">અસુરક્ષિત SMS</string>

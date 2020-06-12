@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Вы больше не будете получать сообщения и обновления от этой группы, и участники группы не смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Участники группы не смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Участники группы смогут снова добавить вас в неё.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу, и ваши имя и фото станут доступны этому человеку.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблокированные люди не смогут звонить вам или отправлять вам сообщения.</string>
   <string name="BlockUnblockDialog_unblock_s">Разблокировать %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Разблокировать</string>
@@ -345,7 +345,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Ошибка при установке профиля</string>
   <string name="CreateProfileActivity_profile_photo">Фото профиля</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профили Signal защищены сквозным шифрованием, и сервис Signal не имеет доступа к этой информации.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профиль защищён сквозным шифрованием. Он становится виден вашим контактам, когда вы начинаете или принимаете новые разговоры и когда вы присоединяетесь к новым группам.</string>
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
@@ -415,6 +415,12 @@
   <string name="GroupCreateActivity_loading_group_details">Загружаем информацию о группе…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Вы уже в группе.</string>
   <string name="GroupCreateActivity_remove_member_description">Удалить участника</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Добавить участника?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Добавить «%1$s» в «%2$s»?</string>
+  <string name="AddToGroupActivity_s_added_to_s">«%1$s» добавлен(-а) в «%2$s».</string>
+  <string name="AddToGroupActivity_add_to_group">Добавить в группу</string>
+  <string name="AddToGroupActivity_add_to_groups">Добавить в группы</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Открыть ваше имя и фотографию этой группе?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Вы хотите сделать имя и фотографию из своего профиля видимыми для всех текущих и будущих участников этой группы?</string>
@@ -758,11 +764,11 @@
   <string name="MessageRequestBottomView_delete">Удалить</string>
   <string name="MessageRequestBottomView_block">Заблокировать</string>
   <string name="MessageRequestBottomView_unblock">Разблокировать</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Вы хотите разрешить %1$s отправлять вам сообщения? Этот человек не узнает, что вы видели его сообщения, пока вы не примете запрос.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Вы хотите присоединиться к группе %1$s? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своим именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своим именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своим именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Вы были приглашены в группу %1$s. Вы хотите разрешить участникам этой группы отправлять вам сообщения?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Разблокируйте %1$s, чтобы отправлять сообщения и звонить друг другу.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Разблокируйте, чтобы разрешить участникам группы снова добавить вас в эту группу.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и поделиться своим именем и фото с её участниками? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Состоит в %1$s и %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Состоит в %1$s, %2$s и %3$s</string>
@@ -1267,6 +1273,13 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal необходим доступ к вашим контактам, чтобы отобразить их.</string>
   <string name="contact_selection_list_fragment__show_contacts">Показать контакты</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d участник</item>
+    <item quantity="few">%1$d участника</item>
+    <item quantity="many">%1$d участников</item>
+    <item quantity="other">%1$d участников</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Сообщение Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Незащищённое SMS</string>
@@ -2065,6 +2078,8 @@
   <string name="RecipientBottomSheet_block">Заблокировать</string>
   <string name="RecipientBottomSheet_unblock">Разблокировать</string>
   <string name="RecipientBottomSheet_add_to_contacts">Добавить в контакты</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Добавить в группу</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Добавить в другую группу</string>
   <string name="RecipientBottomSheet_view_safety_number">Просмотреть код безопасности</string>
   <string name="RecipientBottomSheet_make_group_admin">Сделать администратором группы</string>
   <string name="RecipientBottomSheet_remove_as_admin">Удалить как администратора</string>

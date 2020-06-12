@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Je zult niet langer berichten of meldingen van deze groep ontvangen, en de leden kunnen je niet opnieuw aan de groep toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden zullen je niet langer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen elkaar weer berichten kunnen sturen en elkaar weer kunnen bellen via Signal.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen elkaar weer kunnen bellen en berichten naar elkaar kunnen verzenden en je profielnaam en -foto zullen voor hem of haar weer worden bijgewerkt.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen jou nog steeds bellen of berichten sturen en weten dus niet dat ze geblokkeerd zijn, maar je zult die oproepen en berichten niet zien.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
   <string name="BlockUnblockDialog_unblock">Deblokkeren</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen worden eind-tot-eind-versleuteld uitgewisseld, dus zelfs Signal\'s ontwikkelaars hebben nooit toegang tot je profielfoto en naam. Deze gegevens zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, en voor personen voor wie je expliciet toestemming hebt gegeven door op “Profielnaam en -foto zichtbaar maken” te tikken.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen worden eind-tot-eind-versleuteld uitgewisseld, dus zelfs Signal\'s ontwikkelaars hebben nooit toegang tot je profielfoto en naam. Deze gegevens zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, alle leden van een groep waarvan jij een uitnodiging aanvaard, en voor personen voor wie je expliciet toestemming hebt gegeven door op “Profielnaam en -foto zichtbaar maken” te tikken.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar instellen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails aan het laden …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Je bent al lid van deze groep.</string>
   <string name="GroupCreateActivity_remove_member_description">Lid verwijderen</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Persoon aan de groep toevoegen?</string>
+  <string name="AddToGroupActivity_add_s_to_s">%1$s aan de groep “%2$s” toevoegen?</string>
+  <string name="AddToGroupActivity_s_added_to_s">%1$s aan de groep “%2$s” toegevoegd.</string>
+  <string name="AddToGroupActivity_add_to_group">Aan groep toevoegen</string>
+  <string name="AddToGroupActivity_add_to_groups">Aan groepen toevoegen</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Je profielnaam en -foto voor deze groep zichtbaar maken?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Wil je je profielnaam en -foto zichtbaar maken voor alle huidige en toekomstige leden van deze groep?</string>
@@ -416,6 +422,10 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klaar</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">%1$s toevoegen aan “%2$s”?</item>
+    <item quantity="other">%3$d personen toevoegen aan “%2$s”?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Geef dit groepsgesprek een naam </string>
   <string name="AddGroupDetailsFragment__create_group">Groep aanmaken</string>
@@ -436,6 +446,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Wie de groepslidmaatschap kan aanpassen</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Wie de groepsinformatie kan aanpassen</string>
   <string name="ManageGroupActivity_block_group">Groepsgesprek blokkeren</string>
+  <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
   <string name="ManageGroupActivity_mute_notifications">Demp meldingen</string>
   <string name="ManageGroupActivity_custom_notifications">Aangepaste meldingen</string>
@@ -449,6 +460,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d genodigde</item>
     <item quantity="other">%d genodigden</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d persoon toegevoegd.</item>
+    <item quantity="other">%d personen toegevoegd.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
@@ -687,11 +702,11 @@
   <string name="MessageRequestBottomView_delete">Wissen</string>
   <string name="MessageRequestBottomView_block">Blokkeren</string>
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je %1$s toestaan om je berichten te sturen? Hij of zij zal niet weten dat je zijn of haar berichten hebt gelezen tenzij je toestemming geeft.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van de groep “%1$s”? Ze zullen pas weten of je hun berichten hebt als je toestemming geeft.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Hij of zij zal totdat je de gespreksuitnodiging aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? De leden van deze groep zullen niet kunnen zien dat je hun berichten hebt gelezen totdat je de uitnodiging hebt aanvaard.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Je bent uitgenodigd om lid te worden van de groep “%1$s”. Wil je de leden van die groep toestaan om berichten naar jou te verzenden?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Deblokkeer %1$s om elkaar weer berichten te kunnen sturen en om elkaar te kunnen bellen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Deblokkeer om groepsleden toe te staan om je opnieuw aan de groep toe te voegen.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Lid van %1$s, %2$s en %3$s</string>
@@ -1193,6 +1208,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal heeft toegang nodig tot je contacten om contactpersonen te kunnen weergeven.</string>
   <string name="contact_selection_list_fragment__show_contacts">Contactpersonen weergeven</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d persoon</item>
+    <item quantity="other">%1$d personen</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-bericht</string>
   <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde sms</string>
@@ -1607,6 +1627,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nieuw bericht naar …</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Aan groep toevoegen</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Bellen</string>
   <!--conversation_callable_secure-->
@@ -1960,6 +1981,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_block">Blokkeren</string>
   <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
   <string name="RecipientBottomSheet_add_to_contacts">Aan contactenlijst toevoegen</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Aan een groep toevoegen</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Aan nog een andere groep toevoegen</string>
   <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer bekijken</string>
   <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string>
   <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>

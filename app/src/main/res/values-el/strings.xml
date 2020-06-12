@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Δεν θα λαμβάνεις άλλα μηνύματα ή ενημερώσεις από αυτή την ομάδα, και τα μέλη της δεν θα μπορούν να σε ξαναπροσθέσουν σε αυτήν.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Τα μέλη της ομάδας δεν θα μπορούν να σε ξαναπροσθέσουν σε αυτήν.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Τα μέλη της ομάδας θα μπορούν να σε ξαναπροσθέσουν σε αυτήν.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Θα έχετε τη δυνατότητα να στέλνετε μηνύματα και να καλείτε ο ένας τον άλλον.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Θα μπορείτε να στέλνετε μηνύματα και να καλείτε ο ένας τον άλλον, και το όνομα και η φωτογραφία σου θα μοιραστεί μαζί του/της.`</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Τα φραγμένα άτομα δεν θα μπορούν να σας καλέσουν ή να σας στείλουν μηνύματα.</string>
   <string name="BlockUnblockDialog_unblock_s">Κατάργηση φραγής του/της %1$s;</string>
   <string name="BlockUnblockDialog_unblock">Κατάργηση φραγής</string>
@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Πρόβλημα στον καθορισμό του προφίλ</string>
   <string name="CreateProfileActivity_profile_photo">Φωτογραφία προφίλ</string>
   <string name="CreateProfileActivity_set_up_your_profile">Δημιούργησε το προφίλ σου</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Τα προφίλ του Signal είναι κρυπτογραφημένα από άκρο σε άκρο, και η υπηρεσία Signal δεν έχει ποτέ πρόσβαση σε αυτές τις πληροφορίες.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Το προφίλ σου είναι κρυπτογραφημένο από άκρο σε άκρο. Θα είναι ορατό στις επαφές σου, όταν ξεκινάς ή αποδέχεσαι νέες συνομιλές και όταν μπαίνεις σε νέες ομάδες.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ορισμός εικόνας προφίλ</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Χρησιμοποιείται το προσαρμοσμένο: %s</string>
@@ -387,6 +387,12 @@
   <string name="GroupCreateActivity_loading_group_details">Φόρτωση λεπτομέρειων ομάδας…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Είσαι ήδη μέλος αυτής της ομάδας.</string>
   <string name="GroupCreateActivity_remove_member_description">Αφαίρεση μέλους</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Προσθήκη μέλους;</string>
+  <string name="AddToGroupActivity_add_s_to_s">Προσθήκη του/της \"%1$s\" στο \"%2$s\";</string>
+  <string name="AddToGroupActivity_s_added_to_s">Ο/Η \"%1$s\" προστέθηκε στο \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Προσθήκη σε ομάδα</string>
+  <string name="AddToGroupActivity_add_to_groups">Προσθήκη σε ομάδες</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Θες να μοιραστείς το όνομα και τη φωτογραφία προφίλ σου με αυτή την ομάδα;</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Θες να κάνεις το όνομα και τη φωτογραφία προφίλ σου ορατά σε όλα τα τωρινά και τα μελλοντικά μέλη αυτής της ομάδας; </string>
@@ -416,8 +422,13 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Τέλος</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Προσθήκη του/της \"%1$s\" στο \"%2$s\";</item>
+    <item quantity="other">Προσθήκη %3$d μελών στο \"%2$s\";</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Ονομασία ομάδας</string>
+  <string name="AddGroupDetailsFragment__create_group">Δημιουργία ομάδας</string>
   <string name="AddGroupDetailsFragment__create">Δημιουργία</string>
   <string name="AddGroupDetailsFragment__members">Μέλη</string>
   <string name="AddGroupDetailsFragment__group_name_required">Όνομα ομάδας (απαιτείται)</string>
@@ -435,6 +446,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">Ποιοί μπορούν να επεξεργαστούν τα μέλη της ομάδας</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας</string>
   <string name="ManageGroupActivity_block_group">Φραγή ομάδας</string>
+  <string name="ManageGroupActivity_unblock_group">Κατάργηση φραγής ομάδας</string>
   <string name="ManageGroupActivity_leave_group">Αποχώρηση απ\' την ομάδα</string>
   <string name="ManageGroupActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
@@ -448,6 +460,10 @@
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d προσκεκλημένος/η</item>
     <item quantity="other">%d προσκεκλημένοι/ες</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">Προστέθηκε %d μέλος.</item>
+    <item quantity="other">Προστέθηκαν %d μέλη.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
@@ -686,11 +702,11 @@
   <string name="MessageRequestBottomView_delete">Διαγραφή</string>
   <string name="MessageRequestBottomView_block">Φραγή</string>
   <string name="MessageRequestBottomView_unblock">Κατάργηση φραγής</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Θες να επιτρέψεις στον/στην %1$s να σου στέλνει μηνύματα; Δεν θα γνωρίζει ότι έχεις δει το μήνυμά του/της μέχρι να δεχθείς.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπείς στην ομάδα %1$s; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχθείς.</string> -->
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή του/της.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Έχεις μια πρόσκληση να μπεις στην ομάδα %1$s. Θέλεις να επιτρέψεις στα μέλη αυτής της ομάδας να σου στείλουν μηνύματα;</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Κατάργησε τη φραγή για τον/την %1$s για να στέλνετε μηνύματα και να καλείτε ο ένας τον άλλον.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Κατάργησε τη φραγή για να επιτρέψεις στα μέλη της ομάδας να σε ξαναπροσθέσουν σε αυτήν.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Θέλεις να καταργηθεί η φραγή αυτής της ομάδας και να μοιραστεί το όνομα και η φωτογραφία σου με τα μέλη της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή της.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Μέλος του %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Μέλος των %1$s και %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Μέλος των %1$s, %2$s, και %3$s</string>
@@ -1185,6 +1201,11 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να τις εμφανίσει. </string>
   <string name="contact_selection_list_fragment__show_contacts">Εμφάνιση επαφών</string>
+  <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d μέλος</item>
+    <item quantity="other">%1$d μέλη</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Μήνυμα Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Μη ασφαλές SMS</string>
@@ -1597,6 +1618,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Νέο μήνυμα προς…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Προσθήκη στην ομάδα</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Κλήση</string>
   <!--conversation_callable_secure-->
@@ -1951,6 +1973,8 @@
   <string name="RecipientBottomSheet_block">Φραγή</string>
   <string name="RecipientBottomSheet_unblock">Κατάργηση φραγής</string>
   <string name="RecipientBottomSheet_add_to_contacts">Προσθήκη στις επαφές</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Προσθήκη σε μια ομάδα</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Προσθήκη σε άλλη ομάδα</string>
   <string name="RecipientBottomSheet_view_safety_number">Προβολή αριθμού ασφαλείας</string>
   <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή/τρια ομάδας</string>
   <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή/τριας</string>

@@ -82,7 +82,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Bu grubun iletilerini veya güncellemelerini artık almayacaksınız, ve üyeleri sizi bu gruba tekrar ekleyemeyecekler.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grup üyeleri sizi bu gruba ekleyemeyecekler.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grup üyeleri sizi bu gruba tekrar ekleyebilecekler.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Birbirinizi arayıp ileti gönderebileceksiniz.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Engellenen kişiler sizi arayamayacaklar veya ileti gönderemeyecekler.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s engeli kaldırılsın mı?</string>
   <string name="BlockUnblockDialog_unblock">Engeli kaldır</string>
@@ -316,7 +315,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Profil ayarlanırken hata</string>
   <string name="CreateProfileActivity_profile_photo">Profil fotoğrafı</string>
   <string name="CreateProfileActivity_set_up_your_profile">Profilinizi ayarlayın</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profilleri uçtan uca şifrelidir ve Signal hizmeti asla bu bilgiye erişime sahip olmaz.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar seçin</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Özelleştirilmiş \'%s\' kullanılıyor</string>
@@ -386,6 +384,7 @@
   <string name="GroupCreateActivity_loading_group_details">Grup detayları yükleniyor…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Zaten gruptasınız.</string>
   <string name="GroupCreateActivity_remove_member_description">Üyeyi sil</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profil adınız ve fotoğrafınız bu grupla paylaşılsın mı?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Profil adınızı ve fotoğrafınızı bu grupta bulunan ve sonradan eklenecek üyelere görünür yapmak istiyor musunuz?</string>
@@ -675,11 +674,7 @@
   <string name="MessageRequestBottomView_delete">Sil</string>
   <string name="MessageRequestBottomView_block">Engelle</string>
   <string name="MessageRequestBottomView_unblock">Engeli kaldır</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s kişisinin sizle yazışmasına izin vermek istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s grubuna katılmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s grubuna katılmaya davet edildiniz. Bu grubun üyelerinin size yazmalarına izin vermek istiyor musunuz?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Birbirinizle yazışmak ve aramalar yapmak için %1$s engelini kaldırın.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Grup üyelerinin sizi bu gruba tekrar ekleyebilmeleri için engelini kaldırın.</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grubuna üye</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ve %2$s gruplarına üye</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ve %3$s gruplarına üye</string>
@@ -1165,6 +1160,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal\'in kişilerinizi gösterebilmek için erişime ihtiyacı var.</string>
   <string name="contact_selection_list_fragment__show_contacts">Kişileri Görüntüle</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal iletisi</string>
   <string name="conversation_activity__type_message_sms_insecure">Şifresiz SMS</string>

@@ -88,7 +88,6 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od tejto skupiny už nebudete dostávať správy ani aktualizácie a členovia vás nebudú môcť znovu pridať.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Členovia skupiny vás nebudú môcť znovu do tejto skupiny pridať.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členovia skupiny vás budú môcť do tejto skupiny znovu pridať.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete si môcť volať a písať.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudú môcť volať ani posielať správy.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokovať %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Odblokovať</string>
@@ -341,7 +340,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Chyba pri nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotka</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal sú end-to-end šifrované a služba Signal nikdy nemá prístup k týmto informáciám.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil využíva koncové šifrovanie. Zobrazí sa vašim kontaktom, keď začnete alebo prijímete nové konverzácie s nimi a keď sa pridáte do nových skupín.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastaviť avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa vlastné: %s</string>
@@ -410,6 +409,7 @@
   <string name="GroupCreateActivity_loading_group_details">Načítavajú sa údaje o skupine…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Už ste v skupine.</string>
   <string name="GroupCreateActivity_remove_member_description">Odobrať člena</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Zdieľať vaše meno a profilovú fotku s touto skupinou?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Chcete aby vaše meno a profilová fotka boli viditeľné všetkým súčasným a budúcim členom tejto skupiny?</string>
@@ -712,10 +712,7 @@
   <string name="MessageRequestBottomView_delete">Vymazať</string>
   <string name="MessageRequestBottomView_block">Blokovať</string>
   <string name="MessageRequestBottomView_unblock">Odblokovať</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete umožniť používateľovi %1$s, aby vám poslal správu? Nedozvie sa, že ste videli jeho/jej správy, pokým nepotvrdíte prijatie.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete sa pripojiť k skupine %1$s? Jej členovia sa nedozvú, že ste videli ich správy, pokým nepotvrdíte prijatie.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokovať používateľa %1$s, aby ste si mohli vymieňať správy a navzájom si volať.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokovať, aby ste umožnili členom skupiny znova vás pridať do tejto skupiny.</string> -->
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovať túto skupinu a zdieľať vaše meno a foto s jej členmi? Kým ju neodblokujete, nepríjmete z nej žiadne správy.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Člen skupiny %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Člen skupiny %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Člen skupiny %1$s, %2$s a %3$s</string>
@@ -1209,6 +1206,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal potrebuje prístup k Vašim kontaktom, aby ich mohol zobraziť.</string>
   <string name="contact_selection_list_fragment__show_contacts">Ukázať Kontakty</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal správa</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezabezpečená SMS</string>

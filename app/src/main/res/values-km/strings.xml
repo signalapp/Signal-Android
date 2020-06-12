@@ -76,6 +76,10 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">ហាមឃាត់ និងចាកចេញ %1$s?</string>
   <string name="BlockUnblockDialog_block_s">ហាមឃាត់%1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">អ្នកនឹងលែងទទួលសារឬការព័ត៌មានពីក្រុមនេះ ហើយសមាជិកនឹងមិនអាចដាក់អ្នកចូលក្នុងក្រុមនេះបានទៀតទេ។</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">សមាជិកនឹងមិនអាចដាក់អ្នកចូលក្នុងក្រុមនេះបានទៀតទេ។</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">សមាជិកនឹងអាចដាក់អ្នកចូលក្នុងក្រុមនេះបានម្តងទៀត។</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">មនុស្សដែលបានហាមឃាត់ នឹងមិនអាចហៅមកអ្នក ឬផ្ញើសារបានទេ។</string>
   <string name="BlockUnblockDialog_unblock_s">លែងហាមឃាត់ %1$s?</string>
   <string name="BlockUnblockDialog_unblock">បើកវិញ</string>
   <string name="BlockUnblockDialog_block">រារាំង</string>
@@ -122,6 +126,7 @@
   <string name="CommunicationActions_cancel">បោះបង់</string>
   <string name="CommunicationActions_call">ហៅចេញ</string>
   <string name="CommunicationActions_insecure_call">ការហៅមិនមានសុវត្ថិភាព</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">ការគិតថ្លៃក្រុមហ៊ុនទូរស័ព្ទអាចត្រូវបានអនុវត្ត។ លេខដែលអ្នកកំពុងហៅមិនត្រូវបានចុះឈ្មោះជាមួយ Signal ទេ។ ការហៅនេះ​ នឹងត្រូវបានធ្វើឡើងតាមរយៈក្រុមហ៊ុនទូរស័ព្ទចល័តរបស់អ្នក មិនមែននៅលើអ៊ីនធឺណិតទេ។</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពរបស់អ្នក%1$s បានផ្លាស់ប្តូរ។ នេះមានន័យថា មាននរណាម្នាក់ព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬក៏ %2$s ប្រើដំឡើង Signalឡើងវិញ។</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">អ្នកគួតែផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នកជាមួយលេខទំនាក់ទំនងនេះ។</string>
@@ -297,7 +302,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">បញ្ហាក្នុងការកំណត់ប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_profile_photo">រូបថតប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_set_up_your_profile">បង្កើតប្រវត្តិរូបរបស់អ្នក</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ប្រវត្តិរូប Signal ត្រូវបានអ៊ិនគ្រីបទាំងសងខាង និងសេវាកម្ម Signal មិនអាចចូលប្រើប្រាស់ព័ត៌មាននេះបានទេ។ </string>
   <string name="CreateProfileActivity_set_avatar_description">កំណត់រូបតំណាង</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ប្រើផ្សេងៗ៖ %s</string>
@@ -367,6 +371,8 @@
   <string name="GroupCreateActivity_loading_group_details">កំពុងបើកព័ត៌មានក្រុម…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">អ្នកនៅក្នុងក្រុមហើយ។</string>
   <string name="GroupCreateActivity_remove_member_description">លុបសមាជិក</string>
+  <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_to_group">បន្ថែមចូលក្រុម</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ចែករំលែកឈ្មោះប្រវត្តិរូប និងរូបថតរបស់អ្នកជាមួយនឹងក្រុមនេះ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">តើអ្នកចង់ដាក់បង្ហាញប្រវត្តរូប និងរូបភាពអ្នកទៅកាន់សមាជិកបច្ចុប្បន្ន និងអនាគតក្នុងក្រុមនេះទេ?</string>
@@ -394,8 +400,12 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">បញ្ចប់</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="other">បន្ថែមសមាជិក %3$d នាក់ទៅ \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ដាក់ឈ្មោះក្រុមនេះ</string>
+  <string name="AddGroupDetailsFragment__create_group">បង្កើតក្រុម</string>
   <string name="AddGroupDetailsFragment__create">បង្កើត</string>
   <string name="AddGroupDetailsFragment__members">សមាជិក</string>
   <string name="AddGroupDetailsFragment__group_name_required">ឈ្មោះក្រុម (ចាំបាច់)</string>
@@ -413,6 +423,7 @@
   <string name="ManageGroupActivity_who_can_edit_group_membership">នរណាអាចកែប្រែសមាជិកភាពក្រុម</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">នរណាអាចកែប្រែព័ត៌មានក្រុម</string>
   <string name="ManageGroupActivity_block_group">ហាមឃាត់ក្រុម</string>
+  <string name="ManageGroupActivity_unblock_group">លែងហាមឃាត់ក្រុម</string>
   <string name="ManageGroupActivity_leave_group">ចាកចេញពីក្រុម</string>
   <string name="ManageGroupActivity_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
   <string name="ManageGroupActivity_custom_notifications">សារជូនដំណឹងផ្សេង</string>
@@ -425,6 +436,9 @@
   <string name="ManageGroupActivity_none">គ្មាន</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="other">បានអញ្ជើញ%d </item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="other">បានបន្ថែមសមាជិក %d នាក់។</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">អ្នកមិនមានសិទ្ធិធ្វើដូចនេះទេ</string>
   <string name="ManageGroupActivity_not_capable">សមាជិកដែលអ្នកដាក់បញ្ចូលមិនគាំទ្រក្រុមថ្មី និងត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
@@ -443,6 +457,10 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">សំឡេងសារជូនដំណឹង</string>
   <string name="CustomNotificationsDialogFragment__vibrate">ញ័រ</string>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">តើអ្នកចង់លះបង់ការអញ្ជើញដែលអ្នកបានផ្ញើទៅ %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="other">តើអ្នកចង់លះបង់ការអញ្ជើញ %2$d ដែលផ្ញើដោយ %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
   <string name="CropImageActivity_profile_avatar">រូបតំណាង</string>
@@ -617,6 +635,7 @@
   <plurals name="MessageRecord_s_revoked_invites">
     <item quantity="other">%1$s បានដកការអញ្ជើញ %2$d ចូលក្នុងក្រុម។</item>
   </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">មានគេបានបដិសេធការអញ្ជើញទៅក្រុម។</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">អ្នកបានបដិសេធការអញ្ជើញទៅក្រុមនេះ។</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">អ្នកបានយល់ព្រមការអញ្ជើញទៅក្រុមនេះ។</string>
@@ -646,11 +665,7 @@
   <string name="MessageRequestBottomView_delete">លុប</string>
   <string name="MessageRequestBottomView_block">រារាំង</string>
   <string name="MessageRequestBottomView_unblock">បើកវិញ</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">តើអ្នកចង់ឲ្យ %1$s ផ្ញើសារមកអ្នក? គេនឹងមិនដឹងថាអ្នកបានមើលសាររបស់គេទេ រហូតអ្នកទទួល។ </string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">តើអ្នកចង់ចូលក្រុមនេះ %1$s? គេនឹងមិនដឹងថាអ្នកបានមើលសាររបស់គេទេ រហូតអ្នកទទួល។ </string> -->
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">អ្នកត្រូវបានអញ្ជើញចូលក្រុមនេះ %1$s។ តើអ្នកចង់ឲ្យសមាជិកក្រុមនេះ ផ្ញើសារមកអ្នកទេ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">លែងឃាត់ %1$s ដើម្បីផ្ញើសារ និងហៅគ្នាទៅវិញទៅមក។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">លែងឃាត់ដើម្បីអនុញ្ញាតសមាជិកក្រុម បន្ថែមអ្នកចូលទៅក្រុមនេះម្តងទៀត។</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">សមាជិកនៃ %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">សមាជិកនៃ %1$s និង%2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">សមាជិកនៃ %1$s, %2$s, និង%3$s</string>
@@ -708,15 +723,21 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">លេខកូដ PIN មិនត្រឹមត្រូវ</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">រំលងការបញ្ចូល PIN ?</string>
   <string name="PinRestoreEntryFragment_need_help">ត្រូវការជំនួយ?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">លេខ PIN របស់អ្នកគឺ %1$d+ ចំនួនខ្ទង់ដែលអ្នកបានបង្កើត អាចជាលេខ ឬ អក្សរ.\n\nបើអ្នកមិនអាចចងចាំ PIN របស់អ្នកទេ អ្នកអាចបង្កើតថ្មីបាន។ អ្នកអាចចុះឈ្មោះ និងប្រើប្រាស់គណនីរបស់អ្នក តែអ្នកនឹងត្រូវបាត់បង់ការកំណត់ដែលបានរក្សាទុក ដូចជាព័ត៌មានប្រវត្តិរូបរបស់អ្នក។ </string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">បើអ្នកមិនអាចចងចាំ PIN របស់អ្នកទេ អ្នកអាចបង្កើតថ្មីបាន។ អ្នកអាចចុះឈ្មោះ និងប្រើប្រាស់គណនីរបស់អ្នក តែអ្នកនឹងត្រូវបាត់បង់ការកំណត់ដែលបានរក្សាទុក ដូចជាព័ត៌មានប្រវត្តិរូបរបស់អ្នក។ </string>
   <string name="PinRestoreEntryFragment_create_new_pin">បង្កើត PIN ថ្មី</string>
   <string name="PinRestoreEntryFragment_contact_support">ទាក់ទងជំនួយ</string>
   <string name="PinRestoreEntryFragment_cancel">បោះបង់</string>
   <string name="PinRestoreEntryFragment_skip">រំលង</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="other">អ្នកនៅមានការព្យាយាម %1$d ដង។ បើការព្យាយាមអស់ អ្នកអាចបង្កើតលេខកូដ PIN ថ្មី។  អ្នកអាចចុះឈ្មោះ និងប្រើប្រាស់គណនីរបស់អ្នក តែអ្នកនឹងត្រូវបាត់បង់ការកំណត់ដែលបានរក្សាទុក ដូចជាព័ត៌មានប្រវត្តិរូបរបស់អ្នក។ </item>
+  </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយជាមួយ PIN សម្រាប់ Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">បញ្ចូលលេខ PIN អក្សរក្រមលេខ</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">បញ្ចូលលេខកូដ PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">អ្នកបានប្រើការទាយលេខ PIN អស់ហើយ តែអ្នកនៅតែអាចចូលប្រើប្រាស់គណនី Signal ដោយបង្កើតលេខកូដ PIN ថ្មី។ សម្រាប់ឯកជនភាព និងសុវត្ថិភាពគណនីរបស់អ្នក នឹងត្រូវស្តារឡើងវិញ ដោយមិនមានការរក្សាទុកព័ត៌មានប្រវត្តិរូប និងការកំណត់ឡើយ។</string>
   <string name="PinRestoreLockedFragment_create_new_pin">បង្កើតលេខ PIN ថ្មី</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ដាក់ពិន្ទុកម្មវិធីនេះ</string>
@@ -754,6 +775,7 @@
   <string name="RedPhone_got_it">ទទួលបាន</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">ចុច​ នៅទីនេះ ដើម្បីបើកវីដេអូរបស់អ្នក</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">ដើម្បីហៅទៅ%1$s, Signal ត្រូវការចូលប្រើប្រាស់កាមេរ៉ារបស់អ្នក</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">កំពុងហៅ…</string>
   <!--WebRtcCallView-->
@@ -799,6 +821,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">បើកការចាក់សោរចុះឈ្មោះ?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">បិទការចាក់សោរចុះឈ្មោះ?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">បើអ្នកភ្លេច Signal PIN របស់អ្នក ពេលដែលចុះឈ្មោះជាមួយ Signal​ ម្តងទៀត អ្នកនឹងត្រូវចាក់សោរគណនីរបស់អ្នករយៈពេល ៧ ថ្ងៃ។</string>
   <string name="RegistrationLockV2Dialog_turn_on">បើក</string>
   <string name="RegistrationLockV2Dialog_turn_off">បិទ</string>
   <!--RevealableMessageView-->
@@ -868,6 +891,7 @@
   <string name="SubmitDebugLogActivity_submit">បញ្ជូន</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">បរាជ័យក្នុងការបញ្ជូនកំណត់ត្រា</string>
   <string name="SubmitDebugLogActivity_success">ជោគជ័យ!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ចម្លងអាសយដ្ឋាន URL នេះ និងបន្ថែមវាទៅរបាយការណ៍បញ្ហា ឬអ៊ីម៉ែលគាំទ្រ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="SubmitDebugLogActivity_ok">យល់ព្រម</string>
   <string name="SubmitDebugLogActivity_share">ចែករំលែក</string>
@@ -1129,6 +1153,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them"> Signal ត្រូវការចូលប្រើប្រាស់បញ្ជីទំនាក់ទំនងរបស់អ្នក ដើម្បីបង្ហាញវា។ </string>
   <string name="contact_selection_list_fragment__show_contacts">បង្ហាញបញ្ជីលេខទំនាក់ទំនង</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">សារ Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS គ្មានសុវត្ថិភាព</string>
@@ -1533,6 +1558,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">ផ្ញើសារថ្មីទៅកាន់…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">បន្ថែមចូលក្រុម</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">ហៅចេញ</string>
   <!--conversation_callable_secure-->
@@ -1821,9 +1847,12 @@
   <string name="preferences_app_protection__change_your_pin">ផ្លាស់ប្តូរលេខ PIN របស់អ្នក</string>
   <string name="preferences_app_protection__pin_reminders">ការរំលឹក PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">លេខ PIN រក្សាទុកព័ត៌មានដែលផ្ទុកជាមួយ Signalដែលបានអ៊ិនគ្រីប​ដូច្នេះមានតែអ្នកប៉ុណ្ណោះដែលអាចចូលប្រើវាបាន។ ប្រវត្តិរូប ការកំណត់ និងទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលដែលអ្នកតំឡើង Signal ឡើងវិញ។</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">ដាក់សុវត្ថិភាពបន្ថែម ដោយទាមទារ Signal PIN របស់អ្នក ដើម្បីចុះឈ្មោះលេខទូរស័ព្ទជាមួយ Signal ម្តងទៀត។</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">ការរំលឹកជួយអ្នកឲ្យចងចាំ PIN របស់អ្នក ដោយសារវាមិនអាចស្តារឡើងវិញទេ។ អ្នកនឹងត្រូវបានសួរ ជារើយៗ។</string>
   <string name="preferences_app_protection__turn_off">បិទ</string>
   <string name="preferences_app_protection__confirm_pin">ផ្ទៀងផ្ទាត់លេខ PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">បញ្ជាក់លេខ Signal PIN របស់អ្នក</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ប្រាកដថាអ្នកចងចាំ ឬរក្សាទុក PIN ដោយសុវត្ថិភាព ដោយសារវាមិនអាចស្តារវិញបានទេ។ បើអ្នកភ្លេច PIN របស់អ្នក អ្នកអាចបាត់បង់ទិន្នន័យនៅពេលគណនី Signal របស់អ្នកសារឡើងវិញ។</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">លេខកូដ PIN មិនត្រឹមត្រូវ។ សាកល្បងម្តងទៀត។</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">មិនអាចបើកការចាក់សោរចុះឈ្មោះ។</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">មិនអាចបិទការចាក់សោរចុះឈ្មោះ។</string>
