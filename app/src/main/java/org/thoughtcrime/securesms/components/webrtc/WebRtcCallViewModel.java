@@ -35,6 +35,7 @@ public class WebRtcCallViewModel extends ViewModel {
 
   private boolean       canDisplayTooltipIfNeeded = true;
   private boolean       hasEnabledLocalVideo      = false;
+  private boolean       showVideoForOutgoing      = false;
   private long          callConnectedTime         = -1;
   private Handler       ellapsedTimeHandler       = new Handler(Looper.getMainLooper());
   private boolean       answerWithVideoAvailable  = false;
@@ -97,7 +98,7 @@ public class WebRtcCallViewModel extends ViewModel {
   }
 
   @MainThread
-  public void updateFromWebRtcViewModel(@NonNull WebRtcViewModel webRtcViewModel) {
+  public void updateFromWebRtcViewModel(@NonNull WebRtcViewModel webRtcViewModel, boolean enableVideo) {
     remoteVideoEnabled.setValue(webRtcViewModel.isRemoteVideoEnabled());
     microphoneEnabled.setValue(webRtcViewModel.isMicrophoneEnabled());
 
@@ -106,6 +107,13 @@ public class WebRtcCallViewModel extends ViewModel {
     }
 
     localVideoEnabled.setValue(webRtcViewModel.getLocalCameraState().isEnabled());
+
+    if (enableVideo) {
+      showVideoForOutgoing = webRtcViewModel.getState() == WebRtcViewModel.State.CALL_OUTGOING;
+    } else if (webRtcViewModel.getState() != WebRtcViewModel.State.CALL_OUTGOING) {
+      showVideoForOutgoing = false;
+    }
+
     updateLocalRenderState(webRtcViewModel.getState());
     updateWebRtcControls(webRtcViewModel.getState(),
                          webRtcViewModel.getLocalCameraState().isEnabled(),
@@ -177,8 +185,8 @@ public class WebRtcCallViewModel extends ViewModel {
   }
 
   private @NonNull WebRtcLocalRenderState getRealLocalRenderState(boolean shouldDisplayLocalVideo, @NonNull WebRtcLocalRenderState state) {
-    if (shouldDisplayLocalVideo) return state;
-    else                         return WebRtcLocalRenderState.GONE;
+    if (shouldDisplayLocalVideo || showVideoForOutgoing) return state;
+    else                                                 return WebRtcLocalRenderState.GONE;
   }
 
   private @NonNull WebRtcControls getRealWebRtcControls(boolean neverDisplayControls, @NonNull WebRtcControls controls) {

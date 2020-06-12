@@ -528,9 +528,11 @@ public class WebRtcCallActivity extends AppCompatActivity {
     callScreen.setLocalRenderer(event.getLocalRenderer());
     callScreen.setRemoteRenderer(event.getRemoteRenderer());
 
-    viewModel.updateFromWebRtcViewModel(event);
+    boolean enableVideo = event.getLocalCameraState().getCameraCount() > 0 && enableVideoIfAvailable;
 
-    if (event.getLocalCameraState().getCameraCount() > 0 && enableVideoIfAvailable) {
+    viewModel.updateFromWebRtcViewModel(event, enableVideo);
+
+    if (enableVideo) {
       enableVideoIfAvailable = false;
       handleSetMuteVideo(false);
     }
