@@ -424,7 +424,6 @@ public class ConversationFragment extends Fragment {
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId, () -> clearHeaderIfNotTyping(getListAdapter()));
 
-    snapToTopDataObserver.requestScrollPosition(startingPosition);
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
@@ -966,7 +965,12 @@ public class ConversationFragment extends Fragment {
   private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
     conversationViewModel.onConversationDataAvailable(threadId, position);
     snapToTopDataObserver.buildScrollPosition(position)
-                         .withOnScrollRequestComplete(() -> getListAdapter().pulseHighlightItem(position))
+                         .withOnPerformScroll(((layoutManager, p) ->
+                           list.post(() -> {
+                             layoutManager.scrollToPosition(p);
+                             getListAdapter().pulseHighlightItem(position);
+                           })
+                         ))
                          .withOnInvalidPosition(() -> {
                            if (onMessageNotFound != null) {
                              onMessageNotFound.run();

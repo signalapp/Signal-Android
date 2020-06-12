@@ -77,10 +77,8 @@ public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
     if (!scrollRequestValidator.isPositionStillValid(position)) {
       onInvalidPosition.run();
     } else if (scrollRequestValidator.isItemAtPositionLoaded(position)) {
-      recyclerView.post(() -> {
         onPerformScroll.onPerformScroll(layoutManager, position);
         onScrollRequestComplete.run();
-      });
     } else {
       deferred.setDeferred(true);
       deferred.defer(() -> requestScrollPositionInternal(position, onPerformScroll, onScrollRequestComplete, onInvalidPosition));
