@@ -119,7 +119,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel.getRecipient().observe(getViewLifecycleOwner(), recipient -> {
       avatar.setRecipient(recipient);
 
-      String name = recipient.getProfileName().toString();
+      String name = recipient.getDisplayName(requireContext());
       fullName.setText(name);
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
 
