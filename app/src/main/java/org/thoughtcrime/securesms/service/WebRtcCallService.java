@@ -74,6 +74,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -412,8 +413,15 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     CallManager.CallMediaType callType = getCallMediaTypeFromOfferType(offerType);
 
+    long timeMilli = new Date().getTime();
+    long messageAgeSec = 0L;
+    if (timeMilli > timeStamp) {
+      messageAgeSec = (timeMilli - timeStamp) / 1000;
+    }
+    Log.i(TAG, "handleReceivedOffer(): messageAgeSec: " + messageAgeSec);
+
     try {
-      callManager.receivedOffer(callId, remotePeer, remoteDevice, offer, timeStamp, callType, isMultiRing, true);
+      callManager.receivedOffer(callId, remotePeer, remoteDevice, offer, messageAgeSec, callType, 1, isMultiRing, true);
     } catch  (CallException e) {
       callFailure("Unable to process received offer: ", e);
     }
@@ -435,7 +443,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     CallManager.CallMediaType callMediaType = getCallMediaTypeFromOfferType(offerType);
 
     try {
-      callManager.call(remotePeer, callMediaType);
+      callManager.call(remotePeer, callMediaType, 1);
     } catch  (CallException e) {
       callFailure("Unable to create outgoing call: ", e);
     }
@@ -611,7 +619,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                 camera,
                                 iceServers,
                                 isAlwaysTurn,
-                                1,
                                 deviceList,
                                 enableVideoOnCreate,
                                 true);
@@ -656,7 +663,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                 camera,
                                 iceServers,
                                 hideIp,
-                                1,
                                 deviceList,
                                 false,
                                 true);
@@ -1650,8 +1656,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   // CallManager observer callbacks
 
   @Override
-  public void onStartCall(Remote remote, CallId callId, Boolean isOutgoing) {
-    Log.i(TAG, "onStartCall: callId: " + callId + ", outgoing: " + isOutgoing);
+  public void onStartCall(Remote remote, CallId callId, Boolean isOutgoing, CallManager.CallMediaType callMediaType) {
+    Log.i(TAG, "onStartCall: callId: " + callId + ", outgoing: " + isOutgoing + ", type: " + callMediaType);
 
     if (activePeer != null) {
       throw new IllegalStateException("activePeer already set for START_OUTGOING_CALL");
