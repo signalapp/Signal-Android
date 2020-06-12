@@ -53,6 +53,7 @@ public class RecipientDetails {
   final String                 profileAvatar;
   final boolean                hasProfileImage;
   final boolean                profileSharing;
+  final long                   lastProfileFetch;
   final boolean                systemContact;
   final boolean                isLocalNumber;
   final String                 notificationChannel;
@@ -99,6 +100,7 @@ public class RecipientDetails {
     this.profileAvatar                   = settings.getProfileAvatar();
     this.hasProfileImage                 = settings.hasProfileImage();
     this.profileSharing                  = settings.isProfileSharing();
+    this.lastProfileFetch                = settings.getLastProfileFetch();
     this.systemContact                   = systemContact;
     this.isLocalNumber                   = isLocalNumber;
     this.notificationChannel             = settings.getNotificationChannel();
@@ -146,6 +148,7 @@ public class RecipientDetails {
     this.profileAvatar          = null;
     this.hasProfileImage        = false;
     this.profileSharing         = false;
+    this.lastProfileFetch       = 0;
     this.systemContact          = true;
     this.isLocalNumber          = false;
     this.notificationChannel    = null;

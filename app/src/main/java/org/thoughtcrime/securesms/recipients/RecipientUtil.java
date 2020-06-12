@@ -163,7 +163,7 @@ public class RecipientUtil {
       return true;
     }
 
-    long beforeTime = SignalStore.getMessageRequestEnableTime();
+    long beforeTime = SignalStore.misc().getMessageRequestEnableTime();
     return DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId, beforeTime) > 0;
   }
 

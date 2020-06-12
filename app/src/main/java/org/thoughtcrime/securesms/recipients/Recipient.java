@@ -89,6 +89,7 @@ public class Recipient {
   private final String                 profileAvatar;
   private final boolean                hasProfileImage;
   private final boolean                profileSharing;
+  private final long                   lastProfileFetch;
   private final String                 notificationChannel;
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
@@ -332,6 +333,7 @@ public class Recipient {
     this.profileAvatar          = null;
     this.hasProfileImage        = false;
     this.profileSharing         = false;
+    this.lastProfileFetch       = 0;
     this.notificationChannel    = null;
     this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
     this.forceSmsSelection      = false;
@@ -374,6 +376,7 @@ public class Recipient {
     this.profileAvatar          = details.profileAvatar;
     this.hasProfileImage        = details.hasProfileImage;
     this.profileSharing         = details.profileSharing;
+    this.lastProfileFetch       = details.lastProfileFetch;
     this.notificationChannel    = details.notificationChannel;
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
     this.forceSmsSelection      = details.forceSmsSelection;
@@ -608,6 +611,10 @@ public class Recipient {
 
   public boolean isProfileSharing() {
     return profileSharing;
+  }
+
+  public long getLastProfileFetchTime() {
+    return lastProfileFetch;
   }
 
   public boolean isGroup() {

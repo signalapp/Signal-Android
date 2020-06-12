@@ -130,7 +130,7 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(MESSAGE_REQUESTS,   (change) -> SignalStore.setMessageRequestEnableTime(change == Change.ENABLED ? System.currentTimeMillis() : 0));
+    put(MESSAGE_REQUESTS,   (change) -> SignalStore.misc().setMessageRequestEnableTime(change == Change.ENABLED ? System.currentTimeMillis() : 0));
     put(VERSIONED_PROFILES, (change) -> {
       if (change == Change.ENABLED) {
         ApplicationDependencies.getJobManager().add(new ProfileUploadJob());

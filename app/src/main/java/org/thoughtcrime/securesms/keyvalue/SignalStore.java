@@ -12,9 +12,6 @@ import org.thoughtcrime.securesms.logging.SignalUncaughtExceptionHandler;
  */
 public final class SignalStore {
 
-  private static final String LAST_PREKEY_REFRESH_TIME    = "last_prekey_refresh_time";
-  private static final String MESSAGE_REQUEST_ENABLE_TIME = "message_request_enable_time";
-
   private static final SignalStore INSTANCE = new SignalStore();
 
   private final KeyValueStore        store;
@@ -25,6 +22,7 @@ public final class SignalStore {
   private final StorageServiceValues storageServiceValues;
   private final UiHints              uiHints;
   private final TooltipValues        tooltipValues;
+  private final MiscellaneousValues  misc;
 
   private SignalStore() {
     this.store                = ApplicationDependencies.getKeyValueStore();
@@ -35,6 +33,7 @@ public final class SignalStore {
     this.storageServiceValues = new StorageServiceValues(store);
     this.uiHints              = new UiHints(store);
     this.tooltipValues        = new TooltipValues(store);
+    this.misc                 = new MiscellaneousValues(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -71,24 +70,12 @@ public final class SignalStore {
     return INSTANCE.tooltipValues;
   }
 
+  public static @NonNull MiscellaneousValues misc() {
+    return INSTANCE.misc;
+  }
+
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {
     return new GroupsV2AuthorizationSignalStoreCache(getStore());
-  }
-
-  public static long getLastPrekeyRefreshTime() {
-    return getStore().getLong(LAST_PREKEY_REFRESH_TIME, 0);
-  }
-
-  public static void setLastPrekeyRefreshTime(long time) {
-    putLong(LAST_PREKEY_REFRESH_TIME, time);
-  }
-
-  public static long getMessageRequestEnableTime() {
-    return getStore().getLong(MESSAGE_REQUEST_ENABLE_TIME, 0);
-  }
-
-  public static void setMessageRequestEnableTime(long time) {
-    putLong(MESSAGE_REQUEST_ENABLE_TIME, time);
   }
 
   public static @NonNull PreferenceDataStore getPreferenceDataStore() {
