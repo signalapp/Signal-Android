@@ -76,8 +76,8 @@
                       android:text="@string/recipient_preference_activity__shared_media"
                       android:visibility="gone"
                       android:focusableInTouchMode="true"
-                      style="?android:attr/preferenceCategoryStyle"
-                      android:textColor="@color/core_ultramarine"/>
+                      android:textStyle="bold"
+                      android:textColor="?attr/colorAccent"/>
 
             <org.thoughtcrime.securesms.components.ThreadPhotoRailView
                     android:id="@+id/recent_photos"
