@@ -48,15 +48,11 @@ object SessionMetaProtocol {
         }
     }
 
+    // FIXME: Basically a duplicate of PushDecryptJob's handleProfileKey
     @JvmStatic
-    fun handleProfileKey(context: Context, content: SignalServiceContent) {
+    fun duplicate_handleProfileKey(context: Context, content: SignalServiceContent) {
         val message = content.dataMessage.get()
         if (!message.profileKey.isPresent) { return }
-
-        /*
-        If we get a profile key then we don't need to map it to the primary device.
-        For now a profile key is mapped one-to-one to avoid secondary devices setting the incorrect avatar for a primary device.
-        */
         val database = DatabaseFactory.getRecipientDatabase(context)
         val recipient = Recipient.from(context, Address.fromSerialized(content.sender), false)
         if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, message.profileKey.get())) {
