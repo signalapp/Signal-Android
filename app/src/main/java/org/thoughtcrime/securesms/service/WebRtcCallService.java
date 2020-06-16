@@ -1668,6 +1668,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
       Intent intent = new Intent(this, WebRtcCallService.class);
 
+      AudioManager audioManager = ServiceUtil.getAudioManager(this);
+      audioManager.setSpeakerphoneOn(false);
+
       if (isOutgoing) {
           intent.setAction(ACTION_START_OUTGOING_CALL);
           activePeer.dialing(callId);
