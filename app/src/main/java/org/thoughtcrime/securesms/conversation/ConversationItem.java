@@ -1377,7 +1377,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       if (!shouldInterceptClicks(messageRecord) && parent != null) {
         parent.onClick(v);
       } else if (messageRecord.isFailed()) {
-        Intent intent = new Intent(context, MessageDetailsActivity.class);
+        Intent intent = new Intent(context, org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity.class);
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
         intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, messageRecord.getThreadId());
         intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);

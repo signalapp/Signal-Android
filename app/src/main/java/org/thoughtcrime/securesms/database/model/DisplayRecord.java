@@ -78,6 +78,10 @@ public abstract class DisplayRecord {
            !MmsSmsColumns.Types.isIdentityDefault(type);
   }
 
+  public boolean isSent() {
+    return MmsSmsColumns.Types.isSentType(type);
+  }
+
   public boolean isOutgoing() {
     return MmsSmsColumns.Types.isOutgoingMessageType(type);
   }

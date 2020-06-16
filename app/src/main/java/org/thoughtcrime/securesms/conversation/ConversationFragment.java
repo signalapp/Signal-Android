@@ -690,7 +690,7 @@ public class ConversationFragment extends Fragment {
 
 
   private void handleDisplayDetails(MessageRecord message) {
-    Intent intent = new Intent(getActivity(), MessageDetailsActivity.class);
+    Intent intent = new Intent(getActivity(), org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity.class);
     intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, message.getId());
     intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
