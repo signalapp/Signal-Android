@@ -239,7 +239,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     else                      this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
-    this.toolbarLayout.setTitle(recipient.toShortString(this));
+    this.toolbarLayout.setTitle(recipient.getDisplayName(this));
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
@@ -439,14 +439,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(requireActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(requireActivity()));
 
-        if (FeatureFlags.profileDisplay()) {
-          aboutPreference.setTitle(recipient.getDisplayName(requireContext()));
-          aboutPreference.setSummary(recipient.resolve().getE164().or(""));
-        } else {
-          aboutPreference.setTitle(formatRecipient(recipient));
-          aboutPreference.setSummary(recipient.getCustomLabel());
-        }
-
+        aboutPreference.setTitle(recipient.getDisplayName(requireContext()));
+        aboutPreference.setSummary(recipient.resolve().getE164().or(""));
         aboutPreference.setState(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED, recipient.isBlocked());
 
         IdentityUtil.getRemoteIdentityKey(getActivity(), recipient).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {

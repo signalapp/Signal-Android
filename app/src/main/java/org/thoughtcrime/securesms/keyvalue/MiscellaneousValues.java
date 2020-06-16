@@ -14,6 +14,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+    putLong(MESSAGE_REQUEST_ENABLE_TIME, System.currentTimeMillis());
   }
 
   public long getLastPrekeyRefreshTime() {
@@ -25,11 +26,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   }
 
   public long getMessageRequestEnableTime() {
-    return getLong(MESSAGE_REQUEST_ENABLE_TIME, 0);
-  }
-
-  public void setMessageRequestEnableTime(long time) {
-    putLong(MESSAGE_REQUEST_ENABLE_TIME, time);
+    return getLong(MESSAGE_REQUEST_ENABLE_TIME, System.currentTimeMillis());
   }
 
   public long getLastProfileRefreshTime() {

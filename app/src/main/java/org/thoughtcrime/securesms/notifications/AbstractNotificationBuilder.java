@@ -39,7 +39,7 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
 
   protected CharSequence getStyledMessage(@NonNull Recipient recipient, @Nullable CharSequence message) {
     SpannableStringBuilder builder = new SpannableStringBuilder();
-    builder.append(Util.getBoldedString(recipient.toShortString(context)));
+    builder.append(Util.getBoldedString(recipient.getDisplayName(context)));
     builder.append(": ");
     builder.append(message == null ? "" : message);
 

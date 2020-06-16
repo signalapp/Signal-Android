@@ -140,7 +140,7 @@ public class MessageRequestViewModel extends ViewModel {
 
   @SuppressWarnings("ConstantConditions")
   private void loadMessageRequestAccepted(@NonNull Recipient recipient) {
-    if (FeatureFlags.messageRequests() && recipient.isBlocked()) {
+    if (recipient.isBlocked()) {
       displayState.postValue(DisplayState.DISPLAY_MESSAGE_REQUEST);
       return;
     }

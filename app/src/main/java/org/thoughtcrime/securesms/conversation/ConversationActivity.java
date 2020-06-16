@@ -495,7 +495,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView.setTitle(glideRequests, recipientSnapshot);
     setActionBarColor(recipientSnapshot.getColor());
     setBlockedUserState(recipientSnapshot, isSecureText, isDefaultSms);
-    setGroupShareProfileReminder(recipientSnapshot);
     calculateCharactersRemaining();
 
     if (recipientSnapshot.getGroupId().isPresent() && recipientSnapshot.getGroupId().get().isV2()) {
@@ -1965,7 +1964,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView.setVerified(identityRecords.isVerified());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
     setActionBarColor(recipient.getColor());
-    setGroupShareProfileReminder(recipient);
     updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     initializeSecurity(isSecureText, isDefaultSms);
@@ -2147,12 +2145,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
-    if (recipient.isBlocked() && !FeatureFlags.messageRequests()) {
-      unblockButton.setVisibility(View.VISIBLE);
-      inputPanel.setVisibility(View.GONE);
-      makeDefaultSmsButton.setVisibility(View.GONE);
-      registerButton.setVisibility(View.GONE);
-    } else if (!isSecureText && isPushGroupConversation()) {
+    if (!isSecureText && isPushGroupConversation()) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
@@ -2167,19 +2160,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
-    }
-  }
-
-  private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (FeatureFlags.messageRequests()) {
-      return;
-    }
-
-    if (recipient.isPushGroup() && !recipient.isProfileSharing()) {
-      groupShareProfileView.get().setRecipient(recipient);
-      groupShareProfileView.get().setVisibility(View.VISIBLE);
-    } else if (groupShareProfileView.resolved()) {
-      groupShareProfileView.get().setVisibility(View.GONE);
     }
   }
 
@@ -2396,10 +2376,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     long id = fragment.stageOutgoingMessage(message);
 
     SimpleTask.run(() -> {
-      if (!FeatureFlags.messageRequests() && initiating) {
-        DatabaseFactory.getRecipientDatabase(this).setProfileSharing(recipient.getId(), true);
-      }
-
       long resultId = MessageSender.sendPushWithPreUploadedMedia(this, secureMessage, result.getPreUploadResults(), threadId, () -> fragment.releaseOutgoingMessage(id));
 
       int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
@@ -2470,10 +2446,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
-                   if (!FeatureFlags.messageRequests() && initiating) {
-                     DatabaseFactory.getRecipientDatabase(this).setProfileSharing(recipient.getId(), true);
-                   }
-
                    return MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
                  }, result -> {
                    sendComplete(result);
@@ -2517,10 +2489,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                  new AsyncTask<OutgoingTextMessage, Void, Long>() {
                    @Override
                    protected Long doInBackground(OutgoingTextMessage... messages) {
-                     if (!FeatureFlags.messageRequests() && initiating) {
-                       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getId(), true);
-                     }
-
                      return MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
                    }
 
@@ -3150,7 +3118,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         String[] unverifiedNames = new String[unverifiedIdentities.size()];
 
         for (int i=0;i<unverifiedIdentities.size();i++) {
-          unverifiedNames[i] = Recipient.resolved(unverifiedIdentities.get(i).getRecipientId()).toShortString(ConversationActivity.this);
+          unverifiedNames[i] = Recipient.resolved(unverifiedIdentities.get(i).getRecipientId()).getDisplayName(ConversationActivity.this);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);

@@ -198,13 +198,10 @@ public class ConversationFragment extends Fragment {
     list.setItemAnimator(null);
 
     snapToTopDataObserver = new ConversationSnapToTopDataObserver(list, new ConversationScrollRequestValidator());
+    conversationBanner    = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
+    topLoadMoreView       = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
+    bottomLoadMoreView    = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
 
-    if (FeatureFlags.messageRequests()) {
-      conversationBanner = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
-    }
-
-    topLoadMoreView    = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
-    bottomLoadMoreView = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
     initializeLoadMoreView(topLoadMoreView);
     initializeLoadMoreView(bottomLoadMoreView);
 
@@ -215,8 +212,6 @@ public class ConversationFragment extends Fragment {
                              MenuState.canReplyToMessage(MenuState.isActionMessage(messageRecord), messageRecord, messageRequestViewModel.shouldShowMessageRequest()),
             this::handleReplyMessage
     ).attachToRecyclerView(list);
-
-    setupListLayoutListeners();
 
     this.conversationViewModel = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
     conversationViewModel.getMessages().observe(this, list -> {
@@ -230,26 +225,6 @@ public class ConversationFragment extends Fragment {
     conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
 
     return view;
-  }
-
-  private void setupListLayoutListeners() {
-    if (!FeatureFlags.messageRequests()) {
-      return;
-    }
-
-    list.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> setListVerticalTranslation());
-
-    list.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
-      @Override
-      public void onChildViewAttachedToWindow(@NonNull View view) {
-        setListVerticalTranslation();
-      }
-
-      @Override
-      public void onChildViewDetachedFromWindow(@NonNull View view) {
-        setListVerticalTranslation();
-      }
-    });
   }
 
   private void setListVerticalTranslation() {
@@ -447,7 +422,7 @@ public class ConversationFragment extends Fragment {
       setLastSeen(conversationViewModel.getLastSeen());
 
       emptyConversationBanner.setVisibility(View.GONE);
-    } else if (FeatureFlags.messageRequests() && threadId == -1) {
+    } else if (threadId == -1) {
       emptyConversationBanner.setVisibility(View.VISIBLE);
     }
   }
@@ -884,18 +859,14 @@ public class ConversationFragment extends Fragment {
     }
 
     Runnable afterScroll = () -> {
-      if (FeatureFlags.messageRequests()) {
-        adapter.setFooterView(conversationBanner);
-        if (!conversation.isMessageRequestAccepted()) {
-          snapToTopDataObserver.requestScrollPosition(adapter.getItemCount() - 1);
-        }
-      } else {
-        adapter.setFooterView(null);
+      adapter.setFooterView(conversationBanner);
+      if (!conversation.isMessageRequestAccepted()) {
+        snapToTopDataObserver.requestScrollPosition(adapter.getItemCount() - 1);
       }
 
       setLastSeen(conversation.getLastSeen());
 
-      if (FeatureFlags.messageRequests() && !conversation.hasPreMessageRequestMessages()) {
+      if (!conversation.hasPreMessageRequestMessages()) {
         clearHeaderIfNotTyping(adapter);
       } else {
         if (!conversation.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
@@ -925,7 +896,7 @@ public class ConversationFragment extends Fragment {
                            .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight()))
                            .withOnScrollRequestComplete(afterScroll)
                            .submit();
-    } else if (FeatureFlags.messageRequests()) {
+    } else {
       snapToTopDataObserver.buildScrollPosition(adapter.getItemCount() - 1)
                            .withOnScrollRequestComplete(afterScroll)
                            .submit();

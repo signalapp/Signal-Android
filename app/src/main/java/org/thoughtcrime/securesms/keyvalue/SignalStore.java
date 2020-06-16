@@ -37,9 +37,14 @@ public final class SignalStore {
   }
 
   public static void onFirstEverAppLaunch() {
+    kbsValues().onFirstEverAppLaunch();
     registrationValues().onFirstEverAppLaunch();
+    pinValues().onFirstEverAppLaunch();
+    remoteConfigValues().onFirstEverAppLaunch();
+    storageServiceValues().onFirstEverAppLaunch();
     uiHints().onFirstEverAppLaunch();
     tooltips().onFirstEverAppLaunch();
+    misc().onFirstEverAppLaunch();
   }
 
   public static @NonNull KbsValues kbsValues() {
@@ -92,29 +97,5 @@ public final class SignalStore {
 
   private static @NonNull KeyValueStore getStore() {
     return INSTANCE.store;
-  }
-
-  private static void putBlob(@NonNull String key, byte[] value) {
-    getStore().beginWrite().putBlob(key, value).apply();
-  }
-
-  private static void putBoolean(@NonNull String key, boolean value) {
-    getStore().beginWrite().putBoolean(key, value).apply();
-  }
-
-  private static void putFloat(@NonNull String key, float value) {
-    getStore().beginWrite().putFloat(key, value).apply();
-  }
-
-  private static void putInteger(@NonNull String key, int value) {
-    getStore().beginWrite().putInteger(key, value).apply();
-  }
-
-  private static void putLong(@NonNull String key, long value) {
-    getStore().beginWrite().putLong(key, value).apply();
-  }
-
-  private static void putString(@NonNull String key, String value) {
-    getStore().beginWrite().putString(key, value).apply();
   }
 }

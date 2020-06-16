@@ -98,10 +98,7 @@ public class RecipientUtil {
     DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient.getId(), false);
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
     StorageSyncHelper.scheduleSyncForDataChange();
-
-    if (FeatureFlags.messageRequests()) {
-      ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipient.getId()));
-    }
+    ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipient.getId()));
   }
 
   @WorkerThread
@@ -127,7 +124,7 @@ public class RecipientUtil {
    */
   @WorkerThread
   public static boolean isMessageRequestAccepted(@NonNull Context context, long threadId) {
-    if (!FeatureFlags.messageRequests() || threadId < 0) {
+    if (threadId < 0) {
       return true;
     }
 
@@ -146,7 +143,7 @@ public class RecipientUtil {
    */
   @WorkerThread
   public static boolean isMessageRequestAccepted(@NonNull Context context, @Nullable Recipient threadRecipient) {
-    if (!FeatureFlags.messageRequests() || threadRecipient == null) {
+    if (threadRecipient == null) {
       return true;
     }
 
@@ -159,20 +156,12 @@ public class RecipientUtil {
    */
   @WorkerThread
   public static boolean isPreMessageRequestThread(@NonNull Context context, long threadId) {
-    if (!FeatureFlags.messageRequests()) {
-      return true;
-    }
-
     long beforeTime = SignalStore.misc().getMessageRequestEnableTime();
     return DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId, beforeTime) > 0;
   }
 
   @WorkerThread
   public static void shareProfileIfFirstSecureMessage(@NonNull Context context, @NonNull Recipient recipient) {
-    if (!FeatureFlags.messageRequests()) {
-      return;
-    }
-
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
 
     if (isPreMessageRequestThread(context, threadId)) {

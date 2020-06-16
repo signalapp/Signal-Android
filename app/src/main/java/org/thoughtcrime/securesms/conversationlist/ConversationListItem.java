@@ -428,7 +428,7 @@ public class ConversationListItem extends RelativeLayout
     } else if (SmsDatabase.Types.isMissedCall(thread.getType())) {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
     } else if (SmsDatabase.Types.isJoinedType(thread.getType())) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal, thread.getRecipient().toShortString(context)));
+      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal, thread.getRecipient().getDisplayName(context)));
     } else if (SmsDatabase.Types.isExpirationTimerUpdate(thread.getType())) {
       int seconds = (int)(thread.getExpiresIn() / 1000);
       if (seconds <= 0) {
@@ -440,7 +440,7 @@ public class ConversationListItem extends RelativeLayout
       if (thread.getRecipient().isGroup()) {
         return emphasisAdded(context.getString(R.string.ThreadRecord_safety_number_changed));
       } else {
-        return emphasisAdded(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, thread.getRecipient().toShortString(context)));
+        return emphasisAdded(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, thread.getRecipient().getDisplayName(context)));
       }
     } else if (SmsDatabase.Types.isIdentityVerified(thread.getType())) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_verified));

@@ -389,15 +389,15 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
       if (showThread && (from.isLocalNumber() || thread.isGroup())) {
         if (from.isLocalNumber()) {
-          return context.getString(R.string.MediaOverviewActivity_sent_by_you_to_s, thread.toShortString(context));
+          return context.getString(R.string.MediaOverviewActivity_sent_by_you_to_s, thread.getDisplayName(context));
         } else {
-          return context.getString(R.string.MediaOverviewActivity_sent_by_s_to_s, from.toShortString(context), thread.toShortString(context));
+          return context.getString(R.string.MediaOverviewActivity_sent_by_s_to_s, from.getDisplayName(context), thread.getDisplayName(context));
         }
       } else {
         if (from.isLocalNumber()) {
           return context.getString(R.string.MediaOverviewActivity_sent_by_you);
         } else {
-          return context.getString(R.string.MediaOverviewActivity_sent_by_s, from.toShortString(context));
+          return context.getString(R.string.MediaOverviewActivity_sent_by_s, from.getDisplayName(context));
         }
       }
     }

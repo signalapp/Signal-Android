@@ -63,7 +63,7 @@ public class BlockedContactListItem extends RelativeLayout implements RecipientF
     final TextView        nameView          = this.nameView;
 
     contactPhotoImage.setAvatar(glideRequests, recipient, false);
-    nameView.setText(recipient.toShortString(getContext()));
+    nameView.setText(recipient.getDisplayName(getContext()));
   }
 
   public Recipient getRecipient() {

@@ -98,7 +98,7 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActionBarActi
                    })
                    .into(avatar);
 
-      toolbar.setTitle(recipient.toShortString(context));
+      toolbar.setTitle(recipient.getDisplayName(context));
     });
 
     avatar.setOnClickListener(v -> toggleUiVisibility());

@@ -84,7 +84,7 @@ public class SmsMessageRecord extends MessageRecord {
     } else if (isEndSession() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else if (isEndSession()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset_s, getIndividualRecipient().toShortString(context)));
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset_s, getIndividualRecipient().getDisplayName(context)));
     } else if (SmsDatabase.Types.isUnsupportedMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version));
     } else if (SmsDatabase.Types.isInvalidMessageType(type)) {

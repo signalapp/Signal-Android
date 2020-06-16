@@ -1002,21 +1002,8 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   @SuppressLint("SetTextI18n")
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing() && groupSender != null && groupSenderProfileName != null) {
-
-      if (FeatureFlags.profileDisplay()) {
-        groupSender.setText(recipient.getDisplayName(getContext()));
-        groupSenderProfileName.setVisibility(View.GONE);
-      } else {
-        groupSender.setText(recipient.toShortString(context));
-
-        if (recipient.getName(context) == null && !recipient.getProfileName().isEmpty()) {
-          groupSenderProfileName.setText("~" + recipient.getProfileName().toString());
-          groupSenderProfileName.setVisibility(View.VISIBLE);
-        } else {
-          groupSenderProfileName.setText(null);
-          groupSenderProfileName.setVisibility(View.GONE);
-        }
-      }
+      groupSender.setText(recipient.getDisplayName(getContext()));
+      groupSenderProfileName.setVisibility(View.GONE);
     }
   }
 

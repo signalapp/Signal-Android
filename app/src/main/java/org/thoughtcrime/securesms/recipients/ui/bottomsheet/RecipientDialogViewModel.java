@@ -114,7 +114,7 @@ final class RecipientDialogViewModel extends ViewModel {
 
   void onMakeGroupAdminClicked(@NonNull Activity activity) {
     new AlertDialog.Builder(activity)
-                   .setMessage(context.getString(R.string.RecipientBottomSheet_s_will_be_able_to_edit_group, Objects.requireNonNull(recipient.getValue()).toShortString(context)))
+                   .setMessage(context.getString(R.string.RecipientBottomSheet_s_will_be_able_to_edit_group, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
                    .setPositiveButton(R.string.RecipientBottomSheet_make_group_admin,
                                       (dialog, which) -> {
                                         adminActionBusy.setValue(true);
@@ -132,7 +132,7 @@ final class RecipientDialogViewModel extends ViewModel {
 
   void onRemoveGroupAdminClicked(@NonNull Activity activity) {
     new AlertDialog.Builder(activity)
-                   .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_as_group_admin, Objects.requireNonNull(recipient.getValue()).toShortString(context)))
+                   .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_as_group_admin, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
                    .setPositiveButton(R.string.RecipientBottomSheet_remove_as_admin,
                                       (dialog, which) -> {
                                         adminActionBusy.setValue(true);
@@ -151,7 +151,7 @@ final class RecipientDialogViewModel extends ViewModel {
   void onRemoveFromGroupClicked(@NonNull Activity activity, @NonNull Runnable onSuccess) {
     recipientDialogRepository.getGroupName(title ->
       new AlertDialog.Builder(activity)
-                     .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_from_s, Objects.requireNonNull(recipient.getValue()).toShortString(context), title))
+                     .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_from_s, Objects.requireNonNull(recipient.getValue()).getDisplayName(context), title))
                      .setPositiveButton(R.string.RecipientBottomSheet_remove,
                                         (dialog, which) -> {
                                           adminActionBusy.setValue(true);

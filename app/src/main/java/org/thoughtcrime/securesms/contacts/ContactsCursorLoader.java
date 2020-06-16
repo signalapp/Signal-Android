@@ -274,7 +274,7 @@ public class ContactsCursorLoader extends CursorLoader {
         String    stringId  = recipient.isGroup() ? recipient.requireGroupId().toString() : recipient.getE164().or(recipient.getEmail()).or("");
 
         recentConversations.addRow(new Object[] { recipient.getId().serialize(),
-                                                  recipient.toShortString(getContext()),
+                                                  recipient.getDisplayName(getContext()),
                                                   stringId,
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",

@@ -110,7 +110,7 @@ public final class GroupV1MessageProcessor {
 
     Recipient sender = Recipient.externalPush(context, content.getSender());
 
-    if (FeatureFlags.messageRequests() && (sender.isSystemContact() || sender.isProfileSharing())) {
+    if (sender.isSystemContact() || sender.isProfileSharing()) {
       Log.i(TAG, "Auto-enabling profile sharing because 'adder' is trusted. contact: " + sender.isSystemContact() + ", profileSharing: " + sender.isProfileSharing());
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.externalGroup(context, id).getId(), true);
     }

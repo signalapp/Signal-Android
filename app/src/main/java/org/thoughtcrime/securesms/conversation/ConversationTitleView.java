@@ -113,16 +113,9 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   private void setRecipientTitle(Recipient recipient) {
-    if (FeatureFlags.profileDisplay()) {
-      if      (recipient.isGroup())       setGroupRecipientTitle(recipient);
-      else if (recipient.isLocalNumber()) setSelfTitle();
-      else                                setIndividualRecipientTitle(recipient);
-    } else {
-      if      (recipient.isGroup())                                setGroupRecipientTitle(recipient);
-      else if (recipient.isLocalNumber())                          setSelfTitle();
-      else if (TextUtils.isEmpty(recipient.getName(getContext()))) setNonContactRecipientTitle(recipient);
-      else                                                         setContactRecipientTitle(recipient);
-    }
+    if      (recipient.isGroup())       setGroupRecipientTitle(recipient);
+    else if (recipient.isLocalNumber()) setSelfTitle();
+    else                                setIndividualRecipientTitle(recipient);
   }
 
   @SuppressLint("SetTextI18n")
@@ -138,25 +131,8 @@ public class ConversationTitleView extends RelativeLayout {
     updateSubtitleVisibility();
   }
 
-  private void setContactRecipientTitle(Recipient recipient) {
-    this.title.setText(recipient.getName(getContext()));
-
-    if (TextUtils.isEmpty(recipient.getCustomLabel())) {
-      this.subtitle.setText(null);
-    } else {
-      this.subtitle.setText(recipient.getCustomLabel());
-    }
-
-    updateSubtitleVisibility();
-  }
-
   private void setGroupRecipientTitle(Recipient recipient) {
-    if (FeatureFlags.profileDisplay()) {
-      this.title.setText(recipient.getDisplayName(getContext()));
-    } else {
-      this.title.setText(recipient.getName(getContext()));
-    }
-
+    this.title.setText(recipient.getDisplayName(getContext()));
     this.subtitle.setText(Stream.of(recipient.getParticipants())
                                 .sorted((a, b) -> Boolean.compare(a.isLocalNumber(), b.isLocalNumber()))
                                 .map(r -> r.isLocalNumber() ? getResources().getString(R.string.ConversationTitleView_you)

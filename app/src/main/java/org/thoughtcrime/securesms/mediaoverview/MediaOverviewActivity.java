@@ -200,8 +200,8 @@ public final class MediaOverviewActivity extends PassphraseRequiredActionBarActi
       SimpleTask.run(() -> DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId),
         (recipient) -> {
           if (recipient != null) {
-            getSupportActionBar().setTitle(recipient.toShortString(this));
-            recipient.live().observe(this, r -> getSupportActionBar().setTitle(r.toShortString(this)));
+            getSupportActionBar().setTitle(recipient.getDisplayName(this));
+            recipient.live().observe(this, r -> getSupportActionBar().setTitle(r.getDisplayName(this)));
           }
         }
       );

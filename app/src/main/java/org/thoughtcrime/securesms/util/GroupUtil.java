@@ -119,7 +119,7 @@ public final class GroupUtil {
 
     public String toString(Recipient sender) {
       StringBuilder description = new StringBuilder();
-      description.append(context.getString(R.string.MessageRecord_s_updated_group, sender.toShortString(context)));
+      description.append(context.getString(R.string.MessageRecord_s_updated_group, sender.getDisplayName(context)));
 
       if (groupContext == null) {
         return description.toString();
@@ -162,7 +162,7 @@ public final class GroupUtil {
       StringBuilder result = new StringBuilder();
 
       for (int i = 0; i < recipients.size(); i++) {
-        result.append(Recipient.live(recipients.get(i)).get().toShortString(context));
+        result.append(Recipient.live(recipients.get(i)).get().getDisplayName(context));
 
       if (i != recipients.size() -1 )
         result.append(", ");

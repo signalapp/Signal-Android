@@ -41,24 +41,10 @@ public class RecipientUtilTest {
     when(DatabaseFactory.getThreadDatabase(any())).thenReturn(mockThreadDatabase);
     when(DatabaseFactory.getMmsSmsDatabase(any())).thenReturn(mockMmsSmsDatabase);
     when(DatabaseFactory.getRecipientDatabase(any())).thenReturn(mockRecipientDatabase);
-
     mockStatic(FeatureFlags.class);
-    when(FeatureFlags.messageRequests()).thenReturn(true);
 
     when(recipient.getId()).thenReturn(RecipientId.from(5));
     when(recipient.resolve()).thenReturn(recipient);
-  }
-
-  @Test
-  public void givenMessageRequestsFlagDisabled_whenIsThreadMessageRequestAccepted_thenIExpectTrue() {
-    // GIVEN
-    when(FeatureFlags.messageRequests()).thenReturn(false);
-
-    // WHEN
-    boolean result = RecipientUtil.isMessageRequestAccepted(context, 1);
-
-    // THEN
-    assertTrue(result);
   }
 
   @Test
@@ -153,18 +139,6 @@ public class RecipientUtilTest {
   public void givenRecipientIsNull_whenIsRecipientMessageRequestAccepted_thenIExpectTrue() {
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, null);
-
-    // THEN
-    assertTrue(result);
-  }
-
-  @Test
-  public void givenMessageRequestsFlagIsOff_whenIsRecipientMessageRequestAccepted_thenIExpectTrue() {
-    // GIVEN
-    when(FeatureFlags.messageRequests()).thenReturn(false);
-
-    // WHEN
-    boolean result = RecipientUtil.isMessageRequestAccepted(context, recipient);
 
     // THEN
     assertTrue(result);

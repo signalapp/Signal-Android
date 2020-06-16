@@ -404,22 +404,13 @@ public class Recipient {
       List<String> names = new LinkedList<>();
 
       for (Recipient recipient : participants) {
-        names.add(recipient.toShortString(context));
+        names.add(recipient.getDisplayName(context));
       }
 
       return Util.join(names, ", ");
     }
 
     return this.name;
-  }
-
-  /**
-   * TODO [UUID] -- Remove once UUID Feature Flag is removed
-   */
-  @Deprecated
-  public @NonNull String toShortString(@NonNull Context context) {
-    if (FeatureFlags.profileDisplay()) return getDisplayName(context);
-    else                               return Optional.fromNullable(getName(context)).or(getSmsAddress()).or("");
   }
 
   /**
@@ -598,11 +589,6 @@ public class Recipient {
 
   public @NonNull ProfileName getProfileName() {
     return profileName;
-  }
-
-  public @Nullable String getCustomLabel() {
-    if (FeatureFlags.profileDisplay()) throw new AssertionError("This method should never be called if PROFILE_DISPLAY is enabled.");
-    return customLabel;
   }
 
   public @Nullable String getProfileAvatar() {
