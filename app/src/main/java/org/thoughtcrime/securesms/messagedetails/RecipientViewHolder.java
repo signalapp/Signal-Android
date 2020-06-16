@@ -9,12 +9,9 @@ import org.thoughtcrime.securesms.ConfirmIdentityDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 final class RecipientViewHolder extends RecyclerView.ViewHolder {
@@ -28,12 +25,12 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
   RecipientViewHolder(View itemView) {
     super(itemView);
 
-    fromView                 = itemView.findViewById(R.id.recipient_name);
-    avatar                   = itemView.findViewById(R.id.recipient_avatar);
-    timestamp                = itemView.findViewById(R.id.recipient_timestamp);
-    error                    = itemView.findViewById(R.id.error_description);
-    conflictButton           = itemView.findViewById(R.id.conflict_button);
-    unidentifiedDeliveryIcon = itemView.findViewById(R.id.ud_indicator);
+    fromView                 = itemView.findViewById(R.id.message_details_recipient_name);
+    avatar                   = itemView.findViewById(R.id.message_details_recipient_avatar);
+    timestamp                = itemView.findViewById(R.id.message_details_recipient_timestamp);
+    error                    = itemView.findViewById(R.id.message_details_recipient_error_description);
+    conflictButton           = itemView.findViewById(R.id.message_details_recipient_conflict_button);
+    unidentifiedDeliveryIcon = itemView.findViewById(R.id.message_details_recipient_ud_indicator);
   }
 
   void bind(RecipientDeliveryStatus data) {
@@ -45,13 +42,13 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
       timestamp.setVisibility(View.GONE);
       error.setVisibility(View.VISIBLE);
       conflictButton.setVisibility(View.VISIBLE);
-      error.setText(itemView.getContext().getString(R.string.MessageDetailsRecipient_new_safety_number));
+      error.setText(itemView.getContext().getString(R.string.message_details_recipient__new_safety_number));
       conflictButton.setOnClickListener(unused -> new ConfirmIdentityDialog(itemView.getContext(), data.getMessageRecord(), data.getKeyMismatchFailure()).show());
     } else if ((data.getNetworkFailure() != null && !data.getMessageRecord().isPending()) || (!data.getMessageRecord().getRecipient().isPushGroup() && data.getMessageRecord().isFailed())) {
       timestamp.setVisibility(View.GONE);
       error.setVisibility(View.VISIBLE);
       conflictButton.setVisibility(View.GONE);
-      error.setText(itemView.getContext().getString(R.string.MessageDetailsRecipient_failed_to_send));
+      error.setText(itemView.getContext().getString(R.string.message_details_recipient__failed_to_send));
     } else {
       timestamp.setVisibility(View.VISIBLE);
       error.setVisibility(View.GONE);

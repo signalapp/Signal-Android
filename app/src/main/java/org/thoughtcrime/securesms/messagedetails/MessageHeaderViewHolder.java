@@ -48,18 +48,18 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
     super(itemView);
     this.glideRequests = glideRequests;
 
-    sentDate        = itemView.findViewById(R.id.sent_time);
-    receivedDate    = itemView.findViewById(R.id.received_time);
-    receivedGroup   = itemView.findViewById(R.id.received_group);
-    expiresIn       = itemView.findViewById(R.id.expires_in);
-    expiresGroup    = itemView.findViewById(R.id.expires_group);
-    transport       = itemView.findViewById(R.id.transport);
-    errorText       = itemView.findViewById(R.id.error_text);
-    resendButton    = itemView.findViewById(R.id.resend_button);
-    messageMetadata = itemView.findViewById(R.id.message_metadata);
-    updateStub      = itemView.findViewById(R.id.message_view_update);
-    sentStub        = itemView.findViewById(R.id.message_view_sent_multimedia);
-    receivedStub    = itemView.findViewById(R.id.message_view_received_multimedia);
+    sentDate        = itemView.findViewById(R.id.message_details_header_sent_time);
+    receivedDate    = itemView.findViewById(R.id.message_details_header_received_time);
+    receivedGroup   = itemView.findViewById(R.id.message_details_header_received_group);
+    expiresIn       = itemView.findViewById(R.id.message_details_header_expires_in);
+    expiresGroup    = itemView.findViewById(R.id.message_details_header_expires_group);
+    transport       = itemView.findViewById(R.id.message_details_header_transport);
+    errorText       = itemView.findViewById(R.id.message_details_header_error_text);
+    resendButton    = itemView.findViewById(R.id.message_details_header_resend_button);
+    messageMetadata = itemView.findViewById(R.id.message_details_header_message_metadata);
+    updateStub      = itemView.findViewById(R.id.message_details_header_message_view_update);
+    sentStub        = itemView.findViewById(R.id.message_details_header_message_view_sent_multimedia);
+    receivedStub    = itemView.findViewById(R.id.message_details_header_message_view_received_multimedia);
   }
 
   void bind(MessageRecord messageRecord, boolean running) {

@@ -32,11 +32,11 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
       case MessageDetailsViewState.MESSAGE_HEADER:
-        return new MessageHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_2_header, parent, false), glideRequests);
+        return new MessageHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_header, parent, false), glideRequests);
       case MessageDetailsViewState.RECIPIENT_HEADER:
-        return new RecipientHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_2_recipient_header, parent, false));
+        return new RecipientHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_recipient_header, parent, false));
       case MessageDetailsViewState.RECIPIENT:
-        return new RecipientViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_2_recipient, parent, false));
+        return new RecipientViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_recipient, parent, false));
       default:
         throw new AssertionError("unknown view type");
     }

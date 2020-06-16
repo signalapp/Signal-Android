@@ -647,10 +647,6 @@
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Learn more</string>
 
-    <!-- MessageDetailsRecipient -->
-    <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
-    <string name="MessageDetailsRecipient_new_safety_number">New safety number</string>
-
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Unable to find message</string>
     <string name="LongMessageActivity_message_from_s">Message from %1$s</string>
@@ -1713,9 +1709,6 @@
     <string name="message_details_header__received">Received</string>
     <string name="message_details_header__disappears">Disappears</string>
     <string name="message_details_header__via">Via</string>
-    <string name="message_details_header__to">To:</string>
-    <string name="message_details_header__from">From:</string>
-    <string name="message_details_header__with">With:</string>
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Pending</string>
@@ -1724,6 +1717,10 @@
     <string name="message_details_recipient_header__delivered_to">Delivered to</string>
     <string name="message_details_recipient_header__read_by">Read by</string>
     <string name="message_details_recipient_header__not_sent">Not sent</string>
+
+    <!-- message_Details_recipient -->
+    <string name="message_details_recipient__failed_to_send">Failed to send</string>
+    <string name="message_details_recipient__new_safety_number">New safety number</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
