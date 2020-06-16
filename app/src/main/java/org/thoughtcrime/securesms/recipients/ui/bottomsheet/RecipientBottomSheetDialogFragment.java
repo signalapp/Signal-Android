@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -212,5 +214,12 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_ADD_CONTACT) {
       viewModel.onAddedToContacts();
     }
+  }
+
+  @Override
+  public void show(@NonNull FragmentManager manager, @Nullable String tag) {
+    FragmentTransaction transaction = manager.beginTransaction();
+    transaction.add(this, tag);
+    transaction.commitAllowingStateLoss();
   }
 }
