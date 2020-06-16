@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
@@ -25,21 +26,31 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
 
 public class CustomNotificationsDialogFragment extends DialogFragment {
 
-  private static final short RINGTONE_PICKER_REQUEST_CODE = 13562;
+  private static final short MESSAGE_RINGTONE_PICKER_REQUEST_CODE = 13562;
+  private static final short CALL_RINGTONE_PICKER_REQUEST_CODE    = 23621;
 
   private static final String ARG_RECIPIENT_ID = "recipient_id";
 
+  private View         customNotificationsRow;
   private SwitchCompat customNotificationsSwitch;
+  private View         soundRow;
   private View         soundLabel;
   private TextView     soundSelector;
+  private View         vibrateRow;
   private View         vibrateLabel;
   private SwitchCompat vibrateSwitch;
+  private View         callHeading;
+  private View         ringtoneRow;
+  private TextView     ringtoneSelector;
+  private View         callVibrateRow;
+  private TextView     callVibrateSelector;
 
   private CustomNotificationsViewModel viewModel;
 
@@ -79,10 +90,13 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == RINGTONE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+    if (resultCode == Activity.RESULT_OK && data != null) {
       Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-
-      viewModel.setMessageSound(uri);
+      if (requestCode == MESSAGE_RINGTONE_PICKER_REQUEST_CODE) {
+        viewModel.setMessageSound(uri);
+      } else if (requestCode == CALL_RINGTONE_PICKER_REQUEST_CODE) {
+        viewModel.setCallSound(uri);
+      }
     }
   }
 
@@ -96,11 +110,19 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
   }
 
   private void initializeViews(@NonNull View view) {
+    customNotificationsRow    = view.findViewById(R.id.custom_notifications_row);
     customNotificationsSwitch = view.findViewById(R.id.custom_notifications_enable_switch);
+    soundRow                  = view.findViewById(R.id.custom_notifications_sound_row);
     soundLabel                = view.findViewById(R.id.custom_notifications_sound_label);
     soundSelector             = view.findViewById(R.id.custom_notifications_sound_selection);
+    vibrateRow                = view.findViewById(R.id.custom_notifications_vibrate_row);
     vibrateLabel              = view.findViewById(R.id.custom_notifications_vibrate_label);
     vibrateSwitch             = view.findViewById(R.id.custom_notifications_vibrate_switch);
+    callHeading               = view.findViewById(R.id.custom_notifications_call_settings_section_header);
+    ringtoneRow               = view.findViewById(R.id.custom_notifications_ringtone_row);
+    ringtoneSelector          = view.findViewById(R.id.custom_notifications_ringtone_selection);
+    callVibrateRow            = view.findViewById(R.id.custom_notifications_call_vibrate_row);
+    callVibrateSelector       = view.findViewById(R.id.custom_notifications_call_vibrate_selection);
 
     Toolbar toolbar = view.findViewById(R.id.custom_notifications_toolbar);
 
@@ -119,8 +141,11 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
       }
 
       customNotificationsSwitch.setOnCheckedChangeListener(onCustomNotificationsSwitchCheckChangedListener);
+      customNotificationsRow.setOnClickListener(v -> customNotificationsSwitch.toggle());
 
+      soundRow.setEnabled(hasCustomNotifications);
       soundLabel.setEnabled(hasCustomNotifications);
+      vibrateRow.setEnabled(hasCustomNotifications);
       vibrateLabel.setEnabled(hasCustomNotifications);
       soundSelector.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
       vibrateSwitch.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
@@ -145,18 +170,42 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
 
       vibrateSwitch.setOnCheckedChangeListener(onVibrateSwitchCheckChangedListener);
     });
+    vibrateRow.setOnClickListener(v -> vibrateSwitch.toggle());
 
     viewModel.getNotificationSound().observe(getViewLifecycleOwner(), sound -> {
       soundSelector.setText(getRingtoneSummary(requireContext(), sound));
       soundSelector.setTag(sound);
+      soundRow.setOnClickListener(v -> launchSoundSelector(sound, false));
     });
 
-    soundSelector.setOnClickListener(v -> launchSoundSelector(viewModel.getNotificationSound().getValue()));
+    viewModel.getShowCallingOptions().observe(getViewLifecycleOwner(), showCalling -> {
+      callHeading.setVisibility(showCalling ? View.VISIBLE : View.GONE);
+      ringtoneRow.setVisibility(showCalling ? View.VISIBLE : View.GONE);
+      callVibrateRow.setVisibility(showCalling ? View.VISIBLE : View.GONE);
+    });
+
+    viewModel.getRingtone().observe(getViewLifecycleOwner(), sound -> {
+      ringtoneSelector.setText(getRingtoneSummary(requireContext(), sound));
+      ringtoneSelector.setTag(sound);
+      ringtoneRow.setOnClickListener(v -> launchSoundSelector(sound, true));
+    });
+
+    viewModel.getCallingVibrateState().observe(getViewLifecycleOwner(), vibrateState -> {
+      String vibrateSummary = getVibrateSummary(requireContext(), vibrateState);
+      callVibrateSelector.setText(vibrateSummary);
+      callVibrateRow.setOnClickListener(v -> new AlertDialog.Builder(requireContext())
+                                                            .setTitle(R.string.CustomNotificationsDialogFragment__vibrate)
+                                                            .setSingleChoiceItems(R.array.recipient_vibrate_entries, vibrateState.ordinal(), ((dialog, which) -> {
+                                                               viewModel.setCallingVibrate(RecipientDatabase.VibrateState.fromId(which));
+                                                               dialog.dismiss();
+                                                            })).setNegativeButton(android.R.string.cancel, null)
+                                                            .show());
+    });
   }
 
   private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone) {
     if (ringtone == null) {
-      return context.getString(R.string.preferences__default);
+      return context.getString(R.string.CustomNotificationsDialogFragment__default);
     } else if (ringtone.toString().isEmpty()) {
       return context.getString(R.string.preferences__silent);
     } else {
@@ -167,18 +216,38 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
       }
     }
 
-    return context.getString(R.string.preferences__default);
+    return context.getString(R.string.CustomNotificationsDialogFragment__default);
   }
 
-  private void launchSoundSelector(@Nullable Uri current) {
+  private void launchSoundSelector(@Nullable Uri current, boolean calls) {
     Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
 
-    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
-    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
-    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION);
-    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, Settings.System.DEFAULT_NOTIFICATION_URI);
-    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current);
+    if      (current == null)              current = calls ? Settings.System.DEFAULT_RINGTONE_URI : Settings.System.DEFAULT_NOTIFICATION_URI;
+    else if (current.toString().isEmpty()) current = null;
 
-    startActivityForResult(intent, RINGTONE_PICKER_REQUEST_CODE);
+    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
+    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, calls ? RingtoneManager.TYPE_RINGTONE : RingtoneManager.TYPE_NOTIFICATION);
+    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current);
+    intent.putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, defaultSound(calls));
+
+    startActivityForResult(intent, calls ? CALL_RINGTONE_PICKER_REQUEST_CODE : MESSAGE_RINGTONE_PICKER_REQUEST_CODE);
+  }
+
+  private Uri defaultSound(boolean calls) {
+    Uri defaultValue;
+
+    if (calls) defaultValue = TextSecurePreferences.getCallNotificationRingtone(requireContext());
+    else       defaultValue = TextSecurePreferences.getNotificationRingtone(requireContext());
+    return defaultValue;
+  }
+
+  private static @NonNull String getVibrateSummary(@NonNull Context context, @NonNull RecipientDatabase.VibrateState vibrateState) {
+    switch (vibrateState) {
+      case DEFAULT  : return context.getString(R.string.CustomNotificationsDialogFragment__default);
+      case ENABLED  : return context.getString(R.string.CustomNotificationsDialogFragment__enabled);
+      case DISABLED : return context.getString(R.string.CustomNotificationsDialogFragment__disabled);
+      default       : throw new AssertionError();
+    }
   }
 }

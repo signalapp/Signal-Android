@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.creategroup;
+package org.thoughtcrime.securesms.recipients.ui;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -19,17 +19,17 @@ import org.thoughtcrime.securesms.R;
 
 import java.lang.ref.WeakReference;
 
-public final class GroupSettingsCoordinatorLayoutBehavior extends CoordinatorLayout.Behavior<View> {
+public final class RecipientSettingsCoordinatorLayoutBehavior extends CoordinatorLayout.Behavior<View> {
 
   private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
-  private final ViewRef avatarTargetRef    = new ViewRef(R.id.avatar_target);
-  private final ViewRef groupNameRef       = new ViewRef(R.id.group_name);
-  private final ViewRef groupNameTargetRef = new ViewRef(R.id.group_name_target);
-  private final Rect    targetRect         = new Rect();
-  private final Rect    childRect          = new Rect();
+  private final ViewReference avatarTargetRef = new ViewReference(R.id.avatar_target);
+  private final ViewReference nameRef         = new ViewReference(R.id.name);
+  private final ViewReference nameTargetRef   = new ViewReference(R.id.name_target);
+  private final Rect          targetRect      = new Rect();
+  private final Rect          childRect       = new Rect();
 
-  public GroupSettingsCoordinatorLayoutBehavior(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public RecipientSettingsCoordinatorLayoutBehavior(@NonNull Context context, @Nullable AttributeSet attrs) {
   }
 
   @Override
@@ -71,8 +71,8 @@ public final class GroupSettingsCoordinatorLayoutBehavior extends CoordinatorLay
   }
 
   private void updateNamePosition(@NonNull CoordinatorLayout parent, float factor) {
-    TextView child  = (TextView) groupNameRef.require(parent);
-    View     target = groupNameTargetRef.require(parent);
+    TextView child  = (TextView) nameRef.require(parent);
+    View     target = nameTargetRef.require(parent);
 
     targetRect.set(target.getLeft(), target.getTop(), target.getRight(), target.getBottom());
     childRect.set(child.getLeft(), child.getTop(), child.getRight(), child.getBottom());
@@ -95,13 +95,13 @@ public final class GroupSettingsCoordinatorLayoutBehavior extends CoordinatorLay
     return parent.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR ? rect.left : rect.right;
   }
 
-  private static final class ViewRef {
+  private static final class ViewReference {
 
     private WeakReference<View> ref = new WeakReference<>(null);
 
     private final @IdRes int idRes;
 
-    private ViewRef(@IdRes int idRes) {
+    private ViewReference(@IdRes int idRes) {
       this.idRes = idRes;
     }
 

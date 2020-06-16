@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-        android:id="@+id/group_name"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

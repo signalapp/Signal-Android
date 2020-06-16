@@ -61,6 +61,10 @@ class CustomNotificationsRepository {
     });
   }
 
+  void setCallingVibrate(final RecipientDatabase.VibrateState vibrateState) {
+    SignalExecutors.SERIAL.execute(() -> DatabaseFactory.getRecipientDatabase(context).setCallVibrate(recipientId, vibrateState));
+  }
+
   void setMessageSound(@Nullable Uri sound) {
     SignalExecutors.SERIAL.execute(() -> {
       Recipient recipient    = getRecipient();
@@ -73,6 +77,19 @@ class CustomNotificationsRepository {
 
       DatabaseFactory.getRecipientDatabase(context).setMessageRingtone(recipient.getId(), newValue);
       NotificationChannels.updateMessageRingtone(context, recipient, newValue);
+    });
+  }
+
+  void setCallSound(@Nullable Uri sound) {
+    SignalExecutors.SERIAL.execute(() -> {
+      Uri defaultValue = TextSecurePreferences.getCallNotificationRingtone(context);
+      Uri newValue;
+
+      if (defaultValue.equals(sound)) newValue = null;
+      else if (sound == null)         newValue = Uri.EMPTY;
+      else                            newValue = sound;
+
+      DatabaseFactory.getRecipientDatabase(context).setCallRingtone(recipientId, newValue);
     });
   }
 

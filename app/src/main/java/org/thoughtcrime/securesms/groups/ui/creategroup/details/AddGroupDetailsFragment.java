@@ -91,7 +91,7 @@ public class AddGroupDetailsFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     create  = view.findViewById(R.id.create);
-    name    = view.findViewById(R.id.group_name);
+    name    = view.findViewById(R.id.name);
     toolbar = view.findViewById(R.id.toolbar);
 
     setCreateEnabled(false, false);

@@ -22,14 +22,20 @@ public final class CustomNotificationsViewModel extends ViewModel {
   private final LiveData<Uri>                            notificationSound;
   private final CustomNotificationsRepository            repository;
   private final MutableLiveData<Boolean>                 isInitialLoadComplete = new MutableLiveData<>();
+  private final LiveData<Boolean>                        showCallingOptions;
+  private final LiveData<Uri>                            ringtone;
+  private final LiveData<RecipientDatabase.VibrateState> isCallingVibrateEnabled;
 
   private CustomNotificationsViewModel(@NonNull RecipientId recipientId, @NonNull CustomNotificationsRepository repository) {
     LiveData<Recipient> recipient = Recipient.live(recipientId).getLiveData();
 
-    this.repository             = repository;
-    this.hasCustomNotifications = Transformations.map(recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
-    this.isVibrateEnabled       = Transformations.map(recipient, Recipient::getMessageVibrate);
-    this.notificationSound      = Transformations.map(recipient, Recipient::getMessageRingtone);
+    this.repository              = repository;
+    this.hasCustomNotifications  = Transformations.map(recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
+    this.isVibrateEnabled        = Transformations.map(recipient, Recipient::getMessageVibrate);
+    this.notificationSound       = Transformations.map(recipient, Recipient::getMessageRingtone);
+    this.showCallingOptions      = Transformations.map(recipient, r -> !r.isGroup() && r.isRegistered());
+    this.ringtone                = Transformations.map(recipient, Recipient::getCallRingtone);
+    this.isCallingVibrateEnabled = Transformations.map(recipient, Recipient::getCallVibrate);
 
     repository.onLoad(() -> isInitialLoadComplete.postValue(true));
   }
@@ -60,6 +66,26 @@ public final class CustomNotificationsViewModel extends ViewModel {
 
   public void setMessageSound(@Nullable Uri sound) {
     repository.setMessageSound(sound);
+  }
+
+  public void setCallSound(@Nullable Uri sound) {
+    repository.setCallSound(sound);
+  }
+
+  public LiveData<Boolean> getShowCallingOptions() {
+    return showCallingOptions;
+  }
+
+  public LiveData<Uri> getRingtone() {
+    return ringtone;
+  }
+
+  public LiveData<RecipientDatabase.VibrateState> getCallingVibrateState() {
+    return isCallingVibrateEnabled;
+  }
+
+  public void setCallingVibrate(@NonNull RecipientDatabase.VibrateState vibrateState) {
+    repository.setCallingVibrate(vibrateState);
   }
 
   public static final class Factory implements ViewModelProvider.Factory {

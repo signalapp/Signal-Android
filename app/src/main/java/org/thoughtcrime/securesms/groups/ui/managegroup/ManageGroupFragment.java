@@ -27,10 +27,11 @@ import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PushContactSelectionActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.GroupFallbackPhoto80;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
@@ -97,7 +98,7 @@ public class ManageGroupFragment extends Fragment {
   private final Recipient.FallbackPhotoProvider fallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
     @Override
     public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new GroupFallbackPhoto80();
+      return new FallbackPhoto80dp(R.drawable.ic_group_80, MaterialColor.ULTRAMARINE);
     }
   };
 
@@ -120,7 +121,7 @@ public class ManageGroupFragment extends Fragment {
 
     avatar                      = view.findViewById(R.id.group_avatar);
     toolbar                     = view.findViewById(R.id.toolbar);
-    groupName                   = view.findViewById(R.id.group_name);
+    groupName                   = view.findViewById(R.id.name);
     memberCountUnderAvatar      = view.findViewById(R.id.member_count);
     memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);

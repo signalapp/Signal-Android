@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -117,6 +118,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private CollapsingToolbarLayout toolbarLayout;
 
   public static @NonNull Intent getLaunchIntent(@NonNull Context context, @NonNull RecipientId id) {
+    if (FeatureFlags.newGroupUI()) {
+      return ManageRecipientActivity.newIntent(context, id);
+    }
+
+    return getOldLaunchIntent(context, id);
+  }
+
+  @Deprecated
+  public static Intent getOldLaunchIntent(@NonNull Context context, @NonNull RecipientId id) {
     Intent intent = new Intent(context, RecipientPreferenceActivity.class);
     intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, id);
 

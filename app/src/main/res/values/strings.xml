@@ -555,6 +555,31 @@
 
     <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Choose who can add or invite new members</string>
     <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Choose who can change the group name and photo</string>
+    
+    
+    <!-- ManageRecipientActivity -->
+    <string name="ManageRecipientActivity_disappearing_messages">Disappearing messages</string>
+    <string name="ManageRecipientActivity_chat_color">Chat color</string>
+    <string name="ManageRecipientActivity_block">Block</string>
+    <string name="ManageRecipientActivity_unblock">Unblock</string>
+    <string name="ManageRecipientActivity_view_safety_number">View safety number</string>
+    <string name="ManageRecipientActivity_mute_notifications">Mute notifications</string>
+    <string name="ManageRecipientActivity_custom_notifications">Custom notifications</string>
+    <string name="ManageRecipientActivity_until_s">Until %1$s</string>
+    <string name="ManageRecipientActivity_off">Off</string>
+    <string name="ManageRecipientActivity_on">On</string>
+    <string name="ManageRecipientActivity_add_to_a_group">Add to a group</string>
+    <string name="ManageRecipientActivity_view_all_groups">View all groups</string>
+    <string name="ManageRecipientActivity_see_all">See all</string>
+    <string name="ManageRecipientActivity_no_groups_in_common">No groups in common</string>
+    <plurals name="ManageRecipientActivity_d_groups_in_common">
+        <item quantity="one">%d group in common</item>
+        <item quantity="other">%d groups in common</item>
+    </plurals>
+    <string name="ManageRecipientActivity_edit_name_and_picture">Edit name and picture</string>
+    <string name="ManageRecipientActivity_message_description">Message</string>
+    <string name="ManageRecipientActivity_voice_call_description">Voice call</string>
+    <string name="ManageRecipientActivity_video_call_description">Video call</string>
 
     <plurals name="GroupMemberList_invited">
         <item quantity="one">%1$s invited 1 person</item>
@@ -567,6 +592,11 @@
     <string name="CustomNotificationsDialogFragment__use_custom_notifications">Use custom notifications</string>
     <string name="CustomNotificationsDialogFragment__notification_sound">Notification sound</string>
     <string name="CustomNotificationsDialogFragment__vibrate">Vibrate</string>
+    <string name="CustomNotificationsDialogFragment__call_settings">Call settings</string>
+    <string name="CustomNotificationsDialogFragment__ringtone">Ringtone</string>
+    <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
+    <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
+    <string name="CustomNotificationsDialogFragment__default">Default</string>
 
     <!-- GV2 Invite cancellation confirmation -->
     <string name="GroupManagement_cancel_own_single_invite">Do you want to cancel the invite you sent to %1$s?</string>
