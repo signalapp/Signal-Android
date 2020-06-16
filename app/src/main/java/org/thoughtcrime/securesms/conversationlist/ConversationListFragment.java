@@ -216,8 +216,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     list.setItemAnimator(new DeleteItemAnimator());
     list.addOnScrollListener(new ScrollListener());
 
-    CachedInflater.from(requireContext()).cacheUntilLimit(R.layout.conversation_list_item_view, list, 20);
-
     snapToTopDataObserver = new SnapToTopDataObserver(list, null);
 
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
