@@ -1,8 +1,5 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +17,6 @@ import androidx.navigation.Navigation;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
 import org.thoughtcrime.securesms.components.registration.VerificationCodeView;
@@ -39,7 +35,6 @@ import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public final class EnterCodeFragment extends BaseRegistrationFragment {
 
@@ -276,6 +271,11 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
         public void requestSent(@Nullable String fcmToken) {
           model.setFcmToken(fcmToken);
           model.markASuccessfulAttempt();
+        }
+
+        @Override
+        public void onRateLimited() {
+          Toast.makeText(requireContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
         }
 
         @Override
