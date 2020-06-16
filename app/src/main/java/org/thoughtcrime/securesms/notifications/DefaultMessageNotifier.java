@@ -637,7 +637,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
     }
 
     AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-    Intent       alarmIntent  = new Intent(ReminderReceiver.REMINDER_ACTION);
+    Intent       alarmIntent  = new Intent(context, ReminderReceiver.class);
     alarmIntent.putExtra("reminder_count", count);
 
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -648,7 +648,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   @Override
   public void clearReminder(@NonNull Context context) {
-    Intent        alarmIntent   = new Intent(ReminderReceiver.REMINDER_ACTION);
+    Intent        alarmIntent   = new Intent(context, ReminderReceiver.class);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 

@@ -710,11 +710,7 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".notifications.MessageNotifier$ReminderReceiver">
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION"/>
-        </intent-filter>
-    </receiver>
+    <receiver android:name=".notifications.MessageNotifier$ReminderReceiver"/>
 
     <receiver android:name=".notifications.DeleteNotificationReceiver">
         <intent-filter>
