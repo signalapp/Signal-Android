@@ -756,8 +756,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
+        inflater.inflate(R.menu.conversation_active_group_options, menu);
       } else if (isActiveV2Group || isActiveGroup && FeatureFlags.newGroupUI()) {
-        inflater.inflate(R.menu.conversation_push_group_v2_options, menu);
+        inflater.inflate(R.menu.conversation_active_group_options, menu);
       } else if (isActiveGroup) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
@@ -802,7 +803,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
-    if (FeatureFlags.newGroupUI() && isPushGroupConversation()) {
+    if (FeatureFlags.newGroupUI()) {
       hideMenuItem(menu, R.id.menu_group_recipients);
     }
 
@@ -884,7 +885,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
     case R.id.menu_edit_group:                handleEditPushGroupV1();                           return true;
-    case R.id.menu_group_settings:            handleManagePushGroup();                           return true;
+    case R.id.menu_group_settings:            handleManageGroup();                               return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
@@ -1041,8 +1042,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleConversationSettings() {
-    if (FeatureFlags.newGroupUI() && isPushGroupConversation()) {
-      handleManagePushGroup();
+    if (FeatureFlags.newGroupUI() && isGroupConversation()) {
+      handleManageGroup();
       return;
     }
 
@@ -1209,8 +1210,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivityForResult(GroupCreateActivity.newEditGroupIntent(ConversationActivity.this, recipient.get().requireGroupId().requireV1()), GROUP_EDIT);
   }
 
-  private void handleManagePushGroup() {
-    startActivityForResult(ManageGroupActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId().requirePush()),
+  private void handleManageGroup() {
+    startActivityForResult(ManageGroupActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId()),
                            GROUP_EDIT,
                            ManageGroupActivity.createTransitionBundle(this, titleView.findViewById(R.id.contact_photo_image)));
   }

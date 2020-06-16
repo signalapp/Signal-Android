@@ -79,8 +79,10 @@ public class ManageGroupFragment extends Fragment {
   private TextView                           editGroupAccessValue;
   private View                               editGroupMembershipRow;
   private TextView                           editGroupMembershipValue;
+  private View                               disappearingMessagesCard;
   private View                               disappearingMessagesRow;
   private TextView                           disappearingMessages;
+  private View                               blockAndLeaveCard;
   private TextView                           blockGroup;
   private TextView                           unblockGroup;
   private TextView                           leaveGroup;
@@ -133,8 +135,10 @@ public class ManageGroupFragment extends Fragment {
     editGroupAccessValue        = view.findViewById(R.id.edit_group_access_value);
     editGroupMembershipRow      = view.findViewById(R.id.edit_group_membership_row);
     editGroupMembershipValue    = view.findViewById(R.id.edit_group_membership_value);
+    disappearingMessagesCard    = view.findViewById(R.id.group_disappearing_messages_card);
     disappearingMessagesRow     = view.findViewById(R.id.disappearing_messages_row);
     disappearingMessages        = view.findViewById(R.id.disappearing_messages);
+    blockAndLeaveCard           = view.findViewById(R.id.group_block_and_leave_card);
     blockGroup                  = view.findViewById(R.id.blockGroup);
     unblockGroup                = view.findViewById(R.id.unblockGroup);
     leaveGroup                  = view.findViewById(R.id.leaveGroup);
@@ -154,8 +158,11 @@ public class ManageGroupFragment extends Fragment {
     super.onActivityCreated(savedInstanceState);
 
     Context                      context = requireContext();
-    GroupId.Push                 groupId = getPushGroupId();
+    GroupId                      groupId = getGroupId();
     ManageGroupViewModel.Factory factory = new ManageGroupViewModel.Factory(context, groupId);
+
+    disappearingMessagesCard.setVisibility(groupId.isPush() ? View.VISIBLE : View.GONE);
+    blockAndLeaveCard.setVisibility(groupId.isPush() ? View.VISIBLE : View.GONE);
 
     viewModel = ViewModelProviders.of(requireActivity(), factory).get(ManageGroupViewModel.class);
 
@@ -320,15 +327,15 @@ public class ManageGroupFragment extends Fragment {
 
   public boolean onMenuItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.action_edit) {
-      startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getPushGroupId()));
+      startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getGroupId().requirePush()));
       return true;
     }
 
     return false;
   }
 
-  private GroupId.Push getPushGroupId() {
-    return GroupId.parseOrThrow(Objects.requireNonNull(requireArguments().getString(GROUP_ID))).requirePush();
+  private GroupId getGroupId() {
+    return GroupId.parseOrThrow(Objects.requireNonNull(requireArguments().getString(GROUP_ID)));
   }
 
   private void setMediaCursorFactory(@Nullable ManageGroupViewModel.CursorFactory cursorFactory) {

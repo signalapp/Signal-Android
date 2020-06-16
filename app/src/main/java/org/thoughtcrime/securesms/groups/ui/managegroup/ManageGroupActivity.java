@@ -22,7 +22,7 @@ public class ManageGroupActivity extends PassphraseRequiredActionBarActivity {
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
-  public static Intent newIntent(@NonNull Context context, @NonNull GroupId.Push groupId) {
+  public static Intent newIntent(@NonNull Context context, @NonNull GroupId groupId) {
     Intent intent = new Intent(context, ManageGroupActivity.class);
     intent.putExtra(GROUP_ID, groupId.toString());
     return intent;

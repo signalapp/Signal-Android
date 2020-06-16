@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.groups;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -52,7 +53,13 @@ public final class LiveGroup {
   }
 
   public LiveData<String> getTitle() {
-    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getTitle);
+    return LiveDataUtil.combineLatest(groupRecord, recipient, (groupRecord, recipient) -> {
+      String title = groupRecord.getTitle();
+      if (!TextUtils.isEmpty(title)) {
+        return title;
+      }
+      return recipient.getDisplayName(ApplicationDependencies.getApplication());
+    });
   }
 
   public LiveData<Recipient> getGroupRecipient() {

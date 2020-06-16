@@ -7,10 +7,8 @@ import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
 import com.annimon.stream.Stream;
-import com.google.protobuf.ByteString;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -33,21 +31,19 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 final class ManageGroupRepository {
 
   private static final String TAG = Log.tag(ManageGroupRepository.class);
 
-  private final Context         context;
-  private final GroupId.Push    groupId;
+  private final Context context;
+  private final GroupId groupId;
 
-  ManageGroupRepository(@NonNull Context context, @NonNull GroupId.Push groupId) {
+  ManageGroupRepository(@NonNull Context context, @NonNull GroupId groupId) {
     this.context  = context;
     this.groupId  = groupId;
   }
@@ -149,7 +145,7 @@ final class ManageGroupRepository {
   void addMembers(@NonNull List<RecipientId> selected, @NonNull AddMembersResultCallback addMembersResultCallback, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        GroupManager.addMembers(context, groupId, selected);
+        GroupManager.addMembers(context, groupId.requirePush(), selected);
         addMembersResultCallback.onMembersAdded(selected.size());
       } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
         Log.w(TAG, e);

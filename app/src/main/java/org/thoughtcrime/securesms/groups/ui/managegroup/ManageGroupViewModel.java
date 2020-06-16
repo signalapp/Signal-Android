@@ -333,10 +333,10 @@ public class ManageGroupViewModel extends ViewModel {
   }
 
   public static class Factory implements ViewModelProvider.Factory {
-    private final Context      context;
-    private final GroupId.Push groupId;
+    private final Context context;
+    private final GroupId groupId;
 
-    public Factory(@NonNull Context context, @NonNull GroupId.Push groupId) {
+    public Factory(@NonNull Context context, @NonNull GroupId groupId) {
       this.context = context;
       this.groupId = groupId;
     }
