@@ -370,23 +370,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-oj</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Glumarkoj</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Nova grupo</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Modifi grupon</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Administri grupon</string>
-  <string name="GroupCreateActivity_group_name_hint">Nomo de la grupo</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS-grupo</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vi elektis kontakton, kiu ne subtenas Signal-grupojn, do tiu ĉi grupo estos MMS-a.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Vi ne estas registrita por Signal-aj mesaĝoj kaj alvokoj, do Signal-aj grupoj estas malebligitaj. Bv. provi registriĝi ĉe Agordo → Speciala.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Vi bezonas almenaŭ unu personon en via grupo!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Unu el viaj grupanoj havas numeron, kiu ne povas esti bone legita. Bv. modifi aŭ forigi tiun kontakton, kaj re-provi.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Bildo de la grupo</string>
-  <string name="GroupCreateActivity_menu_apply_button">Validi</string>
-  <string name="GroupCreateActivity_creating_group">Kreo de %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Ĝisdatigo de %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ne eblis aldoni %1$s, ĉar li aŭ ŝi ne estas Signal-uzanto.</string>
-  <string name="GroupCreateActivity_loading_group_details">Ŝargo de la grupdetaloj…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Vi jam estas en la grupo.</string>
-  <string name="GroupCreateActivity_remove_member_description">Forigi grupanon</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Nova grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Modifi grupon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Administri grupon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Nomo de la grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS-grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Vi elektis kontakton, kiu ne subtenas Signal-grupojn, do tiu ĉi grupo estos MMS-a.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Vi ne estas registrita por Signal-aj mesaĝoj kaj alvokoj, do Signal-aj grupoj estas malebligitaj. Bv. provi registriĝi ĉe Agordo → Speciala.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Vi bezonas almenaŭ unu personon en via grupo!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Unu el viaj grupanoj havas numeron, kiu ne povas esti bone legita. Bv. modifi aŭ forigi tiun kontakton, kaj re-provi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Bildo de la grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Validi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Kreo de %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Ĝisdatigo de %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ne eblis aldoni %1$s, ĉar li aŭ ŝi ne estas Signal-uzanto.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Ŝargo de la grupdetaloj…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Vi jam estas en la grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Forigi grupanon</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Ĉu aldoni anon?</string>
   <string name="AddToGroupActivity_add_s_to_s">Ĉu aldoni „%1$s“ al „%2$s“?</string>
@@ -1372,18 +1372,18 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Aŭdvidaĵoj kunhavigitaj</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Silentigi interparolon</string>
-  <string name="recipient_preferences__custom_notifications">Propraj sciigoj</string>
-  <string name="recipient_preferences__custom_notifications_settings">Sistema sciigo-agordo</string>
-  <string name="recipient_preferences__notification_sound">Sciiga sono</string>
-  <string name="recipient_preferences__vibrate">Vibri</string>
-  <string name="recipient_preferences__block">Bloki</string>
-  <string name="recipient_preferences__color">Koloro</string>
-  <string name="recipient_preferences__view_safety_number">Vidi sekurigan numeron</string>
-  <string name="recipient_preferences__chat_settings">Interparolaj agordoj</string>
-  <string name="recipient_preferences__privacy">Privateco</string>
-  <string name="recipient_preferences__call_settings">Agordo pri alvoko</string>
-  <string name="recipient_preferences__ringtone">Sonoro</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Silentigi interparolon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Propraj sciigoj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Sistema sciigo-agordo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Sciiga sono</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bloki</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Koloro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Vidi sekurigan numeron</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Interparolaj agordoj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privateco</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Agordo pri alvoko</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Sonoro</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-alvoko</string>
   <!--registration_activity-->

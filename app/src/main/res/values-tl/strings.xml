@@ -358,21 +358,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">Mga GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Mga Sticker</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Bagong grupo</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">I-edit ang grupo</string>
-  <string name="GroupCreateActivity_group_name_hint">Pangalan ng grupo</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Bagong grupo ng MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Hindi suportado ang mga grupo sa Signal sa napili mong kontak, kaya magiging MMS ang grupong ito.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Hindi ka rehistrado para sa mga mensahe at tawag sa Signal, kaya naka-disable ang mga grupo sa Signal. Subukang magparehistro sa Settings &gt; Advanced.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Kailangan mo ng kahit isang tao sa iyong grupo!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Ang isa sa mga kasapi ng iyong grupo ay may numerong hindi mabasa nang tama. Pakiayos o pakitanggal ang naturang kontak at subukang muli.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatar ng grupo</string>
-  <string name="GroupCreateActivity_menu_apply_button">I-apply</string>
-  <string name="GroupCreateActivity_creating_group">Nililikha ang %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Ina-update ang %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Hindi maidagdag sina %1$s dahil hindi sila gumagamit ng Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Nilo-load ang mga detalye ng grupo…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Nasa grupo ka na.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Bagong grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">I-edit ang grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Pangalan ng grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Bagong grupo ng MMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Hindi suportado ang mga grupo sa Signal sa napili mong kontak, kaya magiging MMS ang grupong ito.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Hindi ka rehistrado para sa mga mensahe at tawag sa Signal, kaya naka-disable ang mga grupo sa Signal. Subukang magparehistro sa Settings &gt; Advanced.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Kailangan mo ng kahit isang tao sa iyong grupo!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Ang isa sa mga kasapi ng iyong grupo ay may numerong hindi mabasa nang tama. Pakiayos o pakitanggal ang naturang kontak at subukang muli.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar ng grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">I-apply</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Nililikha ang %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Ina-update ang %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Hindi maidagdag sina %1$s dahil hindi sila gumagamit ng Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Nilo-load ang mga detalye ng grupo…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Nasa grupo ka na.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ibahagi ang iyong profile name at photo sa grupong ito?</string>
@@ -1204,18 +1204,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Ibinahaging media</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Patahimikin ang pag-uusap</string>
-  <string name="recipient_preferences__custom_notifications">Custom na mga notipikasyon</string>
-  <string name="recipient_preferences__custom_notifications_settings">Settings ng pang-sistemang notipikasyon</string>
-  <string name="recipient_preferences__notification_sound">Tunog ng notipikasyon</string>
-  <string name="recipient_preferences__vibrate">Mag-vibrate</string>
-  <string name="recipient_preferences__block">I-block</string>
-  <string name="recipient_preferences__color">Kulay</string>
-  <string name="recipient_preferences__view_safety_number">Tingnan ang numerong pangkaligtasan</string>
-  <string name="recipient_preferences__chat_settings">Settings ng chat</string>
-  <string name="recipient_preferences__privacy">Pagkapribado</string>
-  <string name="recipient_preferences__call_settings">Settings ng tawag</string>
-  <string name="recipient_preferences__ringtone">Ringtone</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Patahimikin ang pag-uusap</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Custom na mga notipikasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Settings ng pang-sistemang notipikasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Tunog ng notipikasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Mag-vibrate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">I-block</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Kulay</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Tingnan ang numerong pangkaligtasan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Settings ng chat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Pagkapribado</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Settings ng tawag</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Ringtone</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Tawag sa Signal</string>
   <!--registration_activity-->

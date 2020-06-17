@@ -302,21 +302,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Koma nû</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Komê serast bike</string>
-  <string name="GroupCreateActivity_group_name_hint">Navê komê</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Koma MMSê ya nû</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Te berdengek ku nikare komên Signal ê bikar bîne bijart, ji bo vê dê ev kom yeka MMSê be.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Tu ji bo peyam û bangên Signalê ne tomarkirî yî, ji bo vê komên Signalê hatine neçalakkirin. Ji kerema xwe li ser Sazkarî &gt; Pêşketî tomarkirinê biceribîne.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Divê di koma te de herî kêm kesek hebe!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Hejmara endamekî koma te nikare baş were xwendin. Vî berdengî yan rake yan serast bike û paşê dîsa biceribîne.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatara komê</string>
-  <string name="GroupCreateActivity_menu_apply_button">Bisepîne</string>
-  <string name="GroupCreateActivity_creating_group">%1$s tê afirandin…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s tê hildemandin…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nekarî %1$s tevlî bikin çimkî ew Signal ê bikar nayîne.</string>
-  <string name="GroupCreateActivity_loading_group_details">Hûrgiliyên komê tên barkirin…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Tu jixwe di vê komê de yî.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Koma nû</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Komê serast bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Navê komê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Koma MMSê ya nû</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Te berdengek ku nikare komên Signal ê bikar bîne bijart, ji bo vê dê ev kom yeka MMSê be.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Tu ji bo peyam û bangên Signalê ne tomarkirî yî, ji bo vê komên Signalê hatine neçalakkirin. Ji kerema xwe li ser Sazkarî &gt; Pêşketî tomarkirinê biceribîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Divê di koma te de herî kêm kesek hebe!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Hejmara endamekî koma te nikare baş were xwendin. Vî berdengî yan rake yan serast bike û paşê dîsa biceribîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatara komê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Bisepîne</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s tê afirandin…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s tê hildemandin…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nekarî %1$s tevlî bikin çimkî ew Signal ê bikar nayîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Hûrgiliyên komê tên barkirin…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Tu jixwe di vê komê de yî.</string> -->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Dixwazî nav û wêneyê xwe bi vê komê re parve bikî?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Dixwazî ku hemû endamên vê komê yên aniha û yên wê paşê tevlî bibin nav û wêneyê profîla te bibînin?</string>
@@ -881,18 +881,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Medyaya parvekirî</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Bêdengkirina gotûbêjê</string>
-  <string name="recipient_preferences__custom_notifications">Danezanên kesane</string>
-  <string name="recipient_preferences__custom_notifications_settings">Sazkariyên danezana pergalê</string>
-  <string name="recipient_preferences__notification_sound">Dengê danezanan</string>
-  <string name="recipient_preferences__vibrate">Lezirîn</string>
-  <string name="recipient_preferences__block">Asteng bike</string>
-  <string name="recipient_preferences__color">Reng</string>
-  <string name="recipient_preferences__view_safety_number">Mêzekirina hejmara ewlerî</string>
-  <string name="recipient_preferences__chat_settings">Şikilên niqaşê</string>
-  <string name="recipient_preferences__privacy">Veşaritî</string>
-  <string name="recipient_preferences__call_settings">Şikilên gazî</string>
-  <string name="recipient_preferences__ringtone">Dengê zengilê</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Bêdengkirina gotûbêjê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Danezanên kesane</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Sazkariyên danezana pergalê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Dengê danezanan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Lezirîn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Asteng bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Reng</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Mêzekirina hejmara ewlerî</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Şikilên niqaşê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Veşaritî</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Şikilên gazî</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Dengê zengilê</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Gaziya Signalê</string>
   <!--registration_activity-->

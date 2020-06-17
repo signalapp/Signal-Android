@@ -191,18 +191,18 @@ a</string>
   <string name="GiphyFragmentPagerAdapter_gifs">Ekifananyi ekizanya</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Enkwaso</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Ekibinja ekipya</string>
-  <string name="GroupCreateActivity_group_name_hint">Erinya ly\'ekibinja</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Akaboondo ka mms akapya</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Tewewandisa ku bubaka bwa Signal n\'amasimu, era ebibinja bya Signal bijiddwako. Bambi gezaako okwewandisa mu kwerobooza &gt; Okwawaggulu</string>
-  <string name="GroupCreateActivity_contacts_no_members">Wetagaayo ekitono enyo omuntu omu mu kibinja kyo!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Omu ku babaka mu kibinja kyo alina enamba etasobola kusomwa bulungi, bambi gyitereze or gyigyeemu oddemu ogezeeko.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Ekisikirize ky\'ekibinja</string>
-  <string name="GroupCreateActivity_creating_group">ku tondawo %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">ku zabujja %1$s.</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tekisobose kugattako %1$s kubanga tebakozesa Signal</string>
-  <string name="GroupCreateActivity_loading_group_details">Loading group details…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Ekibinja kino wakyegattako dda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Ekibinja ekipya</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Erinya ly\'ekibinja</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Akaboondo ka mms akapya</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Tewewandisa ku bubaka bwa Signal n\'amasimu, era ebibinja bya Signal bijiddwako. Bambi gezaako okwewandisa mu kwerobooza &gt; Okwawaggulu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Wetagaayo ekitono enyo omuntu omu mu kibinja kyo!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Omu ku babaka mu kibinja kyo alina enamba etasobola kusomwa bulungi, bambi gyitereze or gyigyeemu oddemu ogezeeko.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Ekisikirize ky\'ekibinja</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">ku tondawo %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">ku zabujja %1$s.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tekisobose kugattako %1$s kubanga tebakozesa Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Loading group details…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ekibinja kino wakyegattako dda.</string> -->
   <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Nze</string> -->
@@ -513,12 +513,12 @@ gy\'olonze (%s) sintuufu.</string>
   <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Jakko Edoboozi</string>
-  <string name="recipient_preferences__notification_sound">Akayimba akalabula</string>
-  <string name="recipient_preferences__vibrate">Okuwuluguma</string>
-  <string name="recipient_preferences__block">Zziyiiza</string>
-  <string name="recipient_preferences__color">Langi</string>
-  <string name="recipient_preferences__privacy">Byakyaama</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Jakko Edoboozi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Akayimba akalabula</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Okuwuluguma</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Zziyiiza</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Langi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Byakyaama</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Ssimu okuva ku Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="redphone_call_controls__mute">Jakko edoboozi</string> -->

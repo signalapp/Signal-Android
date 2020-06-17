@@ -341,21 +341,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Sitika</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Sabon rukuni</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Gyara rukuni.</string>
-  <string name="GroupCreateActivity_group_name_hint">Sunan rukuni</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Sabon rukunin MMS.</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Ka/kin zabi lambar sadarwa da baya daukan rukunonin Signal don haka rukuninnan zai zama MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Baka/ki yi rijistar Signal ba, domin haka an sake rukunoni Signal dinki/ka. Yi kokari ka/ki yi rijistar acikin saiti da gt;Advanced.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Ka/ki na Bukatan Ko Da Mutum Daya Ne A Wannan Rukunnin</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Daya daya cikin mutanen da suke cikin rukuninka na da lambar da ba daidai bane. Gyara wannan lambar ko kuma cireshi ka/ki kara gwada sawa.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Hoton na\'ura</string>
-  <string name="GroupCreateActivity_menu_apply_button">Sa</string>
-  <string name="GroupCreateActivity_creating_group"> Samar da %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Sabuntarwa %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">An kasa sa %1$s sabida basua amfani da Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Ana karban cikakken bayanin rukuni.</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Ka/kin riga ka/kin shiga wannan rukunin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Sabon rukuni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Gyara rukuni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Sunan rukuni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Sabon rukunin MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Ka/kin zabi lambar sadarwa da baya daukan rukunonin Signal don haka rukuninnan zai zama MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Baka/ki yi rijistar Signal ba, domin haka an sake rukunoni Signal dinki/ka. Yi kokari ka/ki yi rijistar acikin saiti da gt;Advanced.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Ka/ki na Bukatan Ko Da Mutum Daya Ne A Wannan Rukunnin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Daya daya cikin mutanen da suke cikin rukuninka na da lambar da ba daidai bane. Gyara wannan lambar ko kuma cireshi ka/ki kara gwada sawa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Hoton na\'ura</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Sa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group"> Samar da %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Sabuntarwa %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">An kasa sa %1$s sabida basua amfani da Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Ana karban cikakken bayanin rukuni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ka/kin riga ka/kin shiga wannan rukunin.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bar membobin rukuninnan suga hoto da sunan furifayil dinka/ki?</string>
@@ -1158,18 +1158,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Midiya da aka tura/turo</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Yi tsit da hira</string>
-  <string name="recipient_preferences__custom_notifications">Tanadadden sanarwa</string>
-  <string name="recipient_preferences__custom_notifications_settings">Saitin sanarwar tsarin na\'ura</string>
-  <string name="recipient_preferences__notification_sound">Sautin sanarwa</string>
-  <string name="recipient_preferences__vibrate">Girgiza</string>
-  <string name="recipient_preferences__block">Toshe</string>
-  <string name="recipient_preferences__color">Launi</string>
-  <string name="recipient_preferences__view_safety_number">Kalli lambar tsari</string>
-  <string name="recipient_preferences__chat_settings">Saitin hira</string>
-  <string name="recipient_preferences__privacy">Sirri</string>
-  <string name="recipient_preferences__call_settings">Saitin kira</string>
-  <string name="recipient_preferences__ringtone">Sautin kira</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Yi tsit da hira</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Tanadadden sanarwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Saitin sanarwar tsarin na\'ura</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Sautin sanarwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Girgiza</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Toshe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Launi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Kalli lambar tsari</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Saitin hira</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Sirri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Saitin kira</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Sautin kira</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Kiran Signal</string>
   <!--registration_activity-->

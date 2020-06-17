@@ -356,21 +356,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFಗಳು</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ಸ್ಟಿಕ್ಕರುಗಳು</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">ಹೊಸ ಗುಂಪು</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">ಗುಂಪನ್ನು ಬದಲಾಯಿಸಿ</string>
-  <string name="GroupCreateActivity_group_name_hint">ಗುಂಪಿನ ಹೆಸರು</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">ಹೊಸ ಎಂಎಂಎಸ್ ಗುಂಪು</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Signal ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸದ ಸಂಪರ್ಕವನ್ನು ನೀವು ಆರಿಸಿದ್ದೀರಿ, ಆದ್ದರಿಂದ ಈ ಗುಂಪು ಎಂಎಂಎಸ್ ಆಗಿರುತ್ತದೆ.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">ನಿಮ್ಮನ್ನು Signal ಸಂದೇಶಗಳು ಮತ್ತು ಕರೆಗಳಿಗಾಗಿ ನೋಂದಾಯಿಸಿಲ್ಲ, ಹಾಗಾಗಿ Signal ಗುಂಪುಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಸೆಟ್ಟಿಂಗ್ಸ್ &gt; ಅಡ್ವಾನ್ಸ್ಡ್ ನಲ್ಲಿ ನೋಂದಾಯಿಸಲು ಯತ್ನಿಸಿ.</string>
-  <string name="GroupCreateActivity_contacts_no_members">ನಿಮ್ಮ ಗುಂಪಿನಲ್ಲಿ ಕನಿಷ್ಠ ಒಬ್ಬ ವ್ಯಕ್ತಿಯ ಅಗತ್ಯವಿದೆ!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">ನಿಮ್ಮ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲಿ ಒಬ್ಬರು ಸರಿಯಾಗಿ ಓದಲು ಸಾಧ್ಯವಾಗದೇ ಇರುವ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿದ್ದಾರೆ. ದಯವಿಟ್ಟು ಅದನ್ನು ಸರಿಪಡಿಸಿ ಅಥವಾ ಆ ಸಂಪರ್ಕವನ್ನು ತೆಗೆಯಿರಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
-  <string name="GroupCreateActivity_avatar_content_description">ಗುಂಪಿನ ಅವತಾರ್</string>
-  <string name="GroupCreateActivity_menu_apply_button">ಅನ್ವಯಿಸಿ</string>
-  <string name="GroupCreateActivity_creating_group">ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿದೆ %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ಅವರು Signal ಬಳಕೆದಾರರು ಅಲ್ಲದೇ ಇರುವುದರಿಂದ %1$s ಅನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
-  <string name="GroupCreateActivity_loading_group_details">ಗುಂಪಿನ ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">ನೀವು ಈಗಾಗಲೇ ಈ ಗುಂಪಿನಲ್ಲಿದ್ದೀರಿ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">ಹೊಸ ಗುಂಪು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">ಗುಂಪನ್ನು ಬದಲಾಯಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">ಗುಂಪಿನ ಹೆಸರು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">ಹೊಸ ಎಂಎಂಎಸ್ ಗುಂಪು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Signal ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸದ ಸಂಪರ್ಕವನ್ನು ನೀವು ಆರಿಸಿದ್ದೀರಿ, ಆದ್ದರಿಂದ ಈ ಗುಂಪು ಎಂಎಂಎಸ್ ಆಗಿರುತ್ತದೆ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">ನಿಮ್ಮನ್ನು Signal ಸಂದೇಶಗಳು ಮತ್ತು ಕರೆಗಳಿಗಾಗಿ ನೋಂದಾಯಿಸಿಲ್ಲ, ಹಾಗಾಗಿ Signal ಗುಂಪುಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಸೆಟ್ಟಿಂಗ್ಸ್ &gt; ಅಡ್ವಾನ್ಸ್ಡ್ ನಲ್ಲಿ ನೋಂದಾಯಿಸಲು ಯತ್ನಿಸಿ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">ನಿಮ್ಮ ಗುಂಪಿನಲ್ಲಿ ಕನಿಷ್ಠ ಒಬ್ಬ ವ್ಯಕ್ತಿಯ ಅಗತ್ಯವಿದೆ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">ನಿಮ್ಮ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲಿ ಒಬ್ಬರು ಸರಿಯಾಗಿ ಓದಲು ಸಾಧ್ಯವಾಗದೇ ಇರುವ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿದ್ದಾರೆ. ದಯವಿಟ್ಟು ಅದನ್ನು ಸರಿಪಡಿಸಿ ಅಥವಾ ಆ ಸಂಪರ್ಕವನ್ನು ತೆಗೆಯಿರಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">ಗುಂಪಿನ ಅವತಾರ್</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">ಅನ್ವಯಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿದೆ %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ಅವರು Signal ಬಳಕೆದಾರರು ಅಲ್ಲದೇ ಇರುವುದರಿಂದ %1$s ಅನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">ಗುಂಪಿನ ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">ನೀವು ಈಗಾಗಲೇ ಈ ಗುಂಪಿನಲ್ಲಿದ್ದೀರಿ.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವಿರಾ?</string>
@@ -1188,18 +1188,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ಮೀಡಿಯಾ ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">ಸಂಭಾಷಣೆ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-  <string name="recipient_preferences__custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
-  <string name="recipient_preferences__custom_notifications_settings">ಸಿಸ್ಟಂ ಅಧಿಸೂಚನೆ ಸಂಯೋಜನೆಗಳು</string>
-  <string name="recipient_preferences__notification_sound">ಅಧಿಸೂಚನೆ ಧ್ವನಿ</string>
-  <string name="recipient_preferences__vibrate">ಕಂಪಿಸಿ</string>
-  <string name="recipient_preferences__block">ನಿರ್ಬಂಧಿಸಿ</string>
-  <string name="recipient_preferences__color">ಬಣ್ಣ</string>
-  <string name="recipient_preferences__view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string>
-  <string name="recipient_preferences__chat_settings">ಚಾಟ್‌‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
-  <string name="recipient_preferences__privacy">ಗೌಪ್ಯತೆ</string>
-  <string name="recipient_preferences__call_settings">ಕರೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
-  <string name="recipient_preferences__ringtone">ರಿಂಗ್ಟೋನ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">ಸಂಭಾಷಣೆ ಮ್ಯೂಟ್ ಮಾಡಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">ಸಿಸ್ಟಂ ಅಧಿಸೂಚನೆ ಸಂಯೋಜನೆಗಳು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">ಅಧಿಸೂಚನೆ ಧ್ವನಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">ಕಂಪಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">ನಿರ್ಬಂಧಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">ಬಣ್ಣ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">ಚಾಟ್‌‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">ಗೌಪ್ಯತೆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">ಕರೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">ರಿಂಗ್ಟೋನ್</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal ಕರೆ</string>
   <!--registration_activity-->

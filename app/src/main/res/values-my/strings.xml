@@ -295,21 +295,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">စတစ်ကာများ </string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">အဖွဲ့အသစ်</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">အဖွဲ့ကို ပြင်မည်</string>
-  <string name="GroupCreateActivity_group_name_hint">အဖွဲ့နာမည်</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">MMS အဖွဲ့သစ်</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">သင်ရွေးချယ်သောသူကို Signal အဖွဲ့တွင်ထည့်၍မရပါ၊ သို့ကြောင့် MMS အဖွဲ့လုပ်ပါမည်။ </string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">သင်သည် Signal စာတိုများ ၊ ဖုန်းခေါ်ဆိုမှုများ လုပ်ရန် မှတ်ပုံတင်ထားခြင်းမရှိသဖြင့် Signal အဖွဲ့မလုပ်နိုင်ပါ။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည် မှတ်ပုံတင်ကြည့်ပါ။ </string>
-  <string name="GroupCreateActivity_contacts_no_members">အဖွဲ့ဖွဲ့ရန် အနည်းဆုံး အဖွဲ့ဝင်တစ်ယောက်ရှိရမည်! </string>
-  <string name="GroupCreateActivity_contacts_invalid_number">သင့်အဖွဲ့ဝင်တစ်ယောက်၏ ဖုန်းနံပါတ် မှားနေပါသည်။ ယင်းဖုန်းနံပါတ်ကို ပြင်ဆင် သို့မဟုတ် ဖယ်ရှား၍ ပြန်လည်ကြိုးစားကြည့်ပါ။ </string>
-  <string name="GroupCreateActivity_avatar_content_description">အဖွဲ့ကိုယ်စားပြုရုပ်ပုံ </string>
-  <string name="GroupCreateActivity_menu_apply_button">လုပ်မည်</string>
-  <string name="GroupCreateActivity_creating_group">%1$sဖန်တီးနေပါသည်။ </string>
-  <string name="GroupCreateActivity_updating_group">ပြုပြင်နေသည် %1$s</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signal အသုံးပြုသူမဟုတ်သဖြင့် %1$sထည့်၍မရပါ။ </string>
-  <string name="GroupCreateActivity_loading_group_details">အဖွဲ့အချက်အလက်များ ရှာဖွေနေသည် </string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">သင် အဖွဲ့ထဲရောက်နေပါပြီ။ </string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">အဖွဲ့အသစ်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">အဖွဲ့ကို ပြင်မည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">အဖွဲ့နာမည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">MMS အဖွဲ့သစ်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">သင်ရွေးချယ်သောသူကို Signal အဖွဲ့တွင်ထည့်၍မရပါ၊ သို့ကြောင့် MMS အဖွဲ့လုပ်ပါမည်။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">သင်သည် Signal စာတိုများ ၊ ဖုန်းခေါ်ဆိုမှုများ လုပ်ရန် မှတ်ပုံတင်ထားခြင်းမရှိသဖြင့် Signal အဖွဲ့မလုပ်နိုင်ပါ။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည် မှတ်ပုံတင်ကြည့်ပါ။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">အဖွဲ့ဖွဲ့ရန် အနည်းဆုံး အဖွဲ့ဝင်တစ်ယောက်ရှိရမည်! </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">သင့်အဖွဲ့ဝင်တစ်ယောက်၏ ဖုန်းနံပါတ် မှားနေပါသည်။ ယင်းဖုန်းနံပါတ်ကို ပြင်ဆင် သို့မဟုတ် ဖယ်ရှား၍ ပြန်လည်ကြိုးစားကြည့်ပါ။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">အဖွဲ့ကိုယ်စားပြုရုပ်ပုံ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">လုပ်မည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$sဖန်တီးနေပါသည်။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">ပြုပြင်နေသည် %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signal အသုံးပြုသူမဟုတ်သဖြင့် %1$sထည့်၍မရပါ။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">အဖွဲ့အချက်အလက်များ ရှာဖွေနေသည် </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">သင် အဖွဲ့ထဲရောက်နေပါပြီ။ </string> -->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">သင့် နာမည်နှင့် ဓါတ်ပုံကို ဒီအဖွဲ့နှင့် ဝေမျှလိုပါသလား? </string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">သင့်နာမည်နှင့် ဓါတ်ပုံ ကိုဤအုပ်စု မှ လက်ရှိနှင့် နောင်တိုးပွားလာမည့် အဖွဲ့ဝင်များ မြင်ခွင့်ပြုလိုပါသလား? </string>
@@ -831,16 +831,16 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">မျှဝေပြီးသား ရုပ်/သံ/ပုံများ</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">စကားဝိုင်း အသိပေးသံပိတ်ထားသည် </string>
-  <string name="recipient_preferences__notification_sound">သတိပေးချက် အသံ</string>
-  <string name="recipient_preferences__vibrate">တုန်ခါသည်</string>
-  <string name="recipient_preferences__block">ဘလော့ လုပ်မည်</string>
-  <string name="recipient_preferences__color">အရောင်</string>
-  <string name="recipient_preferences__view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မည် </string>
-  <string name="recipient_preferences__chat_settings">စကားပြောအပြင်အဆင်</string>
-  <string name="recipient_preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
-  <string name="recipient_preferences__call_settings">ဖုန်းခေါ်ဆိုမှု အပြင်အဆင်</string>
-  <string name="recipient_preferences__ringtone">ဖုန်းသံစဉ်များ</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">စကားဝိုင်း အသိပေးသံပိတ်ထားသည် </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">သတိပေးချက် အသံ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">တုန်ခါသည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">ဘလော့ လုပ်မည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">အရောင်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မည် </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">စကားပြောအပြင်အဆင်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">ဖုန်းခေါ်ဆိုမှု အပြင်အဆင်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">ဖုန်းသံစဉ်များ</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal ခေါ်ဆိုမှု</string>
   <!--registration_activity-->

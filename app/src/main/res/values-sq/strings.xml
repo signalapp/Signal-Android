@@ -370,23 +370,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFe</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Ngjitëse</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Grup i ri</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Përpunoni grupin</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Administroni grupin</string>
-  <string name="GroupCreateActivity_group_name_hint">Emër grupi</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS i ri</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Keni përzgjedhur një kontakt që nuk mbulon grupe Signal, prandaj ky grup do të jetë MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">S\’jeni i regjistruar për mesazhe dhe thirrje Signal, prandaj grupet Signal janë çaktivizuar. Ju lutemi, provoni të regjistroheni, që nga Rregullime &gt; Të mëtejshme.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Ju duhet së paku një person në grupin tuaj!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Një nga anëtarët e grupit tuaj ka numër që s\’mund të lexohet saktë. Ju lutemi, ndreqeni, ose hiqeni atë kontakt dhe riprovoni.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatar grupi</string>
-  <string name="GroupCreateActivity_menu_apply_button">Zbatoje</string>
-  <string name="GroupCreateActivity_creating_group">Po krijohet %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Po përditësohet %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">S\’u shtua dot %1$s, ngaqë s\’është përdorues Signal-i.</string>
-  <string name="GroupCreateActivity_loading_group_details">Po ngarkohen hollësi grupi…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Jeni tashmë te grupi.</string>
-  <string name="GroupCreateActivity_remove_member_description">Hiqe anëtarin</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Grup i ri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Përpunoni grupin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Administroni grupin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Emër grupi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS i ri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Keni përzgjedhur një kontakt që nuk mbulon grupe Signal, prandaj ky grup do të jetë MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">S\’jeni i regjistruar për mesazhe dhe thirrje Signal, prandaj grupet Signal janë çaktivizuar. Ju lutemi, provoni të regjistroheni, që nga Rregullime &gt; Të mëtejshme.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Ju duhet së paku një person në grupin tuaj!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Një nga anëtarët e grupit tuaj ka numër që s\’mund të lexohet saktë. Ju lutemi, ndreqeni, ose hiqeni atë kontakt dhe riprovoni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar grupi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Zbatoje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Po krijohet %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Po përditësohet %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">S\’u shtua dot %1$s, ngaqë s\’është përdorues Signal-i.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Po ngarkohen hollësi grupi…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Jeni tashmë te grupi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Hiqe anëtarin</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Të shtohet anëtar?</string>
   <string name="AddToGroupActivity_add_s_to_s">Të shtohet \"%1$s\" te \"%2$s\"?</string>
@@ -1369,18 +1369,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Media e ndarë me të tjerët</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Heshtoje bisedën</string>
-  <string name="recipient_preferences__custom_notifications">Njoftime vetjake</string>
-  <string name="recipient_preferences__custom_notifications_settings">Rregullime mbi njoftime sistemi</string>
-  <string name="recipient_preferences__notification_sound">Tingull njoftimesh</string>
-  <string name="recipient_preferences__vibrate">Dridhu</string>
-  <string name="recipient_preferences__block">Bllokoje</string>
-  <string name="recipient_preferences__color">Ngjyrë</string>
-  <string name="recipient_preferences__view_safety_number">Shihni numër sigurie</string>
-  <string name="recipient_preferences__chat_settings">Rregullime fjalosjeje</string>
-  <string name="recipient_preferences__privacy">Privatësi</string>
-  <string name="recipient_preferences__call_settings">Rregullime thirrjeje</string>
-  <string name="recipient_preferences__ringtone">Zile</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Heshtoje bisedën</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Njoftime vetjake</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Rregullime mbi njoftime sistemi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Tingull njoftimesh</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Dridhu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bllokoje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Ngjyrë</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Shihni numër sigurie</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Rregullime fjalosjeje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privatësi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Rregullime thirrjeje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Zile</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Thirrje përmes Signal-i</string>
   <!--registration_activity-->

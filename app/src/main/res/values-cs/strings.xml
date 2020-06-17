@@ -398,23 +398,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFy</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nálepky</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Editovat skupinu</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Spravovat skupinu</string>
-  <string name="GroupCreateActivity_group_name_hint">Název skupiny</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt, který nepodporuje Signal skupiny, proto tato skupina bude MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrováni k použití Signalu pro zprávy a volání, takže jsou skupiny Signal zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string>
-  <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů vaší skupiny má číslo, které se nedaří správně načíst. Prosím opravte jej nebo odstraňte a zkuste znovu.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Obrázek skupiny</string>
-  <string name="GroupCreateActivity_menu_apply_button">Použít</string>
-  <string name="GroupCreateActivity_creating_group">Vytvářím %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Aktualizuji %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nemohu přidat %1$s, protože není uživatelem Signalu.</string>
-  <string name="GroupCreateActivity_loading_group_details">Načítám podrobnosti skupiny…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Již jste ve skupině.</string>
-  <string name="GroupCreateActivity_remove_member_description">Odstranit člena</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Nová skupina</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Editovat skupinu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Spravovat skupinu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Název skupiny</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt, který nepodporuje Signal skupiny, proto tato skupina bude MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrováni k použití Signalu pro zprávy a volání, takže jsou skupiny Signal zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů vaší skupiny má číslo, které se nedaří správně načíst. Prosím opravte jej nebo odstraňte a zkuste znovu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Obrázek skupiny</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Použít</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Vytvářím %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Aktualizuji %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nemohu přidat %1$s, protože není uživatelem Signalu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Načítám podrobnosti skupiny…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Již jste ve skupině.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Odstranit člena</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Přidat člena?</string>
   <string name="AddToGroupActivity_add_s_to_s">Přidat \"%1$s\" do \"%2$s\"?</string>
@@ -1462,18 +1462,18 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Sdílená média</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Ztišit konverzaci</string>
-  <string name="recipient_preferences__custom_notifications">Vlastní oznámení</string>
-  <string name="recipient_preferences__custom_notifications_settings">Nastavení systémových upozornění</string>
-  <string name="recipient_preferences__notification_sound">Zvuk upozornění</string>
-  <string name="recipient_preferences__vibrate">Vibrovat</string>
-  <string name="recipient_preferences__block">Blokovat</string>
-  <string name="recipient_preferences__color">Barva</string>
-  <string name="recipient_preferences__view_safety_number">Zobrazit bezpečnostní kód</string>
-  <string name="recipient_preferences__chat_settings">Nastavení konverzace</string>
-  <string name="recipient_preferences__privacy">Soukromí</string>
-  <string name="recipient_preferences__call_settings">Nastavení volání</string>
-  <string name="recipient_preferences__ringtone">Vyzvánění</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Ztišit konverzaci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Vlastní oznámení</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Nastavení systémových upozornění</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Zvuk upozornění</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibrovat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blokovat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Barva</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Zobrazit bezpečnostní kód</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Nastavení konverzace</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Soukromí</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Nastavení volání</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Vyzvánění</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <!--registration_activity-->

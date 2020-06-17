@@ -382,23 +382,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-i</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Uzlīmes</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Jauna grupa</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Labot grupu</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Pārvaldīt grupu</string>
-  <string name="GroupCreateActivity_group_name_hint">Grupas nosaukums</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Jauna MMS grupa</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Jūs esiet izvēlējies kontaktu, kas neatbalsta Signal grupas, tāpēc šī grupa būs MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Jūs neesiet reģistrēti Signal ziņām un zvaniem, tādēļ Signal grupas būs atspējotas. Lūdzu, mēģiniet reģistrēties sadaļā Iestatījumi -&gt; Papildu.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Jums vajag vismaz vienu personu Jūsu grupā!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Vienam Jūsu grupas dalībniekam ir numurs, kuru nevar pareizi nolasīt. Lūdzu labojiet vai dzēsiet šo kontaktu un mēģiniet vēlreiz.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Grupas ikona</string>
-  <string name="GroupCreateActivity_menu_apply_button">Pielietot</string>
-  <string name="GroupCreateActivity_creating_group">Izveido %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Aktualizē %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nevarēja pievienot %1$s, jo tie nav Signal lietotāji.</string>
-  <string name="GroupCreateActivity_loading_group_details">Notiek grupas datu ielāde…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esiet šajā grupā.</string>
-  <string name="GroupCreateActivity_remove_member_description">Noņemt lietotāju</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Jauna grupa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Labot grupu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Pārvaldīt grupu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Grupas nosaukums</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Jauna MMS grupa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Jūs esiet izvēlējies kontaktu, kas neatbalsta Signal grupas, tāpēc šī grupa būs MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Jūs neesiet reģistrēti Signal ziņām un zvaniem, tādēļ Signal grupas būs atspējotas. Lūdzu, mēģiniet reģistrēties sadaļā Iestatījumi -&gt; Papildu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Jums vajag vismaz vienu personu Jūsu grupā!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Vienam Jūsu grupas dalībniekam ir numurs, kuru nevar pareizi nolasīt. Lūdzu labojiet vai dzēsiet šo kontaktu un mēģiniet vēlreiz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Grupas ikona</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Pielietot</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Izveido %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Aktualizē %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nevarēja pievienot %1$s, jo tie nav Signal lietotāji.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Notiek grupas datu ielāde…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esiet šajā grupā.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Noņemt lietotāju</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Dalīties ar Jūsu profila attēlu un vārdu šajā grupā?</string>
@@ -1332,18 +1332,18 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Koplietota multivide</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Apklusināt sarunu</string>
-  <string name="recipient_preferences__custom_notifications">Pielāgoti paziņojumi</string>
-  <string name="recipient_preferences__custom_notifications_settings">Sistēmas paziņojumu iestatījumi</string>
-  <string name="recipient_preferences__notification_sound">Paziņojuma skaņa</string>
-  <string name="recipient_preferences__vibrate">Vibrācija</string>
-  <string name="recipient_preferences__block">Bloķēt</string>
-  <string name="recipient_preferences__color">Krāsa</string>
-  <string name="recipient_preferences__view_safety_number">Skatīt drošības numuru</string>
-  <string name="recipient_preferences__chat_settings">Sarunas Iestatījumi</string>
-  <string name="recipient_preferences__privacy">Privātums</string>
-  <string name="recipient_preferences__call_settings">Zvanu iestatījumi</string>
-  <string name="recipient_preferences__ringtone">Zvana signāls</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Apklusināt sarunu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Pielāgoti paziņojumi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Sistēmas paziņojumu iestatījumi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Paziņojuma skaņa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibrācija</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bloķēt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Krāsa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Skatīt drošības numuru</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Sarunas Iestatījumi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privātums</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Zvanu iestatījumi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Zvana signāls</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal zvans</string>
   <!--registration_activity-->

@@ -351,23 +351,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">สติกเกอร์</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">กลุ่มใหม่</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">แก้ไขกลุ่ม</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">จัดการกลุ่ม</string>
-  <string name="GroupCreateActivity_group_name_hint">ชื่อกลุ่ม</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">กลุ่ม MMS ใหม่</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">คุณได้เลือกผู้ติดต่อที่ไม่รองรับการคุยแบบกลุ่มใน Signal ดังนั้นกลุ่มนี้จะเป็น MMS</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">คุณไม่ได้ลงทะเบียนเพื่อใช้งานข้อความและการโทร Signal ดังนั้นกลุ่ม Signal จึงไม่สามารถใช้งานได้ กรุณาลงทะเบียนอีกรอบที่ การตั้งค่า &gt; ขั้นสูง</string>
-  <string name="GroupCreateActivity_contacts_no_members">คุณต้องมีสมาชิกอย่างน้อยหนึ่งคนในกลุ่มของคุณ</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">สมาชิกในกลุ่มของคุณคนหนึ่งมีหมายเลขที่ไม่สามารถอ่านได้อย่างถูกต้อง กรุณาแก้ไขหรือลบผู้ติดต่อดังกล่าวและลองใหม่อีกครั้ง</string>
-  <string name="GroupCreateActivity_avatar_content_description">อวตารกลุ่ม</string>
-  <string name="GroupCreateActivity_menu_apply_button">นำไปใช้</string>
-  <string name="GroupCreateActivity_creating_group">กำลังสร้าง %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">กำลังอัปเดต %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ไม่สามารถเพิ่ม %1$s ได้ เนื่องจากไม่ใช่ผู้ใช้ Signal</string>
-  <string name="GroupCreateActivity_loading_group_details">กำลังโหลดรายละเอียดของกลุ่ม…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">คุณอยู่ในกลุ่มแล้ว</string>
-  <string name="GroupCreateActivity_remove_member_description">ลบสมาชิก</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">กลุ่มใหม่</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">แก้ไขกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">จัดการกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">ชื่อกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">กลุ่ม MMS ใหม่</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">คุณได้เลือกผู้ติดต่อที่ไม่รองรับการคุยแบบกลุ่มใน Signal ดังนั้นกลุ่มนี้จะเป็น MMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">คุณไม่ได้ลงทะเบียนเพื่อใช้งานข้อความและการโทร Signal ดังนั้นกลุ่ม Signal จึงไม่สามารถใช้งานได้ กรุณาลงทะเบียนอีกรอบที่ การตั้งค่า &gt; ขั้นสูง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">คุณต้องมีสมาชิกอย่างน้อยหนึ่งคนในกลุ่มของคุณ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">สมาชิกในกลุ่มของคุณคนหนึ่งมีหมายเลขที่ไม่สามารถอ่านได้อย่างถูกต้อง กรุณาแก้ไขหรือลบผู้ติดต่อดังกล่าวและลองใหม่อีกครั้ง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">อวตารกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">นำไปใช้</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">กำลังสร้าง %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">กำลังอัปเดต %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ไม่สามารถเพิ่ม %1$s ได้ เนื่องจากไม่ใช่ผู้ใช้ Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">กำลังโหลดรายละเอียดของกลุ่ม…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">คุณอยู่ในกลุ่มแล้ว</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">ลบสมาชิก</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_to_group">เพิ่มเข้ากลุ่ม</string>
   <!--GroupShareProfileView-->
@@ -1282,18 +1282,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">สื่อที่ถูกแบ่งปัน</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">ปิดการแจ้งเตือนการสนทนา</string>
-  <string name="recipient_preferences__custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
-  <string name="recipient_preferences__custom_notifications_settings">การตั้งค่าการแจ้งเตือนของระบบ</string>
-  <string name="recipient_preferences__notification_sound">เสียงการแจ้งเตือน</string>
-  <string name="recipient_preferences__vibrate">สั่น</string>
-  <string name="recipient_preferences__block">ปิดกั้น</string>
-  <string name="recipient_preferences__color">สี</string>
-  <string name="recipient_preferences__view_safety_number">ดูหมายเลขความปลอดภัย</string>
-  <string name="recipient_preferences__chat_settings">ตั้งค่าการพูดคุย</string>
-  <string name="recipient_preferences__privacy">ความเป็นส่วนตัว</string>
-  <string name="recipient_preferences__call_settings">ตั้งค่าการโทร</string>
-  <string name="recipient_preferences__ringtone">เสียงเรียกเข้า</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">ปิดการแจ้งเตือนการสนทนา</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">การแจ้งเตือนที่กำหนดเอง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">การตั้งค่าการแจ้งเตือนของระบบ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">เสียงการแจ้งเตือน</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">สั่น</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">ปิดกั้น</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">สี</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">ดูหมายเลขความปลอดภัย</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">ตั้งค่าการพูดคุย</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">ความเป็นส่วนตัว</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">ตั้งค่าการโทร</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">เสียงเรียกเข้า</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">สาย Signal</string>
   <!--registration_activity-->

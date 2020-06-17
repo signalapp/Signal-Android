@@ -371,23 +371,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-ek</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Matricák</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Új csoport</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Csoport szerkesztése</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Csoport kezelése</string>
-  <string name="GroupCreateActivity_group_name_hint">Csoport neve</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Új MMS csoport</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Olyan kontaktot is kiválasztottál, aki nem támogatja a Signal csoportokat, így ez a csoport MMS lesz.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nem vagy regisztrálva Signal üzenetekre és hívásokra, így a Signal csoportok le vannak tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó menüpontban!</string>
-  <string name="GroupCreateActivity_contacts_no_members">A csoport létrehozásához legalább egy személyre szükség van!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">A csoportod egyik tagjának számát nem lehet megfelelően olvasni. Kérlek javítsd ki, vagy távolítsd el a kontaktot, majd próbáld újra!</string>
-  <string name="GroupCreateActivity_avatar_content_description">Csoport avatar</string>
-  <string name="GroupCreateActivity_menu_apply_button">Alkalmazás</string>
-  <string name="GroupCreateActivity_creating_group">%1$s létrehozása…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s frissítése…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nem lehet %1$s-t hozzáadni, mert nem Signal felhasználó.</string>
-  <string name="GroupCreateActivity_loading_group_details">A csoport részletes adatainak betöltése…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Már a csoportban vagy.</string>
-  <string name="GroupCreateActivity_remove_member_description">Tag eltávolítása</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Új csoport</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Csoport szerkesztése</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Csoport kezelése</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Csoport neve</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Új MMS csoport</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Olyan kontaktot is kiválasztottál, aki nem támogatja a Signal csoportokat, így ez a csoport MMS lesz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Nem vagy regisztrálva Signal üzenetekre és hívásokra, így a Signal csoportok le vannak tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó menüpontban!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">A csoport létrehozásához legalább egy személyre szükség van!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">A csoportod egyik tagjának számát nem lehet megfelelően olvasni. Kérlek javítsd ki, vagy távolítsd el a kontaktot, majd próbáld újra!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Csoport avatar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Alkalmazás</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s létrehozása…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s frissítése…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nem lehet %1$s-t hozzáadni, mert nem Signal felhasználó.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">A csoport részletes adatainak betöltése…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Már a csoportban vagy.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Tag eltávolítása</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Hozzáadod a tagot?</string>
   <string name="AddToGroupActivity_add_s_to_s">Hozzáadod \"%1$s\"-t a \"%2$s\" csoporthoz?</string>
@@ -1376,18 +1376,18 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Megosztott médiafájlok</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Beszélgetés némítása</string>
-  <string name="recipient_preferences__custom_notifications">Egyedi értesítések</string>
-  <string name="recipient_preferences__custom_notifications_settings">Rendszer értesítési beállításai</string>
-  <string name="recipient_preferences__notification_sound">Értesítés hangja</string>
-  <string name="recipient_preferences__vibrate">Rezgés</string>
-  <string name="recipient_preferences__block">Blokkolás</string>
-  <string name="recipient_preferences__color">Szín</string>
-  <string name="recipient_preferences__view_safety_number">Biztonsági szám megjelenítése</string>
-  <string name="recipient_preferences__chat_settings">Csevegés beállításai</string>
-  <string name="recipient_preferences__privacy">Adatvédelem</string>
-  <string name="recipient_preferences__call_settings">Hívás beállításai</string>
-  <string name="recipient_preferences__ringtone">Csengőhang</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Beszélgetés némítása</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Egyedi értesítések</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Rendszer értesítési beállításai</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Értesítés hangja</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Rezgés</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blokkolás</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Szín</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Biztonsági szám megjelenítése</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Csevegés beállításai</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Adatvédelem</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Hívás beállításai</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Csengőhang</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <!--registration_activity-->

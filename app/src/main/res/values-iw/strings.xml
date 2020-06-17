@@ -398,23 +398,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">קבצי GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">מדבקות</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">קבוצה חדשה</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">ערוך קבוצה</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">נהלו קבוצה</string>
-  <string name="GroupCreateActivity_group_name_hint">שם קבוצה</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">קבוצת MMS חדשה</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">בחרת איש קשר שאינו תומך בקבוצות Signal, לכן קבוצה זו תהיה MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">אינך רשום עבור הודעות ושיחות של Signal, לכן קבוצות Signal מושבתות. אנא נסה להירשם שוב בהגדרות &lt; מתקדם.</string>
-  <string name="GroupCreateActivity_contacts_no_members">אתה צריך לפחות אדם אחד בקבוצה שלך!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">לאחד מחברי הקבוצה שלך יש מספר שאינו יכול להיקרא כראוי. אנא תקן או הסר איש קשר זה ונסה שוב.</string>
-  <string name="GroupCreateActivity_avatar_content_description">יצגן קבוצה</string>
-  <string name="GroupCreateActivity_menu_apply_button">החל</string>
-  <string name="GroupCreateActivity_creating_group">יוצר את %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">מעדכן את %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">לא היה ניתן להוסיף את %1$s מאחר שהוא אינו משתמש Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">טוען פרטי קבוצה…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">אתה כבר בקבוצה.</string>
-  <string name="GroupCreateActivity_remove_member_description">הסירו חבר קבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">קבוצה חדשה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">ערוך קבוצה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">נהלו קבוצה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">שם קבוצה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">קבוצת MMS חדשה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">בחרת איש קשר שאינו תומך בקבוצות Signal, לכן קבוצה זו תהיה MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">אינך רשום עבור הודעות ושיחות של Signal, לכן קבוצות Signal מושבתות. אנא נסה להירשם שוב בהגדרות &lt; מתקדם.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">אתה צריך לפחות אדם אחד בקבוצה שלך!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">לאחד מחברי הקבוצה שלך יש מספר שאינו יכול להיקרא כראוי. אנא תקן או הסר איש קשר זה ונסה שוב.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">יצגן קבוצה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">החל</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">יוצר את %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">מעדכן את %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">לא היה ניתן להוסיף את %1$s מאחר שהוא אינו משתמש Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">טוען פרטי קבוצה…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">אתה כבר בקבוצה.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">הסירו חבר קבוצה</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">להוסיף חבר?</string>
   <string name="AddToGroupActivity_add_s_to_s">להוסיף את \"%1$s\" ל-\"%2$s\"?</string>
@@ -1463,18 +1463,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">מדיה משותפת</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">השתק שיחה</string>
-  <string name="recipient_preferences__custom_notifications">התראות מותאמות אישית</string>
-  <string name="recipient_preferences__custom_notifications_settings">הגדרות של התראות מערכת</string>
-  <string name="recipient_preferences__notification_sound">צליל התראה</string>
-  <string name="recipient_preferences__vibrate">הרטט</string>
-  <string name="recipient_preferences__block">חסום</string>
-  <string name="recipient_preferences__color">צֶבַע</string>
-  <string name="recipient_preferences__view_safety_number">הצג מספר ביטחון</string>
-  <string name="recipient_preferences__chat_settings">הגדרות התכתבות</string>
-  <string name="recipient_preferences__privacy">פרטיות</string>
-  <string name="recipient_preferences__call_settings">הגדרות שיחה</string>
-  <string name="recipient_preferences__ringtone">צלצול</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">השתק שיחה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">התראות מותאמות אישית</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">הגדרות של התראות מערכת</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">צליל התראה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">הרטט</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">חסום</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">צֶבַע</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">הצג מספר ביטחון</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">הגדרות התכתבות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">פרטיות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">הגדרות שיחה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">צלצול</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">שיחת Signal</string>
   <!--registration_activity-->

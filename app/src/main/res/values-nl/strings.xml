@@ -264,7 +264,7 @@
     <item quantity="other">%1$d bijlagen aan het opslaan naar telefoonopslag …</item>
   </plurals>
   <string name="ConversationFragment_pending">In afwachting …</string>
-  <string name="ConversationFragment_push">Internet (beveiligd Signal-protocol)</string>
+  <string name="ConversationFragment_push">Internet (Signal-protocol)</string>
   <string name="ConversationFragment_mms">Mms (onbeveiligd)</string>
   <string name="ConversationFragment_sms">Sms (onbeveiligd)</string>
   <string name="ConversationFragment_deleting">Aan het wissen</string>
@@ -370,23 +370,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Groep aanpassen</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Groepsgesprek beheren</string>
-  <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe mms-groep</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Je bent niet geregistreerd voor Signal-berichten en -oproepen, dus Signal-groepen zijn uitgeschakeld. Registreren kan via Instellingen &gt; Geavanceerd.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Je groep moet minstens één persoon bevatten!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Het telefoonnummer van één van de leden van je groep kan niet goed worden gelezen. Corrigeer dit nummer of verwijder deze contactpersoon en probeer het opnieuw.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Groepsafbeelding</string>
-  <string name="GroupCreateActivity_menu_apply_button">Toepassen</string>
-  <string name="GroupCreateActivity_creating_group">%1$s aan het aanmaken …</string>
-  <string name="GroupCreateActivity_updating_group">%1$s aan het aanpassen …</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kon %1$s niet toevoegen omdat zij geen Signal-gebruiker zijn.</string>
-  <string name="GroupCreateActivity_loading_group_details">Groepsdetails aan het laden …</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Je bent al lid van deze groep.</string>
-  <string name="GroupCreateActivity_remove_member_description">Lid verwijderen</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Groep aanpassen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Groepsgesprek beheren</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe mms-groep</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Je bent niet geregistreerd voor Signal-berichten en -oproepen, dus Signal-groepen zijn uitgeschakeld. Registreren kan via Instellingen &gt; Geavanceerd.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Je groep moet minstens één persoon bevatten!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Het telefoonnummer van één van de leden van je groep kan niet goed worden gelezen. Corrigeer dit nummer of verwijder deze contactpersoon en probeer het opnieuw.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Groepsafbeelding</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Toepassen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s aan het aanmaken …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s aan het aanpassen …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kon %1$s niet toevoegen omdat zij geen Signal-gebruiker zijn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Groepsdetails aan het laden …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Je bent al lid van deze groep.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Lid verwijderen</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Persoon aan de groep toevoegen?</string>
   <string name="AddToGroupActivity_add_s_to_s">%1$s aan de groep “%2$s” toevoegen?</string>
@@ -448,7 +448,7 @@
   <string name="ManageGroupActivity_block_group">Groepsgesprek blokkeren</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
-  <string name="ManageGroupActivity_mute_notifications">Demp meldingen</string>
+  <string name="ManageGroupActivity_mute_notifications">Meldingen dempen</string>
   <string name="ManageGroupActivity_custom_notifications">Aangepaste meldingen</string>
   <string name="ManageGroupActivity_until_s">Tot %1$s</string>
   <string name="ManageGroupActivity_off">Uit</string>
@@ -898,11 +898,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
   <string name="SharedContactView_message">Signal-gesprek openen</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Signal zal je er  opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Signal zal je er morgen opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Signal zal je binnen een aantal dagen opnieuw vragen je pincode in te voeren.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Signal zal je er na een week opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Signal zal je binnen een aantal weken opnieuw vragen je pincode in te voeren.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Signal zal je later opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Signal zal je morgen opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Signal zal je binnen een paar dagen opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Signal zal je na een week opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Signal zal je binnen een aantal weken opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
   <string name="Slide_sticker">Sticker</string>
@@ -1038,7 +1038,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mms-bericht kan niet worden ontsleuteld</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Fout: Dit mms-bericht is versleuteld voor een niet-bestaande sessie</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">Demp meldingen</string>
+  <string name="MuteDialog_mute_notifications">Meldingen dempen</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_no_web_browser_installed">Geen webbrowser geïnstalleerd!</string>
   <!--ApplicationMigrationService-->
@@ -1373,20 +1373,20 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="EditProfileFragment__edit_group_name_and_photo">Naam en afbeelding van het groepsgesprek aanpassen</string>
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__shared_media">Gedeelde media</string>
+  <string name="recipient_preference_activity__shared_media">Uitgewisselde media</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Gesprek dempen</string>
-  <string name="recipient_preferences__custom_notifications">Aangepaste meldingen</string>
-  <string name="recipient_preferences__custom_notifications_settings">Systeemmeldingsinstellingen</string>
-  <string name="recipient_preferences__notification_sound">Meldingsgeluid</string>
-  <string name="recipient_preferences__vibrate">Trillen</string>
-  <string name="recipient_preferences__block">Blokkeren</string>
-  <string name="recipient_preferences__color">Kleur</string>
-  <string name="recipient_preferences__view_safety_number">Veiligheidsnummer weergeven</string>
-  <string name="recipient_preferences__chat_settings">Gespreksinstellingen</string>
-  <string name="recipient_preferences__privacy">Privacy</string>
-  <string name="recipient_preferences__call_settings">Oproep instellingen</string>
-  <string name="recipient_preferences__ringtone">Beltoon</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Gespreksmeldingen dempen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Aangepaste meldingen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Systeemmeldingsinstellingen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Meldingsgeluid</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Trillen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blokkeren</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Kleur</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Veiligheidsnummer weergeven</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Gespreksinstellingen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privacy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Oproep instellingen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Beltoon</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-oproep</string>
   <!--registration_activity-->
@@ -1675,7 +1675,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Niet langer dempen</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Demp meldingen</string>
+  <string name="conversation_unmuted__mute_notifications">Meldingen dempen</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_edit_group">Groep aanpassen</string>
@@ -1956,7 +1956,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zal zonder de pincode voor registratievergrendeling pas mogelijk zijn 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %d dagen te gaan.</string>
   <string name="RegistrationActivity_registration_lock_pin">Registratievergrendeling</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Registratievergrendeling is ingeschakeld voor dit telefoonnummer. Voer de pincode voor registratievergrendeling in.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling voor je telefoonnummer is ingeschakeld. Signal zal je af en toe vragen om je pincode te bevestigen om je te helpen deze te onthouden.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling voor je telefoonnummer is ingeschakeld. Signal zal je af en toe vragen om je pincode te verifiëren om je te helpen deze te onthouden.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ik ben mijn pincode vergeten.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Pincode vergeten?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratievergrendeling beschermt je telefoonnummer tegen niet-geautoriseerde registratiepogingen. Deze functie kan op elk moment in je Signal-privacyinstellingen uitgeschakeld worden.</string>

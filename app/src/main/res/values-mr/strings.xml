@@ -367,21 +367,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">नवीन गट</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">गट संपादन करा</string>
-  <string name="GroupCreateActivity_group_name_hint">गट नाव</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">नवीन MMS गट</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">आपण जो संपर्क निवडला आहे तो Signal गटांचे समर्थन करत नाही, त्यामुळे हा गट MMS असेल.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal संदेश आणि कॉल करिता आपण नोंदणीकृत नाही, त्यामुळे Signal गट अक्षम केले गेले आहेत, कृपया सेटिंग आणि प्रगत मधून नोंदणी करण्याचा प्रयत्न करा.</string>
-  <string name="GroupCreateActivity_contacts_no_members">आपल्या गटात आपल्याला कमीतकमी एक व्यक्तीची गरज आहे!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">आपल्या गटातील एका व्यक्तीकडे असा नंबर आहे जो योग्यरीत्या वाचला जाऊ शकत नाही. कृपया त्यास दुरूस्त करा किंवा तो संपर्क काढा आणि पुन्हा प्रयत्न करा.</string>
-  <string name="GroupCreateActivity_avatar_content_description">गट अवतार</string>
-  <string name="GroupCreateActivity_menu_apply_button">लागू करा</string>
-  <string name="GroupCreateActivity_creating_group">%1$s तयार करत आहे…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s अद्ययावत करत आहे…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s यास जोडू शकले नाही कारण ते Signal वापरकर्ते नाही.</string>
-  <string name="GroupCreateActivity_loading_group_details">गट तपशील लोड करत आहे…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">आपण आधीपासून गटात आहात.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">नवीन गट</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">गट संपादन करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">गट नाव</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">नवीन MMS गट</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">आपण जो संपर्क निवडला आहे तो Signal गटांचे समर्थन करत नाही, त्यामुळे हा गट MMS असेल.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal संदेश आणि कॉल करिता आपण नोंदणीकृत नाही, त्यामुळे Signal गट अक्षम केले गेले आहेत, कृपया सेटिंग आणि प्रगत मधून नोंदणी करण्याचा प्रयत्न करा.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">आपल्या गटात आपल्याला कमीतकमी एक व्यक्तीची गरज आहे!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">आपल्या गटातील एका व्यक्तीकडे असा नंबर आहे जो योग्यरीत्या वाचला जाऊ शकत नाही. कृपया त्यास दुरूस्त करा किंवा तो संपर्क काढा आणि पुन्हा प्रयत्न करा.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">गट अवतार</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">लागू करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s तयार करत आहे…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s अद्ययावत करत आहे…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s यास जोडू शकले नाही कारण ते Signal वापरकर्ते नाही.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">गट तपशील लोड करत आहे…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">आपण आधीपासून गटात आहात.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">या गटासोबत आपले प्रोफाईल नाव आणि फोटो सामायिक करायचे?</string>
@@ -1184,18 +1184,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">सामायिक केलेली मिडिया</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">संभाषण म्यूट करा</string>
-  <string name="recipient_preferences__custom_notifications">सानुकूल सूचना</string>
-  <string name="recipient_preferences__custom_notifications_settings">सिस्टिम सूचना सेटिंग</string>
-  <string name="recipient_preferences__notification_sound">सूचना ध्वनी</string>
-  <string name="recipient_preferences__vibrate">कंपन</string>
-  <string name="recipient_preferences__block">अवरोधित करा</string>
-  <string name="recipient_preferences__color">रंग</string>
-  <string name="recipient_preferences__view_safety_number">सुरक्षितता नंबर बघा</string>
-  <string name="recipient_preferences__chat_settings">चॅट सेटिंग</string>
-  <string name="recipient_preferences__privacy">गोपनीयता</string>
-  <string name="recipient_preferences__call_settings">कॉल सेटिंग</string>
-  <string name="recipient_preferences__ringtone">रिंगटोन</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">संभाषण म्यूट करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">सानुकूल सूचना</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">सिस्टिम सूचना सेटिंग</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">सूचना ध्वनी</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">कंपन</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">अवरोधित करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">रंग</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">सुरक्षितता नंबर बघा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">चॅट सेटिंग</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">गोपनीयता</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">कॉल सेटिंग</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">रिंगटोन</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal कॉल</string>
   <!--registration_activity-->

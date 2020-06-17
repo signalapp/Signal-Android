@@ -343,21 +343,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF 파일</string>
   <string name="GiphyFragmentPagerAdapter_stickers">스티커</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">새 그룹</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">그룹 편집</string>
-  <string name="GroupCreateActivity_group_name_hint">그룹 이름</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">새 MMS 그룹</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">선택한 연락처가 Signal 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal 메시지와 전화에 등록하지 않아서 Signal 그룹이 사용 중지되었습니다. Signal 설정 - 고급 메뉴에서 다시 등록해 주세요.</string>
-  <string name="GroupCreateActivity_contacts_no_members">그룹에서 한 명 이상을 선택해야 합니다!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">그룹 멤버 중 한 명의 전화번호를 읽을 수 없습니다. 해당 연락처를 수정 또는 삭제한 후 다시 시도해 주세요.</string>
-  <string name="GroupCreateActivity_avatar_content_description">그룹 아바타</string>
-  <string name="GroupCreateActivity_menu_apply_button">적용</string>
-  <string name="GroupCreateActivity_creating_group">%1$s 그룹 생성 중…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s 그룹 업데이트 중…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s 님은 Signal 사용자가 아니므로 추가할 수 없습니다.</string>
-  <string name="GroupCreateActivity_loading_group_details">그룹 세부 정보 로드 중…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">이미 그룹에 있습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">새 그룹</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">그룹 편집</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">그룹 이름</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">새 MMS 그룹</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">선택한 연락처가 Signal 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal 메시지와 전화에 등록하지 않아서 Signal 그룹이 사용 중지되었습니다. Signal 설정 - 고급 메뉴에서 다시 등록해 주세요.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">그룹에서 한 명 이상을 선택해야 합니다!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">그룹 멤버 중 한 명의 전화번호를 읽을 수 없습니다. 해당 연락처를 수정 또는 삭제한 후 다시 시도해 주세요.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">그룹 아바타</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">적용</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s 그룹 생성 중…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s 그룹 업데이트 중…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s 님은 Signal 사용자가 아니므로 추가할 수 없습니다.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">그룹 세부 정보 로드 중…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">이미 그룹에 있습니다.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">프로필 이름과 사진을 그룹과 공유하시겠습니까?</string>
@@ -1167,18 +1167,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">공유된 미디어</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">대화 알림 끄기</string>
-  <string name="recipient_preferences__custom_notifications">맞춤형 알림</string>
-  <string name="recipient_preferences__custom_notifications_settings">시스템 알림 설정</string>
-  <string name="recipient_preferences__notification_sound">알림 벨소리</string>
-  <string name="recipient_preferences__vibrate">진동</string>
-  <string name="recipient_preferences__block">차단</string>
-  <string name="recipient_preferences__color">색상</string>
-  <string name="recipient_preferences__view_safety_number">안전 번호 보기</string>
-  <string name="recipient_preferences__chat_settings">대화 설정</string>
-  <string name="recipient_preferences__privacy">개인 정보</string>
-  <string name="recipient_preferences__call_settings">전화 설정</string>
-  <string name="recipient_preferences__ringtone">벨소리</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">대화 알림 끄기</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">맞춤형 알림</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">시스템 알림 설정</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">알림 벨소리</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">진동</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">차단</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">색상</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">안전 번호 보기</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">대화 설정</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">개인 정보</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">전화 설정</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">벨소리</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 전화</string>
   <!--registration_activity-->

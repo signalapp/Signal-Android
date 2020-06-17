@@ -350,22 +350,22 @@
   <string name="GiphyFragmentPagerAdapter_gifs">ảnh GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nhãn dán</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Sửa nhóm</string>
-  <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Signal, vậy nên nhóm này sẽ dùng MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Signal không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không hợp lệ. Vui lòng điều chỉnh liên lạc đó hoặc xóa đi và thử lại.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
-  <string name="GroupCreateActivity_menu_apply_button">Áp dụng</string>
-  <string name="GroupCreateActivity_creating_group">Đang tạo %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Đang cập nhật %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Đang tải chi tiết nhóm…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string>
-  <string name="GroupCreateActivity_remove_member_description">Loại bỏ thành viên</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Sửa nhóm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Signal, vậy nên nhóm này sẽ dùng MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Signal không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không hợp lệ. Vui lòng điều chỉnh liên lạc đó hoặc xóa đi và thử lại.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Áp dụng</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Đang tạo %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Đang cập nhật %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Đang tải chi tiết nhóm…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Loại bỏ thành viên</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Chia sẻ ảnh đại diện và tên của bạn với nhóm này?</string>
@@ -1246,18 +1246,18 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Tệp đa phương tiện đã chia sẻ</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Tạm im cuộc trò chuyện</string>
-  <string name="recipient_preferences__custom_notifications">Thông báo tuỳ chỉnh</string>
-  <string name="recipient_preferences__custom_notifications_settings">Cài đặt thông báo hệ thống</string>
-  <string name="recipient_preferences__notification_sound">Âm báo</string>
-  <string name="recipient_preferences__vibrate">Rung</string>
-  <string name="recipient_preferences__block">Chặn</string>
-  <string name="recipient_preferences__color">Màu</string>
-  <string name="recipient_preferences__view_safety_number">Xem mã số an toàn</string>
-  <string name="recipient_preferences__chat_settings">Cài đặt trò chuyện</string>
-  <string name="recipient_preferences__privacy">Riêng tư</string>
-  <string name="recipient_preferences__call_settings">Cài đặt cuộc gọi</string>
-  <string name="recipient_preferences__ringtone">Nhạc chuông</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Tạm im cuộc trò chuyện</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Thông báo tuỳ chỉnh</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Cài đặt thông báo hệ thống</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Âm báo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Rung</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Chặn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Màu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Xem mã số an toàn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Cài đặt trò chuyện</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Riêng tư</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Cài đặt cuộc gọi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Nhạc chuông</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
   <!--registration_activity-->

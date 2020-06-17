@@ -369,23 +369,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Autocollants</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Nouveau groupe</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Modifier le groupe</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Gérer le groupe</string>
-  <string name="GroupCreateActivity_group_name_hint">Nom du groupe</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nouveau groupe de message multimédia</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Vous n’êtes pas inscrit aux appels et messages Signal et les groupes Signal sont donc désactivés. Veuillez essayer de vous inscrire dans Paramètres &gt; Avancé.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Votre groupe doit comprendre au moins une personne.</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Le numéro d’un des membres de votre groupe ne peut pas être lu correctement. Veuillez corriger ou supprimer ce contact et ressayer.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatar du groupe</string>
-  <string name="GroupCreateActivity_menu_apply_button">Appliquer</string>
-  <string name="GroupCreateActivity_creating_group">Création de %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Mise à jour de %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossible d’ajouter %1$s, car cette personne n’utilise pas Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Vous faites déjà partie de ce groupe.</string>
-  <string name="GroupCreateActivity_remove_member_description">Supprimer le membre</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Nouveau groupe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Modifier le groupe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Gérer le groupe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Nom du groupe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Nouveau groupe de message multimédia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Vous n’êtes pas inscrit aux appels et messages Signal et les groupes Signal sont donc désactivés. Veuillez essayer de vous inscrire dans Paramètres &gt; Avancé.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Votre groupe doit comprendre au moins une personne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Le numéro d’un des membres de votre groupe ne peut pas être lu correctement. Veuillez corriger ou supprimer ce contact et ressayer.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar du groupe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Appliquer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Création de %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Mise à jour de %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossible d’ajouter %1$s, car cette personne n’utilise pas Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Vous faites déjà partie de ce groupe.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Supprimer le membre</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_to_group">Ajouter au groupe</string>
   <!--GroupShareProfileView-->
@@ -1352,18 +1352,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Médias partagés</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Mettre la conversation en sourdine</string>
-  <string name="recipient_preferences__custom_notifications">Notifications personnalisées</string>
-  <string name="recipient_preferences__custom_notifications_settings">Paramètres de notification du système</string>
-  <string name="recipient_preferences__notification_sound">Son de notification</string>
-  <string name="recipient_preferences__vibrate">Vibrer</string>
-  <string name="recipient_preferences__block">Bloquer</string>
-  <string name="recipient_preferences__color">Couleur</string>
-  <string name="recipient_preferences__view_safety_number">Afficher le numéro de sécurité</string>
-  <string name="recipient_preferences__chat_settings">Paramètres de la conversation</string>
-  <string name="recipient_preferences__privacy">Confidentialité</string>
-  <string name="recipient_preferences__call_settings">Paramètres des appels</string>
-  <string name="recipient_preferences__ringtone">Sonnerie</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Mettre la conversation en sourdine</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Notifications personnalisées</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Paramètres de notification du système</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Son de notification</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibrer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bloquer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Couleur</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Afficher le numéro de sécurité</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Paramètres de la conversation</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Confidentialité</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Paramètres des appels</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Sonnerie</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
   <!--registration_activity-->

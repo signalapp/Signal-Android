@@ -398,23 +398,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-i</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nalepke</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Nova skupina</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Uredi skupino</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Uredi skupino</string>
-  <string name="GroupCreateActivity_group_name_hint">Ime skupine</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nova skupina MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Izbrali ste uporabnika/co, ki ne uporablja aplikacije Signal, zato bo to skupina MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Ker niste prijavljeni za uporabo podatkovne komunikacije, so skupine Signal onemogočene. Poskusite se registrirati v meniju: Nastavitve &gt; Napredno.</string>
-  <string name="GroupCreateActivity_contacts_no_members">V skupini mora biti vsaj ena oseba!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Nekdo od članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatar skupine</string>
-  <string name="GroupCreateActivity_menu_apply_button">Uveljavi</string>
-  <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s …</string>
-  <string name="GroupCreateActivity_updating_group">Posodabljanje %1$s …</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Stik %1$s ni bil dodan, ker ni uporabnik/ca aplikacije Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Nalaganje podrobnosti o skupini …</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Ste že v skupini.</string>
-  <string name="GroupCreateActivity_remove_member_description">Odstrani člana/ico</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Nova skupina</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Uredi skupino</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Uredi skupino</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Ime skupine</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Nova skupina MMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Izbrali ste uporabnika/co, ki ne uporablja aplikacije Signal, zato bo to skupina MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Ker niste prijavljeni za uporabo podatkovne komunikacije, so skupine Signal onemogočene. Poskusite se registrirati v meniju: Nastavitve &gt; Napredno.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">V skupini mora biti vsaj ena oseba!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Nekdo od članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar skupine</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Uveljavi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Posodabljanje %1$s …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Stik %1$s ni bil dodan, ker ni uporabnik/ca aplikacije Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Nalaganje podrobnosti o skupini …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ste že v skupini.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Odstrani člana/ico</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Želite dodati člana/ico?</string>
   <string name="AddToGroupActivity_add_s_to_s">Želite dodati uporabnika/co \"%1$s\" v skupino \"%2$s\"?</string>
@@ -1454,18 +1454,18 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Deljene datoteke</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Utišaj pogovor</string>
-  <string name="recipient_preferences__custom_notifications">Obvestila po meri</string>
-  <string name="recipient_preferences__custom_notifications_settings">Nastavitve za sistemska obvestila</string>
-  <string name="recipient_preferences__notification_sound">Zvok obvestila</string>
-  <string name="recipient_preferences__vibrate">Vibriranje</string>
-  <string name="recipient_preferences__block">Blokiraj</string>
-  <string name="recipient_preferences__color">Barva</string>
-  <string name="recipient_preferences__view_safety_number">Pregled varnostnih števil</string>
-  <string name="recipient_preferences__chat_settings">Nastavitve pogovora</string>
-  <string name="recipient_preferences__privacy">Zasebnost</string>
-  <string name="recipient_preferences__call_settings">Nastavitve klicev</string>
-  <string name="recipient_preferences__ringtone">Zvonjenje</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Utišaj pogovor</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Obvestila po meri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Nastavitve za sistemska obvestila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Zvok obvestila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibriranje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blokiraj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Barva</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Pregled varnostnih števil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Nastavitve pogovora</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Zasebnost</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Nastavitve klicev</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Zvonjenje</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Klic Signal</string>
   <!--registration_activity-->

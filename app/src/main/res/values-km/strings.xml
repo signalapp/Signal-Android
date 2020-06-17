@@ -354,23 +354,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ស្ទីកគ័រ</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">ក្រុមថ្មី</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">កែប្រែក្រុម</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">គ្រប់គ្រងក្រុម</string>
-  <string name="GroupCreateActivity_group_name_hint">ឈ្មោះក្រុម</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">ក្រុមMMSថ្មី</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">អ្នកបានជ្រើសរើសលេខទំនាក់ទំនងមួយ ដែលមិនស្គាល់ ក្រុមSignal។ ដូច្នេះ ក្រុមនេះនឹងទៅជា MMS។</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">អ្នកមិនបានចុះឈ្មោះសម្រាប់ប្រើ ផ្ញើសារ និងការហៅចេញSignal ដូច្នេះក្រុមSignal ត្រូវបានបិទ។ សូមព្យាយាមចុះឈ្មោះសារជាថ្មីក្នុង ការកំណត់ &gt; កម្រិតខ្ពស់។</string>
-  <string name="GroupCreateActivity_contacts_no_members">អ្នកត្រូវមានសមាជិកយ៉ាងហោច១នាក់ នៅក្នុងក្រុម!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">សមាជិក១ក្នុងក្រុមរបស់អ្នក មានលេខទំនាក់ទំនងមិនត្រឹមត្រូវ។ សូមកែ ឬលុប លេខទំនាក់ទំនងនោះ ហើយព្យាយាមម្តងទៀត។</string>
-  <string name="GroupCreateActivity_avatar_content_description">រូបតំណាងក្រុម</string>
-  <string name="GroupCreateActivity_menu_apply_button">អនុវត្ត</string>
-  <string name="GroupCreateActivity_creating_group">កំពុងបង្កើត %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">កំពុងធ្វើបច្ចុប្បន្នភាព %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">មិនអាចបន្ថែម %1$s ព្រោះពួកគេមិនមែនជា អ្នកប្រើប្រាស់Signal ។</string>
-  <string name="GroupCreateActivity_loading_group_details">កំពុងបើកព័ត៌មានក្រុម…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">អ្នកនៅក្នុងក្រុមហើយ។</string>
-  <string name="GroupCreateActivity_remove_member_description">លុបសមាជិក</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">ក្រុមថ្មី</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">កែប្រែក្រុម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">គ្រប់គ្រងក្រុម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">ឈ្មោះក្រុម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">ក្រុមMMSថ្មី</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">អ្នកបានជ្រើសរើសលេខទំនាក់ទំនងមួយ ដែលមិនស្គាល់ ក្រុមSignal។ ដូច្នេះ ក្រុមនេះនឹងទៅជា MMS។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">អ្នកមិនបានចុះឈ្មោះសម្រាប់ប្រើ ផ្ញើសារ និងការហៅចេញSignal ដូច្នេះក្រុមSignal ត្រូវបានបិទ។ សូមព្យាយាមចុះឈ្មោះសារជាថ្មីក្នុង ការកំណត់ &gt; កម្រិតខ្ពស់។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">អ្នកត្រូវមានសមាជិកយ៉ាងហោច១នាក់ នៅក្នុងក្រុម!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">សមាជិក១ក្នុងក្រុមរបស់អ្នក មានលេខទំនាក់ទំនងមិនត្រឹមត្រូវ។ សូមកែ ឬលុប លេខទំនាក់ទំនងនោះ ហើយព្យាយាមម្តងទៀត។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">រូបតំណាងក្រុម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">អនុវត្ត</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">កំពុងបង្កើត %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">កំពុងធ្វើបច្ចុប្បន្នភាព %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">មិនអាចបន្ថែម %1$s ព្រោះពួកគេមិនមែនជា អ្នកប្រើប្រាស់Signal ។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">កំពុងបើកព័ត៌មានក្រុម…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">អ្នកនៅក្នុងក្រុមហើយ។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">លុបសមាជិក</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_to_group">បន្ថែមចូលក្រុម</string>
   <!--GroupShareProfileView-->
@@ -1309,18 +1309,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ចែករំលែកព័ត៌មាន</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">បិទសំឡេងការសន្ទនា</string>
-  <string name="recipient_preferences__custom_notifications">សារជូនដំណឹងផ្សេង</string>
-  <string name="recipient_preferences__custom_notifications_settings">ការកំណត់ប្រព័ន្ធសារជូនដំណឹង</string>
-  <string name="recipient_preferences__notification_sound">សំឡេងសារជូនដំណឹង</string>
-  <string name="recipient_preferences__vibrate">ញ័រ</string>
-  <string name="recipient_preferences__block">រារាំង</string>
-  <string name="recipient_preferences__color">ពណ៌</string>
-  <string name="recipient_preferences__view_safety_number">មើលលេខសុវត្ថិភាព</string>
-  <string name="recipient_preferences__chat_settings">ការកំណត់សារសន្ទនា</string>
-  <string name="recipient_preferences__privacy">ឯកជនភាព</string>
-  <string name="recipient_preferences__call_settings">កំណត់ការហៅ</string>
-  <string name="recipient_preferences__ringtone">សំឡេងរោទិ៍</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">បិទសំឡេងការសន្ទនា</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">សារជូនដំណឹងផ្សេង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">ការកំណត់ប្រព័ន្ធសារជូនដំណឹង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">សំឡេងសារជូនដំណឹង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">ញ័រ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">រារាំង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">ពណ៌</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">មើលលេខសុវត្ថិភាព</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">ការកំណត់សារសន្ទនា</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">ឯកជនភាព</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">កំណត់ការហៅ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">សំឡេងរោទិ៍</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">ការហៅSignal</string>
   <!--registration_activity-->

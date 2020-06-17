@@ -369,23 +369,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFit</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Tarrat</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Uusi ryhmä</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Muokkaa ryhmää</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Hallinnoi ryhmää</string>
-  <string name="GroupCreateActivity_group_name_hint">Ryhmän nimi</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Uusi MMS-ryhmä</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Olet valinnut yhteystiedon, joka ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan MMS-pohjainen.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Et ole rekisteröitynyt Signal-viesteihin ja -puheluihin, joten Signalin ryhmäkeskustelut eivät ole käytettävissä. Kokeile rekisteröityä Signalin lisäasetuksista.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Ryhmässä täytyy olla vähintään yksi henkilö!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Yhdellä ryhmän jäsenistä on puhelinnumero, jota ei voida lukea. Ole hyvä ja korjaa tämän henkilön yhteystiedot tai poista hänet ryhmästä ja yritä uudelleen.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Ryhmän kuvake</string>
-  <string name="GroupCreateActivity_menu_apply_button">Valmis</string>
-  <string name="GroupCreateActivity_creating_group">Luodaan %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Päivitetään %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Yhteystietoa %1$s ei voitu lisätä ryhmään, koska hän ei ole Signalin-käyttäjä</string>
-  <string name="GroupCreateActivity_loading_group_details">Ladataan ryhmän tiedot…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Olet jo ryhmässä.</string>
-  <string name="GroupCreateActivity_remove_member_description">Poista jäsen</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Uusi ryhmä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Muokkaa ryhmää</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Hallinnoi ryhmää</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Ryhmän nimi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Uusi MMS-ryhmä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Olet valinnut yhteystiedon, joka ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan MMS-pohjainen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Et ole rekisteröitynyt Signal-viesteihin ja -puheluihin, joten Signalin ryhmäkeskustelut eivät ole käytettävissä. Kokeile rekisteröityä Signalin lisäasetuksista.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Ryhmässä täytyy olla vähintään yksi henkilö!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Yhdellä ryhmän jäsenistä on puhelinnumero, jota ei voida lukea. Ole hyvä ja korjaa tämän henkilön yhteystiedot tai poista hänet ryhmästä ja yritä uudelleen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Ryhmän kuvake</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Valmis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Luodaan %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Päivitetään %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Yhteystietoa %1$s ei voitu lisätä ryhmään, koska hän ei ole Signalin-käyttäjä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Ladataan ryhmän tiedot…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Olet jo ryhmässä.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Poista jäsen</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Lisää jäsen?</string>
   <string name="AddToGroupActivity_add_s_to_s">Lisää \"%1$s\" ryhmään \"%2$s\"?</string>
@@ -1366,18 +1366,18 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Jaettu media</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Mykistä keskustelu</string>
-  <string name="recipient_preferences__custom_notifications">Mukautetut ilmoitukset</string>
-  <string name="recipient_preferences__custom_notifications_settings">Järjestelmän ilmoitusasetukset</string>
-  <string name="recipient_preferences__notification_sound">Ilmoitusääni</string>
-  <string name="recipient_preferences__vibrate">Värinä</string>
-  <string name="recipient_preferences__block">Estä</string>
-  <string name="recipient_preferences__color">Väri</string>
-  <string name="recipient_preferences__view_safety_number">Näytä turvanumero</string>
-  <string name="recipient_preferences__chat_settings">Keskustelun asetukset</string>
-  <string name="recipient_preferences__privacy">Yksityisyys</string>
-  <string name="recipient_preferences__call_settings">Puheluasetukset</string>
-  <string name="recipient_preferences__ringtone">Ilmoitusääni</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Mykistä keskustelu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Mukautetut ilmoitukset</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Järjestelmän ilmoitusasetukset</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Ilmoitusääni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Värinä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Estä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Väri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Näytä turvanumero</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Keskustelun asetukset</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Yksityisyys</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Puheluasetukset</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Ilmoitusääni</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
   <!--registration_activity-->

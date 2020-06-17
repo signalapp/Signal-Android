@@ -339,21 +339,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Наліпки</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Нова група</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Редагувати групу</string>
-  <string name="GroupCreateActivity_group_name_hint">Назва групи</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Ви обрали контакт, який не підтримує групи Signal, тому це буде MMS група.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Ви не зареєстровані для використання повідомлень та викликів Signal тому групи Signal відключено. Спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Для вашої групи потрібна щонайменше одна особа!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Один із учасників групи має номер, що не може бути прочитаний належним чином. Будь ласка, виправте або вилучіть той контакт і спробуйте ще раз.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Зображення групи</string>
-  <string name="GroupCreateActivity_menu_apply_button">Застосувати</string>
-  <string name="GroupCreateActivity_creating_group">Створення %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Оновлення %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не вдалося додати %1$s, тому що вони не є користувачами Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Завантаження деталей групи…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Ви вже у групі.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Нова група</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Редагувати групу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Назва групи</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Ви обрали контакт, який не підтримує групи Signal, тому це буде MMS група.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Ви не зареєстровані для використання повідомлень та викликів Signal тому групи Signal відключено. Спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Для вашої групи потрібна щонайменше одна особа!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Один із учасників групи має номер, що не може бути прочитаний належним чином. Будь ласка, виправте або вилучіть той контакт і спробуйте ще раз.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Зображення групи</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Застосувати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Створення %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Оновлення %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не вдалося додати %1$s, тому що вони не є користувачами Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Завантаження деталей групи…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ви вже у групі.</string> -->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Поділитися іменем профілю та світлиною з цією групою?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Зробити ім\'я профілю та світлину видимою для усіх теперішніх та майбутніх учасників цієї групи?</string>
@@ -942,18 +942,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Спільні медіа</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Вимкнути звук для розмови</string>
-  <string name="recipient_preferences__custom_notifications">Власні повідомлення</string>
-  <string name="recipient_preferences__custom_notifications_settings">Налаштування системних сповіщень</string>
-  <string name="recipient_preferences__notification_sound">Звук сповіщення</string>
-  <string name="recipient_preferences__vibrate">Вібрація</string>
-  <string name="recipient_preferences__block">Заблокувати</string>
-  <string name="recipient_preferences__color">Колір</string>
-  <string name="recipient_preferences__view_safety_number">Перевірити номер безпеки</string>
-  <string name="recipient_preferences__chat_settings">Налаштування розмови</string>
-  <string name="recipient_preferences__privacy">Приватність</string>
-  <string name="recipient_preferences__call_settings">Налаштування дзвінків</string>
-  <string name="recipient_preferences__ringtone">Мелодія дзвінка</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Вимкнути звук для розмови</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Власні повідомлення</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Налаштування системних сповіщень</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Звук сповіщення</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Вібрація</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Заблокувати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Колір</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Перевірити номер безпеки</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Налаштування розмови</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Приватність</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Налаштування дзвінків</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Мелодія дзвінка</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Виклик Signal </string>
   <!--registration_activity-->

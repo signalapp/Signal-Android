@@ -344,21 +344,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">اسٹیکرز</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">نواں گروپ</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">گروپ اچ ترمیم کرو</string>
-  <string name="GroupCreateActivity_group_name_hint">گروپ دا ناں</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">نواں MMS گروپ</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">تسیں اک رابطہ منتخب کیتا اے جیہڑا Signal گروپس دی معاونت نئیں کردا، ایس لئی ایہہ گروپ MMS ہووے گا۔</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">تسیں Signal سنیہے تے کالز لئی رجسٹر نئیں کیتا، ایس لئ Signal گروپ غیر فعال نیں۔ مہربانی کر کے ترتیباں تے ایڈوانسڈ اچ رجسٹر کرن دی کوشش کرو۔</string>
-  <string name="GroupCreateActivity_contacts_no_members">تہانوں اپنے گروپ اچ گھٹ توں گھٹ اک بددے دی لوڑھ اے!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">تہاڈے گروپ دے اراکین وچوں ایک دا نمبر صحیح طریقے نال نئیں پڑھیا جا سکدا۔ مہربانی کر کے ایس رابطے نوں ٹھیک کرو یاں ختم کرو تے فیر کوشش کرو۔</string>
-  <string name="GroupCreateActivity_avatar_content_description">گروپ اوتار</string>
-  <string name="GroupCreateActivity_menu_apply_button">درخواست کرو</string>
-  <string name="GroupCreateActivity_creating_group">%1$s تشکیل دے رئیا اے…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s اپ ڈیٹ کر رئیا اے…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s شامل نئیں کر سکیا کیوں جے اوہ Signal صارف نئیں۔</string>
-  <string name="GroupCreateActivity_loading_group_details">گروپ تفصیلاں لوڈ ہو ر‏ئیاں نیں…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">تسیں پہلاں ای گروپ اچ او۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">نواں گروپ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">گروپ اچ ترمیم کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">گروپ دا ناں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">نواں MMS گروپ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">تسیں اک رابطہ منتخب کیتا اے جیہڑا Signal گروپس دی معاونت نئیں کردا، ایس لئی ایہہ گروپ MMS ہووے گا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">تسیں Signal سنیہے تے کالز لئی رجسٹر نئیں کیتا، ایس لئ Signal گروپ غیر فعال نیں۔ مہربانی کر کے ترتیباں تے ایڈوانسڈ اچ رجسٹر کرن دی کوشش کرو۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">تہانوں اپنے گروپ اچ گھٹ توں گھٹ اک بددے دی لوڑھ اے!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">تہاڈے گروپ دے اراکین وچوں ایک دا نمبر صحیح طریقے نال نئیں پڑھیا جا سکدا۔ مہربانی کر کے ایس رابطے نوں ٹھیک کرو یاں ختم کرو تے فیر کوشش کرو۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">گروپ اوتار</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">درخواست کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s تشکیل دے رئیا اے…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s اپ ڈیٹ کر رئیا اے…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s شامل نئیں کر سکیا کیوں جے اوہ Signal صارف نئیں۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">گروپ تفصیلاں لوڈ ہو ر‏ئیاں نیں…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">تسیں پہلاں ای گروپ اچ او۔</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ایس گروپ نال تہاڈا پروفائل ناں تے تصویر سانچھی کر‏‏ئی اے دا؟</string>
@@ -1161,18 +1161,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">مشترکہ میڈیا</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">گل بات خموش کرو</string>
-  <string name="recipient_preferences__custom_notifications">حسب ضرورت اطلاعواں</string>
-  <string name="recipient_preferences__custom_notifications_settings">سسٹم اطلاع دیاں ترتیباں</string>
-  <string name="recipient_preferences__notification_sound"> اطلاع دی اواز</string>
-  <string name="recipient_preferences__vibrate">وائبریٹ</string>
-  <string name="recipient_preferences__block">بلاک کرو</string>
-  <string name="recipient_preferences__color">رنگ</string>
-  <string name="recipient_preferences__view_safety_number">سیفٹی نمبر ویکھو</string>
-  <string name="recipient_preferences__chat_settings">چیٹ دیاں ترتیباں</string>
-  <string name="recipient_preferences__privacy">رازداری</string>
-  <string name="recipient_preferences__call_settings">کال دیاں ترتیباں</string>
-  <string name="recipient_preferences__ringtone">رنگ ٹون</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">گل بات خموش کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">حسب ضرورت اطلاعواں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">سسٹم اطلاع دیاں ترتیباں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound"> اطلاع دی اواز</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">وائبریٹ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">بلاک کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">رنگ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">سیفٹی نمبر ویکھو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">چیٹ دیاں ترتیباں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">رازداری</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">کال دیاں ترتیباں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">رنگ ٹون</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal کال</string>
   <!--registration_activity-->

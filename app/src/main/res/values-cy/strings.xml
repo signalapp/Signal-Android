@@ -400,23 +400,23 @@ Send neges heb ei ddiogelu?</string>
   <string name="GiphyFragmentPagerAdapter_gifs">GIFau</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Sticeri</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Grŵp newydd</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Golygu grŵp</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Rheoli grŵp</string>
-  <string name="GroupCreateActivity_group_name_hint">Enw\'r grŵp</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Grŵp MMS newydd</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Rydych chi wedi dewis cyswllt nad yw\'n cynnal grwpiau Signal, felly bydd y grŵp hwn yn MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nid ydych chi wedi cofrestru ar gyfer negeseuon a galwadau Signal, felly mae grwpiau Signal wedi eu hanalluogi. Ceisiwch gofrestru yn y Gosodiadau &gt; Uwch.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Mae angen o leiaf un person yn eich grŵp!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Mae gan un o aelodau eich grŵp rif nad oes modd ei ddarllen yn iawn. Dylech ddileu neu ddileu\'r cyswllt hwnnw a cheisio eto.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Rhithffurf y grŵp</string>
-  <string name="GroupCreateActivity_menu_apply_button">Gosod</string>
-  <string name="GroupCreateActivity_creating_group">Creu %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Yn diweddaru %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Methu ychwanegu %1$s oherwydd nad yw\'n ddefnyddiwr Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Llwytho manylion grŵp…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Rydych eisoes yn y grŵp.</string>
-  <string name="GroupCreateActivity_remove_member_description">Dileu aelod</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Grŵp newydd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Golygu grŵp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Rheoli grŵp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Enw\'r grŵp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Grŵp MMS newydd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Rydych chi wedi dewis cyswllt nad yw\'n cynnal grwpiau Signal, felly bydd y grŵp hwn yn MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Nid ydych chi wedi cofrestru ar gyfer negeseuon a galwadau Signal, felly mae grwpiau Signal wedi eu hanalluogi. Ceisiwch gofrestru yn y Gosodiadau &gt; Uwch.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Mae angen o leiaf un person yn eich grŵp!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Mae gan un o aelodau eich grŵp rif nad oes modd ei ddarllen yn iawn. Dylech ddileu neu ddileu\'r cyswllt hwnnw a cheisio eto.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Rhithffurf y grŵp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Gosod</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Creu %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Yn diweddaru %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Methu ychwanegu %1$s oherwydd nad yw\'n ddefnyddiwr Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Llwytho manylion grŵp…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Rydych eisoes yn y grŵp.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Dileu aelod</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Ychwanegu aelod?</string>
   <string name="AddToGroupActivity_add_s_to_s">Ychwanegu \"%1$s\" i \"%2$s\"?</string>
@@ -1465,18 +1465,18 @@ Send neges heb ei ddiogelu?</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Cyfryngau wedi\'u rhannu</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Tewi sgwrs</string>
-  <string name="recipient_preferences__custom_notifications">Hysbysiadau cyfaddas</string>
-  <string name="recipient_preferences__custom_notifications_settings">Gosodiadau hysbysu system</string>
-  <string name="recipient_preferences__notification_sound">Sain hysbysu</string>
-  <string name="recipient_preferences__vibrate">Dirgrynu</string>
-  <string name="recipient_preferences__block">Rhwystro</string>
-  <string name="recipient_preferences__color">Lliw</string>
-  <string name="recipient_preferences__view_safety_number">Gweld rhif diogelwch</string>
-  <string name="recipient_preferences__chat_settings">Gosodiadau sgwrsio</string>
-  <string name="recipient_preferences__privacy">Preifatrwydd</string>
-  <string name="recipient_preferences__call_settings">Gosodiadau galw</string>
-  <string name="recipient_preferences__ringtone">Tôn canu</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Tewi sgwrs</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Hysbysiadau cyfaddas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Gosodiadau hysbysu system</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Sain hysbysu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Dirgrynu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Rhwystro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Lliw</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Gweld rhif diogelwch</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Gosodiadau sgwrsio</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Preifatrwydd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Gosodiadau galw</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Tôn canu</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Galwad Signal</string>
   <!--registration_activity-->

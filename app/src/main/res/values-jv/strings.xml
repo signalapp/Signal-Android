@@ -327,21 +327,21 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stiker</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Grup enggal</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Atur grup</string>
-  <string name="GroupCreateActivity_group_name_hint">Nami grup</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS enggal</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Sampeyan mileh kontak ingkang mboten saged ngangge grup Signal, dadosipun grup kasebut bakal ngrupikaken MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sampeyan mboten saged ndaftar telepon lan pesen Signal, dadosipun grup Signal bakal dinonaktifaken. Mangga cobi ndaftaraken ing Panatanan &gt; Lajengan.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Sampeyan betah paling sekedhik setunggal tiyang ing grup!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Salah setunggal anggota grup sampeyan gadhah nomer ingkang mboten saged diwaos sacara leres. Mangga dipundandosi utawi brusak kontak kasebut lan cobi malih.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatar grup</string>
-  <string name="GroupCreateActivity_menu_apply_button">Terapaken</string>
-  <string name="GroupCreateActivity_creating_group">Taksih ndamel %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Ngenggalaken %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Mboten saged mewahi %1$s amargi piyambakipun mboten ngginakaken Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Taksih ngunggahi rincian grup…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Sampeyan sampun mlebet grup niki.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Grup enggal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Atur grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Nami grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS enggal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Sampeyan mileh kontak ingkang mboten saged ngangge grup Signal, dadosipun grup kasebut bakal ngrupikaken MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Sampeyan mboten saged ndaftar telepon lan pesen Signal, dadosipun grup Signal bakal dinonaktifaken. Mangga cobi ndaftaraken ing Panatanan &gt; Lajengan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Sampeyan betah paling sekedhik setunggal tiyang ing grup!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Salah setunggal anggota grup sampeyan gadhah nomer ingkang mboten saged diwaos sacara leres. Mangga dipundandosi utawi brusak kontak kasebut lan cobi malih.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Terapaken</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Taksih ndamel %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Ngenggalaken %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Mboten saged mewahi %1$s amargi piyambakipun mboten ngginakaken Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Taksih ngunggahi rincian grup…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Sampeyan sampun mlebet grup niki.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Unjukaken foto lan nami profil kaliyan grup niki?</string>
@@ -1132,18 +1132,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Media ingkang dipununjukaken</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Bisuaken obrolan</string>
-  <string name="recipient_preferences__custom_notifications">Prungon kustom</string>
-  <string name="recipient_preferences__custom_notifications_settings">Panatanan prungon sistem</string>
-  <string name="recipient_preferences__notification_sound">Suwantenipun prungon</string>
-  <string name="recipient_preferences__vibrate">Geter</string>
-  <string name="recipient_preferences__block">Blokir</string>
-  <string name="recipient_preferences__color">Werni</string>
-  <string name="recipient_preferences__view_safety_number">Tingali nomer keamanan</string>
-  <string name="recipient_preferences__chat_settings">Panatanan obrolan</string>
-  <string name="recipient_preferences__privacy">Privasi</string>
-  <string name="recipient_preferences__call_settings">Panatanan telepon</string>
-  <string name="recipient_preferences__ringtone">Nada dering</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Bisuaken obrolan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Prungon kustom</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Panatanan prungon sistem</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Suwantenipun prungon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Geter</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blokir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Werni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Tingali nomer keamanan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Panatanan obrolan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privasi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Panatanan telepon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Nada dering</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Telepon Signal</string>
   <!--registration_activity-->

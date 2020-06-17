@@ -367,23 +367,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">জিআইএফ সমূহ</string>
   <string name="GiphyFragmentPagerAdapter_stickers">স্টিকার সমূহ</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">নতুন গ্রুপ</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">গ্রুপ সংশোধন করুন</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">গ্রুপ ম্যানেজ করুন</string>
-  <string name="GroupCreateActivity_group_name_hint">গ্রুপের নাম</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">নতুন এমএমএস গ্রুপ</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">আপনি এমন একটি পরিচিতি নির্বাচন করেছেন যা Signal গ্রুপ সমর্থন করে না, সুতরাং এই গ্রুপটি এমএমএস হবে।</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">আপনি Signal বার্তা এবং সব কল করার জন্য নিবন্ধভুক্ত নন, সুতরাং Signal গ্রুপসমূহ অক্ষম করা আছে। দয়া করে নিবন্ধকরণ করার চেষ্টা করুন এখানে- সেটিংস &gt; উন্নত ।</string>
-  <string name="GroupCreateActivity_contacts_no_members">আপনার গ্রুপে ন্যূনতম একজন ব্যাক্তি দরকার!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">আপনার গ্রুপের একজন সদস্যের একটি নাম্বার রয়েছে যা সঠিকভাবে পড়া যায় না। দয়া করে সেই পরিচিতিটি ঠিক করুন বা অপসারণ করুন এবং আবার চেষ্টা করুন।</string>
-  <string name="GroupCreateActivity_avatar_content_description">গ্রুপ প্রোফাইলের ছবি</string>
-  <string name="GroupCreateActivity_menu_apply_button">আরোপ করুন</string>
-  <string name="GroupCreateActivity_creating_group">%1$s তৈরী হচ্ছে…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s আপডেট করা হচ্ছে…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s জনকে যুক্ত করা যাচ্ছে না কারণ তারা Signal ব্যাবহারকারী নন।</string>
-  <string name="GroupCreateActivity_loading_group_details">গ্রুপের বিবরন লোড করা হচ্ছে…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">আপনি ইতিমধ্যে গ্রুপটিতে আছেন।</string>
-  <string name="GroupCreateActivity_remove_member_description">সদস্য সরান</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">নতুন গ্রুপ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">গ্রুপ সংশোধন করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">গ্রুপ ম্যানেজ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">গ্রুপের নাম</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">নতুন এমএমএস গ্রুপ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">আপনি এমন একটি পরিচিতি নির্বাচন করেছেন যা Signal গ্রুপ সমর্থন করে না, সুতরাং এই গ্রুপটি এমএমএস হবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">আপনি Signal বার্তা এবং সব কল করার জন্য নিবন্ধভুক্ত নন, সুতরাং Signal গ্রুপসমূহ অক্ষম করা আছে। দয়া করে নিবন্ধকরণ করার চেষ্টা করুন এখানে- সেটিংস &gt; উন্নত ।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">আপনার গ্রুপে ন্যূনতম একজন ব্যাক্তি দরকার!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">আপনার গ্রুপের একজন সদস্যের একটি নাম্বার রয়েছে যা সঠিকভাবে পড়া যায় না। দয়া করে সেই পরিচিতিটি ঠিক করুন বা অপসারণ করুন এবং আবার চেষ্টা করুন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">গ্রুপ প্রোফাইলের ছবি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">আরোপ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s তৈরী হচ্ছে…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s আপডেট করা হচ্ছে…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s জনকে যুক্ত করা যাচ্ছে না কারণ তারা Signal ব্যাবহারকারী নন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">গ্রুপের বিবরন লোড করা হচ্ছে…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">আপনি ইতিমধ্যে গ্রুপটিতে আছেন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">সদস্য সরান</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_to_group">গ্রুপে যুক্ত করুন</string>
   <!--GroupShareProfileView-->
@@ -1343,18 +1343,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">শেয়ার করা মিডিয়া</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">কথোপকথন নিশব্দ করুন</string>
-  <string name="recipient_preferences__custom_notifications">কাস্টম বিজ্ঞপ্তি</string>
-  <string name="recipient_preferences__custom_notifications_settings">সিস্টেম বিজ্ঞপ্তি সেটিংস</string>
-  <string name="recipient_preferences__notification_sound">বিজ্ঞপ্তি শব্দ</string>
-  <string name="recipient_preferences__vibrate">কম্পন</string>
-  <string name="recipient_preferences__block">ব্লক করুন</string>
-  <string name="recipient_preferences__color">রঙ</string>
-  <string name="recipient_preferences__view_safety_number">নিরাপত্তা নাম্বার দেখুন</string>
-  <string name="recipient_preferences__chat_settings">চ্যাট সেটিংস</string>
-  <string name="recipient_preferences__privacy">গোপনীয়তা</string>
-  <string name="recipient_preferences__call_settings">কল সেটিংস</string>
-  <string name="recipient_preferences__ringtone">রিংটোন</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">কথোপকথন নিশব্দ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">কাস্টম বিজ্ঞপ্তি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">সিস্টেম বিজ্ঞপ্তি সেটিংস</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">বিজ্ঞপ্তি শব্দ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">কম্পন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">ব্লক করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">রঙ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">নিরাপত্তা নাম্বার দেখুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">চ্যাট সেটিংস</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">গোপনীয়তা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">কল সেটিংস</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">রিংটোন</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal কল</string>
   <!--registration_activity-->

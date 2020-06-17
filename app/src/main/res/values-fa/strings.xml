@@ -370,23 +370,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">گیف‌ها</string>
   <string name="GiphyFragmentPagerAdapter_stickers">استیکرها</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">گروه جدید</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">ویرایش گروه</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">مدیریت گروه</string>
-  <string name="GroupCreateActivity_group_name_hint">نام گروه</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">گروه فراپیام جدید</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">شما مخاطبی را انتخاب کرده‌اید که از گروه‌ های Signal پشتیبانی نمی‌کند، بنابراین این گروه فراپیام خواهد بود.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">شما برای استفاده از خدمات پیام‌ رسانی و تماس‌ Signal ثبت‌نام نکرده‌اید، به همین خاطر گروه‌ ها غیرفعال می باشند. لطفاً از تنظیمات ← پیشرفته ثبت نام کنید.</string>
-  <string name="GroupCreateActivity_contacts_no_members">شما حداقل به یک نفر در گروه خود نیاز دارید!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">یکی از مخاطبان گروه شما دارای شماره‌‌ای است که به درستی قابل خواندن نیست. لطفاً آن مخاطب را اصلاح یا از گروه حذف کرده و دوباره امتحان کنید.</string>
-  <string name="GroupCreateActivity_avatar_content_description">چهرک گروه</string>
-  <string name="GroupCreateActivity_menu_apply_button">اعمال</string>
-  <string name="GroupCreateActivity_creating_group">ایجاد %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">به روز رسانی %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان افزودن این کاربر وجود ندارد چون %1$s کاربر Signal نیست.</string>
-  <string name="GroupCreateActivity_loading_group_details">بارگذاری جزئیات گروه…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">شما در حال حاضر در این گروه هستید.</string>
-  <string name="GroupCreateActivity_remove_member_description">حذف عضو گروه</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">گروه جدید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">ویرایش گروه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">مدیریت گروه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">نام گروه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">گروه فراپیام جدید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">شما مخاطبی را انتخاب کرده‌اید که از گروه‌ های Signal پشتیبانی نمی‌کند، بنابراین این گروه فراپیام خواهد بود.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">شما برای استفاده از خدمات پیام‌ رسانی و تماس‌ Signal ثبت‌نام نکرده‌اید، به همین خاطر گروه‌ ها غیرفعال می باشند. لطفاً از تنظیمات ← پیشرفته ثبت نام کنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">شما حداقل به یک نفر در گروه خود نیاز دارید!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">یکی از مخاطبان گروه شما دارای شماره‌‌ای است که به درستی قابل خواندن نیست. لطفاً آن مخاطب را اصلاح یا از گروه حذف کرده و دوباره امتحان کنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">چهرک گروه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">اعمال</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">ایجاد %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">به روز رسانی %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان افزودن این کاربر وجود ندارد چون %1$s کاربر Signal نیست.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">بارگذاری جزئیات گروه…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">شما در حال حاضر در این گروه هستید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">حذف عضو گروه</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">افزودن عضو؟</string>
   <string name="AddToGroupActivity_add_s_to_s">افزودن «%1$s» به «%2$s»؟</string>
@@ -1370,18 +1370,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">رسانه‌های اشتراک‌گذاری شده</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">بی‌صدا کردن مکالمه</string>
-  <string name="recipient_preferences__custom_notifications">اعلان‌‌های سفارشی</string>
-  <string name="recipient_preferences__custom_notifications_settings">تنظیمات اعلان سیستم</string>
-  <string name="recipient_preferences__notification_sound">صدای اعلان</string>
-  <string name="recipient_preferences__vibrate">لرزش</string>
-  <string name="recipient_preferences__block">مسدود کردن</string>
-  <string name="recipient_preferences__color">رنگ</string>
-  <string name="recipient_preferences__view_safety_number">نمایش شمارهٔ امنیتی</string>
-  <string name="recipient_preferences__chat_settings">تنظیمات گفتگو</string>
-  <string name="recipient_preferences__privacy">حریم خصوصی</string>
-  <string name="recipient_preferences__call_settings">تنظیمات تماس</string>
-  <string name="recipient_preferences__ringtone">صدای زنگ</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">بی‌صدا کردن مکالمه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">اعلان‌‌های سفارشی</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">تنظیمات اعلان سیستم</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">صدای اعلان</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">لرزش</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">مسدود کردن</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">رنگ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">نمایش شمارهٔ امنیتی</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">تنظیمات گفتگو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">حریم خصوصی</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">تنظیمات تماس</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">صدای زنگ</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">تماس Signal</string>
   <!--registration_activity-->

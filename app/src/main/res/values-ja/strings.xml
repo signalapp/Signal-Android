@@ -356,23 +356,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ステッカー</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">グループを編集</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">グループの管理</string>
-  <string name="GroupCreateActivity_group_name_hint">グループ名</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">新規 MMS グループ</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Signal グループに対応していない連絡先が選択されたため、このグループは MMS となります。</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal のメッセージと通話に未登録のため Signal グループを利用できません。設定 &gt; 詳細設定より登録してください。</string>
-  <string name="GroupCreateActivity_contacts_no_members">グループには少なくとも 1 人必要です！</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">グループの中に正しく読み取れない電話番号を持つメンバーがいます。番号を修正するか、そのメンバーを削除してからもう一度お試しください。</string>
-  <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
-  <string name="GroupCreateActivity_menu_apply_button">適用</string>
-  <string name="GroupCreateActivity_creating_group">%1$s を作成しています…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s をアップデートしています…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s は Signal ユーザではないので追加できませんでした。</string>
-  <string name="GroupCreateActivity_loading_group_details">グループの詳細を読み込んでいます…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">グループに加入済みです。</string>
-  <string name="GroupCreateActivity_remove_member_description">メンバーを削除</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">新規グループ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">グループを編集</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">グループの管理</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">グループ名</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">新規 MMS グループ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Signal グループに対応していない連絡先が選択されたため、このグループは MMS となります。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal のメッセージと通話に未登録のため Signal グループを利用できません。設定 &gt; 詳細設定より登録してください。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">グループには少なくとも 1 人必要です！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">グループの中に正しく読み取れない電話番号を持つメンバーがいます。番号を修正するか、そのメンバーを削除してからもう一度お試しください。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">グループアバター</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">適用</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s を作成しています…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s をアップデートしています…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s は Signal ユーザではないので追加できませんでした。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">グループの詳細を読み込んでいます…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">グループに加入済みです。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">メンバーを削除</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">メンバーを追加しますか?</string>
   <string name="AddToGroupActivity_add_s_to_s">「%1$s」を「%2$s」へ追加しますか?</string>
@@ -1317,18 +1317,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">会話をミュート</string>
-  <string name="recipient_preferences__custom_notifications">カスタム通知</string>
-  <string name="recipient_preferences__custom_notifications_settings">システム通知設定</string>
-  <string name="recipient_preferences__notification_sound">通知音</string>
-  <string name="recipient_preferences__vibrate">サイレントモード</string>
-  <string name="recipient_preferences__block">ブロック</string>
-  <string name="recipient_preferences__color">色</string>
-  <string name="recipient_preferences__view_safety_number">安全番号を表示する</string>
-  <string name="recipient_preferences__chat_settings">チャットの設定</string>
-  <string name="recipient_preferences__privacy">プライバシー</string>
-  <string name="recipient_preferences__call_settings">通話設定</string>
-  <string name="recipient_preferences__ringtone">着信音</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">会話をミュート</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">カスタム通知</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">システム通知設定</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">通知音</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">サイレントモード</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">ブロック</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">色</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">安全番号を表示する</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">チャットの設定</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">プライバシー</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">通話設定</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">着信音</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
   <!--registration_activity-->
@@ -1379,7 +1379,7 @@
   <string name="MessageRequestsMegaphone__message_requests">メッセージリクエスト</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ユーザが新しい会話を了承するかどうかを選択できるようになりました。プロフィール名で、誰が自分にメッセージを送っているのかを知ることができます。</string>
   <string name="MessageRequestsMegaphone__add_profile_name">プロフィール名を追加</string>
-  <string name="MessageRequestsMegaphone__new_message_requests">New: メッセージリクエスト</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">新機能: メッセージリクエスト</string>
   <string name="MessageRequestsMegaphone__add_name">名前を追加</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">新しい会話を了承するかどうかを選択できるようになりました。今後、新しい会話には「了承」、「削除」および「ブロック」という選択肢が表示されます。</string>
   <!--HelpFragment-->

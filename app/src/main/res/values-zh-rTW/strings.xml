@@ -356,23 +356,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">動態圖檔</string>
   <string name="GiphyFragmentPagerAdapter_stickers">貼圖</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">新增群組</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">編輯群組</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">管理群組</string>
-  <string name="GroupCreateActivity_group_name_hint">群組名稱</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">新的 MMS 群組</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">您所選擇的聯絡人並不支援 Signal 群組，所以此組將以多媒體訊息形式存在。</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">您沒有註冊 Signal 訊息與通話，所以 Signal 群組已經被停用。請嘗試在設定 &gt; 進階中重新註冊。</string>
-  <string name="GroupCreateActivity_contacts_no_members">建立群組至少需要加入一個聯絡人！</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">群組中某個成員的電話號碼無法讀取，請更正或移除此聯絡人，並再試一次。</string>
-  <string name="GroupCreateActivity_avatar_content_description">群組的大頭照</string>
-  <string name="GroupCreateActivity_menu_apply_button">應用</string>
-  <string name="GroupCreateActivity_creating_group">%1$s 建立中…</string>
-  <string name="GroupCreateActivity_updating_group">升級%1$s中…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法新增 %1$s，因為他們不是 Signal 使用者。</string>
-  <string name="GroupCreateActivity_loading_group_details">讀取群組資訊中…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">您已在此群組中</string>
-  <string name="GroupCreateActivity_remove_member_description">移除成員</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">新增群組</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">編輯群組</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">管理群組</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">群組名稱</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">新的 MMS 群組</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">您所選擇的聯絡人並不支援 Signal 群組，所以此組將以多媒體訊息形式存在。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">您沒有註冊 Signal 訊息與通話，所以 Signal 群組已經被停用。請嘗試在設定 &gt; 進階中重新註冊。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">建立群組至少需要加入一個聯絡人！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">群組中某個成員的電話號碼無法讀取，請更正或移除此聯絡人，並再試一次。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">群組的大頭照</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">應用</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s 建立中…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">升級%1$s中…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法新增 %1$s，因為他們不是 Signal 使用者。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">讀取群組資訊中…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">您已在此群組中</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">移除成員</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">新增成員嗎?</string>
   <string name="AddToGroupActivity_add_s_to_s">新增\"%1$s\"到\"%2$s\"嗎？</string>
@@ -1325,18 +1325,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">分享的媒體</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">靜音對話</string>
-  <string name="recipient_preferences__custom_notifications">自訂通知</string>
-  <string name="recipient_preferences__custom_notifications_settings">系統通知設定</string>
-  <string name="recipient_preferences__notification_sound">通知提示音</string>
-  <string name="recipient_preferences__vibrate">震動</string>
-  <string name="recipient_preferences__block">封鎖</string>
-  <string name="recipient_preferences__color">顏色</string>
-  <string name="recipient_preferences__view_safety_number">檢視安全碼</string>
-  <string name="recipient_preferences__chat_settings">聊天設定</string>
-  <string name="recipient_preferences__privacy">隱私權</string>
-  <string name="recipient_preferences__call_settings">通話設定</string>
-  <string name="recipient_preferences__ringtone">鈴聲</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">靜音對話</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">自訂通知</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">系統通知設定</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">通知提示音</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">震動</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">封鎖</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">顏色</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">檢視安全碼</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">聊天設定</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">隱私權</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">通話設定</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">鈴聲</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
   <!--registration_activity-->

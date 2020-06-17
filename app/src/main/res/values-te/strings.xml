@@ -369,22 +369,22 @@
   <string name="GiphyFragmentPagerAdapter_gifs">గిఫ్ లు</string>
   <string name="GiphyFragmentPagerAdapter_stickers">స్టిక్కర్లు</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">కొత్త సమూహం</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">సమూహాన్ని మార్చు</string>
-  <string name="GroupCreateActivity_group_name_hint">సమూహం పేరు</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">కొత్త ఎమ్మెమ్మెస్ సమూహం</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">మీరు ఎంపిక చేసి Signal వర్గములకు మద్దత్తు లేని పరిచయం,కాబట్టి ఈ సమూహ ఎంఎంఎస్ ఉంటుంది.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">మీరు Signal సందెసాలకు మరియు చరవానీ పిలుపులకు నమొదు చెసుకొలేదు,అందువల్ల Signal సముదాయాలు నిలిపివెయడమైనది.దయ ఉంచి సెట్టింగ్సులో నమూదు చెసుకొనుటకు ప్రయత్నించి ఉన్నత స్తితికి చేరుకొగలరు.</string>
-  <string name="GroupCreateActivity_contacts_no_members">మీకు మీ సమూహంలొ కనీసం ఒక వ్యక్తి అవసరం!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">మీ సమూహంలొ ఉన్న ఒకరి నంబరు సరిగ్గా చదవడానికి వీలు కావడం లేదు . దయ చేసి దానిని సరి చేయండి లేదా ఆ సంప్రదించే నంబరును తీసివేసి మరల ప్రయత్నించండి.</string>
-  <string name="GroupCreateActivity_avatar_content_description">గ్రూప్ అవతార్</string>
-  <string name="GroupCreateActivity_menu_apply_button">అనువర్తించు</string>
-  <string name="GroupCreateActivity_creating_group">%1$s సృష్టించబడుతుంది</string>
-  <string name="GroupCreateActivity_updating_group"> నవీకరిస్తోంది %1$s …</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">వారిని ఇందులో %1$sకలపలేము ఎందుకంటే వారు Signal వినియోగదరులు కారు</string>
-  <string name="GroupCreateActivity_loading_group_details">సమూహ వివరాలను లోడ్ చేస్తోంది…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">మీరు ఇప్పటికే సమూహంలో ఉన్నారు.</string>
-  <string name="GroupCreateActivity_remove_member_description">సభ్యుడు లేదా సభ్యురాలిని తొలగించు</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">కొత్త సమూహం</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">సమూహాన్ని మార్చు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">సమూహం పేరు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">కొత్త ఎమ్మెమ్మెస్ సమూహం</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">మీరు ఎంపిక చేసి Signal వర్గములకు మద్దత్తు లేని పరిచయం,కాబట్టి ఈ సమూహ ఎంఎంఎస్ ఉంటుంది.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">మీరు Signal సందెసాలకు మరియు చరవానీ పిలుపులకు నమొదు చెసుకొలేదు,అందువల్ల Signal సముదాయాలు నిలిపివెయడమైనది.దయ ఉంచి సెట్టింగ్సులో నమూదు చెసుకొనుటకు ప్రయత్నించి ఉన్నత స్తితికి చేరుకొగలరు.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">మీకు మీ సమూహంలొ కనీసం ఒక వ్యక్తి అవసరం!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">మీ సమూహంలొ ఉన్న ఒకరి నంబరు సరిగ్గా చదవడానికి వీలు కావడం లేదు . దయ చేసి దానిని సరి చేయండి లేదా ఆ సంప్రదించే నంబరును తీసివేసి మరల ప్రయత్నించండి.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">గ్రూప్ అవతార్</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">అనువర్తించు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s సృష్టించబడుతుంది</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group"> నవీకరిస్తోంది %1$s …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">వారిని ఇందులో %1$sకలపలేము ఎందుకంటే వారు Signal వినియోగదరులు కారు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">సమూహ వివరాలను లోడ్ చేస్తోంది…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">మీరు ఇప్పటికే సమూహంలో ఉన్నారు.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">సభ్యుడు లేదా సభ్యురాలిని తొలగించు</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">మీ రూపం పేరు మరియు చిత్రం  ఈ గ్రూపుతో షేర్ చేయాలా?</string>
@@ -1273,18 +1273,18 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">భాగస్వామ్యం చేయబడిన మీడియా</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">నిశబ్ధ సంభాషణలు</string>
-  <string name="recipient_preferences__custom_notifications">అనుకూల ప్రకటనలను</string>
-  <string name="recipient_preferences__custom_notifications_settings">సిస్టమ్ నోటిఫికేషన్ సెట్టింగ్లు</string>
-  <string name="recipient_preferences__notification_sound">ప్రకటనల ధ్వని</string>
-  <string name="recipient_preferences__vibrate">ప్రకంపన</string>
-  <string name="recipient_preferences__block">నిరోధించు</string>
-  <string name="recipient_preferences__color">రంగు </string>
-  <string name="recipient_preferences__view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string>
-  <string name="recipient_preferences__chat_settings">చాట్ సెట్టింగ్లు</string>
-  <string name="recipient_preferences__privacy">గోప్యత</string>
-  <string name="recipient_preferences__call_settings">కాల్ సెట్టింగ్లు</string>
-  <string name="recipient_preferences__ringtone">రింగ్టోన్</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">నిశబ్ధ సంభాషణలు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">అనుకూల ప్రకటనలను</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">సిస్టమ్ నోటిఫికేషన్ సెట్టింగ్లు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">ప్రకటనల ధ్వని</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">ప్రకంపన</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">నిరోధించు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">రంగు </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">చాట్ సెట్టింగ్లు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">గోప్యత</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">కాల్ సెట్టింగ్లు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">రింగ్టోన్</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal కాల్ </string>
   <!--registration_activity-->

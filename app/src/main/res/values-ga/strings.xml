@@ -306,20 +306,20 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFeanna</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Greamáin</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Baicle nua</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Athraigh an bhaicle</string>
-  <string name="GroupCreateActivity_group_name_hint">Ainm na baicle</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Baicle MMS nua</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Roghnaigh tú teagmhálaí nach dtugann tacaíocht do bhaiclí Shignal, de réir sin, baicle MMS a bheith ann.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Níl tú cláraithe le haghaidh teachtaireachtaí ná glaonna Signal, a gciallaíonn go bhfuil baicle díchumasaithe. Le do thoil, bain triail as clárú i Socrú &gt; Ardshocrú.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Caithfear duine amháin ar a laghad a bheith i do bhaicle!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Tá uimhir mícheart ag duine sa bhaicle seo. Le do thoil, deisigh nó bain an teagmhálaí sin agus déan arís é.</string>
-  <string name="GroupCreateActivity_menu_apply_button">Cuir i bhfeidhm é</string>
-  <string name="GroupCreateActivity_creating_group">Ag cruthú %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Ag nuashonrú %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ní féidir %1$s a cuir leis mar ní bhall den lucht Signal é.</string>
-  <string name="GroupCreateActivity_loading_group_details">Ag luchtú sonraí na baicle…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Tá tú sa bhaicle cheana féin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Baicle nua</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Athraigh an bhaicle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Ainm na baicle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Baicle MMS nua</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Roghnaigh tú teagmhálaí nach dtugann tacaíocht do bhaiclí Shignal, de réir sin, baicle MMS a bheith ann.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Níl tú cláraithe le haghaidh teachtaireachtaí ná glaonna Signal, a gciallaíonn go bhfuil baicle díchumasaithe. Le do thoil, bain triail as clárú i Socrú &gt; Ardshocrú.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Caithfear duine amháin ar a laghad a bheith i do bhaicle!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Tá uimhir mícheart ag duine sa bhaicle seo. Le do thoil, deisigh nó bain an teagmhálaí sin agus déan arís é.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Cuir i bhfeidhm é</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Ag cruthú %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Ag nuashonrú %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ní féidir %1$s a cuir leis mar ní bhall den lucht Signal é.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Ag luchtú sonraí na baicle…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Tá tú sa bhaicle cheana féin.</string> -->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Comhroinn do aimn agus do ghrianghraf próifíl leis an mbaicle seo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ba mhaith leat ainm agus grianghraf do phróifíl a cuir le fáil do chách, lucht na baicle seo anois agus sa todhchaí?</string>
@@ -832,18 +832,18 @@ a shonrú</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Méain comhroinnte</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Balbhaigh an comhrá</string>
-  <string name="recipient_preferences__custom_notifications">Fógraí saincheaptha</string>
-  <string name="recipient_preferences__custom_notifications_settings">Socruithe fhógraí an chórais</string>
-  <string name="recipient_preferences__notification_sound">Fuaim do na fógraí</string>
-  <string name="recipient_preferences__vibrate">Crith</string>
-  <string name="recipient_preferences__block">Bacaigh</string>
-  <string name="recipient_preferences__color">Dath</string>
-  <string name="recipient_preferences__view_safety_number">Féach ar an uimhir shábháilteachta</string>
-  <string name="recipient_preferences__chat_settings">Socruithe an comhrá</string>
-  <string name="recipient_preferences__privacy">Príobháideachas</string>
-  <string name="recipient_preferences__call_settings">Glao-shocruithe</string>
-  <string name="recipient_preferences__ringtone">Glaofhuaimeanna</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Balbhaigh an comhrá</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Fógraí saincheaptha</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Socruithe fhógraí an chórais</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Fuaim do na fógraí</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Crith</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bacaigh</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Dath</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Féach ar an uimhir shábháilteachta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Socruithe an comhrá</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Príobháideachas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Glao-shocruithe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Glaofhuaimeanna</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Glao Signal</string>
   <!--registration_activity-->

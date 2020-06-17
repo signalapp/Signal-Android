@@ -370,23 +370,23 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Adhesius</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Grup nou</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">Edita el grup</string>
-  <string name="GroupCreateActivity_actionbar_manage_title">Gestioneu el grup</string>
-  <string name="GroupCreateActivity_group_name_hint">Nom del grup</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Grup de MMS nou</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Heu seleccionat un contacte que no pot gestionar els grups del Signal, per tant aquest grup serà per MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">No esteu registrat per als missatges i les trucades del Signal; per tant, els grups del Signal estan desactivats. Torneu a registrar-vos a Configuració &gt; Avançada.l</string>
-  <string name="GroupCreateActivity_contacts_no_members">Cal almenys una persona al grup.</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del grup té un número que no es pot llegir correctament. Corregiu-ho o suprimiu aquest contacte i torneu a provar-ho.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatar del grup</string>
-  <string name="GroupCreateActivity_menu_apply_button">Aplica</string>
-  <string name="GroupCreateActivity_creating_group">Es crea %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">S\'actualitza %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No s\'ha pogut afegir %1$s perquè no és un usuari de Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Es carreguen els detalls del grup…</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Ja sou dins del grup.</string>
-  <string name="GroupCreateActivity_remove_member_description">Suprimeix el membre</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Grup nou</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Edita el grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Gestioneu el grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Nom del grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Grup de MMS nou</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Heu seleccionat un contacte que no pot gestionar els grups del Signal, per tant aquest grup serà per MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">No esteu registrat per als missatges i les trucades del Signal; per tant, els grups del Signal estan desactivats. Torneu a registrar-vos a Configuració &gt; Avançada.l</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Cal almenys una persona al grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del grup té un número que no es pot llegir correctament. Corregiu-ho o suprimiu aquest contacte i torneu a provar-ho.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar del grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Aplica</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Es crea %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">S\'actualitza %1$s…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No s\'ha pogut afegir %1$s perquè no és un usuari de Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Es carreguen els detalls del grup…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ja sou dins del grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Suprimeix el membre</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Voleu afegir el membre?</string>
   <string name="AddToGroupActivity_add_s_to_s">Voleu afegir \"%1$s\" a \"%2$s\"?</string>
@@ -1367,18 +1367,18 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Contingut compartit</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Silencia la conversa</string>
-  <string name="recipient_preferences__custom_notifications">Notificacions personalitzades</string>
-  <string name="recipient_preferences__custom_notifications_settings">Paràmetres de les notificacions de sistema</string>
-  <string name="recipient_preferences__notification_sound">So de notificació</string>
-  <string name="recipient_preferences__vibrate">Vibra</string>
-  <string name="recipient_preferences__block">Bloca</string>
-  <string name="recipient_preferences__color">Color</string>
-  <string name="recipient_preferences__view_safety_number">Mostra el número de seguretat</string>
-  <string name="recipient_preferences__chat_settings">Configuració del xat</string>
-  <string name="recipient_preferences__privacy">Privadesa</string>
-  <string name="recipient_preferences__call_settings">Configuració de les trucades</string>
-  <string name="recipient_preferences__ringtone">To de trucada</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Silencia la conversa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Notificacions personalitzades</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Paràmetres de les notificacions de sistema</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">So de notificació</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibra</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bloca</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Color</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Mostra el número de seguretat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Configuració del xat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privadesa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Configuració de les trucades</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">To de trucada</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Trucada del Signal</string>
   <!--registration_activity-->
