@@ -74,12 +74,15 @@ public class ManageRecipientFragment extends Fragment {
   private TextView                               disappearingMessages;
   private View                                   colorRow;
   private ImageView                              colorChip;
+  private View                                   blockUnblockCard;
   private TextView                               block;
   private TextView                               unblock;
+  private View                                   groupMembershipCard;
   private TextView                               addToAGroup;
   private SwitchCompat                           muteNotificationsSwitch;
   private View                                   muteNotificationsRow;
   private TextView                               muteNotificationsUntilLabel;
+  private View                                   notificationsCard;
   private TextView                               customNotificationsButton;
   private View                                   customNotificationsRow;
   private View                                   toggleAllGroups;
@@ -120,13 +123,16 @@ public class ManageRecipientFragment extends Fragment {
     disappearingMessages        = view.findViewById(R.id.disappearing_messages);
     colorRow                    = view.findViewById(R.id.color_row);
     colorChip                   = view.findViewById(R.id.color_chip);
+    blockUnblockCard            = view.findViewById(R.id.recipient_block_and_leave_card);
     block                       = view.findViewById(R.id.block);
     unblock                     = view.findViewById(R.id.unblock);
     viewSafetyNumber            = view.findViewById(R.id.view_safety_number);
+    groupMembershipCard         = view.findViewById(R.id.recipient_membership_card);
     addToAGroup                 = view.findViewById(R.id.add_to_a_group);
     muteNotificationsUntilLabel = view.findViewById(R.id.recipient_mute_notifications_until);
     muteNotificationsSwitch     = view.findViewById(R.id.recipient_mute_notifications_switch);
     muteNotificationsRow        = view.findViewById(R.id.recipient_mute_notifications_row);
+    notificationsCard           = view.findViewById(R.id.recipient_notifications_card);
     customNotificationsButton   = view.findViewById(R.id.recipient_custom_notifications_button);
     customNotificationsRow      = view.findViewById(R.id.recipient_custom_notifications_row);
     toggleAllGroups             = view.findViewById(R.id.toggle_all_groups);
@@ -145,9 +151,6 @@ public class ManageRecipientFragment extends Fragment {
     ManageRecipientViewModel.Factory factory     = new ManageRecipientViewModel.Factory(recipientId);
 
     viewModel = ViewModelProviders.of(requireActivity(), factory).get(ManageRecipientViewModel.class);
-
-    viewModel.getVisibleSharedGroups().observe(getViewLifecycleOwner(), members -> sharedGroupList.setMembers(members));
-    viewModel.getSharedGroupsCountSummary().observe(getViewLifecycleOwner(), members -> groupsInCommonCount.setText(members));
 
     viewModel.getCanCollapseMemberList().observe(getViewLifecycleOwner(), canCollapseMemberList -> {
       if (canCollapseMemberList) {
@@ -172,6 +175,15 @@ public class ManageRecipientFragment extends Fragment {
 
     if (recipientId.equals(Recipient.self().getId())) {
       toolbar.getMenu().findItem(R.id.action_edit).setVisible(true);
+      notificationsCard.setVisibility(View.GONE);
+      groupMembershipCard.setVisibility(View.GONE);
+      blockUnblockCard.setVisibility(View.GONE);
+    } else {
+      viewModel.getVisibleSharedGroups().observe(getViewLifecycleOwner(), members -> sharedGroupList.setMembers(members));
+      viewModel.getSharedGroupsCountSummary().observe(getViewLifecycleOwner(), members -> groupsInCommonCount.setText(members));
+      addToAGroup.setOnClickListener(v -> viewModel.onAddToGroupButton(requireActivity()));
+      sharedGroupList.setRecipientClickListener(recipient -> viewModel.onGroupClicked(requireActivity(), recipient));
+      sharedGroupList.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     viewModel.getName().observe(getViewLifecycleOwner(), name::setText);
@@ -183,11 +195,6 @@ public class ManageRecipientFragment extends Fragment {
     disappearingMessagesRow.setOnClickListener(v -> viewModel.handleExpirationSelection(requireContext()));
     block.setOnClickListener(v -> viewModel.onBlockClicked(requireActivity()));
     unblock.setOnClickListener(v -> viewModel.onUnblockClicked(requireActivity()));
-
-    addToAGroup.setOnClickListener(v -> viewModel.onAddToGroupButton(requireActivity()));
-
-    sharedGroupList.setRecipientClickListener(recipient -> viewModel.onGroupClicked(requireActivity(), recipient));
-    sharedGroupList.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
     muteNotificationsRow.setOnClickListener(v -> {
       if (muteNotificationsSwitch.isEnabled()) {
@@ -259,8 +266,8 @@ public class ManageRecipientFragment extends Fragment {
       return true;
     });
 
-    secureCallButton.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
-    secureVideoCallButton.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
+    secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
+    secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
   }
 
   private void presentMediaCursor(ManageRecipientViewModel.MediaCursor mediaCursor) {

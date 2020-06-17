@@ -54,12 +54,11 @@ final class RecipientDialogRepository {
     return groupId;
   }
 
-  void getIdentity(@NonNull IdentityCallback callback) {
-    SimpleTask.run(SignalExecutors.BOUNDED,
-                   () -> DatabaseFactory.getIdentityDatabase(context)
-                                        .getIdentity(recipientId)
-                                        .orNull(),
-                   callback::remoteIdentity);
+  void getIdentity(@NonNull Consumer<IdentityDatabase.IdentityRecord> callback) {
+    SignalExecutors.BOUNDED.execute(
+      () -> callback.accept(DatabaseFactory.getIdentityDatabase(context)
+                                           .getIdentity(recipientId)
+                                           .orNull()));
   }
 
   void getRecipient(@NonNull RecipientCallback recipientCallback) {
@@ -134,10 +133,6 @@ final class RecipientDialogRepository {
                      return groupRecipients;
                    },
                    onComplete::accept);
-  }
-
-  interface IdentityCallback {
-    void remoteIdentity(@Nullable IdentityDatabase.IdentityRecord identityRecord);
   }
 
   interface RecipientCallback {

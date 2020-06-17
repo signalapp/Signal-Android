@@ -139,7 +139,9 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_view_safety_number"
-            app:drawableStartCompat="?attr/recipient_view_safety_icon" />
+            android:visibility="gone"
+            app:drawableStartCompat="?attr/recipient_view_safety_icon"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/rbs_make_group_admin_button"

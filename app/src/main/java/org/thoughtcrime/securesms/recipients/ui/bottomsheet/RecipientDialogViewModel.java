@@ -69,7 +69,10 @@ final class RecipientDialogViewModel extends ViewModel {
 
     recipient = Recipient.live(recipientDialogRepository.getRecipientId()).getLiveData();
 
-    recipientDialogRepository.getIdentity(identity::setValue);
+    boolean isSelf = recipientDialogRepository.getRecipientId().equals(Recipient.self().getId());
+    if (!isSelf) {
+      recipientDialogRepository.getIdentity(identity::postValue);
+    }
   }
 
   LiveData<Recipient> getRecipient() {

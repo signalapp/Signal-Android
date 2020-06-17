@@ -137,12 +137,12 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       });
 
       boolean blocked = recipient.isBlocked();
-      blockButton.setVisibility(blocked ? View.GONE : View.VISIBLE);
-      unblockButton.setVisibility(blocked ? View.VISIBLE : View.GONE);
+      blockButton  .setVisibility(recipient.isLocalNumber() ||  blocked ? View.GONE : View.VISIBLE);
+      unblockButton.setVisibility(recipient.isLocalNumber() || !blocked ? View.GONE : View.VISIBLE);
 
-      secureCallButton.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
+      secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
 
-      if (recipient.isSystemContact() || recipient.isGroup()) {
+      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isLocalNumber()) {
         addContactButton.setVisibility(View.GONE);
       } else {
         addContactButton.setVisibility(View.VISIBLE);
@@ -152,7 +152,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       }
 
       addToGroupButton.setText(groupId == null ? R.string.RecipientBottomSheet_add_to_a_group : R.string.RecipientBottomSheet_add_to_another_group);
-      addToGroupButton.setVisibility(recipient.isRegistered() && !recipient.isGroup() ? View.VISIBLE : View.GONE);
+      addToGroupButton.setVisibility(recipient.isRegistered() && !recipient.isGroup() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
     });
 
     viewModel.getAdminActionStatus().observe(getViewLifecycleOwner(), adminStatus -> {
