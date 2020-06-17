@@ -560,6 +560,7 @@
     <string name="ManageRecipientActivity_edit_name_and_picture">Edit name and picture</string>
     <string name="ManageRecipientActivity_message_description">Message</string>
     <string name="ManageRecipientActivity_voice_call_description">Voice call</string>
+    <string name="ManageRecipientActivity_insecure_voice_call_description">Insecure voice call</string>
     <string name="ManageRecipientActivity_video_call_description">Video call</string>
 
     <plurals name="GroupMemberList_invited">

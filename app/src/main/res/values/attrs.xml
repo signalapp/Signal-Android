@@ -303,6 +303,7 @@
 
     <attr name="recipient_message_circle_icon" format="reference"/>
     <attr name="recipient_call_circle_icon" format="reference"/>
+    <attr name="recipient_insecure_call_circle_icon" format="reference"/>
     <attr name="recipient_video_call_circle_icon" format="reference"/>
     <attr name="recipient_contact_button_color" format="reference"/>
 

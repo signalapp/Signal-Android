@@ -69,6 +69,16 @@
                         app:rippleColor="@color/core_ultramarine" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/recipient_video_call"
+                        style="@style/Widget.Signal.Button.Icon.Circular"
+                        android:layout_marginStart="36dp"
+                        android:contentDescription="@string/ManageRecipientActivity_video_call_description"
+                        android:visibility="gone"
+                        app:backgroundTint="?recipient_contact_button_color"
+                        app:icon="?recipient_video_call_circle_icon"
+                        tools:visibility="visible" />
+
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/recipient_voice_call"
                         style="@style/Widget.Signal.Button.Icon.Circular"
                         android:layout_marginStart="36dp"
@@ -79,13 +89,13 @@
                         tools:visibility="visible" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/recipient_video_call"
+                        android:id="@+id/recipient_insecure_voice_call"
                         style="@style/Widget.Signal.Button.Icon.Circular"
                         android:layout_marginStart="36dp"
-                        android:contentDescription="@string/ManageRecipientActivity_video_call_description"
+                        android:contentDescription="@string/ManageRecipientActivity_insecure_voice_call_description"
                         android:visibility="gone"
                         app:backgroundTint="?recipient_contact_button_color"
-                        app:icon="?recipient_video_call_circle_icon"
+                        app:icon="?recipient_insecure_call_circle_icon"
                         tools:visibility="visible" />
 
                 </LinearLayout>

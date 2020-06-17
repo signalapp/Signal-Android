@@ -90,6 +90,7 @@ public class ManageRecipientFragment extends Fragment {
   private TextView                               groupsInCommonCount;
   private View                                   messageButton;
   private View                                   secureCallButton;
+  private View                                   insecureCallButton;
   private View                                   secureVideoCallButton;
 
   static ManageRecipientFragment newInstance(@NonNull RecipientId recipientId) {
@@ -138,6 +139,7 @@ public class ManageRecipientFragment extends Fragment {
     toggleAllGroups             = view.findViewById(R.id.toggle_all_groups);
     messageButton               = view.findViewById(R.id.recipient_message);
     secureCallButton            = view.findViewById(R.id.recipient_voice_call);
+    insecureCallButton          = view.findViewById(R.id.recipient_insecure_voice_call);
     secureVideoCallButton       = view.findViewById(R.id.recipient_video_call);
 
     return view;
@@ -228,6 +230,7 @@ public class ManageRecipientFragment extends Fragment {
 
     messageButton.setOnClickListener(v -> viewModel.onMessage(requireActivity()));
     secureCallButton.setOnClickListener(v -> viewModel.onSecureCall(requireActivity()));
+    insecureCallButton.setOnClickListener(v -> viewModel.onInsecureCall(requireActivity()));
     secureVideoCallButton.setOnClickListener(v -> viewModel.onSecureVideoCall(requireActivity()));
   }
 
@@ -263,6 +266,7 @@ public class ManageRecipientFragment extends Fragment {
     colorRow.setOnClickListener(v -> handleColorSelection(color));
 
     secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
+    insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
     secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
   }
 

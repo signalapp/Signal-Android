@@ -229,6 +229,10 @@ public final class ManageRecipientViewModel extends ViewModel {
     withRecipient(r -> CommunicationActions.startVoiceCall(activity, r));
   }
 
+  void onInsecureCall(@NonNull FragmentActivity activity) {
+    withRecipient(r -> CommunicationActions.startInsecureCall(activity, r));
+  }
+
   void onSecureVideoCall(@NonNull FragmentActivity activity) {
     withRecipient(r -> CommunicationActions.startVideoCall(activity, r));
   }
