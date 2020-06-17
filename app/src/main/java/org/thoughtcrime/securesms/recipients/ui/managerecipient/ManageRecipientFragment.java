@@ -187,6 +187,13 @@ public class ManageRecipientFragment extends Fragment {
     }
 
     viewModel.getName().observe(getViewLifecycleOwner(), name::setText);
+    viewModel.getSubtitle().observe(getViewLifecycleOwner(), text -> {
+      usernameNumber.setText(text);
+      usernameNumber.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
+      usernameNumber.setOnLongClickListener(null);
+      name.setOnLongClickListener(null);
+      setCopyToClipboardOnLongPress(TextUtils.isEmpty(text) ? name : usernameNumber);
+    });
     viewModel.getDisappearingMessageTimer().observe(getViewLifecycleOwner(), string -> disappearingMessages.setText(string));
     viewModel.getRecipient().observe(getViewLifecycleOwner(), this::presentRecipient);
     viewModel.getMediaCursor().observe(getViewLifecycleOwner(), this::presentMediaCursor);
@@ -254,17 +261,6 @@ public class ManageRecipientFragment extends Fragment {
               Drawable[] colorDrawable = new Drawable[]{ContextCompat.getDrawable(requireContext(), R.drawable.colorpickerpreference_pref_swatch)};
     colorChip.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
     colorRow.setOnClickListener(v -> handleColorSelection(color));
-
-    String usernameNumberString = String.format("%s %s", recipient.getUsername().or(""), recipient.getSmsAddress().or(""))
-                                        .trim();
-    usernameNumber.setText(usernameNumberString);
-    usernameNumber.setVisibility(TextUtils.isEmpty(usernameNumberString) ? View.GONE : View.VISIBLE);
-    usernameNumber.setOnLongClickListener(v -> {
-      Util.copyToClipboard(v.getContext(), usernameNumber.getText().toString());
-      ServiceUtil.getVibrator(v.getContext()).vibrate(250);
-      Toast.makeText(v.getContext(), R.string.RecipientBottomSheet_copied_to_clipboard, Toast.LENGTH_SHORT).show();
-      return true;
-    });
 
     secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
     secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
@@ -352,5 +348,14 @@ public class ManageRecipientFragment extends Fragment {
       threadPhotoRailView.setCursor(GlideApp.with(context), null);
       mediaCard.setVisibility(View.GONE);
     }
+  }
+
+  private static void setCopyToClipboardOnLongPress(@NonNull TextView textView) {
+    textView.setOnLongClickListener(v -> {
+      Util.copyToClipboard(v.getContext(), textView.getText().toString());
+      ServiceUtil.getVibrator(v.getContext()).vibrate(250);
+      Toast.makeText(v.getContext(), R.string.RecipientBottomSheet_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+      return true;
+    });
   }
 }

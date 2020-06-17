@@ -125,8 +125,9 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       fullName.setText(name);
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
 
-      String usernameNumberString = String.format("%s %s", recipient.getUsername().or(""), recipient.getSmsAddress().or(""))
-                                          .trim();
+      String usernameNumberString = recipient.hasAUserSetDisplayName(requireContext())
+                                    ? String.format("%s %s", recipient.getUsername().or(""), recipient.getSmsAddress().or("")).trim()
+                                    : "";
       usernameNumber.setText(usernameNumberString);
       usernameNumber.setVisibility(TextUtils.isEmpty(usernameNumberString) ? View.GONE : View.VISIBLE);
       usernameNumber.setOnLongClickListener(v -> {

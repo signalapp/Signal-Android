@@ -46,6 +46,7 @@ public final class ManageRecipientViewModel extends ViewModel {
   private final Context                                          context;
   private final ManageRecipientRepository                        manageRecipientRepository;
   private final LiveData<String>                                 name;
+  private final LiveData<String>                                 subtitle;
   private final LiveData<String>                                 disappearingMessageTimer;
   private final MutableLiveData<IdentityDatabase.IdentityRecord> identity;
   private final LiveData<Recipient>                              recipient;
@@ -66,6 +67,7 @@ public final class ManageRecipientViewModel extends ViewModel {
 
     this.recipient = Recipient.live(manageRecipientRepository.getRecipientId()).getLiveData();
     this.name      = Transformations.map(recipient, r -> r.getDisplayName(context));
+    this.subtitle  = Transformations.map(recipient, r -> getDisplaySubtitle(r, context));
     this.identity  = new MutableLiveData<>();
 
     LiveData<List<Recipient>> allSharedGroups = LiveDataUtil.mapAsync(this.recipient, r -> manageRecipientRepository.getSharedGroups(r.getId()));
@@ -95,6 +97,15 @@ public final class ManageRecipientViewModel extends ViewModel {
     }
   }
 
+  private static @NonNull String getDisplaySubtitle(@NonNull Recipient recipient, @NonNull Context context) {
+    if (recipient.hasAUserSetDisplayName(context)) {
+      return String.format("%s %s", recipient.getUsername().or(""), recipient.getSmsAddress().or(""))
+                   .trim();
+    } else {
+      return "";
+    }
+  }
+
   @WorkerThread
   private void onThreadIdLoaded(long threadId) {
     mediaCursor.postValue(new MediaCursor(threadId,
@@ -103,6 +114,10 @@ public final class ManageRecipientViewModel extends ViewModel {
 
   public LiveData<String> getName() {
     return name;
+  }
+
+  public LiveData<String> getSubtitle() {
+    return subtitle;
   }
 
   public LiveData<Recipient> getRecipient() {
