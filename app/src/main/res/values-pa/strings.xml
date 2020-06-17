@@ -438,8 +438,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ਜਿਆਦਾ ਜਾਣੋ</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">ਭੇਜ ਨਾ ਸਕਿਆ</string>
-  <string name="MessageDetailsRecipient_new_safety_number">ਨਵਾਂ ਸੁਰੱਖਿਆ ਨੰਬਰ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">ਭੇਜ ਨਾ ਸਕਿਆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">ਨਵਾਂ ਸੁਰੱਖਿਆ ਨੰਬਰ</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">ਸੁਨੇਹਾ ਲੱਭਣ ਵਿੱਚ ਅਸਮਰੱਥ</string>
   <string name="LongMessageActivity_message_from_s">%1$s ਵਲੋਂ ਸੁਨੇਹਾ</string>
@@ -1178,9 +1178,9 @@
   <string name="message_details_header__received">ਪ੍ਰਾਪਤ ਕੀਤਾ</string>
   <string name="message_details_header__disappears">ਗਾਇਬ</string>
   <string name="message_details_header__via">ਰਾਹੀਂ</string>
-  <string name="message_details_header__to">ਪ੍ਰਤੀ:</string>
-  <string name="message_details_header__from">ਵਲੋਂ :</string>
-  <string name="message_details_header__with">ਇਸਦੇ ਨਾਲ:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">ਪ੍ਰਤੀ:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">ਵਲੋਂ :</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">ਇਸਦੇ ਨਾਲ:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">ਪਾਸਫਰੇਜ ਬਣਾਓ</string>
   <string name="AndroidManifest__select_contacts">ਸੰਪਰਕ ਚੁਣੋ</string>

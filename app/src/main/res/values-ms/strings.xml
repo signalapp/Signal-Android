@@ -378,8 +378,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Ketahui lebih lanjut</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Gagal untuk dihantar</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nombor keselamatan baru</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Gagal untuk dihantar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nombor keselamatan baru</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mesej tidak dapat mencari</string>
   <string name="LongMessageActivity_message_from_s">Mesej daripada %1$s</string>
@@ -1046,9 +1046,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="message_details_header__received">Diterima</string>
   <string name="message_details_header__disappears">Hilang</string>
   <string name="message_details_header__via">Melalui</string>
-  <string name="message_details_header__to">Kepada:</string>
-  <string name="message_details_header__from">Daripada:</string>
-  <string name="message_details_header__with">Dengan:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kepada:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Daripada:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Dengan:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Cipta frasa laluan</string>
   <string name="AndroidManifest__select_contacts">Pilih kenalan</string>

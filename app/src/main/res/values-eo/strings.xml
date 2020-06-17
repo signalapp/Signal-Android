@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scii pli</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Malsukcesa sendo</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nova sekuriga numero</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Malsukcesa sendo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nova sekuriga numero</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Ne eblas trovi mesaĝon</string>
   <string name="LongMessageActivity_message_from_s">Mesaĝo el %1$s</string>
@@ -1415,9 +1415,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="message_details_header__received">Ricevita</string>
   <string name="message_details_header__disappears">Malaperos je</string>
   <string name="message_details_header__via">Per</string>
-  <string name="message_details_header__to">Al:</string>
-  <string name="message_details_header__from">El:</string>
-  <string name="message_details_header__with">Kun:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Al:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">El:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Kun:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Krei pasfrazon</string>
   <string name="AndroidManifest__select_contacts">Elekti kontaktojn</string>

@@ -82,6 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">ഈ ഗ്രൂപ്പിൽ നിന്ന് നിങ്ങൾക്ക് മേലിൽ സന്ദേശങ്ങളോ അപ്‌ഡേറ്റുകളോ ലഭിക്കില്ല, അംഗങ്ങൾക്ക് നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയും.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">നിങ്ങൾക്ക് പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും കഴിയും ഒപ്പം നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടും.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ബ്ലോക്ക് ചെയ്ത ആളുകൾക്ക് നിങ്ങളെ വിളിക്കാനോ സന്ദേശങ്ങൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ ബ്ലോക്ക് ചെയ്തത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -316,6 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ എൻഡ് ടു എൻഡ് എൻക്രിപ്റ്റഡ് ആണ്. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ ഇത് നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
@@ -386,7 +388,11 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">നിങ്ങൾ ഇതിനകം ഗ്രൂപ്പിലുണ്ട്.</string>
   <string name="GroupCreateActivity_remove_member_description">അംഗത്തെ നീക്കംചെയ്യുക</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">അംഗത്തെ ചേർക്കണോ?</string>
+  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക് ചേർക്കുക?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക്  ചേർത്തു.</string>
   <string name="AddToGroupActivity_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
+  <string name="AddToGroupActivity_add_to_groups">ഗ്രൂപ്പുകളിലേക്ക് ചേർക്കുക</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ഈ ഗ്രൂപ്പുമായി നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും പങ്കിടണോ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ഈ ഗ്രൂപ്പിലെ നിലവിലുള്ളതും ഭാവിയിലുള്ളതുമായ എല്ലാ അംഗങ്ങൾക്കും നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും ദൃശ്യമാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
@@ -518,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">കൂടുതൽ അറിയുക</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
-  <string name="MessageDetailsRecipient_new_safety_number">പുതിയ സേഫ്റ്റി നമ്പർ </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">പുതിയ സേഫ്റ്റി നമ്പർ </string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">സന്ദേശം കണ്ടെത്താനായില്ല</string>
   <string name="LongMessageActivity_message_from_s">%1$s നിന്നുള്ള സന്ദേശം</string>
@@ -696,7 +702,11 @@
   <string name="MessageRequestBottomView_delete">ഇല്ലാതാക്കുക </string>
   <string name="MessageRequestBottomView_block">ബ്ലോക്ക്</string>
   <string name="MessageRequestBottomView_unblock">തടഞ്ഞത് മാറ്റുക</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s നിങ്ങൾക്ക് സന്ദേശം അയയ്‌ക്കാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടട്ടെ? നിങ്ങൾ അംഗീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശം കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">നിങ്ങൾക്ക് %1$s മെസേജ് അയയ്ക്കാൻ അനുവദിക്കണോ? നിങ്ങൾ അവരെ അൺ‌ബ്ലോക്ക് ചെയ്യുന്നതു വരെ നിങ്ങൾക്ക് മെസേജ് ഒന്നും ലഭിക്കില്ല.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ഈ ഗ്രൂപ്പിൽ ചേര്‍ൻ, നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങളെ ക്ഷണിച്ചു. ഈ ഗ്രൂപ്പിലെ അംഗങ്ങളെ നിങ്ങൾക്ക് സന്ദേശമയയ്ക്കാൻ അനുവദിക്കണോ?</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ഈ ഗ്രൂപ്പിനെ അൺ‌ബ്ലോക്ക് ചെയ്ത് നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ അൺ‌ബ്ലോക്ക് ചെയ്യുന്നതു വരെ നിങ്ങൾക്ക് സന്ദേശങ്ങളൊന്നും ലഭിക്കില്ല.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s അംഗം</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s, %2$s എന്നിവയിലെ അംഗം</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, %3$s എന്നിവയിലെ അംഗം</string>
@@ -1190,6 +1200,10 @@ grūpp ap‌ḍē</string>
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal-ന് നിങ്ങളുടെ കോൺടാക്റ്റുകൾ പ്രദർശിപ്പിക്കുന്നതിന് അവയിലേക്ക് ആക്സസ് ആവശ്യമാണ്.</string>
   <string name="contact_selection_list_fragment__show_contacts">കോൺ‌ടാക്റ്റുകൾ കാണിക്കുക</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d അംഗം</item>
+    <item quantity="other">%1$d അംഗങ്ങൾ</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal സന്ദേശം</string>
   <string name="conversation_activity__type_message_sms_insecure">സുരക്ഷിതമല്ലാത്ത SMS</string>
@@ -1395,9 +1409,9 @@ grūpp ap‌ḍē</string>
   <string name="message_details_header__received">ലഭിച്ചു</string>
   <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നു</string>
   <string name="message_details_header__via">വഴി</string>
-  <string name="message_details_header__to">സ്വീകർത്താവ്:</string>
-  <string name="message_details_header__from">പ്രേഷിതാവ്:</string>
-  <string name="message_details_header__with">ഇതുമായി:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">സ്വീകർത്താവ്:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">പ്രേഷിതാവ്:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">ഇതുമായി:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">പാസ്‌ഫ്രെയ്‌സ് സൃഷ്‌ടിക്കുക</string>
   <string name="AndroidManifest__select_contacts">കോൺടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക</string>
@@ -1957,6 +1971,8 @@ grūpp ap‌ḍē</string>
   <string name="RecipientBottomSheet_block">ബ്ലോക്ക്</string>
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="RecipientBottomSheet_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
+  <string name="RecipientBottomSheet_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
+  <string name="RecipientBottomSheet_add_to_another_group">മറ്റൊരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
   <string name="RecipientBottomSheet_make_group_admin">ഗ്രൂപ്പ് അഡ്‌മിൻ ആക്കുക</string>
   <string name="RecipientBottomSheet_remove_as_admin">അഡ്മിനായി നീക്കംചെയ്യുക</string>

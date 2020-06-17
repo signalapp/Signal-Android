@@ -518,8 +518,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dozvedieť sa viac</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Nepodarilo sa odoslať</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostné číslo</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nepodarilo sa odoslať</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostné číslo</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nie je možné nájsť správu</string>
   <string name="LongMessageActivity_message_from_s">Správa od %1$s</string>
@@ -1424,9 +1424,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="message_details_header__received">Prijaté</string>
   <string name="message_details_header__disappears">Miznúce</string>
   <string name="message_details_header__via">Cez</string>
-  <string name="message_details_header__to">Komu:</string>
-  <string name="message_details_header__from">Od:</string>
-  <string name="message_details_header__with">S:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Komu:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Od:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">S:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Vytvoriť heslo</string>
   <string name="AndroidManifest__select_contacts">Výber kontaktov</string>

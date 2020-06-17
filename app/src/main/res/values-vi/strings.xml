@@ -454,8 +454,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Tìm hiểu thêm</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Không thể gửi</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Mã số an toàn mới</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Không thể gửi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Mã số an toàn mới</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Không thể tìm tin nhắn</string>
   <string name="LongMessageActivity_message_from_s">Tin nhắn từ %1$s</string>
@@ -1289,9 +1289,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="message_details_header__received">Đã nhận</string>
   <string name="message_details_header__disappears">Tự hủy</string>
   <string name="message_details_header__via">Qua</string>
-  <string name="message_details_header__to">Đến:</string>
-  <string name="message_details_header__from">Từ:</string>
-  <string name="message_details_header__with">Với:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Đến:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Từ:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Với:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Tạo mật khẩu</string>
   <string name="AndroidManifest__select_contacts">Chọn liên hệ</string>

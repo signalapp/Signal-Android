@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Läs mer</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Misslyckades att skicka</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nytt säkerhetsnummer</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Misslyckades att skicka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nytt säkerhetsnummer</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Det gick inte att hitta meddelandet</string>
   <string name="LongMessageActivity_message_from_s">Meddelande från %1$s</string>
@@ -702,6 +702,9 @@
   <string name="MessageRequestBottomView_delete">Ta bort</string>
   <string name="MessageRequestBottomView_block">Blockera</string>
   <string name="MessageRequestBottomView_unblock">Sluta blockera</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Låt %1$s meddela dig och dela ditt namn och foto med dem? De vet inte att du har sett deras meddelande förrän du accepterar.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Låt %1$s meddela dig och dela ditt namn och foto med dem? Du får inte några meddelanden förrän du har slutat blockerat dem.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De kommer inte att veta att du har sett deras meddelanden förrän du accepterar.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du blev inbjuden att gå med i gruppen %1$s. Vill du låta medlemmar i denna grupp att skicka meddelanden till dig?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ta bort blockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har blockerat dem.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
@@ -1407,9 +1410,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="message_details_header__received">Mottaget</string>
   <string name="message_details_header__disappears">Försvinner</string>
   <string name="message_details_header__via">Via</string>
-  <string name="message_details_header__to">Till:</string>
-  <string name="message_details_header__from">Från:</string>
-  <string name="message_details_header__with">Med:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Till:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Från:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Med:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Skapa lösenord</string>
   <string name="AndroidManifest__select_contacts">Välj kontakter</string>

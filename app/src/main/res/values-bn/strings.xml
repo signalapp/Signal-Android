@@ -517,8 +517,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">আরও জানুন</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">পাঠাতে ব্যার্থ</string>
-  <string name="MessageDetailsRecipient_new_safety_number">নতুন নিরাপত্তা সংখ্যা</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">পাঠাতে ব্যার্থ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">নতুন নিরাপত্তা সংখ্যা</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">বার্তা খুঁজে পেতে অসমর্থ</string>
   <string name="LongMessageActivity_message_from_s">%1$s থেকে বার্তা</string>
@@ -1386,9 +1386,9 @@
   <string name="message_details_header__received">গৃহীত</string>
   <string name="message_details_header__disappears">অদৃশ্য হয়</string>
   <string name="message_details_header__via">মাধ্যম</string>
-  <string name="message_details_header__to">প্রতি:</string>
-  <string name="message_details_header__from">থেকে:</string>
-  <string name="message_details_header__with">সাথে:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">প্রতি:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">থেকে:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">সাথে:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">পাসফ্রেস নির্মাণ করুন</string>
   <string name="AndroidManifest__select_contacts">পরিচিতিসমূহ নির্বাচন করুন</string>

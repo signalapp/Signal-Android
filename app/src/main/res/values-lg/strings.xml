@@ -221,7 +221,7 @@ a</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Emikwaano tejibuzbuza mboozi yamikwaano</string>
   <!--Job-->
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Eremereddwa okuwerezwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Eremereddwa okuwerezwa</string> -->
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">mayengo</string>
@@ -538,9 +538,9 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="message_details_header__received">Etuuse</string>
   <string name="message_details_header__disappears">Kibula</string>
   <string name="message_details_header__via">Okuyita</string>
-  <string name="message_details_header__to">Eri:</string>
-  <string name="message_details_header__from">Okuva:</string>
-  <string name="message_details_header__with">Wamu</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Eri:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Okuva:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Wamu</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Tonda passwadi yebigambo n\'enamba</string>
   <string name="AndroidManifest__select_contacts">Londawo contact</string>

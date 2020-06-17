@@ -426,8 +426,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ہور جانو</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">گھلن اچ ناکام ہویا</string>
-  <string name="MessageDetailsRecipient_new_safety_number">نواں سیفٹی نمبر</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">گھلن اچ ناکام ہویا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">نواں سیفٹی نمبر</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message"> سنیہا لبھ نئیں سکیا</string>
   <string name="LongMessageActivity_message_from_s">%1$s دا سنیہا</string>
@@ -1204,9 +1204,9 @@
   <string name="message_details_header__received">موصول ہویا</string>
   <string name="message_details_header__disappears">غائب ہویا</string>
   <string name="message_details_header__via"> دے راہیں</string>
-  <string name="message_details_header__to">تک:</string>
-  <string name="message_details_header__from">توں:</string>
-  <string name="message_details_header__with">نال:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">تک:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">توں:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">نال:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">پاس فریز بناؤ</string>
   <string name="AndroidManifest__select_contacts">رابطے چنو </string>

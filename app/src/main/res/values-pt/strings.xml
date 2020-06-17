@@ -82,6 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Deixará de receber mensagens ou atualizações deste grupo e, os membros deixarão de o poder adicionar novamente a este grupo.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Os membros do grupo não serão capazes de o adicionar novamente a este grupo.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Os membros do grupo serão capazes de o adicionar novamente a este grupo.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Poderão enviar mensagens e telefonarem uns ao outros e o seu nome e fotografia serão partilhados com eles.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">As pessoas bloqueadas não serão capazes de lhe ligar ou enviar-lhe mensagens.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
@@ -387,7 +388,11 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">Já se encontra no grupo.</string>
   <string name="GroupCreateActivity_remove_member_description">Remover membro</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Adicionar membro?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Adicionar \"%1$s\" a \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" adicionado a \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Adicionar ao grupo</string>
+  <string name="AddToGroupActivity_add_to_groups">Adicionar aos grupos</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Deseja partilhar o seu nome e foto de perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Quer tornar o seu nome e foto de perfil visíveis para todos os membros presentes e futuros deste grupo?</string>
@@ -519,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber mais</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Falha a enviar</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Falha a enviar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Não foi possível encontrar a mensagem</string>
   <string name="LongMessageActivity_message_from_s">Mensagem de %1$s</string>
@@ -697,6 +702,9 @@
   <string name="MessageRequestBottomView_delete">Eliminar</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não saberão que viu a mensagem deles até que aceite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não irão receber nenhuma mensagem até que os desbloqueie.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Juntar-se a este grupo e partilhar o seu nome e fotografia com os seus membros? Eles não sabem que viu as mensagens deles até que aceite.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Foi convidado(a) para se juntar ao grupo %1$s. Deseja que os membros deste grupo lhe enviem mensagens?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desbloquear este grupo e partilhar o seu nome e fotografia com os seus membros? Você não receberá nenhuma mensagem até as desbloquear.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
@@ -1195,6 +1203,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">O Signal precisa de ter acesso aos contactos para os poder mostrar.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostrar contactos</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membros</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensagem do Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>
@@ -1400,9 +1412,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="message_details_header__received">Recebida</string>
   <string name="message_details_header__disappears">Desaparece</string>
   <string name="message_details_header__via">Via</string>
-  <string name="message_details_header__to">Para:</string>
-  <string name="message_details_header__from">De:</string>
-  <string name="message_details_header__with">Com:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Para:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">De:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Com:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Criar frase-passe</string>
   <string name="AndroidManifest__select_contacts">Selecionar contactos</string>
@@ -1961,6 +1973,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contactos</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Adicionar a um grupo</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Adicionar a outro grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver número de segurança</string>
   <string name="RecipientBottomSheet_make_group_admin">Tornar administrador de grupo</string>
   <string name="RecipientBottomSheet_remove_as_admin">Remover como administrador</string>

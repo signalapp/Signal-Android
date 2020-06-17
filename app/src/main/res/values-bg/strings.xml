@@ -390,8 +390,8 @@
   <!--Job-->
   <string name="Job_working_in_the_background">Работи на фонов режим…</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Неуспешно изпращане</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Нови числа за сигурност</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Неуспешно изпращане</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Нови числа за сигурност</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Съобщението не е намерено</string>
   <string name="LongMessageActivity_message_from_s">Съобщение от %1$s</string>
@@ -1017,9 +1017,9 @@
   <string name="message_details_header__received">Получен</string>
   <string name="message_details_header__disappears">Изчезва</string>
   <string name="message_details_header__via">През</string>
-  <string name="message_details_header__to">До:</string>
-  <string name="message_details_header__from">От:</string>
-  <string name="message_details_header__with">С:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">До:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">От:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">С:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Създай парола</string>
   <string name="AndroidManifest__select_contacts">Избери контакти</string>

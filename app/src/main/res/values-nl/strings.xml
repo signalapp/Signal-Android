@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Verzenden mislukt</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nieuw veiligheidsnummer</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Verzenden mislukt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nieuw veiligheidsnummer</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kan bericht niet vinden</string>
   <string name="LongMessageActivity_message_from_s">Volledige bericht van %1$s</string>
@@ -1420,9 +1420,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="message_details_header__received">Ontvangen</string>
   <string name="message_details_header__disappears">Wist zichzelf over</string>
   <string name="message_details_header__via">Via</string>
-  <string name="message_details_header__to">Naar:</string>
-  <string name="message_details_header__from">Van:</string>
-  <string name="message_details_header__with">Met:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Naar:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Van:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Met:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Wachtwoord aanmaken</string>
   <string name="AndroidManifest__select_contacts">Contactpersonen selecteren</string>

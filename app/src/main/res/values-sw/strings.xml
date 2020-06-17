@@ -427,8 +427,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Jifunze zaidi</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Imeshindwa kutuma</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nambari mpya ya usalama</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Imeshindwa kutuma</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nambari mpya ya usalama</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Imeshindwa kupata ujumbe</string>
   <string name="LongMessageActivity_message_from_s">Ujumbe kutoka %1$s</string>
@@ -1204,9 +1204,9 @@ nambari yako ya simu</string>
   <string name="message_details_header__received">Imepokelewa</string>
   <string name="message_details_header__disappears">Inatoweka</string>
   <string name="message_details_header__via">Kupitia</string>
-  <string name="message_details_header__to">Kuelekea:</string>
-  <string name="message_details_header__from">Kutoka:</string>
-  <string name="message_details_header__with">Na:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kuelekea:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Kutoka:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Na:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Unda Nenosiri</string>
   <string name="AndroidManifest__select_contacts">Chagua  wawasiliani</string>

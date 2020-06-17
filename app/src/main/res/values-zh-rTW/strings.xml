@@ -79,6 +79,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">你將不再收到來自該群組的訊息或更新，並且成員將無法再次將你新增到該群組。</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">群組成員將無法再次將你新增到該群組中。</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">群組成員將能夠再次將你新增到該群組。</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">你將能夠互相發訊息和打電話，並且你的姓名和照片將與他們共享。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被封鎖的人將無法給你打電話或向你傳送訊息。</string>
   <string name="BlockUnblockDialog_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="BlockUnblockDialog_unblock">解除封鎖</string>
@@ -373,7 +374,11 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">您已在此群組中</string>
   <string name="GroupCreateActivity_remove_member_description">移除成員</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">新增成員嗎?</string>
+  <string name="AddToGroupActivity_add_s_to_s">新增\"%1$s\"到\"%2$s\"嗎？</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\"被加入\"%2$s\"。</string>
   <string name="AddToGroupActivity_add_to_group">新增到群組</string>
+  <string name="AddToGroupActivity_add_to_groups">新增到群組</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">分享你的個人資訊中的名字及頭像照片給這個群組？</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">你想讓這個群組中，目前及未來的成員，都能夠看見你個人資訊中的名字及頭像照片？</string>
@@ -496,8 +501,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string>
-  <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">無法找到該訊息</string>
   <string name="LongMessageActivity_message_from_s">從 %1$s 傳送的訊息</string>
@@ -666,6 +671,9 @@
   <string name="MessageRequestBottomView_delete">刪除</string>
   <string name="MessageRequestBottomView_block">封鎖</string>
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 除非你解鎖他們，否則你將不會收到任何訊息。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">加入該群組並與其成員分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">你可以被邀請到%1$s群組。你想讓該群組的成員向你傳送訊息嗎？</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">取消封鎖此群組並與其成員分享你的名字和照片？ 除非你取消阻止它們，否則你將不會收到任何訊息。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s的成員</string>
@@ -1159,6 +1167,9 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 需要存取你的\"聯絡人\"以顯示聯絡人資訊。</string>
   <string name="contact_selection_list_fragment__show_contacts">顯示聯絡人</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="other">%1$d成員</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal 訊息</string>
   <string name="conversation_activity__type_message_sms_insecure">不安全的簡訊</string>
@@ -1357,9 +1368,9 @@
   <string name="message_details_header__received">接受</string>
   <string name="message_details_header__disappears">銷毀</string>
   <string name="message_details_header__via">來自</string>
-  <string name="message_details_header__to">至：</string>
-  <string name="message_details_header__from">來自：</string>
-  <string name="message_details_header__with">與：</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">至：</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">來自：</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">與：</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">新增自訂密碼</string>
   <string name="AndroidManifest__select_contacts">選擇多位聯絡人</string>
@@ -1909,6 +1920,8 @@
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>
   <string name="RecipientBottomSheet_add_to_contacts">新增至聯絡人</string>
+  <string name="RecipientBottomSheet_add_to_a_group">新增到群組</string>
+  <string name="RecipientBottomSheet_add_to_another_group">新增到另一個群組</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
   <string name="RecipientBottomSheet_make_group_admin">成為群組管理員</string>
   <string name="RecipientBottomSheet_remove_as_admin">以管理員身份移除</string>

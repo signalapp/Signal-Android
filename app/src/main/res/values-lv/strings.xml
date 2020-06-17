@@ -329,6 +329,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problēma iestatot profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profila attēls</string>
   <string name="CreateProfileActivity_set_up_your_profile">Iestatiet savu profilu</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jūsu profils ir šifrēts ar end-to-end. Tas būs redzams Jūsu kontaktiem kad sāksiet vai apstiprināsiet jaunas sarunas, un pievienojoties jaunām grupām.</string>
   <string name="CreateProfileActivity_set_avatar_description">Iestatīt ikonu/avataru</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Lieto pielāgojamu: %s</string>
@@ -466,6 +467,9 @@
   <string name="CropImageActivity_group_avatar">Grupas ikona</string>
   <string name="CropImageActivity_profile_avatar">ikona</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Aizkrāsot sejas</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Velciet, lai aizkrāsotu</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Velciet, lai aizkrāsotu vairākas vietas</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu, atlaist, lai sūtītu</string>
   <!--InviteActivity-->
@@ -496,8 +500,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lasīt vairāk</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Neizdevās nosūtīt</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Jauns drošības numurs</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Neizdevās nosūtīt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Jauns drošības numurs</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Neizdevās atrast ziņu</string>
   <string name="LongMessageActivity_message_from_s">Ziņa no %1$s </string>
@@ -668,6 +672,7 @@
   <string name="MessageRequestBottomView_block">Bloķēt</string>
   <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs esat uzaicināts pievienoties grupai %1$s. Vai vēlāties, lai grupas dalībnieku varētu nosūtīt Jums ziņojumus?</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atbloķēt šo grupu un dalīties ar savu vārdu un attēlu ar šiem dalībniekiem? Jūs nesaņemsiet nevienu ziņu, kamēr šo grupu neatbloķēsiet.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s dalībnieks</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s un %2$s dalībnieks</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s un %3$s dalībnieks </string>
@@ -1370,9 +1375,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="message_details_header__received">Saņemts</string>
   <string name="message_details_header__disappears">Pazūd</string>
   <string name="message_details_header__via">Ar</string>
-  <string name="message_details_header__to">Kam:</string>
-  <string name="message_details_header__from">No:</string>
-  <string name="message_details_header__with">Ar:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kam:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">No:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Ar:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Izveidot paroli</string>
   <string name="AndroidManifest__select_contacts">Izvēlēties kontaktus</string>

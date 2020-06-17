@@ -425,8 +425,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">发送失败</string>
-  <string name="MessageDetailsRecipient_new_safety_number">新安全码</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">发送失败</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">新安全码</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">找不到消息</string>
   <string name="LongMessageActivity_message_from_s">来自 %1$s 的消息</string>
@@ -1217,9 +1217,9 @@
   <string name="message_details_header__received">接收</string>
   <string name="message_details_header__disappears">消失</string>
   <string name="message_details_header__via">通道</string>
-  <string name="message_details_header__to">发至：</string>
-  <string name="message_details_header__from">来自：</string>
-  <string name="message_details_header__with">与：</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">发至：</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">来自：</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">与：</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">创建密码</string>
   <string name="AndroidManifest__select_contacts">选择联系人</string>

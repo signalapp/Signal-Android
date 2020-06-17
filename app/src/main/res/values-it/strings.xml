@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scopri di più</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Invio fallito</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nuovo codice di sicurezza</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Invio fallito</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nuovo codice di sicurezza</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Messaggio non trovato</string>
   <string name="LongMessageActivity_message_from_s">Messaggio da %1$s</string>
@@ -1416,9 +1416,9 @@
   <string name="message_details_header__received">Ricevuto</string>
   <string name="message_details_header__disappears">Scomparso</string>
   <string name="message_details_header__via">Tramite</string>
-  <string name="message_details_header__to">A:</string>
-  <string name="message_details_header__from">Da:</string>
-  <string name="message_details_header__with">Con:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">A:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Da:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Con:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Crea password</string>
   <string name="AndroidManifest__select_contacts">Seleziona contatti</string>

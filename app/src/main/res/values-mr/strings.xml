@@ -82,6 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">आपणास यापुढे या गटाकडून संदेश किंवा अद्यतने प्राप्त होणार नाहीत आणि सदस्य आपल्याला या गटामध्ये पुन्हा जोडण्यास सक्षम राहणार नाहीत.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">गट सदस्य आपल्याला या गटामध्ये पुन्हा जोडू शकणार नाहीत.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">गट सदस्य आपल्याला पुन्हा या गटात जोडू शकतील.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आपण एकमेकांना संदेश पाठविण्यात आणि कॉल करण्यात सक्षम असाल आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक केला जाईल.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$sअनावरोधित करायचे?</string>
   <string name="BlockUnblockDialog_unblock">अनब्लॉक करा</string>
@@ -119,6 +120,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">काढा</string>
   <string name="ClearProfileActivity_remove_profile_photo">प्रोफाईल फोटो काढायचा?</string>
+  <string name="ClearProfileActivity_remove_group_photo">गट फोटो काढून टाकायचा?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">कुठलाही वेब ब्राऊझर सापडला नाही.</string>
   <string name="CommunicationActions_no_email_app_found">कोणतेही ईमेल अ‍ॅप आढळले नाही</string>
@@ -221,9 +223,12 @@
   <string name="ConversationActivity_new_say_it_with_stickers">नवीन! स्टिकर सोबत बोला</string>
   <string name="ConversationActivity_cancel">रद्द करा</string>
   <string name="ConversationActivity_delete_conversation">संभाषण काढून टाकायचे?</string>
+  <string name="ConversationActivity_delete_and_leave_group">गटातून बाहेत पडायचे आणि गट हटवायचा?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">हे संभाषण आपल्या सर्व डिव्हाईस यांवरून हटविले जाईल.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आपण हे गट सोडाल, आणि ते आपल्या सर्व डिव्हाईस वरून हटविले जाईल.</string>
   <string name="ConversationActivity_delete">हटवा</string>
+  <string name="ConversationActivity_delete_and_leave">गटातून बाहेत पडा आणि गट हटवा</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">\"गट सेटिंग्ज\" मध्ये आता अधिक पर्याय</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d न वाचलेला संदेश</item>
@@ -262,6 +267,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">हटवत आहे</string>
   <string name="ConversationFragment_deleting_messages">संदेश हटवत आहे…</string>
+  <string name="ConversationFragment_delete_for_me">माझ्यासाठी हटवा</string>
+  <string name="ConversationFragment_delete_for_everyone">प्रत्येकासाठी हटवा</string>
   <string name="ConversationFragment_quoted_message_not_found">मूळ संदेश आढळला नाही</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">मूळ संदेश आता उपलब्ध नाही</string>
   <string name="ConversationFragment_failed_to_open_message">संदेश उघडण्यात अयशस्वी</string>
@@ -293,6 +300,7 @@
     <item quantity="one">संभाषण इनबॉक्स मध्ये हलवले</item>
     <item quantity="other">%d संभाषण इनबॉक्स मध्ये हलवली</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">आपले प्रोफाईल नाव तयार केले गेले आहे.</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">आपले प्रोफाईल नाव जतन केले गेले आहे.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय संदेश</string>
@@ -307,12 +315,16 @@
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाईल फोटो</string>
   <string name="CreateProfileActivity_set_up_your_profile">आपली प्रोफाईल सेट अप करा</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपले प्रोफाईल एंड-टू-एंड एन्क्रिप्टेड आहे. जेव्हा आपण नवीन संभाषणे सुरू करता किंवा स्वीकारता आणि आपण नवीन गटांमध्ये सामील होता तेव्हा हे आपल्या संपर्कांना दृश्यमान असेल.</string>
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
   <string name="CustomDefaultPreference_using_default">पूर्वनिर्धारित वापरून: %s</string>
   <string name="CustomDefaultPreference_none">कुठलेही नाही</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">फोटो निवडा </string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">फोटो काढा </string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">गॅलरीमधून निवडा</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">फोटो काढा</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">आता</string>
@@ -437,8 +449,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">अधिक जाणा</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">पाठविण्यात अयशस्वी</string>
-  <string name="MessageDetailsRecipient_new_safety_number">नवीन सुरक्षितता नंबर</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">पाठविण्यात अयशस्वी</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">नवीन सुरक्षितता नंबर</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">संदेश शोधण्यात अक्षम</string>
   <string name="LongMessageActivity_message_from_s">%1$s कडून संदेश</string>
@@ -1215,9 +1227,9 @@
   <string name="message_details_header__received">प्राप्त झाले</string>
   <string name="message_details_header__disappears">हरवते</string>
   <string name="message_details_header__via">द्वारा</string>
-  <string name="message_details_header__to">यास:</string>
-  <string name="message_details_header__from">याकडून:</string>
-  <string name="message_details_header__with">यासोबत:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">यास:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">याकडून:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">यासोबत:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">पासफ्रेझ तयार करा</string>
   <string name="AndroidManifest__select_contacts">संपर्क निवडा</string>

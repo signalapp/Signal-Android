@@ -85,6 +85,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nećete više primati poruke i obavijesti iz ove grupe, niti će Vas njeni članovi moći ponovo u grupu dodati.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Članovi grupe neće Vas moći ponovo uvrstiti u grupu.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Članovi grupe moći će Vas ponovo uvrstiti u grupu.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći ćete razmjenjivati poruke i pozive, a sa sagovornikom će biti podijeljeni i Vaše ime i slika.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirane osobe neće Vas više moći zvati niti Vam slati poruke.</string>
   <string name="BlockUnblockDialog_unblock_s">Deblokirati %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Deblokiraj</string>
@@ -330,6 +331,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem kod podešavanja profila</string>
   <string name="CreateProfileActivity_profile_photo">Fotografija profila</string>
   <string name="CreateProfileActivity_set_up_your_profile">Podesite svoj profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Vaš profil šifriran je od pošiljaoca do primaoca. Bit će vidljiv Vašim kontaktima, kada pokrenete ili prihvatite novu konverzaciju i kada se pridružite novim grupama.</string>
   <string name="CreateProfileActivity_set_avatar_description">Postavi sliku profila</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći vlastitu: %s</string>
@@ -400,7 +402,11 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">Već ste član ove grupe.</string>
   <string name="GroupCreateActivity_remove_member_description">Ukloni člana</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Dodati člana?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Uvrstiti \"%1$s\" u \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" uvršten/a u \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Uvrsti u grupu</string>
+  <string name="AddToGroupActivity_add_to_groups">Uvrsti u grupe</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Želite li da ime i fotografija s Vašeg profila budu prikazani u ovoj grupi?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite li ime i fotografiju Vašega profila učiniti dostupnim svim trenutnim i budućim članovima ove grupe?</string>
@@ -541,8 +547,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saznajte više</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Slanje nije uspjelo</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Novi sigurnosni broj</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Slanje nije uspjelo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Novi sigurnosni broj</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Neuspjelo pronalaženje poruke</string>
   <string name="LongMessageActivity_message_from_s">Poruka od %1$s</string>
@@ -727,7 +733,11 @@
   <string name="MessageRequestBottomView_delete">Izbriši</string>
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dopustiti %1$s da Vam šalje poruke i vidi Vaše ime i sliku? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dopustiti %1$s da Vam šalje poruke i vidi Vaše ime i sliku? Nećete primati poruke od njega ili nje dok ih ne prestanete blokirati.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi i dopustiti članovima da vide Vaše ime i sliku? Oni neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Pozvani ste da se pridružite grupi %1$s. Želite li dopustiti članovima grupe da Vam šalju poruke?</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Prestati s blokiranjem ove grupe i dopustiti njenim članovima da vide Vaše ime i sliku? Nećete primati poruke dok je ne prestanete blokirati.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Član grupe %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Član grupa %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Član grupa %1$s, %2$s i %3$s</string>
@@ -1234,6 +1244,11 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signalu je potreban pristup Vašim kontaktima kako bi ih mogao prikazati.</string>
   <string name="contact_selection_list_fragment__show_contacts">Prikaži kontakte</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d član</item>
+    <item quantity="few">%1$d člana</item>
+    <item quantity="other">%1$d članova</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal poruka</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezaštićen SMS</string>
@@ -1446,9 +1461,9 @@
   <string name="message_details_header__received">Primljeno</string>
   <string name="message_details_header__disappears">Nestaje za</string>
   <string name="message_details_header__via">Preko</string>
-  <string name="message_details_header__to">Za:</string>
-  <string name="message_details_header__from">Od:</string>
-  <string name="message_details_header__with">Sa:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Za:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Od:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Sa:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Kreiraj lozinku</string>
   <string name="AndroidManifest__select_contacts">Odaberi kontakte</string>
@@ -2016,6 +2031,8 @@
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>
   <string name="RecipientBottomSheet_add_to_contacts">Dodajte među kontakte</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Uvrsti u grupu</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Uvrsti u drugu grupu</string>
   <string name="RecipientBottomSheet_view_safety_number">Vidi sigurnosni broj</string>
   <string name="RecipientBottomSheet_make_group_admin">Odredi administratora grupe</string>
   <string name="RecipientBottomSheet_remove_as_admin">Ukloni administratorske ovlasti</string>

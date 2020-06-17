@@ -368,8 +368,8 @@
   <!--Job-->
   <string name="Job_working_in_the_background">Pərdə arxası iş gedir…</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Göndərə bilmədik</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Yeni təhlükəsizlik rəqəmi</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Göndərə bilmədik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Yeni təhlükəsizlik rəqəmi</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mesajı tapa bilmədik</string>
   <string name="LongMessageActivity_message_from_s">%1$s tərəfindən mesaj</string>
@@ -982,9 +982,9 @@
   <string name="message_details_header__received">Qəbul edildi</string>
   <string name="message_details_header__disappears">Yox olur</string>
   <string name="message_details_header__via">Vasitəsilə</string>
-  <string name="message_details_header__to">Kimə:</string>
-  <string name="message_details_header__from">Kimdən:</string>
-  <string name="message_details_header__with">Kiminlə:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kimə:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Kimdən:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Kiminlə:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Şifrə ifadəsi yarat</string>
   <string name="AndroidManifest__select_contacts">Əlaqələri seç</string>

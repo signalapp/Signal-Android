@@ -435,8 +435,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">மேலும் அறிக</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">அனுப்ப முடியவில்லை</string>
-  <string name="MessageDetailsRecipient_new_safety_number">புதிய பாதுகாப்பு எண்</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">அனுப்ப முடியவில்லை</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">புதிய பாதுகாப்பு எண்</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">செய்தியைக் கண்டுபிடிக்க முடியவில்லை</string>
   <string name="LongMessageActivity_message_from_s">%1$s  இலிருந்து செய்தி</string>
@@ -1222,9 +1222,9 @@
   <string name="message_details_header__received">பெறப்பட்டது</string>
   <string name="message_details_header__disappears">மறைந்து</string>
   <string name="message_details_header__via">வழியாக</string>
-  <string name="message_details_header__to">இவருக்கு:</string>
-  <string name="message_details_header__from">இவரிடமிருந்து:</string>
-  <string name="message_details_header__with">இதனுடன்:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">இவருக்கு:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">இவரிடமிருந்து:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">இதனுடன்:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">கடவுச்சொல்லை உருவாக்கு</string>
   <string name="AndroidManifest__select_contacts">தொடர்புகளை தேர்ந்தெடு</string>

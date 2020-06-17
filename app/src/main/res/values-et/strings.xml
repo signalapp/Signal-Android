@@ -387,6 +387,7 @@
   <string name="GroupCreateActivity_remove_member_description">Eemalda liige</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_to_group">Lisa gruppi</string>
+  <string name="AddToGroupActivity_add_to_groups">Lisa gruppidesse</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Jagad oma profiilinime ja -pilti selle grupiga?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Kas sa tahad teha oma profiilinime ja -pildi nähtavaks kõigile grupi olemasolevatele ja tulevastele liikmetele?</string>
@@ -518,8 +519,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Rohkem infot</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Saatmine ebaõnnestus</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Uus turvanumber</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Saatmine ebaõnnestus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Uus turvanumber</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Sõnumit ei leitud</string>
   <string name="LongMessageActivity_message_from_s">Sõnum kasutajalt %1$s</string>
@@ -1197,6 +1198,10 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal vajab kontaktide kuvamiseks nendele ligipääsu.</string>
   <string name="contact_selection_list_fragment__show_contacts">Näita kontakte</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d liige</item>
+    <item quantity="other">%1$d liiget</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signali sõnum</string>
   <string name="conversation_activity__type_message_sms_insecure">Turvamata SMS</string>
@@ -1402,9 +1407,9 @@
   <string name="message_details_header__received">Vastuvõetud</string>
   <string name="message_details_header__disappears">Haihtub</string>
   <string name="message_details_header__via">Saatmisviis:</string>
-  <string name="message_details_header__to">Saaja:</string>
-  <string name="message_details_header__from">Saatja:</string>
-  <string name="message_details_header__with">Koos:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Saaja:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Saatja:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Koos:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Loo salasõna</string>
   <string name="AndroidManifest__select_contacts">Vali kontaktid</string>
@@ -1963,6 +1968,8 @@
   <string name="RecipientBottomSheet_block">Blokeeri</string>
   <string name="RecipientBottomSheet_unblock">Eemalda blokeering</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lisa kontaktidesse</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Lisa gruppi</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Lisa muusse gruppi</string>
   <string name="RecipientBottomSheet_view_safety_number">Näita turvanumbrit</string>
   <string name="RecipientBottomSheet_make_group_admin">Tee grupi administraatoriks</string>
   <string name="RecipientBottomSheet_remove_as_admin">Eemaldada administraatoriõigused</string>

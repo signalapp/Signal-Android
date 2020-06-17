@@ -424,8 +424,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">더 알아보기</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
-  <string name="MessageDetailsRecipient_new_safety_number">새 안전 번호</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">새 안전 번호</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">메시지를 찾을 수 없음</string>
   <string name="LongMessageActivity_message_from_s">%1$s에게서 온 메시지</string>
@@ -1210,9 +1210,9 @@
   <string name="message_details_header__received">받은 시간</string>
   <string name="message_details_header__disappears">사라짐</string>
   <string name="message_details_header__via">형식</string>
-  <string name="message_details_header__to">수신자</string>
-  <string name="message_details_header__from">발신자</string>
-  <string name="message_details_header__with">참조</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">수신자</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">발신자</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">참조</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">암호 생성</string>
   <string name="AndroidManifest__select_contacts">연락처 선택</string>

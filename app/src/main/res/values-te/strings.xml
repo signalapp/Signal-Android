@@ -479,8 +479,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ఇంకా నేర్చుకో</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string>
-  <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">సందేశాన్ని కనుగొనడం సాధ్యం కాలేదు</string>
   <string name="LongMessageActivity_message_from_s">%1$sనుండి సందేశం</string>
@@ -1316,9 +1316,9 @@
   <string name="message_details_header__received">అందుకున్న</string>
   <string name="message_details_header__disappears">అదృశ్యమవుతుంది</string>
   <string name="message_details_header__via">ద్వారా</string>
-  <string name="message_details_header__to">ఎవరికి:</string>
-  <string name="message_details_header__from">ఎవరి నుండి:</string>
-  <string name="message_details_header__with">ఎవరితో:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">ఎవరికి:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">ఎవరి నుండి:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">ఎవరితో:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">సంకేతపదమును తయారు చేయు</string>
   <string name="AndroidManifest__select_contacts">పరిచయాలను ఎంచుకోండి</string>

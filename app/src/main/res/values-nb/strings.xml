@@ -447,8 +447,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær mer</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Sending mislyktes</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nytt sikkerhetsnummer</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Sending mislyktes</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nytt sikkerhetsnummer</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kunne ikke finne meldingen</string>
   <string name="LongMessageActivity_message_from_s">Melding fra %1$s</string>
@@ -1246,9 +1246,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="message_details_header__received">Mottatt</string>
   <string name="message_details_header__disappears">Forsvinner</string>
   <string name="message_details_header__via">Via</string>
-  <string name="message_details_header__to">Til:</string>
-  <string name="message_details_header__from">Fra:</string>
-  <string name="message_details_header__with">Med:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Til:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Fra:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Med:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Opprett passord</string>
   <string name="AndroidManifest__select_contacts">Velg kontakter</string>

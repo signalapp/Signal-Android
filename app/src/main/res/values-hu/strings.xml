@@ -525,8 +525,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">További információ</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Nem sikerült elküldeni</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Új biztonsági szám</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nem sikerült elküldeni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Új biztonsági szám</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Az üzenet nem található</string>
   <string name="LongMessageActivity_message_from_s">Üzenet tőle: %1$s</string>
@@ -1419,9 +1419,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="message_details_header__received">Érkezett</string>
   <string name="message_details_header__disappears">Eltűnik</string>
   <string name="message_details_header__via">Csatorna</string>
-  <string name="message_details_header__to">Címzett:</string>
-  <string name="message_details_header__from">Feladó:</string>
-  <string name="message_details_header__with">Vele:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Címzett:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Feladó:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Vele:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Jelmondat létrehozása</string>
   <string name="AndroidManifest__select_contacts">Kontaktok kiválasztása</string>

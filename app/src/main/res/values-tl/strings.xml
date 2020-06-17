@@ -440,8 +440,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Matuto pa</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Nabigong ipadala</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Bagong numerong pangkaligtasan</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nabigong ipadala</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Bagong numerong pangkaligtasan</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Hindi mahanap ang mensahe</string>
   <string name="LongMessageActivity_message_from_s">Mensahe mula kay %1$s</string>
@@ -1247,9 +1247,9 @@
   <string name="message_details_header__received">Natanggap na</string>
   <string name="message_details_header__disappears">Naglalaho</string>
   <string name="message_details_header__via">Sa pamamagitan ng</string>
-  <string name="message_details_header__to">Para kay:</string>
-  <string name="message_details_header__from">Mula kay:</string>
-  <string name="message_details_header__with">Kasama si:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Para kay:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Mula kay:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Kasama si:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Lumikha ng passphrase</string>
   <string name="AndroidManifest__select_contacts">Pumili ng mga kontak</string>

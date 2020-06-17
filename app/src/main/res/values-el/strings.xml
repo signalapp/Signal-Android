@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Μάθε περισσότερα</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Αποτυχία αποστολής</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Νέος αριθμός ασφαλείας</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Αποτυχία αποστολής</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Νέος αριθμός ασφαλείας</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Δεν βρέθηκε μήνυμα</string>
   <string name="LongMessageActivity_message_from_s">Μήνυμα από τον/την %1$s</string>
@@ -1411,9 +1411,9 @@
   <string name="message_details_header__received">Ελήφθη στις</string>
   <string name="message_details_header__disappears">Εξαφανίζεται</string>
   <string name="message_details_header__via">Μέσω</string>
-  <string name="message_details_header__to">Προς:</string>
-  <string name="message_details_header__from">Από:</string>
-  <string name="message_details_header__with">Με:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Προς:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Από:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Με:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Δημιουργία συνθηματικού</string>
   <string name="AndroidManifest__select_contacts">Επιλογή επαφών</string>

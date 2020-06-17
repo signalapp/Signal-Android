@@ -525,6 +525,14 @@
     <item quantity="many">دُعي %d</item>
     <item quantity="other">دُعي %d</item>
   </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="zero">تمت إضافة%dعضو.</item>
+    <item quantity="one">تمت إضافة %dعضو.</item>
+    <item quantity="two">تمت إضافة %dأعضاء.</item>
+    <item quantity="few">تمت إضافة %dأعضاء.</item>
+    <item quantity="many">تمت إضافة %dأعضاء.</item>
+    <item quantity="other">تمت إضافة %dأعضاء.</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ليس لك صلاحية القيام بذلك</string>
   <string name="ManageGroupActivity_not_capable">أحد الذين دعوتهم لا يدعم المجموعات الجديدة ويتعيّن عليهم تحديث سغنال</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">فشل تحديث المجموعة</string>
@@ -600,8 +608,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">لمعرفة المزيد</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string>
-  <string name="MessageDetailsRecipient_new_safety_number">رقم سلامة جديد</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">رقم سلامة جديد</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">تعذر العثور على الرسالة</string>
   <string name="LongMessageActivity_message_from_s">رسالة من %1$s</string>
@@ -755,13 +763,30 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">لقد دعوت %1$s إلى المجموعة.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">دعاك %1$s  إلى المجموعة.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="zero">دعا %1$s%2$dشخص للمجموعة</item>
+    <item quantity="one">دعا %1$sشخص واحد للمجموعة.</item>
+    <item quantity="two">دعا %1$s%2$dأشخاص للمجموعة.</item>
+    <item quantity="few">دعا%1$s%2$dأشخاص للمجموعة.</item>
+    <item quantity="many">دعا%1$s%2$dأشخاص للمجموعة.</item>
+    <item quantity="other">دعا %1$s%2$dأشخاص للمجموعة.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="zero">لقد أبطلت %1$d دعوات للمجموعة.</item>
+    <item quantity="one">لقد أبطلت الدعوة للمجموعة.</item>
+    <item quantity="two">بقد أبطلت %1$dدعوات للمجموعة</item>
+    <item quantity="few">لقد أبطلت %1$dدعوات للمجموعة.</item>
+    <item quantity="many">لقد أبطلت %1$dدعوات للمجموعة.</item>
+    <item quantity="other">لقد أبطلت %1$dدعوات للمجموعة.</item>
+  </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">رفض شخص ما دعوة إلى المجموعة.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">لقد رفضت الدعوة إلى المجموعة.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">لقد قبلت الدعوة إلى المجموعة.</string>
   <string name="MessageRecord_s_accepted_invite">قبل %1$s  دعوة إلى المجموعة.</string>
   <string name="MessageRecord_you_added_invited_member_s">أضفت العضو المدعوّ %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">أضاف %1$s العضو%2$s الذي تم دعوته من قبل.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">لقد قمت بتغيير اسم المجموعة إلى \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">قام %1$s  بتغيير اسم المجموعة إلى \"%2$s \".</string>
@@ -787,6 +812,8 @@
   <string name="MessageRequestBottomView_unblock">رفع الحظر</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود السماح ل%1$s بمراسلتك ،بالإضافة إلى مشاركة اسمك وصورتك معهم؟ هم لن يعرفوا أنك قرأت رسالتهم إلى أن تسمح لهم بذلك.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">هل تود السماح ل %1$s  بمراسلتك ،بالإضافة إلى مشاركة اسمك وصورتك معهم؟ لن يصلهم أية رسالة حتى تزيل الحظر عنهم.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">لقد تمت دعوتك للانضمام إلى مجموعة %1$s. هل تريد السماح لأعضاء هذه المجموعة بمراسلتك؟</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">إزالة الحظر عن ه</string>
   <string name="MessageRequestProfileView_member_of_one_group">عضو في %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو في %1$s و%2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">عضو في %1$s و%2$s و%3$s</string>
@@ -797,6 +824,14 @@
     <item quantity="few">%1$d أعضاء</item>
     <item quantity="many">%1$d عضوًا</item>
     <item quantity="other">%1$dأعضاء</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="zero">%1$dعضو(+%2$dمدعو)</item>
+    <item quantity="one">%1$dعضو(+%2$dمدعو)</item>
+    <item quantity="two">%1$dأعضاء(+%2$dمدعوون)</item>
+    <item quantity="few">%1$dأعضاء(+%2$dمدعوون)</item>
+    <item quantity="many">%1$dأعضاء(+%2$dمدعوون)</item>
+    <item quantity="other">%1$dأعضاء(+%2$dمدعوون)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="zero">%d أخرى</item>
@@ -856,10 +891,13 @@
   <string name="PinRestoreEntryFragment_contact_support">اتصل بالدعم</string>
   <string name="PinRestoreEntryFragment_cancel">إلغاء</string>
   <string name="PinRestoreEntryFragment_skip">تخطّي</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">تسجيل Signal - تحتاج مساعدة بالرقم التعريفي الشخصي لنظام تشغيل Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">أدخل الرقم التعريفي الشخصي بالأحرف والأرقام</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">أدخل الرقم التعريفي الشخصي بالأرقام</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">لقد نفذت تخميناتك لكلمة المرور الرقمية، لكن مازال بوسعك الوصول إلى حسابك على Signal من خلال إنشاء كلمة مرور رقمية جديدة.
+للحفاظ على خصوصيتك وأمن معلوماتك، سيتم استرجاع حسابك لكن  بدون أية معلومات شخصية عن الحساب أو الإعدادات.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">إنشاء رقم تعريف شخصي جديد</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
@@ -897,6 +935,7 @@
   <string name="RedPhone_got_it">عُلم</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">اضغط هنا لتشغيل الفيديو منك. </string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال ب%1$s, يحتاج Signal الصلاحية للوصول إلى الكاميرا</string>
   <string name="WebRtcCallActivity__signal_s">%1$s سغنال</string>
   <string name="WebRtcCallActivity__calling">يتّصل…</string>
   <!--WebRtcCallView-->
@@ -1055,6 +1094,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">لم يمكن معالجة الرسالة</string>
   <string name="ThreadRecord_message_request">طلب مراسلة</string>
   <string name="ThreadRecord_s_added_you_to_the_group">أضافك %1$s للمجموعة</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">دعاك %1$s إلى المجموعة</string>
   <string name="ThreadRecord_photo">صورة</string>
   <string name="ThreadRecord_gif">صورة متحركة</string>
   <string name="ThreadRecord_voice_message">رسالة صوتية.</string>
@@ -1285,6 +1325,14 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal بحاجة إلى الوصول إلى جهات الاتصال لديك وذلك بغرض عرضها.</string>
   <string name="contact_selection_list_fragment__show_contacts">إظهار جهات الإتصال</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="zero">%1$dعضو</item>
+    <item quantity="one">%1$dعضو</item>
+    <item quantity="two">%1$dأعضاء</item>
+    <item quantity="few">%1$dأعضاء</item>
+    <item quantity="many">%1$dأعضاء</item>
+    <item quantity="other">%1$dأعضاء</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">رسالة من Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">رسائل SMS غير مؤمّنة</string>
@@ -1520,9 +1568,9 @@
   <string name="message_details_header__received">استلمت</string>
   <string name="message_details_header__disappears">مُختفية </string>
   <string name="message_details_header__via">بواسطة</string>
-  <string name="message_details_header__to">إلى:</string>
-  <string name="message_details_header__from">من:</string>
-  <string name="message_details_header__with">مع:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">إلى:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">من:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">مع:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">إنشاء عبارة سرية</string>
   <string name="AndroidManifest__select_contacts">اخر جهات الاتصال</string>
@@ -1569,6 +1617,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">أشياء</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">رموز</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">أعلام</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية(ايموجي)</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
@@ -1893,6 +1942,7 @@
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
   <string name="KbsSplashFragment__learn_more">أعرف أكثر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = الرقم التعريفي الشخصي</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل التسجيل يسمى الآن رقم التعريف الشخصي، وهو مسؤول عن أشياء أخرى. حدِّثه الآن.</string>
   <string name="KbsSplashFragment__read_more_about_pins">اقرأ المزيد عن الأرقام التعريفية الشخصية.</string>
   <string name="KbsSplashFragment__update_pin">تحديث الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
@@ -1905,6 +1955,7 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">تم إقفال الحساب</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">تم قفل حسابك لحماية خصوصيتك وأمانك. بعد %1$d يوم من خمول حسابك، سيكون بالإمكان إعادة التسجيل برقم هاتفك دون الحاجة إلى رقم التعريف الشخصي . سيتم حذف جميع محتوى حسابك.</string>
   <string name="AccountLockedFragment__next">التالي</string>
   <string name="AccountLockedFragment__learn_more">أعرف أكثر</string>
   <!--KbsLockFragment-->
@@ -1934,14 +1985,24 @@
     <item quantity="many">لديك %1$d محاولات متبقية.</item>
     <item quantity="other">لديك %1$d  محاولات متبقية.</item>
   </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="zero">%1$dمحاولة متبقية.</item>
+    <item quantity="one">%1$dمحاولات متبقية.</item>
+    <item quantity="two">%1$dمحاولات متبقية.</item>
+    <item quantity="few">%1$dمحاولات متبقية.</item>
+    <item quantity="many">%1$dمحاولات متبقية.</item>
+    <item quantity="other">%1$dمحاولات متبقية. </item>
+  </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">حسنًا</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">سيتلقى %1$sطلب للتراسل منك. ويمكنك الاتصال بهم عندما يقبل طلب المراسلة الخاص بك.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">الأرقام التعريفية الشخصية تجعل المعلومات المخزّنة مع سغنال مُعمّاة.</string>
   <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="KbsMegaphone__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
   <string name="KbsMegaphone__update_pin">تحديث الرقم التعريفي الشخصي</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">سنذّكرك لاحقاً. اختيار كلمة مرور رقمية سيكون إجبارياً في %1$dأيام.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">سنذكّرك لاحقاً ، إدخال كلمة السر الرقمية ستكون إجبارية بعد %1$d أيام.</string>
   <!--Profile Names Megaphone-->
   <string name="ProfileNamesMegaphone__add_a_profile_name">إضافة اسم للملف الشخصي</string>

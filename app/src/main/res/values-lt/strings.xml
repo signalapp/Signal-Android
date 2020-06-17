@@ -88,6 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Jūs daugiau nebegausite žinučių ar atnaujinimų iš šios grupės, o nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupės nariai nebegalės vėl pridėti jūsų į šią grupę.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupės nariai galės ir vėl jus pridėti į šią grupę.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti, o jūsų vardas ir nuotrauka bus bendrinami su naudotoju.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
   <string name="BlockUnblockDialog_unblock_s">Atblokuoti %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Atblokuoti</string>
@@ -415,7 +416,11 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esate grupėje.</string>
   <string name="GroupCreateActivity_remove_member_description">Šalinti narį</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Pridėti narį?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Pridėti naudotoją \"%1$s\" į \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">Naudotojas \"%1$s\" pridėtas į \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Pridėti į grupę</string>
+  <string name="AddToGroupActivity_add_to_groups">Pridėti į grupes</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bendrinti jūsų profilio vardą ir nuotrauką su šia grupe?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti savo profilio vardą ir nuotrauką matomą visiems esamiems ir būsimiems šios grupės nariams?</string>
@@ -565,8 +570,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sužinoti daugiau</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Nepavyko išsiųsti</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Naujas saugumo numeris</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nepavyko išsiųsti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Naujas saugumo numeris</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nepavyko rasti žinutės</string>
   <string name="LongMessageActivity_message_from_s">Žinutė nuo %1$s</string>
@@ -645,7 +650,7 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Atsiunčiama MMS žinutė</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Klaida, atsiunčiant MMS žinutę, bakstelėkite, norėdami bandyti dar kartą</string>
   <!--MediaPickerActivity-->
-  <string name="MediaPickerActivity_send_to">Siųsti kontaktui %s</string>
+  <string name="MediaPickerActivity_send_to">Siųsti adresatui %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Atverti kamerą</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Bakstelėkite, norėdami pasirinkti</string>
@@ -759,6 +764,9 @@
   <string name="MessageRequestBottomView_delete">Ištrinti</string>
   <string name="MessageRequestBottomView_block">Užblokuoti</string>
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nepriimsite pakvietimo.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Jūs negausite jokių žinučių tol, kol neatblokuosite šio naudotojo.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jie nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs buvote pakviesti prisijungti prie grupės %1$s. Ar norite leisti šios grupės nariams rašyti jums žinutes?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atblokuoti šią grupę ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs negausite jokių žinučių tol, kol jų neatblokuosite.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės narys</string>
@@ -1048,7 +1056,7 @@
   <string name="ThreadRecord_photo">Nuotrauka</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Balso žinutė</string>
-  <string name="ThreadRecord_contact">Kontaktas</string>
+  <string name="ThreadRecord_contact">Adresatas</string>
   <string name="ThreadRecord_file">Failas</string>
   <string name="ThreadRecord_video">Vaizdo įrašai</string>
   <!--UpdateApkReadyListener-->
@@ -1273,6 +1281,12 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Norint rodyti jūsų adresatus, Signal reikia prieigos prie jų.</string>
   <string name="contact_selection_list_fragment__show_contacts">Rodyti adresatus</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d narys</item>
+    <item quantity="few">%1$d nariai</item>
+    <item quantity="many">%1$d narių</item>
+    <item quantity="other">%1$d narys</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal žinutė</string>
   <string name="conversation_activity__type_message_sms_insecure">Neapsaugota SMS</string>
@@ -1372,8 +1386,8 @@
   <string name="IdentityUtil_unverified_banner_two">Jūsų saugumo numeriai su %1$s ir %2$s yra daugiau nebepatvirtinti</string>
   <string name="IdentityUtil_unverified_banner_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s yra daugiau nebepatvirtinti</string>
   <string name="IdentityUtil_unverified_dialog_one">Jūsų saugumo numeris su %1$s pasikeitė ir yra daugiau nebepatvirtintas. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad %1$s iš naujo įdiegė Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Jūsų saugumo numeriai su %1$s ir %2$s yra daugiau nebepatvirtinti. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad šie kontaktai iš naujo įdiegė Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s yra daugiau nebepatvirtinti. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad šie kontaktai iš naujo įdiegė Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Jūsų saugumo numeriai su %1$s ir %2$s daugiau nebėra patvirtinti. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad šie adresatai iš naujo įdiegė Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s daugiau nebėra patvirtinti. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, tiesiog, kad šie adresatai iš naujo įdiegė Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Jūsų saugumo numeris su %s ką tik pasikeitė.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Jūsų saugumo numeriai su %1$s ir %2$s ką tik pasikeitė.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Jūsų saugumo numeriai su %1$s, %2$s ir %3$s ką tik pasikeitė.</string>
@@ -1477,7 +1491,7 @@
   <string name="unknown_sender_view__add_to_contacts">ĮTRAUKTI Į ADRESATUS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPRIDĖTI, TAČIAU PADARYTI MANO PROFILĮ MATOMĄ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu šio kontakto įrenginyje. Arba kitu atveju, galite nuskenuoti kodą jo telefone arba paprašyti kontakto, kad nuskenuotų jūsų kodą. <a href="https://signal.org/redirect/safety-numbers">Sužinokite daugiau.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu šio adresato įrenginyje. Arba kitu atveju, galite nuskenuoti kodą jo telefone arba paprašyti adresato, kad nuskenuotų jūsų kodą. <a href="https://signal.org/redirect/safety-numbers">Sužinokite daugiau.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Bakstelėkite, norėdami nuskenuoti</string>
   <string name="verify_display_fragment__loading">Įkeliama…</string>
   <string name="verify_display_fragment__verified">Patvirtinta(-s)</string>
@@ -1492,9 +1506,9 @@
   <string name="message_details_header__received">Gauta</string>
   <string name="message_details_header__disappears">Išnyksta</string>
   <string name="message_details_header__via">Per</string>
-  <string name="message_details_header__to">Kam:</string>
-  <string name="message_details_header__from">Nuo:</string>
-  <string name="message_details_header__with">Su:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kam:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Nuo:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Su:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Kurti slaptafrazę</string>
   <string name="AndroidManifest__select_contacts">Pasirinkti adresatus</string>
@@ -2071,6 +2085,8 @@
   <string name="RecipientBottomSheet_block">Užblokuoti</string>
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
   <string name="RecipientBottomSheet_add_to_contacts">Įtraukti į adresatus</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Pridėti į grupę</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Pridėti į kitą grupę</string>
   <string name="RecipientBottomSheet_view_safety_number">Rodyti saugumo numerį</string>
   <string name="RecipientBottomSheet_make_group_admin">Paskirti grupės administratoriumi</string>
   <string name="RecipientBottomSheet_remove_as_admin">Pašalinti iš administratorių</string>

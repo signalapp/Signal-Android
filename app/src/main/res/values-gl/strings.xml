@@ -447,8 +447,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber máis</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Erro ao enviar</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Novo número de seguranza</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Erro ao enviar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Novo número de seguranza</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Non é posible atopar a mensaxe</string>
   <string name="LongMessageActivity_message_from_s">Mensaxe de %1$s</string>
@@ -1201,9 +1201,9 @@
   <string name="message_details_header__received">Recibida</string>
   <string name="message_details_header__disappears">Desaparece</string>
   <string name="message_details_header__via">Vía</string>
-  <string name="message_details_header__to">Para:</string>
-  <string name="message_details_header__from">De:</string>
-  <string name="message_details_header__with">Con:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Para:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">De:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Con:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Crear frase de acceso</string>
   <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>

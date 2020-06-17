@@ -349,8 +349,8 @@
   <!--Job-->
   <string name="Job_working_in_the_background">Di paşrû de tê xebitîn…</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Nekarî bê şandin</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Hejmara ewlehiya nû</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nekarî bê şandin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Hejmara ewlehiya nû</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Peyam nehate dîtin</string>
   <string name="LongMessageActivity_message_from_s">Ji %1$s peyam</string>
@@ -924,9 +924,9 @@
   <string name="message_details_header__received">Hat</string>
   <string name="message_details_header__disappears">Winda dibe</string>
   <string name="message_details_header__via">Bi riya</string>
-  <string name="message_details_header__to">Ji bo:</string>
-  <string name="message_details_header__from">Ji:</string>
-  <string name="message_details_header__with">Bi:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Ji bo:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Ji:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Bi:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Pêderbasokê çêbike</string>
   <string name="AndroidManifest__select_contacts">Tekiliyan bibijêrin</string>

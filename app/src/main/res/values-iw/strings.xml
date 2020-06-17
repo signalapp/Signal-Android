@@ -88,6 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">לא תקבלו יותר הודעות או עדכונים מקבוצה זו, וחברי קבוצה לא יוכלו להוסיף אתכם שוב אל קבוצה זו.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">חברי קבוצה לא יוכלו להוסיף אתכם שוב אל קבוצה זו.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">חברי קבוצה יוכלו להוסיף אתכם שוב אל קבוצה זו.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">תוכלו להתכתב ולהתקשר אחד לשני, והשם והתמונה שלכם ישותפו איתם.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">אנשים חסומים לא יוכלו להתקשר אליכם או לשלוח לכם הודעות.</string>
   <string name="BlockUnblockDialog_unblock_s">לבטל חסימה של %1$s?</string>
   <string name="BlockUnblockDialog_unblock">בטל חסימה</string>
@@ -344,6 +345,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">בעיה בהגדרת פרופיל</string>
   <string name="CreateProfileActivity_profile_photo">תמונת פרופיל</string>
   <string name="CreateProfileActivity_set_up_your_profile">הגדר את הפרופיל שלך</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">הפרופיל שלכם מוצפן מקצה לקצה. הוא יהיה זמין לאנשי הקשר שלכם, כאשר אתם יוזמים או מקבלים שיחות, וכאשר אתם מצטרפים לקבוצות חדשות.</string>
   <string name="CreateProfileActivity_set_avatar_description">הגדר יצגן</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">משתמש בהתאמה אישית: %s</string>
@@ -414,7 +416,11 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">אתה כבר בקבוצה.</string>
   <string name="GroupCreateActivity_remove_member_description">הסירו חבר קבוצה</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">להוסיף חבר?</string>
+  <string name="AddToGroupActivity_add_s_to_s">להוסיף את \"%1$s\" ל-\"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" נוספו ל-\"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">הוסיפו לקבוצה</string>
+  <string name="AddToGroupActivity_add_to_groups">הוסיפו לקבוצות</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">לשתף את השם והתמונה של הפרופיל שלך עם קבוצה זו?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">האם אתה רוצה להפוך את השם והתמונה של הפרופיל שלך לגלויים לכל חברי הקבוצה הנוכחיים והעתידיים של קבוצה זו?</string>
@@ -564,8 +570,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">למדו עוד</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">נכשל בשליחה</string>
-  <string name="MessageDetailsRecipient_new_safety_number">מספר ביטחון חדש</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">נכשל בשליחה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">מספר ביטחון חדש</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">לא היה ניתן למצוא הודעה</string>
   <string name="LongMessageActivity_message_from_s">הודעה מאת %1$s</string>
@@ -758,7 +764,11 @@
   <string name="MessageRequestBottomView_delete">מחק</string>
   <string name="MessageRequestBottomView_block">חסום</string>
   <string name="MessageRequestBottomView_unblock">בטל חסימה</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">אפשרו ל-%1$s להתכתב אתכם ושתפו איתם את השם והתמונה שלכם? הם לא ידעו שראיתם את ההודעה שלהם עד שלא תאשרו.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">אפשרו ל-%1$s להתכתב אתכם ושתפו איתם את השם והתמונה שלכם? לא תקבלו אף הודעה מהם עד שלא תבטלו את החסימה שלהם.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">האם אתם מאשרים להצטרף לקבוצה הזו ולשתף את שמכם והתמונה שלכם עם חברי הקבוצה? הם לא יידעו שראיתם את ההודעה שלהם עד שלא תאשרו.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">הוזמנתם להצטרף לקבוצה %1$s. האם אתם רוצים לאפשר לחברי הקבוצה הזו לשלוח לכם הודעות?</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">האם אתם מאשרים לבטל חסימת קבוצה זו ולשתף את שמכם והתמונה שלכם עם חברי הקבוצה? לא תקבלו אף הודעה מהקבוצה עד שלא תבטלו את החסימה.</string>
   <string name="MessageRequestProfileView_member_of_one_group">חבר קבוצה של %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">חבר קבוצה של %1$s ושל %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">חבר קבוצה של %1$s, %2$s ושל %3$s</string>
@@ -1271,6 +1281,12 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal צריך הרשאה אל אנשי הקשר שלך על מנת להציגם.</string>
   <string name="contact_selection_list_fragment__show_contacts">הראה אנשי קשר</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">חבר %1$d </item>
+    <item quantity="two">%1$d חברים</item>
+    <item quantity="many">%1$d חברים</item>
+    <item quantity="other">%1$d חברים</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">הודעת Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">מסרון בלתי מאובטח</string>
@@ -1490,9 +1506,9 @@
   <string name="message_details_header__received">התקבל</string>
   <string name="message_details_header__disappears">נעלם</string>
   <string name="message_details_header__via">דרך</string>
-  <string name="message_details_header__to">אל:</string>
-  <string name="message_details_header__from">מאת:</string>
-  <string name="message_details_header__with">עם:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">אל:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">מאת:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">עם:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">צור משפט־סיסמה</string>
   <string name="AndroidManifest__select_contacts">בחר אנשי קשר</string>
@@ -2069,6 +2085,8 @@
   <string name="RecipientBottomSheet_block">חסמו</string>
   <string name="RecipientBottomSheet_unblock">בטלו חסימה</string>
   <string name="RecipientBottomSheet_add_to_contacts">הוסיפו לאנשי הקשר</string>
+  <string name="RecipientBottomSheet_add_to_a_group">הוסיפו לקבוצה</string>
+  <string name="RecipientBottomSheet_add_to_another_group">הוסיפו לקבוצה נוספת</string>
   <string name="RecipientBottomSheet_view_safety_number">הצג מספר בטיחות</string>
   <string name="RecipientBottomSheet_make_group_admin">הפכו למנהל קבוצה</string>
   <string name="RecipientBottomSheet_remove_as_admin">הסירו תפקיד מנהל</string>

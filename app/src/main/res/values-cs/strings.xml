@@ -535,9 +535,9 @@
   <string name="CropImageActivity_profile_avatar">Obrázek</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rozostřit tváře</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nové: Rozostřit tváře nebo kreslením cokoli rozostřit</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">Kreslením rozostřit</string>
-  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Kreslením rozostřit další tváře nebo oblasti</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nové: Rozostřit tváře nebo kreslením cokoli</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Rozostřit kreslením</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Rozostřit kreslením další tváře nebo oblasti</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Klepněte a držte pro nahrání hlasové zprávy, pusťte pro odeslání.</string>
   <!--InviteActivity-->
@@ -570,8 +570,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Zjistit více</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostní kódy</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostní kódy</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nepodařilo se nalézt zprávu</string>
   <string name="LongMessageActivity_message_from_s">Zpráva od %1$s</string>
@@ -1505,9 +1505,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="message_details_header__received">Přijato</string>
   <string name="message_details_header__disappears">Zmizí</string>
   <string name="message_details_header__via">Přes</string>
-  <string name="message_details_header__to">Komu:</string>
-  <string name="message_details_header__from">Od:</string>
-  <string name="message_details_header__with">S:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Komu:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Od:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">S:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Vytvořit heslo</string>
   <string name="AndroidManifest__select_contacts">Výběr kontaktů</string>

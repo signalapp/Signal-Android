@@ -157,7 +157,7 @@
   <!--InviteActivity-->
   <!--Job-->
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Неуспешно праќање</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Неуспешно праќање</string> -->
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
@@ -399,9 +399,9 @@
   <string name="message_details_header__sent">Испратено</string>
   <string name="message_details_header__received">Примено</string>
   <string name="message_details_header__via">Преку</string>
-  <string name="message_details_header__to">До:</string>
-  <string name="message_details_header__from">Од:</string>
-  <string name="message_details_header__with">Со:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">До:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Од:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Со:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Креирај лозинка</string>
   <string name="AndroidManifest__select_contacts">Изберете контакти</string>

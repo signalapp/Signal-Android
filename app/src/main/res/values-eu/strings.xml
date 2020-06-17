@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Gehiago jakin</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Bidalketak huts egin du</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Segurtasun zenbaki berria</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Bidalketak huts egin du</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Segurtasun zenbaki berria</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Ezin izan da mezua aurkitu</string>
   <string name="LongMessageActivity_message_from_s">Honen mezua: %1$s</string>
@@ -750,7 +750,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Mezuen desagerpena</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetan jaso eta bidalitako mezuak ikusi eta %s igaroz gero desagertuko dira.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetako mezu guztiak, bai jasoak zein bidaliak, irakurri eta %s igaro ondoren desagertu egingo dira.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pasahitza sartu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonoa</string>
@@ -1402,7 +1402,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="unknown_sender_view__add_to_contacts">KONTAKTUETARA GEHITU</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">EZ GEHITU, BAINA PROFILA ERAKUTSI</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s erabiltzailearekin duzun enkriptazioaren segurtasuna egiaztatu nahi baduzu, goian duzun zenbakia bere gailuan agertzen denarekin alderatu. Beste aukera bat zera da: beraren telefonoan agertzen den kodea eskaneatzea edo berari eskatu zure kodea eskaneatzeko.  <a href="https://signal.org/redirect/safety-numbers">Gehiago ikasi. </a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s erabiltzailearekin duzun enkriptazioaren segurtasuna egiaztatu nahi baduzu, goian duzun zenbakia bere gailuan agertzen denarekin alderatu. Hona hemen beste aukera bat: bere telefonoan agertzen den kodea eskaneatzea edo berari eskatzea zure kodea eskaneatzeko.  <a href="https://signal.org/redirect/safety-numbers">Gehiago ikasi. </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ukitu eskaneatzeko</string>
   <string name="verify_display_fragment__loading">Kargatzen…</string>
   <string name="verify_display_fragment__verified">Egiaztatua</string>
@@ -1417,9 +1417,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="message_details_header__received">Jasota</string>
   <string name="message_details_header__disappears">Desagertzen da</string>
   <string name="message_details_header__via">Honen bidez</string>
-  <string name="message_details_header__to">Hartzailea:</string>
-  <string name="message_details_header__from">Igorlea:</string>
-  <string name="message_details_header__with">Honekin:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Hartzailea:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Igorlea:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Honekin:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Sortu pasaesaldia</string>
   <string name="AndroidManifest__select_contacts">Hautatu kontaktuak</string>

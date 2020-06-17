@@ -410,8 +410,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sapepakipun</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Gagal ngirimaken</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nomer keamanan enggal</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Gagal ngirimaken</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nomer keamanan enggal</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mboten saged manggih pesen</string>
   <string name="LongMessageActivity_message_from_s">Pesen saking %1$s</string>
@@ -1175,9 +1175,9 @@
   <string name="message_details_header__received">Dipuntampi</string>
   <string name="message_details_header__disappears">Ngical</string>
   <string name="message_details_header__via">Langkung</string>
-  <string name="message_details_header__to">Kangge:</string>
-  <string name="message_details_header__from">Saking:</string>
-  <string name="message_details_header__with">Kaliyan:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kangge:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Saking:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Kaliyan:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Damel tembung sandi</string>
   <string name="AndroidManifest__select_contacts">Pileh kontak</string>

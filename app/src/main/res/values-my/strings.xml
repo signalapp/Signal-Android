@@ -341,8 +341,8 @@
   <!--Job-->
   <string name="Job_working_in_the_background">နောက်ကွယ်တွင်လုပ်ဆောင်နေသည်</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">ပို့လွှတ်၍ မရပါ</string>
-  <string name="MessageDetailsRecipient_new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">ပို့လွှတ်၍ မရပါ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string> -->
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
@@ -872,9 +872,9 @@
   <string name="message_details_header__received">လက်ခံရရှိသည်</string>
   <string name="message_details_header__disappears">ပျောက်သွားမည်</string>
   <string name="message_details_header__via">တဆင့်</string>
-  <string name="message_details_header__to">သို့</string>
-  <string name="message_details_header__from">မှ</string>
-  <string name="message_details_header__with">နှင့်အတူ</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">သို့</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">မှ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">နှင့်အတူ</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">စကားဝှက်ကို ဖန်တီးပါ</string>
   <string name="AndroidManifest__select_contacts">လိပ်စာစာရင်းများကို ရွေးချယ်ပါ</string>

@@ -570,8 +570,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dowiedz się więcej</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nie można znaleźć wiadomości</string>
   <string name="LongMessageActivity_message_from_s">Wiadomość od %1$s</string>
@@ -1498,9 +1498,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="message_details_header__received">Otrzymano</string>
   <string name="message_details_header__disappears">Wygasa</string>
   <string name="message_details_header__via">Przez</string>
-  <string name="message_details_header__to">Do:</string>
-  <string name="message_details_header__from">Od:</string>
-  <string name="message_details_header__with">Z:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Do:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Od:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Z:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Utwórz hasło</string>
   <string name="AndroidManifest__select_contacts">Wybierz kontakty</string>

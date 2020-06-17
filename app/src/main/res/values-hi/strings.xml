@@ -425,8 +425,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">अधिक जानें</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">भेजने में विफल</string>
-  <string name="MessageDetailsRecipient_new_safety_number">नई सुरक्षा संख्या</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">भेजने में विफल</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">नई सुरक्षा संख्या</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">मेसेज खोजने में असमर्थ</string>
   <string name="LongMessageActivity_message_from_s">%1$s से मेसेज</string>
@@ -1198,9 +1198,9 @@
   <string name="message_details_header__received"> मिल गया </string>
   <string name="message_details_header__disappears">गायब हो जाता है</string>
   <string name="message_details_header__via">राह </string>
-  <string name="message_details_header__to">: के लिए </string>
-  <string name="message_details_header__from">तरफ से </string>
-  <string name="message_details_header__with">साथ </string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">: के लिए </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">तरफ से </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">साथ </string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">पॉस्फरेज़ बनाये </string>
   <string name="AndroidManifest__select_contacts">संपर्क का चयन करें</string>

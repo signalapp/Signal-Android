@@ -79,6 +79,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">あなたはこのグループからメッセージやアップデートを受け取ることができなくなり、グループのメンバーはあなたをもう一度このグループに加えることができなくなります。</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">グループのメンバーはあなたをもう一度このグループに加えることができなくなります。</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">グループのメンバーはあなたをもう一度このグループに加えることができるようになります。</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">お互いにメッセージや通話ができるようになります。あなたの名前とプロフィール画像が相手と共有されます。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ブロックされたユーザは、あなたにメッセージや通話をすることができなくなります。</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s をブロック解除しますか?</string>
   <string name="BlockUnblockDialog_unblock">ブロックを解除</string>
@@ -500,8 +501,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">詳しく見る</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">送信に失敗しました</string>
-  <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">送信に失敗しました</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">メッセージが見つかりません</string>
   <string name="LongMessageActivity_message_from_s">%1$s からのメッセージ</string>
@@ -670,6 +671,9 @@
   <string name="MessageRequestBottomView_delete">削除</string>
   <string name="MessageRequestBottomView_block">ブロック</string>
   <string name="MessageRequestBottomView_unblock">ブロックを解除</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept"> %1$s があなたにメッセージを送れるように、名前とプロフィール画像を共有しますか? 招待を受け入れるまで、あなたがメッセージを見たことは相手にはわかりません。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$sがあなたにメッセージを送れるように、名前とプロフィール画像を共有しますか? ブロックを解除するまでメッセージは届きません。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、名前やプロフィール画像を共有しますか? あなたが許可するまで、あなたがメッセージを見たことは相手にはわかりません。</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">あなたは%1$sというグループに招待されました。このグループのメンバーからのメッセージを受け取りますか?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前や写真を共有することを許可しますか? ブロックを解除するまでメッセージを受け取れません。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
@@ -1356,9 +1360,9 @@
   <string name="message_details_header__received">受信済み</string>
   <string name="message_details_header__disappears">消える</string>
   <string name="message_details_header__via">経由</string>
-  <string name="message_details_header__to">送信先:</string>
-  <string name="message_details_header__from">送信元:</string>
-  <string name="message_details_header__with">With:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">送信先:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">送信元:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">With:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">パスフレーズを作成</string>
   <string name="AndroidManifest__select_contacts">連絡先を選択</string>
@@ -1897,7 +1901,7 @@
   <string name="RegistrationActivity_pin_incorrect">PIN が違います</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">あと %d 回試せます</string>
   <string name="preferences_chats__backups">バックアップ</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal はロックされています</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signalはロックされています</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">タップしてロック解除</string>
   <string name="RegistrationLockDialog_reminder">リマインダー:</string>
   <string name="recipient_preferences__about">コンタクト情報</string>

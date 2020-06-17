@@ -336,8 +336,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kikinpa alli mashikunaka, mana shinalla rimarichun sakinchu </string>
   <!--Job-->
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Mana kacharirkachu</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Mushuk wakaychik yupay</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Mana kacharirkachu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Mushuk wakaychik yupay</string> -->
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
@@ -903,9 +903,9 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="message_details_header__received">Chaskishka</string>
   <string name="message_details_header__disappears">Chinkarishka</string>
   <string name="message_details_header__via">Kay ñianta</string>
-  <string name="message_details_header__to">Pipak</string>
-  <string name="message_details_header__from">Ñukamanta</string>
-  <string name="message_details_header__with">Piwan:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Pipak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Ñukamanta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Piwan:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Mushuk yaykuna paskachikta wiñachipay</string>
   <string name="AndroidManifest__select_contacts">Yupaymashikunata akllay</string>

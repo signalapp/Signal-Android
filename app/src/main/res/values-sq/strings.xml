@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mësoni më tepër</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Dështoi dërgimi</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Numër i ri sigurie</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Dështoi dërgimi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Numër i ri sigurie</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">S\’arrihet të gjendet mesazh</string>
   <string name="LongMessageActivity_message_from_s">Mesazh prej %1$s</string>
@@ -1412,9 +1412,9 @@
   <string name="message_details_header__received">Marrë më</string>
   <string name="message_details_header__disappears">Zhduket më</string>
   <string name="message_details_header__via">Përmes</string>
-  <string name="message_details_header__to">Për:</string>
-  <string name="message_details_header__from">Nga:</string>
-  <string name="message_details_header__with">Me:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Për:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Nga:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Me:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Krijo frazëkalim</string>
   <string name="AndroidManifest__select_contacts">Përzgjidhni kontakt</string>

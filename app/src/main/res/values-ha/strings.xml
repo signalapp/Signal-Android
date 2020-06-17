@@ -423,8 +423,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Karin bayani</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Turawa ya gaza</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Sabon lambar tsaro</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Turawa ya gaza</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Sabon lambar tsaro</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Ba\'a ga sako ba</string>
   <string name="LongMessageActivity_message_from_s">Sakon daga %1$s</string>
@@ -1201,9 +1201,9 @@
   <string name="message_details_header__received">An karba</string>
   <string name="message_details_header__disappears">Ya bace</string>
   <string name="message_details_header__via">Ta</string>
-  <string name="message_details_header__to">Zuwa</string>
-  <string name="message_details_header__from">Daga</string>
-  <string name="message_details_header__with">Da</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Zuwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Daga</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Da</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Kirkiri kalmomin sirri</string>
   <string name="AndroidManifest__select_contacts">Zabi lambar sadarwa</string>

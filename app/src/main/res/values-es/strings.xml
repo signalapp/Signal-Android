@@ -317,7 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de punto a punto. Sólo será visible para tus contactos, o para personas con las que inicies o aceptes un chat y cuando te unas a nuevos grupos. </string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de punto a punto. Sólo es visible para tus contactos, para personas con las que inicies o aceptes un chat y cuando te unas a nuevos grupos. Nadie más tiene acceso, ni siquiera l*s creador*s de Signal.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber más</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Fallo al enviar</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Nuevas cifras de seguridad</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Fallo al enviar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nuevas cifras de seguridad</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Imposible encontrar el mensaje</string>
   <string name="LongMessageActivity_message_from_s">Mensaje de %1$s</string>
@@ -1416,9 +1416,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="message_details_header__received">Recibido</string>
   <string name="message_details_header__disappears">Desaparición de mensajes</string>
   <string name="message_details_header__via">Vía</string>
-  <string name="message_details_header__to">Para:</string>
-  <string name="message_details_header__from">De:</string>
-  <string name="message_details_header__with">Con:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Para:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">De:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Con:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Crear clave de acceso</string>
   <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>

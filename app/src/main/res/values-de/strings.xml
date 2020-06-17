@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du wirst von dieser Gruppe keine Nachrichten oder Aktualisierungen mehr erhalten, und Mitglieder werden dich nicht wieder zu dieser Gruppe hinzufügen können.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppenmitglieder werden dich nicht wieder zu dieser Gruppe hinzufügen können.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppenmitglieder werden dich wieder zu dieser Gruppe hinzufügen können.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ihr werdet einander schreiben und euch anrufen können und dein Profilname und Profilfoto wird mit ihnen geteilt.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ihr werdet einander schreiben und euch anrufen können, und dein Name und Foto werden mit diesem Benutzer geteilt.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockierte Personen werden dich nicht anrufen oder dir Nachrichten senden können.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s freigeben?</string>
   <string name="BlockUnblockDialog_unblock">Freigeben</string>
@@ -524,8 +524,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mehr erfahren</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Versand gescheitert</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Neue Sicherheitsnummer</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Versand gescheitert</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Neue Sicherheitsnummer</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nachricht nicht gefunden</string>
   <string name="LongMessageActivity_message_from_s">Nachricht von %1$s</string>
@@ -698,13 +698,13 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert.</string>
   <!--MessageRequestBottomView-->
-  <string name="MessageRequestBottomView_accept">Akzeptieren</string>
+  <string name="MessageRequestBottomView_accept">Annehmen</string>
   <string name="MessageRequestBottomView_delete">Löschen</string>
   <string name="MessageRequestBottomView_block">Blockieren</string>
   <string name="MessageRequestBottomView_unblock">Freigeben</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du erlauben, dass %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen kann? Solange du dies nicht erlaubst, wird diese Person nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du erlauben, dass %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen kann? Der Benutzer wird nicht wissen, dass du seine Nachricht gesehen hast, solange du die Anfrage nicht annimmst.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Möchtest du erlauben, dass %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen kann? Du wirst keine Nachrichten erhalten, solange du die Unterhaltung nicht freigibst.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Sie werden nicht wissen, dass du ihre Nachrichten gesehen hast, solange du die Einladung nicht annimmst.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du wurdest in die Gruppe %1$s eingeladen. Möchtest du Mitgliedern dieser Gruppe erlauben, dir Nachrichten zu senden?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Möchtest du diese Gruppe freigeben und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du wirst keine Nachrichten erhalten, solange du die Gruppe nicht freigibst.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Mitglied von %1$s</string>
@@ -1405,9 +1405,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="message_details_header__received">Empfangen</string>
   <string name="message_details_header__disappears">Verschwindet in</string>
   <string name="message_details_header__via">Über</string>
-  <string name="message_details_header__to">An:</string>
-  <string name="message_details_header__from">Von:</string>
-  <string name="message_details_header__with">Mit:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">An:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Von:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Mit:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Passphrase erstellen</string>
   <string name="AndroidManifest__select_contacts">Kontakte auswählen</string>
@@ -1422,11 +1422,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AndroidManifest_remove_photo">Foto entfernen</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Unterhaltungsanfragen</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Du kannst nun wählen, ob du eine neue Unterhaltung zulassen möchtest. Profilnamen lassen dich wissen, wer dir schreibt.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Du kannst nun wählen, ob du eine neue Unterhaltung annehmen möchtest. Profilnamen lassen dich wissen, wer dir schreibt.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Profilname hinzufügen</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Neu: Unterhaltungsanfragen</string>
   <string name="MessageRequestsMegaphone__add_name">Name hinzufügen</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kannst nun wählen, ob du eine neue Unterhaltung zulassen möchtest. Die möglichen Alternativen sind »Akzeptieren«, »Löschen« oder »Blockieren«.</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kannst nun wählen, ob du eine neue Unterhaltung annehmen möchtest. Die möglichen Alternativen sind »Annehmen«, »Löschen« oder »Blockieren«.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Hilfe</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Hast du bereits die FAQ gelesen?</string>
@@ -1967,7 +1967,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RecipientBottomSheet_unblock">Freigeben</string>
   <string name="RecipientBottomSheet_add_to_contacts">Zu Kontakten hinzufügen</string>
   <string name="RecipientBottomSheet_add_to_a_group">Zu einer Gruppe hinzufügen</string>
-  <string name="RecipientBottomSheet_add_to_another_group">Zu einer anderen Gruppe hinzufügen</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Zu einer weiteren Gruppe hinzufügen</string>
   <string name="RecipientBottomSheet_view_safety_number">Sicherheitsnummer anzeigen</string>
   <string name="RecipientBottomSheet_make_group_admin">Zum Gruppenadmin machen</string>
   <string name="RecipientBottomSheet_remove_as_admin">Als Admin entfernen</string>

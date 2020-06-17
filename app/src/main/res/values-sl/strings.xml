@@ -453,7 +453,7 @@
     <item quantity="other">Napaka pri preklicu povabil</item>
   </plurals>
   <!--AddMembersActivity-->
-  <string name="AddMembersActivity__done">Opravljeno</string>
+  <string name="AddMembersActivity__done">OK</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Želite dodati uporabnika \"%1$s\" v skupino \"%2$s\"?</item>
     <item quantity="two">Želite dodati %3$d člana v skupino \"%2$s\"?</item>
@@ -570,8 +570,8 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Več o funkciji zakriti pošiljatelj</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Pošiljanje ni uspelo</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Novo varnostno število</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Pošiljanje ni uspelo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Novo varnostno število</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Sporočilo ni bilo najdeno</string>
   <string name="LongMessageActivity_message_from_s">Sporočilo uporabnika/ce %1$s</string>
@@ -1001,7 +1001,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nalaganje paketa nalepk ni uspelo</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Uredi</string>
-  <string name="SubmitDebugLogActivity_done">Opravljeno</string>
+  <string name="SubmitDebugLogActivity_done">OK</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Za izbris tapnite črto</string>
   <string name="SubmitDebugLogActivity_submit">Oddaj</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Oddaja sistemske zabeležke ni uspela</string>
@@ -1497,9 +1497,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="message_details_header__received">Prejeto:</string>
   <string name="message_details_header__disappears">Izgine</string>
   <string name="message_details_header__via">Način:</string>
-  <string name="message_details_header__to">Za:</string>
-  <string name="message_details_header__from">Pošiljatelj:</string>
-  <string name="message_details_header__with">Z:</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Za:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Pošiljatelj:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Z:</string> -->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Ustvari geslo</string>
   <string name="AndroidManifest__select_contacts">Izberite naslovnike</string>
