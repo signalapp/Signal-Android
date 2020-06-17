@@ -55,6 +55,7 @@ public class SignalServiceEnvelope {
   private static final int CIPHERTEXT_OFFSET = IV_OFFSET + IV_LENGTH;
 
   private final Envelope envelope;
+  private final long     serverDeliveredTimestamp;
 
   /**
    * Construct an envelope from a serialized, Base64 encoded SignalServiceEnvelope, encrypted
@@ -65,10 +66,13 @@ public class SignalServiceEnvelope {
    * @throws IOException
    * @throws InvalidVersionException
    */
-  public SignalServiceEnvelope(String message, String signalingKey, boolean isSignalingKeyEncrypted)
+  public SignalServiceEnvelope(String message,
+                               String signalingKey,
+                               boolean isSignalingKeyEncrypted,
+                               long serverDeliveredTimestamp)
       throws IOException, InvalidVersionException
   {
-    this(Base64.decode(message), signalingKey, isSignalingKeyEncrypted);
+    this(Base64.decode(message), signalingKey, isSignalingKeyEncrypted, serverDeliveredTimestamp);
   }
 
   /**
@@ -79,7 +83,10 @@ public class SignalServiceEnvelope {
    * @throws InvalidVersionException
    * @throws IOException
    */
-  public SignalServiceEnvelope(byte[] input, String signalingKey, boolean isSignalingKeyEncrypted)
+  public SignalServiceEnvelope(byte[] input,
+                               String signalingKey,
+                               boolean isSignalingKeyEncrypted,
+                               long serverDeliveredTimestamp)
       throws InvalidVersionException, IOException
   {
     if (!isSignalingKeyEncrypted) {
@@ -96,14 +103,25 @@ public class SignalServiceEnvelope {
 
       this.envelope = Envelope.parseFrom(getPlaintext(input, cipherKey));
     }
+
+    this.serverDeliveredTimestamp = serverDeliveredTimestamp;
   }
 
-  public SignalServiceEnvelope(int type, Optional<SignalServiceAddress> sender, int senderDevice, long timestamp, byte[] legacyMessage, byte[] content, long serverTimestamp, String uuid) {
+  public SignalServiceEnvelope(int type,
+                               Optional<SignalServiceAddress> sender,
+                               int senderDevice,
+                               long timestamp,
+                               byte[] legacyMessage,
+                               byte[] content,
+                               long serverReceivedTimestamp,
+                               long serverDeliveredTimestamp,
+                               String uuid)
+  {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setSourceDevice(senderDevice)
                                        .setTimestamp(timestamp)
-                                       .setServerTimestamp(serverTimestamp);
+                                       .setServerTimestamp(serverReceivedTimestamp);
 
     if (sender.isPresent()) {
       if (sender.get().getUuid().isPresent()) {
@@ -122,14 +140,22 @@ public class SignalServiceEnvelope {
     if (legacyMessage != null) builder.setLegacyMessage(ByteString.copyFrom(legacyMessage));
     if (content != null)       builder.setContent(ByteString.copyFrom(content));
 
-    this.envelope = builder.build();
+    this.envelope                 = builder.build();
+    this.serverDeliveredTimestamp = serverDeliveredTimestamp;
   }
 
-  public SignalServiceEnvelope(int type, long timestamp, byte[] legacyMessage, byte[] content, long serverTimestamp, String uuid) {
+  public SignalServiceEnvelope(int type,
+                               long timestamp,
+                               byte[] legacyMessage,
+                               byte[] content,
+                               long serverReceivedTimestamp,
+                               long serverDeliveredTimestamp,
+                               String uuid)
+  {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setTimestamp(timestamp)
-                                       .setServerTimestamp(serverTimestamp);
+                                       .setServerTimestamp(serverReceivedTimestamp);
 
     if (uuid != null) {
       builder.setServerGuid(uuid);
@@ -138,7 +164,8 @@ public class SignalServiceEnvelope {
     if (legacyMessage != null) builder.setLegacyMessage(ByteString.copyFrom(legacyMessage));
     if (content != null)       builder.setContent(ByteString.copyFrom(content));
 
-    this.envelope = builder.build();
+    this.envelope                 = builder.build();
+    this.serverDeliveredTimestamp = serverDeliveredTimestamp;
   }
 
   public String getUuid() {
@@ -206,8 +233,18 @@ public class SignalServiceEnvelope {
     return envelope.getTimestamp();
   }
 
-  public long getServerTimestamp() {
+  /**
+   * @return The server timestamp of when the server received the envelope.
+   */
+  public long getServerReceivedTimestamp() {
     return envelope.getServerTimestamp();
+  }
+
+  /**
+   * @return The server timestamp of when the envelope was delivered to us.
+   */
+  public long getServerDeliveredTimestamp() {
+    return serverDeliveredTimestamp;
   }
 
   /**

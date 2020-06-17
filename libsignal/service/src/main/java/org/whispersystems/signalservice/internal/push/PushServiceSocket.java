@@ -198,6 +198,8 @@ public class PushServiceSocket {
   private static final String GROUPSV2_GROUP_CHANGES    = "/v1/groups/logs/%s";
   private static final String GROUPSV2_AVATAR_REQUEST   = "/v1/groups/avatar/form";
 
+  private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
+
   private static final Map<String, String> NO_HEADERS = Collections.emptyMap();
   private static final ResponseCodeHandler NO_HANDLER = new EmptyResponseCodeHandler();
 
@@ -390,9 +392,28 @@ public class PushServiceSocket {
     });
   }
 
-  public List<SignalServiceEnvelopeEntity> getMessages() throws IOException {
-    String responseText = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", null);
-    return JsonUtil.fromJson(responseText, SignalServiceEnvelopeEntityList.class).getMessages();
+  public SignalServiceMessagesResult getMessages() throws IOException {
+    Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, NO_HEADERS, NO_HANDLER, Optional.absent());
+    validateServiceResponse(response);
+
+    List<SignalServiceEnvelopeEntity> envelopes;
+    try {
+      envelopes = JsonUtil.fromJson(readBodyString(response.body()), SignalServiceEnvelopeEntityList.class).getMessages();
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    }
+
+    long serverDeliveredTimestamp = 0;
+    try {
+      String stringValue = response.header(SERVER_DELIVERED_TIMESTAMP_HEADER);
+      stringValue = stringValue != null ? stringValue : "0";
+
+      serverDeliveredTimestamp = Long.parseLong(stringValue);
+    } catch (NumberFormatException e) {
+      Log.w(TAG, e);
+    }
+
+    return new SignalServiceMessagesResult(envelopes, serverDeliveredTimestamp);
   }
 
   public void acknowledgeMessage(String sender, long timestamp) throws IOException {
@@ -1368,9 +1389,9 @@ public class PushServiceSocket {
     call.enqueue(new Callback() {
       @Override
       public void onResponse(Call call, Response response) {
-        try (ResponseBody body = validateServiceResponse(response)) {
+        try (ResponseBody body = validateServiceResponse(response).body()) {
           try {
-            bodyFuture.set(body.string());
+            bodyFuture.set(readBodyString(body));
           } catch (IOException e) {
             throw new PushNetworkException(e);
           }
@@ -1396,6 +1417,17 @@ public class PushServiceSocket {
                                               Optional<UnidentifiedAccess> unidentifiedAccessKey)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
+    return makeServiceRequest(urlFragment, method, body, headers, responseCodeHandler, unidentifiedAccessKey).body();
+  }
+
+  private Response makeServiceRequest(String urlFragment,
+                                      String method,
+                                      RequestBody body,
+                                      Map<String, String> headers,
+                                      ResponseCodeHandler responseCodeHandler,
+                                      Optional<UnidentifiedAccess> unidentifiedAccessKey)
+      throws NonSuccessfulResponseCodeException, PushNetworkException
+  {
     Response response = getServiceConnection(urlFragment, method, body, headers, unidentifiedAccessKey);
 
     responseCodeHandler.handle(response.code());
@@ -1403,7 +1435,7 @@ public class PushServiceSocket {
     return validateServiceResponse(response);
   }
 
-  private ResponseBody validateServiceResponse(Response response) throws NonSuccessfulResponseCodeException, PushNetworkException {
+  private Response validateServiceResponse(Response response) throws NonSuccessfulResponseCodeException, PushNetworkException {
     int          responseCode    = response.code();
     String       responseMessage = response.message();
     ResponseBody responseBody    = response.body();
@@ -1420,7 +1452,7 @@ public class PushServiceSocket {
         MismatchedDevices mismatchedDevices;
 
         try {
-          mismatchedDevices = JsonUtil.fromJson(responseBody.string(), MismatchedDevices.class);
+          mismatchedDevices = JsonUtil.fromJson(readBodyString(responseBody), MismatchedDevices.class);
         } catch (JsonProcessingException e) {
           Log.w(TAG, e);
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
@@ -1433,7 +1465,7 @@ public class PushServiceSocket {
         StaleDevices staleDevices;
 
         try {
-          staleDevices = JsonUtil.fromJson(responseBody.string(), StaleDevices.class);
+          staleDevices = JsonUtil.fromJson(readBodyString(responseBody), StaleDevices.class);
         } catch (JsonProcessingException e) {
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
@@ -1445,7 +1477,7 @@ public class PushServiceSocket {
         DeviceLimit deviceLimit;
 
         try {
-          deviceLimit = JsonUtil.fromJson(responseBody.string(), DeviceLimit.class);
+          deviceLimit = JsonUtil.fromJson(readBodyString(responseBody), DeviceLimit.class);
         } catch (JsonProcessingException e) {
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
@@ -1459,7 +1491,7 @@ public class PushServiceSocket {
         RegistrationLockFailure accountLockFailure;
 
         try {
-          accountLockFailure = JsonUtil.fromJson(responseBody.string(), RegistrationLockFailure.class);
+          accountLockFailure = JsonUtil.fromJson(readBodyString(responseBody), RegistrationLockFailure.class);
         } catch (JsonProcessingException e) {
           Log.w(TAG, e);
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
@@ -1479,7 +1511,7 @@ public class PushServiceSocket {
       throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
     }
 
-    return responseBody;
+    return response;
   }
 
   private Response getServiceConnection(String urlFragment, String method, RequestBody body, Map<String, String> headers, Optional<UnidentifiedAccess> unidentifiedAccess)
@@ -1806,6 +1838,15 @@ public class PushServiceSocket {
       throw new PushNetworkException(e);
     }
   }
+
+  private static String readBodyString(ResponseBody body) throws IOException {
+    if (body != null) {
+      return body.string();
+    } else {
+      throw new IOException("No body!");
+    }
+  }
+
 
   private static class GcmRegistrationId {
 

@@ -6,15 +6,23 @@ public final class SignalServiceMetadata {
   private final SignalServiceAddress sender;
   private final int                  senderDevice;
   private final long                 timestamp;
-  private final long                 serverTimestamp;
+  private final long                 serverReceivedTimestamp;
+  private final long                 serverDeliveredTimestamp;
   private final boolean              needsReceipt;
 
-  public SignalServiceMetadata(SignalServiceAddress sender, int senderDevice, long timestamp, long serverTimestamp, boolean needsReceipt) {
-    this.sender          = sender;
-    this.senderDevice    = senderDevice;
-    this.timestamp       = timestamp;
-    this.serverTimestamp = serverTimestamp;
-    this.needsReceipt    = needsReceipt;
+  public SignalServiceMetadata(SignalServiceAddress sender,
+                               int senderDevice,
+                               long timestamp,
+                               long serverReceivedTimestamp,
+                               long serverDeliveredTimestamp,
+                               boolean needsReceipt)
+  {
+    this.sender                   = sender;
+    this.senderDevice             = senderDevice;
+    this.timestamp                = timestamp;
+    this.serverReceivedTimestamp  = serverReceivedTimestamp;
+    this.serverDeliveredTimestamp = serverDeliveredTimestamp;
+    this.needsReceipt             = needsReceipt;
   }
 
   public SignalServiceAddress getSender() {
@@ -29,8 +37,12 @@ public final class SignalServiceMetadata {
     return timestamp;
   }
 
-  public long getServerTimestamp() {
-    return serverTimestamp;
+  public long getServerReceivedTimestamp() {
+    return serverReceivedTimestamp;
+  }
+
+  public long getServerDeliveredTimestamp() {
+    return serverDeliveredTimestamp;
   }
 
   public boolean isNeedsReceipt() {

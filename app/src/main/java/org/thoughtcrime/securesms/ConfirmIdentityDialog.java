@@ -175,7 +175,9 @@ public class ConfirmIdentityDialog extends AlertDialog {
                                                                        messageRecord.getDateSent(),
                                                                        legacy ? Base64.decode(messageRecord.getBody()) : null,
                                                                        !legacy ? Base64.decode(messageRecord.getBody()) : null,
-                                                                       0, null);
+                                                                       0,
+                                                                       0,
+                                                                       null);
 
             long pushId = pushDatabase.insert(envelope);
 

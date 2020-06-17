@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -16,31 +14,38 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
-import java.util.UUID;
 
 public class PushDatabase extends Database {
 
   private static final String TAG = PushDatabase.class.getSimpleName();
 
-  private static final String TABLE_NAME       = "push";
-  public  static final String ID               = "_id";
-  public  static final String TYPE             = "type";
-  public  static final String SOURCE_E164      = "source";
-  public  static final String SOURCE_UUID      = "source_uuid";
-  public  static final String DEVICE_ID        = "device_id";
-  public  static final String LEGACY_MSG       = "body";
-  public  static final String CONTENT          = "content";
-  public  static final String TIMESTAMP        = "timestamp";
-  public  static final String SERVER_TIMESTAMP = "server_timestamp";
-  public  static final String SERVER_GUID      = "server_guid";
+  private static final String TABLE_NAME                 = "push";
+  public  static final String ID                         = "_id";
+  public  static final String TYPE                       = "type";
+  public  static final String SOURCE_E164                = "source";
+  public  static final String SOURCE_UUID                = "source_uuid";
+  public  static final String DEVICE_ID                  = "device_id";
+  public  static final String LEGACY_MSG                 = "body";
+  public  static final String CONTENT                    = "content";
+  public  static final String TIMESTAMP                  = "timestamp";
+  public  static final String SERVER_RECEIVED_TIMESTAMP  = "server_timestamp";
+  public  static final String SERVER_DELIVERED_TIMESTAMP = "server_delivered_timestamp";
+  public  static final String SERVER_GUID                = "server_guid";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
-      TYPE + " INTEGER, " + SOURCE_E164 + " TEXT, " + SOURCE_UUID + " TEXT, " + DEVICE_ID + " INTEGER, " + LEGACY_MSG + " TEXT, " + CONTENT + " TEXT, " + TIMESTAMP + " INTEGER, " +
-      SERVER_TIMESTAMP + " INTEGER DEFAULT 0, " + SERVER_GUID + " TEXT DEFAULT NULL);";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                         + " INTEGER PRIMARY KEY, " +
+                                                                                  TYPE                       + " INTEGER, " +
+                                                                                  SOURCE_E164                + " TEXT, " +
+                                                                                  SOURCE_UUID                + " TEXT, " +
+                                                                                  DEVICE_ID                  + " INTEGER, " +
+                                                                                  LEGACY_MSG                 + " TEXT, " +
+                                                                                  CONTENT                    + " TEXT, " +
+                                                                                  TIMESTAMP                  + " INTEGER, " +
+                                                                                  SERVER_RECEIVED_TIMESTAMP  + " INTEGER DEFAULT 0, " +
+                                                                                  SERVER_DELIVERED_TIMESTAMP + " INTEGER DEFAULT 0, " +
+                                                                                  SERVER_GUID                + " TEXT DEFAULT NULL);";
 
   public PushDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -60,7 +65,8 @@ public class PushDatabase extends Database {
       values.put(LEGACY_MSG, envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "");
       values.put(CONTENT, envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "");
       values.put(TIMESTAMP, envelope.getTimestamp());
-      values.put(SERVER_TIMESTAMP, envelope.getServerTimestamp());
+      values.put(SERVER_RECEIVED_TIMESTAMP, envelope.getServerReceivedTimestamp());
+      values.put(SERVER_DELIVERED_TIMESTAMP, envelope.getServerDeliveredTimestamp());
       values.put(SERVER_GUID, envelope.getUuid());
 
       return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
@@ -87,7 +93,8 @@ public class PushDatabase extends Database {
                                          cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
                                          Util.isEmpty(legacyMessage) ? null : Base64.decode(legacyMessage),
                                          Util.isEmpty(content) ? null : Base64.decode(content),
-                                         cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_TIMESTAMP)),
+                                         cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_RECEIVED_TIMESTAMP)),
+                                         cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_DELIVERED_TIMESTAMP)),
                                          cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID)));
       }
     } catch (IOException e) {
@@ -154,15 +161,16 @@ public class PushDatabase extends Database {
         if (cursor == null || !cursor.moveToNext())
           return null;
 
-        int    type            = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
-        String sourceUuid      = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_UUID));
-        String sourceE164      = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_E164));
-        int    deviceId        = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
-        String legacyMessage   = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
-        String content         = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
-        long   timestamp       = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
-        long   serverTimestamp = cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_TIMESTAMP));
-        String serverGuid      = cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID));
+        int    type                     = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
+        String sourceUuid               = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_UUID));
+        String sourceE164               = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_E164));
+        int    deviceId                 = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
+        String legacyMessage            = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
+        String content                  = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
+        long   timestamp                = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
+        long   serverReceivedTimestamp  = cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_RECEIVED_TIMESTAMP));
+        long   serverDeliveredTimestamp = cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_DELIVERED_TIMESTAMP));
+        String serverGuid               = cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID));
 
         return new SignalServiceEnvelope(type,
                                          SignalServiceAddress.fromRaw(sourceUuid, sourceE164),
@@ -170,7 +178,8 @@ public class PushDatabase extends Database {
                                          timestamp,
                                          legacyMessage != null ? Base64.decode(legacyMessage) : null,
                                          content != null ? Base64.decode(content) : null,
-                                         serverTimestamp,
+                                         serverReceivedTimestamp,
+                                         serverDeliveredTimestamp,
                                          serverGuid);
       } catch (IOException e) {
         throw new AssertionError(e);

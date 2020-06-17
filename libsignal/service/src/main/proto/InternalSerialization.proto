@@ -22,11 +22,12 @@ message SignalServiceContentProto {
 }
 
 message MetadataProto {
-  optional AddressProto address         = 1;
-  optional int32        senderDevice    = 2;
-  optional int64        timestamp       = 3;
-  optional int64        serverTimestamp = 5;
-  optional bool         needsReceipt    = 4;
+  optional AddressProto address                  = 1;
+  optional int32        senderDevice             = 2;
+  optional int64        timestamp                = 3;
+  optional int64        serverReceivedTimestamp  = 5;
+  optional int64        serverDeliveredTimestamp = 6;
+  optional bool         needsReceipt             = 4;
 }
 
 message AddressProto {

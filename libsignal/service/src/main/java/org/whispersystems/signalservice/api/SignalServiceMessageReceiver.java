@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.SignalServiceEnvelopeEntity;
+import org.whispersystems.signalservice.internal.push.SignalServiceMessagesResult;
 import org.whispersystems.signalservice.internal.sticker.StickerProtos;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -263,22 +264,31 @@ public class SignalServiceMessageReceiver {
   public List<SignalServiceEnvelope> retrieveMessages(MessageReceivedCallback callback)
       throws IOException
   {
-    List<SignalServiceEnvelope>       results  = new LinkedList<>();
-    List<SignalServiceEnvelopeEntity> entities = socket.getMessages();
+    List<SignalServiceEnvelope> results       = new LinkedList<>();
+    SignalServiceMessagesResult messageResult = socket.getMessages();
 
-    for (SignalServiceEnvelopeEntity entity : entities) {
+    for (SignalServiceEnvelopeEntity entity : messageResult.getEnvelopes()) {
       SignalServiceEnvelope envelope;
 
       if (entity.hasSource() && entity.getSourceDevice() > 0) {
         SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(entity.getSourceUuid()), entity.getSourceE164());
-        envelope = new SignalServiceEnvelope(entity.getType(), Optional.of(address),
-                                             entity.getSourceDevice(), entity.getTimestamp(),
-                                             entity.getMessage(), entity.getContent(),
-                                             entity.getServerTimestamp(), entity.getServerUuid());
+        envelope = new SignalServiceEnvelope(entity.getType(),
+                                             Optional.of(address),
+                                             entity.getSourceDevice(),
+                                             entity.getTimestamp(),
+                                             entity.getMessage(),
+                                             entity.getContent(),
+                                             entity.getServerTimestamp(),
+                                             messageResult.getServerDeliveredTimestamp(),
+                                             entity.getServerUuid());
       } else {
-        envelope = new SignalServiceEnvelope(entity.getType(), entity.getTimestamp(),
-                                             entity.getMessage(), entity.getContent(),
-                                             entity.getServerTimestamp(), entity.getServerUuid());
+        envelope = new SignalServiceEnvelope(entity.getType(),
+                                             entity.getTimestamp(),
+                                             entity.getMessage(),
+                                             entity.getContent(),
+                                             entity.getServerTimestamp(),
+                                             messageResult.getServerDeliveredTimestamp(),
+                                             entity.getServerUuid());
       }
 
       callback.onMessage(envelope);

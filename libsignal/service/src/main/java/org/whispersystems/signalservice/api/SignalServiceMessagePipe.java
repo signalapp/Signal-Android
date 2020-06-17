@@ -16,6 +16,7 @@ import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
 import org.signal.zkgroup.profiles.ProfileKeyVersion;
 import org.whispersystems.libsignal.InvalidVersionException;
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.Hex;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -60,6 +61,8 @@ import static org.whispersystems.signalservice.internal.websocket.WebSocketProto
 public class SignalServiceMessagePipe {
 
   private static final String TAG = SignalServiceMessagePipe.class.getName();
+
+  private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
   private final WebSocketConnection           websocket;
   private final Optional<CredentialsProvider> credentialsProvider;
@@ -146,9 +149,21 @@ public class SignalServiceMessagePipe {
 
       try {
         if (isSignalServiceEnvelope(request)) {
+          Optional<String> timestampHeader = findHeader(request, SERVER_DELIVERED_TIMESTAMP_HEADER);
+          long             timestamp       = 0;
+
+          if (timestampHeader.isPresent()) {
+            try {
+              timestamp = Long.parseLong(timestampHeader.get());
+            } catch (NumberFormatException e) {
+              Log.w(TAG, "Failed to parse " + SERVER_DELIVERED_TIMESTAMP_HEADER);
+            }
+          }
+
           SignalServiceEnvelope envelope = new SignalServiceEnvelope(request.getBody().toByteArray(),
                                                                      credentialsProvider.get().getSignalingKey(),
-                                                                     signalKeyEncrypted);
+                                                                     signalKeyEncrypted,
+                                                                     timestamp);
 
           callback.onMessage(envelope);
           return Optional.of(envelope);
@@ -343,6 +358,23 @@ public class SignalServiceMessagePipe {
                                      .setMessage("Unknown")
                                      .build();
     }
+  }
+
+  private static Optional<String> findHeader(WebSocketRequestMessage message, String targetHeader) {
+    if (message.getHeadersCount() == 0) {
+      return Optional.absent();
+    }
+
+    for (String header : message.getHeadersList()) {
+      if (header.startsWith(targetHeader)) {
+        String[] split = header.split(":");
+        if (split.length == 2 && split[0].trim().toLowerCase().equals(targetHeader.toLowerCase())) {
+          return Optional.of(split[1].trim());
+        }
+      }
+    }
+
+    return Optional.absent();
   }
 
   /**
