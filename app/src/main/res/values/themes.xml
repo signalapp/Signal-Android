@@ -736,7 +736,7 @@
         <item name="recipient_message_circle_icon">@drawable/ic_message_solid_ultramarine_light_24</item>
         <item name="recipient_call_circle_icon">@drawable/ic_phone_right_solid_ultramarine_light_24</item>
         <item name="recipient_video_call_circle_icon">@drawable/ic_video_solid_ultramarine_light_24</item>
-        <item name="recipient_contact_button_color">@color/core_grey_75</item>
+        <item name="recipient_contact_button_color">@color/core_grey_80</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">
