@@ -23,7 +23,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -119,13 +122,20 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel = ViewModelProviders.of(this, factory).get(RecipientDialogViewModel.class);
 
     viewModel.getRecipient().observe(getViewLifecycleOwner(), recipient -> {
-      avatar.setRecipient(recipient);
+      avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
+        @Override
+        public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
+          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getColor());
+        }
+      });
+      avatar.setAvatar(recipient);
 
-      String name = recipient.getDisplayName(requireContext());
+      String name = recipient.isLocalNumber() ? requireContext().getString(R.string.note_to_self)
+                                              : recipient.getDisplayName(requireContext());
       fullName.setText(name);
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
 
-      String usernameNumberString = recipient.hasAUserSetDisplayName(requireContext())
+      String usernameNumberString = recipient.hasAUserSetDisplayName(requireContext()) && !recipient.isLocalNumber()
                                     ? String.format("%s %s", recipient.getUsername().or(""), recipient.getSmsAddress().or("")).trim()
                                     : "";
       usernameNumber.setText(usernameNumberString);

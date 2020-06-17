@@ -112,6 +112,9 @@ public final class AvatarImageView extends AppCompatImageView {
     this.fallbackPhotoProvider = fallbackPhotoProvider;
   }
 
+  /**
+   * Shows self as the actual profile picture.
+   */
   public void setRecipient(@NonNull Recipient recipient) {
     if (recipient.isLocalNumber()) {
       setAvatar(GlideApp.with(this), null, false);
@@ -119,6 +122,13 @@ public final class AvatarImageView extends AppCompatImageView {
     } else {
       setAvatar(GlideApp.with(this), recipient, false);
     }
+  }
+
+  /**
+   * Shows self as the note to self icon.
+   */
+  public void setAvatar(@Nullable Recipient recipient) {
+    setAvatar(GlideApp.with(this), recipient, false);
   }
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
@@ -168,11 +178,12 @@ public final class AvatarImageView extends AppCompatImageView {
           context.startActivity(ManageGroupActivity.newIntent(context, recipient.requireGroupId().requirePush()),
                                 ManageGroupActivity.createTransitionBundle(context, this));
         } else {
-          if (context instanceof FragmentActivity) {
+          if (context instanceof FragmentActivity && !recipient.isLocalNumber()) {
             RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
                                               .show(((FragmentActivity) context).getSupportFragmentManager(), "BOTTOM");
           } else {
-            context.startActivity(ManageRecipientActivity.newIntent(context, recipient.getId()));
+            context.startActivity(ManageRecipientActivity.newIntent(context, recipient.getId()),
+                                  ManageRecipientActivity.createTransitionBundle(context, this));
           }
         }
       });

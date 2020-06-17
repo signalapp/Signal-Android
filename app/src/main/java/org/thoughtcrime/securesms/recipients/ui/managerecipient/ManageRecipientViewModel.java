@@ -45,7 +45,7 @@ public final class ManageRecipientViewModel extends ViewModel {
 
   private final Context                                          context;
   private final ManageRecipientRepository                        manageRecipientRepository;
-  private final LiveData<String>                                 name;
+  private final LiveData<String>                                 title;
   private final LiveData<String>                                 subtitle;
   private final LiveData<String>                                 disappearingMessageTimer;
   private final MutableLiveData<IdentityDatabase.IdentityRecord> identity;
@@ -66,7 +66,7 @@ public final class ManageRecipientViewModel extends ViewModel {
     manageRecipientRepository.getThreadId(this::onThreadIdLoaded);
 
     this.recipient = Recipient.live(manageRecipientRepository.getRecipientId()).getLiveData();
-    this.name      = Transformations.map(recipient, r -> r.getDisplayName(context));
+    this.title     = Transformations.map(recipient, r -> getDisplayTitle(r, context));
     this.subtitle  = Transformations.map(recipient, r -> getDisplaySubtitle(r, context));
     this.identity  = new MutableLiveData<>();
 
@@ -97,8 +97,16 @@ public final class ManageRecipientViewModel extends ViewModel {
     }
   }
 
+  private static @NonNull String getDisplayTitle(@NonNull Recipient recipient, @NonNull Context context) {
+    if (recipient.isLocalNumber()) {
+      return context.getString(R.string.note_to_self);
+    } else {
+      return recipient.getDisplayName(context);
+    }
+  }
+
   private static @NonNull String getDisplaySubtitle(@NonNull Recipient recipient, @NonNull Context context) {
-    if (recipient.hasAUserSetDisplayName(context)) {
+    if (!recipient.isLocalNumber() && recipient.hasAUserSetDisplayName(context)) {
       return String.format("%s %s", recipient.getUsername().or(""), recipient.getSmsAddress().or(""))
                    .trim();
     } else {
@@ -112,15 +120,15 @@ public final class ManageRecipientViewModel extends ViewModel {
                                           () -> new ThreadMediaLoader(context, threadId, MediaLoader.MediaType.GALLERY, MediaDatabase.Sorting.Newest).getCursor()));
   }
 
-  public LiveData<String> getName() {
-    return name;
+  LiveData<String> getTitle() {
+    return title;
   }
 
-  public LiveData<String> getSubtitle() {
+  LiveData<String> getSubtitle() {
     return subtitle;
   }
 
-  public LiveData<Recipient> getRecipient() {
+  LiveData<Recipient> getRecipient() {
     return recipient;
   }
 

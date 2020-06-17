@@ -62,8 +62,8 @@ public class ManageRecipientFragment extends Fragment {
   private ManageRecipientViewModel               viewModel;
   private GroupMemberListView                    sharedGroupList;
   private Toolbar                                toolbar;
-  private TextView                               name;
-  private TextView                               usernameNumber;
+  private TextView                               title;
+  private TextView                               subtitle;
   private AvatarImageView                        avatar;
   private ThreadPhotoRailView                    threadPhotoRailView;
   private View                                   mediaCard;
@@ -112,8 +112,8 @@ public class ManageRecipientFragment extends Fragment {
 
     avatar                      = view.findViewById(R.id.recipient_avatar);
     toolbar                     = view.findViewById(R.id.toolbar);
-    name                        = view.findViewById(R.id.name);
-    usernameNumber              = view.findViewById(R.id.username_number);
+    title                       = view.findViewById(R.id.name);
+    subtitle                    = view.findViewById(R.id.username_number);
     sharedGroupList             = view.findViewById(R.id.shared_group_list);
     groupsInCommonCount         = view.findViewById(R.id.groups_in_common_count);
     threadPhotoRailView         = view.findViewById(R.id.recent_photos);
@@ -176,7 +176,6 @@ public class ManageRecipientFragment extends Fragment {
     toolbar.inflateMenu(R.menu.manage_recipient_fragment);
 
     if (recipientId.equals(Recipient.self().getId())) {
-      toolbar.getMenu().findItem(R.id.action_edit).setVisible(true);
       notificationsCard.setVisibility(View.GONE);
       groupMembershipCard.setVisibility(View.GONE);
       blockUnblockCard.setVisibility(View.GONE);
@@ -188,13 +187,13 @@ public class ManageRecipientFragment extends Fragment {
       sharedGroupList.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
-    viewModel.getName().observe(getViewLifecycleOwner(), name::setText);
+    viewModel.getTitle().observe(getViewLifecycleOwner(), title::setText);
     viewModel.getSubtitle().observe(getViewLifecycleOwner(), text -> {
-      usernameNumber.setText(text);
-      usernameNumber.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
-      usernameNumber.setOnLongClickListener(null);
-      name.setOnLongClickListener(null);
-      setCopyToClipboardOnLongPress(TextUtils.isEmpty(text) ? name : usernameNumber);
+      subtitle.setText(text);
+      subtitle.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
+      subtitle.setOnLongClickListener(null);
+      title.setOnLongClickListener(null);
+      setCopyToClipboardOnLongPress(TextUtils.isEmpty(text) ? title : subtitle);
     });
     viewModel.getDisappearingMessageTimer().observe(getViewLifecycleOwner(), string -> disappearingMessages.setText(string));
     viewModel.getRecipient().observe(getViewLifecycleOwner(), this::presentRecipient);
@@ -252,8 +251,13 @@ public class ManageRecipientFragment extends Fragment {
       public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
         return new FallbackPhoto80dp(R.drawable.ic_profile_80, recipientColor);
       }
+
+      @Override
+      public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
+        return new FallbackPhoto80dp(R.drawable.ic_note_80, recipientColor);
+      }
     });
-    avatar.setRecipient(recipient);
+    avatar.setAvatar(recipient);
     avatar.setOnClickListener(v -> {
       FragmentActivity activity = requireActivity();
       activity.startActivity(AvatarPreviewActivity.intentFromRecipientId(activity, recipient.getId()),
