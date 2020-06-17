@@ -249,10 +249,6 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".GroupCreateActivity"
-          android:windowSoftInputMode="stateVisible"
-          android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".groups.ui.pendingmemberinvites.PendingMemberInvitesActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
@@ -413,10 +409,6 @@
         </intent-filter>
 
     </activity>
-
-    <activity android:name=".RecipientPreferenceActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".mediasend.AvatarSelectionActivity"
               android:theme="@style/TextSecure.FullScreenMedia"

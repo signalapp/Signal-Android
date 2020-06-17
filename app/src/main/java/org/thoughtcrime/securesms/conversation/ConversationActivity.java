@@ -82,14 +82,12 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.ExpirationDialog;
-import org.thoughtcrime.securesms.GroupCreateActivity;
 import org.thoughtcrime.securesms.GroupMembersDialog;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RecipientPreferenceActivity;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
@@ -207,6 +205,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientActivity;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -225,7 +224,6 @@ import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
@@ -757,10 +755,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
         inflater.inflate(R.menu.conversation_active_group_options, menu);
-      } else if (isActiveV2Group || isActiveGroup && FeatureFlags.newGroupUI()) {
+      } else if (isActiveV2Group || isActiveGroup) {
         inflater.inflate(R.menu.conversation_active_group_options, menu);
-      } else if (isActiveGroup) {
-        inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
     }
 
@@ -803,9 +799,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
-    if (FeatureFlags.newGroupUI()) {
-      hideMenuItem(menu, R.id.menu_group_recipients);
-    }
+    hideMenuItem(menu, R.id.menu_group_recipients);
 
     if (isActiveV2Group) {
       hideMenuItem(menu, R.id.menu_mute_notifications);
@@ -884,7 +878,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
-    case R.id.menu_edit_group:                handleEditPushGroupV1();                           return true;
     case R.id.menu_group_settings:            handleManageGroup();                               return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
@@ -1042,14 +1035,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleConversationSettings() {
-    if (FeatureFlags.newGroupUI() && isGroupConversation()) {
+    if (isGroupConversation()) {
       handleManageGroup();
       return;
     }
 
     if (isInMessageRequest()) return;
 
-    Intent intent = RecipientPreferenceActivity.getLaunchIntent(this, recipient.getId());
+    Intent intent = ManageRecipientActivity.newIntent(this, recipient.getId());
     startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
   }
 
@@ -1204,10 +1197,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                           getLifecycle(),
                                           getRecipient().requireGroupId().requirePush(),
                                           null);
-  }
-
-  private void handleEditPushGroupV1() {
-    startActivityForResult(GroupCreateActivity.newEditGroupIntent(ConversationActivity.this, recipient.get().requireGroupId().requireV1()), GROUP_EDIT);
   }
 
   private void handleManageGroup() {

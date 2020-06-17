@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RecipientPreferenceActivity;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -27,6 +26,7 @@ import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -112,7 +112,7 @@ final class RecipientDialogViewModel extends ViewModel {
   }
 
   void onAvatarClicked(@NonNull Activity activity) {
-    activity.startActivity(RecipientPreferenceActivity.getLaunchIntent(activity, recipientDialogRepository.getRecipientId()));
+    activity.startActivity(ManageRecipientActivity.newIntent(activity, recipientDialogRepository.getRecipientId()));
   }
 
   void onMakeGroupAdminClicked(@NonNull Activity activity) {

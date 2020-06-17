@@ -13,7 +13,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ContactSelectionActivity;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
-import org.thoughtcrime.securesms.GroupCreateActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
@@ -30,10 +29,6 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   private View next;
 
   public static Intent newIntent(@NonNull Context context) {
-    if (!FeatureFlags.newGroupUI()) {
-      return new Intent(context, GroupCreateActivity.class);
-    }
-
     Intent intent = new Intent(context, CreateGroupActivity.class);
 
     intent.putExtra(ContactSelectionListFragment.MULTI_SELECT, true);

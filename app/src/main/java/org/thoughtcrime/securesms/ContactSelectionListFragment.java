@@ -271,7 +271,7 @@ public final class ContactSelectionListFragment extends    Fragment
 
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
-    if (listCallback != null && FeatureFlags.newGroupUI()) {
+    if (listCallback != null) {
       if (FeatureFlags.groupsV2create() && FeatureFlags.groupsV2internalTest()) {
         headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback), createNewGroupsV1GroupItem(listCallback));
       } else {
@@ -518,7 +518,7 @@ public final class ContactSelectionListFragment extends    Fragment
 
   private void markContactSelected(@NonNull SelectedContact selectedContact) {
     cursorRecyclerViewAdapter.addSelectedContact(selectedContact);
-    if (isMulti() && FeatureFlags.newGroupUI()) {
+    if (isMulti()) {
       addChipForSelectedContact(selectedContact);
     }
   }

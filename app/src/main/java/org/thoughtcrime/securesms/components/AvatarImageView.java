@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentActivity;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RecipientPreferenceActivity;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -26,8 +25,8 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientActivity;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
@@ -165,7 +164,7 @@ public final class AvatarImageView extends AppCompatImageView {
     if (quickContactEnabled) {
       super.setOnClickListener(v -> {
         Context context = getContext();
-        if (FeatureFlags.newGroupUI() && recipient.isPushGroup()) {
+        if (recipient.isPushGroup()) {
           context.startActivity(ManageGroupActivity.newIntent(context, recipient.requireGroupId().requirePush()),
                                 ManageGroupActivity.createTransitionBundle(context, this));
         } else {
@@ -173,7 +172,7 @@ public final class AvatarImageView extends AppCompatImageView {
             RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
                                               .show(((FragmentActivity) context).getSupportFragmentManager(), "BOTTOM");
           } else {
-            context.startActivity(RecipientPreferenceActivity.getLaunchIntent(context, recipient.getId()));
+            context.startActivity(ManageRecipientActivity.newIntent(context, recipient.getId()));
           }
         }
       });
