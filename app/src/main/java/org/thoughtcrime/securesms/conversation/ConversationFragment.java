@@ -212,6 +212,8 @@ public class ConversationFragment extends Fragment {
             this::handleReplyMessage
     ).attachToRecyclerView(list);
 
+    setupListLayoutListeners();
+
     this.conversationViewModel = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
     conversationViewModel.getMessages().observe(this, list -> {
       if (getListAdapter() != null && !list.getDataSource().isInvalid()) {
@@ -224,6 +226,22 @@ public class ConversationFragment extends Fragment {
     conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
 
     return view;
+  }
+
+  private void setupListLayoutListeners() {
+    list.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> setListVerticalTranslation());
+
+    list.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+      @Override
+      public void onChildViewAttachedToWindow(@NonNull View view) {
+        setListVerticalTranslation();
+      }
+
+      @Override
+      public void onChildViewDetachedFromWindow(@NonNull View view) {
+        setListVerticalTranslation();
+      }
+    });
   }
 
   private void setListVerticalTranslation() {
