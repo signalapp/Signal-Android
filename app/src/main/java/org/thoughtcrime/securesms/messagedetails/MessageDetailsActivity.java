@@ -94,6 +94,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActionBarAct
     adapter           = new MessageDetailsAdapter(glideRequests);
 
     list.setAdapter(adapter);
+    list.setItemAnimator(null);
   }
 
   private void initializeViewModel() {
@@ -133,15 +134,14 @@ public final class MessageDetailsActivity extends PassphraseRequiredActionBarAct
 
     list.add(new MessageDetailsViewState<>(details.getMessageRecord(), MessageDetailsViewState.MESSAGE_HEADER));
 
-    int headerOrder = 0;
     if (details.getMessageRecord().isOutgoing()) {
-      if (addRecipients(list, RecipientHeader.notSent(headerOrder), details.getNotSent()))     headerOrder++;
-      if (addRecipients(list, RecipientHeader.read(headerOrder), details.getRead()))           headerOrder++;
-      if (addRecipients(list, RecipientHeader.delivered(headerOrder), details.getDelivered())) headerOrder++;
-      if (addRecipients(list, RecipientHeader.sentTo(headerOrder), details.getSent()))         headerOrder++;
-      addRecipients(list, RecipientHeader.pending(headerOrder), details.getPending());
+      addRecipients(list, RecipientHeader.NOT_SENT, details.getNotSent());
+      addRecipients(list, RecipientHeader.READ, details.getRead());
+      addRecipients(list, RecipientHeader.DELIVERED, details.getDelivered());
+      addRecipients(list, RecipientHeader.SENT_TO, details.getSent());
+      addRecipients(list, RecipientHeader.PENDING, details.getPending());
     } else {
-      addRecipients(list, RecipientHeader.sentFrom(headerOrder), details.getSent());
+      addRecipients(list, RecipientHeader.SENT_FROM, details.getSent());
     }
 
     return list;

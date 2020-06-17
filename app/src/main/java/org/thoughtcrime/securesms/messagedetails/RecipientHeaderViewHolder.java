@@ -20,8 +20,8 @@ final class RecipientHeaderViewHolder extends RecyclerView.ViewHolder {
   }
 
   void bind(RecipientHeader recipientHeader) {
-    header.setText(recipientHeader.getHeader());
-    switch (recipientHeader.getHeaderStatus()) {
+    header.setText(recipientHeader.getHeaderText());
+    switch (recipientHeader) {
       case PENDING:
         deliveryStatus.setPending();
         break;

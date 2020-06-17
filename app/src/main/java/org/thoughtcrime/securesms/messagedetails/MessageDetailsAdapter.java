@@ -94,7 +94,7 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
           case MessageDetailsViewState.MESSAGE_HEADER:
             return true;
           case MessageDetailsViewState.RECIPIENT_HEADER:
-            return ((RecipientHeader) oldData).getHeaderOrder() == ((RecipientHeader) newData).getHeaderOrder();
+            return oldData == newData;
           case MessageDetailsViewState.RECIPIENT:
             return ((RecipientDeliveryStatus) oldData).getRecipient().getId().equals(((RecipientDeliveryStatus) newData).getRecipient().getId());
         }
@@ -112,25 +112,15 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
       if (oldData.getClass() == newData.getClass() && oldItem.itemType == newItem.itemType) {
         switch (oldItem.itemType) {
           case MessageDetailsViewState.MESSAGE_HEADER:
-            return areMessageRecordContentsTheSame((MessageRecord) oldData, (MessageRecord) newData);
+            return false;
           case MessageDetailsViewState.RECIPIENT_HEADER:
-            return ((RecipientHeader) oldData).getHeader() == ((RecipientHeader) newData).getHeader();
-          case MessageDetailsViewState.RECIPIENT:
             return true;
+          case MessageDetailsViewState.RECIPIENT:
+            return ((RecipientDeliveryStatus) oldData).getDeliveryStatus() == ((RecipientDeliveryStatus) newData).getDeliveryStatus();
         }
       }
 
       return false;
-    }
-
-    private boolean areMessageRecordContentsTheSame(MessageRecord oldData, MessageRecord newData) {
-      return oldData.equals(newData)                                   &&
-             oldData.getDateSent() == newData.getDateSent()            &&
-             oldData.getDateReceived() == newData.getDateReceived()    &&
-             oldData.getType() == newData.getType()                    &&
-             oldData.getExpiresIn() == newData.getExpiresIn()          &&
-             oldData.getExpireStarted() == newData.getExpireStarted()  &&
-             oldData.getReactions().equals(newData.getReactions());
     }
   }
 
