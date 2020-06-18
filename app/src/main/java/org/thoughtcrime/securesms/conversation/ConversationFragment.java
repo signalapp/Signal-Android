@@ -869,8 +869,9 @@ public class ConversationFragment extends Fragment {
       return;
     }
 
+    adapter.setFooterView(conversationBanner);
+
     Runnable afterScroll = () -> {
-      adapter.setFooterView(conversationBanner);
       if (!conversation.isMessageRequestAccepted()) {
         snapToTopDataObserver.requestScrollPosition(adapter.getItemCount() - 1);
       }
