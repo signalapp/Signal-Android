@@ -444,14 +444,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginBottom="12dp"
                         android:textColor="?title_text_color_secondary"
                         tools:text="8 groups in common" />
 
                     <TextView
                         android:id="@+id/add_to_a_group"
                         android:layout_width="match_parent"
-                        android:layout_height="64dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="8dp"
                         android:background="?selectableItemBackground"
                         android:drawableStart="?attr/manage_group_add_members_icon"
                         android:drawablePadding="8dp"
