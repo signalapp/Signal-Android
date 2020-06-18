@@ -55,7 +55,8 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class ManageRecipientFragment extends Fragment {
-  private static final String RECIPIENT_ID = "RECIPIENT_ID";
+  private static final String RECIPIENT_ID      = "RECIPIENT_ID";
+  private static final String FROM_CONVERSATION = "FROM_CONVERSATION";
 
   private static final int RETURN_FROM_MEDIA = 405;
 
@@ -93,11 +94,12 @@ public class ManageRecipientFragment extends Fragment {
   private View                                   insecureCallButton;
   private View                                   secureVideoCallButton;
 
-  static ManageRecipientFragment newInstance(@NonNull RecipientId recipientId) {
+  static ManageRecipientFragment newInstance(@NonNull RecipientId recipientId, boolean fromConversation) {
     ManageRecipientFragment fragment = new ManageRecipientFragment();
     Bundle                  args     = new Bundle();
 
     args.putParcelable(RECIPIENT_ID, recipientId);
+    args.putBoolean(FROM_CONVERSATION, fromConversation);
     fragment.setArguments(args);
 
     return fragment;
@@ -149,8 +151,9 @@ public class ManageRecipientFragment extends Fragment {
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    RecipientId                      recipientId = Objects.requireNonNull(requireArguments().getParcelable(RECIPIENT_ID));
-    ManageRecipientViewModel.Factory factory     = new ManageRecipientViewModel.Factory(recipientId);
+    RecipientId                      recipientId      = Objects.requireNonNull(requireArguments().getParcelable(RECIPIENT_ID));
+    boolean                          fromConversation = requireArguments().getBoolean(FROM_CONVERSATION, false);
+    ManageRecipientViewModel.Factory factory          = new ManageRecipientViewModel.Factory(recipientId);
 
     viewModel = ViewModelProviders.of(requireActivity(), factory).get(ManageRecipientViewModel.class);
 
@@ -227,7 +230,13 @@ public class ManageRecipientFragment extends Fragment {
       unblock.setVisibility(canBlock ? View.GONE : View.VISIBLE);
     });
 
-    messageButton.setOnClickListener(v -> viewModel.onMessage(requireActivity()));
+    messageButton.setOnClickListener(v -> {
+      if (fromConversation) {
+        requireActivity().onBackPressed();
+      } else {
+        viewModel.onMessage(requireActivity());
+      }
+    });
     secureCallButton.setOnClickListener(v -> viewModel.onSecureCall(requireActivity()));
     insecureCallButton.setOnClickListener(v -> viewModel.onInsecureCall(requireActivity()));
     secureVideoCallButton.setOnClickListener(v -> viewModel.onSecureVideoCall(requireActivity()));

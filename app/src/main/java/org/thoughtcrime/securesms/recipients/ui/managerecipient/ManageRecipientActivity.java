@@ -18,13 +18,24 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class ManageRecipientActivity extends PassphraseRequiredActionBarActivity {
 
-  private static final String RECIPIENT_ID = "RECIPIENT_ID";
+  private static final String RECIPIENT_ID      = "RECIPIENT_ID";
+  private static final String FROM_CONVERSATION = "FROM_CONVERSATION";
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   public static Intent newIntent(@NonNull Context context, @NonNull RecipientId recipientId) {
     Intent intent = new Intent(context, ManageRecipientActivity.class);
     intent.putExtra(RECIPIENT_ID, recipientId);
+    return intent;
+  }
+
+  /**
+   * Makes the message button behave like back.
+   */
+  public static Intent newIntentFromConversation(@NonNull Context context, @NonNull RecipientId recipientId) {
+    Intent intent = new Intent(context, ManageRecipientActivity.class);
+    intent.putExtra(RECIPIENT_ID, recipientId);
+    intent.putExtra(FROM_CONVERSATION, true);
     return intent;
   }
 
@@ -47,7 +58,7 @@ public class ManageRecipientActivity extends PassphraseRequiredActionBarActivity
     setContentView(R.layout.recipient_manage_activity);
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-                                 .replace(R.id.container, ManageRecipientFragment.newInstance(getIntent().getParcelableExtra(RECIPIENT_ID)))
+                                 .replace(R.id.container, ManageRecipientFragment.newInstance(getIntent().getParcelableExtra(RECIPIENT_ID), getIntent().getBooleanExtra(FROM_CONVERSATION, false)))
                                  .commitNow();
     }
   }

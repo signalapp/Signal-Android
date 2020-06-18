@@ -1042,7 +1042,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isInMessageRequest()) return;
 
-    Intent intent = ManageRecipientActivity.newIntent(this, recipient.getId());
+    Intent intent = ManageRecipientActivity.newIntentFromConversation(this, recipient.getId());
     startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
   }
 
