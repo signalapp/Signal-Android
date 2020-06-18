@@ -342,22 +342,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">اسٹیکرز</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">نیا گروپ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">گروپ میں ترمیم کریں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">گروپ کا نام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">نیا ایم ایم ایس گروپ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">آپ نے جو رابطہ منتخب کیا ہے\'Signal\'گروپ اسے سپورٹ نہیں کر رہا، لہذا یہ ایم ایم ایس گروپ ہو جائے گا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">آپ signal پیغامات اور کالز کے لیے رجسٹر نہیں ہیں، signal  گروپ غیر فعال ہیں۔ برائے مہربانی ترتیبات میں رجسٹر کرنے کی کوشش کریں اور ایڈوانس میں جائیں۔</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">آپ کے گروپ میں کم از کم ایک شخص کی ضرورت ہے!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">آپ کے گروپ کے اراکین میں سے ایک ایسا نمبر ہے جو صحیح طریقے سے نہیں پڑھا جا سکتا. برائے مہربانی اس رابطے کو ٹھیک کریں یا ہٹائیں اور دوبارہ کوشش کریں.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">اوتار گروپ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">لاگو کریں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">بن رہا ہے%1$s۔۔۔۔</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">تجدید ہو رہا ہے%1$s۔۔۔</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">جمح نہیں ہو رہے %1$sکیونکہ وہ Signal صارف نہیں ہیں۔</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">گروپ کی معلومات لوڈ ہو رہی ہیں۔۔۔</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">آپ پہلے سے اس گروپ میں موجود ہیں</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">پروفائل نام اور تصویر اس گروپ کے ساتھ اشتراک کریں؟</string>
@@ -387,11 +371,26 @@
   <string name="ManageGroupActivity_add_members">اراکین شامل کریں</string>
   <string name="ManageGroupActivity_view_all_members">تمام ممبروں کو دیکھیں</string>
   <string name="ManageGroupActivity_none">کوئی نہیں</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <string name="ManageRecipientActivity_block">بلاک</string>
+  <string name="ManageRecipientActivity_unblock">ان بلاک</string>
+  <string name="ManageRecipientActivity_view_safety_number">حفاظتی نمبر دیکھیں</string>
+  <string name="ManageRecipientActivity_mute_notifications">خاموش اطلاعات</string>
+  <string name="ManageRecipientActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
+  <string name="ManageRecipientActivity_off">بند کریں</string>
+  <string name="ManageRecipientActivity_on">چلائیں</string>
+  <string name="ManageRecipientActivity_message_description">پیغام</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <string name="CustomNotificationsDialogFragment__messages">پیغامات</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">اطلاع کی آواز</string>
   <string name="CustomNotificationsDialogFragment__vibrate">وائبریٹ</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">کال کی ترتیبات</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">رنگ ٹون</string>
+  <string name="CustomNotificationsDialogFragment__enabled">فعال ہونا</string>
+  <string name="CustomNotificationsDialogFragment__disabled">غیر فعال ہونا</string>
+  <string name="CustomNotificationsDialogFragment__default">پہلے سے طے شدہ</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">اوتار گروپ</string>
@@ -424,9 +423,6 @@
   <string name="Job_working_in_the_background">پس منظر میں کام ہو رہا ہے</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">مزید پڑھیں</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">بھیجنے میں ناکام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">نیا حفاظتی نمبر</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">پیغام تلاش کرنے کے قابل نہیں</string>
   <string name="LongMessageActivity_message_from_s">%1$sکی طرف سے پیغامات</string>
@@ -1152,19 +1148,6 @@
   <string name="EditProfileFragment__group_name">گروپ کا نام</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">میڈیا اشتراک کریں</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">خاموش گفتگو</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">سسٹم اطلاعات کی ترتیبات </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">اطلاع کی آواز</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">وائبریٹ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">بلاک</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">رنگ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">حفاظتی نمبر دیکھیں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">باتوں کی ترتیبات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">رازداری</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">کال کی ترتیبات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">رنگ ٹون</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal  کال</string>
   <!--registration_activity-->
@@ -1196,9 +1179,10 @@
   <string name="message_details_header__received">وصول ہو گیا ہے</string>
   <string name="message_details_header__disappears">غائب ہونا</string>
   <string name="message_details_header__via">کے ذریعے</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">کے لئے:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">کی طرف سے:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">کے ساتھ:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">بھیجنے میں ناکام</string>
+  <string name="message_details_recipient__new_safety_number">نیا حفاظتی نمبر</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">خفیہ جملہ بنائیں</string>
   <string name="AndroidManifest__select_contacts">رابطہ منتخب کریں</string>
@@ -1662,8 +1646,8 @@
   <string name="recipient_preferences__about">متعلق</string>
   <string name="Recipient_unknown">نامعلوم</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">پیغام</string>
-  <string name="RecipientBottomSheet_call">کال</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">پیغام</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">کال</string> -->
   <string name="RecipientBottomSheet_block">بلاک</string>
   <string name="RecipientBottomSheet_unblock">ان بلاک</string>
   <string name="RecipientBottomSheet_add_to_contacts">رابطوں میں شامل کریں</string>

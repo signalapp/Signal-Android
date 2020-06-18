@@ -369,24 +369,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">Εικόνες GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Αυτοκόλλητα</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Νέα ομάδα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Επεξεργασία ομάδας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Διαχείριση ομάδας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Όνομα ομάδας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Επέλεξες μια επαφή που δεν υποστηρίζει ομάδες Signal, οπότε αυτή η ομάδα θα είναι MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Δεν έχεις εγγραφεί για μηνύματα και κλήσεις του Signal, οπότε οι ομάδες του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να εγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Χρειάζεται να έχεις τουλάχιστον ένα άτομο στην ομάδα σου!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Υπάρχει ένα μέλος στην ομάδα, του οποίου ο αριθμός δεν μπορεί να διαβαστεί σωστά. Παρακαλώ διόρθωσέ το ή αφαίρεσε την επαφή και ξαναπροσπάθησε. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Εικόνα ομάδας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Εφαρμογή</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Δημιουργία %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Ενημέρωση %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Δεν μπορέσαμε να προσθέσουμε τον/την %1$s επειδή δεν είναι χρήστης του Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Φόρτωση λεπτομέρειων ομάδας…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Είσαι ήδη μέλος αυτής της ομάδας.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Αφαίρεση μέλους</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Προσθήκη μέλους;</string>
   <string name="AddToGroupActivity_add_s_to_s">Προσθήκη του/της \"%1$s\" στο \"%2$s\";</string>
@@ -472,6 +454,30 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Διάλεξε ποιοί μπορούν να προσθέτουν ή να προσκαλούν νέα μέλη</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Διάλεξε ποιοί μπορούν να αλλάζουν το όνομα και τη φωτογραφία της ομάδας.</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
+  <string name="ManageRecipientActivity_chat_color">Χρώμα συνομιλίας</string>
+  <string name="ManageRecipientActivity_block">Φραγή</string>
+  <string name="ManageRecipientActivity_unblock">Κατάργηση φραγής</string>
+  <string name="ManageRecipientActivity_view_safety_number">Προβολή αριθμού ασφαλείας</string>
+  <string name="ManageRecipientActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
+  <string name="ManageRecipientActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
+  <string name="ManageRecipientActivity_until_s">Μέχρι %1$s</string>
+  <string name="ManageRecipientActivity_off">Απενεργοποιημένο</string>
+  <string name="ManageRecipientActivity_on">Ενεργοποιημένο</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Προσθήκη σε μια ομάδα</string>
+  <string name="ManageRecipientActivity_view_all_groups">Προβολή όλων των ομάδων</string>
+  <string name="ManageRecipientActivity_see_all">Προβολή όλων</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Καμία κοινή ομάδα</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d κοινή ομάδα</item>
+    <item quantity="other">%d κοινές ομάδες</item>
+  </plurals>
+  <string name="ManageRecipientActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
+  <string name="ManageRecipientActivity_message_description">Μήνυμα</string>
+  <string name="ManageRecipientActivity_voice_call_description">Βιντεοκλήση</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Μη ασφαλής κλήση φωνής</string>
+  <string name="ManageRecipientActivity_video_call_description">Βιντεοκλήση</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">Ο/Η %1$s προσκάλεσε 1 άτομο</item>
     <item quantity="other">Ο/Η %1$s προσκάλεσε %2$d άτομα</item>
@@ -482,6 +488,11 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Χρήση προσαρμοσμένων ειδοποιήσεων</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Ήχος ειδοποίησης</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Δόνηση</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Ρυθμίσεις κλήσεων</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Ήχος κλήσης</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Ενεργοποιημένο</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Απενεργοποιημένο</string>
+  <string name="CustomNotificationsDialogFragment__default">Προκαθορισμένη</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Θέλεις να ακυρώσεις την πρόσκληση που έστειλες στον/στην %1$s;</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -523,9 +534,6 @@
   <string name="Job_working_in_the_background">Εργαζόμαστε στο παρασκήνιο…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Μάθε περισσότερα</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Αποτυχία αποστολής</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Νέος αριθμός ασφαλείας</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Δεν βρέθηκε μήνυμα</string>
   <string name="LongMessageActivity_message_from_s">Μήνυμα από τον/την %1$s</string>
@@ -580,7 +588,7 @@
   <string name="Megaphones_introducing_reactions">Υποδέξου τις Αντιδράσεις</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Πάτα παρατεταμένα οποιοδήποτε μήνυμα για να μοιραστείς γρήγορα το πως νιώθεις.</string>
   <string name="Megaphones_remind_me_later">Θύμισέ μου αργότερα</string>
-  <string name="Megaphones_verify_your_signal_pin">Επιβεβαίωσε το PIN σου</string>
+  <string name="Megaphones_verify_your_signal_pin">Επιβεβαίωσε το PIN του Signal σου</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Θα σου ζητάμε κάθε τόσο να επιβεβαιώσεις το PIN σου, για να το θυμάσαι.</string>
   <string name="Megaphones_verify_pin">Επιβεβαίωση PIN</string>
   <!--NotificationBarManager-->
@@ -845,6 +853,7 @@
   <string name="RegistrationActivity_more_information">Περισσότερες πληροφορίες</string>
   <string name="RegistrationActivity_less_information">Λιγότερες πληροφορίες</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές και τα πολυμέσα σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να στείλεις και να λάβεις μηνύματα, και να κάνεις ασφαλείς κλήσεις.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Για να επιβεβαιώσεις τον αριθμό τηλεφώνου σου εύκολα, το Signal μπορεί να εντοπίσει αυτόματα τον κωδικό επιβεβαίωσης, αν του επιτρέψεις να διαβάσει τα μηνύματα SMS σου.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1367,19 +1376,6 @@
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Διαμοιρασμένα πολυμέσα</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Σίγαση συνομιλίας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Ρυθμίσεις ειδοποιήσεων συστήματος</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Ήχος ειδοποίησης</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Δόνηση</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Φραγή</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Χρώμα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Προβολή αριθμού ασφαλείας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Ρυθμίσεις συνομιλίας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Ιδιωτικότητα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Ρυθμίσεις κλήσεων</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Ήχος κλήσης</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Κλήση Signal</string>
   <!--registration_activity-->
@@ -1411,9 +1407,16 @@
   <string name="message_details_header__received">Ελήφθη στις</string>
   <string name="message_details_header__disappears">Εξαφανίζεται</string>
   <string name="message_details_header__via">Μέσω</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Προς:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Από:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Με:</string> -->
+  <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Εκκρεμεί</string>
+  <string name="message_details_recipient_header__sent_to">Στάλθηκε προς</string>
+  <string name="message_details_recipient_header__sent_from">Στάλθηκε από</string>
+  <string name="message_details_recipient_header__delivered_to">Παραδόθηκε σε</string>
+  <string name="message_details_recipient_header__read_by">Διαβάστηκε από</string>
+  <string name="message_details_recipient_header__not_sent">Δε στάλθηκε</string>
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Αποτυχία αποστολής</string>
+  <string name="message_details_recipient__new_safety_number">Νέος αριθμός ασφαλείας</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Δημιουργία συνθηματικού</string>
   <string name="AndroidManifest__select_contacts">Επιλογή επαφών</string>
@@ -1735,7 +1738,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Στατιστικά</string>
   <string name="InsightsDashboardFragment__title">Στατιστικά</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Το πρωτόκολλο Signal προστάτευσε αυτόματα το %1$d%% των εξερχόμενων μηνυμάτων σου, τις τελευταίες %2$d ημέρες. Οι συνομιλίες μεταξύ χρηστών του Signal είναι πάντα κρυπτογραφημένες από άκρο σε άκρο.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Το Signal Protocol προστάτευσε αυτόματα το %1$d%% των εξερχόμενων μηνυμάτων σου, τις τελευταίες %2$d ημέρες. Οι συνομιλίες μεταξύ χρηστών του Signal είναι πάντα κρυπτογραφημένες από άκρο σε άκρο.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Ενίσχυση Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Δεν υπάρχουν αρκετά δεδομένα</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Το ποσοστό στα στατιστικά σου υπολογίζεται με βάση τα εξερχόμενα μηνυμάτων τις τελευταίες %1$d ημέρες, που δεν έχουν εξαφανιστεί ή διαγραφτεί.</string>
@@ -1968,8 +1971,8 @@
   <string name="recipient_preferences__about">Πληροφορίες</string>
   <string name="Recipient_unknown">Άγνωστο</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Μήνυμα</string>
-  <string name="RecipientBottomSheet_call">Κλήση</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Μήνυμα</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Κλήση</string> -->
   <string name="RecipientBottomSheet_block">Φραγή</string>
   <string name="RecipientBottomSheet_unblock">Κατάργηση φραγής</string>
   <string name="RecipientBottomSheet_add_to_contacts">Προσθήκη στις επαφές</string>

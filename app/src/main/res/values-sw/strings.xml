@@ -344,22 +344,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Vibandiko</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Kikundi kipya</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Hariri kikundi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Jina la kikundi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Kikundi kipya cha MMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Umechagua mwasiliani asiyetumia vikundi vya Signal, kwayo kikundi hiki kitakuwa MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Huna usajili kwa ujumbe wa Signal na simu, hivyo vikundi vya Signal vimelemazwa. Tafadhali jaribu kujiandikisha katika Mipangilio &amp; gt; Zaidi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Unahitaji angalau mtu mmoja kwenye kundi lako!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Mmoja wa wanachama wa kikundi chako ana namba ambayo haiwezi kusomeka kwa usahihi. Tafadhali rekebisha au uondoe mwasiliani na ujaribu tena.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Kundi la avatar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Omba</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Inaunda %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Inasasishwa %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Haikuweza kuongea %1$s kwa sababu, hatatumii Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Inafungua habari za kundi…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Tayari upo kwenye kikundi</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Shiriki jina la wasifu wako katika kikundi hiki</string>
@@ -389,11 +373,26 @@
   <string name="ManageGroupActivity_add_members">Ongeza wanachama</string>
   <string name="ManageGroupActivity_view_all_members">Tazama Wanachama wote</string>
   <string name="ManageGroupActivity_none">Hakuna</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Jumbe zinazotoweka</string>
+  <string name="ManageRecipientActivity_block">Zuia</string>
+  <string name="ManageRecipientActivity_unblock">Fungua</string>
+  <string name="ManageRecipientActivity_view_safety_number">Tazama nambari ya usalama</string>
+  <string name="ManageRecipientActivity_mute_notifications">Zima arifa</string>
+  <string name="ManageRecipientActivity_custom_notifications">Taarifa kaida</string>
+  <string name="ManageRecipientActivity_off">Zima</string>
+  <string name="ManageRecipientActivity_on">Washwa</string>
+  <string name="ManageRecipientActivity_message_description">Ujumbe</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Taarifa kaida</string>
   <string name="CustomNotificationsDialogFragment__messages">Jumbe</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Taarifa ya sauti</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Tetemesha</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Mpangilio wa kupiga simu</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Mlio wa simu</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Imewezeshwa</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Imelemazwa</string>
+  <string name="CustomNotificationsDialogFragment__default">Chaguo msingi</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Kundi la avatar</string>
@@ -426,9 +425,6 @@
   <string name="Job_working_in_the_background">Inafanya kazi kwa usuli</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Jifunze zaidi</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Imeshindwa kutuma</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nambari mpya ya usalama</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Imeshindwa kupata ujumbe</string>
   <string name="LongMessageActivity_message_from_s">Ujumbe kutoka %1$s</string>
@@ -1160,19 +1156,6 @@ nambari yako ya simu</string>
   <string name="EditProfileFragment__group_name">Jina la kikundi</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Media iliyoshirikishwa</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Zima gumzo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Taarifa kaida</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Mpangilio wa taarifa za mfumo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Taarifa ya sauti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Tetemesha</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Zuia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Rangi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Tazama nambari ya usalama</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Mpangilio wa Mazungumzo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Faragha</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Mpangilio wa kupiga simu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Mlio wa simu</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Simu ya Signal</string>
   <!--registration_activity-->
@@ -1204,9 +1187,10 @@ nambari yako ya simu</string>
   <string name="message_details_header__received">Imepokelewa</string>
   <string name="message_details_header__disappears">Inatoweka</string>
   <string name="message_details_header__via">Kupitia</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kuelekea:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Kutoka:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Na:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Imeshindwa kutuma</string>
+  <string name="message_details_recipient__new_safety_number">Nambari mpya ya usalama</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Unda Nenosiri</string>
   <string name="AndroidManifest__select_contacts">Chagua  wawasiliani</string>
@@ -1710,8 +1694,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="recipient_preferences__about">Kuhusu</string>
   <string name="Recipient_unknown">Isiyojulikana</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Ujumbe</string>
-  <string name="RecipientBottomSheet_call">Simu</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Ujumbe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Simu</string> -->
   <string name="RecipientBottomSheet_block">Zuia</string>
   <string name="RecipientBottomSheet_unblock">Fungua</string>
   <string name="RecipientBottomSheet_add_to_contacts">Ongeza kwa wawasiliani</string>

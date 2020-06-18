@@ -351,22 +351,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF கள் </string>
   <string name="GiphyFragmentPagerAdapter_stickers">ஓட்டிகள்</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">புதிய குழு</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">குழுவைத் திருத்து</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">குழுவின் பெயர்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">புதிய MMS குழு</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Signal குழுக்களை ஆதரிக்காத ஒரு தொடர்பை நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள், எனவே இந்த குழு எம்.எம்.எஸ்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal செய்திகள் மற்றும் அழைப்புகளுக்கு நீங்கள் பதிவு செய்யப்படவில்லை, எனவே Signal குழுக்கள் முடக்கப்பட்டுள்ளன. அமைப்புகளில் பதிவு செய்ய முயற்சிக்கவும் &amp; gt; மேம்படுத்தபட்ட.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members"> உங்கள் குழுவில் குறைந்தது ஒரு நபராவது தேவை!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">உங்கள் குழு உறுப்பினர்களுள் ஒருவர் சரியாக படிக்கமுடியாத எண்ணை கொண்டுள்ளார். இதை சரி செய்யவும் அல்லது அந்த தொடர்பை நீக்கி, மீண்டும் முயற்சிக்கவும்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">குழு சின்னம்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">உபயோகி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s உருவாக்கபடுகிறது…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s மேம்படுத்தப்படுகிறது…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signal பயனராக இல்லாததால் 1%1$s ஐ சேர்க்க முடியவில்லை.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">குழு விவரங்கள் ஏற்றப்படுகிறது…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">நீங்கள் குழுவில் ஏற்கனவே உறுப்பினர்.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">இந்த குழுவுடன் உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் பகிரவா?</string>
@@ -397,11 +381,26 @@
   <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
   <string name="ManageGroupActivity_view_all_members">காண்க அனைத்து உறுப்பினர்கள்</string>
   <string name="ManageGroupActivity_none">யாரும்</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
+  <string name="ManageRecipientActivity_block">தடு </string>
+  <string name="ManageRecipientActivity_unblock">தடைநீக்கு </string>
+  <string name="ManageRecipientActivity_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
+  <string name="ManageRecipientActivity_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
+  <string name="ManageRecipientActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
+  <string name="ManageRecipientActivity_off">அணை</string>
+  <string name="ManageRecipientActivity_on">இயக்க</string>
+  <string name="ManageRecipientActivity_message_description">செய்தி</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="CustomNotificationsDialogFragment__messages">செய்திகள்</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">அறிவிப்பு ஒலி</string>
   <string name="CustomNotificationsDialogFragment__vibrate">அதிர்வு</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">அழைப்பு அமைப்புகள்</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">ரிங்டோன்</string>
+  <string name="CustomNotificationsDialogFragment__enabled">இயக்கப்பட்டது</string>
+  <string name="CustomNotificationsDialogFragment__disabled">முடக்கப்பட்டது</string>
+  <string name="CustomNotificationsDialogFragment__default">இயல்புநிலை</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
@@ -434,9 +433,6 @@
   <string name="Job_working_in_the_background">பின்னணி வேலை நடக்கிறது  …</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">மேலும் அறிக</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">அனுப்ப முடியவில்லை</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">புதிய பாதுகாப்பு எண்</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">செய்தியைக் கண்டுபிடிக்க முடியவில்லை</string>
   <string name="LongMessageActivity_message_from_s">%1$s  இலிருந்து செய்தி</string>
@@ -1178,19 +1174,6 @@
   <string name="EditProfileFragment__group_name">குழுவின் பெயர்</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">பகிரப்பட்ட மீடியா</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">உரையாடலை ஊமையாக்கு </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">கணினி அறிவிப்பு அமைப்புகள்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">அறிவிப்பு ஒலி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">அதிர்வு</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">முடக்கு</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">நிறம்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">அரட்டை அமைப்புகள்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">தனியுரிமை</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">அழைப்பு அமைப்புகள்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">ரிங்டோன்</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal  அழைப்பு</string>
   <!--registration_activity-->
@@ -1222,9 +1205,10 @@
   <string name="message_details_header__received">பெறப்பட்டது</string>
   <string name="message_details_header__disappears">மறைந்து</string>
   <string name="message_details_header__via">வழியாக</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">இவருக்கு:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">இவரிடமிருந்து:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">இதனுடன்:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">அனுப்ப முடியவில்லை</string>
+  <string name="message_details_recipient__new_safety_number">புதிய பாதுகாப்பு எண்</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">கடவுச்சொல்லை உருவாக்கு</string>
   <string name="AndroidManifest__select_contacts">தொடர்புகளை தேர்ந்தெடு</string>
@@ -1698,8 +1682,8 @@
   <string name="recipient_preferences__about">அறிமுகம்</string>
   <string name="Recipient_unknown">தெரியாத</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">செய்தி</string>
-  <string name="RecipientBottomSheet_call">அழைப்பு</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">செய்தி</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">அழைப்பு</string> -->
   <string name="RecipientBottomSheet_block">தடு </string>
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>
   <string name="RecipientBottomSheet_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>

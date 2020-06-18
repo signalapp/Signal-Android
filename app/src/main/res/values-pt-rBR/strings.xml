@@ -357,22 +357,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Figurinhas</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Novo grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Editar grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Novo grupo de MMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Você selecionou um contato que não tem suporte para grupos do Signal. Então, este grupo será de MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Você não está cadastrado para usar mensagens e chamadas do Signal, então grupos do Signal estão desabilitados. Tente recadastrar em Configurações &gt; Avançado.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Você precisa de pelo menos uma pessoa no seu grupo!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número que não pôde ser lido. Favor consertar ou remover esse contato e tentar novamente.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar do grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Aplicar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Criando %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Atualizando %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Você já faz parte do grupo.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
@@ -400,11 +384,26 @@
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
   <string name="ManageGroupActivity_none">Nenhum</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Mensagens efêmeras</string>
+  <string name="ManageRecipientActivity_block">Bloquear</string>
+  <string name="ManageRecipientActivity_unblock">Desbloquear</string>
+  <string name="ManageRecipientActivity_view_safety_number">Ver número de segurança</string>
+  <string name="ManageRecipientActivity_mute_notifications">Silenciar notificações</string>
+  <string name="ManageRecipientActivity_custom_notifications">Personalizar notificações</string>
+  <string name="ManageRecipientActivity_off">Desligado</string>
+  <string name="ManageRecipientActivity_on">Ligado</string>
+  <string name="ManageRecipientActivity_message_description">Mensagem</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Personalizar notificações</string>
   <string name="CustomNotificationsDialogFragment__messages">Mensagens</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Som da notificação</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrar</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Configurações de chamada</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Toque</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Habilitada</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Desabilitada</string>
+  <string name="CustomNotificationsDialogFragment__default">Padrão</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
@@ -437,9 +436,6 @@
   <string name="Job_working_in_the_background">Trabalhando em segundo plano…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saiba mais</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Falha no envio</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mensagem não encontrada</string>
   <string name="LongMessageActivity_message_from_s">Mensagem de %1$s</string>
@@ -1199,19 +1195,6 @@
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Mídia compartilhada</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Silenciar conversa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Personalizar notificações</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Configurar notificações do sistema</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Som da notificação</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibrar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bloquear</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Cor</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Ver número de segurança</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Configurações de chat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privacidade</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Configurações de chamada</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Toque</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <!--registration_activity-->
@@ -1243,9 +1226,10 @@
   <string name="message_details_header__received">Recebida</string>
   <string name="message_details_header__disappears">Expira</string>
   <string name="message_details_header__via">Via</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Para:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">De:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Com:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Falha no envio</string>
+  <string name="message_details_recipient__new_safety_number">Novo número de segurança</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Criar frase-chave</string>
   <string name="AndroidManifest__select_contacts">Selecionar contatos</string>
@@ -1770,8 +1754,8 @@
   <string name="recipient_preferences__about">Sobre</string>
   <string name="Recipient_unknown">Desconhecido</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Mensagem</string>
-  <string name="RecipientBottomSheet_call">Ligar</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Mensagem</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Ligar</string> -->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contatos</string>

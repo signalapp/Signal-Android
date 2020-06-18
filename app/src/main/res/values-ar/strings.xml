@@ -425,24 +425,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">صور GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">الملصقات</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">تعديل المجموعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">أدرْ المجموعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات Signal وبالتالي ستكون هذه المجموعة متعددة الوسائط.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">أنت غير مسجل في رسائل ومكالمات Signal وبالتالي فإن مجموعات Signal معطلة. حاول إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">تحتاج إلى شخص واحد على الأقل في المجموعة!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">لا يمكن قراءة رقم أحد أعضاء المجموعة بشكل صحيح. رجاء تصحيح أو حذف هذا العضو والمحاولة مرة أخرى.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">الصورة الرمزية للمجموعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">تطبيق</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">الإنشاء جارٍ %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">التحديث جارٍ %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">لا يمكن إضافة %1$s لأنهم ليس من مستخدمين Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">تحميل بيانات المجموعة…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">أنت في المجموعة بالفعل.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">إزالة عضو</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">إضافة العضو؟</string>
   <string name="AddToGroupActivity_add_s_to_s">إضافة \"%1$s\" إلى \"%2$s\"</string>
@@ -540,6 +522,20 @@
   <string name="ManageGroupActivity_edit_name_and_picture">عدّل الاسم والصورة</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">اختر من بإمكانه إضافة الأعضاء والعضوات الجدد ودعوتهم</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">اختر من بإمكانه تغيير اسم المجموعة وصورتها.</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">الرسائل المُختفية</string>
+  <string name="ManageRecipientActivity_block">حظر</string>
+  <string name="ManageRecipientActivity_unblock">رفع الحظر</string>
+  <string name="ManageRecipientActivity_view_safety_number">عرض رقم السلامة</string>
+  <string name="ManageRecipientActivity_mute_notifications">كتم الإشعارات</string>
+  <string name="ManageRecipientActivity_custom_notifications">إشعارات مخصّصة</string>
+  <string name="ManageRecipientActivity_until_s">حتى %1$s</string>
+  <string name="ManageRecipientActivity_off">مغلق</string>
+  <string name="ManageRecipientActivity_on">يعمل</string>
+  <string name="ManageRecipientActivity_add_to_a_group">إضافة إلى مجموعة</string>
+  <string name="ManageRecipientActivity_see_all">مشاهدة الكل</string>
+  <string name="ManageRecipientActivity_edit_name_and_picture">عدّل الاسم والصورة</string>
+  <string name="ManageRecipientActivity_message_description">رسالة</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="zero">قام %1$sبدعوة%2$dأشخاص</item>
     <item quantity="one">دعا %1$s شخص واحد </item>
@@ -554,6 +550,11 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">استخدم إشعارات مُخصّصة</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">صوت التنبيه</string>
   <string name="CustomNotificationsDialogFragment__vibrate">الاهتزاز</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">إعدادت المكالمات</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">الرّنة</string>
+  <string name="CustomNotificationsDialogFragment__enabled">مفعل</string>
+  <string name="CustomNotificationsDialogFragment__disabled">معطل</string>
+  <string name="CustomNotificationsDialogFragment__default">افتراضي</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">هل تريد إلغاء الدعوة التي أرسلتها إلى %1$s؟</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -607,9 +608,6 @@
   <string name="Job_working_in_the_background">جار العمل في الخلفية…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">لمعرفة المزيد</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">رقم سلامة جديد</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">تعذر العثور على الرسالة</string>
   <string name="LongMessageActivity_message_from_s">رسالة من %1$s</string>
@@ -1522,19 +1520,6 @@
   <string name="EditProfileFragment__group_name">أسم المجموعة</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">الملفّات المتعدّدة الوسائط التي تّم مشاركتها</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">كتم المحادثة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">إشعارات مخصّصة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">إعدادات إشعارات النظام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">صوت التنبيه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">الاهتزاز</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">حظر</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">اللون</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">عرض رقم السلامة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">إعدادات الدردشة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">الخصوصية</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">إعدادت المكالمات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">الرّنة</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة Signal</string>
   <!--registration_activity-->
@@ -1568,9 +1553,10 @@
   <string name="message_details_header__received">استلمت</string>
   <string name="message_details_header__disappears">مُختفية </string>
   <string name="message_details_header__via">بواسطة</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">إلى:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">من:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">مع:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">الإرسال فشل.</string>
+  <string name="message_details_recipient__new_safety_number">رقم سلامة جديد</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">إنشاء عبارة سرية</string>
   <string name="AndroidManifest__select_contacts">اخر جهات الاتصال</string>
@@ -2129,8 +2115,8 @@
   <string name="recipient_preferences__about">حول</string>
   <string name="Recipient_unknown">مجهول</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">رسالة</string>
-  <string name="RecipientBottomSheet_call">اتصال</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">رسالة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">اتصال</string> -->
   <string name="RecipientBottomSheet_block">حظر</string>
   <string name="RecipientBottomSheet_unblock">رفع الحظر</string>
   <string name="RecipientBottomSheet_add_to_contacts">أضف إلى جهات الاتصال</string>

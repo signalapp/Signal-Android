@@ -369,24 +369,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF- കൾ</string>
   <string name="GiphyFragmentPagerAdapter_stickers">സ്റ്റിക്കറുകൾ</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">പുതിയ ഗ്രൂപ്പ്</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">ഗ്രൂപ്പ് നിയന്ത്രിക്കുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">ഗ്രൂപ്പ് പേര്</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">പുതിയ MMS ഗ്രൂപ്പ്</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺ‌ടാക്റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, അതിനാൽ ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal സന്ദേശങ്ങൾക്കും കോളുകൾക്കുമായി നിങ്ങൾ രജിസ്റ്റർ ചെയ്തിട്ടില്ല, അതിനാൽ Signal ഗ്രൂപ്പുകൾ അപ്രാപ്തമാക്കി. ക്രമീകരണങ്ങളിൽ രജിസ്റ്റർ ചെയ്യാൻ ശ്രമിക്കുക &gt; വിപുലമായത്.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">നിങ്ങളുടെ ഗ്രൂപ്പിൽ ഒരു വ്യക്തിയെങ്കിലും ആവശ്യമാണ്!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">നിങ്ങളുടെ ഗ്രൂപ്പിലെ ഒരു അംഗത്തിന് ശരിയായി വായിക്കാൻ കഴിയാത്ത ഒരു നമ്പർ ഉണ്ട്. ആ കോൺ‌ടാക്റ്റ് പരിഹരിക്കുക അല്ലെങ്കിൽ നീക്കംചെയ്യുക, വീണ്ടും ശ്രമിക്കുക.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">ഗ്രൂപ്പ് അവതാർ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">പ്രയോഗിക്കുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s ഉണ്ടാക്കുന്നു…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s അപ്‌ഡേറ്റുചെയ്യുന്നു…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$sഅവർ ഒരു Signal ഉപയോക്താവ് അല്ലാത്തതിനാൽ ചേർക്കാൻ കഴിഞ്ഞില്ല.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">ഗ്രൂപ്പ് വിശദാംശങ്ങൾ ലോഡുചെയ്യുന്നു…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">നിങ്ങൾ ഇതിനകം ഗ്രൂപ്പിലുണ്ട്.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">അംഗത്തെ നീക്കംചെയ്യുക</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">അംഗത്തെ ചേർക്കണോ?</string>
   <string name="AddToGroupActivity_add_s_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക് ചേർക്കുക?</string>
@@ -472,6 +454,20 @@
   <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">പുതിയ അംഗങ്ങളെ ആർക്കൊക്കെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ഫോട്ടോയും ആർക്കൊക്കെ മാറ്റാൻ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
+  <string name="ManageRecipientActivity_block">ബ്ലോക്ക്</string>
+  <string name="ManageRecipientActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
+  <string name="ManageRecipientActivity_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
+  <string name="ManageRecipientActivity_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
+  <string name="ManageRecipientActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
+  <string name="ManageRecipientActivity_until_s">%1$s വരെ</string>
+  <string name="ManageRecipientActivity_off">ഓഫ്</string>
+  <string name="ManageRecipientActivity_on">ഓൺ</string>
+  <string name="ManageRecipientActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
+  <string name="ManageRecipientActivity_see_all">എല്ലാം കാണുക</string>
+  <string name="ManageRecipientActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
+  <string name="ManageRecipientActivity_message_description">സന്ദേശം</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s 1 പേരെ ക്ഷണിച്ചു</item>
     <item quantity="other">%1$s %2$d ആളുകളെ ക്ഷണിച്ചു</item>
@@ -482,6 +478,11 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ ഉപയോഗിക്കുക</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">അറിയിപ്പ് ശബ്‌ദം</string>
   <string name="CustomNotificationsDialogFragment__vibrate">വൈബ്രേറ്റ്</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">കോൾ ക്രമീകരണങ്ങൾ</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">റിംഗ്‌ടോൺ</string>
+  <string name="CustomNotificationsDialogFragment__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
+  <string name="CustomNotificationsDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
+  <string name="CustomNotificationsDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">നിങ്ങൾ %1$s-ന് അയച്ച ക്ഷണം റദ്ദാക്കണോ?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -523,9 +524,6 @@
   <string name="Job_working_in_the_background">പശ്ചാത്തലത്തിൽ പ്രവർത്തിക്കുന്നു…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">കൂടുതൽ അറിയുക</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">പുതിയ സേഫ്റ്റി നമ്പർ </string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">സന്ദേശം കണ്ടെത്താനായില്ല</string>
   <string name="LongMessageActivity_message_from_s">%1$s നിന്നുള്ള സന്ദേശം</string>
@@ -1365,19 +1363,6 @@ grūpp ap‌ḍē</string>
   <string name="EditProfileFragment__group_name">ഗ്രൂപ്പ് പേര്</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">പങ്കിട്ട മീഡിയ</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">സംഭാഷണം ഒച്ചയിലാതാക്കുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">സിസ്റ്റം അറിയിപ്പ് ക്രമീകരണങ്ങൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">അറിയിപ്പ് ശബ്‌ദം</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">വൈബ്രേറ്റ്</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">ബ്ലോക്ക്</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">നിറം</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">ചാറ്റ് ക്രമീകരണങ്ങൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">സ്വകാര്യത</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">കോൾ ക്രമീകരണങ്ങൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">റിംഗ്‌ടോൺ</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal കോൾ</string>
   <!--registration_activity-->
@@ -1409,9 +1394,10 @@ grūpp ap‌ḍē</string>
   <string name="message_details_header__received">ലഭിച്ചു</string>
   <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നു</string>
   <string name="message_details_header__via">വഴി</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">സ്വീകർത്താവ്:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">പ്രേഷിതാവ്:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">ഇതുമായി:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
+  <string name="message_details_recipient__new_safety_number">പുതിയ സുരക്ഷാ നമ്പർ </string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">പാസ്‌ഫ്രെയ്‌സ് സൃഷ്‌ടിക്കുക</string>
   <string name="AndroidManifest__select_contacts">കോൺടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക</string>
@@ -1966,8 +1952,8 @@ grūpp ap‌ḍē</string>
   <string name="recipient_preferences__about">കുറിച്ച്</string>
   <string name="Recipient_unknown">അജ്ഞാതം</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">സന്ദേശം</string>
-  <string name="RecipientBottomSheet_call">കോൾ ചെയ്യുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">സന്ദേശം</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">കോൾ ചെയ്യുക</string> -->
   <string name="RecipientBottomSheet_block">ബ്ലോക്ക്</string>
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="RecipientBottomSheet_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>

@@ -369,24 +369,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Cromos (stickers)</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Nuevo grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Editar grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Administrar grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Nombre del grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Nuevo grupo de MMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Has seleccionado una persona que no usa Signal, así que este grupo será de MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">No estás registrado para los mensajes y llamadas de Signal, así que los grupos de Signal están desactivados, por favor, intenta registrarte otra vez en Configuración &gt; Avanzado.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">¡Necesitas al menos una persona en tu grupo!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Un* participante de tu grupo tiene un número incorrecto. Por favor, comprueba el número o elimina esa persona del grupo e inténtalo de nuevo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar del grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Aplicar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Creando %1$s …</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Actualizando %1$s …</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No se ha podido agregar a %1$s porque no usa Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Cargando detalles del grupo …</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ya eres participante en el grupo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Expulsar participante</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">¿Agregar participante?</string>
   <string name="AddToGroupActivity_add_s_to_s">¿Agregar a %1$s a «%2$s»?</string>
@@ -472,6 +454,30 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nombre e imagen</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Selecciona quién puede agregar o invitar a más participantes</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Selecciona quién puede modificar el nombre e imagen del grupo</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Desaparición de mensajes</string>
+  <string name="ManageRecipientActivity_chat_color">Color del chat</string>
+  <string name="ManageRecipientActivity_block">Bloquear</string>
+  <string name="ManageRecipientActivity_unblock">Desbloquear</string>
+  <string name="ManageRecipientActivity_view_safety_number">Ver cifras de seguridad</string>
+  <string name="ManageRecipientActivity_mute_notifications">Silenciar notificaciones</string>
+  <string name="ManageRecipientActivity_custom_notifications">Notificaciones personalizadas</string>
+  <string name="ManageRecipientActivity_until_s">Hasta %1$s</string>
+  <string name="ManageRecipientActivity_off">Inactivo</string>
+  <string name="ManageRecipientActivity_on">Activo</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Agregar a un grupo</string>
+  <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string>
+  <string name="ManageRecipientActivity_see_all">Mostrar tod*s</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d grupo en común</item>
+    <item quantity="other">%d grupos en común</item>
+  </plurals>
+  <string name="ManageRecipientActivity_edit_name_and_picture">Editar nombre y foto</string>
+  <string name="ManageRecipientActivity_message_description">Mensaje</string>
+  <string name="ManageRecipientActivity_voice_call_description">Llamada de voz</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Llamada no segura</string>
+  <string name="ManageRecipientActivity_video_call_description">Vídeollamada</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">«%1$s» ha invitado a 1 persona</item>
     <item quantity="other">«%1$s» ha invitado a %2$d personas</item>
@@ -482,6 +488,11 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Usar notificaciones personalizadas</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Sonido de notificaciones</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibración</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Ajustes de llamada</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Tono de llamada</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Activado</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Desactivado</string>
+  <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">¿Deseas retirar tu invitación a «%1$s»?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -523,9 +534,6 @@
   <string name="Job_working_in_the_background">Procesando en segundo plano …</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber más</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Fallo al enviar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nuevas cifras de seguridad</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Imposible encontrar el mensaje</string>
   <string name="LongMessageActivity_message_from_s">Mensaje de %1$s</string>
@@ -703,7 +711,7 @@
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Permitir a %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Permitir %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No recibirás ningún mensaje de esta persona hasta que la desbloquees.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Permitir a %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No recibirás ningún mensaje de esta persona hasta que la desbloquees.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirse a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Te han invitado a participar en el grupo «%1$s». ¿Deseas que participantes de este grupo te envíen mensajes?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
@@ -849,6 +857,7 @@ número de teléfono
   <string name="RegistrationActivity_more_information">Más detalles</string>
   <string name="RegistrationActivity_less_information">Menos detalles</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y medios para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos no se guarda en el servidor de Signal.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo más tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar con el servidor. Por favor, comprueba la conexión de red e inténtalo de nuevo.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar cómodamente el número de teléfono, Signal puede detectar automáticamente el código de verificación si tiene acceso a tus SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1372,19 +1381,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Archivos multimedia compartidos</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Silenciar chat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Notificaciones personalizadas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Ajustes de notificaciones del sistema</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Sonido de notificaciones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibración</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Bloquear</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Color</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Ver cifras de seguridad</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Ajustes del chat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privacidad</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Ajustes de llamada</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Tono de llamada</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <!--registration_activity-->
@@ -1416,9 +1412,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="message_details_header__received">Recibido</string>
   <string name="message_details_header__disappears">Desaparición de mensajes</string>
   <string name="message_details_header__via">Vía</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Para:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">De:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Con:</string> -->
+  <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Pendiente</string>
+  <string name="message_details_recipient_header__sent_to">Enviado a</string>
+  <string name="message_details_recipient_header__sent_from">Recibido de</string>
+  <string name="message_details_recipient_header__delivered_to">Entregado a</string>
+  <string name="message_details_recipient_header__read_by">Leído por</string>
+  <string name="message_details_recipient_header__not_sent">No enviado</string>
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Fallo al enviar</string>
+  <string name="message_details_recipient__new_safety_number">Nuevas cifras de seguridad</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Crear clave de acceso</string>
   <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
@@ -1973,8 +1976,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="recipient_preferences__about">Acerca de</string>
   <string name="Recipient_unknown">Desconocido</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Mensaje</string>
-  <string name="RecipientBottomSheet_call">Llamar</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Mensaje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Llamar</string> -->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Añadir a contactos</string>

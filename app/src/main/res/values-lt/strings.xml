@@ -397,24 +397,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Paveiksliukai</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Nauja grupė</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Taisyti grupę</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Tvarkyti grupę</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Grupės pavadinimas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Nauja MMS grupė</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Jūs pasirinkote adresatą, kuris nepalaiko Signal grupių, taigi, ši grupė bus MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Jūs nesate užsiregistravę Signal žinutėms ir skambučiams, taigi, Signal grupės yra išjungtos. Prašome pabandyti registruotis skyrelyje Nustatymai (angl. Settings) &gt; Išplėstiniai (angl. Advanced).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Jums jūsų grupėje reikalingas bent vienas žmogus!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Vieno iš jūsų grupės narių numerį nepavyksta perskaityti teisingai. Prašome tai ištaisyti arba pašalinti tą adresatą ir bandyti dar kartą.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Grupės avataras</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Taikyti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Kuriama %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Atnaujinama %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nepavyko pridėti %1$s, kadangi tai nėra Signal naudotojas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Įkeliama išsamesnė grupės informacija…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esate grupėje.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Šalinti narį</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Pridėti narį?</string>
   <string name="AddToGroupActivity_add_s_to_s">Pridėti naudotoją \"%1$s\" į \"%2$s\"?</string>
@@ -510,6 +492,20 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pasirinkite, kas gali keisti grupės pavadinimą ir nuotrauką</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Išnykstančios žinutės</string>
+  <string name="ManageRecipientActivity_block">Užblokuoti</string>
+  <string name="ManageRecipientActivity_unblock">Atblokuoti</string>
+  <string name="ManageRecipientActivity_view_safety_number">Rodyti saugumo numerį</string>
+  <string name="ManageRecipientActivity_mute_notifications">Nutildyti pranešimus</string>
+  <string name="ManageRecipientActivity_custom_notifications">Tinkinti pranešimai</string>
+  <string name="ManageRecipientActivity_until_s">Iki %1$s</string>
+  <string name="ManageRecipientActivity_off">Išjungta</string>
+  <string name="ManageRecipientActivity_on">Įjungta</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Pridėti į grupę</string>
+  <string name="ManageRecipientActivity_see_all">Rodyti visus</string>
+  <string name="ManageRecipientActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
+  <string name="ManageRecipientActivity_message_description">Žinutė</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s pakvietė 1 žmogų</item>
     <item quantity="few">%1$s pakvietė %2$d žmones</item>
@@ -522,6 +518,11 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Naudoti tinkintus pranešimus</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Pranešimų garsas</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibruoti</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Skambučių nustatymai</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Skambučio melodija</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Įjungta</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Išjungta</string>
+  <string name="CustomNotificationsDialogFragment__default">Numatytoji</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Ar norite atšaukti pakvietimą, kurį išsiuntėte naudotojui %1$s?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -569,9 +570,6 @@
   <string name="Job_working_in_the_background">Dirbama fone…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sužinoti daugiau</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nepavyko išsiųsti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Naujas saugumo numeris</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Nepavyko rasti žinutės</string>
   <string name="LongMessageActivity_message_from_s">Žinutė nuo %1$s</string>
@@ -1462,19 +1460,6 @@
   <string name="EditProfileFragment__group_name">Grupės pavadinimas</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Bendrinama medija</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Nutildyti pokalbį</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Tinkinti pranešimai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Sistemos pranešimų nustatymai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Pranešimų garsas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibruoti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Užblokuoti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Spalva</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Rodyti saugumo numerį</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Pokalbio nustatymai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privatumas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Skambučių nustatymai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Skambučio melodija</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal skambutis</string>
   <!--registration_activity-->
@@ -1506,9 +1491,10 @@
   <string name="message_details_header__received">Gauta</string>
   <string name="message_details_header__disappears">Išnyksta</string>
   <string name="message_details_header__via">Per</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kam:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Nuo:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Su:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Nepavyko išsiųsti</string>
+  <string name="message_details_recipient__new_safety_number">Naujas saugumo numeris</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Kurti slaptafrazę</string>
   <string name="AndroidManifest__select_contacts">Pasirinkti adresatus</string>
@@ -2080,8 +2066,8 @@
   <string name="recipient_preferences__about">Apie</string>
   <string name="Recipient_unknown">Nežinoma</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Žinutė</string>
-  <string name="RecipientBottomSheet_call">Skambinti</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Žinutė</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Skambinti</string> -->
   <string name="RecipientBottomSheet_block">Užblokuoti</string>
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
   <string name="RecipientBottomSheet_add_to_contacts">Įtraukti į adresatus</string>

@@ -326,22 +326,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stiker</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Grup enggal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Atur grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Nami grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS enggal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Sampeyan mileh kontak ingkang mboten saged ngangge grup Signal, dadosipun grup kasebut bakal ngrupikaken MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Sampeyan mboten saged ndaftar telepon lan pesen Signal, dadosipun grup Signal bakal dinonaktifaken. Mangga cobi ndaftaraken ing Panatanan &gt; Lajengan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Sampeyan betah paling sekedhik setunggal tiyang ing grup!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">Salah setunggal anggota grup sampeyan gadhah nomer ingkang mboten saged diwaos sacara leres. Mangga dipundandosi utawi brusak kontak kasebut lan cobi malih.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Avatar grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Terapaken</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Taksih ndamel %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Ngenggalaken %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Mboten saged mewahi %1$s amargi piyambakipun mboten ngginakaken Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Taksih ngunggahi rincian grup…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Sampeyan sampun mlebet grup niki.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Unjukaken foto lan nami profil kaliyan grup niki?</string>
@@ -371,11 +355,26 @@
   <string name="ManageGroupActivity_add_members">Minggahaken anggota</string>
   <string name="ManageGroupActivity_view_all_members">Tingali anggota sedaya</string>
   <string name="ManageGroupActivity_none">Mboten enten</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Pesen ngical</string>
+  <string name="ManageRecipientActivity_block">Blokir</string>
+  <string name="ManageRecipientActivity_unblock">Uculaken blokiranipun</string>
+  <string name="ManageRecipientActivity_view_safety_number">Tingali nomer keamanan</string>
+  <string name="ManageRecipientActivity_mute_notifications">Bisuaken prungon</string>
+  <string name="ManageRecipientActivity_custom_notifications">Prungon kustom</string>
+  <string name="ManageRecipientActivity_off">Pejah</string>
+  <string name="ManageRecipientActivity_on">Gesang</string>
+  <string name="ManageRecipientActivity_message_description">Pesen</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Prungon kustom</string>
   <string name="CustomNotificationsDialogFragment__messages">Pesen</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Suwantenipun prungon</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Geter</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Panatanan telepon</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Nada dering</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Aktifaken</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Nonaktifaken</string>
+  <string name="CustomNotificationsDialogFragment__default">Default</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
@@ -409,9 +408,6 @@
   <string name="Job_working_in_the_background">Mlampah ing latar wingking…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sapepakipun</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Gagal ngirimaken</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nomer keamanan enggal</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Mboten saged manggih pesen</string>
   <string name="LongMessageActivity_message_from_s">Pesen saking %1$s</string>
@@ -1131,19 +1127,6 @@
   <string name="EditProfileFragment__group_name">Nami grup</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Media ingkang dipununjukaken</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Bisuaken obrolan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Prungon kustom</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Panatanan prungon sistem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Suwantenipun prungon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Geter</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blokir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Werni</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Tingali nomer keamanan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Panatanan obrolan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Privasi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Panatanan telepon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Nada dering</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Telepon Signal</string>
   <!--registration_activity-->
@@ -1175,9 +1158,10 @@
   <string name="message_details_header__received">Dipuntampi</string>
   <string name="message_details_header__disappears">Ngical</string>
   <string name="message_details_header__via">Langkung</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Kangge:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Saking:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Kaliyan:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Gagal ngirimaken</string>
+  <string name="message_details_recipient__new_safety_number">Nomer keamanan enggal</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Damel tembung sandi</string>
   <string name="AndroidManifest__select_contacts">Pileh kontak</string>
@@ -1642,8 +1626,8 @@
   <string name="recipient_preferences__about">Babagan</string>
   <string name="Recipient_unknown">Mboten kasumarepan</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Pesen</string>
-  <string name="RecipientBottomSheet_call">Telepon</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Pesen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Telepon</string> -->
   <string name="RecipientBottomSheet_block">Blokir</string>
   <string name="RecipientBottomSheet_unblock">Uculaken blokiranipun</string>
   <string name="RecipientBottomSheet_add_to_contacts">Minggahaken dhateng kontak</string>

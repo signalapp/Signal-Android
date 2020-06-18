@@ -369,24 +369,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF:ar</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Ny grupp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Ändra grupp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Hantera grupp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Gruppnamn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-grupp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Du har valt en kontakt som inte har stöd för Signal-grupper, så denna grupp kommer att använda MMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Du är inte registrerad för Signal-meddelanden och -samtal, så Signal-grupper är inaktiverade. Vänligen försök att registrera dig i Inställningar &gt; Avancerat.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">Du behöver åtminstone en person i din grupp!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">En av deltagarna i din grupp har ett nummer som inte kan läsas ordentligt. Vänligen åtgärda eller ta bort kontakten och försök igen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Gruppavatar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Tillämpa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">Skapar %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">Uppdaterar %1$s…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Det gick inte att lägga till %1$s eftersom de inte är en Signal-användare.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Läser in gruppdetaljer…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Du är redan i gruppen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Ta bort medlem</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Lägg till medlem?</string>
   <string name="AddToGroupActivity_add_s_to_s">Lägg till \"%1$s\" i \"%2$s\"?</string>
@@ -472,6 +454,30 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Redigera namn och bild</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Välj vem som kan ändra gruppnamn och foto</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
+  <string name="ManageRecipientActivity_chat_color">Konversationsfärg</string>
+  <string name="ManageRecipientActivity_block">Blockera</string>
+  <string name="ManageRecipientActivity_unblock">Sluta blockera</string>
+  <string name="ManageRecipientActivity_view_safety_number">Visa säkerhetsnummer</string>
+  <string name="ManageRecipientActivity_mute_notifications">Tysta aviseringar</string>
+  <string name="ManageRecipientActivity_custom_notifications">Anpassade aviseringar</string>
+  <string name="ManageRecipientActivity_until_s">Fram tills %1$s</string>
+  <string name="ManageRecipientActivity_off">Av</string>
+  <string name="ManageRecipientActivity_on">På</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Lägg till i en grupp</string>
+  <string name="ManageRecipientActivity_view_all_groups">Visa alla grupper</string>
+  <string name="ManageRecipientActivity_see_all">Se alla</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Inga gemensamma grupper</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d grupp gemensamt</item>
+    <item quantity="other">%d gemensamma grupper</item>
+  </plurals>
+  <string name="ManageRecipientActivity_edit_name_and_picture">Redigera namn och bild</string>
+  <string name="ManageRecipientActivity_message_description">Meddelande</string>
+  <string name="ManageRecipientActivity_voice_call_description">Röstsamtal</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Osäkert röstsamtal</string>
+  <string name="ManageRecipientActivity_video_call_description">Videosamtal</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s bjöd in 1 person</item>
     <item quantity="other">%1$s bjöd in %2$d personer</item>
@@ -482,6 +488,11 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Använd anpassade aviseringar</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Aviseringsljud</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrera</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Samtalsinställningar</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Rington</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Aktiverad</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Inaktiverad</string>
+  <string name="CustomNotificationsDialogFragment__default">Standard</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Vill du avbryta inbjudan du skickat till %1$s?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -523,9 +534,6 @@
   <string name="Job_working_in_the_background">Arbetar i bakgrunden…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Läs mer</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Misslyckades att skicka</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Nytt säkerhetsnummer</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Det gick inte att hitta meddelandet</string>
   <string name="LongMessageActivity_message_from_s">Meddelande från %1$s</string>
@@ -845,6 +853,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_more_information">Mer information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalen behöver åtkomst till dina kontakter och media för att få kontakt med vänner, utbyta meddelanden och ringa säkra samtal</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Vänligen försök igen senare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Vänligen kontrollera nätverksanslutning och försök igen.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">För att enkelt verifiera ditt telefonnummer kan Signal automatiskt detektera din verifieringskod om du tillåter Signal att se SMS-meddelanden.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1366,19 +1375,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditProfileFragment__group_name">Gruppnamn</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Delade media</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Tysta konversation</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Anpassade aviseringar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Systemets meddelandeinställningar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Aviseringsljud</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Vibrera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blockera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Färg</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Konversationsinställningar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Integritetsskydd</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Samtalsinställningar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Rington</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtal</string>
   <!--registration_activity-->
@@ -1410,9 +1406,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="message_details_header__received">Mottaget</string>
   <string name="message_details_header__disappears">Försvinner</string>
   <string name="message_details_header__via">Via</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Till:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Från:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Med:</string> -->
+  <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Väntar</string>
+  <string name="message_details_recipient_header__sent_to">Skickat till</string>
+  <string name="message_details_recipient_header__sent_from">Skickat från</string>
+  <string name="message_details_recipient_header__delivered_to">Levererat till</string>
+  <string name="message_details_recipient_header__read_by">Läst av</string>
+  <string name="message_details_recipient_header__not_sent">Inte skickat</string>
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Misslyckades att skicka</string>
+  <string name="message_details_recipient__new_safety_number">Nytt säkerhetsnummer</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Skapa lösenord</string>
   <string name="AndroidManifest__select_contacts">Välj kontakter</string>
@@ -1966,8 +1969,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__about">Om</string>
   <string name="Recipient_unknown">Okänt</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Meddelande</string>
-  <string name="RecipientBottomSheet_call">Ring</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Meddelande</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Ring</string> -->
   <string name="RecipientBottomSheet_block">Blockera</string>
   <string name="RecipientBottomSheet_unblock">Sluta blockera</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lägg till som kontakt</string>

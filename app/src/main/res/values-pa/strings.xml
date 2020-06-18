@@ -346,23 +346,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ਸਟਿੱਕਰ</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">ਨਵਾਂ ਸਮੂਹ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">ਸਮੂਹ ਸੰਪਾਦਿਤ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">ਗਰੁੱਪ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">ਸਮੂਹ ਦਾ ਨਾਂ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">ਨਵਾਂ ਐਮਐਮਐਸ ਸਮੂਹ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">ਤੁਸੀਂ ਇੱਕ ਅਜਿਹਾ ਸੰਪਰਕ ਚੁਣਿਆ ਹੈ ਜੋ Signal ਸਮੂਹਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਲਈ ਇਹ ਸਮੂਹ ਐਮ ਐਮ ਐਸ ਹੋਵੇਗਾ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">ਤੁਸੀਂ Signal ਸੰਦੇਸ਼ਾਂ ਅਤੇ ਕਾਲਾਂ ਲਈ ਰਜਿਸਟਰਡ ਨਹੀਂ ਹੋ, ਇਸ ਲਈ Signal ਸਮੂਹ ਅਸਮਰਥਿਤ ਹਨ ਕਿਰਪਾ ਕਰਕੇ ਸੈਟਿੰਗਾਂ  ਵਿਚ ਦੋਬਾਰਾ ਰਜਿਸਟਰ ਕਰੋ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">ਤੁਹਾਡੇ ਸਮੂਹ ਵਿੱਚ ਘੱਟੋ ਘੱਟ ਇੱਕ ਵਿਅਕਤੀ ਦੀ ਜ਼ਰੂਰਤ ਹੈ!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">ਤੁਹਾਡੇ ਸਮੂਹ ਦੇ ਮੈਂਬਰਾਂ ਵਿੱਚੋਂ ਇਕ ਅਜਿਹਾ ਨੰਬਰ ਹੈ ਜੋ ਸਹੀ ਢੰਗ ਨਾਲ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ |  ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਸੰਪਰਕ ਨੂੰ ਠੀਕ ਕਰੋ ਜਾਂ ਹਟਾਓ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">ਗਰੁੱਪ ਦਾ ਅਵਤਾਰ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">ਲਾਗੂ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$sਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ …</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$sਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ …</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਕਿਉਂਕਿ ਉਹ ਇੱਕ Signal ਉਪਭੋਗਤਾ ਨਹੀਂ ਹਨ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">ਗਰੁੱਪ ਵੇਰਵੇ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">ਤੁਸੀਂ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਗਰੁੱਪ ਵਿੱਚ ਹੋ.</string> -->
   <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ਕੀ ਇਸ ਸਮੂਹ ਦੇ ਨਾਲ ਤੁਸੀਂ ਆਪਣਾ ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਅਤੇ ਫੋਟੋ ਸਾਂਝੀ ਕਰਨਾ ਚਾਉਂਦੇ ਹੋ ?</string>
@@ -402,11 +385,27 @@
   <string name="ManageGroupActivity_add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ManageGroupActivity_view_all_members">ਸਾਰੇ ਮੈਂਬਰ ਦਿਖਾਓ</string>
   <string name="ManageGroupActivity_none">ਕੋਈ ਨਹੀਂ</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">ਗੁੰਮ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
+  <string name="ManageRecipientActivity_block">ਬਲੌਕ ਕਰੋ</string>
+  <string name="ManageRecipientActivity_unblock">ਅਨਬਲੌਕ ਕਰੋ</string>
+  <string name="ManageRecipientActivity_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
+  <string name="ManageRecipientActivity_mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
+  <string name="ManageRecipientActivity_custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
+  <string name="ManageRecipientActivity_until_s">%1$s ਤੱਕ</string>
+  <string name="ManageRecipientActivity_off">ਬੰਦ </string>
+  <string name="ManageRecipientActivity_on">ਚਲਾਓ </string>
+  <string name="ManageRecipientActivity_message_description">ਸੁਨੇਹਾ</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <string name="CustomNotificationsDialogFragment__messages">ਸੁਨੇਹੇ </string>
   <string name="CustomNotificationsDialogFragment__notification_sound">ਸੂਚਨਾ ਆਵਾਜ਼</string>
   <string name="CustomNotificationsDialogFragment__vibrate">ਵਾਈਬਰੇਟ</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">ਕਾਲ ਸੈਟਿੰਗਾਂ</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">ਰਿੰਗਟੋਨ</string>
+  <string name="CustomNotificationsDialogFragment__enabled">ਸਮਰੱਥ ਕੀਤਾ</string>
+  <string name="CustomNotificationsDialogFragment__disabled">ਅਸਮਰੱਥ ਕੀਤਾ</string>
+  <string name="CustomNotificationsDialogFragment__default">ਡਿਫੌਲਟ</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ਗਰੁੱਪ ਦਾ ਅਵਤਾਰ</string>
@@ -437,9 +436,6 @@
   <string name="Job_working_in_the_background">ਪਿਛੋਕੜ ਵਿੱਚ ਕੰਮ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ਜਿਆਦਾ ਜਾਣੋ</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">ਭੇਜ ਨਾ ਸਕਿਆ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">ਨਵਾਂ ਸੁਰੱਖਿਆ ਨੰਬਰ</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">ਸੁਨੇਹਾ ਲੱਭਣ ਵਿੱਚ ਅਸਮਰੱਥ</string>
   <string name="LongMessageActivity_message_from_s">%1$s ਵਲੋਂ ਸੁਨੇਹਾ</string>
@@ -1134,19 +1130,6 @@
   <string name="EditProfileFragment__group_name">ਸਮੂਹ ਦਾ ਨਾਂ</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ਸ਼ੇਅਰਡ ਮੀਡੀਆ</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">ਗੱਲਬਾਤ ਨੂੰ ਗੂੰਗਾ ਕਰੋ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">ਸਿਸਟਮ ਸੂਚਨਾਵਾਂ ਸੈਟਿੰਗਜ਼</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">ਸੂਚਨਾ ਆਵਾਜ਼</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">ਵਾਈਬਰੇਟ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">ਬਲਾਕ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">ਰੰਗ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">ਗੱਲਬਾਤ ਸੈਟਿੰਗਜ਼</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">ਗੋਪਨੀਯਤਾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">ਕਾਲ ਸੈਟਿੰਗਾਂ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">ਰਿੰਗਟੋਨ</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal ਕਾਲ </string>
   <!--registration_activity-->
@@ -1178,9 +1161,10 @@
   <string name="message_details_header__received">ਪ੍ਰਾਪਤ ਕੀਤਾ</string>
   <string name="message_details_header__disappears">ਗਾਇਬ</string>
   <string name="message_details_header__via">ਰਾਹੀਂ</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">ਪ੍ਰਤੀ:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">ਵਲੋਂ :</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">ਇਸਦੇ ਨਾਲ:</string> -->
+  <!--message_details_recipient_header-->
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">ਭੇਜ ਨਾ ਸਕਿਆ</string>
+  <string name="message_details_recipient__new_safety_number">ਨਵਾਂ ਸੁਰੱਖਿਆ ਨੰਬਰ</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">ਪਾਸਫਰੇਜ ਬਣਾਓ</string>
   <string name="AndroidManifest__select_contacts">ਸੰਪਰਕ ਚੁਣੋ</string>
@@ -1622,8 +1606,8 @@
   <string name="recipient_preferences__about">ਇਸ ਬਾਰੇ</string>
   <string name="Recipient_unknown">ਅਣਜਾਣ</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">ਸੁਨੇਹਾ</string>
-  <string name="RecipientBottomSheet_call">ਕਾਲ</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">ਸੁਨੇਹਾ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">ਕਾਲ</string> -->
   <string name="RecipientBottomSheet_block">ਬਲਾਕ</string>
   <string name="RecipientBottomSheet_unblock">ਅਨਬਲੌਕ</string>
   <string name="RecipientBottomSheet_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>

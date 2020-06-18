@@ -370,24 +370,6 @@
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-ek</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Matricák</string>
-  <!--GroupCreateActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_title">Új csoport</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_edit_title">Csoport szerkesztése</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_manage_title">Csoport kezelése</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_group_name_hint">Csoport neve</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_actionbar_mms_title">Új MMS csoport</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_dont_support_push">Olyan kontaktot is kiválasztottál, aki nem támogatja a Signal csoportokat, így ez a csoport MMS lesz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_not_registered_for_signal">Nem vagy regisztrálva Signal üzenetekre és hívásokra, így a Signal csoportok le vannak tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó menüpontban!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_no_members">A csoport létrehozásához legalább egy személyre szükség van!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_contacts_invalid_number">A csoportod egyik tagjának számát nem lehet megfelelően olvasni. Kérlek javítsd ki, vagy távolítsd el a kontaktot, majd próbáld újra!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_avatar_content_description">Csoport avatar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_menu_apply_button">Alkalmazás</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_creating_group">%1$s létrehozása…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_updating_group">%1$s frissítése…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nem lehet %1$s-t hozzáadni, mert nem Signal felhasználó.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">A csoport részletes adatainak betöltése…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Már a csoportban vagy.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_remove_member_description">Tag eltávolítása</string> -->
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Hozzáadod a tagot?</string>
   <string name="AddToGroupActivity_add_s_to_s">Hozzáadod \"%1$s\"-t a \"%2$s\" csoporthoz?</string>
@@ -473,6 +455,30 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Név és kép szerkesztése</string>
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Add meg, hogy ki adhat hozzá és hívhat meg új tagokat</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Add meg, hogy ki változtathatja meg a csoport nevét és képét</string>
+  <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_disappearing_messages">Eltűnő üzenetek</string>
+  <string name="ManageRecipientActivity_chat_color">Beszélgetés színe</string>
+  <string name="ManageRecipientActivity_block">Letiltás</string>
+  <string name="ManageRecipientActivity_unblock">Tiltás feloldása</string>
+  <string name="ManageRecipientActivity_view_safety_number">Biztonsági szám megjelenítése</string>
+  <string name="ManageRecipientActivity_mute_notifications">Értesítések némítása</string>
+  <string name="ManageRecipientActivity_custom_notifications">Egyedi értesítések</string>
+  <string name="ManageRecipientActivity_until_s">%1$s-ig</string>
+  <string name="ManageRecipientActivity_off">Ki</string>
+  <string name="ManageRecipientActivity_on">Be</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Hozzáadás egy csoporthoz</string>
+  <string name="ManageRecipientActivity_view_all_groups">Összes csoport megtekintése</string>
+  <string name="ManageRecipientActivity_see_all">Összes megtekintése</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Nincsenek közös csoportok</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d db közös csoport</item>
+    <item quantity="other">%d db közös csoport</item>
+  </plurals>
+  <string name="ManageRecipientActivity_edit_name_and_picture">Név és kép szerkesztése</string>
+  <string name="ManageRecipientActivity_message_description">Üzenet</string>
+  <string name="ManageRecipientActivity_voice_call_description">Hanghívás</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Titkosítatlan hanghívás</string>
+  <string name="ManageRecipientActivity_video_call_description">Videóhívás</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s meghívott 1 személyt</item>
     <item quantity="other">%1$s meghívott %2$d személyt</item>
@@ -483,6 +489,11 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Egyéni értesítések használata</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Értesítés hangja</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Rezgés</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Hívás beállításai</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Csengőhang</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Engedélyezve</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Letiltva</string>
+  <string name="CustomNotificationsDialogFragment__default">Alapértelmezett</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Biztosan vissza szeretnéd vonni a %1$s részére küldött meghívót?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -524,9 +535,6 @@
   <string name="Job_working_in_the_background">Feldolgozás a háttérben…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">További információ</string>
-  <!--MessageDetailsRecipient-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Nem sikerült elküldeni</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Új biztonsági szám</string> -->
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Az üzenet nem található</string>
   <string name="LongMessageActivity_message_from_s">Üzenet tőle: %1$s</string>
@@ -851,6 +859,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_more_information">További információ</string>
   <string name="RegistrationActivity_less_information">Kevesebb információ</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">A Signal-nak szüksége van a kontaktjaidhoz és médiádhoz való hozzáférésre a barátokkal való kapcsolódáshoz, üzenetváltáshoz és biztonságos hívások bonyolításához.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Túl sokszor próbálkoztál ennek a számnak a regisztrációjával. Kérlek próbáld újra később!</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nem lehet kapcsolódni szolgáltatáshoz. Kérlek ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Hogy könnyedén ellenőrizd a telefonszámod, a Signal automatikusan érzékeli az ellenőrző kódod, ha engedélyezed a Signal-nak, hogy megtekintse az SMS üzeneteket.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1375,19 +1384,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="EditProfileFragment__group_name">Csoport neve</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Megosztott médiafájlok</string>
-  <!--recipient_preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__mute_conversation">Beszélgetés némítása</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications">Egyedi értesítések</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__custom_notifications_settings">Rendszer értesítési beállításai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__notification_sound">Értesítés hangja</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__vibrate">Rezgés</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__block">Blokkolás</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__color">Szín</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__view_safety_number">Biztonsági szám megjelenítése</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__chat_settings">Csevegés beállításai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__privacy">Adatvédelem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Hívás beállításai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Csengőhang</string> -->
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <!--registration_activity-->
@@ -1419,9 +1415,16 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="message_details_header__received">Érkezett</string>
   <string name="message_details_header__disappears">Eltűnik</string>
   <string name="message_details_header__via">Csatorna</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__to">Címzett:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__from">Feladó:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="message_details_header__with">Vele:</string> -->
+  <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Folyamatban</string>
+  <string name="message_details_recipient_header__sent_to">Címzett</string>
+  <string name="message_details_recipient_header__sent_from">Feladó</string>
+  <string name="message_details_recipient_header__delivered_to">Kézbesítve</string>
+  <string name="message_details_recipient_header__read_by">Elolvasta</string>
+  <string name="message_details_recipient_header__not_sent">Nincs elküldve</string>
+  <!--message_Details_recipient-->
+  <string name="message_details_recipient__failed_to_send">Nem sikerült elküldeni</string>
+  <string name="message_details_recipient__new_safety_number">Új biztonsági szám</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Jelmondat létrehozása</string>
   <string name="AndroidManifest__select_contacts">Kontaktok kiválasztása</string>
@@ -1975,8 +1978,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="recipient_preferences__about">Névjegy</string>
   <string name="Recipient_unknown">Ismeretlen</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Üzenet</string>
-  <string name="RecipientBottomSheet_call">Hívás</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Üzenet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Hívás</string> -->
   <string name="RecipientBottomSheet_block">Letiltás</string>
   <string name="RecipientBottomSheet_unblock">Tiltás feloldása</string>
   <string name="RecipientBottomSheet_add_to_contacts">Hozzáadás a névjegyzékhez</string>
