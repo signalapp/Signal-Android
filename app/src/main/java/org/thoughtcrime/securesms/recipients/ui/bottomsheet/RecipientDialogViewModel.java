@@ -99,6 +99,14 @@ final class RecipientDialogViewModel extends ViewModel {
     recipientDialogRepository.getRecipient(recipient -> CommunicationActions.startVoiceCall(activity, recipient));
   }
 
+  void onInsecureCallClicked(@NonNull FragmentActivity activity) {
+    recipientDialogRepository.getRecipient(recipient -> CommunicationActions.startInsecureCall(activity, recipient));
+  }
+
+  void onSecureVideoCallClicked(@NonNull FragmentActivity activity) {
+    recipientDialogRepository.getRecipient(recipient -> CommunicationActions.startVideoCall(activity, recipient));
+  }
+
   void onBlockClicked(@NonNull FragmentActivity activity) {
     recipientDialogRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.block(context, recipient)));
   }

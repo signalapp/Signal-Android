@@ -63,25 +63,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rbs_username_number">
 
-        <Button
-            android:id="@+id/rbs_message_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_message"
-            app:drawableStartCompat="?attr/recipient_message_icon" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp">
 
-        <Button
-            android:id="@+id/rbs_secure_call_button"
-            style="@style/Widget.Signal.Button.TextButton.Drawable"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/RecipientBottomSheet_call"
-            app:drawableStartCompat="?attr/recipient_call_icon" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rbs_message_button"
+                style="@style/Widget.Signal.Button.Icon.Circular"
+                android:contentDescription="@string/RecipientBottomSheet_message_description"
+                app:backgroundTint="?recipient_contact_button_color"
+                app:icon="?recipient_message_circle_icon"
+                app:rippleColor="@color/core_ultramarine" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rbs_video_call_button"
+                style="@style/Widget.Signal.Button.Icon.Circular"
+                android:layout_marginStart="36dp"
+                android:contentDescription="@string/RecipientBottomSheet_video_call_description"
+                android:visibility="gone"
+                app:backgroundTint="?recipient_contact_button_color"
+                app:icon="?recipient_video_call_circle_icon"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rbs_secure_call_button"
+                style="@style/Widget.Signal.Button.Icon.Circular"
+                android:layout_marginStart="36dp"
+                android:contentDescription="@string/RecipientBottomSheet_voice_call_description"
+                android:visibility="gone"
+                app:backgroundTint="?recipient_contact_button_color"
+                app:icon="?recipient_call_circle_icon"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rbs_insecure_call_button"
+                style="@style/Widget.Signal.Button.Icon.Circular"
+                android:layout_marginStart="36dp"
+                android:contentDescription="@string/RecipientBottomSheet_insecure_voice_call_description"
+                android:visibility="gone"
+                app:backgroundTint="?recipient_contact_button_color"
+                app:icon="?recipient_insecure_call_circle_icon"
+                tools:visibility="visible" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/rbs_block_button"

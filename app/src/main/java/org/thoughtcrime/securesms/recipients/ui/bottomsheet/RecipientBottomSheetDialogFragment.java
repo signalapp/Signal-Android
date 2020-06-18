@@ -52,6 +52,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private TextView                 usernameNumber;
   private Button                   messageButton;
   private Button                   secureCallButton;
+  private Button                   insecureCallButton;
+  private Button                   secureVideoCallButton;
   private Button                   blockButton;
   private Button                   unblockButton;
   private Button                   addContactButton;
@@ -96,6 +98,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     usernameNumber         = view.findViewById(R.id.rbs_username_number);
     messageButton          = view.findViewById(R.id.rbs_message_button);
     secureCallButton       = view.findViewById(R.id.rbs_secure_call_button);
+    insecureCallButton     = view.findViewById(R.id.rbs_insecure_call_button);
+    secureVideoCallButton  = view.findViewById(R.id.rbs_video_call_button);
     blockButton            = view.findViewById(R.id.rbs_block_button);
     unblockButton          = view.findViewById(R.id.rbs_unblock_button);
     addContactButton       = view.findViewById(R.id.rbs_add_contact_button);
@@ -152,6 +156,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       unblockButton.setVisibility(recipient.isLocalNumber() || !blocked ? View.GONE : View.VISIBLE);
 
       secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
+      insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
+      secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
 
       if (recipient.isSystemContact() || recipient.isGroup() || recipient.isLocalNumber()) {
         addContactButton.setVisibility(View.GONE);
@@ -193,10 +199,9 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       viewModel.onMessageClicked(requireActivity());
     });
 
-    secureCallButton.setOnClickListener(view -> {
-      dismiss();
-      viewModel.onSecureCallClicked(requireActivity());
-    });
+    secureCallButton.setOnClickListener(view -> viewModel.onSecureCallClicked(requireActivity()));
+    insecureCallButton.setOnClickListener(view -> viewModel.onInsecureCallClicked(requireActivity()));
+    secureVideoCallButton.setOnClickListener(view -> viewModel.onSecureVideoCallClicked(requireActivity()));
 
     blockButton.setOnClickListener(view -> viewModel.onBlockClicked(requireActivity()));
     unblockButton.setOnClickListener(view -> viewModel.onUnblockClicked(requireActivity()));
