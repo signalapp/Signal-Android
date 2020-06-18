@@ -141,7 +141,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
 
       casted.getConversationListItem().bind(conversation.getThreadRecord(),
                                             glideRequests,
-                                            conversation.getLocale(),
+                                            Locale.getDefault(),
                                             typingSet,
                                             getBatchSelectionIds(),
                                             batchMode);

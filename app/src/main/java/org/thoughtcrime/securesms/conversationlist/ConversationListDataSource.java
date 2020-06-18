@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.util.paging.SizeFixResult;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.Executor;
 
 abstract class ConversationListDataSource extends PositionalDataSource<Conversation> {
@@ -60,14 +59,13 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     long start = System.currentTimeMillis();
 
     List<Conversation> conversations  = new ArrayList<>(params.requestedLoadSize);
-    Locale             locale         = Locale.getDefault();
     int                totalCount     = getTotalCount();
     int                effectiveCount = params.requestedStartPosition;
 
     try (ThreadDatabase.Reader reader = threadDatabase.readerFor(getCursor(params.requestedStartPosition, params.requestedLoadSize))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null && effectiveCount < totalCount && !isInvalid()) {
-        conversations.add(new Conversation(record, locale));
+        conversations.add(new Conversation(record));
         effectiveCount++;
       }
     }
@@ -86,12 +84,11 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     long start = System.currentTimeMillis();
 
     List<Conversation> conversations = new ArrayList<>(params.loadSize);
-    Locale             locale        = Locale.getDefault();
 
     try (ThreadDatabase.Reader reader = threadDatabase.readerFor(getCursor(params.startPosition, params.loadSize))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null && !isInvalid()) {
-        conversations.add(new Conversation(record, locale));
+        conversations.add(new Conversation(record));
       }
     }
 
