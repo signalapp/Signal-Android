@@ -317,7 +317,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">You can swipe to the left on any message to quickly reply</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Outgoing view-once media files are automatically removed after they are sent</string>
     <string name="ConversationFragment_you_already_viewed_this_message">You already viewed this message</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this conversation. If your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this conversation.\nIf your account has any linked devices, new notes will be synced.</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>

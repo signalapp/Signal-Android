@@ -178,7 +178,7 @@ public final class AvatarImageView extends AppCompatImageView {
           context.startActivity(ManageGroupActivity.newIntent(context, recipient.requireGroupId().requirePush()),
                                 ManageGroupActivity.createTransitionBundle(context, this));
         } else {
-          if (context instanceof FragmentActivity && !recipient.isLocalNumber()) {
+          if (context instanceof FragmentActivity) {
             RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
                                               .show(((FragmentActivity) context).getSupportFragmentManager(), "BOTTOM");
           } else {

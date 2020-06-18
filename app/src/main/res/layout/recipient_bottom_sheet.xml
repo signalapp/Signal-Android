@@ -53,6 +53,24 @@
         app:layout_constraintTop_toBottomOf="@+id/rbs_full_name"
         tools:text="\@spidergwen  +1 555-654-6657" />
 
+    <TextView
+        android:id="@+id/rbs_note_to_self_description"
+        style="@style/TextAppearance.Signal.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation"
+        android:textAlignment="center"
+        android:textColor="?attr/title_text_color_primary"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rbs_username_number"
+        tools:visibility="visible" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -61,7 +79,7 @@
         android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbs_username_number">
+        app:layout_constraintTop_toBottomOf="@+id/rbs_note_to_self_description">
 
         <LinearLayout
             android:layout_width="wrap_content"

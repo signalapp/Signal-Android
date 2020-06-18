@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -63,6 +64,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private Button                   removeAdminButton;
   private Button                   removeFromGroupButton;
   private ProgressBar              adminActionBusy;
+  private View                     noteToSelfDescription;
 
   public static BottomSheetDialogFragment create(@NonNull RecipientId recipientId,
                                                  @Nullable GroupId groupId)
@@ -109,6 +111,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     removeAdminButton      = view.findViewById(R.id.rbs_remove_group_admin_button);
     removeFromGroupButton  = view.findViewById(R.id.rbs_remove_from_group_button);
     adminActionBusy        = view.findViewById(R.id.rbs_admin_action_busy);
+    noteToSelfDescription  = view.findViewById(R.id.rbs_note_to_self_description);
 
     return view;
   }
@@ -133,6 +136,12 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         }
       });
       avatar.setAvatar(recipient);
+      if (recipient.isLocalNumber()) {
+        avatar.setOnClickListener(v -> {
+          dismiss();
+          viewModel.onMessageClicked(requireActivity());
+        });
+      }
 
       String name = recipient.isLocalNumber() ? requireContext().getString(R.string.note_to_self)
                                               : recipient.getDisplayName(requireContext());
@@ -151,10 +160,13 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         return true;
       });
 
+      noteToSelfDescription.setVisibility(recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
+
       boolean blocked = recipient.isBlocked();
       blockButton  .setVisibility(recipient.isLocalNumber() ||  blocked ? View.GONE : View.VISIBLE);
       unblockButton.setVisibility(recipient.isLocalNumber() || !blocked ? View.GONE : View.VISIBLE);
 
+      messageButton.setVisibility(!recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
       secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
       insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
       secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
