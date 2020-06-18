@@ -147,7 +147,11 @@ class MediaSendViewModel extends ViewModel {
         List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
 
         if (filteredMedia.size() != newMedia.size()) {
-          error.setValue(Error.ITEM_TOO_LARGE);
+          if (filteredMedia.isEmpty() && newMedia.size() == 1 && page == Page.UNKNOWN) {
+            error.setValue(Error.ONLY_ITEM_TOO_LARGE);
+          } else {
+            error.setValue(Error.ITEM_TOO_LARGE);
+          }
         }
 
         if (filteredMedia.size() > maxSelection) {
@@ -670,7 +674,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   enum Error {
-    ITEM_TOO_LARGE, TOO_MANY_ITEMS, NO_ITEMS
+    ITEM_TOO_LARGE, TOO_MANY_ITEMS, NO_ITEMS, ONLY_ITEM_TOO_LARGE
   }
 
   enum Event {
