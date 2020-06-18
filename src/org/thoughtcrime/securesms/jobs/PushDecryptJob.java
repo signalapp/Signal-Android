@@ -66,10 +66,13 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
+import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage;
 import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
+import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
@@ -127,7 +130,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
-import org.whispersystems.signalservice.loki.protocol.meta.LokiServiceMessage;
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
 import java.security.MessageDigest;
@@ -141,6 +144,8 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import network.loki.messenger.R;
+
+import static org.thoughtcrime.securesms.loki.utilities.RecipientUtilitiesKt.recipient;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 
@@ -274,22 +279,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-      // Loki - Handle friend request acceptance if needed
-      FriendRequestProtocol.handleFriendRequestAcceptanceIfNeeded(context, content.getSender(), content);
-
       // Loki - Handle pre key bundle message if needed
       SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content);
 
       // Loki - Handle session request if needed
-      SessionManagementProtocol.handleSessionRequestIfNeeded(context, content);
-
-      // Loki - Handle address message if needed
-      if (content.lokiServiceMessage.isPresent()) {
-        LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
-        if (lokiMessage.getAddressMessage() != null) {
-          // TODO: Loki - Handle address message
-        }
-      }
+      if (SessionManagementProtocol.handleSessionRequestIfNeeded(context, content)) { return; } // Don't process the message any further
 
       // Loki - Handle profile update if needed
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
@@ -304,8 +298,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (message.isUnlinkingRequest()) {
           MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
         } else {
-          // Loki - Don't process session restoration requests or session requests any further
-          if (message.isSessionRestorationRequest() || message.isSessionRequest()) { return; }
+          // Loki - Don't process session restoration requests any further
+          if (message.isSessionRestorationRequest()) { return; }
+
+          // Loki - Handle friend request acceptance if needed
+          FriendRequestProtocol.handleFriendRequestAcceptanceIfNeeded(context, content.getSender(), content);
 
           if (message.isEndSession()) {
             handleEndSessionMessage(content, smsMessageId);
@@ -315,8 +312,52 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             handleExpirationUpdate(content, message, smsMessageId);
           } else if (isMediaMessage) {
             handleMediaMessage(content, message, smsMessageId, Optional.absent());
+
+            // Loki - This is needed for compatibility with refactored desktop clients
+            if (!message.isGroupMessage()) {
+              Recipient recipient = recipient(context, content.getSender());
+              long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+              LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
+              LokiThreadFriendRequestStatus threadFriendRequestStatus = threadDB.getFriendRequestStatus(threadID);
+              if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.NONE || threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
+                threadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+              } else if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
+                threadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+                EphemeralMessage ephemeralMessage = EphemeralMessage.create(content.getSender());
+                ApplicationContext.getInstance(context).getJobManager().add(new PushEphemeralMessageSendJob(ephemeralMessage));
+                SyncMessagesProtocol.syncContact(context, Address.fromSerialized(content.getSender()));
+              }
+
+              // Loki - Handle friend request message if needed
+              FriendRequestProtocol.handleFriendRequestMessageIfNeeded(context, content.getSender(), content);
+            }
           } else if (message.getBody().isPresent()) {
             handleTextMessage(content, message, smsMessageId, Optional.absent());
+
+            // Loki - This is needed for compatibility with refactored desktop clients
+            if (!message.isGroupMessage()) {
+              Recipient recipient = recipient(context, content.getSender());
+              long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+              LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
+              LokiThreadFriendRequestStatus threadFriendRequestStatus = threadDB.getFriendRequestStatus(threadID);
+              if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.NONE || threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
+                threadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+              } else if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
+                threadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+                EphemeralMessage ephemeralMessage = EphemeralMessage.create(content.getSender());
+                ApplicationContext.getInstance(context).getJobManager().add(new PushEphemeralMessageSendJob(ephemeralMessage));
+                SyncMessagesProtocol.syncContact(context, Address.fromSerialized(content.getSender()));
+              }
+
+              // Loki - Handle friend request message if needed
+              FriendRequestProtocol.handleFriendRequestMessageIfNeeded(context, content.getSender(), content);
+            }
+          } else {
+            // Loki - This is needed for compatibility with refactored desktop clients
+            if (envelope.isFriendRequest()) {
+              EphemeralMessage ephemeralMessage = EphemeralMessage.create(content.getSender());
+              ApplicationContext.getInstance(context).getJobManager().add(new PushEphemeralMessageSendJob(ephemeralMessage));
+            }
           }
 
           if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
@@ -330,9 +371,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           if (content.isNeedsReceipt()) {
             handleNeedsDeliveryReceipt(content, message);
           }
-
-          // Loki - Handle friend request message if needed
-          FriendRequestProtocol.handleFriendRequestMessageIfNeeded(context, content.getSender(), content);
         }
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
