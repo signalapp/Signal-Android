@@ -55,6 +55,7 @@ public class ManageRecipientActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     super.onCreate(savedInstanceState, ready);
+    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     setContentView(R.layout.recipient_manage_activity);
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
