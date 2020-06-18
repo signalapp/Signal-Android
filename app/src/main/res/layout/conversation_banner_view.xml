@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/message_request_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
