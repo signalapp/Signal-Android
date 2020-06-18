@@ -30,14 +30,12 @@ import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
-import androidx.paging.PagedList;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
-import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 
@@ -78,9 +76,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   }
 
   @Override
-  protected void onSubmitList(@NonNull PagedList<Conversation> conversations) {
-    super.onSubmitList(conversations);
-
+  protected void onPostSubmitList() {
     list.setVisibility(View.VISIBLE);
     emptyState.setVisibility(View.GONE);
   }

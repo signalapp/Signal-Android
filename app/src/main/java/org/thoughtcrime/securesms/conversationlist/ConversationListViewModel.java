@@ -26,20 +26,21 @@ import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 
 class ConversationListViewModel extends ViewModel {
 
-  private final Application                       application;
-  private final MutableLiveData<Megaphone>        megaphone;
-  private final MutableLiveData<SearchResult>     searchResult;
-  private final LiveData<PagedList<Conversation>> conversationList;
-  private final MutableLiveData<Integer>          archivedCount;
-  private final SearchRepository                  searchRepository;
-  private final MegaphoneRepository               megaphoneRepository;
-  private final Debouncer                         debouncer;
-  private final ContentObserver                   observer;
-  private final Invalidator                       invalidator;
+  private final Application                   application;
+  private final MutableLiveData<Megaphone>    megaphone;
+  private final MutableLiveData<SearchResult> searchResult;
+  private final MutableLiveData<Integer>      archivedCount;
+  private final LiveData<ConversationList>    conversationList;
+  private final SearchRepository              searchRepository;
+  private final MegaphoneRepository           megaphoneRepository;
+  private final Debouncer                     debouncer;
+  private final ContentObserver               observer;
+  private final Invalidator                   invalidator;
 
   private String lastQuery;
 
@@ -72,15 +73,19 @@ class ConversationListViewModel extends ViewModel {
                                                                             .setEnablePlaceholders(true)
                                                                             .build();
 
-    this.conversationList = new LivePagedListBuilder<>(factory, config).setFetchExecutor(ConversationListDataSource.EXECUTOR)
-                                                                       .setInitialLoadKey(0)
-                                                                       .build();
+    LiveData<PagedList<Conversation>> conversationList = new LivePagedListBuilder<>(factory, config).setFetchExecutor(ConversationListDataSource.EXECUTOR)
+                                                                                                    .setInitialLoadKey(0)
+                                                                                                    .build();
 
-    if (!isArchived) {
+    if (isArchived) {
+      this.archivedCount.setValue(0);
+    } else {
       updateArchivedCount();
     }
 
     application.getContentResolver().registerContentObserver(DatabaseContentProviders.ConversationList.CONTENT_URI, true, observer);
+
+    this.conversationList = LiveDataUtil.combineLatest(conversationList, this.archivedCount, ConversationList::new);
   }
 
   @NonNull LiveData<SearchResult> getSearchResult() {
@@ -91,12 +96,8 @@ class ConversationListViewModel extends ViewModel {
     return megaphone;
   }
 
-  @NonNull LiveData<PagedList<Conversation>> getConversationList() {
+  @NonNull LiveData<ConversationList> getConversationList() {
     return conversationList;
-  }
-
-  @NonNull LiveData<Integer> getArchivedCount() {
-    return archivedCount;
   }
 
   void onVisible() {
@@ -157,6 +158,28 @@ class ConversationListViewModel extends ViewModel {
     public @NonNull<T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
       return modelClass.cast(new ConversationListViewModel(ApplicationDependencies.getApplication(), new SearchRepository(), isArchived));
+    }
+  }
+
+  final static class ConversationList {
+    private final PagedList<Conversation> conversations;
+    private final int                     archivedCount;
+
+    ConversationList(PagedList<Conversation> conversations, int archivedCount) {
+      this.conversations = conversations;
+      this.archivedCount = archivedCount;
+    }
+
+    PagedList<Conversation> getConversations() {
+      return conversations;
+    }
+
+    int getArchivedCount() {
+      return archivedCount;
+    }
+
+    boolean isEmpty() {
+      return conversations.isEmpty() && archivedCount == 0;
     }
   }
 }

@@ -58,7 +58,6 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.paging.PagedList;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -115,7 +114,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -509,7 +507,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     viewModel.getSearchResult().observe(this, this::onSearchResultChanged);
     viewModel.getMegaphone().observe(this, this::onMegaphoneChanged);
     viewModel.getConversationList().observe(this, this::onSubmitList);
-    viewModel.getArchivedCount().observe(this, defaultAdapter::updateArchived);
 
     ProcessLifecycleOwner.get().getLifecycle().addObserver(new DefaultLifecycleObserver() {
       @Override
@@ -756,8 +753,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
 
-  protected void onSubmitList(@NonNull PagedList<Conversation> pagedList) {
-    if (pagedList.size() == 0) {
+  private void onSubmitList(@NonNull ConversationListViewModel.ConversationList conversationList) {
+    if (conversationList.isEmpty()) {
       list.setVisibility(View.INVISIBLE);
       emptyState.setVisibility(View.VISIBLE);
       emptyImage.setImageResource(EMPTY_IMAGES[(int) (Math.random() * EMPTY_IMAGES.length)]);
@@ -770,7 +767,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       cameraFab.stopPulse();
     }
 
-    defaultAdapter.submitList(pagedList);
+    defaultAdapter.submitList(conversationList.getConversations());
+    defaultAdapter.updateArchived(conversationList.getArchivedCount());
+
+    onPostSubmitList();
+  }
+
+  protected void onPostSubmitList() {
   }
 
   @Override
