@@ -366,11 +366,13 @@ public class SmsDatabase extends MessagingDatabase {
 
     db.beginTransaction();
     try {
+      String query = ID + " = ? AND (" + EXPIRE_STARTED + " = 0 OR " + EXPIRE_STARTED + " > ?)";
+
       for (long id : ids) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(EXPIRE_STARTED, startedAtTimestamp);
 
-        db.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{String.valueOf(id)});
+        db.update(TABLE_NAME, contentValues, query, new String[]{String.valueOf(id), String.valueOf(startedAtTimestamp)});
 
         if (threadId < 0) {
           threadId = getThreadIdForMessage(id);
