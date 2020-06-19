@@ -44,7 +44,7 @@ public class ManageGroupActivity extends PassphraseRequiredActionBarActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     super.onCreate(savedInstanceState, ready);
-    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+    getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     setContentView(R.layout.group_manage_activity);
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
