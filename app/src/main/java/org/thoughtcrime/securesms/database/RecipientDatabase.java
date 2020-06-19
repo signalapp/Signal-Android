@@ -170,6 +170,10 @@ public class RecipientDatabase extends Database {
     public static VibrateState fromId(int id) {
       return values()[id];
     }
+
+    public static VibrateState fromBoolean(boolean enabled) {
+      return enabled ? ENABLED : DISABLED;
+    }
   }
 
   public enum RegisteredState {

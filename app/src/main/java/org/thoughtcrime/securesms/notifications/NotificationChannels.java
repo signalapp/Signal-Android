@@ -509,8 +509,8 @@ public class NotificationChannels {
     copy.setGroup(original.getGroup());
     copy.setSound(original.getSound(), original.getAudioAttributes());
     copy.setBypassDnd(original.canBypassDnd());
-    copy.enableVibration(original.shouldVibrate());
     copy.setVibrationPattern(original.getVibrationPattern());
+    copy.enableVibration(original.shouldVibrate());
     copy.setLockscreenVisibility(original.getLockscreenVisibility());
     copy.setShowBadge(original.canShowBadge());
     copy.setLightColor(original.getLightColor());

@@ -107,7 +107,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/custom_notifications_vibrate_row"
+        android:id="@+id/custom_notifications_message_vibrate_row"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="?selectableItemBackground"
@@ -121,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_sound_row">
 
         <TextView
-            android:id="@+id/custom_notifications_vibrate_label"
+            android:id="@+id/custom_notifications_message_vibrate_label"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -131,6 +131,17 @@
             android:text="@string/CustomNotificationsDialogFragment__vibrate"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Signal.Body2" />
+
+        <TextView
+            android:id="@+id/custom_notifications_message_vibrate_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:textColor="?attr/colorAccent"
+            android:visibility="gone"
+            tools:text="Default"
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/custom_notifications_vibrate_switch"
@@ -154,7 +165,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_notifications_vibrate_row"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_vibrate_row"
         tools:visibility="visible" />
 
     <LinearLayout
@@ -221,7 +232,7 @@
             android:textAppearance="@style/TextAppearance.Signal.Body2" />
 
         <TextView
-            android:id="@+id/custom_notifications_call_vibrate_selection"
+            android:id="@+id/custom_notifications_call_vibrate_selectior"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -11,80 +11,95 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public final class CustomNotificationsViewModel extends ViewModel {
 
   private final LiveData<Boolean>                        hasCustomNotifications;
-  private final LiveData<RecipientDatabase.VibrateState> isVibrateEnabled;
+  private final LiveData<RecipientDatabase.VibrateState> messageVibrateState;
   private final LiveData<Uri>                            notificationSound;
   private final CustomNotificationsRepository            repository;
-  private final MutableLiveData<Boolean>                 isInitialLoadComplete = new MutableLiveData<>();
+  private final MutableLiveData<Boolean>                 isInitialLoadComplete  = new MutableLiveData<>();
   private final LiveData<Boolean>                        showCallingOptions;
   private final LiveData<Uri>                            ringtone;
-  private final LiveData<RecipientDatabase.VibrateState> isCallingVibrateEnabled;
+  private final LiveData<RecipientDatabase.VibrateState> callingVibrateState;
+  private final LiveData<Boolean>                        messageVibrateToggle;
 
   private CustomNotificationsViewModel(@NonNull RecipientId recipientId, @NonNull CustomNotificationsRepository repository) {
     LiveData<Recipient> recipient = Recipient.live(recipientId).getLiveData();
 
-    this.repository              = repository;
-    this.hasCustomNotifications  = Transformations.map(recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
-    this.isVibrateEnabled        = Transformations.map(recipient, Recipient::getMessageVibrate);
-    this.notificationSound       = Transformations.map(recipient, Recipient::getMessageRingtone);
-    this.showCallingOptions      = Transformations.map(recipient, r -> !r.isGroup() && r.isRegistered());
-    this.ringtone                = Transformations.map(recipient, Recipient::getCallRingtone);
-    this.isCallingVibrateEnabled = Transformations.map(recipient, Recipient::getCallVibrate);
+    this.repository             = repository;
+    this.hasCustomNotifications = Transformations.map(recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
+    this.callingVibrateState    = Transformations.map(recipient, Recipient::getCallVibrate);
+    this.messageVibrateState    = Transformations.map(recipient, Recipient::getMessageVibrate);
+    this.notificationSound      = Transformations.map(recipient, Recipient::getMessageRingtone);
+    this.showCallingOptions     = Transformations.map(recipient, r -> !r.isGroup() && r.isRegistered());
+    this.ringtone               = Transformations.map(recipient, Recipient::getCallRingtone);
+    this.messageVibrateToggle   = Transformations.map(messageVibrateState, vibrateState -> {
+                                                                             switch (vibrateState) {
+                                                                               case DISABLED: return false;
+                                                                               case ENABLED : return true;
+                                                                               case DEFAULT : return TextSecurePreferences.isNotificationVibrateEnabled(ApplicationDependencies.getApplication());
+                                                                               default      : throw new AssertionError();
+                                                                             }
+                                                                           });
 
     repository.onLoad(() -> isInitialLoadComplete.postValue(true));
   }
 
-  public LiveData<Boolean> isInitialLoadComplete() {
+  LiveData<Boolean> isInitialLoadComplete() {
     return isInitialLoadComplete;
   }
 
-  public LiveData<Boolean> hasCustomNotifications() {
+  LiveData<Boolean> hasCustomNotifications() {
     return hasCustomNotifications;
   }
 
-  public LiveData<RecipientDatabase.VibrateState> getVibrateState() {
-    return isVibrateEnabled;
-  }
-
-  public LiveData<Uri> getNotificationSound() {
+  LiveData<Uri> getNotificationSound() {
     return notificationSound;
   }
 
-  public void setHasCustomNotifications(boolean hasCustomNotifications) {
+  LiveData<RecipientDatabase.VibrateState> getMessageVibrateState() {
+    return messageVibrateState;
+  }
+  
+  LiveData<Boolean> getMessageVibrateToggle() {
+    return messageVibrateToggle;
+  }
+
+  void setHasCustomNotifications(boolean hasCustomNotifications) {
     repository.setHasCustomNotifications(hasCustomNotifications);
   }
 
-  public void setMessageVibrate(@NonNull RecipientDatabase.VibrateState vibrateState) {
+  void setMessageVibrate(@NonNull RecipientDatabase.VibrateState vibrateState) {
     repository.setMessageVibrate(vibrateState);
   }
 
-  public void setMessageSound(@Nullable Uri sound) {
+  void setMessageSound(@Nullable Uri sound) {
     repository.setMessageSound(sound);
   }
 
-  public void setCallSound(@Nullable Uri sound) {
+  void setCallSound(@Nullable Uri sound) {
     repository.setCallSound(sound);
   }
 
-  public LiveData<Boolean> getShowCallingOptions() {
+  LiveData<Boolean> getShowCallingOptions() {
     return showCallingOptions;
   }
 
-  public LiveData<Uri> getRingtone() {
+  LiveData<Uri> getRingtone() {
     return ringtone;
   }
 
-  public LiveData<RecipientDatabase.VibrateState> getCallingVibrateState() {
-    return isCallingVibrateEnabled;
+  LiveData<RecipientDatabase.VibrateState> getCallingVibrateState() {
+    return callingVibrateState;
   }
 
-  public void setCallingVibrate(@NonNull RecipientDatabase.VibrateState vibrateState) {
+  void setCallingVibrate(@NonNull RecipientDatabase.VibrateState vibrateState) {
     repository.setCallingVibrate(vibrateState);
   }
 

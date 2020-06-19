@@ -22,6 +22,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.annimon.stream.function.Consumer;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -43,9 +45,10 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
   private View         soundRow;
   private View         soundLabel;
   private TextView     soundSelector;
-  private View         vibrateRow;
-  private View         vibrateLabel;
-  private SwitchCompat vibrateSwitch;
+  private View         messageVibrateRow;
+  private View         messageVibrateLabel;
+  private TextView     messageVibrateSelector;
+  private SwitchCompat messageVibrateSwitch;
   private View         callHeading;
   private View         ringtoneRow;
   private TextView     ringtoneSelector;
@@ -115,14 +118,15 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
     soundRow                  = view.findViewById(R.id.custom_notifications_sound_row);
     soundLabel                = view.findViewById(R.id.custom_notifications_sound_label);
     soundSelector             = view.findViewById(R.id.custom_notifications_sound_selection);
-    vibrateRow                = view.findViewById(R.id.custom_notifications_vibrate_row);
-    vibrateLabel              = view.findViewById(R.id.custom_notifications_vibrate_label);
-    vibrateSwitch             = view.findViewById(R.id.custom_notifications_vibrate_switch);
+    messageVibrateSwitch      = view.findViewById(R.id.custom_notifications_vibrate_switch);
+    messageVibrateRow         = view.findViewById(R.id.custom_notifications_message_vibrate_row);
+    messageVibrateLabel       = view.findViewById(R.id.custom_notifications_message_vibrate_label);
+    messageVibrateSelector    = view.findViewById(R.id.custom_notifications_message_vibrate_selector);
     callHeading               = view.findViewById(R.id.custom_notifications_call_settings_section_header);
     ringtoneRow               = view.findViewById(R.id.custom_notifications_ringtone_row);
     ringtoneSelector          = view.findViewById(R.id.custom_notifications_ringtone_selection);
     callVibrateRow            = view.findViewById(R.id.custom_notifications_call_vibrate_row);
-    callVibrateSelector       = view.findViewById(R.id.custom_notifications_call_vibrate_selection);
+    callVibrateSelector       = view.findViewById(R.id.custom_notifications_call_vibrate_selectior);
 
     Toolbar toolbar = view.findViewById(R.id.custom_notifications_toolbar);
 
@@ -134,46 +138,56 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
 
     viewModel.isInitialLoadComplete().observe(getViewLifecycleOwner(), customNotificationsSwitch::setEnabled);
 
-    viewModel.hasCustomNotifications().observe(getViewLifecycleOwner(), hasCustomNotifications -> {
-      if (customNotificationsSwitch.isChecked() != hasCustomNotifications) {
-        customNotificationsSwitch.setOnCheckedChangeListener(null);
-        customNotificationsSwitch.setChecked(hasCustomNotifications);
-      }
+    if (NotificationChannels.supported()) {
+      viewModel.hasCustomNotifications().observe(getViewLifecycleOwner(), hasCustomNotifications -> {
+        if (customNotificationsSwitch.isChecked() != hasCustomNotifications) {
+          customNotificationsSwitch.setOnCheckedChangeListener(null);
+          customNotificationsSwitch.setChecked(hasCustomNotifications);
+        }
 
-      customNotificationsSwitch.setOnCheckedChangeListener(onCustomNotificationsSwitchCheckChangedListener);
-      customNotificationsRow.setOnClickListener(v -> customNotificationsSwitch.toggle());
+        customNotificationsSwitch.setOnCheckedChangeListener(onCustomNotificationsSwitchCheckChangedListener);
+        customNotificationsRow.setOnClickListener(v -> customNotificationsSwitch.toggle());
 
-      soundRow.setEnabled(hasCustomNotifications);
-      soundLabel.setEnabled(hasCustomNotifications);
-      vibrateRow.setEnabled(hasCustomNotifications);
-      vibrateLabel.setEnabled(hasCustomNotifications);
-      soundSelector.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
-      vibrateSwitch.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
-    });
+        soundRow.setEnabled(hasCustomNotifications);
+        soundLabel.setEnabled(hasCustomNotifications);
+        messageVibrateRow.setEnabled(hasCustomNotifications);
+        messageVibrateLabel.setEnabled(hasCustomNotifications);
+        soundSelector.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
+        messageVibrateSwitch.setVisibility(hasCustomNotifications ? View.VISIBLE : View.GONE);
+      });
 
-    if (!NotificationChannels.supported()) {
-      customNotificationsSwitch.setVisibility(View.GONE);
-      view.findViewById(R.id.custom_notifications_enable_label).setVisibility(View.GONE);
+      messageVibrateSelector.setVisibility(View.GONE);
+      messageVibrateSwitch.setVisibility(View.VISIBLE);
+
+      messageVibrateRow.setOnClickListener(v -> messageVibrateSwitch.toggle());
+
+      CompoundButton.OnCheckedChangeListener onVibrateSwitchCheckChangedListener = (buttonView, isChecked) -> viewModel.setMessageVibrate(RecipientDatabase.VibrateState.fromBoolean(isChecked));
+
+      viewModel.getMessageVibrateToggle().observe(getViewLifecycleOwner(), vibrateEnabled -> {
+        if (messageVibrateSwitch.isChecked() != vibrateEnabled) {
+          messageVibrateSwitch.setOnCheckedChangeListener(null);
+          messageVibrateSwitch.setChecked(vibrateEnabled);
+        }
+
+        messageVibrateSwitch.setOnCheckedChangeListener(onVibrateSwitchCheckChangedListener);
+      });
+    } else {
+      customNotificationsRow.setVisibility(View.GONE);
+
+      messageVibrateSwitch.setVisibility(View.GONE);
+      messageVibrateSelector.setVisibility(View.VISIBLE);
+
+      soundRow.setEnabled(true);
+      soundLabel.setEnabled(true);
+      messageVibrateRow.setEnabled(true);
+      messageVibrateLabel.setEnabled(true);
+      soundSelector.setVisibility(View.VISIBLE);
+
+      viewModel.getMessageVibrateState().observe(getViewLifecycleOwner(), vibrateState -> presentVibrateState(vibrateState, this.messageVibrateRow, this.messageVibrateSelector, (w) -> viewModel.setMessageVibrate(w)));
     }
 
-    CompoundButton.OnCheckedChangeListener onVibrateSwitchCheckChangedListener = (buttonView, isChecked) -> {
-      viewModel.setMessageVibrate(isChecked ? RecipientDatabase.VibrateState.ENABLED : RecipientDatabase.VibrateState.DISABLED);
-    };
-
-    viewModel.getVibrateState().observe(getViewLifecycleOwner(), vibrateState -> {
-      boolean vibrateEnabled = vibrateState != RecipientDatabase.VibrateState.DISABLED;
-
-      if (vibrateSwitch.isChecked() != vibrateEnabled) {
-        vibrateSwitch.setOnCheckedChangeListener(null);
-        vibrateSwitch.setChecked(vibrateEnabled);
-      }
-
-      vibrateSwitch.setOnCheckedChangeListener(onVibrateSwitchCheckChangedListener);
-    });
-    vibrateRow.setOnClickListener(v -> vibrateSwitch.toggle());
-
     viewModel.getNotificationSound().observe(getViewLifecycleOwner(), sound -> {
-      soundSelector.setText(getRingtoneSummary(requireContext(), sound));
+      soundSelector.setText(getRingtoneSummary(requireContext(), sound, Settings.System.DEFAULT_NOTIFICATION_URI));
       soundSelector.setTag(sound);
       soundRow.setOnClickListener(v -> launchSoundSelector(sound, false));
     });
@@ -185,26 +199,32 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
     });
 
     viewModel.getRingtone().observe(getViewLifecycleOwner(), sound -> {
-      ringtoneSelector.setText(getRingtoneSummary(requireContext(), sound));
+      ringtoneSelector.setText(getRingtoneSummary(requireContext(), sound, Settings.System.DEFAULT_RINGTONE_URI));
       ringtoneSelector.setTag(sound);
       ringtoneRow.setOnClickListener(v -> launchSoundSelector(sound, true));
     });
 
-    viewModel.getCallingVibrateState().observe(getViewLifecycleOwner(), vibrateState -> {
-      String vibrateSummary = getVibrateSummary(requireContext(), vibrateState);
-      callVibrateSelector.setText(vibrateSummary);
-      callVibrateRow.setOnClickListener(v -> new AlertDialog.Builder(requireContext())
-                                                            .setTitle(R.string.CustomNotificationsDialogFragment__vibrate)
-                                                            .setSingleChoiceItems(R.array.recipient_vibrate_entries, vibrateState.ordinal(), ((dialog, which) -> {
-                                                               viewModel.setCallingVibrate(RecipientDatabase.VibrateState.fromId(which));
-                                                               dialog.dismiss();
-                                                            })).setNegativeButton(android.R.string.cancel, null)
-                                                            .show());
-    });
+    viewModel.getCallingVibrateState().observe(getViewLifecycleOwner(), vibrateState -> presentVibrateState(vibrateState, this.callVibrateRow, this.callVibrateSelector, (w) -> viewModel.setCallingVibrate(w)));
   }
 
-  private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone) {
-    if (ringtone == null) {
+  private void presentVibrateState(@NonNull RecipientDatabase.VibrateState vibrateState,
+                                   @NonNull View vibrateRow,
+                                   @NonNull TextView vibrateSelector,
+                                   @NonNull Consumer<RecipientDatabase.VibrateState> onSelect)
+  {
+    vibrateSelector.setText(getVibrateSummary(requireContext(), vibrateState));
+    vibrateRow.setOnClickListener(v -> new AlertDialog.Builder(requireContext())
+                                                      .setTitle(R.string.CustomNotificationsDialogFragment__vibrate)
+                                                      .setSingleChoiceItems(R.array.recipient_vibrate_entries, vibrateState.ordinal(), ((dialog, which) -> {
+                                                         onSelect.accept(RecipientDatabase.VibrateState.fromId(which));
+                                                         dialog.dismiss();
+                                                      }))
+                                                      .setNegativeButton(android.R.string.cancel, null)
+                                                      .show());
+  }
+
+  private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone, @Nullable Uri defaultNotificationUri) {
+    if (ringtone == null || ringtone.equals(defaultNotificationUri)) {
       return context.getString(R.string.CustomNotificationsDialogFragment__default);
     } else if (ringtone.toString().isEmpty()) {
       return context.getString(R.string.preferences__silent);
