@@ -278,7 +278,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Μπορείς να σύρεις οποιοδήποτε μήνυμα προς τα αριστερά για γρήγορη απάντηση</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Τα εξερχόμενα πολυμέσα μιας μόνο προβολής αφαιρούνται αυτόματα αφού αποσταλθούν</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Έχεις ήδη δει αυτό το μήνυμα</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Μπορείς να προσθέσεις σημειώσεις για δική σου χρήση σε αυτήν τη συνομιλία. Εάν ο λογαριασμός σου είναι συνδεμένος με άλλες συσκευές, οι νέες σημειώσεις θα συγχρονίζονται.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στη συσκευή σου.</string>
   <!--ConversationListFragment-->
@@ -1971,8 +1970,6 @@
   <string name="recipient_preferences__about">Πληροφορίες</string>
   <string name="Recipient_unknown">Άγνωστο</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Μήνυμα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Κλήση</string> -->
   <string name="RecipientBottomSheet_block">Φραγή</string>
   <string name="RecipientBottomSheet_unblock">Κατάργηση φραγής</string>
   <string name="RecipientBottomSheet_add_to_contacts">Προσθήκη στις επαφές</string>
@@ -1982,6 +1979,10 @@
   <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή/τρια ομάδας</string>
   <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή/τριας</string>
   <string name="RecipientBottomSheet_remove_from_group">Αφαίρεση απ\' την ομάδα</string>
+  <string name="RecipientBottomSheet_message_description">Μήνυμα</string>
+  <string name="RecipientBottomSheet_voice_call_description">Βιντεοκλήση</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Μη ασφαλής κλήση φωνής</string>
+  <string name="RecipientBottomSheet_video_call_description">Βιντεοκλήση</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Αφαίρεση των δικαιωμάτων διαχείρισης της ομάδας από τον/την %1$s;</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Ο/Η %1$s θα μπορεί να επεξεργάζεται αυτή την ομάδα και τα μέλη της.</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Αφαίρεση του/της %1$s από \"%2$s\";</string>

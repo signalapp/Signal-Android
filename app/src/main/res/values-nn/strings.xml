@@ -278,7 +278,8 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan sveipa til venstre på ei melding for å svara raskt</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Utgåande éi-visnings-mediefiler blir automatisk fjerna etter dei er sende.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Du har allereie sett denne meldinga</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan legga til notat til deg sjølv i denne samtalen. Viss kontoen din har tilkopla einingar, så blir dei nye notata synkronisert.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan legga til notat til deg sjølv i denne samtalen.
+Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne eininga har ingen nettlesar installert.</string>
   <!--ConversationListFragment-->
@@ -456,6 +457,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Vel kven som kan endra gruppenamnet og bildet</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Forsvinnande meldingar</string>
+  <string name="ManageRecipientActivity_chat_color">Samtalefarge</string>
   <string name="ManageRecipientActivity_block">Blokker</string>
   <string name="ManageRecipientActivity_unblock">Fjern blokkering</string>
   <string name="ManageRecipientActivity_view_safety_number">Vis tryggingsnummer</string>
@@ -465,9 +467,18 @@
   <string name="ManageRecipientActivity_off">Av</string>
   <string name="ManageRecipientActivity_on">På</string>
   <string name="ManageRecipientActivity_add_to_a_group">Legg til i ei gruppe</string>
+  <string name="ManageRecipientActivity_view_all_groups">Vis alle grupper</string>
   <string name="ManageRecipientActivity_see_all">Vis alle</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Inga grupper felles</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d gruppe felles</item>
+    <item quantity="other">%d grupper felles</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Endra namn og bilde</string>
   <string name="ManageRecipientActivity_message_description">Melding</string>
+  <string name="ManageRecipientActivity_voice_call_description">Lydsamtale</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Usikra lydsamtale</string>
+  <string name="ManageRecipientActivity_video_call_description">Videosamtale</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s inviterte person</item>
     <item quantity="other">%1$s inviterte %2$d personar</item>
@@ -847,6 +858,7 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_more_information">Meir informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine og media for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Du har prøvd for mange gongar å registrera dette nummeret. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal kan automatisk oppdaga stadfestingskoden for å enkelt stadfesta telefonnummeret ditt, viss du gir Signal tilgang til å lesa SMS-meldingar.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1403,6 +1415,12 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="message_details_header__disappears">Forsvinn</string>
   <string name="message_details_header__via">Via</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">På vent</string>
+  <string name="message_details_recipient_header__sent_to">Sendt</string>
+  <string name="message_details_recipient_header__sent_from">Sendt frå</string>
+  <string name="message_details_recipient_header__delivered_to">Levert til</string>
+  <string name="message_details_recipient_header__read_by">Lesen av</string>
+  <string name="message_details_recipient_header__not_sent">Ikkje sendt</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Sending mislukkast</string>
   <string name="message_details_recipient__new_safety_number">Nytt tryggingsnummer</string>
@@ -1961,8 +1979,6 @@ Du er à jour!</string>
   <string name="recipient_preferences__about">Om</string>
   <string name="Recipient_unknown">Ukjend</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Melding</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Ring</string> -->
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokkering</string>
   <string name="RecipientBottomSheet_add_to_contacts">Legg til i kontaktar</string>
@@ -1972,6 +1988,10 @@ Du er à jour!</string>
   <string name="RecipientBottomSheet_make_group_admin">Gjer til gruppeadministrator</string>
   <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Fjern frå gruppa</string>
+  <string name="RecipientBottomSheet_message_description">Melding</string>
+  <string name="RecipientBottomSheet_voice_call_description">Lydsamtale</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Usikra lydsamtale</string>
+  <string name="RecipientBottomSheet_video_call_description">Videosamtale</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjern %1$s som gruppeadministrator?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s vil kunna endra denne gruppa og medlemmane i ho</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Fjern %1$s frå «%2$s»?</string>

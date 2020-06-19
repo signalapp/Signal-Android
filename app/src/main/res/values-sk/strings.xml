@@ -293,7 +293,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pre rýchlu odpoveď môžete na akejkoľvek správe prejsť prstom doľava</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchádzajúce mediálne súbory na jedno zobrazenie sa po odoslaní automaticky odstránia</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Túto správu ste si už zobrazili</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">V tejto konverzácii si môžete pridávať poznámky. Ak máte vo vašom účte nejaké pripojené zariadenia, nové poznámky sa budú synchronizovať.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte nainštalovaný žiadny prehliadač.</string>
   <!--ConversationListFragment-->
@@ -1966,12 +1965,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="recipient_preferences__about">Informácie</string>
   <string name="Recipient_unknown">Neznáme</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Správa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Zavolať</string> -->
   <string name="RecipientBottomSheet_block">Blokovať</string>
   <string name="RecipientBottomSheet_unblock">Odblokovať</string>
   <string name="RecipientBottomSheet_add_to_contacts">Pridať medzi kontakty</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobraziť bezpečnostné číslo</string>
+  <string name="RecipientBottomSheet_message_description">Správa</string>
   <string name="RecipientBottomSheet_remove">Odstrániť</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Skopírované do schránky</string>
   <string name="GroupRecipientListItem_admin">Admin</string>

@@ -264,7 +264,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ไฟล์สื่อที่ดูได้ครั้งเดียวที่กำลังถูกส่งออกไปจะถูกลบอัตโนมัติหลังจากส่งไปแล้ว</string>
   <string name="ConversationFragment_you_already_viewed_this_message">คุณเห็นข้อความนี้แล้ว</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกสำหรับตัวคุณเองในการสนทนานี้ ถ้าบัญชีของคุณมีอุปกรณ์ที่เชื่อมโยงอยู่ บันทึกใหม่ทุกอันจะถูกปรับประสานถึงกัน</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ไม่มีเบราว์เซอร์ติดตั้งอยู่ในอุปกรณ์ของคุณ</string>
   <!--ConversationListFragment-->
@@ -1848,8 +1847,6 @@
   <string name="recipient_preferences__about">เกี่ยวกับ</string>
   <string name="Recipient_unknown">ไม่ทราบ</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">ข้อความ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">โทร</string> -->
   <string name="RecipientBottomSheet_block">ปิดกั้น</string>
   <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>
   <string name="RecipientBottomSheet_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
@@ -1857,6 +1854,7 @@
   <string name="RecipientBottomSheet_make_group_admin">ตั้งเป็นผู้ดูแลกลุ่ม</string>
   <string name="RecipientBottomSheet_remove_as_admin">ลบจากการเป็นผู้ดูแล</string>
   <string name="RecipientBottomSheet_remove_from_group">ลบจากลุ่ม</string>
+  <string name="RecipientBottomSheet_message_description">ข้อความ</string>
   <string name="RecipientBottomSheet_remove_s_from_s">ลบ %1$s จาก \"%2$s\" หรือไม่?</string>
   <string name="RecipientBottomSheet_remove">เอาออก</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>

@@ -267,7 +267,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">អ្នកអាចអូសទៅឆ្វេងលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ឯកសារមេឌាមើល-ម្តង ដែលផ្ញើចេញ ត្រូវលុបចោលដោយស្វ័យប្រវត្តិបន្ទាប់ពីបានផ្ញើចេញ</string>
   <string name="ConversationFragment_you_already_viewed_this_message">អ្នកបានបើកមើលសារនេះ</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">អ្នកនៅតែអាចបន្ថែមកំណត់ត្រាសម្រាប់ខ្លួនអ្នកក្នុងការសន្ទនានេះ។ បើគណនីរបស់អ្នក មានឧបករណ៍ច្រើនបានតភ្ជាប់ កំណត់ត្រាថ្មីនឹងត្រូវធ្វើសមកាលកម្មផងដែរ។</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <!--ConversationListFragment-->
@@ -1884,8 +1883,6 @@
   <string name="recipient_preferences__about">អំពី</string>
   <string name="Recipient_unknown">មិនស្គាល់</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">សារ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">ហៅចេញ</string> -->
   <string name="RecipientBottomSheet_block">រារាំង</string>
   <string name="RecipientBottomSheet_unblock">បើកវិញ</string>
   <string name="RecipientBottomSheet_add_to_contacts">បន្ថែមទៅបញ្ជីទំនាក់ទំនង</string>
@@ -1893,6 +1890,7 @@
   <string name="RecipientBottomSheet_make_group_admin">កំណត់អ្នកគ្រប់គ្រងក្រុម</string>
   <string name="RecipientBottomSheet_remove_as_admin">លុបអ្នកគ្រប់គ្រង</string>
   <string name="RecipientBottomSheet_remove_from_group">លុបចេញពីក្រុម</string>
+  <string name="RecipientBottomSheet_message_description">សារ</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">លុប %1$s ពីអ្នកគ្រប់គ្រងក្រុម?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s នឹងមិនអាចកែប្រែក្រុមនេះ និងសមាជិកទេ</string>
   <string name="RecipientBottomSheet_remove_s_from_s">លុប %1$s ពី \"%2$s\"?</string>

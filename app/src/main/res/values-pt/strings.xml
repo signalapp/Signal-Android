@@ -278,7 +278,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pode deslizar qualquer mensagem para a esquerda para responder rapidamente</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os ficheiros multimédia de visualização única são removidos automaticamente depois de terem sido enviados</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Já viu esta mensagem</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pode adicionar notas para si próprio(a) com esta conversa. Se a sua conta tiver dispositivos ligados, as novas notas serão sincronizadas.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -1954,8 +1953,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="recipient_preferences__about">Sobre</string>
   <string name="Recipient_unknown">Desconhecido</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Mensagem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Telefonar</string> -->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contactos</string>
@@ -1965,6 +1962,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RecipientBottomSheet_make_group_admin">Tornar administrador de grupo</string>
   <string name="RecipientBottomSheet_remove_as_admin">Remover como administrador</string>
   <string name="RecipientBottomSheet_remove_from_group">Remover do grupo</string>
+  <string name="RecipientBottomSheet_message_description">Mensagem</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Remover %1$s de administrador de grupo?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s será capaz de editar este grupo e os seus membros</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Remover %1$s de \"%2$s\"?</string>

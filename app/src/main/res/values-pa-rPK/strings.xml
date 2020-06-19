@@ -258,7 +258,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">فوری جواب دین لئی تسیں کسے وی سنیہے تے کھبے پاسے سوائپ کرسکدے او</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">باہر جان آلیاں اک واری ویکھیاں جان آلیاں میڈیا فائلاں گھلن توں بعد آپوں آپ مٹ جاندیاں نیں</string>
   <string name="ConversationFragment_you_already_viewed_this_message">تسیں ایہہ سنیہا پہلاں ای ویکھ چکے او</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">تساں ایس گل وات اچ اپنے لئے نوٹس شامل کر سکدے او۔ جے تساں دے اکاؤنٹ اچ کوئی لنک کیتے آلے ہون، تے نویں نوٹس نوں ہم آہنگ کیا جاوے گا۔</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">تہاڈے آلے تے کوئی براؤزر نصب نئیں اے۔</string>
   <!--ConversationListFragment-->
@@ -1694,12 +1693,11 @@
   <string name="recipient_preferences__about">متعلق</string>
   <string name="Recipient_unknown">نامعلوم</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message"> سنیہا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">کال کرو</string> -->
   <string name="RecipientBottomSheet_block">بلاک کرو</string>
   <string name="RecipientBottomSheet_unblock">ان بلاک کرو</string>
   <string name="RecipientBottomSheet_add_to_contacts">رابطیاں اچ شامل کرو</string>
   <string name="RecipientBottomSheet_view_safety_number">سیفٹی نمبر ویکھو</string>
+  <string name="RecipientBottomSheet_message_description"> سنیہا</string>
   <string name="RecipientBottomSheet_remove">ہٹاؤ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">کلپ بورڈ تے کاپی کیتا</string>
   <string name="GroupRecipientListItem_admin">ایڈمن</string>

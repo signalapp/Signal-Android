@@ -276,7 +276,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sola kaydırabilirsiniz</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Gönderilen tek görümlük içerik dosyaları gönderim tamamlandıktan sonra kendiliğinden silinir</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Bu iletiyi zaten görüntülediniz</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bu konuşmada kendinize notlar ekleyebilirsiniz. Eğer hesabınıza bağlı cihaz varsa, yeni notlar eşzamanlanacaktır.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -1895,8 +1894,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="recipient_preferences__about">Hakkında</string>
   <string name="Recipient_unknown">Bilinmeyen</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">İleti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Ara</string> -->
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>
   <string name="RecipientBottomSheet_add_to_contacts">Kişilere ekle</string>
@@ -1904,6 +1901,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_make_group_admin">Grup yöneticisi yap</string>
   <string name="RecipientBottomSheet_remove_as_admin">Grup yöneticiliğinden çıkart</string>
   <string name="RecipientBottomSheet_remove_from_group">Gruptan çıkart</string>
+  <string name="RecipientBottomSheet_message_description">İleti</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s grup yöneticiliğinden çıkartılsın mı?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s bu grubu ve üyelerini düzenleyebilecek.</string>
   <string name="RecipientBottomSheet_remove">Kaldır</string>

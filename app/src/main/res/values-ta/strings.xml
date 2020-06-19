@@ -264,7 +264,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
   <string name="ConversationFragment_you_already_viewed_this_message">நீங்கள் ஏற்கனவே இந்த செய்தியைப் பார்த்தீர்கள்</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">நீங்கள் இந்த உரையாடலில் உங்களுக்காக குறிப்புகளைச் சேர்க்கலாம். என்றால் உங்கள் கணக்கு ஏதேனும் உள்ளது இணைக்கப்பட்டுள்ளது சாதனங்கள், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">உங்கள் சாதனத்தில் எந்த உலாவியும் நிறுவப்படவில்லை.</string>
   <!--ConversationListFragment-->
@@ -1682,12 +1681,11 @@
   <string name="recipient_preferences__about">அறிமுகம்</string>
   <string name="Recipient_unknown">தெரியாத</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">செய்தி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">அழைப்பு</string> -->
   <string name="RecipientBottomSheet_block">தடு </string>
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>
   <string name="RecipientBottomSheet_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
   <string name="RecipientBottomSheet_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
+  <string name="RecipientBottomSheet_message_description">செய்தி</string>
   <string name="RecipientBottomSheet_remove">நீக்கு</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="GroupRecipientListItem_admin">நிர்வாகம்</string>

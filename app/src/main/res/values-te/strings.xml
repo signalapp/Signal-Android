@@ -277,7 +277,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో ఎడమ వైపుకు స్వైప్ చేయవచ్చు</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">అవుట్గోయింగ్  ఒకసారి-దృశ్యం  మీడియా ఫైల్స్ పంపిన తర్వాత స్వయంచాలకంగా తొలగించబడతాయి</string>
   <string name="ConversationFragment_you_already_viewed_this_message">మీరు ఇప్పటికే ఈ సందేశాన్ని చూశారు</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ఈ సంభాషణలో మీరు మీ కోసం గమనికలను జోడించవచ్చు. మీ ఖాతాకు ఏదైనా లింక్ చేసిన పరికరాలు ఉంటే, క్రొత్త గమనికలు సమకాలీకరించబడతాయి.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">మీ పరికరంలో ఎటువంటి బ్రౌజర్ ఇన్స్టాల్ అయి లేదు</string>
   <!--ConversationListFragment-->
@@ -1767,12 +1766,11 @@
   <string name="recipient_preferences__about">గురించి</string>
   <string name="Recipient_unknown">తెలియని</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">సందేశం</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">కాల్</string> -->
   <string name="RecipientBottomSheet_block">నిరోధించు</string>
   <string name="RecipientBottomSheet_unblock">అనుమతించు</string>
   <string name="RecipientBottomSheet_add_to_contacts">పరిచయాలకు జోడించండి</string>
   <string name="RecipientBottomSheet_view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string>
+  <string name="RecipientBottomSheet_message_description">సందేశం</string>
   <string name="RecipientBottomSheet_remove">తొలగించు</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
   <string name="GroupRecipientListItem_admin">అడ్మిన్</string>

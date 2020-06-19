@@ -298,7 +298,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Вы можете провести влево по любому сообщению, чтобы быстро ответить</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Исходящие одноразовые медиа-файлы автоматически удаляются после того, как они были отправлены</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Вы уже просмотрели это сообщение</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Вы можете добавлять заметки для себя в этом разговоре. Если у вашей учётной записи есть привязанные устройства, то новые заметки будут синхронизированы.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Вы можете добавлять заметки для себя в этом разговоре.\nЕсли у вашей учётной записи есть привязанные устройства, то новые заметки будут синхронизированы.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->
@@ -2078,8 +2078,6 @@
   <string name="recipient_preferences__about">О собеседнике</string>
   <string name="Recipient_unknown">Неизвестный</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Написать сообщение</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Позвонить</string> -->
   <string name="RecipientBottomSheet_block">Заблокировать</string>
   <string name="RecipientBottomSheet_unblock">Разблокировать</string>
   <string name="RecipientBottomSheet_add_to_contacts">Добавить в контакты</string>
@@ -2089,6 +2087,10 @@
   <string name="RecipientBottomSheet_make_group_admin">Сделать администратором группы</string>
   <string name="RecipientBottomSheet_remove_as_admin">Удалить как администратора</string>
   <string name="RecipientBottomSheet_remove_from_group">Удалить из группы</string>
+  <string name="RecipientBottomSheet_message_description">Написать сообщение</string>
+  <string name="RecipientBottomSheet_voice_call_description">Начать аудиозвонок</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Начать незащищённый аудиозвонок</string>
+  <string name="RecipientBottomSheet_video_call_description">Начать видеозвонок</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Удалить %1$s как администратора группы?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s сможет редактировать эту группу и её участников</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Удалить %1$s из «%2$s»?</string>

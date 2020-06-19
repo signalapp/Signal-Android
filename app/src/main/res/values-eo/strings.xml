@@ -278,7 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vi povas ŝovumi maldekstren iun mesaĝon por rapide respondi</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Nurunufoje videblaj elirantaj aŭdvidaĵoj estas aŭtomate forigitaj post ilia sendado</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Vi jam vidis tiun mesaĝon</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vi povas aldoni notojn al vi mem en tiu interparolo. Se via konto estas ligita al aliaj aparatoj, novaj notoj sinkroniĝos.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vi povas aldoni notojn al vi mem en tiu interparolo.\nSe via konto estas ligita al aliaj aparatoj, novaj notoj sinkroniĝos.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->
@@ -456,6 +456,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Elekti tiun, kiu povas ŝanĝi la nomon kaj la foton de la grupo</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
+  <string name="ManageRecipientActivity_chat_color">Koloro de interparolo</string>
   <string name="ManageRecipientActivity_block">Bloki</string>
   <string name="ManageRecipientActivity_unblock">Malbloki</string>
   <string name="ManageRecipientActivity_view_safety_number">Montri sekurigan numeron</string>
@@ -465,9 +466,18 @@
   <string name="ManageRecipientActivity_off">Malŝaltita</string>
   <string name="ManageRecipientActivity_on">Ŝaltita</string>
   <string name="ManageRecipientActivity_add_to_a_group">Aldoni al grupo</string>
+  <string name="ManageRecipientActivity_view_all_groups">Vidi ĉiujn grupojn</string>
   <string name="ManageRecipientActivity_see_all">Vidu ĉiujn</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Neniu komuna grupo</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d komuna grupo</item>
+    <item quantity="other">%d komunaj grupoj</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Modifi nomon kaj bildon</string>
   <string name="ManageRecipientActivity_message_description">Mesaĝo</string>
+  <string name="ManageRecipientActivity_voice_call_description">Voĉ-alvoko</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Nesekura voĉ-alvoko</string>
+  <string name="ManageRecipientActivity_video_call_description">Vid-alvoko</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s invitis 1 homon</item>
     <item quantity="other">%1$s invitis %2$d homojn</item>
@@ -847,6 +857,7 @@
   <string name="RegistrationActivity_more_information">Plia informo</string>
   <string name="RegistrationActivity_less_information">Malplia informo</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj fari sekurajn alvokojn.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Vi tro faris neĝustajn provojn por registri tiun numeron. Reprovu poste.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Konekto al servo ne eblas. Bv. kontroli retkonekton, kaj provi denove.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Por facile kontroli vian telefonnumeron, Signal povas aŭtomate depreni la validigan kodon, se vi permesas al Signal aliri al viaj SMS-mesaĝoj.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1401,6 +1412,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="message_details_header__disappears">Malaperos je</string>
   <string name="message_details_header__via">Per</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Pritraktota</string>
+  <string name="message_details_recipient_header__sent_to">Sendita al</string>
+  <string name="message_details_recipient_header__sent_from">Sendita el</string>
+  <string name="message_details_recipient_header__delivered_to">Liverita al</string>
+  <string name="message_details_recipient_header__read_by">Legita de</string>
+  <string name="message_details_recipient_header__not_sent">Ne sendita</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Malsukcesa sendo</string>
   <string name="message_details_recipient__new_safety_number">Nova sekuriga numero</string>
@@ -1931,7 +1948,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Neĝusta PIN de bloko de registriĝo</string>
   <string name="RegistrationActivity_too_many_attempts">Tro da provoj</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vi tro faris neĝustajn provojn kun via persona identiga numero de bloko de registriĝo. Bv. reprovi post unu tago.</string>
-  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vi tro faris neĝustajn provojn. Reprovi poste.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vi tro faris neĝustajn provojn. Reprovu poste.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Eraro dum konekto al servo</string>
   <string name="RegistrationActivity_oh_no">Ho, ne!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registriĝo de tiu ĉi telefonnumero eblos, sen via PIN de bloko de registriĝo, 7 tagojn post la lasta Signal-a aktiveco de tiu ĉi telefonnumero. Restas %d tagoj.</string>
@@ -1957,8 +1974,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="recipient_preferences__about">Pri</string>
   <string name="Recipient_unknown">Nekonata</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Mesaĝo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Alvoko</string> -->
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>
   <string name="RecipientBottomSheet_add_to_contacts">Aldoni al kontaktoj</string>
@@ -1968,6 +1983,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_make_group_admin">Estigi grupadministranton</string>
   <string name="RecipientBottomSheet_remove_as_admin">Forigi kiel administranton</string>
   <string name="RecipientBottomSheet_remove_from_group">Forigi el la grupo</string>
+  <string name="RecipientBottomSheet_message_description">Mesaĝo</string>
+  <string name="RecipientBottomSheet_voice_call_description">Voĉ-alvoko</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Nesekura voĉ-alvoko</string>
+  <string name="RecipientBottomSheet_video_call_description">Vid-alvoko</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Forigi %1$s kiel grupadministranton?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s povos modifi tiun grupon kaj ties anojn</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Ĉu forigi %1$s el „%2$s“?</string>

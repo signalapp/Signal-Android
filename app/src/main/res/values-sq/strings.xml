@@ -278,7 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Për t’u përgjigjur shpejt e shpejt, mund të fërkoni ekranin për majtas</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Kartela media për parje vetëm një herë, që duhen dërguar, hiqen automatikisht pasi të jenë dërguar.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">E patë tashmë këtë mesazh</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Në këtë bisedë mund të shtoni shënime për veten. Nëse llogaria juaj ka ndonjë pajisje të lidhur, shënimet e reja do të njëkohësohen.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Në këtë bisedë mund të shtoni shënime për veten.\nNëse llogaria juaj ka ndonjë pajisje të lidhur, shënimet e reja do të njëkohësohen.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Në pajisjen tuaj s\’ka shfletues të instaluar.</string>
   <!--ConversationListFragment-->
@@ -456,6 +456,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Zgjidhni cilët mund të ndryshojnë emrin dhe foton e grupit</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Zhdukje mesazhesh</string>
+  <string name="ManageRecipientActivity_chat_color">Ngjyrë fjalosjeje</string>
   <string name="ManageRecipientActivity_block">Bllokoje</string>
   <string name="ManageRecipientActivity_unblock">Zhbllokoje</string>
   <string name="ManageRecipientActivity_view_safety_number">Shihni numër sigurie</string>
@@ -465,9 +466,18 @@
   <string name="ManageRecipientActivity_off">Off</string>
   <string name="ManageRecipientActivity_on">On</string>
   <string name="ManageRecipientActivity_add_to_a_group">Shtoje te grup</string>
+  <string name="ManageRecipientActivity_view_all_groups">Shihni krejt grupet</string>
   <string name="ManageRecipientActivity_see_all">Shihini krejt</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">S’ka grupe të përbashkët.</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d grup i përbashkët</item>
+    <item quantity="other">%d grupe të përbashkët</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Përpunoni emër dhe foto</string>
   <string name="ManageRecipientActivity_message_description">Mesazh</string>
+  <string name="ManageRecipientActivity_voice_call_description">Thirrje zanore</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Thirrje zanore jo e sigurt</string>
+  <string name="ManageRecipientActivity_video_call_description">Thirrje video</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ftoi 1 person</item>
     <item quantity="other">%1$s ftoi %2$d vetë</item>
@@ -845,6 +855,7 @@
   <string name="RegistrationActivity_more_information">Më tepër të dhëna</string>
   <string name="RegistrationActivity_less_information">Më pak të dhëna</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirje të siguruara, Signal-i lyp hyrje te kontaktet dhe mediat tuaja</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Keni bërë shumë përpjekje për të regjistruar këtë numër. Ju lutemi, riprovoni më vonë.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">S\’arrihet të bëhet lidhja te shërbimi. Ju lutemi, kontrolloni lidhjen me rrjetin dhe riprovoni.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Që të verifikohet lehtësisht numri juaj i telefonit, Signal-i mund të zbulojë vetvetiu kodin tuaj të verifikimit, nëse e lejoni Signal-in të shohë mesazhe SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1398,6 +1409,12 @@
   <string name="message_details_header__disappears">Zhduket më</string>
   <string name="message_details_header__via">Përmes</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Pezull</string>
+  <string name="message_details_recipient_header__sent_to">Dërguar te</string>
+  <string name="message_details_recipient_header__sent_from">Dërguar nga</string>
+  <string name="message_details_recipient_header__delivered_to">Dorëzuar te</string>
+  <string name="message_details_recipient_header__read_by">Lexuar nga</string>
+  <string name="message_details_recipient_header__not_sent">S’u dërgua</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Dështoi dërgimi</string>
   <string name="message_details_recipient__new_safety_number">Numër i ri sigurie</string>
@@ -1956,8 +1973,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="recipient_preferences__about">Mbi</string>
   <string name="Recipient_unknown">I panjohur</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Mesazh</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Thirrje</string> -->
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>
   <string name="RecipientBottomSheet_add_to_contacts">Shtoje te kontaktet</string>
@@ -1967,6 +1982,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_make_group_admin">Bëje përgjegjës grupi</string>
   <string name="RecipientBottomSheet_remove_as_admin">Hiqe nga përgjegjës</string>
   <string name="RecipientBottomSheet_remove_from_group">Hiqe nga grup</string>
+  <string name="RecipientBottomSheet_message_description">Mesazh</string>
+  <string name="RecipientBottomSheet_voice_call_description">Thirrje zanore</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Thirrje zanore jo e sigurt</string>
+  <string name="RecipientBottomSheet_video_call_description">Thirrje video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Të hiqet %1$s nga përgjegjës grupi?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s do të jetë në gjendje të përpunojë këtë grup dhe anëtarët e tij</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Të hiqet %1$s nga \"%2$s\"?</string>

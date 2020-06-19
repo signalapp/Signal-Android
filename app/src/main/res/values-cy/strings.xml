@@ -300,7 +300,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Gallwch lusgo i\'r chwith ar unrhyw neges i ateb yn sydyn</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Mae ffeiliau cyfrwng gweld unwaith a anfonwyd yn cael eu tynnu ar ôl eu hanfon</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Rydych eisoes wedi gweld y neges hon</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Gallwch ychwanegu nodiadau i chi\'ch hun yn y sgwrs hon. Os oes gan eich cyfrif unrhyw ddyfeisiau cysylltiedig, bydd nodiadau newydd yn cael eu cydweddu.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nid oes porwr wedi\'i osod ar eich dyfais.</string>
   <!--ConversationListFragment-->
@@ -2068,8 +2067,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="recipient_preferences__about">Ynghylch</string>
   <string name="Recipient_unknown">Anhysbys</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Neges</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Galw</string> -->
   <string name="RecipientBottomSheet_block">Rhwystro</string>
   <string name="RecipientBottomSheet_unblock">Dadrwystro</string>
   <string name="RecipientBottomSheet_add_to_contacts">Ychwanegu at gysylltiadau</string>
@@ -2079,6 +2076,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_make_group_admin">Creu gweinyddwr grŵp</string>
   <string name="RecipientBottomSheet_remove_as_admin">Tynnu fel gweinyddwr</string>
   <string name="RecipientBottomSheet_remove_from_group">Tynnu o\'r grŵp</string>
+  <string name="RecipientBottomSheet_message_description">Neges</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Tynnu %1$s fel gweinyddwr grŵp?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Bydd %1$s yn gallu golygu\'r grŵp hwn a\'i aelodau</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Tynnu %1$s o \"%2$s\"?</string>

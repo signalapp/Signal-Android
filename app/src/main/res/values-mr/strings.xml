@@ -276,7 +276,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या एकदा-बघा मिडिया फाईल स्वयंचलितपणे काढल्या जातील</string>
   <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">या संभाषणामध्ये आपण स्वतःसाठी टिपा जोडू शकता. जर आपल्या खात्यामध्ये लिंक केलेले डिव्हाईस असतील, तर नवीन टिपा संकलित केल्या जातील. </string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">आपल्या डिव्हाईसवर कुठलेही ब्राऊझर स्थापन केलेले नाही.</string>
   <!--ConversationListFragment-->
@@ -1705,12 +1704,11 @@
   <string name="recipient_preferences__about">याबद्दल</string>
   <string name="Recipient_unknown">अज्ञात</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">संदेश</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">कॉल करा</string> -->
   <string name="RecipientBottomSheet_block">अवरोधित करा</string>
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करा</string>
   <string name="RecipientBottomSheet_add_to_contacts">संपर्कात जोडा</string>
   <string name="RecipientBottomSheet_view_safety_number">सुरक्षितता नंबर बघा</string>
+  <string name="RecipientBottomSheet_message_description">संदेश</string>
   <string name="RecipientBottomSheet_remove">काढा</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
   <string name="GroupRecipientListItem_admin">प्रशासक</string>

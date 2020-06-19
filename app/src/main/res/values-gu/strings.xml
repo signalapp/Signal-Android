@@ -255,7 +255,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">ઝડપથી જવાબ આપવા માટે તમે કોઈપણ મેસેજ ની ડાબી બાજુ સ્વાઇપ કરી શકો છો</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">આઉટગોઇંગ વ્યૂ-એકવાર મીડિયા ફાઇલો મોકલ્યા પછી આપમેળે દૂર થાય છે</string>
   <string name="ConversationFragment_you_already_viewed_this_message">તમે આ મેસેજ પહેલેથી જોયો છે</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">તમે આ વાતચીતમાં તમારા માટે નોંધો ઉમેરી શકો છો. જો તમારા એકાઉન્ટમાં કોઈ લિંક થયેલ ડિવાઇસ છે, તો નવી નોટ્સ સમન્વયિત કરવામાં આવશે.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">તમારા ડિવાઇસ પર કોઈ બ્રાઉઝર ઇન્સ્ટોલ કરેલું નથી.</string>
   <!--ConversationListFragment-->
@@ -1646,12 +1645,11 @@
   <string name="recipient_preferences__about">વિષે</string>
   <string name="Recipient_unknown">અજાણ્યું</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">મેસેજ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">કૉલ</string> -->
   <string name="RecipientBottomSheet_block">અવરોધિત કરો</string>
   <string name="RecipientBottomSheet_unblock">અનાવરોધિત કરો</string>
   <string name="RecipientBottomSheet_add_to_contacts">સંપર્કોમાં ઉમેરો </string>
   <string name="RecipientBottomSheet_view_safety_number">સલામતી નંબર જુઓ</string>
+  <string name="RecipientBottomSheet_message_description">મેસેજ</string>
   <string name="RecipientBottomSheet_remove">દૂર કરો</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ક્લિપબોર્ડ પર કૉપી કરેલું</string>
   <string name="GroupRecipientListItem_admin">એડમિન</string>

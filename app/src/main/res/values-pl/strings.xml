@@ -298,7 +298,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Możesz przesunąć wiadomość w lewo, by szybko odpowiedzieć.</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Wychodzące wiadomości jednorazowe są automatycznie usuwane po wysłaniu</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Już widziałeś(aś) tę wiadomość</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">W tej konwersacji możesz dodawać swoje notatki. Jeśli z Twoim kontem są połączone jakieś urządzenia, nowe notatki zostaną zsynchronizowane.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">W tej konwersacji możesz dodawać swoje notatki.\nJeśli z Twoim kontem są połączone jakieś urządzenia, nowe notatki zostaną zsynchronizowane.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->
@@ -1497,7 +1497,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="message_details_header__disappears">Wygasa</string>
   <string name="message_details_header__via">Przez</string>
   <!--message_details_recipient_header-->
-  <string name="message_details_recipient_header__pending_send">Oczekujące</string>
+  <string name="message_details_recipient_header__pending_send">Oczekujący</string>
   <string name="message_details_recipient_header__sent_to">Wysłano do</string>
   <string name="message_details_recipient_header__sent_from">Wysłano przez</string>
   <string name="message_details_recipient_header__delivered_to">Dostarczono do</string>
@@ -2077,8 +2077,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="recipient_preferences__about">O mnie</string>
   <string name="Recipient_unknown">Nieznany</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Wiadomość</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Zadzwoń</string> -->
   <string name="RecipientBottomSheet_block">Zablokuj</string>
   <string name="RecipientBottomSheet_unblock">Odblokuj</string>
   <string name="RecipientBottomSheet_add_to_contacts">Dodaj do kontaktów</string>
@@ -2088,6 +2086,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RecipientBottomSheet_make_group_admin">Mianuj administratorem grupy</string>
   <string name="RecipientBottomSheet_remove_as_admin">Usuń administratora</string>
   <string name="RecipientBottomSheet_remove_from_group">Usuń z grupy</string>
+  <string name="RecipientBottomSheet_message_description">Wiadomość</string>
+  <string name="RecipientBottomSheet_voice_call_description">Połączenie głosowe</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Niezaszyfrowane połączenie głosowe</string>
+  <string name="RecipientBottomSheet_video_call_description">Połączenie wideo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Usunąć %1$s, jako administratora grupy?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s będzie w stanie edytować tę grupę i jej członków</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Usunąć %1$s z \"%2$s\"?</string>

@@ -278,7 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. – Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit gesprek notities voor jezelf achterlaten. Als je gebruik maakt van gekoppelde apparaten dan zullen notities worden gesynchroniseerd.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Signal app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op je apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
@@ -1979,8 +1979,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="recipient_preferences__about">Over</string>
   <string name="Recipient_unknown">Onbekend</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Bericht</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Bellen</string> -->
   <string name="RecipientBottomSheet_block">Blokkeren</string>
   <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
   <string name="RecipientBottomSheet_add_to_contacts">Aan contactenlijst toevoegen</string>
@@ -1990,6 +1988,10 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string>
   <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
   <string name="RecipientBottomSheet_remove_from_group">Van de groep verwijderen</string>
+  <string name="RecipientBottomSheet_message_description">Bericht</string>
+  <string name="RecipientBottomSheet_voice_call_description">Spraakoproep</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Onbeveiligde spraakoproep</string>
+  <string name="RecipientBottomSheet_video_call_description">Video-oproep</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">De beheerdersbevoegdheden van %1$s intrekken?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s zal dit groepsgesprek en de deelnemers kunnen aanpassen</string>
   <string name="RecipientBottomSheet_remove_s_from_s">%1$s verwijderen van “%2$s”?</string>

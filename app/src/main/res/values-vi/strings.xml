@@ -263,7 +263,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Bạn có thể vuốt tin nhắn sang bên trái để trả lời nhanh</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Tin nhắn đa phương tiện xem một lần sẽ tự động xóa sau khi được gửi</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Bạn đã xem tin nhắn này rồi</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bạn có thể thêm ghi chú trong cuộc trò chuyện này. Nếu tài khoản của bạn có thiết bị liên kết, ghi chú cũng sẽ được đồng bộ.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Bạn chưa cài trình duyệt nào trên điện thoại.</string>
   <!--ConversationListFragment-->
@@ -1800,12 +1799,11 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="recipient_preferences__about">Thông tin</string>
   <string name="Recipient_unknown">Vô danh</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Tin nhắn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Gọi</string> -->
   <string name="RecipientBottomSheet_block">Chặn</string>
   <string name="RecipientBottomSheet_unblock">Bỏ chặn</string>
   <string name="RecipientBottomSheet_add_to_contacts">Thêm vào danh bạ</string>
   <string name="RecipientBottomSheet_view_safety_number">Xem số an toàn</string>
+  <string name="RecipientBottomSheet_message_description">Tin nhắn</string>
   <string name="RecipientBottomSheet_remove">Loại bỏ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="GroupRecipientListItem_admin">Quản trị viên</string>

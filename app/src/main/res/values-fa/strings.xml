@@ -174,7 +174,7 @@
   <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">تنظیم مجدد نشست امن؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر در این مکالمه با مشکلات رمزگذاری روبرو هستید این کار ممکن است کمک کند. پیام‌های شما باقی خواهند ماند.</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر در این مکالمه با مشکلات رمزگذاری روبرو هستید این گزینه ممکن است کمک کند. پیام‌های شما حفظ خواهند شد.</string>
   <string name="ConversationActivity_reset">تنظیم مجدد</string>
   <string name="ConversationActivity_add_attachment">افزودن پیوست</string>
   <string name="ConversationActivity_select_contact_info">انتخاب اطلاعات مخاطب</string>
@@ -243,7 +243,7 @@
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">این گزینه باعث حذف شدن دائمی پیام انتخاب شده می‌شود.</item>
-    <item quantity="other">این گزینه باعث حذف دائمی تمامی %1$d پیام انتخاب شده می‌شود.</item>
+    <item quantity="other">این گزینه باعث حذف دائمی هر %1$d پیام انتخاب شده می‌شود.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">در حافظه ذخیره شود؟</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -289,7 +289,7 @@
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">این گزینه باعث حذف دائمی مکالمهٔ انتخاب شده می‌شود.</item>
-    <item quantity="other">این گزینه باعث حذف دائمی تمامی %1$d مکالمهٔ انتخاب شده می‌شود.</item>
+    <item quantity="other">این گزینه باعث حذف دائمی هر %1$d مکالمهٔ انتخاب شده می‌شود.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">در حال حذف</string>
   <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌های انتخاب شده…</string>
@@ -638,8 +638,8 @@
   <string name="MessageRecord_called_s">با %s تماس گرفته شد</string>
   <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string>
   <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام های ناپدید شونده را غیر فعال کردید.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام های ناپدید شونده را غیرفعال کرد.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدید شونده را غیر فعال کردید.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام‌های ناپدید شونده را غیرفعال کرد.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان سنج پیام های ناپدید شونده را روی %1$s تنظیم کردید.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان سنج پیام های ناپدید شونده را روی %2$s قرار داد.</string>
   <!--GV2 specific-->
@@ -756,8 +756,8 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">امکان اسکن کردن کد QR بدون مجوز دوربین وجود ندارد</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">پیام های ناپدید شونده</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">پیام های شما انقضا نخواهند یافت.</string>
+  <string name="ExpirationDialog_disappearing_messages">پیام‌های ناپدید شونده</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">پیام‌های شما ناپدید نخواهند شد.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">پیام های ارسال شده و دریافت شده در مکالمه %s بعد از دیده شدن ناپدید خواهند شد.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">گذرواژه را وارد کنید</string>
@@ -893,7 +893,7 @@
   <string name="SearchFragment_no_results">هیچ نتیجه ای برای \'%s\' یافت نشد</string>
   <string name="SearchFragment_header_conversations">مکالمه ها</string>
   <string name="SearchFragment_header_contacts">مخاطبان</string>
-  <string name="SearchFragment_header_messages">پیام ها</string>
+  <string name="SearchFragment_header_messages">پیام‌ها</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">افزودن به مخاطبان</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">دعوت به Signal</string>
@@ -932,7 +932,7 @@
   <string name="StickerManagementAdapter_stickers_you_received">استیکر هایی که دریافت کردید</string>
   <string name="StickerManagementAdapter_signal_artist_series">سری های هنرمند Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نشده است</string>
-  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">استیکر هایی که از پیام های ورودی دریافت می شوند اینجا نمایش داده خواهند شد</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">استیکرهایی که از پیام‌های ورودی دریافت می‌شوند اینجا نمایش داده خواهند شد</string>
   <string name="StickerManagementAdapter_untitled">بدون نام</string>
   <string name="StickerManagementAdapter_unknown">ناشناخته</string>
   <!--StickerPackPreviewActivity-->
@@ -977,7 +977,7 @@
   <string name="ThreadRecord_view_once_media">رسانهٔ یکبار مصرف</string>
   <string name="ThreadRecord_this_message_was_deleted">این پیام حذف شد</string>
   <string name="ThreadRecord_s_is_on_signal">%s به Signal پیوست!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">پیام های ناپدید شونده غیر فعال شدند</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">پیام‌های ناپدید شونده غیرفعال شدند</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پیام ناپدید شونده  روی %s تنظیم شد</string>
   <string name="ThreadRecord_safety_number_changed">شمارهٔ امنیتی تغییر یافت</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
@@ -1046,10 +1046,10 @@
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر اینترنتی نصب نشده است!</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_import_in_progress">درون برد در حال انجام</string>
-  <string name="ApplicationMigrationService_importing_text_messages">درون برد پیام های متنی</string>
-  <string name="ApplicationMigrationService_import_complete">درون برد کامل شد</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">درون برد پایگاه داده سیستم کامل شد.</string>
+  <string name="ApplicationMigrationService_import_in_progress">در حال وارد کردن</string>
+  <string name="ApplicationMigrationService_importing_text_messages">در حال وارد کردن پیام‌های متنی</string>
+  <string name="ApplicationMigrationService_import_complete">وارد کردن به پایان رسید</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">وارد کردن پایگاه دادهٔ سیستم به پایان رسید.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">برای باز کردن لمس کنید.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">برای باز کردن لمس کرده، یا برای بستن قفل را لمس کنید.</string>
@@ -1102,7 +1102,7 @@
   <string name="NotificationChannel_locked_status">وضعیت قفل</string>
   <string name="NotificationChannel_app_updates">به‌روزرسانی‌های برنامه</string>
   <string name="NotificationChannel_other">سایر</string>
-  <string name="NotificationChannel_group_messages">پیام ها</string>
+  <string name="NotificationChannel_group_messages">پیام‌ها</string>
   <string name="NotificationChannel_missing_display_name">ناشناخته</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">نام پروفایل با موفقیت تنظیم شد.</string>
@@ -1335,13 +1335,13 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">لطفاً این گزارش از برنامه من را بازبینی کنید: %1$s</string>
   <string name="log_submit_activity__network_failure">خطای شبکه. لطفاً دوباره تلاش کنید.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">آیا مایل به درون برد پیام های متنی موجود خود به پایگاه داده رمزگذاری شده Signal می باشید؟</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">آیا مایل به وارد کردن پیام‌های متنی موجود خود به پایگاه داده رمزگذاری شدهٔ Signal هستید؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پایگاه دادهٔ پيش‌‌فرض سيستم به هيچ شکلی تغییر نخواهد کرد.</string>
   <string name="database_migration_activity__skip">پرش</string>
-  <string name="database_migration_activity__import">درون برد</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ممکن است مدتی زمان ببرد. لطفاً صبور باشید، پس از انجام درون برد شما را آگاه خواهیم کرد.</string>
-  <string name="database_migration_activity__importing">درون برد</string>
-  <string name="import_fragment__import_system_sms_database">درون برد پایگاه داده پیامک سیستم</string>
+  <string name="database_migration_activity__import">وارد کردن</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ممکن است مدتی زمان ببرد. لطفاً صبور باشید، هنگامی که فرایند وارد کردن به پایان برسد به شما اطلاع می‌دهیم.</string>
+  <string name="database_migration_activity__importing">وارد کردن</string>
+  <string name="import_fragment__import_system_sms_database">وارد کردن پایگاه داده پیامک سیستم</string>
   <string name="import_fragment__import_the_database_from_the_default_system">وارد کردن پایگاه داده از برنامهٔ پیام‌رسان پیش‌فرض سیستم</string>
   <string name="import_fragment__import_plaintext_backup">وارد کردن پشتیبان متن ساده</string>
   <string name="import_fragment__import_a_plaintext_backup_file">وارد کردن یک فایل پشتیبان متن ساده. سازگار با «پشتیبان پیامک و بازگردانی.»</string>
@@ -1365,7 +1365,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">باز کردن قفل</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal برای ارسال پیام‌ها به تنظیمات فراپیام یا فراپیام اپراتور وایرلس شما نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مورد معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدود شده رخ می‌دهد.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal برای تحویل رسانه‌ها و پیام‌های گروهی از طریق اپراتور همراه شما به تنظیمات فراپیام نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مشکل معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدود شده رخ می‌دهد.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'قبول\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات فراپیام برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یکبار نیاز به انجام این کار دارید.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">نام (اجباری)</string>
@@ -1467,7 +1467,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">پرچم‌ها</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">شکلک‌ها</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">درون برد</string>
+  <string name="arrays__import_export">وارد کردن</string>
   <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
   <string name="arrays__mute_for_one_hour">بی‌صدا به مدت ۱ ساعت</string>
@@ -1501,10 +1501,10 @@
   <string name="preferences__sms_mms">پیامک و فراپیام</string>
   <string name="preferences__pref_all_sms_title">دریافت تمام پیامک ها</string>
   <string name="preferences__pref_all_mms_title">دریافت تمامی فراپیام ها</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">استفاده از Signal برای همه پیام های متنی دریافتی</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای تمام فراپیام های دریافتی</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">استفاده از Signal برای همهٔ پیام‌های متنی دریافتی</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای همهٔ پیام‌های چندرسانه‌ای دریافتی</string>
   <string name="preferences__pref_enter_sends_title">ارسال با کلید Enter</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ ها با زدن کلید Enter ارسال خواهند شد</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال خواهند شد</string>
   <string name="preferences__send_link_previews">ارسال پیش‌نمایش‌های پیوند</string>
   <string name="preferences__previews_are_supported_for">پیش‌نمایش‌ها برای پیوند‌های Imgur ،Reddit Pinterest ،Instagram و Youtube پشتیبانی می‌شوند</string>
   <string name="preferences__choose_identity">انتخاب هویت</string>
@@ -1556,7 +1556,7 @@
   <string name="preferences__mmsc_password">رمز عبور MMSC</string>
   <string name="preferences__sms_delivery_reports">گزارش‌های تحویل پیامک</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامک ارسالی از جانب شما</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف خودکار پیام های قدیمی زمانی که یک مکالمه از طول مشخص شده بیشتر شد</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف خودکار پیام‌های قدیمی زمانی که یک مکالمه از طول مشخص شده بیشتر می‌شود</string>
   <string name="preferences__delete_old_messages">حذف پیام‌های قدیمی</string>
   <string name="preferences__chats">گفتگوها و رسانه‌ها</string>
   <string name="preferences__storage">حافظه</string>
@@ -1616,7 +1616,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش نگارک وضعیت در حالتی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده بودند انتخاب می‌کنید.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های دریافتی از غیر-مخاطبان و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های دریافتی از غیرمخاطبان و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
   <!--****************************************-->
   <!--menus-->
@@ -1972,8 +1972,6 @@
   <string name="recipient_preferences__about">درباره</string>
   <string name="Recipient_unknown">ناشناخته</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">پیام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">تماس</string> -->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
   <string name="RecipientBottomSheet_add_to_contacts">افزودن به مخاطبان</string>
@@ -1983,6 +1981,10 @@
   <string name="RecipientBottomSheet_make_group_admin">ارتقا به مدیر گروه</string>
   <string name="RecipientBottomSheet_remove_as_admin">حذف بعنوان مدیر</string>
   <string name="RecipientBottomSheet_remove_from_group">حذف از گروه</string>
+  <string name="RecipientBottomSheet_message_description">پیام</string>
+  <string name="RecipientBottomSheet_voice_call_description">تماس صوتی</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">تماس صوتی ناامن</string>
+  <string name="RecipientBottomSheet_video_call_description">تماس تصویری</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">آیا می‌خواهید %1$s را بعنوان مدیر حذف کنید؟</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s قادر خواهد بود که این گروه‌ و اعضایش را ویرایش کند</string>
   <string name="RecipientBottomSheet_remove_s_from_s">آیا می‌خواهید %1$s را از «%2$s» حذف کنید؟</string>

@@ -258,7 +258,6 @@
   <string name="ConversationFragment_failed_to_open_message">ਸੁਨੇਹਾ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫਲ</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">ਤੁਰੰਤ ਜਵਾਬ ਦੇਣ ਲਈ ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ ਤੇ ਸੱਜੇ ਪਾਸੇ ਸਵਾਈਪ ਕਰ ਸਕਦੇ ਹੋ</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">ਜਲਦੀ ਜਵਾਬ ਦੇਣ ਲਈ ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ ਤੇ ਖੱਬੇ ਪਾਸੇ ਸਵਾਈਪ ਕਰ ਸਕਦੇ ਹੋ</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ਤੁਸੀਂ ਇਸ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਖੁਦ ਲਈ ਨੋਟ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ. ਜੇਕਰ ਤੁਹਾਡੇ ਖਾਤੇ ਦੇ ਨਾਲ ਲਿੰਕ ਕੀਤੇ ਹੋਏ ਕਈ ਡਿਵਾਈਸ ਹਨ, ਤਾਂ ਨਵੇਂ ਨੋਟ ਸਿੰਕ ਹੋ ਜਾਣਗੇ.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ਤੁਹਾਡੇ ਫੋਨ ਤੇ ਕੋਈ ਬਰਾਊਜ਼ਰ ਨਹੀਂ ਹੈ </string>
   <!--ConversationListFragment-->
@@ -1606,12 +1605,11 @@
   <string name="recipient_preferences__about">ਇਸ ਬਾਰੇ</string>
   <string name="Recipient_unknown">ਅਣਜਾਣ</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">ਸੁਨੇਹਾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">ਕਾਲ</string> -->
   <string name="RecipientBottomSheet_block">ਬਲਾਕ</string>
   <string name="RecipientBottomSheet_unblock">ਅਨਬਲੌਕ</string>
   <string name="RecipientBottomSheet_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="RecipientBottomSheet_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
+  <string name="RecipientBottomSheet_message_description">ਸੁਨੇਹਾ</string>
   <string name="RecipientBottomSheet_remove">ਹਟਾਓ </string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <string name="GroupRecipientListItem_admin">ਐਡਮਿਨ</string>

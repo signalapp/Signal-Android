@@ -288,7 +288,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puteți glisa la stânga pe orice mesaj pentru a răspunde rapid</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fișierele trimise de tip media vizibile o singură dată sunt eliminate automat după ce sunt trimise</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ați văzut deja acest mesaj</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puteți adăuga note pentru dvs. în această conversație. Dacă contul dvs. are dispozitive asociate, notele noi vor fi sincronizate.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puteți adăuga notiţe pentru dvs. în această conversație.\nDacă contul dvs. are dispozitive asociate, notiţele noi vor fi sincronizate.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -475,6 +475,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Alegeți cine poate schimba numele grupului si poza</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Dispariție mesaje</string>
+  <string name="ManageRecipientActivity_chat_color">Culoare conversaţie</string>
   <string name="ManageRecipientActivity_block">Blochează</string>
   <string name="ManageRecipientActivity_unblock">Deblochează</string>
   <string name="ManageRecipientActivity_view_safety_number">Afișează numărul de siguranță</string>
@@ -484,9 +485,19 @@
   <string name="ManageRecipientActivity_off">Dezactivate</string>
   <string name="ManageRecipientActivity_on">Activate</string>
   <string name="ManageRecipientActivity_add_to_a_group">Adaugaţi la un grup</string>
+  <string name="ManageRecipientActivity_view_all_groups">Vizualizați toate grupurile</string>
   <string name="ManageRecipientActivity_see_all">Vezi tot</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Nu există grupuri în comun</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d grup în comun</item>
+    <item quantity="few">%d grupuri în comun</item>
+    <item quantity="other">%d grupuri în comun</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Editare nume și poză</string>
   <string name="ManageRecipientActivity_message_description">Mesaj</string>
+  <string name="ManageRecipientActivity_voice_call_description">Apel vocal</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Apel vocal nesecurizat</string>
+  <string name="ManageRecipientActivity_video_call_description">Apel video</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s a invitat o persoană</item>
     <item quantity="few"> %1$s a invitat %2$d persoane</item>
@@ -879,6 +890,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_more_information">Mai multe detalii</string>
   <string name="RegistrationActivity_less_information">Mai puține detalii</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal are nevoie de acces la contactele tale și media pentru a putea facilita comunicarea cu prietenii tăi, schimba mesaje și pentru a efectua apeluri securizate</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Ați făcut prea multe încercări de înregistrare a acestui număr. Vă rugăm să încercați din nou mai târziu.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rog verifică conexiunea la rețea și încearcă din nou.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pentru a putea verifica cât mai ușor numărul tău de telefon, Signal poate detecta automat codul de verificare dacă îi permiți aplicației Signal să citească mesajele SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1443,6 +1455,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="message_details_header__disappears">Dispare</string>
   <string name="message_details_header__via">Prin</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">În curs</string>
+  <string name="message_details_recipient_header__sent_to">Trimis la</string>
+  <string name="message_details_recipient_header__sent_from">Trimis de</string>
+  <string name="message_details_recipient_header__delivered_to">Livrat la</string>
+  <string name="message_details_recipient_header__read_by">Citit de</string>
+  <string name="message_details_recipient_header__not_sent">Nu a fost trimis</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Expediere eşuată</string>
   <string name="message_details_recipient__new_safety_number">Număr de siguranță nou</string>
@@ -2009,8 +2027,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preferences__about">Despre</string>
   <string name="Recipient_unknown">Necunoscut</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Mesaj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Apelează</string> -->
   <string name="RecipientBottomSheet_block">Blochează</string>
   <string name="RecipientBottomSheet_unblock">Deblochează</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adăugați la contacte</string>
@@ -2020,6 +2036,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_make_group_admin">Faceți administrator de grup</string>
   <string name="RecipientBottomSheet_remove_as_admin">Eliminați ca administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Eliminați din grup</string>
+  <string name="RecipientBottomSheet_message_description">Mesaj</string>
+  <string name="RecipientBottomSheet_voice_call_description">Apel vocal</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Apel vocal nesecurizat</string>
+  <string name="RecipientBottomSheet_video_call_description">Apel video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Eliminați pe %1$s ca și admin de grup?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s va putea edita acest grup și membrii acestuia</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Eliminați pe %1$s din \"%2$s\"?</string>

@@ -278,7 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podeu lliscar cap a l’esquerra en qualsevol missatge per respondre ràpidament.</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Els fitxers multimèdia d\'una sola visualització se suprimeixen automàticament un cop enviats.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ja heu vist aquest missatge.</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Podeu afegir notes per a vosaltres mateixos en aquesta conversa. Si hi ha algun dispositiu enllaçat, s\'hi sincronitzaran les notes noves.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Podeu afegir notes per a vosaltres mateixos en aquesta conversa.\nSi el compte té dispositius enllaçats, s\'hi sincronitzaran les notes noves.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hi ha cap navegador instal·lat al dispositiu.</string>
   <!--ConversationListFragment-->
@@ -456,6 +456,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Trieu qui pot canviar el nom i la imatge del grup.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Missatges efímers</string>
+  <string name="ManageRecipientActivity_chat_color">Color del xat</string>
   <string name="ManageRecipientActivity_block">Bloca</string>
   <string name="ManageRecipientActivity_unblock">Desbloca</string>
   <string name="ManageRecipientActivity_view_safety_number">Mostra el número de seguretat</string>
@@ -465,9 +466,18 @@
   <string name="ManageRecipientActivity_off">Inactiu</string>
   <string name="ManageRecipientActivity_on">Actiu</string>
   <string name="ManageRecipientActivity_add_to_a_group">Afegeix-lo a un grup</string>
+  <string name="ManageRecipientActivity_view_all_groups">Mostra tots els grups</string>
   <string name="ManageRecipientActivity_see_all">Mostra-ho tot</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">No hi ha grups en comú.</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d grup en comú</item>
+    <item quantity="other">%d grups en comú</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Editeu el nom i la imatge</string>
   <string name="ManageRecipientActivity_message_description">Missatge</string>
+  <string name="ManageRecipientActivity_voice_call_description">Trucada de veu</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Trucada de veu no segura</string>
+  <string name="ManageRecipientActivity_video_call_description">Trucada de vídeo</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ha convidat 1 persona</item>
     <item quantity="other">%1$s ha convidat %2$d persones</item>
@@ -843,6 +853,7 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_more_information">Més informació</string>
   <string name="RegistrationActivity_less_information">Menys informació</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">El Signal necessita accés als contactes i als continguts multimèdia per tal de connectar amb amistats, intercanviar-hi missatges i fer trucades amb seguretat.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Heu fet massa intents per registrar aquest número. Si us plau, torneu-ho a provar més tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Per verificar fàcilment el número de telèfon, el Signal pot detectar automàticament el codi de verificació si permeteu que vegi els missatges d\'SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1396,6 +1407,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="message_details_header__disappears">Desapareix</string>
   <string name="message_details_header__via">Per</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Pendent</string>
+  <string name="message_details_recipient_header__sent_to">Enviat a</string>
+  <string name="message_details_recipient_header__sent_from">Enviat per</string>
+  <string name="message_details_recipient_header__delivered_to">Lliurat a</string>
+  <string name="message_details_recipient_header__read_by">Llegit per</string>
+  <string name="message_details_recipient_header__not_sent">No enviat</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">No s\'ha pogut enviar.</string>
   <string name="message_details_recipient__new_safety_number">Número de seguretat nou</string>
@@ -1952,8 +1969,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="recipient_preferences__about">Quant a</string>
   <string name="Recipient_unknown">Desconegut</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Missatge</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Truca</string> -->
   <string name="RecipientBottomSheet_block">Bloca</string>
   <string name="RecipientBottomSheet_unblock">Desbloca</string>
   <string name="RecipientBottomSheet_add_to_contacts">Afegeix als contactes</string>
@@ -1963,6 +1978,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RecipientBottomSheet_make_group_admin">Fes adminstrador/a del grup</string>
   <string name="RecipientBottomSheet_remove_as_admin">Suprimeix com a administrador/a</string>
   <string name="RecipientBottomSheet_remove_from_group">Suprimeix del grup</string>
+  <string name="RecipientBottomSheet_message_description">Missatge</string>
+  <string name="RecipientBottomSheet_voice_call_description">Trucada de veu</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Trucada de veu no segura</string>
+  <string name="RecipientBottomSheet_video_call_description">Trucada de vídeo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Voleu suprimir %1$s com a administrador/a del grup?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s podrà editar aquest grup i els seus membres.</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Voleu suprimir %1$s de \"%2$s\"?</string>

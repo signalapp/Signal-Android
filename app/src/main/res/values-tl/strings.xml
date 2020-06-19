@@ -267,7 +267,6 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Maaari kang mag-swipe pakaliwa sa alinmang mensahe upang mabilisang makatugon</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Ang mga papalabas na view-once na media file ay awtomatikong matatanggal matapos ipadala ang mga ito</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Natingnan mo na ang mensaheng ito</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Maaari kang magdagdag ng mga notes para sa iyong sarili sa pag-uusap na ito. Kung ang iyong account ay may naka-link na mga device, ang bagong mga note may masi-sync.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Walang naka-install na browser sa iyong device.</string>
   <!--ConversationListFragment-->
@@ -1764,12 +1763,11 @@
   <string name="recipient_preferences__about">Tungkol dito</string>
   <string name="Recipient_unknown">Hindi alam</string>
   <!--RecipientBottomSheet-->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_message">Mensahe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_call">Tawagan</string> -->
   <string name="RecipientBottomSheet_block">I-block</string>
   <string name="RecipientBottomSheet_unblock">I-unblock</string>
   <string name="RecipientBottomSheet_add_to_contacts">Idagdag sa mga kontak</string>
   <string name="RecipientBottomSheet_view_safety_number">Tingnan ang numerong pangkaligtasan</string>
+  <string name="RecipientBottomSheet_message_description">Mensahe</string>
   <string name="RecipientBottomSheet_remove">Tanggalin</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Nakopya na sa clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
