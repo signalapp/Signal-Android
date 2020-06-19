@@ -501,6 +501,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
     markThreadAsRead();
+    AudioSlidePlayer.onResume();
   }
 
   @Override
@@ -512,7 +513,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     fragment.setLastSeen(System.currentTimeMillis());
     markLastSeen();
-    AudioSlidePlayer.stopAll();
+    AudioSlidePlayer.onPause();
     EventBus.getDefault().unregister(this);
   }
 
@@ -541,6 +542,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onDestroy() {
     saveDraft();
     if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
+    AudioSlidePlayer.onDestroy();
     super.onDestroy();
   }
 

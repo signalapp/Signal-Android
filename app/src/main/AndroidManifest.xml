@@ -741,6 +741,8 @@
         </intent-filter>
     </receiver>
 
+    <service android:name=".service.AudioPlayerService" android:enabled="true"/>
+
     <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
     <uses-library android:name="com.sec.android.app.multiwindow" android:required="false"/>
