@@ -615,7 +615,7 @@
   <string name="MediaSendActivity_message_to_s">Honentzako mezua: %s</string>
   <string name="MediaSendActivity_message">Mezua</string>
   <string name="MediaSendActivity_select_recipients">Aukeratu hartzaileak</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Singalek zure kontaktuak lortzeko baimena behar du erakutsi ahal izateko.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signalek zure kontaktuak lortzeko baimena behar du erakutsi ahal izateko.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal-ek Kontaktuen baimena behar du zure kontaktuak erakusteko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\", eta gaitu \"Kontaktuak\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Ezin duzu elementu %d baino gehiago partekatu</item>
@@ -1213,7 +1213,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeatutako kontaturik ez…</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Singalek zure kontaktuak lortzeko baimena behar du erakutsi ahal izateko.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signalek zure kontaktuak lortzeko baimena behar du erakutsi ahal izateko.</string>
   <string name="contact_selection_list_fragment__show_contacts">Kontaktuak erakutsi</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">

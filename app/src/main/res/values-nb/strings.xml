@@ -920,7 +920,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
   <string name="MessageNotifier_you_may_have_new_messages">Du kan ha nye meldinger</string>
-  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Åpne signal for å se etter nylige varsler.</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Åpne Signal for å se etter nylige varsler.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <string name="MessageNotifier_reacted_s_to_s">Reagerte %1$s til \"%2$s\".</string>

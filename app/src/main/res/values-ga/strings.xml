@@ -1083,7 +1083,7 @@ a shonrú</string>
   <string name="reminder_header_invite_title">Tabhair cuireadh chuig Signal</string>
   <string name="reminder_header_invite_text">Cuir feabhas le do chomhrá le %1$s.</string>
   <string name="reminder_header_share_title">Tabhair cuirí do do chairde!</string>
-  <string name="reminder_header_share_text">An mó cairde leat a bhaineann feidhm as Singal, is fearrde é.</string>
+  <string name="reminder_header_share_text">An mó cairde leat a bhaineann feidhm as Signal, is fearrde é.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Cuir i dtaisce é</string>
   <string name="media_preview__forward_title">Cuir ar aghaidh</string>

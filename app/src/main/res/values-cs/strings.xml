@@ -2035,7 +2035,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Upomínky vám pomohou zapamatovat si váš PIN, protože ten nelze obnovit. V průběhu času vás budeme žádat méně často.</string>
   <string name="preferences_app_protection__turn_off">Vypnout</string>
   <string name="preferences_app_protection__confirm_pin">Potvrďte PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Potvrdit váš Singal PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Potvrdit váš Signal PIN</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Ujistěte se, že si PIN pamatujete nebo ho máte bezpečně uložený, protože jej nelze obnovit. Pokud váš PIN zapomenete, můžete při opakované registraci Signal účtu přijít o data.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Nesprávný PIN. Zkuste to znovu.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivace zámku registrace se nezdařila.</string>

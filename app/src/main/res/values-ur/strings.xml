@@ -478,9 +478,9 @@
   <string name="Megaphones_verify_your_signal_pin">اپنے Signal پن کی تصدیق کریں</string>
   <string name="Megaphones_verify_pin">پن کی تصدیق کریں</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">signal کال پروگریس میں ہے</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Signal کال پروگریس میں ہے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
-  <string name="NotificationBarManager__incoming_signal_call">signal کال آ رہی ہے</string>
+  <string name="NotificationBarManager__incoming_signal_call">Signal کال آ رہی ہے</string>
   <string name="NotificationBarManager__deny_call">کال رد کریں</string>
   <string name="NotificationBarManager__answer_call">کال کا جواب دیں</string>
   <string name="NotificationBarManager__end_call">کال ختم کریں</string>
@@ -921,7 +921,7 @@
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%sکی طرف سے کال کا جواب دینے کیلئے، Signal کو مائکروفون تک رسائی دیں۔</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal کو کالیں وصول کرنے یا بنانے کیلئے مائکروفون اور کیمرہ کی اجازت کی ضرورت ہے، لیکن وہ مستقل طور پر انکاری ہیں۔ براہ کرم ایپ کی ترتیبات میں جائیں، \"اجازت نامہ\"منتخب کریں اور \"مائکروفون \"اور \"کیمرہ\" فعال کریں۔</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">آپ  کی گفتگو کیلئے حفاظتی نمبر%1$sکے ساتھ تبدیل ہو چکا ہے۔ اس کا دوسرا مطلب یہ ہے کہ کوئی آپ کے ذرائع ابلاغ کو روکنے کی کوشش کر رہا ہے،یا یہ %2$ssignal سادگی سے دوبارہ نصب کیا گیا ہے۔</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">آپ  کی گفتگو کیلئے حفاظتی نمبر%1$sکے ساتھ تبدیل ہو چکا ہے۔ اس کا دوسرا مطلب یہ ہے کہ کوئی آپ کے ذرائع ابلاغ کو روکنے کی کوشش کر رہا ہے،یا یہ %2$sSignal سادگی سے دوبارہ نصب کیا گیا ہے۔</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">آپ اس رابطے کے ساتھ اپنے حفاظتی نمبر کی تصدیق کرنا چاہتے ہیں۔</string>
   <string name="WebRtcCallScreen_new_safety_number_title">نیا حفاظتی نمبر</string>
   <string name="WebRtcCallScreen_accept">قبول کریں</string>
@@ -1438,7 +1438,7 @@
   <string name="reminder_header_expired_build">آپ کے Signal ورژن کی میعاد ختم ہو چکی ہے!</string>
   <string name="reminder_header_expired_build_details">پیغامات مزید کامیابی کے ساتھ نہیں بھیجے جائیں گے۔ حالیہ ورژن میں تازہ کاری کرنے کیلئے ٹیپ کریں۔</string>
   <string name="reminder_header_sms_default_title">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string>
-  <string name="reminder_header_sms_default_text">signal کو اپنا پہلے سے موجود ایس ایم ایس ایپ بنانے کیلئے ٹیپ کریں۔</string>
+  <string name="reminder_header_sms_default_text">Signal کو اپنا پہلے سے موجود ایس ایم ایس ایپ بنانے کیلئے ٹیپ کریں۔</string>
   <string name="reminder_header_sms_import_title">ایس ایم ایس نظام درآمد کریں</string>
   <string name="reminder_header_sms_import_text">Signal  کے خفیہ کردہ ڈیٹا بیس میں اپنے فون کے ایس ایم ایس پیغامات کی کاپی کرنے کیلئے ٹیپ کریں۔ </string>
   <string name="reminder_header_push_title">Signal پیغامات اور کالز فعال کریں</string>
@@ -1448,7 +1448,7 @@
   <string name="reminder_header_share_title">اپنے دوستوں کو مدعو کریں!</string>
   <string name="reminder_header_share_text">زیادہ دوست Signal استعمال کرتے ہیں، یہ بہتر ہو جاتا ہے۔</string>
   <string name="reminder_header_service_outage_text">Signal تکنیکی مشکلات کا تجربہ کر رہا ہے۔جتنا جلدی ممکن ہو ہم سروس بحال کرنے کیلئے سخت محنت کر رہے ہیں۔</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">تازہ ترین Signal خصوصیت انڈروئڈ کے اس ورژن پر کام نہیں کر رہا۔برائے مہربانی مستقبل میں signal تجدید وصول کرنے کیلئے ڈیوائس کو اپ گریڈ کریں۔</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">تازہ ترین Signal خصوصیت انڈروئڈ کے اس ورژن پر کام نہیں کر رہا۔برائے مہربانی مستقبل میں Signal تجدید وصول کرنے کیلئے ڈیوائس کو اپ گریڈ کریں۔</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">محفوظ کریں</string>

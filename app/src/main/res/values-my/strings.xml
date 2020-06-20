@@ -23,7 +23,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">ဖျက်ပါ</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">စကားဝှက်ပိတ်မလား?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Singal ကိုအမြဲဖွင့်ထားပြီး စာတိုဝင်လာပါကအသိပေးပါမည်။</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal ကိုအမြဲဖွင့်ထားပြီး စာတိုဝင်လာပါကအသိပေးပါမည်။</string>
   <string name="ApplicationPreferencesActivity_disable">ပိတ်ထားပါ</string>
   <string name="ApplicationPreferencesActivity_unregistering">စာရင်းမသွင်းထားပါ </string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုခြင်းများ စာရင်းမသွင်းတော့ပါ</string>
@@ -81,7 +81,7 @@
   <string name="CameraXFragment_open_gallery_description">ဓာတ်ပုံစာအုပ်ဖွင့်ရန်</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">နောက်ဆုံးဖုန်းမှတ်စု</string>
-  <string name="CameraContacts_signal_contacts">signal အဆက်အသွယ်</string>
+  <string name="CameraContacts_signal_contacts">Signal အဆက်အသွယ်</string>
   <string name="CameraContacts_signal_groups">Signal အဖွဲ့</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">အများဆုံး%dစကားဝိုင်းကိုမျှဝေနိုင်သည်</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Signal သူငယ်ချင်းထံသို့ ကင်မရာခလုတ်နှိပ်၍ဓာတ်ပုံပို့နိုင်သည်</string>
@@ -381,7 +381,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ထပ်မံပံ့ပိုးမှုမရှိတော့သော Signal ဗားရှင်းအဟောင်းဖြင့် encrypt လုပ်ထားသော စာကိုလက်ခံရရှိသည်။ စာပို့သူအား signal နောက်ဆုံးဗားရှင်းကိုမြှင့်ပြီး စာအားပြန်ပို့ခုိင်းပါ။</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ထပ်မံပံ့ပိုးမှုမရှိတော့သော Signal ဗားရှင်းအဟောင်းဖြင့် encrypt လုပ်ထားသော စာကိုလက်ခံရရှိသည်။ စာပို့သူအား Signal နောက်ဆုံးဗားရှင်းကိုမြှင့်ပြီး စာအားပြန်ပို့ခုိင်းပါ။</string>
   <string name="MessageRecord_left_group">အဖွဲ့မှ သင်ထွက်လိုက်သည်။</string>
   <string name="MessageRecord_you_updated_group">အဖွဲ့အား သင်ပြောင်းလဲမှုပြုလိုက်သည်။</string>
   <string name="MessageRecord_you_called">သင်မှခေါ်သည်</string>
@@ -464,7 +464,7 @@
   <string name="RedPhone_recipient_unavailable">ခေါ်ဆိုလိုသည့် တစ်ဖက်လူ မအားပါ</string>
   <string name="RedPhone_network_failed">ကွန်ယက် ကျသွားသည်!</string>
   <string name="RedPhone_number_not_registered">ယခု ဖုန်းနံပါတ်မှာ မှတ်ပုံတင်ထားခြင်း မရှိပါ။</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">သင်ခေါ်ဆိုလိုက်သော ဖုန်းနံပါတ်မှာ signal ၏ လုံခြုံစွာဖုန်းခေါ်ဆိုခြင်း စနစ်အား မပံ့ပိုးနိုင်ပါ။</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">သင်ခေါ်ဆိုလိုက်သော ဖုန်းနံပါတ်မှာ Signal ၏ လုံခြုံစွာဖုန်းခေါ်ဆိုခြင်း စနစ်အား မပံ့ပိုးနိုင်ပါ။</string>
   <string name="RedPhone_got_it">ရပြီ</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">နိုင်ငံရွေးချယ်ပါ</string>
@@ -564,7 +564,7 @@
   <string name="UsernameEditFragment_submit">တင်မည်</string>
   <string name="UsernameEditFragment_delete">ဖျက်မည်</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">သင့်မိတ်ဆွေသည် signal ဗားရှင်းအဟောင်းအသုံးပြုထားပါသည်။ လုံခြုံရေးနံပါတ်များ အတည်မပြုခင် Signal ဗားရှင်းအား မြှင့်တင်ခိုင်းလိုက်ပါ။</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">သင့်မိတ်ဆွေသည် Signal ဗားရှင်းအဟောင်းအသုံးပြုထားပါသည်။ လုံခြုံရေးနံပါတ်များ အတည်မပြုခင် Signal ဗားရှင်းအား မြှင့်တင်ခိုင်းလိုက်ပါ။</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">သင့်မိတ်ဆွေသည်  Signal ဗားရှင်းအသစ်နှင့် သင်နှင့်လိုက်လျောညီထွေမရှိသည့် QR code ပုံစံကိုအသုံးပြုထားပါသည်။ နှိုင်းယှဉ်စစ်ဆေးရန် အဆင့်မြှင့်ပါ။</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">စကန်ဖတ်ထားသော QR ကုဒ်သည် မှန်ကန်သော လုံခြုံရေးနံပါတ်ပုံစံမဟုတ်သဖြင့် ထပ်မံ စကန်ဖတ်လိုက်ပါ။</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">… မှတဆင့် လုံခြုံရေးနံပါတ်ကို မျှဝေမယ်</string>

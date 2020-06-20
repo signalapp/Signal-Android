@@ -190,7 +190,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Ankasa daukar odiyo!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">An rasa app da zai iya daukan wannan hadin a na\'urarka/ki.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Domin aika sakon odiyo, bari Signal ya samu damar aiki da reno.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal na bukatar izinin reno domin aikar da sakwanin odiyo amma an hana wannnan damar dindindin. Cigaba ka/ki shiga mazabar saitin aikace-aikacen signal ka/ki ba da damar \"Microphone\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal na bukatar izinin reno domin aikar da sakwanin odiyo amma an hana wannnan damar dindindin. Cigaba ka/ki shiga mazabar saitin aikace-aikacen Signal ka/ki ba da damar \"Microphone\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal na bukatar izinin Reno da Kyamara domin kiran %s, amma anhana wannan dama dindindin. Cigaba ka/ki shiga saitin affilikashon, zabi \"Permissions\", sannan kunna \"Reno\" da \"Kyamara\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Domin kama hotuna ko bidiyo, ka/ki bawa Signal dama.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal na bukatar izinin Kyamara domin daukan hotuna ko bidiyo amma an hana wannan damar dindindin. Cigaba ka/ki shiga cikin mazabar saitin Signal ka/ki zabi \"Permission\" domin ka/ki bawa \"Camera\" dama.</string>
@@ -726,7 +726,7 @@
   <string name="SmsMessageRecord_secure_session_reset">Ka/kin sake saita mahadin bayanai mai tsari.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s sake saitin mahadin bayani mai tsari</string>
   <string name="SmsMessageRecord_duplicate_message">Sako mai kwafi</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">An gaza tantance bayanin wannan sakon domin daga sabon Signal aka turoshi. Gayawa abokin sadarwarka/ki ya/ta sake aikowa bayan kai/kema ka/kin sabunta signal dinka/ki.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">An gaza tantance bayanin wannan sakon domin daga sabon Signal aka turoshi. Gayawa abokin sadarwarka/ki ya/ta sake aikowa bayan kai/kema ka/kin sabunta Signal dinka/ki.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Sitika</string>
   <!--StickerManagementAdapter-->
