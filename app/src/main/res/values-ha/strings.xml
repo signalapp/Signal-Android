@@ -1239,7 +1239,7 @@
   <string name="preferences__sms_mms">SMS da MMS</string>
   <string name="preferences__pref_all_sms_title">Karba duk SMS</string>
   <string name="preferences__pref_all_mms_title">Karba duk MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Yi amfani da signal wajen karbar sako masu shigowa</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Yi amfani da Signal wajen karbar sako masu shigowa</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Yi amfani da Signal domin sakonnin hoto, waka, da bidiyo masu shigowa</string>
   <string name="preferences__pref_enter_sends_title">Tura sako da Enter key</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Idan ka/kika danna Enter key, sakonnika/ki zasu turu</string>
