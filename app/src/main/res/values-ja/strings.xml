@@ -449,6 +449,10 @@
   <string name="ManageRecipientActivity_add_to_a_group">グループへ追加</string>
   <string name="ManageRecipientActivity_view_all_groups">すべてのグループを表示</string>
   <string name="ManageRecipientActivity_see_all">すべて表示</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">共通のグループなし</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="other">共通のグループ%d件</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">名前と写真の編集</string>
   <string name="ManageRecipientActivity_message_description">メッセージ</string>
   <string name="ManageRecipientActivity_voice_call_description">音声通話</string>
@@ -810,6 +814,7 @@
   <string name="RegistrationActivity_more_information">詳細</string>
   <string name="RegistrationActivity_less_information">詳細を隠す</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、保護された通話をするには、Signal に連絡先やメディアへのアクセスを許可する必要があります。</string>
+  <string name="RegistrationActivity_rate_limited_to_service">この番号を登録しようとした回数がしきい値を超えました。しばらく待ってから再度お試しください。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できません。ネットワークの接続を確認してから、もう一度お試しください。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal でSMSメッセージを表示できるようにすると、認証コードが自動的に検出され、電話場号を簡単に確認できます。</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1352,6 +1357,11 @@
   <string name="message_details_header__via">経由</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">保留中</string>
+  <string name="message_details_recipient_header__sent_to">送信先</string>
+  <string name="message_details_recipient_header__sent_from">送信元</string>
+  <string name="message_details_recipient_header__delivered_to">配信先</string>
+  <string name="message_details_recipient_header__read_by">既読</string>
+  <string name="message_details_recipient_header__not_sent">未送信</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">送信に失敗しました</string>
   <string name="message_details_recipient__new_safety_number">新しい安全番号</string>

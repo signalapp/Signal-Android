@@ -278,6 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Μπορείς να σύρεις οποιοδήποτε μήνυμα προς τα αριστερά για γρήγορη απάντηση</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Τα εξερχόμενα πολυμέσα μιας μόνο προβολής αφαιρούνται αυτόματα αφού αποσταλθούν</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Έχεις ήδη δει αυτό το μήνυμα</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Σε αυτή τη συνομιλία, μπορείς να γράψεις προσωπικές σημειώσεις. \nΑν έχεις συνδεμένες συσκευές στο λογαριασμό σου, οι νέες σημειώσεις θα συγχρονίζονται. </string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στη συσκευή σου.</string>
   <!--ConversationListFragment-->

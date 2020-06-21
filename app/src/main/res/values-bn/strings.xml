@@ -366,6 +366,7 @@
   <string name="GiphyFragmentPagerAdapter_gifs">জিআইএফ সমূহ</string>
   <string name="GiphyFragmentPagerAdapter_stickers">স্টিকার সমূহ</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">সদস্য যোগ করবে?</string>
   <string name="AddToGroupActivity_add_to_group">গ্রুপে যুক্ত করুন</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">আপনার প্রোফাইলের নাম ও ছবি গ্রুপের সাথে শেয়ার করবেন?</string>
@@ -456,6 +457,7 @@
   <string name="ManageRecipientActivity_until_s">%1$s পর্যন্ত</string>
   <string name="ManageRecipientActivity_off">বন্ধ</string>
   <string name="ManageRecipientActivity_on">চালু</string>
+  <string name="ManageRecipientActivity_add_to_a_group">গ্রুপে যুক্ত করো</string>
   <string name="ManageRecipientActivity_see_all">সব দেখুন</string>
   <string name="ManageRecipientActivity_edit_name_and_picture">নাম এবং ছবি সম্পাদনা করেন</string>
   <string name="ManageRecipientActivity_message_description">বার্তা</string>
@@ -1908,6 +1910,7 @@
   <string name="RecipientBottomSheet_block">অবরূদ্ধ</string>
   <string name="RecipientBottomSheet_unblock">মূক্ত করুন</string>
   <string name="RecipientBottomSheet_add_to_contacts">পরিচিতি তালিকায় যোগ করুন</string>
+  <string name="RecipientBottomSheet_add_to_a_group">গ্রুপে যোগ করো</string>
   <string name="RecipientBottomSheet_view_safety_number">নিরাপত্তা নাম্বার দেখুন</string>
   <string name="RecipientBottomSheet_make_group_admin">গ্রুপ এডমিন বানান</string>
   <string name="RecipientBottomSheet_remove_as_admin">গ্রুপ এডমিন থেকে সরান</string>

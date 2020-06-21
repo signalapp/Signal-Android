@@ -264,7 +264,7 @@
     <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
   </plurals>
   <string name="ConversationFragment_pending">Ausstehend …</string>
-  <string name="ConversationFragment_push">Internet (Signal)</string>
+  <string name="ConversationFragment_push">Internet (Signal Protocol)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Löschen</string>

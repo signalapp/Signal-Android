@@ -474,7 +474,7 @@
     <item quantity="other">%d gruppi in comune</item>
   </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Modifica nome e immagine</string>
-  <string name="ManageRecipientActivity_message_description">Invia messaggio</string>
+  <string name="ManageRecipientActivity_message_description">Messaggio</string>
   <string name="ManageRecipientActivity_voice_call_description">Chiamata vocale</string>
   <string name="ManageRecipientActivity_insecure_voice_call_description">Chiamata vocale non sicura</string>
   <string name="ManageRecipientActivity_video_call_description">Videochiamata</string>

@@ -229,6 +229,7 @@
   <string name="ConversationActivity_delete_and_leave">Sil ve ayrıl</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ile arama yapmanız için, Signal\'in mikrofonunuza erişime ihtiyacı var.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s ile arama yapmanız için, Signal\'in mikrofonunuza ve kameranıza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">\"Grup ayarları\" artık daha fazla seçeneğe sahip</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -276,6 +277,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sola kaydırabilirsiniz</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Gönderilen tek görümlük içerik dosyaları gönderim tamamlandıktan sonra kendiliğinden silinir</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Bu iletiyi zaten görüntülediniz</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bu konuşmada kendinize notlar ekleyebilirsiniz. \nEğer hesabınıza bağlı cihaz varsa, yeni notlar eşzamanlanacaktır.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -314,6 +316,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Profil ayarlanırken hata</string>
   <string name="CreateProfileActivity_profile_photo">Profil fotoğrafı</string>
   <string name="CreateProfileActivity_set_up_your_profile">Profilinizi ayarlayın</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiliniz uçtan uca şifrelidir. Yeni konuşmalar başlattığınızda veya kabul ettiğinizde ve yeni gruplara girdiğinizde kişilerinize görünür olacaktır.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar seçin</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Özelleştirilmiş \'%s\' kullanılıyor</string>
@@ -366,6 +369,11 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFler</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Çıkartmalar</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Üye eklensin mi?</string>
+  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" kişisi \"%2$s\" grubuna eklensin mi?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\", \"%2$s\" grubuna eklendi.</string>
+  <string name="AddToGroupActivity_add_to_group">Gruba ekle</string>
+  <string name="AddToGroupActivity_add_to_groups">Gruplara ekle</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profil adınız ve fotoğrafınız bu grupla paylaşılsın mı?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Profil adınızı ve fotoğrafınızı bu grupta bulunan ve sonradan eklenecek üyelere görünür yapmak istiyor musunuz?</string>
@@ -395,8 +403,13 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Tamam</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">\"%2$s\" grubuna \"%1$s\" eklensin mi?</item>
+    <item quantity="other">\"%2$s\" grubuna %3$d üye eklensin mi?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Bu grubu adlandır</string>
+  <string name="AddGroupDetailsFragment__create_group">Grup oluştur</string>
   <string name="AddGroupDetailsFragment__create">Oluştur</string>
   <string name="AddGroupDetailsFragment__members">Üyeler</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grup adı (gereklidir)</string>
@@ -407,12 +420,14 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal gruplarını desteklemeyen bir kişiyi seçtiniz, bu nedenle bu grup MMS olacaktır. </string>
   <string name="AddGroupDetailsFragment__remove">Kaldır</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kişisi</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s bu gruptan çıkartılsın mı?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaybolan iletiler</string>
   <string name="ManageGroupActivity_pending_group_invites">Beklemedeki grup davetleri</string>
   <string name="ManageGroupActivity_who_can_edit_group_membership">Grup üyeliğini kimler düzenleyebilir</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Grup bilgisini kimler düzenleyebilir</string>
   <string name="ManageGroupActivity_block_group">Grubu engelle</string>
+  <string name="ManageGroupActivity_unblock_group">Grubun engelini kaldır</string>
   <string name="ManageGroupActivity_leave_group">Gruptan ayrıl</string>
   <string name="ManageGroupActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageGroupActivity_custom_notifications">Özel bildirimler</string>
@@ -421,7 +436,16 @@
   <string name="ManageGroupActivity_on">Açık</string>
   <string name="ManageGroupActivity_add_members">Üye ekle</string>
   <string name="ManageGroupActivity_view_all_members">Tüm üyeleri görüntüle</string>
+  <string name="ManageGroupActivity_see_all">Tümünü gör</string>
   <string name="ManageGroupActivity_none">Hiçbiri</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d davet edildi</item>
+    <item quantity="other">%d davet edildi</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d üye eklendi.</item>
+    <item quantity="other">%d üye eklendi.</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Bunu yapma için hakkınız yok</string>
   <string name="ManageGroupActivity_not_capable">Eklediğiniz biri yeni grupları desteklemiyor ve Signal\'i güncellemesi gerekiyor</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Grubu güncelleme başarısız oldu</string>
@@ -431,6 +455,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Grup adını ve resmini kimlerin değiştirebileceğini seçin</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string>
+  <string name="ManageRecipientActivity_chat_color">Sohbet rengi</string>
   <string name="ManageRecipientActivity_block">Engelle</string>
   <string name="ManageRecipientActivity_unblock">Engeli kaldır</string>
   <string name="ManageRecipientActivity_view_safety_number">Güvenlik numarasını görüntüle</string>
@@ -439,8 +464,19 @@
   <string name="ManageRecipientActivity_until_s">%1$s tarihine kadar</string>
   <string name="ManageRecipientActivity_off">Kapalı</string>
   <string name="ManageRecipientActivity_on">Açık</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Bir gruba ekle</string>
+  <string name="ManageRecipientActivity_view_all_groups">Tüm grupları görüntüle</string>
+  <string name="ManageRecipientActivity_see_all">Tümünü gör</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Ortak grubunuz yok</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d ortak grup</item>
+    <item quantity="other">%d ortak grup</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Adı ve resmi düzenleyin</string>
   <string name="ManageRecipientActivity_message_description">İleti</string>
+  <string name="ManageRecipientActivity_voice_call_description">Sesli arama</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Şifresiz sesli arama</string>
+  <string name="ManageRecipientActivity_video_call_description">Görüntülü arama</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s, 1 kişiyi davet etti</item>
     <item quantity="other">%1$s, %2$d kişiyi davet etti</item>
@@ -466,6 +502,10 @@
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
   <string name="CropImageActivity_profile_avatar">Resim</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Yüzleri bulanıklaştır</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Yeni: Yüzleri bulanıklaştırın veya bulanıklaştırmak istediğiniz yerleri çizin</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Bulanıklaştırmak için çizin</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Diğer yüzleri veya bölgeleri bulanıklaştırmak için çizin</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın</string>
   <!--InviteActivity-->
@@ -1554,6 +1594,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Yeni ileti…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Gruba ekle</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Arama</string>
   <!--conversation_callable_secure-->
@@ -1897,11 +1938,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>
   <string name="RecipientBottomSheet_add_to_contacts">Kişilere ekle</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Bir gruba ekle</string>
   <string name="RecipientBottomSheet_view_safety_number">Güvenlik numarasını görüntüle</string>
   <string name="RecipientBottomSheet_make_group_admin">Grup yöneticisi yap</string>
   <string name="RecipientBottomSheet_remove_as_admin">Grup yöneticiliğinden çıkart</string>
   <string name="RecipientBottomSheet_remove_from_group">Gruptan çıkart</string>
   <string name="RecipientBottomSheet_message_description">İleti</string>
+  <string name="RecipientBottomSheet_voice_call_description">Sesli arama</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Şifresiz sesli arama</string>
+  <string name="RecipientBottomSheet_video_call_description">Görüntülü arama</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s grup yöneticiliğinden çıkartılsın mı?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s bu grubu ve üyelerini düzenleyebilecek.</string>
   <string name="RecipientBottomSheet_remove">Kaldır</string>
