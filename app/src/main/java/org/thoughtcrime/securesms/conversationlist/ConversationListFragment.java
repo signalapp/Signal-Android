@@ -257,6 +257,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       list.removeItemDecoration(searchAdapterDecoration);
       setAdapter(defaultAdapter);
     }
+
+    if (activeAdapter != null) {
+      activeAdapter.notifyDataSetChanged();
+    }
   }
 
   @Override
