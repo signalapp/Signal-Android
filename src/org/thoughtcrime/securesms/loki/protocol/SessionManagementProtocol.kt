@@ -61,29 +61,19 @@ object SessionManagementProtocol {
         Log.d("Loki", "Received a pre key bundle from: " + content.sender.toString() + ".")
         val preKeyBundle = preKeyBundleMessage.getPreKeyBundle(registrationID)
         lokiPreKeyBundleDatabase.setPreKeyBundle(content.sender, preKeyBundle)
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
-        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
-        val threadFRStatus = lokiThreadDB.getFriendRequestStatus(threadID)
-        // If we received a friend request (i.e. also a new pre key bundle), but we were already friends with the other user, reset the session.
-        if (content.isFriendRequest && threadFRStatus == LokiThreadFriendRequestStatus.FRIENDS) {
-            val sessionStore = TextSecureSessionStore(context)
-            sessionStore.archiveAllSessions(content.sender)
-            val ephemeralMessage = EphemeralMessage.create(content.sender)
-            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
-        }
     }
 
     @JvmStatic
-    fun handleSessionRequestIfNeeded(context: Context, content: SignalServiceContent) {
-        if (!content.dataMessage.isPresent || !content.dataMessage.get().isSessionRequest) { return }
+    fun handleSessionRequestIfNeeded(context: Context, content: SignalServiceContent): Boolean {
+        if (!content.dataMessage.isPresent || !content.dataMessage.get().isSessionRequest) { return false }
         val sentSessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
         if (sentSessionRequestTimestamp != null && content.timestamp < sentSessionRequestTimestamp) {
             // We sent a session request after this one was sent
-            return
+            return false
         }
-        // Auto-accept all session requests
         val ephemeralMessage = EphemeralMessage.create(content.sender)
         ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
+        return true
     }
 
     @JvmStatic
