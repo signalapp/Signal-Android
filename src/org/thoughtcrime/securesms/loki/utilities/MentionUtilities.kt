@@ -55,7 +55,6 @@ object MentionUtilities {
         val userLinkedDeviceHexEncodedPublicKeys = DatabaseFactory.getLokiAPIDatabase(context).getDeviceLinks(userHexEncodedPublicKey).flatMap { listOf( it.masterHexEncodedPublicKey, it.slaveHexEncodedPublicKey ) }.toMutableSet()
         userLinkedDeviceHexEncodedPublicKeys.add(userHexEncodedPublicKey)
         for (mention in mentions) {
-            if (!userLinkedDeviceHexEncodedPublicKeys.contains(mention.second)) { continue }
             result.setSpan(ForegroundColorSpan(context.resources.getColorWithID(R.color.accent, context.theme)), mention.first.lower, mention.first.upper, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             result.setSpan(StyleSpan(Typeface.BOLD), mention.first.lower, mention.first.upper, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
