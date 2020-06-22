@@ -44,7 +44,7 @@ class UserView : LinearLayout {
         tickImageView.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-    fun bind(user: Recipient, isSelected: Boolean, glide: GlideRequests) {
+    fun bind(user: Recipient, isSelected: Boolean, glide: GlideRequests, isEditingGroup: Boolean) {
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
@@ -59,18 +59,19 @@ class UserView : LinearLayout {
                 profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
                 profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
                 profilePictureView.isRSSFeed = false
+
             }
         } else {
             profilePictureView.hexEncodedPublicKey = address
             profilePictureView.additionalHexEncodedPublicKey = null
             profilePictureView.isRSSFeed = false
         }
+        tickImageView.setImageResource(R.drawable.ic_edit_white_24dp)
         profilePictureView.glide = glide
         profilePictureView.update()
         nameTextView.text = user.name ?: "Unknown Contact"
-        if (user.isGroupRecipient) {
-            // this doesnt work, find out how to work out if the user is a part of the group)
-            tickImageView.setImageResource(R.drawable.ic_edit_white_24dp)
+        if (isEditingGroup) {
+            tickImageView.setImageResource(R.drawable.ic_more_horiz_white)
         } else {
             tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
         }

@@ -30,7 +30,7 @@ class SelectContactsAdapter(private val context: Context) : RecyclerView.Adapter
         val member = members[position]
         viewHolder.view.setOnClickListener { memberClickListener?.onMemberClick(member) }
         val isSelected = selectedMembers.contains(member)
-        viewHolder.view.bind(Recipient.from(context, Address.fromSerialized(member), false), isSelected, glide)
+        viewHolder.view.bind(Recipient.from(context, Address.fromSerialized(member), false), isSelected, glide, false)
     }
 
     fun onMemberClick(member: String) {
