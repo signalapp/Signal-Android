@@ -32,9 +32,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
     private var members = listOf<String>()
         set(value) { field = value; editClosedGroupAdapter.members = value }
     private lateinit var groupID: String
-    private var membersToRemove = setOf<String>()
-    private var membersToAdd = setOf<String>()
-    private var admins = setOf<String>()
+    private var membersToRemove = listOf<String>()
+    private var membersToAdd = listOf<String>()
+    private var admins = listOf<String>()
     private val originalName by lazy { DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title }
     private var nameHasChanged = false
     private lateinit var newGroupDisplayName: String
@@ -136,9 +136,11 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         if (resultCode == RESULT_OK) {
             if (data != null && data.hasExtra("Selected Contacts Result")) {
                 val returnedContacts = data.extras.getStringArray("Selected Contacts Result")
-                var selectedContacts = returnedContacts.toSet()
+                val selectedContacts = returnedContacts.toList()
                 membersToAdd = selectedContacts + membersToAdd
                 members = members + membersToAdd
+                Toast.makeText(this.applicationContext, membersToAdd.toString(), Toast.LENGTH_LONG).show()
+                //TODO:this works for users that were already in the group but were removed in the same edit activity, but not users that were never in the chat. WHy?
             }
         }
     }
@@ -158,8 +160,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
     }
 
     private fun saveDisplayName() {
-        var groupDisplayName = displayNameEditText.text.toString().trim()
-        // something about the implementation of displayNameEdit text makes it null insead of whatever the user inputs, causes a crash
+        var groupDisplayName = groupNameEditText.text.toString().trim()
         if (groupDisplayName.isEmpty()) {
             return Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
         }
@@ -169,10 +170,11 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberCli
         if (groupDisplayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
             return Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
         }
-        isEditingGroupName = false
-        nameHasChanged = true
         newGroupDisplayName = groupDisplayName
-
+        displayNameTextView.text = groupDisplayName
+        nameHasChanged = true
+        isEditingGroupName = false
+        return Toast.makeText(this, "Name Changed", Toast.LENGTH_SHORT).show()
     }
 
     private fun modifyClosedGroup() {

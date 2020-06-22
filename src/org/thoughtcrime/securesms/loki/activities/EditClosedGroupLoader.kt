@@ -8,10 +8,10 @@ import org.thoughtcrime.securesms.util.AsyncLoader
 class EditClosedGroupLoader(val groupID: String, context: Context) : AsyncLoader<List<String>>(context) {
 
     override fun loadInBackground(): List<String> {
-        val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false)
+        val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, true)
         return members.map {
             it.address.toPhoneString()
         }
-        /* To do: Load admins in the process here */
+        /* TODO:Load admins in the process here */
     }
 }
