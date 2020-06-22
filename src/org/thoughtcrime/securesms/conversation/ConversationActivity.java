@@ -438,7 +438,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             mentionCandidateSelectionView.setOnMentionCandidateSelected( mentionCandidate -> {
               mentions.add(mentionCandidate);
               String oldText = composeText.getText().toString();
-              String newText = oldText.substring(0, currentMentionStartIndex) + "@" + mentionCandidate.getDisplayName();
+              String newText = oldText.substring(0, currentMentionStartIndex) + "@" + mentionCandidate.getDisplayName() + " ";
               composeText.setText(newText);
               composeText.setSelection(newText.length());
               currentMentionStartIndex = -1;
