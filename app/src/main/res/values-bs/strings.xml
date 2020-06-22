@@ -288,6 +288,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Na svaku poruku možete brzo odgovoriti tako što ćete je povući ulijevo</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Jednokratne multimedijske datoteke automatski će se izbrisati nakon što su poslane</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Već ste vidjeli ovu poruku</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">U ovoj konverzaciji možete dodati bilješke za sebe.\nAko Signal koristite na više uređaja, ove će bilješke biti sinhronizovane među njima.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Preglednik nije instaliran na Vašem uređaju.</string>
   <!--ConversationListFragment-->
@@ -474,6 +475,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Odredite ko može promijeniti ime i sliku grupe</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Nestajuće poruke</string>
+  <string name="ManageRecipientActivity_chat_color">Boja poruka</string>
   <string name="ManageRecipientActivity_block">Blokiraj</string>
   <string name="ManageRecipientActivity_unblock">Deblokiraj</string>
   <string name="ManageRecipientActivity_view_safety_number">Vidi sigurnosni broj</string>
@@ -483,9 +485,19 @@
   <string name="ManageRecipientActivity_off">Isključeno</string>
   <string name="ManageRecipientActivity_on">Uključeno</string>
   <string name="ManageRecipientActivity_add_to_a_group">Uvrsti u grupu</string>
+  <string name="ManageRecipientActivity_view_all_groups">Vidi sve grupe</string>
   <string name="ManageRecipientActivity_see_all">Vidi sve</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Nema zajedničkih grupa</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d zajednička grupa</item>
+    <item quantity="few">%d zajedničke grupe</item>
+    <item quantity="other">%d zajedničkih grupa</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Upišite ime i dodajte sliku</string>
   <string name="ManageRecipientActivity_message_description">Poruka</string>
+  <string name="ManageRecipientActivity_voice_call_description">Poziv</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Nezaštićen poziv</string>
+  <string name="ManageRecipientActivity_video_call_description">Videopoziv</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s je pozvao/la jednu osobu</item>
     <item quantity="few">%1$s je pozvao/la %2$d osobe</item>
@@ -881,6 +893,7 @@
   <string name="RegistrationActivity_more_information">Više informacija</string>
   <string name="RegistrationActivity_less_information">Manje informacija</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalu je potrebno dopuštenje da pristupi Vašim kontaktima i datotekama kako biste uspostavili vezu sa prijateljima i razmjenjivali poruke i zaštićene pozive</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Pokušali ste previše puta registrovati ovaj broj. Molimo pokušajte ponovo kasnije.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje nije uspjelo. Molimo provjerite internet-konekciju i pokušajte ponovo.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Da biste na jednostavan način potvrdili svoj telefonski broj, možete Signalu omogućiti pristup SMS porukama i on će automatski preuzeti kōd za verifikaciju.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1446,6 +1459,12 @@
   <string name="message_details_header__disappears">Nestaje za</string>
   <string name="message_details_header__via">Preko</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">U obradi</string>
+  <string name="message_details_recipient_header__sent_to">Poslano za</string>
+  <string name="message_details_recipient_header__sent_from">Poslano od</string>
+  <string name="message_details_recipient_header__delivered_to">Isporučeno za</string>
+  <string name="message_details_recipient_header__read_by">Pročitao/la</string>
+  <string name="message_details_recipient_header__not_sent">Nije poslano</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Slanje nije uspjelo</string>
   <string name="message_details_recipient__new_safety_number">Novi sigurnosni broj</string>
@@ -2021,6 +2040,9 @@
   <string name="RecipientBottomSheet_remove_as_admin">Ukloni administratorske ovlasti</string>
   <string name="RecipientBottomSheet_remove_from_group">Udalji iz grupe</string>
   <string name="RecipientBottomSheet_message_description">Poruka</string>
+  <string name="RecipientBottomSheet_voice_call_description">Poziv</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Nezaštićen poziv</string>
+  <string name="RecipientBottomSheet_video_call_description">Videopoziv</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Smijeniti %1$s kao administratora grupe?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s će moći uređivati ovu grupu i njene članove</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Udaljiti %1$s iz \"%2$s\"?</string>

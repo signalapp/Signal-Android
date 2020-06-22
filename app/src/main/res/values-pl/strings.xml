@@ -504,7 +504,7 @@
   <string name="ManageRecipientActivity_off">Wyłączone</string>
   <string name="ManageRecipientActivity_on">Włączone</string>
   <string name="ManageRecipientActivity_add_to_a_group">Dodaj do grupy</string>
-  <string name="ManageRecipientActivity_view_all_groups">Zobacz wszystkiegrupy</string>
+  <string name="ManageRecipientActivity_view_all_groups">Zobacz wszystkie grupy</string>
   <string name="ManageRecipientActivity_see_all">Zobacz wszystkie</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Brak wspólnych grup</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">

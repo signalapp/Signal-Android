@@ -758,7 +758,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">پیام‌های شما ناپدید نخواهند شد.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">پیام های ارسال شده و دریافت شده در مکالمه %s بعد از دیده شدن ناپدید خواهند شد.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">پیام‌های ارسال شده و دریافت شده در این مکالمه %s بعد از دیده شدن ناپدید خواهند شد.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">گذرواژه را وارد کنید</string>
   <string name="PassphrasePromptActivity_watermark_content_description">نگارک Signal</string>
