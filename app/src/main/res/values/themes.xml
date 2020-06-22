@@ -180,6 +180,8 @@
         <item name="actionModeBackground">@color/core_grey_50</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
+        <item name="android:textColor">@color/text_color_light_theme</item>
+        <item name="android:textColorSecondary">@color/text_color_secondary_light_theme</item>
         <item name="colorPrimary">@color/core_ultramarine</item>
         <item name="colorPrimaryDark">@color/core_ultramarine</item>
         <item name="colorAccent">@color/core_ultramarine</item>
