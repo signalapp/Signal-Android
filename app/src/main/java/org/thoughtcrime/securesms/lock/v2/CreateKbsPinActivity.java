@@ -10,14 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
-import org.thoughtcrime.securesms.BaseActionBarActivity;
+import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.PassphrasePromptActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class CreateKbsPinActivity extends BaseActionBarActivity {
+public class CreateKbsPinActivity extends BaseActivity {
 
   public static final int REQUEST_NEW_PIN = 27698;
 

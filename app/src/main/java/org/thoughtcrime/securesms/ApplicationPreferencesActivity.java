@@ -53,7 +53,7 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
  *
  */
 
-public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarActivity
+public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
   @SuppressWarnings("unused")

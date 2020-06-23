@@ -22,11 +22,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity {
+public class MmsPreferencesActivity extends PassphraseRequiredActivity {
 
   private final DynamicTheme dynamicTheme       = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();

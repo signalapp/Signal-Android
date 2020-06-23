@@ -1,46 +1,90 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import android.view.KeyEvent;
+import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+import android.view.WindowManager;
+
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageActivityHelper;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
-public abstract class BaseActivity extends FragmentActivity {
-  @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    return (keyCode == KeyEvent.KEYCODE_MENU && isMenuWorkaroundRequired()) || super.onKeyDown(keyCode, event);
-  }
+/**
+ * Base class for all activities. The vast majority of activities shouldn't extend this directly.
+ * Instead, they should extend {@link PassphraseRequiredActivity} so they're protected by
+ * screen lock.
+ */
+public abstract class BaseActivity extends AppCompatActivity {
+  private static final String TAG = Log.tag(BaseActivity.class);
 
   @Override
-  public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
-    if (keyCode == KeyEvent.KEYCODE_MENU && isMenuWorkaroundRequired()) {
-      openOptionsMenu();
-      return true;
-    }
-    return super.onKeyUp(keyCode, event);
-  }
-
-  public static boolean isMenuWorkaroundRequired() {
-    return VERSION.SDK_INT < VERSION_CODES.KITKAT          &&
-           VERSION.SDK_INT > VERSION_CODES.GINGERBREAD_MR1 &&
-           ("LGE".equalsIgnoreCase(Build.MANUFACTURER) || "E6710".equalsIgnoreCase(Build.DEVICE));
+  protected void onCreate(Bundle savedInstanceState) {
+    logEvent("onCreate()");
+    super.onCreate(savedInstanceState);
   }
 
   @Override
   protected void onResume() {
     super.onResume();
+    initializeScreenshotSecurity();
     DynamicLanguageActivityHelper.recreateIfNotInCorrectLanguage(this, TextSecurePreferences.getLanguage(this));
+  }
+
+  @Override
+  protected void onStart() {
+    logEvent("onStart()");
+    super.onStart();
+  }
+
+  @Override
+  protected void onStop() {
+    logEvent("onStop()");
+    super.onStop();
+  }
+
+  @Override
+  protected void onDestroy() {
+    logEvent("onDestroy()");
+    super.onDestroy();
+  }
+
+  private void initializeScreenshotSecurity() {
+    if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    } else {
+      getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    }
+  }
+
+  protected void startActivitySceneTransition(Intent intent, View sharedView, String transitionName) {
+    Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, sharedView, transitionName)
+                                         .toBundle();
+    ActivityCompat.startActivity(this, intent, bundle);
+  }
+
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  protected void setStatusBarColor(int color) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(color);
+    }
   }
 
   @Override
   protected void attachBaseContext(Context newBase) {
     super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(newBase, TextSecurePreferences.getLanguage(newBase)));
+  }
+
+  private void logEvent(@NonNull String event) {
+    Log.d(TAG, "[" + Log.tag(getClass()) + "] " + event);
   }
 }

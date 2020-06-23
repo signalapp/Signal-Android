@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -42,7 +41,7 @@ import org.whispersystems.signalservice.internal.push.DeviceLimitExceededExcepti
 
 import java.io.IOException;
 
-public class DeviceActivity extends PassphraseRequiredActionBarActivity
+public class DeviceActivity extends PassphraseRequiredActivity
     implements Button.OnClickListener, ScanListener, DeviceLinkFragment.LinkClickedListener
 {
 

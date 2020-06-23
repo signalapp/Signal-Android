@@ -21,7 +21,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -29,6 +28,7 @@ import com.takisoft.colorpicker.ColorPickerDialog;
 import com.takisoft.colorpicker.ColorStateDrawable;
 
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.R;
@@ -54,7 +54,7 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.Locale;
 import java.util.Objects;
 
-public class ManageRecipientFragment extends Fragment {
+public class ManageRecipientFragment extends LoggingFragment {
   private static final String RECIPIENT_ID      = "RECIPIENT_ID";
   private static final String FROM_CONVERSATION = "FROM_CONVERSATION";
 

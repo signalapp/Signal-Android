@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
-import org.thoughtcrime.securesms.BaseActionBarActivity;
+import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 @SuppressLint("StaticFieldLeak")
-public class EditProfileActivity extends BaseActionBarActivity implements EditProfileFragment.Controller {
+public class EditProfileActivity extends BaseActivity implements EditProfileFragment.Controller {
 
   public static final String NEXT_INTENT      = "next_intent";
   public static final String EXCLUDE_SYSTEM   = "exclude_system";

@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dd.CircularProgressButton;
 
-import org.thoughtcrime.securesms.BaseActionBarActivity;
+import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.List;
 
-public class SubmitDebugLogActivity extends BaseActionBarActivity implements SubmitDebugLogAdapter.Listener {
+public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugLogAdapter.Listener {
 
   private RecyclerView            lineList;
   private SubmitDebugLogAdapter   adapter;

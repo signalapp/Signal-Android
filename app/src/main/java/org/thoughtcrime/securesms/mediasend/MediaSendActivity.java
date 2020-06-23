@@ -30,7 +30,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
@@ -84,7 +84,7 @@ import java.util.Map;
  * This activity is intended to be launched via {@link #startActivityForResult(Intent, int)}.
  * It will return the {@link Media} that the user decided to send.
  */
-public class MediaSendActivity extends PassphraseRequiredActionBarActivity implements MediaPickerFolderFragment.Controller,
+public class MediaSendActivity extends PassphraseRequiredActivity implements MediaPickerFolderFragment.Controller,
                                                                                       MediaPickerItemFragment.Controller,
                                                                                       ImageEditorFragment.Controller,
                                                                                       MediaSendVideoFragment.Controller,

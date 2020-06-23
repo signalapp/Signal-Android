@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService.ImportState;
 
-public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivity {
+public class DatabaseMigrationActivity extends PassphraseRequiredActivity {
 
   private final ImportServiceConnection serviceConnection  = new ImportServiceConnection();
   private final ImportStateHandler      importStateHandler = new ImportStateHandler();

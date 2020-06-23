@@ -35,7 +35,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -53,7 +53,7 @@ import java.util.List;
 /**
  * Activity for displaying media attachments in-app
  */
-public final class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
+public final class MediaOverviewActivity extends PassphraseRequiredActivity {
 
   private static final String THREAD_ID_EXTRA = "thread_id";
 

@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.*;
 
-public class ContactNameEditActivity extends PassphraseRequiredActionBarActivity {
+public class ContactNameEditActivity extends PassphraseRequiredActivity {
 
   public static final String KEY_NAME          = "name";
   public static final String KEY_CONTACT_INDEX = "contact_index";

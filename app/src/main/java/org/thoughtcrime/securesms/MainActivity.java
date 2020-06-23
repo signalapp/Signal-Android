@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class MainActivity extends PassphraseRequiredActionBarActivity {
+public class MainActivity extends PassphraseRequiredActivity {
 
   private final DynamicTheme  dynamicTheme = new DynamicNoActionBarTheme();
   private final MainNavigator navigator    = new MainNavigator(this);

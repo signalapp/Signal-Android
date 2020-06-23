@@ -21,7 +21,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CustomDefaultPreference;
 import org.thoughtcrime.securesms.database.ApnDatabase;
@@ -41,8 +41,8 @@ public class MmsPreferencesFragment extends CorrectedPreferenceFragment {
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
 
-    ((PassphraseRequiredActionBarActivity) getActivity()).getSupportActionBar()
-        .setTitle(R.string.preferences__advanced_mms_access_point_names);
+    ((PassphraseRequiredActivity) getActivity()).getSupportActionBar()
+                                                .setTitle(R.string.preferences__advanced_mms_access_point_names);
   }
 
   @Override

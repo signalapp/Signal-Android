@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.thoughtcrime.securesms.MainActivity;
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 
@@ -22,7 +22,7 @@ public final class PinRestoreActivity extends AppCompatActivity {
   void navigateToPinCreation() {
     final Intent main      = new Intent(this, MainActivity.class);
     final Intent createPin = CreateKbsPinActivity.getIntentForPinCreate(this);
-    final Intent chained   = PassphraseRequiredActionBarActivity.chainIntent(createPin, main);
+    final Intent chained   = PassphraseRequiredActivity.chainIntent(createPin, main);
 
     startActivity(chained);
   }

@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
 
-public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements MasterSecretListener {
-  private static final String TAG = PassphraseRequiredActionBarActivity.class.getSimpleName();
+public abstract class PassphraseRequiredActivity extends BaseActivity implements MasterSecretListener {
+  private static final String TAG = PassphraseRequiredActivity.class.getSimpleName();
 
   public static final String LOCALE_EXTRA      = "locale_extra";
   public static final String NEXT_INTENT_EXTRA = "next_intent";
@@ -49,7 +49,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
-    Log.d(TAG, "[" + Log.tag(getClass()) + "] onCreate()");
     this.networkAccess = new SignalServiceNetworkAccess(this);
     onPreCreate();
 
@@ -69,7 +68,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onResume() {
-    Log.d(TAG, "[" + Log.tag(getClass()) + "] onResume()");
     super.onResume();
 
     if (networkAccess.isCensored(this)) {
@@ -78,26 +76,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   @Override
-  protected void onStart() {
-    Log.d(TAG, "[" + Log.tag(getClass()) + "] onStart()");
-    super.onStart();
-  }
-
-  @Override
-  protected void onPause() {
-    Log.d(TAG, "[" + Log.tag(getClass()) + "] onPause()");
-    super.onPause();
-  }
-
-  @Override
-  protected void onStop() {
-    Log.d(TAG, "[" + Log.tag(getClass()) + "] onStop()");
-    super.onStop();
-  }
-
-  @Override
   protected void onDestroy() {
-    Log.d(TAG, "[" + Log.tag(getClass()) + "] onDestroy()");
     super.onDestroy();
     removeClearKeyReceiver(this);
   }

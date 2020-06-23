@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
  *
  * @author Moxie Marlinspike
  */
-public abstract class PassphraseActivity extends BaseActionBarActivity {
+public abstract class PassphraseActivity extends BaseActivity {
 
   private static final String TAG = PassphraseActivity.class.getSimpleName();
 

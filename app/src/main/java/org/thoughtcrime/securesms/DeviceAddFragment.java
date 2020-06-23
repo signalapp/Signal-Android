@@ -6,7 +6,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class DeviceAddFragment extends Fragment {
+public class DeviceAddFragment extends LoggingFragment {
 
   private ViewGroup      container;
   private LinearLayout   overlay;

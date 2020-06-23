@@ -29,6 +29,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dd.CircularProgressButton;
 
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
@@ -46,7 +47,7 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.util.Objects;
 
-public class AddGroupDetailsFragment extends Fragment {
+public class AddGroupDetailsFragment extends LoggingFragment {
 
   private static final int    AVATAR_PLACEHOLDER_INSET_DP = 18;
   private static final short  REQUEST_CODE_AVATAR         = 27621;

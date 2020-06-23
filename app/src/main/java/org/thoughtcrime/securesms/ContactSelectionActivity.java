@@ -42,7 +42,7 @@ import java.lang.ref.WeakReference;
  * @author Moxie Marlinspike
  *
  */
-public abstract class ContactSelectionActivity extends PassphraseRequiredActionBarActivity
+public abstract class ContactSelectionActivity extends PassphraseRequiredActivity
                                                implements SwipeRefreshLayout.OnRefreshListener,
                                                           ContactSelectionListFragment.OnContactSelectedListener,
                                                           ContactSelectionListFragment.ScrollCallback

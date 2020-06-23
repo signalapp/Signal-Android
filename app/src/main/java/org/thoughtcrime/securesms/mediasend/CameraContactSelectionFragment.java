@@ -22,12 +22,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.InviteActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Fragment that selects Signal contacts. Intended to be used in the camera-first capture flow.
  */
-public class CameraContactSelectionFragment extends Fragment implements CameraContactAdapter.CameraContactListener {
+public class CameraContactSelectionFragment extends LoggingFragment implements CameraContactAdapter.CameraContactListener {
 
   private Controller                      controller;
   private MediaSendViewModel              mediaSendViewModel;

@@ -10,13 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class ManageRecipientActivity extends PassphraseRequiredActionBarActivity {
+public class ManageRecipientActivity extends PassphraseRequiredActivity {
 
   private static final String RECIPIENT_ID      = "RECIPIENT_ID";
   private static final String FROM_CONVERSATION = "FROM_CONVERSATION";

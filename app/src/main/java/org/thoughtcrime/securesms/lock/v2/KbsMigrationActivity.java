@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.BaseActionBarActivity;
+import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.PassphrasePromptActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class KbsMigrationActivity extends BaseActionBarActivity {
+public class KbsMigrationActivity extends BaseActivity {
 
   public static final int REQUEST_NEW_PIN = CreateKbsPinActivity.REQUEST_NEW_PIN;
 

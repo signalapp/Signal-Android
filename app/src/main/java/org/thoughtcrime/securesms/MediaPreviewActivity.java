@@ -77,7 +77,7 @@ import java.util.Map;
 /**
  * Activity for displaying media attachments in-app
  */
-public final class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
+public final class MediaPreviewActivity extends PassphraseRequiredActivity
   implements LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
              MediaRailAdapter.RailItemListener,
              MediaPreviewFragment.Events

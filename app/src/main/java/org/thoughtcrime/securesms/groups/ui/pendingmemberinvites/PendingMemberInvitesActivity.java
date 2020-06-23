@@ -7,13 +7,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class PendingMemberInvitesActivity extends PassphraseRequiredActionBarActivity {
+public class PendingMemberInvitesActivity extends PassphraseRequiredActivity {
 
   private static final String GROUP_ID = "GROUP_ID";
 

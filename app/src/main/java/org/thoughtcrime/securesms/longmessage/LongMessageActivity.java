@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
@@ -34,10 +34,9 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.Stub;
 
-public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
+public class LongMessageActivity extends PassphraseRequiredActivity {
 
   private static final String KEY_CONVERSATION_RECIPIENT = "recipient_id";
   private static final String KEY_MESSAGE_ID             = "message_id";

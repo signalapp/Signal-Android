@@ -3,9 +3,8 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends LoggingFragment {
 
   @Override
   public void onAttach(@NonNull Context context) {

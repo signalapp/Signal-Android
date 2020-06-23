@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -27,7 +27,7 @@ import java.util.List;
 import static org.thoughtcrime.securesms.contactshare.Contact.*;
 import static org.thoughtcrime.securesms.contactshare.ContactShareEditViewModel.*;
 
-public class ContactShareEditActivity extends PassphraseRequiredActionBarActivity implements ContactShareEditAdapter.EventListener {
+public class ContactShareEditActivity extends PassphraseRequiredActivity implements ContactShareEditAdapter.EventListener {
 
   public  static final String KEY_CONTACTS     = "contacts";
   private static final String KEY_CONTACT_URIS = "contact_uris";

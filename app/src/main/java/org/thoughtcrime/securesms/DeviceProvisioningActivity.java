@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import android.view.Window;
 
-public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActivity {
+public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
 
   @SuppressWarnings("unused")
   private static final String TAG = DeviceProvisioningActivity.class.getSimpleName();

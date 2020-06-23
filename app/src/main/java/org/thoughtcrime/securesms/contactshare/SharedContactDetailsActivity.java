@@ -20,8 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -44,7 +43,7 @@ import java.util.Map;
 
 import static org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.*;
 
-public class SharedContactDetailsActivity extends PassphraseRequiredActionBarActivity {
+public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
 
   private static final int    CODE_ADD_EDIT_CONTACT = 2323;
   private static final String KEY_CONTACT           = "contact";

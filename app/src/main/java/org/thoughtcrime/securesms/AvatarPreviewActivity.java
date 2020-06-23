@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 /**
  * Activity for displaying avatars full screen.
  */
-public final class AvatarPreviewActivity extends PassphraseRequiredActionBarActivity {
+public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
 
   private static final String TAG = Log.tag(AvatarPreviewActivity.class);
 
