@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.logging;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
@@ -19,6 +20,7 @@ public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionH
     Log.e(TAG, "", e);
     SignalStore.blockUntilAllWritesFinished();
     Log.blockUntilAllWritesFinished();
+    ApplicationDependencies.getJobManager().flush();
     originalHandler.uncaughtException(t, e);
   }
 }

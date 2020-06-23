@@ -78,6 +78,11 @@ class JobController {
   }
 
   @WorkerThread
+  synchronized void flush() {
+    jobStorage.flush();
+  }
+
+  @WorkerThread
   synchronized void submitNewJobChain(@NonNull List<List<Job>> chain) {
     chain = Stream.of(chain).filterNot(List::isEmpty).toList();
 

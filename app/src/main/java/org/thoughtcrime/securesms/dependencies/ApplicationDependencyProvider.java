@@ -134,7 +134,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                                                .setJobFactories(JobManagerFactories.getJobFactories(context))
                                                                .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
                                                                .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
-                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
+                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context), SignalExecutors.newCachedSingleThreadExecutor("signal-fast-job-storage")))
                                                                .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
                                                                .build());
   }

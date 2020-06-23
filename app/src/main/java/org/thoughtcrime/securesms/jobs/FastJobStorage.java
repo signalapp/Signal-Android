@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -26,17 +27,23 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
 
 public class FastJobStorage implements JobStorage {
 
+  private static final String TAG = Log.tag(FastJobStorage.class);
+
   private final JobDatabase jobDatabase;
+  private final Executor    serialExecutor;
 
   private final List<JobSpec>                     jobs;
   private final Map<String, List<ConstraintSpec>> constraintsByJobId;
   private final Map<String, List<DependencySpec>> dependenciesByJobId;
 
-  public FastJobStorage(@NonNull JobDatabase jobDatabase) {
+  public FastJobStorage(@NonNull JobDatabase jobDatabase, @NonNull Executor serialExecutor) {
     this.jobDatabase         = jobDatabase;
+    this.serialExecutor      = serialExecutor;
     this.jobs                = new ArrayList<>();
     this.constraintsByJobId  = new HashMap<>();
     this.dependenciesByJobId = new HashMap<>();
@@ -64,8 +71,23 @@ public class FastJobStorage implements JobStorage {
   }
 
   @Override
+  public synchronized void flush() {
+    CountDownLatch latch = new CountDownLatch(1);
+
+    serialExecutor.execute(latch::countDown);
+
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      Log.w(TAG, "Interrupted while waiting to flush!", e);
+    }
+  }
+
+  @Override
   public synchronized void insertJobs(@NonNull List<FullSpec> fullSpecs) {
-    jobDatabase.insertJobs(fullSpecs);
+    serialExecutor.execute(() -> {
+      jobDatabase.insertJobs(fullSpecs);
+    });
 
     for (FullSpec fullSpec : fullSpecs) {
       jobs.add(fullSpec.getJobSpec());
@@ -146,7 +168,9 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void updateJobRunningState(@NonNull String id, boolean isRunning) {
-    jobDatabase.updateJobRunningState(id, isRunning);
+    serialExecutor.execute(() -> {
+      jobDatabase.updateJobRunningState(id, isRunning);
+    });
 
     ListIterator<JobSpec> iter = jobs.listIterator();
 
@@ -173,7 +197,9 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull String serializedData) {
-    jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime, serializedData);
+    serialExecutor.execute(() -> {
+      jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime, serializedData);
+    });
 
     ListIterator<JobSpec> iter = jobs.listIterator();
 
@@ -200,8 +226,9 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void updateAllJobsToBePending() {
-    jobDatabase.updateAllJobsToBePending();
-
+    serialExecutor.execute(() -> {
+      jobDatabase.updateAllJobsToBePending();
+    });
     ListIterator<JobSpec> iter = jobs.listIterator();
 
     while (iter.hasNext()) {
@@ -225,7 +252,9 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public void updateJobs(@NonNull List<JobSpec> jobSpecs) {
-    jobDatabase.updateJobs(jobSpecs);
+    serialExecutor.execute(() -> {
+      jobDatabase.updateJobs(jobSpecs);
+    });
 
     Map<String, JobSpec>  updates = Stream.of(jobSpecs).collect(Collectors.toMap(JobSpec::getId));
     ListIterator<JobSpec> iter    = jobs.listIterator();
@@ -247,7 +276,10 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void deleteJobs(@NonNull List<String> jobIds) {
-    jobDatabase.deleteJobs(jobIds);
+    serialExecutor.execute(() -> {
+      jobDatabase.deleteJobs(jobIds);
+    });
+
 
     Set<String> deleteIds = new HashSet<>(jobIds);
 

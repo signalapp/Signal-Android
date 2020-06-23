@@ -12,6 +12,9 @@ public interface JobStorage {
   void init();
 
   @WorkerThread
+  void flush();
+
+  @WorkerThread
   void insertJobs(@NonNull List<FullSpec> fullSpecs);
 
   @WorkerThread
