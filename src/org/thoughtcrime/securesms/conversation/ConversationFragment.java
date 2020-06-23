@@ -428,9 +428,7 @@ public class ConversationFragment extends Fragment
 
   private MessageRecord getSelectedMessageRecord() {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
-
-    if (messageRecords.size() == 1) return messageRecords.iterator().next();
-    else                            throw new AssertionError();
+    return messageRecords.iterator().next();
   }
 
   public void reload(Recipient recipient, long threadId) {
