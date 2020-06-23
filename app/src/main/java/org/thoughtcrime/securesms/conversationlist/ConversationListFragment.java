@@ -118,6 +118,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -1012,6 +1013,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                        (float) itemView.getLeft() + getResources().getDimension(R.dimen.conversation_list_fragment_archive_padding),
                        (float) itemView.getTop() + ((float) itemView.getBottom() - (float) itemView.getTop() - icon.getHeight())/2,
                        p);
+
+          p.setColor(ThemeUtil.getThemedColor(getContext(),R.attr.conversation_background));
+          c.drawRect(dX, (float) itemView.getTop(), (float) itemView.getRight(),
+                  (float) itemView.getBottom(), p);
         }
 
         viewHolder.itemView.setAlpha(alpha);
