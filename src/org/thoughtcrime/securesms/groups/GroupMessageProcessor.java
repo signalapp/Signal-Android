@@ -131,10 +131,12 @@ public class GroupMessageProcessor {
     String        id       = GroupUtil.getEncodedId(group);
 
     String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    if (userMasterDevice == null) { userMasterDevice = TextSecurePreferences.getLocalNumber(context); }
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
       // Loki - Only update the group if the group admin sent the message
       String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+      if (masterDevice == null) { masterDevice = content.getSender(); }
       if (!groupRecord.getAdmins().contains(Address.fromSerialized(masterDevice))) {
         Log.d("Loki", "Received a group update message from a non-admin user for: " + id +"; ignoring.");
         return null;
@@ -212,6 +214,7 @@ public class GroupMessageProcessor {
                                              @NonNull GroupRecord record)
   {
     String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+    if (masterDevice == null) { masterDevice = content.getSender(); }
     if (record.getMembers().contains(Address.fromSerialized(masterDevice))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
@@ -234,6 +237,7 @@ public class GroupMessageProcessor {
     builder.setType(GroupContext.Type.QUIT);
 
     String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+    if (masterDevice == null) { masterDevice = content.getSender(); }
     if (members.contains(Address.fromExternal(context, masterDevice))) {
       database.remove(id, Address.fromExternal(context, masterDevice));
       if (outgoing) database.setActive(id, false);
@@ -259,7 +263,7 @@ public class GroupMessageProcessor {
     try {
       if (outgoing) {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        Address                   address          = Address.fromExternal(context, GroupUtil.getEncodedId(group));
+        Address                   address         = Address.fromExternal(context, GroupUtil.getEncodedId(group));
         Recipient                 recipient       = Recipient.from(context, address, false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);

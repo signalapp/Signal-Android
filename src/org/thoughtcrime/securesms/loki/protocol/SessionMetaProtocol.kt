@@ -97,8 +97,8 @@ object SessionMetaProtocol {
      * Should be invoked for the recipient's master device.
      */
     @JvmStatic
-    fun shouldSendTypingIndicator(recipient: Recipient, context: Context): Boolean {
-        if (recipient.isGroupRecipient) { return false }
+    fun shouldSendTypingIndicator(recipient: Recipient?, context: Context): Boolean {
+        if (recipient == null || recipient.isGroupRecipient) { return false }
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
         return DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS
     }

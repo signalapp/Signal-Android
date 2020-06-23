@@ -52,6 +52,8 @@ public class RotateSignedPreKeyJob extends BaseJob implements InjectableType {
   public void onRun() throws Exception {
     Log.i(TAG, "Rotating signed prekey...");
 
+    if (!IdentityKeyUtil.hasIdentityKey(context)) { return; }
+
     IdentityKeyPair    identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
