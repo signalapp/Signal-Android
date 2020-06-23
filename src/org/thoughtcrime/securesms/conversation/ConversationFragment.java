@@ -375,9 +375,7 @@ public class ConversationFragment extends Fragment
     }
 
     if (messageRecords.size() > 1) {
-//      menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_reply).setVisible(false);
-//      menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
     } else {
@@ -390,32 +388,29 @@ public class ConversationFragment extends Fragment
                                                                   ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                                                   ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
 
-      /*
-      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact);
-      menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-       */
       menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
                                                         !messageRecord.isPending() &&
                                                         !messageRecord.isFailed()  &&
                                                         messageRecord.isSecure());
     }
+
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
 
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
       LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
-      boolean isPublicChat = publicChat != null;
+      boolean isPublicChat = (publicChat != null);
       int selectedMessageCount = messageRecords.size();
       boolean areAllSentByUser = true;
       for (MessageRecord message : messageRecords) {
         if (!message.isOutgoing()) { areAllSentByUser = false; }
       }
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !areAllSentByUser);
-      menu.findItem(R.id.menu_context_reply).setVisible(isPublicChat && selectedMessageCount == 1);
+      menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
       boolean userCanModerate = isPublicChat && LokiPublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
-      boolean isDeleteOptionVisible = isPublicChat && (areAllSentByUser || userCanModerate);
+      boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(false);
