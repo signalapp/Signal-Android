@@ -48,12 +48,6 @@
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
     <dimen name="message_audio_width">210dp</dimen>
 
-    <dimen name="reactions_bubble_margin">-37dp</dimen>
-    <dimen name="reactions_bubble_size">32dp</dimen>
-    <dimen name="reactions_bubble_text_size">16dp</dimen>
-    <dimen name="reactions_bubble_margin_max">28dp</dimen>
-    <dimen name="reactions_bubble_container_max_height">60dp</dimen>
-
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
     <dimen name="media_picker_rail_padding_affordance">130dp</dimen>
@@ -127,9 +121,6 @@
          risk of false touches (from your finger wrapping around while
          holding the phone, *before* moving it up to your face and having
          the prox sensor kick in.) -->
-
-    <dimen name="onboarding_title_size">34sp</dimen>
-    <dimen name="onboarding_subtitle_size">20sp</dimen>
 
     <dimen name="floating_action_button_margin">16dp</dimen>
 
