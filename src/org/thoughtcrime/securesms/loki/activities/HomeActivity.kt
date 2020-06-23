@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
@@ -168,6 +169,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
         MultiDeviceProtocol.configureIfNeeded(apiDB)
         IP2Country.configureIfNeeded(this)
+        // Preload device links to make message sending quicker
+        val publicKeys = ContactUtilities.getAllContacts(this).filter { contact ->
+            !contact.recipient.isGroupRecipient && contact.isFriend && !contact.isOurDevice && !contact.isSlave
+        }.map {
+            it.recipient.address.toPhoneString()
+        }.toSet()
+        LokiFileServerAPI.shared.getDeviceLinks(publicKeys)
         // TODO: Temporary hack to unbork existing clients
         val allContacts = DatabaseFactory.getRecipientDatabase(this).allAddresses.map {
             MultiDeviceProtocol.shared.getMasterDevice(it.serialize()) ?: it.serialize()
