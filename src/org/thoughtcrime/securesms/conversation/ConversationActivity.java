@@ -1710,7 +1710,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
 
-    recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    Address address  = getIntent().getParcelableExtra(ADDRESS_EXTRA);
+    if (address == null) { finish(); return; }
+    recipient        = Recipient.from(this, address, true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
