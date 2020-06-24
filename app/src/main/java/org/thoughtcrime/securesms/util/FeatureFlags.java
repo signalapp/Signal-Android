@@ -58,7 +58,8 @@ public final class FeatureFlags {
   private static final String REMOTE_DELETE              = "android.remoteDelete";
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling";
   private static final String CALLING_PIP                = "android.callingPip";
-  private static final String VERSIONED_PROFILES         = "android.versionedProfiles";
+  private static final String VERSIONED_PROFILES_1       = "android.versionedProfiles";
+  private static final String VERSIONED_PROFILES_2       = "android.versionedProfiles.2";
   private static final String GROUPS_V2                  = "android.groupsv2";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create";
   private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
@@ -77,7 +78,8 @@ public final class FeatureFlags {
       REMOTE_DELETE,
       PROFILE_FOR_CALLING,
       CALLING_PIP,
-      VERSIONED_PROFILES,
+      VERSIONED_PROFILES_1,
+      VERSIONED_PROFILES_2,
       GROUPS_V2,
       GROUPS_V2_CREATE,
       GROUPS_V2_CAPACITY,
@@ -110,7 +112,8 @@ public final class FeatureFlags {
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
   private static final Set<String> STICKY = Sets.newHashSet(
-      VERSIONED_PROFILES,
+      VERSIONED_PROFILES_1,
+      VERSIONED_PROFILES_2,
       GROUPS_V2
   );
 
@@ -126,7 +129,7 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(VERSIONED_PROFILES, (change) -> {
+    put(VERSIONED_PROFILES_2, (change) -> {
       if (change == Change.ENABLED) {
         ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
       }
@@ -235,7 +238,8 @@ public final class FeatureFlags {
 
   /** Read and write versioned profile information. */
   public static boolean versionedProfiles() {
-    return getBoolean(VERSIONED_PROFILES, false);
+    return getBoolean(VERSIONED_PROFILES_1, false) ||
+           getBoolean(VERSIONED_PROFILES_2, false);
   }
 
   /** Groups v2 send and receive. */
