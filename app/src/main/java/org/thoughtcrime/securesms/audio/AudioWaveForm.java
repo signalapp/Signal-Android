@@ -157,75 +157,83 @@ public final class AudioWaveForm {
       codec.configure(format, null, null, 0);
       codec.start();
 
+      ByteBuffer[] codecInputBuffers  = codec.getInputBuffers();
+      ByteBuffer[] codecOutputBuffers = codec.getOutputBuffers();
+
       extractor.selectTrack(0);
 
-      final long            TIMEOUT_US      = 5000;
+      long                  kTimeOutUs      = 5000;
       MediaCodec.BufferInfo info            = new MediaCodec.BufferInfo();
       boolean               sawInputEOS     = false;
       boolean               sawOutputEOS    = false;
       int                   noOutputCounter = 0;
 
-      final long            BAR_FACTOR      = totalDurationUs / (BAR_COUNT * SAMPLES_PER_BAR);
-      long                  barTimer        = 0;
-
-      int                   barIndex;
-      int                   sampleSize;
-      long                  presentationTimeUs;
-      long                  total;
-      short                 aShort;
-      int                   inputBufferId;
-      int                   outputBufferId;
-      ByteBuffer            codecInputBuffer;
-      ByteBuffer            codecOutputBuffer;
-
       while (!sawOutputEOS && noOutputCounter < 50) {
         noOutputCounter++;
         if (!sawInputEOS) {
-          inputBufferId = codec.dequeueInputBuffer(TIMEOUT_US);
-          if (inputBufferId >= 0) {
-            codecInputBuffer = codec.getInputBuffer(inputBufferId);
-            extractor.seekTo(barTimer, MediaExtractor.SEEK_TO_NEXT_SYNC);
-            barTimer  += BAR_FACTOR;
-            sampleSize = extractor.readSampleData(codecInputBuffer, 0);
-            if (sampleSize < 0 || barTimer > totalDurationUs) {
-              sawInputEOS        = true;
-              sampleSize         = 0;
-              presentationTimeUs = 0;
+          int inputBufIndex = codec.dequeueInputBuffer(kTimeOutUs);
+          if (inputBufIndex >= 0) {
+            ByteBuffer dstBuf             = codecInputBuffers[inputBufIndex];
+            int        sampleSize         = extractor.readSampleData(dstBuf, 0);
+            long       presentationTimeUs = 0;
+
+            if (sampleSize < 0) {
+              sawInputEOS = true;
+              sampleSize  = 0;
             } else {
               presentationTimeUs = extractor.getSampleTime();
             }
 
             codec.queueInputBuffer(
-              inputBufferId,
+              inputBufIndex,
               0,
               sampleSize,
               presentationTimeUs,
               sawInputEOS ? MediaCodec.BUFFER_FLAG_END_OF_STREAM : 0);
+
+            if (!sawInputEOS) {
+              int barSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
+              sawInputEOS = !extractor.advance();
+              int nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
+              while (!sawInputEOS && nextBarSampleIndex == barSampleIndex) {
+                sawInputEOS = !extractor.advance();
+                if (!sawInputEOS) {
+                  nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
+                }
+              }
+            }
           }
         }
-        outputBufferId = codec.dequeueOutputBuffer(info, TIMEOUT_US);
-        if (outputBufferId >= 0) {
-          if (info.size > 0) {
-            noOutputCounter = 0;
+
+        int outputBufferIndex;
+        do {
+          outputBufferIndex = codec.dequeueOutputBuffer(info, kTimeOutUs);
+          if (outputBufferIndex >= 0) {
+            if (info.size > 0) {
+              noOutputCounter = 0;
+            }
+
+            ByteBuffer buf = codecOutputBuffers[outputBufferIndex];
+            int barIndex = (int) ((wave.length * info.presentationTimeUs) / totalDurationUs);
+            long total = 0;
+            for (int i = 0; i < info.size; i += 2 * 4) {
+              short aShort = buf.getShort(i);
+              total += Math.abs(aShort);
+            }
+            if (barIndex >= 0 && barIndex < wave.length) {
+              wave[barIndex] += total;
+              waveSamples[barIndex] += info.size / 2;
+            }
+            codec.releaseOutputBuffer(outputBufferIndex, false);
+            if ((info.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0) {
+              sawOutputEOS = true;
+            }
+          } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
+            codecOutputBuffers = codec.getOutputBuffers();
+          } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
+            Log.d(TAG, "output format has changed to " + codec.getOutputFormat());
           }
-          codecOutputBuffer = codec.getOutputBuffer(outputBufferId);
-          barIndex = (int) ((wave.length * info.presentationTimeUs) / totalDurationUs);
-          total = 0;
-          for (int i = 0; i < info.size; i += 2 * 4) {
-            aShort = codecOutputBuffer.getShort(i);
-            total += Math.abs(aShort);
-          }
-          if (barIndex >= 0 && barIndex < wave.length) {
-            wave[barIndex] += total;
-            waveSamples[barIndex] += info.size;
-          }
-          if (info.flags == MediaCodec.BUFFER_FLAG_END_OF_STREAM) {
-            sawOutputEOS = true;
-          }
-          codec.releaseOutputBuffer(outputBufferId, false);
-        } else if (outputBufferId == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-          Log.d(TAG, "output format has changed to " + codec.getOutputFormat());
-        }
+        } while (outputBufferIndex >= 0);
       }
 
       codec.stop();
