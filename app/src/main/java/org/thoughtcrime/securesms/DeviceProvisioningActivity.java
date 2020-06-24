@@ -26,7 +26,7 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
           startActivity(intent);
           finish();
         })
-        .setNegativeButton(R.string.DeviceProvisioningActivity_cancel, (dialog12, which) -> {
+        .setNegativeButton(android.R.string.cancel, (dialog12, which) -> {
           dialog12.dismiss();
           finish();
         })

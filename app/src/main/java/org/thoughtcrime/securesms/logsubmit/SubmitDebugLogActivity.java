@@ -225,7 +225,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     AlertDialog.Builder builder = new AlertDialog.Builder(this)
                                                  .setTitle(R.string.SubmitDebugLogActivity_success)
                                                  .setCancelable(false)
-                                                 .setNeutralButton(R.string.SubmitDebugLogActivity_ok, (d, w) -> finish())
+                                                 .setNeutralButton(android.R.string.ok, (d, w) -> finish())
                                                  .setPositiveButton(R.string.SubmitDebugLogActivity_share, (d, w) -> {
                                                    ShareCompat.IntentBuilder.from(this)
                                                                             .setText(url)

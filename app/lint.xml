@@ -6,10 +6,13 @@
     <issue id="StringFormatMatches" severity="error" />
 
     <!-- L10N warnings -->
-    <issue id="MissingTranslation" severity="warning" />
+    <issue id="MissingTranslation" severity="ignore" />
     <issue id="MissingQuantity" severity="warning" />
     <issue id="ExtraTranslation" severity="warning" />
     <issue id="ImpliedQuantity" severity="warning" />
+    <issue id="TypographyDashes" severity="error" >
+        <ignore path="*/res/values-*" /> <!-- Ignore for non-English -->
+    </issue>
 
     <issue id="CanvasSize" severity="error" />
     <issue id="HardcodedText" severity="error" />
