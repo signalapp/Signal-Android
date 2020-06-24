@@ -22,12 +22,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -54,6 +53,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
@@ -129,6 +129,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 import static android.app.Activity.RESULT_OK;
@@ -170,6 +171,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private StickyHeaderDecoration            searchAdapterDecoration;
   private ViewGroup                         megaphoneContainer;
   private SnapToTopDataObserver             snapToTopDataObserver;
+  private Drawable                          archiveDrawable;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
@@ -988,7 +990,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     @Override
-    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
+    public void onChildDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView,
                             @NonNull RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive)
@@ -996,28 +998,32 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View  itemView = viewHolder.itemView;
-        Paint p        = new Paint();
         float alpha    = 1.0f - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
 
         if (dX > 0) {
-          Bitmap icon = BitmapFactory.decodeResource(getResources(), getArchiveIconRes());
+          Resources resources = getResources();
 
-          if (alpha > 0) p.setColor(getResources().getColor(R.color.green_500));
-          else           p.setColor(Color.WHITE);
+          if (archiveDrawable == null) {
+            archiveDrawable = ResourcesCompat.getDrawable(resources, getArchiveIconRes(), requireActivity().getTheme());
+            Objects.requireNonNull(archiveDrawable).setBounds(0, 0, archiveDrawable.getIntrinsicWidth(), archiveDrawable.getIntrinsicHeight());
+          }
 
-          c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
-                     (float) itemView.getBottom(), p);
+          canvas.save();
+          canvas.clipRect(itemView.getLeft(), itemView.getTop(), dX, itemView.getBottom());
 
-          c.drawBitmap(icon,
-                       (float) itemView.getLeft() + getResources().getDimension(R.dimen.conversation_list_fragment_archive_padding),
-                       (float) itemView.getTop() + ((float) itemView.getBottom() - (float) itemView.getTop() - icon.getHeight())/2,
-                       p);
+          canvas.drawColor(alpha > 0 ? resources.getColor(R.color.green_500) : Color.WHITE);
+
+          canvas.translate(itemView.getLeft() + resources.getDimension(R.dimen.conversation_list_fragment_archive_padding),
+                           itemView.getTop() + (itemView.getBottom() - itemView.getTop() - archiveDrawable.getIntrinsicHeight()) / 2f);
+
+          archiveDrawable.draw(canvas);
+          canvas.restore();
         }
 
         viewHolder.itemView.setAlpha(alpha);
         viewHolder.itemView.setTranslationX(dX);
       } else {
-        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
       }
     }
   }
