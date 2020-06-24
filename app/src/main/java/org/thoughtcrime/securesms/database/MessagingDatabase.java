@@ -153,13 +153,15 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   }
 
   public void setAllReactionsSeen() {
-    SQLiteDatabase db          = databaseHelper.getWritableDatabase();
-    ContentValues  values      = new ContentValues();
+    SQLiteDatabase db     = databaseHelper.getWritableDatabase();
+    ContentValues  values = new ContentValues();
+    String         query  = REACTIONS_UNREAD + " != ?";
+    String[]       args   = new String[] { "0" };
 
     values.put(REACTIONS_UNREAD, 0);
     values.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
 
-    db.update(getTableName(), values, null, null);
+    db.update(getTableName(), values, query, args);
   }
 
   public void addReaction(long messageId, @NonNull ReactionRecord reaction) {
