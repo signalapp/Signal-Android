@@ -204,7 +204,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera otillgänglig</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal tillgång till din mikrofon.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal åtkomst till din mikrofon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörigheterna Mikrofon och Kamera för att ringa%s men de har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">För att fånga fotografier och video, tillåt Signal att tillgå kameran.</string>
@@ -278,6 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan dra åt vänster på ett meddelande för att snabbt svara</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Filer för utgående visa-en-gång media tas bort automatiskt efter att de har skickats</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Du har redan sett det här meddelandet</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan lägga till anteckningar för dig själv i den här konversationen.\nOm ditt konto har några länkade enheter synkroniseras nya anteckningar.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
@@ -614,7 +615,7 @@
   <string name="MediaSendActivity_message_to_s">Meddelande till %s</string>
   <string name="MediaSendActivity_message">Meddelande</string>
   <string name="MediaSendActivity_select_recipients">Välj mottagare</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal behöver tillgång till dina kontakter för att visa dem.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal behöver åtkomst till dina kontakter för att visa dem.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal behöver behörigheten Kontakter för att visa dina kontakter men den har nekats permanent. Vänligen fortsätt till Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan inte dela mer än %d objekt.</item>
@@ -851,7 +852,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_no_browser">Det går inte att öppna den här länken. Ingen webbläsare hittades.</string>
   <string name="RegistrationActivity_more_information">Mer information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalen behöver åtkomst till dina kontakter och media för att få kontakt med vänner, utbyta meddelanden och ringa säkra samtal</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter och media för att få kontakt med vänner, utbyta meddelanden och ringa säkra samtal</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Vänligen försök igen senare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Vänligen kontrollera nätverksanslutning och försök igen.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">För att enkelt verifiera ditt telefonnummer kan Signal automatiskt detektera din verifieringskod om du tillåter Signal att se SMS-meddelanden.</string>
@@ -1131,7 +1132,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fel vid videouppspelning</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal tillgång till din mikrofon.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal åtkomst till din mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Avvisades på en länkad enhet.</string>
@@ -1206,7 +1207,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal behöver tillgång till dina kontakter för att visa dem.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal behöver åtkomst till dina kontakter för att visa dem.</string>
   <string name="contact_selection_list_fragment__show_contacts">Visa kontakter</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">

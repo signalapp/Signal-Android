@@ -1218,6 +1218,10 @@
   <string name="HelpFragment__signal_support">Signal 지원</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">저희가 문제를 해결할 수 있도록 최대한으로 설명해 주세요.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">활동</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">물체</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">부호</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">국기</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">가져오기</string>
   <string name="arrays__use_default">기본값 사용</string>

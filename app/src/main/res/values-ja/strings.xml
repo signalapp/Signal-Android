@@ -268,7 +268,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">メッセージを左にスワイプすると素早く返信できます</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">消える (一度しか見れないファイル) メディアファイルは、送信されたら自動的に削除されます。</string>
   <string name="ConversationFragment_you_already_viewed_this_message">このメッセージは閲覧済みです</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">この会話に自分用のメモを追加できます。.\nリンクした別の端末にも同期されます。</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">この会話に自分用のメモを追加できます。\nリンクした別の端末にも同期されます。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->

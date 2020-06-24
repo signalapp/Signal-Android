@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueo da pantalla %1$s, bloqueo do rexistro %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueo de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -78,6 +79,8 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e abandonar %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear a %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Non recibirás máis mensaxes ou actualizacións deste grupo, e os membros non poderán engadirte novamente ao grupo.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Os membros do grupo non poderán engadirte novamente ao grupo.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>

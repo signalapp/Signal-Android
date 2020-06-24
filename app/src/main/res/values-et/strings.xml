@@ -315,6 +315,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Profiili seadistamisel tekkis probleem</string>
   <string name="CreateProfileActivity_profile_photo">Profiilipilt</string>
   <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Sinu profiil on otspunktkrüptitud. See on nähtav sinu kontaktidele, kui algatad või nõustud uute vestlustega ja liitud uute gruppidega.</string>
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
@@ -708,6 +709,7 @@
   <string name="MessageRequestBottomView_block">Blokeeri</string>
   <string name="MessageRequestBottomView_unblock">Eemalda blokeering</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sind kutsuti grupiga %1$s liituma. Kas lubad selle grupi liikmetel sulle sõnumeid saata?</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Kas eemaldada sellelt grupilt blokeering ja jagada enda nime ning fotot selle liikmetele? Sa ei saa enne ühtegi sõnumit kuni eemaldad blokeeringu.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ja %3$s liige</string>
