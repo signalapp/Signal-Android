@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util.task;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import androidx.annotation.Nullable;
 import com.google.android.material.snackbar.Snackbar;
@@ -60,6 +61,7 @@ public abstract class SnackbarAsyncTask<Params>
     Snackbar.make(view, snackbarText, snackbarDuration)
             .setAction(snackbarActionText, this)
             .setActionTextColor(snackbarActionColor)
+            .setTextColor(Color.WHITE)
             .show();
   }
 
