@@ -105,7 +105,7 @@ public final class ContactUtil {
   private static @NonNull String getPrettyPhoneNumber(@NonNull String phoneNumber, @NonNull Locale fallbackLocale) {
     PhoneNumberUtil util = PhoneNumberUtil.getInstance();
     try {
-      PhoneNumber parsed = util.parse(phoneNumber, null);
+      PhoneNumber parsed = util.parse(phoneNumber, fallbackLocale.getCountry());
       return util.format(parsed, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
     } catch (NumberParseException e) {
       return phoneNumber;

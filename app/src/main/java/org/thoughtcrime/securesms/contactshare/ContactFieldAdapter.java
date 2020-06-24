@@ -5,6 +5,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import java.util.ArrayList;
@@ -141,7 +144,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
     final Uri        iconUri;
 
     Field(@NonNull Context context, @NonNull Phone phoneNumber, @NonNull Locale locale) {
-      this.value      = ContactUtil.getPrettyPhoneNumber(phoneNumber, locale);
+      this.value      = PhoneNumberUtils.formatNumber(phoneNumber.getNumber());
       this.iconResId  = R.drawable.ic_phone_right_unlock_solid_24;
       this.iconUri    = null;
       this.maxLines   = 1;
