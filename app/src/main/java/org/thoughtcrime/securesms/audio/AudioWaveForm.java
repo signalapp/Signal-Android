@@ -167,6 +167,8 @@ public final class AudioWaveForm {
       boolean               sawInputEOS     = false;
       boolean               sawOutputEOS    = false;
       int                   noOutputCounter = 0;
+      final long            BAR_FACTOR      = (totalDurationUs / (BAR_COUNT * SAMPLES_PER_BAR) + 1);
+      long                  barTimer        = BAR_FACTOR;
 
       while (!sawOutputEOS && noOutputCounter < 50) {
         noOutputCounter++;
@@ -177,11 +179,13 @@ public final class AudioWaveForm {
             int        sampleSize         = extractor.readSampleData(dstBuf, 0);
             long       presentationTimeUs = 0;
 
-            if (sampleSize < 0) {
+            if (sampleSize < 0 || barTimer > totalDurationUs) {
               sawInputEOS = true;
               sampleSize  = 0;
             } else {
               presentationTimeUs = extractor.getSampleTime();
+              extractor.seekTo(barTimer, MediaExtractor.SEEK_TO_NEXT_SYNC);
+              barTimer  += BAR_FACTOR;
             }
 
             codec.queueInputBuffer(
@@ -190,18 +194,6 @@ public final class AudioWaveForm {
               sampleSize,
               presentationTimeUs,
               sawInputEOS ? MediaCodec.BUFFER_FLAG_END_OF_STREAM : 0);
-
-            if (!sawInputEOS) {
-              int barSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-              sawInputEOS = !extractor.advance();
-              int nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-              while (!sawInputEOS && nextBarSampleIndex == barSampleIndex) {
-                sawInputEOS = !extractor.advance();
-                if (!sawInputEOS) {
-                  nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-                }
-              }
-            }
           }
         }
 
