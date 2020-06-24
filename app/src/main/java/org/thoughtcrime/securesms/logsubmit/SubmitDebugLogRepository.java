@@ -60,6 +60,7 @@ public class SubmitDebugLogRepository {
     }
     add(new LogSectionPin());
     add(new LogSectionThreads());
+    add(new LogSectionCapabilities());
     add(new LogSectionFeatureFlags());
     add(new LogSectionPermissions());
     add(new LogSectionLogcat());
