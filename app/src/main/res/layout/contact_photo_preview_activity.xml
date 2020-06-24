@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/core_grey_95">
@@ -8,8 +9,12 @@
     <ImageView
         android:id="@+id/avatar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:transitionName="avatar" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:transitionName="avatar"
+        tools:src="@drawable/ic_signal_downloading" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar_layout"
