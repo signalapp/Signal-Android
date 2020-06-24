@@ -145,5 +145,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         TextSecurePreferences.removeLocalNumber(this)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)
+        val application = ApplicationContext.getInstance(this)
+        application.stopPollingIfNeeded()
     }
 }

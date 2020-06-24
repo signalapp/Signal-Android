@@ -484,9 +484,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void setUpPollingIfNeeded() {
-    if (lokiPoller != null) return;
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userPublicKey == null) return;
+    if (lokiPoller != null) {
+      lokiPoller.updateUserHexEncodedPublicKey(userPublicKey);
+      return;
+    }
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
     LokiSwarmAPI.Companion.configureIfNeeded(apiDB);
@@ -502,6 +505,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void startPollingIfNeeded() {
     setUpPollingIfNeeded();
     if (lokiPoller != null) { lokiPoller.startIfNeeded(); }
+  }
+
+  public void stopPollingIfNeeded() {
+    if (lokiPoller != null) { lokiPoller.stopIfNeeded(); }
   }
 
   private void resubmitProfilePictureIfNeeded() {
