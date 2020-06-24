@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 
-import java.util.Objects;
-
 public class Conversation {
   private final ThreadRecord threadRecord;
 
@@ -27,6 +25,6 @@ public class Conversation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(threadRecord);
+    return threadRecord.hashCode();
   }
 }
