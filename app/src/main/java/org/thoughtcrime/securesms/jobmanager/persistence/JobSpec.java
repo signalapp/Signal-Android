@@ -21,6 +21,7 @@ public final class JobSpec {
   private final String  serializedData;
   private final String  serializedInputData;
   private final boolean isRunning;
+  private final boolean memoryOnly;
 
   public JobSpec(@NonNull String id,
                  @NonNull String factoryKey,
@@ -34,7 +35,8 @@ public final class JobSpec {
                  int maxInstances,
                  @NonNull String serializedData,
                  @Nullable String serializedInputData,
-                 boolean isRunning)
+                 boolean isRunning,
+                 boolean memoryOnly)
   {
     this.id                  = id;
     this.factoryKey          = factoryKey;
@@ -49,6 +51,7 @@ public final class JobSpec {
     this.serializedData      = serializedData;
     this.serializedInputData = serializedInputData;
     this.isRunning           = isRunning;
+    this.memoryOnly          = memoryOnly;
   }
 
   public @NonNull String getId() {
@@ -103,6 +106,10 @@ public final class JobSpec {
     return isRunning;
   }
 
+  public boolean isMemoryOnly() {
+    return memoryOnly;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -116,6 +123,7 @@ public final class JobSpec {
            lifespan == jobSpec.lifespan &&
            maxInstances == jobSpec.maxInstances &&
            isRunning == jobSpec.isRunning &&
+           memoryOnly == jobSpec.memoryOnly &&
            Objects.equals(id, jobSpec.id) &&
            Objects.equals(factoryKey, jobSpec.factoryKey) &&
            Objects.equals(queueKey, jobSpec.queueKey) &&
@@ -125,13 +133,13 @@ public final class JobSpec {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, lifespan, maxInstances, serializedData, serializedInputData, isRunning);
+    return Objects.hash(id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, lifespan, maxInstances, serializedData, serializedInputData, isRunning, memoryOnly);
   }
 
   @SuppressLint("DefaultLocale")
   @Override
   public @NonNull String toString() {
-    return String.format("id: JOB::%s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | runAttempt: %d | maxAttempts: %d | maxBackoff: %d | maxInstances: %d | lifespan: %d | isRunning: %b",
-                         id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, maxInstances, lifespan, isRunning);
+    return String.format("id: JOB::%s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | runAttempt: %d | maxAttempts: %d | maxBackoff: %d | maxInstances: %d | lifespan: %d | isRunning: %b | memoryOnly: %b",
+                         id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, maxInstances, lifespan, isRunning, memoryOnly);
   }
 }

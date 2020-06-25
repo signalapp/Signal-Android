@@ -32,6 +32,9 @@ public final class FullSpec {
     return dependencySpecs;
   }
 
+  public boolean isMemoryOnly() {
+    return jobSpec.isMemoryOnly();
+  }
 
   @Override
   public boolean equals(Object o) {

@@ -76,7 +76,8 @@ public class JobMigrator {
                                               jobSpec.getMaxInstances(),
                                               dataSerializer.serialize(updatedJobData.getData()),
                                               jobSpec.getSerializedInputData(),
-                                              jobSpec.isRunning());
+                                              jobSpec.isRunning(),
+                                              jobSpec.isMemoryOnly());
 
         iter.set(updatedJobSpec);
       }

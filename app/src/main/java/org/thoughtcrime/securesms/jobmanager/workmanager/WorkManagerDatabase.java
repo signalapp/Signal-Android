@@ -69,12 +69,13 @@ final class WorkManagerDatabase extends SQLiteOpenHelper {
                                                          Job.Parameters.UNLIMITED,
                                                          dataSerializer.serialize(DataMigrator.convert(data)),
                                                          null,
+                                                         false,
                                                          false);
 
 
 
           if (cursor.getInt(cursor.getColumnIndexOrThrow("required_network_type")) != 0) {
-            constraints.add(new ConstraintSpec(id, NetworkConstraint.KEY));
+            constraints.add(new ConstraintSpec(id, NetworkConstraint.KEY, false));
           }
 
           fullSpecs.add(new FullSpec(jobSpec, constraints, Collections.emptyList()));

@@ -245,6 +245,7 @@ public abstract class Job {
     private final String       queue;
     private final List<String> constraintKeys;
     private final Data         inputData;
+    private final boolean      memoryOnly;
 
     private Parameters(@NonNull String id,
                        long createTime,
@@ -254,7 +255,8 @@ public abstract class Job {
                        int maxInstances,
                        @Nullable String queue,
                        @NonNull List<String> constraintKeys,
-                       @Nullable Data inputData)
+                       @Nullable Data inputData,
+                       boolean memoryOnly)
     {
       this.id             = id;
       this.createTime     = createTime;
@@ -265,6 +267,7 @@ public abstract class Job {
       this.queue          = queue;
       this.constraintKeys = constraintKeys;
       this.inputData      = inputData;
+      this.memoryOnly     = memoryOnly;
     }
 
     @NonNull String getId() {
@@ -303,8 +306,12 @@ public abstract class Job {
       return inputData;
     }
 
+    boolean isMemoryOnly() {
+      return memoryOnly;
+    }
+
     public Builder toBuilder() {
-      return new Builder(id, createTime, maxBackoff, lifespan, maxAttempts, maxInstances, queue, constraintKeys, inputData);
+      return new Builder(id, createTime, maxBackoff, lifespan, maxAttempts, maxInstances, queue, constraintKeys, inputData, memoryOnly);
     }
 
 
@@ -319,13 +326,14 @@ public abstract class Job {
       private String       queue;
       private List<String> constraintKeys;
       private Data         inputData;
+      private boolean      memoryOnly;
 
       public Builder() {
         this(UUID.randomUUID().toString());
       }
 
       Builder(@NonNull String id) {
-        this(id, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(30), IMMORTAL, 1, UNLIMITED, null, new LinkedList<>(), null);
+        this(id, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(30), IMMORTAL, 1, UNLIMITED, null, new LinkedList<>(), null, false);
       }
 
       private Builder(@NonNull String id,
@@ -336,7 +344,8 @@ public abstract class Job {
                       int maxInstances,
                       @Nullable String queue,
                       @NonNull List<String> constraintKeys,
-                      @Nullable Data inputData)
+                      @Nullable Data inputData,
+                      boolean memoryOnly)
       {
         this.id             = id;
         this.createTime     = createTime;
@@ -347,6 +356,7 @@ public abstract class Job {
         this.queue          = queue;
         this.constraintKeys = constraintKeys;
         this.inputData      = inputData;
+        this.memoryOnly     = memoryOnly;
       }
 
       /** Should only be invoked by {@link JobController} */
@@ -425,6 +435,17 @@ public abstract class Job {
       }
 
       /**
+       * Specify whether or not you want this job to only live in memory. If true, this job will
+       * *not* survive application death. This defaults to false, and should be used with care.
+       *
+       * Defaults to false.
+       */
+      public @NonNull Builder setMemoryOnly(boolean memoryOnly) {
+        this.memoryOnly = memoryOnly;
+        return this;
+      }
+
+      /**
        * Sets the input data that will be made availabe to the job when it is run.
        * Should only be set by {@link JobController}.
        */
@@ -434,7 +455,7 @@ public abstract class Job {
       }
 
       public @NonNull Parameters build() {
-        return new Parameters(id, createTime, lifespan, maxAttempts, maxBackoff, maxInstances, queue, constraintKeys, inputData);
+        return new Parameters(id, createTime, lifespan, maxAttempts, maxBackoff, maxInstances, queue, constraintKeys, inputData, memoryOnly);
       }
     }
   }

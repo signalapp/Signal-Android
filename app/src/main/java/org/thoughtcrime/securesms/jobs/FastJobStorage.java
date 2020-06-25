@@ -85,9 +85,12 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void insertJobs(@NonNull List<FullSpec> fullSpecs) {
-    serialExecutor.execute(() -> {
-      jobDatabase.insertJobs(fullSpecs);
-    });
+    List<FullSpec> durable = Stream.of(fullSpecs).filterNot(FullSpec::isMemoryOnly).toList();
+    if (durable.size() > 0) {
+      serialExecutor.execute(() -> {
+        jobDatabase.insertJobs(durable);
+      });
+    }
 
     for (FullSpec fullSpec : fullSpecs) {
       jobs.add(fullSpec.getJobSpec());
@@ -168,9 +171,12 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void updateJobRunningState(@NonNull String id, boolean isRunning) {
-    serialExecutor.execute(() -> {
-      jobDatabase.updateJobRunningState(id, isRunning);
-    });
+    JobSpec job = getJobById(id);
+    if (job == null || !job.isMemoryOnly()) {
+      serialExecutor.execute(() -> {
+        jobDatabase.updateJobRunningState(id, isRunning);
+      });
+    }
 
     ListIterator<JobSpec> iter = jobs.listIterator();
 
@@ -189,7 +195,8 @@ public class FastJobStorage implements JobStorage {
                                       existing.getMaxInstances(),
                                       existing.getSerializedData(),
                                       existing.getSerializedInputData(),
-                                      isRunning);
+                                      isRunning,
+                                      existing.isMemoryOnly());
         iter.set(updated);
       }
     }
@@ -197,9 +204,12 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull String serializedData) {
-    serialExecutor.execute(() -> {
-      jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime, serializedData);
-    });
+    JobSpec job = getJobById(id);
+    if (job == null || !job.isMemoryOnly()) {
+      serialExecutor.execute(() -> {
+        jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime, serializedData);
+      });
+    }
 
     ListIterator<JobSpec> iter = jobs.listIterator();
 
@@ -218,7 +228,8 @@ public class FastJobStorage implements JobStorage {
                                       existing.getMaxInstances(),
                                       serializedData,
                                       existing.getSerializedInputData(),
-                                      isRunning);
+                                      isRunning,
+                                      existing.isMemoryOnly());
         iter.set(updated);
       }
     }
@@ -245,16 +256,27 @@ public class FastJobStorage implements JobStorage {
                                      existing.getMaxInstances(),
                                      existing.getSerializedData(),
                                      existing.getSerializedInputData(),
-                                     false);
+                                     false,
+                                     existing.isMemoryOnly());
       iter.set(updated);
     }
   }
 
   @Override
   public void updateJobs(@NonNull List<JobSpec> jobSpecs) {
-    serialExecutor.execute(() -> {
-      jobDatabase.updateJobs(jobSpecs);
-    });
+    List<JobSpec> durable = new ArrayList<>(jobSpecs.size());
+    for (JobSpec update : jobSpecs) {
+      JobSpec found = getJobById(update.getId());
+      if (found == null || !found.isMemoryOnly()) {
+        durable.add(update);
+      }
+    }
+
+    if (durable.size() > 0) {
+      serialExecutor.execute(() -> {
+        jobDatabase.updateJobs(durable);
+      });
+    }
 
     Map<String, JobSpec>  updates = Stream.of(jobSpecs).collect(Collectors.toMap(JobSpec::getId));
     ListIterator<JobSpec> iter    = jobs.listIterator();
@@ -276,10 +298,19 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized void deleteJobs(@NonNull List<String> jobIds) {
-    serialExecutor.execute(() -> {
-      jobDatabase.deleteJobs(jobIds);
-    });
+    List<String> durableIds = new ArrayList<>(jobIds.size());
+    for (String id : jobIds) {
+      JobSpec job = getJobById(id);
+      if (job == null || !job.isMemoryOnly()) {
+        durableIds.add(id);
+      }
+    }
 
+    if (durableIds.size() > 0) {
+      serialExecutor.execute(() -> {
+        jobDatabase.deleteJobs(durableIds);
+      });
+    }
 
     Set<String> deleteIds = new HashSet<>(jobIds);
 
@@ -354,5 +385,15 @@ public class FastJobStorage implements JobStorage {
                  .map(Map.Entry::getValue)
                  .flatMap(Stream::of)
                  .toList();
+  }
+
+  private JobSpec getJobById(@NonNull String id) {
+    for (JobSpec job : jobs) {
+      if (job.getId().equals(id)) {
+        return job;
+      }
+    }
+    Log.w(TAG, "Was looking for job with ID JOB::" + id + ", but it doesn't exist in memory!");
+    return null;
   }
 }

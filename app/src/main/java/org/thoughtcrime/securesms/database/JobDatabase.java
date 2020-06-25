@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Stream;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -89,6 +91,10 @@ public class JobDatabase extends Database {
   }
 
   public synchronized void insertJobs(@NonNull List<FullSpec> fullSpecs) {
+    if (Stream.of(fullSpecs).map(FullSpec::getJobSpec).allMatch(JobSpec::isMemoryOnly)) {
+      return;
+    }
+
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     db.beginTransaction();
@@ -149,32 +155,38 @@ public class JobDatabase extends Database {
   }
 
   public synchronized void updateJobs(@NonNull List<JobSpec> jobs) {
+    if (Stream.of(jobs).allMatch(JobSpec::isMemoryOnly)) {
+      return;
+    }
+
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     db.beginTransaction();
 
     try {
-      for (JobSpec job : jobs) {
-        ContentValues values = new ContentValues();
-        values.put(Jobs.JOB_SPEC_ID, job.getId());
-        values.put(Jobs.FACTORY_KEY, job.getFactoryKey());
-        values.put(Jobs.QUEUE_KEY, job.getQueueKey());
-        values.put(Jobs.CREATE_TIME, job.getCreateTime());
-        values.put(Jobs.NEXT_RUN_ATTEMPT_TIME, job.getNextRunAttemptTime());
-        values.put(Jobs.RUN_ATTEMPT, job.getRunAttempt());
-        values.put(Jobs.MAX_ATTEMPTS, job.getMaxAttempts());
-        values.put(Jobs.MAX_BACKOFF, job.getMaxBackoff());
-        values.put(Jobs.MAX_INSTANCES, job.getMaxInstances());
-        values.put(Jobs.LIFESPAN, job.getLifespan());
-        values.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
-        values.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());
-        values.put(Jobs.IS_RUNNING, job.isRunning() ? 1 : 0);
+      Stream.of(jobs)
+            .filterNot(JobSpec::isMemoryOnly)
+            .forEach(job -> {
+              ContentValues values = new ContentValues();
+              values.put(Jobs.JOB_SPEC_ID, job.getId());
+              values.put(Jobs.FACTORY_KEY, job.getFactoryKey());
+              values.put(Jobs.QUEUE_KEY, job.getQueueKey());
+              values.put(Jobs.CREATE_TIME, job.getCreateTime());
+              values.put(Jobs.NEXT_RUN_ATTEMPT_TIME, job.getNextRunAttemptTime());
+              values.put(Jobs.RUN_ATTEMPT, job.getRunAttempt());
+              values.put(Jobs.MAX_ATTEMPTS, job.getMaxAttempts());
+              values.put(Jobs.MAX_BACKOFF, job.getMaxBackoff());
+              values.put(Jobs.MAX_INSTANCES, job.getMaxInstances());
+              values.put(Jobs.LIFESPAN, job.getLifespan());
+              values.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
+              values.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());
+              values.put(Jobs.IS_RUNNING, job.isRunning() ? 1 : 0);
 
-        String   query = Jobs.JOB_SPEC_ID + " = ?";
-        String[] args  = new String[]{ job.getId() };
+              String   query = Jobs.JOB_SPEC_ID + " = ?";
+              String[] args  = new String[]{ job.getId() };
 
-        db.update(Jobs.TABLE_NAME, values, query, args);
-      }
+              db.update(Jobs.TABLE_NAME, values, query, args);
+            });
 
       db.setTransactionSuccessful();
     } finally {
@@ -228,6 +240,10 @@ public class JobDatabase extends Database {
   }
 
   private void insertJobSpec(@NonNull SQLiteDatabase db, @NonNull JobSpec job) {
+    if (job.isMemoryOnly()) {
+      return;
+    }
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(Jobs.JOB_SPEC_ID, job.getId());
     contentValues.put(Jobs.FACTORY_KEY, job.getFactoryKey());
@@ -247,21 +263,25 @@ public class JobDatabase extends Database {
   }
 
   private void insertConstraintSpecs(@NonNull SQLiteDatabase db, @NonNull List<ConstraintSpec> constraints) {
-    for (ConstraintSpec constraintSpec : constraints) {
-      ContentValues contentValues = new ContentValues();
-      contentValues.put(Constraints.JOB_SPEC_ID, constraintSpec.getJobSpecId());
-      contentValues.put(Constraints.FACTORY_KEY, constraintSpec.getFactoryKey());
-      db.insertWithOnConflict(Constraints.TABLE_NAME, null ,contentValues, SQLiteDatabase.CONFLICT_IGNORE);
-    }
+    Stream.of(constraints)
+          .filterNot(ConstraintSpec::isMemoryOnly)
+          .forEach(constraintSpec -> {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(Constraints.JOB_SPEC_ID, constraintSpec.getJobSpecId());
+            contentValues.put(Constraints.FACTORY_KEY, constraintSpec.getFactoryKey());
+            db.insertWithOnConflict(Constraints.TABLE_NAME, null ,contentValues, SQLiteDatabase.CONFLICT_IGNORE);
+          });
   }
 
   private void insertDependencySpecs(@NonNull SQLiteDatabase db, @NonNull List<DependencySpec> dependencies) {
-    for (DependencySpec dependencySpec : dependencies) {
-      ContentValues contentValues = new ContentValues();
-      contentValues.put(Dependencies.JOB_SPEC_ID, dependencySpec.getJobId());
-      contentValues.put(Dependencies.DEPENDS_ON_JOB_SPEC_ID, dependencySpec.getDependsOnJobId());
-      db.insertWithOnConflict(Dependencies.TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
-    }
+    Stream.of(dependencies)
+          .filterNot(DependencySpec::isMemoryOnly)
+          .forEach(dependencySpec -> {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(Dependencies.JOB_SPEC_ID, dependencySpec.getJobId());
+            contentValues.put(Dependencies.DEPENDS_ON_JOB_SPEC_ID, dependencySpec.getDependsOnJobId());
+            db.insertWithOnConflict(Dependencies.TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
+          });
   }
 
   private @NonNull JobSpec jobSpecFromCursor(@NonNull Cursor cursor) {
@@ -277,16 +297,19 @@ public class JobDatabase extends Database {
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.MAX_INSTANCES)),
                        cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_DATA)),
                        cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_INPUT_DATA)),
-                       cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.IS_RUNNING)) == 1);
+                       cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.IS_RUNNING)) == 1,
+                       false);
   }
 
   private @NonNull ConstraintSpec constraintSpecFromCursor(@NonNull Cursor cursor) {
     return new ConstraintSpec(cursor.getString(cursor.getColumnIndexOrThrow(Constraints.JOB_SPEC_ID)),
-                              cursor.getString(cursor.getColumnIndexOrThrow(Constraints.FACTORY_KEY)));
+                              cursor.getString(cursor.getColumnIndexOrThrow(Constraints.FACTORY_KEY)),
+                              false);
   }
 
   private @NonNull DependencySpec dependencySpecFromCursor(@NonNull Cursor cursor) {
     return new DependencySpec(cursor.getString(cursor.getColumnIndexOrThrow(Dependencies.JOB_SPEC_ID)),
-                                               cursor.getString(cursor.getColumnIndexOrThrow(Dependencies.DEPENDS_ON_JOB_SPEC_ID)));
+                              cursor.getString(cursor.getColumnIndexOrThrow(Dependencies.DEPENDS_ON_JOB_SPEC_ID)),
+                              false);
   }
 }

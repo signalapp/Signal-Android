@@ -354,14 +354,20 @@ class JobController {
                                   job.getParameters().getMaxInstances(),
                                   dataSerializer.serialize(job.serialize()),
                                   null,
-                                  false);
+                                  false,
+                                  job.getParameters().isMemoryOnly());
 
     List<ConstraintSpec> constraintSpecs = Stream.of(job.getParameters().getConstraintKeys())
-                                                 .map(key -> new ConstraintSpec(jobSpec.getId(), key))
+                                                 .map(key -> new ConstraintSpec(jobSpec.getId(), key, jobSpec.isMemoryOnly()))
                                                  .toList();
 
     List<DependencySpec> dependencySpecs = Stream.of(dependsOn)
-                                                 .map(depends -> new DependencySpec(job.getId(), depends))
+                                                 .map(depends -> {
+                                                   JobSpec dependsOnJobSpec = jobStorage.getJobSpec(depends);
+                                                   boolean memoryOnly       = job.getParameters().isMemoryOnly() || (dependsOnJobSpec != null && dependsOnJobSpec.isMemoryOnly());
+
+                                                   return new DependencySpec(job.getId(), depends, memoryOnly);
+                                                 })
                                                  .toList();
 
     return new FullSpec(jobSpec, constraintSpecs, dependencySpecs);
@@ -371,7 +377,7 @@ class JobController {
   private void scheduleJobs(@NonNull List<Job> jobs) {
     for (Job job : jobs) {
       List<Constraint> constraints = Stream.of(job.getParameters().getConstraintKeys())
-                                           .map(key -> new ConstraintSpec(job.getId(), key))
+                                           .map(key -> new ConstraintSpec(job.getId(), key, job.getParameters().isMemoryOnly()))
                                            .map(ConstraintSpec::getFactoryKey)
                                            .map(constraintInstantiator::instantiate)
                                            .toList();
@@ -460,7 +466,8 @@ class JobController {
                        jobSpec.getMaxInstances(),
                        jobSpec.getSerializedData(),
                        dataSerializer.serialize(inputData),
-                       jobSpec.isRunning());
+                       jobSpec.isRunning(),
+                       jobSpec.isMemoryOnly());
   }
 
   interface Callback {
