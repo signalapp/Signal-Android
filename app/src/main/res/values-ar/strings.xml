@@ -523,6 +523,7 @@
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">اختر من بإمكانه تغيير اسم المجموعة وصورتها.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">الرسائل المُختفية</string>
+  <string name="ManageRecipientActivity_chat_color">لون المحادثة.</string>
   <string name="ManageRecipientActivity_block">حظر</string>
   <string name="ManageRecipientActivity_unblock">رفع الحظر</string>
   <string name="ManageRecipientActivity_view_safety_number">عرض رقم السلامة</string>
@@ -532,9 +533,14 @@
   <string name="ManageRecipientActivity_off">مغلق</string>
   <string name="ManageRecipientActivity_on">يعمل</string>
   <string name="ManageRecipientActivity_add_to_a_group">إضافة إلى مجموعة</string>
+  <string name="ManageRecipientActivity_view_all_groups">مشاهدة جميع المجموعات</string>
   <string name="ManageRecipientActivity_see_all">مشاهدة الكل</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">لا يوجد مجموعات مشتركة</string>
   <string name="ManageRecipientActivity_edit_name_and_picture">عدّل الاسم والصورة</string>
   <string name="ManageRecipientActivity_message_description">رسالة</string>
+  <string name="ManageRecipientActivity_voice_call_description">مكالمة صوتية</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">مكالمة صوتية غير آمنة</string>
+  <string name="ManageRecipientActivity_video_call_description">مكالمة فيديو</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="zero">قام %1$sبدعوة%2$dأشخاص</item>
     <item quantity="one">دعا %1$s شخص واحد </item>
@@ -1553,6 +1559,12 @@
   <string name="message_details_header__disappears">مُختفية </string>
   <string name="message_details_header__via">بواسطة</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">معلّق</string>
+  <string name="message_details_recipient_header__sent_to">تمَّ الإرسال إلى</string>
+  <string name="message_details_recipient_header__sent_from">أرسلت من</string>
+  <string name="message_details_recipient_header__delivered_to">تم تسليم الرسالة إلى</string>
+  <string name="message_details_recipient_header__read_by">تمت القراءة من قبل</string>
+  <string name="message_details_recipient_header__not_sent">لم يتم الإرسال</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">الإرسال فشل.</string>
   <string name="message_details_recipient__new_safety_number">رقم سلامة جديد</string>
@@ -2124,6 +2136,9 @@
   <string name="RecipientBottomSheet_remove_as_admin">أزل من كونه إداريًا</string>
   <string name="RecipientBottomSheet_remove_from_group">أزل من المجموعة</string>
   <string name="RecipientBottomSheet_message_description">رسالة</string>
+  <string name="RecipientBottomSheet_voice_call_description">مكالمة صوتية</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">مكالمة صوتية غير آمنة</string>
+  <string name="RecipientBottomSheet_video_call_description">مكالمة فيديو</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">أأزيل %1$s من كونه إداريًا في المجموعة؟</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">سيستطيع %1$s تعديل خصائص وأعضاء هذه المجموعة</string>
   <string name="RecipientBottomSheet_remove_s_from_s">أأزيل %1$s من \"%2$s\"؟</string>

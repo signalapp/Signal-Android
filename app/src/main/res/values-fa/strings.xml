@@ -491,7 +491,7 @@
   <string name="CustomNotificationsDialogFragment__call_settings">تنظیمات تماس</string>
   <string name="CustomNotificationsDialogFragment__ringtone">صدای زنگ</string>
   <string name="CustomNotificationsDialogFragment__enabled">فعال شده</string>
-  <string name="CustomNotificationsDialogFragment__disabled">غیر فعال</string>
+  <string name="CustomNotificationsDialogFragment__disabled">غیرفعال</string>
   <string name="CustomNotificationsDialogFragment__default">پیش‌فرض</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">آیا می‌خواهید دعوتی که به %1$s فرستادید را لغو کنید؟</string>
@@ -811,7 +811,7 @@
   <string name="RecipientPreferenceActivity_error_leaving_group">خطا در ترک گروه</string>
   <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
-  <string name="RecipientPreferenceActivity_disabled">غیر فعال</string>
+  <string name="RecipientPreferenceActivity_disabled">غیرفعال</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">دسترسی پس از دریافت یا ارسال یک پیام ممکن خواهد بود.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">گروه بدون نام</string>

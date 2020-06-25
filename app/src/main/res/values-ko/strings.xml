@@ -290,6 +290,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_profile_photo">프로필 사진</string>
   <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필은 단대단 암호화됩니다. 내 연락처에게, 새로운 대화를 시작하거나 수락할 때, 새 그룹에 참가할 때 표시됩니다.</string>
   <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">맞춤형 값 사용: %s</string>
@@ -396,6 +397,9 @@
   <string name="CropImageActivity_group_avatar">그룹 아바타</string>
   <string name="CropImageActivity_profile_avatar">아바타</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">얼굴 블러</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">아무 곳이나 그려서 가릴 수 있습니다</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">다른 사람의 얼굴이나 영역을 그어서 가릴 수 있습니다</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">길게 탭하여 음성 메시지를 녹음하고, 손을 떼어 보내기</string>
   <!--InviteActivity-->
@@ -551,6 +555,7 @@
   <string name="MessageRequestBottomView_delete">삭제</string>
   <string name="MessageRequestBottomView_block">차단</string>
   <string name="MessageRequestBottomView_unblock">차단 해제</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">이 그룹을 차단 해제하고 그룹 멤버에게 내 이름과 사진을 공유하시겠습니까? 차단을 해제하기 전까지는 메시지를 받지 않습니다.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 및 %2$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s 및 %3$s 멤버</string>
