@@ -29,20 +29,22 @@ class JobRunner extends Thread {
   private final Application   application;
   private final int           id;
   private final JobController jobController;
+  private final JobPredicate  jobPredicate;
 
-  JobRunner(@NonNull Application application, int id, @NonNull JobController jobController) {
+  JobRunner(@NonNull Application application, int id, @NonNull JobController jobController, @NonNull JobPredicate predicate) {
     super("signal-JobRunner-" + id);
 
     this.application   = application;
     this.id            = id;
     this.jobController = jobController;
+    this.jobPredicate  = predicate;
   }
 
   @Override
   public synchronized void run() {
     //noinspection InfiniteLoopStatement
     while (true) {
-      Job        job    = jobController.pullNextEligibleJobForExecution();
+      Job        job    = jobController.pullNextEligibleJobForExecution(jobPredicate);
       Job.Result result = run(job);
 
       jobController.onJobFinished(job);

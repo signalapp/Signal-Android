@@ -104,9 +104,16 @@ public class JobManager implements ConstraintObserver.Notifier {
    */
   public void beginJobLoop() {
     runOnExecutor(()-> {
+      int id = 0;
+
       for (int i = 0; i < configuration.getJobThreadCount(); i++) {
-        new JobRunner(application, i + 1, jobController).start();
+        new JobRunner(application, ++id, jobController, JobPredicate.NONE).start();
       }
+
+      for (JobPredicate predicate : configuration.getReservedJobRunners()) {
+        new JobRunner(application, ++id, jobController, predicate).start();
+      }
+
       jobController.wakeUp();
     });
   }
@@ -445,6 +452,7 @@ public class JobManager implements ConstraintObserver.Notifier {
     private final JobStorage               jobStorage;
     private final JobMigrator              jobMigrator;
     private final JobTracker               jobTracker;
+    private final List<JobPredicate>       reservedJobRunners;
 
     private Configuration(int jobThreadCount,
                           @NonNull ExecutorFactory executorFactory,
@@ -454,17 +462,19 @@ public class JobManager implements ConstraintObserver.Notifier {
                           @NonNull Data.Serializer dataSerializer,
                           @NonNull JobStorage jobStorage,
                           @NonNull JobMigrator jobMigrator,
-                          @NonNull JobTracker jobTracker)
+                          @NonNull JobTracker jobTracker,
+                          @NonNull List<JobPredicate> reservedJobRunners)
     {
       this.executorFactory        = executorFactory;
       this.jobThreadCount         = jobThreadCount;
       this.jobInstantiator        = jobInstantiator;
       this.constraintInstantiator = constraintInstantiator;
-      this.constraintObservers    = constraintObservers;
+      this.constraintObservers    = new ArrayList<>(constraintObservers);
       this.dataSerializer         = dataSerializer;
       this.jobStorage             = jobStorage;
       this.jobMigrator            = jobMigrator;
       this.jobTracker             = jobTracker;
+      this.reservedJobRunners     = new ArrayList<>(reservedJobRunners);
     }
 
     int getJobThreadCount() {
@@ -504,6 +514,10 @@ public class JobManager implements ConstraintObserver.Notifier {
       return jobTracker;
     }
 
+    @NonNull List<JobPredicate> getReservedJobRunners() {
+      return reservedJobRunners;
+    }
+
     public static class Builder {
 
       private ExecutorFactory                 executorFactory     = new DefaultExecutorFactory();
@@ -515,9 +529,15 @@ public class JobManager implements ConstraintObserver.Notifier {
       private JobStorage                      jobStorage          = null;
       private JobMigrator                     jobMigrator         = null;
       private JobTracker                      jobTracker          = new JobTracker();
+      private List<JobPredicate>              reservedJobRunners  = new ArrayList<>();
 
       public @NonNull Builder setJobThreadCount(int jobThreadCount) {
         this.jobThreadCount = jobThreadCount;
+        return this;
+      }
+
+      public @NonNull Builder addReservedJobRunner(@NonNull JobPredicate predicate) {
+        this.reservedJobRunners.add(predicate);
         return this;
       }
 
@@ -565,7 +585,8 @@ public class JobManager implements ConstraintObserver.Notifier {
                                  dataSerializer,
                                  jobStorage,
                                  jobMigrator,
-                                 jobTracker);
+                                 jobTracker,
+                                 reservedJobRunners);
       }
     }
   }

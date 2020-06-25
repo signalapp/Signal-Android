@@ -242,11 +242,11 @@ class JobController {
    * When the job returned from this method has been run, you must call {@link #onJobFinished(Job)}.
    */
   @WorkerThread
-  synchronized @NonNull Job pullNextEligibleJobForExecution() {
+  synchronized @NonNull Job pullNextEligibleJobForExecution(@NonNull JobPredicate predicate) {
     try {
       Job job;
 
-      while ((job = getNextEligibleJobForExecution()) == null) {
+      while ((job = getNextEligibleJobForExecution(predicate)) == null) {
         if (runningJobs.isEmpty()) {
           debouncer.publish(callback::onEmpty);
         }
@@ -387,8 +387,10 @@ class JobController {
   }
 
   @WorkerThread
-  private @Nullable Job getNextEligibleJobForExecution() {
-    List<JobSpec> jobSpecs = jobStorage.getPendingJobsWithNoDependenciesInCreatedOrder(System.currentTimeMillis());
+  private @Nullable Job getNextEligibleJobForExecution(@NonNull JobPredicate predicate) {
+    List<JobSpec> jobSpecs = Stream.of(jobStorage.getPendingJobsWithNoDependenciesInCreatedOrder(System.currentTimeMillis()))
+                                   .filter(predicate::shouldRun)
+                                   .toList();
 
     for (JobSpec jobSpec : jobSpecs) {
       List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(jobSpec.getId());
