@@ -565,7 +565,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">નવો પાસફ્રેઝ દાખલ કરો!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">આ ઉપકરણને લિંક કરીએ?</string>
-  <string name="DeviceProvisioningActivity_cancel">રદ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">રદ કરો</string> -->
   <string name="DeviceProvisioningActivity_continue">ચાલુ રાખો</string>
   <string name="DeviceProvisioningActivity_content_intro">તે સમર્થ હશે</string>
   <string name="DeviceProvisioningActivity_content_bullets">

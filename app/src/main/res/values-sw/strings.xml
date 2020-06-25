@@ -570,7 +570,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Ingiza Nenosiri mpya!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Unganisha kifaa hiki?</string>
-  <string name="DeviceProvisioningActivity_cancel">GHAIRI</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">GHAIRI</string> -->
   <string name="DeviceProvisioningActivity_continue">ENDELEA</string>
   <string name="DeviceProvisioningActivity_content_intro">Itaweza ku</string>
   <string name="DeviceProvisioningActivity_content_bullets">

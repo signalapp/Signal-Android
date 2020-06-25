@@ -734,7 +734,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Zadajte nové heslo!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Pridať toto zariadenie?</string>
-  <string name="DeviceProvisioningActivity_cancel">ZRUŠIŤ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ZRUŠIŤ</string> -->
   <string name="DeviceProvisioningActivity_continue">POKRAČOVAŤ</string>
   <string name="DeviceProvisioningActivity_content_intro">Bude môcť </string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +948,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Skopírované do schránky</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Predmet:</string>

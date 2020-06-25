@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Ange nytt lösenord!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Länka den här enheten?</string>
-  <string name="DeviceProvisioningActivity_cancel">AVBRYT</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">AVBRYT</string> -->
   <string name="DeviceProvisioningActivity_continue">FORTSÄTT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den kommer att kunna</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +948,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Klart!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiera webbadressen och lägg till den i din problemrapport eller support-e-post:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopierade till urklipp</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Dela</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Ämne:</string>

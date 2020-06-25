@@ -567,7 +567,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">نیا پاسفریز داخل کریں!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ڈیوائس منسلک کریں؟</string>
-  <string name="DeviceProvisioningActivity_cancel">منسوخ کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">منسوخ کریں</string> -->
   <string name="DeviceProvisioningActivity_continue">جاری رکھیں</string>
   <string name="DeviceProvisioningActivity_content_intro">قابل ہو جائے گا</string>
   <string name="DeviceProvisioningActivity_content_bullets">

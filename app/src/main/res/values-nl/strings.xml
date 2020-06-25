@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Voer nieuw wachtwoord in!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Dit apparaat koppelen?</string>
-  <string name="DeviceProvisioningActivity_cancel">ANNULEREN</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANNULEREN</string> -->
   <string name="DeviceProvisioningActivity_continue">DOORGAAN</string>
   <string name="DeviceProvisioningActivity_content_intro">Het kan dan</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -956,7 +956,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Gekopieerd naar klembord</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Onderwerp:</string>

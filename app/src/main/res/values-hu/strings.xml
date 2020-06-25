@@ -737,7 +737,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Add meg az új jelmondatot!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Társítod ezt a készüléket?</string>
-  <string name="DeviceProvisioningActivity_cancel">MÉGSE</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">MÉGSE</string> -->
   <string name="DeviceProvisioningActivity_continue">FOLYTATÁS</string>
   <string name="DeviceProvisioningActivity_content_intro">Képes lesz</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -956,7 +956,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubmitDebugLogActivity_success">Sikerült!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Másold ki ezt a URL-t és illeszd be a hibajegybe vagy a támogatásnak küldött e-mailbe:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Vágólapra másolva</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Megosztás</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Tárgy:</string>

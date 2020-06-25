@@ -806,7 +806,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">הכנס משפט־סיסמה חדש!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">לקשר מכשיר זה?</string>
-  <string name="DeviceProvisioningActivity_cancel">בטל</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">בטל</string> -->
   <string name="DeviceProvisioningActivity_continue">המשך</string>
   <string name="DeviceProvisioningActivity_content_intro">הוא יוכל</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1028,7 +1028,7 @@
   <string name="SubmitDebugLogActivity_success">הצלחה!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">הועתק ללוח</string>
-  <string name="SubmitDebugLogActivity_ok">בסדר</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">בסדר</string> -->
   <string name="SubmitDebugLogActivity_share">שתף</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">נושא:</string>

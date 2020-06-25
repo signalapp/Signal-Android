@@ -731,7 +731,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Yeni parola girin!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Bu cihazı bağla?</string>
-  <string name="DeviceProvisioningActivity_cancel">VAZGEÇ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">VAZGEÇ</string> -->
   <string name="DeviceProvisioningActivity_continue">DEVAM ET</string>
   <string name="DeviceProvisioningActivity_content_intro">Aşağıdaki eylemleri gerçekleştirebilecek</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -938,7 +938,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubmitDebugLogActivity_success">Başarılı!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bu adresi kopyalayın ve sorun bildirinize veya destek epostasına ekleyin:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Panoya kopyalandı</string>
-  <string name="SubmitDebugLogActivity_ok">Tamam</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Tamam</string> -->
   <string name="SubmitDebugLogActivity_share">Paylaş</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Konu:</string>

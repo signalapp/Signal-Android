@@ -806,7 +806,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Wpisz nowe hasło!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Połączyć z tym urządzeniem?</string>
-  <string name="DeviceProvisioningActivity_cancel">ANULUJ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANULUJ</string> -->
   <string name="DeviceProvisioningActivity_continue">KONTYNUUJ</string>
   <string name="DeviceProvisioningActivity_content_intro">Będzie w stanie:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1020,7 +1020,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubmitDebugLogActivity_success">Sukces!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopiuj ten URL i dodaj go do Twojego raportu o błędzie lub wiadomości e-mail:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Skopiowano do schowka</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Udostępnij</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Temat:</string>

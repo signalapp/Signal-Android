@@ -569,7 +569,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">输入新的密码！</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">关联该设备？</string>
-  <string name="DeviceProvisioningActivity_cancel">取消</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">取消</string> -->
   <string name="DeviceProvisioningActivity_continue">继续</string>
   <string name="DeviceProvisioningActivity_content_intro">这将可以：</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -766,7 +766,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b>
 </string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">已复制到剪切板</string>
-  <string name="SubmitDebugLogActivity_ok">好</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">好</string> -->
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">主题 :</string>

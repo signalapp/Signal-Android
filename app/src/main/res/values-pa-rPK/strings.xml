@@ -569,7 +569,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">نواں پاس فریز درج کرو!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ایس الے نوں توں منسلک کر دئی اے؟</string>
-  <string name="DeviceProvisioningActivity_cancel">منسوخ کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">منسوخ کرو</string> -->
   <string name="DeviceProvisioningActivity_continue">جاری رکھو</string>
   <string name="DeviceProvisioningActivity_content_intro">اے ایہدے قابل ہووے گا کہ</string>
   <string name="DeviceProvisioningActivity_content_bullets">

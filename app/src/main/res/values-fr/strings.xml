@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vous ne recevrez plus ni message ni mise à jour de ce groupe et les membres ne pourront plus vous rajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Les membres du groupe ne pourront plus vous rajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Les membres du groupe pourront vous rajouter à ce groupe.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vous pourrez échanger des messages et des appels et votre nom et photo seront partagés avec eux.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vous pourrez échanger des messages et des appels, et vos nom et photo seront partagés avec eux.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les personnes bloquées ne pourront ni vous appeler ni vous envoyer de messages.</string>
   <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
   <string name="BlockUnblockDialog_unblock">Débloquer</string>
@@ -468,6 +468,10 @@
   <string name="ManageRecipientActivity_view_all_groups">Voir tous les groupes</string>
   <string name="ManageRecipientActivity_see_all">Tout voir</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Pas de groupes en commun</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">groupe %d en commun</item>
+    <item quantity="other">%dgroupes en commun</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Modifier le nom et l’image</string>
   <string name="ManageRecipientActivity_message_description">Message</string>
   <string name="ManageRecipientActivity_voice_call_description">Appel vocal</string>
@@ -705,6 +709,9 @@
   <string name="MessageRequestBottomView_delete">Supprimer</string>
   <string name="MessageRequestBottomView_block">Bloquer</string>
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à vous envoyer des messages et partager votre nom et votre photo avec ce contact  ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à vous envoyer des messages et partager votre nom et votre photo avec ce contact  ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres  ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Vous avez été invité à vous joindre au groupe%1$s. Souhaitez-vous permettre aux membres de ce groupe de vous envoyer des messages ?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
@@ -728,7 +735,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Saisissez la nouvelle phrase de passe.</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Relier cet appareil ?</string>
-  <string name="DeviceProvisioningActivity_cancel">ANNULER</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANNULER</string> -->
   <string name="DeviceProvisioningActivity_continue">POURSUIVRE</string>
   <string name="DeviceProvisioningActivity_content_intro">Il pourra</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -843,6 +850,7 @@
   <string name="RegistrationActivity_more_information">Plus de précisions</string>
   <string name="RegistrationActivity_less_information">Moins de précisions</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts et médias afin de se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Vous avez effectué trop de tentatives pour enregistrer ce numéro. Veuillez réessayer plus tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et ressayer.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour confirmer facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de confirmation si vous autorisez Signal à lire les textos.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -936,7 +944,7 @@
   <string name="SubmitDebugLogActivity_success">C’est réussi !</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé d’erreur ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">A été copié dans le presse-papiers</string>
-  <string name="SubmitDebugLogActivity_ok">Valider</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Valider</string> -->
   <string name="SubmitDebugLogActivity_share">Partager</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Objet :</string>
@@ -1198,6 +1206,10 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal a besoin d’accéder à vos contacts afin de les afficher.</string>
   <string name="contact_selection_list_fragment__show_contacts">Afficher les contacts</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d membre</item>
+    <item quantity="other">%1$d membres</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Message Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>

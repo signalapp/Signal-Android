@@ -402,7 +402,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">စသားဝှက်အသစ်ထည့်ပါ</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ဒီစက်ကိုချိတ်ပါ</string>
-  <string name="DeviceProvisioningActivity_cancel">ပယ်ဖျက်မည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ပယ်ဖျက်မည်</string> -->
   <string name="DeviceProvisioningActivity_continue">ဆက်လုပ်မည်</string>
   <string name="DeviceProvisioningActivity_content_intro">ဖြစ်နိုင်သည်</string>
   <string name="DeviceProvisioningActivity_content_bullets">

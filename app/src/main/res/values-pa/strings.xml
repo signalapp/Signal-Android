@@ -560,7 +560,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ਨਵਾਂ ਪਾਸਫਰੇਜ ਦਰਜ ਕਰੋ!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ਇਸ ਡਿਵਾਈਸ ਨੂੰ ਲਿੰਕ ਕਰੋ?</string>
-  <string name="DeviceProvisioningActivity_cancel">ਰੱਦ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ਰੱਦ ਕਰੋ</string> -->
   <string name="DeviceProvisioningActivity_continue">ਜਾਰੀ ਰੱਖੋ</string>
   <string name="DeviceProvisioningActivity_content_intro">ਇਹ ਕਰਨ ਦੇ ਯੋਗ ਹੋ ਜਾਵੇਗਾ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -747,7 +747,7 @@
   <string name="SubmitDebugLogActivity_submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
   <string name="SubmitDebugLogActivity_success">ਸਫਲਤਾ!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
-  <string name="SubmitDebugLogActivity_ok">ਠੀਕ ਹੈ</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ਠੀਕ ਹੈ</string> -->
   <string name="SubmitDebugLogActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_device_info">ਡਿਵਾਈਸ ਜਾਣਕਾਰੀ:</string>

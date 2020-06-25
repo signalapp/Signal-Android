@@ -662,7 +662,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ป้อนวลีรหัสผ่านใหม่!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">เชื่อมโยงกับอุปกรณ์นี้หรือไม่?</string>
-  <string name="DeviceProvisioningActivity_cancel">ยกเลิก</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ยกเลิก</string> -->
   <string name="DeviceProvisioningActivity_continue">ดำเนินการต่อ</string>
   <string name="DeviceProvisioningActivity_content_intro">มันจะสามารถ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -868,7 +868,7 @@
   <string name="SubmitDebugLogActivity_success">สำเร็จ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">คัดลอก URL และเพิ่มมันในรายงานปัญหาหรืออีเมลปรึกษาปัญหา:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
-  <string name="SubmitDebugLogActivity_ok">ตกลง</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ตกลง</string> -->
   <string name="SubmitDebugLogActivity_share">แบ่งปัน</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">หัวข้อ:</string>

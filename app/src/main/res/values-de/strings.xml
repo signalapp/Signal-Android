@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Bitte neue Passphrase eingeben!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Dieses Gerät koppeln?</string>
-  <string name="DeviceProvisioningActivity_cancel">ABBRECHEN</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ABBRECHEN</string> -->
   <string name="DeviceProvisioningActivity_continue">WEITER</string>
   <string name="DeviceProvisioningActivity_content_intro">Folgende Rechte werden vergeben:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -943,7 +943,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">In Zwischenablage kopiert</string>
-  <string name="SubmitDebugLogActivity_ok">O. K.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">O. K.</string> -->
   <string name="SubmitDebugLogActivity_share">Teilen</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Betreff:</string>

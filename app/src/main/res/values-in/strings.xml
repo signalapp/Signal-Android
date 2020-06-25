@@ -653,7 +653,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Masukkan frasa sandi baru!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Hubungkan perangkat ini?</string>
-  <string name="DeviceProvisioningActivity_cancel">BATAL</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">BATAL</string> -->
   <string name="DeviceProvisioningActivity_continue">LANJUTKAN</string>
   <string name="DeviceProvisioningActivity_content_intro">Perangkat yang telah terhubung akan dapat</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -860,7 +860,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan kirimkan ke email support <b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Disalin ke papan klip</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Bagikan</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Judul</string>

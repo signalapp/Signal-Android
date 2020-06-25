@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Jepni frazëkalim të ri!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Të lidhet kjo pajisje?</string>
-  <string name="DeviceProvisioningActivity_cancel">ANULOJE</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANULOJE</string> -->
   <string name="DeviceProvisioningActivity_continue">VAZHDO</string>
   <string name="DeviceProvisioningActivity_content_intro">Do të jetë në gjendje të</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -950,7 +950,7 @@
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopjojeni këtë URL dhe shtojeni te njoftimi i problemit tuaj ose email-i për asistencën:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">U kopjua në të papastër!</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Ndajeni Me të Tjerë</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Subjekt:</string>

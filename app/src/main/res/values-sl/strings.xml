@@ -806,7 +806,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Vnesite novo geslo!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Povežem napravo?</string>
-  <string name="DeviceProvisioningActivity_cancel">PREKINI</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">PREKINI</string> -->
   <string name="DeviceProvisioningActivity_continue">NADALJUJ</string>
   <string name="DeviceProvisioningActivity_content_intro">Lahko bo:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1019,7 +1019,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubmitDebugLogActivity_success">Uspešno opravljeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Prekopirajte naslov URL in ga dodajte k prijavi napake ali v elektronsko sporočilo za tehnično podporo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano v odložišče</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Deli</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Predmet:</string>

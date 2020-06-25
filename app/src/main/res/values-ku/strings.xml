@@ -418,7 +418,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Borînbiwêjek nû têkeve!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vê amûrê girê bide?</string>
-  <string name="DeviceProvisioningActivity_cancel">BETAL</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">BETAL</string> -->
   <string name="DeviceProvisioningActivity_continue">BIDOMÎNE</string>
   <string name="DeviceProvisioningActivity_content_intro">Ew ê bikaribe</string>
   <string name="DeviceProvisioningActivity_content_bullets">

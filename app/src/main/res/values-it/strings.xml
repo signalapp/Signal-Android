@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Inserisci una nuova password!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Collegare questo dispositivo?</string>
-  <string name="DeviceProvisioningActivity_cancel">ANNULLA</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANNULLA</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUA</string>
   <string name="DeviceProvisioningActivity_content_intro">Sarà in grado di</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -954,7 +954,7 @@
   <string name="SubmitDebugLogActivity_success">Completato!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia questo URL e aggiungilo alla tua segnalazione o all\'email di supporto:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Aggiunto agli appunti</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Condividi</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Oggetto:</string>

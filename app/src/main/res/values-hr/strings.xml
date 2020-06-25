@@ -636,7 +636,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Unesite novu lozinku!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Poveži ovaj uređaj?</string>
-  <string name="DeviceProvisioningActivity_cancel">ODUSTANI</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ODUSTANI</string> -->
   <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
   <string name="DeviceProvisioningActivity_content_intro">Moći će</string>
   <string name="DeviceProvisioningActivity_content_bullets">

@@ -586,7 +586,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ಹೊಸ ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಮೂದಿಸಿ!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ಈ ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡುವುದೇ?</string>
-  <string name="DeviceProvisioningActivity_cancel">ರದ್ದುಗೊಳಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ರದ್ದುಗೊಳಿಸಿ</string> -->
   <string name="DeviceProvisioningActivity_continue">ಮುಂದುವರಿಸು</string>
   <string name="DeviceProvisioningActivity_content_intro">ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -778,7 +778,7 @@
   <string name="SubmitDebugLogActivity_success">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ಈ URL ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ವಿಷಯ ವರದಿಗೆ ಸೇರಿಸಿ ಅಥವಾ ಇಮೇಲ್ ಬೆಂಬಲಿಸಿ :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
-  <string name="SubmitDebugLogActivity_ok">ಓಕೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ಓಕೆ</string> -->
   <string name="SubmitDebugLogActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
   <!--SupportEmailUtil-->
   <!--ThreadRecord-->

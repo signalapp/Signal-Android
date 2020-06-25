@@ -416,7 +416,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Cuir isteach nath faire nua!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Nasc an gléas?</string>
-  <string name="DeviceProvisioningActivity_cancel">CEALAIGH</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CEALAIGH</string> -->
   <string name="DeviceProvisioningActivity_continue">LEAN AR AGHAIDH</string>
   <string name="DeviceProvisioningActivity_content_intro">Beidh sé in ann</string>
   <string name="DeviceProvisioningActivity_content_bullets">Léigh do theachtaireachtaí ar fad\n\nSeol teachtaireachtaí le do ainm</string>

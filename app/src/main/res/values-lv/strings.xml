@@ -687,7 +687,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Ievadiet jaunu paroli!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vai piesaistīt šo ierīci?</string>
-  <string name="DeviceProvisioningActivity_cancel">ATCELT</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ATCELT</string> -->
   <string name="DeviceProvisioningActivity_continue">TURPINĀT</string>
   <string name="DeviceProvisioningActivity_content_intro">Tā varēs</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -899,7 +899,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="SubmitDebugLogActivity_success">Izdevās!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nokopējiet šo URL un pievienojiet to problēmas ziņojumam vai atbalsta e-pastam:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Iekopēts starpenē</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Dalīties</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Temats</string>

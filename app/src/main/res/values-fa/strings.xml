@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">گذرواژهٔ جدید را وارد کنید!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">پیوند دادن این دستگاه؟</string>
-  <string name="DeviceProvisioningActivity_cancel">لغو</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">لغو</string> -->
   <string name="DeviceProvisioningActivity_continue">ادامه</string>
   <string name="DeviceProvisioningActivity_content_intro">قادر خواهد بود تا</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -951,7 +951,7 @@
   <string name="SubmitDebugLogActivity_success">موفقیت!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">این ‌‌URL را کپی کرده و آن را به گزارش اشکال یا ایمیل پشتیبانی اضافه کنید:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
-  <string name="SubmitDebugLogActivity_ok">قبول</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">قبول</string> -->
   <string name="SubmitDebugLogActivity_share">اشتراک‌گذاری</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">موضوع:</string>

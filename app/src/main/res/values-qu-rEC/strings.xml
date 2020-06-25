@@ -399,7 +399,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">¡Mushuk paskachik-shimita churapay!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Kay antahillayta kimichinkapak munankichu</string>
-  <string name="DeviceProvisioningActivity_cancel">SHAYACHINA</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">SHAYACHINA</string> -->
   <string name="DeviceProvisioningActivity_continue">KATIPAY</string>
   <string name="DeviceProvisioningActivity_content_intro">Ushankimi</string>
   <string name="DeviceProvisioningActivity_content_bullets">

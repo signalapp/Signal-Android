@@ -565,7 +565,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Shigar da sabon kalaman sirri!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Hade wannan na\'urar</string>
-  <string name="DeviceProvisioningActivity_cancel">Katse</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">Katse</string> -->
   <string name="DeviceProvisioningActivity_continue">Cigaba</string>
   <string name="DeviceProvisioningActivity_content_intro">Zai iya</string>
   <string name="DeviceProvisioningActivity_content_bullets">

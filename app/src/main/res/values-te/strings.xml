@@ -672,7 +672,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">కొత్త సంకేతపదం వ్రాయండి!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ఈ పరికరం బంధము చేయాలా?</string>
-  <string name="DeviceProvisioningActivity_cancel">రద్దు</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">రద్దు</string> -->
   <string name="DeviceProvisioningActivity_continue">కొనసాగించు</string>
   <string name="DeviceProvisioningActivity_content_intro">ఇది చెయ్యగలరు</string>
   <string name="DeviceProvisioningActivity_content_bullets">

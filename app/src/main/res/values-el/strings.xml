@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Εισαγωγή νέου συνθηματικού! </string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Σύνδεση αυτής της συσκευής;</string>
-  <string name="DeviceProvisioningActivity_cancel">ΑΚΥΡΩΣΗ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ΑΚΥΡΩΣΗ</string> -->
   <string name="DeviceProvisioningActivity_continue">ΣΥΝΕΧΕΙΑ</string>
   <string name="DeviceProvisioningActivity_content_intro">Θα μπορεί πλέον να</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -949,7 +949,7 @@
   <string name="SubmitDebugLogActivity_success">Επιτυχία!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
-  <string name="SubmitDebugLogActivity_ok">Εντάξει</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Εντάξει</string> -->
   <string name="SubmitDebugLogActivity_share">Διαμοιρασμός</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Θέμα:</string>

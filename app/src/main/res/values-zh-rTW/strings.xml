@@ -701,7 +701,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">輸入新的自訂密碼</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">連結此裝置？</string>
-  <string name="DeviceProvisioningActivity_cancel">取消</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">取消</string> -->
   <string name="DeviceProvisioningActivity_continue">繼續</string>
   <string name="DeviceProvisioningActivity_content_intro">它將能夠</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -913,7 +913,7 @@
   <string name="SubmitDebugLogActivity_success">成功！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">複製網址及將之加入你的錯誤報告或支援email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">已複製到剪貼簿</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">標題:</string>

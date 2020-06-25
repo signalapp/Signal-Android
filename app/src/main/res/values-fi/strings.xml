@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Syötä uusi salalause!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Yhdistetäänkö tämä laite?</string>
-  <string name="DeviceProvisioningActivity_cancel">PERUUTA</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">PERUUTA</string> -->
   <string name="DeviceProvisioningActivity_continue">JATKA</string>
   <string name="DeviceProvisioningActivity_content_intro">Se saa luvan</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +948,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubmitDebugLogActivity_success">Onnistui!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja lisää se ongelmaraporttiin tai tukisähköpostiisi:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopioitu leikepöydälle</string>
-  <string name="SubmitDebugLogActivity_ok">Selvä</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Selvä</string> -->
   <string name="SubmitDebugLogActivity_share">Jaa</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Aihe:</string>

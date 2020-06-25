@@ -806,7 +806,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Введите новую парольную фразу!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Привязать это устройство?</string>
-  <string name="DeviceProvisioningActivity_cancel">ОТМЕНА</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ОТМЕНА</string> -->
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИТЬ</string>
   <string name="DeviceProvisioningActivity_content_intro">Оно сможет</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1021,7 +1021,7 @@
   <string name="SubmitDebugLogActivity_success">Успех!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Скопируйте этот URL-адрес и добавьте его в отчет о проблеме или в письмо в службу поддержки:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Скопировано в буфер обмена</string>
-  <string name="SubmitDebugLogActivity_ok">Ок</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ок</string> -->
   <string name="SubmitDebugLogActivity_share">Поделиться</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Тема:</string>

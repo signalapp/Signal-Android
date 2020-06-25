@@ -701,7 +701,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">新しいパスフレーズを入力してください！</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">このデバイスをリンクしますか？</string>
-  <string name="DeviceProvisioningActivity_cancel">キャンセル</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">キャンセル</string> -->
   <string name="DeviceProvisioningActivity_continue">続行</string>
   <string name="DeviceProvisioningActivity_content_intro">以下が可能になります:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -906,7 +906,7 @@
   <string name="SubmitDebugLogActivity_success">成功しました!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">クリップボードにコピーしました</string>
-  <string name="SubmitDebugLogActivity_ok">OK</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">OK</string> -->
   <string name="SubmitDebugLogActivity_share">共有</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Subject:</string>

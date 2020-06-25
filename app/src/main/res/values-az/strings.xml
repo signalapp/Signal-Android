@@ -447,7 +447,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Yeni şifrə ifadəni daxil et!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Bu cihazla bağlantı qurulsun?</string>
-  <string name="DeviceProvisioningActivity_cancel">LƏĞV ET</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">LƏĞV ET</string> -->
   <string name="DeviceProvisioningActivity_continue">DAVAM ET</string>
   <string name="DeviceProvisioningActivity_content_intro">Onun icazəsi olacaq ki,</string>
   <string name="DeviceProvisioningActivity_content_bullets">

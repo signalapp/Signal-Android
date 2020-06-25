@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">¡Introduce una nueva clave de acceso!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">¿Enlazar este dispositivo?</string>
-  <string name="DeviceProvisioningActivity_cancel">CANCELAR</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CANCELAR</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
   <string name="DeviceProvisioningActivity_content_intro">Podrá</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -954,7 +954,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubmitDebugLogActivity_success">¡Completado!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y añádela a tu correo para el soporte o informe de incidencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado al portapapeles</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Compartir</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Asunto:</string>

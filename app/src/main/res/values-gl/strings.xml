@@ -579,7 +579,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Inserir nova frase de acceso!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vincular este dispositivo?</string>
-  <string name="DeviceProvisioningActivity_cancel">CANCELAR</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CANCELAR</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
   <string name="DeviceProvisioningActivity_content_intro">Poderá</string>
   <string name="DeviceProvisioningActivity_content_bullets">

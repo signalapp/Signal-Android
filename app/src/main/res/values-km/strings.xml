@@ -701,7 +701,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">បញ្ចូលឃ្លាសម្ងាត់ថ្មី!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ភ្ជាប់ឧបករណ៍នេះឬទេ?</string>
-  <string name="DeviceProvisioningActivity_cancel">បោះបង់</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">បោះបង់</string> -->
   <string name="DeviceProvisioningActivity_continue">បន្ត</string>
   <string name="DeviceProvisioningActivity_content_intro">វានឹងអាច</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -911,7 +911,7 @@
   <string name="SubmitDebugLogActivity_success">ជោគជ័យ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ចម្លងអាសយដ្ឋាន URL នេះ និងបន្ថែមវាទៅរបាយការណ៍បញ្ហា ឬអ៊ីម៉ែលគាំទ្រ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
-  <string name="SubmitDebugLogActivity_ok">យល់ព្រម</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">យល់ព្រម</string> -->
   <string name="SubmitDebugLogActivity_share">ចែករំលែក</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">ចំណងជើង៖</string>

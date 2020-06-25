@@ -259,7 +259,7 @@ a</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Yingizamu passiwaddi empya nga yabigaambo ne namba</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Yungako divayisi?</string>
-  <string name="DeviceProvisioningActivity_cancel">Sazaamu</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">Sazaamu</string> -->
   <string name="DeviceProvisioningActivity_continue">Weyongere maaso</string>
   <string name="DeviceProvisioningActivity_content_intro">Kijjakusoboseza </string>
   <string name="DeviceProvisioningActivity_content_bullets">

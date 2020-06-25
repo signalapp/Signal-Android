@@ -467,6 +467,11 @@
   <string name="ManageRecipientActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="ManageRecipientActivity_view_all_groups">എല്ലാ ഗ്രൂപ്പുകളും കാണുക</string>
   <string name="ManageRecipientActivity_see_all">എല്ലാം കാണുക</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">പൊതുവായുള്ള %d ഗ്രൂപ്പ്</item>
+    <item quantity="other">പൊതുവായി %d ഗ്രൂപ്പുകൾ</item>
+  </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
   <string name="ManageRecipientActivity_message_description">സന്ദേശം</string>
   <string name="ManageRecipientActivity_voice_call_description">വോയ്സ് കോൾ</string>
@@ -730,7 +735,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">പുതിയ പാസ്‌ഫ്രെയ്‌സ് നൽകുക!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ഈ ഉപകരണം ലിങ്കുചെയ്യണോ?</string>
-  <string name="DeviceProvisioningActivity_cancel">റദ്ദാക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">റദ്ദാക്കുക</string> -->
   <string name="DeviceProvisioningActivity_continue">തുടരുക</string>
   <string name="DeviceProvisioningActivity_content_intro">അതിന് കഴിയും</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -940,7 +945,7 @@
   <string name="SubmitDebugLogActivity_success">വിജയം!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ഈ URL പകർത്തി നിങ്ങളുടെ പ്രശ്ന റിപ്പോർട്ടിലേക്കോ പിന്തുണാ ഇമെയിലിലേക്കോ ചേർക്കുക:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
-  <string name="SubmitDebugLogActivity_ok">ശരി</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ശരി</string> -->
   <string name="SubmitDebugLogActivity_share">പങ്കിടുക</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">വിഷയം:</string>
@@ -1400,6 +1405,7 @@ grūpp ap‌ḍē</string>
   <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നു</string>
   <string name="message_details_header__via">വഴി</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">ശേഷിക്കുന്നു</string>
   <string name="message_details_recipient_header__sent_from">അയച്ചത്</string>
   <string name="message_details_recipient_header__read_by">വായിച്ചത്</string>
   <string name="message_details_recipient_header__not_sent">അയച്ചില്ല</string>

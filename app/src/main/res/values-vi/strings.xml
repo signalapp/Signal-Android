@@ -693,7 +693,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Điền mật khẩu mới!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Liên kết thiết bị này?</string>
-  <string name="DeviceProvisioningActivity_cancel">HỦY</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">HỦY</string> -->
   <string name="DeviceProvisioningActivity_continue">TIẾP TỤC</string>
   <string name="DeviceProvisioningActivity_content_intro">Nó sẽ có thể </string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -896,7 +896,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SubmitDebugLogActivity_success">Thành công!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Sao chép URL này và thêm nó vào báo cáo lỗi hoặc email hỗ trợ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Đã sao chép vào clipboard</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Chia sẻ</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Chủ đề:</string>

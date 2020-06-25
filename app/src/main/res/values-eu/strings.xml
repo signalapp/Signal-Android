@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sartu pasahitz berria!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lotu gailu hau?</string>
-  <string name="DeviceProvisioningActivity_cancel">UTZI</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">UTZI</string> -->
   <string name="DeviceProvisioningActivity_continue">JARRAITU</string>
   <string name="DeviceProvisioningActivity_content_intro">Hori egiteko gai izango da</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -954,7 +954,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SubmitDebugLogActivity_success">Arrakasta!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">URL hau kopiatu eta erantsi zure arazoaren txostenari edo laguntza eskatzeko emailari: \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Arbelera kopiatuta</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Elkarbanatu</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Gaia:</string>

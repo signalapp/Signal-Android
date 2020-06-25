@@ -574,7 +574,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">새 암호를 입력하세요!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">기기를 연결하시겠습니까?</string>
-  <string name="DeviceProvisioningActivity_cancel">취소</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">취소</string> -->
   <string name="DeviceProvisioningActivity_continue">계속</string>
   <string name="DeviceProvisioningActivity_content_intro">다음 수행 가능:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -769,7 +769,7 @@
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">로그를 제출하는데 실패했습니다.</string>
   <string name="SubmitDebugLogActivity_success">성공!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">클립보드로 복사됨</string>
-  <string name="SubmitDebugLogActivity_ok">확인</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">확인</string> -->
   <string name="SubmitDebugLogActivity_share">공유</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_signal_version">Signal 버전:</string>

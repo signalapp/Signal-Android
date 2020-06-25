@@ -546,7 +546,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Lebetaken tembung sandi ingkang enggal!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Tautaken pirantos niki?</string>
-  <string name="DeviceProvisioningActivity_cancel">BATALAKEN</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">BATALAKEN</string> -->
   <string name="DeviceProvisioningActivity_continue">LAJENGAKEN</string>
   <string name="DeviceProvisioningActivity_content_intro">Tumindak niki bakal saged</string>
   <string name="DeviceProvisioningActivity_content_bullets">

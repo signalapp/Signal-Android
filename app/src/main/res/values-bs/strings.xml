@@ -771,7 +771,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Unesite novu lozinku!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Uvezati ovaj uređaj?</string>
-  <string name="DeviceProvisioningActivity_cancel">OTKAŽI</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">OTKAŽI</string> -->
   <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
   <string name="DeviceProvisioningActivity_content_intro">Moći će da</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -991,7 +991,7 @@
   <string name="SubmitDebugLogActivity_success">Uspješno završeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopirajte ovu adresu i priložite je uz svoj izvještaj o problemu ili email za podršku:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano u međuspremnik</string>
-  <string name="SubmitDebugLogActivity_ok">Uredu</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Uredu</string> -->
   <string name="SubmitDebugLogActivity_share">Dijeli</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Tema:</string>

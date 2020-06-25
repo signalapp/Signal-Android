@@ -38,7 +38,7 @@
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap for at gøre Signal til din standard SMS app</string>
   <string name="ApplicationPreferencesActivity_on">aktivér</string>
   <string name="ApplicationPreferencesActivity_On">Aktivér</string>
-  <string name="ApplicationPreferencesActivity_off">deaktiver</string>
+  <string name="ApplicationPreferencesActivity_off">déaktiver</string>
   <string name="ApplicationPreferencesActivity_Off">Déaktiver</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Skærmlås %1$s, Registreringslås %2$s</string>
@@ -279,7 +279,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan swipe til venstre på enhver besked, for at svare hurtigt</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Udgående mediebeskeder der kun vises én gang, bliver automatisk fjernet efter de er sendt</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Beskeden er allerede læst</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan tilføje egne notater i samtalen.\nHvis din konto har forbundne enheder, vil notaterne blive synkroniseret.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan tilføje egne notater i samtalen.\nHvis din konto har forbundne enheder, vil notaterne blive synkroniseret</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ingen browser installeret på enheden</string>
   <!--ConversationListFragment-->
@@ -737,7 +737,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Indtast nyt kodeord!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Tilføj denne enhed?</string>
-  <string name="DeviceProvisioningActivity_cancel">AFBRYD</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">AFBRYD</string> -->
   <string name="DeviceProvisioningActivity_continue">FORTSÆT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den vil være i stand til at</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -857,7 +857,7 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_more_information">Mere information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal kræver tilladelse til at tilgå dine kontakter og medieindhold, for at oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
-  <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">For nemt at godkende dit mobilnummer, kan Signal automatisk registrere din verifikationskode, hvis du tillader Signal adgang til at læse SMS beskeder</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -954,7 +954,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SubmitDebugLogActivity_success">Fuldført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL og tilføj den til din fejlrapport, eller til support email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopieret til udklipsholder</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Emne:</string>

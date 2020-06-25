@@ -731,7 +731,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sisesta uus salasõna!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lingid selle seadme?</string>
-  <string name="DeviceProvisioningActivity_cancel">TÜHISTA</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">TÜHISTA</string> -->
   <string name="DeviceProvisioningActivity_continue">JÄTKA</string>
   <string name="DeviceProvisioningActivity_content_intro">See saab</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +948,7 @@
   <string name="SubmitDebugLogActivity_success">Õnnestus!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopeeri see aadress ja lisa oma probleemiteatesse või toe e-kirja:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Lõikelauale kopeeritud</string>
-  <string name="SubmitDebugLogActivity_ok">OK</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">OK</string> -->
   <string name="SubmitDebugLogActivity_share">Jaga</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Teema:</string>

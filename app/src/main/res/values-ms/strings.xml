@@ -484,7 +484,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Masukkan frasa laluan baru!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Pautkan peranti ini?</string>
-  <string name="DeviceProvisioningActivity_cancel">BATALKAN</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">BATALKAN</string> -->
   <string name="DeviceProvisioningActivity_continue">TERUSKAN</string>
   <string name="DeviceProvisioningActivity_content_intro">ia akan dapat</string>
   <string name="DeviceProvisioningActivity_content_bullets">

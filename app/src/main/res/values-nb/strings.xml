@@ -599,7 +599,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Skriv inn ny passord!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vil du koble denne enheten til tjenesten?</string>
-  <string name="DeviceProvisioningActivity_cancel">AVBRYT</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">AVBRYT</string> -->
   <string name="DeviceProvisioningActivity_continue">FORTSETT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den kan i så fall</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -793,7 +793,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg den til i din feilrapport eller support-e-postadressen:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopiert til utklippstavle</string>
-  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Emne:</string>

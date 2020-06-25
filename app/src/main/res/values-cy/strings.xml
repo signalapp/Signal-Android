@@ -808,7 +808,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Rhoi\'r cyfrinymadrodd newydd!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Cysylltu\'r ddyfais hon?</string>
-  <string name="DeviceProvisioningActivity_cancel">DIDDYMU</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">DIDDYMU</string> -->
   <string name="DeviceProvisioningActivity_continue">PARHAU</string>
   <string name="DeviceProvisioningActivity_content_intro">Bydd yn gallu</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1030,7 +1030,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubmitDebugLogActivity_success">Llwyddiant!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copïwch yr URL hwn a\'i ychwanegu at eich adroddiad neu e-bost cymorth:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
-  <string name="SubmitDebugLogActivity_ok">Iawn</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Iawn</string> -->
   <string name="SubmitDebugLogActivity_share">Rhannu</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Pwnc:</string>

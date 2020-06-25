@@ -474,7 +474,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Въведете нова парола!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Свържи това устройство?</string>
-  <string name="DeviceProvisioningActivity_cancel">ОТКАЗ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ОТКАЗ</string> -->
   <string name="DeviceProvisioningActivity_continue">ПРОДЪЛЖИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Ще може да</string>
   <string name="DeviceProvisioningActivity_content_bullets">

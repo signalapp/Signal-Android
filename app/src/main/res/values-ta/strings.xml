@@ -579,7 +579,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">புது கடவுச்சொல்லை உள்ளிடவும்.</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">இந்த சாதனத்தை இணைக்களாமா? </string>
-  <string name="DeviceProvisioningActivity_cancel">ரத்து</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ரத்து</string> -->
   <string name="DeviceProvisioningActivity_continue">தொடர்</string>
   <string name="DeviceProvisioningActivity_content_intro">இதனால் முடியும் </string>
   <string name="DeviceProvisioningActivity_content_bullets">

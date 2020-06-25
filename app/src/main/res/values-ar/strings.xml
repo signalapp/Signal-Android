@@ -850,7 +850,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">أدخل عبارة سرية جديدة!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ربط هذا الجهاز؟</string>
-  <string name="DeviceProvisioningActivity_cancel">إلغاء</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">إلغاء</string> -->
   <string name="DeviceProvisioningActivity_continue">استمر</string>
   <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من </string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1062,7 +1062,7 @@
   <string name="SubmitDebugLogActivity_success">تمّ بنجاح!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">انسخـ/ـي هذا الرابط وأضفـ(ـيـ)ـه إلى بلاغك أو إلى بريد الدعم:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
-  <string name="SubmitDebugLogActivity_ok">موافق</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">موافق</string> -->
   <string name="SubmitDebugLogActivity_share">شارك</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">الموضوع:</string>

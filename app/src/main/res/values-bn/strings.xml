@@ -715,7 +715,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">নতুন পাসফ্রেজ লিখুন!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">এই ডিভাইস যুক্ত করবেন?</string>
-  <string name="DeviceProvisioningActivity_cancel">বাতিল করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">বাতিল করুন</string> -->
   <string name="DeviceProvisioningActivity_continue">সামনে আগান</string>
   <string name="DeviceProvisioningActivity_content_intro">এটা সক্ষম হবে</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -920,7 +920,7 @@
   <string name="SubmitDebugLogActivity_success">সফল!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">এই ইউআরএল টি কপি করুন এবং এটি আপনার সমস্যা প্রতিবেদন বা সাপোর্ট ইমে‌ইলে যোগ করুন:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
-  <string name="SubmitDebugLogActivity_ok">ঠিক আছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ঠিক আছে</string> -->
   <string name="SubmitDebugLogActivity_share">শেয়ার করুন</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">বিষয়ঃ</string>

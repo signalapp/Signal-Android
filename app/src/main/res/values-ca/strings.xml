@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Escriviu la contrasenya nova.</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Voleu enllaçar aquest dispositiu?</string>
-  <string name="DeviceProvisioningActivity_cancel">CANCEL·LA</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CANCEL·LA</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUA</string>
   <string name="DeviceProvisioningActivity_content_intro">Podrà</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +948,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubmitDebugLogActivity_success">Acabat!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiat al porta-retalls</string>
-  <string name="SubmitDebugLogActivity_ok">D\'acord</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">D\'acord</string> -->
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Assumpte:</string>

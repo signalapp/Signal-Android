@@ -462,7 +462,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Введіть нову фразу-пароль!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">З\'язати цей пристрій?</string>
-  <string name="DeviceProvisioningActivity_cancel">СКАСУВАТИ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">СКАСУВАТИ</string> -->
   <string name="DeviceProvisioningActivity_continue">ПРОДОВЖИТИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Він зможе</string>
   <string name="DeviceProvisioningActivity_content_bullets">

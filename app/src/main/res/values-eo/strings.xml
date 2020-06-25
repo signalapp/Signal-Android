@@ -736,7 +736,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Entajpu novan pasfrazon!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Ĉu ligi ĉi tiun aparaton?</string>
-  <string name="DeviceProvisioningActivity_cancel">NULIGI</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">NULIGI</string> -->
   <string name="DeviceProvisioningActivity_continue">DAŬRIGI</string>
   <string name="DeviceProvisioningActivity_content_intro">Ĝi povos</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -953,7 +953,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubmitDebugLogActivity_success">Sukceso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiu tiun ĉi retadreson kaj aldonu ĝin al via problemraporto aŭ subtena retpoŝtmesaĝo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopiita al tondujo</string>
-  <string name="SubmitDebugLogActivity_ok">Bone</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Bone</string> -->
   <string name="SubmitDebugLogActivity_share">Kunhavigi</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Pri:</string>
