@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.thoughtcrime.securesms.util.paging.SizeFixResult;
@@ -26,6 +27,8 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
 
   public static final Executor EXECUTOR = SignalExecutors.newFixedLifoThreadExecutor("signal-conversation-list", 1, 1);
 
+  private static final ThrottledDebouncer THROTTLER = new ThrottledDebouncer(500);
+
   private static final String TAG = Log.tag(ConversationListDataSource.class);
 
   protected final ThreadDatabase threadDatabase;
@@ -36,8 +39,10 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     ContentObserver contentObserver = new ContentObserver(null) {
       @Override
       public void onChange(boolean selfChange) {
-        invalidate();
-        context.getContentResolver().unregisterContentObserver(this);
+        THROTTLER.publish(() -> {
+          invalidate();
+          context.getContentResolver().unregisterContentObserver(this);
+        });
       }
     };
 
