@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
@@ -88,7 +89,7 @@ public class SmsSendJob extends SendJob {
     } catch (UndeliverableMessageException ude) {
       warn(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
-      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+      ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
     }
   }
 
@@ -106,7 +107,7 @@ public class SmsSendJob extends SendJob {
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
 
     if (threadId != -1 && recipient != null) {
-      MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+      ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
     }
   }
 

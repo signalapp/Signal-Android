@@ -164,7 +164,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       warn(TAG, "Couldn't send message due to error: ", e);
       if (messageId >= 0) {
         database.markAsPendingInsecureSmsFallback(record.getId());
-        MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+        ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
       }
     } catch (UntrustedIdentityException e) {
       warn(TAG, "Couldn't send message due to error: ", e);
@@ -198,7 +198,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
       if (threadId != -1 && recipient != null) {
-        MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+        ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
       }
     }
   }

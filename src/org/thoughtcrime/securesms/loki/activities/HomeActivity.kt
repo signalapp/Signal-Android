@@ -78,7 +78,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 val threadID = archivedConversations.getLong(archivedConversations.getColumnIndex(ThreadDatabase.ID))
                 AsyncTask.execute {
                     threadDatabase.deleteConversation(threadID)
-                    MessageNotifier.updateNotification(this)
+                    (applicationContext as ApplicationContext).messageNotifier.updateNotification(this)
                 }
             }
             deleteThreadAtCurrentPosition()
@@ -314,7 +314,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                             ApplicationContext.getInstance(activity).lokiPublicChatAPI!!.leave(publicChat.channel, publicChat.server)
                         }
                         threadDatabase.deleteConversation(threadID)
-                        MessageNotifier.updateNotification(activity)
+                        ApplicationContext.getInstance(activity).messageNotifier.updateNotification(activity)
                     }
                 }
             }

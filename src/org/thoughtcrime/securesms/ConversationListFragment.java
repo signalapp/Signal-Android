@@ -324,8 +324,9 @@ public class ConversationListFragment extends Fragment
 
           @Override
           protected Void doInBackground(Void... params) {
-            DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-            MessageNotifier.updateNotification(getActivity());
+            Context context = getActivity();
+            DatabaseFactory.getThreadDatabase(context).deleteConversations(selectedConversations);
+            ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
             return null;
           }
 
@@ -542,9 +543,10 @@ public class ConversationListFragment extends Fragment
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
 
             if (unreadCount > 0) {
-              List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
-              MessageNotifier.updateNotification(getActivity());
-              MarkReadReceiver.process(getActivity(), messageIds);
+              Context context = getActivity();
+              List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, false);
+              ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
+              MarkReadReceiver.process(context, messageIds);
             }
           }
 
@@ -553,8 +555,9 @@ public class ConversationListFragment extends Fragment
             DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
 
             if (unreadCount > 0) {
-              DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
-              MessageNotifier.updateNotification(getActivity());
+              Context context = getActivity();
+              DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, unreadCount);
+              ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
             }
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);

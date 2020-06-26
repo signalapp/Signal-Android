@@ -61,7 +61,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
           process(context, messageIdsCollection);
 
-          MessageNotifier.updateNotification(context);
+          ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
 
           return null;
         }

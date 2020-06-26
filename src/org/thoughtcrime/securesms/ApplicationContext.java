@@ -69,8 +69,10 @@ import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage;
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
+import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -148,6 +150,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private PersistentLogger        persistentLogger;
 
   // Loki
+  public MessageNotifier messageNotifier = null;
   public LokiPoller lokiPoller = null;
   public LokiPublicChatManager lokiPublicChatManager = null;
   private LokiPublicChatAPI lokiPublicChatAPI = null;
@@ -173,6 +176,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki
     // ========
+    messageNotifier = new OptimizedMessageNotifier(new DefaultMessageNotifier());
     broadcaster = new Broadcaster(this);
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
@@ -222,7 +226,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     // Loki
+    if (lokiPoller != null) { lokiPoller.shouldCatchUp(); }
     startPollingIfNeeded();
+    lokiPublicChatManager.shouldAllCatchUp();
     lokiPublicChatManager.startPollersIfNeeded();
   }
 
@@ -231,7 +237,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     isAppVisible = false;
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
-    MessageNotifier.setVisibleThread(-1);
+    messageNotifier.setVisibleThread(-1);
     // Loki
     if (lokiPoller != null) { lokiPoller.stopIfNeeded(); }
     if (lokiPublicChatManager != null) { lokiPublicChatManager.stopPollers(); }

@@ -281,7 +281,7 @@ public class GroupMessageProcessor {
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
         if (insertResult.isPresent()) {
-          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+          ApplicationContext.getInstance(context).messageNotifier.updateNotification(context, insertResult.get().getThreadId());
           return insertResult.get().getThreadId();
         } else {
           return null;
