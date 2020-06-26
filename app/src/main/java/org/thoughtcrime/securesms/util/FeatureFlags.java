@@ -53,7 +53,6 @@ public final class FeatureFlags {
   private static final String USERNAMES                  = "android.usernames";
   private static final String PINS_FOR_ALL_MANDATORY     = "android.pinsForAllMandatory";
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
-  private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling";
@@ -73,7 +72,6 @@ public final class FeatureFlags {
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
       PINS_FOR_ALL_MANDATORY,
       PINS_MEGAPHONE_KILL_SWITCH,
-      PROFILE_NAMES_MEGAPHONE,
       ATTACHMENTS_V3,
       REMOTE_DELETE,
       PROFILE_FOR_CALLING,
@@ -208,12 +206,6 @@ public final class FeatureFlags {
   /** Safety flag to disable Pins for All Megaphone */
   public static boolean pinsForAllMegaphoneKillSwitch() {
     return getBoolean(PINS_MEGAPHONE_KILL_SWITCH, false);
-  }
-
-  /** Safety switch for disabling profile names megaphone */
-  public static boolean profileNamesMegaphone() {
-    return getBoolean(PROFILE_NAMES_MEGAPHONE, false) &&
-           TextSecurePreferences.getFirstInstallVersion(ApplicationDependencies.getApplication()) < 600;
   }
 
   /** Whether or not we use the attachments v3 form. */

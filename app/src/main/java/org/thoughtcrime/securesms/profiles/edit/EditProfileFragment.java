@@ -338,8 +338,6 @@ public class EditProfileFragment extends LoggingFragment {
       if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
         RegistrationUtil.markRegistrationPossiblyComplete();
 
-        ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PROFILE_NAMES_FOR_ALL);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) handleFinishedLollipop();
         else                                                       handleFinishedLegacy();
       } else {

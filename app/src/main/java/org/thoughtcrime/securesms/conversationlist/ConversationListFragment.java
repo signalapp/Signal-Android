@@ -142,8 +142,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                                       MegaphoneActionController
 {
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
-  public static final short PROFILE_NAMES_REQUEST_CODE_CREATE_NAME    = 18473;
-  public static final short PROFILE_NAMES_REQUEST_CODE_CONFIRM_NAME   = 19563;
 
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
@@ -331,20 +329,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       return;
     }
 
-    boolean isProfileCreatedRequestCode = requestCode == MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME ||
-                                          requestCode ==PROFILE_NAMES_REQUEST_CODE_CREATE_NAME;
-
     if (requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN) {
       Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show();
       viewModel.onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL);
-    } else if (isProfileCreatedRequestCode) {
-      Snackbar.make(fab, R.string.ConversationListFragment__your_profile_name_has_been_created, Snackbar.LENGTH_LONG).show();
-
-      if (requestCode == MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME) {
-        viewModel.onMegaphoneCompleted(Megaphones.Event.MESSAGE_REQUESTS);
-      }
-    } else if (requestCode == PROFILE_NAMES_REQUEST_CODE_CONFIRM_NAME) {
-      Snackbar.make(fab, R.string.ConversationListFragment__your_profile_name_has_been_saved, Snackbar.LENGTH_LONG).show();
     }
   }
 

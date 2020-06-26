@@ -93,7 +93,6 @@ public final class Megaphones {
     return new LinkedHashMap<Event, MegaphoneSchedule>() {{
       put(Event.REACTIONS, ALWAYS);
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
-      put(Event.PROFILE_NAMES_FOR_ALL, FeatureFlags.profileNamesMegaphone() ? EVERY_TWO_DAYS : NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
       put(Event.MESSAGE_REQUESTS, shouldShowMessageRequestsMegaphone() ? ALWAYS : NEVER);
     }};
@@ -107,8 +106,6 @@ public final class Megaphones {
         return buildPinsForAllMegaphone(record);
       case PIN_REMINDER:
         return buildPinReminderMegaphone(context);
-      case PROFILE_NAMES_FOR_ALL:
-        return buildProfileNamesMegaphone(context);
       case MESSAGE_REQUESTS:
         return buildMessageRequestsMegaphone(context);
       default:
@@ -180,34 +177,6 @@ public final class Megaphones {
                         .build();
   }
 
-  private static @NonNull Megaphone buildProfileNamesMegaphone(@NonNull Context context) {
-    short requestCode  = Recipient.self().getProfileName() != ProfileName.EMPTY
-                         ? ConversationListFragment.PROFILE_NAMES_REQUEST_CODE_CONFIRM_NAME
-                         : ConversationListFragment.PROFILE_NAMES_REQUEST_CODE_CREATE_NAME;
-
-    Megaphone.Builder builder = new Megaphone.Builder(Event.PROFILE_NAMES_FOR_ALL, Megaphone.Style.BASIC)
-                                             .enableSnooze(null)
-                                             .setImageRequest(AvatarUtil.getSelfAvatarOrFallbackIcon(context, R.drawable.ic_profilename_64));
-
-    if (Recipient.self().getProfileName() == ProfileName.EMPTY) {
-      return builder.setTitle(R.string.ProfileNamesMegaphone__add_a_profile_name)
-                    .setBody(R.string.ProfileNamesMegaphone__this_will_be_displayed_when_you_start)
-                    .setActionButton(R.string.ProfileNamesMegaphone__add_profile_name, (megaphone, listener) -> {
-                      listener.onMegaphoneSnooze(Event.PROFILE_NAMES_FOR_ALL);
-                      listener.onMegaphoneNavigationRequested(new Intent(context, EditProfileActivity.class), requestCode);
-                    })
-                    .build();
-    } else {
-      return builder.setTitle(R.string.ProfileNamesMegaphone__confirm_your_profile_name)
-                    .setBody(R.string.ProfileNamesMegaphone__your_profile_can_now_include)
-                    .setActionButton(R.string.ProfileNamesMegaphone__confirm_name, (megaphone, listener) -> {
-                      listener.onMegaphoneCompleted(Event.PROFILE_NAMES_FOR_ALL);
-                      listener.onMegaphoneNavigationRequested(new Intent(context, EditProfileActivity.class), requestCode);
-                    })
-                    .build();
-    }
-  }
-
   private static @NonNull Megaphone buildMessageRequestsMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.MESSAGE_REQUESTS, Megaphone.Style.FULLSCREEN)
                         .disableSnooze()
@@ -227,7 +196,6 @@ public final class Megaphones {
     REACTIONS("reactions"),
     PINS_FOR_ALL("pins_for_all"),
     PIN_REMINDER("pin_reminder"),
-    PROFILE_NAMES_FOR_ALL("profile_names"),
     MESSAGE_REQUESTS("message_requests");
 
     private final String key;
