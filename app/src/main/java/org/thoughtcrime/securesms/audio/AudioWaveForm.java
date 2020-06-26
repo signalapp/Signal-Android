@@ -18,6 +18,7 @@ import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
 import org.thoughtcrime.securesms.logging.Log;
@@ -89,7 +90,11 @@ public final class AudioWaveForm {
       AudioHash audioHash = attachment.getAudioHash();
       if (audioHash != null) {
         AudioFileInfo audioFileInfo = AudioFileInfo.fromDatabaseProtobuf(audioHash.getAudioWaveForm());
-        if (audioFileInfo.waveForm.length != BAR_COUNT) {
+        if (audioFileInfo.waveForm.length == 0) {
+          Log.w(TAG, "Recovering from a wave form generation error  " + cacheKey);
+          Util.runOnMain(onFailure);
+          return;
+        } else if (audioFileInfo.waveForm.length != BAR_COUNT) {
           Log.w(TAG, "Wave form from database does not match bar count, regenerating " + cacheKey);
         } else {
           WAVE_FORM_CACHE.put(cacheKey, audioFileInfo);
@@ -100,13 +105,19 @@ public final class AudioWaveForm {
       }
 
       try {
-        DatabaseAttachment dbAttachment = (DatabaseAttachment) attachment;
-        long               startTime    = System.currentTimeMillis();
-        AudioFileInfo      fileInfo     = generateWaveForm(uri);
+        AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+        DatabaseAttachment dbAttachment       = (DatabaseAttachment) attachment;
+        long               startTime          = System.currentTimeMillis();
+
+        attachmentDatabase.writeAudioHash(dbAttachment.getAttachmentId(), AudioWaveFormData.getDefaultInstance());
+
+        Log.i(TAG, String.format("Starting wave form generation (%s)", cacheKey));
+
+        AudioFileInfo fileInfo = generateWaveForm(uri);
 
         Log.i(TAG, String.format(Locale.US, "Audio wave form generation time %d ms (%s)", System.currentTimeMillis() - startTime, cacheKey));
 
-        DatabaseFactory.getAttachmentDatabase(context).writeAudioHash(dbAttachment.getAttachmentId(), fileInfo.toDatabaseProtobuf());
+        attachmentDatabase.writeAudioHash(dbAttachment.getAttachmentId(), fileInfo.toDatabaseProtobuf());
 
         WAVE_FORM_CACHE.put(cacheKey, fileInfo);
         Util.runOnMain(() -> onSuccess.accept(fileInfo));
