@@ -968,11 +968,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     @Override
     public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-      if (viewHolder.itemView instanceof ConversationListItemAction) {
-        return 0;
-      }
-
-      if (actionMode != null) {
+      if (viewHolder.itemView instanceof ConversationListItemAction ||
+          actionMode != null                                        ||
+          activeAdapter == searchAdapter)
+      {
         return 0;
       }
 
