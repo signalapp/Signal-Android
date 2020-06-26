@@ -122,7 +122,7 @@ public class AttachmentDatabase extends Database {
           static final String WIDTH                  = "width";
           static final String HEIGHT                 = "height";
           static final String CAPTION                = "caption";
-  private static final String DATA_HASH              = "data_hash";
+          static final String DATA_HASH              = "data_hash";
           static final String VISUAL_HASH            = "blur_hash";
           static final String TRANSFORM_PROPERTIES   = "transform_properties";
           static final String DISPLAY_ORDER          = "display_order";
@@ -496,14 +496,20 @@ public class AttachmentDatabase extends Database {
           database.beginTransaction();
           try {
             for (AttachmentId weakReference : removableWeakReferences) {
-              Log.i(TAG, String.format("[deleteAttachmentOnDisk] Deleting weak reference for %s %s", data, weakReference));
-              deletedCount += database.delete(TABLE_NAME, PART_ID_WHERE, weakReference.toStrings());
+              Log.i(TAG, String.format("[deleteAttachmentOnDisk] Clearing weak reference for %s %s", data, weakReference));
+              ContentValues values = new ContentValues();
+              values.putNull(DATA);
+              values.putNull(DATA_RANDOM);
+              values.putNull(DATA_HASH);
+              values.putNull(THUMBNAIL);
+              values.putNull(THUMBNAIL_RANDOM);
+              deletedCount += database.update(TABLE_NAME, values, PART_ID_WHERE, weakReference.toStrings());
             }
             database.setTransactionSuccessful();
           } finally {
             database.endTransaction();
           }
-          String logMessage = String.format(Locale.US, "[deleteAttachmentOnDisk] Deleted %d/%d weak references for %s", deletedCount, removableWeakReferences.size(), data);
+          String logMessage = String.format(Locale.US, "[deleteAttachmentOnDisk] Cleared %d/%d weak references for %s", deletedCount, removableWeakReferences.size(), data);
           if (deletedCount != removableWeakReferences.size()) {
             Log.w(TAG, logMessage);
           } else {
