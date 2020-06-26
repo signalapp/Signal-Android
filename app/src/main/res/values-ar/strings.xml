@@ -169,7 +169,7 @@
   <string name="ContactShareEditActivity_type_missing">غير ذلك</string>
   <string name="ContactShareEditActivity_invalid_contact">جهة الاتصال التي تم اختيارها غير صالحة.</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">فشل الإرسال، اضغط للتفاصيل</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">فشل الإرسال، اضغط للتفاصيل</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، انقر للاستعاضة بارسال غير آمن</string>
@@ -357,8 +357,8 @@
     <item quantity="many">تم نقل %d رسالة إلى الوارد</item>
     <item quantity="other">تم نقل %d رسالة إلى الوارد</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">تم إنشاء اسم ملفك الشخصي.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">تم حفظ اسم ملفك الشخصي.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">تم إنشاء اسم ملفك الشخصي.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">تم حفظ اسم ملفك الشخصي.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListItemAction-->
@@ -850,7 +850,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">أدخل عبارة سرية جديدة!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ربط هذا الجهاز؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">إلغاء</string> -->
   <string name="DeviceProvisioningActivity_continue">استمر</string>
   <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من </string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1062,7 +1061,6 @@
   <string name="SubmitDebugLogActivity_success">تمّ بنجاح!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">انسخـ/ـي هذا الرابط وأضفـ(ـيـ)ـه إلى بلاغك أو إلى بريد الدعم:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">موافق</string> -->
   <string name="SubmitDebugLogActivity_share">شارك</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">الموضوع:</string>
@@ -1129,7 +1127,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
   <string name="UsernameEditFragment_this_username_is_taken">اسم المستخدم هذا غير متوفّر.</string>
   <string name="UsernameEditFragment_this_username_is_available">اسم المستخدم هذا متاح.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">اسم المستخدم يمكن أن يحتوي فقط على a-Z و0-9 والشرطة السفلية.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المستخدم لا يمكن أن يبدأ برقم.</string>
   <string name="UsernameEditFragment_username_is_invalid">اسم المستخدم غير صالح</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
@@ -2002,12 +1999,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">سنذّكرك لاحقاً. اختيار كلمة مرور رقمية سيكون إجبارياً في %1$dأيام.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">سنذكّرك لاحقاً ، إدخال كلمة السر الرقمية ستكون إجبارية بعد %1$d أيام.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">إضافة اسم للملف الشخصي</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">سوف يظهر هذا حينما تبدأ محادثة جديدة أو تقوم بمشاركتها.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">إضافة اسم للملف الشخصي</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">أكد اسم ملفك الشخصي</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">يمكن أن يحوي حسابك لقبك اختياريا.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">أكد الاسم</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">إضافة اسم للملف الشخصي</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">سوف يظهر هذا حينما تبدأ محادثة جديدة أو تقوم بمشاركتها.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">إضافة اسم للملف الشخصي</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">أكد اسم ملفك الشخصي</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">يمكن أن يحوي حسابك لقبك اختياريا.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">أكد الاسم</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
   <string name="ConversationListFragment_loading">قيد التحميل…</string>

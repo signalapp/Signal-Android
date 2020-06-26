@@ -155,7 +155,7 @@
   <string name="ContactShareEditActivity_type_missing">ఇతర</string>
   <string name="ContactShareEditActivity_invalid_contact">ఎంచుకున్న పరిచయం చెల్లదు</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">విఫలమైంది పంపండి, వివరాల కోసం నొక్కండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">విఫలమైంది పంపండి, వివరాల కోసం నొక్కండి</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">స్వీకరించు మీట మార్పిడి సందేశం, తట్టు తో క్రమణం</string>
   <string name="ConversationItem_group_action_left">%1$s సమూహం వదిలి వెళ్లారు</string>
   <string name="ConversationItem_click_to_approve_unencrypted">పంపడం విఫలమైంది, అసురక్షిత తిరిగి పొందడం కోసం నొక్కండి</string>
@@ -300,8 +300,8 @@
     <item quantity="one">సంభాషణ ఇన్బాక్స్కు తరలించబడినది</item>
     <item quantity="other">%d సంభాషణలు ఇన్బాక్స్కు తరలించబడినవి</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">మీ రూపం యొక్క పేరు తయారు చేయబడింది.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">మీ రూపం యొక్క పేరు భద్రపరచబడింది.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">మీ రూపం యొక్క పేరు తయారు చేయబడింది.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">మీ రూపం యొక్క పేరు భద్రపరచబడింది.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">కీ  సందేశం మార్పిడి</string>
   <!--ConversationListItemAction-->
@@ -672,7 +672,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">కొత్త సంకేతపదం వ్రాయండి!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ఈ పరికరం బంధము చేయాలా?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">రద్దు</string> -->
   <string name="DeviceProvisioningActivity_continue">కొనసాగించు</string>
   <string name="DeviceProvisioningActivity_content_intro">ఇది చెయ్యగలరు</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -920,7 +919,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">నెట్‌వర్క్ లోపాన్ని ఎదుర్కొంది.</string>
   <string name="UsernameEditFragment_this_username_is_taken">ఈ వినియోగదారు పేరు తీసుకోబడింది.</string>
   <string name="UsernameEditFragment_this_username_is_available">ఈ వినియోగదారు పేరు అందుబాటులో ఉంది.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">వినియోగదారు పేర్లు a-Z, 0-9 మరియు అండర్ స్కోర్‌లను మాత్రమే కలిగి ఉంటాయి.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">వినియోగదారు పేర్లు సంఖ్యతో ప్రారంభం కావు.</string>
   <string name="UsernameEditFragment_username_is_invalid">మీ యూసర్ నేమ్ సరైనది కాదు.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">వినియోగదారు పేర్లు %1$dమరియు %2$dఅక్షరాల మధ్య ఉండాలి.</string>
@@ -1661,9 +1659,9 @@
   <string name="KbsMegaphone__introducing_pins">పిన్‌లను పరిచయం చేస్తోంది</string>
   <string name="KbsMegaphone__update_pin">పిన్‌ను నవీకరించండి</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">మీరు క్రొత్త సంభాషణను ప్రారంభించినప్పుడు లేదా భాగస్వామ్యం చేసినప్పుడు ఇది ప్రదర్శించబడుతుంది.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">ప్రొఫైల్ పేరును జోడించండి</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">మీ ప్రొఫైల్ ఇప్పుడు ఐచ్ఛిక చివరి పేరును కలిగి ఉంటుంది.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">మీరు క్రొత్త సంభాషణను ప్రారంభించినప్పుడు లేదా భాగస్వామ్యం చేసినప్పుడు ఇది ప్రదర్శించబడుతుంది.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">ప్రొఫైల్ పేరును జోడించండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">మీ ప్రొఫైల్ ఇప్పుడు ఐచ్ఛిక చివరి పేరును కలిగి ఉంటుంది.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
   <string name="ConversationListFragment_loading">లోడ్…</string>

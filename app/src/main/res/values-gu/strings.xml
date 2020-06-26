@@ -142,7 +142,7 @@
   <string name="ContactShareEditActivity_type_missing">અન્ય</string>
   <string name="ContactShareEditActivity_invalid_contact">પસંદ કરેલો સંપર્ક અમાન્ય હતો</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">મોકલવામાં નિષ્ફળ, વિગતો માટે ટેપ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">મોકલવામાં નિષ્ફળ, વિગતો માટે ટેપ કરો</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">કી વિનિમય મેસેજ મળ્યો, પ્રક્રિયા કરવા માટે ટેપ કરો.</string>
   <string name="ConversationItem_group_action_left">%1$s એ ગ્રુપ છોડયુ.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">મોકલવામાં નિષ્ફળ, અસુરક્ષિત ફૉલબેક માટે ટેપ કરો</string>
@@ -278,7 +278,7 @@
     <item quantity="one">સંવાદને ઇનબોક્સમાં ખસેડયો</item>
     <item quantity="other">સંવાદને %d ઇનબોક્સમાં ખસેડયા</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">તમારું પ્રોફાઇલ નામ સેવ કરવામાં આવ્યું છે.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">તમારું પ્રોફાઇલ નામ સેવ કરવામાં આવ્યું છે.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">કી વિનિમય મેસેજ</string>
   <!--ConversationListItemAction-->
@@ -565,7 +565,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">નવો પાસફ્રેઝ દાખલ કરો!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">આ ઉપકરણને લિંક કરીએ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">રદ કરો</string> -->
   <string name="DeviceProvisioningActivity_continue">ચાલુ રાખો</string>
   <string name="DeviceProvisioningActivity_content_intro">તે સમર્થ હશે</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -802,7 +801,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">નેટવર્ક ભૂલ મળી.</string>
   <string name="UsernameEditFragment_this_username_is_taken">આ વપરાશકર્તા નામ લેવામાં આવ્યું છે.</string>
   <string name="UsernameEditFragment_this_username_is_available">આ વપરાશકર્તા નામ ઉપલબ્ધ છે.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">વપરાશકર્તાનામોમાં ફક્ત a-Z, 0-9 અને _ શામેલ હોઈ શકે છે.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">વપરાશકર્તાનામ સંખ્યા સાથે શરૂ થઈ શકતા નથી.</string>
   <string name="UsernameEditFragment_username_is_invalid">વપરાશકર્તા નામ અમાન્ય છે.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">વપરાશકર્તાનામો %1$d અને %2$d અક્ષરોની વચ્ચે હોવા જોઈએ.</string>
@@ -1541,9 +1539,9 @@
   <string name="KbsMegaphone__introducing_pins">PIN રજૂ કરી રહ્યા છીએ</string>
   <string name="KbsMegaphone__update_pin">PIN અપડેટ કરો</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">જ્યારે તમે નવી વાતચીત શરૂ કરો અથવા શેર કરો ત્યારે આ પ્રદર્શિત થશે.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">પ્રોફાઇલ નામ ઉમેરો</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">તમારી પ્રોફાઇલમાં હવે વૈકલ્પિક અટક શામેલ હોઈ શકે છે.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">જ્યારે તમે નવી વાતચીત શરૂ કરો અથવા શેર કરો ત્યારે આ પ્રદર્શિત થશે.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">પ્રોફાઇલ નામ ઉમેરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">તમારી પ્રોફાઇલમાં હવે વૈકલ્પિક અટક શામેલ હોઈ શકે છે.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">પરિવહન ચિહ્ન</string>
   <string name="ConversationListFragment_loading">લોડ કરી રહ્યું છે </string>

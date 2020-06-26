@@ -123,7 +123,7 @@
   <string name="ContactShareEditActivity_type_missing">Інший</string>
   <string name="ContactShareEditActivity_invalid_contact">Обраний контакт не дійсний</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Помилка відправлення, торкніться для подробиць</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Помилка відправлення, торкніться для подробиць</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Отримано повідомлення обміну ключами, торкніться, щоб продовжити.</string>
   <string name="ConversationItem_group_action_left">%1$s покидає групу.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Скористатися незашифрованим SMS як запасним варіантом?</string>

@@ -148,7 +148,7 @@
   <string name="ContactShareEditActivity_type_missing">ಇತರ</string>
   <string name="ContactShareEditActivity_invalid_contact">ಆಯ್ಕೆಮಾಡಿದ ಸಂಪರ್ಕವು ಅಮಾನ್ಯವಾಗಿದೆ</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ವಿವರಗಳಿಗೆ ಇಲ್ಲಿ ಒತ್ತಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ವಿವರಗಳಿಗೆ ಇಲ್ಲಿ ಒತ್ತಿ</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ಕೀ ವಿನಿಮಯ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ, ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="ConversationItem_group_action_left">%1$s ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ಅಸುರಕ್ಷಿತವಾಗಿ ತಗ್ಗಿಸುವುದಕ್ಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
@@ -291,8 +291,8 @@
     <item quantity="one">ಸಂಭಾಷಣೆಯನ್ನು ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಸರಿಸಲಾಗಿದೆ</item>
     <item quantity="other"> %d  ಸಂಭಾಷಣೆಗಳನ್ನು ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಸರಿಸಲಾಗಿದೆ</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ರಚಿಸಲಾಗಿದೆ.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಉಳಿಸಲಾಗಿದೆ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ರಚಿಸಲಾಗಿದೆ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಉಳಿಸಲಾಗಿದೆ.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ಕೀ ವಿನಿಮಯ ಸಂದೇಶ</string>
   <!--ConversationListItemAction-->
@@ -586,7 +586,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ಹೊಸ ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಮೂದಿಸಿ!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ಈ ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡುವುದೇ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ರದ್ದುಗೊಳಿಸಿ</string> -->
   <string name="DeviceProvisioningActivity_continue">ಮುಂದುವರಿಸು</string>
   <string name="DeviceProvisioningActivity_content_intro">ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -778,7 +777,6 @@
   <string name="SubmitDebugLogActivity_success">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ಈ URL ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ವಿಷಯ ವರದಿಗೆ ಸೇರಿಸಿ ಅಥವಾ ಇಮೇಲ್ ಬೆಂಬಲಿಸಿ :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ಓಕೆ</string> -->
   <string name="SubmitDebugLogActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
   <!--SupportEmailUtil-->
   <!--ThreadRecord-->
@@ -836,7 +834,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
   <string name="UsernameEditFragment_this_username_is_taken">ಈ ಬಳಕೆದಾರ ಹೆಸರು ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string>
   <string name="UsernameEditFragment_this_username_is_available">ಈ ಬಳಕೆದಾರ ಹೆಸರು ಲಭ್ಯವಿದೆ.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ಬಳಕೆದಾರ ಹೆಸರುಗಳು a-Z, 0-9, ಮತ್ತು _ ಮಾತ್ರ ಒಳಗೊಂಡಿರಬಹುದು.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಬಳಕೆದಾರ ಹೆಸರುಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>
   <string name="UsernameEditFragment_username_is_invalid">ಬಳಕೆದಾರ ಹೆಸರು ಅಮಾನ್ಯವಾಗಿದೆ.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಬಳಕೆದಾರ ಹೆಸರುಗಳ  %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
@@ -1615,12 +1612,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">ನಾವು ನಿಮಗೆ ನಂತರ ನೆನಪಿಸುತ್ತೇವೆ. %1$d ದಿನಗಳಲ್ಲಿ ಪಿನ್ ರಚಿಸುವುದು ಕಡ್ಡಾಯವಾಗಲಿದೆ.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">ನಾವು ನಿಮಗೆ ನಂತರ ನೆನಪಿಸುತ್ತೇವೆ. ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ದೃಢೀಕರಿಸುವುದು %1$dದಿನಗಳಲ್ಲಿ ಕಡ್ಡಾಯವಾಗಲಿದೆ. </string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು ಸೇರಿಸಿ</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">ಇದನ್ನು ನೀವು ಹೊಸ ಸಂಭಾಷಣೆಯನ್ನು ಆರಂಭಿಸಿದಾಗ ಅಥವಾ ಇನ್ನು ಹಂಚಿಕೊಂಡಾಗ ಪ್ರದರ್ಶಿಸಲಾಗುವುದು.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು ಸೇರಿಸಿ</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು ಖಚಿತಪಡಿಸಿ</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಈಗ ಒಂದು ಐಚ್ಛಿಕ ಕೊನೆಯ ಹೆಸರನ್ನು ಒಳಗೊಂಡಿರಬಹುದು.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">ಹೆಸರು ದೃಢೀಕರಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು ಸೇರಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">ಇದನ್ನು ನೀವು ಹೊಸ ಸಂಭಾಷಣೆಯನ್ನು ಆರಂಭಿಸಿದಾಗ ಅಥವಾ ಇನ್ನು ಹಂಚಿಕೊಂಡಾಗ ಪ್ರದರ್ಶಿಸಲಾಗುವುದು.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು ಸೇರಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು ಖಚಿತಪಡಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಈಗ ಒಂದು ಐಚ್ಛಿಕ ಕೊನೆಯ ಹೆಸರನ್ನು ಒಳಗೊಂಡಿರಬಹುದು.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">ಹೆಸರು ದೃಢೀಕರಿಸಿ</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ಸಾರಿಗೆ ಐಕನ್</string>
   <string name="ConversationListFragment_loading">ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>

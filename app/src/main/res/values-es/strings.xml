@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Otros</string>
   <string name="ContactShareEditActivity_invalid_contact">La persona que has seleccionado no es válida.</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Fallo al enviar. Toca para más detalles</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Fallo al enviar. Toca para más detalles</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de claves, toca para proceder.</string>
   <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Fallo al enviar. Toca para enviar sin cifrar</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Chat devuelto al buzón de entrada</item>
     <item quantity="other">%d chats devueltos al buzón de entrada</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Tu nombre de perfil se ha creado.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">El nombre se ha guardado en tu perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Tu nombre de perfil se ha creado.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">El nombre se ha guardado en tu perfil.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
   <!--ConversationListItemAction-->
@@ -437,8 +437,8 @@
   <string name="ManageGroupActivity_on">Activo</string>
   <string name="ManageGroupActivity_add_members">Agregar participantes</string>
   <string name="ManageGroupActivity_view_all_members">Mostrar participantes</string>
-  <string name="ManageGroupActivity_see_all">Mostrar tod*s</string>
-  <string name="ManageGroupActivity_none">Ningun*</string>
+  <string name="ManageGroupActivity_see_all">Mostrar todos</string>
+  <string name="ManageGroupActivity_none">Ninguna</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d invitad*</item>
     <item quantity="other">%d invitad*s</item>
@@ -467,7 +467,7 @@
   <string name="ManageRecipientActivity_on">Activo</string>
   <string name="ManageRecipientActivity_add_to_a_group">Agregar a un grupo</string>
   <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string>
-  <string name="ManageRecipientActivity_see_all">Mostrar tod*s</string>
+  <string name="ManageRecipientActivity_see_all">Mostrar todos</string>
   <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupo en común</item>
@@ -490,8 +490,8 @@
   <string name="CustomNotificationsDialogFragment__vibrate">Vibración</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Ajustes de llamada</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Tono de llamada</string>
-  <string name="CustomNotificationsDialogFragment__enabled">Activado</string>
-  <string name="CustomNotificationsDialogFragment__disabled">Desactivado</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Activadas</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Desactivadas</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">¿Deseas retirar tu invitación a «%1$s»?</string>
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">¡Introduce una nueva clave de acceso!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">¿Enlazar este dispositivo?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CANCELAR</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
   <string name="DeviceProvisioningActivity_content_intro">Podrá</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -954,7 +953,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubmitDebugLogActivity_success">¡Completado!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y añádela a tu correo para el soporte o informe de incidencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado al portapapeles</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Compartir</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Asunto:</string>
@@ -1021,7 +1019,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UsernameEditFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Alias en uso por otra persona.</string>
   <string name="UsernameEditFragment_this_username_is_available">Alias disponible.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">El alias sólo puede contener a-Z, 0-9 y _.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">El alias sólo puede contener a–Z, 0–9 y _.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">El alias no puede comenzar por un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Alias no válido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">El alias debe contener entre %1$d y %2$d caracteres.</string>
@@ -1853,12 +1851,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo volveremos a recordar. Crear tu PIN será obligatorio en %1$d días.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo volveremos a recordar. Confirmar tu PIN será obligatorio en %1$d días.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Añadir nombre al perfil</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Se mostrará al iniciar un nuevo chat o al compartirlo.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Añadir nombre al perfil</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirma tu nombre de perfil</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ahora tu perfil puede incluir opcionalmente tu(s) apellido(s)</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Confirmar nombre</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Añadir nombre al perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Se mostrará al iniciar un nuevo chat o al compartirlo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Añadir nombre al perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirma tu nombre de perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ahora tu perfil puede incluir opcionalmente tu(s) apellido(s)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Confirmar nombre</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>

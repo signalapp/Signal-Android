@@ -163,7 +163,7 @@
   <string name="ContactShareEditActivity_type_missing">Drugo</string>
   <string name="ContactShareEditActivity_invalid_contact">Izbrani kontakt ni veljaven</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Pošiljanje ni uspelo, tapnite za več informacij</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Pošiljanje ni uspelo, tapnite za več informacij</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Prejeta informacija o izmenjavi ključev. Kliknite za obdelavo.</string>
   <string name="ConversationItem_group_action_left">Oseba %1$s je zapustila skupino.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Pošiljanje ni uspelo, tapnite za nezavarovan SMS</string>
@@ -330,8 +330,8 @@
     <item quantity="few">%d pogovori premaknjeni v nabiralnik</item>
     <item quantity="other">%d pogovorov premaknjenih v nabiralnik</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Vaše profilno ime je bilo ustvarjeno.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Vaše profilno ime je bilo shranjeno.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Vaše profilno ime je bilo ustvarjeno.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Vaše profilno ime je bilo shranjeno.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev</string>
   <!--ConversationListItemAction-->
@@ -806,7 +806,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Vnesite novo geslo!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Povežem napravo?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">PREKINI</string> -->
   <string name="DeviceProvisioningActivity_continue">NADALJUJ</string>
   <string name="DeviceProvisioningActivity_content_intro">Lahko bo:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1019,7 +1018,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubmitDebugLogActivity_success">Uspešno opravljeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Prekopirajte naslov URL in ga dodajte k prijavi napake ali v elektronsko sporočilo za tehnično podporo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano v odložišče</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Deli</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Predmet:</string>
@@ -1953,12 +1951,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba kode PIN bo postala obvezna čez %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev kode PIN bo obvezna čez %1$d dni.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj ime profila</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To bo prikazano, ko boste začeli z novim pogovorom, ali ko boste delili pogovor.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Dodajanje imena profila</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potrdi ime svojega profila</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil lahko od sedaj vsebuje tudi priimek.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Potrditev imena</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj ime profila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To bo prikazano, ko boste začeli z novim pogovorom, ali ko boste delili pogovor.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Dodajanje imena profila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potrdi ime svojega profila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil lahko od sedaj vsebuje tudi priimek.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Potrditev imena</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>

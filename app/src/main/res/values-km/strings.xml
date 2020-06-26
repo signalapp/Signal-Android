@@ -154,7 +154,7 @@
   <string name="ContactShareEditActivity_type_missing">ផ្សេងៗ</string>
   <string name="ContactShareEditActivity_invalid_contact">លេខទំនាក់ទំនងដែលបានជ្រើសរើសមិនត្រឹមត្រូវ</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">ផ្ញើបរាជ័យ ចុច សម្រាប់ព័ត៌មានលម្អិត</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">ផ្ញើបរាជ័យ ចុច សម្រាប់ព័ត៌មានលម្អិត</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ទទួលបានសារ ផ្លាស់ប្តូរសោរ សូមចុច ដើម្បីដំណើរការ។</string>
   <string name="ConversationItem_group_action_left">%1$s នាក់បានចាកចេញពីក្រុម។</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ផ្ញើបរាជ័យ ចុច សម្រាប់ជំនួសគ្មានសុវត្ថិភាព</string>
@@ -288,8 +288,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ផ្លាស់ប្តូរការសន្ទនា %d ទៅកាន់ប្រអប់ទទួល</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ត្រូវបានបង្កើត។</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ត្រូវបានរក្សាទុក។</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ត្រូវបានបង្កើត។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ត្រូវបានរក្សាទុក។</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">សារផ្លាស់ប្តូរសោរ</string>
   <!--ConversationListItemAction-->
@@ -701,7 +701,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">បញ្ចូលឃ្លាសម្ងាត់ថ្មី!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ភ្ជាប់ឧបករណ៍នេះឬទេ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">បោះបង់</string> -->
   <string name="DeviceProvisioningActivity_continue">បន្ត</string>
   <string name="DeviceProvisioningActivity_content_intro">វានឹងអាច</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -911,7 +910,6 @@
   <string name="SubmitDebugLogActivity_success">ជោគជ័យ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ចម្លងអាសយដ្ឋាន URL នេះ និងបន្ថែមវាទៅរបាយការណ៍បញ្ហា ឬអ៊ីម៉ែលគាំទ្រ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">យល់ព្រម</string> -->
   <string name="SubmitDebugLogActivity_share">ចែករំលែក</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">ចំណងជើង៖</string>
@@ -978,7 +976,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
   <string name="UsernameEditFragment_this_username_is_taken">ឈ្មោះអ្នកប្រើនេះត្រូវបានយក។</string>
   <string name="UsernameEditFragment_this_username_is_available">ឈ្មោះអ្នកប្រើនេះនៅទំនេរ។</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ឈ្មោះអ្នកប្រើប្រាស់អាចរាប់បញ្ចូល a-Z, 0-9, និង គំនូសពីក្រោម។</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើប្រាស់មិនអាចចាប់ផ្តើមពីលេខ។</string>
   <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើប្រាស់មិនត្រឹមត្រូវ។</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើប្រាស់ត្រូវនៅចន្លោះតួអក្សរ%1$d និង%2$d ។</string>
@@ -1791,12 +1788,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបង្កើតលេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបញ្ជាក់លេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">បន្ថែមឈ្មោះប្រវត្តិរូបមួយ</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">នេះនឹងបង្ហាញនៅពេលអ្នកចាប់ផ្តើមកិច្ចសន្ទនាថ្មី ឬចែករំលែកវា។</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">បន្ថែមឈ្មោះប្រវត្តិរូប</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">បញ្ជាក់ឈ្មោះប្រវត្តិរូប</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នកឥឡូវអាចរួមបញ្ចូលត្រកូលស្រេចចិត្ត។</string>
-  <string name="ProfileNamesMegaphone__confirm_name">បញ្ជាក់ឈ្មោះ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">បន្ថែមឈ្មោះប្រវត្តិរូបមួយ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">នេះនឹងបង្ហាញនៅពេលអ្នកចាប់ផ្តើមកិច្ចសន្ទនាថ្មី ឬចែករំលែកវា។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">បន្ថែមឈ្មោះប្រវត្តិរូប</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">បញ្ជាក់ឈ្មោះប្រវត្តិរូប</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នកឥឡូវអាចរួមបញ្ចូលត្រកូលស្រេចចិត្ត។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">បញ្ជាក់ឈ្មោះ</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>

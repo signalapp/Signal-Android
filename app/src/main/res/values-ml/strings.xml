@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">മറ്റുള്ളവ</string>
   <string name="ContactShareEditActivity_invalid_contact">തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് അസാധുവായിരുന്നു</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു, വിശദാംശങ്ങൾക്ക് തൊടുക</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">കീ കൈമാറ്റ സന്ദേശം ലഭിച്ചു, പ്രോസസ്സുചെയ്യാൻ തൊടുക</string>
   <string name="ConversationItem_group_action_left">%1$s ഈ ഗ്രൂപ്പില്‍ നിന്നും പോയി.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു, സുരക്ഷിതമല്ലാത്ത പക്ഷെ പകരം ഉപയോഗിക്കാവുന്ന പ്രക്രിയയ്ക്കായി തൊടുക</string>
@@ -234,7 +234,7 @@
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d വായിക്കാത്ത സന്ദേശം</item>
-    <item quantity="other">%dവായിക്കാത്ത സന്ദേശങ്ങൾ </item>
+    <item quantity="other">%d വായിക്കാത്ത സന്ദേശങ്ങൾ </item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -278,6 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">വേഗത്തിൽ മറുപടി നൽകാൻ ഏത് സന്ദേശത്തിലും നിങ്ങൾക്ക് ഇടത്തേക്ക് സ്വൈപ്പുചെയ്യാനാകും</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">അയയ്ക്കുന്ന താൽക്കാലിക മീഡിയ ഫയലുകൾ അയച്ചതിനുശേഷം അവ സ്വയമേവ നീക്കംചെയ്യപ്പെടും</string>
   <string name="ConversationFragment_you_already_viewed_this_message">നിങ്ങൾ ഇതിനകം ഈ സന്ദേശം കണ്ടു</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ‌ നിങ്ങൾ‌ക്കായി കുറിപ്പുകൾ‌ ചേർ‌ക്കാൻ‌ കഴിയും.\nനിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്കുചെയ്‌ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഒരു ബ്രൌസർ ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല.</string>
   <!--ConversationListFragment-->
@@ -301,8 +302,8 @@
     <item quantity="one">സംഭാഷണം ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
     <item quantity="other">%d സംഭാഷണങ്ങൾ ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">നിങ്ങളുടെ പ്രൊഫൈൽ നാമം സൃഷ്ടിച്ചു.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">നിങ്ങളുടെ പ്രൊഫൈൽ പേര് സേവ് ചെയ്തു.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">നിങ്ങളുടെ പ്രൊഫൈൽ നാമം സൃഷ്ടിച്ചു.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">നിങ്ങളുടെ പ്രൊഫൈൽ പേര് സേവ് ചെയ്തു.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">കീ കൈമാറ്റ സന്ദേശം</string>
   <!--ConversationListItemAction-->
@@ -735,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">പുതിയ പാസ്‌ഫ്രെയ്‌സ് നൽകുക!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ഈ ഉപകരണം ലിങ്കുചെയ്യണോ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">റദ്ദാക്കുക</string> -->
   <string name="DeviceProvisioningActivity_continue">തുടരുക</string>
   <string name="DeviceProvisioningActivity_content_intro">അതിന് കഴിയും</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -945,7 +945,6 @@
   <string name="SubmitDebugLogActivity_success">വിജയം!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ഈ URL പകർത്തി നിങ്ങളുടെ പ്രശ്ന റിപ്പോർട്ടിലേക്കോ പിന്തുണാ ഇമെയിലിലേക്കോ ചേർക്കുക:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ശരി</string> -->
   <string name="SubmitDebugLogActivity_share">പങ്കിടുക</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">വിഷയം:</string>
@@ -1013,7 +1012,7 @@ grūpp ap‌ḍē</string>
   <string name="UsernameEditFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <string name="UsernameEditFragment_this_username_is_taken">ഈ യൂസേർനേമ് ഇതിനകം എടുത്തിട്ടുണ്ട്.</string>
   <string name="UsernameEditFragment_this_username_is_available">ഈ യൂസേർനേമ് ലഭ്യമാണ്.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">യൂസേർനേമ്കളിൽ a-Z, 0-9, അടിവരകൾ എന്നിവ മാത്രമേ ഉൾപ്പെടുത്താനാകൂ.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">യൂസേർനേമ്കളിൽ a–Z, 0–9, അടിവര എന്നിവ മാത്രമേ ഉൾപ്പെടുത്താനാകൂ.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">യൂസേർനേമ് ഒരു നമ്പറിൽ ആരംഭിക്കാൻ കഴിയില്ല.</string>
   <string name="UsernameEditFragment_username_is_invalid">യൂസേർനേമ് അസാധുവാണ്.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">യൂസേർനേമ്കൾ %1$d മുതൽ %2$d വരെ പ്രതീകങ്ങൾ ആയിരിക്കണം.</string>
@@ -1406,7 +1405,9 @@ grūpp ap‌ḍē</string>
   <string name="message_details_header__via">വഴി</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">ശേഷിക്കുന്നു</string>
+  <string name="message_details_recipient_header__sent_to">അയച്ചത്</string>
   <string name="message_details_recipient_header__sent_from">അയച്ചത്</string>
+  <string name="message_details_recipient_header__delivered_to">കൈമാറിയത്</string>
   <string name="message_details_recipient_header__read_by">വായിച്ചത്</string>
   <string name="message_details_recipient_header__not_sent">അയച്ചില്ല</string>
   <!--message_Details_recipient-->
@@ -1843,12 +1844,12 @@ grūpp ap‌ḍē</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">ഞങ്ങൾ നിങ്ങളെ പിന്നീട് ഓർമ്മപ്പെടുത്തും. ഒരു PIN സൃഷ്‌ടിക്കുന്നത് %1$d ദിവസങ്ങളിൽ നിർബന്ധമാകും.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">ഞങ്ങൾ നിങ്ങളെ പിന്നീട് ഓർമ്മപ്പെടുത്തും. നിങ്ങളുടെ പിൻ സ്ഥിരീകരിക്കുന്നത് %1$d ദിവസങ്ങളിൽ നിർബന്ധമാകും.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">ഒരു പ്രൊഫൈൽ പേര് ചേർക്കുക</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">നിങ്ങൾ ഒരു പുതിയ സംഭാഷണം ആരംഭിക്കുമ്പോഴോ പങ്കിടുമ്പോഴോ ഇത് ദൃശ്യമാകും.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">പ്രൊഫൈൽ പേര് ചേർക്കുക</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">നിങ്ങളുടെ പ്രൊഫൈൽ പേര് സ്ഥിരീകരിക്കുക</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">നിങ്ങളുടെ പ്രൊഫൈലിന് ഇപ്പോൾ ഒരു ഓപ്‌ഷണൽ അവസാന നാമം ഉൾപ്പെടുത്താൻ കഴിയും.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">പേര് സ്ഥിരീകരിക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">ഒരു പ്രൊഫൈൽ പേര് ചേർക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">നിങ്ങൾ ഒരു പുതിയ സംഭാഷണം ആരംഭിക്കുമ്പോഴോ പങ്കിടുമ്പോഴോ ഇത് ദൃശ്യമാകും.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">പ്രൊഫൈൽ പേര് ചേർക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">നിങ്ങളുടെ പ്രൊഫൈൽ പേര് സ്ഥിരീകരിക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">നിങ്ങളുടെ പ്രൊഫൈലിന് ഇപ്പോൾ ഒരു ഓപ്‌ഷണൽ അവസാന നാമം ഉൾപ്പെടുത്താൻ കഴിയും.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">പേര് സ്ഥിരീകരിക്കുക</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">റ്റ്റാൻസ്പോർറ്റ് ഐക്കൺ</string>
   <string name="ConversationListFragment_loading">ലോഡിംഗ്…</string>

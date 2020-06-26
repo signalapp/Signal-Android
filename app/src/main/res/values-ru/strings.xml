@@ -163,7 +163,7 @@
   <string name="ContactShareEditActivity_type_missing">Другой</string>
   <string name="ContactShareEditActivity_invalid_contact">Выбранный контакт недействителен</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Ошибка отправки. Подробнее…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Ошибка отправки. Подробнее…</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получено сообщение обмена ключами. Обработать?</string>
   <string name="ConversationItem_group_action_left">%1$s покинул(-а) группу.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Не отправлено. Отправить незащищённым?</string>
@@ -330,8 +330,8 @@
     <item quantity="many">%d разговоров перемещено во Входящие</item>
     <item quantity="other">%d разговоров перемещено во Входящие</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Имя вашего профиля создано.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Имя вашего профиля сохранено.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Имя вашего профиля создано.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Имя вашего профиля сохранено.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
   <!--ConversationListItemAction-->
@@ -806,7 +806,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Введите новую парольную фразу!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Привязать это устройство?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ОТМЕНА</string> -->
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИТЬ</string>
   <string name="DeviceProvisioningActivity_content_intro">Оно сможет</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1021,7 +1020,6 @@
   <string name="SubmitDebugLogActivity_success">Успех!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Скопируйте этот URL-адрес и добавьте его в отчет о проблеме или в письмо в службу поддержки:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Скопировано в буфер обмена</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ок</string> -->
   <string name="SubmitDebugLogActivity_share">Поделиться</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Тема:</string>
@@ -1088,7 +1086,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Обнаружена ошибка сети.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Это имя пользователя занято.</string>
   <string name="UsernameEditFragment_this_username_is_available">Это имя пользователя доступно.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Имена пользователей могут содержать только a-Z, 0-9 и нижние подчёркивания.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Имена пользователей могут содержать только a–Z, 0–9 и нижние подчёркивания.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Имена пользователей не могут начинаться с цифр.</string>
   <string name="UsernameEditFragment_username_is_invalid">Имя пользователя недействительно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Имена пользователей должны содержать от %1$d до %2$d символов.</string>
@@ -1955,12 +1953,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Мы напомним вам позже. Создание PIN-кода станет обязательным через %1$d дней.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Мы напомним вам позже. Проверка вашего PIN-кода станет обязательной через %1$d дней.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Добавьте имя профиля</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Оно будет показано, если вы начнёте новый разговор или когда вы поделитесь им.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Добавить имя профиля</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Подтвердите имя вашего профиля</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ваш профиль теперь может содержать необязательную фамилию.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Проверьте имя</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Добавьте имя профиля</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Оно будет показано, если вы начнёте новый разговор или когда вы поделитесь им.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Добавить имя профиля</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Подтвердите имя вашего профиля</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ваш профиль теперь может содержать необязательную фамилию.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Проверьте имя</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
   <string name="ConversationListFragment_loading">Загружаем…</string>

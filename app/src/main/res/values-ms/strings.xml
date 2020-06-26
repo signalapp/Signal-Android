@@ -137,7 +137,7 @@
   <string name="ContactShareEditActivity_type_missing">Lain-lain</string>
   <string name="ContactShareEditActivity_invalid_contact">Kenalan dipilih tidak sah</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Gagal menghantar, ketik untuk butiran</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Gagal menghantar, ketik untuk butiran</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima mesej pertukaran kunci, ketik untuk proses.</string>
   <string name="ConversationItem_group_action_left">%1$s telah meninggalkan kumpulan.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Gagal menghantar, ketik untuk sandaran tidak selamat</string>
@@ -262,7 +262,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%dperbualan dialihkan ke peti masuk</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Nama profil anda telah disimpan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Nama profil anda telah disimpan.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesej pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -1362,9 +1362,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="KbsMegaphone__create_pin">Cipta PIN</string>
   <string name="KbsMegaphone__introducing_pins">Memperkenalkan PIN</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ini akan dipaparkan apabila anda memulakan perbualan baru atau kongsikannya.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Tambah Nama Profil</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Sekarang profil anda boleh menyertakan nama terakhir pilihan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ini akan dipaparkan apabila anda memulakan perbualan baru atau kongsikannya.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Tambah Nama Profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Sekarang profil anda boleh menyertakan nama terakhir pilihan.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindah ikon</string>
   <string name="ConversationListFragment_loading">Memuatkan…</string>

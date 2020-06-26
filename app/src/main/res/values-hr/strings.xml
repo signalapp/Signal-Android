@@ -159,7 +159,7 @@
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
   <string name="ContactShareEditActivity_invalid_contact">Odabrani kontakt nije valjan</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Slanje nije uspjelo, dodirnite za detalje</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Slanje nije uspjelo, dodirnite za detalje</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Poruka za razmjenu ključeva je primljena, pritisnite da biste nastavili.</string>
   <string name="ConversationItem_group_action_left">%1$s je napustio grupu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Slanje neuspješno, pritisnite za nesigurnu rezervu</string>
@@ -313,8 +313,8 @@
     <item quantity="few">%d razgovora premještena u primljene poruke</item>
     <item quantity="other">%d razgovora premješteno u primljene poruke</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Ime vašeg profila je spremljeno.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Ime Vašeg profila je spremljeno.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Ime vašeg profila je spremljeno.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Ime Vašeg profila je spremljeno.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
   <!--ConversationListItemAction-->
@@ -636,7 +636,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Unesite novu lozinku!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Poveži ovaj uređaj?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ODUSTANI</string> -->
   <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
   <string name="DeviceProvisioningActivity_content_intro">Moći će</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1541,9 +1540,9 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="KbsMegaphone__create_pin">Stvori PIN</string>
   <string name="KbsMegaphone__introducing_pins">Uvodimo PIN-ove</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ovo se prikazuje kad započnete razgovor ili ga podjelite.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Dodaj ime profila</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil sad može imati opcionalno prezime.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ovo se prikazuje kad započnete razgovor ili ga podjelite.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Dodaj ime profila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil sad može imati opcionalno prezime.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

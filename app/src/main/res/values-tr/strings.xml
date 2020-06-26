@@ -156,7 +156,7 @@
   <string name="ContactShareEditActivity_type_missing">Diğer</string>
   <string name="ContactShareEditActivity_invalid_contact">Seçilen kişi geçersiz</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Gönderme başarısız, ayrıntılar için dokunun</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Gönderme başarısız, ayrıntılar için dokunun</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Anahtar takas iletisi alındı, işlemek için dokunun.</string>
   <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Gönderme başarısız oldu, şifresiz göndermek için dokunun</string>
@@ -301,8 +301,8 @@
     <item quantity="one">Sohbet gelen kutusuna taşındı</item>
     <item quantity="other">%d sohbet gelen kutusuna taşındı</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Profil adınız oluşturuldu.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Profil adınız kaydedildi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Profil adınız oluşturuldu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Profil adınız kaydedildi.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
   <!--ConversationListItemAction-->
@@ -731,7 +731,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Yeni parola girin!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Bu cihazı bağla?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">VAZGEÇ</string> -->
   <string name="DeviceProvisioningActivity_continue">DEVAM ET</string>
   <string name="DeviceProvisioningActivity_content_intro">Aşağıdaki eylemleri gerçekleştirebilecek</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -938,7 +937,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubmitDebugLogActivity_success">Başarılı!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bu adresi kopyalayın ve sorun bildirinize veya destek epostasına ekleyin:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Panoya kopyalandı</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Tamam</string> -->
   <string name="SubmitDebugLogActivity_share">Paylaş</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Konu:</string>
@@ -1004,7 +1002,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Bir ağ hatası ile karşılaşıldı.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Bu kullanıcı adı alınmış.</string>
   <string name="UsernameEditFragment_this_username_is_available">Bu kullanıcı adı uygun.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Kullanıcı adları yalnızca a-Z, 0-9 ve alt çizgi içerebilir.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kullanıcı adları rakam ile başlayamaz.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kullanıcı adı geçersiz.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kullanıcı adları %1$d ve %2$d karakter aralığında olmalıdır.</string>
@@ -1815,12 +1812,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN oluşturmanız zorunlu olacaktır.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN\'inizi onaylamanız zorunlu olacaktır.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Bir profil adı ekle</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Yeni bir konuşma başlattığınızda veya paylaştığınızda gözükecektir.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Profil Adı Ekle</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Profil Adınızı Onaylayın</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profiliniz artık isteğe bağlı soy ad içerebilir.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Adı Onaylayın</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Bir profil adı ekle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Yeni bir konuşma başlattığınızda veya paylaştığınızda gözükecektir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Profil Adı Ekle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Profil Adınızı Onaylayın</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profiliniz artık isteğe bağlı soy ad içerebilir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Adı Onaylayın</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>

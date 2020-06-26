@@ -148,7 +148,7 @@
   <string name="ContactShareEditActivity_type_missing">其他</string>
   <string name="ContactShareEditActivity_invalid_contact">所选联系人无效</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">发送失败，点击查看详情</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">发送失败，点击查看详情</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">已收到密钥交换消息，点击处理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已经离开该群组。</string>
   <string name="ConversationItem_click_to_approve_unencrypted">发送失败，点击使用不安全的方式发送</string>
@@ -276,8 +276,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已将 %d 个对话移至收件箱</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">您的配置文件名已经创建。</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">您的配置文件名已经保存。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">您的配置文件名已经创建。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">您的配置文件名已经保存。</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
   <!--ConversationListItemAction-->
@@ -569,7 +569,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">输入新的密码！</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">关联该设备？</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">取消</string> -->
   <string name="DeviceProvisioningActivity_continue">继续</string>
   <string name="DeviceProvisioningActivity_content_intro">这将可以：</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -766,7 +765,6 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b>
 </string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">已复制到剪切板</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">好</string> -->
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">主题 :</string>
@@ -830,7 +828,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">网络出错。</string>
   <string name="UsernameEditFragment_this_username_is_taken">该用户名已有人使用。</string>
   <string name="UsernameEditFragment_this_username_is_available">该用户名可用。</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">用户名仅支持字母、数字和下划线。</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用户名不能以数字开头。</string>
   <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用户名所含字符数量必须在 %1$d 与 %2$d 之间。</string>
@@ -1608,12 +1605,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">稍后您会被提示。在%1$d天内会强制要求创建PIN码。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">稍后您会被提示。在%1$d天内会强制要求确认你的PIN码。</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">添加一个用户名</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">当您开始新的对话或分享时，将显示此内容。</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">添加用户名</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">确认您的用户名</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">您的个人资料现在可以包含可选的姓氏。</string>
-  <string name="ProfileNamesMegaphone__confirm_name">确认姓名</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">添加一个用户名</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">当您开始新的对话或分享时，将显示此内容。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">添加用户名</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">确认您的用户名</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">您的个人资料现在可以包含可选的姓氏。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">确认姓名</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>

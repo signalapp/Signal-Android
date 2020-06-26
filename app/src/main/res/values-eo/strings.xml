@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Alia</string>
   <string name="ContactShareEditActivity_invalid_contact">Elektita kontakto estis nevalida</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Sendado malsukcesis, tuŝetu por detaloj</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Sendado malsukcesis, tuŝetu por detaloj</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevis mesaĝon pri interŝanĝo de ŝlosiloj, tuŝetu por daŭrigi.</string>
   <string name="ConversationItem_group_action_left">%1$s forlasis la grupon.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sendado malsukcesis, tuŝeti por nesekura retropaŝo</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Via profilnomo kreiĝis.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Via profilnomo konserviĝis.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Via profilnomo kreiĝis.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Via profilnomo konserviĝis.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Entajpu novan pasfrazon!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Ĉu ligi ĉi tiun aparaton?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">NULIGI</string> -->
   <string name="DeviceProvisioningActivity_continue">DAŬRIGI</string>
   <string name="DeviceProvisioningActivity_content_intro">Ĝi povos</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -953,7 +952,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubmitDebugLogActivity_success">Sukceso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiu tiun ĉi retadreson kaj aldonu ĝin al via problemraporto aŭ subtena retpoŝtmesaĝo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopiita al tondujo</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Bone</string> -->
   <string name="SubmitDebugLogActivity_share">Kunhavigi</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Pri:</string>
@@ -1020,7 +1018,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_encountered_a_network_error">Okazis reta eraro.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Tiu uzantnomo jam uziĝas.</string>
   <string name="UsernameEditFragment_this_username_is_available">La uzantnomo disponeblas.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Uzantnomo povas enteni nur literojn a-z A-Z, ciferojn 0-9 kaj substrekoj.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero</string>
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
@@ -1851,12 +1848,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Ni memorigos vin poste. Kreado de PIN nepros post %1$d tagoj.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Ni memorigos vin poste. Konfirmado de PIN nepros post %1$d tagoj.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Aldoni profilnomon</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ĝi montriĝos, kiam vi komencas interparoli aŭ kunhavigas interparolon.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Aldoni profilnomon</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Konfirmi vian profilnomon</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Via profilo povas nun malnepre enteni familinomon.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Konfirmi nomon</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Aldoni profilnomon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ĝi montriĝos, kiam vi komencas interparoli aŭ kunhavigas interparolon.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Aldoni profilnomon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Konfirmi vian profilnomon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Via profilo povas nun malnepre enteni familinomon.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Konfirmi nomon</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>

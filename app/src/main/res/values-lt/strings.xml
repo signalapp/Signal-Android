@@ -163,7 +163,7 @@
   <string name="ContactShareEditActivity_type_missing">Kitas</string>
   <string name="ContactShareEditActivity_invalid_contact">Pasirinktas adresatas buvo neteisingas</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Siuntimas nepavyko, bakstelėkite išsamesnei informacijai</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Siuntimas nepavyko, bakstelėkite išsamesnei informacijai</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Gauta šifro apsikeitimo žinutė, bakstelėkite norėdami tęsti.</string>
   <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Siuntimas nepavyko, bakstelėkite, norėdami sugrįžti nesaugaus surogato</string>
@@ -330,8 +330,8 @@
     <item quantity="many">%d pokalbių perkelta į gautųjų aplanką</item>
     <item quantity="other">%d pokalbių perkelta į gautųjų aplanką</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsų profilio vardas sukurtas.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsų profilio vardas įrašytas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsų profilio vardas sukurtas.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsų profilio vardas įrašytas.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
   <!--ConversationListItemAction-->
@@ -806,7 +806,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Įveskite naują slaptafrazę!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Susieti šį įrenginį?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ATSISAKYTI</string> -->
   <string name="DeviceProvisioningActivity_continue">TĘSTI</string>
   <string name="DeviceProvisioningActivity_content_intro">Jis galės</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1028,7 +1027,6 @@
   <string name="SubmitDebugLogActivity_success">Įvykdyta!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nukopijuokite šį URL ir pridėkite jį į savo pranešimą apie klaidą ar palaikymo el. laišką:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Nukopijuota į iškarpinę</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Gerai</string> -->
   <string name="SubmitDebugLogActivity_share">Bendrinti</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Tema:</string>
@@ -1095,7 +1093,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Šis naudotojo vardas yra užimtas.</string>
   <string name="UsernameEditFragment_this_username_is_available">Šis naudotojo vardas yra prieinamas.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Naudotojo varduose gali būti simboliai a-Z, 0-9, ir pabraukimo brūkšniai.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Naudotojo varduose gali būti simboliai a–Z, 0–9 ir pabraukimo brūkšniai.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
@@ -1958,12 +1956,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Pridėkite profilio vardą</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Jis bus rodomas, kai pradėsite naują pokalbį ar bendrinsite profilį.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Pridėti profilio vardą</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Patvirtinkite savo profilio vardą</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Dabar, į profilio vardą, pasirinktinai, galite įtraukti pavardę.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Patvirtinti vardą</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Pridėkite profilio vardą</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Jis bus rodomas, kai pradėsite naują pokalbį ar bendrinsite profilį.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Pridėti profilio vardą</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Patvirtinkite savo profilio vardą</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Dabar, į profilio vardą, pasirinktinai, galite įtraukti pavardę.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Patvirtinti vardą</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>

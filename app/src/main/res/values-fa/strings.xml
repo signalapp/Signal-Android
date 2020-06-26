@@ -67,7 +67,7 @@
   <string name="AttachmentManager_cant_open_media_selection">برنامه‌ای برای انتخاب رسانه پیدا نشد.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal برای پیوست کردن فایل‌های صوتی و تصویری نیاز به دسترسی به حافظه دارد، اما این اجازه داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «ذخیره‌سازی» را فعال کنید.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal برای پیوست کردن اطلاعات مخاطب نیاز به دسترسی به مخاطبان دارد، اما این دسترسی به Signal داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal برای پیوست کردن موقعیت مکانی نیاز به دسترسی به موقعیت مکانی شما دارد، ولی این دسترسی داده نشده است. لطفاً لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «موقعیت مکانی» را فعال کنید. </string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal برای پیوست کردن موقعیت مکانی نیاز به دسترسی به موقعیت مکانی شما دارد، ولی این دسترسی داده نشده است. لطفاً لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مکان» را فعال کنید. </string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal جهت گرفتن عکس نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید. </string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">بارگزاری رسانه…</string>
@@ -98,7 +98,7 @@
   <string name="BucketedThreadMedia_Medium">متوسط</string>
   <string name="BucketedThreadMedia_Small">کوچک</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">تماس دریافتی</string>
+  <string name="CallScreen_Incoming_call">تماس ورودی</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">تصویر ذخیره نشد.</string>
   <!--CameraXFragment-->
@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">دیگر</string>
   <string name="ContactShareEditActivity_invalid_contact">مخاطب انتخاب شده نامعتبر بود</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">ارسال ناموفق بود، برای جزئیات ضربه بزنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">ارسال ناموفق بود، برای جزئیات ضربه بزنید</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">پیام تبادل کلید دریافت شد، برای ادامه، صفحه را لمس کنید.</string>
   <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ارسال ناموفق بود، برای ارتباط ناامن ضربه بزنید</string>
@@ -205,13 +205,13 @@
   <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال پیام‌ های صوتی، به Signal اجازه دهید تا به میکروفون شما دسترسی داشته باشد.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal به منظور ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، \"مجوزها\" را انتخاب کنید و \"میکروفون\" را فعال کنید.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal نیاز به دسترسی به دوربین و میکروفون دارد تا بتواند با %s تماس بگیرد، اما دسترسی به آن ها داده نشده است. لطفاً به قسمت تنظیمات برنامه رفته، \"مجوزها\" را انتخاب کرده، \"دوربین\" و \"میکروفون\" را فعال کنید.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal به منظور ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal نیاز به دسترسی به دوربین و میکروفون دارد تا بتواند با %s تماس بگیرد، اما دسترسی به آن ها داده نشده است. لطفاً به قسمت تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» و «میکروفون» را فعال کنید.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">برای گرفتن تصاویر و ویدیو، به Signal اجازه بدهید به دوربین شما دسترسی داشته باشد.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal برای گرفتن عکس یا ضبط ویدئو نیاز به دسترسی به دوربین دارد، اما دسترسی به آن رد شده است. لطفاً به تنظیمات برنامه رفته، \"مجوز ها\" را انتخاب کرده، \"دوربین\" را فعال کنید. </string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal برای گرفتن عکس یا ضبط ویدئو نیاز به دسترسی به دوربین دارد، اما دسترسی به آن رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» را فعال کنید. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">برای گرفتن تصویر یا ویدئو Signal نیاز به اجازه دوربین دارد</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">مجوز میکروفون را برای ضبط فیلم با صدا فعال کنید.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">سیگنال برای ضبط ویدئو به اجازه میکروفون نیاز دارد، اما اجازه آن رد شده است. لطفاً به تنظیمات برنامه بروید، \"مجوزها\" را انتخاب کرده و \"میکروفون\" و \"دوربین\" را فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">سیگنال برای ضبط ویدئو به اجازه میکروفون نیاز دارد، اما اجازه آن رد شده است. لطفاً به تنظیمات برنامه بروید، «مجوزها» را انتخاب کرده و «میکروفون» و «دوربین» را فعال کنید.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">برای ضبط ویدئو Signal نیاز به اجازه میکروفون دارد.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal قادر به ارسال پیامک‌/فراپیام‌ نیست چون به عنوان برنامهٔ یپش‌فرض پیامک شما انتخاب نشده است. آیا مایل به تغییر آن در تنظیمات اندروید خود هستید؟</string>
@@ -276,7 +276,7 @@
   <string name="ConversationFragment_failed_to_open_message">عدم موفقیت در باز کردن پیام</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ دهی سریع روی هر پیام به سمت راست بکشید</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ دهی سریع روی هر پیام به سمت چپ بکشید</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های یکبار مصرف پس از ارسال به صورت خودکار حذف می‌شوند</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ای یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
   <string name="ConversationFragment_you_already_viewed_this_message">شما قبلاً این پیام را مشاهده کردید</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">در این مکالمه می‌توانید برای خودتان یادداشت اضافه کنید. اگر حساب‌تان به دستگاه‌‌های دیگری پیوند داده شده باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
   <!--ConversationListActivity-->
@@ -302,8 +302,8 @@
     <item quantity="one">مکالمه به صندوق ورودی جابجا شد</item>
     <item quantity="other">%d مکالمه به صندوق ورودی جابجا شدند</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">نام پروفایل شما ایجاد شد.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">نام پروفایل شما ذخیره شد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">نام پروفایل شما ایجاد شد.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">نام پروفایل شما ذخیره شد.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
   <!--ConversationListItemAction-->
@@ -490,7 +490,7 @@
   <string name="CustomNotificationsDialogFragment__vibrate">لرزش</string>
   <string name="CustomNotificationsDialogFragment__call_settings">تنظیمات تماس</string>
   <string name="CustomNotificationsDialogFragment__ringtone">صدای زنگ</string>
-  <string name="CustomNotificationsDialogFragment__enabled">فعال شده</string>
+  <string name="CustomNotificationsDialogFragment__enabled">فعال</string>
   <string name="CustomNotificationsDialogFragment__disabled">غیرفعال</string>
   <string name="CustomNotificationsDialogFragment__default">پیش‌فرض</string>
   <!--GV2 Invite cancellation confirmation-->
@@ -624,7 +624,7 @@
   <string name="MediaSendActivity_select_recipients_description">گیرندگان را انتخاب کنید</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">برای ناپدید شدن پیام بعد از مشاهده اینجا ضربه بزنید.</string>
   <!--MediaRepository-->
-  <string name="MediaRepository_all_media">تمام رسانه‌ها</string>
+  <string name="MediaRepository_all_media">همهٔ رسانه‌ها</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">ناشناخته</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">یک پیام رمزنگاری شده با استفاده از یک نسخهٔ قدیمی Signal که دیگر پشتیبانی نمی‌شود برایتان ارسال شده است. لطفاً از فرستنده بخواهید تا به آخرین نسخه به‌روزرسانی کند و آن پیام را دوباره ارسال کند.</string>
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">گذرواژهٔ جدید را وارد کنید!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">پیوند دادن این دستگاه؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">لغو</string> -->
   <string name="DeviceProvisioningActivity_continue">ادامه</string>
   <string name="DeviceProvisioningActivity_content_intro">قادر خواهد بود تا</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -924,7 +923,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s نشست امن را مجدداً تنظیم کرد.</string>
   <string name="SmsMessageRecord_duplicate_message">پیام تکراری.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">این پیام قابل پردازش نیست چون از یک نسخه جدیدتر Signal ارسال شده است. می توانید از مخاطب خود بخواهید تا این پیام را دوباره بعد از به‌روزرسانی برای شما ارسال کند.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">خطا هنگام دریافت پیام.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">خطا هنگام پردازش پیام ورودی.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">استیکر ها</string>
   <!--StickerManagementAdapter-->
@@ -951,7 +950,6 @@
   <string name="SubmitDebugLogActivity_success">موفقیت!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">این ‌‌URL را کپی کرده و آن را به گزارش اشکال یا ایمیل پشتیبانی اضافه کنید:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">قبول</string> -->
   <string name="SubmitDebugLogActivity_share">اشتراک‌گذاری</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">موضوع:</string>
@@ -1018,7 +1016,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
   <string name="UsernameEditFragment_this_username_is_available">این نام کاربری در دسترس است.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می توانند شامل a-Z ،0-9 و _ باشند.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d کاراکتر باشند.</string>
@@ -1059,7 +1056,7 @@
   <string name="MediaPreviewActivity_you">شما</string>
   <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده</string>
   <string name="MediaPreviewActivity_draft">پیش‌نویس</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal  به منظور ذخیره سازی روی حافظهٔ خارجی نیاز به مجوز حافظه دارد اما اجازه اینکار به طور دائمی رد شده است. لطفاً به تنظیمات برنامه رفته، \"مجوزها\" را انتخاب کنید و \"حافظهٔ\" را فعال کنید.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal  به منظور ذخیره سازی روی حافظهٔ خارجی نیاز به مجوز حافظه دارد اما اجازه اینکار به طور دائمی رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «حافظه» را فعال کنید.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">عدم توانایی در ذخیره بر روی حافظهٔ خارجی بدون مجوز</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">حذف پیام؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">این گزینه باعث حذف دائمی این پیام خواهد شد.</string>
@@ -1136,7 +1133,7 @@
   <string name="VideoPlayer_error_playing_video">خطا در پخش ویدئو</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">برای پاسخ به تماس %s، به Signal اجازهٔ دسترسی به میکروفون خود را بدهید.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal برای برقراری و دریافت تماس نیاز مجوزهای میکروفون و دوربین دارد، اما دسترسی به آن‌ها به طور دائمی لغو شده است. لطفاً به تنظیمات برنامه رفته، در قسمت \"مجوزها\"، \"میکروفون\" و \"دوربین\" را فعال کنید.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal برای برقراری و دریافت تماس نیاز مجوزهای میکروفون و دوربین دارد، اما دسترسی به آن‌ها به طور دائمی لغو شده است. لطفاً به تنظیمات برنامه رفته، در قسمت «مجوزها»، «میکروفون» و «دوربین» را فعال کنید.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">برروی دستگاه پیوند داده شده پاسخ داده شد.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">بر روی دستگاه پیوند داده شده رد شد.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">مشغول برروی دستگاه پیوند داده شده.</string>
@@ -1156,7 +1153,7 @@
   <string name="WebRtcAudioOutputToggle__speaker">بلندگو</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">برای فعال سازی ویدئو خود ضربه بزنید</string>
+  <string name="WebRtcCallControls_tap_to_enable_your_video">برای فعال‌سازی ویدئوی خود ضربه بزنید</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">تصویر مخاطب</string>
   <string name="WebRtcCallControls_speaker_button_description">بلندگو</string>
@@ -1201,7 +1198,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">تصویر مخاطب</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal نیاز به دسترسی به مخاطبان دارد تا مخاطبان شما را نمایش دهد، اما مجوز آن به طور دائم رد شده است. لطفاً به منو تنظیمات برنامه رفته، \"مجوز ها\" را انتخاب کرده و \"مخاطبان\" را فعال کنید.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal نیاز به دسترسی به مخاطبان دارد تا مخاطبان شما را نمایش دهد، اما مجوز آن به طور دائم رد شده است. لطفاً به ‌منوی تنظیمات برنامه رفته، «مجوز ها» را انتخاب کرده و «مخاطبان» را فعال کنید.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبان، اتصال اینترنت خود را بررسی کنید</string>
   <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
@@ -1230,7 +1227,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">تغییر وضعیت نگه دارنده پیوست دوربین سریع</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ضبط و ارسال پیوست صوتی</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">قفل ضبط پیوست صوتی</string>
-  <string name="conversation_activity__enable_signal_for_sms">فعال سازی Signal برای پیامک</string>
+  <string name="conversation_activity__enable_signal_for_sms">فعال‌سازی Signal برای پیامک</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">برای لغو به کناره بکشید</string>
   <string name="conversation_input_panel__cancel">لغو</string>
@@ -1501,8 +1498,8 @@
   <string name="preferences__sms_mms">پیامک و فراپیام</string>
   <string name="preferences__pref_all_sms_title">دریافت تمام پیامک ها</string>
   <string name="preferences__pref_all_mms_title">دریافت تمامی فراپیام ها</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">استفاده از Signal برای همهٔ پیام‌های متنی دریافتی</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای همهٔ پیام‌های چندرسانه‌ای دریافتی</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">استفاده از Signal برای همهٔ پیام‌های متنی ورودی</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای همهٔ پیام‌های چندرسانه‌ای ورودی</string>
   <string name="preferences__pref_enter_sends_title">ارسال با کلید Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال خواهند شد</string>
   <string name="preferences__send_link_previews">ارسال پیش‌نمایش‌های پیوند</string>
@@ -1616,7 +1613,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش نگارک وضعیت در حالتی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده بودند انتخاب می‌کنید.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های دریافتی از غیرمخاطبان و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های ورودی از غیرمخاطبان و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
   <!--****************************************-->
   <!--menus-->
@@ -1677,7 +1674,7 @@
   <string name="conversation__menu_edit_group">ویرایش گروه</string>
   <string name="conversation__menu_group_settings">تنظیمات گروه</string>
   <string name="conversation__menu_leave_group">ترک گروه</string>
-  <string name="conversation__menu_view_all_media">تمام رسانه‌ها</string>
+  <string name="conversation__menu_view_all_media">همهٔ رسانه‌ها</string>
   <string name="conversation__menu_conversation_settings">تنظیمات مکالمه</string>
   <string name="conversation__menu_add_shortcut">افزودن به صفحهٔ اصلی</string>
   <string name="conversation__menu_pending_members">اعضای در حال انتظار</string>
@@ -1725,7 +1722,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">ذخیره</string>
   <string name="media_preview__forward_title">ارسال</string>
-  <string name="media_preview__all_media_title">تمام رسانه‌ها</string>
+  <string name="media_preview__all_media_title">همهٔ رسانه‌ها</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">پیش‌نمایش رسانه</string>
   <!--new_conversation_activity-->
@@ -1849,22 +1846,22 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">افزودن نام پروفایل</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">این، زمانی که یک مکالمهٔ جدید را آغاز می‌کنید یا پروفایل خود را به اشتراک‌ می‌گذارید، نمایش داده خواهد شد.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">افزودن نام پروفایل</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">نام پروفایل خود را تأیید کنید</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">پروفایل شما اکنون می‌تواند شامل نام‌ خانوادگی نیز باشد.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">تأیید اسم</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">افزودن نام پروفایل</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">این، زمانی که یک مکالمهٔ جدید را آغاز می‌کنید یا پروفایل خود را به اشتراک‌ می‌گذارید، نمایش داده خواهد شد.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">افزودن نام پروفایل</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">نام پروفایل خود را تأیید کنید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">پروفایل شما اکنون می‌تواند شامل نام‌ خانوادگی نیز باشد.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">تأیید اسم</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
   <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک دارد اما این دسترسی به‌ داده نشده است. لطفاً به تنظیمات برنامه‌ رفته، \"مجوزها\" را انتخاب کنید و \"پیامک\" را فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک دارد اما این دسترسی به‌ داده نشده است. لطفاً به تنظیمات برنامه‌ رفته، «مجوزها» را انتخاب کنید و «پیامک» را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
   <string name="Permissions_not_now">حالا نه</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجوی مخاطبان نیاز به دسترسی دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
-  <string name="conversation_activity__enable_signal_messages">فعال‌سازی پیام های Signal</string>
+  <string name="conversation_activity__enable_signal_messages">فعال‌سازی پیام‌های Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">در حال انتقال پایگاه داده Signal</string>
   <string name="PushDecryptJob_new_locked_message">پیام قفل شده جدید</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">جهت دیدن پیام‌های در حال انتظار قفل را باز کنید</string>

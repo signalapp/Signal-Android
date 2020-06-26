@@ -158,7 +158,7 @@
   <string name="ContactShareEditActivity_type_missing">Andet</string>
   <string name="ContactShareEditActivity_invalid_contact">Valgte kontakt findes ikke</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Fejl ved afsendelse, tap for detaljer</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Fejl ved afsendelse, tap for detaljer</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Udvekslingsnøgle er modtaget. Tap for at fortsætte</string>
   <string name="ConversationItem_group_action_left">%1$s har forladt gruppen</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse, tap for at sende standard besked</string>
@@ -303,8 +303,8 @@
     <item quantity="one">Samtale flyttet til inbox</item>
     <item quantity="other">Flyttet %d samtaler til indbakke</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Dit profilnavn er oprettet</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Dit profilnavn er blevet gemt</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Dit profilnavn er oprettet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Dit profilnavn er blevet gemt</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Besked med udvekslingsnøgle</string>
   <!--ConversationListItemAction-->
@@ -737,7 +737,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Indtast nyt kodeord!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Tilføj denne enhed?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">AFBRYD</string> -->
   <string name="DeviceProvisioningActivity_continue">FORTSÆT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den vil være i stand til at</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -954,7 +953,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SubmitDebugLogActivity_success">Fuldført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL og tilføj den til din fejlrapport, eller til support email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopieret til udklipsholder</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Emne:</string>
@@ -1021,7 +1019,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="UsernameEditFragment_encountered_a_network_error">Registreret en netværksfejl</string>
   <string name="UsernameEditFragment_this_username_is_taken">Brugernavnet er allerede brugt</string>
   <string name="UsernameEditFragment_this_username_is_available">Brugernavnet er ledigt</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Brugernavne kan kun bestå af a-Z, 0-9, og _</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Brugernavne må kun indeholde a-Z, 0-9 og underscores</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brugernavne kan ikke starte med et tal</string>
   <string name="UsernameEditFragment_username_is_invalid">Brugernavn er invalid</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brugernavne skal være mellem %1$d og %2$d karakters længde</string>
@@ -1852,12 +1850,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Du vil blive påmindet senere. Oprettelse af PIN vil blive krævet om %1$d dage</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Du vil blive påmindet senere. Bekræftelse af din PIN vil blive krævet om %1$d dage</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Tilføj et profilnavn</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dette vil blive vist når du starter en ny samtale eller deler den</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Tilføj profilnavn</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Bekræft dit profilnavn</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nu tilføjes dit efternavn</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Bekræft navn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Tilføj et profilnavn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dette vil blive vist når du starter en ny samtale eller deler den</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Tilføj profilnavn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Bekræft dit profilnavn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nu tilføjes dit efternavn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Bekræft navn</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport ikon</string>
   <string name="ConversationListFragment_loading">Henter…</string>

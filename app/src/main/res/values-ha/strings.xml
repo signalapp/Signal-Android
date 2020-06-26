@@ -142,7 +142,7 @@
   <string name="ContactShareEditActivity_type_missing">Wani</string>
   <string name="ContactShareEditActivity_invalid_contact">Zabbaben lambarnan ba nakwarai ba.</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Turawa bai yu ba. Taba domin karin bayani</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Turawa bai yu ba. Taba domin karin bayani</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Karba sakon canji na musamman, taba domin gabatarwa.</string>
   <string name="ConversationItem_group_action_left">%1$s ya/ta bar rukuni.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Ankasa turawa, taba domin mazaba mara tsaro.</string>
@@ -278,7 +278,7 @@
     <item quantity="one">Moved conversation to inbox</item>
     <item quantity="other">An mayar da hira %d cikin akwatin hira</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">An yi ajiyar sunan furofayil dinka/ki. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">An yi ajiyar sunan furofayil dinka/ki. </string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sakon musaya na musamman</string>
   <!--ConversationListItemAction-->
@@ -565,7 +565,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Shigar da sabon kalaman sirri!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Hade wannan na\'urar</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">Katse</string> -->
   <string name="DeviceProvisioningActivity_continue">Cigaba</string>
   <string name="DeviceProvisioningActivity_content_intro">Zai iya</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -806,7 +805,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">An samu matsalar sadarwar gizo.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Akwai mai amfani da wannan suna.</string>
   <string name="UsernameEditFragment_this_username_is_available">Zaka/ki iya amfani da wannan suna.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Sunan mai amfani zai iya daukar A-Z ko kuma 0-9 da kuma jan layi kawai.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Bazaka/ki iya fara sunan mai amfani da lamba ba.</string>
   <string name="UsernameEditFragment_username_is_invalid">Sunan mai amfani ba na kwarai bane.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Sunan mai amfani dole ya zama tsakanin %1$d da %2$d haruffa.</string>
@@ -1545,9 +1543,9 @@
   <string name="KbsMegaphone__introducing_pins">Gabatar da lambobin sirri</string>
   <string name="KbsMegaphone__update_pin">Sabunta lambobin sirri</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Za\'a nuna wannan idan ka/kika fara wani hira ko kuma idan ka/kika tura hira. </string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Sa sunan furofayil </string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Bayanan furofayil dinka/ki zasu iya hada da karin suna idan ka/kina so. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Za\'a nuna wannan idan ka/kika fara wani hira ko kuma idan ka/kika tura hira. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Sa sunan furofayil </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Bayanan furofayil dinka/ki zasu iya hada da karin suna idan ka/kina so. </string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Gusar da alamar hoto</string>
   <string name="ConversationListFragment_loading">Yana lodi</string>

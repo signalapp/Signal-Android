@@ -163,7 +163,7 @@
   <string name="ContactShareEditActivity_type_missing">אחר</string>
   <string name="ContactShareEditActivity_invalid_contact">איש קשר נבחר היה בלתי תקף</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">שליחה נכשלה, הקש לפרטים</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">שליחה נכשלה, הקש לפרטים</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">הודעת החלפת מפתחות התקבלה, הקש כדי לעבד.</string>
   <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">שליחה נכשלה, הקש לנסיגה בלתי מאובטחת</string>
@@ -330,8 +330,8 @@
     <item quantity="many">%d שיחות הועברו לתיבה הנכנסת</item>
     <item quantity="other">%d שיחות הועברו לתיבה הנכנסת</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">שם הפרופיל שלך נוצר.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">שם הפרופיל שלך נשמר.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">שם הפרופיל שלך נוצר.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">שם הפרופיל שלך נשמר.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתחות</string>
   <!--ConversationListItemAction-->
@@ -806,7 +806,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">הכנס משפט־סיסמה חדש!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">לקשר מכשיר זה?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">בטל</string> -->
   <string name="DeviceProvisioningActivity_continue">המשך</string>
   <string name="DeviceProvisioningActivity_content_intro">הוא יוכל</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1028,7 +1027,6 @@
   <string name="SubmitDebugLogActivity_success">הצלחה!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">הועתק ללוח</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">בסדר</string> -->
   <string name="SubmitDebugLogActivity_share">שתף</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">נושא:</string>
@@ -1095,7 +1093,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
   <string name="UsernameEditFragment_this_username_is_taken">שם משתמש זה תפוס.</string>
   <string name="UsernameEditFragment_this_username_is_available">שם משתמש זה זמין.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">שמות משתמש יכולים להכיל רק a-Z, 0-9 וקווים תחתונים.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">שמות משתמש יכולים להכיל רק a–Z, 0–9, וקווים תחתונים.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
   <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
@@ -1962,12 +1960,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">הוסף שם פרופיל</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">זה יוצג כאשר תתחיל שיחה חדשה או כאשר תשתף את זה.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">הוסף שם פרופיל</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">אשר את שם הפרופיל שלך</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">הפרופיל שלך יכול להכיל כעת שם משפחה רשותי.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">אשר שם</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">הוסף שם פרופיל</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">זה יוצג כאשר תתחיל שיחה חדשה או כאשר תשתף את זה.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">הוסף שם פרופיל</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">אשר את שם הפרופיל שלך</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">הפרופיל שלך יכול להכיל כעת שם משפחה רשותי.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">אשר שם</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>

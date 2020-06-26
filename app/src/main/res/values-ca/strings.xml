@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Altres</string>
   <string name="ContactShareEditActivity_invalid_contact">El contacte seleccionat no és vàlid.</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Ha fallat l\'enviament. Toqueu per saber-ne més.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Ha fallat l\'enviament. Toqueu per saber-ne més.</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">S\'ha rebut el missatge de l\'intercanvi de la clau, toqueu per processar-lo.</string>
   <string name="ConversationItem_group_action_left">%1$s ha abandonat el grup.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Ha fallat l\'enviament. Toqueu per al mode no segur.</string>
@@ -302,8 +302,8 @@
     <item quantity="one">S\'ha mogut la conversa a la safata d\'entrada</item>
     <item quantity="other">S\'han mogut %d converses a la safata d\'entrada</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">S\'ha creat el nom de perfil.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">S\'ha desat el nom de perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">S\'ha creat el nom de perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">S\'ha desat el nom de perfil.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Escriviu la contrasenya nova.</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Voleu enllaçar aquest dispositiu?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CANCEL·LA</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUA</string>
   <string name="DeviceProvisioningActivity_content_intro">Podrà</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +947,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubmitDebugLogActivity_success">Acabat!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiat al porta-retalls</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">D\'acord</string> -->
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Assumpte:</string>
@@ -1015,7 +1013,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UsernameEditFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Aquest nom d\'usuari ja està agafat.</string>
   <string name="UsernameEditFragment_this_username_is_available">Aquest nom d\'usuari està disponible.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Els noms d\'usuari només poden incloure a-z, 0-9 i _.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Els noms d\'usuari solo poden incloure a-z, 0-9 i _.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els noms d\'usuari no poden començar amb un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">El nom d\'usuari no és vàlid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els noms d\'usuari han de tenir entre %1$d i %2$d caràcters.</string>
@@ -1846,12 +1844,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Us ho recordarem més tard. Crear un PIN serà obligatori d\'aquí a %1$d dies.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Us ho recordarem més tard. Confirmar el PIN serà obligatori d\'aquí a %1$d dies.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Afegiu un nom de perfil</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Es mostrarà quan inicieu una conversa nova o la compartiu.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Afegiu un nom de perfil</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmeu el nom de perfil</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">El perfil ara pot incloure un cognom addicional.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Confirmeu el nom</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Afegiu un nom de perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Es mostrarà quan inicieu una conversa nova o la compartiu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Afegiu un nom de perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmeu el nom de perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">El perfil ara pot incloure un cognom addicional.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Confirmeu el nom</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>

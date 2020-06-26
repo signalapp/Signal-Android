@@ -159,7 +159,7 @@
   <string name="ContactShareEditActivity_type_missing">Cits</string>
   <string name="ContactShareEditActivity_invalid_contact">Izvēlētais kontakts nav derīgs</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Sūtīšana neizdevās, pieskarieties, lai saņemtu detalizētāku informāciju</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Sūtīšana neizdevās, pieskarieties, lai saņemtu detalizētāku informāciju</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tika saņemta atslēgu apmaiņas ziņu, pieskarieties lai to apstrādātu.</string>
   <string name="ConversationItem_group_action_left">%1$s ir pametis grupu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sūtīšana neizdevās, pieskarieties, lai veiktu nedrošu sūtījumu, izmantojot rezerves kanālu</string>
@@ -313,8 +313,8 @@
     <item quantity="one">Pārvietoja sarunu uz iesūtni </item>
     <item quantity="other">Pārvietoja %d sarunas uz iesūtni</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsu profila vārds ir izveidots.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsu profila vārds ir saglabāts.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsu profila vārds ir izveidots.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsu profila vārds ir saglabāts.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Atslēgapmaiņas ziņa</string>
   <!--ConversationListItemAction-->
@@ -687,7 +687,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Ievadiet jaunu paroli!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vai piesaistīt šo ierīci?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ATCELT</string> -->
   <string name="DeviceProvisioningActivity_continue">TURPINĀT</string>
   <string name="DeviceProvisioningActivity_content_intro">Tā varēs</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -899,7 +898,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="SubmitDebugLogActivity_success">Izdevās!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nokopējiet šo URL un pievienojiet to problēmas ziņojumam vai atbalsta e-pastam:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Iekopēts starpenē</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Dalīties</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Temats</string>
@@ -965,7 +963,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UsernameEditFragment_encountered_a_network_error">Tīkla kļūda.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Šis lietotājvārds ir aizņemts.</string>
   <string name="UsernameEditFragment_this_username_is_available">Šis lietotājvārds ir pieejams.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Lietotājvārdi var ietvert tikai-Z, 0-9 un pasvītrojuma zīmes.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Lietotājvārdi nevar sākties ar skaitli.</string>
   <string name="UsernameEditFragment_username_is_invalid">Lietotājvārds nav derīgs.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Lietotājvārdiem jābūt starp %1$d un %2$d rakstzīmēm.</string>
@@ -1786,12 +1783,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tas tiks atgādināts vēlāk. PIN izveide kļūs obligāta pēc %1$d dienām.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Jums tiks atgādināts vēlāk. PIN apstiprināšana kļūs obligāta pēc %1$d dienām.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Pievienojiet profila nosaukumu</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tas tiks parādīts, kad sāksiet jaunu sarunu vai kopīgosiet to.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Pievienojiet profila nosaukumu</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Apstipriniet jūsu profila nosaukumu</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Jūsu profilā tagad fakultatīvi var tikt ietverts arī uzvārds.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Apstipriniet vārdu/nosaukumu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Pievienojiet profila nosaukumu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tas tiks parādīts, kad sāksiet jaunu sarunu vai kopīgosiet to.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Pievienojiet profila nosaukumu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Apstipriniet jūsu profila nosaukumu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Jūsu profilā tagad fakultatīvi var tikt ietverts arī uzvārds.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Apstipriniet vārdu/nosaukumu</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
   <string name="ConversationListFragment_loading">Notiek ielāde…</string>

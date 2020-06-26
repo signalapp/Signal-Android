@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Övrigt</string>
   <string name="ContactShareEditActivity_invalid_contact">Vald kontakt var ogiltig</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Sändningen misslyckades, tryck för detaljer</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Sändningen misslyckades, tryck för detaljer</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tog emot meddelande för nyckelutbyte, tryck för att behandla.</string>
   <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sändningen misslyckades, tryck för oskyddad fallback</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Flyttade konversation till inkorgen</item>
     <item quantity="other">Flyttade %d konversationer till inkorgen</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Ditt profilnamn har skapats.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Ditt profilnamn har sparats.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Ditt profilnamn har skapats.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Ditt profilnamn har sparats.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Ange nytt lösenord!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Länka den här enheten?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">AVBRYT</string> -->
   <string name="DeviceProvisioningActivity_continue">FORTSÄTT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den kommer att kunna</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +947,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Klart!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiera webbadressen och lägg till den i din problemrapport eller support-e-post:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopierade till urklipp</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Dela</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Ämne:</string>
@@ -1015,7 +1013,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Detta användarnamn är taget.</string>
   <string name="UsernameEditFragment_this_username_is_available">Detta användarnamn är tillgängligt.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Användarnamn kan endast innehålla a-Z, 0-9 och understreck.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Användarnamn kan bara innehålla a–Z, 0–9 och understreck.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med ett nummer.</string>
   <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
@@ -1846,12 +1844,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi påminner dig senare. Att skapa en PIN-kod blir obligatorisk om %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi påminner dig senare. Bekräfta din PIN-kod blir obligatorisk om %1$d dagar.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Lägg till ett profilnamn</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Detta kommer att visas när du startar en ny konversation eller delar den.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Lägg till profilnamn</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Bekräfta ditt profilnamn</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nu innehålla ett valfritt efternamn.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Bekräfta namn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Lägg till ett profilnamn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Detta kommer att visas när du startar en ny konversation eller delar den.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Lägg till profilnamn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Bekräfta ditt profilnamn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nu innehålla ett valfritt efternamn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Bekräfta namn</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>

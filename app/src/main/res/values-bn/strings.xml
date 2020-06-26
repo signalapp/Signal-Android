@@ -155,7 +155,7 @@
   <string name="ContactShareEditActivity_type_missing">অন্যান্য</string>
   <string name="ContactShareEditActivity_invalid_contact">নির্বাচিত পরিচিতিটি সঠিক নয়</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">পাঠাতে ব্যার্থ, খুঁটিনাটি জানতে আলতো চাপুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">পাঠাতে ব্যার্থ, খুঁটিনাটি জানতে আলতো চাপুন</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">কী বিনিময়ের বার্তা পাওয়া গেছে, প্রক্রিয়া করতে আলতো চাপুন।</string>
   <string name="ConversationItem_group_action_left">%1$s গ্রুপ ত্যাগ করেছে।</string>
   <string name="ConversationItem_click_to_approve_unencrypted">পাঠাতে ব্যর্থ, অসুরক্ষিত পন্থা অবলম্বনের জন্য চাপুন</string>
@@ -299,8 +299,8 @@
     <item quantity="one"> টি আলাপন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">আপনার প্রোফাইলের নাম তৈরী করা হয়েছে।</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">আপনার প্রোফাইলের নামটি সংরক্ষণ করা হয়েছে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">আপনার প্রোফাইলের নাম তৈরী করা হয়েছে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">আপনার প্রোফাইলের নামটি সংরক্ষণ করা হয়েছে।</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key বিনিময় বার্তা</string>
   <!--ConversationListItemAction-->
@@ -715,7 +715,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">নতুন পাসফ্রেজ লিখুন!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">এই ডিভাইস যুক্ত করবেন?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">বাতিল করুন</string> -->
   <string name="DeviceProvisioningActivity_continue">সামনে আগান</string>
   <string name="DeviceProvisioningActivity_content_intro">এটা সক্ষম হবে</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -920,7 +919,6 @@
   <string name="SubmitDebugLogActivity_success">সফল!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">এই ইউআরএল টি কপি করুন এবং এটি আপনার সমস্যা প্রতিবেদন বা সাপোর্ট ইমে‌ইলে যোগ করুন:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ঠিক আছে</string> -->
   <string name="SubmitDebugLogActivity_share">শেয়ার করুন</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">বিষয়ঃ</string>
@@ -986,7 +984,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
   <string name="UsernameEditFragment_this_username_is_taken">এই ব্যবহারকারীর নাম নেওয়া হয়েছে|</string>
   <string name="UsernameEditFragment_this_username_is_available">নামটি ব্যবহার করা যাবে|</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ব্যবহারকারীর নামগুলিতে কেবল a-Z, 0-9 এবং আন্ডারস্কোর অন্তর্ভুক্ত থাকতে পারে।</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ব্যবহারকারীর নাম সংখ্যা দিয়ে শুরু করতে পারে না।</string>
   <string name="UsernameEditFragment_username_is_invalid">ব্যবহারকারীর নাম অবৈধ|</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ব্যবহারকারীর নামগুলি অবশ্যই %1$d এবং %2$d অক্ষরের মধ্যে থাকতে হবে।</string>
@@ -1788,12 +1785,12 @@
   <string name="KbsMegaphone__introducing_pins">পিনের সাথে পরিচিত হন</string>
   <string name="KbsMegaphone__update_pin">পিন আপডেট করুন</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">প্রোফাইলের একটি নাম দিন</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">আপনি যখন কোনও নতুন কথোপকথন শুরু করবেন বা শেয়ার করবেন তখন এটি প্রদর্শিত হবে।</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">প্রোফাইল নাম যোগ করুন</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">আপনার প্রোফাইল নামটি নিশ্চিত করুন</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">আপনার প্রোফাইল এখন একটি ঐচ্ছিক শেষ নাম অন্তর্ভুক্ত করতে পারেন।</string>
-  <string name="ProfileNamesMegaphone__confirm_name">নাম নিশ্চিত করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">প্রোফাইলের একটি নাম দিন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">আপনি যখন কোনও নতুন কথোপকথন শুরু করবেন বা শেয়ার করবেন তখন এটি প্রদর্শিত হবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">প্রোফাইল নাম যোগ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">আপনার প্রোফাইল নামটি নিশ্চিত করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">আপনার প্রোফাইল এখন একটি ঐচ্ছিক শেষ নাম অন্তর্ভুক্ত করতে পারেন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">নাম নিশ্চিত করুন</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
   <string name="ConversationListFragment_loading">লোড হচ্ছে…</string>

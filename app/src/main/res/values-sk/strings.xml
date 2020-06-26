@@ -161,7 +161,7 @@
   <string name="ContactShareEditActivity_type_missing">Iné</string>
   <string name="ContactShareEditActivity_invalid_contact">Vybraný kontakt je neplatný</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Odosielanie zlyhalo, ťuknutím zobrazíte podrobnosti</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Odosielanie zlyhalo, ťuknutím zobrazíte podrobnosti</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Správa výmeny kľúčov prijatá, ťuknutím pokračujte.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil/a skupinu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Odosielanie zlyhalo, ťuknutím pošlete nezabezpečenú správu</string>
@@ -324,8 +324,8 @@
     <item quantity="many">%d konverzácií presunutých do doručených</item>
     <item quantity="other">%d konverzácií presunutých do doručených</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Vaše profilové meno sa vytvorilo.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Názov vášho profilu bol uložený.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Vaše profilové meno sa vytvorilo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Názov vášho profilu bol uložený.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
   <!--ConversationListItemAction-->
@@ -734,7 +734,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Zadajte nové heslo!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Pridať toto zariadenie?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ZRUŠIŤ</string> -->
   <string name="DeviceProvisioningActivity_continue">POKRAČOVAŤ</string>
   <string name="DeviceProvisioningActivity_content_intro">Bude môcť </string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +947,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Skopírované do schránky</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Predmet:</string>
@@ -1012,7 +1010,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="UsernameEditFragment_encountered_a_network_error">Vyskytla sa chyba siete.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Toto používateľské meno je obsadené.</string>
   <string name="UsernameEditFragment_this_username_is_available">Toto používateľské meno je k dispozícii.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Používateľské mená môžu obsahovať iba znaky a-Z, 0-9 a podčiarkovníky.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Používateľské mená nemôžu začínať číslicou.</string>
   <string name="UsernameEditFragment_username_is_invalid">Používateľské meno je neplatné.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Používateľské mená musia obsahovať %1$d až %2$d znakov.</string>
@@ -1847,12 +1844,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Pripomenieme vám to neskôr. Povinnosť vytvoriť si PIN kód budete mať o %1$d dní.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Pripomenieme vám to neskôr. Povinnosť potvrdiť svoj PIN kód budete mať o %1$d dní.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Pridať profilové meno</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Toto sa zobrazí, keď začnete novú konverzáciu alebo keď ju budete zdieľať.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Pridať názov profilu</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potvrďte svoje Profilové meno</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Váš profil môže teraz voliteľne obsahovať priezvisko.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Potvrdiť názov</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Pridať profilové meno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Toto sa zobrazí, keď začnete novú konverzáciu alebo keď ju budete zdieľať.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Pridať názov profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potvrďte svoje Profilové meno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Váš profil môže teraz voliteľne obsahovať priezvisko.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Potvrdiť názov</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
   <string name="ConversationListFragment_loading">Načítava sa…</string>

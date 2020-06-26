@@ -146,7 +146,7 @@
   <string name="ContactShareEditActivity_type_missing">ਹੋਰ</string>
   <string name="ContactShareEditActivity_invalid_contact">ਚੁਣਿਆ ਹੋਇਆ ਸੰਪਰਕ ਅਵੈਧ ਸੀ</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">ਭੇਜਣਾ ਅਸਫਲ, ਵਿਸਥਾਰ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">ਭੇਜਣਾ ਅਸਫਲ, ਵਿਸਥਾਰ ਲਈ ਟੈਪ ਕਰੋ</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ਮੁੱਖ ਐਸਚੇਂਜ ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕੀਤਾ, ਪ੍ਰਕਿਰਿਆ ਲਈ ਟੈਪ ਕਰੋ.</string>
   <string name="ConversationItem_group_action_left">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡ ਦਿੱਤਾ ਹੈ  </string>
   <string name="ConversationItem_click_to_approve_unencrypted">ਭੇਜਣਾ ਅਸਫਲ, ਅਸੁਰੱਖਿਅਤ ਲਈ ਟੈਪ ਕਰੋ</string>
@@ -281,7 +281,7 @@
     <item quantity="one"> ਗੱਲਾਬਾਤਾਂ ਨੂੰ ਇਨਬਾਕਸ ਵਿੱਚ ਮੂਵ ਕੀਤਾ </item>
     <item quantity="other">%d ਗੱਲਾਬਾਤਾਂ ਨੂੰ ਇਨਬਾਕਸ ਵਿੱਚ ਮੂਵ ਕੀਤਾ </item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਸਹੇਜ ਲਿਆ ਗਿਆ ਹੈ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਸਹੇਜ ਲਿਆ ਗਿਆ ਹੈ.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ਮੁੱਖ ਐਕਸਚੇਜ਼ ਸੁਨੇਹਾ</string>
   <!--ConversationListItemAction-->
@@ -560,7 +560,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ਨਵਾਂ ਪਾਸਫਰੇਜ ਦਰਜ ਕਰੋ!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ਇਸ ਡਿਵਾਈਸ ਨੂੰ ਲਿੰਕ ਕਰੋ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ਰੱਦ ਕਰੋ</string> -->
   <string name="DeviceProvisioningActivity_continue">ਜਾਰੀ ਰੱਖੋ</string>
   <string name="DeviceProvisioningActivity_content_intro">ਇਹ ਕਰਨ ਦੇ ਯੋਗ ਹੋ ਜਾਵੇਗਾ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -747,7 +746,6 @@
   <string name="SubmitDebugLogActivity_submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
   <string name="SubmitDebugLogActivity_success">ਸਫਲਤਾ!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ਠੀਕ ਹੈ</string> -->
   <string name="SubmitDebugLogActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_device_info">ਡਿਵਾਈਸ ਜਾਣਕਾਰੀ:</string>
@@ -1503,9 +1501,9 @@
   <string name="KbsMegaphone__create_pin">ਪਿਨ ਸਿਰਜੋ</string>
   <string name="KbsMegaphone__introducing_pins">ਪੇਸ਼ ਕਰਦੇ ਹਾਂ ਪਿਨ</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">ਇਹ ਉਦੋਂ ਦਿਖਾਇਆ ਜਾਵੇਗਾ ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਨਵੀਂ ਵਾਰਤਾਲਾਪ ਸ਼ੁਰੂ ਕਰੋ ਜਾਂ ਉਸ ਨੂੰ ਸਾਂਝੀ ਕਰੋ.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਸ਼ਾਮਲ ਕਰੋ</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਵਿੱਚ ਹੁਣ ਇੱਕ ਵਿਕਲਪਿਕ ਆਖਰੀ ਨਾਮ ਸ਼ਾਮਲ ਹੋ ਸਕਦਾ ਹੈ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">ਇਹ ਉਦੋਂ ਦਿਖਾਇਆ ਜਾਵੇਗਾ ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਨਵੀਂ ਵਾਰਤਾਲਾਪ ਸ਼ੁਰੂ ਕਰੋ ਜਾਂ ਉਸ ਨੂੰ ਸਾਂਝੀ ਕਰੋ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਸ਼ਾਮਲ ਕਰੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਵਿੱਚ ਹੁਣ ਇੱਕ ਵਿਕਲਪਿਕ ਆਖਰੀ ਨਾਮ ਸ਼ਾਮਲ ਹੋ ਸਕਦਾ ਹੈ.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ਆਵਾਜਾਈ ਆਈਕਨ</string>
   <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>

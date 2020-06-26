@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Besteak</string>
   <string name="ContactShareEditActivity_invalid_contact">Aukeratutako kontaktua baliogabea da</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Bidalketak huts egin du, ukitu xehetasunak ikusteko</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Bidalketak huts egin du, ukitu xehetasunak ikusteko</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Jaso da gakoaren datu-trukatzearen mezua, tap egin prozesatzeko.</string>
   <string name="ConversationItem_group_action_left">%1$s taldea utzi du</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Bidalketak huts egin du, ukitu segurtasunik gabeko alternatibarako</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Solasaldi bat mugitu da sarrera-ontzira</item>
     <item quantity="other">%d solasaldi mugitu dira sarrera-ontzira</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Zure profilaren izena sortu da.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Zure profilaren izena gorde da.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Zure profilaren izena sortu da.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Zure profilaren izena gorde da.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Gakoaren trukatzerako mezua</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sartu pasahitz berria!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lotu gailu hau?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">UTZI</string> -->
   <string name="DeviceProvisioningActivity_continue">JARRAITU</string>
   <string name="DeviceProvisioningActivity_content_intro">Hori egiteko gai izango da</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -954,7 +953,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SubmitDebugLogActivity_success">Arrakasta!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">URL hau kopiatu eta erantsi zure arazoaren txostenari edo laguntza eskatzeko emailari: \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Arbelera kopiatuta</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Elkarbanatu</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Gaia:</string>
@@ -1021,7 +1019,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UsernameEditFragment_encountered_a_network_error">Sare errore bat izan da.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Erabiltzaile izen hau hartuta dago.</string>
   <string name="UsernameEditFragment_this_username_is_available">Erabiltzaile izen hau eskuragarri dago.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Erabiltzaile izenek bakarrik a-Z, 0-9 eta azpimarrez osatuta egon daitezke.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Erabiltzaile izenetan bakarrik ondokoak daude onartuta: a-Z, 0-9 eta azpimarrak.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Erabiltzaile izenak ezin dira zenbaki batez hasi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile izena baliogabea da.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
@@ -1853,12 +1851,12 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Beranduago gogoraraziko dizugu. PIN bat sortzea beharrezkoa izango da %1$d eguneta.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Beranduago gogoraraziko dizugu. Zure PINa baieztatzea derrigorrezkoa izango da %1$d egunetan.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Gehitu profil izen bat</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Hau erakutsiko da solasaldi berri bat hasterakoan edo partekatzerakoan.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Gehitu profil izena</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Baieztatu zure profil izena</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Zure profilak orain aukerazko abizen bat eduki dezake.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Baieztatu izena</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Gehitu profil izen bat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Hau erakutsiko da solasaldi berri bat hasterakoan edo partekatzerakoan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Gehitu profil izena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Baieztatu zure profil izena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Zure profilak orain aukerazko abizen bat eduki dezake.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Baieztatu izena</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>

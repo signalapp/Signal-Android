@@ -160,7 +160,7 @@
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
   <string name="ContactShareEditActivity_invalid_contact">Odabrani kontakt nije valjan</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Slanje nije uspjelo. Dodirnite za detalje.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Slanje nije uspjelo. Dodirnite za detalje.</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Primljena je poruka za razmjenu ključeva, pritisnite da nastavite.</string>
   <string name="ConversationItem_group_action_left">%1$s je napustio/la grupu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Slanje nije uspjelo. Dodirnite za nešifriranu alternativu.</string>
@@ -316,8 +316,8 @@
     <item quantity="few">%d konverzacije premještene u inbox</item>
     <item quantity="other">%d konverzacija premješteno u inbox</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Upisano je ime u Vaš profil.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Pohranjeno je ime u Vašem profilu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Upisano je ime u Vaš profil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Pohranjeno je ime u Vašem profilu.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
   <!--ConversationListItemAction-->
@@ -771,7 +771,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Unesite novu lozinku!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Uvezati ovaj uređaj?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">OTKAŽI</string> -->
   <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
   <string name="DeviceProvisioningActivity_content_intro">Moći će da</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -991,7 +990,6 @@
   <string name="SubmitDebugLogActivity_success">Uspješno završeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopirajte ovu adresu i priložite je uz svoj izvještaj o problemu ili email za podršku:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano u međuspremnik</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Uredu</string> -->
   <string name="SubmitDebugLogActivity_share">Dijeli</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Tema:</string>
@@ -1058,7 +1056,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Došlo je do greške u mreži.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Ovo korisničko ime već je rezervisano.</string>
   <string name="UsernameEditFragment_this_username_is_available">Ovo je korisničko ime dostupno.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Korisničko ime može sadržavati samo slova bez kvačica, brojeve i donju crtu.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisničko ime ne može početi brojem.</string>
   <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije valjano.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisničko ime mora sadržavati najmanje %1$d, a najviše %2$d znakova.</string>
@@ -1907,12 +1904,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Podsjetit ćemo Vas kasnije. Kreiranje PIN-a postat će obavezno za %1$d dana.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Podsjetit ćemo Vas kasnije. Potvrda Vašeg PIN-a postat će obavezna za %1$d dana.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Dodajte ime u profil</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ovo će biti prikazano kada započnete novu konverzaciju ili podijelite profil.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Dodajte ime u profil</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potvrdite svoje ime u profilu</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil sada može sadržavati i prezime.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Potvrdite ime</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Dodajte ime u profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ovo će biti prikazano kada započnete novu konverzaciju ili podijelite profil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Dodajte ime u profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potvrdite svoje ime u profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil sada može sadržavati i prezime.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Potvrdite ime</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

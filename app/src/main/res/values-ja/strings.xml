@@ -79,7 +79,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">あなたはこのグループからメッセージやアップデートを受け取ることができなくなり、グループのメンバーはあなたをもう一度このグループに加えることができなくなります。</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">グループのメンバーはあなたをもう一度このグループに加えることができなくなります。</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">グループのメンバーはあなたをもう一度このグループに加えることができるようになります。</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">お互いにメッセージや通話ができるようになります。あなたの名前とプロフィール画像が相手と共有されます。</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">お互いにメッセージや通話ができるようになります。あなたの名前とプロフィール写真が相手と共有されます。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ブロックされたユーザは、あなたにメッセージや通話をすることができなくなります。</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s をブロック解除しますか?</string>
   <string name="BlockUnblockDialog_unblock">ブロックを解除</string>
@@ -154,7 +154,7 @@
   <string name="ContactShareEditActivity_type_missing">その他</string>
   <string name="ContactShareEditActivity_invalid_contact">選択された連絡先は無効です</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">送信失敗、タップして詳細を見る</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">送信失敗、タップして詳細を見る</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして処理する。</string>
   <string name="ConversationItem_group_action_left">%1$s がグループを抜けました。</string>
   <string name="ConversationItem_click_to_approve_unencrypted">送信失敗、タップして保護されていない通信に切り替える</string>
@@ -288,8 +288,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 件の会話を受信ボックスに移動しました</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">プロフィール名が作成されました。</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">プロフィール名を保存しました。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">プロフィール名が作成されました。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">プロフィール名を保存しました。</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
@@ -389,7 +389,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完了</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="other">%3$d人のメンバーを\"%2$s\"へ追加しますか?</item>
+    <item quantity="other">%3$d人のメンバーを「%2$s」へ追加しますか?</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">このグループに名前を付ける</string>
@@ -656,7 +656,7 @@
   <string name="MessageRecord_you_added_invited_member_s">招待されたメンバー %1$s を追加しました。 </string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s は招待されたメンバー %2$sを追加しました。</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">このグループ名を \"%1$s\" に変更しました。</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">このグループ名を「%1$s」に変更しました。</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s はグループ名を「%2$s」に変更しました。</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">グループアバターを更新しました。</string>
@@ -701,7 +701,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">新しいパスフレーズを入力してください！</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">このデバイスをリンクしますか？</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">キャンセル</string> -->
   <string name="DeviceProvisioningActivity_continue">続行</string>
   <string name="DeviceProvisioningActivity_content_intro">以下が可能になります:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -906,7 +905,6 @@
   <string name="SubmitDebugLogActivity_success">成功しました!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">クリップボードにコピーしました</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">OK</string> -->
   <string name="SubmitDebugLogActivity_share">共有</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Subject:</string>
@@ -973,7 +971,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
   <string name="UsernameEditFragment_this_username_is_taken">このユーザ名は既に使用されています。</string>
   <string name="UsernameEditFragment_this_username_is_available">このユーザ名は利用可能です。</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ユーザ名には半角の英数字とアンダーバーのみ使用できます。</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">ユーザー名には a-Z, 0-9 および下線のみ含めることができます。</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザ名の先頭に数字は使用できません。</string>
   <string name="UsernameEditFragment_username_is_invalid">ユーザ名が無効です。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザ名は %1$d から %2$d 文字で指定してください。</string>
@@ -1786,12 +1784,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">後ほど再度お知らせします。PIN の作成は %1$d 日後に必須となります。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">後ほど再度お知らせします。PIN の確認は %1$d 日後に必須となります。</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">プロフィール名を追加</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">これは共有したり新しい会話を始めた際に表示されます。</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">プロフィール名を追加する</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">プロフィール名の確認</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">プロフィールに任意で姓を追加できます。</string>
-  <string name="ProfileNamesMegaphone__confirm_name">名前の確認</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">プロフィール名を追加</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">これは共有したり新しい会話を始めた際に表示されます。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">プロフィール名を追加する</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">プロフィール名の確認</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">プロフィールに任意で姓を追加できます。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">名前の確認</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>

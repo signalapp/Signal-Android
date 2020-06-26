@@ -158,7 +158,7 @@
   <string name="ContactShareEditActivity_type_missing">Egyéb</string>
   <string name="ContactShareEditActivity_invalid_contact">A kiválasztott kontakt érvénytelen</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Sikertelen küldés, koppints a részletekért</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Sikertelen küldés, koppints a részletekért</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Kulcs-csere üzenet érkezett, koppints a feldolgozáshoz.</string>
   <string name="ConversationItem_group_action_left">%1$s kilépett a csoportból.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sikertelen küldés, koppints a titkosítatlan üzenetküldéshez</string>
@@ -303,8 +303,8 @@
     <item quantity="one">Beszélgetés áthelyezve a bejövőbe</item>
     <item quantity="other">%d db beszélgetés áthelyezve a bejövő üzenetek közé</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Profilneved létrejött.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Profilneved mentésre került.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Profilneved létrejött.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Profilneved mentésre került.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
   <!--ConversationListItemAction-->
@@ -737,7 +737,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Add meg az új jelmondatot!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Társítod ezt a készüléket?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">MÉGSE</string> -->
   <string name="DeviceProvisioningActivity_continue">FOLYTATÁS</string>
   <string name="DeviceProvisioningActivity_content_intro">Képes lesz</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -956,7 +955,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubmitDebugLogActivity_success">Sikerült!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Másold ki ezt a URL-t és illeszd be a hibajegybe vagy a támogatásnak küldött e-mailbe:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Vágólapra másolva</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Megosztás</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Tárgy:</string>
@@ -1855,12 +1853,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Később emlékeztetni fogunk. A PIN létrehozása %1$d nap múlva kötelező lesz.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Később emlékeztetni fogunk. A PIN megerősítése %1$d nap múlva kötelező lesz.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Profilnév létrehozása</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ez lesz látható mikor új beszélgetést indítasz, vagy megosztod azt.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Profilnév létrehozása</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Profilnév megerősítése</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Mostantól opcionálisan utónevet is megadhatsz a profilodban.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Név megerősítése</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Profilnév létrehozása</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ez lesz látható mikor új beszélgetést indítasz, vagy megosztod azt.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Profilnév létrehozása</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Profilnév megerősítése</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Mostantól opcionálisan utónevet is megadhatsz a profilodban.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Név megerősítése</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <string name="ConversationListFragment_loading">Betöltés…</string>

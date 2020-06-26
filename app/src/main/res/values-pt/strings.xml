@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contacto selecionado é inválido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Falha ao enviar, toque para mais detalhes</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Falha ao enviar, toque para mais detalhes</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para intercâmbio de chaves, toque para processar.</string>
   <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Falha ao enviar, toque para enviar pelo modo inseguro</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Foi criado o seu nome de perfil.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Foi guardado o seu nome de perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Foi criado o seu nome de perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Foi guardado o seu nome de perfil.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introduza uma nova frase-passe</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Associar este dispositivo?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CANCELAR</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
   <string name="DeviceProvisioningActivity_content_intro">Será capaz de</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -950,7 +949,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="SubmitDebugLogActivity_success">Efetuado com sucesso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório de problema ou e-mail de pedido de apoio:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado para a área de transferência</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Partilhar</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Assunto:</string>
@@ -1017,7 +1015,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="UsernameEditFragment_encountered_a_network_error">Encontrado um erro de rede.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Este nome de utilizador já se encontra em utilização.</string>
   <string name="UsernameEditFragment_this_username_is_available">Este nome de utilizador encontra-se disponível.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Os nomes de utilizadores apenas podem incluir a-Z, 0-9 e underscores.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de utilizadores não podem começar com um número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nome de utilizador inválido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Os nomes de utilizadores devem ter entre %1$d e %2$d caracteres.</string>
@@ -1848,12 +1845,12 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Iremos lembrá-lo(a) mais tarde. Criar um PIN será obrigatório dentro de %1$d dias.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Iremos lembrá-lo(a) mais tarde. Confirmar o seu PIN será obrigatório dentro de %1$d dias.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Adicione um nome do perfil</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Isto será exibido quando você começar uma nova conversa ou a partilhar.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Adicionar um nome de perfil</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirme o seu nome de perfil</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">O seu perfil pode agora incluir opcionalmente um apelido.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Confirmar nome</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Adicione um nome do perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Isto será exibido quando você começar uma nova conversa ou a partilhar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Adicionar um nome de perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirme o seu nome de perfil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">O seu perfil pode agora incluir opcionalmente um apelido.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Confirmar nome</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>

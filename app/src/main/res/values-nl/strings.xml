@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Anders</string>
   <string name="ContactShareEditActivity_invalid_contact">Het geselecteerde contact was ongeldig</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Verzenden is mislukt, tik voor details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Verzenden is mislukt, tik voor details</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik hier om het te verwerken.</string>
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Verzenden is mislukt, tik om onbeveiligd te verzenden</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
     <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Je profielnaam is aangemaakt.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Je profielnaam is opgeslagen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Je profielnaam is aangemaakt.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Je profielnaam is opgeslagen.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Voer nieuw wachtwoord in!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Dit apparaat koppelen?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANNULEREN</string> -->
   <string name="DeviceProvisioningActivity_continue">DOORGAAN</string>
   <string name="DeviceProvisioningActivity_content_intro">Het kan dan</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -956,7 +955,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Gekopieerd naar klembord</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Onderwerp:</string>
@@ -1023,7 +1021,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Deze gebruikersnaam is al in gebruik.</string>
   <string name="UsernameEditFragment_this_username_is_available">Deze gebruikersnaam is nog beschikbaar.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen de karakters a-Z, 0-9 en onderstreep gebruiken.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen de karakters a–Z, 0–9 en onderstreep gebruiken.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
@@ -1856,12 +1854,12 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Je zult er later aan worden herinnert dat je nog een pincode moet aanmaken. Dit wordt binnen %1$d dagen verplicht.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Je zult er later aan worden herinnert dat je nog moet bevestigen dat je je huidige pincode nog bezit. Dit wordt binnen %1$d dagen verplicht.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Voeg je naam toe aan je profiel</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Je profielnaam zal worden weergegeven wanneer je een nieuw gesprek begint, of wanneer je expliciet toestemming geeft om je profiel zichtbaar te maken.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Een profielnaam toevoegen</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Kijk na of je naam klopt</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Je kunt nu optioneel een achternaam aan je profiel toevoegen.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Naam nakijken</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Voeg je naam toe aan je profiel</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Je profielnaam zal worden weergegeven wanneer je een nieuw gesprek begint, of wanneer je expliciet toestemming geeft om je profiel zichtbaar te maken.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Een profielnaam toevoegen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Kijk na of je naam klopt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Je kunt nu optioneel een achternaam aan je profiel toevoegen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Naam nakijken</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>

@@ -142,7 +142,7 @@
   <string name="ContactShareEditActivity_type_missing">دیگر</string>
   <string name="ContactShareEditActivity_invalid_contact">منتخب شدہ رابطہ غلط تھا</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">بھیجنے میں ناکامی، تفصیلات کے لیے کلک کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">بھیجنے میں ناکامی، تفصیلات کے لیے کلک کریں</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">key کا تبادلہ کرنے کا پیغام موصول ہوا، اگلی کارروائی کے لیے ٹیپ کریں۔ </string>
   <string name="ConversationItem_group_action_left">%1$sنے گروپ چھوڑ دیا ہے</string>
   <string name="ConversationItem_click_to_approve_unencrypted">بھیجنے میں ناکامی، غیر محفوظ متبادل کے لیے کلک کریں</string>
@@ -280,7 +280,7 @@
     <item quantity="one">گفتگو ان باکس میں چلی گئی</item>
     <item quantity="other">%dگفتگو ان باکس میں چلی گئی</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">آپ کے پروفائل کا نام محفوظ ہوگیا ہے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">آپ کے پروفائل کا نام محفوظ ہوگیا ہے۔</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key تبادلہ کا پیغام</string>
   <!--ConversationListItemAction-->
@@ -567,7 +567,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">نیا پاسفریز داخل کریں!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ڈیوائس منسلک کریں؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">منسوخ کریں</string> -->
   <string name="DeviceProvisioningActivity_continue">جاری رکھیں</string>
   <string name="DeviceProvisioningActivity_content_intro">قابل ہو جائے گا</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -801,7 +800,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔</string>
   <string name="UsernameEditFragment_this_username_is_taken">یہ صارف نام لیا گیا ہے۔</string>
   <string name="UsernameEditFragment_this_username_is_available">یہ صارف نام دستیاب ہے۔</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">صارف ناموں میں صرف A-Z ، 0-9 ، اور انڈر سکور شامل ہوسکتے ہیں۔</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">صارف نام کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>
   <string name="UsernameEditFragment_username_is_invalid">صارف کا نام غلط ہے.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">صارف نام %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
@@ -1541,9 +1539,9 @@
   <string name="KbsMegaphone__introducing_pins">پن ز متعارف ہو رہے ہیں</string>
   <string name="KbsMegaphone__update_pin">پن کو اپ ڈیٹ کریں</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">جب آپ نئی گفتگو شروع کریں گے یا اس کا اشتراک کریں گے تب یہ ظاہر ہوگا۔</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">پروفائل کا نام شامل کریں</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">آپ کے پروفائل میں اب اختیاری آخری نام شامل ہوسکتا ہے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">جب آپ نئی گفتگو شروع کریں گے یا اس کا اشتراک کریں گے تب یہ ظاہر ہوگا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">پروفائل کا نام شامل کریں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">آپ کے پروفائل میں اب اختیاری آخری نام شامل ہوسکتا ہے۔</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ٹرانسپورٹ آئکن</string>
   <string name="ConversationListFragment_loading">لوڈ ہو رہا ہے۔۔۔</string>

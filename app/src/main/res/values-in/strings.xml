@@ -153,7 +153,7 @@
   <string name="ContactShareEditActivity_type_missing">Kontak lain</string>
   <string name="ContactShareEditActivity_invalid_contact">Kontak yang dipilih salah</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Gagal mengirim, ketuk untuk lebih detail</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Gagal mengirim, ketuk untuk lebih detail</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
   <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Gagal mengirim, ketuk untuk mengirim kembali tanpa enkripsi</string>
@@ -285,8 +285,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Memindahkan %d percakapan ke kotak masuk</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Nama profil Anda telah dibuat.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Nama profil Anda telah tersimpan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Nama profil Anda telah dibuat.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Nama profil Anda telah tersimpan.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -653,7 +653,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Masukkan frasa sandi baru!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Hubungkan perangkat ini?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">BATAL</string> -->
   <string name="DeviceProvisioningActivity_continue">LANJUTKAN</string>
   <string name="DeviceProvisioningActivity_content_intro">Perangkat yang telah terhubung akan dapat</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -860,7 +859,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan kirimkan ke email support <b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Disalin ke papan klip</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Bagikan</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Judul</string>
@@ -926,7 +924,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="UsernameEditFragment_encountered_a_network_error">Terjadi galat jaringan.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Nama pengguna telah digunakan.</string>
   <string name="UsernameEditFragment_this_username_is_available">Nama pengguna dapat digunakan.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Nama pengguna hanya dapat mencantumkan huruf a-Z, 0-9, dan garis bawah.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nama pengguna tidak boleh dimulai dengan angka.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nama pengguna tidak valid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nama pengguna harus terdiri antara %1$d dan %2$d karakter.</string>
@@ -1716,12 +1713,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Kami akan mengingatkan Anda nanti. Membuat PIN akan menjadi kewajiban dalam %1$d hari.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Kami akan mengingatkan Anda nanti. Mengonfirmasi PIN akan menjadi kewajiban dalam %1$d hari.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Tambahkan nama profil</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Nama profil Anda akan tampak dalam pecakapan dan saat Anda berbagi kontak.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Tambahkan Nama Profil</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Setujui Nama Profil Anda</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profil Anda dapat mencantumkan nama keluarga (opsional).</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Setujui Nama</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Tambahkan nama profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Nama profil Anda akan tampak dalam pecakapan dan saat Anda berbagi kontak.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Tambahkan Nama Profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Setujui Nama Profil Anda</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profil Anda dapat mencantumkan nama keluarga (opsional).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Setujui Nama</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindahkan ikon</string>
   <string name="ConversationListFragment_loading">Memuat…</string>

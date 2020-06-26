@@ -153,7 +153,7 @@
   <string name="ContactShareEditActivity_type_missing">ที่อื่น</string>
   <string name="ContactShareEditActivity_invalid_contact">ผู้ติดต่อที่เลือกไม่ถูกต้อง</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">การส่งล้มเหลว แตะเพื่อดูรายละเอียด</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">การส่งล้มเหลว แตะเพื่อดูรายละเอียด</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนคีย์ แตะเพื่อประมวลผล</string>
   <string name="ConversationItem_group_action_left">%1$s ได้ออกจากกลุ่ม</string>
   <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
@@ -283,8 +283,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ย้าย %d การสนทนาไปยังกล่องขาเข้า</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">ชื่อโปรไฟล์ของคุณถูกสร้างแล้ว</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">ชื่อโปรไฟล์ของคุณถูกบันทึกแล้ว</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">ชื่อโปรไฟล์ของคุณถูกสร้างแล้ว</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">ชื่อโปรไฟล์ของคุณถูกบันทึกแล้ว</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนคีย์</string>
   <!--ConversationListItemAction-->
@@ -662,7 +662,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ป้อนวลีรหัสผ่านใหม่!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">เชื่อมโยงกับอุปกรณ์นี้หรือไม่?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ยกเลิก</string> -->
   <string name="DeviceProvisioningActivity_continue">ดำเนินการต่อ</string>
   <string name="DeviceProvisioningActivity_content_intro">มันจะสามารถ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -868,7 +867,6 @@
   <string name="SubmitDebugLogActivity_success">สำเร็จ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">คัดลอก URL และเพิ่มมันในรายงานปัญหาหรืออีเมลปรึกษาปัญหา:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">ตกลง</string> -->
   <string name="SubmitDebugLogActivity_share">แบ่งปัน</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">หัวข้อ:</string>
@@ -935,7 +933,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="UsernameEditFragment_this_username_is_taken">มีผู้ใช้ชื่อนี้แล้ว</string>
   <string name="UsernameEditFragment_this_username_is_available">ใช้ชื่อผู้ใช้นี้ได้</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะมีได้เฉพาะ a-Z, 0-9 และ _</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
   <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้จะต้องมี %1$dถึง %2$d ตัวอักษร</string>
@@ -1731,12 +1728,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">เราจะเตือนคุณในภายหลัง การสร้างรหัส PIN จะถูกบังคับให้ทำภายใน %1$d วัน</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">เราจะเตือนคุณในภายหลัง การยืนยันรหัส PIN ของคุณจะถูกบังคับให้ทำภายใน %1$d วัน</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">เพิ่มชื่อโปรไฟล์</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">สิ่งนี้จะถูกแสดงเมื่อคุณเริ่มการสนทนาใหม่หรือแบ่งปันมัน</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">เพิ่มชื่อโปรไฟล์</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">ยืนยันชื่อโปรไฟล์ของคุณ</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">โปรไฟล์ของคุณตอนนี้สามารถเพิ่มชื่อสกุลได้แล้วถ้าต้องการ</string>
-  <string name="ProfileNamesMegaphone__confirm_name">ยืนยันชื่อ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">เพิ่มชื่อโปรไฟล์</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">สิ่งนี้จะถูกแสดงเมื่อคุณเริ่มการสนทนาใหม่หรือแบ่งปันมัน</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">เพิ่มชื่อโปรไฟล์</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">ยืนยันชื่อโปรไฟล์ของคุณ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">โปรไฟล์ของคุณตอนนี้สามารถเพิ่มชื่อสกุลได้แล้วถ้าต้องการ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">ยืนยันชื่อ</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
   <string name="ConversationListFragment_loading">กำลังโหลด…</string>

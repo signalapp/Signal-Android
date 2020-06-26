@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Autre</string>
   <string name="ContactShareEditActivity_invalid_contact">Le contact sélectionné était invalide</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Échec d’envoi, touchez pour obtenir des détails</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Échec d’envoi, touchez pour obtenir des détails</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Vous avez reçu un message d’échange de clés. Touchez pour le traiter.</string>
   <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Échec d’envoi, touchez pour utiliser la solution de rechange non sécurisée</string>
@@ -278,6 +278,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vous pouvez faire glisser un message vers la gauche pour y répondre rapidement</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Les fichiers multimédias éphémères sortants sont supprimés automatiquement après l’envoi</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Vous avez déjà visualisé ce message</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vous pouvez ajouter des notes à votre intention dans cette conversation. \nSi des appareils sont reliés à votre compte, les nouvelles notes seront synchronisées.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Aucun navigateur n’est installé sur votre appareil.</string>
   <!--ConversationListFragment-->
@@ -301,8 +302,8 @@
     <item quantity="one">La conversation a été déplacée vers la boîte de réception</item>
     <item quantity="other">%d conversations ont été déplacées vers la boîte de réception</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Votre nom de profil a été créé.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Votre nom de profil a été enregistré.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Votre nom de profil a été créé.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Votre nom de profil a été enregistré.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Message d’échange de clés</string>
   <!--ConversationListItemAction-->
@@ -370,8 +371,8 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Autocollants</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Ajouter un membre ?</string>
-  <string name="AddToGroupActivity_add_s_to_s">Ajouter \"%1$s\" à \"%2$s\" ?</string>
-  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ajouté à \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_s_to_s">Ajouter « %1$s » à « %2$s » ?</string>
+  <string name="AddToGroupActivity_s_added_to_s">« %1$s » a été ajouté à « %2$s ».</string>
   <string name="AddToGroupActivity_add_to_group">Ajouter au groupe</string>
   <string name="AddToGroupActivity_add_to_groups">Ajouter aux groupes</string>
   <!--GroupShareProfileView-->
@@ -456,21 +457,21 @@
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageRecipientActivity_chat_color">Couleur de la conversation</string>
-  <string name="ManageRecipientActivity_block">Bloque</string>
+  <string name="ManageRecipientActivity_block">Bloquer</string>
   <string name="ManageRecipientActivity_unblock">Débloquer</string>
   <string name="ManageRecipientActivity_view_safety_number">Afficher le numéro de sécurité</string>
-  <string name="ManageRecipientActivity_mute_notifications">Notifications en sourdine</string>
+  <string name="ManageRecipientActivity_mute_notifications">Mettre les notifications en sourdine</string>
   <string name="ManageRecipientActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageRecipientActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageRecipientActivity_off">Désactivé</string>
   <string name="ManageRecipientActivity_on">Activé</string>
   <string name="ManageRecipientActivity_add_to_a_group">Ajouter à un groupe</string>
-  <string name="ManageRecipientActivity_view_all_groups">Voir tous les groupes</string>
+  <string name="ManageRecipientActivity_view_all_groups">Visualiser tous les groupes</string>
   <string name="ManageRecipientActivity_see_all">Tout voir</string>
-  <string name="ManageRecipientActivity_no_groups_in_common">Pas de groupes en commun</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Aucun groupe en commun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
-    <item quantity="one">groupe %d en commun</item>
-    <item quantity="other">%dgroupes en commun</item>
+    <item quantity="one">%d groupe en commun</item>
+    <item quantity="other">%d groupes en commun</item>
   </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Modifier le nom et l’image</string>
   <string name="ManageRecipientActivity_message_description">Message</string>
@@ -489,8 +490,8 @@
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrer</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Paramètres des appels</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Sonnerie</string>
-  <string name="CustomNotificationsDialogFragment__enabled">Activé</string>
-  <string name="CustomNotificationsDialogFragment__disabled">Désactivé</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Activée</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Désactivée</string>
   <string name="CustomNotificationsDialogFragment__default">Valeur par défaut</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Voulez-vous annuler l’invitation envoyée à %1$s ?</string>
@@ -709,9 +710,9 @@
   <string name="MessageRequestBottomView_delete">Supprimer</string>
   <string name="MessageRequestBottomView_block">Bloquer</string>
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à vous envoyer des messages et partager votre nom et votre photo avec ce contact  ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à vous envoyer des messages et partager votre nom et votre photo avec ce contact  ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres  ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Vous avez été invité à vous joindre au groupe%1$s. Souhaitez-vous permettre aux membres de ce groupe de vous envoyer des messages ?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
@@ -735,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Saisissez la nouvelle phrase de passe.</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Relier cet appareil ?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANNULER</string> -->
   <string name="DeviceProvisioningActivity_continue">POURSUIVRE</string>
   <string name="DeviceProvisioningActivity_content_intro">Il pourra</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -850,7 +850,7 @@
   <string name="RegistrationActivity_more_information">Plus de précisions</string>
   <string name="RegistrationActivity_less_information">Moins de précisions</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts et médias afin de se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
-  <string name="RegistrationActivity_rate_limited_to_service">Vous avez effectué trop de tentatives pour enregistrer ce numéro. Veuillez réessayer plus tard.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez ressayer ultérieurement.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et ressayer.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour confirmer facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de confirmation si vous autorisez Signal à lire les textos.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -944,7 +944,6 @@
   <string name="SubmitDebugLogActivity_success">C’est réussi !</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé d’erreur ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">A été copié dans le presse-papiers</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Valider</string> -->
   <string name="SubmitDebugLogActivity_share">Partager</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Objet :</string>
@@ -1011,7 +1010,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Ce nom d’utilisateur existe déjà.</string>
   <string name="UsernameEditFragment_this_username_is_available">Ce nom d’utilisateur est disponible.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Les noms d’utilisateur ne peuvent comprendre que a à z, 0 à 9 et des traits de soulignement.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Les noms d’utilisateur ne peuvent comprendre que a à Z, 0 à 9 et des traits de soulignement.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Les noms d’utilisateur ne peuvent pas commencer par un numéro.</string>
   <string name="UsernameEditFragment_username_is_invalid">Le nom d’utilisateur est invalide.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Les noms d’utilisateur doivent comporter entre %1$d et %2$d caractères.</string>
@@ -1406,7 +1405,7 @@
   <string name="message_details_recipient_header__pending_send">En attente</string>
   <string name="message_details_recipient_header__sent_to">Envoyé à</string>
   <string name="message_details_recipient_header__sent_from">Envoyé de</string>
-  <string name="message_details_recipient_header__delivered_to">Envoyé à</string>
+  <string name="message_details_recipient_header__delivered_to">Remis à</string>
   <string name="message_details_recipient_header__read_by">Lu par</string>
   <string name="message_details_recipient_header__not_sent">Non envoyé</string>
   <!--message_Details_recipient-->
@@ -1435,7 +1434,7 @@
   <string name="HelpFragment__help">Aide </string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Avez-vous déjà lu notre FAQ ?</string>
   <string name="HelpFragment__next">Suivant</string>
-  <string name="HelpFragment__contact_us">Contactez-nous</string>
+  <string name="HelpFragment__contact_us">Nous contacter</string>
   <string name="HelpFragment__tell_us_whats_going_on">Expliquez-nous ce qu’il se passe</string>
   <string name="HelpFragment__include_debug_log">Inclure le journal de débogage.</string>
   <string name="HelpFragment__whats_this">Qu’est-ce donc ?</string>
@@ -1842,12 +1841,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons ultérieurement. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons ultérieurement. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Ajouter un nom de profil.</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Il s’affichera quand vous lancerez une nouvelle conversation ou la partagerez.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Ajouter un nom de profil</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmez votre nom de profil</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Votre profil peut désormais comporter un nom de famille facultatif.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Confirmer le nom</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Ajouter un nom de profil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Il s’affichera quand vous lancerez une nouvelle conversation ou la partagerez.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Ajouter un nom de profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmez votre nom de profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Votre profil peut désormais comporter un nom de famille facultatif.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Confirmer le nom</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -1938,7 +1937,7 @@
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Votre NIP comporte au moins %d chiffres ou caractères</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Le NIP de blocage de l’inscription est erroné.</string>
   <string name="RegistrationActivity_too_many_attempts">Trop d’essais</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vous avez effectué trop d’essais infructueux de saisie du NIP de blocage de l’inscription. Veuillez ressayer dans un jour.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vous avez fait trop d’essais infructueux de saisie du NIP de blocage de l’inscription. Veuillez ressayer dans un jour.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vous avez fait trop d’essais. Veuillez ressayer ultérieurement.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erreur de connexion au service</string>
   <string name="RegistrationActivity_oh_no">Oh non !</string>

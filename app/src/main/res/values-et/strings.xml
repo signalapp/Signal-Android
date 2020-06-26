@@ -156,7 +156,7 @@
   <string name="ContactShareEditActivity_type_missing">Muu</string>
   <string name="ContactShareEditActivity_invalid_contact">Valitud kontakt oli sobimatu</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Saatmine ebaõnnestus, koputa üksikasjade nägemiseks</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Saatmine ebaõnnestus, koputa üksikasjade nägemiseks</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Võtmevahetussõnum vastuvõetud, koputa töötlemiseks.</string>
   <string name="ConversationItem_group_action_left">%1$s lahkus grupist.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Saatmine ebaõnnestus, koputa, et saata turvamata sõnum</string>
@@ -300,8 +300,8 @@
     <item quantity="one">Vestlus postkasti liigutatud</item>
     <item quantity="other">%d vestlust postkasti liigutatud</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Sinu profiilinimi on loodud.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Sinu profiilinimi on salvestatud.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Sinu profiilinimi on loodud.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Sinu profiilinimi on salvestatud.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
@@ -731,7 +731,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sisesta uus salasõna!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lingid selle seadme?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">TÜHISTA</string> -->
   <string name="DeviceProvisioningActivity_continue">JÄTKA</string>
   <string name="DeviceProvisioningActivity_content_intro">See saab</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +947,6 @@
   <string name="SubmitDebugLogActivity_success">Õnnestus!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopeeri see aadress ja lisa oma probleemiteatesse või toe e-kirja:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Lõikelauale kopeeritud</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">OK</string> -->
   <string name="SubmitDebugLogActivity_share">Jaga</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Teema:</string>
@@ -1015,7 +1013,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Esines võrgu viga.</string>
   <string name="UsernameEditFragment_this_username_is_taken">See kasutajanimi on võetud.</string>
   <string name="UsernameEditFragment_this_username_is_available">See kasutajanimi on saadaval.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Kasutajanimed saavad sisaldada ainult a-Z, 0-9 ja _</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kasutajanimed ei tohi alata numbriga.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
@@ -1846,12 +1843,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tuletame sulle hiljem meelde. PIN-koodi loomine muutub %1$d päeva pärast kohustuslikuks.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Tuletame sulle hiljem meelde. PIN-koodi kinnitamine muutub %1$d päeva pärast kohustuslikuks.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Lisa profiilinimi</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Seda kuvatakse, kui alustad uut vestlust või jagad seda.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Lisa profiilinimi</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Kinnita enda profiilinimi</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Nüüd saad lisada oma profiilie lisa-perekonnanime.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Kinnita nimi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Lisa profiilinimi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Seda kuvatakse, kui alustad uut vestlust või jagad seda.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Lisa profiilinimi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Kinnita enda profiilinimi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Nüüd saad lisada oma profiilie lisa-perekonnanime.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Kinnita nimi</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>

@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Altro</string>
   <string name="ContactShareEditActivity_invalid_contact">Il contatto selezionato non è valido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Invio fallito, tocca per dettagli</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Invio fallito, tocca per dettagli</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevuto un messaggio con chiave di scambio, tocca per processarlo.</string>
   <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Invio fallito, tocca per invio non sicuro</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Conversazione spostata nei messaggi in arrivo</item>
     <item quantity="other">%d conversazioni spostate nei messaggi in arrivo</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Il tuo nome profilo è stato creato.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Il tuo nome profilo è stato salvato.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Il tuo nome profilo è stato creato.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Il tuo nome profilo è stato salvato.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Messaggio per lo scambio della chiave</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Inserisci una nuova password!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Collegare questo dispositivo?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANNULLA</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUA</string>
   <string name="DeviceProvisioningActivity_content_intro">Sarà in grado di</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -954,7 +953,6 @@
   <string name="SubmitDebugLogActivity_success">Completato!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia questo URL e aggiungilo alla tua segnalazione o all\'email di supporto:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Aggiunto agli appunti</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Condividi</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Oggetto:</string>
@@ -1021,7 +1019,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Si è verificato un errore di rete.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Questo nome utente è preso.</string>
   <string name="UsernameEditFragment_this_username_is_available">Questo nome utente è disponibile.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">I nomi utente possono contenere solo a-Z, 0-9, e trattini bassi.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">I nomi utente possono includere solo a–Z, 0–9 e trattini bassi.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
@@ -1852,12 +1850,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo ricorderemo più tardi. Creare un PIN diventerà obbligatorio tra %1$d giorni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo ricorderemo più tardi. Confermare il tuo PIN diventerà obbligatorio tra %1$d giorni.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Aggiungi un nome profilo</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Questo verrà visualizzato quando inizi una nuova conversazione o la condividi.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Aggiungi nome profilo</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Conferma il tuo nome profilo</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Il tuo profilo può ora includere un cognome facoltativo.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Conferma nome</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Aggiungi un nome profilo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Questo verrà visualizzato quando inizi una nuova conversazione o la condividi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Aggiungi nome profilo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Conferma il tuo nome profilo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Il tuo profilo può ora includere un cognome facoltativo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Conferma nome</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento…</string>

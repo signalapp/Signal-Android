@@ -163,7 +163,7 @@
   <string name="ContactShareEditActivity_type_missing">Arall</string>
   <string name="ContactShareEditActivity_invalid_contact">Roedd y cyswllt hwn yn annilys</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Methodd yr anfon, tapiwch am fanylion</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Methodd yr anfon, tapiwch am fanylion</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Wedi derbyn neges cyfnewid allwedd, tapiwch i brosesu.</string>
   <string name="ConversationItem_group_action_left">Mae %1$s wedi gadael y grŵp.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Methodd yr anfon, tapiwch am gam nôl anniogel</string>
@@ -332,8 +332,8 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Symudwyd %d sgwrs i\'r blwch derbyn</item>
     <item quantity="other">Symudwyd %d sgwrs i\'r blwch derbyn</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Mae\'ch enw proffil wedi\'i greu.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Mae\'ch enw proffil wedi\'i gadw.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Mae\'ch enw proffil wedi\'i greu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Mae\'ch enw proffil wedi\'i gadw.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Neges cyfnewid allwedd</string>
   <!--ConversationListItemAction-->
@@ -808,7 +808,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Rhoi\'r cyfrinymadrodd newydd!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Cysylltu\'r ddyfais hon?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">DIDDYMU</string> -->
   <string name="DeviceProvisioningActivity_continue">PARHAU</string>
   <string name="DeviceProvisioningActivity_content_intro">Bydd yn gallu</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1030,7 +1029,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubmitDebugLogActivity_success">Llwyddiant!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copïwch yr URL hwn a\'i ychwanegu at eich adroddiad neu e-bost cymorth:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Iawn</string> -->
   <string name="SubmitDebugLogActivity_share">Rhannu</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Pwnc:</string>
@@ -1097,7 +1095,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Profwyd gwall rhwydwaith.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Mae\'r enw defnyddiwr yma\'n wedi ei gymryd.</string>
   <string name="UsernameEditFragment_this_username_is_available">Mae\'r enw defnyddiwr yma ar gael.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Gall enwau defnyddwyr ddim ond cynnwys a-Z, 0-9, a thanlinellau.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nid yw enw defnyddiwr yn gallu cychwyn gyda rhif.</string>
   <string name="UsernameEditFragment_username_is_invalid">Mae\'r enw defnyddiwr yn annilys.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Rhaid i enwau defnyddwyr fod rhwng %1$d a %2$d nod.</string>
@@ -1964,12 +1961,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Ychwanegu enw proffil</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Bydd hyn yn cael ei ddangos pan fyddwch yn cychwyn sgwrs newydd a\'i rannu.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Ychwanegu Enw Proffil</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Cadarnhau eich Enw Proffil</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Gall eich proffil nawr gynnwys enw olaf dewisol.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Cadarnhau Enw</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Ychwanegu enw proffil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Bydd hyn yn cael ei ddangos pan fyddwch yn cychwyn sgwrs newydd a\'i rannu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Ychwanegu Enw Proffil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Cadarnhau eich Enw Proffil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Gall eich proffil nawr gynnwys enw olaf dewisol.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Cadarnhau Enw</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>

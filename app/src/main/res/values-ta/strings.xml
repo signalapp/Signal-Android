@@ -150,7 +150,7 @@
   <string name="ContactShareEditActivity_type_missing">மற்றவை</string>
   <string name="ContactShareEditActivity_invalid_contact">தேர்ந்தெடுத்த தொடர்பு தவறானது</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">அனுப்புதல் தோல்வி, விவரங்களுக்கு தட்டவும்</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">அனுப்புதல் தோல்வி, விவரங்களுக்கு தட்டவும்</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">முக்கிய பரிமாற்ற செய்தி பெறப்பட்டது, செயலாக்க தட்டவும்.</string>
   <string name="ConversationItem_group_action_left">%1$s இந்தக் குழுவை விட்டு விலகினார்.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">அனுப்புதல் தோல்வியுற்றது, பாதுகாப்பற்ற மாற்று செய்ய  தட்டவும்</string>
@@ -287,8 +287,8 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">உங்கள் சுயவிவரப் பெயர் உருவாக்கப்பட்டது.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">உங்கள் சுயவிவரப் பெயர் சேமிக்கப்பட்டது.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">உங்கள் சுயவிவரப் பெயர் உருவாக்கப்பட்டது.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">உங்கள் சுயவிவரப் பெயர் சேமிக்கப்பட்டது.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
   <!--ConversationListItemAction-->
@@ -579,7 +579,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">புது கடவுச்சொல்லை உள்ளிடவும்.</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">இந்த சாதனத்தை இணைக்களாமா? </string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ரத்து</string> -->
   <string name="DeviceProvisioningActivity_continue">தொடர்</string>
   <string name="DeviceProvisioningActivity_content_intro">இதனால் முடியும் </string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -826,7 +825,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
   <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர்பெயர் எடுக்கப்பட்டது.</string>
   <string name="UsernameEditFragment_this_username_is_available">இந்த பயனர்பெயர் கிடைப்பில் உள்ளது .</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">பயனர்பெயர்களில் a-Z, 0-9 மற்றும் அடிக்கோடிட்டு மட்டுமே சேர்க்க முடியும்.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர்பெயர்கள் எண்ணுடன் தொடங்க முடியாது.</string>
   <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d  எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
@@ -1571,9 +1569,9 @@
   <string name="KbsMegaphone__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
   <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">இது எப்போது காட்டப்படும் நீங்கள் புதிய உரையாடலைத் தொடங்கவும் அல்லது பகிரவும்.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">சுயவிவரப் பெயரைச் சேர்க்கவும்</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">உங்கள் சுயவிவரம் இப்போது ஒரு விருப்பத்தை சேர்க்கலாம் கடந்த பெயர்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">இது எப்போது காட்டப்படும் நீங்கள் புதிய உரையாடலைத் தொடங்கவும் அல்லது பகிரவும்.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">சுயவிவரப் பெயரைச் சேர்க்கவும்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">உங்கள் சுயவிவரம் இப்போது ஒரு விருப்பத்தை சேர்க்கலாம் கடந்த பெயர்.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>

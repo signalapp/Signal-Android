@@ -130,7 +130,7 @@
   <string name="ContactShareEditActivity_type_missing">Eile</string>
   <string name="ContactShareEditActivity_invalid_contact">Ní raibh an teagmhálaí roghnaithe bailí</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Theip ar an seoladh. Cnag air chun sonraí a fheiceáil</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Theip ar an seoladh. Cnag air chun sonraí a fheiceáil</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Teachtaireacht malartú eochracha faighta. Brúigh chun próiséiseáil.</string>
   <string name="ConversationItem_group_action_left">D\'fhág %1$s an bhaicle.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Theip ar an seoladh, cnag air i gcomhair rogha nach bhfuil slán</string>

@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Άλλο</string>
   <string name="ContactShareEditActivity_invalid_contact">Η επιλεγμένη επαφή δεν ήταν έγκυρη</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Η αποστολή απέτυχε, πάτα για λεπτομέρειες</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Η αποστολή απέτυχε, πάτα για λεπτομέρειες</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ελήφθη μήνυμα ανταλλαγής κλειδιών, πάτα για να επεξεργαστεί.</string>
   <string name="ConversationItem_group_action_left">Ο/Η %1$s έφυγε απ\' την ομάδα.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Η αποστολή απέτυχε, πάτα για εναλλακτική, μη ασφαλή αποστολή</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
     <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Το όνομα προφίλ σου δημιουργήθηκε.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Το όνομα προφίλ σου αποθηκεύτηκε.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Το όνομα προφίλ σου δημιουργήθηκε.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Το όνομα προφίλ σου αποθηκεύτηκε.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιού</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Εισαγωγή νέου συνθηματικού! </string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Σύνδεση αυτής της συσκευής;</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ΑΚΥΡΩΣΗ</string> -->
   <string name="DeviceProvisioningActivity_continue">ΣΥΝΕΧΕΙΑ</string>
   <string name="DeviceProvisioningActivity_content_intro">Θα μπορεί πλέον να</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -949,7 +948,6 @@
   <string name="SubmitDebugLogActivity_success">Επιτυχία!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Εντάξει</string> -->
   <string name="SubmitDebugLogActivity_share">Διαμοιρασμός</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Θέμα:</string>
@@ -1016,7 +1014,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Εμφανίστηκε σφάλμα δικτύου.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Αυτό το όνομα χρήστη χρησιμοποιείται ήδη.</string>
   <string name="UsernameEditFragment_this_username_is_available">Αυτό το όνομα χρήστη είναι διαθέσιμο.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Τα ονόματα χρήστη μπορούν να περιέχουν τους χαρακτήρες a-Z, 0-9, και κάτω παύλες.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Τα ονόματα χρήστη δεν μπορούν να αρχίζουν με αριθμό</string>
   <string name="UsernameEditFragment_username_is_invalid">Το όνομα χρήστη δεν είναι έγκυρο.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Τα ονόματα χρήστη πρέπει να είναι από %1$d εώς %2$d χαρακτήρες.</string>
@@ -1848,12 +1845,12 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Θα σ\' το θυμήσουμε αργότερα. Η δημιουργία PIN θα γίνει υποχρεωτική σε %1$d ημέρες.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Θα σ\' το θυμήσουμε αργότερα. Η επιβεβαίωση του PIN σου θα γίνει υποχρεωτική σε %1$d ημέρες.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Προσθήκη ονόματος προφίλ</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Αυτό θα εμφανίζεται όταν ξεκινάς μια νέα συνομιλία ή όταν το μοιράζεσαι.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Προσθήκη ονόματος προφίλ</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Επιβεβαίωση ονόματος προφίλ</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Το προφίλ σου μπορεί πλέον να περιέχει προαιρετικά και επώνυμο.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Επιβεβαίωση ονόματος</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Προσθήκη ονόματος προφίλ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Αυτό θα εμφανίζεται όταν ξεκινάς μια νέα συνομιλία ή όταν το μοιράζεσαι.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Προσθήκη ονόματος προφίλ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Επιβεβαίωση ονόματος προφίλ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Το προφίλ σου μπορεί πλέον να περιέχει προαιρετικά και επώνυμο.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Επιβεβαίωση ονόματος</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
   <string name="ConversationListFragment_loading">Φόρτωση…</string>

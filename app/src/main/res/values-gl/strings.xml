@@ -153,7 +153,7 @@
   <string name="ContactShareEditActivity_type_missing">Outra</string>
   <string name="ContactShareEditActivity_invalid_contact">O contacto seleccionado non foi válido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Erro ao enviar; toca para máis detalles</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Erro ao enviar; toca para máis detalles</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Recibida a mensaxe de intercambio de chaves; toca para continuar.</string>
   <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Erro ao enviar, toca para volver a un modo non seguro</string>
@@ -296,8 +296,8 @@
     <item quantity="one">Conversa movida á caixa de entrada</item>
     <item quantity="other">%d conversas movidas á caixa de entrada</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Creouse o teu nome de perfil.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Gardouse o teu nome de perfil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Creouse o teu nome de perfil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Gardouse o teu nome de perfil.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaxe de intercambio de chaves</string>
   <!--ConversationListItemAction-->
@@ -579,7 +579,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Inserir nova frase de acceso!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vincular este dispositivo?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">CANCELAR</string> -->
   <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
   <string name="DeviceProvisioningActivity_content_intro">Poderá</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -826,7 +825,6 @@
   <string name="UsernameEditFragment_submit">Enviar</string>
   <string name="UsernameEditFragment_delete">Eliminar</string>
   <string name="UsernameEditFragment_this_username_is_available">Este nome de usuario está dispoñible.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Os nomes de usuario só poden incluír caracteres do a-Z, 0-9 e guións baixos.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de usuario non poden comezar por un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nome de usuario non válido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Os nomes de usuario deben ter entre %1$d e %2$d caracteres.</string>
@@ -1583,7 +1581,7 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Lembrarémoscho máis tarde. Será obrigatorio crear un PIN tras %1$d días.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Lembrarémoscho máis tarde. Confirmar o PIN será obrigatorio en %1$d días.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Agora, como opción, tamén podes engadir o apelido.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Agora, como opción, tamén podes engadir o apelido.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>

@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Muu</string>
   <string name="ContactShareEditActivity_invalid_contact">Valittu yhteystieto ei ole kelvollinen</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Lähetys epäonnistui, napauta nähdäksesi lisätietoja</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Lähetys epäonnistui, napauta nähdäksesi lisätietoja</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Avaintenvaihtoviesti vastaanotettu. Aloita käsittely napauttamalla.</string>
   <string name="ConversationItem_group_action_left">%1$s on poistunut ryhmästä.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Lähetys epäonnistui, napauta lähettääksesi suojaamattomana</string>
@@ -302,8 +302,8 @@
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Profiilinimesi on luotu.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Profiilinimesi on tallennettu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Profiilinimesi on luotu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Profiilinimesi on tallennettu.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
   <!--ConversationListItemAction-->
@@ -736,7 +736,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Syötä uusi salalause!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Yhdistetäänkö tämä laite?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">PERUUTA</string> -->
   <string name="DeviceProvisioningActivity_continue">JATKA</string>
   <string name="DeviceProvisioningActivity_content_intro">Se saa luvan</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -948,7 +947,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubmitDebugLogActivity_success">Onnistui!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja lisää se ongelmaraporttiin tai tukisähköpostiisi:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopioitu leikepöydälle</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Selvä</string> -->
   <string name="SubmitDebugLogActivity_share">Jaa</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Aihe:</string>
@@ -1015,7 +1013,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UsernameEditFragment_encountered_a_network_error">Verkkovirhe.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Tämä käyttäjätunnus on varattu.</string>
   <string name="UsernameEditFragment_this_username_is_available">Tämä käyttäjätunnus on vapaa.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Käyttäjätunnukset voivat sisältää vain a-Z, 0-9 ja aliviivat.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjätunnukset eivät voi alkaa numerolla.</string>
   <string name="UsernameEditFragment_username_is_invalid">Käyttäjätunnus on virheellinen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjätunnusten on oltava %1$d–%2$d merkkiä.</string>
@@ -1846,12 +1843,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Muistutamme sinua myöhemmin. PIN-koodin luomisesta tulee pakollinen %1$d päivän kuluttua.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Muistutamme sinua myöhemmin. PIN-koodin vahvistamisesta tulee pakollinen %1$d päivän kuluttua.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Lisää profiilinimi</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tämä tulee näkymään, kun aloitat uuden keskustelun tai jaat sen.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Lisää profiilinimi</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Vahvista profiilinimesi</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profiilisi voi nyt sisältää valinnaisen sukunimen.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Vahvista nimi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Lisää profiilinimi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tämä tulee näkymään, kun aloitat uuden keskustelun tai jaat sen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Lisää profiilinimi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Vahvista profiilinimesi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profiilisi voi nyt sisältää valinnaisen sukunimen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Vahvista nimi</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan…</string>

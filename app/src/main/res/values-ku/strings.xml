@@ -109,7 +109,7 @@
   <string name="ContactShareEditActivity_type_missing">Yê din</string>
   <string name="ContactShareEditActivity_invalid_contact">Berdengê bijartî nederbasdar e</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Şandin têk çû, ji bo hûrgiliyên bêhtir, bitepîne</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Şandin têk çû, ji bo hûrgiliyên bêhtir, bitepîne</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Peyama veguhastina kilîdê hate stendin, ji bo pêvajoyê bitepîne.</string>
   <string name="ConversationItem_group_action_left">%1$s ji komê veqetiya.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Ji bo SMSa neşîfrekirî şûnde vegere?</string>

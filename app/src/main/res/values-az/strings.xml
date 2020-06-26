@@ -115,7 +115,7 @@
   <string name="ContactShareEditActivity_type_missing">Digər</string>
   <string name="ContactShareEditActivity_invalid_contact">Seçilmiş əlaqədə səhv var</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Göndərə bilmədik, detallar üçün kliklə</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Göndərə bilmədik, detallar üçün kliklə</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Açar mübadiləsi mesajı almısan, yerinə yetirmək üçün kliklə.</string>
   <string name="ConversationItem_group_action_left">%1$s qrupdan çıxdı.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Göndərə bilmədik, zəmanətsiz alternativ variant üçün kliklə</string>

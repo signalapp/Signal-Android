@@ -163,7 +163,7 @@
   <string name="ContactShareEditActivity_type_missing">Inne</string>
   <string name="ContactShareEditActivity_invalid_contact">Wybrany kontakt był nieprawidłowy</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Wysyłanie nie powiodło się, dotknij, aby wyświetlić szczegóły</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Wysyłanie nie powiodło się, dotknij, aby wyświetlić szczegóły</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Otrzymano wiadomość wymiany kluczy, dotknij aby kontynuować.</string>
   <string name="ConversationItem_group_action_left">%1$s opuścił(a) grupę.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Wysyłanie nie powiodło się, dotknij w celu użycia niezabezpieczonej alternatywy</string>
@@ -330,8 +330,8 @@
     <item quantity="many">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
     <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">Nazwa Twojego profilu została utworzona.</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">Nazwa Twojego profilu została zapisana.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Nazwa Twojego profilu została utworzona.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Nazwa Twojego profilu została zapisana.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
   <!--ConversationListItemAction-->
@@ -806,7 +806,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Wpisz nowe hasło!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Połączyć z tym urządzeniem?</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeviceProvisioningActivity_cancel">ANULUJ</string> -->
   <string name="DeviceProvisioningActivity_continue">KONTYNUUJ</string>
   <string name="DeviceProvisioningActivity_content_intro">Będzie w stanie:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1020,7 +1019,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubmitDebugLogActivity_success">Sukces!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopiuj ten URL i dodaj go do Twojego raportu o błędzie lub wiadomości e-mail:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Skopiowano do schowka</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_ok">Ok</string> -->
   <string name="SubmitDebugLogActivity_share">Udostępnij</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Temat:</string>
@@ -1087,7 +1085,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Wystąpił błąd sieci.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Nazwa użytkownika jest zajęta.</string>
   <string name="UsernameEditFragment_this_username_is_available">Nazwa użytkownika jest dostępna.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Nazwy użytkowników mogą zawierać wyłącznie a-Z, 0-9 i podkreślenia (_).</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Nazwy użytkowników mogą zawierać wyłącznie a–Z, 0–9 i podkreślenia (_).</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nazwy użytkowników nie mogą zaczynać się od cyfry.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nazwa użytkownika jest niepoprawna.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć od %1$d do %2$d znaków.</string>
@@ -1954,12 +1952,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Przypomnimy Ci o tym później. Utworzenie PINu stanie się obowiązkowe za %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Przypomnimy Ci o tym później. Potwierdzenie Twojego PINu stanie się obowiązkowe za %1$d dni.</string>
   <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj nazwę profilu</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To zostanie wyświetlone, gdy rozpoczniesz nową konwersację lub ją udostępnisz.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Dodaj nazwę profilu</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potwierdź nazwę swojego profilu</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Twój profil może teraz zawierać opcjonalne nazwisko.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Potwierdź nazwę</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj nazwę profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To zostanie wyświetlone, gdy rozpoczniesz nową konwersację lub ją udostępnisz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Dodaj nazwę profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potwierdź nazwę swojego profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Twój profil może teraz zawierać opcjonalne nazwisko.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Potwierdź nazwę</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <string name="ConversationListFragment_loading">Wczytywanie…</string>
