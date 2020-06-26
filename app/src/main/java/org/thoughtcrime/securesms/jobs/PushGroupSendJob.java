@@ -232,6 +232,9 @@ public class PushGroupSendJob extends PushSendJob {
       } else if (!identityMismatches.isEmpty()) {
         database.markAsSentFailed(messageId);
         notifyMediaMessageDeliveryFailed(context, messageId);
+
+        List<RecipientId>  mismatchRecipientIds = Stream.of(identityMismatches).map(mismatch -> mismatch.getRecipientId(context)).toList();
+        RetrieveProfileJob.enqueue(mismatchRecipientIds);
       }
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, e);

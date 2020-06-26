@@ -85,6 +85,17 @@ public class RetrieveProfileJob extends BaseJob {
   }
 
   /**
+   * Submits the necessary job to refresh the profile of the requested recipient. Works for any
+   * RecipientId, including individuals, groups, or yourself.
+   *
+   * Identical to {@link #enqueue(Collection)})}
+   */
+  @WorkerThread
+  public static void enqueue(@NonNull RecipientId recipientId) {
+    ApplicationDependencies.getJobManager().add(forRecipient(recipientId));
+  }
+
+  /**
    * Submits the necessary jobs to refresh the profiles of the requested recipients. Works for any
    * RecipientIds, including individuals, groups, or yourself.
    */

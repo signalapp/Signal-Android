@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
@@ -165,8 +166,10 @@ public class PushMediaSendJob extends PushSendJob {
       ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
-      database.addMismatchedIdentity(messageId, Recipient.external(context, uie.getIdentifier()).getId(), uie.getIdentityKey());
+      RecipientId recipientId = Recipient.external(context, uie.getIdentifier()).getId();
+      database.addMismatchedIdentity(messageId, recipientId, uie.getIdentityKey());
       database.markAsSentFailed(messageId);
+      RetrieveProfileJob.enqueue(recipientId);
     }
   }
 
