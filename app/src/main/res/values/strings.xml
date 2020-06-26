@@ -776,7 +776,7 @@
     <string name="MessageRecord_s_made_s_an_admin">%1$s made %2$s an admin.</string>
     <string name="MessageRecord_s_made_you_an_admin">%1$s made you an admin.</string>
     <string name="MessageRecord_you_revoked_admin_privileges_from_s">You revoked admin privileges from %1$s.</string>
-    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revoked your admin privileges."</string>
+    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revoked your admin privileges.</string>
     <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revoked admin privileges from %2$s.</string>
 
     <!-- GV2 invitations -->
