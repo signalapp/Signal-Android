@@ -205,6 +205,10 @@ public final class TransferControlView extends FrameLayout {
   }
 
   private void display(@Nullable final View view) {
+    if (current == view) {
+      return;
+    }
+
     if (current != null) {
       current.setVisibility(GONE);
     }
