@@ -174,6 +174,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
         cancelSpinning(pinButton);
         pinEntry.setEnabled(true);
         enableAndFocusPinEntry();
+        skipButton.setVisibility(View.VISIBLE);
         break;
     }
   }
