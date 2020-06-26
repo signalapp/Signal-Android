@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/pending_member_background"
+    android:background="?pref_divider"
     android:fillViewport="true"
+    android:paddingTop="0dp"
     tools:context="org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +18,7 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="?android:attr/windowBackground"
+            app:cardBackgroundColor="?android:windowBackground"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
@@ -45,9 +46,9 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
                     android:text="@string/PendingMembersActivity_you_have_no_pending_invites"
+                    android:textColor="?android:textColorSecondary"
                     android:visibility="gone"
-                    tools:visibility="visible"
-                    android:textColor="?pending_member_empty_text_color" />
+                    tools:visibility="visible" />
 
                 <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
                     android:id="@+id/members_you_invited"
@@ -62,8 +63,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="?android:attr/windowBackground"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="?android:windowBackground"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
 
             <LinearLayout
@@ -91,9 +92,9 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/PendingMembersActivity_no_pending_invites_by_other_group_members"
+                    android:textColor="?android:textColorSecondary"
                     android:visibility="gone"
-                    tools:visibility="visible"
-                    android:textColor="?pending_member_empty_text_color" />
+                    tools:visibility="visible" />
 
                 <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
                     android:id="@+id/members_others_invited"
