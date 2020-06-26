@@ -151,7 +151,19 @@ public class WebRtcCallView extends FrameLayout {
       runIfNonNull(controlsListener, listener -> listener.onMicChanged(isOn));
     });
 
-    cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
+    final int descYourCam = R.string.WebRtcCallControls_your_camera_button_description;
+    final int descRearCam = R.string.WebRtcCallControls_switch_to_rear_camera_button_description;
+    cameraDirectionToggle.setOnClickListener(new OnClickListener() {
+
+      int currentDesc = descRearCam;
+
+      @Override
+      public void onClick(View v) {
+        currentDesc = currentDesc == descYourCam ? descRearCam : descYourCam;
+        cameraDirectionToggle.setContentDescription(getResources().getText(currentDesc));
+        runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged);
+      }
+    });
 
     hangup.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onEndCallPressed));
     decline.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onDenyCallPressed));

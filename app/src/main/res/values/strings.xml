@@ -1362,6 +1362,7 @@
     <string name="WebRtcCallControls_contact_photo_description">Contact photo</string>
     <string name="WebRtcCallControls_speaker_button_description">Speaker</string>
     <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+    <string name="WebRtcCallControls_video_button_description">Video</string>
     <string name="WebRtcCallControls_mute_button_description">Mute</string>
     <string name="WebRtcCallControls_your_camera_button_description">Your camera</string>
     <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Switch to rear camera</string>

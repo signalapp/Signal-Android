@@ -14,7 +14,8 @@
         android:id="@+id/call_screen_recipient_avatar"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:contentDescription="@string/WebRtcCallControls_contact_photo_description" />
 
     <ImageView
         android:id="@+id/call_screen_recipient_avatar_call_card"
@@ -161,6 +162,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/webrtc_call_screen_speaker_toggle"
+            android:contentDescription="@string/WebRtcCallControls_speaker_button_description"
             tools:visibility="visible" />
 
         <ImageView
@@ -177,6 +179,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_speaker_toggle"
             app:srcCompat="@drawable/webrtc_call_screen_camera_toggle"
+            android:contentDescription="@string/WebRtcCallControls_switch_to_rear_camera_button_description"
             tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.AccessibleToggleButton
@@ -192,6 +195,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_camera_direction_toggle"
             tools:checked="true"
+            android:contentDescription="@string/WebRtcCallControls_video_button_description"
             tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.AccessibleToggleButton
@@ -206,6 +210,7 @@
             app:layout_constraintEnd_toStartOf="@id/call_screen_end_call"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_video_toggle"
+            android:contentDescription="@string/WebRtcCallControls_mute_button_description"
             tools:visibility="visible" />
 
         <ImageView
@@ -221,6 +226,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_audio_mic_toggle"
             app:srcCompat="@drawable/webrtc_call_screen_hangup"
+            android:contentDescription="@string/WebRtcCallScreen_end_call"
             tools:visibility="visible" />
 
         <ImageView
@@ -235,6 +241,7 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/webrtc_call_screen_hangup"
+            android:contentDescription="@string/WebRtcCallControls_reject_call_description"
             tools:visibility="visible" />
 
         <TextView
@@ -262,6 +269,7 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toEndOf="@id/call_screen_decline_call"
             app:srcCompat="@drawable/webrtc_call_screen_answer"
+            android:contentDescription="@string/WebRtcCallControls_answer_call_description"
             tools:visibility="visible" />
 
         <TextView
@@ -287,6 +295,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/webrtc_call_screen_answer_without_video"
+            android:contentDescription="@string/WebRtcCallScreen__answer_without_video"
             tools:visibility="visible" />
 
         <TextView
