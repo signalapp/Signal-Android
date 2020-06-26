@@ -18,6 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:scrollIndicators="top|bottom"
+        android:scrollbars="vertical"
         tools:listitem="@layout/safety_number_change_recipient" />
 
 </LinearLayout>
