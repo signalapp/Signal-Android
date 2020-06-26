@@ -989,6 +989,7 @@ public class ConversationFragment extends LoggingFragment {
                         @NonNull ConversationReactionOverlay.OnHideListener onHideListener);
     void onCursorChanged();
     void onListVerticalTranslationChanged(float translationY);
+    void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
   }
 
   private class ConversationScrollListener extends OnScrollListener {
@@ -1248,6 +1249,11 @@ public class ConversationFragment extends LoggingFragment {
       if (getContext() == null) return;
 
       RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(requireFragmentManager(), "BOTTOM");
+    }
+
+    @Override
+    public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
+      listener.onMessageWithErrorClicked(messageRecord);
     }
   }
 

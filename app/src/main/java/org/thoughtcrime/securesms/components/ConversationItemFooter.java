@@ -6,13 +6,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
@@ -94,9 +95,17 @@ public class ConversationItemFooter extends LinearLayout {
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
     dateView.forceLayout();
-
     if (messageRecord.isFailed()) {
-      dateView.setText(R.string.ConversationItem_error_not_delivered);
+      int errorMsg;
+      if (messageRecord.hasFailedWithNetworkFailures()) {
+        errorMsg = R.string.ConversationItem_error_network_not_delivered;
+      } else if (messageRecord.getRecipient().isPushGroup() && messageRecord.isIdentityMismatchFailure()) {
+        errorMsg = R.string.ConversationItem_error_partially_not_delivered;
+      } else {
+        errorMsg = R.string.ConversationItem_error_not_sent_tap_for_details;
+      }
+
+      dateView.setText(errorMsg);
     } else if (messageRecord.isPendingInsecureSmsFallback()) {
       dateView.setText(R.string.ConversationItem_click_to_approve_unencrypted);
     } else {

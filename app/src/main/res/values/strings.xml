@@ -187,7 +187,9 @@
     <string name="ContactShareEditActivity_invalid_contact">Selected contact was invalid</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_delivered">Send failed, tap for details</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">Not sent, tap for details</string>
+    <string name="ConversationItem_error_partially_not_delivered">Partially sent, tap for details</string>
+    <string name="ConversationItem_error_network_not_delivered">Send failed</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Received key exchange message, tap to process.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
@@ -1444,6 +1446,7 @@
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Record and send audio attachment</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
     <string name="conversation_activity__enable_signal_for_sms">Enable Signal for SMS</string>
+    <string name="conversation_activity__message_could_not_be_sent">Message could not be sent. Check your connection and try again.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Slide to cancel</string>
@@ -1478,6 +1481,13 @@
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
+
+    <!-- safety_number_change_dialog -->
+    <string name="safety_number_change_dialog__safety_number_changes">Safety Number Changes</string>
+    <string name="safety_number_change_dialog__send_anyway">Send anyway</string>
+    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">The following people may have reinstalled or changed devices. Verify your safety number with them to ensure privacy.</string>
+    <string name="safety_number_change_dialog__view">View</string>
+    <string name="safety_number_change_dialog__previous_verified">Previous verified</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries…</string>

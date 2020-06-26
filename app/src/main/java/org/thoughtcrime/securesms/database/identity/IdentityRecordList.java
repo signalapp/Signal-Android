@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.database.identity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +25,10 @@ public final class IdentityRecordList {
   public void replaceWith(@NonNull IdentityRecordList identityRecordList) {
     identityRecords.clear();
     identityRecords.addAll(identityRecordList.identityRecords);
+  }
+
+  public List<IdentityRecord> getIdentityRecords() {
+    return Collections.unmodifiableList(identityRecords);
   }
 
   public boolean isVerified() {

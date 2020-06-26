@@ -285,6 +285,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return networkFailures != null && !networkFailures.isEmpty();
   }
 
+  public boolean hasFailedWithNetworkFailures() {
+    return isFailed() && ((getRecipient().isPushGroup() && hasNetworkFailures()) || !isIdentityMismatchFailure());
+  }
+
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

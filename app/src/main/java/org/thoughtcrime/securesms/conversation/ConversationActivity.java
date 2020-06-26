@@ -108,9 +108,7 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.components.identity.UntrustedSendDialog;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
-import org.thoughtcrime.securesms.components.identity.UnverifiedSendDialog;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
@@ -125,6 +123,7 @@ import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.conversation.ConversationGroupViewModel.GroupActiveState;
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -173,6 +172,7 @@ import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult;
+import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -273,12 +273,15 @@ public class ConversationActivity extends PassphraseRequiredActivity
                StickerKeyboardProvider.StickerEventListener,
                AttachmentKeyboard.Callback,
                ConversationReactionOverlay.OnReactionSelectedListener,
-               ReactWithAnyEmojiBottomSheetDialogFragment.Callback
+               ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
+               SafetyNumberChangeDialog.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
 
   private static final String TAG = ConversationActivity.class.getSimpleName();
+
+  public static final String SAFETY_NUMBER_DIALOG = "SAFETY_NUMBER";
 
   public static final String RECIPIENT_EXTRA                   = "recipient_id";
   public static final String THREAD_ID_EXTRA                   = "thread_id";
@@ -1306,50 +1309,28 @@ public class ConversationActivity extends PassphraseRequiredActivity
     startActivity(intent);
   }
 
-  private void handleUnverifiedRecipients() {
-    List<Recipient>      unverifiedRecipients = identityRecords.getUnverifiedRecipients();
-    List<IdentityRecord> unverifiedRecords    = identityRecords.getUnverifiedRecords();
-    String               message              = IdentityUtil.getUnverifiedSendDialogDescription(this, unverifiedRecipients);
-
-    if (message == null) return;
-
-    //noinspection CodeBlock2Expr
-    new UnverifiedSendDialog(this, message, unverifiedRecords, () -> {
-      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          sendMessage();
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          throw new AssertionError(e);
-        }
-      });
-    }).show();
+  private void handleRecentSafetyNumberChange() {
+    List<IdentityRecord> records = identityRecords.getUnverifiedRecords();
+    records.addAll(identityRecords.getUntrustedRecords());
+    SafetyNumberChangeDialog.create(records).show(getSupportFragmentManager(), SAFETY_NUMBER_DIALOG);
   }
 
-  private void handleUntrustedRecipients() {
-    List<Recipient>      untrustedRecipients = identityRecords.getUntrustedRecipients();
-    List<IdentityRecord> untrustedRecords    = identityRecords.getUntrustedRecords();
-    String               untrustedMessage    = IdentityUtil.getUntrustedSendDialogDescription(this, untrustedRecipients);
+  @Override
+  public void onSendAnywayAfterSafetyNumberChange() {
+    initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        sendMessage();
+      }
+    });
+  }
 
-    if (untrustedMessage == null) return;
-
-    //noinspection CodeBlock2Expr
-    new UntrustedSendDialog(this, untrustedMessage, untrustedRecords, () -> {
-      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          sendMessage();
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          throw new AssertionError(e);
-        }
-      });
-    }).show();
+  @Override
+  public void onMessageResentAfterSafetyNumberChange() {
+    initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) { }
+    });
   }
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
@@ -2329,10 +2310,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         handleManualMmsRequired();
-      } else if (!forceSms && identityRecords.isUnverified()) {
-        handleUnverifiedRecipients();
-      } else if (!forceSms && identityRecords.isUntrusted()) {
-        handleUntrustedRecipients();
+      } else if (!forceSms && (identityRecords.isUnverified() || identityRecords.isUntrusted())) {
+        handleRecentSafetyNumberChange();
       } else if (isMediaMessage) {
         sendMediaMessage(forceSms, expiresIn, false, subscriptionId, initiating);
       } else {
@@ -2884,6 +2863,21 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onListVerticalTranslationChanged(float translationY) {
     reactionOverlay.setListVerticalTranslation(translationY);
+  }
+
+  @Override
+  public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.hasFailedWithNetworkFailures()) {
+      new AlertDialog.Builder(this)
+                     .setMessage(R.string.conversation_activity__message_could_not_be_sent)
+                     .setNegativeButton(android.R.string.cancel, null)
+                     .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> MessageSender.resend(this, messageRecord))
+                     .show();
+    } else if (messageRecord.isIdentityMismatchFailure()) {
+      SafetyNumberChangeDialog.create(this, messageRecord).show(getSupportFragmentManager(), SAFETY_NUMBER_DIALOG);
+    } else {
+      startActivity(MessageDetailsActivity.getIntentForMessageDetails(this, messageRecord, messageRecord.getRecipient().getId(), messageRecord.getThreadId()));
+    }
   }
 
   @Override

@@ -258,6 +258,9 @@
         <item name="conversation_title_color">@color/white</item>
         <item name="conversation_subtitle_color">@color/transparent_white_90</item>
 
+        <item name="safety_number_change_dialog_button_background">@color/core_grey_05</item>
+        <item name="safety_number_change_dialog_button_text_color">@color/core_ultramarine</item>
+
         <item name="tinted_circle_background">@drawable/tinted_circle_light</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
@@ -545,6 +548,9 @@
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_25</item>
         <item name="conversation_item_image_outline_color">@color/transparent_white_20</item>
         <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
+
+        <item name="safety_number_change_dialog_button_background">@color/core_grey_75</item>
+        <item name="safety_number_change_dialog_button_text_color">@color/core_grey_05</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
 

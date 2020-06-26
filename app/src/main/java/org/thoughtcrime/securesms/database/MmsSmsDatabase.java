@@ -280,6 +280,18 @@ public class MmsSmsDatabase extends Database {
     else          return id;
   }
 
+  public @Nullable MessageRecord getMessageRecord(long messageId) {
+    try {
+      return DatabaseFactory.getSmsDatabase(context).getMessage(messageId);
+    } catch (NoSuchMessageException e1) {
+      try {
+        return DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
+      } catch (NoSuchMessageException e2) {
+        return null;
+      }
+    }
+  }
+
   public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId, long timestamp) {
     DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, true);
     DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true);

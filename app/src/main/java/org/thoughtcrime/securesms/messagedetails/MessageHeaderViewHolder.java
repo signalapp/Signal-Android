@@ -84,11 +84,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
   }
 
   private void bindErrorState(MessageRecord messageRecord) {
-    boolean isPushGroup                = messageRecord.getRecipient().isPushGroup();
-    boolean isGroupNetworkFailure      = messageRecord.isFailed() && !messageRecord.getNetworkFailures().isEmpty();
-    boolean isIndividualNetworkFailure = messageRecord.isFailed() && !isPushGroup && messageRecord.getIdentityKeyMismatches().isEmpty();
-
-    if (isGroupNetworkFailure || isIndividualNetworkFailure) {
+    if (messageRecord.hasFailedWithNetworkFailures()) {
       errorText.setVisibility(View.VISIBLE);
       resendButton.setVisibility(View.VISIBLE);
       resendButton.setOnClickListener(unused -> {
