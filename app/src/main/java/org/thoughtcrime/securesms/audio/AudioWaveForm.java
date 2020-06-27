@@ -161,6 +161,10 @@ public final class AudioWaveForm {
 
       MediaCodec codec = MediaCodec.createDecoderByType(mime);
 
+      if (totalDurationUs == 0 && mime.equals("audio/mp4a-latm")) {
+        totalDurationUs = getKeyDurationFallbackForAAC(extractor);
+      }
+
       if (totalDurationUs == 0) {
         throw new IOException("Zero duration");
       }
@@ -271,6 +275,78 @@ public final class AudioWaveForm {
 
       return new AudioFileInfo(totalDurationUs, bytes);
     }
+  }
+
+  private long getKeyDurationFallbackForAAC(MediaExtractor extractor) {
+    Log.i(TAG, "Starting KeyDuration fallback for AAC");
+
+    extractor.selectTrack(0);
+
+    extractor.advance();
+    long sampleTime = extractor.getSampleTime();
+
+    if (sampleTime == 0) {
+      Log.i(TAG, "Stopping KeyDuration fallback for AAC due to issue with extractor.advance() and sampleTime = 0");
+      extractor.release();
+      return 0;
+    }
+
+    extractor.seekTo(2 * sampleTime, MediaExtractor.SEEK_TO_NEXT_SYNC);
+    long sampleTime2 = extractor.getSampleTime();
+
+    if (sampleTime2 != (2 * sampleTime)) {
+      Log.i(TAG, "Stopping KeyDuration fallback for AAC due to issue with extractor.seekTo() " + sampleTime + " " +  sampleTime2);
+      extractor.release();
+      return 0;
+    }
+
+    extractor.seekTo(0, MediaExtractor.SEEK_TO_NEXT_SYNC);
+    sampleTime2 = extractor.getSampleTime();
+
+    if (sampleTime2 != 0) {
+      Log.i(TAG, "Stopping KeyDuration fallback for AAC due to issue with extractor.seekTo() " + sampleTime2);
+      extractor.release();
+      return 0;
+    }
+
+    long newDuration;
+    long oldDuration = 1;
+    int  iDiv        = 10000000;
+
+    //safety limit of one hour
+    for (long i = 1000000; i <  3600000000L; i += iDiv) {
+      extractor.seekTo(i, MediaExtractor.SEEK_TO_NEXT_SYNC);
+      newDuration = extractor.getSampleTime();
+
+      if (newDuration == -1 || oldDuration == newDuration) {
+        if (iDiv > 100000) {
+          iDiv /= 10;
+          i = oldDuration;
+        } else {
+          break;
+        }
+      } else {
+        oldDuration = newDuration;
+      }
+    }
+
+    extractor.seekTo(oldDuration, MediaExtractor.SEEK_TO_NEXT_SYNC);
+
+    //safety limit 200 times extractor.advance();
+    for (int i = 0; i < 200; i++) {
+      extractor.advance();
+      newDuration = extractor.getSampleTime();
+
+      if (newDuration == -1) {
+        Log.i(TAG, "Ending KeyDuration fallback for AAC with KeyDuration = " + (oldDuration + sampleTime));
+        return (oldDuration + sampleTime);
+      }
+
+      oldDuration = newDuration;
+    }
+
+    Log.i(TAG, "Ending KeyDuration fallback for AAC with KeyDuration = 0");
+    return 0;
   }
 
   public static class AudioFileInfo {
