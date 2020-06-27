@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <FrameLayout
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/revealable_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            tools:src="@drawable/ic_view_once_24"/>
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/revealable_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:matProg_barColor="@color/core_white"
+            app:matProg_rimColor="@color/transparent"
+            app:matProg_linearProgress="true"
+            app:matProg_spinSpeed="0.2"
+            app:matProg_barWidth="2dp"
+            app:matProg_rimWidth="2dp"
+            app:matProg_circleRadius="24dp"
+            tools:visibility="visible"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/revealable_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        style="@style/Signal.Text.Preview"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="@string/RevealableMessageView_view_photo" />
+
+</merge>

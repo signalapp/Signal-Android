@@ -1,0 +1,37 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto2";
+
+package textsecure;
+
+import "SignalService.proto";
+
+option java_package        = "org.whispersystems.signalservice.internal.serialize.protos";
+option java_multiple_files = true;
+
+message SignalServiceContentProto {
+  optional AddressProto  localAddress = 1;
+  optional MetadataProto metadata     = 2;
+  oneof data {
+     signalservice.DataMessage legacyDataMessage = 3;
+     signalservice.Content     content           = 4;
+  }
+}
+
+message MetadataProto {
+  optional AddressProto address                  = 1;
+  optional int32        senderDevice             = 2;
+  optional int64        timestamp                = 3;
+  optional int64        serverReceivedTimestamp  = 5;
+  optional int64        serverDeliveredTimestamp = 6;
+  optional bool         needsReceipt             = 4;
+}
+
+message AddressProto {
+  optional bytes  uuid  = 1;
+  optional string e164  = 2;
+  optional string relay = 3;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/text_secure_normal__menu_new_group"
+          android:id="@+id/menu_new_group" />
+
+    <item android:title="@string/text_secure_normal__menu_clear_passphrase"
+          android:id="@+id/menu_clear_passphrase" />
+
+    <item android:title="@string/text_secure_normal__mark_all_as_read"
+          android:id="@+id/menu_mark_all_read" />
+
+    <item android:title="@string/text_secure_normal__invite_friends"
+          android:id="@+id/menu_invite" />
+
+    <item android:title="@string/text_secure_normal__menu_settings"
+          android:id="@+id/menu_settings" />
+
+    <item android:title="@string/Insights__title"
+          android:id="@+id/menu_insights"
+          android:visible="false" />
+
+</menu>

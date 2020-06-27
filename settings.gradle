@@ -1,0 +1,9 @@
+include ':app'
+include ':libsignal-service'
+include ':lintchecks'
+
+project(':app').name = 'Signal-Android'
+
+project(':libsignal-service').projectDir = file('libsignal/service')
+
+rootProject.name='Signal'

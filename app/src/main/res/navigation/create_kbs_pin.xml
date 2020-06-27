@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_kbs_pin"
+    app:startDestination="@id/createKbsPinFragment">
+
+    <fragment
+        android:id="@+id/createKbsPinFragment"
+        android:name="org.thoughtcrime.securesms.lock.v2.CreateKbsPinFragment"
+        android:label="fragment_edit_kbs_pin"
+        tools:layout="@layout/base_kbs_pin_fragment">
+
+        <action
+            android:id="@+id/action_confirmPin"
+            app:destination="@id/confirmKbsPinFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <argument
+            app:argType="boolean"
+            android:name="is_pin_change"
+            android:defaultValue="false" />
+
+        <argument
+            app:argType="boolean"
+            android:name="is_forgot_pin"
+            android:defaultValue="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmKbsPinFragment"
+        android:name="org.thoughtcrime.securesms.lock.v2.ConfirmKbsPinFragment"
+        android:label="fragment_confirm_new_pin"
+        tools:layout="@layout/base_kbs_pin_fragment">
+
+        <argument
+            app:argType="boolean"
+            android:name="is_pin_change"
+            android:defaultValue="false" />
+
+        <argument
+            android:name="user_entry"
+            android:defaultValue="@null"
+            app:argType="org.thoughtcrime.securesms.lock.v2.KbsPin"
+            app:nullable="true" />
+
+        <argument
+            android:name="keyboard"
+            android:defaultValue="NUMERIC"
+            app:argType="org.thoughtcrime.securesms.lock.v2.PinKeyboardType"
+            app:nullable="false" />
+
+    </fragment>
+
+</navigation>

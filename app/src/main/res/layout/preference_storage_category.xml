@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/total_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/storageGraphView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1.2GB" />
+
+    <org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
+        android:id="@+id/storageGraphView"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_size" />
+
+    <TextView
+        android:id="@+id/legend_photos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/storage_legend_photos"
+        android:drawablePadding="4dp"
+        android:text="@string/preferences_storage__photos"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/legend_videos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/storageGraphView"
+        app:layout_constraintTop_toBottomOf="@+id/storageGraphView" />
+
+    <TextView
+        android:id="@+id/legend_videos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/storage_legend_videos"
+        android:drawablePadding="4dp"
+        android:text="@string/preferences_storage__videos"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/legend_audio"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/legend_photos"
+        app:layout_constraintTop_toTopOf="@+id/legend_photos" />
+
+    <TextView
+        android:id="@+id/legend_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/storage_legend_files"
+        android:drawablePadding="4dp"
+        android:text="@string/preferences_storage__files"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/legend_files"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/legend_videos"
+        app:layout_constraintTop_toTopOf="@+id/legend_videos" />
+
+    <TextView
+        android:id="@+id/legend_files"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/storage_legend_audio"
+        android:drawablePadding="4dp"
+        android:text="@string/preferences_storage__audio"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/storageGraphView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/legend_audio"
+        app:layout_constraintTop_toTopOf="@+id/legend_audio" />
+
+    <TextView
+        android:id="@+id/free_up_space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/preferences_storage__review_storage"
+        android:textAllCaps="true"
+        android:textColor="@color/core_ultramarine"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/legend_photos" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

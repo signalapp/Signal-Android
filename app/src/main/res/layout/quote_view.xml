@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quote_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:layout_margin="3dp"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/quote_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/quote_bar"
+                android:layout_width="@dimen/quote_corner_radius_bottom"
+                android:layout_height="match_parent"
+                android:src="@color/white"
+                tools:tint="@color/purple_400" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/quote_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Signal.Text.Caption"
+                    android:textColor="@color/core_black"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="Peter Parker" />
+
+                <LinearLayout
+                    android:id="@+id/quote_attachment_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="27dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="4dp"
+                        android:paddingStart="-4dp"
+                        android:src="?attr/attachment_document_icon_small" />
+
+                    <TextView
+                        android:id="@+id/quote_attachment_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Signal.Text.Body"
+                        android:textColor="@color/core_grey_90"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        tools:text="The-Amazing-Spider-Man.cba" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/media_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    style="@style/Signal.Text.Caption"
+                    android:textColor="@color/core_grey_90"
+                    android:paddingTop="4dp"
+                    android:textStyle="italic"
+                    android:visibility="gone"
+                    tools:text="Photo"
+                    tools:visibility="visible" />
+
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/quote_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Signal.Text.Body"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    tools:text="With great power comes great responsibility."
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/quote_thumbnail"
+                    android:layout_width="@dimen/quote_thumb_size"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    tools:visibility="gone" />
+
+                <FrameLayout
+                    android:id="@+id/quote_video_overlay"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/circle_white"
+                    android:layout_gravity="center"
+                    android:longClickable="false"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="8dp"
+                        android:tint="@color/core_ultramarine"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/triangle_right" />
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/quote_missing_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_broken_link"
+                android:tint="?attr/quote_missing_icon_color"/>
+
+            <TextView
+                android:id="@+id/quote_missing_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Signal.Text.Caption"
+                android:text="@string/QuoteView_original_missing"
+                android:textColor="@color/core_grey_90"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/quote_dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_gravity="top|end"
+        android:background="@drawable/dismiss_background"
+        android:src="@drawable/ic_close_white_18dp"
+        android:tint="?quote_dismiss_button_tint" />
+
+</merge>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="fill_parent"
+             android:layout_height="match_parent">
+
+    <include layout="@layout/conversation_item_banner"
+        android:id="@+id/empty_conversation_banner"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="2dp"
+            android:scrollbars="vertical"
+            android:cacheColorHint="?conversation_background"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+    <TextView android:id="@+id/scroll_date_header"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:layout_gravity="center_horizontal|top"
+              android:paddingStart="12dp"
+              android:paddingEnd="12dp"
+              android:paddingTop="4dp"
+              android:paddingBottom="4dp"
+              android:layout_marginTop="8dp"
+              style="@style/Signal.Text.Caption"
+              android:textColor="?attr/conversation_item_sticky_date_text_color"
+              android:background="?attr/conversation_item_sticky_date_background"
+              android:elevation="9dp"
+              android:visibility="gone"
+              tools:text="March 1, 2015" />
+
+    <View android:id="@+id/compose_divider"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          android:layout_gravity="bottom"
+          android:background="@drawable/compose_divider_background"
+          android:alpha="1"
+          android:visibility="invisible" />
+
+    <ImageButton
+            android:id="@+id/scroll_to_bottom_button"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom|end"
+            android:background="?attr/conversation_scroll_to_bottom_background"
+            android:tint="?attr/conversation_scroll_to_bottom_foreground_color"
+            android:elevation="1dp"
+            android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
+            android:src="@drawable/ic_scroll_down"/>
+</FrameLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_profile"
+    app:startDestination="@id/createProfileFragment">
+
+    <fragment
+        android:id="@+id/createProfileFragment"
+        android:name="org.thoughtcrime.securesms.profiles.edit.EditProfileFragment"
+        android:label="fragment_create_profile"
+        tools:layout="@layout/profile_create_fragment">
+
+        <action
+            android:id="@+id/action_editUsername"
+            app:destination="@id/usernameEditFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/usernameEditFragment"
+        android:name="org.thoughtcrime.securesms.usernames.username.UsernameEditFragment"
+        android:label="fragment_edit_username"
+        tools:layout="@layout/username_edit_fragment" />
+
+</navigation>

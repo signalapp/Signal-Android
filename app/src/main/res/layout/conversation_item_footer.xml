@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical|end"
+    tools:parentTag="org.thoughtcrime.securesms.components.ConversationItemFooter">
+
+    <TextView
+        android:id="@+id/footer_date"
+        android:autoLink="none"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:linksClickable="false"
+        style="@style/Signal.Text.Caption.MessageSent"
+        android:textColor="?conversation_item_sent_text_secondary_color"
+        tools:text="30m"/>
+
+    <org.thoughtcrime.securesms.components.ExpirationTimerView
+        android:id="@+id/footer_expiration_timer"
+        android:layout_marginStart="4dp"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/footer_sim_info"
+        android:autoLink="none"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:maxWidth="140dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:linksClickable="false"
+        style="@style/Signal.Text.Caption.MessageSent"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif-light"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="to SIM1" />
+
+    <ImageView
+        android:id="@+id/footer_insecure_indicator"
+        android:layout_width="12dp"
+        android:layout_height="11dp"
+        android:src="@drawable/ic_unlocked_white_18dp"
+        android:visibility="gone"
+        android:layout_marginStart="4dp"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/conversation_item__secure_message_description"
+        tools:visibility="visible"/>
+
+    <org.thoughtcrime.securesms.components.DeliveryStatusView
+        android:id="@+id/footer_delivery_status"
+        android:layout_marginStart="4dp"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+</merge>

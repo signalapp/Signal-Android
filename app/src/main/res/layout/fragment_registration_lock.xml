@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/kbs_lock_pin_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/RegistrationLockFragment__enter_your_pin"
+            android:textAppearance="@style/TextAppearance.Signal.Title1"
+            app:layout_constraintBottom_toTopOf="@id/kbs_lock_keyboard_toggle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.20" />
+
+        <TextView
+            android:id="@+id/kbs_lock_pin_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="27dp"
+            android:gravity="center_horizontal"
+            android:minHeight="66dp"
+            android:text="@string/RegistrationLockFragment__enter_the_pin_you_created"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textColor="@color/core_grey_60"
+            app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_title" />
+
+        <EditText
+            android:id="@+id/kbs_lock_pin_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:inputType="numberPassword"
+            android:minWidth="210dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_description" />
+
+        <TextView
+            android:id="@+id/kbs_lock_pin_input_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input"
+            tools:text="@string/RegistrationLockFragment__incorrect_pin_try_again" />
+
+        <Button
+            android:id="@+id/kbs_lock_forgot_pin"
+            style="@style/Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/RegistrationLockFragment__forgot_pin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input_label" />
+
+        <Button
+            android:id="@+id/kbs_lock_keyboard_toggle"
+            style="@style/Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toTopOf="@id/kbs_lock_pin_confirm"
+            app:layout_constraintTop_toBottomOf="@id/kbs_lock_forgot_pin"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="Create Alphanumeric Pin" />
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/kbs_lock_pin_confirm"
+            style="@style/Button.Registration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            app:cpb_textIdle="@string/RegistrationActivity_continue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

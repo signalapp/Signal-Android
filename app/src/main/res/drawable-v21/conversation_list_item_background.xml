@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="@color/core_ultramarine">
+    <item android:id="@android:id/mask" android:drawable="@android:color/black" />
+    <item>
+        <selector>
+            <item android:drawable="@color/core_ultramarine_33" android:state_selected="true" />
+        </selector>
+    </item>
+</ripple>

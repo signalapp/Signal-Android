@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextSecure.LightTheme" parent="TextSecure.BaseLightTheme">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="TextSecure.DarkTheme" parent="TextSecure.BaseDarkTheme">
+        <item name="android:statusBarColor">@color/core_grey_95</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/core_black</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/core_black</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/core_grey_95</item>
+        <item name="android:navigationBarColor">@color/core_grey_95</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="TextSecure.LightNoActionBar" parent="TextSecure.BaseLightNoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="TextSecure.DarkNoActionBar" parent="TextSecure.BaseDarkNoActionBar">
+        <item name="android:statusBarColor">@color/core_grey_95</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/core_grey_95</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="Theme.Signal.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/core_black</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

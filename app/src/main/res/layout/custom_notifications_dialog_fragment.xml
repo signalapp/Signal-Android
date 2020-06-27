@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/custom_notifications_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/CustomNotificationsDialogFragment__custom_notifications" />
+
+    <TextView
+        android:id="@+id/custom_notifications_message_section_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/CustomNotificationsDialogFragment__messages"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/custom_notifications_row"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_section_header">
+
+        <TextView
+            android:id="@+id/custom_notifications_enable_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:text="@string/CustomNotificationsDialogFragment__use_custom_notifications"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/custom_notifications_enable_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@id/custom_notifications_enable_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/custom_notifications_enable_label"
+            app:layout_constraintTop_toTopOf="@id/custom_notifications_enable_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/custom_notifications_sound_row"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_row">
+
+        <TextView
+            android:id="@+id/custom_notifications_sound_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:gravity="center_vertical|start"
+            android:text="@string/CustomNotificationsDialogFragment__notification_sound"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+
+        <TextView
+            android:id="@+id/custom_notifications_sound_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:textColor="?attr/colorAccent"
+            android:visibility="gone"
+            tools:text="Default (Popcorn)"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/custom_notifications_message_vibrate_row"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_sound_row">
+
+        <TextView
+            android:id="@+id/custom_notifications_message_vibrate_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:gravity="center_vertical|start"
+            android:text="@string/CustomNotificationsDialogFragment__vibrate"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+
+        <TextView
+            android:id="@+id/custom_notifications_message_vibrate_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:textColor="?attr/colorAccent"
+            android:visibility="gone"
+            tools:text="Default"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/custom_notifications_vibrate_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/custom_notifications_call_settings_section_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/CustomNotificationsDialogFragment__call_settings"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_vibrate_row"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/custom_notifications_ringtone_row"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_call_settings_section_header"
+        tools:visibility="visible">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:text="@string/CustomNotificationsDialogFragment__ringtone"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+
+        <TextView
+            android:id="@+id/custom_notifications_ringtone_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:textColor="?attr/colorAccent"
+            tools:text="Default" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/custom_notifications_call_vibrate_row"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_ringtone_row"
+        tools:visibility="visible">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:text="@string/CustomNotificationsDialogFragment__vibrate"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+
+        <TextView
+            android:id="@+id/custom_notifications_call_vibrate_selectior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:textColor="?attr/colorAccent"
+            tools:text="Default" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

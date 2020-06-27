@@ -11,7 +11,7 @@ Currently available on the Play store.
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
-https://github.com/WhisperSystems/Signal-Android/issues
+https://github.com/signalapp/Signal-Android/issues
 
 ## Joining the Beta
 Want to live life on the bleeding edge and help out with testing?
@@ -27,14 +27,13 @@ Interested in helping to translate Signal? Contribute here:
 https://www.transifex.com/projects/p/signal-android/
 
 ## Contributing Code
-Instructions on how to setup your development environment and build Signal can be found in  [BUILDING.md](https://github.com/WhisperSystems/Signal-Android/blob/master/BUILDING.md).
 
-If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/WhisperSystems/Signal-Android/blob/master/CONTRIBUTING.md), that might answer some of your questions.
+If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/master/CONTRIBUTING.md), that might answer some of your questions.
 
-For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://whispersystems.discoursehosting.net) for a high-level discussion with the wider community before implementation.
+For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
 
 ## Contributing Ideas
-Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://whispersystems.discoursehosting.net).
+Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
 
 Help
 ====
@@ -46,7 +45,7 @@ https://support.signal.org/
 ## Documentation
 Looking for documentation? Check out the wiki!
 
-https://github.com/WhisperSystems/Signal-Android/wiki
+https://github.com/signalapp/Signal-Android/wiki
 
 # Legal things
 ## Cryptography Notice
@@ -60,9 +59,7 @@ The form and manner of this distribution makes it eligible for export under the 
 
 ## License
 
-Copyright 2011 Whisper Systems
-
-Copyright 2013-2017 Open Whisper Systems
+Copyright 2013-2020 Signal
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
 

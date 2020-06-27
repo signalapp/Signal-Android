@@ -1,6 +1,6 @@
 # Contributing to Signal Android
 
-Thank you for deciding to help this project! If you have contributed to other open source projects before please note that some conventions here might be a bit different than what you are used to. Reading this document will save you, other contributors and the developers time.
+Thank you for supporting Signal and looking for ways to help. Please note that some conventions here might be a bit different than what you are used to, even if you have contributed to other open source projects before. Reading this document will help you save time and work effectively with the developers and other contributors.
 
 
 ## Development Ideology
@@ -9,76 +9,81 @@ Truths which we believe to be self-evident:
 
 1. **The answer is not more options.**  If you feel compelled to add a preference that's exposed to the user, it's very possible you've made a wrong turn somewhere.
 1. **The user doesn't know what a key is.**  We need to minimize the points at which a user is exposed to this sort of terminology as extremely as possible.
-1. **There are no power users.** The idea that some users "understand" concepts better than others has proven to be, for the most part, false. If anything, "power users" are more dangerous than the rest, and we should avoid exposing dangerous functionality to them.
+1. **There are no power users.**  The idea that some users "understand" concepts better than others has proven to be, for the most part, false. If anything, "power users" are more dangerous than the rest, and we should avoid exposing dangerous functionality to them.
 1. **If it's "like PGP," it's wrong.**  PGP is our guide for what not to do.
 1. **It's an asynchronous world.**  Be wary of anything that is anti-asynchronous: ACKs, protocol confirmations, or any protocol-level "advisory" message.
-1. **There is no such thing as time.** Protocol ideas that require synchronized clocks are doomed to failure.
+1. **There is no such thing as time.**  Protocol ideas that require synchronized clocks are doomed to failure.
 
 
 ## Translations
 
-Please do not submit issues or pull requests for translation fixes. Anyone can update the translations in [Transifex](https://www.transifex.com/projects/p/signal-android/). Please submit your corrections there.
+Thanks to a dedicated community of volunteer translators, Signal is now available in more than one hundred languages. We use Transifex to manage our translation efforts, not GitHub. Any suggestions, corrections, or new translations should be submitted to the [Signal localization project for Android](https://www.transifex.com/signalapp/signal-android/).
 
 
 ## Issues
 
 ### Useful bug reports
-1. Please search both open and closed issues first to make sure your issue is not a duplicate.
-1. Read the [Submitting useful bug reports guide](https://github.com/WhisperSystems/Signal-Android/wiki/Submitting-useful-bug-reports) before posting a bug.
+1. Please search both open and closed issues to make sure your bug report is not a duplicate.
+1. Read the [guide to submitting useful bug reports](https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports) before posting a bug.
 
-### Issue tracker is for bugs
-The main purpose of this issue tracker is to track bugs for the Android client. Relevant, concise and to the point comments that help to solve the issue are very welcome.
+### The issue tracker is for bugs, not feature requests
+The GitHub issue tracker is not used for feature requests, but new ideas can be submitted and discussed on the [community forum](https://community.signalusers.org/c/feature-requests). The purpose of this issue tracker is to track bugs in the Android client. Bug reports should only be submitted for existing functionality that does not work as intended. Comments that are relevant and concise will help the developers solve issues more quickly.
 
-##### Send support questions to support
-Please do **not** ask support questions at the issue tracker. We want to help you using Signal and we have created our support system just for that. You can reach support by sending email to support@whispersystems.org or by going to our [Support Center](https://support.signal.org/). You can also search for existing troubleshooting articles at the [Support Center](https://support.signal.org/).
+### Send support questions to support
+You can reach support by sending an email to support@signal.org or by visiting the [Signal Support Center](https://support.signal.org/) where you can also search for existing troubleshooting articles and find answers to frequently asked questions. Please do not post support questions on the GitHub issue tracker.
 
-##### Not a discussion forum
-Please do **not** use this issue tracker as a discussion forum. Discussion related to the bug in question should of course go to the issue itself. However other discussion should take place at the [community forum](https://whispersystems.discoursehosting.net). You can use that forum to discuss any Signal related topics or to just hang out with your fellow users.
+### GitHub is not a generic discussion forum
+Conversations about open bug reports belong here. However, all other discussions should take place on the [community forum](https://community.signalusers.org). You can use the community forum to discuss anything that is related to Signal or to hang out with your fellow users in the "Off Topic" category.
 
 ### Don't bump issues
-Every time someone comments on an issue, GitHub sends email to [everyone who is watching](https://github.com/WhisperSystems/Signal-Android/watchers) the repository (currently around 500 people). Thus bumping issues with :+1:s, _me toos_ or asking for updates generates a lot of unnecessary email notifications. Moreover bumping an issue does not help solve it. Please be respectful of everyone's time and only comment if you have relevant new information to add.
+Every time someone comments on an issue, GitHub sends an email to [hundreds of people](https://github.com/signalapp/Signal-Android/watchers). Bumping issues with a "+1" (or asking for updates) generates a lot of unnecessary email notifications and does not help anyone solve the issue any faster. Please be respectful of everyone's time and only comment when you have new information to add.
 
 ### Open issues
 
-#### If it's open it's tracked
-Have you followed all the points in the [Submitting useful bug reports guide](https://github.com/WhisperSystems/Signal-Android/wiki/Submitting-useful-bug-reports) but nobody has commented on your issue? Is there no milestone or person assigned to it? Don't worry, the developers read every issue and if it's open it means it's tracked and taken into account. It might just take time as other issues have higher priority. And remember that this is an open source project: Everyone is encouraged to take an active role in fixing open issues.
+#### If it's open, it's tracked
+The developers read every issue, but high-priority bugs or features can take precedence over others. Signal is an open source project, and everyone is encouraged to play an active role in diagnosing and fixing open issues.
 
 ### Closed issues
 
 #### "My issue was closed without giving a reason!"
-Please understand that writing detailed explanations every time for every issue someone comes up with takes time. Sometimes a reason has been posted earlier to another related issue which you can search for. It's also possible that your issue was not in line with the guidelines of the project (see especially the [Development Ideology](https://github.com/WhisperSystems/Signal-Android/blob/master/CONTRIBUTING.md#development-ideology)), or it was decided that the issue is not something that Signal should do at this time.
+Although we do our best, writing detailed explanations for every issue can be time consuming, and the topic also might have been covered previously in other related issues.
 
 
 ## Pull requests
 
-### Sign the Contributor Licence Agreement (CLA)
-You need to sign our CLA before your pull request can be merged. You can sign it at: https://signal.org/cla/
+### Smaller is better
+Big changes are significantly less likely to be accepted. Large features often require protocol modifications and necessitate a staged rollout process that is coordinated across millions of users on multiple platforms (Android, iOS, and Desktop).
+
+Try not to take on too much at once. As a first-time contributor, we recommend starting with small and simple PRs in order to become familiar with the codebase. Most of the work should go into discovering which three lines need to change rather than writing the code.
+
+### Sign the Contributor License Agreement (CLA)
+You will need to [sign our CLA](https://signal.org/cla/) before your pull request can be merged.
 
 ### Follow the Code Style Guidelines
-Before submitting a pull request please check that your code adheres to the [Code Style Guidelines](https://github.com/WhisperSystems/Signal-Android/wiki/Code-Style-Guidelines).
+Ensure that your code adheres to the [Code Style Guidelines](https://github.com/signalapp/Signal-Android/wiki/Code-Style-Guidelines) before submitting a pull request.
 
-### Submit only complete PRs and test them
-Please do not submit pull requests that are still a work in progress. Pull requests should be ready for a merge when you submit them. Also please do not submit pull requests that you have not tested.
-
-### Smaller is better
-Please do not try to change too much at once. Big changes are less likely to be merged. If you are a first time contributor start with small and simple PRs to get to know the codebase.
+### Submit finished and well-tested pull requests
+Please do not submit pull requests that are still a work in progress. Pull requests should be thoroughly tested and ready to merge before they are submitted.
 
 ### Merging can sometimes take a while
-If your pull request follows all the advice above but still has not been merged it usually means the developers haven't simply had the time to review it yet. We understand that this might feel frustrating. We are sorry!
+If your pull request follows all of the advice above but still has not been merged, this usually means that the developers haven't had time to review it yet. We understand that this might feel frustrating, and we apologize. The Signal team is still small, but [we are hiring](https://signal.org/workworkwork/).
+
 
 ## How can I contribute?
-Anyone can help by
-- advising new people about the guidelines of this project
- - redirecting support questions to support@whispersystems.org and the [support site](https://support.signal.org/)
- - redirecting non-bug related discussions to the [community forum](https://whispersystems.discoursehosting.net)
-- improving documentation in the [wiki](https://github.com/WhisperSystems/Signal-Android/wiki)
-- [translating](https://www.transifex.com/projects/p/signal-android/)
-- finding and marking duplicate issues
-- trying to reproduce issues
-- finding solutions to open issues and posting relevant findings as comments
-- submitting pull requests
-- testing other people's pull requests
-- spreading the joy of Signal to your friends and family
-- donating money through the [Freedom of the Press Foundation's donation page](https://freedom.press/crowdfunding/signal/)
+There are several other ways to get involved:
+* Help new users learn about Signal.
+  * Redirect support questions to support@signal.org and the [Signal Support Center](https://support.signal.org/).
+  * Redirect non-bug discussions to the [community forum](https://community.signalusers.org).
+* Improve documentation in the [wiki](https://github.com/signalapp/Signal-Android/wiki).
+* Join the community of volunteer translators on Transifex:
+  * [Android](https://www.transifex.com/signalapp/signal-android/)
+  * [iOS](https://www.transifex.com/signalapp/signal-ios/)
+  * [Desktop](https://www.transifex.com/signalapp/signal-desktop/)
+* Find and mark duplicate issues.
+* Try to reproduce issues and help with troubleshooting.
+* Discover solutions to open issues and post any relevant findings.
+* Test other people's pull requests.
+* Contribute to Signal via the [Freedom of the Press Foundation's donation page](https://freedom.press/crowdfunding/signal/).
+* Share Signal with your friends and family.
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/WhisperSystems/Signal-Android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Signal is made for you. Thank you for your feedback and support.

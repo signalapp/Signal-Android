@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    tools:background="?dialog_background_color">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/safety_number_change_recipient_avatar"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
+        android:cropToPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/safety_number_change_recipient_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_contact_picture" />
+
+    <org.thoughtcrime.securesms.components.FromTextView
+        android:id="@+id/safety_number_change_recipient_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textColor="?title_text_color_primary"
+        app:layout_constraintBottom_toTopOf="@+id/safety_number_change_recipient_subtitle"
+        app:layout_constraintEnd_toStartOf="@+id/safety_number_change_recipient_view"
+        app:layout_constraintStart_toEndOf="@+id/safety_number_change_recipient_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Jules Bonnot" />
+
+    <TextView
+        android:id="@+id/safety_number_change_recipient_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="marquee"
+        android:textColor="?title_text_color_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/safety_number_change_recipient_view"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/safety_number_change_recipient_name"
+        app:layout_constraintTop_toBottomOf="@+id/safety_number_change_recipient_name"
+        tools:text="+1 817-647-3790" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/safety_number_change_recipient_view"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/safety_number_change_dialog_button_background"
+        android:elevation="0dp"
+        android:minWidth="0dp"
+        android:text="@string/safety_number_change_dialog__view"
+        android:textColor="?safety_number_change_dialog_button_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/safety_number_change_recipient_name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

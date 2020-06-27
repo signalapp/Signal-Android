@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selected_indicator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/media_overview_toolbar_background"
+    android:visibility="gone"
+    tools:showIn="@layout/media_overview_detail_item_document"
+    tools:visibility="visible">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/MediaOverviewActivity_Selected_description"
+        app:srcCompat="@drawable/ic_check_circle_solid_20" />
+
+</FrameLayout>

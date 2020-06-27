@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.conversationlist.ConversationListItem
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="?attr/conversation_list_item_background"
+        android:layout_width="match_parent"
+        android:focusable="true"
+        android:nextFocusRight="@+id/fab"
+        android:nextFocusLeft="@+id/container"
+        android:layout_height="72dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+    <FrameLayout
+        android:id="@+id/avatar_container"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="2dp">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/contact_photo_image"
+            android:foreground="@drawable/contact_photo_background"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            tools:src="@drawable/ic_contact_picture"
+            android:contentDescription="@string/conversation_list_item_view__contact_photo_image" />
+
+        <TextView
+            android:id="@+id/unread_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            style="@style/Signal.Text.Caption"
+            android:fontFamily="sans-serif-medium"
+            android:minWidth="@dimen/unread_count_bubble_diameter"
+            android:padding="5sp"
+            android:background="?conversation_list_item_unread_background"
+            android:textColor="@color/core_white"
+            android:gravity="center"
+            tools:text="1"/>
+
+    </FrameLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="4dp"
+                  android:layout_centerVertical="true"
+                  android:layout_toEndOf="@id/avatar_container"
+                  android:weightSum="1"
+                  android:orientation="horizontal">
+
+        <org.thoughtcrime.securesms.components.FromTextView
+                  android:id="@+id/from"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentTop="true"
+                  android:layout_alignParentStart="true"
+                  android:layout_toStartOf="@+id/thumbnail"
+                  style="@style/Signal.Text.Body"
+                  android:fontFamily="sans-serif-medium"
+                  android:textColor="?attr/conversation_list_item_contact_color"
+                  android:maxLines="1"
+                  tools:text="Jules Bonnot"
+                  android:ellipsize="end"
+                  android:layout_marginBottom="2dp"
+                  android:drawablePadding="5dp"/>
+
+        <org.thoughtcrime.securesms.components.AlertView
+                android:id="@+id/indicators_parent"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:paddingTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/from"
+                app:useSmallIcon="true"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+        <FrameLayout
+            android:id="@+id/subject_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="1dp"
+            android:layout_below="@id/from"
+            android:layout_toEndOf="@id/indicators_parent"
+            android:layout_toStartOf="@+id/status">
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Signal.Text.Preview"
+                    android:textColor="?attr/conversation_list_item_subject_color"
+                    android:maxLines="1"
+                    tools:text="Wheels arrive at 3pm flat. This is a somewhat longer message."
+                    android:ellipsize="end" />
+
+            <org.thoughtcrime.securesms.components.TypingIndicatorView
+                android:id="@+id/typing_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                app:typingIndicator_tint="?conversation_list_typing_tint"/>
+
+        </FrameLayout>
+
+        <org.thoughtcrime.securesms.components.ThumbnailView
+                android:id="@+id/thumbnail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toStartOf="@+id/date"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/conversation_activity__attachment_thumbnail"
+                android:visibility="gone"
+                tools:src="@drawable/ic_video_light"
+                tools:visibility="visible" />
+
+        <TextView android:id="@id/date"
+                  android:layout_marginStart="3dp"
+                  android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:layout_alignParentEnd="true"
+                  android:layout_alignBaseline="@+id/from"
+                  style="@style/Signal.Text.Caption"
+                  android:textColor="?attr/conversation_list_item_date_color"
+                  tools:text="30 mins"
+                  android:singleLine="true"/>
+
+        <TextView android:id="@+id/archived"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/date"
+                  android:layout_alignParentEnd="true"
+                  android:layout_marginStart="5dp"
+                  android:paddingStart="6dp"
+                  android:paddingEnd="6dp"
+                  android:paddingTop="2dp"
+                  android:paddingBottom="2dp"
+                  style="@style/Signal.Text.Caption"
+                  android:text="@string/conversation_list_item_view__archived"
+                  android:textColor="@color/core_white"
+                  android:background="@drawable/archived_indicator_background" />
+
+
+        <FrameLayout android:id="@+id/status"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="4dp"
+                     android:layout_below="@id/date"
+                     android:layout_toStartOf="@id/archived"
+                     android:layout_alignWithParentIfMissing="true">
+
+            <org.thoughtcrime.securesms.components.DeliveryStatusView
+                    android:id="@+id/delivery_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:iconColor="?attr/conversation_list_item_delivery_icon_color"/>
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</org.thoughtcrime.securesms.conversationlist.ConversationListItem>

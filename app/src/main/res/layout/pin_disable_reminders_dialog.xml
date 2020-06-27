@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+  <TextView
+      android:id="@+id/reminder_disable_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/preferences_app_protection__confirm_your_signal_pin"
+      style="@style/Signal.Text.Body"
+      android:fontFamily="sans-serif-medium"
+      android:layout_marginTop="8dp"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"/>
+
+  <TextView
+      android:id="@+id/reminder_disable_description"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin"
+      android:layout_marginTop="8dp"
+      android:gravity="center"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/reminder_disable_title"/>
+
+  <EditText
+      android:id="@+id/reminder_disable_pin"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:minWidth="105sp"
+      android:paddingTop="36dp"
+      android:gravity="center"
+      android:hint="@string/preferences_app_protection__confirm_pin"
+      android:fontFamily="sans-serif"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/reminder_disable_description" />
+
+  <TextView
+      android:id="@+id/reminder_disable_status"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:textColor="@color/core_red"
+      app:layout_constraintTop_toBottomOf="@id/reminder_disable_pin"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      tools:text="@string/preferences_app_protection__incorrect_pin_try_again" />
+
+  <Button
+      android:id="@+id/reminder_disable_cancel"
+      style="@style/Button.Borderless"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@android:string/cancel"
+      app:layout_constraintTop_toTopOf="@id/reminder_disable_turn_off"
+      app:layout_constraintEnd_toStartOf="@id/reminder_disable_turn_off"/>
+
+  <Button
+      android:id="@+id/reminder_disable_turn_off"
+      style="@style/Button.Primary"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/preferences_app_protection__turn_off"
+      android:layout_marginTop="8dp"
+      android:enabled="false"
+      app:layout_constraintTop_toBottomOf="@id/reminder_disable_status"
+      app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

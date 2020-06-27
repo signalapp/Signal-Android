@@ -1,0 +1,109 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto3";
+
+package signalservice;
+
+option java_package         = "org.whispersystems.signalservice.internal.storage.protos";
+option java_multiple_files  = true;
+
+message StorageManifest {
+  uint64 version = 1;
+  bytes  value   = 2;
+}
+
+message StorageItem {
+  bytes key   = 1;
+  bytes value = 2;
+}
+
+message StorageItems {
+  repeated StorageItem items = 1;
+}
+
+message ReadOperation {
+  repeated bytes readKey = 1;
+}
+
+message WriteOperation {
+           StorageManifest manifest   = 1;
+  repeated StorageItem     insertItem = 2;
+  repeated bytes           deleteKey  = 3;
+           bool            clearAll   = 4;
+}
+
+message ManifestRecord {
+  message Identifier {
+    enum Type {
+      UNKNOWN = 0;
+      CONTACT = 1;
+      GROUPV1 = 2;
+      GROUPV2 = 3;
+      ACCOUNT = 4;
+    }
+
+    bytes raw  = 1;
+    Type  type = 2;
+  }
+
+           uint64     version     = 1;
+  repeated Identifier identifiers = 2;
+}
+
+message StorageRecord {
+  oneof record {
+    ContactRecord contact = 1;
+    GroupV1Record groupV1 = 2;
+    GroupV2Record groupV2 = 3;
+    AccountRecord account = 4;
+  }
+}
+
+message ContactRecord {
+  enum IdentityState {
+    DEFAULT    = 0;
+    VERIFIED   = 1;
+    UNVERIFIED = 2;
+  }
+
+  string        serviceUuid   = 1;
+  string        serviceE164   = 2;
+  bytes         profileKey    = 3;
+  bytes         identityKey   = 4;
+  IdentityState identityState = 5;
+  string        givenName     = 6;
+  string        familyName    = 7;
+  string        username      = 8;
+  bool          blocked       = 9;
+  bool          whitelisted   = 10;
+  bool          archived      = 11;
+}
+
+message GroupV1Record {
+  bytes id          = 1;
+  bool  blocked     = 2;
+  bool  whitelisted = 3;
+  bool  archived    = 4;
+}
+
+message GroupV2Record {
+  bytes masterKey   = 1;
+  bool  blocked     = 2;
+  bool  whitelisted = 3;
+  bool  archived    = 4;
+}
+
+message AccountRecord {
+  bytes  profileKey             = 1;
+  string givenName              = 2;
+  string familyName             = 3;
+  string avatarUrlPath          = 4;
+  bool   noteToSelfArchived     = 5;
+  bool   readReceipts           = 6;
+  bool   sealedSenderIndicators = 7;
+  bool   typingIndicators       = 8;
+  bool   linkPreviews           = 9;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.webrtc.WebRtcCallView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/callScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:clickable="true"
+    android:fitsSystemWindows="false" />

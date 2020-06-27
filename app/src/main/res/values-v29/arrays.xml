@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+  <string-array name="pref_theme_entries" tools:ignore="InconsistentArrays">
+    <item>@string/preferences__system_default</item>
+    <item>@string/preferences__light_theme</item>
+    <item>@string/preferences__dark_theme</item>
+  </string-array>
+
+  <string-array name="pref_theme_values" translatable="false" tools:ignore="InconsistentArrays">
+    <item>system</item>
+    <item>light</item>
+    <item>dark</item>
+  </string-array>
+
+</resources>

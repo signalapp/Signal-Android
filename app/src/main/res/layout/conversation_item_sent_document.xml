@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.DocumentView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/document_view"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:doc_titleColor="?conversation_item_sent_text_primary_color"
+        app:doc_captionColor="?conversation_item_sent_text_secondary_color"
+        app:doc_downloadButtonTint="?conversation_item_sent_download_icon_color"
+        tools:visibility="visible"/>

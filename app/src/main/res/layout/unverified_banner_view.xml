@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/reminder_background_normal"
+        android:focusable="true"
+        android:nextFocusRight="@+id/cancel"
+        android:orientation="horizontal"
+        tools:visibility="visible">
+
+    <ImageView android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_gravity="center_vertical"
+               android:src="@drawable/ic_alert"/>
+
+    <TextView android:id="@+id/unverified_text"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:textColor="@color/white"
+              android:textSize="16sp"
+              android:layout_weight="1"
+              android:layout_margin="16dp"
+              tools:text="Your safety number with Jules Bonnot has changed and is no longer verified"/>
+
+    <ImageButton
+            android:id="@+id/cancel"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="2dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:focusable="true"
+            android:nextFocusLeft="@+id/container"
+            android:nextFocusRight="@+id/container"
+            android:src="@drawable/ic_close_white_24dp"
+            android:contentDescription="@string/InviteActivity_cancel"/>
+
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.contacts.ContactSelectionListItem xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/contact_selection_item_height"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:focusable="true"
+    android:background="@drawable/conversation_item_background"
+    android:paddingStart="@dimen/selection_item_header_width"
+    android:paddingEnd="24dp">
+
+    <FrameLayout
+        android:layout_width="52dp"
+        android:layout_height="52dp">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/contact_photo_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:foreground="@drawable/contact_photo_background"
+            android:cropToPadding="true"
+            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
+            tools:src="@color/blue_600"
+            tools:ignore="UnusedAttribute" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/check_box"
+            android:background="?attr/contact_selection_checkbox_background"
+            android:button="@null"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="bottom|end"
+            android:focusable="false"
+            android:clickable="false" />
+
+    </FrameLayout>
+
+    <LinearLayout android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:layout_marginStart="8dp"
+                  android:layout_marginEnd="8dp"
+                  android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.components.FromTextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+                tools:text="@sample/contacts.json/data/name" />
+
+        <LinearLayout android:id="@+id/number_container"
+                      android:orientation="horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/number"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textDirection="ltr"
+                      android:singleLine="true"
+                      android:ellipsize="marquee"
+                      android:textAppearance="@style/TextAppearance.Signal.Body2"
+                      android:textColor="?attr/title_text_color_secondary"
+                      android:textSize="14sp"
+                      android:fontFamily="sans-serif-light"
+                      tools:text="@sample/contacts.json/data/number" />
+
+            <TextView android:id="@+id/label"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:paddingStart="10dip"
+                      android:ellipsize="end"
+                      android:singleLine="true"
+                      android:textAppearance="@style/TextAppearance.Signal.Body2"
+                      android:textColor="?attr/title_text_color_secondary"
+                      android:fontFamily="sans-serif-light"
+                      tools:text="@sample/contacts.json/data/label"
+                      tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</org.thoughtcrime.securesms.contacts.ContactSelectionListItem>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/group_media_card"
+    style="@style/Widget.Signal.CardView.PreferenceRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="24dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ViewStub
+                android:id="@+id/message_details_header_message_view_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_update"/>
+
+            <ViewStub
+                android:id="@+id/message_details_header_message_view_sent_multimedia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_sent_multimedia"/>
+
+            <ViewStub
+                android:id="@+id/message_details_header_message_view_received_multimedia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_received_multimedia"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/message_details_header_error_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:textSize="16sp"
+                android:padding="5dp"
+                tools:visibility="visible"
+                android:text="@string/message_details_header__issues_need_your_attention"
+                android:drawablePadding="4dp"
+                app:drawableStartCompat="@drawable/ic_info_outline_message_details_24"
+                android:gravity="center_vertical" />
+
+            <Button
+                android:id="@+id/message_details_header_resend_button"
+                android:layout_width="wrap_content"
+                android:layout_height="38sp"
+                style="@style/InfoButton"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center_vertical"
+                android:drawableStart="@drawable/ic_refresh_white_18dp"
+                android:text="@string/message_recipients_list_item__resend"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/message_details_header_message_metadata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/message_details_header_sent_time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="end"
+                android:text="@string/message_details_header__sent"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/message_details_header_sent_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/message_details_table_row_pad"
+                android:background="?selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_sent_time_label"
+                app:layout_constraintStart_toEndOf="@+id/message_details_header_label_barrier"
+                tools:text="Jan 18, 2015, 12:29:37 AM GMT-08:00" />
+
+            <TextView
+                android:id="@+id/message_details_header_received_time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="end"
+                android:text="@string/message_details_header__received"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_sent_time_label" />
+
+            <TextView
+                android:id="@+id/message_details_header_received_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/message_details_table_row_pad"
+                android:background="?selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_received_time_label"
+                app:layout_constraintStart_toEndOf="@id/message_details_header_label_barrier"
+                tools:text="Jan 18, 2015, 12:31:15 AM GMT-08:00" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/message_details_header_received_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="message_details_header_received_time_label,message_details_header_received_time" />
+
+            <TextView
+                android:id="@+id/message_details_header_expires_in_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="end"
+                android:text="@string/message_details_header__disappears"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_received_time_label" />
+
+            <TextView
+                android:id="@+id/message_details_header_expires_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/message_details_table_row_pad"
+                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_expires_in_label"
+                app:layout_constraintStart_toEndOf="@id/message_details_header_label_barrier"
+                tools:text="1 week" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/message_details_header_expires_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="message_details_header_expires_in_label,message_details_header_expires_in" />
+
+            <TextView
+                android:id="@+id/message_details_header_transport_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="end"
+                android:text="@string/message_details_header__via"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_expires_in_label" />
+
+            <TextView
+                android:id="@+id/message_details_header_transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/message_details_table_row_pad"
+                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_transport_label"
+                app:layout_constraintStart_toEndOf="@id/message_details_header_label_barrier"
+                tools:text="Push (TextSecure)" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/message_details_header_label_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="message_details_header_sent_time_label,message_details_header_received_time_label,message_details_header_expires_in_label" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

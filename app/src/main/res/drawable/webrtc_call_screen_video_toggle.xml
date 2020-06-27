@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:drawable="@drawable/circle_tintable" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_video_solid_grey_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/webrtc_call_screen_circle_grey" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_video_solid_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+        </layer-list>
+    </item>
+</selector>

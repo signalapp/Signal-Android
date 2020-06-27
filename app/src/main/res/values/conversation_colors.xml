@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="conversation_crimson">#cc163d</color>
+    <color name="conversation_crimson_tint">#eda6ae</color>
+    <color name="conversation_crimson_shade">#8a0f29</color>
+
+    <color name="conversation_vermillion">#c73800</color>
+    <color name="conversation_vermillion_tint">#eba78e</color>
+    <color name="conversation_vermillion_shade">#872600</color>
+
+    <color name="conversation_burlap">#746c53</color>
+    <color name="conversation_burlap_tint">#c4b997</color>
+    <color name="conversation_burlap_shade">#58513c</color>
+
+    <color name="conversation_forest">#3b7845</color>
+    <color name="conversation_forest_tint">#8fcc9a</color>
+    <color name="conversation_forest_shade">#2b5934</color>
+
+    <color name="conversation_wintergreen">#1c8260</color>
+    <color name="conversation_wintergreen_tint">#9bcfbd</color>
+    <color name="conversation_wintergreen_shade">#36544a</color>
+
+    <color name="conversation_teal">#067589</color>
+    <color name="conversation_teal_tint">#a5cad5</color>
+    <color name="conversation_teal_shade">#055968</color>
+
+    <color name="conversation_blue">#336ba3</color>
+    <color name="conversation_blue_tint">#adc8e1</color>
+    <color name="conversation_blue_shade">#285480</color>
+
+    <color name="conversation_indigo">#5951c8</color>
+    <color name="conversation_indigo_tint">#c2c1e7</color>
+    <color name="conversation_indigo_shade">#4840a0</color>
+
+    <color name="conversation_violet">#862caf</color>
+    <color name="conversation_violet_tint">#cdaddc</color>
+    <color name="conversation_violet_shade">#6b248a</color>
+
+    <color name="conversation_plumb">#a23474</color>
+    <color name="conversation_plumb_tint">#dcb2ca</color>
+    <color name="conversation_plumb_shade">#881b5b</color>
+
+    <color name="conversation_taupe">#895d66</color>
+    <color name="conversation_taupe_tint">#cfb5bb</color>
+    <color name="conversation_taupe_shade">#6a4e54</color>
+
+    <color name="conversation_steel">#6b6b78</color>
+    <color name="conversation_steel_tint">#bebec6</color>
+    <color name="conversation_steel_shade">#5a5a63</color>
+
+    <color name="conversation_ultramarine">@color/core_ultramarine</color>
+    <color name="conversation_ultramarine_tint">#b0c8f9</color>
+    <color name="conversation_ultramarine_shade">#1851b4</color>
+
+    <color name="conversation_group">@color/core_ultramarine</color>
+    <color name="conversation_group_tint">#b0c8f9</color>
+    <color name="conversation_group_shade">#1851b4</color>
+
+</resources>

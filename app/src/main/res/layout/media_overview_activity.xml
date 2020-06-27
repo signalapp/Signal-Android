@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="?attr/media_overview_toolbar_background"
+            android:titleTextColor="?attr/media_overview_toolbar_foreground"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+        <org.thoughtcrime.securesms.components.ControllableTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/media_overview_toolbar_background"
+            app:tabIndicatorColor="@color/core_ultramarine"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/core_ultramarine" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <View
+        android:id="@+id/sorting"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:background="?attr/media_overview_toolbar_secondary_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+
+    <TextView
+        android:id="@+id/sort_order"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:textColor="?attr/media_overview_toolbar_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/sorting"
+        app:layout_constraintStart_toStartOf="@+id/sorting"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:text="@string/MediaOverviewActivity_Storage_used" />
+
+    <ImageView
+        android:id="@+id/sort_order_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:padding="4dp"
+        android:tint="?attr/media_overview_toolbar_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/sort_order"
+        app:layout_constraintStart_toEndOf="@+id/sort_order"
+        app:layout_constraintTop_toTopOf="@+id/sort_order"
+        app:srcCompat="@drawable/ic_arrow_down_14" />
+
+    <org.thoughtcrime.securesms.components.AnimatingToggle
+        android:id="@+id/grid_list_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/sorting"
+        app:layout_constraintEnd_toEndOf="@+id/sorting"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <ImageView
+            android:id="@+id/view_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_touch_highlight_background"
+            android:clickable="true"
+            android:contentDescription="@string/MediaOverviewActivity_Grid_view_description"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:tint="?attr/media_overview_toolbar_foreground"
+            android:visibility="visible"
+            app:srcCompat="?attr/media_overview_grid_view_icon" />
+
+        <ImageView
+            android:id="@+id/view_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_touch_highlight_background"
+            android:clickable="true"
+            android:contentDescription="@string/MediaOverviewActivity_List_view_description"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:tint="?attr/media_overview_toolbar_foreground"
+            android:visibility="gone"
+            app:srcCompat="?attr/media_overview_list_view_icon" />
+
+    </org.thoughtcrime.securesms.components.AnimatingToggle>
+
+    <org.thoughtcrime.securesms.components.ControllableViewPager
+        android:id="@+id/pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sorting" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

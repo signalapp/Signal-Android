@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 3.3.2" client="gradle" variant="playRelease" version="3.3.2">
+
+    <issue
+        id="MissingPermission"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        errorLine1="    List&lt;SubscriptionInfo> list = subscriptionManager.getActiveSubscriptionInfoList();"
+        errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/org/thoughtcrime/securesms/util/dualsim/SubscriptionManagerCompat.java"
+            line="101"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        message="Expected resource of type styleable"
+        errorLine1="                drawables.getColor(1, 0xff000000);"
+        errorLine2="                                   ~">
+        <location
+            file="src/main/java/org/thoughtcrime/securesms/contacts/ContactSelectionListAdapter.java"
+            line="187"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="AppLinkUrlError"
+        message="Missing URL"
+        errorLine1="        &lt;intent-filter>"
+        errorLine2="        ^">
+        <location
+            file="AndroidManifest.xml"
+            line="368"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppLinkUrlError"
+        message="Missing URL"
+        errorLine1="        &lt;intent-filter>"
+        errorLine2="        ^">
+        <location
+            file="AndroidManifest.xml"
+            line="381"
+            column="9"/>
+    </issue>
+
+</issues>

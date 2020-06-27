@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="org.thoughtcrime.securesms.components.webrtc.WebRtcCallView">
+
+    <View
+        android:id="@+id/call_screen_blur_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_black_40" />
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/call_screen_recipient_avatar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center" />
+
+    <ImageView
+        android:id="@+id/call_screen_recipient_avatar_call_card"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/call_screen_remote_renderer_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/call_screen_large_local_renderer_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/call_screen_header_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/webrtc_call_screen_header_gradient" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/call_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/call_screen_ongoing_footer_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/webrtc_call_screen_header_gradient"
+            android:rotation="180"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="gone" />
+
+        <View
+            android:id="@+id/call_screen_incoming_footer_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@drawable/webrtc_call_screen_header_gradient"
+            android:rotation="180"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
+
+        <org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
+            android:id="@+id/call_screen_pip_area"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/call_screen_pip"
+                android:layout_width="@dimen/picture_in_picture_gesture_helper_pip_width"
+                android:layout_height="@dimen/picture_in_picture_gesture_helper_pip_height"
+                android:background="@null"
+                android:clipChildren="true"
+                android:translationX="100000dp"
+                android:translationY="-100000dp"
+                android:visibility="gone"
+                app:cardCornerRadius="8dp"
+                tools:background="@color/red"
+                tools:visibility="visible">
+
+                <FrameLayout
+                    android:id="@+id/call_screen_small_local_renderer_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.cardview.widget.CardView>
+        </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
+
+        <ImageView
+            android:id="@+id/call_screen_down_arrow"
+            android:layout_width="20dp"
+            android:layout_height="11dp"
+            android:layout_marginStart="13dp"
+            app:layout_constraintBottom_toBottomOf="@id/call_screen_recipient_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/call_screen_recipient_name" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/call_screen_recipient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:shadowColor="@color/transparent_black_20"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4.0"
+            android:textAppearance="@style/TextAppearance.Signal.Title2"
+            android:textColor="@color/core_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kiera Thompson" />
+
+        <TextView
+            android:id="@+id/call_screen_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:shadowColor="@color/transparent_black_40"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4.0"
+            android:textColor="@color/core_white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/call_screen_recipient_name"
+            tools:text="Signal Calling..." />
+
+        <org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutputToggleButton
+            android:id="@+id/call_screen_speaker_toggle"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="34dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/call_screen_camera_direction_toggle"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/webrtc_call_screen_speaker_toggle"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/call_screen_camera_direction_toggle"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="34dp"
+            android:clickable="false"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/call_screen_video_toggle"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/call_screen_speaker_toggle"
+            app:srcCompat="@drawable/webrtc_call_screen_camera_toggle"
+            tools:visibility="visible" />
+
+        <org.thoughtcrime.securesms.components.AccessibleToggleButton
+            android:id="@+id/call_screen_video_toggle"
+            style="@style/WebRtcCallV2CompoundButton"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/webrtc_call_screen_video_toggle"
+            android:stateListAnimator="@null"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/call_screen_audio_mic_toggle"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/call_screen_camera_direction_toggle"
+            tools:checked="true"
+            tools:visibility="visible" />
+
+        <org.thoughtcrime.securesms.components.AccessibleToggleButton
+            android:id="@+id/call_screen_audio_mic_toggle"
+            style="@style/WebRtcCallV2CompoundButton"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/webrtc_call_screen_mic_toggle"
+            android:stateListAnimator="@null"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/call_screen_end_call"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/call_screen_video_toggle"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/call_screen_end_call"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="34dp"
+            android:clickable="false"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/call_screen_audio_mic_toggle"
+            app:srcCompat="@drawable/webrtc_call_screen_hangup"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/call_screen_decline_call"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginBottom="65dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/call_screen_answer_call"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/webrtc_call_screen_hangup"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/call_screen_decline_call_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/WebRtcCallScreen__decline"
+            android:textColor="@color/core_white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/call_screen_decline_call"
+            app:layout_constraintStart_toStartOf="@id/call_screen_decline_call"
+            app:layout_constraintTop_toBottomOf="@id/call_screen_decline_call"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/call_screen_answer_call"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="66dp"
+            android:layout_marginBottom="65dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/call_screen_decline_call"
+            app:srcCompat="@drawable/webrtc_call_screen_answer"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/call_screen_answer_call_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/WebRtcCallScreen__answer"
+            android:textColor="@color/core_white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/call_screen_answer_call"
+            app:layout_constraintStart_toStartOf="@id/call_screen_answer_call"
+            app:layout_constraintTop_toBottomOf="@id/call_screen_answer_call"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/call_screen_answer_with_audio"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_answer_with_audio_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/webrtc_call_screen_answer_without_video"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/call_screen_answer_with_audio_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:text="@string/WebRtcCallScreen__answer_without_video"
+            android:textColor="@color/core_white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_answer_call"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</merge>

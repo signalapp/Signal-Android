@@ -1,0 +1,9 @@
+apply plugin: 'java-gradle-plugin'
+
+repositories {
+    google()
+}
+
+dependencies {
+    implementation 'com.android.tools.build:apksig:3.5.1'
+}

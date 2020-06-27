@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true"
+            android:background="@drawable/background_pattern_repeat">
+
+    <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center" >
+
+        <LinearLayout android:paddingEnd="16dip"
+                      android:paddingStart="16dip"
+                      android:paddingTop="10dip"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:visibility="visible"
+                      android:orientation="vertical">
+
+                <TextView style="@style/Registration.BigLabel"
+                          android:layout_width="fill_parent"
+                          android:layout_marginBottom="16dip"
+                          android:layout_marginTop="16dip"
+                          android:gravity="center"
+                          android:text="@string/ApplicationMigrationActivity__signal_is_updating"/>
+
+                <ProgressBar android:id="@+id/indeterminate_progress"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:indeterminate="true"
+                             android:layout_gravity="center"/>
+
+            <ProgressBar android:id="@+id/determinate_progress"
+                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                         android:layout_width="fill_parent"
+                         android:layout_height="wrap_content"
+                         android:indeterminate="false"
+                         android:visibility="gone"
+                         android:layout_gravity="center"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>

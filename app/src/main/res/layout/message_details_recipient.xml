@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/group_media_card"
+    style="@style/Widget.Signal.CardView.PreferenceRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/message_details_recipient_avatar"
+            android:foreground="@drawable/contact_photo_background"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:cropToPadding="true"
+            tools:src="@drawable/ic_contact_picture"
+            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <org.thoughtcrime.securesms.components.FromTextView
+            android:id="@+id/message_details_recipient_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="?attr/conversation_list_item_contact_color"
+            android:singleLine="true"
+            tools:text="Jules Bonnot"
+            android:ellipsize="marquee"
+            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_avatar"
+            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_timestamp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/message_details_recipient_error_description"/>
+
+        <TextView android:id="@+id/message_details_recipient_error_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF44336"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="New identity"
+            app:layout_constraintStart_toStartOf="@+id/message_details_recipient_name"
+            app:layout_constraintTop_toBottomOf="@+id/message_details_recipient_name"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/message_details_recipient_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="05/27/20 1:32 PM"
+            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_name"
+            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_conflict_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/message_details_recipient_conflict_button"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            style="@style/ErrorButton"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:drawableStart="@drawable/ic_error_white_18dp"
+            android:text="@string/message_recipients_list_item__view"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_timestamp"
+            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_ud_indicator"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="gone" />
+
+        <ImageView android:id="@+id/message_details_recipient_ud_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_unidentified_delivery"
+            android:tint="?attr/conversation_item_sent_text_secondary_color"
+            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_conflict_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

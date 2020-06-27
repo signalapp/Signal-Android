@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Empty",
+    "pin": "",
+    "valid": false
+  },
+  {
+    "name": "Alpha",
+    "pin": "abcd",
+    "valid": true
+  },
+  {
+    "name": "Sequential",
+    "pin": "1234",
+    "valid": false
+  },
+  {
+    "name": "Non-sequential",
+    "pin": "6485",
+    "valid": true
+  },
+  {
+    "name": "Sequential descending",
+    "pin": "43210",
+    "valid": false
+  },
+  {
+    "name": "Sequential with space",
+    "pin": "1234 ",
+    "valid": false
+  },
+  {
+    "name": "Non-sequential with space",
+    "pin": "1236 ",
+    "valid": true
+  },
+  {
+    "name": "Sequential Non-arabic digits",
+    "pin": "١٢٣٤٥",
+    "valid": false
+  },
+  {
+    "name": "Sequential descending Non-arabic digits",
+    "pin": "٥٤٣٢١",
+    "valid": false
+  },
+  {
+    "name": "Non-sequential Non-arabic digits",
+    "pin": "١٢٣٥٤",
+    "valid": true
+  },
+  {
+    "name": "All digits the same",
+    "pin": "9999",
+    "valid": false
+  },
+  {
+    "name": "All Non-arabic digits the same",
+    "pin": "٢٢٢٢",
+    "valid": false
+  }
+]

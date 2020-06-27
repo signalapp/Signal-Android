@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item app:state_speaker_off="true">
+        <layer-list>
+            <item android:drawable="@drawable/webrtc_call_screen_circle_grey" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_white_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+        </layer-list>
+    </item>
+    <item app:state_speaker_on="true">
+        <layer-list>
+            <item android:drawable="@drawable/circle_tintable" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+        </layer-list>
+    </item>
+    <item app:state_handset_selected="true">
+        <layer-list>
+            <item android:drawable="@drawable/webrtc_call_screen_circle_grey" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_handset_solid_28" android:left="11dp" android:right="17dp" android:top="14dp" />
+            <item android:bottom="25dp" android:drawable="@drawable/webrtc_triangle_white" android:left="43dp" android:right="5dp" android:top="27dp" />
+        </layer-list>
+    </item>
+    <item app:state_headset_selected="true">
+        <layer-list>
+            <item android:drawable="@drawable/circle_tintable" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_bt_solid_28" android:left="11dp" android:right="17dp" android:top="14dp" />
+            <item android:bottom="25dp" android:drawable="@drawable/webrtc_triangle_grey" android:left="43dp" android:right="5dp" android:top="27dp" />
+        </layer-list>
+    </item>
+    <item app:state_speaker_selected="true">
+        <layer-list>
+            <item android:drawable="@drawable/circle_tintable" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_28" android:left="11dp" android:right="17dp" android:top="14dp" />
+            <item android:bottom="25dp" android:drawable="@drawable/webrtc_triangle_grey" android:left="43dp" android:right="5dp" android:top="27dp" />
+        </layer-list>
+    </item>
+</selector>
