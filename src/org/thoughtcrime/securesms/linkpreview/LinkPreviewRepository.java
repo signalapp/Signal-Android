@@ -63,7 +63,10 @@ public class LinkPreviewRepository implements InjectableType {
 
   public LinkPreviewRepository(@NonNull Context context) {
     this.client = new OkHttpClient.Builder()
-                                  .proxySelector(new ContentProxySelector())
+                                  //It seems like Signal's proxy has been banned by Youtube.
+                                  //Just comment this out to fix link previews.
+                                  //We will move this to onion routing in the future
+                                  //.proxySelector(new ContentProxySelector())
                                   .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)
                                   .build();
