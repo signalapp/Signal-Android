@@ -693,6 +693,10 @@ public final class GroupDatabase extends Database {
       return mms;
     }
 
+    public boolean isV1Group() {
+      return !mms && !isV2Group();
+    }
+
     public boolean isV2Group() {
       return v2GroupProperties != null;
     }

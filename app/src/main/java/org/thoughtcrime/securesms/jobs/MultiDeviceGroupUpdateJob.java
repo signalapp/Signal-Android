@@ -85,7 +85,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
-        if (!record.isMms()) {
+        if (record.isV1Group()) {
           List<SignalServiceAddress> members = new LinkedList<>();
 
           for (RecipientId member : record.getMembers()) {
