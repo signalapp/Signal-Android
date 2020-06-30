@@ -157,7 +157,9 @@
   <string name="ContactShareEditActivity_type_missing">Tjetër</string>
   <string name="ContactShareEditActivity_invalid_contact">Kontakti i përzgjedhur qe i pavlefshëm</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Dërgimi dështoi, për hollësi, prekeni</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">S’u dërgua, prekeni për hollësi</string>
+  <string name="ConversationItem_error_partially_not_delivered">Dërguar pjesërisht, prekeni për hollësi</string>
+  <string name="ConversationItem_error_network_not_delivered">Dërgimi dështoi</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">U mor mesazh shkëmbimi kyçesh, prekeni që të bëhet.</string>
   <string name="ConversationItem_group_action_left">%1$s e la grupin.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, prekeni për dërgim të pasigurt</string>
@@ -302,8 +304,6 @@
     <item quantity="one">Biseda u shpu te të marrat</item>
     <item quantity="other">%d biseda u shpunë te të marrat</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Emri i profilit tuaj u krijua.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Emri juaj i profilit u ruajt.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesazh shkëmbimi kyçesh</string>
   <!--ConversationListItemAction-->
@@ -1228,6 +1228,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Incizoni dhe dërgoni bashkëngjitje zanore</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blloko incizim bashkëngjitjeje audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktivizo Signal për SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">Mesazhi s’u dërgua dot. Kontrolloni lidhjen tuaj dhe riprovoni.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Rrëshqiteni që të anulohet</string>
   <string name="conversation_input_panel__cancel">Anuloje</string>
@@ -1255,6 +1256,12 @@
   <string name="QuoteView_original_missing">S\’u gjet mesazhi origjinal</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rrëshqit drejt fundit</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Ndryshime Numri Sigurie</string>
+  <string name="safety_number_change_dialog__send_anyway">Dërgoje, sido qoftë</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Personat vijues mund të kenë riinstaluar ose ndryshuar pajisjet. Për të siguruar privatësi, verifikoni me ta numrin tuaj të sigurisë.</string>
+  <string name="safety_number_change_dialog__view">Shihni</string>
+  <string name="safety_number_change_dialog__previous_verified">Verifikuar më herët</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Po ngarkohen vende…</string>
   <string name="country_selection_fragment__search">Kërko</string>
@@ -1847,13 +1854,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="KbsMegaphone__update_pin">Përditësoni PIN-in</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Do t’jua kujtojmë më vonë. Krijimi i një PIN-i do të jetë i detyrueshëm pas %1$d ditësh.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Do t’jua kujtojmë më vonë. Ripohimi i PIN-it tuaj do të jetë i detyrueshëm pas %1$d ditësh.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Shtoni emër profili</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ky do të shfaqe kur nisni një bisedë të re ose e ndani me të tjerë.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Shtoni Emër Profili</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Ripohoni Emrin tuaj të Profilit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profili juaj tani mund të përfshijë një mbiemër, në daçi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Ripohoni Emrin</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>

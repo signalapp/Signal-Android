@@ -157,7 +157,9 @@
   <string name="ContactShareEditActivity_type_missing">Altro</string>
   <string name="ContactShareEditActivity_invalid_contact">Il contatto selezionato non è valido</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Invio fallito, tocca per dettagli</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Non inviato, tocca per i dettagli</string>
+  <string name="ConversationItem_error_partially_not_delivered">Parzialmente inviato, tocca per i dettagli</string>
+  <string name="ConversationItem_error_network_not_delivered">Invio non riuscito</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevuto un messaggio con chiave di scambio, tocca per processarlo.</string>
   <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Invio fallito, tocca per invio non sicuro</string>
@@ -302,8 +304,6 @@
     <item quantity="one">Conversazione spostata nei messaggi in arrivo</item>
     <item quantity="other">%d conversazioni spostate nei messaggi in arrivo</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Il tuo nome profilo è stato creato.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Il tuo nome profilo è stato salvato.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Messaggio per lo scambio della chiave</string>
   <!--ConversationListItemAction-->
@@ -1232,6 +1232,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registra ed invia allegato audio</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blocca la registrazione di un allegato audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Abilita Signal per gli SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">Il messaggio non può essere inviato. Controlla la tua connessione e riprova.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Scorri per cancellare</string>
   <string name="conversation_input_panel__cancel">Annulla</string>
@@ -1259,6 +1260,12 @@
   <string name="QuoteView_original_missing">Messaggio originale non trovato</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Salta alla fine</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Modifiche al numero di sicurezza</string>
+  <string name="safety_number_change_dialog__send_anyway">Invia comunque</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Le seguenti persone potrebbero aver reinstallato o cambiato i dispositivi. Verifica il tuo numero di sicurezza con loro per garantire la privacy.</string>
+  <string name="safety_number_change_dialog__view">Mostra</string>
+  <string name="safety_number_change_dialog__previous_verified">Verificato in precedenza</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Caricamento Paesi…</string>
   <string name="country_selection_fragment__search">Cerca</string>
@@ -1849,13 +1856,6 @@
   <string name="KbsMegaphone__update_pin">Aggiorna PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo ricorderemo più tardi. Creare un PIN diventerà obbligatorio tra %1$d giorni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo ricorderemo più tardi. Confermare il tuo PIN diventerà obbligatorio tra %1$d giorni.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Aggiungi un nome profilo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Questo verrà visualizzato quando inizi una nuova conversazione o la condividi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Aggiungi nome profilo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Conferma il tuo nome profilo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Il tuo profilo può ora includere un cognome facoltativo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Conferma nome</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento…</string>

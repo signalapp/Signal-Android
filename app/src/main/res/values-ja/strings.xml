@@ -154,7 +154,9 @@
   <string name="ContactShareEditActivity_type_missing">その他</string>
   <string name="ContactShareEditActivity_invalid_contact">選択された連絡先は無効です</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">送信失敗、タップして詳細を見る</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">送信されませんでした、タップして詳細を表示</string>
+  <string name="ConversationItem_error_partially_not_delivered">一部だけ送信しました、タップして詳細</string>
+  <string name="ConversationItem_error_network_not_delivered">送信できませんでした</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして処理する。</string>
   <string name="ConversationItem_group_action_left">%1$s がグループを抜けました。</string>
   <string name="ConversationItem_click_to_approve_unencrypted">送信失敗、タップして保護されていない通信に切り替える</string>
@@ -288,8 +290,6 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 件の会話を受信ボックスに移動しました</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">プロフィール名が作成されました。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">プロフィール名を保存しました。</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
@@ -1182,6 +1182,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">音声を録音して送信する</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">音声の録音をロック</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal の SMS 機能を有効にする</string>
+  <string name="conversation_activity__message_could_not_be_sent">メッセージが送信されませんでした。接続を確認し、再度試してください。</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">スライドしてキャンセル</string>
   <string name="conversation_input_panel__cancel">キャンセル</string>
@@ -1209,6 +1210,12 @@
   <string name="QuoteView_original_missing">元のメッセージが見つかりません</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">一番下までスクロール</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">安全番号を変更</string>
+  <string name="safety_number_change_dialog__send_anyway">とにかく送信する</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">下記の人はアプリを再インストールしたかデバイスを変更した可能性があります。プライバシーを保証するために安全番号を検証してください。</string>
+  <string name="safety_number_change_dialog__view">表示</string>
+  <string name="safety_number_change_dialog__previous_verified">以前に検証済み</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込んでいます…</string>
   <string name="country_selection_fragment__search">検索</string>
@@ -1783,13 +1790,6 @@
   <string name="KbsMegaphone__update_pin">PIN をアップデート</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">後ほど再度お知らせします。PIN の作成は %1$d 日後に必須となります。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">後ほど再度お知らせします。PIN の確認は %1$d 日後に必須となります。</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">プロフィール名を追加</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">これは共有したり新しい会話を始めた際に表示されます。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">プロフィール名を追加する</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">プロフィール名の確認</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">プロフィールに任意で姓を追加できます。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">名前の確認</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -1918,7 +1918,7 @@
   <string name="RecipientBottomSheet_remove_from_group">グループから削除</string>
   <string name="RecipientBottomSheet_message_description">メッセージ</string>
   <string name="RecipientBottomSheet_voice_call_description">音声通話</string>
-  <string name="RecipientBottomSheet_insecure_voice_call_description">保護されていない音声電話</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">安全ではない音声電話</string>
   <string name="RecipientBottomSheet_video_call_description">ビデオ通話</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">グループ管理者から %1$s を削除しますか?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$sがこのグループの設定やメンバーを編集できるようになります</string>

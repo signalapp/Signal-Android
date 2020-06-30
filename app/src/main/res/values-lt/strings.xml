@@ -163,7 +163,9 @@
   <string name="ContactShareEditActivity_type_missing">Kitas</string>
   <string name="ContactShareEditActivity_invalid_contact">Pasirinktas adresatas buvo neteisingas</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Siuntimas nepavyko, bakstelėkite išsamesnei informacijai</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Neišsiųsta, bakstelėkite išsamesnei informacijai</string>
+  <string name="ConversationItem_error_partially_not_delivered">Dalinai išsiųsta, bakstelėkite išsamesnei informacijai</string>
+  <string name="ConversationItem_error_network_not_delivered">Išsiuntimas nepavyko</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Gauta šifro apsikeitimo žinutė, bakstelėkite norėdami tęsti.</string>
   <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Siuntimas nepavyko, bakstelėkite, norėdami sugrįžti nesaugaus surogato</string>
@@ -330,8 +332,6 @@
     <item quantity="many">%d pokalbių perkelta į gautųjų aplanką</item>
     <item quantity="other">%d pokalbių perkelta į gautųjų aplanką</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsų profilio vardas sukurtas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsų profilio vardas įrašytas.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
   <!--ConversationListItemAction-->
@@ -1310,6 +1310,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Įrašyti ir siųsti garso įrašo priedą</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Užrakinti garso įrašo priedo įrašymą</string>
   <string name="conversation_activity__enable_signal_for_sms">Naudoti Signal SMS žinutėms</string>
+  <string name="conversation_activity__message_could_not_be_sent">Nepavyko išsiųsti žinutės. Patikrinkite savo ryšį ir bandykite dar kartą.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Perbraukite, norėdami atsisakyti</string>
   <string name="conversation_input_panel__cancel">Atsisakyti</string>
@@ -1337,6 +1338,10 @@
   <string name="QuoteView_original_missing">Pradinė žinutė nerasta</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__send_anyway">Vis tiek siųsti</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gali būti, kad šie žmonės iš naujo įdiegė programėlę ar pakeitė įrenginį. Patvirtinkite savo saugumo numerį su kiekvienu iš jų, kad užtikrintumėte privatumą.</string>
+  <string name="safety_number_change_dialog__view">Rodyti</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Įkeliamos šalys…</string>
   <string name="country_selection_fragment__search">Ieškoti</string>
@@ -1504,6 +1509,7 @@
   <string name="message_details_header__via">Per</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Laukiama</string>
+  <string name="message_details_recipient_header__read_by">Perskaitė</string>
   <string name="message_details_recipient_header__not_sent">Neišsiųsta</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Nepavyko išsiųsti</string>
@@ -1955,13 +1961,6 @@
   <string name="KbsMegaphone__update_pin">Atnaujinti PIN kodą</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Pridėkite profilio vardą</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Jis bus rodomas, kai pradėsite naują pokalbį ar bendrinsite profilį.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Pridėti profilio vardą</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Patvirtinkite savo profilio vardą</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Dabar, į profilio vardą, pasirinktinai, galite įtraukti pavardę.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Patvirtinti vardą</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>

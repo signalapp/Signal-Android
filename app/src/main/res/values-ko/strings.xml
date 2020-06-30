@@ -147,7 +147,7 @@
   <string name="ContactShareEditActivity_type_missing">기타</string>
   <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 잘못됨</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">전송 실패, 탭하여 자세히 보기</string> -->
+  <string name="ConversationItem_error_network_not_delivered">보내기 실패</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">핵심 교환 메시지를 받았습니다. 탭하여 처리하세요.</string>
   <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 탈퇴했습니다.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">전송 실패, 탭하여 비보안 연결 시도</string>
@@ -275,8 +275,6 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">대화 %d개가 받은 메시지함으로 이동됨</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">당신의 프로필 이름이 생성되었습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">당신의 프로필 이름이 저장되었습니다.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">핵심 교환 메시지</string>
   <!--ConversationListItemAction-->
@@ -1052,6 +1050,8 @@
   <string name="QuoteView_original_missing">원본 메시지를 찾을 수 없음</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">하단으로 스크롤</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">보기</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
   <string name="country_selection_fragment__search">검색</string>
@@ -1590,13 +1590,6 @@
   <string name="KbsMegaphone__update_pin">번호 업데이트</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">나중에 알려드리겠습니다. %1$d일 후에는 번호를 생성하셔야 합니다.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">나중에 알려드리겠습니다. %1$d일 후에는 번호를 확인하셔야 합니다.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">프로필 이름 추가</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">새 대화를 시작 또는 공유할 때 표시됩니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">프로필 이름 추가</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">프로필 이름 확인</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">이제 프로필에 성을 추가할 수 있습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">이름 확인</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">아이콘 전송</string>
   <string name="ConversationListFragment_loading">로드 중…</string>

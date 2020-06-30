@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">دیگر</string>
   <string name="ContactShareEditActivity_invalid_contact">مخاطب انتخاب شده نامعتبر بود</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">ارسال ناموفق بود، برای جزئیات ضربه بزنید</string> -->
+  <string name="ConversationItem_error_network_not_delivered">ارسال ناموفق بود</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">پیام تبادل کلید دریافت شد، برای ادامه، صفحه را لمس کنید.</string>
   <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ارسال ناموفق بود، برای ارتباط ناامن ضربه بزنید</string>
@@ -302,8 +302,6 @@
     <item quantity="one">مکالمه به صندوق ورودی جابجا شد</item>
     <item quantity="other">%d مکالمه به صندوق ورودی جابجا شدند</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">نام پروفایل شما ایجاد شد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">نام پروفایل شما ذخیره شد.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
   <!--ConversationListItemAction-->
@@ -1255,6 +1253,8 @@
   <string name="QuoteView_original_missing">پیام اصلی یافت نشد</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">نمایش</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">در حال بارگذاری کشور ها…</string>
   <string name="country_selection_fragment__search">جستجو</string>
@@ -1845,13 +1845,6 @@
   <string name="KbsMegaphone__update_pin">به‌روزرسانی پین</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">افزودن نام پروفایل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">این، زمانی که یک مکالمهٔ جدید را آغاز می‌کنید یا پروفایل خود را به اشتراک‌ می‌گذارید، نمایش داده خواهد شد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">افزودن نام پروفایل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">نام پروفایل خود را تأیید کنید</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">پروفایل شما اکنون می‌تواند شامل نام‌ خانوادگی نیز باشد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">تأیید اسم</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>

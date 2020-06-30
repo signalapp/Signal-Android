@@ -163,7 +163,9 @@
   <string name="ContactShareEditActivity_type_missing">אחר</string>
   <string name="ContactShareEditActivity_invalid_contact">איש קשר נבחר היה בלתי תקף</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">שליחה נכשלה, הקש לפרטים</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">לא נשלח, הקש לפרטים</string>
+  <string name="ConversationItem_error_partially_not_delivered">נשלח חלקית, הקש לפרטים</string>
+  <string name="ConversationItem_error_network_not_delivered">שליחה נכשלה</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">הודעת החלפת מפתחות התקבלה, הקש כדי לעבד.</string>
   <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">שליחה נכשלה, הקש לנסיגה בלתי מאובטחת</string>
@@ -330,8 +332,6 @@
     <item quantity="many">%d שיחות הועברו לתיבה הנכנסת</item>
     <item quantity="other">%d שיחות הועברו לתיבה הנכנסת</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">שם הפרופיל שלך נוצר.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">שם הפרופיל שלך נשמר.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתחות</string>
   <!--ConversationListItemAction-->
@@ -1310,6 +1310,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">הקלט ושלח צרופת שמע</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">נעל הקלטה של צרופת שמע</string>
   <string name="conversation_activity__enable_signal_for_sms">אפשר את Signal עבור מסרונים</string>
+  <string name="conversation_activity__message_could_not_be_sent">הודעה לא יכלה להישלח. בדוק את החיבור שלך ונסה שוב.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">החלק כדי לבטל</string>
   <string name="conversation_input_panel__cancel">בטל</string>
@@ -1337,6 +1338,12 @@
   <string name="QuoteView_original_missing">הודעה מקורית לא נמצאה</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">גלול לתחתית</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">שינויי מספר ביטחון</string>
+  <string name="safety_number_change_dialog__send_anyway">שלח בכל זאת</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">האנשים הבאים ייתכן התקינו מחדש את היישום או שינו מכשירים. וודא את מספר הביטחון שלך איתם כדי להבטיח פרטיות.</string>
+  <string name="safety_number_change_dialog__view">הצג</string>
+  <string name="safety_number_change_dialog__previous_verified">וֻדָּא בעבר</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">טוען מדינות…</string>
   <string name="country_selection_fragment__search">חפש</string>
@@ -1959,13 +1966,6 @@
   <string name="KbsMegaphone__update_pin">עדכן PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">הוסף שם פרופיל</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">זה יוצג כאשר תתחיל שיחה חדשה או כאשר תשתף את זה.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">הוסף שם פרופיל</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">אשר את שם הפרופיל שלך</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">הפרופיל שלך יכול להכיל כעת שם משפחה רשותי.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">אשר שם</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>

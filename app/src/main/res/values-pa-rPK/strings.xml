@@ -145,7 +145,6 @@
   <string name="ContactShareEditActivity_type_missing">دوجا</string>
   <string name="ContactShareEditActivity_invalid_contact">منتخب کیتا رابطہ ناقابل قبول سی</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">گھلنا ناکام ہویا، تفصیلاں لئی بٹن دبو</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process"> اچیچا تبادلہ سنیہا وصول ہویا اے، کارروائی کرن لئی بٹن دبو ۔</string>
   <string name="ConversationItem_group_action_left">%1$s نے گروپ چھڈ دتا اے۔</string>
   <string name="ConversationItem_click_to_approve_unencrypted">گھلنا ناکام ہویا، غیر محفوظ فال بیک لئی بٹن دبو </string>
@@ -281,7 +280,6 @@
     <item quantity="one">گل بات ان باکس اچ منتقل کر دتی اے </item>
     <item quantity="other">%d گل باتاں ان باکس اچ منتقل کر دتیاں نیں </item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">تساں دا پروفائل نام محفوظ کر دتا گیا اے۔</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">کلیدی تبادلہ سنیہا</string>
   <!--ConversationListItemAction-->
@@ -1035,6 +1033,7 @@
   <string name="QuoteView_original_missing">اصل سنیہا نئیں لبھیا</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">تھلے تیکر سکرول کرو</string>
+  <!--safety_number_change_dialog-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ممالک لوڈ کر رئیا اے…</string>
   <string name="country_selection_fragment__search">لبھو</string>
@@ -1579,10 +1578,6 @@
   <string name="KbsMegaphone__update_pin">پن نوں اپ ڈیٹ کرو</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ %1$d دناں مگروں پن بناناں لازمی ہو جاوے گا۔</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ آپنے پن دی تصدیق %1$d دناں مگروں لازمی ہو جاوے گی۔</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">جدوں تساں نویں گل وات شروع کر دے او یا ایس دا سانجھا کر دے او تے ایہہ ظاہر ہووے گا۔</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">پروفائل نام نال رلاؤ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">تساں دی پروفائل اچ ہونڑ اک اختیاری اخیری ناں شامل ہوسکدا اے۔</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ٹرانسپورٹ آئکن</string>
   <string name="ConversationListFragment_loading">لوڈ کر رئیا اے…</string>

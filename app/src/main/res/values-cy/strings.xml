@@ -163,7 +163,9 @@
   <string name="ContactShareEditActivity_type_missing">Arall</string>
   <string name="ContactShareEditActivity_invalid_contact">Roedd y cyswllt hwn yn annilys</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Methodd yr anfon, tapiwch am fanylion</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Heb ei hanfon, tapiwch am fanylion</string>
+  <string name="ConversationItem_error_partially_not_delivered">Wedi\'i hanfon yn rhannol, tapiwch am fanylion</string>
+  <string name="ConversationItem_error_network_not_delivered">Methodd yr anfon</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Wedi derbyn neges cyfnewid allwedd, tapiwch i brosesu.</string>
   <string name="ConversationItem_group_action_left">Mae %1$s wedi gadael y grŵp.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Methodd yr anfon, tapiwch am gam nôl anniogel</string>
@@ -332,8 +334,6 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Symudwyd %d sgwrs i\'r blwch derbyn</item>
     <item quantity="other">Symudwyd %d sgwrs i\'r blwch derbyn</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Mae\'ch enw proffil wedi\'i greu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Mae\'ch enw proffil wedi\'i gadw.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Neges cyfnewid allwedd</string>
   <!--ConversationListItemAction-->
@@ -1095,6 +1095,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Profwyd gwall rhwydwaith.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Mae\'r enw defnyddiwr yma\'n wedi ei gymryd.</string>
   <string name="UsernameEditFragment_this_username_is_available">Mae\'r enw defnyddiwr yma ar gael.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Dim ond a–Z, 0–9 a thanlinellu y gall enwau defnyddwyr eu cynnwys.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nid yw enw defnyddiwr yn gallu cychwyn gyda rhif.</string>
   <string name="UsernameEditFragment_username_is_invalid">Mae\'r enw defnyddiwr yn annilys.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Rhaid i enwau defnyddwyr fod rhwng %1$d a %2$d nod.</string>
@@ -1311,6 +1312,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Recordio ac anfon atodiad sain</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Cloi recordio atodiad sain</string>
   <string name="conversation_activity__enable_signal_for_sms">Galluogi Signal ar gyfer SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">Nid oedd modd anfon y neges. Gwiriwch eich cysylltiad a cheisio eto.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Llithro i ddiddymu</string>
   <string name="conversation_input_panel__cancel">Diddymu</string>
@@ -1338,6 +1340,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="QuoteView_original_missing">Heb ganfod y neges wreiddiol</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Sgrolio i\'r gwaelod</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Newidiadau Rhifau Diogelwch</string>
+  <string name="safety_number_change_dialog__send_anyway">Anfon beth bynnag</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gall fod y bobl ganlynol fod wedi ailosod neu newid dyfeisiau. Gwiriwch eich rhif diogelwch gyda nhw i sicrhau preifatrwydd.</string>
+  <string name="safety_number_change_dialog__view">Golwg</string>
+  <string name="safety_number_change_dialog__previous_verified">Wedi\'u dilysu\'n flaenorol</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Yn llwytho gwledydd…</string>
   <string name="country_selection_fragment__search">Chwilio</string>
@@ -1960,13 +1968,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsMegaphone__update_pin">Diweddaru PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Ychwanegu enw proffil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Bydd hyn yn cael ei ddangos pan fyddwch yn cychwyn sgwrs newydd a\'i rannu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Ychwanegu Enw Proffil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Cadarnhau eich Enw Proffil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Gall eich proffil nawr gynnwys enw olaf dewisol.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Cadarnhau Enw</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>

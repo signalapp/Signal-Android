@@ -4,7 +4,7 @@
   <string name="no">Ne</string>
   <string name="delete">Forviŝi</string>
   <string name="please_wait">Bonvolu atendi…</string>
-  <string name="save">Konservi</string>
+  <string name="save">Konservu</string>
   <string name="note_to_self">Noto al mi mem</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mesaĝo</string>
@@ -157,7 +157,9 @@
   <string name="ContactShareEditActivity_type_missing">Alia</string>
   <string name="ContactShareEditActivity_invalid_contact">Elektita kontakto estis nevalida</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Sendado malsukcesis, tuŝetu por detaloj</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ne sendita; tuŝetu por detaloj</string>
+  <string name="ConversationItem_error_partially_not_delivered">Nekomplete sendita; tuŝetu por detaloj</string>
+  <string name="ConversationItem_error_network_not_delivered">Sendo malsukcesis</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevis mesaĝon pri interŝanĝo de ŝlosiloj, tuŝetu por daŭrigi.</string>
   <string name="ConversationItem_group_action_left">%1$s forlasis la grupon.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sendado malsukcesis, tuŝeti por nesekura retropaŝo</string>
@@ -302,8 +304,6 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Via profilnomo kreiĝis.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Via profilnomo konserviĝis.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -1018,6 +1018,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_encountered_a_network_error">Okazis reta eraro.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Tiu uzantnomo jam uziĝas.</string>
   <string name="UsernameEditFragment_this_username_is_available">La uzantnomo disponeblas.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Uzantnomoj povas enteni nur literojn a-z A-Z, ciferojn 0-9 kaj substrekojn.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero</string>
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
@@ -1230,6 +1231,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registri kaj sendi aŭdan kunsendaĵon</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ŝlosi registron de aŭda kunsendaĵo </string>
   <string name="conversation_activity__enable_signal_for_sms">Mastrumi mesaĝetojn (SMS) per Signal</string>
+  <string name="conversation_activity__message_could_not_be_sent">La mesaĝo ne povis sendiĝi. Kontrolu la retkonekton, kaj provu denove.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Deŝovu por nuligi</string>
   <string name="conversation_input_panel__cancel">Nuligi</string>
@@ -1257,6 +1259,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_original_missing">Origina mesaĝo ne troveblas</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Ŝanĝoj pri la sekuriga numero</string>
+  <string name="safety_number_change_dialog__send_anyway">Tamen sendi</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">La jenaj homoj eble restarigis aŭ ŝanĝis iliajn aparatojn. Kontrolu vian sekurigan numeron kun ili por certigi vian privatecon.</string>
+  <string name="safety_number_change_dialog__view">Montri pli</string>
+  <string name="safety_number_change_dialog__previous_verified">Antaŭe kontrolita</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ŝargo de landlisto…</string>
   <string name="country_selection_fragment__search">Serĉi</string>
@@ -1847,13 +1855,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KbsMegaphone__update_pin">Ĝisdatigi PIN-on</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Ni memorigos vin poste. Kreado de PIN nepros post %1$d tagoj.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Ni memorigos vin poste. Konfirmado de PIN nepros post %1$d tagoj.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Aldoni profilnomon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ĝi montriĝos, kiam vi komencas interparoli aŭ kunhavigas interparolon.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Aldoni profilnomon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Konfirmi vian profilnomon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Via profilo povas nun malnepre enteni familinomon.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Konfirmi nomon</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>

@@ -155,7 +155,7 @@
   <string name="ContactShareEditActivity_type_missing">অন্যান্য</string>
   <string name="ContactShareEditActivity_invalid_contact">নির্বাচিত পরিচিতিটি সঠিক নয়</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">পাঠাতে ব্যার্থ, খুঁটিনাটি জানতে আলতো চাপুন</string> -->
+  <string name="ConversationItem_error_network_not_delivered">পাঠাতে ব্যর্থ</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">কী বিনিময়ের বার্তা পাওয়া গেছে, প্রক্রিয়া করতে আলতো চাপুন।</string>
   <string name="ConversationItem_group_action_left">%1$s গ্রুপ ত্যাগ করেছে।</string>
   <string name="ConversationItem_click_to_approve_unencrypted">পাঠাতে ব্যর্থ, অসুরক্ষিত পন্থা অবলম্বনের জন্য চাপুন</string>
@@ -299,8 +299,6 @@
     <item quantity="one"> টি আলাপন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">আপনার প্রোফাইলের নাম তৈরী করা হয়েছে।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">আপনার প্রোফাইলের নামটি সংরক্ষণ করা হয়েছে।</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key বিনিময় বার্তা</string>
   <!--ConversationListItemAction-->
@@ -1218,6 +1216,8 @@
   <string name="QuoteView_original_missing">মূল বার্তাটি পাওয়া যায়নি</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">স্ক্রোল করে নীচে যান</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">দেখান</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">দেশগুলি লোড হচ্ছে …</string>
   <string name="country_selection_fragment__search">খোঁজা</string>
@@ -1784,13 +1784,6 @@
   <string name="KbsMegaphone__create_pin">পিন তৈরি করুন</string>
   <string name="KbsMegaphone__introducing_pins">পিনের সাথে পরিচিত হন</string>
   <string name="KbsMegaphone__update_pin">পিন আপডেট করুন</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">প্রোফাইলের একটি নাম দিন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">আপনি যখন কোনও নতুন কথোপকথন শুরু করবেন বা শেয়ার করবেন তখন এটি প্রদর্শিত হবে।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">প্রোফাইল নাম যোগ করুন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">আপনার প্রোফাইল নামটি নিশ্চিত করুন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">আপনার প্রোফাইল এখন একটি ঐচ্ছিক শেষ নাম অন্তর্ভুক্ত করতে পারেন।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">নাম নিশ্চিত করুন</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
   <string name="ConversationListFragment_loading">লোড হচ্ছে…</string>

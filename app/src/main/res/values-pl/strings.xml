@@ -163,7 +163,9 @@
   <string name="ContactShareEditActivity_type_missing">Inne</string>
   <string name="ContactShareEditActivity_invalid_contact">Wybrany kontakt był nieprawidłowy</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Wysyłanie nie powiodło się, dotknij, aby wyświetlić szczegóły</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Nie wysłano, stuknij, aby zobaczyć szczegóły</string>
+  <string name="ConversationItem_error_partially_not_delivered">Częściowo wysłano, stuknij, aby zobaczyć szczegóły</string>
+  <string name="ConversationItem_error_network_not_delivered">Wysyłanie nie powiodło się</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Otrzymano wiadomość wymiany kluczy, dotknij aby kontynuować.</string>
   <string name="ConversationItem_group_action_left">%1$s opuścił(a) grupę.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Wysyłanie nie powiodło się, dotknij w celu użycia niezabezpieczonej alternatywy</string>
@@ -330,8 +332,6 @@
     <item quantity="many">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
     <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Nazwa Twojego profilu została utworzona.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Nazwa Twojego profilu została zapisana.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
   <!--ConversationListItemAction-->
@@ -1302,6 +1302,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nagraj i wyślij załącznik dźwiękowy</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zablokuj nagrywanie załącznika audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Włącz obsługę SMS w Signal</string>
+  <string name="conversation_activity__message_could_not_be_sent">Nie udało się wysłać wiadomości. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Przesuń, aby anulować</string>
   <string name="conversation_input_panel__cancel">Anuluj</string>
@@ -1329,6 +1330,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuoteView_original_missing">Nie znaleziono oryginalnej wiadomości</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Przewiń do dołu</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Zmiany numeru bezpieczeństwa</string>
+  <string name="safety_number_change_dialog__send_anyway">Wyślij mimo to</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Następujące osoby mogły ponownie zainstalować aplikację lub zmienić urządzenie. Zweryfikuj wasz numer bezpieczeństwa, aby zapewnić prywatność.</string>
+  <string name="safety_number_change_dialog__view">Zobacz</string>
+  <string name="safety_number_change_dialog__previous_verified">Wcześniej zweryfikowane</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Wczytywanie krajów…</string>
   <string name="country_selection_fragment__search">Szukaj</string>
@@ -1951,13 +1958,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsMegaphone__update_pin">Uaktualnij PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Przypomnimy Ci o tym później. Utworzenie PINu stanie się obowiązkowe za %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Przypomnimy Ci o tym później. Potwierdzenie Twojego PINu stanie się obowiązkowe za %1$d dni.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj nazwę profilu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To zostanie wyświetlone, gdy rozpoczniesz nową konwersację lub ją udostępnisz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Dodaj nazwę profilu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potwierdź nazwę swojego profilu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Twój profil może teraz zawierać opcjonalne nazwisko.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Potwierdź nazwę</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <string name="ConversationListFragment_loading">Wczytywanie…</string>

@@ -160,7 +160,9 @@
   <string name="ContactShareEditActivity_type_missing">Altul</string>
   <string name="ContactShareEditActivity_invalid_contact">Contactul selectat este invalid</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Trimitere eșuată, apăsați pentru detalii</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Nu a fost trimis, atingeţi pentru detalii</string>
+  <string name="ConversationItem_error_partially_not_delivered">Trimis parţial, atingeți pentru detalii</string>
+  <string name="ConversationItem_error_network_not_delivered">Trimitere eșuată</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, apăsați pentru a-l procesa.</string>
   <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, apăsați pentru varianta nesecurizată</string>
@@ -316,8 +318,6 @@
     <item quantity="few">%d conversații au fost mutate în inbox</item>
     <item quantity="other">%d conversații au fost mutate în inbox</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Numele profilului dvs. a fost creat.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Numele profilului dvs. a fost salvat.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimbul de chei</string>
   <!--ConversationListItemAction-->
@@ -1052,6 +1052,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UsernameEditFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Acest nume de utilizator este luat.</string>
   <string name="UsernameEditFragment_this_username_is_available">Acest nume de utilizator este disponibil.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Numele de utilizatori pot conține doar a-Z, 0-9, și _.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Numele de utilizator nu pot începe cu un număr.</string>
   <string name="UsernameEditFragment_username_is_invalid">Numele de utilizator este invalid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Numele de utilizator trebuie să aibă între %1$d și %2$d caractere.</string>
@@ -1266,6 +1267,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Înregistrează și trimite un atașament audio</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blocați înregistrarea atașamentului audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Activează Signal pentru SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">Mesajul nu a putut fi trimis. Verificați conexiunea și încercați din nou.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Glisați pentru a anula</string>
   <string name="conversation_input_panel__cancel">Anulați</string>
@@ -1293,6 +1295,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="QuoteView_original_missing">Mesajul original nu a fost găsit</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Derulați până jos</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Modificări ale numărului de siguranță</string>
+  <string name="safety_number_change_dialog__send_anyway">Trimite oricum</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Este posibil ca următoarele persoane să fi reinstalat sau schimbat dispozitivele. Verificați numărul de siguranță cu acestea pentru a vă asigura confidențialitatea.</string>
+  <string name="safety_number_change_dialog__view">Vizualizare</string>
+  <string name="safety_number_change_dialog__previous_verified">Verificat anterior</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Se încarcă țările…</string>
   <string name="country_selection_fragment__search">Căutați</string>
@@ -1900,13 +1908,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsMegaphone__update_pin">Actualizați PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vă amintim mai târziu. Creearea unui PIN o să devină obligatorie în %1$d zile.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vă amintim mai târziu. Confirmarea PIN-ului dvs. o să devină obligatorie în %1$d zile.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Adăugați un nume de profil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Acesta va fi afișat când începeți o nouă conversație sau când îl distribuiți.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Adăugați un nume de profil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmați numele profilului dvs.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profilul dvs. poate include acum și un nume opțional.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Confirmați numele</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>

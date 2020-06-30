@@ -145,7 +145,7 @@
   <string name="ContactShareEditActivity_type_missing">ingine</string>
   <string name="ContactShareEditActivity_invalid_contact">Mawasilianao yaliyochaguliwa sio sahihi</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Imefeli kutuma, gusa kwa taarifa</string> -->
+  <string name="ConversationItem_error_network_not_delivered">Kutuma kumeshindwa</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Umepokea ujumbe mkuu uliobadilishwa, gusa  kuendelea na mchakato</string>
   <string name="ConversationItem_group_action_left">%1$s ameondoka kwenye kundi</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Imefeli kutuma, gusa kwa isiyo salama ili kurejea nyuma</string>
@@ -282,7 +282,6 @@
     <item quantity="one">Gumzo limehamishwa hadi kwenye kisanduku pokezi</item>
     <item quantity="other">Gumzo %dzimehamishwa hadi kwenye kisanduku pokezi</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Jina la wasifu wako limehifadhiwa.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Ujumbe muhimu wa kubadilishana</string>
   <!--ConversationListItemAction-->
@@ -1035,6 +1034,8 @@ nambari yako ya simu</string>
   <string name="QuoteView_original_missing">Ujumbe asili haupatikani</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Biringiza hadi chini</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">Tazama</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Inapakia nchi</string>
   <string name="country_selection_fragment__search">Tafuta</string>
@@ -1578,10 +1579,6 @@ nambari yako ya simu</string>
   <string name="KbsMegaphone__update_pin">Sasisha Nenosiri</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tutakukumbusha baadaye. Kuunda Nenosiri kutakuwa lazima baada ya siku %1$d.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Tutakukumbusha baadaye. Kuthibitisha Nenosiri lako kutakuwa ni lazima baada ya siku %1$d.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Hii itaonyeshwa utakapoanzisha mazungumzo mpya au kushiriki.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Ongeza Jina la Wasifu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Wasifu wako sasa unaweza kujumuisha jina la hiari la mwisho</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikoni ya usafiri</string>
   <string name="ConversationListFragment_loading">Inafunguka</string>

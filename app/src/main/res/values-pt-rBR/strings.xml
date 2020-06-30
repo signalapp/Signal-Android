@@ -151,7 +151,7 @@
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contato selecionado é inválido</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Falha no envio, toque para detalhes</string> -->
+  <string name="ConversationItem_error_network_not_delivered">Falha no envio</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Mensagem para troca de chaves recebida, clique para processá-la.</string>
   <string name="ConversationItem_group_action_left">%1$s saiu do grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Falha no envio, toque para alternativa insegura</string>
@@ -290,8 +290,6 @@
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Seu nome de perfil foi criado.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Seu nome de perfil foi salvo.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
   <!--ConversationListItemAction-->
@@ -396,7 +394,7 @@
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Personalizar notificações</string>
   <string name="CustomNotificationsDialogFragment__messages">Mensagens</string>
-  <string name="CustomNotificationsDialogFragment__notification_sound">Som da notificação</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Som das notificações</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrar</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Configurações de chamada</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Toque</string>
@@ -1073,6 +1071,8 @@
   <string name="QuoteView_original_missing">Mensagem original não encontrada</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">Exibir</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregando países…</string>
   <string name="country_selection_fragment__search">Procurar</string>
@@ -1263,6 +1263,10 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais detalhista possível para nos ajudar a entender o problema.</string>
   <string name="HelpFragment__no_email_app_found">Nenhum email app encontrado</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Atividades</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objetos</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbolos</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bandeiras</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar padrão</string>
@@ -1636,13 +1640,6 @@
   <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nós vamos te lembrar depois. Criar um PIN será obrigatório em %1$d dias.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nós vamos te lembrar depois.  A confirmação do seu PIN será obrigatória em %1$d dias.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Adicionar um nome de perfil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Isso será exibido quando você iniciar uma nova conversa ou compartilhá-la.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Adicionar Nome de Perfil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmar seu Nome de Perfil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Seu perfil agora tem a opção de incluir um segundo nome.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Confirmar Nome</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="ConversationListFragment_loading">Carregando…</string>

@@ -142,7 +142,6 @@
   <string name="ContactShareEditActivity_type_missing">Wani</string>
   <string name="ContactShareEditActivity_invalid_contact">Zabbaben lambarnan ba nakwarai ba.</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Turawa bai yu ba. Taba domin karin bayani</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Karba sakon canji na musamman, taba domin gabatarwa.</string>
   <string name="ConversationItem_group_action_left">%1$s ya/ta bar rukuni.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Ankasa turawa, taba domin mazaba mara tsaro.</string>
@@ -278,7 +277,6 @@
     <item quantity="one">Moved conversation to inbox</item>
     <item quantity="other">An mayar da hira %d cikin akwatin hira</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">An yi ajiyar sunan furofayil dinka/ki. </string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sakon musaya na musamman</string>
   <!--ConversationListItemAction-->
@@ -1032,6 +1030,7 @@
   <string name="QuoteView_original_missing">Babu ainihin sako.</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Jirga zuwa kasa</string>
+  <!--safety_number_change_dialog-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Kasashe na lodi</string>
   <string name="country_selection_fragment__search">Duba</string>
@@ -1542,10 +1541,6 @@
   <string name="KbsMegaphone__create_pin">Kirkiri lambobin sirri</string>
   <string name="KbsMegaphone__introducing_pins">Gabatar da lambobin sirri</string>
   <string name="KbsMegaphone__update_pin">Sabunta lambobin sirri</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Za\'a nuna wannan idan ka/kika fara wani hira ko kuma idan ka/kika tura hira. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Sa sunan furofayil </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Bayanan furofayil dinka/ki zasu iya hada da karin suna idan ka/kina so. </string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Gusar da alamar hoto</string>
   <string name="ConversationListFragment_loading">Yana lodi</string>

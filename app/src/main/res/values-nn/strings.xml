@@ -157,7 +157,9 @@
   <string name="ContactShareEditActivity_type_missing">Anna</string>
   <string name="ContactShareEditActivity_invalid_contact">Den valde kontakten er ugyldig</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Feil ved sending, trykk for detaljar</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ikkje sendt, trykk for detaljar</string>
+  <string name="ConversationItem_error_partially_not_delivered">Delvis sendt, trykk for detaljar</string>
+  <string name="ConversationItem_error_network_not_delivered">Sending feila</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling motteken. Trykk for å handsama.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlate gruppa.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Feil ved sending, trykk for å senda med utrygg alternativ metode</string>
@@ -303,8 +305,6 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
     <item quantity="one">Flytta samtalen til innboks</item>
     <item quantity="other">Flytta %d samtalar til innboks</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Profilnamn oppretta.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Profilnamn lagra.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <!--ConversationListItemAction-->
@@ -1232,6 +1232,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og senda lydvedlegg</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås opptak av lydmelding</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktiver Signal for SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">Klarte ikkje senda meldinga. Sjekk tilkoplinga di og prøv igjen.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Sveip for å avbryta</string>
   <string name="conversation_input_panel__cancel">Avbryt</string>
@@ -1259,6 +1260,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuoteView_original_missing">Fann ikkje den opphavlege meldinga</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til botnen</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Endringar med tryggleiksnummer.</string>
+  <string name="safety_number_change_dialog__send_anyway">Send uansett</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Desse personane kan ha reinstallert eller bytta einingar. Stadfest tryggleiksnummeret ditt med dei for å sikra personvernet.</string>
+  <string name="safety_number_change_dialog__view">Sjå</string>
+  <string name="safety_number_change_dialog__previous_verified">Tidlegare stadfesta</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Lastar inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>
@@ -1852,13 +1859,6 @@ Du er à jour!</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Me minner deg på det seinare. Du må oppretta ein PIN-kode innan %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Me minner deg på det seinare. Du må stadfesta PIN-koden innan %1$d dagar.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Lag eit profilnamn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dette blir vist når du startar ein ny samtale eller deler han.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Lag profilnamn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Stadfest profilnamn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profilen din kan no ha eit valfritt etternamn.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Stadfest namn</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>

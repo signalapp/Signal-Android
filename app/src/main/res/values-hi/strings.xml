@@ -144,7 +144,7 @@
   <string name="ContactShareEditActivity_type_missing">अन्य</string>
   <string name="ContactShareEditActivity_invalid_contact">चयनित संपर्क अमान्य था।</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">भेजने में असफल रहा, माहिती के लिए टैप करें।</string> -->
+  <string name="ConversationItem_error_network_not_delivered">भेजना असफल रहा</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">की एक्सचेंज मेसेज प्राप्त हुआ, प्रक्रिया करने के लिए टैप करें।</string>
   <string name="ConversationItem_group_action_left">%1$s ने समूह को छोड़ दिया है</string>
   <string name="ConversationItem_click_to_approve_unencrypted">भेजने में असफल रहा, असुरक्षित फ़ॉलबैक के लिए टैप करें</string>
@@ -280,7 +280,6 @@
     <item quantity="one">बातचीत को इनबॉक्स में ले जाया गया</item>
     <item quantity="other">%d बातचीत को इनबॉक्स में ले जाया गया</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">आपका प्रोफ़ाइल नाम सहेज लिया गया है।</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय मेसेज</string>
   <!--ConversationListItemAction-->
@@ -1029,6 +1028,8 @@
   <string name="QuoteView_original_missing">मूल मेसेज नहीं मिला</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">नीचे स्क्रॉल करें</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">देखना</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">देशों को लोड किया जा रहा है</string>
   <string name="country_selection_fragment__search">सर्च</string>
@@ -1540,10 +1541,6 @@
   <string name="KbsMegaphone__create_pin">पिेन बनाएँ</string>
   <string name="KbsMegaphone__introducing_pins">पेश है, पिन</string>
   <string name="KbsMegaphone__update_pin">पिन अपडेट करें</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">जब आप कोई संवाद चालु करेंगे या शेयर करेंगे तो यह दिखाया जाएगा।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">प्रोफ़ाइल का नाम भरें</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">अब आपके प्रोफ़ाइल में एक वैकल्पिक उपनाम जुङ सकता है।</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">परिवहन चिह्न</string>
   <string name="ConversationListFragment_loading">लोड हो रहा है</string>

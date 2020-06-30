@@ -157,7 +157,9 @@
   <string name="ContactShareEditActivity_type_missing">Otros</string>
   <string name="ContactShareEditActivity_invalid_contact">La persona que has seleccionado no es válida.</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Fallo al enviar. Toca para más detalles</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Fallo al enviar. Toca para más detalles.</string>
+  <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente, toca para más detalles</string>
+  <string name="ConversationItem_error_network_not_delivered">Fallo al enviar</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de claves, toca para proceder.</string>
   <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Fallo al enviar. Toca para enviar sin cifrar</string>
@@ -302,8 +304,6 @@
     <item quantity="one">Chat devuelto al buzón de entrada</item>
     <item quantity="other">%d chats devueltos al buzón de entrada</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Tu nombre de perfil se ha creado.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">El nombre se ha guardado en tu perfil.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
   <!--ConversationListItemAction-->
@@ -490,8 +490,8 @@
   <string name="CustomNotificationsDialogFragment__vibrate">Vibración</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Ajustes de llamada</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Tono de llamada</string>
-  <string name="CustomNotificationsDialogFragment__enabled">Activadas</string>
-  <string name="CustomNotificationsDialogFragment__disabled">Desactivadas</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Activada</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Desactivada</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">¿Deseas retirar tu invitación a «%1$s»?</string>
@@ -809,8 +809,8 @@
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Fallo al abandonar el grupo</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
-  <string name="RecipientPreferenceActivity_enabled">Activado</string>
-  <string name="RecipientPreferenceActivity_disabled">Desactivado</string>
+  <string name="RecipientPreferenceActivity_enabled">Activada</string>
+  <string name="RecipientPreferenceActivity_disabled">Desactivada</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponible una vez que se ha enviado o recibido un mensaje</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grupo sin nombre</string>
@@ -1232,6 +1232,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Grabar y enviar nota de voz</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Fijar grabación para nota de voz larga</string>
   <string name="conversation_activity__enable_signal_for_sms">Activar Signal para SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">No se ha podido enviar el mensaje. Comprueba tu conexión a internet e inténtalo de nuevo.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Desliza para cancelar</string>
   <string name="conversation_input_panel__cancel">Cancelar</string>
@@ -1259,6 +1260,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuoteView_original_missing">No se encuentra el mensaje original </string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desliza hasta el final</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Cambios en cifras de seguridad</string>
+  <string name="safety_number_change_dialog__send_anyway">Enviar de todas formas</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Las siguentes personas pueden haber reinstalado Signal o cambiado su dispositivo. Verifica tus cifras de seguridas con ellas para asegurar vuestra privacidad.</string>
+  <string name="safety_number_change_dialog__view">Ver</string>
+  <string name="safety_number_change_dialog__previous_verified">Identidad previamente verificada</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Cargando países …</string>
   <string name="country_selection_fragment__search">Buscar</string>
@@ -1615,7 +1622,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_notifications__priority">Prioridad</string>
   <string name="preferences_communication__category_sealed_sender">Remitente confidencial</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Mostrar indicadores</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Mostrar el icono de estado al tocar sobre «Detalles del mensaje» en mensajes entregados con «remitente confidencial». «Remitente confidencial» es una característica del protocolo de Signal que impide saber a nuestro servidor quién envía el mensaje. La persona que lo recibe sí lo sabrá.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Muestra el icono de estado al tocar sobre «Detalles del mensaje» en mensajes entregados con «remitente confidencial». «Remitente confidencial» es una característica del protocolo de Signal que impide saber a nuestro servidor quién envía el mensaje. La persona que lo recibe sí lo sabrá.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de cualquiera</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activar la opción permite usar la característica de «remitente confidencial» con personas que no están entre tus contactos y con las que no has compartido tu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber más</string>
@@ -1850,13 +1857,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo volveremos a recordar. Crear tu PIN será obligatorio en %1$d días.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo volveremos a recordar. Confirmar tu PIN será obligatorio en %1$d días.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Añadir nombre al perfil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Se mostrará al iniciar un nuevo chat o al compartirlo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Añadir nombre al perfil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirma tu nombre de perfil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ahora tu perfil puede incluir opcionalmente tu(s) apellido(s)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Confirmar nombre</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>

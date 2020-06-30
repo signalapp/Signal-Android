@@ -159,7 +159,6 @@
   <string name="ContactShareEditActivity_type_missing">Cits</string>
   <string name="ContactShareEditActivity_invalid_contact">Izvēlētais kontakts nav derīgs</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Sūtīšana neizdevās, pieskarieties, lai saņemtu detalizētāku informāciju</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tika saņemta atslēgu apmaiņas ziņu, pieskarieties lai to apstrādātu.</string>
   <string name="ConversationItem_group_action_left">%1$s ir pametis grupu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sūtīšana neizdevās, pieskarieties, lai veiktu nedrošu sūtījumu, izmantojot rezerves kanālu</string>
@@ -313,8 +312,6 @@
     <item quantity="one">Pārvietoja sarunu uz iesūtni </item>
     <item quantity="other">Pārvietoja %d sarunas uz iesūtni</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsu profila vārds ir izveidots.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsu profila vārds ir saglabāts.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Atslēgapmaiņas ziņa</string>
   <!--ConversationListItemAction-->
@@ -1196,6 +1193,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="QuoteView_original_missing">Oriģinālā ziņa netika atrasta</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Ritināt līdz apakšai </string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">Skatīt</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ielādē valstis…</string>
   <string name="country_selection_fragment__search">Meklēt</string>
@@ -1782,13 +1781,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KbsMegaphone__update_pin">Aktualizēt PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tas tiks atgādināts vēlāk. PIN izveide kļūs obligāta pēc %1$d dienām.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Jums tiks atgādināts vēlāk. PIN apstiprināšana kļūs obligāta pēc %1$d dienām.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Pievienojiet profila nosaukumu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tas tiks parādīts, kad sāksiet jaunu sarunu vai kopīgosiet to.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Pievienojiet profila nosaukumu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Apstipriniet jūsu profila nosaukumu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Jūsu profilā tagad fakultatīvi var tikt ietverts arī uzvārds.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Apstipriniet vārdu/nosaukumu</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
   <string name="ConversationListFragment_loading">Notiek ielāde…</string>

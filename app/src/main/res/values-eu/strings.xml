@@ -157,7 +157,9 @@
   <string name="ContactShareEditActivity_type_missing">Besteak</string>
   <string name="ContactShareEditActivity_invalid_contact">Aukeratutako kontaktua baliogabea da</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Bidalketak huts egin du, ukitu xehetasunak ikusteko</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ez da bidali, ukitu xehetasunak ikusteko.</string>
+  <string name="ConversationItem_error_partially_not_delivered">Partzialki bidalia, ukitu xehetasunetarako</string>
+  <string name="ConversationItem_error_network_not_delivered">Bidaltzeak huts egin du</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Jaso da gakoaren datu-trukatzearen mezua, tap egin prozesatzeko.</string>
   <string name="ConversationItem_group_action_left">%1$s taldea utzi du</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Bidalketak huts egin du, ukitu segurtasunik gabeko alternatibarako</string>
@@ -302,8 +304,6 @@
     <item quantity="one">Solasaldi bat mugitu da sarrera-ontzira</item>
     <item quantity="other">%d solasaldi mugitu dira sarrera-ontzira</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Zure profilaren izena sortu da.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Zure profilaren izena gorde da.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Gakoaren trukatzerako mezua</string>
   <!--ConversationListItemAction-->
@@ -1232,6 +1232,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Grabatu eta bidali audio eranskina</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Finkatu audio atxikimenduen grabaketa audio mezu luzeak grabatzeko</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktibatu Signal SMSetarako</string>
+  <string name="conversation_activity__message_could_not_be_sent">Mezua ezin izan da bidali. Egiazta ezazu zure konexioa eta saia zaitez berriro.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Korritu alde batera ezeztatzeko</string>
   <string name="conversation_input_panel__cancel">Utzi</string>
@@ -1259,6 +1260,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="QuoteView_original_missing">Jatorrizko mezua ez da aurkitu</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Hondora korritu</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Segurtasun Zenbakiaren Aldaketak</string>
+  <string name="safety_number_change_dialog__send_anyway">Bidali hala eta guztiz ere</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ondoko pertsonek agian gailuak aldatu edo Signal berrinstalatu egin dute. Egiaztatu beraiekin duzun segurtasun zenbakia pribatutasuna ziurtatzeko.</string>
+  <string name="safety_number_change_dialog__view">Ikusi</string>
+  <string name="safety_number_change_dialog__previous_verified">Aurretik egiaztatua</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Herrialdeak kargatzen…</string>
   <string name="country_selection_fragment__search">Bilatu</string>
@@ -1850,13 +1857,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsMegaphone__update_pin">Eguneratu PINa</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Beranduago gogoraraziko dizugu. PIN bat sortzea beharrezkoa izango da %1$d eguneta.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Beranduago gogoraraziko dizugu. Zure PINa baieztatzea derrigorrezkoa izango da %1$d egunetan.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Gehitu profil izen bat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Hau erakutsiko da solasaldi berri bat hasterakoan edo partekatzerakoan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Gehitu profil izena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Baieztatu zure profil izena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Zure profilak orain aukerazko abizen bat eduki dezake.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Baieztatu izena</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>

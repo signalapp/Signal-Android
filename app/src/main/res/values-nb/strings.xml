@@ -157,7 +157,9 @@
   <string name="ContactShareEditActivity_type_missing">Annet</string>
   <string name="ContactShareEditActivity_invalid_contact">Den valgte kontakten var ugyldig</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Sending mislyktes, trykk for detaljer</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ikke sendt, trykk for detaljer</string>
+  <string name="ConversationItem_error_partially_not_delivered">Delvis sendt, trykk for detaljer</string>
+  <string name="ConversationItem_error_network_not_delivered">Sending feilet</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling mottatt. Trykk for å behandle.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sending mislyktes, trykk for usikret reserveløsning</string>
@@ -302,8 +304,6 @@
     <item quantity="one">Flyttet samtalen til innboks</item>
     <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Profilnavnet ditt er opprettet.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Profilnavnet ditt har blitt lagret.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
   <!--ConversationListItemAction-->
@@ -710,6 +710,10 @@
   <string name="MessageRequestBottomView_delete">Slett</string>
   <string name="MessageRequestBottomView_block">Blokker</string>
   <string name="MessageRequestBottomView_unblock">Skru av blokkering</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? De vil ikke vite at du har sett meldingen deres før du godtar.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? Du vil ikke motta noen meldinger fra dem før du fjerner blokkeringen av dem.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli medlem i denne gruppen samt dele navn og bilde med medlemmene? De vil ikke vite at du har sett meldingene før du godtar.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du ble invitert til gruppen %1$s. Ønsker du å la gruppens medlemmer kunne sende deg meldinger?</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjerne blokkering av denne gruppen samt dele navn og bilde med medlemmene? Du vil ikke motta noen meldinger før du fjerner blokkeringen av den.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>
@@ -717,6 +721,10 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d medlem</item>
     <item quantity="other">%1$d medlemmer</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d medlem (+%2$d inviterte)</item>
+    <item quantity="other">%1$d medlemmer (+%2$d inviterte)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d annen</item>
@@ -767,14 +775,23 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Feil PIN-kode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Hopp over PIN-kode?</string>
   <string name="PinRestoreEntryFragment_need_help">Trenger hjelp?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Din PIN er en kode med %1$d+ siffer eller alfanumeriske tegn. Hvis du ikke kan huske PIN-koden din, kan du opprette en ny. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Hvis du ikke kan huske PIN-koden din, kan du opprette en ny. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Opprett ny PIN-kode</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt support</string>
   <string name="PinRestoreEntryFragment_cancel">Avbryt</string>
   <string name="PinRestoreEntryFragment_skip">Hopp over</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
+    <item quantity="other">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registrering - Hjelp ønskes til verifikasjonskode for Android</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv inn numerisk PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Opprett PIN-koden</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har gått tom for PIN-gjetninger, men du kan fremdeles få tilgang til Signal-kontoen din ved å opprette en ny PIN-kode. For ditt personvern og sikkerhet vil kontoen din bli gjenopprettet uten lagret profilinformasjon eller innstillinger.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Opprett ny PIN-kode</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du liker dette programmet, vil vi gjerne at du hjelper oss ved å gi din vurdering.</string>
@@ -783,6 +800,7 @@
   <string name="RatingManager_later">Senere</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops. Programmet Play Butikk ser ikke ut til å være installert på denne enheten.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -810,9 +828,12 @@
   <string name="RedPhone_got_it">Ålreit</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Trykk her for å skru på video</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">For å ringe %1$s, trenger Signal tilgang til kameraet</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Signal taleanrop…</string>
+  <string name="WebRtcCallView__signal_video_call">Signal videosamtale…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Velg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgi
@@ -853,6 +874,8 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_country_code_description">Landskode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din Signal PIN-kode når du registrerer deg igjen, blir du låst ute av kontoen din i 7 dager.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Slå på</string>
   <string name="RegistrationLockV2Dialog_turn_off">Skru av</string>
@@ -928,9 +951,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Emne:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Kontakt Signal Android support</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformasjon:</string>
   <string name="SupportEmailUtil_android_version">Android versjon</string>
   <string name="SupportEmailUtil_signal_version">Signal versjon:</string>
+  <string name="SupportEmailUtil_signal_package">Signal pakke:</string>
   <string name="SupportEmailUtil_registration_lock">Registreringslås:</string>
   <string name="SupportEmailUtil_locale">Språk:</string>
   <!--ThreadRecord-->
@@ -989,6 +1014,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Det oppstod en nettverksfeil.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Dette brukernavnet er tatt.</string>
   <string name="UsernameEditFragment_this_username_is_available">Dette brukernavnet er tilgjengelig.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Brukernavn kan bare inneholde a–Z, 0–9, og understrek.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
@@ -1058,6 +1084,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_s">Reagerte %1$s til \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagerte %1$s til videoen din.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagerte %1$s til bildet ditt. </string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagerte %1$s på filen din. </string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagerte %1$s på lyden din. </string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerte %1$s på engangs-visnings-bildet ditt. </string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerte %1$s på engangs-visnings-videoen din. </string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte %1$s på klistremerket ditt. </string>
   <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvalgt</string>
@@ -1102,6 +1133,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å besvare samtalen fra 1%s.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal krever tillatelser fra systemet for å kunne ringe eller motta samtaler, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvart på en lenket enhet.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Avslått på en lenket enhet.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Opptatt på en lenket enhet.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør bekrefte sikkerhetsnummeret ditt med denne kontakten.</string>
@@ -1111,7 +1145,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Avslå</string>
   <string name="WebRtcCallScreen__answer">Svar</string>
+  <string name="WebRtcCallScreen__answer_without_video">Svar uten video</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__audio_output">Lydutgang</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Ørestykke</string>
   <string name="WebRtcAudioOutputToggle__speaker">Høyttaler</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1172,6 +1209,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal må ha tilgang til kontaktene dine for å kunne vise dem.</string>
   <string name="contact_selection_list_fragment__show_contacts">Vis Kontakter</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmer</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-melding</string>
   <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
@@ -1186,6 +1227,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og sende lyd vedlegg</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås opptak av lydmelding</string>
   <string name="conversation_activity__enable_signal_for_sms">Bruk Signal for SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">Meldingen kunne ikke sendes. Kontroller nettverksforbindelsen din og prøv igjen.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Skyv for å avbryte</string>
   <string name="conversation_input_panel__cancel">Avbryt</string>
@@ -1213,9 +1255,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuoteView_original_missing">Opprinnelig melding ikke funnet</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Endringer av sikkerhetsnummer</string>
+  <string name="safety_number_change_dialog__send_anyway">Send likevel</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan ha reinstallert eller byttet enhet. Bekreft sikkerhetsnummeret ditt med dem for å sikre personvernet.</string>
+  <string name="safety_number_change_dialog__view">Vis</string>
+  <string name="safety_number_change_dialog__previous_verified">Tidligere bekreftet</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laster inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>
+  <string name="country_selection_fragment__no_matching_countries">Ingen matchende land</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR-koden på Signal-enheten du vil koble denne enheten med</string>
   <!--device_link_fragment-->
@@ -1328,6 +1377,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreateProfileActivity__username">Brukernavn</string>
   <string name="CreateProfileActivity__create_a_username">Opprett et brukernavn</string>
   <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og bilde</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Delte medier</string>
@@ -1363,6 +1413,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="message_details_header__disappears">Forsvinner</string>
   <string name="message_details_header__via">Via</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Avventer</string>
+  <string name="message_details_recipient_header__sent_to">Sendt til</string>
+  <string name="message_details_recipient_header__sent_from">Sendt av</string>
+  <string name="message_details_recipient_header__delivered_to">Levert til</string>
+  <string name="message_details_recipient_header__read_by">Lest av</string>
+  <string name="message_details_recipient_header__not_sent">Ikke sendt</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Sending mislyktes</string>
   <string name="message_details_recipient__new_safety_number">Nytt sikkerhetsnummer</string>
@@ -1390,8 +1446,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__next">Neste</string>
   <string name="HelpFragment__contact_us">Kontakt oss</string>
   <string name="HelpFragment__tell_us_whats_going_on">Fortell oss hva som skjer</string>
+  <string name="HelpFragment__include_debug_log">Inkluder debug logg.</string>
   <string name="HelpFragment__whats_this">Hva er dette?</string>
   <string name="HelpFragment__how_do_you_feel">Hvordan føler du deg? (Valgfri)</string>
+  <string name="HelpFragment__signal_android_support_request">Kontakt Signal Android support</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
@@ -1731,6 +1789,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Skriv inn PIN-koden din</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv inn PIN-koden du opprettet for kontoen din. Dette er forskjellig fra SMS-bekreftelseskoden.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Skriv inn numerisk PIN</string>
   <string name="RegistrationLockFragment__next">Neste</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
   <string name="RegistrationLockFragment__forgot_pin">Har du glemt PIN-koden?</string>
@@ -1748,11 +1808,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsMegaphone__create_pin">Lag PIN</string>
   <string name="KbsMegaphone__introducing_pins">Vi introduserer PIN-koder</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dette vil bli vist når du starter en ny samtale eller deler det.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Legg til profilnavn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nå inkludere et etternavn som en opsjon.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Bekreft navnet</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>

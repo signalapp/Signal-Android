@@ -163,7 +163,9 @@
   <string name="ContactShareEditActivity_type_missing">Drugo</string>
   <string name="ContactShareEditActivity_invalid_contact">Izbrani kontakt ni veljaven</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Pošiljanje ni uspelo, tapnite za več informacij</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ni poslano. Tapnite za več informacij</string>
+  <string name="ConversationItem_error_partially_not_delivered">Delno poslano. Tapnite za več informacij</string>
+  <string name="ConversationItem_error_network_not_delivered">Pošiljanje ni uspelo</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Prejeta informacija o izmenjavi ključev. Kliknite za obdelavo.</string>
   <string name="ConversationItem_group_action_left">Oseba %1$s je zapustila skupino.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Pošiljanje ni uspelo, tapnite za nezavarovan SMS</string>
@@ -330,8 +332,6 @@
     <item quantity="few">%d pogovori premaknjeni v nabiralnik</item>
     <item quantity="other">%d pogovorov premaknjenih v nabiralnik</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Vaše profilno ime je bilo ustvarjeno.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Vaše profilno ime je bilo shranjeno.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev</string>
   <!--ConversationListItemAction-->
@@ -1301,6 +1301,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Posnemi in pošlji glasovno priponko</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zakleni snemanje zvočne priponke</string>
   <string name="conversation_activity__enable_signal_for_sms">Omogoči uporabo sporočil SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">Sporočilo ni moglo biti poslano. Preverite internetno povezavo in poskusite znova.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Za prekinitev podrsajte v levo</string>
   <string name="conversation_input_panel__cancel">Prekliči</string>
@@ -1328,6 +1329,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_original_missing">Izvorno sporočilo ni bilo najdeno</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na dno</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Spremembe varnostnega števila</string>
+  <string name="safety_number_change_dialog__send_anyway">Vseeno pošlji</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Našteti uporabniki/ce so najbrž ponovno namestili/e Signal ali zamenjali/e napravo. Za potrditev istovetnosti ponovno preverite varnostno število z njimi.</string>
+  <string name="safety_number_change_dialog__view">Preglej</string>
+  <string name="safety_number_change_dialog__previous_verified">Prej potrjeno</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Nalaganje držav …</string>
   <string name="country_selection_fragment__search">Iskanje</string>
@@ -1950,13 +1957,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsMegaphone__update_pin">Posodobite PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba kode PIN bo postala obvezna čez %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev kode PIN bo obvezna čez %1$d dni.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj ime profila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To bo prikazano, ko boste začeli z novim pogovorom, ali ko boste delili pogovor.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Dodajanje imena profila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potrdi ime svojega profila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil lahko od sedaj vsebuje tudi priimek.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Potrditev imena</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>

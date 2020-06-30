@@ -154,7 +154,9 @@
   <string name="ContactShareEditActivity_type_missing">其他</string>
   <string name="ContactShareEditActivity_invalid_contact">選擇的聯絡人無效</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">傳送失敗，點擊以了解細節。</string> -->
+  <string name="ConversationItem_error_not_sent_tap_for_details">未傳送，請點擊以獲得詳細資訊</string>
+  <string name="ConversationItem_error_partially_not_delivered">部分發送，請點擊以了解細節。</string>
+  <string name="ConversationItem_error_network_not_delivered">傳送失敗</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">接收到金鑰交換訊息，按此開始處理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已經離開群組。</string>
   <string name="ConversationItem_click_to_approve_unencrypted">傳送失敗，點擊不安全的訊息退回</string>
@@ -288,8 +290,6 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已經移動 %d 個對話到收件箱</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">你的個人資料名稱已經被建立。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">你的個人資料名稱已被儲存。</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
@@ -978,6 +978,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">網路連接錯誤。</string>
   <string name="UsernameEditFragment_this_username_is_taken">這個使用者名稱已經被使用。</string>
   <string name="UsernameEditFragment_this_username_is_available">這個使用者名稱可以被使用。</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">使用者名稱只能包含a–Z，0–9和底線。</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不可以以數字開頭。</string>
   <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱必須是藉在%1$d及%2$d之間的字母。</string>
@@ -1189,6 +1190,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">錄製並傳送語音附件</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">鎖定語音錄製附件檔案</string>
   <string name="conversation_activity__enable_signal_for_sms">啟動 Signal 簡訊功能</string>
+  <string name="conversation_activity__message_could_not_be_sent">無法傳送訊息。 檢查你的連線，然後重試。</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">滑動以取消</string>
   <string name="conversation_input_panel__cancel">取消</string>
@@ -1216,6 +1218,12 @@
   <string name="QuoteView_original_missing">無法找到原始訊息</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">向下滑動至底部</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">安全碼變更</string>
+  <string name="safety_number_change_dialog__send_anyway">仍然傳送</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下使用者可能已重新安裝或更換了裝置。與他們一起驗證你的安全碼，以確保隱私性。</string>
+  <string name="safety_number_change_dialog__view">檢視</string>
+  <string name="safety_number_change_dialog__previous_verified">先前已驗證</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">讀取國家列表中…</string>
   <string name="country_selection_fragment__search">搜尋</string>
@@ -1790,13 +1798,6 @@
   <string name="KbsMegaphone__update_pin">升級PIN碼</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">我們稍後會提醒你。 建立PIN碼將在%1$d天之內成為強制性的。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">我們稍後會提醒你。 在%1$d天之內，必須確認你的PIN碼。</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">新增一個個人資料名稱</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">當你開始新的對話或分享時，將顯示此內容。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">新增個人資訊名稱</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">確認你的個人資料名稱</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">你的個人資料現在可以包含可選的姓氏。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">確認名稱</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
   <string name="ConversationListFragment_loading">讀取中…</string>

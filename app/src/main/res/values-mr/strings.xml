@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">इतर</string>
   <string name="ContactShareEditActivity_invalid_contact">निवडलेला संपर्क अवैध होता</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">पाठविणे अयशस्वी, तपशीलासाठी टॅप करा</string> -->
+  <string name="ConversationItem_error_network_not_delivered">पाठविणे अयशस्वी</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">की विनिमय संदेश प्राप्त झाला आहे, प्रक्रिया करण्यासाठी टॅप करा.</string>
   <string name="ConversationItem_group_action_left">%1$s याने गट सोडले आहे.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">पाठविणे अयशस्वी, असुरक्षित फॉलबॅक करिता टॅप करा</string>
@@ -299,8 +299,6 @@
     <item quantity="one">संभाषण इनबॉक्स मध्ये हलवले</item>
     <item quantity="other">%d संभाषण इनबॉक्स मध्ये हलवली</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">आपले प्रोफाईल नाव तयार केले गेले आहे.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">आपले प्रोफाईल नाव जतन केले गेले आहे.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय संदेश</string>
   <!--ConversationListItemAction-->
@@ -1084,6 +1082,8 @@
   <string name="QuoteView_original_missing">मूळ संदेश आढळला नाही</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">खालपर्यंत स्क्रोल करा</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">बघा</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">देश लोड करत आहे…</string>
   <string name="country_selection_fragment__search">शोध</string>
@@ -1597,10 +1597,6 @@
   <string name="KbsMegaphone__create_pin">PIN तयार करा</string>
   <string name="KbsMegaphone__introducing_pins">PIN ची ओळख करून देत आहे</string>
   <string name="KbsMegaphone__update_pin">PIN अद्यतनित करा</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">हे दाखविले जाईल जेव्हा आपण नवीन संभाषण चालू करता किंवा त्यास सामायिक करता.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">प्रोफाईल नाव जोडा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">आपल्या प्रोफाईल मध्ये आता पर्यायी अडनाव समाविष्ट करता येऊ शकते.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>

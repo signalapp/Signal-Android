@@ -151,7 +151,6 @@
   <string name="ContactShareEditActivity_type_missing">Iba pa</string>
   <string name="ContactShareEditActivity_invalid_contact">Ang napiling kontak ay invalid</string>
   <!--ConversationItem-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem_error_not_delivered">Nabigo ang pagpapadala, pindutin para sa mga detalye</string> -->
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Natanggap ang key exchange na mensahe, pindutin para iproseso.</string>
   <string name="ConversationItem_group_action_left">Umalis si %1$s sa grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Hindi naipadala, pindutin para sa hindi secure na fallback</string>
@@ -290,8 +289,6 @@
     <item quantity="one">Nailipat ang pag-uusap sa inbox</item>
     <item quantity="other">Nailipat ang %d pag-uusap sa inbox</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_created">Ang iyong profile ay nalikha na.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment__your_profile_name_has_been_saved">Ang iyong profile na pangalan ay nai-save na.</string> -->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key exchange na mensahe</string>
   <!--ConversationListItemAction-->
@@ -1077,6 +1074,7 @@
   <string name="QuoteView_original_missing">Hindi makita ang orihinal na mensahe</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Mag-scroll pababa</string>
+  <!--safety_number_change_dialog-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Nilo-load ang mga bansa…</string>
   <string name="country_selection_fragment__search">Maghanap</string>
@@ -1645,13 +1643,6 @@
   <string name="KbsMegaphone__update_pin">I-update ang PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Paaalalahanan ka namin kinalaunan. Ang paglikha ng PIN ay magiging sapilitan sa loob ng %1$d araw.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Paaalalahanan ka namin kinalaunan. Ang pagkumpirma ng iyong PIN ay magiging sapilitan sa loob ng %1$d araw.</string>
-  <!--Profile Names Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_a_profile_name">Magdagdag ng profile na pangalan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ito ay maipapakita kapag nagsimula ka ng bagong pag-uusap o kaya\'y ibahagi ito.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__add_profile_name">Idagdag ang Profile na Pangalan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_your_profile_name">Kumpirmahin ang iyong Profile na Pangalan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ang iyong profile ay maaari na ngayong dagdagan ng opsyonal na apelyido.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileNamesMegaphone__confirm_name">Kumpirmahin ang Pangalan</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon ng transportasyon</string>
   <string name="ConversationListFragment_loading">Naglo-load…</string>
