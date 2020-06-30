@@ -88,6 +88,7 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
+import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
@@ -266,8 +267,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onStart() {
     super.onStart();
-    // TODO [greyson] Re-enable when we figure out how to invalidate the cache after a system theme change
-//    ConversationFragment.prepare(requireContext());
+    ConversationFragment.prepare(requireContext());
   }
 
   @Override

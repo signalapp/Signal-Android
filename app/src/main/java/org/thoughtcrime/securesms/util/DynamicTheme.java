@@ -17,11 +17,21 @@ public class DynamicTheme {
   public static final String LIGHT  = "light";
   public static final String SYSTEM = "system";
 
+  private static boolean isDarkTheme;
+
   private int currentTheme;
 
   public void onCreate(Activity activity) {
+    boolean wasDarkTheme = isDarkTheme;
+
     currentTheme = getSelectedTheme(activity);
+    isDarkTheme  = isDarkTheme(activity);
+
     activity.setTheme(currentTheme);
+
+    if (isDarkTheme != wasDarkTheme) {
+      CachedInflater.from(activity).clear();
+    }
   }
 
   public void onResume(Activity activity) {
