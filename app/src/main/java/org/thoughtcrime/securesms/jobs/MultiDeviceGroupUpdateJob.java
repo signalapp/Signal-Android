@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -12,6 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -32,6 +36,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -74,15 +79,20 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
       return;
     }
 
-    File                 contactDataFile = createTempFile("multidevice-contact-update");
-    GroupDatabase.Reader reader          = null;
+    ParcelFileDescriptor[] pipe        = ParcelFileDescriptor.createPipe();
+    InputStream            inputStream = new ParcelFileDescriptor.AutoCloseInputStream(pipe[0]);
+    Uri                    uri         = BlobProvider.getInstance()
+                                                     .forData(inputStream, 0)
+                                                     .withFileName("multidevice-group-update")
+                                                     .createForSingleSessionOnDiskAsync(context,
+                                                                                        () -> Log.i(TAG, "Write successful."),
+                                                                                        e  -> Log.w(TAG, "Error during write.", e));
 
-    GroupDatabase.GroupRecord record;
+    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(context).getGroups()) {
+      DeviceGroupsOutputStream out     = new DeviceGroupsOutputStream(new ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]));
+      boolean                  hasData = false;
 
-    try {
-      DeviceGroupsOutputStream out = new DeviceGroupsOutputStream(new FileOutputStream(contactDataFile));
-
-      reader = DatabaseFactory.getGroupDatabase(context).getGroups();
+      GroupDatabase.GroupRecord record;
 
       while ((record = reader.getNext()) != null) {
         if (record.isV1Group()) {
@@ -108,22 +118,25 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
                                     recipient.isBlocked(),
                                     Optional.fromNullable(inboxPositions.get(recipientId)),
                                     archived.contains(recipientId)));
+
+          hasData = true;
         }
       }
 
       out.close();
 
-      if (contactDataFile.exists() && contactDataFile.length() > 0) {
-        sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile);
+      if (hasData) {
+        long length = BlobProvider.getInstance().calculateFileSize(context, uri);
+
+        sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(),
+                   BlobProvider.getInstance().getStream(context, uri),
+                   length);
       } else {
         Log.w(TAG, "No groups present for sync message...");
       }
-
     } finally {
-      if (contactDataFile != null) contactDataFile.delete();
-      if (reader != null)          reader.close();
+      BlobProvider.getInstance().delete(context, uri);
     }
-
   }
 
   @Override
@@ -137,14 +150,13 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
   }
 
-  private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile)
+  private void sendUpdate(SignalServiceMessageSender messageSender, InputStream stream, long length)
       throws IOException, UntrustedIdentityException
   {
-    FileInputStream               contactsFileStream = new FileInputStream(contactsFile);
     SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
-                                                                              .withStream(contactsFileStream)
+                                                                              .withStream(stream)
                                                                               .withContentType("application/octet-stream")
-                                                                              .withLength(contactsFile.length())
+                                                                              .withLength(length)
                                                                               .build();
 
     messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream),

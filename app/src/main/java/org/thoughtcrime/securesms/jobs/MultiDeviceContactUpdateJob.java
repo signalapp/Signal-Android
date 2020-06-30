@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -44,6 +46,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -122,10 +127,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   private void generateSingleContactUpdate(@NonNull RecipientId recipientId)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    File contactDataFile = createTempFile("multidevice-contact-update");
+    WriteDetails writeDetails = createTempFile();
 
     try {
-      DeviceContactsOutputStream                out             = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
+      DeviceContactsOutputStream                out             = new DeviceContactsOutputStream(writeDetails.outputStream);
       Recipient                                 recipient       = Recipient.resolved(recipientId);
       Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipient.getId());
       Optional<VerifiedMessage>                 verifiedMessage = getVerifiedMessage(recipient, identityRecord);
@@ -145,12 +150,18 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                   archived.contains(recipientId)));
 
       out.close();
-      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile, false);
+
+      long length = BlobProvider.getInstance().calculateFileSize(context, writeDetails.uri);
+
+      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(),
+                 BlobProvider.getInstance().getStream(context, writeDetails.uri),
+                 length,
+                 false);
 
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
     } finally {
-      if (contactDataFile != null) contactDataFile.delete();
+      BlobProvider.getInstance().delete(context, writeDetails.uri);
     }
   }
 
@@ -171,10 +182,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
     TextSecurePreferences.setLastFullContactSyncTime(context, System.currentTimeMillis());
     TextSecurePreferences.setNeedsFullContactSync(context, false);
 
-    File contactDataFile = createTempFile("multidevice-contact-update");
+    WriteDetails writeDetails = createTempFile();
 
     try {
-      DeviceContactsOutputStream out            = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
+      DeviceContactsOutputStream out            = new DeviceContactsOutputStream(writeDetails.outputStream);
       List<Recipient>            recipients     = DatabaseFactory.getRecipientDatabase(context).getRecipientsForMultiDeviceSync();
       Map<RecipientId, Integer>  inboxPositions = DatabaseFactory.getThreadDatabase(context).getInboxPositions();
       Set<RecipientId>           archived       = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
@@ -219,11 +230,17 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       }
 
       out.close();
-      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile, true);
+
+      long length = BlobProvider.getInstance().calculateFileSize(context, writeDetails.uri);
+
+      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(),
+                 BlobProvider.getInstance().getStream(context, writeDetails.uri),
+                 length,
+                 true);
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
     } finally {
-      if (contactDataFile != null) contactDataFile.delete();
+      BlobProvider.getInstance().delete(context, writeDetails.uri);
     }
   }
 
@@ -238,15 +255,14 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
   }
 
-  private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile, boolean complete)
-      throws IOException, UntrustedIdentityException, NetworkException
+  private void sendUpdate(SignalServiceMessageSender messageSender, InputStream stream, long length, boolean complete)
+      throws UntrustedIdentityException, NetworkException
   {
-    if (contactsFile.length() > 0) {
-      FileInputStream               contactsFileStream = new FileInputStream(contactsFile);
+    if (length > 0) {
       SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
-                                                                                .withStream(contactsFileStream)
+                                                                                .withStream(stream)
                                                                                 .withContentType("application/octet-stream")
-                                                                                .withLength(contactsFile.length())
+                                                                                .withLength(length)
                                                                                 .build();
 
       try {
@@ -255,6 +271,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }
+    } else {
+      Log.w(TAG, "Nothing to write!");
     }
   }
 
@@ -360,17 +378,33 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
     return Optional.of(new VerifiedMessage(destination, identityKey, state, System.currentTimeMillis()));
   }
 
-  private File createTempFile(String prefix) throws IOException {
-    File file = File.createTempFile(prefix, "tmp", context.getCacheDir());
-    file.deleteOnExit();
+  private @NonNull WriteDetails createTempFile() throws IOException {
+    ParcelFileDescriptor[] pipe        = ParcelFileDescriptor.createPipe();
+    InputStream            inputStream = new ParcelFileDescriptor.AutoCloseInputStream(pipe[0]);
+    Uri                    uri         = BlobProvider.getInstance()
+                                                     .forData(inputStream, 0)
+                                                     .withFileName("multidevice-contact-update")
+                                                     .createForSingleSessionOnDiskAsync(context,
+                                                                                        () -> Log.i(TAG, "Write successful."),
+                                                                                        e  -> Log.w(TAG, "Error during write.", e));
 
-    return file;
+    return new WriteDetails(uri, new ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]));
   }
 
   private static class NetworkException extends Exception {
 
     public NetworkException(Exception ioe) {
       super(ioe);
+    }
+  }
+
+  private static class WriteDetails {
+    private final Uri          uri;
+    private final OutputStream outputStream;
+
+    private WriteDetails(@NonNull Uri uri, @NonNull OutputStream outputStream) {
+      this.uri          = uri;
+      this.outputStream = outputStream;
     }
   }
 

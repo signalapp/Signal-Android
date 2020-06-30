@@ -215,6 +215,20 @@ public class BlobProvider {
     return null;
   }
 
+  @WorkerThread
+  public long calculateFileSize(@NonNull Context context, @NonNull Uri uri) {
+    if (!isAuthority(uri)) {
+      return 0;
+    }
+
+    try (InputStream stream = getStream(context, uri)) {
+      return Util.getStreamLength(stream);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      return 0;
+    }
+  }
+
   public static boolean isAuthority(@NonNull Uri uri) {
     return URI_MATCHER.match(uri) == MATCH;
   }
