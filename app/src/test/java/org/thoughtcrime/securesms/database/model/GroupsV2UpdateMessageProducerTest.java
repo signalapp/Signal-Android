@@ -68,6 +68,14 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(producer.describeChange(change), is(singletonList("You updated the group.")));
   }
 
+  @Test
+  public void empty_change_by_unknown() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("The group was updated.")));
+  }
+
   // Member additions
 
   @Test
@@ -109,6 +117,24 @@ public final class GroupsV2UpdateMessageProducerTest {
   @Test
   public void member_added_themselves() {
     DecryptedGroupChange change = changeBy(bob)
+                                    .addMember(bob)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Bob joined the group.")));
+  }
+
+  @Test
+  public void unknown_added_you() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .addMember(you)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("You joined the group.")));
+  }
+
+  @Test
+  public void unknown_added_member() {
+    DecryptedGroupChange change = changeByUnknown()
                                     .addMember(bob)
                                     .build();
 
@@ -160,6 +186,24 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .build();
 
     assertThat(producer.describeChange(change), is(singletonList("Bob left the group.")));
+  }
+
+  @Test
+  public void unknown_removed_member() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .deleteMember(alice)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Alice is no longer in the group.")));
+  }
+
+  @Test
+  public void unknown_removed_you() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .deleteMember(you)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("You are no longer in the group.")));
   }
 
   // Member role modifications
@@ -218,6 +262,42 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(producer.describeChange(change), is(singletonList("Alice revoked your admin privileges.")));
   }
 
+  @Test
+  public void unknown_makes_member_admin() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .promoteToAdmin(alice)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Alice is now an admin.")));
+  }
+
+  @Test
+  public void unknown_makes_you_admin() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .promoteToAdmin(you)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("You are now an admin.")));
+  }
+
+  @Test
+  public void unknown_revokes_member_admin() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .demoteToMember(alice)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Alice is no longer an admin.")));
+  }
+
+  @Test
+  public void unknown_revokes_your_admin() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .demoteToMember(you)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("You are no longer an admin.")));
+  }
+
   // Member invitation
 
   @Test
@@ -267,6 +347,46 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .build();
 
     assertThat(producer.describeChange(change), is(Arrays.asList("Bob invited you to the group.", "Bob invited 3 people to the group.")));
+  }
+
+  @Test
+  public void unknown_invited_you() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .invite(you)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("You were invited to the group.")));
+  }
+
+  @Test
+  public void unknown_invited_1_person() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .invite(alice)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("1 person was invited to the group.")));
+  }
+
+  @Test
+  public void unknown_invited_2_persons() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .invite(alice)
+                                    .invite(bob)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("2 people were invited to the group.")));
+  }
+
+  @Test
+  public void unknown_invited_3_persons_and_you() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .invite(alice)
+                                    .invite(you)
+                                    .invite(UUID.randomUUID())
+                                    .invite(UUID.randomUUID())
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(Arrays.asList("You were invited to the group.", "3 people were invited to the group.")));
   }
 
   // Member invitation revocation
@@ -327,6 +447,46 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(producer.describeChange(change), is(singletonList("You declined the invitation to the group.")));
   }
 
+  @Test
+  public void unknown_revokes_your_invite() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .uninvite(you)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Your invitation to the group was revoked.")));
+  }
+
+  @Test
+  public void unknown_revokes_1_invite() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .uninvite(bob)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("An invitation to the group was revoked.")));
+  }
+
+  @Test
+  public void unknown_revokes_2_invites() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .uninvite(bob)
+                                    .uninvite(UUID.randomUUID())
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("2 invitations to the group were revoked.")));
+  }
+
+  @Test
+  public void unknown_revokes_yours_and_three_other_invites() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .uninvite(bob)
+                                    .uninvite(you)
+                                    .uninvite(UUID.randomUUID())
+                                    .uninvite(UUID.randomUUID())
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(Arrays.asList("Your invitation to the group was revoked.", "3 invitations to the group were revoked.")));
+  }
+
   // Promote pending members
 
   @Test
@@ -374,6 +534,24 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(producer.describeChange(change), is(singletonList("Bob added you to the group.")));
   }
 
+  @Test
+  public void unknown_added_by_invite() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .promote(you)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("You joined the group.")));
+  }
+
+  @Test
+  public void unknown_promotes_pending_member() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .promote(alice)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Alice joined the group.")));
+  }
+
   // Title change
 
   @Test
@@ -392,6 +570,15 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .build();
 
     assertThat(producer.describeChange(change), is(singletonList("You changed the group name to \"Title 2\".")));
+  }
+
+  @Test
+  public void unknown_changed_title() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .title("Title 3")
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("The group name has changed to \"Title 3\".")));
   }
   
   // Avatar change
@@ -414,6 +601,15 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(producer.describeChange(change), is(singletonList("You changed the group avatar.")));
   }
 
+  @Test
+  public void unknown_changed_avatar() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .avatar("Avatar3")
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("The group avatar has been changed.")));
+  }
+
   // Timer change
 
   @Test
@@ -432,6 +628,15 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .build();
 
     assertThat(producer.describeChange(change), is(singletonList("You set the disappearing message timer to 1 minute.")));
+  }
+
+  @Test
+  public void unknown_change_timer() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .timer(120)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("The disappearing message timer has been set to 2 minutes.")));
   }
 
   // Attribute access change
@@ -454,6 +659,15 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(producer.describeChange(change), is(singletonList("You changed who can edit group info to \"Only admins\".")));
   }
 
+  @Test
+  public void unknown_changed_attribute_access() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .attributeAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Who can edit group info has been changed to \"Only admins\".")));
+  }
+
   // Membership access change
 
   @Test
@@ -474,6 +688,15 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(producer.describeChange(change), is(singletonList("You changed who can edit group membership to \"All members\".")));
   }
 
+  @Test
+  public void unknown_changed_membership_access() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .membershipAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(singletonList("Who can edit group membership has been changed to \"Only admins\".")));
+  }
+
   // Multiple changes
 
   @Test
@@ -490,6 +713,24 @@ public final class GroupsV2UpdateMessageProducerTest {
       "Alice changed the group name to \"Title\".",
       "Alice set the disappearing message timer to 5 minutes.",
       "Alice changed who can edit group membership to \"All members\".")));
+  }
+
+  @Test
+  public void multiple_changes_by_unknown() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .addMember(bob)
+                                    .membershipAccess(AccessControl.AccessRequired.MEMBER)
+                                    .title("Title 2")
+                                    .avatar("Avatar 1")
+                                    .timer(600)
+                                    .build();
+
+    assertThat(producer.describeChange(change), is(Arrays.asList(
+      "Bob joined the group.",
+      "The group name has changed to \"Title 2\".",
+      "The group avatar has been changed.",
+      "The disappearing message timer has been set to 10 minutes.",
+      "Who can edit group membership has been changed to \"All members\".")));
   }
 
   // Group state without a change record
@@ -579,6 +820,10 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .setEditor(UuidUtil.toByteString(editor));
     }
 
+    ChangeBuilder() {
+      builder = DecryptedGroupChange.newBuilder();
+    }
+
     ChangeBuilder addMember(@NonNull UUID newMember) {
       builder.addNewMembers(DecryptedMember.newBuilder()
                                            .setUuid(UuidUtil.toByteString(newMember)));
@@ -656,6 +901,10 @@ public final class GroupsV2UpdateMessageProducerTest {
 
   private static ChangeBuilder changeBy(@NonNull UUID groupEditor) {
     return new ChangeBuilder(groupEditor);
+  }
+
+  private static ChangeBuilder changeByUnknown() {
+    return new ChangeBuilder();
   }
 
   private static @NonNull GroupsV2UpdateMessageProducer.DescribeMemberStrategy createDescriber(@NonNull Map<UUID, String> map) {
