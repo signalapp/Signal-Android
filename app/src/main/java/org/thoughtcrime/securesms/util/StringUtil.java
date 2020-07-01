@@ -3,9 +3,16 @@ package org.thoughtcrime.securesms.util;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.collect.Sets;
+
 import java.nio.charset.StandardCharsets;
+import java.util.Set;
 
 public final class StringUtil {
+
+  private static final Set<Character> WHITESPACE = Sets.newHashSet('\u200E',  // left-to-right mark
+                                                                   '\u200F',  // right-to-left mark
+                                                                   '\u2007'); // figure space
 
   private StringUtil() {
   }
@@ -27,5 +34,31 @@ public final class StringUtil {
     }
 
     return name;
+  }
+
+  /**
+   * @return True if the string is empty, or if it contains nothing but whitespace characters.
+   *         Accounts for various unicode whitespace characters.
+   */
+  public static boolean isVisuallyEmpty(@Nullable String value) {
+    if (value == null || value.length() == 0) {
+      return true;
+    }
+
+    for (int i = 0; i < value.length(); i++) {
+      if (!isVisuallyEmpty(value.charAt(i))) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * @return True if the character is invisible or whitespace. Accounts for various unicode
+   *         whitespace characters.
+   */
+  public static boolean isVisuallyEmpty(char c) {
+    return Character.isWhitespace(c) || WHITESPACE.contains(c);
   }
 }
