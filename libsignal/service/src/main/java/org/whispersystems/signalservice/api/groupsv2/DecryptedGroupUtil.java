@@ -23,6 +23,8 @@ import java.util.UUID;
 
 public final class DecryptedGroupUtil {
 
+  static final int MAX_CHANGE_FIELD = 14;
+
   public static Set<UUID> toUuidSet(Collection<DecryptedMember> membersList) {
     HashSet<UUID> uuids = new HashSet<>(membersList.size());
 
@@ -280,6 +282,29 @@ public final class DecryptedGroupUtil {
     return Optional.fromNullable(findPendingByUuid(pendingMembersList, uuid).transform(DecryptedPendingMember::getAddedByUuid)
                                                                             .transform(UuidUtil::fromByteStringOrNull)
                                                                             .orNull());
+  }
+
+  public static boolean changeIsEmpty(DecryptedGroupChange change) {
+    return change.getModifiedProfileKeysCount()   == 0 && // field 6
+           changeIsEmptyExceptForProfileKeyChanges(change);
+  }
+
+  public static boolean changeIsEmptyExceptForProfileKeyChanges(DecryptedGroupChange change) {
+    return change.getNewMembersCount()            == 0 && // field 3
+           change.getDeleteMembersCount()         == 0 && // field 4
+           change.getModifyMemberRolesCount()     == 0 && // field 5
+           change.getNewPendingMembersCount()     == 0 && // field 7
+           change.getDeletePendingMembersCount()  == 0 && // field 8
+           change.getPromotePendingMembersCount() == 0 && // field 9
+           !change.hasNewTitle()                       && // field 10
+           !change.hasNewAvatar()                      && // field 11
+           !change.hasNewTimer()                       && // field 12
+           isSet(change.getNewAttributeAccess())       && // field 13
+           isSet(change.getNewMemberAccess());            // field 14
+  }
+
+  static boolean isSet(AccessControl.AccessRequired newAttributeAccess) {
+    return newAttributeAccess == AccessControl.AccessRequired.UNKNOWN;
   }
 
   public static class NotAbleToApplyChangeException extends Throwable {

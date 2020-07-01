@@ -272,7 +272,11 @@ public final class GroupsV2StateProcessor {
 
     private void insertUpdateMessages(long timestamp, Collection<GroupLogEntry> processedLogEntries) {
       for (GroupLogEntry entry : processedLogEntries) {
-        storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, entry.getGroup(), entry.getChange(), null), timestamp);
+        if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(entry.getChange())) {
+          Log.d(TAG, "Skipping profile key changes only update message");
+        } else {
+          storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, entry.getGroup(), entry.getChange(), null), timestamp);
+        }
       }
     }
 

@@ -3,11 +3,10 @@ package org.whispersystems.signalservice.api.groupsv2;
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.GroupChange;
 
-import java.util.stream.Stream;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
 public final class GroupChangeUtilTest {
 
@@ -18,17 +17,7 @@ public final class GroupChangeUtilTest {
    */
   @Test
   public void ensure_GroupChangeUtil_knows_about_all_fields_of_GroupChange_Actions() {
-    int maxFieldFound = Stream.of(GroupChange.Actions.class.getFields())
-                          .filter(f -> f.getType() == int.class)
-                          .mapToInt(f -> {
-                            try {
-                              return (int) f.get(null);
-                            } catch (IllegalAccessException e) {
-                              throw new AssertionError(e);
-                            }
-                          })
-                          .max()
-                          .orElse(0);
+    int maxFieldFound = getMaxDeclaredFieldNumber(GroupChange.Actions.class);
 
     assertEquals("GroupChangeUtil and its tests need updating to account for new fields on " + GroupChange.Actions.class.getName(),
                  GroupChangeUtil.CHANGE_ACTION_MAX_FIELD, maxFieldFound);
