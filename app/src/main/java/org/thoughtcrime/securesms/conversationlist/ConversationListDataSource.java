@@ -81,7 +81,7 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
       callback.onResult(result.getItems(), params.requestedStartPosition, result.getTotal());
     }
 
-    Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
+    Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | start: " + params.requestedStartPosition + ", size: " + params.requestedLoadSize + ", totalCount: " + totalCount + ", class: " + getClass().getSimpleName() + (isInvalid() ? " -- invalidated" : ""));
   }
 
   @Override
@@ -99,7 +99,7 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
 
     callback.onResult(conversations);
 
-    Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
+    Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms | start: " + params.startPosition + ", size: " + params.loadSize + ", class: " + getClass().getSimpleName() + (isInvalid() ? " -- invalidated" : ""));
   }
 
   protected abstract int getTotalCount();
