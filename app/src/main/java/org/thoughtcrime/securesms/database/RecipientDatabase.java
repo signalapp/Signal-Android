@@ -522,6 +522,7 @@ public class RecipientDatabase extends Database {
     SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
     ThreadDatabase   threadDatabase   = DatabaseFactory.getThreadDatabase(context);
+    Set<RecipientId> needsRefresh     = new HashSet<>();
 
     db.beginTransaction();
 
@@ -556,7 +557,7 @@ public class RecipientDatabase extends Database {
           }
 
           threadDatabase.setArchived(recipientId, insert.isArchived());
-          Recipient.live(recipientId).refresh();
+          needsRefresh.add(recipientId);
         }
       }
 
@@ -598,7 +599,7 @@ public class RecipientDatabase extends Database {
         }
 
         threadDatabase.setArchived(recipientId, update.getNew().isArchived());
-        Recipient.live(recipientId).refresh();
+        needsRefresh.add(recipientId);
       }
 
       for (SignalGroupV1Record insert : groupV1Inserts) {
@@ -607,7 +608,7 @@ public class RecipientDatabase extends Database {
         Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(insert.getGroupId()));
 
         threadDatabase.setArchived(recipient.getId(), insert.isArchived());
-        recipient.live().refresh();
+        needsRefresh.add(recipient.getId());
       }
 
       for (RecordUpdate<SignalGroupV1Record> update : groupV1Updates) {
@@ -621,7 +622,7 @@ public class RecipientDatabase extends Database {
         Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(update.getOld().getGroupId()));
 
         threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
-        recipient.live().refresh();
+        needsRefresh.add(recipient.getId());
       }
       
       for (SignalGroupV2Record insert : groupV2Inserts) {
@@ -633,7 +634,7 @@ public class RecipientDatabase extends Database {
         ApplicationDependencies.getJobManager().add(new WakeGroupV2Job(insert.getMasterKey()));
 
         threadDatabase.setArchived(recipient.getId(), insert.isArchived());
-        recipient.live().refresh();
+        needsRefresh.add(recipient.getId());
       }
 
       for (RecordUpdate<SignalGroupV2Record> update : groupV2Updates) {
@@ -647,12 +648,16 @@ public class RecipientDatabase extends Database {
         Recipient recipient = Recipient.externalGroup(context, GroupId.v2(update.getOld().getMasterKey()));
 
         threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
-        recipient.live().refresh();
+        needsRefresh.add(recipient.getId());
       }
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+    }
+
+    for (RecipientId id : needsRefresh) {
+      Recipient.live(id).refresh();
     }
   }
 

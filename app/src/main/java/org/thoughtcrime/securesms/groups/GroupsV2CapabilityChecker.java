@@ -14,12 +14,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
-final class GroupsV2CapabilityChecker {
+public final class GroupsV2CapabilityChecker {
 
   private static final String TAG = Log.tag(GroupsV2CapabilityChecker.class);
 
-  GroupsV2CapabilityChecker() {
-  }
+  GroupsV2CapabilityChecker() {}
+
+
 
   @WorkerThread
   boolean allAndSelfSupportGroupsV2AndUuid(@NonNull Collection<RecipientId> recipientIds)
