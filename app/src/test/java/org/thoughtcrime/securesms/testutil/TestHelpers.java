@@ -9,7 +9,9 @@ import org.whispersystems.libsignal.util.ByteUtil;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static junit.framework.TestCase.assertTrue;
@@ -57,5 +59,22 @@ public final class TestHelpers {
   public static <E> void assertContentsEqual(Collection<E> a, Collection<E> b) {
     assertEquals(a.size(), b.size());
     assertTrue(a.containsAll(b));
+  }
+
+  public static <K, V> Map<K, V> mapOf() {
+    return new HashMap<>();
+  }
+
+  public static <K, V> Map<K, V> mapOf(K k, V v) {
+    return new HashMap<K, V>() {{
+      put(k, v);
+    }};
+  }
+
+  public static <K, V> Map<K, V> mapOf(K k1, V v1, K k2, V v2) {
+    return new HashMap<K, V>() {{
+      put(k1, v1);
+      put(k2, v2);
+    }};
   }
 }

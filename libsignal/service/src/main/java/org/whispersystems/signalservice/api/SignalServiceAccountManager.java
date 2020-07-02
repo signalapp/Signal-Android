@@ -73,6 +73,8 @@ import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
@@ -363,66 +365,43 @@ public class SignalServiceAccountManager {
     return activeTokens;
   }
 
-  public List<String> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String enclaveId)
+  public Map<String, UUID> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String mrenclave)
       throws IOException, Quote.InvalidQuoteFormatException, UnauthenticatedQuoteException, SignatureException, UnauthenticatedResponseException
   {
     try {
-      String                 authorization     = pushServiceSocket.getContactDiscoveryAuthorization();
-      RemoteAttestation      remoteAttestation = RemoteAttestationUtil.getAndVerifyRemoteAttestation(pushServiceSocket, PushServiceSocket.ClientSet.ContactDiscovery, iasKeyStore, enclaveId, enclaveId, authorization);
-      List<String>           addressBook       = new LinkedList<>();
+      String                         authorization = this.pushServiceSocket.getContactDiscoveryAuthorization();
+      Map<String, RemoteAttestation> attestations  = RemoteAttestationUtil.getAndVerifyMultiRemoteAttestation(pushServiceSocket,
+                                                                                                              PushServiceSocket.ClientSet.ContactDiscovery,
+                                                                                                              iasKeyStore,
+                                                                                                              mrenclave,
+                                                                                                              mrenclave,
+                                                                                                              authorization);
+
+      List<String> addressBook = new ArrayList<>(e164numbers.size());
 
       for (String e164number : e164numbers) {
         addressBook.add(e164number.substring(1));
       }
 
-      DiscoveryRequest  request  = ContactDiscoveryCipher.createDiscoveryRequest(addressBook, remoteAttestation);
-      DiscoveryResponse response = pushServiceSocket.getContactDiscoveryRegisteredUsers(authorization, request, remoteAttestation.getCookies(), enclaveId);
-      byte[]            data     = ContactDiscoveryCipher.getDiscoveryResponseData(response, remoteAttestation);
+      List<String>      cookies  = attestations.values().iterator().next().getCookies();
+      DiscoveryRequest  request  = ContactDiscoveryCipher.createDiscoveryRequest(addressBook, attestations);
+      DiscoveryResponse response = this.pushServiceSocket.getContactDiscoveryRegisteredUsers(authorization, request, cookies, mrenclave);
+      byte[]            data     = ContactDiscoveryCipher.getDiscoveryResponseData(response, attestations.values());
 
-      Iterator<String> addressBookIterator = addressBook.iterator();
-      List<String>     results             = new LinkedList<>();
+      HashMap<String, UUID> results         = new HashMap<>(addressBook.size());
+      DataInputStream       uuidInputStream = new DataInputStream(new ByteArrayInputStream(data));
 
-      for (byte aData : data) {
-        String candidate = addressBookIterator.next();
-
-        if (aData != 0) results.add('+' + candidate);
+      for (String candidate : addressBook) {
+        long candidateUuidHigh = uuidInputStream.readLong();
+        long candidateUuidLow  = uuidInputStream.readLong();
+        if (candidateUuidHigh != 0 || candidateUuidLow != 0) {
+          results.put('+' + candidate, new UUID(candidateUuidHigh, candidateUuidLow));
+        }
       }
 
       return results;
     } catch (InvalidCiphertextException e) {
       throw new UnauthenticatedResponseException(e);
-    }
-  }
-
-  public void reportContactDiscoveryServiceMatch() {
-    try {
-      this.pushServiceSocket.reportContactDiscoveryServiceMatch();
-    } catch (IOException e) {
-      Log.w(TAG, "Request to indicate a contact discovery result match failed. Ignoring.", e);
-    }
-  }
-
-  public void reportContactDiscoveryServiceMismatch() {
-    try {
-      this.pushServiceSocket.reportContactDiscoveryServiceMismatch();
-    } catch (IOException e) {
-      Log.w(TAG, "Request to indicate a contact discovery result mismatch failed. Ignoring.", e);
-    }
-  }
-
-  public void reportContactDiscoveryServiceAttestationError(String reason) {
-    try {
-      this.pushServiceSocket.reportContactDiscoveryServiceAttestationError(reason);
-    } catch (IOException e) {
-      Log.w(TAG, "Request to indicate a contact discovery attestation error failed. Ignoring.", e);
-    }
-  }
-
-  public void reportContactDiscoveryServiceUnexpectedError(String reason) {
-    try {
-      this.pushServiceSocket.reportContactDiscoveryServiceUnexpectedError(reason);
-    } catch (IOException e) {
-      Log.w(TAG, "Request to indicate a contact discovery unexpected error failed. Ignoring.", e);
     }
   }
 

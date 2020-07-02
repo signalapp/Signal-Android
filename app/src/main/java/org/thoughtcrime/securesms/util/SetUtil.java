@@ -19,13 +19,9 @@ public final class SetUtil {
     return difference;
   }
 
-  public static <E> Set<E> union(Set<E>... sets) {
-    Set<E> result = new LinkedHashSet<>();
-
-    for (Set<E> set : sets) {
-      result.addAll(set);
-    }
-
+  public static <E> Set<E> union(Set<E> a, Set<E> b) {
+    Set<E> result = new LinkedHashSet<>(a);
+    result.addAll(b);
     return result;
   }
 }

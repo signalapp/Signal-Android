@@ -39,7 +39,9 @@ final class AESCipher {
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
 
       cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(TAG_LENGTH_BITS, iv));
-      cipher.updateAAD(aad);
+      if (aad != null) {
+        cipher.updateAAD(aad);
+      }
 
       byte[]   cipherText = cipher.doFinal(requestData);
       byte[][] parts      = ByteUtil.split(cipherText, cipherText.length - TAG_LENGTH_BYTES, TAG_LENGTH_BYTES);

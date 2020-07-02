@@ -23,6 +23,9 @@ import org.whispersystems.signalservice.internal.util.Hex;
 public class DiscoveryResponse {
 
   @JsonProperty
+  private byte[] requestId;
+
+  @JsonProperty
   private byte[] iv;
 
   @JsonProperty
@@ -33,10 +36,8 @@ public class DiscoveryResponse {
 
   public DiscoveryResponse() {}
 
-  public DiscoveryResponse(byte[] iv, byte[] data, byte[] mac) {
-    this.iv   = iv;
-    this.data = data;
-    this.mac  = mac;
+  public byte[] getRequestId() {
+    return requestId;
   }
 
   public byte[] getIv() {

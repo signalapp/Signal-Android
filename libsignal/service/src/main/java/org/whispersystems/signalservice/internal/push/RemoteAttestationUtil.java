@@ -10,6 +10,7 @@ import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestati
 import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestationCipher;
 import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestationKeys;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedQuoteException;
+import org.whispersystems.signalservice.internal.contacts.entities.MultiRemoteAttestationResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.RemoteAttestationRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.RemoteAttestationResponse;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
@@ -17,8 +18,11 @@ import org.whispersystems.signalservice.internal.util.JsonUtil;
 import java.io.IOException;
 import java.security.KeyStore;
 import java.security.SignatureException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -36,33 +40,66 @@ public final class RemoteAttestationUtil {
                                                                 String authorization)
     throws IOException, Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException
   {
-    Curve25519                                    curve                   = Curve25519.getInstance(Curve25519.BEST);
-    Curve25519KeyPair                             keyPair                 = curve.generateKeyPair();
-    RemoteAttestationRequest                      attestationRequest      = new RemoteAttestationRequest(keyPair.getPublicKey());
-    Pair<RemoteAttestationResponse, List<String>> attestationResponsePair = getRemoteAttestation(socket, clientSet, authorization, attestationRequest, enclaveName);
-    RemoteAttestationResponse                     attestationResponse     = attestationResponsePair.first();
-    List<String>                                  attestationCookies      = attestationResponsePair.second();
+    Curve25519KeyPair         keyPair  = buildKeyPair();
+    ResponsePair              result   = makeAttestationRequest(socket, clientSet, authorization, enclaveName, keyPair);
+    RemoteAttestationResponse response = JsonUtil.fromJson(result.body, RemoteAttestationResponse.class);
 
-    RemoteAttestationKeys keys      = new RemoteAttestationKeys(keyPair, attestationResponse.getServerEphemeralPublic(), attestationResponse.getServerStaticPublic());
-    Quote                 quote     = new Quote(attestationResponse.getQuote());
-    byte[]                requestId = RemoteAttestationCipher.getRequestId(keys, attestationResponse);
-
-    RemoteAttestationCipher.verifyServerQuote(quote, attestationResponse.getServerStaticPublic(), mrenclave);
-
-    RemoteAttestationCipher.verifyIasSignature(iasKeyStore, attestationResponse.getCertificates(), attestationResponse.getSignatureBody(), attestationResponse.getSignature(), quote);
-
-    return new RemoteAttestation(requestId, keys, attestationCookies);
+    return validateAndBuildRemoteAttestation(response, result.cookies, iasKeyStore, keyPair, mrenclave);
   }
 
-  private static Pair<RemoteAttestationResponse, List<String>> getRemoteAttestation(PushServiceSocket socket,
-                                                                                    PushServiceSocket.ClientSet clientSet,
-                                                                                    String authorization,
-                                                                                    RemoteAttestationRequest request,
-                                                                                    String enclaveName)
-    throws IOException
+  public static Map<String, RemoteAttestation> getAndVerifyMultiRemoteAttestation(PushServiceSocket socket,
+                                                                                  PushServiceSocket.ClientSet clientSet,
+                                                                                  KeyStore iasKeyStore,
+                                                                                  String enclaveName,
+                                                                                  String mrenclave,
+                                                                                  String authorization)
+      throws IOException, Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException
   {
-    Response response       = socket.makeRequest(clientSet, authorization, new LinkedList<String>(), "/v1/attestation/" + enclaveName, "PUT", JsonUtil.toJson(request));
-    ResponseBody body       = response.body();
+    Curve25519KeyPair              keyPair      = buildKeyPair();
+    ResponsePair                   result       = makeAttestationRequest(socket, clientSet, authorization, enclaveName, keyPair);
+    MultiRemoteAttestationResponse response     = JsonUtil.fromJson(result.body, MultiRemoteAttestationResponse.class);
+    Map<String, RemoteAttestation> attestations = new HashMap<>();
+
+    if (response.getAttestations().isEmpty() || response.getAttestations().size() > 3) {
+      throw new NonSuccessfulResponseCodeException("Incorrect number of attestations: " + response.getAttestations().size());
+    }
+
+    for (Map.Entry<String, RemoteAttestationResponse> entry : response.getAttestations().entrySet()) {
+      attestations.put(entry.getKey(),
+                       validateAndBuildRemoteAttestation(entry.getValue(),
+                                                         result.cookies,
+                                                         iasKeyStore,
+                                                         keyPair,
+                                                         mrenclave));
+    }
+
+    return attestations;
+  }
+
+  private static Curve25519KeyPair buildKeyPair() {
+    Curve25519 curve = Curve25519.getInstance(Curve25519.BEST);
+    return curve.generateKeyPair();
+  }
+
+  private static ResponsePair makeAttestationRequest(PushServiceSocket socket,
+                                                     PushServiceSocket.ClientSet clientSet,
+                                                     String authorization,
+                                                     String enclaveName,
+                                                     Curve25519KeyPair keyPair)
+      throws IOException
+  {
+    RemoteAttestationRequest attestationRequest = new RemoteAttestationRequest(keyPair.getPublicKey());
+    Response                 response           = socket.makeRequest(clientSet, authorization, new LinkedList<String>(), "/v1/attestation/" + enclaveName, "PUT", JsonUtil.toJson(attestationRequest));
+    ResponseBody             body               = response.body();
+
+    if (body == null) {
+      throw new NonSuccessfulResponseCodeException("Empty response!");
+    }
+
+    return new ResponsePair(body.string(), parseCookies(response));
+  }
+
+  private static List<String> parseCookies(Response response) {
     List<String> rawCookies = response.headers("Set-Cookie");
     List<String> cookies    = new LinkedList<>();
 
@@ -70,10 +107,34 @@ public final class RemoteAttestationUtil {
       cookies.add(cookie.split(";")[0]);
     }
 
-    if (body != null) {
-      return new Pair<>(JsonUtil.fromJson(body.string(), RemoteAttestationResponse.class), cookies);
-    } else {
-      throw new NonSuccessfulResponseCodeException("Empty response!");
+    return cookies;
+  }
+
+  private static RemoteAttestation validateAndBuildRemoteAttestation(RemoteAttestationResponse response,
+                                                                     List<String> cookies,
+                                                                     KeyStore iasKeyStore,
+                                                                     Curve25519KeyPair keyPair,
+                                                                     String mrenclave)
+      throws Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException
+  {
+    RemoteAttestationKeys keys      = new RemoteAttestationKeys(keyPair, response.getServerEphemeralPublic(), response.getServerStaticPublic());
+    Quote                 quote     = new Quote(response.getQuote());
+    byte[]                requestId = RemoteAttestationCipher.getRequestId(keys, response);
+
+    RemoteAttestationCipher.verifyServerQuote(quote, response.getServerStaticPublic(), mrenclave);
+
+    RemoteAttestationCipher.verifyIasSignature(iasKeyStore, response.getCertificates(), response.getSignatureBody(), response.getSignature(), quote);
+
+    return new RemoteAttestation(requestId, keys, cookies);
+  }
+
+  private static class ResponsePair {
+    final String       body;
+    final List<String> cookies;
+
+    private ResponsePair(String body, List<String> cookies) {
+      this.body    = body;
+      this.cookies = cookies;
     }
   }
 }

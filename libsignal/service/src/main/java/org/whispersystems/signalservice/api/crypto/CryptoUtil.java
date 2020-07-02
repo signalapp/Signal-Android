@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.crypto;
 
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Mac;
@@ -19,6 +20,15 @@ public final class CryptoUtil {
       mac.init(new SecretKeySpec(key, HMAC_SHA256));
       return mac.doFinal(data);
     } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static byte[] sha256(byte[] data) {
+    try {
+      MessageDigest digest = MessageDigest.getInstance("SHA-256");
+      return digest.digest(data);
+    } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
   }

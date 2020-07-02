@@ -1321,10 +1321,14 @@ public class RecipientDatabase extends Database {
     return results;
   }
 
-  public void markRegistered(@NonNull RecipientId id, @NonNull UUID uuid) {
-    ContentValues contentValues = new ContentValues(3);
+  public void markRegistered(@NonNull RecipientId id, @Nullable UUID uuid) {
+    ContentValues contentValues = new ContentValues(2);
     contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-    contentValues.put(UUID, uuid.toString().toLowerCase());
+
+    if (uuid != null) {
+      contentValues.put(UUID, uuid.toString().toLowerCase());
+    }
+
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.INSERT);
       Recipient.live(id).refresh();
@@ -1337,7 +1341,7 @@ public class RecipientDatabase extends Database {
    * preferred.
    */
   public void markRegistered(@NonNull RecipientId id) {
-    ContentValues contentValues = new ContentValues(2);
+    ContentValues contentValues = new ContentValues(1);
     contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.INSERT);
@@ -1348,7 +1352,7 @@ public class RecipientDatabase extends Database {
   public void markUnregistered(@NonNull RecipientId id) {
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
-    contentValues.put(UUID, (String) null);
+    contentValues.putNull(UUID);
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.DELETE);
       Recipient.live(id).refresh();
@@ -1363,14 +1367,18 @@ public class RecipientDatabase extends Database {
       for (Map.Entry<RecipientId, String> entry : registered.entrySet()) {
         ContentValues values = new ContentValues(2);
         values.put(REGISTERED, RegisteredState.REGISTERED.getId());
-        values.put(UUID, entry.getValue().toLowerCase());
+
+        if (entry.getValue() != null) {
+          values.put(UUID, entry.getValue().toLowerCase());
+        }
+
         if (update(entry.getKey(), values)) {
           markDirty(entry.getKey(), DirtyState.INSERT);
         }
       }
 
       for (RecipientId id : unregistered) {
-        ContentValues values = new ContentValues(1);
+        ContentValues values = new ContentValues(2);
         values.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
         values.put(UUID, (String) null);
         if (update(id, values)) {

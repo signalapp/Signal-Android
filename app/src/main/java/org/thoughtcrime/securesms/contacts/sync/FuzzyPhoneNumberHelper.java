@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * A helper class to match a single number with multiple possible registered numbers. An example is
@@ -67,6 +68,32 @@ class FuzzyPhoneNumberHelper {
     return new OutputResult(allNumbers, rewrites);
   }
 
+  /**
+   * This should be run on the list of numbers we find out are registered with the server. Based on
+   * these results and our initial input set, we can decide if we need to rewrite which number we
+   * have stored locally.
+   */
+  static @NonNull OutputResultV2 generateOutputV2(@NonNull Map<String, UUID> registeredNumbers, @NonNull InputResult inputResult) {
+    Map<String, UUID>   allNumbers = new HashMap<>(registeredNumbers);
+    Map<String, String> rewrites   = new HashMap<>();
+
+    for (Map.Entry<String, String> entry : inputResult.getFuzzies().entrySet()) {
+      if (registeredNumbers.containsKey(entry.getKey()) && registeredNumbers.containsKey(entry.getValue())) {
+        if (mxHas1(entry.getKey())) {
+          rewrites.put(entry.getKey(), entry.getValue());
+          allNumbers.remove(entry.getKey());
+        } else {
+          allNumbers.remove(entry.getValue());
+        }
+      } else if (registeredNumbers.containsKey(entry.getValue())) {
+        rewrites.put(entry.getKey(), entry.getValue());
+        allNumbers.remove(entry.getKey());
+      }
+    }
+
+    return new OutputResultV2(allNumbers, rewrites);
+  }
+
 
   private static boolean mx(@NonNull String number) {
     return number.startsWith("+52") && (number.length() == 13 || number.length() == 14);
@@ -120,6 +147,24 @@ class FuzzyPhoneNumberHelper {
     }
 
     public @NonNull Set<String> getNumbers() {
+      return numbers;
+    }
+
+    public @NonNull Map<String, String> getRewrites() {
+      return rewrites;
+    }
+  }
+
+  public static class OutputResultV2 {
+    private final Map<String, UUID>   numbers;
+    private final Map<String, String> rewrites;
+
+    private OutputResultV2(@NonNull Map<String, UUID> numbers, @NonNull Map<String, String> rewrites) {
+      this.numbers  = numbers;
+      this.rewrites = rewrites;
+    }
+
+    public @NonNull Map<String, UUID> getNumbers() {
       return numbers;
     }
 

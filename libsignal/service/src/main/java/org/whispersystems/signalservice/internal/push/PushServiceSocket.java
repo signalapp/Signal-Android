@@ -852,24 +852,6 @@ public class PushServiceSocket {
     }
   }
 
-  public void reportContactDiscoveryServiceMatch() throws IOException {
-    makeServiceRequest(String.format(DIRECTORY_FEEDBACK_PATH, "ok"), "PUT", "");
-  }
-
-  public void reportContactDiscoveryServiceMismatch() throws IOException {
-    makeServiceRequest(String.format(DIRECTORY_FEEDBACK_PATH, "mismatch"), "PUT", "");
-  }
-
-  public void reportContactDiscoveryServiceAttestationError(String reason) throws IOException {
-    ContactDiscoveryFailureReason failureReason = new ContactDiscoveryFailureReason(reason);
-    makeServiceRequest(String.format(DIRECTORY_FEEDBACK_PATH, "attestation-error"), "PUT", JsonUtil.toJson(failureReason));
-  }
-
-  public void reportContactDiscoveryServiceUnexpectedError(String reason) throws IOException {
-    ContactDiscoveryFailureReason failureReason = new ContactDiscoveryFailureReason(reason);
-    makeServiceRequest(String.format(DIRECTORY_FEEDBACK_PATH, "unexpected-error"), "PUT", JsonUtil.toJson(failureReason));
-  }
-
   public TurnServerInfo getTurnServerInfo() throws IOException {
     String response = makeServiceRequest(TURN_SERVER_INFO, "GET", null);
     return JsonUtil.fromJson(response, TurnServerInfo.class);

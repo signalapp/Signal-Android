@@ -63,6 +63,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create";
   private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
   private static final String GROUPS_V2_INTERNAL_TEST    = "android.groupsv2.internalTest";
+  private static final String CDS                        = "android.cds";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -254,6 +255,11 @@ public final class FeatureFlags {
   /** Groups v2 UI for internal testing. */
   public static boolean groupsV2internalTest() {
     return groupsV2() && getBoolean(GROUPS_V2_INTERNAL_TEST, false);
+  }
+
+  /** Whether or not to use the new contact discovery service endpoint. */
+  public static boolean cds() {
+    return getBoolean(CDS, false);
   }
 
   /** Only for rendering debug info. */

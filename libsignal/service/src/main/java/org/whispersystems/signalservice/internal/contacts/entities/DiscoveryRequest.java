@@ -18,8 +18,8 @@ package org.whispersystems.signalservice.internal.contacts.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.whispersystems.signalservice.internal.util.Hex;
-
+import java.util.List;
+import java.util.Map;
 
 public class DiscoveryRequest {
 
@@ -27,7 +27,7 @@ public class DiscoveryRequest {
   private int addressCount;
 
   @JsonProperty
-  private byte[] requestId;
+  private byte[] commitment;
 
   @JsonProperty
   private byte[] iv;
@@ -38,20 +38,22 @@ public class DiscoveryRequest {
   @JsonProperty
   private byte[] mac;
 
-  public DiscoveryRequest() {
+  @JsonProperty
+  private Map<String, QueryEnvelope> envelopes;
 
-  }
+  public DiscoveryRequest() { }
 
-  public DiscoveryRequest(int addressCount, byte[] requestId, byte[] iv, byte[] data, byte[] mac) {
+  public DiscoveryRequest(int addressCount, byte[] commitment, byte[] iv, byte[] data, byte[] mac, Map<String, QueryEnvelope> envelopes) {
     this.addressCount = addressCount;
-    this.requestId    = requestId;
+    this.commitment   = commitment;
     this.iv           = iv;
     this.data         = data;
     this.mac          = mac;
+    this.envelopes    = envelopes;
   }
 
-  public byte[] getRequestId() {
-    return requestId;
+  public byte[] getCommitment() {
+    return commitment;
   }
 
   public byte[] getIv() {
@@ -70,8 +72,8 @@ public class DiscoveryRequest {
     return addressCount;
   }
 
+  @Override
   public String toString() {
-    return "{ addressCount: " + addressCount + ", ticket: " + Hex.toString(requestId) + ", iv: " + Hex.toString(iv) + ", data: " + Hex.toString(data) + ", mac: " + Hex.toString(mac) + "}";
+    return "{ addressCount: " + addressCount + ", envelopes: " + envelopes.size() + " }";
   }
-
 }

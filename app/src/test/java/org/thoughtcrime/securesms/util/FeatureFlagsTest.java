@@ -14,6 +14,7 @@ import java.util.Set;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.thoughtcrime.securesms.testutil.TestHelpers.mapOf;
 
 public class FeatureFlagsTest extends BaseUnitTest {
 
@@ -366,22 +367,5 @@ public class FeatureFlagsTest extends BaseUnitTest {
 
   private static <V> Set<V> setOf(V... values) {
     return new HashSet<>(Arrays.asList(values));
-  }
-
-  private static <K, V> Map<K, V> mapOf() {
-    return new HashMap<>();
-  }
-
-  private static <K, V> Map<K, V> mapOf(K k, V v) {
-    return new HashMap<K, V>() {{
-      put(k, v);
-    }};
-  }
-
-  private static <K, V> Map<K, V> mapOf(K k1, V v1, K k2, V v2) {
-    return new HashMap<K, V>() {{
-      put(k1, v1);
-      put(k2, v2);
-    }};
   }
 }
