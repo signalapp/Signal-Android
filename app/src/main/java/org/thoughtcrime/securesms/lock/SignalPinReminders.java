@@ -18,16 +18,18 @@ public class SignalPinReminders {
 
   private static final String TAG = Log.tag(SignalPinReminders.class);
 
-  private static final long ONE_DAY    = TimeUnit.DAYS.toMillis(1);
-  private static final long THREE_DAYS = TimeUnit.DAYS.toMillis(3);
-  private static final long ONE_WEEK   = TimeUnit.DAYS.toMillis(7);
-  private static final long TWO_WEEKS  = TimeUnit.DAYS.toMillis(14);
+  private static final long ONE_DAY     = TimeUnit.DAYS.toMillis(1);
+  private static final long THREE_DAYS  = TimeUnit.DAYS.toMillis(3);
+  private static final long ONE_WEEK    = TimeUnit.DAYS.toMillis(7);
+  private static final long TWO_WEEKS   = TimeUnit.DAYS.toMillis(14);
+  private static final long FOUR_WEEKS  = TimeUnit.DAYS.toMillis(28);
 
   private static final NavigableSet<Long> INTERVALS = new TreeSet<Long>() {{
     add(ONE_DAY);
     add(THREE_DAYS);
     add(ONE_WEEK);
     add(TWO_WEEKS);
+    add(FOUR_WEEKS);
   }};
 
   private static final Map<Long, Integer> STRINGS = new HashMap<Long, Integer>() {{
@@ -35,6 +37,7 @@ public class SignalPinReminders {
     put(THREE_DAYS, R.string.SignalPinReminders_well_remind_you_again_in_a_few_days);
     put(ONE_WEEK, R.string.SignalPinReminders_well_remind_you_again_in_a_week);
     put(TWO_WEEKS, R.string.SignalPinReminders_well_remind_you_again_in_a_couple_weeks);
+    put(FOUR_WEEKS, R.string.SignalPinReminders_well_remind_you_again_in_a_month);
   }};
 
   public static final long INITIAL_INTERVAL = INTERVALS.first();

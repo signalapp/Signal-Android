@@ -1087,6 +1087,7 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
