@@ -101,24 +101,11 @@ public class RetrieveProfileJob extends BaseJob {
    */
   @WorkerThread
   public static void enqueue(@NonNull Collection<RecipientId> recipientIds) {
-    Context           context    = ApplicationDependencies.getApplication();
-    JobManager        jobManager = ApplicationDependencies.getJobManager();
-    List<RecipientId> combined   = new LinkedList<>();
+    JobManager jobManager = ApplicationDependencies.getJobManager();
 
-    for (RecipientId recipientId : recipientIds) {
-      Recipient recipient = Recipient.resolved(recipientId);
-
-      if (recipient.isLocalNumber()) {
-        jobManager.add(new RefreshOwnProfileJob());
-      } else if (recipient.isGroup()) {
-        List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
-        combined.addAll(Stream.of(recipients).map(Recipient::getId).toList());
-      } else {
-        combined.add(recipientId);
-      }
+    for (Job job : forRecipients(recipientIds)) {
+      jobManager.add(job);
     }
-
-    jobManager.add(new RetrieveProfileJob(combined));
   }
 
   /**
@@ -138,6 +125,33 @@ public class RetrieveProfileJob extends BaseJob {
     } else {
       return new RetrieveProfileJob(Collections.singletonList(recipientId));
     }
+  }
+
+  /**
+   * Works for any RecipientId, whether it's an individual, group, or yourself.
+   */
+  @WorkerThread
+  public static @NonNull List<Job> forRecipients(@NonNull Collection<RecipientId> recipientIds) {
+    Context           context    = ApplicationDependencies.getApplication();
+    List<RecipientId> combined   = new LinkedList<>();
+    List<Job>         jobs       = new LinkedList<>();
+
+    for (RecipientId recipientId : recipientIds) {
+      Recipient recipient = Recipient.resolved(recipientId);
+
+      if (recipient.isLocalNumber()) {
+        jobs.add(new RefreshOwnProfileJob());
+      } else if (recipient.isGroup()) {
+        List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+        combined.addAll(Stream.of(recipients).map(Recipient::getId).toList());
+      } else {
+        combined.add(recipientId);
+      }
+    }
+
+    jobs.add(new RetrieveProfileJob(combined));
+
+    return jobs;
   }
 
   /**
