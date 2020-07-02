@@ -13,13 +13,16 @@ import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.thoughtcrime.securesms.util.paging.SizeFixResult;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -66,14 +69,18 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     List<Conversation> conversations  = new ArrayList<>(params.requestedLoadSize);
     int                totalCount     = getTotalCount();
     int                effectiveCount = params.requestedStartPosition;
+    List<Recipient>    recipients     = new LinkedList<>();
 
     try (ThreadDatabase.Reader reader = threadDatabase.readerFor(getCursor(params.requestedStartPosition, params.requestedLoadSize))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null && effectiveCount < totalCount && !isInvalid()) {
         conversations.add(new Conversation(record));
+        recipients.add(record.getRecipient());
         effectiveCount++;
       }
     }
+
+    ApplicationDependencies.getRecipientCache().addToCache(recipients);
 
     if (!isInvalid()) {
       SizeFixResult<Conversation> result = SizeFixResult.ensureMultipleOfPageSize(conversations, params.requestedStartPosition, params.pageSize, totalCount);
@@ -89,13 +96,17 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     long start = System.currentTimeMillis();
 
     List<Conversation> conversations = new ArrayList<>(params.loadSize);
+    List<Recipient>    recipients    = new LinkedList<>();
 
     try (ThreadDatabase.Reader reader = threadDatabase.readerFor(getCursor(params.startPosition, params.loadSize))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null && !isInvalid()) {
         conversations.add(new Conversation(record));
+        recipients.add(record.getRecipient());
       }
     }
+
+    ApplicationDependencies.getRecipientCache().addToCache(recipients);
 
     callback.onResult(conversations);
 

@@ -40,7 +40,6 @@ public final class LiveRecipient {
   private final AtomicReference<Recipient>    recipient;
   private final RecipientDatabase             recipientDatabase;
   private final GroupDatabase                 groupDatabase;
-  private final String                        unnamedGroupName;
 
   LiveRecipient(@NonNull Context context, @NonNull MutableLiveData<Recipient> liveData, @NonNull Recipient defaultRecipient) {
     this.context           = context.getApplicationContext();
@@ -48,7 +47,6 @@ public final class LiveRecipient {
     this.recipient         = new AtomicReference<>(defaultRecipient);
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
-    this.unnamedGroupName  = context.getString(R.string.RecipientProvider_unnamed_group);
     this.observers         = new CopyOnWriteArraySet<>();
     this.foreverObserver   = recipient -> {
       for (RecipientForeverObserver o : observers) {
@@ -175,19 +173,11 @@ public final class LiveRecipient {
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {
     RecipientSettings settings = recipientDatabase.getRecipientSettings(id);
     RecipientDetails  details  = settings.getGroupId() != null ? getGroupRecipientDetails(settings)
-                                                               : getIndividualRecipientDetails(settings);
+                                                               : RecipientDetails.forIndividual(context, settings);
 
-    Recipient recipient = new Recipient(id, details);
+    Recipient recipient = new Recipient(id, details, true);
     RecipientIdCache.INSTANCE.put(recipient);
     return recipient;
-  }
-
-  private @NonNull RecipientDetails getIndividualRecipientDetails(RecipientSettings settings) {
-    boolean systemContact = !TextUtils.isEmpty(settings.getSystemDisplayName());
-    boolean isLocalNumber = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
-                            (settings.getUuid() != null && settings.getUuid().equals(TextSecurePreferences.getLocalUuid(context)));
-
-    return new RecipientDetails(context, null, Optional.absent(), systemContact, isLocalNumber, settings, null);
   }
 
   @WorkerThread
@@ -199,21 +189,17 @@ public final class LiveRecipient {
       List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchAndCacheRecipientFromDisk).toList();
       Optional<Long>  avatarId = Optional.absent();
 
-      if (settings.getGroupId() != null && settings.getGroupId().isPush() && title == null) {
-        title = unnamedGroupName;
-      }
-
       if (groupRecord.get().hasAvatar()) {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
       }
 
-      return new RecipientDetails(context, title, avatarId, false, false, settings, members);
+      return new RecipientDetails(title, avatarId, false, false, settings, members);
     }
 
-    return new RecipientDetails(context, unnamedGroupName, Optional.absent(), false, false, settings, null);
+    return new RecipientDetails(null, Optional.absent(), false, false, settings, null);
   }
 
-  private synchronized void set(@NonNull Recipient recipient) {
+  synchronized void set(@NonNull Recipient recipient) {
     this.recipient.set(recipient);
     this.liveData.postValue(recipient);
   }

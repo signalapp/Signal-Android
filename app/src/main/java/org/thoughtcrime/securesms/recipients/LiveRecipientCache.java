@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -75,6 +76,40 @@ public final class LiveRecipientCache {
     return live;
   }
 
+  /**
+   * Adds a recipient to the cache if we don't have an entry. This will also update a cache entry
+   * if the provided recipient is resolved, or if the existing cache entry is unresolved.
+   *
+   * If the recipient you add is unresolved, this will enqueue a resolve on a background thread.
+   */
+  @AnyThread
+  public synchronized void addToCache(@NonNull Collection<Recipient> newRecipients) {
+    for (Recipient recipient : newRecipients) {
+      LiveRecipient live         = recipients.get(recipient.getId());
+      boolean       needsResolve = false;
+
+      if (live == null) {
+        live = new LiveRecipient(context, new MutableLiveData<>(), recipient);
+        recipients.put(recipient.getId(), live);
+        needsResolve = recipient.isResolving();
+      } else if (live.get().isResolving() || !recipient.isResolving()) {
+        live.set(recipient);
+        needsResolve = recipient.isResolving();
+      }
+
+      if (needsResolve) {
+        MissingRecipientException prettyStackTraceError = new MissingRecipientException(recipient.getId());
+        SignalExecutors.BOUNDED.execute(() -> {
+          try {
+            recipient.resolve();
+          } catch (MissingRecipientException e) {
+            throw prettyStackTraceError;
+          }
+        });
+      }
+    }
+  }
+
   @NonNull Recipient getSelf() {
     synchronized (this) {
       if (localRecipientId == null) {
@@ -107,23 +142,22 @@ public final class LiveRecipientCache {
     }
 
     SignalExecutors.BOUNDED.execute(() -> {
-      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+      ThreadDatabase  threadDatabase = DatabaseFactory.getThreadDatabase(context);
+      List<Recipient> recipients     = new ArrayList<>();
 
       try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getConversationList())) {
-        int             i          = 0;
-        ThreadRecord    record     = null;
-        List<Recipient> recipients = new ArrayList<>();
+        int          i      = 0;
+        ThreadRecord record = null;
 
         while ((record = reader.getNext()) != null && i < CACHE_WARM_MAX) {
           recipients.add(record.getRecipient());
           i++;
         }
-
-        Log.d(TAG, "Warming up " + recipients.size() + " recipients.");
-
-        Collections.reverse(recipients);
-        Stream.of(recipients).map(Recipient::getId).forEach(this::getLive);
       }
+
+      Log.d(TAG, "Warming up " + recipients.size() + " recipients.");
+      Collections.reverse(recipients);
+      Stream.of(recipients).map(Recipient::getId).forEach(this::getLive);
     });
   }
 

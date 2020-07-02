@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,13 +67,12 @@ public class RecipientDetails {
   final byte[]                 identityKey;
   final VerifiedStatus         identityStatus;
 
-  RecipientDetails(@NonNull Context context,
-                   @Nullable String name,
-                   @NonNull Optional<Long> groupAvatarId,
-                   boolean systemContact,
-                   boolean isLocalNumber,
-                   @NonNull RecipientSettings settings,
-                   @Nullable List<Recipient> participants)
+  public RecipientDetails(@Nullable String name,
+                          @NonNull Optional<Long> groupAvatarId,
+                          boolean systemContact,
+                          boolean isLocalNumber,
+                          @NonNull RecipientSettings settings,
+                          @Nullable List<Recipient> participants)
   {
     this.groupAvatarId                   = groupAvatarId;
     this.systemContactPhoto              = Util.uri(settings.getSystemContactPhotoUri());
@@ -160,5 +160,13 @@ public class RecipientDetails {
     this.storageId              = null;
     this.identityKey            = null;
     this.identityStatus         = VerifiedStatus.DEFAULT;
+  }
+
+  public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {
+    boolean systemContact = !TextUtils.isEmpty(settings.getSystemDisplayName());
+    boolean isLocalNumber = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
+                            (settings.getUuid() != null && settings.getUuid().equals(TextSecurePreferences.getLocalUuid(context)));
+
+    return new RecipientDetails(null, Optional.absent(), systemContact, isLocalNumber, settings, null);
   }
 }

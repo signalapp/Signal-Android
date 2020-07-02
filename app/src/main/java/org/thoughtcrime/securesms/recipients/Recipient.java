@@ -54,7 +54,7 @@ import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBann
 
 public class Recipient {
 
-  public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails());
+  public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails(), true);
 
   private static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
   private static final String                TAG = Log.tag(Recipient.class);
@@ -344,9 +344,9 @@ public class Recipient {
     this.identityStatus         = VerifiedStatus.DEFAULT;
   }
 
-  Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details) {
+  public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
     this.id                     = id;
-    this.resolving              = false;
+    this.resolving              = !resolved;
     this.uuid                   = details.uuid;
     this.username               = details.username;
     this.e164                   = details.e164;
@@ -408,9 +408,11 @@ public class Recipient {
       }
 
       return Util.join(names, ", ");
+    } else if (name == null && groupId != null && groupId.isPush()) {
+      return context.getString(R.string.RecipientProvider_unnamed_group);
+    } else {
+      return this.name;
     }
-
-    return this.name;
   }
 
   /**
@@ -657,7 +659,7 @@ public class Recipient {
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
     if      (localNumber)              return fallbackPhotoProvider.getPhotoForLocalNumber();
-    if      (isResolving())            return fallbackPhotoProvider.getPhotoForResolvingRecipient();
+    else if (isResolving())            return fallbackPhotoProvider.getPhotoForResolvingRecipient();
     else if (isGroupInternal())        return fallbackPhotoProvider.getPhotoForGroup();
     else if (isGroup())                return fallbackPhotoProvider.getPhotoForGroup();
     else if (!TextUtils.isEmpty(name)) return fallbackPhotoProvider.getPhotoForRecipientWithName(name);
