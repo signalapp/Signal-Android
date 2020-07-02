@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
@@ -631,6 +633,10 @@ public class Recipient {
   public boolean isPushV2Group() {
     GroupId groupId = resolve().groupId;
     return groupId != null && groupId.isV2();
+  }
+
+  public boolean isActiveGroup() {
+    return Stream.of(getParticipants()).anyMatch(Recipient::isLocalNumber);
   }
 
   public @NonNull List<Recipient> getParticipants() {

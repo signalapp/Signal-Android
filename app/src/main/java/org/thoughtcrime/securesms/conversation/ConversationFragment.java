@@ -81,6 +81,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
@@ -694,19 +695,35 @@ public class ConversationFragment extends LoggingFragment {
     });
 
     if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis())) {
-      builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
-        SignalExecutors.BOUNDED.execute(() -> {
-          for (MessageRecord message : messageRecords) {
-            MessageSender.sendRemoteDelete(context, message.getId(), message.isMms());
-          }
-        });
-      });
+      builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> handleDeleteForEveryone(messageRecords));
     }
 
     builder.setNegativeButton(android.R.string.cancel, null);
     return builder;
   }
 
+  private void handleDeleteForEveryone(Set<MessageRecord> messageRecords) {
+    Runnable deleteForEveryone = () -> {
+      SignalExecutors.BOUNDED.execute(() -> {
+        for (MessageRecord message : messageRecords) {
+          MessageSender.sendRemoteDelete(ApplicationDependencies.getApplication(), message.getId(), message.isMms());
+        }
+      });
+    };
+
+    if (SignalStore.uiHints().hasConfirmedDeleteForEveryoneOnce()) {
+      deleteForEveryone.run();
+    } else {
+      new AlertDialog.Builder(requireActivity())
+                     .setMessage(R.string.ConversationFragment_this_message_will_be_permanently_deleted_for_everyone)
+                     .setPositiveButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
+                       SignalStore.uiHints().markHasConfirmedDeleteForEveryoneOnce();
+                       deleteForEveryone.run();
+                     })
+                     .setNegativeButton(android.R.string.cancel, null)
+                     .show();
+    }
+  }
 
   private void handleDisplayDetails(MessageRecord message) {
     startActivity(MessageDetailsActivity.getIntentForMessageDetails(requireContext(), message, recipient.getId(), threadId));

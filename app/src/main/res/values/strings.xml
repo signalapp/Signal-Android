@@ -204,6 +204,7 @@
     <string name="ConversationItem_download_more">&#160; Download More</string>
     <string name="ConversationItem_pending">&#160; Pending</string>
     <string name="ConversationItem_this_message_was_deleted">This message was deleted.</string>
+    <string name="ConversationItem_you_deleted_this_message">You deleted this message.</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_reset_secure_session_question">Reset secure session?</string>
@@ -312,6 +313,7 @@
     <string name="ConversationFragment_deleting_messages">Deleting messages…</string>
     <string name="ConversationFragment_delete_for_me">Delete for me</string>
     <string name="ConversationFragment_delete_for_everyone">Delete for everyone</string>
+    <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">This message will be permanently deleted for everyone in the conversation. Members will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
     <string name="ConversationFragment_failed_to_open_message">Failed to open message</string>
@@ -1162,6 +1164,7 @@
     <string name="ThreadRecord_view_once_video">View-once video</string>
     <string name="ThreadRecord_view_once_media">View-once media</string>
     <string name="ThreadRecord_this_message_was_deleted">This message was deleted.</string>
+    <string name="ThreadRecord_you_deleted_this_message">You deleted this message.</string>
     <string name="ThreadRecord_s_is_on_signal">%s is on Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
