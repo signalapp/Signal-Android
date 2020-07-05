@@ -437,8 +437,9 @@ public final class ImageEditorView extends FrameLayout {
         } else {
           tapListener.onEntitySingleTap(null);
         }
+        return true;
       }
-      return true;
+      return false;
     }
 
     @Override
