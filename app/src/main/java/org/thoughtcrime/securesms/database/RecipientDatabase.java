@@ -57,7 +57,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -1832,7 +1831,7 @@ public class RecipientDatabase extends Database {
   }
 
   private static ContentValues validateContactValuesForInsert(ContentValues values) {
-    if (!FeatureFlags.uuids()            &&
+    if (!FeatureFlags.uuidOnlyContacts() &&
         values.getAsString(UUID) != null &&
         values.getAsString(PHONE) == null)
     {

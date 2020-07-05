@@ -187,15 +187,15 @@ public final class FeatureFlags {
     Log.i(TAG, "[Disk]   After : " + result.getDisk().toString());
   }
 
-  /** UUID-related stuff that shouldn't be activated until the user-facing launch. */
-  public static synchronized boolean uuids() {
+  /** Whether or not we allow UUID-only contacts. */
+  public static synchronized boolean uuidOnlyContacts() {
     return getBoolean(UUIDS, false);
   }
 
-  /** Creating usernames, sending messages by username. Requires {@link #uuids()}. */
+  /** Creating usernames, sending messages by username. Requires {@link #uuidOnlyContacts()}. */
   public static synchronized boolean usernames() {
     boolean value = getBoolean(USERNAMES, false);
-    if (value && !uuids()) throw new MissingFlagRequirementError();
+    if (value && !uuidOnlyContacts()) throw new MissingFlagRequirementError();
     return value;
   }
 
@@ -257,7 +257,7 @@ public final class FeatureFlags {
     return groupsV2() && getBoolean(GROUPS_V2_INTERNAL_TEST, false);
   }
 
-  /** Whether or not to use the new contact discovery service endpoint. */
+  /** Whether or not to use the new contact discovery service endpoint, which supports UUIDs. */
   public static boolean cds() {
     return getBoolean(CDS, false);
   }

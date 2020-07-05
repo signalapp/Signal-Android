@@ -179,7 +179,7 @@ public class Recipient {
       } else if (!recipient.isRegistered()) {
         db.markRegistered(recipient.getId());
 
-        if (FeatureFlags.uuids()) {
+        if (FeatureFlags.cds()) {
           Log.i(TAG, "No UUID! Scheduling a fetch.");
           ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
         }
@@ -187,7 +187,7 @@ public class Recipient {
 
       return resolved(recipient.getId());
     } else if (uuid != null) {
-      if (FeatureFlags.uuids() || e164 != null) {
+      if (FeatureFlags.uuidOnlyContacts() || e164 != null) {
         RecipientId id = db.getOrInsertFromUuid(uuid);
         db.markRegistered(id, uuid);
 
@@ -197,7 +197,7 @@ public class Recipient {
 
         return resolved(id);
       } else {
-        if (!FeatureFlags.uuids() && FeatureFlags.groupsV2()) {
+        if (!FeatureFlags.uuidOnlyContacts() && FeatureFlags.groupsV2()) {
           throw new RuntimeException(new UuidRecipientError());
         } else {
           throw new UuidRecipientError();
@@ -209,7 +209,7 @@ public class Recipient {
       if (!recipient.isRegistered()) {
         db.markRegistered(recipient.getId());
 
-        if (FeatureFlags.uuids()) {
+        if (FeatureFlags.cds()) {
           Log.i(TAG, "No UUID! Scheduling a fetch.");
           ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
         }
@@ -272,7 +272,7 @@ public class Recipient {
     if (UuidUtil.isUuid(identifier)) {
       UUID uuid = UuidUtil.parseOrThrow(identifier);
 
-      if (FeatureFlags.uuids()) {
+      if (FeatureFlags.uuidOnlyContacts()) {
         id = db.getOrInsertFromUuid(uuid);
       } else {
         Optional<RecipientId> possibleId = db.getByUuid(uuid);
@@ -280,7 +280,7 @@ public class Recipient {
         if (possibleId.isPresent()) {
           id = possibleId.get();
         } else {
-          if (!FeatureFlags.uuids() && FeatureFlags.groupsV2()) {
+          if (!FeatureFlags.uuidOnlyContacts() && FeatureFlags.groupsV2()) {
             throw new RuntimeException(new UuidRecipientError());
           } else {
             throw new UuidRecipientError();
@@ -754,7 +754,7 @@ public class Recipient {
     if (FeatureFlags.usernames()) {
       return true;
     } else {
-      return FeatureFlags.uuids() && uuidCapability == Capability.SUPPORTED;
+      return FeatureFlags.uuidOnlyContacts() && uuidCapability == Capability.SUPPORTED;
     }
   }
 

@@ -441,7 +441,7 @@ public final class StorageSyncHelper {
   }
 
   private static boolean isValidContact(@NonNull SignalContactRecord contact) {
-    return FeatureFlags.uuids() || contact.getAddress().getNumber().isPresent();
+    return FeatureFlags.uuidOnlyContacts() || contact.getAddress().getNumber().isPresent();
   }
 
   public static final class KeyDifferenceResult {
