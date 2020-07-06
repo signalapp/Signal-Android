@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="internal_groupsV2"
+        android:title="@string/preferences__internal_preferences_groups_v2">
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="internal.gv2.force_invites"
+            android:summary="@string/preferences__internal_force_gv2_invites_description"
+            android:title="@string/preferences__internal_force_gv2_invites" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="false"
                         android:key="pref_toggle_push_messaging"
@@ -13,4 +14,9 @@
 
     <Preference android:key="pref_submit_debug_logs"
                 android:title="@string/preferences__submit_debug_log"/>
+
+    <Preference android:key="pref_internal"
+                android:title="@string/preferences__internal_preferences"
+                app:isPreferenceVisible="false" />
+
 </PreferenceScreen>

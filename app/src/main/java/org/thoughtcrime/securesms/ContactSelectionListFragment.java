@@ -271,7 +271,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
     if (listCallback != null) {
-      if (FeatureFlags.groupsV2create() && FeatureFlags.groupsV2internalTest()) {
+      if (FeatureFlags.groupsV2create() && FeatureFlags.internalUser()) {
         headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback), createNewGroupsV1GroupItem(listCallback));
       } else {
         headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback));

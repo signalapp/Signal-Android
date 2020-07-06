@@ -23,6 +23,7 @@ public final class SignalStore {
   private final UiHints              uiHints;
   private final TooltipValues        tooltipValues;
   private final MiscellaneousValues  misc;
+  private final InternalValues       internalValues;
 
   private SignalStore() {
     this.store                = ApplicationDependencies.getKeyValueStore();
@@ -34,6 +35,7 @@ public final class SignalStore {
     this.uiHints              = new UiHints(store);
     this.tooltipValues        = new TooltipValues(store);
     this.misc                 = new MiscellaneousValues(store);
+    this.internalValues       = new InternalValues(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -45,6 +47,7 @@ public final class SignalStore {
     uiHints().onFirstEverAppLaunch();
     tooltips().onFirstEverAppLaunch();
     misc().onFirstEverAppLaunch();
+    internalValues().onFirstEverAppLaunch();
   }
 
   public static @NonNull KbsValues kbsValues() {
@@ -77,6 +80,10 @@ public final class SignalStore {
 
   public static @NonNull MiscellaneousValues misc() {
     return INSTANCE.misc;
+  }
+
+  public static @NonNull InternalValues internalValues() {
+    return INSTANCE.internalValues;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {

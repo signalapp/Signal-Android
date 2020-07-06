@@ -5,7 +5,9 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -37,6 +39,21 @@ public final class GroupCandidate {
 
   public boolean hasProfileKeyCredential() {
     return profileKeyCredential.isPresent();
+  }
+
+  public static Set<GroupCandidate> withoutProfileKeyCredentials(Set<GroupCandidate> groupCandidates) {
+    HashSet<GroupCandidate> result = new HashSet<>(groupCandidates.size());
+
+    for (GroupCandidate candidate: groupCandidates) {
+      result.add(candidate.withoutProfileKeyCredential());
+    }
+
+    return result;
+  }
+
+  public GroupCandidate withoutProfileKeyCredential() {
+    return hasProfileKeyCredential() ? new GroupCandidate(uuid, Optional.absent())
+                                     : this;
   }
 
   public GroupCandidate withProfileKeyCredential(ProfileKeyCredential profileKeyCredential) {
