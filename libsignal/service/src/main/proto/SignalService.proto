@@ -46,7 +46,7 @@ message CallMessage {
     enum Type {
       OFFER_AUDIO_CALL      = 0;
       OFFER_VIDEO_CALL      = 1;
-      OFFER_NEED_PERMISSION = 2;
+      // 2 is reserved, removed OFFER_NEED_PERMISSION
     }
 
     optional uint64 id          = 1;
@@ -72,10 +72,11 @@ message CallMessage {
 
   message Hangup {
     enum Type {
-      HANGUP_NORMAL   = 0;
-      HANGUP_ACCEPTED = 1;
-      HANGUP_DECLINED = 2;
-      HANGUP_BUSY     = 3;
+      HANGUP_NORMAL          = 0;
+      HANGUP_ACCEPTED        = 1;
+      HANGUP_DECLINED        = 2;
+      HANGUP_BUSY            = 3;
+      HANGUP_NEED_PERMISSION = 4;
     }
 
     optional uint64 id       = 1;

@@ -122,6 +122,12 @@
               android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
               android:launchMode="singleTask"/>
 
+    <activity android:name=".messagerequests.CalleeMustAcceptMessageRequestActivity"
+              android:theme="@style/TextSecure.DarkNoActionBar"
+              android:screenOrientation="portrait"
+              android:noHistory="true"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".InviteActivity"
               android:theme="@style/Signal.Light.NoActionBar.Invite"
               android:windowSoftInputMode="stateHidden"

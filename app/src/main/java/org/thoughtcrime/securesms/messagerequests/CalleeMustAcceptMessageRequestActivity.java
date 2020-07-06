@@ -1,20 +1,18 @@
 package org.thoughtcrime.securesms.messagerequests;
 
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
@@ -25,56 +23,45 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.concurrent.TimeUnit;
 
-public class CalleeMustAcceptMessageRequestDialogFragment extends DialogFragment {
+import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
-  private static final long   TIMEOUT_MS       = TimeUnit.SECONDS.toMillis(10);
-  private static final String ARG_RECIPIENT_ID = "arg.recipient.id";
+public class CalleeMustAcceptMessageRequestActivity extends BaseActivity {
+
+  private static final long   TIMEOUT_MS         = TimeUnit.SECONDS.toMillis(10);
+  private static final String RECIPIENT_ID_EXTRA = "extra.recipient.id";
 
   private TextView        description;
   private AvatarImageView avatar;
   private View            okay;
 
   private final Handler  handler   = new Handler(Looper.getMainLooper());
-  private final Runnable dismisser = this::dismiss;
+  private final Runnable finisher = this::finish;
 
-  public static DialogFragment create(@NonNull RecipientId recipientId) {
-    DialogFragment fragment = new CalleeMustAcceptMessageRequestDialogFragment();
-    Bundle         args     = new Bundle();
-
-    args.putParcelable(ARG_RECIPIENT_ID, recipientId);
-
-    fragment.setArguments(args);
-
-    return fragment;
+  public static Intent createIntent(@NonNull Context context, @NonNull RecipientId recipientId) {
+    Intent intent = new Intent(context, CalleeMustAcceptMessageRequestActivity.class);
+    intent.setFlags(FLAG_ACTIVITY_NO_ANIMATION);
+    intent.putExtra(RECIPIENT_ID_EXTRA, recipientId);
+    return intent;
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    setContentView(R.layout.callee_must_accept_message_request_dialog_fragment);
 
-    setStyle(DialogFragment.STYLE_NO_FRAME, R.style.TextSecure_DarkNoActionBar);
-  }
-
-  @Override
-  public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.callee_must_accept_message_request_dialog_fragment, container, false);
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    description = view.findViewById(R.id.description);
-    avatar      = view.findViewById(R.id.avatar);
-    okay        = view.findViewById(R.id.okay);
+    description = findViewById(R.id.description);
+    avatar      = findViewById(R.id.avatar);
+    okay        = findViewById(R.id.okay);
 
     avatar.setFallbackPhotoProvider(new FallbackPhotoProvider());
-    okay.setOnClickListener(v -> dismiss());
+    okay.setOnClickListener(v -> finish());
 
-    RecipientId                                     recipientId = requireArguments().getParcelable(ARG_RECIPIENT_ID);
+    RecipientId                                     recipientId = getIntent().getParcelableExtra(RECIPIENT_ID_EXTRA);
     CalleeMustAcceptMessageRequestViewModel.Factory factory     = new CalleeMustAcceptMessageRequestViewModel.Factory(recipientId);
     CalleeMustAcceptMessageRequestViewModel         viewModel   = ViewModelProviders.of(this, factory).get(CalleeMustAcceptMessageRequestViewModel.class);
 
-    viewModel.getRecipient().observe(getViewLifecycleOwner(), recipient -> {
-      description.setText(getString(R.string.CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you, recipient.getDisplayName(requireContext())));
+    viewModel.getRecipient().observe(this, recipient -> {
+      description.setText(getString(R.string.CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you, recipient.getDisplayName(this)));
       avatar.setAvatar(GlideApp.with(this), recipient, false);
     });
   }
@@ -83,14 +70,14 @@ public class CalleeMustAcceptMessageRequestDialogFragment extends DialogFragment
   public void onResume() {
     super.onResume();
 
-    handler.postDelayed(dismisser, TIMEOUT_MS);
+    handler.postDelayed(finisher, TIMEOUT_MS);
   }
 
   @Override
   public void onPause() {
     super.onPause();
 
-    handler.removeCallbacks(dismisser);
+    handler.removeCallbacks(finisher);
   }
 
   private static class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {

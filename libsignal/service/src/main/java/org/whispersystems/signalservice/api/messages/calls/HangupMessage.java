@@ -37,7 +37,8 @@ public class HangupMessage {
     NORMAL("normal", SignalServiceProtos.CallMessage.Hangup.Type.HANGUP_NORMAL),
     ACCEPTED("accepted", SignalServiceProtos.CallMessage.Hangup.Type.HANGUP_ACCEPTED),
     DECLINED("declined", SignalServiceProtos.CallMessage.Hangup.Type.HANGUP_DECLINED),
-    BUSY("busy", SignalServiceProtos.CallMessage.Hangup.Type.HANGUP_BUSY);
+    BUSY("busy", SignalServiceProtos.CallMessage.Hangup.Type.HANGUP_BUSY),
+    NEED_PERMISSION("need_permission", SignalServiceProtos.CallMessage.Hangup.Type.HANGUP_NEED_PERMISSION);
 
     private final String code;
     private final SignalServiceProtos.CallMessage.Hangup.Type protoType;

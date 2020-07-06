@@ -29,8 +29,7 @@ public class OfferMessage {
 
   public enum Type {
     AUDIO_CALL("audio_call", SignalServiceProtos.CallMessage.Offer.Type.OFFER_AUDIO_CALL),
-    VIDEO_CALL("video_call", SignalServiceProtos.CallMessage.Offer.Type.OFFER_VIDEO_CALL),
-    NEED_PERMISSION("need_permission", SignalServiceProtos.CallMessage.Offer.Type.OFFER_NEED_PERMISSION);
+    VIDEO_CALL("video_call", SignalServiceProtos.CallMessage.Offer.Type.OFFER_VIDEO_CALL);
 
     private final String code;
     private final SignalServiceProtos.CallMessage.Offer.Type protoType;

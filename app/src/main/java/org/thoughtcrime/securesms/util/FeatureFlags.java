@@ -55,7 +55,7 @@ public final class FeatureFlags {
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
-  private static final String PROFILE_FOR_CALLING        = "android.profileForCalling";
+  private static final String PROFILE_FOR_CALLING        = "android.profileForCalling.2";
   private static final String CALLING_PIP                = "android.callingPip";
   private static final String VERSIONED_PROFILES_1       = "android.versionedProfiles";
   private static final String VERSIONED_PROFILES_2       = "android.versionedProfiles.2";

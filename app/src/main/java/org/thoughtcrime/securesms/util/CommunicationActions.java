@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestDialogFragment;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -197,16 +196,11 @@ public class CommunicationActions {
 
                  MessageSender.onMessageSent();
 
-                 if (FeatureFlags.profileForCalling() && recipient.resolve().getProfileKey() == null) {
-                   CalleeMustAcceptMessageRequestDialogFragment.create(recipient.getId())
-                                                               .show(activity.getSupportFragmentManager(), null);
-                 } else {
-                   Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
+                 Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
 
-                   activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                   activity.startActivity(activityIntent);
-                 }
+                 activity.startActivity(activityIntent);
                })
                .execute();
   }
@@ -228,17 +222,12 @@ public class CommunicationActions {
 
                  MessageSender.onMessageSent();
 
-                 if (FeatureFlags.profileForCalling() && recipient.resolve().getProfileKey() == null) {
-                   CalleeMustAcceptMessageRequestDialogFragment.create(recipient.getId())
-                                                               .show(activity.getSupportFragmentManager(), null);
-                 } else {
-                   Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
+                 Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
 
-                   activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                       .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
+                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                     .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
 
-                   activity.startActivity(activityIntent);
-                 }
+                 activity.startActivity(activityIntent);
                })
                .execute();
   }

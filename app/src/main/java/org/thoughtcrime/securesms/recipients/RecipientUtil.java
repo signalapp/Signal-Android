@@ -184,13 +184,13 @@ public class RecipientUtil {
 
   @WorkerThread
   private static boolean isMessageRequestAccepted(@NonNull Context context, long threadId, @NonNull Recipient threadRecipient) {
-    return threadRecipient.isLocalNumber()             ||
-           threadRecipient.isProfileSharing()          ||
-           threadRecipient.isSystemContact()           ||
-           threadRecipient.isForceSmsSelection()       ||
-           !threadRecipient.isRegistered()             ||
-           hasSentMessageInThread(context, threadId)   ||
-           noSecureMessagesInThread(context, threadId) ||
+    return threadRecipient.isLocalNumber()                       ||
+           threadRecipient.isProfileSharing()                    ||
+           threadRecipient.isSystemContact()                     ||
+           threadRecipient.isForceSmsSelection()                 ||
+           !threadRecipient.isRegistered()                       ||
+           hasSentMessageInThread(context, threadId)             ||
+           noSecureMessagesAndNoCallsInThread(context, threadId) ||
            isPreMessageRequestThread(context, threadId);
   }
 
@@ -200,8 +200,9 @@ public class RecipientUtil {
   }
 
   @WorkerThread
-  private static boolean noSecureMessagesInThread(@NonNull Context context, long threadId) {
-    return DatabaseFactory.getMmsSmsDatabase(context).getSecureConversationCount(threadId) == 0;
+  private static boolean noSecureMessagesAndNoCallsInThread(@NonNull Context context, long threadId) {
+    return DatabaseFactory.getMmsSmsDatabase(context).getSecureConversationCount(threadId) == 0 &&
+           !DatabaseFactory.getThreadDatabase(context).hasReceivedAnyCallsSince(threadId, 0);
   }
 
   @WorkerThread

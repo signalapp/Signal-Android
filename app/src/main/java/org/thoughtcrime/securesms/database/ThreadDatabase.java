@@ -311,7 +311,11 @@ public class ThreadDatabase extends Database {
   }
 
   public boolean hasCalledSince(@NonNull Recipient recipient, long timestamp) {
-    return DatabaseFactory.getMmsSmsDatabase(context).hasReceivedAnyCallsSince(getThreadIdFor(recipient), timestamp);
+    return hasReceivedAnyCallsSince(getThreadIdFor(recipient), timestamp);
+  }
+
+  public boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
+    return DatabaseFactory.getMmsSmsDatabase(context).hasReceivedAnyCallsSince(threadId, timestamp);
   }
 
   public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {

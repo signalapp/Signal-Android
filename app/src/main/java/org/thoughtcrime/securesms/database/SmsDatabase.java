@@ -621,12 +621,12 @@ public class SmsDatabase extends MessagingDatabase {
     long messageId    = db.insert(TABLE_NAME, null, values);
 
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
-    notifyConversationListeners(threadId);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
-
     if (unread) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
+
+    notifyConversationListeners(threadId);
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
 
     return new Pair<>(messageId, threadId);
   }
