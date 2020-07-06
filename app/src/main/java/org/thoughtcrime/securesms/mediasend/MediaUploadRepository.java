@@ -195,7 +195,7 @@ class MediaUploadRepository {
     } else if (MediaUtil.isGif(media.getMimeType())) {
       return new GifSlide(context, media.getUri(), 0, media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull()).asAttachment();
     } else if (MediaUtil.isImageType(media.getMimeType())) {
-      return new ImageSlide(context, media.getUri(), 0, media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull(), null).asAttachment();
+      return new ImageSlide(context, media.getUri(), media.getMimeType(), 0, media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull(), null).asAttachment();
     } else if (MediaUtil.isTextType(media.getMimeType())) {
       return new TextSlide(context, media.getUri(), null, media.getSize()).asAttachment();
     } else {

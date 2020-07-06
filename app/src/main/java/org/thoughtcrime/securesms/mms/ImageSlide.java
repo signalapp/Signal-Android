@@ -41,12 +41,11 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable BlurHash blurHash) {
-    this(context, uri, size, width, height, false, null, blurHash);
+    this(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, false, null, blurHash);
   }
 
-  public ImageSlide(Context context, Uri uri, long size, int width, int height, boolean borderless, @Nullable String caption, @Nullable BlurHash blurHash) {
-    // TODO [greyson] [borderless] Handle borderless
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, blurHash, null, false, borderless, false));
+  public ImageSlide(Context context, Uri uri, String contentType, long size, int width, int height, boolean borderless, @Nullable String caption, @Nullable BlurHash blurHash) {
+    super(context, constructAttachmentFromUri(context, uri, contentType, size, width, height, true, null, caption, null, blurHash, null, false, borderless, false));
     this.borderless = borderless;
   }
 

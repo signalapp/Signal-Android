@@ -50,6 +50,7 @@ public class MediaUtil {
   public static final String IMAGE_PNG         = "image/png";
   public static final String IMAGE_JPEG        = "image/jpeg";
   public static final String IMAGE_HEIC        = "image/heic";
+  public static final String IMAGE_HEIF        = "image/heif";
   public static final String IMAGE_WEBP        = "image/webp";
   public static final String IMAGE_GIF         = "image/gif";
   public static final String AUDIO_AAC         = "audio/aac";
@@ -224,6 +225,10 @@ public class MediaUtil {
     return isHeicType(attachment.getContentType());
   }
 
+  public static boolean isHeif(Attachment attachment) {
+    return isHeifType(attachment.getContentType());
+  }
+
   public static boolean isImage(Attachment attachment) {
     return isImageType(attachment.getContentType());
   }
@@ -254,6 +259,10 @@ public class MediaUtil {
 
   public static boolean isHeicType(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_HEIC);
+  }
+
+  public static boolean isHeifType(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_HEIF);
   }
 
   public static boolean isFile(Attachment attachment) {

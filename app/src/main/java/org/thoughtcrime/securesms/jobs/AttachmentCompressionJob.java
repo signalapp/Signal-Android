@@ -145,7 +145,7 @@ public final class AttachmentCompressionJob extends BaseJob {
         if (!constraints.isSatisfied(context, attachment)) {
           throw new UndeliverableMessageException("Size constraints could not be met on video!");
         }
-      } else if (MediaUtil.isHeic(attachment)) {
+      } else if (MediaUtil.isHeic(attachment) || MediaUtil.isHeif(attachment)) {
         MediaStream converted = getResizedMedia(context, attachment, constraints);
         attachmentDatabase.updateAttachmentData(attachment, converted, false);
         attachmentDatabase.markAttachmentAsTransformed(attachmentId);
