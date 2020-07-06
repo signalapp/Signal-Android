@@ -411,21 +411,20 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
         long length = getLength.apply(data);
 
         Uri uri = createBlobBuilder.apply(BlobProvider.getInstance(), data, length)
-            .withMimeType(mimeType)
-            .createForSingleSessionOnDisk(this);
+                                   .withMimeType(mimeType)
+                                   .createForSingleSessionOnDisk(this);
 
-        return new Media(
-            uri,
-            mimeType,
-            System.currentTimeMillis(),
-            width,
-            height,
-            length,
-            0,
-            Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-            Optional.absent(),
-            Optional.absent()
-        );
+        return new Media(uri,
+                         mimeType,
+                         System.currentTimeMillis(),
+                         width,
+                         height,
+                         length,
+                         0,
+                         false,
+                         Optional.of(Media.ALL_MEDIA_BUCKET_ID),
+                         Optional.absent(),
+                         Optional.absent());
       } catch (IOException e) {
         return null;
       }

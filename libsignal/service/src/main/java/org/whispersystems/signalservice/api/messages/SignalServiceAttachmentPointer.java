@@ -26,18 +26,27 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
   private final Optional<byte[]>                digest;
   private final Optional<String>                fileName;
   private final boolean                         voiceNote;
+  private final boolean                         borderless;
   private final int                             width;
   private final int                             height;
   private final Optional<String>                caption;
   private final Optional<String>                blurHash;
   private final long                            uploadTimestamp;
 
-  public SignalServiceAttachmentPointer(int cdnNumber, SignalServiceAttachmentRemoteId remoteId,
-                                        String contentType, byte[] key,
-                                        Optional<Integer> size, Optional<byte[]> preview, int width,
-                                        int height, Optional<byte[]> digest,
-                                        Optional<String> fileName, boolean voiceNote,
-                                        Optional<String> caption, Optional<String> blurHash,
+  public SignalServiceAttachmentPointer(int cdnNumber,
+                                        SignalServiceAttachmentRemoteId remoteId,
+                                        String contentType,
+                                        byte[] key,
+                                        Optional<Integer> size,
+                                        Optional<byte[]> preview,
+                                        int width,
+                                        int height,
+                                        Optional<byte[]> digest,
+                                        Optional<String> fileName,
+                                        boolean voiceNote,
+                                        boolean borderless,
+                                        Optional<String> caption,
+                                        Optional<String> blurHash,
                                         long uploadTimestamp)
   {
     super(contentType);
@@ -51,6 +60,7 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
     this.digest          = digest;
     this.fileName        = fileName;
     this.voiceNote       = voiceNote;
+    this.borderless      = borderless;
     this.caption         = caption;
     this.blurHash        = blurHash;
     this.uploadTimestamp = uploadTimestamp;
@@ -96,6 +106,10 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
 
   public boolean getVoiceNote() {
     return voiceNote;
+  }
+
+  public boolean isBorderless() {
+    return borderless;
   }
 
   public int getWidth() {

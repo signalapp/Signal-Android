@@ -766,6 +766,7 @@ public class ConversationFragment extends LoggingFragment {
                                       attachment.getHeight(),
                                       attachment.getSize(),
                                       0,
+                                      attachment.isBorderless(),
                                       Optional.absent(),
                                       Optional.fromNullable(attachment.getCaption()),
                                       Optional.absent()));

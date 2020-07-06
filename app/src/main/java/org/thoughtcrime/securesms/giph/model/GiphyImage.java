@@ -14,6 +14,13 @@ public class GiphyImage {
   @JsonProperty
   private ImageTypes images;
 
+  @JsonProperty("is_sticker")
+  private boolean isSticker;
+
+  public boolean isSticker() {
+    return isSticker;
+  }
+
   public String getGifUrl() {
     ImageData data = getGifData();
     return data != null ? data.url : null;

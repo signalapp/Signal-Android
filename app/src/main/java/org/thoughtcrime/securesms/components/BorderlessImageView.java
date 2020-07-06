@@ -13,17 +13,17 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 
-public class StickerView extends FrameLayout {
+public class BorderlessImageView extends FrameLayout {
 
   private ThumbnailView image;
   private View          missingShade;
 
-  public StickerView(@NonNull Context context) {
+  public BorderlessImageView(@NonNull Context context) {
     super(context);
     init();
   }
 
-  public StickerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public BorderlessImageView(@NonNull Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
     init();
   }
@@ -50,10 +50,10 @@ public class StickerView extends FrameLayout {
     image.setOnLongClickListener(l);
   }
 
-  public void setSticker(@NonNull GlideRequests glideRequests, @NonNull Slide stickerSlide) {
-    boolean showControls = stickerSlide.asAttachment().getDataUri() == null;
+  public void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+    boolean showControls = slide.asAttachment().getDataUri() == null;
 
-    image.setImageResource(glideRequests, stickerSlide, showControls, false);
+    image.setImageResource(glideRequests, slide, showControls, false);
     missingShade.setVisibility(showControls ? View.VISIBLE : View.GONE);
   }
 

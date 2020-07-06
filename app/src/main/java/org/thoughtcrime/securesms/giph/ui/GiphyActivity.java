@@ -42,10 +42,11 @@ public class GiphyActivity extends PassphraseRequiredActivity
 
   private static final String TAG = GiphyActivity.class.getSimpleName();
 
-  public static final String EXTRA_IS_MMS = "extra_is_mms";
-  public static final String EXTRA_WIDTH  = "extra_width";
-  public static final String EXTRA_HEIGHT = "extra_height";
-  public static final String EXTRA_COLOR  = "extra_color";
+  public static final String EXTRA_IS_MMS     = "extra_is_mms";
+  public static final String EXTRA_WIDTH      = "extra_width";
+  public static final String EXTRA_HEIGHT     = "extra_height";
+  public static final String EXTRA_COLOR      = "extra_color";
+  public static final String EXTRA_BORDERLESS = "extra_borderless";
 
   private final DynamicTheme    dynamicTheme    = new DynamicDarkToolbarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -151,6 +152,7 @@ public class GiphyActivity extends PassphraseRequiredActivity
           intent.setData(uri);
           intent.putExtra(EXTRA_WIDTH, viewHolder.image.getGifWidth());
           intent.putExtra(EXTRA_HEIGHT, viewHolder.image.getGifHeight());
+          intent.putExtra(EXTRA_BORDERLESS, viewHolder.image.isSticker());
           setResult(RESULT_OK, intent);
           finish();
         } else {

@@ -19,13 +19,14 @@ public class Media implements Parcelable {
 
   public static final String ALL_MEDIA_BUCKET_ID = "org.thoughtcrime.securesms.ALL_MEDIA";
 
-  private final Uri    uri;
-  private final String mimeType;
-  private final long   date;
-  private final int    width;
-  private final int    height;
-  private final long   size;
-  private final long   duration;
+  private final Uri     uri;
+  private final String  mimeType;
+  private final long    date;
+  private final int     width;
+  private final int     height;
+  private final long    size;
+  private final long    duration;
+  private final boolean borderless;
 
   private Optional<String>                                 bucketId;
   private Optional<String>                                 caption;
@@ -38,6 +39,7 @@ public class Media implements Parcelable {
                int height,
                long size,
                long duration,
+               boolean borderless,
                Optional<String> bucketId,
                Optional<String> caption,
                Optional<AttachmentDatabase.TransformProperties> transformProperties)
@@ -49,21 +51,23 @@ public class Media implements Parcelable {
     this.height              = height;
     this.size                = size;
     this.duration            = duration;
+    this.borderless          = borderless;
     this.bucketId            = bucketId;
     this.caption             = caption;
     this.transformProperties = transformProperties;
   }
 
   protected Media(Parcel in) {
-    uri      = in.readParcelable(Uri.class.getClassLoader());
-    mimeType = in.readString();
-    date     = in.readLong();
-    width    = in.readInt();
-    height   = in.readInt();
-    size     = in.readLong();
-    duration = in.readLong();
-    bucketId = Optional.fromNullable(in.readString());
-    caption  = Optional.fromNullable(in.readString());
+    uri        = in.readParcelable(Uri.class.getClassLoader());
+    mimeType   = in.readString();
+    date       = in.readLong();
+    width      = in.readInt();
+    height     = in.readInt();
+    size       = in.readLong();
+    duration   = in.readLong();
+    borderless = in.readInt() == 1;
+    bucketId   = Optional.fromNullable(in.readString());
+    caption    = Optional.fromNullable(in.readString());
     try {
       String json = in.readString();
       transformProperties = json == null ? Optional.absent() : Optional.fromNullable(JsonUtil.fromJson(json, AttachmentDatabase.TransformProperties.class));
@@ -100,6 +104,10 @@ public class Media implements Parcelable {
     return duration;
   }
 
+  public boolean isBorderless() {
+    return borderless;
+  }
+
   public Optional<String> getBucketId() {
     return bucketId;
   }
@@ -130,6 +138,7 @@ public class Media implements Parcelable {
     dest.writeInt(height);
     dest.writeLong(size);
     dest.writeLong(duration);
+    dest.writeInt(borderless ? 1 : 0);
     dest.writeString(bucketId.orNull());
     dest.writeString(caption.orNull());
     dest.writeString(transformProperties.transform(JsonUtil::toJson).orNull());

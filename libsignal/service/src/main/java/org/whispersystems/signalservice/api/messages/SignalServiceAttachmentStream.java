@@ -24,6 +24,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
   private final CancelationSignal                 cancelationSignal;
   private final Optional<byte[]>                  preview;
   private final boolean                           voiceNote;
+  private final boolean                           borderless;
   private final int                               width;
   private final int                               height;
   private final long                              uploadTimestamp;
@@ -31,8 +32,16 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
   private final Optional<String>                  blurHash;
   private final Optional<ResumableUploadSpec>     resumableUploadSpec;
 
-  public SignalServiceAttachmentStream(InputStream inputStream, String contentType, long length, Optional<String> fileName, boolean voiceNote, ProgressListener listener, CancelationSignal cancelationSignal) {
-    this(inputStream, contentType, length, fileName, voiceNote, Optional.<byte[]>absent(), 0, 0, System.currentTimeMillis(), Optional.<String>absent(), Optional.<String>absent(), listener, cancelationSignal, Optional.absent());
+  public SignalServiceAttachmentStream(InputStream inputStream,
+                                       String contentType,
+                                       long length,
+                                       Optional<String> fileName,
+                                       boolean voiceNote,
+                                       boolean borderless,
+                                       ProgressListener listener,
+                                       CancelationSignal cancelationSignal)
+  {
+    this(inputStream, contentType, length, fileName, voiceNote, borderless, Optional.<byte[]>absent(), 0, 0, System.currentTimeMillis(), Optional.<String>absent(), Optional.<String>absent(), listener, cancelationSignal, Optional.absent());
   }
 
   public SignalServiceAttachmentStream(InputStream inputStream,
@@ -40,6 +49,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
                                        long length,
                                        Optional<String> fileName,
                                        boolean voiceNote,
+                                       boolean borderless,
                                        Optional<byte[]> preview,
                                        int width,
                                        int height,
@@ -56,6 +66,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
     this.fileName                = fileName;
     this.listener                = listener;
     this.voiceNote               = voiceNote;
+    this.borderless              = borderless;
     this.preview                 = preview;
     this.width                   = width;
     this.height                  = height;
@@ -102,6 +113,10 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
 
   public boolean getVoiceNote() {
     return voiceNote;
+  }
+
+  public boolean isBorderless() {
+    return borderless;
   }
 
   public int getWidth() {

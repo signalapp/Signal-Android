@@ -402,6 +402,7 @@ message SyncMessage {
 message AttachmentPointer {
   enum Flags {
     VOICE_MESSAGE = 1;
+    BORDERLESS    = 2;
   }
 
   oneof attachment_identifier {

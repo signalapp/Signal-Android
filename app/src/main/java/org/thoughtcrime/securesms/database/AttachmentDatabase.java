@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaMetadataRetrieverUtil;
@@ -112,6 +113,7 @@ public class AttachmentDatabase extends Database {
   public  static final String UNIQUE_ID              = "unique_id";
           static final String DIGEST                 = "digest";
           static final String VOICE_NOTE             = "voice_note";
+          static final String BORDERLESS             = "borderless";
           static final String QUOTE                  = "quote";
   public  static final String STICKER_PACK_ID        = "sticker_pack_id";
   public  static final String STICKER_PACK_KEY       = "sticker_pack_key";
@@ -146,7 +148,7 @@ public class AttachmentDatabase extends Database {
                                                            CDN_NUMBER, CONTENT_LOCATION, DATA, THUMBNAIL,
                                                            TRANSFER_STATE, SIZE, FILE_NAME, THUMBNAIL,
                                                            THUMBNAIL_ASPECT_RATIO, UNIQUE_ID, DIGEST,
-                                                           FAST_PREFLIGHT_ID, VOICE_NOTE, QUOTE, DATA_RANDOM,
+                                                           FAST_PREFLIGHT_ID, VOICE_NOTE, BORDERLESS, QUOTE, DATA_RANDOM,
                                                            THUMBNAIL_RANDOM, WIDTH, HEIGHT, CAPTION, STICKER_PACK_ID,
                                                            STICKER_PACK_KEY, STICKER_ID, DATA_HASH, VISUAL_HASH,
                                                            TRANSFORM_PROPERTIES, TRANSFER_FILE, DISPLAY_ORDER,
@@ -175,6 +177,7 @@ public class AttachmentDatabase extends Database {
                                                                                   DIGEST                 + " BLOB, " +
                                                                                   FAST_PREFLIGHT_ID      + " TEXT, " +
                                                                                   VOICE_NOTE             + " INTEGER DEFAULT 0, " +
+                                                                                  BORDERLESS             + " INTEGER DEFAULT 0, " +
                                                                                   DATA_RANDOM            + " BLOB, " +
                                                                                   THUMBNAIL_RANDOM       + " BLOB, " +
                                                                                   QUOTE                  + " INTEGER DEFAULT 0, " +
@@ -1168,6 +1171,7 @@ public class AttachmentDatabase extends Database {
                                               null,
                                               object.getString(FAST_PREFLIGHT_ID),
                                               object.getInt(VOICE_NOTE) == 1,
+                                              object.getInt(BORDERLESS) == 1,
                                               object.getInt(WIDTH),
                                               object.getInt(HEIGHT),
                                               object.getInt(QUOTE) == 1,
@@ -1204,6 +1208,7 @@ public class AttachmentDatabase extends Database {
                                                                 cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
                                                                 cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
+                                                                cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
@@ -1269,6 +1274,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(SIZE, template.getSize());
     contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
     contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
+    contentValues.put(BORDERLESS, attachment.isBorderless() ? 1 : 0);
     contentValues.put(WIDTH, template.getWidth());
     contentValues.put(HEIGHT, template.getHeight());
     contentValues.put(QUOTE, quote);

@@ -85,6 +85,7 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
                               height,
                               data.length,
                               0,
+                              false,
                               Optional.of(Media.ALL_MEDIA_BUCKET_ID),
                               Optional.absent(),
                               Optional.absent()));

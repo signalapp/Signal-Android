@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:parentTag="org.thoughtcrime.securesms.components.StickerView">
+    tools:parentTag="org.thoughtcrime.securesms.components.BorderlessImageView">
 
     <View
         android:id="@+id/sticker_missing_shade"

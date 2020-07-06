@@ -1632,6 +1632,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                            String.valueOf(new SecureRandom().nextLong()),
                                            false,
                                            false,
+                                           false,
                                            null,
                                            stickerLocator,
                                            null,

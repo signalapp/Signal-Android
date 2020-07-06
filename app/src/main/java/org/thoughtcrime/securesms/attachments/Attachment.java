@@ -39,6 +39,7 @@ public abstract class Attachment {
   private final String fastPreflightId;
 
   private final boolean voiceNote;
+  private final boolean borderless;
   private final int     width;
   private final int     height;
   private final boolean quote;
@@ -59,11 +60,26 @@ public abstract class Attachment {
   @NonNull
   private final TransformProperties transformProperties;
 
-  public Attachment(@NonNull String contentType, int transferState, long size, @Nullable String fileName,
-                    int cdnNumber, @Nullable String location, @Nullable String key, @Nullable String relay,
-                    @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
-                    int width, int height, boolean quote, long uploadTimestamp, @Nullable String caption,
-                    @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash, @Nullable AudioHash audioHash,
+  public Attachment(@NonNull String contentType,
+                    int transferState,
+                    long size,
+                    @Nullable String fileName,
+                    int cdnNumber,
+                    @Nullable String location,
+                    @Nullable String key,
+                    @Nullable String relay,
+                    @Nullable byte[] digest,
+                    @Nullable String fastPreflightId,
+                    boolean voiceNote,
+                    boolean borderless,
+                    int width,
+                    int height,
+                    boolean quote,
+                    long uploadTimestamp,
+                    @Nullable String caption,
+                    @Nullable StickerLocator stickerLocator,
+                    @Nullable BlurHash blurHash,
+                    @Nullable AudioHash audioHash,
                     @Nullable TransformProperties transformProperties)
   {
     this.contentType         = contentType;
@@ -77,6 +93,7 @@ public abstract class Attachment {
     this.digest              = digest;
     this.fastPreflightId     = fastPreflightId;
     this.voiceNote           = voiceNote;
+    this.borderless          = borderless;
     this.width               = width;
     this.height              = height;
     this.quote               = quote;
@@ -148,6 +165,10 @@ public abstract class Attachment {
 
   public boolean isVoiceNote() {
     return voiceNote;
+  }
+
+  public boolean isBorderless() {
+    return borderless;
   }
 
   public int getWidth() {

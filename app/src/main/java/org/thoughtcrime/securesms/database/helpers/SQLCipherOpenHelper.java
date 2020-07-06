@@ -21,8 +21,6 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -138,8 +136,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int LAST_PROFILE_FETCH               = 63;
   private static final int SERVER_DELIVERED_TIMESTAMP       = 64;
   private static final int QUOTE_CLEANUP                    = 65;
+  private static final int BORDERLESS                       = 66;
 
-  private static final int    DATABASE_VERSION = 65;
+  private static final int    DATABASE_VERSION = 66;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -953,6 +952,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         }
 
         Log.i(TAG, "[QuoteCleanup] Cleaned up " + count + " quotes.");
+      }
+
+      if (oldVersion < BORDERLESS) {
+        db.execSQL("ALTER TABLE part ADD COLUMN borderless INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

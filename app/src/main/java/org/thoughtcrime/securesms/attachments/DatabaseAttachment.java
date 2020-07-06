@@ -20,17 +20,34 @@ public class DatabaseAttachment extends Attachment {
   private final boolean      hasThumbnail;
   private final int          displayOrder;
 
-  public DatabaseAttachment(AttachmentId attachmentId, long mmsId,
-                            boolean hasData, boolean hasThumbnail,
-                            String contentType, int transferProgress, long size,
-                            String fileName, int cdnNumber, String location, String key, String relay,
-                            byte[] digest, String fastPreflightId, boolean voiceNote,
-                            int width, int height, boolean quote, @Nullable String caption,
-                            @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash, @Nullable AudioHash audioHash,
-                            @Nullable TransformProperties transformProperties, int displayOrder,
+  public DatabaseAttachment(AttachmentId attachmentId,
+                            long mmsId,
+                            boolean hasData,
+                            boolean hasThumbnail,
+                            String contentType,
+                            int transferProgress,
+                            long size,
+                            String fileName,
+                            int cdnNumber,
+                            String location,
+                            String key,
+                            String relay,
+                            byte[] digest,
+                            String fastPreflightId,
+                            boolean voiceNote,
+                            boolean borderless,
+                            int width,
+                            int height,
+                            boolean quote,
+                            @Nullable String caption,
+                            @Nullable StickerLocator stickerLocator,
+                            @Nullable BlurHash blurHash,
+                            @Nullable AudioHash audioHash,
+                            @Nullable TransformProperties transformProperties,
+                            int displayOrder,
                             long uploadTimestamp)
   {
-    super(contentType, transferProgress, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote, uploadTimestamp, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    super(contentType, transferProgress, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, borderless, width, height, quote, uploadTimestamp, caption, stickerLocator, blurHash, audioHash, transformProperties);
     this.attachmentId = attachmentId;
     this.hasData      = hasData;
     this.hasThumbnail = hasThumbnail;

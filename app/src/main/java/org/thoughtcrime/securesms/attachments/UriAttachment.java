@@ -15,20 +15,42 @@ public class UriAttachment extends Attachment {
   private final @NonNull  Uri dataUri;
   private final @Nullable Uri thumbnailUri;
 
-  public UriAttachment(@NonNull Uri uri, @NonNull String contentType, int transferState, long size,
-                       @Nullable String fileName, boolean voiceNote, boolean quote, @Nullable String caption,
-                       @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash, @Nullable AudioHash audioHash, @Nullable TransformProperties transformProperties)
+  public UriAttachment(@NonNull Uri uri,
+                       @NonNull String contentType,
+                       int transferState,
+                       long size,
+                       @Nullable String fileName,
+                       boolean voiceNote,
+                       boolean borderless,
+                       boolean quote,
+                       @Nullable String caption,
+                       @Nullable StickerLocator stickerLocator,
+                       @Nullable BlurHash blurHash,
+                       @Nullable AudioHash audioHash,
+                       @Nullable TransformProperties transformProperties)
   {
-    this(uri, uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, quote, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    this(uri, uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, borderless, quote, caption, stickerLocator, blurHash, audioHash, transformProperties);
   }
 
-  public UriAttachment(@NonNull Uri dataUri, @Nullable Uri thumbnailUri,
-                       @NonNull String contentType, int transferState, long size, int width, int height,
-                       @Nullable String fileName, @Nullable String fastPreflightId,
-                       boolean voiceNote, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator,
-                       @Nullable BlurHash blurHash, @Nullable AudioHash audioHash, @Nullable TransformProperties transformProperties)
+  public UriAttachment(@NonNull Uri dataUri,
+                       @Nullable Uri thumbnailUri,
+                       @NonNull String contentType,
+                       int transferState,
+                       long size,
+                       int width,
+                       int height,
+                       @Nullable String fileName,
+                       @Nullable String fastPreflightId,
+                       boolean voiceNote,
+                       boolean borderless,
+                       boolean quote,
+                       @Nullable String caption,
+                       @Nullable StickerLocator stickerLocator,
+                       @Nullable BlurHash blurHash,
+                       @Nullable AudioHash audioHash,
+                       @Nullable TransformProperties transformProperties)
   {
-    super(contentType, transferState, size, fileName, 0, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    super(contentType, transferState, size, fileName, 0, null, null, null, null, fastPreflightId, voiceNote, borderless, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
     this.dataUri      = dataUri;
     this.thumbnailUri = thumbnailUri;
   }

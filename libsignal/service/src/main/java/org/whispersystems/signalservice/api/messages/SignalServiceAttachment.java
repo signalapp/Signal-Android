@@ -48,6 +48,7 @@ public abstract class SignalServiceAttachment {
     private ProgressListener        listener;
     private CancelationSignal       cancelationSignal;
     private boolean                 voiceNote;
+    private boolean                 borderless;
     private int                     width;
     private int                     height;
     private String                  caption;
@@ -92,6 +93,11 @@ public abstract class SignalServiceAttachment {
       return this;
     }
 
+    public Builder withBorderless(boolean borderless) {
+      this.borderless = borderless;
+      return this;
+    }
+
     public Builder withWidth(int width) {
       this.width = width;
       return this;
@@ -132,6 +138,7 @@ public abstract class SignalServiceAttachment {
                                                length,
                                                Optional.fromNullable(fileName),
                                                voiceNote,
+                                               borderless,
                                                Optional.<byte[]>absent(),
                                                width,
                                                height,

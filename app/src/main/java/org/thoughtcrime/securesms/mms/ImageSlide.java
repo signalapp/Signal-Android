@@ -30,19 +30,24 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class ImageSlide extends Slide {
 
+  private final boolean borderless;
+
   @SuppressWarnings("unused")
   private static final String TAG = ImageSlide.class.getSimpleName();
 
   public ImageSlide(@NonNull Context context, @NonNull Attachment attachment) {
     super(context, attachment);
+    this.borderless = attachment.isBorderless();
   }
 
   public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable BlurHash blurHash) {
-    this(context, uri, size, width, height, null, blurHash);
+    this(context, uri, size, width, height, false, null, blurHash);
   }
 
-  public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption, @Nullable BlurHash blurHash) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, blurHash, null, false, false));
+  public ImageSlide(Context context, Uri uri, long size, int width, int height, boolean borderless, @Nullable String caption, @Nullable BlurHash blurHash) {
+    // TODO [greyson] [borderless] Handle borderless
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, blurHash, null, false, borderless, false));
+    this.borderless = borderless;
   }
 
   @Override
@@ -63,6 +68,11 @@ public class ImageSlide extends Slide {
   @Override
   public boolean hasPlaceholder() {
     return getPlaceholderBlur() != null;
+  }
+
+  @Override
+  public boolean isBorderless() {
+    return borderless;
   }
 
   @NonNull

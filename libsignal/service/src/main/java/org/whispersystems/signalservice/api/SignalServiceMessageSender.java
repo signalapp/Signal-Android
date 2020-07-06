@@ -418,6 +418,7 @@ public class SignalServiceMessageSender {
                                               Optional.of(attachmentIdAndDigest.second()),
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
+                                              attachment.isBorderless(),
                                               attachment.getCaption(),
                                               attachment.getBlurHash(),
                                               attachment.getUploadTimestamp());
@@ -457,6 +458,7 @@ public class SignalServiceMessageSender {
                                               Optional.of(digest),
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
+                                              attachment.isBorderless(),
                                               attachment.getCaption(),
                                               attachment.getBlurHash(),
                                               attachment.getUploadTimestamp());
@@ -1378,6 +1380,10 @@ public class SignalServiceMessageSender {
 
     if (attachment.getVoiceNote()) {
       builder.setFlags(AttachmentPointer.Flags.VOICE_MESSAGE_VALUE);
+    }
+
+    if (attachment.isBorderless()) {
+      builder.setFlags(AttachmentPointer.Flags.BORDERLESS_VALUE);
     }
 
     if (attachment.getCaption().isPresent()) {

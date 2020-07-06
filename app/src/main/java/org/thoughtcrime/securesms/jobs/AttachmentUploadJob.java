@@ -165,6 +165,7 @@ public final class AttachmentUploadJob extends BaseJob {
                                                                        .withLength(attachment.getSize())
                                                                        .withFileName(attachment.getFileName())
                                                                        .withVoiceNote(attachment.isVoiceNote())
+                                                                       .withBorderless(attachment.isBorderless())
                                                                        .withWidth(attachment.getWidth())
                                                                        .withHeight(attachment.getHeight())
                                                                        .withUploadTimestamp(System.currentTimeMillis())
