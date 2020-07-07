@@ -55,6 +55,16 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
+  public static Set<ByteString> membersToUuidByteStringSet(Collection<DecryptedMember> membersList) {
+    Set<ByteString> uuidList = new HashSet<>(membersList.size());
+
+    for (DecryptedMember member : membersList) {
+      uuidList.add(member.getUuid());
+    }
+
+    return uuidList;
+  }
+
   public static ArrayList<UUID> pendingToUuidList(Collection<DecryptedPendingMember> membersList) {
     ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
 
@@ -268,7 +278,20 @@ public final class DecryptedGroupUtil {
              .build());
     }
 
+    removePendingMembersNowInGroup(builder);
+
     return builder.setRevision(change.getRevision()).build();
+  }
+
+  static void removePendingMembersNowInGroup(DecryptedGroup.Builder builder) {
+    Set<ByteString> allMembers = membersToUuidByteStringSet(builder.getMembersList());
+
+    for (int i = builder.getPendingMembersCount() - 1; i >= 0; i--) {
+      DecryptedPendingMember pendingMember = builder.getPendingMembers(i);
+      if (allMembers.contains(pendingMember.getUuid())) {
+        builder.removePendingMembers(i);
+      }
+    }
   }
 
   private static int indexOfUuid(List<DecryptedMember> memberList, ByteString uuid) {

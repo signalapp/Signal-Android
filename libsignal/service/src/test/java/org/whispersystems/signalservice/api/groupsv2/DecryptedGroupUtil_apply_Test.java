@@ -270,6 +270,43 @@ public final class DecryptedGroupUtil_apply_Test {
   }
 
   @Test
+  public void skip_promote_pending_member_by_direct_add() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
+    ProfileKey             profileKey2  = randomProfileKey();
+    ProfileKey             profileKey3  = randomProfileKey();
+    DecryptedMember        member1      = member(UUID.randomUUID());
+    UUID                   pending2Uuid = UUID.randomUUID();
+    UUID                   pending3Uuid = UUID.randomUUID();
+    UUID                   pending4Uuid = UUID.randomUUID();
+    DecryptedPendingMember pending2     = pendingMember(pending2Uuid);
+    DecryptedPendingMember pending3     = pendingMember(pending3Uuid);
+    DecryptedPendingMember pending4     = pendingMember(pending4Uuid);
+    DecryptedMember        member2      = member(pending2Uuid, profileKey2);
+    DecryptedMember        member3      = member(pending3Uuid, profileKey3);
+
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(10)
+                                                                     .addMembers(member1)
+                                                                     .addPendingMembers(pending2)
+                                                                     .addPendingMembers(pending3)
+                                                                     .addPendingMembers(pending4)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(11)
+                                                                           .addNewMembers(member2)
+                                                                           .addNewMembers(member3)
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(11)
+                               .addMembers(member1)
+                               .addMembers(member2)
+                               .addMembers(member3)
+                               .addPendingMembers(pending4)
+                               .build(),
+                 newGroup);
+  }
+
+  @Test
   public void title() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
     DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
                                                                      .setRevision(10)
