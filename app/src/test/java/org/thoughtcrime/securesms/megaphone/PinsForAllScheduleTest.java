@@ -127,17 +127,4 @@ public class PinsForAllScheduleTest extends BaseUnitTest {
     // THEN
     assertTrue(result);
   }
-
-  @Test
-  public void whenKillSwitchEnabled_whenIShouldDisplay_thenIExpectFalse() {
-    // GIVEN
-    when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(false);
-    when(FeatureFlags.pinsForAllMegaphoneKillSwitch()).thenReturn(true);
-
-    // WHEN
-    boolean result = testSubject.shouldDisplay(0, 0, 0, System.currentTimeMillis());
-
-    // THEN
-    assertFalse(result);
-  }
 }

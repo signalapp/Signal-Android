@@ -51,8 +51,6 @@ public final class FeatureFlags {
 
   private static final String UUIDS                      = "android.uuids";
   private static final String USERNAMES                  = "android.usernames";
-  private static final String PINS_FOR_ALL_MANDATORY     = "android.pinsForAllMandatory";
-  private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling.2";
@@ -71,8 +69,6 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
-      PINS_FOR_ALL_MANDATORY,
-      PINS_MEGAPHONE_KILL_SWITCH,
       ATTACHMENTS_V3,
       REMOTE_DELETE,
       PROFILE_FOR_CALLING,
@@ -103,7 +99,6 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
-      PINS_MEGAPHONE_KILL_SWITCH,
       ATTACHMENTS_V3
   );
 
@@ -197,16 +192,6 @@ public final class FeatureFlags {
     boolean value = getBoolean(USERNAMES, false);
     if (value && !uuidOnlyContacts()) throw new MissingFlagRequirementError();
     return value;
-  }
-
-  /** Makes it so the user will eventually see a fullscreen splash requiring them to create a PIN. */
-  public static boolean pinsForAllMandatory() {
-    return getBoolean(PINS_FOR_ALL_MANDATORY, false);
-  }
-
-  /** Safety flag to disable Pins for All Megaphone */
-  public static boolean pinsForAllMegaphoneKillSwitch() {
-    return getBoolean(PINS_MEGAPHONE_KILL_SWITCH, false);
   }
 
   /** Whether or not we use the attachments v3 form. */

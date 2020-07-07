@@ -16,15 +16,11 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   private static final String TAG = Log.tag(PinsForAllSchedule.class);
 
   @VisibleForTesting
-  static final long DAYS_UNTIL_FULLSCREEN = 8L;
+  static final long DAYS_UNTIL_FULLSCREEN = 4L;
 
   private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.HOURS.toMillis(2));
 
   static boolean shouldDisplayFullScreen(long firstVisible, long currentTime) {
-    if (!FeatureFlags.pinsForAllMandatory()) {
-      return false;
-    }
-
     if (firstVisible == 0L) {
       return false;
     }
@@ -49,10 +45,6 @@ class PinsForAllSchedule implements MegaphoneSchedule {
 
   private static boolean isEnabled() {
     if (SignalStore.kbsValues().hasPin()) {
-      return false;
-    }
-
-    if (FeatureFlags.pinsForAllMegaphoneKillSwitch()) {
       return false;
     }
 
