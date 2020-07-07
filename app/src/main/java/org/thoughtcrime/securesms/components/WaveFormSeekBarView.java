@@ -120,6 +120,10 @@ public final class WaveFormSeekBarView extends AppCompatSeekBar {
     canvas.save();
     canvas.translate(getPaddingLeft(), getPaddingTop());
 
+    if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
+      canvas.scale(-1, 1, usableWidth / 2f, usableHeight / 2f);
+    }
+
     for (int bar = 0; bar < data.length; bar++) {
       float x        = bar * (barWidth + barGap) + barWidth / 2f;
       float y        = data[bar] * maxHeight;
