@@ -31,7 +31,6 @@ import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -689,45 +688,6 @@ public class PushServiceSocket {
     } catch (MissingConfigurationException e) {
       throw new AssertionError(e);
     }
-  }
-
-  public void setProfileName(String name) throws NonSuccessfulResponseCodeException, PushNetworkException {
-    if (FeatureFlags.DISALLOW_OLD_PROFILE_SETTING) {
-      throw new AssertionError();
-    }
-
-    makeServiceRequest(String.format(PROFILE_PATH, "name/" + (name == null ? "" : URLEncoder.encode(name))), "PUT", "");
-  }
-
-  public Optional<String> setProfileAvatar(ProfileAvatarData profileAvatar)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
-    if (FeatureFlags.DISALLOW_OLD_PROFILE_SETTING) {
-      throw new AssertionError();
-    }
-
-    String                        response       = makeServiceRequest(String.format(PROFILE_PATH, "form/avatar"), "GET", null);
-    ProfileAvatarUploadAttributes formAttributes;
-
-    try {
-      formAttributes = JsonUtil.fromJson(response, ProfileAvatarUploadAttributes.class);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new NonSuccessfulResponseCodeException("Unable to parse entity");
-    }
-
-    if (profileAvatar != null) {
-      uploadToCdn0(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
-                  formAttributes.getPolicy(), formAttributes.getAlgorithm(),
-                  formAttributes.getCredential(), formAttributes.getDate(),
-                  formAttributes.getSignature(), profileAvatar.getData(),
-                  profileAvatar.getContentType(), profileAvatar.getDataLength(),
-                  profileAvatar.getOutputStreamFactory(), null, null);
-
-      return Optional.of(formAttributes.getKey());
-    }
-
-    return Optional.absent();
   }
 
   /**

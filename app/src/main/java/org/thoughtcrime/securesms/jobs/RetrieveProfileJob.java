@@ -307,7 +307,7 @@ public class RetrieveProfileJob extends BaseJob {
   }
 
   private static SignalServiceProfile.RequestType getRequestType(@NonNull Recipient recipient) {
-    return FeatureFlags.versionedProfiles() && !recipient.hasProfileKeyCredential()
+    return !recipient.hasProfileKeyCredential()
            ? SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL
            : SignalServiceProfile.RequestType.PROFILE;
   }

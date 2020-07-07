@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.util.UUID;

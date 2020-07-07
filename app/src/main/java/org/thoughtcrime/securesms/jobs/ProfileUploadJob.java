@@ -14,12 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.ProfileUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
 public final class ProfileUploadJob extends BaseJob {
@@ -52,15 +47,10 @@ public final class ProfileUploadJob extends BaseJob {
   protected void onRun() throws Exception {
     ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
     ProfileName profileName = Recipient.self().getProfileName();
-    String      avatarPath  = null;
+    String      avatarPath;
 
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      if (FeatureFlags.versionedProfiles()) {
-        avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar).orNull();
-      } else {
-        accountManager.setProfileName(profileKey, profileName.serialize());
-        avatarPath = accountManager.setProfileAvatar(profileKey, avatar).orNull();
-      }
+      avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar).orNull();
     }
 
     DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
@@ -85,11 +75,10 @@ public final class ProfileUploadJob extends BaseJob {
   public void onFailure() {
   }
 
-  public static class Factory implements Job.Factory {
+  public static class Factory implements Job.Factory<ProfileUploadJob> {
 
-    @NonNull
     @Override
-    public Job create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ProfileUploadJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new ProfileUploadJob(parameters);
     }
   }

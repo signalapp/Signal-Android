@@ -20,7 +20,6 @@ import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
@@ -627,39 +626,6 @@ public class SignalServiceAccountManager {
 
   public TurnServerInfo getTurnServerInfo() throws IOException {
     return this.pushServiceSocket.getTurnServerInfo();
-  }
-
-  public void setProfileName(ProfileKey key, String name)
-      throws IOException
-  {
-    if (FeatureFlags.DISALLOW_OLD_PROFILE_SETTING) {
-      throw new AssertionError();
-    }
-
-    if (name == null) name = "";
-
-    String ciphertextName = Base64.encodeBytesWithoutPadding(new ProfileCipher(key).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.NAME_PADDED_LENGTH));
-
-    this.pushServiceSocket.setProfileName(ciphertextName);
-  }
-
-  public Optional<String> setProfileAvatar(ProfileKey key, StreamDetails avatar)
-      throws IOException
-  {
-    if (FeatureFlags.DISALLOW_OLD_PROFILE_SETTING) {
-      throw new AssertionError();
-    }
-
-    ProfileAvatarData profileAvatarData = null;
-
-    if (avatar != null) {
-      profileAvatarData = new ProfileAvatarData(avatar.getStream(),
-                                                ProfileCipherOutputStream.getCiphertextLength(avatar.getLength()),
-                                                avatar.getContentType(),
-                                                new ProfileCipherOutputStreamFactory(key));
-    }
-
-    return this.pushServiceSocket.setProfileAvatar(profileAvatarData);
   }
 
   /**
