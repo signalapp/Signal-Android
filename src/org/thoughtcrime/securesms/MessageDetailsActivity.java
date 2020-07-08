@@ -133,13 +133,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     assert getSupportActionBar() != null;
     getSupportActionBar().setTitle("Message Details");
 
-    MessageNotifier.setVisibleThread(threadId);
+    ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadId);
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    MessageNotifier.setVisibleThread(-1L);
+    ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(-1L);
   }
 
   @Override

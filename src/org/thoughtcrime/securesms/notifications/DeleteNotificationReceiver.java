@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 
 public class DeleteNotificationReceiver extends BroadcastReceiver {
@@ -18,7 +19,7 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(final Context context, Intent intent) {
     if (DELETE_NOTIFICATION_ACTION.equals(intent.getAction())) {
-      MessageNotifier.clearReminder(context);
+      ApplicationContext.getInstance(context).messageNotifier.clearReminder(context);
 
       final long[]    ids = intent.getLongArrayExtra(EXTRA_IDS);
       final boolean[] mms = intent.getBooleanArrayExtra(EXTRA_MMS);

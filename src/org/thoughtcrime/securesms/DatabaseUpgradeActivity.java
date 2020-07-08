@@ -176,7 +176,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        MessageNotifier.updateNotification(context);
+        ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

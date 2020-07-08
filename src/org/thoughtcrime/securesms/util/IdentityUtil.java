@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
@@ -143,7 +144,7 @@ public class IdentityUtil {
     Optional<InsertResult>        insertResult     = smsDatabase.insertMessageInbox(individualUpdate);
 
     if (insertResult.isPresent()) {
-      MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+      ApplicationContext.getInstance(context).messageNotifier.updateNotification(context, insertResult.get().getThreadId());
     }
   }
 

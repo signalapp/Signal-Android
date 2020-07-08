@@ -20,6 +20,24 @@ class LokiPublicChatManager(private val context: Context) {
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
 
+  public fun areAllCaughtUp():Boolean {
+    var areAllCaughtUp = true
+    refreshChatsAndPollers()
+    for ((threadID, chat) in chats) {
+      val poller = pollers[threadID] ?: LokiPublicChatPoller(context, chat)
+      areAllCaughtUp = areAllCaughtUp && poller.isCaughtUp
+    }
+    return areAllCaughtUp
+  }
+
+  public fun markAllAsNotCaughtUp() {
+    refreshChatsAndPollers()
+    for ((threadID, chat) in chats) {
+      val poller = pollers[threadID] ?: LokiPublicChatPoller(context, chat)
+      poller.isCaughtUp = false
+    }
+  }
+
   public fun startPollersIfNeeded() {
     refreshChatsAndPollers()
 

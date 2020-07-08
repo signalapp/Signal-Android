@@ -550,7 +550,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setGroupShareProfileReminder(recipient);
     calculateCharactersRemaining();
 
-    MessageNotifier.setVisibleThread(threadId);
+    ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
 
     DatabaseFactory.getLokiThreadDatabase(this).setDelegate(this);
@@ -565,7 +565,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onPause() {
     super.onPause();
-    MessageNotifier.setVisibleThread(-1L);
+    ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(-1L);
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
     inputPanel.onPause();
 
@@ -2244,7 +2244,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (refreshFragment) {
       fragment.reload(recipient, threadId);
-      MessageNotifier.setVisibleThread(threadId);
+      ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadId);
     }
 
     fragment.scrollToBottom();

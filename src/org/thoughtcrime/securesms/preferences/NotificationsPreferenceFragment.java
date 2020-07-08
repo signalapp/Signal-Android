@@ -220,7 +220,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          MessageNotifier.updateNotification(getActivity());
+          ApplicationContext.getInstance(getActivity()).messageNotifier.updateNotification(getActivity());
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
