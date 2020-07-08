@@ -205,7 +205,7 @@ public class PushServiceSocket {
 
   private static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
-  private       long      soTimeoutMillis = TimeUnit.SECONDS.toMillis(30);
+  private       long      soTimeoutMillis = TimeUnit.SECONDS.toMillis(90);
   private final Set<Call> connections     = new HashSet<>();
 
   private final ServiceConnectionHolder[]        serviceClients;
