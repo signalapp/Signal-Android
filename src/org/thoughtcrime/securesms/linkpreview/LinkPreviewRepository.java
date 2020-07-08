@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.ContentProxySafetyInterceptor;
-import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
@@ -63,10 +62,7 @@ public class LinkPreviewRepository implements InjectableType {
 
   public LinkPreviewRepository(@NonNull Context context) {
     this.client = new OkHttpClient.Builder()
-                                  //It seems like Signal's proxy has been banned by Youtube.
-                                  //Just comment this out to fix link previews.
-                                  //We will move this to onion routing in the future
-                                  //.proxySelector(new ContentProxySelector())
+                                  // .proxySelector(new ContentProxySelector()) // Loki: Signal's proxy appears to have been banned by YouTube
                                   .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)
                                   .build();
