@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.LokiAPI
+import org.whispersystems.signalservice.loki.api.SnodeAPI
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
@@ -84,7 +84,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             contentView.cancelButton.visibility = View.GONE
             contentView.authorizeButton.visibility = View.GONE
         }
-        LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(LokiAPI.sharedContext) {
+        LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(SnodeAPI.sharedContext) {
             MultiDeviceProtocol.signAndSendDeviceLinkMessage(context!!, deviceLink)
         }.success {
             TextSecurePreferences.setMultiDevice(context!!, true)

@@ -95,14 +95,14 @@ import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.LokiPoller;
-import org.whispersystems.signalservice.loki.api.LokiPushNotificationAcknowledgement;
-import org.whispersystems.signalservice.loki.api.LokiSwarmAPI;
+import org.whispersystems.signalservice.loki.api.Poller;
+import org.whispersystems.signalservice.loki.api.PushNotificationAcknowledgement;
+import org.whispersystems.signalservice.loki.api.SnodeAPI;
+import org.whispersystems.signalservice.loki.api.SwarmAPI;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
-import org.whispersystems.signalservice.loki.api.p2p.LokiP2PAPI;
-import org.whispersystems.signalservice.loki.api.p2p.LokiP2PAPIDelegate;
+import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPI;
+import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
@@ -151,7 +151,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   // Loki
   public MessageNotifier messageNotifier = null;
-  public LokiPoller lokiPoller = null;
+  public Poller lokiPoller = null;
   public LokiPublicChatManager lokiPublicChatManager = null;
   private LokiPublicChatAPI lokiPublicChatAPI = null;
   public Broadcaster broadcaster = null;
@@ -184,8 +184,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     LokiSessionResetImplementation sessionResetImpl = new LokiSessionResetImplementation(this);
     if (userPublicKey != null) {
-      LokiSwarmAPI.Companion.configureIfNeeded(apiDB);
-      LokiAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
+      SwarmAPI.Companion.configureIfNeeded(apiDB);
+      SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
       FriendRequestProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
@@ -194,7 +194,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
     SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, threadDB, this);
     setUpP2PAPIIfNeeded();
-    LokiPushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
+    PushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     if (setUpStorageAPIIfNeeded()) {
       if (userPublicKey != null) {
         Set<DeviceLink> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey);
@@ -493,15 +493,15 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userPublicKey == null) return;
     if (lokiPoller != null) {
-      LokiAPI.shared.setUserHexEncodedPublicKey(userPublicKey);
-      lokiPoller.setUserHexEncodedPublicKey(userPublicKey);
+      SnodeAPI.shared.setUserPublicKey(userPublicKey);
+      lokiPoller.setUserPublicKey(userPublicKey);
       return;
     }
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    LokiSwarmAPI.Companion.configureIfNeeded(apiDB);
-    LokiAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
-    lokiPoller = new LokiPoller(userPublicKey, apiDB, protos -> {
+    SwarmAPI.Companion.configureIfNeeded(apiDB);
+    SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
+    lokiPoller = new Poller(userPublicKey, apiDB, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
         new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto), false);
       }

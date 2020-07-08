@@ -17,7 +17,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.LokiAPI
+import org.whispersystems.signalservice.loki.api.SnodeAPI
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import java.util.*

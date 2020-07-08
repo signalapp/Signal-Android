@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
-import org.whispersystems.signalservice.loki.api.LokiAPI
+import org.whispersystems.signalservice.loki.api.SnodeAPI
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker : PersistentAlarmManagerListener() {
@@ -35,8 +35,8 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
                 try {
                     val applicationContext = context.applicationContext as ApplicationContext
                     val broadcaster = applicationContext.broadcaster
-                    LokiAPI.configureIfNeeded(userPublicKey, lokiAPIDatabase, broadcaster)
-                    LokiAPI.shared.getMessages().map { messages ->
+                    SnodeAPI.configureIfNeeded(userPublicKey, lokiAPIDatabase, broadcaster)
+                    SnodeAPI.shared.getMessages().map { messages ->
                         messages.forEach {
                             PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
                         }

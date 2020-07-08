@@ -14,8 +14,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.rssfeeds.LokiRSSFeed
-import org.whispersystems.signalservice.loki.api.rssfeeds.LokiRSSFeedProxy
+import org.whispersystems.signalservice.loki.api.shelved.rssfeeds.LokiRSSFeed
+import org.whispersystems.signalservice.loki.api.shelved.rssfeeds.LokiRSSFeedProxy
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 

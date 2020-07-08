@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiAPITarget
+import org.whispersystems.signalservice.loki.api.Snode
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 
@@ -77,7 +77,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
     }
 
-    override fun getSnodePool(): Set<LokiAPITarget> {
+    override fun getSnodePool(): Set<Snode> {
         val database = databaseHelper.readableDatabase
         return database.get(snodePoolCache, "${Companion.dummyKey} = ?", wrap("dummy_key")) { cursor ->
             val snodePoolAsString = cursor.getString(cursor.getColumnIndexOrThrow(snodePool))
@@ -87,12 +87,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
                 val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
                 val ed25519Key = components.getOrNull(2) ?: return@mapNotNull null
                 val x25519Key = components.getOrNull(3) ?: return@mapNotNull null
-                LokiAPITarget(address, port, LokiAPITarget.KeySet(ed25519Key, x25519Key))
+                Snode(address, port, Snode.KeySet(ed25519Key, x25519Key))
             }
         }?.toSet() ?: setOf()
     }
 
-    override fun setSnodePool(newValue: Set<LokiAPITarget>) {
+    override fun setSnodePool(newValue: Set<Snode>) {
         val database = databaseHelper.writableDatabase
         val snodePoolAsString = newValue.joinToString(", ") { snode ->
             var string = "${snode.address}-${snode.port}"
@@ -106,9 +106,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(snodePoolCache, row, "${Companion.dummyKey} = ?", wrap("dummy_key"))
     }
 
-    override fun getOnionRequestPaths(): List<List<LokiAPITarget>> {
+    override fun getOnionRequestPaths(): List<List<Snode>> {
         val database = databaseHelper.readableDatabase
-        fun get(indexPath: String): LokiAPITarget? {
+        fun get(indexPath: String): Snode? {
             return database.get(onionRequestPathCache, "${Companion.indexPath} = ?", wrap(indexPath)) { cursor ->
                 val snodeAsString = cursor.getString(cursor.getColumnIndexOrThrow(snode))
                 val components = snodeAsString.split("-")
@@ -117,7 +117,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
                 val ed25519Key = components.getOrNull(2)
                 val x25519Key = components.getOrNull(3)
                 if (port != null && ed25519Key != null && x25519Key != null) {
-                    LokiAPITarget(address, port, LokiAPITarget.KeySet(ed25519Key, x25519Key))
+                    Snode(address, port, Snode.KeySet(ed25519Key, x25519Key))
                 } else {
                     null
                 }
@@ -139,7 +139,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         delete("1-1"); delete("1-2")
     }
 
-    override fun setOnionRequestPaths(newValue: List<List<LokiAPITarget>>) {
+    override fun setOnionRequestPaths(newValue: List<List<Snode>>) {
         // FIXME: This is a bit of a dirty approach that assumes 2 paths of length 3 each. We should do better than this.
         if (newValue.count() != 2) { return }
         val path0 = newValue[0]
@@ -147,7 +147,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         if (path0.count() != 3 || path1.count() != 3) { return }
         Log.d("Loki", "Persisting onion request paths to database.")
         val database = databaseHelper.writableDatabase
-        fun set(indexPath: String ,snode: LokiAPITarget) {
+        fun set(indexPath: String ,snode: Snode) {
             var snodeAsString = "${snode.address}-${snode.port}"
             val keySet = snode.publicKeySet
             if (keySet != null) {
@@ -161,7 +161,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         set("1-1", path1[1]); set("1-2", path1[2])
     }
 
-    override fun getSwarm(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
+    override fun getSwarm(hexEncodedPublicKey: String): Set<Snode>? {
         val database = databaseHelper.readableDatabase
         return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
@@ -171,12 +171,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
                 val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
                 val ed25519Key = components.getOrNull(2) ?: return@mapNotNull null
                 val x25519Key = components.getOrNull(3) ?: return@mapNotNull null
-                LokiAPITarget(address, port, LokiAPITarget.KeySet(ed25519Key, x25519Key))
+                Snode(address, port, Snode.KeySet(ed25519Key, x25519Key))
             }
         }?.toSet()
     }
 
-    override fun setSwarm(hexEncodedPublicKey: String, newValue: Set<LokiAPITarget>) {
+    override fun setSwarm(hexEncodedPublicKey: String, newValue: Set<Snode>) {
         val database = databaseHelper.writableDatabase
         val swarmAsString = newValue.joinToString(", ") { target ->
             var string = "${target.address}-${target.port}"
@@ -190,14 +190,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(swarmCache, row, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
     }
 
-    override fun getLastMessageHashValue(target: LokiAPITarget): String? {
+    override fun getLastMessageHashValue(target: Snode): String? {
         val database = databaseHelper.readableDatabase
         return database.get(lastMessageHashValueCache, "${Companion.target} = ?", wrap(target.address)) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(lastMessageHashValue))
         }
     }
 
-    override fun setLastMessageHashValue(target: LokiAPITarget, newValue: String) {
+    override fun setLastMessageHashValue(target: Snode, newValue: String) {
         val database = databaseHelper.writableDatabase
         val row = wrap(mapOf(Companion.target to target.address, lastMessageHashValue to newValue))
         database.insertOrUpdate(lastMessageHashValueCache, row, "${Companion.target} = ?", wrap(target.address))
