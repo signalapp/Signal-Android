@@ -9,17 +9,17 @@ import java.util.Collection;
  */
 final class AdvanceGroupStateResult {
 
-  @NonNull private final Collection<GroupLogEntry> processedLogEntries;
-  @NonNull private final GlobalGroupState          newGlobalGroupState;
+  @NonNull private final Collection<LocalGroupLogEntry> processedLogEntries;
+  @NonNull private final GlobalGroupState               newGlobalGroupState;
 
-  AdvanceGroupStateResult(@NonNull Collection<GroupLogEntry> processedLogEntries,
+  AdvanceGroupStateResult(@NonNull Collection<LocalGroupLogEntry> processedLogEntries,
                           @NonNull GlobalGroupState newGlobalGroupState)
   {
     this.processedLogEntries = processedLogEntries;
     this.newGlobalGroupState = newGlobalGroupState;
   }
 
-  @NonNull Collection<GroupLogEntry> getProcessedLogEntries() {
+  @NonNull Collection<LocalGroupLogEntry> getProcessedLogEntries() {
     return processedLogEntries;
   }
 

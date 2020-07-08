@@ -197,6 +197,12 @@ public final class DecryptedGroupUtil {
       throw new NotAbleToApplyChangeException();
     }
 
+    return applyWithoutRevisionCheck(group, change);
+  }
+
+  public static DecryptedGroup applyWithoutRevisionCheck(DecryptedGroup group, DecryptedGroupChange change)
+      throws NotAbleToApplyChangeException
+  {
     DecryptedGroup.Builder builder = DecryptedGroup.newBuilder(group);
 
     builder.addAllMembers(change.getNewMembersList());
@@ -228,7 +234,7 @@ public final class DecryptedGroupUtil {
         throw new NotAbleToApplyChangeException();
       }
 
-      builder.setMembers(index, modifyProfileKey);
+      builder.setMembers(index, DecryptedMember.newBuilder(builder.getMembers(index)).setProfileKey(modifyProfileKey.getProfileKey()).build());
     }
 
     for (DecryptedPendingMemberRemoval removedMember : change.getDeletePendingMembersList()) {

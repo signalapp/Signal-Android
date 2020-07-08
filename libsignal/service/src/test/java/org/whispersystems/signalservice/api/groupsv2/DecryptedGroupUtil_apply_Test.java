@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
+import com.google.protobuf.ByteString;
+
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
@@ -12,6 +14,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.zkgroup.profiles.ProfileKey;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.UUID;
 
@@ -166,6 +169,36 @@ public final class DecryptedGroupUtil_apply_Test {
                                .setRevision(14)
                                .addMembers(member1)
                                .addMembers(member2b)
+                               .build(),
+                 newGroup);
+  }
+
+  @Test
+  public void apply_modify_admin_profile_keys() throws DecryptedGroupUtil.NotAbleToApplyChangeException {
+    UUID            adminUuid    = UUID.randomUUID();
+    ProfileKey      profileKey1  = randomProfileKey();
+    ProfileKey      profileKey2a = randomProfileKey();
+    ProfileKey      profileKey2b = randomProfileKey();
+    DecryptedMember member1      = member(UUID.randomUUID(), profileKey1);
+    DecryptedMember admin2a      = admin(adminUuid, profileKey2a);
+
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(13)
+                                                                     .addMembers(member1)
+                                                                     .addMembers(admin2a)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(14)
+                                                                           .addModifiedProfileKeys(DecryptedMember.newBuilder(DecryptedMember.newBuilder()
+                                                                                                                                             .setUuid(UuidUtil.toByteString(adminUuid))
+                                                                                                                                             .build())
+                                                                                                                   .setProfileKey(ByteString.copyFrom(profileKey2b.serialize())))
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(14)
+                               .addMembers(member1)
+                               .addMembers(admin(adminUuid, profileKey2b))
                                .build(),
                  newGroup);
   }

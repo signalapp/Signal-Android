@@ -31,8 +31,8 @@ public final class GlobalGroupStateTest {
     assertEquals(4, emptyState.getLatestRevisionNumber());
   }
 
-  private static GroupLogEntry logEntry(int revision) {
-    return new GroupLogEntry(state(revision), change(revision));
+  private static ServerGroupLogEntry logEntry(int revision) {
+    return new ServerGroupLogEntry(state(revision), change(revision));
   }
 
   private static DecryptedGroup state(int revision) {

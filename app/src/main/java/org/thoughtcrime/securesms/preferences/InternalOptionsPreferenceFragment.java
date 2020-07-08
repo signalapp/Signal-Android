@@ -1,13 +1,19 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceDataStore;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
+import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.keyvalue.InternalValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
@@ -26,14 +32,39 @@ public class InternalOptionsPreferenceFragment extends CorrectedPreferenceFragme
 
     PreferenceDataStore preferenceDataStore = SignalStore.getPreferenceDataStore();
 
-    SwitchPreferenceCompat forceGv2Preference = (SwitchPreferenceCompat) this.findPreference(InternalValues.GV2_FORCE_INVITES);
+    initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_FORCE_INVITES, SignalStore.internalValues().forceGv2Invites());
+    initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_IGNORE_SERVER_CHANGES, SignalStore.internalValues().gv2IgnoreServerChanges());
+    initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_IGNORE_P2P_CHANGES, SignalStore.internalValues().gv2IgnoreP2PChanges());
+
+    findPreference("pref_refresh_attributes").setOnPreferenceClickListener(preference -> {
+      ApplicationDependencies.getJobManager()
+                             .startChain(new RefreshAttributesJob())
+                             .then(new RefreshOwnProfileJob())
+                             .enqueue();
+      Toast.makeText(getContext(), "Scheduled attribute refresh", Toast.LENGTH_SHORT).show();
+      return true;
+    });
+
+    findPreference("pref_rotate_profile_key").setOnPreferenceClickListener(preference -> {
+      ApplicationDependencies.getJobManager().add(new RotateProfileKeyJob());
+      Toast.makeText(getContext(), "Scheduled profile key rotation", Toast.LENGTH_SHORT).show();
+      return true;
+    });
+  }
+
+  private void initializeSwitchPreference(@NonNull PreferenceDataStore preferenceDataStore,
+                                          @NonNull String key,
+                                          boolean checked)
+  {
+    SwitchPreferenceCompat forceGv2Preference = (SwitchPreferenceCompat) findPreference(key);
     forceGv2Preference.setPreferenceDataStore(preferenceDataStore);
-    forceGv2Preference.setChecked(SignalStore.internalValues().forceGv2Invites());
+    forceGv2Preference.setChecked(checked);
   }
 
   @Override
   public void onResume() {
     super.onResume();
+    //noinspection ConstantConditions
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__internal_preferences);
   }
 }

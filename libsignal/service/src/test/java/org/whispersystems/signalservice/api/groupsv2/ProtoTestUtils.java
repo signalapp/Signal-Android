@@ -96,6 +96,10 @@ final class ProtoTestUtils {
     return withProfileKey(member(uuid), profileKey);
   }
 
+  static DecryptedMember admin(UUID uuid, ProfileKey profileKey) {
+    return withProfileKey(admin(uuid), profileKey);
+  }
+
   static DecryptedMember admin(UUID uuid) {
     return DecryptedMember.newBuilder()
                           .setUuid(UuidUtil.toByteString(uuid))

@@ -1947,6 +1947,15 @@
     <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
     <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
     <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
+    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
+    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\'s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
+    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
+    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
+    <string name="preferences__internal_account" translatable="false">Account</string>
+    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
+    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
+    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
+    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
 
     <!-- **************************************** -->
     <!-- menus -->
