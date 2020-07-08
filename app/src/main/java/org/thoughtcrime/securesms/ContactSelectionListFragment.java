@@ -462,6 +462,11 @@ public final class ContactSelectionListFragment extends LoggingFragment
       SelectedContact selectedContact = contact.isUsernameType() ? SelectedContact.forUsername(contact.getRecipientId().orNull(), contact.getNumber())
                                                                  : SelectedContact.forPhone(contact.getRecipientId().orNull(), contact.getNumber());
 
+      if (isMulti() && Recipient.self().getId().equals(selectedContact.getOrCreateRecipientId(requireContext()))) {
+        Toast.makeText(requireContext(), R.string.ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group, Toast.LENGTH_SHORT).show();
+        return;
+      }
+
       if (!isMulti() || !cursorRecyclerViewAdapter.isSelectedContact(selectedContact)) {
         if (selectionLimitReached()) {
           Toast.makeText(requireContext(), R.string.ContactSelectionListFragment_the_group_is_full, Toast.LENGTH_SHORT).show();

@@ -1442,6 +1442,7 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s" is not a Signal user. Please check the username and try again.</string>
     <string name="ContactSelectionListFragment_okay">Okay</string>
     <string name="ContactSelectionListFragment_the_group_is_full">The group is full</string>
+    <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">You do not need to add yourself to the group</string>
 
     <!-- blocked_contacts_fragment -->
     <string name="blocked_contacts_fragment__no_blocked_contacts">No blocked contacts</string>

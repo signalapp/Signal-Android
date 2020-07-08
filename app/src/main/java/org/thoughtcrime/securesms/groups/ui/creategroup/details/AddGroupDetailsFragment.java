@@ -49,9 +49,8 @@ import java.util.Objects;
 
 public class AddGroupDetailsFragment extends LoggingFragment {
 
-  private static final int    AVATAR_PLACEHOLDER_INSET_DP = 18;
-  private static final short  REQUEST_CODE_AVATAR         = 27621;
-  private static final String ARG_RECIPIENT_IDS           = "recipient_ids";
+  private static final int   AVATAR_PLACEHOLDER_INSET_DP = 18;
+  private static final short REQUEST_CODE_AVATAR         = 27621;
 
   private CircularProgressButton   create;
   private Callback                 callback;
@@ -69,16 +68,6 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     } else {
       throw new ClassCastException("Parent context should implement AddGroupDetailsFragment.Callback");
     }
-  }
-
-  public static Fragment create(@NonNull RecipientId[] recipientIds) {
-    AddGroupDetailsFragment fragment  = new AddGroupDetailsFragment();
-    Bundle                  arguments = new Bundle();
-
-    arguments.putParcelableArray(ARG_RECIPIENT_IDS, recipientIds);
-    fragment.setArguments(arguments);
-
-    return fragment;
   }
 
   @Override
