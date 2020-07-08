@@ -79,10 +79,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e sair %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s ?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Você deixará de receber mensagens e atualizações do grupo, e nenhum membro poderá adicionar você ao grupo novamente.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Os membros do grupo não poderão adicionar você novamente.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membros do grupo poderão adicionar você ao grupo novamente</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vocês poderão trocar mensagens e fazer chamadas entre si, e o seu nome e foto serão compartilhados com essa pessoa..</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">As pessoas bloqueadas não poderão mais fazer chamadas ou enviar mensagens para você.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s ?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
+  <string name="BlockUnblockDialog_block_and_leave">Bloquear e sair</string>
   <string name="BlockUnblockDialog_block_and_delete">Bloquear e apagar</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hoje</string>
@@ -115,6 +120,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover foto do perfil?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Remover a foto do grupo?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
   <string name="CommunicationActions_no_email_app_found">Nenhum email app encontrado</string>
@@ -151,6 +157,8 @@
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contato selecionado é inválido</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Não enviado, toque para ver detalhes</string>
+  <string name="ConversationItem_error_partially_not_delivered">Envio parcial, toque para ver detalhes</string>
   <string name="ConversationItem_error_network_not_delivered">Falha no envio</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Mensagem para troca de chaves recebida, clique para processá-la.</string>
   <string name="ConversationItem_group_action_left">%1$s saiu do grupo.</string>
@@ -222,6 +230,9 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Você deixará este grupo, que será deletado de todos os seus dispositivos.</string>
   <string name="ConversationActivity_delete">Excluir</string>
   <string name="ConversationActivity_delete_and_leave">Deletar e sair</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para chamar %1$s, Signal precisa acessar seu microfone</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar %1$s, Signal precisa acessar seu microfone e câmera.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Mais opções agora em \"Configurações de grupo\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -260,6 +271,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo</string>
   <string name="ConversationFragment_deleting_messages">Excluindo mensagens…</string>
+  <string name="ConversationFragment_delete_for_me">Suprimir para mim</string>
+  <string name="ConversationFragment_delete_for_everyone">Suprimir para todas as pessoas</string>
   <string name="ConversationFragment_quoted_message_not_found">Mensagem original não encontrada</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mensagem original indisponível</string>
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir mensagem</string>
@@ -267,6 +280,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Você pode deslizar para a esquerda em qualquer mensagem para responder rapidamente</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os arquivos de mídia efêmeros são removidos automaticamente após serem enviados</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Você já visualizou esta mensagem</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Você pode adicionar anotações para si mesma/o nessa conversa. Se sua conta estiver vinculada à algum aparelho, as novas anotações serão sincronizadas. </string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não há nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -303,6 +317,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema ao definir perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Seu perfil é criptografado de ponta a ponta. Ele será visível aos seus contatos, quando você iniciar ou aceitar novas conversas, e quando você entrar em novos grupos.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
@@ -355,6 +370,11 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Figurinhas</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">Adicional membro?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Adicionar \"%1$s\" a \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" foi adicionado/a a \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_to_group">Adicional ao grupo</string>
+  <string name="AddToGroupActivity_add_to_groups">Adicionar aos grupos</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Você quer tornar seu nome e foto do perfil visíveis para todos os membros atuais e futuros deste grupo?</string>
@@ -362,38 +382,106 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Você</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Qualquer pessoa</string>
+  <string name="GroupManagement_access_level_all_members">Todos os membros</string>
+  <string name="GroupManagement_access_level_only_admins">Somente admins</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Convites de grupo pendentes</string>
+  <string name="PendingMembersActivity_people_you_invited">Pessoas que você convidou</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Você não tem nenhum convite de grupo pendente.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Pessoas convidadas por outros membros do grupo</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nenhum convite pendente de outros membros do grupo.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Os detalhes das pessoas convidadas por outros membros do grupo não vão aparecer. Se elas optarem por entrar, suas informações serão compartilhadas com o grupo naquele momento. Elas não verão nenhuma mensagem no grupo antes de entrarem.</string>
+  <string name="PendingMembersActivity_cancel_invite">Cancelar convite</string>
+  <string name="PendingMembersActivity_cancel_invites">Cancelar convites</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Cancelar convite</item>
+    <item quantity="other">Cancelar convites de %1$d</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Erro ao cancelar convite</item>
+    <item quantity="other">Erro ao cancelar convites</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Pronto</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Adicionar \"%1$s\" a \"%2$s\"?</item>
+    <item quantity="other">Adicionar os membros de %3$d a \"%2$s\"?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Dê um nome a esse grupo</string>
   <string name="AddGroupDetailsFragment__create_group">Criar grupo</string>
   <string name="AddGroupDetailsFragment__create">Criar</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nome do grupo (obrigatório)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Este campo é obrigatório.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Tentar novamente mais tarde.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Você selecionou um contato que não tem suporte para grupos do Signal. Então este grupo será de MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Remover</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Contato de SMS</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Suprimir %1$s desse grupo?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mensagens efêmeras</string>
+  <string name="ManageGroupActivity_pending_group_invites">Convites de grupo pendentes</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Quem pode editar os membros do grupo</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Quem pode editar as informações do grupo</string>
+  <string name="ManageGroupActivity_block_group">Bloquear grupo</string>
+  <string name="ManageGroupActivity_unblock_group">Desbloquear o grupo</string>
   <string name="ManageGroupActivity_leave_group">Sair do grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificações</string>
+  <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_off">Desligado</string>
   <string name="ManageGroupActivity_on">Ligado</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
+  <string name="ManageGroupActivity_see_all">Ver todas</string>
   <string name="ManageGroupActivity_none">Nenhum</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d pessoa convidada</item>
+    <item quantity="other">%d pessoas convidadas</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d membro adicionado.</item>
+    <item quantity="other">%d membros adicionados.</item>
+  </plurals>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Você não dispõe de privilégio para fazer isso</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar grupo</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é membro do grupo</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e foto</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Escolha quem pode adicionar ou convidar novos membros</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Escolha quem pode mudar o nome do grupo e a foto</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Mensagens efêmeras</string>
+  <string name="ManageRecipientActivity_chat_color">Cor da conversa</string>
   <string name="ManageRecipientActivity_block">Bloquear</string>
   <string name="ManageRecipientActivity_unblock">Desbloquear</string>
   <string name="ManageRecipientActivity_view_safety_number">Ver número de segurança</string>
   <string name="ManageRecipientActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageRecipientActivity_custom_notifications">Personalizar notificações</string>
+  <string name="ManageRecipientActivity_until_s">Até %1$s</string>
   <string name="ManageRecipientActivity_off">Desligado</string>
   <string name="ManageRecipientActivity_on">Ligado</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Adicionar ao grupo</string>
+  <string name="ManageRecipientActivity_view_all_groups">Ver todos os grupos</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Nenhum grupo em comum</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d grupo em comum</item>
+    <item quantity="other">%d grupos em comum</item>
+  </plurals>
+  <string name="ManageRecipientActivity_edit_name_and_picture">Editar nome e foto</string>
   <string name="ManageRecipientActivity_message_description">Mensagem</string>
+  <string name="ManageRecipientActivity_voice_call_description">Chamada de voz</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Chamada de voz sem segurança </string>
+  <string name="ManageRecipientActivity_video_call_description">Chamada de vídeo</string>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s convidou 1 pessoa</item>
+    <item quantity="other">%1$s convidou %2$d pessoas</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Personalizar notificações</string>
   <string name="CustomNotificationsDialogFragment__messages">Mensagens</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Usar notificações personalizadas</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Som das notificações</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrar</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Configurações de chamada</string>
@@ -402,10 +490,15 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desabilitada</string>
   <string name="CustomNotificationsDialogFragment__default">Padrão</string>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Você deseja cancelar o convite enviado a %1$s?</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Desfocar rostos</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Novo: Desfoque rostos ou desenhe em alguma zona para desfocá-la.</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Desenhe em qualquer lugar para desfocar</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Desenhe para desfocar outros rostos ou partes da imagem</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toque e segure para gravar uma mensagem de voz e solte para enviá-la</string>
   <!--InviteActivity-->
@@ -545,18 +638,48 @@
   <string name="MessageRecord_you_created_the_group">Você criou o grupo.</string>
   <string name="MessageRecord_group_updated">Grupo atualizado.</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Você adicionou %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s adicionou %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s adicionou você ao grupo.</string>
   <string name="MessageRecord_you_joined_the_group">Você entrou no grupo.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s entraram no  grupo.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Você suprimiu %1$s..</string>
+  <string name="MessageRecord_s_removed_s">%1$s suprimiu %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s suprimiu você desse grupo.</string>
   <string name="MessageRecord_you_left_the_group">Você saiu do grupo.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s saiu do grupo.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Você nomeou %1$s como admin.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s nomeou %2$s como admin.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s nomeou você como admin.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você revogou privilégios de admin de %1$s.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revogou os privilégios de admin de %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Você convidou %1$s ao grupo.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s convidou você ao grupo..</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s convidou 1 pessoa ao grupo.</item>
+    <item quantity="other">%1$s convidou %2$d pessoas ao grupo.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguém recusou um convite ao grupo.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Você recusou o convite ao grupo.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Você aceitou o convite ao grupo.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s aceitou o convite ao grupo.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Você mudou o nome do grupo para \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s  mudou o nome do grupo para \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Você mudou o avatar do grupo.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s mudou o avatar do grupo.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Você mudou quem pode editar as informações do grupo. Agora é \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s mudou quem pode editar as informações do grupo. Agora é \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Você mudou quem pode editar os membros do grupo. Agora é \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s mudou quem pode editar os membros do grupo. Agora é \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Você marcou o seu número de segurança com %s como verificado</string>
@@ -568,6 +691,8 @@
   <string name="MessageRequestBottomView_delete">Excluir</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Você quer entrar nesse grupo e compartilhar seu nome e foto com os membros dele? Eles não saberão que você visualizou as mensagens deles se você não aceitar.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Você quer desbloquear esse grupo e compartilhar seu nome e foto com os membros dele? Você não receberá nenhuma mensagem deles até que desbloqueie o grupo.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s </string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
@@ -666,7 +791,10 @@
   <string name="RedPhone_got_it">Entendi</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toque para ligar seu vídeo</string>
+  <string name="WebRtcCallActivity__calling">Chamando…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Mensagem de voz Signal…</string>
+  <string name="WebRtcCallView__signal_video_call">Chamada de vídeo Signal…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o
@@ -962,6 +1090,8 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para atender a chamada de %s, dê ao Signal acesso ao microfone.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">O Signal precisa das permissões Microfone e Câmera para fazer ou receber chamadas, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendeu em aparelho vinculado.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Recusou em um aparelho vinculado.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança da sua conversa com %1$s mudou. Isto pode significar que alguém está tentando interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
@@ -969,6 +1099,7 @@
   <string name="WebRtcCallScreen_accept">Aceitar</string>
   <string name="WebRtcCallScreen_end_call">Terminar chamada</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Recusar</string>
   <string name="WebRtcCallScreen__answer">Atender</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__speaker">Auto falante</string>
@@ -1072,6 +1203,8 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Mudanças no Número de Segurança</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">As seguintes pessoas podem ter reinstalado ou mudado de aparelho. Verifique o seu número de segurança com elas para garantir a sua privacidade e a delas.</string>
   <string name="safety_number_change_dialog__view">Exibir</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregando países…</string>
@@ -1223,6 +1356,7 @@
   <string name="message_details_header__disappears">Expira</string>
   <string name="message_details_header__via">Via</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">Pendente</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Falha no envio</string>
   <string name="message_details_recipient__new_safety_number">Novo número de segurança</string>
@@ -1424,6 +1558,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nova mensagem para…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Adicional ao grupo</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chamar</string>
   <!--conversation_callable_secure-->
@@ -1479,6 +1614,7 @@
   <string name="conversation__menu_view_all_media">Todas as mídias</string>
   <string name="conversation__menu_conversation_settings">Configurações de conversa</string>
   <string name="conversation__menu_add_shortcut">Adicionar à tela inicial</string>
+  <string name="conversation__menu_pending_members">Membros pendentes</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandir popup</string>
   <!--conversation_callable_insecure-->
@@ -1652,7 +1788,7 @@
   <string name="conversation_activity__enable_signal_messages">HABILITAR MENSAGENS SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de dados do Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nova mensagem bloqueada</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">Destranque para ver as mensagens pendentes</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueie para ver as mensagens pendentes</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-chave de backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Os backups serão salvos no armazenamento externo e criptografados com a frase-chave abaixo. Você precisa desta frase-chave para restaurar um backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela eu não conseguirei restaurar um backup.</string>
@@ -1750,8 +1886,12 @@
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contatos</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Adicionar ao grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver número de segurança</string>
   <string name="RecipientBottomSheet_message_description">Mensagem</string>
+  <string name="RecipientBottomSheet_voice_call_description">Chamada de voz</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Chamada de voz sem segurança </string>
+  <string name="RecipientBottomSheet_video_call_description">Chamada de vídeo</string>
   <string name="RecipientBottomSheet_remove">Remover</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Admin</string>

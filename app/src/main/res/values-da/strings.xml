@@ -158,8 +158,8 @@
   <string name="ContactShareEditActivity_type_missing">Andet</string>
   <string name="ContactShareEditActivity_invalid_contact">Valgte kontakt findes ikke</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">Ikke sendt, tryk for detaljer</string>
-  <string name="ConversationItem_error_partially_not_delivered">Delvist sendt, tryk for detaljer</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ikke sendt, tap for detaljer</string>
+  <string name="ConversationItem_error_partially_not_delivered">Delvist sendt, tap for detaljer</string>
   <string name="ConversationItem_error_network_not_delivered">Send mislykkedes</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Udvekslingsnøgle er modtaget. Tap for at fortsætte</string>
   <string name="ConversationItem_group_action_left">%1$s har forladt gruppen</string>
@@ -1232,7 +1232,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Optag og send en lydbesked</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås den vedhæftede lydoptagelse</string>
   <string name="conversation_activity__enable_signal_for_sms">Brug Signal til SMS</string>
-  <string name="conversation_activity__message_could_not_be_sent">Beskeden kunne ikke sendes. Kontroller din forbindelse, og prøv igen.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Beskeden kunne ikke sendes. Kontroller din forbindelse, og prøv igen</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Swipe for at annullere</string>
   <string name="conversation_input_panel__cancel">Annuller</string>
@@ -1261,9 +1261,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll til bunden</string>
   <!--safety_number_change_dialog-->
-  <string name="safety_number_change_dialog__safety_number_changes">Sikkerhedsnummerændringer</string>
+  <string name="safety_number_change_dialog__safety_number_changes">Sikkerhedsnummer ændringer</string>
   <string name="safety_number_change_dialog__send_anyway">Send alligevel</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan have geninstalleret eller skiftet enheder. Bekræft dit sikkerhedsnummer med dem for at sikre privatlivets fred.</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan have geninstalleret eller skiftet enheder. Bekræft dit sikkerhedsnummer med dem for at sikre privatlivets fred</string>
   <string name="safety_number_change_dialog__view">Vis</string>
   <string name="safety_number_change_dialog__previous_verified">Tidligere bekræftet</string>
   <!--country_selection_fragment-->
@@ -1283,7 +1283,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Vælg at se og dele, når beskeder er læst</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Aktiver \"Læst af modtager\"</string>
   <!--expiration-->
-  <string name="expiration_off">Sluk</string>
+  <string name="expiration_off">Déaktiveret</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d sekund</item>
     <item quantity="other">%d sekunder</item>

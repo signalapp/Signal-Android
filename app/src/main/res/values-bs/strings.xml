@@ -160,6 +160,9 @@
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
   <string name="ContactShareEditActivity_invalid_contact">Odabrani kontakt nije valjan</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Nije poslano, dodirnite za detalje</string>
+  <string name="ConversationItem_error_partially_not_delivered">Djelimično poslano, dodirnite za detalje</string>
+  <string name="ConversationItem_error_network_not_delivered">Neuspjelo slanje</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Primljena je poruka za razmjenu ključeva, pritisnite da nastavite.</string>
   <string name="ConversationItem_group_action_left">%1$s je napustio/la grupu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Slanje nije uspjelo. Dodirnite za nešifriranu alternativu.</string>
@@ -1053,6 +1056,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">Došlo je do greške u mreži.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Ovo korisničko ime već je rezervisano.</string>
   <string name="UsernameEditFragment_this_username_is_available">Ovo je korisničko ime dostupno.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Korisničko ime može sadržavati samo slova bez kvačica, brojeve i donju crtu.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisničko ime ne može početi brojem.</string>
   <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije valjano.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisničko ime mora sadržavati najmanje %1$d, a najviše %2$d znakova.</string>
@@ -1267,6 +1271,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Snimi i pošalji zvučni prilog</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zaključaj snimanje zvučnog priloga</string>
   <string name="conversation_activity__enable_signal_for_sms">Dopustite Signalu da šalje i prima SMS poruke</string>
+  <string name="conversation_activity__message_could_not_be_sent">Nije bilo moguće poslati poruku. Provjerite svoju konekciju i pokušajte ponovo.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Povucite za otkazivanje</string>
   <string name="conversation_input_panel__cancel">Otkaži</string>
@@ -1295,7 +1300,11 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Spusti do dna</string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Promjene sigurnosnog broja</string>
+  <string name="safety_number_change_dialog__send_anyway">Svakako pošalji</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ove su osobe možda iznova instalirale Signal ili promijenile uređaj. Potvrdite svoj sigurnosni broj s njima da osigurate privatnost.</string>
   <string name="safety_number_change_dialog__view">Pregled</string>
+  <string name="safety_number_change_dialog__previous_verified">Ranije potvrđeno</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavam države…</string>
   <string name="country_selection_fragment__search">Traži</string>

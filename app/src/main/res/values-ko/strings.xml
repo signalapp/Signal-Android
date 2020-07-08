@@ -147,6 +147,7 @@
   <string name="ContactShareEditActivity_type_missing">기타</string>
   <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 잘못됨</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_partially_not_delivered">일부만 송신됨, 탭하여 확인</string>
   <string name="ConversationItem_error_network_not_delivered">보내기 실패</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">핵심 교환 메시지를 받았습니다. 탭하여 처리하세요.</string>
   <string name="ConversationItem_group_action_left">%1$s 님이 그룹에서 탈퇴했습니다.</string>
@@ -1051,6 +1052,8 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">하단으로 스크롤</string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">안전 번호 변경됨</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">재설치했거나 기기를 바꾼 사람의 목록입니다. 보안을 보장하려면 안전 번호를 검증하세요.</string>
   <string name="safety_number_change_dialog__view">보기</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>

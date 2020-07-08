@@ -157,6 +157,8 @@
   <string name="ContactShareEditActivity_type_missing">دیگر</string>
   <string name="ContactShareEditActivity_invalid_contact">مخاطب انتخاب شده نامعتبر بود</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">ارسال نشد، برای جزئیات ضربه بزنید</string>
+  <string name="ConversationItem_error_partially_not_delivered">به صورت کامل ارسال نشد، برای جزئیات ضربه بزنید</string>
   <string name="ConversationItem_error_network_not_delivered">ارسال ناموفق بود</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">پیام تبادل کلید دریافت شد، برای ادامه، صفحه را لمس کنید.</string>
   <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
@@ -320,7 +322,7 @@
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
   <string name="CustomDefaultPreference_using_default">استفاده از پیش‌فرض: %s</string>
-  <string name="CustomDefaultPreference_none">هیچ‌کدام</string>
+  <string name="CustomDefaultPreference_none">هیچکدام</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">انتخاب عکس</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">گرفتن عکس</string>
@@ -436,7 +438,7 @@
   <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
   <string name="ManageGroupActivity_view_all_members">نمایش همه اعضا</string>
   <string name="ManageGroupActivity_see_all">مشاهدهٔ همه</string>
-  <string name="ManageGroupActivity_none">هیچ‌کدام</string>
+  <string name="ManageGroupActivity_none">هیچکدام</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d دعوت شد</item>
     <item quantity="other">%d دعوت شدند</item>
@@ -1014,6 +1016,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
   <string name="UsernameEditFragment_this_username_is_available">این نام کاربری در دسترس است.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند شامل a-Z ،0-9 و _ باشند.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d کاراکتر باشند.</string>
@@ -1226,6 +1229,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ضبط و ارسال پیوست صوتی</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">قفل ضبط پیوست صوتی</string>
   <string name="conversation_activity__enable_signal_for_sms">فعال‌سازی Signal برای پیامک</string>
+  <string name="conversation_activity__message_could_not_be_sent">پیام ارسال نشد. اتصال خود را بررسی کرده و دوباره امتحان کنید.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">برای لغو به کناره بکشید</string>
   <string name="conversation_input_panel__cancel">لغو</string>
@@ -1254,7 +1258,11 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">تغییرات شمارهٔ امنیتی</string>
+  <string name="safety_number_change_dialog__send_anyway">در هر صورت ارسال کن</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">افراد زیر ممکن است دستگاه خود را تغییر داده یا نصب مجدد انجام داده باشند. برای اطمینان از حفظ حریم خصوصی شمارهٔ امنیتی خود را با آنان تأیید کنید.</string>
   <string name="safety_number_change_dialog__view">نمایش</string>
+  <string name="safety_number_change_dialog__previous_verified">قبلاً تأیید شد</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">در حال بارگذاری کشور ها…</string>
   <string name="country_selection_fragment__search">جستجو</string>
@@ -1537,7 +1545,7 @@
   <string name="preferences__cyan">سایان</string>
   <string name="preferences__magenta">ارغوانی</string>
   <string name="preferences__white">سفید</string>
-  <string name="preferences__none">هیچ‌کدام</string>
+  <string name="preferences__none">هیچکدام</string>
   <string name="preferences__fast">سریع</string>
   <string name="preferences__normal">عادی</string>
   <string name="preferences__slow">آهسته</string>
@@ -1919,7 +1927,7 @@
   <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">قفل ثبت‌نام فعال نشد.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">قفل ثبت‌نام غیرفعال نشد.</string>
-  <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>
+  <string name="AppProtectionPreferenceFragment_none">هیچکدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="registration_activity__forgot_pin">پین را فراموش کردید؟</string>

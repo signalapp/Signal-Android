@@ -157,7 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">Sonstige</string>
   <string name="ContactShareEditActivity_invalid_contact">Ausgewählter Kontakt ungültig</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">Nicht versendet, für Details antippen.</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">Nicht versendet, für Details antippen</string>
   <string name="ConversationItem_error_partially_not_delivered">Teilweise versendet, für Details antippen</string>
   <string name="ConversationItem_error_network_not_delivered">Versand gescheitert</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Schlüsselaustausch-Nachricht empfangen. Zum Fortfahren antippen.</string>
@@ -1221,7 +1221,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audioanhang aufnehmen und senden</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Audioaufnahme arretieren</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal für SMS aktivieren</string>
-  <string name="conversation_activity__message_could_not_be_sent">Nachricht konnte nicht versendet werden. Überprüfe deine Verbindung und versuche es dann erneut.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Nachricht konnte nicht versendet werden. Überprüfe deine Verbindung und versuche es erneut.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Zum Abbrechen wischen</string>
   <string name="conversation_input_panel__cancel">Abbrechen</string>

@@ -682,7 +682,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$sがあなたにメッセージを送れるように、名前とプロフィール画像を共有しますか? ブロックを解除するまでメッセージは届きません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、名前やプロフィール画像を共有しますか? あなたが許可するまで、あなたがメッセージを見たことは相手にはわかりません。</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">あなたは%1$sというグループに招待されました。このグループのメンバーからのメッセージを受け取りますか?</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前や写真を共有することを許可しますか? ブロックを解除するまでメッセージを受け取れません。</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前やプロフィール画像を共有することを許可しますか? ブロックを解除するまでメッセージを受け取れません。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s および %3$s のメンバー</string>
@@ -1325,7 +1325,7 @@
   <string name="CreateProfileActivity__username">ユーザ名</string>
   <string name="CreateProfileActivity__create_a_username">ユーザ名を作成</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">グループ名と写真の編集</string>
+  <string name="EditProfileFragment__edit_group_name_and_photo">グループ名とアイコンの編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">共有されたメディア</string>

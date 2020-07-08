@@ -1260,6 +1260,7 @@
   <string name="safety_number_change_dialog__send_anyway">Αποστόλη παρ\' όλα αυτά</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Τα παρακάτω άτομα ίσως επανεγκατεστησαν το Signal ή άλλαξαν συσκευή. Επαλήθευσε τους αριθμούς ασφαλείας με αυτά, για να διασφαλίσεις την ιδιωτικότητα.</string>
   <string name="safety_number_change_dialog__view">Εμφάνιση</string>
+  <string name="safety_number_change_dialog__previous_verified">Έχει επαληθευθεί προηγουμένως</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Γίνεται φόρτωση χωρών…</string>
   <string name="country_selection_fragment__search">Αναζήτηση</string>

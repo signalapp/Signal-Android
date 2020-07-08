@@ -417,7 +417,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Ce champ est requis.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Il faut au moins deux membres par groupe.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
-  <string name="AddGroupDetailsFragment__try_again_later">Ressayez ultérieurement.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Ressayez plus tard.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
   <string name="AddGroupDetailsFragment__remove">Supprimer</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
@@ -587,7 +587,7 @@
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Nous présentons les réactions</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Touchez et maintenez n’importe quel message pour partager rapidement ce que vous ressentez.</string>
-  <string name="Megaphones_remind_me_later">Me le rappeler ultérieurement</string>
+  <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
   <string name="Megaphones_verify_your_signal_pin">Confirmer votre NIP Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons de temps en temps de confirmer votre NIP afin que vous vous en souveniez.</string>
   <string name="Megaphones_verify_pin">Confirmer le NIP</string>
@@ -797,7 +797,7 @@
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si vous aimez cette appli, veuillez prendre quelques instants pour nous aider la notant.</string>
   <string name="RatingManager_rate_now">Notez Signal maintenant.</string>
   <string name="RatingManager_no_thanks">Non merci</string>
-  <string name="RatingManager_later">Ultérieurement</string>
+  <string name="RatingManager_later">Plus tard</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oups, il semble que la logithèque Play Store n’est pas installée sur votre appareil.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Tous · %1$d</string>
@@ -850,7 +850,7 @@
   <string name="RegistrationActivity_more_information">Plus de précisions</string>
   <string name="RegistrationActivity_less_information">Moins de précisions</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts et médias afin de se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
-  <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez ressayer ultérieurement.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez ressayer plus tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et ressayer.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour confirmer facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de confirmation si vous autorisez Signal à lire les textos.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1252,7 +1252,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Faire défiler vers le bas</string>
   <!--safety_number_change_dialog-->
-  <string name="safety_number_change_dialog__safety_number_changes">Changements de numéro de sécurité</string>
+  <string name="safety_number_change_dialog__safety_number_changes">Changements des numéros de sécurité</string>
   <string name="safety_number_change_dialog__send_anyway">Envoyer quand même</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Les personnes suivantes ont peut-être réinstallé Signal ou changé d’appareil. Pour assurer la confidentialité, confirmez votre numéro de sécurité avec elles.</string>
   <string name="safety_number_change_dialog__view">Afficher</string>
@@ -1937,7 +1937,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Le NIP de blocage de l’inscription est erroné.</string>
   <string name="RegistrationActivity_too_many_attempts">Trop d’essais</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vous avez fait trop d’essais infructueux de saisie du NIP de blocage de l’inscription. Veuillez ressayer dans un jour.</string>
-  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vous avez fait trop d’essais. Veuillez ressayer ultérieurement.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vous avez fait trop d’essais. Veuillez ressayer plus tard.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erreur de connexion au service</string>
   <string name="RegistrationActivity_oh_no">Oh non !</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">L’inscription de ce numéro de téléphone sera possible sans votre NIP de blocage de l’inscription sept jours après la dernière activité de ce numéro de téléphone sur Signal. Il vous reste %d jours.</string>

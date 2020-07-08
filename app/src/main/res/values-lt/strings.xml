@@ -1339,9 +1339,11 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Saugumo numerio pasikeitimai</string>
   <string name="safety_number_change_dialog__send_anyway">Vis tiek siųsti</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gali būti, kad šie žmonės iš naujo įdiegė programėlę ar pakeitė įrenginį. Patvirtinkite savo saugumo numerį su kiekvienu iš jų, kad užtikrintumėte privatumą.</string>
   <string name="safety_number_change_dialog__view">Rodyti</string>
+  <string name="safety_number_change_dialog__previous_verified">Anksčiau patvirtinta(-s)</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Įkeliamos šalys…</string>
   <string name="country_selection_fragment__search">Ieškoti</string>
@@ -1509,6 +1511,9 @@
   <string name="message_details_header__via">Per</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Laukiama</string>
+  <string name="message_details_recipient_header__sent_to">Kam išsiųsta</string>
+  <string name="message_details_recipient_header__sent_from">Išsiuntė</string>
+  <string name="message_details_recipient_header__delivered_to">Kam pristatyta</string>
   <string name="message_details_recipient_header__read_by">Perskaitė</string>
   <string name="message_details_recipient_header__not_sent">Neišsiųsta</string>
   <!--message_Details_recipient-->
@@ -1681,7 +1686,7 @@
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Užklausti klaviatūrą, kad būtų išjungtas suasmenintas mokymasis</string>
   <string name="preferences_app_protection__blocked_contacts">Užblokuoti adresatai</string>
   <string name="preferences_chats__when_using_mobile_data">Naudojant mobiliuosius duomenis</string>
-  <string name="preferences_chats__when_using_wifi">Naudojant bevielį ryšį (Wi-Fi)</string>
+  <string name="preferences_chats__when_using_wifi">Naudojant belaidį ryšį (Wi-Fi)</string>
   <string name="preferences_chats__when_roaming">Naudojant tarptinklinį ryšį</string>
   <string name="preferences_chats__media_auto_download">Automatinis medijos atsisiuntimas</string>
   <string name="preferences_chats__message_trimming">Žinučių apkirpimas</string>

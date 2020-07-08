@@ -545,6 +545,7 @@
   <string name="MessageRecord_you_joined_the_group">நீங்கள் குழுவில் சேர்ந்தார்.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s குழுவில் சேர்ந்தார்.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">நீங்கள் குழுவிலிருந்து வெளியேறிவிட்டீர்கள்.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->

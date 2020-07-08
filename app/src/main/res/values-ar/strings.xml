@@ -169,6 +169,7 @@
   <string name="ContactShareEditActivity_type_missing">غير ذلك</string>
   <string name="ContactShareEditActivity_invalid_contact">جهة الاتصال التي تم اختيارها غير صالحة.</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_partially_not_delivered">تم الإرسال جزئياً فقط، انقر لمعرفة المزيد</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، انقر للاستعاضة بارسال غير آمن</string>
@@ -1372,6 +1373,8 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">تغيّرات رقم الأمان</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">هؤلاء الأشخاص قاموا بإعادة تثبيت أو قاموا بتغير أجهزتهم. يرجى تأكيد رقم الأمان معهم لضمان الخصوصية.</string>
   <string name="safety_number_change_dialog__view">معاينة </string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ …</string>

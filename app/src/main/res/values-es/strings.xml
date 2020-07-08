@@ -1848,7 +1848,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">De acuerdo</string>
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s recibirá tu solicitud de mensaje. Podrás llamar en cuanto la acepte.</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s recibirá tu solicitud de chat. Podrás llamar en cuanto la acepte.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crear PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">El PIN protege y almacena tu cuenta en Signal de manera cifrada. Sólo tú puedes acceder a ella. Ni siquiera l*s creador*s de Signal tienen acceso.</string>

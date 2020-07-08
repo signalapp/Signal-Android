@@ -1440,6 +1440,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Legg til profilnavn</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Ny: Meldingsforespørsler</string>
   <string name="MessageRequestsMegaphone__add_name">Legg til navn</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kan nå velge om du vil godta en ny samtale. Du vil se valgene \"Godta,\" \"Slett,\" eller \"Blokker.\"</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Hjelp</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Har du lest våre vanlige spørsmål ennå?</string>
@@ -1449,16 +1450,25 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__include_debug_log">Inkluder debug logg.</string>
   <string name="HelpFragment__whats_this">Hva er dette?</string>
   <string name="HelpFragment__how_do_you_feel">Hvordan føler du deg? (Valgfri)</string>
+  <string name="HelpFragment__support_info">Brukterstøtteinformasjon</string>
   <string name="HelpFragment__signal_android_support_request">Kontakt Signal Android support</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
+  <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
+  <string name="HelpFragment__signal_support">Signal brukerstøtte</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
   <string name="HelpFragment__no_email_app_found">Ingen e-postapp funnet.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smilefjes og mennesker</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mat</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviteter</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Steder</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekter</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flagg</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
@@ -1645,6 +1655,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver valgte</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Angre arkivering av valgte</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Angre arkivering av valgte</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Merk som lest</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Merk som ulest</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Innstillinger snarvei</string>
   <string name="conversation_list_search_description">Søk</string>
@@ -1666,10 +1678,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
   <string name="conversation__menu_edit_group">Rediger gruppe</string>
+  <string name="conversation__menu_group_settings">Gruppeinstillinger</string>
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
   <string name="conversation__menu_view_all_media">Alle medier</string>
   <string name="conversation__menu_conversation_settings">Samtaleinnstillinger</string>
   <string name="conversation__menu_add_shortcut">Legg til på startskjermen</string>
+  <string name="conversation__menu_pending_members">Avventende medlemmer</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Utvid sprettoppvindu</string>
   <!--conversation_callable_insecure-->
@@ -1753,6 +1767,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Opprett alfanumerisk PIN-kode</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Opprett numerisk PIN-kode</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN-koden må være minst %1$d tegn</item>
+    <item quantity="other">PIN-koden må være minst %1$d tegn</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN-koden må være minst %1$d siffer</item>
+    <item quantity="other">PIN-koden må være minst %1$d sifre</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endre PIN-koden din så lenge denne enheten er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
@@ -1761,6 +1783,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder stemmer ikke overens. Prøv igjen.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekreft din PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Oppretting av PIN-kode mislyktes</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koden din ble ikke lagret. Vi ber deg om å opprette en PIN-kode senere.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN laget.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Skriv inn PIN-koden din på nytt</string>
@@ -1801,13 +1824,33 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
     <item quantity="one">For ditt personvern og sikkerhet er det ingen måte å gjenopprette PIN-koden. Hvis du ikke kan huske PIN-koden din, kan du bekrefte på nytt med SMS etter %1$d dag for inaktivitet. I dette tilfellet vil kontoen din slettes og alt innhold slettes.</item>
     <item quantity="other">For ditt personvern og sikkerhet er det ingen måte å gjenopprette PIN-koden. Hvis du ikke kan huske PIN-koden din, kan du bekrefte på nytt med SMS etter %1$d dager med inaktivitet. I dette tilfellet vil kontoen din slettes og alt innhold slettes.</item>
   </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Feil PIN-kode.  %1$d gjenværende forsøk.</item>
+    <item quantity="other">Feil PIN-kode. %1$d gjenværende forsøk.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Dersom du går tom for forsøk vil kontoen din bli låst i %1$d dag. Etter %1$d dag med inaktivitet, kan du registrere deg på nytt uten PIN-kode. Kontoen din og alt innhold vil bli slettet.</item>
+    <item quantity="other">Dersom du går tom for forsøk vil kontoen din bli låst i %1$d dager. Etter %1$d dager med inaktivitet, kan du registrere deg på nytt uten PIN-kode. Kontoen din og alt innhold vil bli slettet.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Du har %1$d forsøk igjen.</item>
+    <item quantity="other">Du har %1$d forsøk igjen.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">%1$d forsøk igjen.</item>
+    <item quantity="other">%1$d forsøk igjen.</item>
+  </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Greit</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s vil motta en meldingsforespørsel fra deg. Du kan ringe når forespørselen din er akseptert.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Lag en PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koden holder informasjonen som er lagret i Signal kryptert.</string>
   <string name="KbsMegaphone__create_pin">Lag PIN</string>
   <string name="KbsMegaphone__introducing_pins">Vi introduserer PIN-koder</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi vil minne deg på det senere. Å lage en PIN-kode blir obligatorisk om %1$d dager.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi vil minne deg på det senere. Bekreftelse av PIN-koden blir obligatorisk om %1$d dager.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>
@@ -1830,6 +1873,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_chats__chat_backups">Sikkerhetskopi av samtaler</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sikkerhetskopier samtaler til ekstern lagringsenhet</string>
   <string name="preferences_chats__create_backup">Lag sikkerhetskopi</string>
+  <string name="preferences_chats__verify_backup_passphrase">Bekreft passordfrasen for sikkerhetskopi</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test passordfrasen din og bekreft at den stemmer overens</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv inn passordfrase for sikkerhetskopi</string>
   <string name="RegistrationActivity_restore">Gjenopprett</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere sikkerhetskopier fra nyere versjoner av Signal.</string>
@@ -1847,7 +1892,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Vil du slå av og slette alle lokale sikkerhetskopier?</string>
   <string name="BackupDialog_delete_backups_statement">Slett sikkerhetskopier</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavle</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Bekreft ved å skrive inn passordfrasen for sikkerhetskopi</string>
   <string name="BackupDialog_verify">Bekreft</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har bekreftet passordfrasen for sikkerhetskopi</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Passordfrasen stemmer ikke overens</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Forrige sikkerhetskopi: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Under behandling</string>
@@ -1866,11 +1914,17 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Lag en PIN</string>
   <string name="preferences_app_protection__change_your_pin">Endre PIN-koden</string>
+  <string name="preferences_app_protection__pin_reminders">PIN-kode påminnelser</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Legg til ekstra sikkerhet ved å kreve at Signal PIN-koden din må benyttes dersom telefonnummeret ditt registreres hos Signal igjen.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påminnelser hjelper deg å huske PIN-koden siden den ikke kan gjenopprettes. Du blir spurt mindre ofte over tid.</string>
   <string name="preferences_app_protection__turn_off">Skru av</string>
   <string name="preferences_app_protection__confirm_pin">Bekreft PIN-koden</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Bekreft Signal PIN-kode</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pass på at du husker eller lagrer PIN-koden sikkert, da den ikke kan gjenopprettes. Hvis du glemmer PIN-koden, risikerer du å miste data når du registrerer Signal-kontoen på nytt.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Kunne ikke skru på registreringslås.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Kunne ikke skru av registreringslås.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringslås-PIN-koden er ikke den samme som SMS-bekreftelseskoden du nettopp har mottatt. Vennligst skriv inn PIN-koden du tidligere konfigurert i programmet.</string>
   <string name="registration_activity__registration_lock_pin">Registrerings-PIN</string>
@@ -1884,9 +1938,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__registration_lock_pin">Registrerings-PIN</string>
   <string name="preferences_app_protection__registration_lock">Registreringslås</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du må skrive inn registrerings-PIN-koden</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-koden har minst %d sifre eller tegn</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Feil registrerings-PIN</string>
   <string name="RegistrationActivity_too_many_attempts">For mange forsøk</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har gjort for mange feilaktige registreringslås-PIN-forsøk. Vennligst prøv igjen på en dag.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort for mange forsøk. Prøv igjen senere.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Feil under tilkobling til tjeneste</string>
   <string name="RegistrationActivity_oh_no">Å nei!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Du må vente 7 dager etter at Signal sist ble brukt med dette telefonnummeret før du kan registrere nummeret på nytt uten å taste inn registrerings-PIN. %d dager gjenstår.</string>
@@ -1896,7 +1952,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Jeg har glemt PIN-koden min.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Har du glemt PIN-koden?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås beskytter telefonnummeret ditt mot uautoriserte registreringsforsøk. Denne funksjonen kan deaktiveres når som helst i Signal-personverninnstillingene</string>
+  <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
   <string name="RegistrationLockDialog_enable">Aktiver</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Registreringslåsen må være på minst %d sifre.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">PIN-kodene du skrev inn var ikke like.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Feil ved å koble til tjenesten</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Vil du slå av registreringslåsen?</string>
@@ -1914,11 +1972,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RecipientBottomSheet_unblock">Skru av blokkering</string>
   <string name="RecipientBottomSheet_add_to_contacts">Legg til i kontakter</string>
   <string name="RecipientBottomSheet_add_to_a_group">Legg til gruppen</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Legg til en annen gruppe</string>
   <string name="RecipientBottomSheet_view_safety_number">Vis sikkerhetsnummer</string>
+  <string name="RecipientBottomSheet_make_group_admin">Gjør til gruppeadministrator</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
+  <string name="RecipientBottomSheet_remove_from_group">Fjern fra gruppen</string>
   <string name="RecipientBottomSheet_message_description">Melding</string>
   <string name="RecipientBottomSheet_voice_call_description">Taleanrop</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Usikkert taleanrop</string>
   <string name="RecipientBottomSheet_video_call_description">Videoanrop</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjerne %1$s som gruppeadministrator?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s vil kunne redigere denne gruppen og dens medlemmer. </string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Fjerne %1$s fra \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>

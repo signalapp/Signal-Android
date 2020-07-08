@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Skärmlås %1$s, registreringslås %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Skärmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Skärmlås %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
