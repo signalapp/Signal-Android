@@ -120,6 +120,7 @@
               android:supportsPictureInPicture="true"
               android:windowSoftInputMode="stateAlwaysHidden"
               android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+              android:taskAffinity=".calling"
               android:launchMode="singleTask"/>
 
     <activity android:name=".messagerequests.CalleeMustAcceptMessageRequestActivity"

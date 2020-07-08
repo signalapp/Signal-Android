@@ -180,6 +180,7 @@ public class WebRtcCallViewModel extends ViewModel {
                                                isRemoteVideoEnabled || isRemoteVideoOffer,
                                                isMoreThanOneCameraAvailable,
                                                isBluetoothAvailable,
+                                               isInPipMode.getValue() == Boolean.TRUE,
                                                callState,
                                                audioOutput));
   }
@@ -189,9 +190,9 @@ public class WebRtcCallViewModel extends ViewModel {
     else                                                 return WebRtcLocalRenderState.GONE;
   }
 
-  private @NonNull WebRtcControls getRealWebRtcControls(boolean neverDisplayControls, @NonNull WebRtcControls controls) {
-    if (neverDisplayControls) return WebRtcControls.NONE;
-    else                      return controls;
+  private @NonNull WebRtcControls getRealWebRtcControls(boolean isInPipMode, @NonNull WebRtcControls controls) {
+    if (isInPipMode) return WebRtcControls.PIP;
+    else             return controls;
   }
 
   private void startTimer() {

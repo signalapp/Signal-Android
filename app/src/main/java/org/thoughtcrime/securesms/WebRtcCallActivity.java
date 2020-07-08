@@ -156,14 +156,13 @@ public class WebRtcCallActivity extends AppCompatActivity {
 
   @Override
   protected void onUserLeaveHint() {
-    if (deviceSupportsPipMode()) {
-      PictureInPictureParams params = new PictureInPictureParams.Builder()
-                                                                .setAspectRatio(new Rational(16, 9))
-                                                                .build();
-      setPictureInPictureParams(params);
+    enterPipModeIfPossible();
+  }
 
-      //noinspection deprecation
-      enterPictureInPictureMode();
+  @Override
+  public void onBackPressed() {
+    if (!enterPipModeIfPossible()) {
+      super.onBackPressed();
     }
   }
 
@@ -172,8 +171,19 @@ public class WebRtcCallActivity extends AppCompatActivity {
     viewModel.setIsInPipMode(isInPictureInPictureMode);
   }
 
+  private boolean enterPipModeIfPossible() {
+    if (isSystemPipEnabledAndAvailable()) {
+      PictureInPictureParams params = new PictureInPictureParams.Builder()
+              .setAspectRatio(new Rational(9, 16))
+              .build();
+      enterPictureInPictureMode(params);
+      return true;
+    }
+    return false;
+  }
+
   private boolean isInPipMode() {
-    return deviceSupportsPipMode() && isInPictureInPictureMode();
+    return isSystemPipEnabledAndAvailable() && isInPictureInPictureMode();
   }
 
   private void processIntent(@NonNull Intent intent) {
@@ -493,7 +503,7 @@ public class WebRtcCallActivity extends AppCompatActivity {
                    .show();
   }
 
-  private boolean deviceSupportsPipMode() {
+  private boolean isSystemPipEnabledAndAvailable() {
     return Build.VERSION.SDK_INT >= 26 &&
            FeatureFlags.callingPip()   &&
            getPackageManager().hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE);
