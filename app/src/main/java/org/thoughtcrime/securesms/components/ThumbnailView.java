@@ -398,6 +398,10 @@ public class ThumbnailView extends FrameLayout {
     getTransferControls().showProgressSpinner();
   }
 
+  public void setFit(@NonNull BitmapTransformation fit) {
+    this.fit = fit;
+  }
+
   protected void setRadius(int radius) {
     this.radius = radius;
   }

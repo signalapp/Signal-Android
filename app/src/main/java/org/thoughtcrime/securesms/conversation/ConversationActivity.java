@@ -41,7 +41,6 @@ import android.provider.Browser;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -63,6 +62,7 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
@@ -73,6 +73,7 @@ import androidx.core.graphics.drawable.IconCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
@@ -246,7 +247,10 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -1997,7 +2001,12 @@ public class ConversationActivity extends PassphraseRequiredActivity
       openContactShareEditor(uri);
       return new SettableFuture<>(false);
     } else if (MediaType.IMAGE.equals(mediaType) || MediaType.GIF.equals(mediaType) || MediaType.VIDEO.equals(mediaType)) {
-      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, 0, borderless, Optional.absent(), Optional.absent(), Optional.absent());
+      String mimeType = MediaUtil.getMimeType(this, uri);
+      if (mimeType == null) {
+        mimeType = mediaType.toFallbackMimeType();
+      }
+
+      Media media = new Media(uri, mimeType, 0, width, height, 0, 0, borderless, Optional.absent(), Optional.absent(), Optional.absent());
       startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
@@ -2363,7 +2372,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms,
-                                                  String body,
+                                                  @NonNull String body,
                                                   SlideDeck slideDeck,
                                                   QuoteModel quote,
                                                   List<Contact> contacts,
@@ -2651,10 +2660,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onMediaSelected(@NonNull Uri uri, String contentType) {
-    if (!TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif")) {
-      setMedia(uri, MediaType.GIF);
-    } else if (MediaUtil.isImageType(contentType)) {
-      setMedia(uri, MediaType.IMAGE);
+    if (MediaUtil.isGif(contentType) || MediaUtil.isImageType(contentType)) {
+      SimpleTask.run(getLifecycle(),
+                     () -> getKeyboardImageDetails(uri),
+                     details -> sendKeyboardImage(uri, contentType, details));
     } else if (MediaUtil.isVideoType(contentType)) {
       setMedia(uri, MediaType.VIDEO);
     } else if (MediaUtil.isAudioType(contentType)) {
@@ -3066,6 +3075,55 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
   }
 
+  @WorkerThread
+  private @Nullable KeyboardImageDetails getKeyboardImageDetails(@NonNull Uri uri) {
+    try {
+      Bitmap bitmap = glideRequests.asBitmap()
+                                   .load(uri)
+                                   .skipMemoryCache(true)
+                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                   .submit()
+                                   .get(1000, TimeUnit.MILLISECONDS);
+      int topLeft = bitmap.getPixel(0, 0);
+      return new KeyboardImageDetails(bitmap.getWidth(), bitmap.getHeight(), Color.alpha(topLeft) < 255);
+    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+      return null;
+    }
+  }
+
+  private void sendKeyboardImage(@NonNull Uri uri, @NonNull String contentType, @Nullable KeyboardImageDetails details) {
+    if (details == null || !details.hasTransparency) {
+      setMedia(uri, Objects.requireNonNull(MediaType.from(contentType)));
+      return;
+    }
+
+    long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
+    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+    boolean    initiating     = threadId == -1;
+    QuoteModel quote          = inputPanel.getQuote().orNull();
+    SlideDeck  slideDeck      = new SlideDeck();
+
+    if (MediaUtil.isGif(contentType)) {
+      slideDeck.addSlide(new GifSlide(this, uri, 0, details.width, details.height, details.hasTransparency, null));
+    } else if (MediaUtil.isImageType(contentType)) {
+      slideDeck.addSlide(new ImageSlide(this, uri, contentType, 0, details.width, details.height, details.hasTransparency, null, null));
+    } else {
+      throw new AssertionError("Only images are supported!");
+    }
+
+    sendMediaMessage(isSmsForced(),
+                     "",
+                     slideDeck,
+                     quote,
+                     Collections.emptyList(),
+                     Collections.emptyList(),
+                     expiresIn,
+                     false,
+                     subscriptionId,
+                     initiating,
+                     true);
+  }
+
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
     @Override
     public void onDismissed(final List<IdentityRecord> unverifiedIdentities) {
@@ -3154,5 +3212,17 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (recipient == null) return;
 
     messageRequestBottomView.setRecipient(recipient);
+  }
+
+  private static class KeyboardImageDetails {
+    private final int     width;
+    private final int     height;
+    private final boolean hasTransparency;
+
+    private KeyboardImageDetails(int width, int height, boolean hasTransparency) {
+      this.width           = width;
+      this.height          = height;
+      this.hasTransparency = hasTransparency;
+    }
   }
 }

@@ -7,6 +7,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CenterInside;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -53,7 +56,14 @@ public class BorderlessImageView extends FrameLayout {
   public void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     boolean showControls = slide.asAttachment().getDataUri() == null;
 
-    image.setImageResource(glideRequests, slide, showControls, false);
+    if (slide.hasSticker()) {
+      image.setFit(new CenterInside());
+      image.setImageResource(glideRequests, slide, showControls, false);
+    } else {
+      image.setFit(new CenterCrop());
+      image.setImageResource(glideRequests, slide, showControls, false, slide.asAttachment().getWidth(), slide.asAttachment().getHeight());
+    }
+
     missingShade.setVisibility(showControls ? View.VISIBLE : View.GONE);
   }
 

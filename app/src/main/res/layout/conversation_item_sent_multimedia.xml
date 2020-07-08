@@ -73,8 +73,8 @@
 
             <ViewStub
                 android:id="@+id/sticker_view_stub"
-                android:layout_width="@dimen/media_bubble_sticker_dimens"
-                android:layout_height="@dimen/media_bubble_sticker_dimens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout="@layout/conversation_item_sent_sticker" />
 
             <ViewStub
@@ -150,6 +150,7 @@
                 android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+                android:layout_gravity="end"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:gravity="end"

@@ -700,6 +700,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       } else {
         //noinspection ConstantConditions
         stickerStub.get().setSlide(glideRequests, ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide());
+        stickerStub.get().setThumbnailClickListener((v, slide) -> performClick());
       }
 
       stickerStub.get().setDownloadClickListener(downloadClickListener);
