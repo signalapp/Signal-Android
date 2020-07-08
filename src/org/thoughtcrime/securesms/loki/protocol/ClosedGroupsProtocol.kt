@@ -17,6 +17,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.loki.api.LokiAPI
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import java.util.*
@@ -108,6 +109,7 @@ object ClosedGroupsProtocol {
             val deviceAsAddress = SignalProtocolAddress(device, SignalServiceAddress.DEFAULT_DEVICE_ID)
             val hasSession = TextSecureSessionStore(context).containsSession(deviceAsAddress)
             if (hasSession) { continue }
+            if (DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(device) != null) { return }
             DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestTimestamp(device, Date().time)
             val sessionRequest = EphemeralMessage.createSessionRequest(device)
             ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRequest))

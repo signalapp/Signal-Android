@@ -146,6 +146,6 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)
         val application = ApplicationContext.getInstance(this)
-        application.stopPollingIfNeeded()
+        application.stopPolling()
     }
 }

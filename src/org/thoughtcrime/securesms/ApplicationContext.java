@@ -487,7 +487,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userPublicKey == null) return;
     if (lokiPoller != null) {
-      lokiPoller.updateUserHexEncodedPublicKey(userPublicKey);
+      LokiAPI.shared.setUserHexEncodedPublicKey(userPublicKey);
+      lokiPoller.setUserHexEncodedPublicKey(userPublicKey);
       return;
     }
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
@@ -507,8 +508,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiPoller != null) { lokiPoller.startIfNeeded(); }
   }
 
-  public void stopPollingIfNeeded() {
-    if (lokiPoller != null) { lokiPoller.stopIfNeeded(); }
+  public void stopPolling() {
+    if (lokiPoller == null) { return; }
+    lokiPoller.stopIfNeeded();
   }
 
   private void resubmitProfilePictureIfNeeded() {
