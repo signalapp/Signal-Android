@@ -159,7 +159,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private long messageId;
   private long smsMessageId;
 
-  //Loki
   private MessageNotifier messageNotifier;
 
   @Inject SignalServiceMessageSender messageSender;

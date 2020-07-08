@@ -34,8 +34,7 @@ import java.util.*
 class LokiPublicChatPoller(private val context: Context, private val group: LokiPublicChat) {
     private val handler = Handler()
     private var hasStarted = false
-
-    private var isCatchUp = false
+    public var isCaughtUp = false
 
     // region Convenience
     private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
@@ -83,14 +82,6 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         }
     }
     // endregion
-
-    fun isCatchUp(): Boolean {
-        return isCatchUp
-    }
-
-    fun shouldCatchUp() {
-        isCatchUp = false
-    }
 
     // region Settings
     companion object {
@@ -259,7 +250,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                     processIncomingMessage(message)
                 }
             }
-            isCatchUp = true
+            isCaughtUp = true
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
         }

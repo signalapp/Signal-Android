@@ -226,9 +226,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     // Loki
-    if (lokiPoller != null) { lokiPoller.shouldCatchUp(); }
+    if (lokiPoller != null) { lokiPoller.setCaughtUp(false); }
     startPollingIfNeeded();
-    lokiPublicChatManager.shouldAllCatchUp();
+    lokiPublicChatManager.markAllAsNotCaughtUp();
     lokiPublicChatManager.startPollersIfNeeded();
   }
 

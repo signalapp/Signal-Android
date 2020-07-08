@@ -2,17 +2,16 @@ package org.thoughtcrime.securesms.notifications;
 
 import android.content.Context;
 
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.loki.api.LokiPublicChatManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.Throttler;
 import org.whispersystems.signalservice.loki.api.LokiPoller;
 
 import java.util.concurrent.TimeUnit;
-
-import androidx.annotation.MainThread;
-import androidx.annotation.NonNull;
 
 public class OptimizedMessageNotifier implements MessageNotifier {
   private final MessageNotifier         wrapped;
@@ -42,12 +41,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   public void updateNotification(@NonNull Context context) {
     LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCatchUp = false;
+    Boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
-      isCatchUp = lokiPoller.isCatchUp() && lokiPublicChatManager.isAllCatchUp();
+      isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
 
-    if (isCatchUp) {
+    if (isCaughtUp) {
       wrapped.updateNotification(context);
     } else {
       debouncer.publish(() -> wrapped.updateNotification(context));
@@ -58,12 +57,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   public void updateNotification(@NonNull Context context, long threadId) {
     LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCatchUp = false;
+    Boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
-      isCatchUp = lokiPoller.isCatchUp() && lokiPublicChatManager.isAllCatchUp();
+      isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
 
-    if (isCatchUp) {
+    if (isCaughtUp) {
       wrapped.updateNotification(context, threadId);
     } else {
       debouncer.publish(() -> wrapped.updateNotification(context, threadId));
@@ -74,12 +73,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   public void updateNotification(@NonNull Context context, long threadId, boolean signal) {
     LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCatchUp = false;
+    Boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
-      isCatchUp = lokiPoller.isCatchUp() && lokiPublicChatManager.isAllCatchUp();
+      isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
 
-    if (isCatchUp) {
+    if (isCaughtUp) {
       wrapped.updateNotification(context, threadId, signal);
     } else {
       debouncer.publish(() -> wrapped.updateNotification(context, threadId, signal));
@@ -90,18 +89,17 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   public void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount) {
     LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCatchUp = false;
+    Boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
-      isCatchUp = lokiPoller.isCatchUp() && lokiPublicChatManager.isAllCatchUp();
+      isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
 
-    if (isCatchUp) {
+    if (isCaughtUp) {
       wrapped.updateNotification(context, signal, reminderCount);
     } else {
       debouncer.publish(() -> wrapped.updateNotification(context, signal, reminderCount));
     }
   }
-
 
   @Override
   public void clearReminder(@NonNull Context context) { wrapped.clearReminder(context); }
