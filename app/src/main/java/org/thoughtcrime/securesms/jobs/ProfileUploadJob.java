@@ -11,13 +11,17 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
 public final class ProfileUploadJob extends BaseJob {
+
+  private static final String TAG = Log.tag(ProfileUploadJob.class);
 
   public static final String KEY = "ProfileUploadJob";
 
@@ -45,6 +49,11 @@ public final class ProfileUploadJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      Log.w(TAG, "Not registered. Skipping.");
+      return;
+    }
+
     ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
     ProfileName profileName = Recipient.self().getProfileName();
     String      avatarPath;
