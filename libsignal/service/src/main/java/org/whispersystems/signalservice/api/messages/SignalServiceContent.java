@@ -930,7 +930,7 @@ public final class SignalServiceContent {
       throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
     }
 
-    if (groupV2.hasGroupChange()) {
+    if (groupV2.hasGroupChange() && !groupV2.getGroupChange().isEmpty()) {
       builder.withSignedGroupChange(groupV2.getGroupChange().toByteArray());
     }
 
