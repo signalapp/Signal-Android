@@ -24,16 +24,23 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
+import org.thoughtcrime.securesms.pin.PinOptOutDialog;
+import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
+import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
 
@@ -43,6 +50,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
   private static final String INTERNAL_PREF         = "pref_internal";
+  private static final String ADVANCED_PIN_PREF     = "pref_advanced_pin_settings";
 
   private static final int PICK_IDENTITY_CONTACT = 1;
 
@@ -55,6 +63,17 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
     Preference submitDebugLog = this.findPreference(SUBMIT_DEBUG_LOG_PREF);
     submitDebugLog.setOnPreferenceClickListener(new SubmitDebugLogListener());
     submitDebugLog.setSummary(getVersion(getActivity()));
+
+    Preference pinSettings = this.findPreference(ADVANCED_PIN_PREF);
+    pinSettings.setOnPreferenceClickListener(preference -> {
+      requireActivity().getSupportFragmentManager()
+                       .beginTransaction()
+                       .setCustomAnimations(R.anim.slide_from_end, R.anim.slide_to_start, R.anim.slide_from_start, R.anim.slide_to_end)
+                       .replace(android.R.id.content, new AdvancedPinPreferenceFragment())
+                       .addToBackStack(null)
+                       .commit();
+      return false;
+    });
 
     Preference internalPreference = this.findPreference(INTERNAL_PREF);
     internalPreference.setVisible(FeatureFlags.internalUser());

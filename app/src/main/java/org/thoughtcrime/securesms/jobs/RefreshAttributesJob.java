@@ -70,7 +70,7 @@ public class RefreshAttributesJob extends BaseJob {
       registrationLockV1 = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
     }
 
-    SignalServiceProfile.Capabilities capabilities = AppCapabilities.getCapabilities(kbsValues.hasPin());
+    SignalServiceProfile.Capabilities capabilities = AppCapabilities.getCapabilities(kbsValues.hasPin() && !kbsValues.hasOptedOut());
     Log.i(TAG, "Calling setAccountAttributes() reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + kbsValues.hasPin() +
                "\n  Capabilities:" +
                "\n    Storage? " + capabilities.isStorage() +

@@ -410,6 +410,8 @@
 
         <item name="tooltip_default_color">@color/core_white</item>
 
+        <item name="dangerous_button_color">@color/core_red_highlight</item>
+
         <item name="pref_icon_tint">?attr/icon_tint</item>
 
         <item name="pref_divider">@drawable/preference_divider_light</item>
@@ -709,6 +711,8 @@
         <item name="sticker_view_missing_background">@drawable/sticker_missing_background_dark</item>
 
         <item name="tooltip_default_color">@color/core_grey_75</item>
+
+        <item name="dangerous_button_color">@color/core_red</item>
 
         <item name="pref_icon_tint">?attr/icon_tint</item>
 

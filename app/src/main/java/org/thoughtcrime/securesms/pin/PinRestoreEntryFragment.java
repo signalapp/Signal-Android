@@ -127,7 +127,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
 
       errorLabel.setText(R.string.PinRestoreEntryFragment_incorrect_pin);
       helpButton.setVisibility(View.VISIBLE);
-      skipButton.setVisibility(View.VISIBLE);
     } else {
       if (triesRemaining.getCount() == 1) {
         helpButton.setVisibility(View.VISIBLE);
@@ -174,7 +173,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
         cancelSpinning(pinButton);
         pinEntry.setEnabled(true);
         enableAndFocusPinEntry();
-        skipButton.setVisibility(View.VISIBLE);
         break;
     }
   }

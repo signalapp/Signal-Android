@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item
+      android:id="@+id/menu_pin_learn_more"
+      android:title="@string/KbsSplashFragment__learn_more_about_pins"
+      app:showAsAction="never"/>
+
+  <item
+      android:id="@+id/menu_pin_skip"
+      android:title="@string/KbsSplashFragment__skip_pin_creation"
+      app:showAsAction="never"/>
+</menu>

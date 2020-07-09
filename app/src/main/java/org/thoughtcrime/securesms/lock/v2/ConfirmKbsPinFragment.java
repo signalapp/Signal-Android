@@ -186,15 +186,6 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
                    .show();
   }
 
-  private void closeNavGraphBranch() {
-    Intent activityIntent = requireActivity().getIntent();
-    if (activityIntent != null && activityIntent.hasExtra("next_intent")) {
-      startActivity(activityIntent.getParcelableExtra("next_intent"));
-    }
-
-    requireActivity().finish();
-  }
-
   private void markMegaphoneSeenIfNecessary() {
     ApplicationDependencies.getMegaphoneRepository().markSeen(Megaphones.Event.PINS_FOR_ALL);
   }

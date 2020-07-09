@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <Preference
+      android:key="pref_pin_disable"
+      android:title="@string/preferences__disable_pin"
+      android:summary="@string/preferences__disabling_pins_will_create_a_hidden_high_entropy_pin"
+      app:isPreferenceVisible="false"
+      tools:isPreferenceVisible="true"/>
+
+  <Preference
+      android:key="pref_pin_enable"
+      android:title="@string/preferences__enable_pin"
+      android:summary="@string/preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it"
+      app:isPreferenceVisible="false"
+      tools:isPreferenceVisible="true"/>
+
+</PreferenceScreen>

@@ -11,6 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/kbs_pin_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent" />
+
         <TextView
             android:id="@+id/edit_kbs_pin_title"
             android:layout_width="match_parent"

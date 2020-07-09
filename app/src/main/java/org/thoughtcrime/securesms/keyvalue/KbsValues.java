@@ -20,6 +20,7 @@ public final class KbsValues extends SignalStoreValues {
   private static final String PIN                          = "kbs.pin";
   private static final String LOCK_LOCAL_PIN_HASH          = "kbs.registration_lock_local_pin_hash";
   private static final String LAST_CREATE_FAILED_TIMESTAMP = "kbs.last_create_failed_timestamp";
+  public  static final String OPTED_OUT                    = "kbs.opted_out";
 
   KbsValues(KeyValueStore store) {
     super(store);
@@ -41,6 +42,7 @@ public final class KbsValues extends SignalStoreValues {
               .remove(LOCK_LOCAL_PIN_HASH)
               .remove(PIN)
               .remove(LAST_CREATE_FAILED_TIMESTAMP)
+              .remove(OPTED_OUT)
               .commit();
   }
 
@@ -140,6 +142,33 @@ public final class KbsValues extends SignalStoreValues {
 
   public synchronized boolean hasPin() {
     return getLocalPinHash() != null;
+  }
+
+  /**
+   * Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}.
+   */
+  public synchronized void optIn() {
+    putBoolean(OPTED_OUT, false);
+  }
+
+  /**
+   * Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}.
+   */
+  public synchronized void optOut() {
+    putBoolean(OPTED_OUT, true);
+  }
+
+  /**
+   * Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}.
+   */
+  public synchronized void resetMasterKey() {
+    getStore().beginWrite()
+              .remove(MASTER_KEY)
+              .apply();
+  }
+
+  public synchronized boolean hasOptedOut() {
+    return getBoolean(OPTED_OUT, false);
   }
 
   public synchronized @Nullable TokenResponse getRegistrationLockTokenResponse() {

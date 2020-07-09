@@ -9,6 +9,10 @@ final class SignalPinReminderSchedule implements MegaphoneSchedule {
 
   @Override
   public boolean shouldDisplay(int seenCount, long lastSeen, long firstVisible, long currentTime) {
+    if (SignalStore.kbsValues().hasOptedOut()) {
+      return false;
+    }
+
     if (!SignalStore.kbsValues().hasPin()) {
       return false;
     }

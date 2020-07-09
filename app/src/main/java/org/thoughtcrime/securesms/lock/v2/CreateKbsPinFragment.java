@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.lock.v2;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;

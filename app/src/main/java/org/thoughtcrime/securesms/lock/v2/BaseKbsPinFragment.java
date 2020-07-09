@@ -1,9 +1,13 @@
 package org.thoughtcrime.securesms.lock.v2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -13,11 +17,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.pin.PinOptOutDialog;
+import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
@@ -33,6 +42,12 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
   private LottieAnimationView lottieProgress;
   private LottieAnimationView lottieEnd;
   private ViewModel           viewModel;
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
@@ -63,6 +78,10 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
       CommunicationActions.openBrowserLink(requireContext(), getString(R.string.BaseKbsPinFragment__learn_more_url));
     });
 
+    Toolbar toolbar = view.findViewById(R.id.kbs_pin_toolbar);
+    ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(null);
+
     initializeListeners();
   }
 
@@ -71,6 +90,34 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     super.onResume();
 
     input.requestFocus();
+  }
+
+  @Override
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    inflater.inflate(R.menu.pin_skip, menu);
+  }
+
+  @Override
+  public void onPrepareOptionsMenu(@NonNull Menu menu) {
+    if (RegistrationLockUtil.userHasRegistrationLock(requireContext()) ||
+        SignalStore.kbsValues().hasPin())
+    {
+      menu.clear();
+    }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.menu_pin_learn_more:
+        onLearnMore();
+        return true;
+      case R.id.menu_pin_skip:
+        onPinSkipped();
+        return true;
+    }
+
+    return false;
   }
 
   protected abstract ViewModel initializeViewModel();
@@ -107,6 +154,15 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
 
   protected TextView getConfirm() {
     return confirm;
+  }
+
+  protected void closeNavGraphBranch() {
+    Intent activityIntent = requireActivity().getIntent();
+    if (activityIntent != null && activityIntent.hasExtra("next_intent")) {
+      startActivity(activityIntent.getParcelableExtra("next_intent"));
+    }
+
+    requireActivity().finish();
   }
 
   private void initializeViews(@NonNull View view) {
@@ -151,5 +207,18 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     } else {
       return R.string.BaseKbsPinFragment__create_alphanumeric_pin;
     }
+  }
+
+  private void onLearnMore() {
+    CommunicationActions.openBrowserLink(requireContext(), getString(R.string.KbsSplashFragment__learn_more_link));
+  }
+
+  private void onPinSkipped() {
+    PinOptOutDialog.showForSkip(requireContext(),
+                                this::closeNavGraphBranch,
+                                () -> {
+                                  PinState.onPinCreateFailure();
+                                  closeNavGraphBranch();
+                                });
   }
 }

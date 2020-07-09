@@ -119,9 +119,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     SwitchPreferenceCompat signalPinReminders      = (SwitchPreferenceCompat) this.findPreference(PinValues.PIN_REMINDERS_ENABLED);
     SwitchPreferenceCompat registrationLockV2      = (SwitchPreferenceCompat) this.findPreference(KbsValues.V2_LOCK_ENABLED);
 
-    if (SignalStore.kbsValues().hasPin()) {
+    if (SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().hasOptedOut()) {
       signalPinCreateChange.setOnPreferenceClickListener(new KbsPinUpdateListener());
       signalPinCreateChange.setTitle(R.string.preferences_app_protection__change_your_pin);
+      signalPinReminders.setEnabled(true);
       registrationLockV2.setEnabled(true);
     } else {
       signalPinCreateChange.setOnPreferenceClickListener(new KbsPinCreateListener());

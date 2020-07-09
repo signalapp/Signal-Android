@@ -226,6 +226,8 @@
     <attr name="message_request_text_color_primary" format="color" />
     <attr name="message_request_text_color_secondary" format="color" />
 
+    <attr name="dangerous_button_color" format="color" />
+
     <attr name="pref_icon_tint" format="color"/>
 
     <attr name="pref_divider" format="reference" />

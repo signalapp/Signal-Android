@@ -44,6 +44,10 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   }
 
   private static boolean isEnabled() {
+    if (SignalStore.kbsValues().hasOptedOut()) {
+      return false;
+    }
+
     if (SignalStore.kbsValues().hasPin()) {
       return false;
     }

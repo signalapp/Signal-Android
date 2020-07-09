@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.lock.v2;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -12,11 +13,16 @@ import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.pin.PinOptOutDialog;
+import org.thoughtcrime.securesms.pin.PinState;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 
 public final class KbsSplashFragment extends Fragment {
 
@@ -24,6 +30,12 @@ public final class KbsSplashFragment extends Fragment {
   private TextView description;
   private TextView primaryAction;
   private TextView secondaryAction;
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
@@ -51,10 +63,40 @@ public final class KbsSplashFragment extends Fragment {
 
     description.setMovementMethod(LinkMovementMethod.getInstance());
 
+    Toolbar toolbar = view.findViewById(R.id.kbs_splash_toolbar);
+    ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(null);
+
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
       @Override
       public void handleOnBackPressed() { }
     });
+  }
+
+  @Override
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    inflater.inflate(R.menu.pin_skip, menu);
+  }
+
+  @Override
+  public void onPrepareOptionsMenu(@NonNull Menu menu) {
+    if (RegistrationLockUtil.userHasRegistrationLock(requireContext())) {
+      menu.clear();
+    }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.menu_pin_learn_more:
+        onLearnMore();
+        return true;
+      case R.id.menu_pin_skip:
+        onPinSkipped();
+        return true;
+    }
+
+    return false;
   }
 
   private void setUpRegLockEnabled() {
@@ -80,10 +122,15 @@ public final class KbsSplashFragment extends Fragment {
   }
 
   private void onLearnMore() {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
+    CommunicationActions.openBrowserLink(requireContext(), getString(R.string.KbsSplashFragment__learn_more_link));
+  }
 
-    intent.setData(Uri.parse(getString(R.string.KbsSplashFragment__learn_more_link)));
-
-    startActivity(intent);
+  private void onPinSkipped() {
+    PinOptOutDialog.showForSkip(requireContext(),
+                       () -> requireActivity().finish(),
+                       () -> {
+                         PinState.onPinCreateFailure();
+                         requireActivity().finish();
+                       });
   }
 }
