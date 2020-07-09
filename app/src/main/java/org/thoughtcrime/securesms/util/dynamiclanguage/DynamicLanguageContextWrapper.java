@@ -20,9 +20,7 @@ public final class DynamicLanguageContextWrapper {
     final Configuration config    = resources.getConfiguration();
     final Configuration newConfig = copyWithNewLocale(config, newLocale);
 
-    resources.updateConfiguration(newConfig, resources.getDisplayMetrics());
-
-    return context;
+    return context.createConfigurationContext(newConfig);
   }
 
   private static Configuration copyWithNewLocale(Configuration config, Locale locale) {
