@@ -330,7 +330,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     if (requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN) {
-      Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show();
+      Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).setTextColor(Color.WHITE).show();
       viewModel.onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL);
     }
   }
@@ -388,7 +388,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onMegaphoneToastRequested(@NonNull String string) {
-    Snackbar.make(fab, string, Snackbar.LENGTH_LONG).show();
+    Snackbar.make(fab, string, Snackbar.LENGTH_LONG)
+            .setTextColor(Color.WHITE)
+            .show();
   }
 
   @Override
