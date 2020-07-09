@@ -73,11 +73,6 @@ public final class WakeGroupV2Job extends BaseJob {
 
   @Override
   public void onRun() throws IOException, GroupNotAMemberException, GroupChangeBusyException {
-    if (!FeatureFlags.groupsV2()) {
-      Log.w(TAG, "Group wake skipped due to feature flag");
-      return;
-    }
-
     Log.i(TAG, "Waking group");
 
     GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
