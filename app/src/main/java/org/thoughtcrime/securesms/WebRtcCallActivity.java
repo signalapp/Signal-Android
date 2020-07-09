@@ -505,7 +505,6 @@ public class WebRtcCallActivity extends AppCompatActivity {
 
   private boolean isSystemPipEnabledAndAvailable() {
     return Build.VERSION.SDK_INT >= 26 &&
-           FeatureFlags.callingPip()   &&
            getPackageManager().hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE);
   }
 

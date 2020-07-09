@@ -46,14 +46,13 @@ public final class FeatureFlags {
 
   private static final String TAG = Log.tag(FeatureFlags.class);
 
-  private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
+  private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(0);
 
   private static final String UUIDS                      = "android.uuids";
   private static final String USERNAMES                  = "android.usernames";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling.2";
-  private static final String CALLING_PIP                = "android.callingPip";
   private static final String GROUPS_V2                  = "android.groupsv2";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create";
   private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
@@ -69,7 +68,6 @@ public final class FeatureFlags {
       ATTACHMENTS_V3,
       REMOTE_DELETE,
       PROFILE_FOR_CALLING,
-      CALLING_PIP,
       GROUPS_V2,
       GROUPS_V2_CREATE,
       GROUPS_V2_CAPACITY,
@@ -195,11 +193,6 @@ public final class FeatureFlags {
   /** Whether or not profile sharing is required for calling */
   public static boolean profileForCalling() {
     return getBoolean(PROFILE_FOR_CALLING, false);
-  }
-
-  /** Whether or not to display Calling PIP */
-  public static boolean callingPip() {
-    return getBoolean(CALLING_PIP, false);
   }
 
   /** Groups v2 send and receive. */
