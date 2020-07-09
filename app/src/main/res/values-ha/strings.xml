@@ -532,8 +532,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$s ya/ta shiga rukuni.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">Ka/kin zama mai gudanarwa. </string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">An gayyaceka/ki zuwa rukunin.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">An soke gayyatarka/ki zuwa rukunin. </string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -1352,6 +1355,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Karba daga ko waye</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Karfafa rufaffen mai aika sako don sakonni masu shigowa daga waddanda basu cikin lambobin sadawarka/ki da kuma mutane da baka/ki tura ma sako ba.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Karin bayani</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

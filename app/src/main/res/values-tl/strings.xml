@@ -165,6 +165,7 @@
   <string name="ConversationItem_download_more">  Mag-download pa</string>
   <string name="ConversationItem_pending">  Nakabinbin</string>
   <string name="ConversationItem_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
+  <string name="ConversationItem_you_deleted_this_message">Binura mo ang mensaheng ito.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">I-reset ang secure na sesyon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Maaari itong makatulong kung ika\'y nagkakaproblema sa encryption ng pag-uusap na ito. Ang iyong mga mensahe ay pananatilihin.</string>
@@ -259,6 +260,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Binubura</string>
   <string name="ConversationFragment_deleting_messages">Binubura ang mga mensahe…</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ang mensaheng ito ay permanenterng mabubura para sa lahat na kalahok ng pag-uusap. Makikita ng mga kasapi na binura mo ang mensahe.</string>
   <string name="ConversationFragment_quoted_message_not_found">Ang orihinal na mensahe ay hindi mahanap</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Ang orihinal na mensahe ay wala na</string>
   <string name="ConversationFragment_failed_to_open_message">Nabigong buksan ang mensahe</string>
@@ -550,8 +552,11 @@
   <string name="MessageRecord_s_joined_the_group">Sumali si %1$s sa grupo.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">Ikaw na ngayon ang admin.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">Ikaw ay inimbitahan sa grupo.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Ang iyong imbitasyon sa grupo ay binawi.</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -806,6 +811,7 @@
   <string name="ThreadRecord_view_once_video">View-once na video</string>
   <string name="ThreadRecord_view_once_media">View-once na media</string>
   <string name="ThreadRecord_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Binura mo ang mensaheng ito.</string>
   <string name="ThreadRecord_s_is_on_signal">Nasa Signal si %s!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Naka-disable ang mga naglalahong mensahe</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Nakatakda ang oras ng naglalahong mensahe sa %s</string>
@@ -1421,6 +1427,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Payagan ang mula sa sinuman</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">I-enable ang sealed na tagapagpadala para sa mga paparating na mensahe mula sa mga hindi kontak at tao kung kanino mo hindi pa naibabahagi ang iyong profile</string>
   <string name="preferences_communication__sealed_sender_learn_more">Matuto pa</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

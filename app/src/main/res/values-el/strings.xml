@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more"> Κατέβασε περισσότερα</string>
   <string name="ConversationItem_pending"> Εκκρεμεί</string>
   <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
+  <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Επανεκκίνηση ασφαλούς συνεδρίας;</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή τη συνομιλία. Τα μηνύματα δε θα σβηστούν.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
   <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
   <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Αυτό το μήνυμα θα διαγραφτεί μόνιμα για όλους στη συνομιλία. Τα μέλη θα μπορούν να δουν ότι διέγραψες ένα μήνυμα.</string>
   <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δε βρέθηκε</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
   <string name="ConversationFragment_failed_to_open_message">Αποτυχία ανοίγματος μηνύματος</string>
@@ -630,6 +632,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λήφθηκε ένα μήνυμα που είναι κρυπτογραφημένο με μια παλιά έκδοση του Signal που πλέον δεν υποστηρίζεται. Παρακαλώ ζήτα από τον αποστολέα να αναβαθμίσει στην πιο πρόσφατη έκδοση και να σου ξαναστείλει το μήνυμα.</string>
   <string name="MessageRecord_left_group">Αποχώρησες απ\' την ομάδα.</string>
   <string name="MessageRecord_you_updated_group">Ενημέρωσες την ομάδα</string>
+  <string name="MessageRecord_the_group_was_updated">Η ομάδα ανανεώθηκε.</string>
   <string name="MessageRecord_you_called">Τον/την κάλεσες</string>
   <string name="MessageRecord_called_you">Η επαφή σε κάλεσε</string>
   <string name="MessageRecord_missed_call">Αναπάντητη κλήση</string>
@@ -642,6 +645,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">Ο/Η %1$s απενεργοποίησε τα μηνύματα που εξαφανίζονται.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Όρισες τη χρονική καθυστέρηση εξαφάνισης των μηνυμάτων σε %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε τη χρονική καθυστέρηση εξαφάνισης των μηνυμάτων σε %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ορίστηκε σε %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Δημιούργησες την ομάδα.</string>
   <string name="MessageRecord_group_updated">Η ομάδα ενημερώθηκε.</string>
@@ -657,6 +661,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">Ο/Η %1$s σε αφαίρεσε απ\' την ομάδα.</string>
   <string name="MessageRecord_you_left_the_group">Έφυγες απ\' την ομάδα.</string>
   <string name="MessageRecord_s_left_the_group">Ο/Η %1$s έφυγε απ\' την ομαδα.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Δεν είσαι στην ομάδα πια.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">Ο/Η %1$s δεν είναι στην ομάδα πια.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Έκανες τον/την %1$s διαχειριστή/τρια.</string>
   <string name="MessageRecord_s_made_s_an_admin">Ο/Η %1$s έκανε τον/την %2$s διαχειριστή/τρια.</string>
@@ -664,12 +670,21 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Αφαίρεσες τα δικαιώματα διαχείρισης από τον/την %1$s</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισής σου.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισης του/της %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">Ο/Η %1$s έγινε διαχειριστής/τρια.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Είσαι πλέον διαχειριστής/τρια.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">Ο/Η %1$s δεν είναι πια διαχειριστής/τρια.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Δεν είσαι πια διαχειριστής/τρια.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Προσκάλεσες τον/την %1$s στην ομάδα.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">Ο/Η %1$s σε προσκάλεσε στην ομάδα.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">Ο/Η %1$s προσκάλεσε 1 άτομο στην ομάδα.</item>
     <item quantity="other">Ο/Η %1$s προσκάλεσε %2$d άτομα στην ομάδα.</item>
+  </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Σε προσκάλεσαν στην ομάδα.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 άτομο προσκαλέστηκε στην ομάδα.</item>
+    <item quantity="other">%1$d άτομα προσκαλέστηκαν στην ομάδα.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -682,6 +697,11 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Κάποιος απέρριψε μια πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Απέρριψες την πρόσκληση στην ομάδα.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Η πρόσκλησή σου στην ομάδα ανακλήθηκε.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Μια πρόσκληση στην ομάδα ανακλήθηκε.</item>
+    <item quantity="other">%1$d προσκλήσεις στην ομάδα ανακλήθηκαν.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Δέχτηκες την πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_s_accepted_invite">Ο/Η %1$s δέχτηκε την πρόσκληση στην ομάδα.</string>
@@ -690,15 +710,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Άλλαξες το όνομα της ομάδας σε \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">Ο/Η %1$s άλλαξε το όνομα της ομάδας σε \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Το όνομα της ομάδας άλλαξε σε \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Άλλαξες το εικονίδιο της ομάδας.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Ο/Η %1$s άλλαξε το εικονίδιο της ομάδας.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Το εικονίδιο της ομάδας άλλαξε.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Άλλαξες το ποιός μπορεί να επεξεργάζεται τις πληροφορίες της ομάδας σε \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">Ο/Η %1$s άλλαξε το ποιός μπορεί να επεξεργάζεται τις πληροφορίες της ομάδας σε \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Άλλαξε το ποιός μπορεί να επεξεργάζεται τις πληροφορίες της ομάδας σε \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Άλλαξες το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Ο/Η %1$s άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας σπυ με τον/την %s έχει αλλάξει.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως επιβεβαιωμένο</string>
@@ -905,6 +929,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Θα σ\' το ξαναθυμήσουμε σε μερικές μέρες.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Θα σ\' το ξαναθυμήσουμε σε μια εβδομάδα.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Θα σ\' το ξαναθυμήσουμε σε μερικές εβδομάδες</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Θα σ\' το ξαναθυμήσουμε σε ένα μήνα.</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
   <string name="Slide_sticker">Αυτοκόλλητο</string>
@@ -972,6 +997,7 @@
   <string name="ThreadRecord_view_once_video">Βίντεο μιας μόνο προβολής</string>
   <string name="ThreadRecord_view_once_media">Πολυμέσο μιας μόνο προβολής</string>
   <string name="ThreadRecord_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
   <string name="ThreadRecord_s_is_on_signal">Ο/Η %s είναι στο Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Τα μηνύματα που εξαφανίζονται απενεργοποιήθηκαν</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Τα μηνύματα εξαφανίζονται σε %s</string>
@@ -1203,6 +1229,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Ο/Η \"%1$s\" δεν είναι χρήστης του Signal. Παρακαλώ επιβεβαίωσε το όνομα χρήστη και ξαναδοκίμασε.</string>
   <string name="ContactSelectionListFragment_okay">Εντάξει</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Η ομάδα είναι γεμάτη</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Δεν χρειάζεται να προσθέσεις τον εαυτό σου στην ομάδα</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Καμία φραγμένη επαφή</string>
   <!--contact_selection_list_fragment-->
@@ -1260,7 +1287,7 @@
   <string name="safety_number_change_dialog__send_anyway">Αποστόλη παρ\' όλα αυτά</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Τα παρακάτω άτομα ίσως επανεγκατεστησαν το Signal ή άλλαξαν συσκευή. Επαλήθευσε τους αριθμούς ασφαλείας με αυτά, για να διασφαλίσεις την ιδιωτικότητα.</string>
   <string name="safety_number_change_dialog__view">Εμφάνιση</string>
-  <string name="safety_number_change_dialog__previous_verified">Έχει επαληθευθεί προηγουμένως</string>
+  <string name="safety_number_change_dialog__previous_verified">Προηγουμένως επαληθευμένοι</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Γίνεται φόρτωση χωρών…</string>
   <string name="country_selection_fragment__search">Αναζήτηση</string>
@@ -1621,6 +1648,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Να επιτρέπεται από οποιονδήποτε</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ενεργοποίηση του προστατευμένου αποστολέα για εισερχόμενα μηνύματα από άτομα που δεν έχεις στις επαφές σου και άτομα με τα οποία δεν έχεις μοιραστεί το προφίλ σου.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Μάθε περισσότερα</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

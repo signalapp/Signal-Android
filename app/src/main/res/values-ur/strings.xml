@@ -535,8 +535,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$sگروپ میں شامل ہوئے۔</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">اب آپ ایڈمن ہیں۔</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">آپ کو گروپ میں مدعو کیا گیا تھا۔</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ میں آپ کی دعوت منسوخ کردی گئی تھی۔</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -1350,6 +1353,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">کسی سے بھی اجازت دیں</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">غیر رابطوں اور ان لوگوں کی طرف سے آنے والے پیغامات کے لئے مہر بند مرسل کو اہل بنائیں جن کے ساتھ آپ نے اپنا پروفائل اشتراک نہیں کیا ہے۔</string>
   <string name="preferences_communication__sealed_sender_learn_more">مزید پڑھیں</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

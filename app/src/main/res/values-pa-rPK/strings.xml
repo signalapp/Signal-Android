@@ -536,8 +536,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$s گروپ اچ شامل ہویا اے۔</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">ہونڑ تساں ایڈمن او۔</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">تساں نوں گروپ اچ مدعو کیتا۔</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ اچ تساں دی دعوت منسوخ کر دتی گئی سی۔</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -1355,6 +1358,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">کسے دے وی ولوں اجازت دیو</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">غیر رابطے تے جہناں لوکاں نال تسیں اپناں پروفائل سانجھا نئیں کیتا اے اوہناں ولوں آن آلے سنیہیاں لئی مہر بند گھلن آلے نوں فعال کرو۔</string>
   <string name="preferences_communication__sealed_sender_learn_more">ہور جانو</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

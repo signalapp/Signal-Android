@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more">  Last ned mer</string>
   <string name="ConversationItem_pending">  Venter</string>
   <string name="ConversationItem_this_message_was_deleted">Denne meldingen ble slettet.</string>
+  <string name="ConversationItem_you_deleted_this_message">Du slettet denne meldingen.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestille sikker økt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe hvis du har krypteringsproblemer med samtalen. Meldinger blir beholdt.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Sletter meldinger…</string>
   <string name="ConversationFragment_delete_for_me">Slett for meg</string>
   <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meldingen vil bli slettet permanent for alle i samtalen. Medlemmer vil se at du slettet en melding.</string>
   <string name="ConversationFragment_quoted_message_not_found">Opprinnelig melding ikke funnet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Opprinnelig melding er ikke lenger tilgjengelig</string>
   <string name="ConversationFragment_failed_to_open_message">Kunne ikke åpne meldingen</string>
@@ -664,6 +666,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du fjernet administratorrettigheter fra %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s fjernet administratorrettighetene dine.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s fjernet administratorrettigheter fra %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Du er nå administrator</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Du inviterte %1$s til gruppen.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s inviterte deg til gruppen.</string>
@@ -671,6 +674,7 @@
     <item quantity="one">%1$s inviterte 1 person til gruppen.</item>
     <item quantity="other">%1$s inviterte %2$d personer til gruppen.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Du har blitt invitert til gruppen.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Du fjernet en invitasjon til gruppen.</item>
@@ -682,6 +686,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Noen avslo en invitasjon til gruppen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avslo invitasjonen til gruppen.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Din invitasjon til gruppen har blitt trukket tilbake.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Du aksepterte invitasjonen til gruppen.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s aksepterte en invitasjon til gruppen.</string>
@@ -972,6 +977,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_view_once_video">Vis en gang video</string>
   <string name="ThreadRecord_view_once_media">Vis en gang media</string>
   <string name="ThreadRecord_this_message_was_deleted">Denne meldingen ble slettet.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Du slettet denne meldingen.</string>
   <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnende meldinger deaktivert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
@@ -1621,6 +1627,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat fra hvem som helst</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver forseglet avsender for innkommende meldinger fra avsendere og personer som du ikke har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær mer</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more">   Télécharger plus</string>
   <string name="ConversationItem_pending">  En attente</string>
   <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé.</string>
+  <string name="ConversationItem_you_deleted_this_message">Vous avez supprimé ce message.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
   <string name="ConversationFragment_delete_for_me">Supprimer pour moi</string>
   <string name="ConversationFragment_delete_for_everyone">Supprimer pour tous</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ce message sera irrémédiablement supprimé pour tous les membres de la conversation. Les membres pourront voir que vous avez supprimé un message.</string>
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>
@@ -664,6 +666,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vous avez révoqué les privilèges d’administrateur de %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a révoqué vos privilèges d’administrateur.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a révoqué les privilèges d’administrateur de %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Vous êtes désormais administrateur.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Vous avez invité %1$s au groupe.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe.</string>
@@ -671,6 +674,7 @@
     <item quantity="one">%1$s a invité une personne au groupe.</item>
     <item quantity="other">%1$s a invité %2$d personnes au groupe.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Vous avez été invité au groupe.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Vous avez révoqué une invitation au groupe.</item>
@@ -682,6 +686,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu’un a décliné une invitation au groupe.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vous avez décliné l’invitation du groupe.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Votre invitation au groupe a été révoquée.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Vous avez accepté l’invitation du groupe.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s a accepté une invitation au groupe.</string>
@@ -968,6 +973,7 @@
   <string name="ThreadRecord_view_once_video">Vidéo éphémère</string>
   <string name="ThreadRecord_view_once_media">Média éphémère</string>
   <string name="ThreadRecord_this_message_was_deleted">Ce message a été supprimé.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Vous avez supprimé ce message.</string>
   <string name="ThreadRecord_s_is_on_signal">%s est sur Signal.</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Les messages éphémères sont désactivés</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">L’expiration des messages éphémères a été définie à %s</string>
@@ -1616,6 +1622,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Autoriser de n’importe qui</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activer l’option « expéditeur scellé » pour les messages entrants provenant d’expéditeurs qui ne sont pas dans vos contacts et de personnes avec qui vous n’avez pas partagé votre profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">En apprendre davantage</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

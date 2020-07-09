@@ -722,6 +722,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Odebrali jste správcovská oprávnění %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s odebral vaše správcovská oprávnění.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odebral správcovská oprávnění %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Stali jste se administrátorem</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Pozvali jste %1$s do skupiny.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vás pozval do skupiny.</string>
@@ -731,6 +732,7 @@
     <item quantity="many">%1$s pozval %2$d osob do skupiny.</item>
     <item quantity="other">%1$s pozval %2$d osob do skupiny.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Byii jste pozváni do skupiny.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Odvolali jste pozvánku do skupiny.</item>
@@ -746,6 +748,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Někdo odmítl pozvánku do skupiny.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odmítli jste pozvánku do skupiny.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Vaše pozvánka do skupiny byla zrušena.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Přijali jste pozvánku do skupiny.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s přijal pozvánku do skupiny.</string>
@@ -1719,6 +1722,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Povolit od kohokoliv</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit utajené odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech a se kterými nesdílíte váš profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Zjistit více</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

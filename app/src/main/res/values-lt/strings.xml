@@ -180,6 +180,7 @@
   <string name="ConversationItem_download_more">  Atsisiųsti daugiau</string>
   <string name="ConversationItem_pending">  Laukiama</string>
   <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
+  <string name="ConversationItem_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string>
@@ -293,6 +294,7 @@
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės…</string>
   <string name="ConversationFragment_delete_for_me">Ištrinti man</string>
   <string name="ConversationFragment_delete_for_everyone">Ištrinti visiems</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ši žinutė šiame pokalbyje bus visam laikui ištrinta visiems žmonėms. Nariai galės matyti, kad ištrynėte žinutę.</string>
   <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
   <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
@@ -688,6 +690,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Gauta žinutė buvo užšifruota, naudojant seną Signal versiją, kuri daugiau nebepalaikoma. Paprašykite siuntėjo atnaujinti savo programėlę į naujausią versiją ir iš naujo išsiųsti žinutę.</string>
   <string name="MessageRecord_left_group">Jūs išėjote iš grupės.</string>
   <string name="MessageRecord_you_updated_group">Jūs atnaujinote grupę.</string>
+  <string name="MessageRecord_the_group_was_updated">Grupė buvo atnaujinta.</string>
   <string name="MessageRecord_you_called">Jūs skambinote</string>
   <string name="MessageRecord_called_you">Skambino adresatas</string>
   <string name="MessageRecord_missed_call">Praleistas skambutis</string>
@@ -700,6 +703,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s išjungė išnykstančias žinutes.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laikmatį į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Išnykstančių žinučių laikmatis nustatytas į %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Jūs sukūrėte grupę.</string>
   <string name="MessageRecord_group_updated">Grupė atnaujinta.</string>
@@ -715,6 +719,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s pašalino jus iš grupės.</string>
   <string name="MessageRecord_you_left_the_group">Jūs išėjote iš grupės.</string>
   <string name="MessageRecord_s_left_the_group">%1$s išėjo iš grupės.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Jūs daugiau nebesate grupėje.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">Naudotojo %1$s daugiau nebėra grupėje.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Jūs paskyrėte %1$s administratoriumi.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s paskyrė %2$s administratoriumi.</string>
@@ -722,6 +728,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Jūs panaikinote %1$s turėtas administratoriaus teises.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s panaikino jūsų, kaip administratoriaus, teises.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s panaikino %2$s turėtas administratoriaus teises.</string>
+  <string name="MessageRecord_s_is_now_an_admin">Dabar, %1$s yra administratorius</string>
+  <string name="MessageRecord_you_are_now_an_admin">Dabar, esate administratorius.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s daugiau nebėra administratorius.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Jūs daugiau nebesate administratorius.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Jūs pakvietėte %1$s į grupę.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s pakvietė jus į grupę.</string>
@@ -731,6 +741,7 @@
     <item quantity="many">%1$s pakvietė %2$d žmonių į grupę.</item>
     <item quantity="other">%1$s pakvietė %2$d žmogų į grupę.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Jūs buvote pakviesti į grupę.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Jūs panaikinote pakvietimą prisijungti prie grupės.</item>
@@ -746,6 +757,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kažkas atmetė pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atmetėte pakvietimą prisijungti prie grupės.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Jūsų pakvietimas prisijungti prie grupės buvo panaikintas.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Jūs priėmėte pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s priėmė pakvietimą prisijungti prie grupės.</string>
@@ -754,9 +766,11 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Jūs pakeitėte grupės pavadinimą į \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s pakeitė grupės pavadinimą į \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Grupės pavadinimas pasikeitė į \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Jūs pakeitėte grupės avatarą.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s pakeitė grupės avatarą.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Grupės avataras pakeistas.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės informaciją į \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės informaciją į \"%2$s\".</string>
@@ -983,6 +997,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Po kelių dienų priminsime jums dar kartą.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Po savaitės priminsime jums dar kartą.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Po kelių savaičių priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Po mėnesio priminsime jums dar kartą.</string>
   <!--Slide-->
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_sticker">Lipdukas</string>
@@ -1051,6 +1066,7 @@
   <string name="ThreadRecord_view_once_video">Vienkartinės peržiūros vaizdo įrašas</string>
   <string name="ThreadRecord_view_once_media">Vienkartinės peržiūros medija</string>
   <string name="ThreadRecord_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
@@ -1720,6 +1736,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Leisti nuo bet ko</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Įjungti užantspauduotą siuntėją gaunamosioms žinutėms nuo asmenų, kurių nėra adresatų sąraše ir žmonių su kuriais nebendrinote savo profilį.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Sužinoti daugiau</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

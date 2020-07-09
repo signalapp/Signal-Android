@@ -180,6 +180,7 @@
   <string name="ConversationItem_download_more">  Pobierz więcej</string>
   <string name="ConversationItem_pending">  Oczekiwanie</string>
   <string name="ConversationItem_this_message_was_deleted">Ta wiadomość została usunięta.</string>
+  <string name="ConversationItem_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości będą zachowane.</string>
@@ -293,6 +294,7 @@
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości…</string>
   <string name="ConversationFragment_delete_for_me">Usuń u mnie</string>
   <string name="ConversationFragment_delete_for_everyone">Usuń u wszystkich</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ta wiadomość zostanie trwale usunięta u wszystkich, uczestników tej konwersacji. Będą oni mogli zobaczyć, że skasowałeś(aś) wiadomość.</string>
   <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
   <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
@@ -688,6 +690,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Otrzymano szyfrowaną wiadomość wysłaną przy użyciu starej wersji Signal, która nie jest już wspierana. Poproś nadawcę tej wiadomości o zaktualizowanie aplikacji do najnowszej wersji i przesłanie wiadomości ponownie.</string>
   <string name="MessageRecord_left_group">Opuściłeś(aś) grupę.</string>
   <string name="MessageRecord_you_updated_group">Zaktualizowałeś(aś) grupę.</string>
+  <string name="MessageRecord_the_group_was_updated">Grupa została zaktualizowana.</string>
   <string name="MessageRecord_you_called">Dzwoniłeś(aś)</string>
   <string name="MessageRecord_called_you">Dzwonił(a)</string>
   <string name="MessageRecord_missed_call">Nieodebrane połączenie</string>
@@ -700,6 +703,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s wyłączył(a) znikające wiadomości.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ustawiłeś(aś) znikające wiadomości na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ustawił(a) znikające wiadomości na %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Czas znikania wiadomości został ustawiony na %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Utworzyłeś(aś) grupę.</string>
   <string name="MessageRecord_group_updated">Zaktualizowano grupę.</string>
@@ -715,6 +719,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s usunął(ęła) Cię z grupy.</string>
   <string name="MessageRecord_you_left_the_group">Opuściłeś(aś) tę grupę.</string>
   <string name="MessageRecord_s_left_the_group">%1$s opuścił(a) grupę.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Nie należysz już do tej grupy.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s nie należy już do tej grupy.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Mianowałeś(aś) %1$s administratorem.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s mianował(a) %2$s administratorem.</string>
@@ -722,6 +728,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Anulowałeś(aś) uprawnienia administratora %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s anulował(a) Twoje uprawnienia administratora.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s anulował(a) uprawnienia administratora %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s jest teraz administratorem.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Jesteś teraz administratorem.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s nie jest już administratorem.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Nie jesteś już administratorem.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Zaprosiłeś(aś) %1$s do grupy.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s zaprosił(a) Cię do grupy.</string>
@@ -730,6 +740,13 @@
     <item quantity="few">%1$s zaprosił(a) %2$d osoby do grupy.</item>
     <item quantity="many">%1$s zaprosił(a) %2$d osób do grupy.</item>
     <item quantity="other">%1$s zaprosił(a) %2$d osoby do grupy.</item>
+  </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Zostałeś(aś) zaproszony(a) do grupy.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 osoba została zaproszona do grupy..</item>
+    <item quantity="few">%1$d osoby zostały zaproszone do grupy.</item>
+    <item quantity="many">%1$d osób zostało zaproszonych do grupy.</item>
+    <item quantity="other">%1$d osoby zostały zaproszone do grupy.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -746,6 +763,13 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Ktoś odrzucił zaproszenie do grupy.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odrzuciłeś(aś) zaproszenie do grupy.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Twoje zaproszenie do grupy zostało anulowane.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Zaproszenie do grupy zostało anulowane.</item>
+    <item quantity="few">%1$d zaproszenia do grupy zostały anulowane.</item>
+    <item quantity="many">%1$d zaproszeń do grupy zostało anulowanych.</item>
+    <item quantity="other">%1$d zaproszenia do grupy zostały anulowane.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Zaakceptowałeś(aś) zaproszenie do grupy.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s zaakceptował(a) zaproszenie do grupy.</string>
@@ -754,15 +778,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Zmieniłeś(aś) nazwę grupy na “%1$s“.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s zmienił(a) nazwę grupy na \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Nazwa grupy została zmieniona na \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Zmieniłeś(aś) awatar grupy.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s zmienił(a) awatar grupy.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Awatar grupy został zmieniony.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Zmieniłeś(aś), kto może edytować informacje o grupie na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s zmienił(a), kto może edytować informacje o grupie na \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Zmieniono, kto może edytować informacje o grupie na \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Zmieniłeś(aś), kto może edytować członkostwo w grupie na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s zmienił(a), kto może edytować członkostwo w grupie na \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Zmieniono, kto może edytować członkostwo w grupie na \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Oznaczyłeś(aś) numer bezpieczeństwa z %s jako zweryfikowany</string>
@@ -978,6 +1006,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Przypomnimy Ci o tym ponownie za kilka dni.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Przypomnimy Ci o tym ponownie za tydzień.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Przypomnimy Ci o tym ponownie za dwa tygodnie.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Przypomnimy Ci o tym ponownie za miesiąc.</string>
   <!--Slide-->
   <string name="Slide_image">Obraz</string>
   <string name="Slide_sticker">Naklejka</string>
@@ -1043,6 +1072,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_view_once_video">Wideo jednorazowe</string>
   <string name="ThreadRecord_view_once_media">Multimedia jednorazowe</string>
   <string name="ThreadRecord_this_message_was_deleted">Ta wiadomość została usunięta.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
   <string name="ThreadRecord_s_is_on_signal">%s jest w Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
@@ -1276,6 +1306,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nie jest użytkownikiem Signal. Sprawdź nazwę użytkownika i spróbuj ponownie.</string>
   <string name="ContactSelectionListFragment_okay">Okay</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Grupa jest pełna</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nie musisz dodawać samego(j) siebie do grupy</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Brak zablokowanych kontaktów</string>
   <!--contact_selection_list_fragment-->
@@ -1712,6 +1743,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Zezwól wszystkim</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Włącz Ukrytego nadawcę dla wiadomości przychodzących od osób niebędących w Twoich kontaktach oraz od osób, którym nie udostępniono Twojego profilu.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dowiedz się więcej</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

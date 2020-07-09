@@ -547,8 +547,11 @@
   <!--GV2 member removals-->
   <string name="MessageRecord_you_left_the_group">நீங்கள் குழுவிலிருந்து வெளியேறிவிட்டீர்கள்.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">நீங்கள் இப்போது ஒரு நிர்வாகி.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">நீங்கள் குழுவிற்கு அழைக்கப்பட்டனர்.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">உங்கள் குழுவிற்கு அழைப்பு இருந்தது ரத்து செய்யப்பட்டது.</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -1378,6 +1381,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">யாரிடமிருந்தும் அனுமதிக்கவும்</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">தொடர்புகள் அல்லாதவர்களிடமிருந்தும், உங்கள் சுயவிவரத்தைப் பகிராத நபர்களிடமிருந்தும் உள்வரும் செய்திகளுக்கு சீல் அனுப்பியவரை இயக்கவும்.</string>
   <string name="preferences_communication__sealed_sender_learn_more">மேலும் அறிக</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

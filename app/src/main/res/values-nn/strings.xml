@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more">  Last ned meir</string>
   <string name="ConversationItem_pending">  Ventar</string>
   <string name="ConversationItem_this_message_was_deleted">Meldinga er sletta.</string>
+  <string name="ConversationItem_you_deleted_this_message">Du har sletta denne meldinga.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestilla sikker økt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpa viss du har krypteringsproblem med samtalen. Meldingane dine vert ikkje fjerna.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Slettar meldingar …</string>
   <string name="ConversationFragment_delete_for_me">Slett for meg</string>
   <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meldinga blir permanent sletta for alle i samtalen. Medlem vil sjå at du sletta ei melding.</string>
   <string name="ConversationFragment_quoted_message_not_found">Fann ikkje den opphavlege meldinga</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Den opphavlege meldinga er ikkje lenger tilgjengeleg</string>
   <string name="ConversationFragment_failed_to_open_message">Klarte ikkje opna meldinga</string>
@@ -631,6 +633,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok ei melding som er kryptert med ein gammal versjon av Signal som ikkje lenger vert støtta. Be avsendaren om å oppdatera til nyaste versjon og senda meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlate gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du oppdaterte gruppa.</string>
+  <string name="MessageRecord_the_group_was_updated">Gruppa vart oppdatert.</string>
   <string name="MessageRecord_you_called">Du ringte</string>
   <string name="MessageRecord_called_you">Kontakt ringte</string>
   <string name="MessageRecord_missed_call">Usvart anrop</string>
@@ -643,6 +646,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sskrudde av forsvinnande meldingar.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du stilte inn utløpstida for forsvinnande meldingar til %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s stilte inn utløpstida for forsvinnande meldingar til %2$s</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Nedtellinga for forsvinnande meldingar er stilt til %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du oppretta gruppa.</string>
   <string name="MessageRecord_group_updated">Gruppe oppdatert.</string>
@@ -658,6 +662,8 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s fjerna deg frå gruppa.</string>
   <string name="MessageRecord_you_left_the_group">Du forlét gruppa.</string>
   <string name="MessageRecord_s_left_the_group">%1$s har forlate gruppa.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Du er ikkje lenger med i gruppa.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s er ikkje lenger med i gruppa.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Du gjorde %1$s til administrator.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s til administrator.</string>
@@ -665,12 +671,21 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du tok vekk administratorstatusen frå %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s har trukke tilbake administratorstatusen din.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s har trukke tilbake administratorstatusen frå %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s er no administrator.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Du er no administrator.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s er ikkje lenger administrator.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Du er ikkje lenger administrator.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Du inviterte %1$s til gruppa.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s inviterte deg inn i gruppa.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">%1$s inviterte ein person inn i gruppa.</item>
     <item quantity="other">%1$s inviterte %2$d personar inn i gruppa.</item>
+  </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Du vart invitert inn i gruppa.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 person vart invitert inn i gruppa.</item>
+    <item quantity="other">%1$d personar vart inviterte inn i gruppa.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -683,6 +698,11 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nokon avslo ein invitasjon til gruppa.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avslo invitasjonen til gruppa.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Invitasjonen din blei tilbakekalla.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Ein invitasjon til gruppa vart tilbakekalla.</item>
+    <item quantity="other">%1$d invitasjonar til gruppa vart tilbakekalla.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Du godtok invitasjonen til gruppa.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s godtok ein invitasjon til gruppa.</string>
@@ -691,15 +711,19 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Du endra gruppenamnet til «%1$s».</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s endra gruppenamnet til «%2$s».</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Gruppenamnet vart endra til «%1$s».</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Du endra gruppebildet.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s endra gruppebildet.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Gruppeavataren er endra.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Du endra kven som kan redigera gruppeinfo til «%1$s».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s endra kven som kan redigera gruppeinfo til «%2$s».</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Kven som kan endra gruppeinfo er endra til «%1$s».</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du endra kven som kan redigera gruppemedlemskap til «%1$s».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endra kven som kan redigera gruppemedlemskap til «%2$s».</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Kven som kan endra gruppemedlemskap er endra til «%1$s».</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte at tryggleiksnummeret ditt med %s er stadfesta.</string>
@@ -911,6 +935,7 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Me minner deg på dette igjen om nokre dagar.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Me minner deg på dette igjen om ei veke.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Me minner deg på dette igjen om nokre veker.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Me minner deg på det igjen om ein månad.</string>
   <!--Slide-->
   <string name="Slide_image">Bilde</string>
   <string name="Slide_sticker">Klistremerke</string>
@@ -977,6 +1002,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_view_once_video">Éivisningsvideo</string>
   <string name="ThreadRecord_view_once_media">Éivisningsmedia</string>
   <string name="ThreadRecord_this_message_was_deleted">Meldinga er sletta</string>
+  <string name="ThreadRecord_you_deleted_this_message">Du sletta denne meldinga.</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnande meldingar skrudd av</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
@@ -1208,6 +1234,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">«%1$s» er ikkje ein brukar på Signal. Sjekk brukarnamnet og prøv igjen.</string>
   <string name="ContactSelectionListFragment_okay">Greitt</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Gruppa er full</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du treng ikkje legga deg sjølv til i gruppa.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontaktar</string>
   <!--contact_selection_list_fragment-->
@@ -1628,6 +1655,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat frå alle</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tillat forsegla sendar på meldingar du får frå folk som ikkje er i kontaktlista di, og folk du ikkje har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær meir</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

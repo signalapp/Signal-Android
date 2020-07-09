@@ -603,6 +603,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">మీరు %1$s యొక్క పరిపాలనా యోగ్యతను తొలగించారు.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s మీ పరిపాలనా యోగ్యతను తొలగించారు.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s యొక్క పరిపాలనా యోగ్యతను తొలగించారు.</string>
+  <string name="MessageRecord_you_are_now_an_admin">మీరు ఇప్పుడు నిర్వాహకులే.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">మీరు %1$sని సమూహానికి ఆహ్వానించారు.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s మిమ్మల్ని సమూహానికి ఆహ్వానించారు.</string>
@@ -610,6 +611,7 @@
     <item quantity="one">%1$s ఒక వ్యక్తిని సమూహానికి ఆహ్వానించారు.</item>
     <item quantity="other">%1$s %2$d వ్యక్తులను సమూహానికి ఆహ్వానించారు.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">మిమ్మల్ని గుంపుకు ఆహ్వానించారు.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">మీరు ఒక సమూహ ఆహ్వానాన్ని వెనక్కి తీసుకున్నారు</item>
@@ -621,6 +623,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ఎవరో సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">మీరు సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">సమూహానికి మీ ఆహ్వానం ఉపసంహరించబడింది.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">మీరు సమూహ ఆహ్వానాన్ని ఆమోదించారు.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s సమూహ ఆహ్వానాన్ని ఆమోదించారు.</string>
@@ -1469,6 +1472,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ఎవరి నుండి అయినా అనుమతించు</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">మీరు మీ రూపం భాగస్వామ్యం చేయని పరిచయాలు మరియు వ్యక్తుల నుండి ఇన్కమింగ్ సందేశాల కోసం మూసివేసిన పంపేవారిని ప్రారంభించండి.</string>
   <string name="preferences_communication__sealed_sender_learn_more">ఇంకా నేర్చుకో</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

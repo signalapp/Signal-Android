@@ -180,6 +180,7 @@
   <string name="ConversationItem_download_more">  הורד עוד</string>
   <string name="ConversationItem_pending">  ממתין</string>
   <string name="ConversationItem_this_message_was_deleted">הודעה זו נמחקה.</string>
+  <string name="ConversationItem_you_deleted_this_message">מחקת הודעה זו.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">לאפס שיח מאובטח?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">זה יעזור אם יש לך חווה בעיות הצפנה בשיחה זו. ההודעות שלך יישמרו.</string>
@@ -293,6 +294,7 @@
   <string name="ConversationFragment_deleting_messages">מוחק הודעות…</string>
   <string name="ConversationFragment_delete_for_me">מחק עבורי</string>
   <string name="ConversationFragment_delete_for_everyone">מחק עבור כולם</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">הודעה זו תימחק לצמיתות עבור כל אחד שנמצא בשיחה. חברי קבוצה יוכלו לראות שמחקת הודעה.</string>
   <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">הודעה מקורית כבר אינה זמינה</string>
   <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
@@ -688,6 +690,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">הודעה מוצפנת התקבלה ע״י שימוש בגרסה ישנה של Signal שאינה נתמכת יותר. אנא בקש מהשולח לעדכן אל הגרסה העדכנית ביותר ולשלוח מחדש את ההודעה.</string>
   <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
+  <string name="MessageRecord_the_group_was_updated">הקבוצה עודכנה.</string>
   <string name="MessageRecord_you_called">התקשרת</string>
   <string name="MessageRecord_called_you">איש קשר התקשר</string>
   <string name="MessageRecord_missed_call">שיחה שלא נענתה</string>
@@ -700,6 +703,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s השבית הודעות נעלמות.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">הִגְדַּרְתָּ את קוצב הזמן של ההודעות הנעלמות אל %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sהגדיר את קוצב הזמן של ההודעות הנעלמות אל %2$s. </string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">קוצב הזמן של ההודעות הנעלמות הוגדר אל %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">יצרת את הקבוצה.</string>
   <string name="MessageRecord_group_updated">קבוצה עודכנה.</string>
@@ -715,6 +719,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s הסיר אותך מהקבוצה.</string>
   <string name="MessageRecord_you_left_the_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_s_left_the_group">%1$s עזב את הקבוצה.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">אתה לא נמצא יותר בקבוצה.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s לא נמצא יותר בקבוצה.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">עשית את %1$s מנהלן.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s עשה את %2$s מנהלן.</string>
@@ -722,6 +728,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">שללת זכויות מינהל מן %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s שלל את זכויות המינהל שלך.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s שלל זכויות מינהל מן %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s מנהלן כעת.</string>
+  <string name="MessageRecord_you_are_now_an_admin">אתה מנהלן כעת.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s אינו מנהלן יותר.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">אינך מנהלן יותר.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">הזמנת את %1$s אל הקבוצה.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s הזמין אותך אל הקבוצה.</string>
@@ -730,6 +740,13 @@
     <item quantity="two">%1$s הזמין %2$d אנשים אל הקבוצה.</item>
     <item quantity="many">%1$s הזמין %2$d אנשים אל הקבוצה.</item>
     <item quantity="other">%1$s הזמין %2$d אנשים אל הקבוצה.</item>
+  </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">הוזמנת אל הקבוצה.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">איש 1 הוזמן אל הקבוצה.</item>
+    <item quantity="two">%1$d אנשים הוזמנו אל הקבוצה.</item>
+    <item quantity="many">%1$d אנשים הוזמנו אל הקבוצה.</item>
+    <item quantity="other">%1$d אנשים הוזמנו אל הקבוצה.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -746,6 +763,13 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">מישהו דחה הזמנה אל הקבוצה.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">סירבת אל ההזמנה אל הקבוצה.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ההזמנה שלך אל הקבוצה נשללה.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">הזמנה אל הקבוצה נשללה.</item>
+    <item quantity="two">%1$d הזמנות אל הקבוצה נשללו.</item>
+    <item quantity="many">%1$d הזמנות אל הקבוצה נשללו.</item>
+    <item quantity="other">%1$d הזמנות אל הקבוצה נשללו.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">הסכמת אל ההזמנה אל הקבוצה.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s הסכים אל הזמנה אל הקבוצה.</string>
@@ -754,15 +778,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">שינית את שם הקבוצה אל \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s שינה את שם הקבוצה אל \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">שם הקבוצה השתנה אל \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">שינית את יצגן הקבוצה.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s שינה את יצגן הקבוצה.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">יצגן הקבוצה השתנה.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">שינית מי יכול לערוך מידע קבוצה אל \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s שינה מי יכול לערוך מידע קבוצה אל \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">מי יכול לערוך מידע קבוצה השתנה אל \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">שינית מי יכול לערוך חברות קבוצה אל \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה אל \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %s השתנה.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">סימנת את מספר הביטחון שלך עם %s כמוודא</string>
@@ -983,6 +1011,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">נזכיר לך שוב עוד מספר ימים.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">נזכיר לך שוב עוד שבוע.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">נזכיר לך שוב עוד שבועיים.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">נזכיר לך שוב עוד חודש.</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
   <string name="Slide_sticker">מדבקה</string>
@@ -1051,6 +1080,7 @@
   <string name="ThreadRecord_view_once_video">סרטון לצפייה חד־פעמית</string>
   <string name="ThreadRecord_view_once_media">מדיה לצפייה חד־פעמית</string>
   <string name="ThreadRecord_this_message_was_deleted">הודעה זו נמחקה.</string>
+  <string name="ThreadRecord_you_deleted_this_message">מחקת הודעה זו.</string>
   <string name="ThreadRecord_s_is_on_signal">%s נמצא ב־Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %s</string>
@@ -1284,6 +1314,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" הוא לא משתמש Signal. אנא בדוק את שם המשתמש ונסה שוב.</string>
   <string name="ContactSelectionListFragment_okay">בסדר</string>
   <string name="ContactSelectionListFragment_the_group_is_full">הקבוצה מלאה</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">אתה לא צריך להוסיף את עצמך אל הקבוצה</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים</string>
   <!--contact_selection_list_fragment-->
@@ -1720,6 +1751,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">התר מכל אחד</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">אפשר שולח אטום עבור הודעות נכנסות מאת אי־אנשי קשר ומאת אנשים איתם לא שיתפת את הפרופיל שלך.</string>
   <string name="preferences_communication__sealed_sender_learn_more">למד עוד</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

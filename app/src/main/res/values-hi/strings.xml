@@ -535,8 +535,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$s समूह में शामिल हो गए</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">आप अब एक एडमिन हैं।</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">आपको ग्रूप से जुङने के लिये आमंत्रित किया गया था।</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">आपका ग्रूप से जुङने का आमंत्रण वापस ले लिया गया है।</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -1352,6 +1355,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">कोई भी मुझे मेसेज भेज सकता हैं</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">सील्ड सेंडर फी़चर आने वाले मेसेजों के लिये शुरु कर दिया जाऐगा जिसके अनुसार वो लोग जो आपके संपर्क में नहीं  हैं या जिनसे आपने अपना प्रोफ़ाइल साझा नहीं किया है, वो भी आपको मेसेज भेज पाएंगे|</string>
   <string name="preferences_communication__sealed_sender_learn_more">अधिक जानें</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -605,12 +605,14 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจากคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
+  <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">คุณได้เชิญ %1$s เข้ากลุ่ม</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s ได้เชิญคุณเข้ากลุ่ม</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="other">%1$s ได้เชิญ %2$d คนเข้ากลุ่ม</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">คุณถูกเชิญเข้ากลุ่ม</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="other">คุณได้เพิกถอน %1$d คำเชิญเข้ากลุ่ม</item>
@@ -620,6 +622,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ใครบางคนได้ปฏิเสธคำเชิญเข้าร่วมกลุ่ม</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">คุณได้ปฏิเสธคำเชิญเข้ากลุ่ม</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">คำเชิญคุณเข้ากลุ่มถูกเพิกถอน</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">คุณได้ตอบรับคำเชิญเข้ากลุ่ม</string>
   <string name="MessageRecord_s_accepted_invite">%1$s ตอบรับคำเชิญเข้ากลุ่ม</string>
@@ -1507,6 +1510,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
   <string name="preferences_communication__sealed_sender_learn_more">เรียนรู้เพิ่มเติม</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

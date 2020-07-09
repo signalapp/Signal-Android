@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more">  Baixa\'n més</string>
   <string name="ConversationItem_pending">  Pendent</string>
   <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
+  <string name="ConversationItem_you_deleted_this_message">Heu suprimit aquest missatge.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Se suprimeixen missatges…</string>
   <string name="ConversationFragment_delete_for_me">Suprimeix per a mi</string>
   <string name="ConversationFragment_delete_for_everyone">Suprimeix per a tothom</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Aquest missatge se suprimirà permanentment per a tothom que sigui a la conversa. Els membres podran veure que heu suprimit un missatge.</string>
   <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge original.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El missatge original ja no està disponible.</string>
   <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
@@ -630,6 +632,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">S\'ha rebut un missatge encriptat amb una versió antiga del Signal que ja no s\'admet. Digueu-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
   <string name="MessageRecord_left_group">Heu abandonat el grup.</string>
   <string name="MessageRecord_you_updated_group">Heu actualitzat el grup.</string>
+  <string name="MessageRecord_the_group_was_updated">S\'ha actualitzat el grup.</string>
   <string name="MessageRecord_you_called">Heu trucat</string>
   <string name="MessageRecord_called_you">Trucada del contacte</string>
   <string name="MessageRecord_missed_call">Trucada perduda</string>
@@ -642,6 +645,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha desactivat els missatges efímers.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Heu establert el temporitzador dels missatges efímers a %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha establert el temporitzador dels missatges efímers a %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">S\'ha establert el temporitzador dels missatges efímers a %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Heu creat el grup.</string>
   <string name="MessageRecord_group_updated">Grup actualitzat</string>
@@ -657,6 +661,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s us ha suprimit del grup.</string>
   <string name="MessageRecord_you_left_the_group">Heu abandonat el grup.</string>
   <string name="MessageRecord_s_left_the_group">%1$s ha abandonat el grup.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Ja no sou al grup.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ja no és al grup.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Heu fet que %1$s sigui administrador/a.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s ha fet que %2$s sigui administrador/a.</string>
@@ -664,12 +670,21 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Heu rebutjat els privilegis d\'administrador/a de %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s us ha revocat els privilegis d\'administrador/a.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ha rebutjat els privilegis d\'administrador/a de %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s ara és un administrador/a.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Ara sou un administrador.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ja no és un administrador/a.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Ja no sou un administrador/a.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Heu convidat %1$s al grup.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s us ha convidat al grup.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">%1$s ha convidat 1 persona al grup.</item>
     <item quantity="other">%1$s ha convidat %2$d persones al grup.</item>
+  </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Heu estat convidat al grup.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 persona s\'ha convidat al grup.</item>
+    <item quantity="other">%1$d persones s\'han convidat al grup.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -682,6 +697,11 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Algú ha rebutjat una invitació al grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Heu rebutjat la invitació al grup.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">La invitació al grup s\'ha revocat.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one"> Una invitació al grup s\'ha rebutjat.</item>
+    <item quantity="other">%1$d invitacions al grup s\'han rebutjat.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Heu acceptat la invitació al grup.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s ha acceptat una invitació al grup.</string>
@@ -690,15 +710,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Heu canviat el nom del grup a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ha canviat el nom del grup a \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">S\'ha canviat el nom del grup a \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Heu canviat l\'avatar del grup.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ha canviat l\'avatar del grup.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">S\'ha canviat l\'avatar del grup.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Heu canviat qui pot editar la informació del grup a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ha canviat qui pot editar la informació del grup a \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">S\'ha canviat qui pot editar la informació del grup a \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Heu canviat qui pot editar els membres del grup a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha canviat qui pot editar els membres del grup a \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">S\'ha canviat qui pot editar els membres del grup a \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Heu verificat el número de seguretat amb %s</string>
@@ -905,6 +929,7 @@ especificat (%s) no és vàlid.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Us ho recordarem d\'aquí a uns dies.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Us ho recordarem d\'aquí a una setmana.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Us ho recordarem d\'aquí a un parell de setmanes.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Us ho recordarem d\'aquí a un mes.</string>
   <!--Slide-->
   <string name="Slide_image">Imatge</string>
   <string name="Slide_sticker">Adhesiu</string>
@@ -971,6 +996,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_view_once_video">Vídeo d\'una sola visualització</string>
   <string name="ThreadRecord_view_once_media">Contingut d\'una sola visualització</string>
   <string name="ThreadRecord_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Heu suprimit aquest missatge.</string>
   <string name="ThreadRecord_s_is_on_signal">%s és al Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Missatges efímers desactivats</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
@@ -1202,6 +1228,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$s no és un usuari del Signal. Si us plau, comproveu-ne el nom i torneu-ho a provar.</string>
   <string name="ContactSelectionListFragment_okay">D\'acord</string>
   <string name="ContactSelectionListFragment_the_group_is_full">El grup és ple.</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No cal que us afegiu al grup.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hi ha cap contacte blocat</string>
   <!--contact_selection_list_fragment-->
@@ -1620,6 +1647,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permet-ho per a tothom</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa el remitent segellat per a missatges rebuts de persones que no teniu als contactes o de persones amb qui no heu compartit el vostre perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Més informació</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -171,6 +171,7 @@
   <string name="ConversationItem_download_more"> കൂടുതൽ ഡൗൺലോഡു ചെയ്യുക</string>
   <string name="ConversationItem_pending"> ശേഷിക്കുന്നു</string>
   <string name="ConversationItem_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
+  <string name="ConversationItem_you_deleted_this_message">നിങ്ങൾ ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">സുരക്ഷിത സെഷൻ പുനഃസജ്ജമാക്കണോ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്ക് എൻ‌ക്രിപ്ഷൻ പ്രശ്‌നങ്ങളുണ്ടെങ്കിൽ ഇത് സഹായിച്ചേക്കാം. നിങ്ങളുടെ സന്ദേശങ്ങൾ സൂക്ഷിക്കും.</string>
@@ -661,6 +662,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">നിങ്ങൾ %1$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s നിങ്ങളുടെ അഡ്‌മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
+  <string name="MessageRecord_you_are_now_an_admin">നിങ്ങൾ ഇപ്പോൾ ഒരു അഡ്‌മിനാണ്.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">നിങ്ങൾ %1$s-നെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു.</string>
@@ -668,6 +670,7 @@
     <item quantity="one">%1$s 1 വ്യക്തിയെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു.</item>
     <item quantity="other">%1$s %2$d ആളുകളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചിരിക്കുന്നു.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">നിങ്ങൾ ഗ്രൂപ്പിലേക്കുള്ള ക്ഷണം റദ്ദാക്കി.</item>
@@ -679,6 +682,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ഗ്രൂപ്പിലേക്കുള്ള ക്ഷണം ആരോ നിരസിച്ചു.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">ഗ്രൂപ്പിലേക്കുള്ള ക്ഷണം നിങ്ങൾ നിരസിച്ചു.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ഗ്രൂപ്പിലേക്ക്  നിങ്ങൾക്കുള്ള  ക്ഷണം റദ്ദാക്കിയിരിക്കുന്നു.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">ഗ്രൂപ്പിലേക്കുള്ള ക്ഷണം നിങ്ങൾ സ്വീകരിച്ചു.</string>
   <string name="MessageRecord_s_accepted_invite"> ഗ്രൂപ്പിലേക്കുള്ള ക്ഷണം %1$s സ്വീകരിച്ചു.</string>
@@ -967,6 +971,7 @@ grūpp ap‌ḍē</string>
   <string name="ThreadRecord_view_once_video">ഒരു തവണ-കാണാവുന്ന വീഡിയോ</string>
   <string name="ThreadRecord_view_once_media">ഒരു തവണ-ദൃശ്യമാകുന്ന മീഡിയ</string>
   <string name="ThreadRecord_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
+  <string name="ThreadRecord_you_deleted_this_message">നിങ്ങൾ ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="ThreadRecord_s_is_on_signal">%s സിഗ്നലിൽ ഉണ്ട്!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ പ്രവർത്തനരഹിതമാക്കി</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള സമയം %s ആയി ക്രമീകരിച്ചു.</string>
@@ -1610,6 +1615,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ആരിൽ നിന്നും അനുവദിക്കുക</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">കോൺടാക്ടുകൾ അല്ലാത്തവരിൽ നിന്നും നിങ്ങളുടെ പ്രൊഫൈൽ പങ്കിടാത്തവരായ ആളുകളിൽ നിന്നും വരുന്ന സന്ദേശങ്ങൾക്കായി സീൽഡ് സെൻഡർ പ്രാപ്തമാക്കുക.</string>
   <string name="preferences_communication__sealed_sender_learn_more">കൂടുതൽ അറിയുക</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

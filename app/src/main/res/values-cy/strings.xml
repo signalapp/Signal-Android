@@ -295,6 +295,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_deleting_messages">Dileu negeseuon…</string>
   <string name="ConversationFragment_delete_for_me">Dileu i mi</string>
   <string name="ConversationFragment_delete_for_everyone">Dileu i bawb</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Bydd y neges hon yn cael ei dileu yn barhaol i bawb sydd yn y sgwrs. Bydd aelodau\'n gallu gweld eich bod wedi dileu y neges.</string>
   <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
   <string name="ConversationFragment_failed_to_open_message">Methu agor neges</string>
@@ -724,6 +725,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Rydych wedi ddirymu breintiau gweinyddol %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">Mae %1$s wedi dirymu\'ch breintiau gweinyddol. \"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Mae %1$s wedi dirymu breintiau gweinyddol %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Rydych nawr yn weinyddwr.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Fe wnaethoch chi wahodd %1$s i\'r grŵp.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">Fe wnaeth %1$s eich gwahodd i\'r grŵp.</string>
@@ -733,6 +735,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Fe wnaeth %1$s wahodd %2$d person i\'r grŵp.</item>
     <item quantity="other">Fe wnaeth %1$s wahodd %2$d person i\'r grŵp.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Fe\'ch gwahoddwyd i\'r grŵp.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Fe wnaethoch chi ddirymu gwahoddiad i\'r grŵp.</item>
@@ -748,6 +751,7 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Fe wnaeth rhywun wrthod gwahoddiad i\'r grŵp.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Fe wnaethoch chi wrthod gwahoddiad i\'r grŵp.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Dirymwyd eich gwahoddiad i\'r grŵp.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Fe wnaethoch chi dderbyn y gwahoddiad i\'r grŵp.</string>
   <string name="MessageRecord_s_accepted_invite">Fe wnaeth %1$s dderbyn gwahoddiad i\'r grŵp.</string>
@@ -1722,6 +1726,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Caniatáu gan bawb</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Galluogwch anfon dan sêl ar gyfer negeseuon i mewn gan y sawl sydd ddim yn gysylltiad a phobl nad ydych wedi rhannu eich proffil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dysgu rhagor</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -532,8 +532,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$sગ્રુપ માં જોડાયા.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">હવે તમે એડમિન છો.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">તમને ગ્રુપમાં આમંત્રણ અપાયું હતું.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ગ્રુપ માટે તમારું આમંત્રણ રદ કરવામાં આવ્યું હતું.</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -1348,6 +1351,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">કોઈની પાસેથી મંજૂરી આપો</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">બિન-સંપર્કો અને જેની સાથે તમે તમારી પ્રોફાઇલ શેર કરી નથી તેવા લોકો તરફથી આવતા મેસેજ માટે સીલ કરેલા મોકલનાર સક્ષમ કરો.</string>
   <string name="preferences_communication__sealed_sender_learn_more">વધુ શીખો</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -180,6 +180,7 @@
   <string name="ConversationItem_download_more">Naloži več</string>
   <string name="ConversationItem_pending">V teku</string>
   <string name="ConversationItem_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
+  <string name="ConversationItem_you_deleted_this_message">Izbrisali ste to sporočilo.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
@@ -293,6 +294,7 @@
   <string name="ConversationFragment_deleting_messages">Izbris sporočil …</string>
   <string name="ConversationFragment_delete_for_me">Izbriši zame</string>
   <string name="ConversationFragment_delete_for_everyone">Izbriši za vse</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">To sporočilo bo za vedno izbrisano za vse udeležene v pogovoru. Člani/ce skupine bodo lahko videli/e, da ste izbrisali sporočilo.</string>
   <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
   <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
@@ -688,6 +690,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prejeli ste sporočilo, šifrirano z različico aplikacije Signal, ki ni več podprta. Prosite pošiljatelja, naj posodobi Signal na najnovejšo različico.</string>
   <string name="MessageRecord_left_group">Zapustili ste skupino.</string>
   <string name="MessageRecord_you_updated_group">Posodobili ste skupino.</string>
+  <string name="MessageRecord_the_group_was_updated">Skupina je bila posodobljena</string>
   <string name="MessageRecord_you_called">Klicali ste</string>
   <string name="MessageRecord_called_you">Imeli ste klic</string>
   <string name="MessageRecord_missed_call">Neodgovorjen klic</string>
@@ -700,6 +703,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">Uporabnik/ca %1$s je izklopil/a izginjajoča sporočila.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Čas poteka sporočil ste nastavili na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Uporabnik/ca %1$s je nastavil/a čas poteka sporočil na %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Čas poteka sporočila je nastavljen na %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Ustvarili ste skupino.</string>
   <string name="MessageRecord_group_updated">Skupina posodobljena.</string>
@@ -715,6 +719,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">Oseba %1$s vas je odstranila iz skupine.</string>
   <string name="MessageRecord_you_left_the_group">Zapustili ste skupino.</string>
   <string name="MessageRecord_s_left_the_group">Oseba %1$s je zapustila skupino.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Niste več v skupini.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">Uporabnik/ca %1$s ni več v skupini.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Osebo %1$s ste določili za skrbnika.</string>
   <string name="MessageRecord_s_made_s_an_admin">Osdeba %1$s je določila uporabnika/co %2$s za skrbnika/co.</string>
@@ -722,6 +728,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Uporabniku/ci %1$s ste odvzeli skrbniška pooblastila.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">Oseba %1$s vam je odvzela skrbniška pooblastila.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Oseba %1$s je odvzela skrbniška pooblastila uporabniku/ci %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">Uporabnik/ca %1$s je zdaj skrbnik/ca skupine.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Odslej ste skrbnik skupine.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">Uporabnik/ca %1$s ni več skrbnik/ca skupine.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Niste več skrbnik skupine.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Uporabnika/co %1$s ste povabili v skupino.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">Oseba %1$s vas je povabila v skupino.</string>
@@ -730,6 +740,13 @@
     <item quantity="two">Oseba %1$s je povabila %2$d uporabnika v skupino.</item>
     <item quantity="few">Oseba %1$s je povabila %2$d uporabnike v skupino.</item>
     <item quantity="other">Oseba %1$s je povabila %2$d uporabnikov/ic v skupino.</item>
+  </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Bili ste povabljeni v skupino.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 uporabnik/ca je bil/a povabljen/a v skupino.</item>
+    <item quantity="two">%1$d uporabnika/ci sta bila/i povabljena/i v skupino.</item>
+    <item quantity="few">%1$d uporabniki/ce so bili/e povabljeni/e v skupino.</item>
+    <item quantity="other">%1$d uporabnikov/ic je bilo povabljenih v skupino.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -746,6 +763,13 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nekdo je zavrnil vabilo v skupino.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Zavrnili ste vabilo v skupino.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Vaše vabilo v skupino je bilo preklicano.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Vabilo v skupino je bilo preklicano.</item>
+    <item quantity="two">%1$d vabili v skupino sta bili preklicani.</item>
+    <item quantity="few">%1$d vabila v skupino so bila preklicana.</item>
+    <item quantity="other">%1$d vabil v skupino je bilo preklicanih.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Sprejeli ste vabilo v skupino.</string>
   <string name="MessageRecord_s_accepted_invite">Uporabnik/ca %1$s je sprejel/a vabilo v skupino.</string>
@@ -754,15 +778,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Ime skupine ste spremenili v \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">Uporabnik/ca %1$s je spremenil/a ime skupine v \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Ime skupine je bilo spremenjeno v \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Spremenili ste skupinin avatar.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Oseba %1$s je spremenila skupinin avatar.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Avatar skupine je bil spremenjen.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Spremenili ste, kdo lahko ureja informacije o skupini: \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">Oseba %1$s je spremenila, kdo lahko ureja informacije o skupini: \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Sprememba: podatke o skupini lahko odslej ureja uporabnik/ca \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Spremenili ste, kdo lahko ureja članstvo v skupini: \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Oseba %1$s je spremenila, kdo lahko ureja članstvo v skupini: \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Sprememba: članstvo v skupini lahko odslej ureja uporabnik/ca \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom/co %s je bilo spremenjeno.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Varnostno število z uporabnikom/co %s ste označili kot potrjeno</string>
@@ -976,6 +1004,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Čez nekaj dni vas bomo znova opozorili.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Čez en teden vas bomo znova opozorili.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Čez nekaj tednov vas bomo znova opozorili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Čez en mesec vas bomo znova opozorili.</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_sticker">Nalepka</string>
@@ -1042,6 +1071,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_view_once_video">Video za enkraten ogled</string>
   <string name="ThreadRecord_view_once_media">Medijska datoteka za enkraten ogled</string>
   <string name="ThreadRecord_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
+  <string name="ThreadRecord_you_deleted_this_message">Izbrisali ste to sporočilo.</string>
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Izginjajoča sporočila so izklopljena</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
@@ -1275,6 +1305,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ni uporabnik/ca storitve Signal. Preverite uporabniško ime in poskusite znova.</string>
   <string name="ContactSelectionListFragment_okay">Okej</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Skupina je polna</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sebe ne rabite dodajati v skupino.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih uporabnikov</string>
   <!--contact_selection_list_fragment-->
@@ -1711,6 +1742,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Dovoli za vse pošiljatelje</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Vklop zakritega pošiljatelja za dohodna sporočila uporabnikov, ki niso v imeniku in tistih, s katerimi ne delite svojega profila.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

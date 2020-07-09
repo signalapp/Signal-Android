@@ -645,6 +645,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">আপনি %1$s এর প্রশাসকীয় ক্ষমতাগুলি বাতিল করেছেন।</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s আপনার এর প্রশাসকীয় ক্ষমতাগুলি বাতিল করেছে।</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s এর প্রশাসকীয় ক্ষমতাগুলি বাতিল করেছে।</string>
+  <string name="MessageRecord_you_are_now_an_admin">আপনি এখন প্রশাসক</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">আপনি %1$s কে এই গ্রুপে আমন্ত্রণ জানিয়েছেন।</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s আপনাকে গ্রুপটিতে আমন্ত্রণ জানিয়েছেন।</string>
@@ -652,6 +653,7 @@
     <item quantity="one">%1$s ১ জনকে গ্রুপে আমন্ত্রণ জানিয়েছে।</item>
     <item quantity="other">%1$s %2$d জনকে গ্রুপে আমন্ত্রণ জানিয়েছে।</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">আপনাকে এই গ্রুপে আমন্ত্রিত করা হয়েছিল।</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">আপনি গ্রুপেটির জন্য কৃত একটি আমন্ত্রণ বাতিল করেছেন।</item>
@@ -663,6 +665,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">কেউ একজন এই গ্রুপের আমন্ত্রণ প্রত্যাখ্যান করেছে।</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">আপনি গ্রুপটির নিমন্ত্রণ প্রত্যাখ্যান করেছেন।</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">গ্রুপে আপনার আমন্ত্রণ বাতিল করা হয়েছিল।</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">আপনি গ্রুপটির নিমন্ত্রণ গ্রহণ করেছেন।</string>
   <string name="MessageRecord_s_accepted_invite">%1$s গ্রুপটির নিমন্ত্রণ গ্রহণ করেছেন।</string>
@@ -1567,6 +1570,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">যে কারও কাছ থেকে অনুমতি দিন</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">পরিচিতিতে নেই এবং যাদের সাথে আপনি নিজের প্রোফাইল শেয়ার করেন নি তাদের কাছ থেকে আগত বার্তাগুলির জন্য সিলযুক্ত প্রেরককে সক্ষম করুন।</string>
   <string name="preferences_communication__sealed_sender_learn_more">আরও জানুন</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

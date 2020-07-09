@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more">  Baixe mais</string>
   <string name="ConversationItem_pending">  Pendente</string>
   <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
+  <string name="ConversationItem_you_deleted_this_message">Você suprimiu esta mensagem.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Excluindo mensagens…</string>
   <string name="ConversationFragment_delete_for_me">Suprimir para mim</string>
   <string name="ConversationFragment_delete_for_everyone">Suprimir para todas as pessoas</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Essa mensagem será definitivamente suprimida da conversa para todas as pessoas. Elas verão que você suprimiu a mensagem.</string>
   <string name="ConversationFragment_quoted_message_not_found">Mensagem original não encontrada</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mensagem original indisponível</string>
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir mensagem</string>
@@ -655,6 +657,7 @@
   <string name="MessageRecord_s_made_you_an_admin">%1$s nomeou você como admin.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você revogou privilégios de admin de %1$s.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revogou os privilégios de admin de %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Agora você é um/a admin</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Você convidou %1$s ao grupo.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s convidou você ao grupo..</string>
@@ -662,9 +665,11 @@
     <item quantity="one">%1$s convidou 1 pessoa ao grupo.</item>
     <item quantity="other">%1$s convidou %2$d pessoas ao grupo.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Você recebeu um convite para o grupo.</string>
   <!--GV2 invitation revokes-->
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguém recusou um convite ao grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Você recusou o convite ao grupo.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Seu convite para o grupo foi revogado.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Você aceitou o convite ao grupo.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s aceitou o convite ao grupo.</string>
@@ -931,6 +936,7 @@
   <string name="ThreadRecord_view_once_video">Vídeo efêmero</string>
   <string name="ThreadRecord_view_once_media">Mídia efêmera</string>
   <string name="ThreadRecord_this_message_was_deleted">Essa mensagem foi suprimida.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Você suprimiu esta mensagem.</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de duração da mensagem efêmera definido para %s</string>
@@ -1553,6 +1559,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de qualquer um</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Habilitar remetente oculto para mensagens recebidas de não contatos e pessoas com quem você não compartilhou seu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saiba mais</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more">  Lataa lisää</string>
   <string name="ConversationItem_pending">  Käsiteltävänä</string>
   <string name="ConversationItem_this_message_was_deleted">Tämä viesti poistettiin.</string>
+  <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Alusta suojattu istunto?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa auttaa, jos tässä keskustelussa on ilmennyt salaukseen liittyviä ongelmia. Huom. tämä ei poista eikä muokkaa mitenkään olemassa olevia viestejä.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Viestejä poistetaan…</string>
   <string name="ConversationFragment_delete_for_me">Poista minulta</string>
   <string name="ConversationFragment_delete_for_everyone">Poista kaikilta</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tämä viesti poistetaan pysyvästi kaikilta keskustelun jäseniltä. Jäsenet voivat nähdä, että olet poistanut viestin.</string>
   <string name="ConversationFragment_quoted_message_not_found">Alkuperäistä viestiä ei löytynyt</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Alkuperäinen viesti ei ole enää saatavilla</string>
   <string name="ConversationFragment_failed_to_open_message">Viestin avaaminen epäonnistui</string>
@@ -664,6 +666,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Poistit käyttäjän %1$s ylläpito-oikeudet.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s poisti ylläpito-oikeutesi.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s poisti ylläpito-oikeudet käyttäjältä %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Olet nyt ylläpitäjä.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Kutsuit käyttäjän %1$s ryhmään.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s kutsui sinut ryhmään.</string>
@@ -671,6 +674,7 @@
     <item quantity="one">%1$s kutsui 1 henkilön ryhmään.</item>
     <item quantity="other">%1$s kutsui %2$d henkilöä ryhmään.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Sinut kutsuttiin ryhmään.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Peruutit yhden kutsun ryhmään.</item>
@@ -682,6 +686,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Joku hylkäsi kutsun ryhmään.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hylkäsit kutsun ryhmään.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Kutsusi ryhmään peruttiin.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Hyväksyit kutsun ryhmään.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s hyväksyi kutsun ryhmään.</string>
@@ -971,6 +976,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_view_once_video">Kerran katsottava video</string>
   <string name="ThreadRecord_view_once_media">Kerran katsottava media</string>
   <string name="ThreadRecord_this_message_was_deleted">Tämä viesti poistettiin.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Poistit tämän viestin.</string>
   <string name="ThreadRecord_s_is_on_signal">%s käyttää Signalia!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
@@ -1620,6 +1626,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Hyväksy kaikilta</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ota käyttöön sinetöity lähettäjä saapuville viesteille henkilöiltä, jotka eivät ole yhteystitojasi ja joiden kanssa et ole jakanut profiiliasi.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lue lisää</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

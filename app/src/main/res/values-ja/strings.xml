@@ -171,6 +171,7 @@
   <string name="ConversationItem_download_more">  更にダウンロード</string>
   <string name="ConversationItem_pending">  保留中</string>
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
+  <string name="ConversationItem_you_deleted_this_message">このメッセージはあなたが削除しました。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">この会話の暗号化に問題がある場合、改善される可能性があります。メッセージは削除されません。</string>
@@ -263,6 +264,7 @@
   <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
   <string name="ConversationFragment_delete_for_me">自分の分だけ削除</string>
   <string name="ConversationFragment_delete_for_everyone">全員分を削除</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">このメッセージを参加者全員の会話から削除します。参加者からは、あなたがメッセージを削除したことがわかります。</string>
   <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
   <string name="ConversationFragment_failed_to_open_message">メッセージを開けませんでした</string>
@@ -601,6 +603,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">もはやサポートされていない旧バージョンの Signal で暗号化されたメッセージを受信しました。送信者に Signal を最新バージョンにアップデートして再送するよう依頼してください。</string>
   <string name="MessageRecord_left_group">グループを抜けました。</string>
   <string name="MessageRecord_you_updated_group">グループを更新しました。</string>
+  <string name="MessageRecord_the_group_was_updated">グループが更新されました。</string>
   <string name="MessageRecord_you_called">あなたからの発信</string>
   <string name="MessageRecord_called_you">連絡先からの発信</string>
   <string name="MessageRecord_missed_call">不在着信</string>
@@ -613,6 +616,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s が消えるメッセージを無効にしました。</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">消えるメッセージのタイマーを%1$sに設定しました。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s が消えるメッセージのタイマーを%2$sに設定しました。</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">消えるメッセージの時間が%1$sに設定されました。</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">グループを作成しました。</string>
   <string name="MessageRecord_group_updated">グループをアップデートしました。</string>
@@ -628,6 +632,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s はあなたをこのグループから削除しました。</string>
   <string name="MessageRecord_you_left_the_group">グループを退会しました。</string>
   <string name="MessageRecord_s_left_the_group">%1$s はグループを去りました。</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">グループにいません。</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s はグループにいません。　 　</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">%1$s を管理者にしました。</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s は %2$s を管理者にしました。</string>
@@ -635,11 +641,19 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s から管理者特権を無効にしました。</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s はあなたの管理者特権を無効にしました。\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s は %2$s からの管理者特権を無効にしました。</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s は現在管理者です。</string>
+  <string name="MessageRecord_you_are_now_an_admin">あなたは現在管理者です。</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s は管理者ではありません。</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">管理者ではありません。</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">%1$s をこのグループに招待しました。</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s はあなたをグループに招待しました。</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="other">%1$s は%2$d人をグループに招待しました</item>
+  </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">グループに招待されました。</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="other">このグループに%1$d人が招待されました。</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -650,6 +664,10 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">誰かがこのグループの招待を断りました。</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">このグループの招待を断りました。</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">あなたのグループへの招待は無効にされました。</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="other">%1$dのこのグループへの招待は無効になりました。</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">このグループの招待を承認しました。</string>
   <string name="MessageRecord_s_accepted_invite">%1$s はグループの招待を承認しました。</string>
@@ -658,15 +676,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">このグループ名を「%1$s」に変更しました。</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s はグループ名を「%2$s」に変更しました。</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">このグループ名は「%1$s」に変更されました。</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">グループアバターを更新しました。</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s はグループアバターを更新しました。</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">グループアバターは変更されました。</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">あなたは「%1$s」がグループ情報を編集できるよう変更しました。</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">「%2$s」がグループ情報を編集できるよう、%1$sが変更しました。</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">グループ情報を編集できるユーザーの設定を「%1$s」に自分で変更しました。</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">グループ情報を編集できるユーザーの設定を %1$s が「%2$s」に変更しました。</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">グループ情報を編集できるユーザーの設定が「%1$s」に変更されました。</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">あなたは「%1$s」がグループのメンバーを編集できるよう変更しました。</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">「%2$s」がグループのメンバーを編集できるよう、%1$sが変更しました。</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">グループ情報を編集できるユーザーの設定を「%1$s」に自分で変更しました。</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">グループ情報を編集できるユーザーの設定を %1$s が「%2$s」に変更しました。</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">グループ情報を編集できるユーザーの設定が「%1$s」に変更されました。</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s に対する安全番号が変わりました。</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s に対する安全番号を確認済みにしました</string>
@@ -865,6 +887,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">数日後に再度お知らせします。</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">1週間後に再度お知らせします。</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">2週間後に再度お知らせします。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">1ヶ月後に再度お知らせします。</string>
   <!--Slide-->
   <string name="Slide_image">画像</string>
   <string name="Slide_sticker">ステッカー</string>
@@ -929,6 +952,7 @@
   <string name="ThreadRecord_view_once_video">消える動画</string>
   <string name="ThreadRecord_view_once_media">消えるメディア</string>
   <string name="ThreadRecord_this_message_was_deleted">このメッセージが削除されました。</string>
+  <string name="ThreadRecord_you_deleted_this_message">このメッセージはあなたが削除しました。</string>
   <string name="ThreadRecord_s_is_on_signal">%s が Signal に登録しました！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージのタイマーが %s に設定されました</string>
@@ -1159,6 +1183,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」は Signal ユーザではありません。ユーザ名を確認してからもう一度お試しください。</string>
   <string name="ContactSelectionListFragment_okay">OK</string>
   <string name="ContactSelectionListFragment_the_group_is_full">このグループはいっぱいです</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">自分自身をグループに追加する必要はありません</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロックしている連絡先はありません</string>
   <!--contact_selection_list_fragment-->
@@ -1568,6 +1593,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">全員を許可する</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザーからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
   <string name="preferences_communication__sealed_sender_learn_more">詳しく見る</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

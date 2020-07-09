@@ -531,8 +531,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$s 加入群组。</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">你被设置为管理员。</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">你被邀请加入此群</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">对你的入群邀请已失效。</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -1388,6 +1391,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">允许来自任何人</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">对于非联系人和未与其分享个人资料的其他人，启用传入消息的加密发送人功能。</string>
   <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

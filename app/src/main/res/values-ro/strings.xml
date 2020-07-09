@@ -177,6 +177,7 @@
   <string name="ConversationItem_download_more">  Descărcați mai multe</string>
   <string name="ConversationItem_pending">  În curs</string>
   <string name="ConversationItem_this_message_was_deleted">Acest mesaj a fost șters.</string>
+  <string name="ConversationItem_you_deleted_this_message">Ați șters acest mesaj.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string>
@@ -283,6 +284,7 @@
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele…</string>
   <string name="ConversationFragment_delete_for_me">Șterge doar pentru mine</string>
   <string name="ConversationFragment_delete_for_everyone">Șterge pentru toată lumea</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Acest mesaj va fi șters definitiv pentru toți cei din conversație. Membrii vor putea vedea că ați șters un mesaj.</string>
   <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
   <string name="ConversationFragment_failed_to_open_message">Mesajul nu a putut fi deschis</string>
@@ -693,6 +695,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Ați revocat privilegiile admin de la %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a revocat privilegiile dvs. de admin.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a revocat privilegiile de admin pentru %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Sunteți acum admin.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Ai invitat pe %1$s la grup.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s v-a invitat la grup.</string>
@@ -701,6 +704,7 @@
     <item quantity="few">%1$s a invitat %2$d persoane la grup.</item>
     <item quantity="other">%1$s a invitat %2$d persoane la grup.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Ai fost invitat la grup.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Ați revocat o invitație la grup.</item>
@@ -714,6 +718,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Cineva a refuzat o invitație la grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Ați refuzat invitația la grup.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Invitația dvs. la grup a fost revocată.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Ați acceptat invitația la grup.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s a acceptat o invitație la grup.</string>
@@ -1010,6 +1015,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_view_once_video">Videoclip vizibil o singură dată</string>
   <string name="ThreadRecord_view_once_media">Media vizibilă o singură dată</string>
   <string name="ThreadRecord_this_message_was_deleted">Acest mesaj a fost șters.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Ați șters acest mesaj.</string>
   <string name="ThreadRecord_s_is_on_signal">%s folosește Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Dispariția mesajelor a fost dezactivată</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru dispariția mesajele este de %s</string>
@@ -1670,6 +1676,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permite oricui</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activează funcția de expeditor ascuns pentru mesajele primite de la non-contacte și persoane cu care nu ai partajat profilul tău.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Aflați mai multe</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

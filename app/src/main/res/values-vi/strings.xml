@@ -632,12 +632,14 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Bạn đã thu hồi quyền quản trị của %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s đã thu hồi quyền quản trị của bạn.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s đã thu hồi quyền quản trị của %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Bạn đang là quản trị viên.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Bạn đã mời %1$s vào nhóm.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s đã mời bạn vào nhóm.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="other">%1$s đã mời %2$d người vào nhóm.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Bạn đã được mời vào nhóm.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="other">Bạn đã thu hồi %1$d lời mời vào nhóm.</item>
@@ -647,6 +649,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Ai đó đã từ chối lời mời vào nhóm.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Bạn đã từ chối lời mời vào nhóm.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Thư mời tham gia nhóm của bạn đã bị thu hồi.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Bạn đã chấp nhận lời mời vào nhóm.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s đã chấp nhận lời mời vào nhóm.</string>
@@ -1518,6 +1521,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Cho phép từ bất cứ ai</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Bật \'Lá thư không chủ\' cho tin nhắn từ người gửi không có trong danh bạ và người bạn chưa chia sẻ hồ sơ.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Tìm hiểu thêm</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

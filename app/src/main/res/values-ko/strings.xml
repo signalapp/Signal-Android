@@ -163,6 +163,7 @@
   <string name="ConversationItem_download_more"> 더 다운로드</string>
   <string name="ConversationItem_pending"> 대기 중</string>
   <string name="ConversationItem_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
+  <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string>
@@ -250,6 +251,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">삭제 중</string>
   <string name="ConversationFragment_deleting_messages">메시지 삭제 중…</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">이 메시지가 대화에 참가한 모든 이들에게서 삭제됩니다. 멤버는 내가 메시지를 삭제했다는 것을 볼 수 있습니다.</string>
   <string name="ConversationFragment_quoted_message_not_found">원본 메시지를 찾을 수 없음</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">원본 메시지를 더 이상 볼 수 없음</string>
   <string name="ConversationFragment_failed_to_open_message">메시지 열기 실패</string>
@@ -536,8 +538,11 @@
   <!--GV2 member removals-->
   <string name="MessageRecord_you_left_the_group">당신은 그룹에서 떠났습니다.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">관리자가 되었습니다.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">그룹에 초대되었습니다.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">그룹 초대가 파기되었습니다.</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -785,6 +790,7 @@
   <string name="ThreadRecord_view_once_video">한 번 볼 수 있는 동영상</string>
   <string name="ThreadRecord_view_once_media">한 번 볼 수 있는 미디어</string>
   <string name="ThreadRecord_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
+  <string name="ThreadRecord_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <string name="ThreadRecord_s_is_on_signal">%s 님이 온라인입니다!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능이 비활성화됨</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %s(으)로 설정했습니다.</string>
@@ -1378,6 +1384,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">모두에게 허용</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">연락처에 없는 사람과 프로필을 공유하지 않은 사람이 나에게 보내는 메시지에도 발신자 암호화를 허용합니다.</string>
   <string name="preferences_communication__sealed_sender_learn_more">더 알아보기</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

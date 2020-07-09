@@ -174,6 +174,7 @@
   <string name="ConversationItem_download_more">  Hämta mer</string>
   <string name="ConversationItem_pending">  Väntar</string>
   <string name="ConversationItem_this_message_was_deleted">Det här meddelandet togs bort.</string>
+  <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Starta om säker session?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i den här konversationen. Dina meddelanden kommer att bevaras.</string>
@@ -273,6 +274,7 @@
   <string name="ConversationFragment_deleting_messages">Tar bort meddelanden…</string>
   <string name="ConversationFragment_delete_for_me">Ta bort för mig</string>
   <string name="ConversationFragment_delete_for_everyone">Ta bort för alla</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Detta meddelande tas bort permanent för alla i konversationen. Medlemmar kan se att du har tagit bort ett meddelande.</string>
   <string name="ConversationFragment_quoted_message_not_found">Hittade inte originalmeddelandet.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalmeddelandet inte längre tillgänglig.</string>
   <string name="ConversationFragment_failed_to_open_message">Det gick inte att öppna meddelandet</string>
@@ -664,6 +666,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du återkallade administratörsbehörigheter från %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s återkallade dina administratörsbehörigheter.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s återkallade administratörsbehörigheter från %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Du är nu en administratör.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Du bjöd in %1$s till gruppen.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s bjöd in dig till gruppen.</string>
@@ -671,6 +674,7 @@
     <item quantity="one">%1$s bjöd in 1 person till gruppen.</item>
     <item quantity="other">%1$s bjöd in %2$d personer till gruppen.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Du blev inbjuden till gruppen.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Du återkallade en inbjudan till gruppen.</item>
@@ -682,6 +686,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Någon avböjde en inbjudan till gruppen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avböjde inbjudan till gruppen.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Din inbjudan till gruppen återkallades.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Du accepterade inbjudan till gruppen.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s accepterade en inbjudan till gruppen.</string>
@@ -971,6 +976,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_view_once_video">Visa-en-gång video</string>
   <string name="ThreadRecord_view_once_media">Visa-en-gång media</string>
   <string name="ThreadRecord_this_message_was_deleted">Det här meddelandet togs bort.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <string name="ThreadRecord_s_is_on_signal">%s finns på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Försvinnande meddelanden inaktiverat</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
@@ -1620,6 +1626,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillåt från alla</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer som du inte delat din profil med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Läs mer</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

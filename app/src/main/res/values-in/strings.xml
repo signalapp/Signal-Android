@@ -597,12 +597,14 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Anda membatalkan akses admin dari %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s membatalkan akses admin Anda.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s membatalkan akses admin %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Anda sekarang menjadi admin.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Anda mengundang %1$s ke grup.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s mengundang Anda ke grup.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="other">%1$s mengundang %2$d orang ke grup.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Anda diundang ke dalam grup.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="other">Anda membatalkan %1$d undangan ke grup.</item>
@@ -612,6 +614,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Seseorang menolak undangan masuk ke grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Anda menolak undangan masuk ke grup.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Undangan Anda untuk masuk ke grup telah dibatalkan.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Anda menerima undangan masuk ke grup.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s menerima undangan masuk ke grup.</string>
@@ -1496,6 +1499,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Izinkan dari semua orang</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktifkan pengirim tertutup untuk pesan masuk dari non-kontak dan orang yang tidak Anda beri profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Pelajari lebih lanjut</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -1368,6 +1368,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de calquera</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa o remitente selado para as mensaxes entrantes de persoas que non estean nos teus contactos ou con aquelas coas que non compartiras o teu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber máis</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

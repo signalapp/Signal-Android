@@ -178,6 +178,7 @@
   <string name="ConversationItem_download_more">  Stiahnuť viac</string>
   <string name="ConversationItem_pending">  Čaká sa</string>
   <string name="ConversationItem_this_message_was_deleted">Táto správa bola zmazaná.</string>
+  <string name="ConversationItem_you_deleted_this_message">Vymazali ste túto správu.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetovať zabezpečenú reláciu?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Toto vám môže pomôcť pri problémoch so šifrovaním v tejto konverzácii. Vaše správy budú zachované.</string>
@@ -288,6 +289,7 @@
   <string name="ConversationFragment_deleting_messages">Mažú sa správy…</string>
   <string name="ConversationFragment_delete_for_me">Zmazať pre mňa</string>
   <string name="ConversationFragment_delete_for_everyone">Zmazať pre všetkých</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Táto správa sa natrvalo vymaže pre všetkých v tejto konverzácii. Členovia budú vidieť, že ste vymazali správu.</string>
   <string name="ConversationFragment_quoted_message_not_found">Pôvodná správa sa nenašla</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pôvodná správa už nie je k dispozícii</string>
   <string name="ConversationFragment_failed_to_open_message">Nepodarilo sa otvoriť správu</string>
@@ -654,6 +656,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Odobrali ste správcovské práva %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s vám odobral/a správcovské práva.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odobral/a správcovské práva %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Odteraz ste adminom.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Pozvali ste %1$s do skupiny.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vás pozval/a do skupiny.</string>
@@ -663,6 +666,7 @@
     <item quantity="many">%1$s pozval/a %2$d ľudí do skupiny.</item>
     <item quantity="other">%1$s pozval/a %2$d ľudí do skupiny.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Pozvali vás do skupiny.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Odvolali ste pozvánku do skupiny.</item>
@@ -678,6 +682,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Niekto odmietol pozvánku do skupiny.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odmietli ste pozvánku do skupiny.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Vaše pozvanie do skupiny bolo stiahnuté.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Prijali ste pozvánku do skupiny.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s prijal/a pozvánku do skupiny.</string>
@@ -969,6 +974,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_view_once_video">Video na jedno zobrazenie</string>
   <string name="ThreadRecord_view_once_media">Médiá na jedno zobrazenie</string>
   <string name="ThreadRecord_this_message_was_deleted">Táto správa bola zmazaná.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Vymazali ste túto správu.</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signale!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
@@ -1605,6 +1611,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Povoliť od každého</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zapnúť zapečateného odosielateľa pre prichádzajúce správy od ľudí, ktorých nemáte v kontaktoch a s ktorými ste nezdieľali svoj profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dozvedieť sa viac</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

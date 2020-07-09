@@ -184,6 +184,7 @@
   <string name="ConversationItem_download_more">  تحميل المزيد</string>
   <string name="ConversationItem_pending">  معلّق</string>
   <string name="ConversationItem_this_message_was_deleted">تم حذف هذه الرسالة.</string>
+  <string name="ConversationItem_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string>
@@ -311,6 +312,7 @@
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ…</string>
   <string name="ConversationFragment_delete_for_me">إحذف بالنسبة لي</string>
   <string name="ConversationFragment_delete_for_everyone">إحذف بالنسبة للجميع</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">سيتم حذف هذه الرسالة لجميع الأعضاء في هذه المحادثة. الجميع سيرى أنك حذفت رسالة.</string>
   <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
   <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
@@ -761,6 +763,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">لقد قمت بسحب امتيازات المشرف من %1$s .</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">قام %1$s  بإلغاء امتيازات المشرف الخاصة بك. \"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">قام %1$s  بإلغاء امتيازات المشرف من %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">أنت الآن هو المشرف.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">لقد دعوت %1$s إلى المجموعة.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">دعاك %1$s  إلى المجموعة.</string>
@@ -772,6 +775,7 @@
     <item quantity="many">دعا%1$s%2$dأشخاص للمجموعة.</item>
     <item quantity="other">دعا %1$s%2$dأشخاص للمجموعة.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">لقد دُعيت إلى المجموعة.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="zero">لقد أبطلت %1$d دعوات للمجموعة.</item>
@@ -783,6 +787,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">رفض شخص ما دعوة إلى المجموعة.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">لقد رفضت الدعوة إلى المجموعة.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">لقد أُبطلَت دعوتك إلى المجموعة.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">لقد قبلت الدعوة إلى المجموعة.</string>
   <string name="MessageRecord_s_accepted_invite">قبل %1$s  دعوة إلى المجموعة.</string>
@@ -1083,6 +1088,7 @@
   <string name="ThreadRecord_view_once_video">فيديو لمشاهدة لمرة واحدة</string>
   <string name="ThreadRecord_view_once_media">وسيط لمشاهدة لمرة واحدة</string>
   <string name="ThreadRecord_this_message_was_deleted">تم حذف هذه الرسالة.</string>
+  <string name="ThreadRecord_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
   <string name="ThreadRecord_s_is_on_signal">%sمتواجد على Signal !</string>
   <string name="ThreadRecord_disappearing_messages_disabled">الرسائل المختفية غير مفعّلة</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
@@ -1770,6 +1776,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">السماح من أي شخص</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل استقبال الرّسائل من جهة غير معروفة أي ليست من ضمن جهات اتصالك أو لم تشاركها ملفّك الشخصي.</string>
   <string name="preferences_communication__sealed_sender_learn_more">لمعرفة المزيد</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

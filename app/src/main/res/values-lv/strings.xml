@@ -173,6 +173,7 @@
   <string name="ConversationItem_download_more"> Lejupielādēt vēl</string>
   <string name="ConversationItem_pending"> Gaida</string>
   <string name="ConversationItem_this_message_was_deleted">Ziņojums ir izdzēsts.</string>
+  <string name="ConversationItem_you_deleted_this_message">Ziņa dzēsta.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atstatīt šifrēto sarakstes sesiju?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tas var palīdzēt, ja sarakstē saskaraties ar šifrēšanas problēmām. Jūsu ziņas tiks saglabātas.</string>
@@ -278,6 +279,7 @@
   <string name="ConversationFragment_deleting_messages">Tiek dzēstas ziņas…</string>
   <string name="ConversationFragment_delete_for_me">Dzēst tikai man</string>
   <string name="ConversationFragment_delete_for_everyone">Dzēst no visiem</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Šī ziņa tiks dzēsta no visiem dalībniekiem. Dalībnieki var redzēt, ka jūs izdzēsāt ziņu.</string>
   <string name="ConversationFragment_quoted_message_not_found">Oriģinālā ziņa netika atrasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oriģinālā ziņa vairs nav pieejama</string>
   <string name="ConversationFragment_failed_to_open_message">Neizdevās atvērt ziņu</string>
@@ -629,12 +631,15 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Jūs atsaucāt %1$sadministratora tiesības.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$satsauca Jūsu administratora tiesības.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$satsauca administratora tiesības no %2$s.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Jūs tagad esat administrators.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Jūs uzaicinājāt %1$spievienoties grupai.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$suzaicināja Jūs grupai.</string>
+  <string name="MessageRecord_you_were_invited_to_the_group">Jūs tikāt uzaicināts pievienoties šai grupai.</string>
   <!--GV2 invitation revokes-->
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kāds atcēla ielūgumu pievienoties grupai.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atcēlāt ielūgumu pievienoties grupai.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Jūsu uzaicinājums pievienoties šai grupai tika atsaukts.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Jūs pieņēmāt ielūgumu pievienoties grupai.</string>
   <string name="MessageRecord_s_accepted_invite">%1$spieņēma uzaicinājumu pievienoties grupai.</string>
@@ -918,6 +923,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ThreadRecord_view_once_video">Vienreiz skatāms video</string>
   <string name="ThreadRecord_view_once_media">Vienreiz skatāmā multivide/multimediju fails</string>
   <string name="ThreadRecord_this_message_was_deleted">Ziņojums ir izdzēsts.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Ziņa dzēsta.</string>
   <string name="ThreadRecord_s_is_on_signal">%s lieto Signālu!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Gaistošās ziņas atspējotas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Gaistošo ziņu laiks iestatīts uz %s</string>
@@ -1557,6 +1563,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Atļaut no visiem</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Iespējot aizzīmogoto sūtītāju ienākošajām ziņām no ne-kontaktiem un cilvēkiem, ar kuriem Jūs neesiet dalījies ar savu profilu.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lasīt vairāk</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -156,6 +156,7 @@
   <string name="ContactShareEditActivity_type_missing">Muu</string>
   <string name="ContactShareEditActivity_invalid_contact">Valitud kontakt oli sobimatu</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Ei saadetud, üksikasjade nägemiseks koputa</string>
   <string name="ConversationItem_error_partially_not_delivered">Osaliselt saadetud, üksikasjade nägemiseks klõpsa</string>
   <string name="ConversationItem_error_network_not_delivered">Saatmine ei õnnestunud</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Võtmevahetussõnum vastuvõetud, koputa töötlemiseks.</string>
@@ -172,6 +173,7 @@
   <string name="ConversationItem_download_more">  Laadi rohkem alla</string>
   <string name="ConversationItem_pending">  Ootel</string>
   <string name="ConversationItem_this_message_was_deleted">See sõnum kustutati.</string>
+  <string name="ConversationItem_you_deleted_this_message">Sina kustutasid selle teate.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string>
@@ -271,6 +273,7 @@
   <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
   <string name="ConversationFragment_delete_for_me">Kustuta minu jaoks</string>
   <string name="ConversationFragment_delete_for_everyone">Kustuta kõigi jaoks</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">See sõnum kustutatakse jäädavalt kõigi vestluses osalejate jaoks. Liikmed näevad, et sa kustutasid sõnumi.</string>
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
@@ -627,6 +630,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastuvõetud sõnum, mis on krüptitud kasutades vana, mittetoetatud Signali versiooni. Palun palu saatjal uuendada uusimale versioonile ja siis sõnum uuesti saata.</string>
   <string name="MessageRecord_left_group">Sa lahkusid grupist.</string>
   <string name="MessageRecord_you_updated_group">Sa uuendasid gruppi.</string>
+  <string name="MessageRecord_the_group_was_updated">Grupp on uuendatud.</string>
   <string name="MessageRecord_you_called">Sa helistasid</string>
   <string name="MessageRecord_called_you">Kontakt helistas</string>
   <string name="MessageRecord_missed_call">Vastamata kõne</string>
@@ -654,6 +658,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s eemaldas su grupist.</string>
   <string name="MessageRecord_you_left_the_group">Sa lahkusid grupist</string>
   <string name="MessageRecord_s_left_the_group">%1$s lahkus grupist.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Sa ei ole enam grupis.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ei ole enam grupis.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Sa tegid kasutaja %1$s administraatoriks.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s tegi kasutaja %2$s administraatoriks.</string>
@@ -661,6 +667,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Sa tühistasid kasutaja %1$s administraatoriõigused.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tühistas sinu administraatoriõigused.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tühistas kasutaja %2$s administraatoriõigused.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s on nüüd administraator.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Sa oled nüüd administraator.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ei ole enam administraator.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Sa ei ole enam administraator.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Sa kutsusid kasutaja %1$s gruppi.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s kutsus sind gruppi.</string>
@@ -668,6 +678,7 @@
     <item quantity="one">%1$s kutsus 1 isiku gruppi.</item>
     <item quantity="other">%1$s kutsus %2$d isikut gruppi.</item>
   </plurals>
+  <string name="MessageRecord_you_were_invited_to_the_group">Sind kutsuti gruppi.</string>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Sa tühistasid grupiga liitumise kutse.</item>
@@ -679,6 +690,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Keegi keeldus grupiga liitumise kutsest.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Sa keeldusid grupiga liitumise kutsest.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Sinu grupiga liitumise kutse tühistati.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Sa nõustusin grupiga liitumise kutsega.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s nõustus grupiga liitumise kutsega.</string>
@@ -971,6 +983,7 @@
   <string name="ThreadRecord_view_once_video">Korra vaatamise video</string>
   <string name="ThreadRecord_view_once_media">Korra vaatamise meedia</string>
   <string name="ThreadRecord_this_message_was_deleted">See sõnum kustutati.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Sina kustutasid selle teate.</string>
   <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Kaduvad sõnumid keelatud</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Kaduva sõnumi ajaks on seatud %s</string>
@@ -1255,6 +1268,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Keri alla</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Turvanumbri muudatused</string>
+  <string name="safety_number_change_dialog__send_anyway">Saada siiski</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Need inimised on võibolla rakendust reinstallinud või seadet vahetanud. Privaatsuse kindlustamiseks kontrolli nendega turvanumbrit.</string>
   <string name="safety_number_change_dialog__view">Näita</string>
   <!--country_selection_fragment-->
@@ -1617,6 +1631,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Luba kõigilt</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Luba kaetud saatja sissetulevate sõnumite juures mitte-kontaktidelt ja isikutelt, kellega sa pole enda profiili jaganud.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Rohkem infot</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

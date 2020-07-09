@@ -153,6 +153,7 @@
   <string name="ConversationItem_download_more">  Unduh Bentenipun</string>
   <string name="ConversationItem_pending">  Ketundha</string>
   <string name="ConversationItem_this_message_was_deleted">Pesen niki sampun dibrusak</string>
+  <string name="ConversationItem_you_deleted_this_message">Sampeyan sampun mbrusak pesen niki.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atur malih sesi aman?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tumindak niki bakal mbiantu menawi sampeyan gadhah masalah enkripsi ing obrolan niki. Pesen sampeyan bakal disimpen.</string>
@@ -237,6 +238,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Taksih mbrusaki</string>
   <string name="ConversationFragment_deleting_messages">Taksih mbrusaki pesen…</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Pesen niki bakal dibrusak kangge piyambak sedaya ing obrolan niki sacara permanen Anggota sedaya bakal saged ningali menawi sampeyan mbrusaki pesen.</string>
   <string name="ConversationFragment_quoted_message_not_found">Pesen asli mboten saged kepanggih</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pesen asli sampun mboten enten malih</string>
   <string name="ConversationFragment_failed_to_open_message">Gagal mbikak pesen</string>
@@ -514,8 +516,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$s nembe mlebet ing grup.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">Sakmenika sampeyan ngrupikaken admin.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">Sampeyan diajak mlebet grup.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Ajakan mlebet grup kangge sampeyan disandekaken.</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -745,6 +750,7 @@
   <string name="ThreadRecord_view_once_video">Video ingkang saged ditingali pisan mawon</string>
   <string name="ThreadRecord_view_once_media">Media ingkang saged ditingali pisan mawon</string>
   <string name="ThreadRecord_this_message_was_deleted">Pesen niki sampun dibrusak</string>
+  <string name="ThreadRecord_you_deleted_this_message">Sampeyan sampun mbrusak pesen niki.</string>
   <string name="ThreadRecord_s_is_on_signal">Enten %s ing Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Pesen ngical dipunnonaktifaken</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Wekdal supados pesen ngical dipuntetapaken dados %s</string>
@@ -1329,6 +1335,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Ngizinaken saking sinten mawon</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktifaken pangirim ingkang dipunsegel kangge pesen ingkang dipunkirimaken saking non-kontak lan tiyang benten ingkang mboten saged ningali profil sampeyan.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Sapepakipun</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
