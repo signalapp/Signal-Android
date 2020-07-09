@@ -106,13 +106,7 @@ object ClosedGroupsProtocol {
             allDevices.remove(userPublicKey)
         }
         for (device in allDevices) {
-            val deviceAsAddress = SignalProtocolAddress(device, SignalServiceAddress.DEFAULT_DEVICE_ID)
-            val hasSession = TextSecureSessionStore(context).containsSession(deviceAsAddress)
-            if (hasSession) { continue }
-            if (DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(device) != null) { return }
-            DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestTimestamp(device, Date().time)
-            val sessionRequest = EphemeralMessage.createSessionRequest(device)
-            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRequest))
+            ApplicationContext.getInstance(context).sendSessionRequest(device)
         }
     }
 }

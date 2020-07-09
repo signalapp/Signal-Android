@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -91,8 +92,10 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.Poller;
@@ -588,6 +591,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   @Override
   public void sendSessionRequest(@NotNull String publicKey) {
+    // It's never necessary to establish a session with self
+    String userPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (publicKey.equals(userPublicKey)) { return; }
+    // Check that we don't already have a session
+    SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
+    boolean hasSession = new TextSecureSessionStore(this).containsSession(address);
+    if (hasSession) { return; }
+    // Check that we didn't already send or process a session request
+    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
+    boolean hasSentOrProcessedSessionRequest = (apiDB.getSessionRequestTimestamp(publicKey) != null);
+    if (hasSentOrProcessedSessionRequest) { return; }
+    // Send the session request
     DatabaseFactory.getLokiAPIDatabase(this).setSessionRequestTimestamp(publicKey, new Date().getTime());
     EphemeralMessage sessionRequest = EphemeralMessage.createSessionRequest(publicKey);
     jobManager.add(new PushEphemeralMessageSendJob(sessionRequest));
