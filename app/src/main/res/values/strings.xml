@@ -1271,6 +1271,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
+    <string name="MediaPreviewActivity_media_no_longer_available">Media no longer available.</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>

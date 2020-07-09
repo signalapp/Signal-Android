@@ -309,6 +309,23 @@ public class AttachmentDatabase extends Database {
     }
   }
 
+  public boolean hasAttachment(@NonNull AttachmentId id) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = database.query(TABLE_NAME,
+                                        new String[]{ROW_ID, UNIQUE_ID},
+                                        PART_ID_WHERE,
+                                        id.toStrings(),
+                                        null,
+                                        null,
+                                        null)) {
+      if (cursor != null && cursor.getCount() > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public boolean hasAttachmentFilesForMessage(long mmsId) {
     String   selection = MMS_ID + " = ? AND (" + DATA + " NOT NULL OR " + TRANSFER_STATE + " != ?)";
     String[] args      = new String[] { String.valueOf(mmsId), String.valueOf(TRANSFER_PROGRESS_DONE) };

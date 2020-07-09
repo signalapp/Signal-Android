@@ -10,7 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+
+import java.util.Objects;
 
 public abstract class MediaPreviewFragment extends Fragment {
 
@@ -19,7 +25,8 @@ public abstract class MediaPreviewFragment extends Fragment {
   static final String DATA_CONTENT_TYPE = "DATA_CONTENT_TYPE";
   static final String AUTO_PLAY         = "AUTO_PLAY";
 
-  protected Events events;
+  private   AttachmentId attachmentId;
+  protected Events       events;
 
   public static MediaPreviewFragment newInstance(@NonNull Attachment attachment, boolean autoPlay) {
     return newInstance(attachment.getDataUri(), attachment.getContentType(), attachment.getSize(), autoPlay);
@@ -60,6 +67,12 @@ public abstract class MediaPreviewFragment extends Fragment {
     events = (Events) context;
   }
 
+  @Override
+  public void onResume() {
+    super.onResume();
+    checkMediaStillAvailable();
+  }
+
   public void cleanUp() {
   }
 
@@ -70,8 +83,18 @@ public abstract class MediaPreviewFragment extends Fragment {
     return null;
   }
 
-  public interface Events {
+  public void checkMediaStillAvailable() {
+    if (attachmentId == null) {
+      attachmentId = new PartUriParser(Objects.requireNonNull(requireArguments().getParcelable(DATA_URI))).getPartId();
+    }
 
+    SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
+                   () -> DatabaseFactory.getAttachmentDatabase(requireContext()).hasAttachment(attachmentId),
+                   hasAttachment -> { if (!hasAttachment) events.mediaNotAvailable(); });
+  }
+
+  public interface Events {
     boolean singleTapOnMedia();
+    void mediaNotAvailable();
   }
 }

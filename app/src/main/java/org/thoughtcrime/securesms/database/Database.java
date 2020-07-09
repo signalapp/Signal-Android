@@ -67,6 +67,10 @@ public abstract class Database {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getUriForThread(threadId));
   }
 
+  protected void setNotifyConversationListeners(Cursor cursor) {
+    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getUriForAllThreads());
+  }
+
   protected void setNotifyVerboseConversationListeners(Cursor cursor, long threadId) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId));
   }

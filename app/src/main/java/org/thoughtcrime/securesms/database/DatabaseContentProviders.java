@@ -27,6 +27,10 @@ public class DatabaseContentProviders {
     public static Uri getVerboseUriForThread(long threadId) {
       return Uri.parse(CONTENT_URI_STRING + "verbose/" + threadId);
     }
+
+    public static Uri getUriForAllThreads() {
+      return Uri.parse(CONTENT_URI_STRING);
+    }
   }
 
   public static class Attachment extends NoopContentProvider {

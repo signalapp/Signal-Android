@@ -20,10 +20,12 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -73,6 +75,7 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Activity for displaying media attachments in-app
@@ -117,17 +120,20 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   private boolean               showThread;
   private MediaDatabase.Sorting sorting;
 
+  private @Nullable Cursor cursor = null;
+
   public static @NonNull Intent intentFromMediaRecord(@NonNull Context context,
                                                       @NonNull MediaRecord mediaRecord,
                                                       boolean leftIsRecent)
   {
+    DatabaseAttachment attachment = Objects.requireNonNull(mediaRecord.getAttachment());
     Intent intent = new Intent(context, MediaPreviewActivity.class);
     intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, mediaRecord.getThreadId());
     intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
-    intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
-    intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, mediaRecord.getAttachment().getCaption());
+    intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, attachment.getSize());
+    intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, attachment.getCaption());
     intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, leftIsRecent);
-    intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
+    intent.setDataAndType(attachment.getDataUri(), mediaRecord.getContentType());
     return intent;
   }
 
@@ -226,6 +232,15 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   public void onPause() {
     super.onPause();
     restartItem = cleanupMedia();
+  }
+
+  @Override
+  protected void onDestroy() {
+    if (cursor != null) {
+      cursor.close();
+      cursor = null;
+    }
+    super.onDestroy();
   }
 
   @Override
@@ -344,6 +359,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
     mediaPager.removeAllViews();
     mediaPager.setAdapter(null);
+    viewModel.setCursor(this, null, leftIsRecent);
 
     return restartItem;
   }
@@ -475,19 +491,46 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   @Override
   public void onLoadFinished(@NonNull Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
     if (data != null) {
-      @SuppressWarnings("ConstantConditions")
-      CursorPagerAdapter adapter = new CursorPagerAdapter(getSupportFragmentManager(),this, data.first, data.second, leftIsRecent);
+      if (data.first == cursor) {
+        return;
+      }
+
+      if (cursor != null) {
+        cursor.close();
+      }
+      cursor = Objects.requireNonNull(data.first);
+
+      int mediaPosition = Objects.requireNonNull(data.second);
+
+      CursorPagerAdapter adapter = new CursorPagerAdapter(getSupportFragmentManager(),this, cursor, mediaPosition, leftIsRecent);
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
-      viewModel.setCursor(this, data.first, leftIsRecent);
+      viewModel.setCursor(this, cursor, leftIsRecent);
 
-      int item = restartItem >= 0 ? restartItem : data.second;
+      int item = restartItem >= 0 ? restartItem : mediaPosition;
       mediaPager.setCurrentItem(item);
 
       if (item == 0) {
         viewPagerListener.onPageSelected(0);
       }
+
+      cursor.registerContentObserver(new ContentObserver(new Handler(getMainLooper())) {
+        @Override
+        public void onChange(boolean selfChange) {
+          onMediaChange();
+        }
+      });
+    } else {
+      mediaNotAvailable();
+    }
+  }
+
+  private void onMediaChange() {
+    MediaItemAdapter adapter = (MediaItemAdapter) mediaPager.getAdapter();
+
+    if (adapter != null) {
+      adapter.checkMedia(mediaPager.getCurrentItem());
     }
   }
 
@@ -500,6 +543,12 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   public boolean singleTapOnMedia() {
     toggleUiVisibility();
     return true;
+  }
+
+  @Override
+  public void mediaNotAvailable() {
+    Toast.makeText(this, R.string.MediaPreviewActivity_media_no_longer_available, Toast.LENGTH_LONG).show();
+    finish();
   }
 
   private void toggleUiVisibility() {
@@ -621,6 +670,11 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     public boolean hasFragmentFor(int position) {
       return mediaPreviewFragment != null;
     }
+
+    @Override
+    public void checkMedia(int currentItem) {
+
+    }
   }
 
   private static void anchorMarginsToBottomInsets(@NonNull View viewToAnchor) {
@@ -712,7 +766,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       cursor.moveToPosition(cursorPosition);
 
       MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(context, cursor);
-      DatabaseAttachment        attachment  = mediaRecord.getAttachment();
+      DatabaseAttachment        attachment  = Objects.requireNonNull(mediaRecord.getAttachment());
       MediaPreviewFragment      fragment    = MediaPreviewFragment.newInstance(attachment, autoPlay);
 
       mediaFragments.put(position, fragment);
@@ -734,16 +788,15 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     public MediaItem getMediaItemFor(int position) {
       cursor.moveToPosition(getCursorPosition(position));
 
-      MediaRecord mediaRecord       = MediaRecord.from(context, cursor);
-      RecipientId recipientId       = mediaRecord.getRecipientId();
-      RecipientId threadRecipientId = mediaRecord.getThreadRecipientId();
-
-      if (mediaRecord.getAttachment().getDataUri() == null) throw new AssertionError();
+      MediaRecord        mediaRecord       = MediaRecord.from(context, cursor);
+      DatabaseAttachment attachment        = Objects.requireNonNull(mediaRecord.getAttachment());
+      RecipientId        recipientId       = mediaRecord.getRecipientId();
+      RecipientId        threadRecipientId = mediaRecord.getThreadRecipientId();
 
       return new MediaItem(Recipient.live(recipientId).get(),
                            Recipient.live(threadRecipientId).get(),
-                           mediaRecord.getAttachment(),
-                           mediaRecord.getAttachment().getDataUri(),
+                           attachment,
+                           Objects.requireNonNull(attachment.getDataUri()),
                            mediaRecord.getContentType(),
                            mediaRecord.getDate(),
                            mediaRecord.isOutgoing());
@@ -765,6 +818,14 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     @Override
     public boolean hasFragmentFor(int position) {
       return mediaFragments.containsKey(position);
+    }
+
+    @Override
+    public void checkMedia(int position) {
+      MediaPreviewFragment fragment = mediaFragments.get(position);
+      if (fragment != null) {
+        fragment.checkMediaStillAvailable();
+      }
     }
 
     private int getCursorPosition(int position) {
@@ -805,5 +866,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     void pause(int position);
     @Nullable View getPlaybackControls(int position);
     boolean hasFragmentFor(int position);
+    void checkMedia(int currentItem);
   }
 }
