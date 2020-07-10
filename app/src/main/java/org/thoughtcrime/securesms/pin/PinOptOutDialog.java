@@ -21,9 +21,6 @@ public final class PinOptOutDialog {
 
   public static void showForSkip(@NonNull Context context, @NonNull Runnable onSuccess, @NonNull Runnable onFailed) {
     show(context,
-         R.string.PinOptOutDialog_warning,
-         R.string.PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin,
-         R.string.PinOptOutDialog_skip_pin_creation,
          true,
          onSuccess,
          onFailed);
@@ -31,27 +28,21 @@ public final class PinOptOutDialog {
 
   public static void showForOptOut(@NonNull Context context, @NonNull Runnable onSuccess, @NonNull Runnable onFailed) {
     show(context,
-         R.string.PinOptOutDialog_warning,
-         R.string.PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin,
-         R.string.PinOptOutDialog_disable_pin,
          false,
          onSuccess,
          onFailed);
   }
 
   private static void show(@NonNull Context context,
-                           @StringRes int titleRes,
-                           @StringRes int bodyRes,
-                           @StringRes int buttonRes,
                            boolean skip,
                            @NonNull Runnable onSuccess,
                            @NonNull Runnable onFailed)
   {
     AlertDialog dialog = new AlertDialog.Builder(context)
-                                        .setTitle(titleRes)
-                                        .setMessage(bodyRes)
+                                        .setTitle(R.string.PinOptOutDialog_warning)
+                                        .setMessage(R.string.PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin)
                                         .setCancelable(true)
-                                        .setPositiveButton(buttonRes, (d, which) -> {
+                                        .setPositiveButton(R.string.PinOptOutDialog_disable_pin, (d, which) -> {
                                           d.dismiss();
                                           AlertDialog progress = SimpleProgressDialog.show(context);
 

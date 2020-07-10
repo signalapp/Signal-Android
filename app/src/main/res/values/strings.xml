@@ -959,9 +959,6 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Warning</string>
-    <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Skipping PIN creation will create a hidden, high-entropy PIN associated with your account that is unrecoverable. When you re-register Signal you will lose all data unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
-    <string name="PinOptOutDialog_skip_pin_creation">Skip PIN creation</string>
-    <string name="PinOptOutDialog_disable_pin_title">Disable PIN?</string>
     <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Disabling PIN will create a hidden, high-entropy PIN associated with your account that is unrecoverable. When you re-register Signal you will lose all data unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">Disable PIN</string>
 
@@ -2194,7 +2191,7 @@
     <string name="KbsSplashFragment__update_pin">Update PIN</string>
     <string name="KbsSplashFragment__create_your_pin">Create your PIN</string>
     <string name="KbsSplashFragment__learn_more_about_pins">Learn more about PINs</string>
-    <string name="KbsSplashFragment__skip_pin_creation">Skip PIN creation</string>
+    <string name="KbsSplashFragment__disable_pin">Disable PIN</string>
 
     <!-- KBS Reminder Dialog -->
     <string name="KbsReminderDialog__enter_your_signal_pin">Enter your Signal PIN</string>

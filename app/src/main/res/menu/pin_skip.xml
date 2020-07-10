@@ -10,6 +10,6 @@
 
   <item
       android:id="@+id/menu_pin_skip"
-      android:title="@string/KbsSplashFragment__skip_pin_creation"
+      android:title="@string/KbsSplashFragment__disable_pin"
       app:showAsAction="never"/>
 </menu>
