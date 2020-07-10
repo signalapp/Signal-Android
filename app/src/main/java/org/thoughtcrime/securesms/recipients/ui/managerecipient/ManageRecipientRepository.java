@@ -105,4 +105,8 @@ final class ManageRecipientRepository {
                  .sortBy(gr -> gr.getDisplayName(context))
                  .toList();
   }
+
+  void getActiveGroupCount(@NonNull Consumer<Integer> onComplete) {
+    SignalExecutors.BOUNDED.execute(() -> onComplete.accept(DatabaseFactory.getGroupDatabase(context).getActiveGroupCount()));
+  }
 }

@@ -251,6 +251,20 @@ public final class GroupDatabase extends Database {
     return new Reader(cursor);
   }
 
+  public int getActiveGroupCount() {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String[]       cols  = { "COUNT(*)" };
+    String         query = ACTIVE + " = 1";
+
+    try (Cursor cursor = db.query(TABLE_NAME, cols, query, null, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
+  }
+
   @WorkerThread
   public @NonNull List<Recipient> getGroupMembers(@NonNull GroupId groupId, @NonNull MemberSet memberSet) {
     if (groupId.isV2()) {

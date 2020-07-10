@@ -40,6 +40,7 @@ final class RecipientDialogViewModel extends ViewModel {
   private final LiveData<Recipient>                              recipient;
   private final MutableLiveData<IdentityDatabase.IdentityRecord> identity;
   private final LiveData<AdminActionStatus>                      adminActionStatus;
+  private final LiveData<Boolean>                                canAddToAGroup;
   private final MutableLiveData<Boolean>                         adminActionBusy;
 
   private RecipientDialogViewModel(@NonNull Context context,
@@ -73,10 +74,21 @@ final class RecipientDialogViewModel extends ViewModel {
     if (!isSelf) {
       recipientDialogRepository.getIdentity(identity::postValue);
     }
+
+    MutableLiveData<Integer> localGroupCount = new MutableLiveData<>(0);
+
+    canAddToAGroup = LiveDataUtil.combineLatest(recipient, localGroupCount,
+                                                (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isLocalNumber());
+
+    recipientDialogRepository.getActiveGroupCount(localGroupCount::postValue);
   }
 
   LiveData<Recipient> getRecipient() {
     return recipient;
+  }
+
+  public LiveData<Boolean> getCanAddToAGroup() {
+    return canAddToAGroup;
   }
 
   LiveData<AdminActionStatus> getAdminActionStatus() {

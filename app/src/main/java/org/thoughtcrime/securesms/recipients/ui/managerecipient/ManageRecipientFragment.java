@@ -202,6 +202,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     viewModel.getRecipient().observe(getViewLifecycleOwner(), this::presentRecipient);
     viewModel.getMediaCursor().observe(getViewLifecycleOwner(), this::presentMediaCursor);
     viewModel.getMuteState().observe(getViewLifecycleOwner(), this::presentMuteState);
+    viewModel.getCanAddToAGroup().observe(getViewLifecycleOwner(), canAdd -> addToAGroup.setVisibility(canAdd ? View.VISIBLE : View.GONE));
 
     disappearingMessagesRow.setOnClickListener(v -> viewModel.handleExpirationSelection(requireContext()));
     block.setOnClickListener(v -> viewModel.onBlockClicked(requireActivity()));

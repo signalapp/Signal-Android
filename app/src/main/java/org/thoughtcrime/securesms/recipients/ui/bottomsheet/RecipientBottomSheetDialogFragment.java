@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -179,9 +178,11 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
           startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
         });
       }
+    });
 
+    viewModel.getCanAddToAGroup().observe(getViewLifecycleOwner(), canAdd -> {
       addToGroupButton.setText(groupId == null ? R.string.RecipientBottomSheet_add_to_a_group : R.string.RecipientBottomSheet_add_to_another_group);
-      addToGroupButton.setVisibility(recipient.isRegistered() && !recipient.isGroup() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
+      addToGroupButton.setVisibility(canAdd ? View.VISIBLE : View.GONE);
     });
 
     viewModel.getAdminActionStatus().observe(getViewLifecycleOwner(), adminStatus -> {

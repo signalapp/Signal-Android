@@ -135,6 +135,10 @@ final class RecipientDialogRepository {
                    onComplete::accept);
   }
 
+  public void getActiveGroupCount(@NonNull Consumer<Integer> onComplete) {
+    SignalExecutors.BOUNDED.execute(() -> onComplete.accept(DatabaseFactory.getGroupDatabase(context).getActiveGroupCount()));
+  }
+
   interface RecipientCallback {
     void onRecipient(@NonNull Recipient recipient);
   }

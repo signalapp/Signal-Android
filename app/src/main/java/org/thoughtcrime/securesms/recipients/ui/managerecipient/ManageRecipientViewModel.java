@@ -58,6 +58,7 @@ public final class ManageRecipientViewModel extends ViewModel {
   private final LiveData<Boolean>                                canBlock;
   private final LiveData<List<GroupMemberEntry.FullMember>>      visibleSharedGroups;
   private final LiveData<String>                                 sharedGroupsCountSummary;
+  private final LiveData<Boolean>                                canAddToAGroup;
 
   private ManageRecipientViewModel(@NonNull Context context, @NonNull ManageRecipientRepository manageRecipientRepository) {
     this.context                   = context;
@@ -95,6 +96,13 @@ public final class ManageRecipientViewModel extends ViewModel {
     if (!isSelf) {
       manageRecipientRepository.getIdentity(identity::postValue);
     }
+
+    MutableLiveData<Integer> localGroupCount = new MutableLiveData<>(0);
+
+    canAddToAGroup = LiveDataUtil.combineLatest(recipient, localGroupCount,
+                                                (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isLocalNumber());
+
+    manageRecipientRepository.getActiveGroupCount(localGroupCount::postValue);
   }
 
   private static @NonNull String getDisplayTitle(@NonNull Recipient recipient, @NonNull Context context) {
@@ -130,6 +138,10 @@ public final class ManageRecipientViewModel extends ViewModel {
 
   LiveData<Recipient> getRecipient() {
     return recipient;
+  }
+
+  LiveData<Boolean> getCanAddToAGroup() {
+    return canAddToAGroup;
   }
 
   LiveData<MediaCursor> getMediaCursor() {
