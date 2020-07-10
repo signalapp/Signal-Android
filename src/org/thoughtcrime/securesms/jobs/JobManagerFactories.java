@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob;
+import org.thoughtcrime.securesms.loki.protocol.PushNullMessageSendJob;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,6 +51,7 @@ public final class JobManagerFactories {
       put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
       put(PushNotificationReceiveJob.KEY,            new PushNotificationReceiveJob.Factory());
       put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
+      put(PushNullMessageSendJob.KEY,                new PushNullMessageSendJob.Factory());
       put(RefreshAttributesJob.KEY,                  new RefreshAttributesJob.Factory());
       put(RefreshPreKeysJob.KEY,                     new RefreshPreKeysJob.Factory());
       put(RefreshUnidentifiedDeliveryAbilityJob.KEY, new RefreshUnidentifiedDeliveryAbilityJob.Factory());

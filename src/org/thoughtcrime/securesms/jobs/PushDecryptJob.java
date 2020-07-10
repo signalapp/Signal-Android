@@ -371,7 +371,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         // Loki - This is needed for compatibility with refactored desktop clients
         // ========
-        if (envelope.isFriendRequest()) {
+        if (content.isFriendRequest()) {
           ApplicationContext.getInstance(context).getJobManager().add(new PushNullMessageSendJob(content.getSender()));
         } else {
           Log.w(TAG, "Got unrecognized message...");
