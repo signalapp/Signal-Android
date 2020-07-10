@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.notifications;
 
 import android.content.Context;
+import android.os.Looper;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import org.thoughtcrime.securesms.util.Debouncer;
 import org.whispersystems.signalservice.loki.api.Poller;
 
 import java.util.concurrent.TimeUnit;
+
+import network.loki.messenger.BuildConfig;
 
 public class OptimizedMessageNotifier implements MessageNotifier {
   private final MessageNotifier         wrapped;
@@ -39,9 +42,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context) {
+    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
+      throw new AssertionError();
+    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
@@ -55,9 +61,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId) {
+    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
+      throw new AssertionError();
+    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
@@ -71,9 +80,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId, boolean signal) {
+    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
+      throw new AssertionError();
+    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
@@ -87,9 +99,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount) {
+    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
+      throw new AssertionError();
+    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
