@@ -179,6 +179,7 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -292,6 +293,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   public static final String TEXT_EXTRA                        = "draft_text";
   public static final String MEDIA_EXTRA                       = "media_list";
   public static final String STICKER_EXTRA                     = "sticker_extra";
+  public static final String BORDERLESS_EXTRA                  = "borderless_extra";
   public static final String DISTRIBUTION_TYPE_EXTRA           = "distribution_type";
   public static final String STARTING_POSITION_EXTRA           = "starting_position";
 
@@ -1369,15 +1371,24 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private ListenableFuture<Boolean> initializeDraft() {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
-    final String         draftText      = getIntent().getStringExtra(TEXT_EXTRA);
-    final Uri            draftMedia     = getIntent().getData();
-    final MediaType      draftMediaType = MediaType.from(getIntent().getType());
-    final List<Media>    mediaList      = getIntent().getParcelableArrayListExtra(MEDIA_EXTRA);
-    final StickerLocator stickerLocator = getIntent().getParcelableExtra(STICKER_EXTRA);
+    final String         draftText        = getIntent().getStringExtra(TEXT_EXTRA);
+    final Uri            draftMedia       = getIntent().getData();
+    final String         draftContentType = getIntent().getType();
+    final MediaType      draftMediaType   = MediaType.from(draftContentType);
+    final List<Media>    mediaList        = getIntent().getParcelableArrayListExtra(MEDIA_EXTRA);
+    final StickerLocator stickerLocator   = getIntent().getParcelableExtra(STICKER_EXTRA);
+    final boolean        borderless       = getIntent().getBooleanExtra(BORDERLESS_EXTRA, false);
 
     if (stickerLocator != null && draftMedia != null) {
       Log.d(TAG, "Handling shared sticker.");
       sendSticker(stickerLocator, draftMedia, 0, true);
+      return new SettableFuture<>(false);
+    }
+
+    if (draftMedia != null && draftContentType != null && borderless) {
+      SimpleTask.run(getLifecycle(),
+                     () -> getKeyboardImageDetails(draftMedia),
+                     details -> sendKeyboardImage(draftMedia, draftContentType, details));
       return new SettableFuture<>(false);
     }
 
@@ -3079,7 +3090,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private @Nullable KeyboardImageDetails getKeyboardImageDetails(@NonNull Uri uri) {
     try {
       Bitmap bitmap = glideRequests.asBitmap()
-                                   .load(uri)
+                                   .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
                                    .skipMemoryCache(true)
                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                                    .submit()

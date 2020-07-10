@@ -292,14 +292,16 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   private void openConversation(long threadId, @NonNull RecipientId recipientId, @Nullable ShareData shareData) {
-    Intent           intent       = new Intent(this, ConversationActivity.class);
-    String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
-    StickerLocator   stickerExtra = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
+    Intent           intent          = new Intent(this, ConversationActivity.class);
+    String           textExtra       = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    ArrayList<Media> mediaExtra      = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
+    StickerLocator   stickerExtra    = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
+    boolean          borderlessExtra = getIntent().getBooleanExtra(ConversationActivity.BORDERLESS_EXTRA, false);
 
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
     intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
     intent.putExtra(ConversationActivity.STICKER_EXTRA, stickerExtra);
+    intent.putExtra(ConversationActivity.BORDERLESS_EXTRA, borderlessExtra);
 
     if (shareData != null && shareData.isForIntent()) {
       Log.i(TAG, "Shared data is a single file.");

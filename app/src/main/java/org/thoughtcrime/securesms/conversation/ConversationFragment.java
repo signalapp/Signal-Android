@@ -780,6 +780,7 @@ public class ConversationFragment extends LoggingFragment {
           Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
           composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
           composeIntent.setType(slide.getContentType());
+          composeIntent.putExtra(ConversationActivity.BORDERLESS_EXTRA, slide.isBorderless());
 
           if (slide.hasSticker()) {
             composeIntent.putExtra(ConversationActivity.STICKER_EXTRA, slide.asAttachment().getSticker());
