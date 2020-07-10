@@ -818,6 +818,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="PinRestoreLockedFragment_create_your_pin">Lag din PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har brukt opp PIN-forsøka, men du kan få tilgang til Signal-kontoen din ved å laga ein ny PIN. For din tryggleik og sikkerheit vil kontoen din bli gjenoppretta utan lagra profilinformasjon eller innstillingar.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Lag ny PIN</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Viss du liker dette programmet, vil vi gjerne at du hjelper oss ved å gje vurderinga di.</string>
@@ -1814,7 +1815,6 @@ Du er à jour!</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Lag ny PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endra PIN-en så lenge denne eininga er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Lag din PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-en held informasjonen som signal Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vel ein sterkare PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-kodane er ulike. Prøv igjen.</string>
@@ -1826,7 +1826,6 @@ Du er à jour!</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Opprettar PIN …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Her kjem PIN-kodar</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-en held informasjonen som signal Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt.</string>
   <string name="KbsSplashFragment__learn_more">Lær meir</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registreringslåsen er no kalla PIN-kode, og gjer meir enn før. Oppdater no.</string>

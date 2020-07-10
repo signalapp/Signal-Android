@@ -749,6 +749,7 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Tạo mã PIN của bạn</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Bạn đã hết số lần thử mã PIN, nhưng bạn vẫn có thể truy cập tài khoản Signal bằng cách tạo PIN mới. Để đảm bảo bảo mật và tính riêng tư, tài khoản mới của bạn sẽ được khôi phục nhưng thông tin hồ sơ và cài đặt thì không.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Tạo PIN mới</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Đánh giá ứng dụng này</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Nếu bạn thích ứng dụng này, hãy dành chút thời gian đánh giá nó.</string>
@@ -1674,7 +1675,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bạn có thể thay đổi mã PIN của bạn với điều kiện thiết bị được đăng ký.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài đặt lại Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Chọn mã PIN mạnh hơn</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
@@ -1686,13 +1686,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConfirmKbsPinFragment__creating_pin">Đang tạo mã PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Giới thiệu mã PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài đặt lại Signal.</string>
   <string name="KbsSplashFragment__learn_more">Tìm hiểu thêm</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Khóa Đăng ký = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN hữu dụng hơn. Cập nhật mã PIN ngay.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Đọc thêm về mã PIN.</string>
   <string name="KbsSplashFragment__update_pin">Cập nhật mã PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Tạo mã PIN của bạn</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Tìm hiểu thêm về mã PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Nhập mã PIN Signal của bạn</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Để giúp bạn nhớ mã PIN của mình, chúng tôi sẽ yêu cầu bạn nhập lại mã định kỳ. Chúng tôi sẽ dần hỏi ít hơn.</string>

@@ -48,6 +48,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Zámek obrazovky %1$s, Zámek registrace %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zámek obrazovky %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, Jazyk %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je vyžadován pro zámek registrace. Nejprve prosím zakažte zámek registrace, aby bylo možné PIN deaktivovat.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nepodařilo se deaktivovat PIN. Zkuste to později znovu.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN vytvořen.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktivován.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -180,6 +184,7 @@
   <string name="ConversationItem_download_more">Stáhnout další</string>
   <string name="ConversationItem_pending">Probíhá</string>
   <string name="ConversationItem_this_message_was_deleted">Tato zpráva byla smazána.</string>
+  <string name="ConversationItem_you_deleted_this_message">Smazali jste tuto zprávu.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetovat zabezpečenou konverzaci?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Může to pomoct, pokud máte problém s šifrováním této konverzace. Vaše zprávy zůstanou zachovány.</string>
@@ -293,6 +298,7 @@
   <string name="ConversationFragment_deleting_messages">Mažu zprávy…</string>
   <string name="ConversationFragment_delete_for_me">Smazat pro mne</string>
   <string name="ConversationFragment_delete_for_everyone">Smazat pro všechny</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tato zpráva bude trvale smazána pro všechny členy konverzace. Členové konverzace budou moci vidět, ze jste zprávu smazali.</string>
   <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
   <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>
@@ -544,8 +550,8 @@
     <item quantity="other">Chcete zrušit %2$d pozvánek, které poslal %1$s?</item>
   </plurals>
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Obrázek skupiny</string>
-  <string name="CropImageActivity_profile_avatar">Obrázek</string>
+  <string name="CropImageActivity_group_avatar">Skupinový avatar</string>
+  <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rozostřit tváře</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nové: Rozostřit tváře nebo kreslením cokoli</string>
@@ -688,6 +694,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou verzí Signal, která již není podporována. Prosím požádejte odesílatele, aby si zaktualizoval aplikaci na nejnovější verzi a poté poslal zprávu znovu.</string>
   <string name="MessageRecord_left_group">Opustili jste skupinu</string>
   <string name="MessageRecord_you_updated_group">Upravili jste skupinu.</string>
+  <string name="MessageRecord_the_group_was_updated">Skupina byla aktualizována.</string>
   <string name="MessageRecord_you_called">Vy jste volal</string>
   <string name="MessageRecord_called_you">Volal vám kontakt</string>
   <string name="MessageRecord_missed_call">Zmeškaný hovor</string>
@@ -700,6 +707,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$szakázal(a) zmizení zpráv.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili jste časovač pro zmizení zpráv na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil(a) časovač pro zmizení zpráv na %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač pro zmizení zprávy byl nastaven na %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Vytvořili jste skupinu.</string>
   <string name="MessageRecord_group_updated">Skupina aktualizována.</string>
@@ -715,6 +723,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s vás odstranil ze skupiny.</string>
   <string name="MessageRecord_you_left_the_group">Opustili jste skupinu.</string>
   <string name="MessageRecord_s_left_the_group">%1$s opustil skupinu.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Už nejste členem skupiny.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s už není členem skupiny.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Udělali jste %1$s správcem.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s udělal %2$s správcem.</string>
@@ -722,7 +732,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Odebrali jste správcovská oprávnění %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s odebral vaše správcovská oprávnění.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odebral správcovská oprávnění %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s je nyní správcem.</string>
   <string name="MessageRecord_you_are_now_an_admin">Stali jste se administrátorem</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s už není správcem.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Už nejste správcem.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Pozvali jste %1$s do skupiny.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vás pozval do skupiny.</string>
@@ -733,6 +746,12 @@
     <item quantity="other">%1$s pozval %2$d osob do skupiny.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Byii jste pozváni do skupiny.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 člověk byl pozván do skupiny.</item>
+    <item quantity="few">%1$d lidi byli pozváni do skupiny.</item>
+    <item quantity="many">%1$d lidí bylo pozváno do skupiny.</item>
+    <item quantity="other">%1$d lidí bylo pozváno do skupiny.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Odvolali jste pozvánku do skupiny.</item>
@@ -749,6 +768,12 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Někdo odmítl pozvánku do skupiny.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odmítli jste pozvánku do skupiny.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Vaše pozvánka do skupiny byla zrušena.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Pozvánka do skupiny byla odvolána.</item>
+    <item quantity="few">%1$d pozvánky do skupiny byly odvolány.</item>
+    <item quantity="many">%1$d pozvánek do skupiny bylo odvoláno.</item>
+    <item quantity="other">%1$d pozvánek do skupiny bylo odvoláno.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Přijali jste pozvánku do skupiny.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s přijal pozvánku do skupiny.</string>
@@ -757,15 +782,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Změnili jste název skupiny na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s změnil název skupiny na \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Skupina byla přejmenována na \"%1$s\".</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">Změnili jste avatar skupiny.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">%1$s změnil avatar skupiny.</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">Změnili jste skupinový avatar.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s změnil skupinový avatar.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Skupinový avatar byl změněn.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Změnili jste, kdo může upravovat informace o skupině, na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s změnil, kdo může upravovat informace o skupině, na \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Osoba oprávněná upravovat informace o skupině byla změněna na \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Změnili jste, kdo může upravovat členství ve skupině, na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s změnil, kdo může upravovat členství ve skupině, na \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Osoba oprávněná upravovat členství ve skupině byla změněna na \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili jste vaše bezpečnostní kódy pro komunikaci s %s jako ověřené.</string>
@@ -866,6 +895,13 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Vytvořit váš PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Došly vám pokusy pro uhodnutí PIN, ale stále můžete ke svému účtu Signal přistupovat, pokud si vytvoříte nový PIN. Z důvodu ochrany vašeho soukromí a bezpečnosti bude váš účet obnoven bez uložených profilových informací a nastavení.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Vytvořit nový PIN?</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Varování</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Pokud přeskočíte vytvoření PIN, bude vytvořen skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Přeskočit vytvoření PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Deaktivovat PIN?</string> -->
+  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string>
+  <string name="PinOptOutDialog_disable_pin">Deaktivovat PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotit tuto aplikaci</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Pokud jste s aplikací spokojeni, prosím věnujte chvilku jejímu ohodnocení. Pomůže nám to.</string>
@@ -985,6 +1021,7 @@ telefonní číslo
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Připomeneme se vám zase za několik dní.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Připomeneme se vám zase za týden.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Připomeneme se vám zase za pár týdnů.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Připomeneme se vám znovu za měsíc.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázek</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -1053,6 +1090,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ThreadRecord_view_once_video">Video pro jednorázové zobrazení</string>
   <string name="ThreadRecord_view_once_media">Média pro jednorázové zobrazení</string>
   <string name="ThreadRecord_this_message_was_deleted">Tato zpráva byla smazána.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Smazali jste tuto zprávu.</string>
   <string name="ThreadRecord_s_is_on_signal">%s má Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zmizení zpráv je zakázáno</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
@@ -1141,6 +1179,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Smazat zprávu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s pro %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Média již nejsou k dispozici.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nových zpráv v %2$d konverzacích</string>
   <string name="MessageNotifier_most_recent_from_s">Poslední od: %1$s</string>
@@ -1286,6 +1325,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" není uživatel Signalu. Prosím zkontrolujte uživatelské jméno a zkuste to znovu.</string>
   <string name="ContactSelectionListFragment_okay">V pořádku</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Skupina je plná</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nemusíte se přidávat do skupiny</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Žádné blokované kontakty</string>
   <!--contact_selection_list_fragment-->
@@ -1672,10 +1712,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Vzhled</string>
   <string name="preferences__theme">Motiv</string>
+  <string name="preferences__disable_pin">Deaktivovat PIN</string>
+  <string name="preferences__enable_pin">Povolit PIN</string>
+  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="preferences__system_default">Podle systému</string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__signal_messages_and_calls">Signal zprávy a volání</string>
+  <string name="preferences__advanced_pin_settings">Pokročilá nastavení PIN</string>
   <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \"WiFi volání\"</string>
@@ -1886,7 +1931,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CreateKbsPinFragment__create_a_new_pin">Vytvořit nový PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Můžete měnit váš PIN, dokud je toto zařízení registrováno.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvořit váš PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy se k nim můžete dostat. Váš profil, nastavení a kontakty budou při reinstalaci Signalu obnoveny.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zvolte silnější PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se neshodují. Zkuste to znovu.</string>
@@ -1898,13 +1943,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConfirmKbsPinFragment__creating_pin">Vytvářím PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Představujeme PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy se k nim můžete dostat. Váš profil, nastavení a kontakty budou při reinstalaci Signalu obnoveny.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="KbsSplashFragment__learn_more">Dozvědět se více</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Zámek registrace = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Váš zámek registrace se nyní nazývá PIN a umí toho víc. Aktualizujte jej nyní.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Zjistit více o PIN.</string>
   <string name="KbsSplashFragment__update_pin">Aktualizovat PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Vytvořit váš PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Zjistěte víc o PINech</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Přeskočit vytvoření PIN</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Zadejte váš PIN k Signalu</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Abychom vám pomohli zapamatovat si PIN, budeme vás opakovaně žádat o jeho zadání. Postupem času vás budeme žádat méně.</string>

@@ -797,6 +797,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Opprett PIN-koden</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har gått tom for PIN-gjetninger, men du kan fremdeles få tilgang til Signal-kontoen din ved å opprette en ny PIN-kode. For ditt personvern og sikkerhet vil kontoen din bli gjenopprettet uten lagret profilinformasjon eller innstillinger.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Opprett ny PIN-kode</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Advarsel</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du liker dette programmet, vil vi gjerne at du hjelper oss ved å gi din vurdering.</string>
@@ -1785,7 +1787,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endre PIN-koden din så lenge denne enheten er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Velg en sterkere PIN-kode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder stemmer ikke overens. Prøv igjen.</string>
@@ -1797,13 +1798,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
   <string name="KbsSplashFragment__learn_more">Lær mer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringskode kalles nå PIN, og den gjør mer. Oppdater den nå.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Les mer om PIN-koder.</string>
   <string name="KbsSplashFragment__update_pin">Oppdater PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Opprett PIN-koden</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Lær mer om PIN-koder</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Skriv inn din Signal PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For å hjelpe deg med å huske PIN-koden din, ber vi deg om å oppgi den med jevne mellomrom. Vi ber deg mindre etter hvert.</string>

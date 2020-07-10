@@ -758,6 +758,7 @@
   <string name="PinRestoreLockedFragment_create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">អ្នកបានប្រើការទាយលេខ PIN អស់ហើយ តែអ្នកនៅតែអាចចូលប្រើប្រាស់គណនី Signal ដោយបង្កើតលេខកូដ PIN ថ្មី។ សម្រាប់ឯកជនភាព និងសុវត្ថិភាពគណនីរបស់អ្នក នឹងត្រូវស្តារឡើងវិញ ដោយមិនមានការរក្សាទុកព័ត៌មានប្រវត្តិរូប និងការកំណត់ឡើយ។</string>
   <string name="PinRestoreLockedFragment_create_new_pin">បង្កើតលេខ PIN ថ្មី</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ដាក់ពិន្ទុកម្មវិធីនេះ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">បើអ្នកចូលចិត្តប្រើប្រាស់កម្មវិធីនេះ សូមចំណាយពេលបន្តិច ដើម្បីជួយដាក់ពិន្ទុផង។</string>
@@ -1726,7 +1727,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">បង្កើតលេខ PIN ថ្មី</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">អ្នកអាចប្តូរលេខ PIN របស់អ្នក លុះត្រាឧបករណ៍នេះត្រូវបានចុះឈ្មោះ។</string>
   <string name="CreateKbsPinFragment__create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">លេខ PIN រក្សាទុកព័ត៌មានដែលផ្ទុកជាមួយ Signalដែលបានអ៊ិនគ្រីប​ដូច្នេះមានតែអ្នកប៉ុណ្ណោះដែលអាចចូលប្រើវាបាន។ ប្រវត្តិរូប ការកំណត់ និងទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលដែលអ្នកតំឡើង Signal ឡើងវិញ។</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">ជ្រើសរើសលេខ PIN ខ្លាំងជាងនេះ</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINs មិនត្រូវគ្នា។ សាកល្បងម្តងទៀត។</string>
@@ -1738,13 +1738,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">កំពុងបង្កើត PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">ការណែនាំ លេខPINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">លេខ PIN រក្សាទុកព័ត៌មានដែលផ្ទុកជាមួយ Signalដែលបានអ៊ិនគ្រីប​ដូច្នេះមានតែអ្នកប៉ុណ្ណោះដែលអាចចូលប្រើវាបាន។ ប្រវត្តិរូប ការកំណត់ និងទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលដែលអ្នកតំឡើង Signal ឡើងវិញ។</string>
   <string name="KbsSplashFragment__learn_more">ស្វែងយល់បន្ថែម</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">ចាក់សោរការចុះឈ្មោះ = លេខ PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ការចាក់សោរការចុះឈ្មោះរបស់អ្នក ឥឡូវត្រូវបានហៅថា លេខកូដ PIN និងវាមានមុខងារច្រើន។ ធ្វើបច្ចុប្បន្នភាពវាឥឡូវនេះ។</string>
   <string name="KbsSplashFragment__read_more_about_pins">អានបន្ថែមអំពីលេខកូដ PINs។</string>
   <string name="KbsSplashFragment__update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
   <string name="KbsSplashFragment__create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">ស្វែងយល់បន្ថែមពី លេខ PINs</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">បញ្ចូលលេខ Signal PIN របស់អ្នក</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">ដើម្បីជួយអ្នកចងចាំលេខកូដ PIN របស់អ្នក យើងនឹងសាកសួរអ្នកអោយបញ្ចូលវាម្តងម្កាល។ យើងនឹងសួរតិចជាងមុន។ </string>

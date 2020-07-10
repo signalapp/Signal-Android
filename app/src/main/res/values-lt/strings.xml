@@ -878,6 +878,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Susikurti PIN kodą</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Jums nebeliko PIN kodo spėjimų, bet vis dar galite gauti prieigą prie savo Signal paskyros, susikurdami naują PIN kodą. Siekiant apsaugoti jūsų privatumą, saugumo sumetimais jūsų paskyra bus atkurta be įrašytos profilio informacijos ir įrašytų nustatymų.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Sukurti naują PIN kodą</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Įspėjimas</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeigu jūs mėgaujatės naudodamiesi šia programėle, skirkite minutėlę mums padėti ir įvertinkite ją.</string>
@@ -1900,7 +1902,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Sukurti naują PIN kodą</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Kol šis įrenginys yra registruotas, galite keisti savo PIN kodą.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Susikurti PIN kodą</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pasirinkite stipresnį PIN kodą</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kodai nesutampa. Bandykite dar kartą.</string>
@@ -1912,13 +1913,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Kuriamas PIN kodas…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Pristatome PIN kodus</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti.</string>
   <string name="KbsSplashFragment__learn_more">Sužinoti daugiau</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registracijos užraktas = PIN kodas</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Dabar, registracijos užraktas yra vadinamas PIN kodu ir jis atlieka daugiau. Atnaujinkite jį dabar.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Skaitykite daugiau apie PIN kodus.</string>
   <string name="KbsSplashFragment__update_pin">Atnaujinti PIN kodą</string>
   <string name="KbsSplashFragment__create_your_pin">Susikurti PIN kodą</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Sužinokite daugiau apie PIN kodus</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Įveskite savo Signal PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Tam, kad įsimintumėte savo PIN kodą, mes periodiškai prašysime jį įvesti. Bėgant laikui, mes tai darysime rečiau.</string>

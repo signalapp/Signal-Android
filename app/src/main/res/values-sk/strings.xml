@@ -796,6 +796,10 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Vytvorte si PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vyčerpali ste všetky pokusy na zadanie PIN, ale stále sa môžete k svojmu Signal účtu dosať vytvorením nového PIN. Kvôli ochrane vašeho súkromia a vašej bezpečnosti bude váš účet obnovený bez uložených profilových informácií alebo nastavení.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Vytvoriť nový PIN</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Varovanie</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">PIN creation will create a hidden, high-entropy PIN associated with your account that is unrecoverable. When you re-register Signal you will lose all data unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string> -->
+  <string name="PinOptOutDialog_disable_pin">Vypnúť PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotiť túto aplikáciu</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ak sa vám táto aplikácia páči, nájdite si chvíľu a pomôžte nám tým, že ju ohodnotíte.</string>
@@ -1561,6 +1565,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Motív</string>
+  <string name="preferences__disable_pin">Vypnúť PIN</string>
+  <string name="preferences__enable_pin">Zapnúť PIN</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii obnovia. Na otvorenie aplikácie PIN potrebovať nebudete.</string>
   <string name="preferences__system_default">Predvolené nastavenie</string>
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
@@ -1772,7 +1779,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="CreateKbsPinFragment__create_a_new_pin">Vytvoriť nový PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN si môžete zmeniť, pokiaľ je toto zariadenie registrované.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvorte si PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zvoľte si silnejší PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kódy sa nezhodujú. Skúste to znova.</string>
@@ -1784,13 +1790,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConfirmKbsPinFragment__creating_pin">Vytvára sa PIN kód…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavujeme PINy</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>
   <string name="KbsSplashFragment__learn_more">Dozvedieť sa viac</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registračný zámok = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Váš Registračný zámok sa teraz volá PIN kód a dokáže viac. Aktualizujte ho teraz.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Prečítajte si viac o PIN kódoch.</string>
   <string name="KbsSplashFragment__update_pin">Aktualizovať PIN kód</string>
   <string name="KbsSplashFragment__create_your_pin">Vytvorte si PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Dozvedieť sa viac o PINoch</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Zadajte váš PIN pre Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Aby sme vám pomohli zapamätať si váš PIN kód, budeme vás opakovanie žiadať o jeho zadanie. Postupom času vás o to budeme žiadať menej často.</string>

@@ -616,6 +616,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">ہندسیاں تے مشتمل پن درج کرو</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">آپناں پن بناوو</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ایس ایپ دی درجہ بندی کرو</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment"> جے تہانوں ایس ایپ دا استعمال چنگا لگدا اے، تے مہربانی کر کے اییس دی درجہ بندی کرکے ساڈی مدد کرن لئی تھوڑا جہا سمے دیو۔</string>
@@ -1512,7 +1513,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">اک نواں پن بناؤ</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">جدوں تائیں ایہہ آلہ رجسٹرڈ اے تساں اپنی پن تبدیل کر سکدے او۔</string>
   <string name="CreateKbsPinFragment__create_your_pin">آپناں پن بناوو</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">پن Signal دے نال ذخیرہ کیتی جانکاری نوں خفیہ کاری توں محفوظ رکھدا اے ایس لئی صرف تساں ایس تائیں رسائی حاصل کر سکدے او۔ جدوں تساں Signal نوں دوبارہ انسٹال کر دے او تے تساں دی پروفائل، ترتیباں تے رابطے بحال ہو جان گے۔</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">اک مضبوط پن منتخب کرو</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پناں میچ نئیں کر دیاں۔ فیر کوشش کرو</string>
@@ -1523,13 +1523,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">پن بنا رئیا اے۔۔۔</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">پناں متعارف کرا رئیا اے</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پن Signal دے نال ذخیرہ کیتی جانکاری نوں خفیہ کاری توں محفوظ رکھدا اے ایس لئی صرف تساں ایس تائیں رسائی حاصل کر سکدے او۔ جدوں تساں Signal نوں دوبارہ انسٹال کر دے او تے تساں دی پروفائل، ترتیباں تے رابطے بحال ہو جان گے۔</string>
   <string name="KbsSplashFragment__learn_more">ہور جانو</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">رجسٹریشن لاک = پن</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">تہاڈے رجسٹریشن لاک نوں ہن پن آکھیا جاندا اے، اور ایہہ ہور وی بوہت کجھ کردا اے۔ ایہنوں ہنڑی اپ ڈیٹ کرو۔</string>
   <string name="KbsSplashFragment__read_more_about_pins">پناں دے بارے اچ ہور پڑھو۔</string>
   <string name="KbsSplashFragment__update_pin">پن نوں اپ ڈیٹ کرو</string>
   <string name="KbsSplashFragment__create_your_pin">آپناں پن بناوو</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">پن دے بارے اچ ہور جانیں</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">آپناں Signal پن درج کرو</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">تہانوں پن چیتے رکھن اچ مدد لئی، اسیں تھوڑے تھوڑے چر بعد تہانوں پن درج کرن دا آکھدے رہواں گے۔ کجھ ویلا لنگھن توں بعد  اسیں تہانوں گھٹ وار ایہدے لئی آکھاں گے۔</string>

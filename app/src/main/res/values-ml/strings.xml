@@ -792,6 +792,7 @@
   <string name="PinRestoreLockedFragment_create_your_pin">നിങ്ങളുടെ പിൻ സൃഷ്ടിക്കുക</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">നിങ്ങളുടെ നിഗമനങ്ങൾ തീർന്നു, പക്ഷേ ഒരു പുതിയ പിന് സൃഷ്ടിച്ചുകൊണ്ട് നിങ്ങൾക്ക് ഇപ്പോഴും സിഗ്നൽ അക്കൗണ്ടില്ലെക് പ്രവേശിക്കാൻ കഴിയും. നിങ്ങളുടെ സ്വകാര്യതയ്ക്കും സുരക്ഷയ്ക്കുമായി സംരക്ഷിച്ച പ്രൊഫൈൽ വിവരങ്ങളോ ക്രമീകരണങ്ങളോ ഇല്ലാതെ നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കപ്പെടും.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">പുതിയ പിൻ സൃഷ്ടിക്കുക</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ഈ അപ്ലിക്കേഷൻ റേറ്റുചെയ്യുക</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ഈ അപ്ലിക്കേഷൻ ഉപയോഗിക്കുന്നത് നിങ്ങൾ ആസ്വദിക്കുകയാണെങ്കിൽ, ഇത് റേറ്റുചെയ്ത് ഞങ്ങളെ സഹായിക്കാൻ അൽപ്പസമയം ചെലവഴിക്കുക.</string>
@@ -1773,7 +1774,6 @@ grūpp ap‌ḍē</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">ഒരു പുതിയ പിൻ സൃഷ്ടിക്കുക</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ഈ ഡിവൈസ് രജിസ്റ്റർ ചെയ്തിരിക്കുന്ന കാലത്തോളം നിങ്ങൾക്ക് നിങ്ങളുടെ PIN മാറ്റാവുന്നതാണ്.</string>
   <string name="CreateKbsPinFragment__create_your_pin">നിങ്ങളുടെ പിൻ സൃഷ്ടിക്കുക</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Signal എൻക്രിപ്റ്റ് ചെയ്ത് സ്റ്റോർ ചെയ്ത വിവരങ്ങൾ PIN കൾ സൂക്ഷിക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് മാത്രമെ അത് പ്രാപ്യമാവുകയുള്ളു.  നിങ്ങൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈൽ, സെറ്റിംഗ്സ്, കോണ്ടാക്റ്റുകൾ എന്നിവ റീസ്റ്റോർ ചെയ്യപ്പെടും.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">കരുത്തുറ്റ ഒരു PIN തിരഞ്ഞെടുക്കുക</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-കൾ പൊരുത്തപ്പെടുന്നില്ല. വീണ്ടും ശ്രമിക്കുക.</string>
@@ -1785,13 +1785,13 @@ grūpp ap‌ḍē</string>
   <string name="ConfirmKbsPinFragment__creating_pin">പിൻ സൃഷ്ടിക്കുന്നു…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">അവതരിപ്പിക്കുന്നു PIN-കൾ</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Signal എൻക്രിപ്റ്റ് ചെയ്ത് സ്റ്റോർ ചെയ്ത വിവരങ്ങൾ PIN കൾ സൂക്ഷിക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് മാത്രമെ അത് പ്രാപ്യമാവുകയുള്ളു.  നിങ്ങൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈൽ, സെറ്റിംഗ്സ്, കോണ്ടാക്റ്റുകൾ എന്നിവ റീസ്റ്റോർ ചെയ്യപ്പെടും.</string>
   <string name="KbsSplashFragment__learn_more">കൂടുതൽ അറിയുക</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">രജിസ്ട്രേഷൻ ലോക്ക് = പിൻ</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">നിങ്ങളുടെ രജിസ്ട്രേഷൻ ലോക്കിനെ ഇപ്പോൾ PIN എന്ന് വിളിക്കുന്നു, മാത്രമല്ല ഇത് കൂടുതൽ ചെയ്യുന്നു. ഇത് ഇപ്പോൾ അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN-കളെക്കുറിച്ച് കൂടുതൽ വായിക്കുക.</string>
   <string name="KbsSplashFragment__update_pin">പിൻ അപ്‌ഡേറ്റുചെയ്യുക</string>
   <string name="KbsSplashFragment__create_your_pin">നിങ്ങളുടെ പിൻ സൃഷ്ടിക്കുക</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">PIN-കളെക്കുറിച്ച് കൂടുതൽ പഠിക്കുക.</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">നിങ്ങളുടെ Signal PIN നൽകുക</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">നിങ്ങളുടെ PIN മനഃപാഠമാക്കാൻ സഹായിക്കുന്നതിന്, ഇടയ്ക്കിടെ അത് നൽകാൻ ഞങ്ങൾ നിങ്ങളോട് ആവശ്യപ്പെടും. കാലക്രമേണ ഞങ്ങൾ നിങ്ങളോട് കുറച്ച് ചോദിക്കുന്നു.</string>

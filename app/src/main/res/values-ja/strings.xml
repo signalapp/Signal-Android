@@ -42,6 +42,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">画面ロック %1$s、登録ロック %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">画面ロック %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">テーマ %1$s、言語 %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">登録ロックを使うにはPINが必要です。PINを無効にする前に登録ロックを無効にしてください。</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">PINを無効にできませんでした。もう一度試してみてください。</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN を作成しました。</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PINを無効にしました。</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分</item>
@@ -632,8 +636,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s はあなたをこのグループから削除しました。</string>
   <string name="MessageRecord_you_left_the_group">グループを退会しました。</string>
   <string name="MessageRecord_s_left_the_group">%1$s はグループを去りました。</string>
-  <string name="MessageRecord_you_are_no_longer_in_the_group">グループにいません。</string>
-  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s はグループにいません。　 　</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">グループのメンバーから外れました。</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s はグループのメンバーから外れました。　 　</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">%1$s を管理者にしました。</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s は %2$s を管理者にしました。</string>
@@ -641,10 +645,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s から管理者特権を無効にしました。</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s はあなたの管理者特権を無効にしました。\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s は %2$s からの管理者特権を無効にしました。</string>
-  <string name="MessageRecord_s_is_now_an_admin">%1$s は現在管理者です。</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s は管理者になりました。</string>
   <string name="MessageRecord_you_are_now_an_admin">あなたは現在管理者です。</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s は管理者ではありません。</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">管理者ではありません。</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s は管理者ではなくなりました。</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">管理者ではなくなりました。</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">%1$s をこのグループに招待しました。</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s はあなたをグループに招待しました。</string>
@@ -657,16 +661,16 @@
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="other">%1$d件のこのグループの招待を無効にしました。</item>
+    <item quantity="other">このグループへの招待のうち%1$d件を無効にしました。</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
-    <item quantity="other">%1$s は%2$d件のこのグループの招待を無効にしました。</item>
+    <item quantity="other">%1$s がこのグループへの招待のうち%2$d件を無効にしました。</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">誰かがこのグループの招待を断りました。</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">このグループの招待を断りました。</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">あなたのグループへの招待は無効にされました。</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
-    <item quantity="other">%1$dのこのグループへの招待は無効になりました。</item>
+    <item quantity="other">このグループへの招待のうち%1$d件が無効になりました。</item>
   </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">このグループの招待を承認しました。</string>
@@ -680,7 +684,7 @@
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">グループアバターを更新しました。</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s はグループアバターを更新しました。</string>
-  <string name="MessageRecord_the_group_group_avatar_has_been_changed">グループアバターは変更されました。</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">グループの画像が変更されました。</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">グループ情報を編集できるユーザーの設定を「%1$s」に自分で変更しました。</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">グループ情報を編集できるユーザーの設定を %1$s が「%2$s」に変更しました。</string>
@@ -777,6 +781,13 @@
   <string name="PinRestoreLockedFragment_create_your_pin">PIN を作成</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN の試行回数が尽きましたが、新しい PIN を作成することによりまだ Signal  アカウントにアクセスすることができます。プライバシーとセキュリティーのためにアカウントに保存されたプロフィール情報または設定は戻されません。</string>
   <string name="PinRestoreLockedFragment_create_new_pin">新しい PIN を作成</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">ご注意ください</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">PINを作成せずにスキップすると、代わりに複雑なPINが自動生成されてアカウントに紐づけられます。このPINをあとで取り出すことはできません。自分でデータをバックアップしていない場合、Signalを再登録するとすべてのデータが失われて復元できなくなります。また、PINが無効になっていると登録ロックも使えません。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">PIN作成をスキップ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">PINを無効にしますか?</string> -->
+  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">PINを無効にすると、代わりに複雑なPINが自動生成されてアカウントに紐づけられます。このPINをあとで取り出すことはできません。自分でデータをバックアップしていない場合、Signalを再登録するとすべてのデータが失われて復元できなくなります。また、PINが無効になっていると登録ロックも使えません。</string>
+  <string name="PinOptOutDialog_disable_pin">PINを無効化</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリが気に入ったら、評価アンケートへのご協力をお願いします。</string>
@@ -1041,6 +1052,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">メッセージを削除しますか？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">このメッセージは完全に削除されます。</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s から %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">メディアが存在しません。</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d 個の会話に %1$d 件の新着メッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信: %1$s</string>
@@ -1543,10 +1555,15 @@
   <string name="preferences__dark_theme">暗い</string>
   <string name="preferences__appearance">デザイン</string>
   <string name="preferences__theme">テーマ</string>
+  <string name="preferences__disable_pin">PINを無効化</string>
+  <string name="preferences__enable_pin">PINを有効化</string>
+  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">PINを無効にすると、代わりに複雑なPINが自動生成されてアカウントに紐づけられます。このPINをあとで取り出すことはできません。自分でデータをバックアップしていない場合、Signalを再登録するとすべてのデータが失われて復元できなくなります。また、PINが無効になっていると登録ロックも使えません。</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINは Signal 上に保管されている情報を暗号化するのに使われます。これによって、あなた以外の誰もその情報にアクセスできないようにしています。PINを使うことで、Signal を再インストールしたときにあなたのプロフィール、設定、連絡先の情報が復元されます。アプリを利用するときにPINを入力する必要はありません。</string>
   <string name="preferences__system_default">システム既定</string>
   <string name="preferences__default">既定</string>
   <string name="preferences__language">言語</string>
   <string name="preferences__signal_messages_and_calls">Signal のメッセージと通話</string>
+  <string name="preferences__advanced_pin_settings">PINの詳細設定</string>
   <string name="preferences__free_private_messages_and_calls">Signal ユーザーは無料でプライベートメッセージと通話をご利用いただけます</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__support_wifi_calling">Wi-Fi 通話互換モード</string>
@@ -1748,7 +1765,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">新しい PIN を作成</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">このデバイスが登録されている間は PIN を変更することができます。</string>
   <string name="CreateKbsPinFragment__create_your_pin">PIN を作成</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN を使用してあなたの情報をあなただけがアクセス可能な形で暗号化して保存できます。PIN を使用すると Signal をインストールし直した際、あなたのプロフィール・設定・連絡先を復元することができます。</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINは Signal 上に保管されている情報を暗号化するのに使われます。これによって、あなた以外の誰もその情報にアクセスできないようにしています。PINを使うことで、Signal を再インストールしたときにあなたのプロフィール、設定、連絡先の情報が復元されます。アプリを利用するときにPINを入力する必要はありません。</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">強固なPINを選択</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN が一致しません。再度試してください。</string>
@@ -1760,13 +1777,15 @@
   <string name="ConfirmKbsPinFragment__creating_pin">PIN を作成しています…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN のご紹介</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN はあなたの情報を暗号化された状態で保管され、あなただけがアクセスすることができます。Signal を再インストールした時、あなたのプロフィール、設定、連絡先は復元されます。</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINは Signal 上に保管されている情報を暗号化するのに使われます。これによって、あなた以外の誰もその情報にアクセスできないようにしています。PINを使うことで、Signal を再インストールしたときにあなたのプロフィール、設定、連絡先の情報が復元されます。アプリを利用するときにPINを入力する必要はありません。</string>
   <string name="KbsSplashFragment__learn_more">詳細を見る</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">登録ロック = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">登録ロックは今後 PIN と呼ばれ、より多機能になります。今すぐアップデートしてください。</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN の詳細を読む。</string>
   <string name="KbsSplashFragment__update_pin">PIN をアップデート</string>
   <string name="KbsSplashFragment__create_your_pin">PIN を作成</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">PINに関する詳細情報</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">PIN作成をスキップ</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Signal の PIN を入力</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PIN を覚えていただけるように、定期的に入力していただくようお願いします。頻度は次第に減っていきます。</string>

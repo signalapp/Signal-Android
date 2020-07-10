@@ -790,6 +790,7 @@
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">PIN\'inizi oluşturun</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Yeni PIN oluştur</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bu uygulamaya puan verin</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Bu uygulamayı kullanmaktan hoşlanıyorsanız, lütfen bir dakikanızı ayırıp puan vererek bize yardımcı olun.</string>
@@ -1780,7 +1781,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Yeni PIN oluştur</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bu cihaz kayıtlı olduğu sürece PIN\'inizi değiştirebilirsiniz.</string>
   <string name="CreateKbsPinFragment__create_your_pin">PIN\'inizi oluşturun</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Daha güçlü bir PIN seçin</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
@@ -1792,13 +1792,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
   <string name="KbsSplashFragment__learn_more">Dahasını Öğrenin</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kayıt Kilidi = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor. Şimdi güncelleyin.</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN\'ler hakkında dahasını okuyun</string>
   <string name="KbsSplashFragment__update_pin">PIN\'i güncelle</string>
   <string name="KbsSplashFragment__create_your_pin">PIN\'inizi oluşturun</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">PIN\'ler hakkında dahasını öğrenin</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Signal PIN\'inizi girin</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PIN\'inizi hatırlamanıza yardımcı olmak için, arada sırada girmenizi isteyeceğiz. Zaman geçtikçe daha az soracağız.</string>

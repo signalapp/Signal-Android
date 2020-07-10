@@ -632,6 +632,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
   <string name="MessageRecord_left_group">Olet poistunut ryhmästä.</string>
   <string name="MessageRecord_you_updated_group">Sinä päivitit ryhmää.</string>
+  <string name="MessageRecord_the_group_was_updated">Ryhmä päivitettiin.</string>
   <string name="MessageRecord_you_called">Soitit puhelun</string>
   <string name="MessageRecord_called_you">Yhteystieto soitti</string>
   <string name="MessageRecord_missed_call">Vastaamatta jäänyt puhelu</string>
@@ -659,6 +660,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s poisti sinut ryhmästä.</string>
   <string name="MessageRecord_you_left_the_group">Olet poistunut ryhmästä.</string>
   <string name="MessageRecord_s_left_the_group">%1$s poistui ryhmästä.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Et ole enää ryhmässä.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ei ole enää ryhmässä.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Nimitit käyttäjän %1$s ylläpitäjäksi.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s nimitti käyttäjän %2$s ylläpitäjäksi.</string>
@@ -666,7 +669,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Poistit käyttäjän %1$s ylläpito-oikeudet.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s poisti ylläpito-oikeutesi.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s poisti ylläpito-oikeudet käyttäjältä %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s on nyt ylläpitäjä.</string>
   <string name="MessageRecord_you_are_now_an_admin">Olet nyt ylläpitäjä.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ei ole enää ylläpitäjä.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Et ole enää ylläpitäjä.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Kutsuit käyttäjän %1$s ryhmään.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s kutsui sinut ryhmään.</string>
@@ -796,6 +802,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Luo PIN-koodisi</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN-arvailut ovat loppuneet, mutta voit silti käyttää Signal-tiliäsi luomalla uuden PIN-koodin. Yksityisyytesi ja turvallisuutesi vuoksi tili palautetaan ilman tallennettuja profiilitietoja tai asetuksia.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Luo uusi PIN-koodi</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Varoitus</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Arvostele tämä sovellus</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jos pidät Signalista, voit auttaa meitä arvostelemalla sen.</string>
@@ -910,6 +918,7 @@ puhelinnumero</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Muistutamme sinua jälleen muutaman päivän päästä.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Muistutamme sinua uudelleen viikon kuluttua.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Muistutamme sinua jälleen parin viikon kuluttua.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Muistutamme sinua uudelleen kuukauden kuluttua.</string>
   <!--Slide-->
   <string name="Slide_image">Kuva</string>
   <string name="Slide_sticker">Tarra</string>
@@ -1208,6 +1217,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ei ole Signalin käyttäjä. Tarkista käyttäjätunnus ja yritä uudelleen.</string>
   <string name="ContactSelectionListFragment_okay">Selvä</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Ryhmä on täynnä</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sinun ei tarvitse lisätä itseäsi ryhmään</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ei estettyjä yhteystietoja</string>
   <!--contact_selection_list_fragment-->
@@ -1784,7 +1794,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreateKbsPinFragment__create_a_new_pin">Luo uusi PIN-koodi</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Voit vaihtaa PIN-koodisi niin kauan kuin tämä laite on rekisteröity.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Luo PIN-koodisi</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodit pitävät Signalin luona tallennetut tiedot salattuina, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautuvat kun asennat Signalin uudelleen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Valitse vahvempi PIN-koodi</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koodit eivät täsmää. Yritä uudelleen.</string>
@@ -1796,13 +1805,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConfirmKbsPinFragment__creating_pin">Luodaan PIN-koodia…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Esittelemme PIN-koodit</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodit pitävät Signalin luona tallennetut tiedot salattuina, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautuvat kun asennat Signalin uudelleen.</string>
   <string name="KbsSplashFragment__learn_more">Lue lisää</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Rekisteröinnin lukitus = PIN-koodi</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Rekisteröinnin lukitusta kutsutaan nyt PIN-koodiksi, ja se tekee enemmän. Päivitä se nyt.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Lue lisää PIN-koodeista</string>
   <string name="KbsSplashFragment__update_pin">Päivitä PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Luo PIN-koodisi</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Lisätietoja PIN-koodeista</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Syötä Signal PIN-koodisi</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pyydämme sinulta PIN-koodia ajoittain sen muistamisen helpottamiseksi. Pyynnöt harvenevat ajan myötä.</string>

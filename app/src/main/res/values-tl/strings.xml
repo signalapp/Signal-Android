@@ -640,6 +640,8 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Ilagay ang numeric na PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Likhain ang iyong PIN</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Babala</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">I-rate ang app na ito</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kung ikinalulugod mo ang paggamit sa app na ito, maglaan ng sandali upang i-rate ito.</string>
@@ -1580,7 +1582,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Lumikha ng bagong PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Mapapalitan mo ang iyong PIN hangga\'t rehistrado ang device na ito.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Likhain ang iyong PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Panapanatiling encrypted ng PIN ang mga impormasyong naka-imbak sa Signal upang ikaw lang ang maka-access nito. Ang iyong profile, mga setting, at kontak ay mare-restore kapag nagre-install ka ng Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pumili ng mas malakas na PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Hindi tugma ang mga PIN. Subukang muli.</string>
@@ -1591,13 +1592,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Lumilikha ng PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ipinakikilala ang mga PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Panapanatiling encrypted ng PIN ang mga impormasyong naka-imbak sa Signal upang ikaw lang ang maka-access nito. Ang iyong profile, mga setting, at kontak ay mare-restore kapag nagre-install ka ng Signal.</string>
   <string name="KbsSplashFragment__learn_more">Matuto pa</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Lock sa Pagpaparehistro = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Ang iyong Lock sa Pagpaparehistro ay tinatawag na ngayong PIN, at mas marami itong nagagawa. I-update ito ngayon.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Magbasa pa tungkol sa mga PIN.</string>
   <string name="KbsSplashFragment__update_pin">I-update ang PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Likhain ang iyong PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Magdagdag ng kaalaman tungkol sa mga PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Ilagay ang PIN ng iyong Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Upang matulungan kang kabisaduhin ang iyong PIN, hihilingin namin sa iyo na ilagay ito pana-panahon. Dadalang nang dadalang ang paghingi namin nito sa iyo paglipas ng panahon.</string>

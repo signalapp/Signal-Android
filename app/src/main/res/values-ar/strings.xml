@@ -904,6 +904,8 @@
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">لقد نفذت تخميناتك لكلمة المرور الرقمية، لكن مازال بوسعك الوصول إلى حسابك على Signal من خلال إنشاء كلمة مرور رقمية جديدة.
 للحفاظ على خصوصيتك وأمن معلوماتك، سيتم استرجاع حسابك لكن  بدون أية معلومات شخصية عن الحساب أو الإعدادات.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">إنشاء رقم تعريف شخصي جديد</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">تحذير</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
@@ -1930,7 +1932,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">إنشاء رقم تعريفي شخصي جديد</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">يمكنك تغيير الرقم التعريفي الشخصي في أي وقت طالما بقي هذا الجهاز مسجلا.</string>
   <string name="CreateKbsPinFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">اختر رقما تعريفيا شخصيا أمتن.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">الأرقام التعريفية الشخصية غير متطابقة. يرجى المحاولة ثانية.</string>
@@ -1942,13 +1943,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">جاري إنشاء الرقم التعريفي الشخصي</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
   <string name="KbsSplashFragment__learn_more">أعرف أكثر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل التسجيل يسمى الآن رقم التعريف الشخصي، وهو مسؤول عن أشياء أخرى. حدِّثه الآن.</string>
   <string name="KbsSplashFragment__read_more_about_pins">اقرأ المزيد عن الأرقام التعريفية الشخصية.</string>
   <string name="KbsSplashFragment__update_pin">تحديث الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">تعرف أكثر على الرقم التعريفي الشخصي</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">أدخل الرقم التعريفي الشخصي ل Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">لمساعدتك على حفظ  رقم التعريف الشخصي الخاص بك سنطلب منك إعادة إدخاله من حين لآخر. مع مرور الوقت سنطلبه منك مرات أقل.</string>

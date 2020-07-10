@@ -631,6 +631,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Crea o teu PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Esgotaches os intentos, pero aínda podes acceder á conta Signal creando un novo PIN. Por privacidade e seguridade a conta será restablecida sen a información de perfil gardada ou axustes.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Crear novo PIN</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Aviso</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valorar esta app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se realmente che gusta esta aplicación, dedícalle, por favor, un intre a valorala.</string>
@@ -1509,7 +1511,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Crear un novo PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Podes cambiar o PIN en tanto este dispositivo estea rexistrado.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Crea o teu PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">O PIN cifra a información gardada con Signal para que só ti poidas acceder a ela. O perfil, axustes e contactos restablécense ao reinstalar Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Escolle un PIN máis forte</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Os PIN non concordan, inténtao outra vez.</string>
@@ -1521,7 +1522,6 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Creando PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Escribindo PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">O PIN cifra a información gardada con Signal para que só ti poidas acceder a ela. O perfil, axustes e contactos restablécense ao reinstalar Signal.</string>
   <string name="KbsSplashFragment__learn_more">Saber máis</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueo do rexistro = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">O Bloqueo de Rexistro agora chámase PIN, e serve para máis. Actualiza agora.</string>

@@ -616,6 +616,8 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">输入数字 PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">创建 PIN</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">警告</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -1543,7 +1545,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">新建 PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只有该设备已注册，你可以更改你的 PIN。</string>
   <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 密码</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN 令信息以 Signal 加密方式保存，这样只有你可以访问它。重新安装 Signal 时，可恢复你的个人资料、设置和联系人。</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">选择更安全 PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 不匹配，请重试。</string>
@@ -1554,13 +1555,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">正在创建 PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">新推出 PIN 密码功能</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 令信息以 Signal 加密方式保存，这样只有你可以访问它。重新安装 Signal 时，可恢复你的个人资料、设置和联系人。</string>
   <string name="KbsSplashFragment__learn_more">了解更多</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">注册锁定 = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">注册锁定现在改名为 PIN，功能更强大，马上更新。</string>
   <string name="KbsSplashFragment__read_more_about_pins">了解更多 PIN 信息。</string>
   <string name="KbsSplashFragment__update_pin">更新 PIN</string>
   <string name="KbsSplashFragment__create_your_pin">创建 PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">了解更多关于 PIN 的信息</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">请输入 Signal 的 PIN 密码</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">为了便于记住 PIN，我们将定期提示输入该密码。提示次数将逐渐减少。</string>

@@ -798,6 +798,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Loo enda PIN-kood</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN-koodi proovimised on otsa saanud, kuid pääsed siiski uue PIN-koodi loomisega oma Signal-i konto juurde. Privaatsuse ja turvalisuse huvides taastatakse sinu konto ilma salvestatud profiiliteabe või säteteta.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Loo uus PIN-kood</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Hoiatus</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Hinda seda rakendust</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palun võta aega ja hinda seda, et meid aidata.</string>
@@ -1789,7 +1791,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Loo uus PIN-kood</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN-koodi saab muuta senikaua kuni see seade on registreeritud.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Loo enda PIN-kood</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vali tugevam PIN-kood</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koodid pole samad. Proovi uuesti.</string>
@@ -1801,13 +1802,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">PIN-koodi loomine…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Tutvustame PIN-koode</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
   <string name="KbsSplashFragment__learn_more">Uuri täpsemalt</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreerimislukk = PIN-kood</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Sinu registreerimislukk on nüüd PIN-kood ja see teeb rohkemgi. Uuenda seda nüüd.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Loe ähemalt PIN-koodide kohta.</string>
   <string name="KbsSplashFragment__update_pin">Uuenda PIN-koodi</string>
   <string name="KbsSplashFragment__create_your_pin">Loo enda PIN-kood</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Uuri lähemalt PIN-koodide kohta</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Sisesta Signal-i PIN-kood</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PIN-koodi meeldejätmise aitamiseks palume sul seda aeg-ajalt sisestada. Aja möödudes küsime seda harvem.</string>

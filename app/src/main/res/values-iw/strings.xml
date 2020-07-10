@@ -892,6 +892,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">צור את ה־PIN שלך</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">ניחושי PIN אזלו לך, אבל אתה עדין יכול להשיג גישה אל חשבון Signal שלך ע״י יצירת PIN חדש. למען פרטיותך ואבטחתך, חשבונך ישוחזר בלי מידע פרופיל שמור כלשהו או הגדרות שמורות כלשהן.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">צור PIN חדש</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">אזהרה</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">דרג יישום זה</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">אם אתה נהנה להשתמש ביישום זה, אנא הקדש רגע כדי לעזור לנו ע״י דירוג שלו.</string>
@@ -1915,7 +1917,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">צור PIN חדש</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">אתה יכול לשנות את ה־PIN שלך כל עוד מכשיר זה רשום.</string>
   <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">בחר PIN חזק יותר</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>
@@ -1927,13 +1928,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">יוצר PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal.</string>
   <string name="KbsSplashFragment__learn_more">למד עוד</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת.</string>
   <string name="KbsSplashFragment__read_more_about_pins">למד עוד על PIN.</string>
   <string name="KbsSplashFragment__update_pin">עדכן PIN</string>
   <string name="KbsSplashFragment__create_your_pin">צור את ה־PIN שלך</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">למד עוד אודות קודי PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">הכנס את ה־PIN של Signal שלך</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">כדי לעזור לך לשנן את ה־PIN שלך, נבקש ממך להכניס אותו מעת לעת. נבקש ממך פחות עם הזמן.</string>

@@ -619,6 +619,7 @@ Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa k
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Ingiza Nenosiri lenye nambari </string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Unda Nenosiri lako</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Tathmini programu hii</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Iwapo unapendezwa na programu hii, tafadhali chukua muda utusaidie kuitathmini.</string>
@@ -1513,7 +1514,6 @@ nambari yako ya simu</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Unda Nenosiri jipya</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Unaweza kubadili PINI mradi tu kifaa hiki kimesajiliwa</string>
   <string name="CreateKbsPinFragment__create_your_pin">Unda Nenosiri lako</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINI hufanya taarifa iliyohifadhiwa na Signal iliyosimbwa kuweza kufikiwa na wewe tu. Wasifu wako, mipangilio, na wawasiliani vitarejeshwa utakaposakinisha upya Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Chagua PINI yenye nguvu zaidi.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nenosiri hazifanani. Jaribu tena.</string>
@@ -1524,13 +1524,13 @@ nambari yako ya simu</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Inaunda Nenosiri…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Uanzishaji Nenosiri</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINI hufanya taarifa iliyohifadhiwa na Signal iliyosimbwa kuweza kufikiwa na wewe tu. Wasifu wako, mipangilio, na wawasiliani vitarejeshwa utakaposakinisha upya Signal.</string>
   <string name="KbsSplashFragment__learn_more">Jifunze Zaidi</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kufuli ya Usajili = Nenosiri</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kifunga usajili wako sasa kinaitwa Nenosiri, na kinafanya mengi zaidi. Kisasishe sasa.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Soma zaidi kuhusu Nenosiri</string>
   <string name="KbsSplashFragment__update_pin">Sasisha Nenosiri</string>
   <string name="KbsSplashFragment__create_your_pin">Unda Nenosiri lako</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Jifunze zaidi kuhusu PINI</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Ingiza Nenosiri lako ya Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Ili kukusaidia kukariri Nenosiri lako, tutakuuliza uliingize mara kwa mara. Tunapunguza kukuuliza baada ya muda.</string>

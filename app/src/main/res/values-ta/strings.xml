@@ -627,6 +627,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">எண் பின்னை உள்ளிடவும்</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">இச் செயலியை மதிப்புரை செய்க</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">இச் செயலியின்  பயன்பாட்டை விரும்பினால் தயை கூர்ந்து  எங்கள் செயலியை   மதிப்புரை செய்க    </string>
@@ -1527,7 +1528,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் பின் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
   <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் வைத்திருக்கின்றன தகவல் உடன் சேமிக்கப்படுகிறது Signal மறைகுறியாக்கப்பட்டது எனவே மட்டுமே நீங்கள் முடியும் அணுகல் அது. உங்கள் சுயவிவரம், அமைப்புகள், மற்றும் தொடர்புகள் இருக்கும் மீட்டமை எப்பொழுது நீங்கள் மீண்டும் நிறுவவும் Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">வலுவானதைத் தேர்வுசெய்க பின்</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">பின்ஸ் பொருந்தவில்லை. மீண்டும் முயற்சி செய்.</string>
@@ -1538,12 +1538,12 @@
   <string name="ConfirmKbsPinFragment__creating_pin">பின் உருவாக்குகிறது…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் வைத்திருக்கின்றன தகவல் உடன் சேமிக்கப்படுகிறது Signal மறைகுறியாக்கப்பட்டது எனவே மட்டுமே நீங்கள் முடியும் அணுகல் அது. உங்கள் சுயவிவரம், அமைப்புகள், மற்றும் தொடர்புகள் இருக்கும் மீட்டமை எப்பொழுது நீங்கள் மீண்டும் நிறுவவும் Signal.</string>
   <string name="KbsSplashFragment__learn_more">மேலும் அறிக</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">பதிவு பூட்டு = பின்</string>
   <string name="KbsSplashFragment__read_more_about_pins">பின்ஸைப் பற்றி மேலும் வாசிக்க.</string>
   <string name="KbsSplashFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <string name="KbsSplashFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">பின்கள் பற்றி மேலும் அறிக</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">உங்கள் Signal பின்னை உள்ளிடவும்</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">உங்கள் பின்னை மனப்பாடம் செய்ய உங்களுக்கு உதவ, அதை அவ்வப்போது உள்ளிடுமாறு கேட்டுக்கொள்கிறோம். காலப்போக்கில் நாங்கள் உங்களிடம் குறைவாகக் கேட்கிறோம்.</string>

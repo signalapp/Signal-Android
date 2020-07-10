@@ -816,6 +816,7 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Krei vian PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vi ne plu povas enigi vian PIN, sed vi tamen povas aliri vian Signal-konton por krei novan PIN. Pro via privateco kaj sekureco, via konto restariĝos sen iuj konservitaj profilinformojn aŭ agordojn.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Krei novan PIN</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Pritaksi tiun aplikaĵon</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se vi ŝatas uzi tiun aplikaĵon, bv. helpi nin per via pritakso.</string>
@@ -1810,7 +1811,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CreateKbsPinFragment__create_a_new_pin">Krei novan PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vi povas ŝanĝi vian PIN tiel longe, kiel tiu ĉi aparato estas registrita.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Elektu pli fortikan PIN-on</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">La du PIN-oj malsamas. Re-provu.</string>
@@ -1822,7 +1822,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConfirmKbsPinFragment__creating_pin">Kreo de PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
   <string name="KbsSplashFragment__learn_more">Scii pli</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloko de registriĝo = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">„Bloko de registriĝo“ nomiĝas nun „PIN“, kaj ĝi faras pli. Ĝisdatigu ĝin nun.</string>

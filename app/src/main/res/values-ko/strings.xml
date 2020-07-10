@@ -624,6 +624,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">숫자 번호 입력</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">번호 생성</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">앱 평가</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">앱이 마음에 들면 평가해 주세요.</string>
@@ -1535,7 +1536,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">새 번호 생성</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">기기가 등록된 동안은 PIN 번호를 언제든지 변경할 수 있습니다</string>
   <string name="CreateKbsPinFragment__create_your_pin">내 번호 생성</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN 번호는 정보를 Signal에서 암호화하여 저장하므로 사용자만 액세스할 수 있습니다. 프로필, 설정과 연락처는 Signal을 다시 설치할 때 복원됩니다.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">더 강력한 PIN 번호 선택</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">번호가 일치하지 않습니다. 다시 시도해 주세요.</string>
@@ -1546,13 +1546,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">번호 생성 중…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">번호를 소개합니다.</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 번호는 정보를 Signal에서 암호화하여 저장하므로 사용자만 액세스할 수 있습니다. 프로필, 설정과 연락처는 Signal을 다시 설치할 때 복원됩니다.</string>
   <string name="KbsSplashFragment__learn_more">더 알아보기</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">등록 잠금 = 번호</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">등록 잠금을 번호라 합니다. 하지만, 단순한 번호 그 이상입니다. 지금 업데이트하세요.</string>
   <string name="KbsSplashFragment__read_more_about_pins">번호에 관해 더 알아보세요.</string>
   <string name="KbsSplashFragment__update_pin">번호 업데이트</string>
   <string name="KbsSplashFragment__create_your_pin">번호 생성</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">PIN에 대해 더 알아보기</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Signal 번호 입력</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">주기적으로 번호를 입력하면 외우는 데 도움이 됩니다. 가끔씩만 여쭤보겠습니다.</string>

@@ -44,6 +44,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueo de pantalla %1$s, Bloqueo de registro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueo de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">El PIN es necesario para el bloqueo de registro. Desactiva primero el bloqueo de registro y después el PIN.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Fallo al desactivar tu PIN. Inténtalo más tarde.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN creado.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -816,6 +820,13 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Crea tu PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Te has quedado sin intentos para verificar el PIN. Podrás acceder a tu cuenta de Signal si creas un nuevo PIN. Por tu seguridad y para proteger tu privacidad, se restaurará tu cuenta eliminando todos sus datos y ajustes adicionales.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Crear nuevo PIN</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Advertencia</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Al omitir crear el PIN se genererá un PIN de alta entropía asociado con tu cuenta que no se podrá recuperar. Al volver a registrar Signal perderás todos los datos de la cuenta, a menos que hagas una copia de respaldo y la recuperes. No puedes activar el bloqueo de registro con el PIN desactivado.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Omitir crear PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">¿Desactivar PIN?</string> -->
+  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Al omitir crear el PIN se genererá un PIN de alta entropía asociado con tu cuenta que no se podrá recuperar. Al volver a registrar Signal perderás todos los datos de tu cuenta, a menos que hagas una copia de respaldo y la recuperes. No puedes activar el bloqueo de registro con el PIN desactivado.</string>
+  <string name="PinOptOutDialog_disable_pin">Desactivar PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valora esta aplicación</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si disfrutas usando esta aplicación, por favor, tómate un momento para ayudarnos valorándola.</string>
@@ -1091,6 +1102,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s de %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">El archivo original ya no está disponible.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensajes nuevos en %2$d chats</string>
   <string name="MessageNotifier_most_recent_from_s">Más recientes desde: %1$s</string>
@@ -1603,10 +1615,15 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__dark_theme">Oscuro</string>
   <string name="preferences__appearance">Apariencia</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__disable_pin">Desactivar PIN</string>
+  <string name="preferences__enable_pin">Activar PIN</string>
+  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Al omitir crear el PIN se genererá un PIN de alta entropía asociado con tu cuenta que no se podrá recuperar. Al volver a registrar Signal perderás todos los datos de tu cuenta, a menos que hagas una copia de respaldo y la recuperes. No puedes activar el bloqueo de registro con el PIN desactivado.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">El PIN protege y almacena tu cuenta en Signal de forma cifrada y sólo tú puedes acceder a ella. Ni siquiera l*s creador*s de Signal tienen acceso. Tu perfil, alias, grupos y personas bloqueadas se recuperarán al reinstalar Signal. No necesitas el PIN para abrir la aplicación.</string>
   <string name="preferences__system_default">Predeterminado del sistema</string>
   <string name="preferences__default">Por defecto</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__signal_messages_and_calls">Mensajes y llamadas de Signal</string>
+  <string name="preferences__advanced_pin_settings">Ajustes avanzados del PIN</string>
   <string name="preferences__free_private_messages_and_calls">Llamadas y mensajes cifrados a través de Signal ¡gratis! </string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidad «Llamada por WiFi»</string>
@@ -1812,7 +1829,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CreateKbsPinFragment__create_a_new_pin">Crear nuevo PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puedes modificar tu PIN, siempre que este dispositivo esté registrado.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Crea tu PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">El PIN protege y almacena tu cuenta en Signal de forma cifrada y sólo tú puedes acceder a ella. Ni siquiera l*s creador*s de Signal tienen acceso. Tu perfil, alias, grupos y personas bloqueadas se recuperarán al reinstalar Signal.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">El PIN protege y almacena tu cuenta en Signal de forma cifrada y sólo tú puedes acceder a ella. Ni siquiera l*s creador*s de Signal tienen acceso. Tu perfil, alias, grupos y personas bloqueadas se recuperarán al reinstalar Signal. No necesitas el PIN para abrir la aplicación.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Selecciona un PIN más complejo</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">El PIN no coincide. Inténtalo de nuevo.</string>
@@ -1824,13 +1841,15 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConfirmKbsPinFragment__creating_pin">Creando PIN …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">¡El PIN ha llegado!</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">El PIN protege y almacena tu cuenta en Signal de forma cifrada y sólo tú puedes acceder a ella. Ni siquiera l*s creador*s de Signal tienen acceso. Tu perfil, alias, grupos y personas bloqueadas se recuperarán al reinstalar Signal.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">El PIN protege y almacena tu cuenta en Signal de forma cifrada y sólo tú puedes acceder a ella. Ni siquiera l*s creador*s de Signal tienen acceso. Tu perfil, alias, grupos y personas bloqueadas se recuperarán al reinstalar Signal. No necesitas el PIN para abrir la aplicación.</string>
   <string name="KbsSplashFragment__learn_more">Saber más</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueo de registro = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">El bloqueo de registro ahora se llama PIN y permite más funciones. Actualiza ahora.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Saber más sobre el PIN.</string>
   <string name="KbsSplashFragment__update_pin">Actualizar PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crea tu PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Saber más sobre el PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Omitir crear PIN</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Introduce tu PIN de Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para ayudarte a memorizar el PIN, te solicitaremos introducirlo de vez en cuando. Con el tiempo lo solicitaremos con menos frecuencia.</string>

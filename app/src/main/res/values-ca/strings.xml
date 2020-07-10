@@ -44,6 +44,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueig de pantalla %1$s, bloqueig del registre %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueig de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Llengua: %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Els PIN són necessaris per al bloqueig de registre. Per desactivar-los, primer desactiveu el bloqueig de registre.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Ha fallat desactivar els PIN. Torneu-ho a provar més tard.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN creat.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivat.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
@@ -697,7 +701,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Algú ha rebutjat una invitació al grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Heu rebutjat la invitació al grup.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">La invitació al grup s\'ha revocat.</string>
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">La invitació al grup s\'ha rebutjat.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one"> Una invitació al grup s\'ha rebutjat.</item>
     <item quantity="other">%1$d invitacions al grup s\'han rebutjat.</item>
@@ -815,6 +819,13 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Creeu el PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Se us han acabat els intents del PIN, però encara podeu accedir al compte del Signal creant un PIN nou. Per a la vostra privadesa i seguretat, el compte es restaurarà sense cap tipus d\'informació ni configuració de perfil.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Crea un PIN nou</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Advertiment</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Ometre la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Omet la creació del PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Desactivo el PIN?</string> -->
+  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
+  <string name="PinOptOutDialog_disable_pin">Desactiva el PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valoreu l\'aplicació</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si gaudiu usant aquesta aplicació, podeu ajudar-nos valorant-la.</string>
@@ -1085,6 +1096,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Voleu suprimir el missatge?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge se suprimirà permanentment.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s a %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">El contingut ja no està disponible.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d missatges nous a %2$d converses</string>
   <string name="MessageNotifier_most_recent_from_s">Més recent de %1$s</string>
@@ -1597,10 +1609,15 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__dark_theme">Fosc</string>
   <string name="preferences__appearance">Aparença</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__disable_pin">Desactiva el PIN</string>
+  <string name="preferences__enable_pin">Activa el PIN</string>
+  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu. No necessitareu el PIN per obrir l\'aplicació.</string>
   <string name="preferences__system_default">Per defecte del sistema</string>
   <string name="preferences__default">Per defecte</string>
   <string name="preferences__language">Llengua</string>
   <string name="preferences__signal_messages_and_calls">Missatges i trucades del Signal</string>
+  <string name="preferences__advanced_pin_settings">Configuració avançada del PIN</string>
   <string name="preferences__free_private_messages_and_calls">Missatges i trucades privades gratuïtes per als usuaris del Signal </string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <string name="preferences__support_wifi_calling">Compatibilitat «Trucada per WiFi»</string>
@@ -1805,7 +1822,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CreateKbsPinFragment__create_a_new_pin">Crea un PIN nou</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Podeu canviar el PIN sempre que aquest dispositiu estigui registrat.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Creeu el PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu. No necessitareu el PIN per obrir l\'aplicació.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Trieu un PIN més segur.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Els codis no coincideixen. Torneu-ho a provar.</string>
@@ -1817,13 +1834,15 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConfirmKbsPinFragment__creating_pin">Es crea un PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">S\'introdueixen els PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu. No necessitareu el PIN per obrir l\'aplicació.</string>
   <string name="KbsSplashFragment__learn_more">Més informació</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueig de registre = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">El bloqueig de registre ara s\'anomena PIN i serveix per a molt més. Actualitzeu-lo ara.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Llegiu més informació sobre els PIN.</string>
   <string name="KbsSplashFragment__update_pin">Actualitza el PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Creeu el PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Apreneu més coses sobre els PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Omet la creació del PIN</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Marqueu el PIN del Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Per ajudar-vos a recordar el PIN, us el demanarem periòdicament. Amb el temps, ho farem menys.</string>

@@ -833,6 +833,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Creați-vă PIN-ul</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ați rămas fără ghiciri PIN, dar puteți accesa contul dvs. Signal prin crearea unui nou cod PIN. Pentru confidențialitate și securitate, contul dvs. va fi restaurat fără informații sau setări de profil salvate.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Creați un PIN nou</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Avertizare</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Evaluați aplicaţia</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Dacă vă place aplicaţia, vă rog ajutați-ne cu o evaluare.</string>
@@ -1837,7 +1839,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreateKbsPinFragment__create_a_new_pin">Creați un nou PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puteți schimba codul PIN atât timp cât acest dispozitiv este înregistrat.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Creați-vă PIN-ul</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Alegeți un PIN mai puternic</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-urile nu se potrivesc. Încercați din nou.</string>
@@ -1849,13 +1850,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConfirmKbsPinFragment__creating_pin">Se creează PIN-ul…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vă prezentăm PIN-uri</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="KbsSplashFragment__learn_more">Află mai multe</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocarea Înregistrării = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Blocarea înregistrării este numită acum PIN și face mai multe. Actualizați-l acum.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Aflați mai multe despre PIN-uri.</string>
   <string name="KbsSplashFragment__update_pin">Actualizați PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Creați-vă PIN-ul</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Aflați mai multe despre PIN-uri</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Introduceți PIN-ul dvs. Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pentru a vă ajuta să memorați codul PIN, vă vom rugă să îl introduceți periodic. În timp, o să-l cerem mai rar.</string>

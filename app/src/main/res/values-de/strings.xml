@@ -814,6 +814,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Erstelle deine PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du hast all deine Versuche zur PIN-Eingabe aufgebraucht, kannst jedoch trotzdem auf dein Signal-Konto zugreifen, indem du eine neue PIN erstellst. Zu deiner Sicherheit wird dein Konto ohne gespeicherte Profilinformationen oder Einstellungen wiederhergestellt.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Neue PIN erstellen</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Warnung</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, falls dir die App gefällt.</string>
@@ -1800,7 +1802,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateKbsPinFragment__create_a_new_pin">Neue PIN erstellen</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kannst deine PIN solange ändern, wie dieses Gerät registriert ist.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Deine PIN erstellen</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Wähle eine stärkere PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINs stimmen nicht überein. Bitte erneut versuchen.</string>
@@ -1812,13 +1813,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConfirmKbsPinFragment__creating_pin">PIN wird erstellt …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Einführung von PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt.</string>
   <string name="KbsSplashFragment__learn_more">Mehr erfahren</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registrierungssperre = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Deine Registrierungssperre heißt nun PIN und kann mehr. Aktualisiere sie jetzt.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Erfahre mehr über PINs.</string>
   <string name="KbsSplashFragment__update_pin">PIN aktualisieren</string>
   <string name="KbsSplashFragment__create_your_pin">Deine PIN erstellen</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Mehr über PINs erfahren</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Bitte Signal-PIN eingeben</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Damit du dir deine PIN besser merken kannst, werden wir gelegentlich nach ihr fragen. Mit der Zeit erfolgt die Abfrage seltener.</string>

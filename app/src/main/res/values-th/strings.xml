@@ -712,6 +712,7 @@
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">สร้างรหัส PIN ของคุณ</string>
   <string name="PinRestoreLockedFragment_create_new_pin">สร้างรหัส PIN ใหม่</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ให้คะแนนแอปนี้</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ถ้าคุณชอบแอปนี้ โปรดสละเวลาให้คะแนนพวกเราสักนิด</string>
@@ -1665,7 +1666,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">สร้างรหัส PIN ใหม่</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">คุณสามารถเปลี่ยนรหัส PIN ได้ตราบเท่าที่คุณยังลงทะเบียนอุปกรณ์นี้</string>
   <string name="CreateKbsPinFragment__create_your_pin">สร้างรหัส PIN ของคุณ</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">เลือกรหัส PIN ที่แข็งแรงกว่านี้</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">รหัส PIN ไม่ตรงกัน ลองอีกครั้ง</string>
@@ -1677,13 +1677,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">สร้างรหัส PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">แนะนำรหัส PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
   <string name="KbsSplashFragment__learn_more">เรียนรู้เพิ่มเติม</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">กุญแจลงทะเบียน = รหัส PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">จากนี้กุญแจลงทะเบียนของคุณจะถูกเรียกว่ารหัส PIN และมันมีที่ใช้มากขึ้น ปรับปรุงมันเดี๋ยวนี้</string>
   <string name="KbsSplashFragment__read_more_about_pins">อ่านเพิ่มเติมเกี่ยวกับรหัส PINs</string>
   <string name="KbsSplashFragment__update_pin">อัปเดตรหัส PIN</string>
   <string name="KbsSplashFragment__create_your_pin">สร้างรหัส PIN ของคุณ</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">เรียนรู้เพิ่มเติมเกี่ยวกับรหัส PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">ใส่รหัส Signal PIN ของคุณ</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">เพื่อช่วยให้คุณจดจำรหัส PIN ล็อกการลงทะเบียนได้ Signal จะขอให้คุณใส่รหัส PIN เป็นระยะๆ เราจะถามคุณน้อยลงเมื่อเวลาผ่านไป</string>

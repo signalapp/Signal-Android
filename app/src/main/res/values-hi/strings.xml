@@ -614,6 +614,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">संख्यात्मक पिन दर्ज करें</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">अपना पिन बनाएँ</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">इस ऐप्लिकेशन को रेट करें</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">यदि आप इस ऐप का उपयोग करने का आनंद लेते हैं, तो कृपया इसे रेटिंग करके हमारी सहायता करने के लिए कुछ समय दें।</string>
@@ -1500,7 +1501,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">नया पिेन बनाएँ</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">जब तक आपका डिवाइस पंजीकृत है, आप अपना पिन कभी भी बदल सकते हैं।</string>
   <string name="CreateKbsPinFragment__create_your_pin">अपना पिन बनाएँ</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">पिन Signal द्वारा संग्रहीत जानकारी को एन्क्रिप्ट रखता है, ताकी सिर्फ़ आप उसे देख पाएँ। आपका प्रोफ़ाइल, सेटिंग्स, और संपर्क, अपके Signal इंस्टाॅल के बाद, पुनः स्थापित हो जाऐंगे।</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">औेर कठिन पिन चुनें</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">पिन मेल नहीं खाते। पुनः प्रयास करें।</string>
@@ -1511,12 +1511,12 @@
   <string name="ConfirmKbsPinFragment__creating_pin">नया पिन बन रहा है़…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">पेश है, पिन</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">पिन Signal द्वारा संग्रहीत जानकारी को एन्क्रिप्ट रखता है, ताकी सिर्फ़ आप उसे देख पाएँ। आपका प्रोफ़ाइल, सेटिंग्स, और संपर्क, अपके Signal इंस्टाॅल के बाद, पुनः स्थापित हो जाऐंगे।</string>
   <string name="KbsSplashFragment__learn_more">और जानें</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">पंजीकरन लॉक = पिन</string>
   <string name="KbsSplashFragment__read_more_about_pins">पिन के बारे में अधिक पढ़ें|</string>
   <string name="KbsSplashFragment__update_pin">पिन अपडेट करें</string>
   <string name="KbsSplashFragment__create_your_pin">अपना पिन बनाएँ</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">पिन के बारे में और जानें</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">अपना Signal पिन डालें</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">आपको अपना पिन याद रखने में मदद करने के लिए, हम आपको समय-समय पर इसे दर्ज करने के लिए कहेंगे। हम आपसे समय के साथ कम पूछते हैं।</string>

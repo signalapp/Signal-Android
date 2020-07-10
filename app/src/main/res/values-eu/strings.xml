@@ -797,6 +797,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Sortu zure PINa</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN-a asmatzeko saiakerarik gabe gelditu zara, baina oraindik sartu zaitezke zure Signal kontuan PIN berri bat sortuz. Zure pribatutasun eta segurtasunerako, zure kontua berreskuratuko da ezarpen edo profilari buruzko informaziorik gabe.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Sortu PIN berria</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Markatutako zenbakia ez dago Signal-era erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ebaluatu aplikazio hau</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Aplikazio hau atsegin bazaizu, baloratu guri laguntzeko mesedez.</string>
@@ -1791,7 +1793,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="CreateKbsPinFragment__create_a_new_pin">Sortu PIN berria</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zure PIN-a alda dezakezu gailua erregistratuta dagoen bitartean.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Sortu zure PINa</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-ek zure Signal kontuarekin batera gordetako informazioa enkriptatuta mantentzen dute, zuk bakarrik eskuratu ahal izateko. Zure profila, ezarpenak eta kontaktua berreskuratuko dira Signal berrinstalatzen duzunean</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Aukeratu PIN hobea</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINak ez datoz bat. Saia zaitez berriro</string>
@@ -1803,13 +1804,13 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ConfirmKbsPinFragment__creating_pin">PINa sortzen…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN-ak sartzen</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-ek zure Signal kontuarekin batera gordetako informazioa enkriptatuta mantentzen dute, zuk bakarrik eskuratu ahal izateko. Zure profila, ezarpenak eta kontaktua berreskuratuko dira Signal berrinstalatzen duzunean</string>
   <string name="KbsSplashFragment__learn_more">Gehiago jakin</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Errejistratze-blokeoa = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Zure Errejistrate-blokeoa orain PIN deitzen da eta gehiago egin dezake. Eguneratu orain.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Irakurri gehiago PIN-ei buruz.</string>
   <string name="KbsSplashFragment__update_pin">Eguneratu PIN-a</string>
   <string name="KbsSplashFragment__create_your_pin">Sortu zure PINa</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Gehiago ikasi PIN-ei buruz</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Sartu zure Signal PIN-a</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Zure PINa gogoratzen laguntzeko, sartzeko eskatuko dizugu noizbehinka. Gero eta gutxiago eskatuko dizugu denbora igaro ahala.</string>

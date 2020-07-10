@@ -741,6 +741,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Izveido savu PIN </string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Jums beidzās PIN mēģinājumu skaits, bet Jums ir iespēja piekļūt Jūsu kontam, izveidojot jaunu PIN. Jūsu konta privātumam un drošībai Jūsu konts tiks atjaunots bez profila informācijas un uzstādījumiem.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Izveidot jaunu PIN</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Brīdinājums</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Novērtējiet šo lietotni</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ja ar gandarījumu lietojat šo lietotni, lūdzu atbalstiet mūs, veltot brīdi, lai to novērtētu.</string>
@@ -1720,7 +1722,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="CreateKbsPinFragment__create_a_new_pin">Izveidot jaunu PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Varat labot PIN kamēr ierīce ir reģistrēta.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Izveido savu PIN </string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN noglabā Signal informāciju šifrētā veidā tā, ka tikai Jūs varat tai piekļūt. Jūsu profils, uzstādījumu un kontakti tiks atjaunoti, ja uzstādīsiet Signal no jauna.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Izveidojiet sarežģītāku PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINi nesakrīt. Mēģiniet vēlreiz.</string>
@@ -1732,13 +1733,13 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConfirmKbsPinFragment__creating_pin">Tiek veidots jauns PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Iepazīstinām ar PINiem</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN noglabā Signal informāciju šifrētā veidā tā, ka tikai Jūs varat tai piekļūt. Jūsu profils, uzstādījumu un kontakti tiks atjaunoti, ja uzstādīsiet Signal no jauna.</string>
   <string name="KbsSplashFragment__learn_more">Uzziniet vairāk.</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Reģistrācijas atslēga (Registration Lock) = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Jūsu Reģistrācijas atslēga tagad tiek saukta par PIN, un tā kļuvusi funkcionālāka. Aktualizējiet to tūlīt.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Lasīt vairāk par PINiem.</string>
   <string name="KbsSplashFragment__update_pin">Aktualizēt PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Izveido savu PIN </string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Uzzināt vairāk par PIN kodiem</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Ievadiet jūsu Signāla PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Lai palīdzētu jums iegaumēt PIN, mēs Jums lūgsim to ievadīt periodiski. Sākumā biežāk, bet ar laiku - retāk.</string>

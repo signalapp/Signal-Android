@@ -48,6 +48,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Clo sgrin %1$s, Clo cofrestru %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Clo sgrin %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Iaith %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Mae angen PIN ar gyfer y clo cofrestru. I analluogi\'r PIN, analluogwch y clo cofrestru yn gyntaf.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Wedi methu analluogi\'r PIN. Ceisiwch eto.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Crëwyd y PIN.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Analluogwyd y PIN</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d munud</item>
@@ -182,6 +186,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationItem_download_more">  Llwytho Rhagor i Lawr</string>
   <string name="ConversationItem_pending">  Yn aros</string>
   <string name="ConversationItem_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
+  <string name="ConversationItem_you_deleted_this_message">Chi wnaeth ddileu\'r neges hon.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ailosod sesiwn ddiogel?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Gall hyn helpu os ydych chi\'n cael problemau amgryptio yn y sgwrs hon. Bydd eich negeseuon yn cael eu cadw.</string>
@@ -691,6 +696,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Signal nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>
   <string name="MessageRecord_left_group">Rydych wedi gadael y grŵp.</string>
   <string name="MessageRecord_you_updated_group">Rydych chi wedi diweddaru\'r grŵp.</string>
+  <string name="MessageRecord_the_group_was_updated">Diweddarwyd y grŵp.</string>
   <string name="MessageRecord_you_called">Galwoch chi</string>
   <string name="MessageRecord_called_you">Cysylltiad wedi galw</string>
   <string name="MessageRecord_missed_call">Galwad coll</string>
@@ -703,6 +709,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s neges diflannu anabl.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Rydych wedi gosod yr amserydd neges sy\'n diflannu i%1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Gosododd %1$s amserydd y neges diflannu i %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Mae\'r amserydd neges sy\'n diflannu wedi\'i osod i %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Crëwyd y grŵp gennych chi.</string>
   <string name="MessageRecord_group_updated">Grŵp wedi\'i ddiweddaru.</string>
@@ -718,6 +725,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_s_removed_you_from_the_group">Mae %1$s wedi\'ch tynnu chi o\'r grŵp.</string>
   <string name="MessageRecord_you_left_the_group">Rydych wedi gadael y grŵp.</string>
   <string name="MessageRecord_s_left_the_group">Mae %1$s wedi gadael y grŵp.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Nid ydych chi yn y grŵp mwyach.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">Nid yw%1$s yn y grŵp mwyach.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Rydych wedi gwneud %1$s yn weinyddwr.</string>
   <string name="MessageRecord_s_made_s_an_admin">Mae %1$s wedi gwneud %2$s yn weinyddwr.</string>
@@ -725,7 +734,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Rydych wedi ddirymu breintiau gweinyddol %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">Mae %1$s wedi dirymu\'ch breintiau gweinyddol. \"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Mae %1$s wedi dirymu breintiau gweinyddol %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s yw\'r gweinyddwr nawr.</string>
   <string name="MessageRecord_you_are_now_an_admin">Rydych nawr yn weinyddwr.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">Nid %1$s yw\'r gweinyddwr bellach.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Nid chi yw\'r gweinyddwr bellach.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Fe wnaethoch chi wahodd %1$s i\'r grŵp.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">Fe wnaeth %1$s eich gwahodd i\'r grŵp.</string>
@@ -736,6 +748,12 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Fe wnaeth %1$s wahodd %2$d person i\'r grŵp.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Fe\'ch gwahoddwyd i\'r grŵp.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">Gwahoddwyd 1 person i\'r grŵp.</item>
+    <item quantity="two">Gwahoddwyd %1$d  o bobl i\'r grŵp.</item>
+    <item quantity="many">Gwahoddwyd %1$d  o bobl i\'r grŵp.</item>
+    <item quantity="other">Gwahoddwyd %1$d  o bobl i\'r grŵp.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Fe wnaethoch chi ddirymu gwahoddiad i\'r grŵp.</item>
@@ -752,6 +770,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Fe wnaeth rhywun wrthod gwahoddiad i\'r grŵp.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Fe wnaethoch chi wrthod gwahoddiad i\'r grŵp.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Dirymwyd eich gwahoddiad i\'r grŵp.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Di-rymwyd gwahoddiad i\'r grŵp.</item>
+    <item quantity="two">Di-rymwyd %1$d gwahoddiadau i\'r grŵp.</item>
+    <item quantity="many">Di-rymwyd %1$d gwahoddiadau i\'r grŵp.</item>
+    <item quantity="other">Di-rymwyd %1$d gwahoddiadau i\'r grŵp.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Fe wnaethoch chi dderbyn y gwahoddiad i\'r grŵp.</string>
   <string name="MessageRecord_s_accepted_invite">Fe wnaeth %1$s dderbyn gwahoddiad i\'r grŵp.</string>
@@ -760,15 +784,19 @@ Send neges heb ei ddiogelu?</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Fe wnaethoch chi newid enw\'r grŵp i \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">Fe wnaeth %1$s newid enw\'r grŵp i \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Mae enw\'r grŵp wedi newid i \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Fe wnaethoch chi newid avatar y grŵp.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Newidiodd %1$s avatar y grŵp.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Mae avatar y grŵp wedi\'i newid.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Fe wnaethoch chi newid pwy all olygu manylion grŵp i \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">Fe wnaeth %1$s newid pwy all olygu manylion grŵp i \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Mae pwy all olygu manylion y grŵp wedi\'i newid i \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Fe wnaethoch chi newid pwy all olygu aelodaeth grŵp i \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Fe wnaeth %1$s newid pwy all olygu aelodaeth y grŵp i \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Mae pwy all olygu manylion y grŵp wedi\'i newid i \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Rydych wedi marcio eich rhif diogelwch gyda %s wedi eu gwirio</string>
@@ -870,6 +898,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="PinRestoreLockedFragment_create_your_pin">Crëwch eich PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Rydych chi wedi rhedeg allan o ddyfaliadau PIN, ond gallwch barhau i gael mynediad i\'ch cyfrif Signal trwy greu PIN newydd. Er eich preifatrwydd a\'ch diogelwch, bydd eich cyfrif yn cael ei adfer heb unrhyw wybodaeth neu osodiadau proffil sydd wedi\'u cadw.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Creu PIN newydd</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Rhybudd</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Bydd hepgor creu PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Hepgor creu PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Analluogi\'r PIN?</string> -->
+  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string>
+  <string name="PinOptOutDialog_disable_pin">Analluogi\'r PIN?</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Graddio\'r ap</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Os ydych chi\'n mwynhau defnyddio\'r ap hwn, cymerwch amser i\'n helpu ni drwy ei raddio.</string>
@@ -989,6 +1024,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Byddwn yn eich atgoffa eto ymhen ychydig ddyddiau.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Byddwn yn eich atgoffa ymhen wythnos.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Byddwn yn eich atgoffa ymhen ychydig wythnosau.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Byddwn yn eich atgoffa eto ymhen mis.</string>
   <!--Slide-->
   <string name="Slide_image">Llun</string>
   <string name="Slide_sticker">Sticer</string>
@@ -1057,6 +1093,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_view_once_video">Fideo gweld unwaith</string>
   <string name="ThreadRecord_view_once_media">Cyfrwng gweld unwaith</string>
   <string name="ThreadRecord_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Chi wnaeth ddileu\'r neges hon.</string>
   <string name="ThreadRecord_s_is_on_signal">Mae %s ar Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
@@ -1145,6 +1182,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Dileu neges?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bydd hyn yn dileu yn barhaol y neges hon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s i %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Nid yw\'r cyfryngau ar gael bellach.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neges newydd mewn %2$d sgwrs</string>
   <string name="MessageNotifier_most_recent_from_s">Y diweddaraf gan: %1$s</string>
@@ -1290,6 +1328,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Nid yw \"%1$s\" yn ddefnyddiwr Signal. Gwiriwch yn enw defnyddiwr a cheisiwch eto.</string>
   <string name="ContactSelectionListFragment_okay">Iawn</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Mae\'r grŵp yn llawn</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nid oes angen i chi ychwanegu eich hun i\'r grŵp</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Dim cysylltiadau wedi\'u rhwystro</string>
   <!--contact_selection_list_fragment-->
@@ -1676,10 +1715,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__dark_theme">Tywyll</string>
   <string name="preferences__appearance">Golwg</string>
   <string name="preferences__theme">Thema</string>
+  <string name="preferences__disable_pin">Analluogi\'r PIN</string>
+  <string name="preferences__enable_pin">Galluogi\'r PIN</string>
+  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Mae PINau\'n cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond i chi gael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod y rhaglen. Nid oes angen eich PIN arnoch i agor yr ap.</string>
   <string name="preferences__system_default">Rhagosodiad y system</string>
   <string name="preferences__default">Rhagosodiad</string>
   <string name="preferences__language">Iaith</string>
   <string name="preferences__signal_messages_and_calls">Negeseuon a galwadau Signal</string>
+  <string name="preferences__advanced_pin_settings">Gosodiadau PIN uwch</string>
   <string name="preferences__free_private_messages_and_calls">Negeseuon preifat am ddim a galwadau i ddefnyddwyr Signal</string>
   <string name="preferences__submit_debug_log">Anfon cofnod dadfygio</string>
   <string name="preferences__support_wifi_calling">Modd gydnawsedd \'Galw Diwifr\'</string>
@@ -1890,7 +1934,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crëwch PIN newydd</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Gallwch newid eich PIN cyhyd â bod y ddyfais hon wedi\'i chofrestru.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Mae PINs yn cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond chi sy\'n cael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod Signal.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Mae PINau\'n cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond i chi gael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod y rhaglen. Nid oes angen eich PIN arnoch i agor yr ap.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Dewiswch PIN cryfach</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nid yw\'r PIN yn cyfateb. Ceisiwch eto.</string>
@@ -1902,13 +1946,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Yn creu PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Yn Cyflwyno PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Mae PINs yn cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond chi sy\'n cael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod Signal.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Mae PINau\'n cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond i chi gael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod y rhaglen. Nid oes angen eich PIN arnoch i agor yr ap.</string>
   <string name="KbsSplashFragment__learn_more">Dysgu Rhagor</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Clo Cofrestru = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Mae eich Clo Cofrestru nawr yn cael ei alw\'n PIN, ac mae\'n gwneud mwy. Diweddarwch nawr.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Darllenwch ragor am PIN.</string>
   <string name="KbsSplashFragment__update_pin">Diweddaru PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crëwch eich PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Dysgu mwy am PINiau</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Hepgor creu PIN</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Rhowch eich PIN Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">I helpu i chi gofio\'ch PIN, byddwn yn gofyn i chi ei roi o bryd i\'w gilydd. Byddwn yn gofyn yn llai aml dros amser.</string>

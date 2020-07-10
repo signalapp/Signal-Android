@@ -614,6 +614,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">عددی پن درج کریں</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">اپنا پن بنائیں</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ایپ کی درجہ بندی کریں</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">اگر آپ اس ایپ کو استعمال کرکے لطف اٹھا رہے ہیں، براہ کرم ایک لمحہ لیں جس سے درجہ بندی کرنے میں ہماری مدد ہو۔</string>
@@ -1498,7 +1499,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">ایک نیا پن بنائیں</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">جب تک یہ device رجسٹرڈ ہے آپ اپنا پن تبدیل کرسکتے ہیں۔</string>
   <string name="CreateKbsPinFragment__create_your_pin">اپنا پن بنائیں</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs Signal کے ساتھ ذخیرہ شدہ معلومات کو خفیہ شدہ رکھتا ہے لہذا صرف آپ ہی اس تک رسائی حاصل کرسکتے ہیں۔ جب آپ Signal کو دوبارہ انسٹال کرتے ہیں تو آپ کا پروفائل ، ترتیبات اور رابطے بحال ہوجائیں گے۔</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">ایک مضبوط پن کا انتخاب کریں</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پن مماثل نہیں ہیں۔ دوبارہ کوشش کریں.</string>
@@ -1509,12 +1509,12 @@
   <string name="ConfirmKbsPinFragment__creating_pin">پن بنانا…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">پن ز متعارف ہو رہے ہیں</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs Signal کے ساتھ ذخیرہ شدہ معلومات کو خفیہ شدہ رکھتا ہے لہذا صرف آپ ہی اس تک رسائی حاصل کرسکتے ہیں۔ جب آپ Signal کو دوبارہ انسٹال کرتے ہیں تو آپ کا پروفائل ، ترتیبات اور رابطے بحال ہوجائیں گے۔</string>
   <string name="KbsSplashFragment__learn_more">مزید پڑھیں</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">رجسٹریشن لاک=پن</string>
   <string name="KbsSplashFragment__read_more_about_pins">پن کے بارے میں مزید پڑھیں</string>
   <string name="KbsSplashFragment__update_pin">پن کو اپ ڈیٹ کریں</string>
   <string name="KbsSplashFragment__create_your_pin">اپنا پن بنائیں</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">پن ز کے بارے میں مزید پڑھیں</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">اپنا Signal پن داخل کریں</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">آپ کو اپنا پن حفظ کرنے میں مدد کے لیئے ، ہم آپ سے وقتا فوقتا اس میں داخل ہونے کو کہیں گے۔ وقت کے ساتھ ہم آپ سے کم پوچھتے ہیں۔</string>

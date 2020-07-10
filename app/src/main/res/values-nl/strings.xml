@@ -797,6 +797,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen en profielnaam en -foto dan verloren gaan.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Waarschuwing</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons door anderen te laten weten wat je van de app vindt.</string>
@@ -1794,7 +1796,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zolang je telefoonnummer nog voor dit apparaat geregistreerd staat kun je je pincode nog wijzigen.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Verzin een pincode die je nergens anders gebruikt. Met die pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
@@ -1806,13 +1807,13 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
   <string name="KbsSplashFragment__learn_more">Lees meer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu ‘pincode’, en je kunt er meer mee doen. Je moet de pincode welke je tot nog toe gebruikte bijwerken.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Lees meer over pincodes</string>
   <string name="KbsSplashFragment__update_pin">Pincode bijwerken</string>
   <string name="KbsSplashFragment__create_your_pin">Pincode aanmaken</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Lees meer over pincodes</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om je pincode opnieuw in te voeren. Als je die een aantal keer juist invoert, dan zal Signal dit na verloop van tijd minder vaak vragen.</string>

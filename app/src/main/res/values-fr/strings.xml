@@ -44,6 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Verrouillage de l’écran %1$s, blocage de l’inscription %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Verrouillage de l’écran %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, langue %2$s</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Échec de désactivation des NIP. Veuillez ressayer plus tard.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Le NIP a été créé.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Le NIP a été désactivé.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
@@ -465,8 +468,8 @@
   <string name="ManageRecipientActivity_mute_notifications">Mettre les notifications en sourdine</string>
   <string name="ManageRecipientActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageRecipientActivity_until_s">Jusqu’à %1$s</string>
-  <string name="ManageRecipientActivity_off">Désactivé</string>
-  <string name="ManageRecipientActivity_on">Activé</string>
+  <string name="ManageRecipientActivity_off">Désactivées</string>
+  <string name="ManageRecipientActivity_on">Activées</string>
   <string name="ManageRecipientActivity_add_to_a_group">Ajouter à un groupe</string>
   <string name="ManageRecipientActivity_view_all_groups">Visualiser tous les groupes</string>
   <string name="ManageRecipientActivity_see_all">Tout voir</string>
@@ -492,8 +495,8 @@
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrer</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Paramètres des appels</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Sonnerie</string>
-  <string name="CustomNotificationsDialogFragment__enabled">Activée</string>
-  <string name="CustomNotificationsDialogFragment__disabled">Désactivée</string>
+  <string name="CustomNotificationsDialogFragment__enabled">Activé</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Désactivé</string>
   <string name="CustomNotificationsDialogFragment__default">Valeur par défaut</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Voulez-vous annuler l’invitation envoyée à %1$s ?</string>
@@ -632,6 +635,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vous avez reçu un message chiffré avec une ancienne version de Signal qui n’est plus prise en charge. Veuillez demander à l’expéditeur de mettre Signal à jour vers la version la plus récente et de renvoyer le message.</string>
   <string name="MessageRecord_left_group">Vous avez quitté le groupe</string>
   <string name="MessageRecord_you_updated_group">Vous avez mis le groupe à jour.</string>
+  <string name="MessageRecord_the_group_was_updated">Le groupe a été mis à jour.</string>
   <string name="MessageRecord_you_called">Vous avez appelé</string>
   <string name="MessageRecord_called_you">Un contact a appelé</string>
   <string name="MessageRecord_missed_call">Appel manqué</string>
@@ -644,6 +648,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a désactivé les messages éphémères.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini l’expiration des messages éphémères à %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">L’expiration des messages éphémères a été définie à %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Vous avez créé le groupe.</string>
   <string name="MessageRecord_group_updated">Le groupe a été mis à jour.</string>
@@ -659,6 +664,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a supprimé du groupe.</string>
   <string name="MessageRecord_you_left_the_group">Vous avez quitté le groupe.</string>
   <string name="MessageRecord_s_left_the_group">%1$s a quitté le groupe.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Vous n’êtes plus dans le groupe.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s n’est plus dans le groupe.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Vous avez nommé %1$s en tant qu’administrateur.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s a nommé %2$s en tant qu’administrateur.</string>
@@ -666,7 +673,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vous avez révoqué les privilèges d’administrateur de %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a révoqué vos privilèges d’administrateur.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a révoqué les privilèges d’administrateur de %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s est désormais administrateur.</string>
   <string name="MessageRecord_you_are_now_an_admin">Vous êtes désormais administrateur.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s n’est plus administrateur.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Vous n’êtes plus administrateur.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Vous avez invité %1$s au groupe.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe.</string>
@@ -675,6 +685,10 @@
     <item quantity="other">%1$s a invité %2$d personnes au groupe.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Vous avez été invité au groupe.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">Une personne a été invitée au groupe.</item>
+    <item quantity="other">%1$d personnes ont été invitées au groupe.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Vous avez révoqué une invitation au groupe.</item>
@@ -687,6 +701,10 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu’un a décliné une invitation au groupe.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vous avez décliné l’invitation du groupe.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Votre invitation au groupe a été révoquée.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Une invitation au groupe a été révoquée.</item>
+    <item quantity="other">%1$d invitations au groupe ont été révoquées.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Vous avez accepté l’invitation du groupe.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s a accepté une invitation au groupe.</string>
@@ -695,9 +713,11 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Vous avez changé le nom du groupe en « %1$s ».</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a changé le nom du groupe en « %2$s ».</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Le nom du groupe a été changé en « %1$s ».</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Vous avez changé l’avatar du groupe.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s a changé l’avatar du groupe.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">L’avatar du groupe a été changé.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Vous avez changé qui peut modifier les renseignements du groupe en « %1$s ».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s a changé qui peut modifier les renseignements du groupe en « %2$s ».</string>
@@ -797,6 +817,11 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Créer votre NIP</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de NIP, mais vous pouvez encore accéder à votre compte Signal en créant un nouveau NIP. Afin de protéger vos données personnelles et votre sécurité, votre compte sera restauré sans renseignements de profil enregistrés ni préférences.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Avertissement</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Ignorer la création du NIP</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Désactiver le NIP ?</string> -->
+  <string name="PinOptOutDialog_disable_pin">Désactiver le NIP</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette appli</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si vous aimez cette appli, veuillez prendre quelques instants pour nous aider la notant.</string>
@@ -903,11 +928,12 @@
   <string name="SharedContactView_invite_to_signal">Inviter à Signal</string>
   <string name="SharedContactView_message">Message Signal</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Nous vous le rappellerons ultérieurement.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Nous vous le rappellerons plus tard.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Nous vous le rappellerons demain.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Nous vous le rappellerons dans quelques jours.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Nous vous le rappellerons dans une semaine.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Nous vous le rappellerons dans quelques semaines.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Nous vous le rappellerons dans un mois.</string>
   <!--Slide-->
   <string name="Slide_image">Image</string>
   <string name="Slide_sticker">Autocollant</string>
@@ -1062,6 +1088,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Supprimer le message ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s à %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Le média n’est plus disponible.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nouveaux messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Le plus récent de : %1$s</string>
@@ -1572,10 +1599,13 @@
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
+  <string name="preferences__disable_pin">Désactiver le NIP</string>
+  <string name="preferences__enable_pin">Activer le NIP</string>
   <string name="preferences__system_default">Valeur par défaut du système</string>
   <string name="preferences__default">Valeur par défaut</string>
   <string name="preferences__language">Langue</string>
   <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
+  <string name="preferences__advanced_pin_settings">Paramètres de NIP avancés</string>
   <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et confidentiels vers les utilisateurs de Signal</string>
   <string name="preferences__submit_debug_log">Envoyer le journal de débogage</string>
   <string name="preferences__support_wifi_calling">Mode de compatibilité « Appels Wi-Fi »</string>
@@ -1780,25 +1810,25 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vous pouvez modifier votre NIP tant que cet appareil est inscrit.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Choisissez une NIP plus robuste</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez ressayez.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre NIP</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Échec de création du NIP</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre NIP n’a pas été enregistré. Nous vous inviterons à en créer un ultérieurement.</string>
-  <string name="ConfirmKbsPinFragment__pin_created">Votre NIP a été créé.</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre NIP n’a pas été enregistré. Nous vous inviterons à en créer un plus tard.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">Le NIP a été créé.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Saisissez votre NIP de nouveau.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal.</string>
-  <string name="KbsSplashFragment__learn_more">En savoir plus</string>
+  <string name="KbsSplashFragment__learn_more">En apprendre davantage</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Apprenez-en davantage sur les NIP.</string>
   <string name="KbsSplashFragment__update_pin">Mettre le NIP à jour</string>
   <string name="KbsSplashFragment__create_your_pin">Créer votre NIP</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">En apprendre davantage sur les NIP</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Ignorer la création du NIP</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Saisissez votre NIP Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pour vous aider à mémoriser votre NIP, nous vous demanderons de le saisir régulièrement. Nous vous le demanderons de moins en moins souvent.</string>
@@ -1810,7 +1840,7 @@
   <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre NIP. Tout le contenu sera supprimé.</string>
   <string name="AccountLockedFragment__next">Suivant</string>
-  <string name="AccountLockedFragment__learn_more">En savoir plus</string>
+  <string name="AccountLockedFragment__learn_more">En apprendre davantage</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Saisissez votre NIP</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le NIP que vous avez créé pour votre compte. Il est différent de votre code de confirmation reçu par texto.</string>
@@ -1851,8 +1881,8 @@
   <string name="KbsMegaphone__create_pin">Créer un NIP</string>
   <string name="KbsMegaphone__introducing_pins">Nous présentons les NIP</string>
   <string name="KbsMegaphone__update_pin">Mettre le NIP à jour</string>
-  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons ultérieurement. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
-  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons ultérieurement. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons plus tard. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons plus tard. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -1884,7 +1914,7 @@
   <string name="RegistrationActivity_checking">Confirmation…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d messages jusqu’à présent…</string>
   <string name="RegistrationActivity_restore_from_backup">Restaurer de la sauvegarde ?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurez vos messages et médias d’une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire ultérieurement.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurez vos messages et médias d’une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
   <string name="RegistrationActivity_backup_size_s">Taille de la sauvegarde : %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Estampille temporelle de la sauvegarde : %s</string>
   <string name="BackupDialog_enable_local_backups">Activer les sauvegardes locales ?</string>

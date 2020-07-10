@@ -777,6 +777,10 @@
   <string name="PinRestoreLockedFragment_create_your_pin">建立你的 PIN 碼</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">你的PIN碼猜測用完了，但是你仍然可以通過建立新的PIN碼來連結Signal帳號。 為了你的隱私和安全，你的帳號將被回復，而不會保存任何個人資料訊息或設定。</string>
   <string name="PinRestoreLockedFragment_create_new_pin">建立新的PIN碼</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">警告</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">跳過PIN碼建立將建立與你的帳號相關隱藏的、高機密性的PIN碼且不可回復。 重新註冊Signal時，除非手動備份和還原，否則所有資料都會遺失。 停用PIN碼時無法開啟註冊鎖定。</string> -->
+  <string name="PinOptOutDialog_disable_pin">停用PIN碼</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">評分這個應用程式</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜歡使用此應用程式，請使用片刻時間幫我們對其進行評分。</string>
@@ -1551,6 +1555,9 @@
   <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
+  <string name="preferences__disable_pin">停用PIN碼</string>
+  <string name="preferences__enable_pin">啟用PIN碼</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN碼會以Signal加密方式儲存訊息，因此只有你可以讀取。 重新安裝後，你的個人資料，設定和聯絡人將回復。 你不需要PIN碼即可開啟應用程式。</string>
   <string name="preferences__system_default">系統預設</string>
   <string name="preferences__default">預設</string>
   <string name="preferences__language">語言選項</string>
@@ -1756,7 +1763,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">建立一個新 PIN 碼</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只要註冊了此裝置，你就可以變更PIN碼。</string>
   <string name="CreateKbsPinFragment__create_your_pin">建立你的 PIN 碼</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存資訊，因此只有你可以讀取。 重新安裝Signal時，你的個人資料，設定和聯絡人將復元。</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">請選擇強度較強的PIN碼</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN碼不符合。請重試一次。</string>
@@ -1768,13 +1774,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">建立PIN碼中…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">介紹 PIN 碼</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存資訊，因此只有你可以讀取。 重新安裝Signal時，你的個人資料，設定和聯絡人將復元。</string>
   <string name="KbsSplashFragment__learn_more">了解更多</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">註冊鎖 = PIN 碼</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">你的註冊鎖現在稱為PIN碼，並且功能更多。 請立即更新。</string>
   <string name="KbsSplashFragment__read_more_about_pins">了解更多有關PIN碼。</string>
   <string name="KbsSplashFragment__update_pin">升級PIN碼</string>
   <string name="KbsSplashFragment__create_your_pin">建立你的 PIN 碼</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">了解更多有關 PIN 碼</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">輸入你的 Signal PIN 碼</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">為了幫助你記住PIN碼，我們會要求你定期輸入。 我們會漸漸地減少要求。</string>

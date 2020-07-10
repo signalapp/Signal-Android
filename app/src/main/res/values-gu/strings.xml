@@ -611,6 +611,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">સંખ્યાત્મક PIN દાખલ કરો</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">તમારો PIN બનાવો</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">આ એપ્લિકેશનને રેટ કરો</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">જો તમને આ એપ્લિકેશનનો ઉપયોગ કરવામાં આનંદ આવે છે, તો કૃપા કરીને તેને રેટિંગ આપીને મદદ કરવામાં થોડો સમય કાઢો.</string>
@@ -1496,7 +1497,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">નવો PIN બનાવો</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">આ ડિવાઇસ રજીસ્ટર થાય ત્યાં સુધી તમે તમારો PIN બદલી શકો છો.</string>
   <string name="CreateKbsPinFragment__create_your_pin">તમારો PIN બનાવો</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal સાથેની માહિતી સ્ટોર કરેલી માહિતીને એન્ક્રિપ્ટ કરે છે જેથી ફક્ત તમે જ તેને એક્સેસ કરી શકો. જ્યારે તમે Signal ને ફરીથી ઇન્સ્ટોલ કરો છો ત્યારે તમારી પ્રોફાઇલ, સેટિંગ્સ અને સંપર્કો રિસ્ટોર થશે.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">એક મજબૂત PIN પસંદ કરો</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN મેળ ખાતા નથી. ફરીથી પ્રયત્ન કરો.</string>
@@ -1507,12 +1507,12 @@
   <string name="ConfirmKbsPinFragment__creating_pin">PIN બનાવી રહ્યાં છે…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN રજૂ કરી રહ્યા છીએ</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal સાથેની માહિતી સ્ટોર કરેલી માહિતીને એન્ક્રિપ્ટ કરે છે જેથી ફક્ત તમે જ તેને એક્સેસ કરી શકો. જ્યારે તમે Signal ને ફરીથી ઇન્સ્ટોલ કરો છો ત્યારે તમારી પ્રોફાઇલ, સેટિંગ્સ અને સંપર્કો રિસ્ટોર થશે.</string>
   <string name="KbsSplashFragment__learn_more">વધુ શીખો</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">રજીસ્ટ્રેશન લૉક = PIN</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN વિશે વધુ વાંચો.</string>
   <string name="KbsSplashFragment__update_pin">PIN અપડેટ કરો</string>
   <string name="KbsSplashFragment__create_your_pin">તમારો PIN બનાવો</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">PIN વિશે વધુ જાણો</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">તમારો Signal પિન દાખલ કરો</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">તમને તમારો PIN યાદ રાખવામાં મદદ કરવા માટે, અમે તમને તે સમયાંતરે દાખલ કરવા માટે કહીશું. અમે તમને સમય સાથે ઓછા પૂછીએ છીએ.</string>

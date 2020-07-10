@@ -48,6 +48,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Блокировка экрана %1$s, блокировка регистрации %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Блокировка экрана %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, язык %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коды необходимы для блокировки регистрации. Чтобы отключить PIN-коды, пожалуйста, сначала отключите блокировку регистрации.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Не удалось отключить PIN-коды. Попробуйте ещё раз позже.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN-код создан.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN-код отключён.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минута</item>
@@ -891,6 +895,13 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Создать PIN-код</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">У вас закончились попытки ввода PIN-кода, но вы всё равно можете получить доступ к своей учётной записи Signal, создав новый PIN-код. Для вашей конфиденциальности и безопасности ваша учётная запись будет восстановлена без какой-либо сохранённой информации профиля или настроек.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Создать новый PIN-код</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Предупреждение</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">При пропуске создания PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Пропустить создание PIN-кода</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Отключить PIN-код?</string> -->
+  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+  <string name="PinOptOutDialog_disable_pin">Отключить PIN-код</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Если вам нравится это приложение, пожалуйста, найдите минутку, чтобы помочь нам, поставив ему оценку.</string>
@@ -1162,6 +1173,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Удалить сообщение?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s для %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Медиа больше не доступно.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от: %1$s</string>
@@ -1694,10 +1706,15 @@
   <string name="preferences__dark_theme">Темная</string>
   <string name="preferences__appearance">Внешний вид</string>
   <string name="preferences__theme">Тема</string>
+  <string name="preferences__disable_pin">Отключить PIN-код</string>
+  <string name="preferences__enable_pin">Включить PIN-код</string>
+  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
   <string name="preferences__system_default">По умолчанию</string>
   <string name="preferences__default">По умолчанию</string>
   <string name="preferences__language">Язык (Language)</string>
   <string name="preferences__signal_messages_and_calls">Звонки и сообщения Signal</string>
+  <string name="preferences__advanced_pin_settings">Расширенные настройки PIN-кода</string>
   <string name="preferences__free_private_messages_and_calls">Бесплатные приватные сообщения и звонки пользователям Signal</string>
   <string name="preferences__submit_debug_log">Отправить журнал отладки</string>
   <string name="preferences__support_wifi_calling">Совместимость с Wi-Fi звонками</string>
@@ -1908,7 +1925,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Вы можете изменить свой PIN-код, пока это устройство зарегистрировано.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Придумайте более надёжный PIN-код</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>
@@ -1920,13 +1937,15 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Создание PIN-кода…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Представляем PIN-коды</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
   <string name="KbsSplashFragment__learn_more">Узнать больше</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Блокировка регистрации = PIN-код</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">«Блокировка регистрации» теперь называется «PIN-код» и умеет больше. Обновите его прямо сейчас.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Узнать больше о PIN-кодах.</string>
   <string name="KbsSplashFragment__update_pin">Обновить PIN-код</string>
   <string name="KbsSplashFragment__create_your_pin">Создать PIN-код</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Узнать больше о PIN-кодах</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Пропустить создание PIN-кода</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Введите свой PIN-код</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Чтобы помочь вам запомнить свой PIN-код, мы будем просить вас периодически вводить его. Со временем это будет происходить реже.</string>

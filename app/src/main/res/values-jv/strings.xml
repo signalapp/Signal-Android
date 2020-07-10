@@ -595,6 +595,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Lebetaken PIN wilangan</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Damel PIN sampeyan</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Sukani peringkat kangge aplikasi niki</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Menawi sampeyan remen ngangge aplikasi niki, nyuwun tulung sampeyan sukani peringkat.</string>
@@ -1479,7 +1480,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Damel PIN ingkang enggal</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Sampeyan saged nggantos PIN mewani pirantos niki taksih didaftaraken.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Damel PIN sampeyan</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN njagi supados informasi disimpen kangge enkripsi Signal, dados sampeyan mawon ingkang saged ngakses. Profil, panatanan, lan kontak bakal dipulihaken kala sampeyan masangaken Signal malih.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pileh PIN ingkang luwih kuwat</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN mboten gathuk. Cobi malih.</string>
@@ -1490,12 +1490,12 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Ndamel PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nepangaken PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN njagi supados informasi disimpen kangge enkripsi Signal, dados sampeyan mawon ingkang saged ngakses. Profil, panatanan, lan kontak bakal dipulihaken kala sampeyan masangaken Signal malih.</string>
   <string name="KbsSplashFragment__learn_more">Sapepakipun</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kunci Pendaftaran = PIN</string>
   <string name="KbsSplashFragment__read_more_about_pins">Sapepakipun babagan PIN.</string>
   <string name="KbsSplashFragment__update_pin">Enggalaken PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Damel PIN sampeyan</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Sakpepakipun babagan PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Lebetaken PIN Signal sampeyan</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Kangge mbiantu sampeyan ngeling-eling PIN kasebut, kala-kala Signal bakal nedhakaken supados sampeyan nglebetaken PIN kasebut. Tambah dangu, tumindak niki bakal tambah sekedhik.</string>

@@ -44,6 +44,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل ثبت‌نام %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل صفحه %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">طرح زمینه %1$s، زبان %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام ضروری هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">غیرفعال کردن پین موفق نبود. بعداً دوباره امتحان کنید.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d دقیقه</item>
@@ -632,6 +636,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">یک پیام رمزنگاری شده با استفاده از یک نسخهٔ قدیمی Signal که دیگر پشتیبانی نمی‌شود برایتان ارسال شده است. لطفاً از فرستنده بخواهید تا به آخرین نسخه به‌روزرسانی کند و آن پیام را دوباره ارسال کند.</string>
   <string name="MessageRecord_left_group">شما گروه را ترک کردید.</string>
   <string name="MessageRecord_you_updated_group">شما گروه را به‌روزرسانی کردید.</string>
+  <string name="MessageRecord_the_group_was_updated">گروه به‌روزرسانی شد.</string>
   <string name="MessageRecord_you_called">شما تماس گرفتید</string>
   <string name="MessageRecord_called_you">مخاطب تماس گرفت</string>
   <string name="MessageRecord_missed_call">تماس از دست رفته</string>
@@ -642,8 +647,9 @@
   <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدید شونده را غیر فعال کردید.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام‌های ناپدید شونده را غیرفعال کرد.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان سنج پیام های ناپدید شونده را روی %1$s تنظیم کردید.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان سنج پیام های ناپدید شونده را روی %2$s قرار داد.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان‌سنج پیام‌ ناپدید شونده را روی %1$s تنظیم کردید.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان‌سنج پیام ناپدید شونده را روی %2$s تنظیم کرد.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">زمان‌سنج پیام ناپدید شونده روی %1$s تنظیم شد.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه رو خلق کردی</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
@@ -659,6 +665,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s شما را از گروه حذف کرد.</string>
   <string name="MessageRecord_you_left_the_group">شما گروه را ترک کردید</string>
   <string name="MessageRecord_s_left_the_group">%1$s گروه را ترک کرد.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">شما دیگر در گروه نیستید.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s دیگر در گروه نیست.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">شما %1$s را به مدیر تبدیل کردید.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s را به مدیر تبدیل کرد.</string>
@@ -666,7 +674,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">شما امتیازات مدیریت %1$s را لغو کردید.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s امتیازات مدیریتی شما را لغو کرد.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s امتیازات مدیریتی %2$s را لغو کرد.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s حالا یک مدیر است.</string>
   <string name="MessageRecord_you_are_now_an_admin">شما حالا مدیر هستید.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s دیگر یک مدیر نیست.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">شما دیگر یک مدیر نیستید.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">شما %1$s را به گروه دعوت کردید.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s شما را به گروه دعوت کرد.</string>
@@ -675,6 +686,10 @@
     <item quantity="other">%1$s %2$d نفر را به گروه دعوت کرد.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">شما به گروه دعوت شدید.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">۱ نفر به گروه دعوت شد.</item>
+    <item quantity="other">%1$d نفر به گروه دعوت شدند.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">شما یک دعوت به گروه را لغو کردید.</item>
@@ -687,6 +702,10 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">یک نفر دعوت به گروه را رد کرد.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">شما دعوت به گروه را رد کردید.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">دعوت شما به گروه لغو شد.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">یک دعوتنامه به گروه لغو شد.</item>
+    <item quantity="other">%1$d دعوت‌نامه به گروه لغو شدند.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">شما دعوت به گروه را پذیرفتید.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s دعوت به گروه را قبول کرد.</string>
@@ -695,15 +714,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">شما نام گروه را به «%1$s» تغییر دادید.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s نام گروه را به «%2$s» تغییر داد.</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">نام گروه به «%1$s» تغییر یافت.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">شما عکس گروه را عوض کردید.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s عکس گروه را تغییر داد.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">عکس گروه تغییر یافت.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">شما قابلیت ویرایش اطلاعات گروه را به «%1$s» انتقال دادید.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s قابلیت ویرایش اطلاعات گروه را به «%2$s» انتقال داد.</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">قابلیت ویرایش اطلاعات گروه به «%1$s» انتقال یافت.</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">شما قابلیت ویرایش اعضای گروه را به «%1$s» انتقال دادید.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s قابلیت ویرایش اعضای گروه را به «%2$s» انتقال داد.</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">قابلیت ویرایش اعضای گروه به «%1$s» انتقال یافت.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">شما شمارهٔ امنیتی خود با %s  را به عنوان تأیید شده علامت زدید</string>
@@ -797,6 +820,13 @@
   <string name="PinRestoreLockedFragment_create_your_pin">پین خود را ایجاد کنید</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب Signal تان دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب شما بدون هیچ اطلاعات و تنظیماتی ذخیره‌شده‌ای از پروفایل شما بازنشانی خواهد شد.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">اخطار</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">رد کردن ایجاد پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">رد کردن ایجاد پین</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">می‌خواهید پین را غیر فعال کنید؟</string> -->
+  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
+  <string name="PinOptOutDialog_disable_pin">غیرفعال کردن پین</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">امتیازدهی این برنامه</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">اگر از استفاده از این برنامه لذت می برید، لطفاً برای کمک به ما یک لحظه وقت بگذارید و آن را امتیاز دهید.</string>
@@ -913,6 +943,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">طی چند روز، دوباره به شما یادآوری خواهیم کرد.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">طی یک هفته، دوباره به شما یادآوری خواهیم کرد.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">طی چند هفته، دوباره به شما یادآوری خواهیم کرد.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">طی یک ماه دوباره به شما یادآوری خواهیم کرد.</string>
   <!--Slide-->
   <string name="Slide_image">تصویر</string>
   <string name="Slide_sticker">استیکر</string>
@@ -1068,6 +1099,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">حذف پیام؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">این گزینه باعث حذف دائمی این پیام خواهد شد.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s به %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">رسانه دیگر در دسترس نیست.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d پیام جدید در %2$d مکالمه</string>
   <string name="MessageNotifier_most_recent_from_s">جدیدترین از: %1$s</string>
@@ -1211,6 +1243,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
   <string name="ContactSelectionListFragment_okay">باشه</string>
   <string name="ContactSelectionListFragment_the_group_is_full">گروه پر است</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">هیچ مخاطب مسدود شده‌ای وجود ندارد</string>
   <!--contact_selection_list_fragment-->
@@ -1579,10 +1612,15 @@
   <string name="preferences__dark_theme">تاریک</string>
   <string name="preferences__appearance">ظاهر برنامه</string>
   <string name="preferences__theme">طرح زمینه</string>
+  <string name="preferences__disable_pin">غیرفعال کردن پین</string>
+  <string name="preferences__enable_pin">فعال کردن پین</string>
+  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="preferences__system_default">پیش‌فرض سیستم</string>
   <string name="preferences__default">پیش‌فرض</string>
   <string name="preferences__language">زبان</string>
   <string name="preferences__signal_messages_and_calls">تماس‌ها و پیام‌های Signal</string>
+  <string name="preferences__advanced_pin_settings">تنظیمات پیشرفتهٔ پین</string>
   <string name="preferences__free_private_messages_and_calls">تماس‌ها و پیام‌های خصوصی رایگان برای کاربران Signal</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
   <string name="preferences__support_wifi_calling">حالت سازگاری «تماس WiFi»</string>
@@ -1787,7 +1825,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">یک پین جدید ایجاد کنید</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">تا زمانی که این دستگاه ثبت شده باشد شما می‌توانید پین خود را تغییر دهید.</string>
   <string name="CreateKbsPinFragment__create_your_pin">پین خود را ایجاد کنید</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">یک پین قوی‌تر انتخاب کنید</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
@@ -1799,13 +1837,15 @@
   <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">تعریف پین‌ها</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازنشانی می‌شوند.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزنگاری شده نگاه می‌دارند تا فقط شما به آنها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی می‌شوند. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="KbsSplashFragment__learn_more">اطلاعات بیشتر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل ثبت‌نام = پین</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد، و کارهای بیشتری را انجام می‌دهد. هم‌اکنون آن را به‌روزرسانی کنید.</string>
   <string name="KbsSplashFragment__read_more_about_pins">در مورد پین‌ها بیشتر بخوانید.</string>
   <string name="KbsSplashFragment__update_pin">به‌روزرسانی پین</string>
   <string name="KbsSplashFragment__create_your_pin">پین خود را ایجاد کنید</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">درباره پین ​​اطلاعات بیشتری کسب کنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">رد کردن ایجاد پین</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">پین Signal خود را وارد کنید</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">برای کمک به شما در به‌خاطرسپاری پین، آن را به صورت دوره‌ای از شما می‌پرسیم. با گذر زمان این‌ کار را کمتر انجام خواهیم داد.</string>
