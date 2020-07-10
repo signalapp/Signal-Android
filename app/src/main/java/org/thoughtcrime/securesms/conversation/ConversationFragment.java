@@ -287,7 +287,7 @@ public class ConversationFragment extends LoggingFragment {
     int firstVisiblePosition = getListLayoutManager().findFirstCompletelyVisibleItemPosition();
 
     final long lastVisibleMessageTimestamp;
-    if (firstVisiblePosition != 0 && lastVisiblePosition != RecyclerView.NO_POSITION) {
+    if (firstVisiblePosition > 0 && lastVisiblePosition != RecyclerView.NO_POSITION) {
       MessageRecord message = getListAdapter().getLastVisibleMessageRecord(lastVisiblePosition);
 
       lastVisibleMessageTimestamp = message != null ? message.getDateReceived() : 0;

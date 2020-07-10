@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 
@@ -191,6 +190,10 @@ public class ThreadDatabase extends Database {
 
     if (unarchive) {
       contentValues.put(ARCHIVED, 0);
+    }
+
+    if (count != getConversationMessageCount(threadId)) {
+      contentValues.put(LAST_SCROLLED, 0);
     }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
@@ -664,6 +667,17 @@ public class ThreadDatabase extends Database {
 
       return new ConversationMetadata(-1L, false, -1);
     }
+  }
+
+  public int getConversationMessageCount(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[]{MESSAGE_COUNT}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return CursorUtil.requireInt(cursor, MESSAGE_COUNT);
+      }
+    }
+    return 0;
   }
 
   public void deleteConversation(long threadId) {
