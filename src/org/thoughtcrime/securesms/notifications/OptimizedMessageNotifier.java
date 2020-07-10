@@ -14,8 +14,6 @@ import org.whispersystems.signalservice.loki.api.Poller;
 
 import java.util.concurrent.TimeUnit;
 
-import network.loki.messenger.BuildConfig;
-
 public class OptimizedMessageNotifier implements MessageNotifier {
   private final MessageNotifier         wrapped;
   private final Debouncer               debouncer;
@@ -42,9 +40,6 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context) {
-    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
-      throw new AssertionError();
-    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
     boolean isCaughtUp = false;
@@ -53,17 +48,14 @@ public class OptimizedMessageNotifier implements MessageNotifier {
     }
 
     if (isCaughtUp) {
-      wrapped.updateNotification(context);
+      performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context));
     } else {
-      debouncer.publish(() -> wrapped.updateNotification(context));
+      debouncer.publish(() -> performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context)));
     }
   }
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId) {
-    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
-      throw new AssertionError();
-    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
     boolean isCaughtUp = false;
@@ -72,17 +64,14 @@ public class OptimizedMessageNotifier implements MessageNotifier {
     }
 
     if (isCaughtUp) {
-      wrapped.updateNotification(context, threadId);
+      performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, threadId));
     } else {
-      debouncer.publish(() -> wrapped.updateNotification(context, threadId));
+      debouncer.publish(() -> performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, threadId)));
     }
   }
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId, boolean signal) {
-    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
-      throw new AssertionError();
-    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
     boolean isCaughtUp = false;
@@ -91,17 +80,14 @@ public class OptimizedMessageNotifier implements MessageNotifier {
     }
 
     if (isCaughtUp) {
-      wrapped.updateNotification(context, threadId, signal);
+      performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, threadId, signal));
     } else {
-      debouncer.publish(() -> wrapped.updateNotification(context, threadId, signal));
+      debouncer.publish(() -> performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, threadId, signal)));
     }
   }
 
   @Override
   public void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount) {
-    if (BuildConfig.DEBUG && Looper.myLooper() != Looper.getMainLooper()) {
-      throw new AssertionError();
-    }
     Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
     boolean isCaughtUp = false;
@@ -110,12 +96,20 @@ public class OptimizedMessageNotifier implements MessageNotifier {
     }
 
     if (isCaughtUp) {
-      wrapped.updateNotification(context, signal, reminderCount);
+      performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, signal, reminderCount));
     } else {
-      debouncer.publish(() -> wrapped.updateNotification(context, signal, reminderCount));
+      debouncer.publish(() -> performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, signal, reminderCount)));
     }
   }
 
   @Override
   public void clearReminder(@NonNull Context context) { wrapped.clearReminder(context); }
+
+  private void performOnBackgroundThreadIfNeeded(Runnable r) {
+    if (Looper.myLooper() == Looper.getMainLooper()) {
+      new Thread(r).start();
+    } else {
+      r.run();
+    }
+  }
 }
