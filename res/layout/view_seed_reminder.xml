@@ -64,7 +64,7 @@
             android:layout_height="28dp"
             android:layout_marginLeft="4dp"
             android:textStyle="normal"
-            android:text="Continue" />
+            android:text="@string/continue_2" />
 
     </LinearLayout>
 
