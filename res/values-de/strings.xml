@@ -1324,7 +1324,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
 
   <string name="activity_restore_title">Ihr Konto wiederherstellen</string>
   <string name="activity_restore_explanation">Geben Sie den Wiederherstellungssatz ein, den Sie bei der Anmeldung zur Wiederherstellung Ihres Kontos erhalten haben.</string>
-  <string name="activity_restore_seed_edit_text_hint">Geben Sie Ihren Wiederherstellungssatz ein.</string>
+  <string name="activity_restore_seed_edit_text_hint">Ihren Wiederherstellungssatz</string>
 
   <string name="activity_link_device_title">Gerät verbinden</string>
   <string name="activity_link_device_enter_session_id_tab_title">Session ID eingeben</string>
@@ -1391,7 +1391,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="activity_create_private_chat_scan_qr_code_tab_title">QR-Code scannen</string>
   <string name="activity_create_private_chat_scan_qr_code_explanation">Scannen Sie den QR-Code eines Benutzers, um eine Session zu starten. QR-Codes finden Sie, indem Sie in den Kontoeinstellungen auf das QR-Code-Symbol tippen.</string>
 
-  <string name="fragment_enter_public_key_edit_text_hint">Geben Sie die Session ID des Empfängers ein.</string>
+  <string name="fragment_enter_public_key_edit_text_hint">Geben Sie eine Session ID ein.</string>
   <string name="fragment_enter_public_key_explanation">Benutzer können ihre Session ID freigeben, indem sie in ihren Kontoeinstellungen auf Session ID freigeben tippen oder ihren QR-Code freigeben.</string>
 
   <string name="fragment_scan_qr_code_camera_access_explanation">Session benötigt Kamerazugriff, um die QR-Codes scannen zu können.</string>
