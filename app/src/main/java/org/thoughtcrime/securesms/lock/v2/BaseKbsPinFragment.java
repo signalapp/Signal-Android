@@ -100,7 +100,8 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
   @Override
   public void onPrepareOptionsMenu(@NonNull Menu menu) {
     if (RegistrationLockUtil.userHasRegistrationLock(requireContext()) ||
-        SignalStore.kbsValues().hasPin())
+        SignalStore.kbsValues().hasPin()                               ||
+        SignalStore.kbsValues().hasOptedOut())
     {
       menu.clear();
     }

@@ -8,7 +8,7 @@
   <Preference
       android:key="pref_pin_disable"
       android:title="@string/preferences__disable_pin"
-      android:summary="@string/preferences__disabling_pins_will_create_a_hidden_high_entropy_pin"
+      android:summary="@string/preferences__if_you_disable_the_pin_you_will_lose_all_data"
       app:isPreferenceVisible="false"
       tools:isPreferenceVisible="true"/>
 

@@ -34,30 +34,25 @@ public final class PinOptOutDialog {
   }
 
   private static void show(@NonNull Context context,
-                           boolean skip,
+                           boolean isForSkip,
                            @NonNull Runnable onSuccess,
                            @NonNull Runnable onFailed)
   {
     AlertDialog dialog = new AlertDialog.Builder(context)
                                         .setTitle(R.string.PinOptOutDialog_warning)
-                                        .setMessage(R.string.PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin)
+                                        .setMessage(R.string.PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data)
                                         .setCancelable(true)
                                         .setPositiveButton(R.string.PinOptOutDialog_disable_pin, (d, which) -> {
                                           d.dismiss();
                                           AlertDialog progress = SimpleProgressDialog.show(context);
 
                                           SimpleTask.run(() -> {
-                                            try {
-                                              if (skip) {
-                                                PinState.onPinCreationSkipped(context);
-                                              } else {
-                                                PinState.onPinOptOut(context);
-                                              }
-                                              return true;
-                                            } catch (IOException | UnauthenticatedResponseException e) {
-                                              Log.w(TAG, e);
-                                              return false;
+                                            if (isForSkip) {
+                                              PinState.onPinCreationSkipped();
+                                            } else {
+                                              PinState.onPinOptOut();
                                             }
+                                            return true;
                                           }, success -> {
                                             if (success) {
                                               onSuccess.run();

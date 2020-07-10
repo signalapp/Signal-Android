@@ -18,9 +18,7 @@ import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.registration.service.KeyBackupSystemWrongPinException;
-import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
@@ -32,6 +30,7 @@ import org.whispersystems.signalservice.internal.contacts.crypto.Unauthenticated
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -156,10 +155,19 @@ public final class PinState {
   {
     Log.i(TAG, "onPinChangedOrCreated()");
 
-    boolean isFirstPin = !SignalStore.kbsValues().hasPin() || SignalStore.kbsValues().hasOptedOut();
+    KbsValues                         kbsValues        = SignalStore.kbsValues();
+    boolean                           isFirstPin       = !kbsValues.hasPin() || kbsValues.hasOptedOut();
+    MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
+    KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService();
+    KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
+    HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
+    KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
 
-    setPin(context, pin, keyboard);
-    SignalStore.kbsValues().optIn();
+    kbsValues.setKbsMasterKey(kbsData, pin);
+    TextSecurePreferences.clearRegistrationLockV1(context);
+    SignalStore.pinValues().setKeyboardType(keyboard);
+    SignalStore.pinValues().resetPinReminders();
+    ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL);
 
     if (isFirstPin) {
       Log.i(TAG, "First time setting a PIN. Refreshing attributes to set the 'storage' capability.");
@@ -185,13 +193,11 @@ public final class PinState {
    * Invoked when the user has enabled the "PIN opt out" setting.
    */
   @WorkerThread
-  public static synchronized void onPinOptOut(@NonNull Context context)
-    throws IOException, UnauthenticatedResponseException
-  {
+  public static synchronized void onPinOptOut() {
     Log.i(TAG, "onPinOptOutEnabled()");
     assertState(State.PIN_WITH_REGISTRATION_LOCK_DISABLED, State.NO_REGISTRATION_LOCK);
 
-    optOutOfPin(context);
+    optOutOfPin();
 
     updateState(buildInferredStateFromOtherFields());
   }
@@ -200,13 +206,11 @@ public final class PinState {
    * Invoked when the user has chosen to skip PIN creation.
    */
   @WorkerThread
-  public static synchronized void onPinCreationSkipped(@NonNull Context context)
-    throws IOException, UnauthenticatedResponseException
-  {
+  public static synchronized void onPinCreationSkipped() {
     Log.i(TAG, "onPinCreationSkipped()");
     assertState(State.NO_REGISTRATION_LOCK);
 
-    optOutOfPin(context);
+    optOutOfPin();
 
     updateState(buildInferredStateFromOtherFields());
   }
@@ -296,6 +300,20 @@ public final class PinState {
   }
 
   @WorkerThread
+  private static void bestEffortForcePushStorage() {
+    Optional<JobTracker.JobState> result = ApplicationDependencies.getJobManager().runSynchronously(new StorageForcePushJob(), TimeUnit.SECONDS.toMillis(10));
+
+    if (result.isPresent() && result.get() == JobTracker.JobState.SUCCESS) {
+      Log.i(TAG, "Storage was force-pushed successfully.");
+    } else if (result.isPresent()) {
+      Log.w(TAG, "Storage force-pushed finished, but was not successful. Enqueuing one for later. (Result: " + result.get() + ")");
+      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+    } else {
+      Log.w(TAG, "Storage fore push did not finish in the allotted time. It'll finish later.");
+    }
+  }
+
+  @WorkerThread
   private static void resetPinRetryCount(@NonNull Context context, @Nullable String pin, @NonNull KbsPinData kbsData) {
     if (pin == null) {
       return;
@@ -322,34 +340,13 @@ public final class PinState {
   }
 
   @WorkerThread
-  private static void setPin(@NonNull Context context, @NonNull String pin, @NonNull PinKeyboardType keyboard)
-      throws IOException, UnauthenticatedResponseException
-  {
-    KbsValues                         kbsValues        = SignalStore.kbsValues();
-    MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
-    KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService();
-    KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
-    HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
-    KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
-
-    kbsValues.setKbsMasterKey(kbsData, pin);
-    TextSecurePreferences.clearRegistrationLockV1(context);
-    SignalStore.pinValues().setKeyboardType(keyboard);
-    SignalStore.pinValues().resetPinReminders();
-    ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL);
-  }
-
-  @WorkerThread
-  private static void optOutOfPin(@NonNull Context context)
-      throws IOException, UnauthenticatedResponseException
-  {
-    SignalStore.kbsValues().resetMasterKey();
-
-    setPin(context, Hex.toStringCondensed(Util.getSecretBytes(32)), PinKeyboardType.ALPHA_NUMERIC);
+  private static void optOutOfPin() {
     SignalStore.kbsValues().optOut();
 
-    ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
+    ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL);
+
     bestEffortRefreshAttributes();
+    bestEffortForcePushStorage();
   }
 
   private static @NonNull State assertState(State... allowed) {
