@@ -12,6 +12,7 @@ import static com.android.tools.lint.checks.infrastructure.TestLintTask.lint;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+@SuppressWarnings("UnstableApiUsage")
 public final class LogDetectorTest {
 
   private static final TestFile serviceLogStub = java(readResourceAsString("ServiceLogStub.java"));
