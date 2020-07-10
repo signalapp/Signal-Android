@@ -34,7 +34,7 @@ import java.util.*
 class LokiPublicChatPoller(private val context: Context, private val group: LokiPublicChat) {
     private val handler = Handler()
     private var hasStarted = false
-    var isCaughtUp = false
+    public var isCaughtUp = false
 
     // region Convenience
     private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
