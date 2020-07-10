@@ -177,23 +177,7 @@ public class RemoteDeleteSendJob extends BaseJob {
 
     List<SendMessageResult> results = messageSender.sendMessage(addresses, unidentifiedAccess, false, dataMessage.build());
 
-    Stream.of(results)
-          .filter(r -> r.getIdentityFailure() != null)
-          .map(SendMessageResult::getAddress)
-          .map(a -> Recipient.externalPush(context, a))
-          .forEach(r -> Log.w(TAG, "Identity failure for " + r.getId()));
-
-    Stream.of(results)
-          .filter(SendMessageResult::isUnregisteredFailure)
-          .map(SendMessageResult::getAddress)
-          .map(a -> Recipient.externalPush(context, a))
-          .forEach(r -> Log.w(TAG, "Unregistered failure for " + r.getId()));
-
-    return Stream.of(results)
-                 .filter(r -> r.getSuccess() != null || r.getIdentityFailure() != null || r.isUnregisteredFailure())
-                 .map(SendMessageResult::getAddress)
-                 .map(a -> Recipient.externalPush(context, a))
-                 .toList();
+    return GroupSendJobHelper.getCompletedSends(context, results);
   }
 
   public static class Factory implements Job.Factory<RemoteDeleteSendJob> {
