@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
@@ -482,9 +483,13 @@ final class GroupManagerV2 {
                                                                                        Collections.emptyList(),
                                                                                        Collections.emptyList());
 
-    long threadId = MessageSender.send(context, outgoingMessage, -1, false, null);
-
-    return new GroupManager.GroupActionResult(groupRecipient, threadId);
+    if (plainGroupChange != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(plainGroupChange)) {
+      ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, decryptedGroup, outgoingMessage));
+      return new GroupManager.GroupActionResult(groupRecipient, -1);
+    } else {
+      long threadId = MessageSender.send(context, outgoingMessage, -1, false, null);
+      return new GroupManager.GroupActionResult(groupRecipient, threadId);
+    }
   }
 
   private static @NonNull AccessControl.AccessRequired rightsToAccessControl(@NonNull GroupAccessControl rights) {

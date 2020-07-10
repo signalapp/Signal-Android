@@ -1,6 +1,8 @@
 package org.whispersystems.signalservice.api.messages;
 
+import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 /**
  * Group information to include in SignalServiceMessages destined to v2 groups.
@@ -18,6 +20,27 @@ public final class SignalServiceGroupV2 {
     this.masterKey         = builder.masterKey;
     this.revision          = builder.revision;
     this.signedGroupChange = builder.signedGroupChange != null ? builder.signedGroupChange.clone() : null;
+  }
+
+  /**
+   * Creates a context model populated from a protobuf group V2 context.
+   */
+  public static SignalServiceGroupV2 fromProtobuf(SignalServiceProtos.GroupContextV2 groupContextV2) {
+    GroupMasterKey masterKey;
+    try {
+      masterKey = new GroupMasterKey(groupContextV2.getMasterKey().toByteArray());
+    } catch (InvalidInputException e) {
+      throw new AssertionError(e);
+    }
+
+    Builder builder = newBuilder(masterKey);
+
+    if (groupContextV2.hasGroupChange() && !groupContextV2.getGroupChange().isEmpty()) {
+      builder.withSignedGroupChange(groupContextV2.getGroupChange().toByteArray());
+    }
+
+    return builder.withRevision(groupContextV2.getRevision())
+                  .build();
   }
 
   public GroupMasterKey getMasterKey() {
