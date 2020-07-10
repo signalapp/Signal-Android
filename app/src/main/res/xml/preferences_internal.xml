@@ -14,6 +14,16 @@
             android:key="pref_rotate_profile_key"
             android:summary="@string/preferences__internal_rotate_profile_key_description"
             android:title="@string/preferences__internal_rotate_profile_key" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="internal_storage"
+        android:title="@string/preferences__internal_storage_service">
+
+        <Preference
+            android:key="pref_force_send"
+            android:summary="@string/preferences__internal_force_storage_service_sync_description"
+            android:title="@string/preferences__internal_force_storage_service_sync" />
 
     </PreferenceCategory>
 

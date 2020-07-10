@@ -1974,6 +1974,9 @@
     <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
     <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
     <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
+    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
+    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
+    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
 
     <!-- **************************************** -->
     <!-- menus -->
