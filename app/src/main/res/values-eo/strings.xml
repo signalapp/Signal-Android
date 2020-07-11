@@ -44,6 +44,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekranŝloso %1$s, bloko de registriĝo %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekranŝloso %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Etoso %1$s, lingvo %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN estas bezonata por la bloko de registriĝo. Por malŝalti la uzon de PIN, unue vi devas malŝati vian blokon de registriĝo.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Malsukceso malebligi PIN-on. Reprovu poste.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN kreita.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN malŝaltita.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -817,6 +821,9 @@
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vi ne plu povas enigi vian PIN, sed vi tamen povas aliri vian Signal-konton por krei novan PIN. Pro via privateco kaj sekureco, via konto restariĝos sen iuj konservitaj profilinformojn aŭ agordojn.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Krei novan PIN</string>
   <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Averto</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">La malŝalto de via PIN kreos novan kaŝitan PIN altentropian, kiu estas ligita al via konto, kaj kiu estas nerestaŭrebla. Kiam vi re-registros kun Signal, vi perdos ĉiujn datumojn, krom tio ke vi permane faras savkopion kaj restaŭras tiun savkopion. Vi ne povas uzi blokon de registriĝo, kiam PIN estas malŝaltita.</string> -->
+  <string name="PinOptOutDialog_disable_pin">Malŝalti PIN-on</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Pritaksi tiun aplikaĵon</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se vi ŝatas uzi tiun aplikaĵon, bv. helpi nin per via pritakso.</string>
@@ -1091,6 +1098,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ĉu forviŝi mesaĝon?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s al %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Aŭdvidaĵo ne plu disponeblas.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novaj mesaĝoj en %2$d interparoloj</string>
   <string name="MessageNotifier_most_recent_from_s">Plej lasta de: %1$s</string>
@@ -1603,10 +1611,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__dark_theme">Malhela</string>
   <string name="preferences__appearance">Aspekto</string>
   <string name="preferences__theme">Etoso</string>
+  <string name="preferences__disable_pin">Malŝalti PIN-on</string>
+  <string name="preferences__enable_pin">Ŝalti PIN-on</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">La malŝalto de via PIN kreos novan kaŝitan PIN altentropian, kiu estas ligita al via konto, kaj kiu estas nerestaŭrebla. Kiam vi re-registros kun Signal, vi perdos ĉiujn datumojn, krom tio ke vi permane faras savkopion kaj restaŭras tiun savkopion. Vi ne povas uzi blokon de registriĝo, kiam PIN estas malŝaltita.</string> -->
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on. Vian PIN-on vi ne bezonos por malfermi la aplikaĵon.</string>
   <string name="preferences__system_default">Sistema defaŭlto</string>
   <string name="preferences__default">Defaŭlta</string>
   <string name="preferences__language">Lingvo</string>
   <string name="preferences__signal_messages_and_calls">Signal-aj mesaĝoj kaj alvokoj</string>
+  <string name="preferences__advanced_pin_settings">Speciala PIN-agordo</string>
   <string name="preferences__free_private_messages_and_calls">Senpagaj privataj mesaĝoj kaj alvokoj al Signal-uzantoj</string>
   <string name="preferences__submit_debug_log">Sendi sencimigan protokolon</string>
   <string name="preferences__support_wifi_calling">Kongrua reĝimo kun „Pervifiaj alvokoj“</string>
@@ -1811,6 +1824,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CreateKbsPinFragment__create_a_new_pin">Krei novan PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vi povas ŝanĝi vian PIN tiel longe, kiel tiu ĉi aparato estas registrita.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on. Vian PIN-on vi ne bezonos por malfermi la aplikaĵon.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Elektu pli fortikan PIN-on</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">La du PIN-oj malsamas. Re-provu.</string>
@@ -1822,12 +1836,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConfirmKbsPinFragment__creating_pin">Kreo de PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on. Vian PIN-on vi ne bezonos por malfermi la aplikaĵon.</string>
   <string name="KbsSplashFragment__learn_more">Scii pli</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloko de registriĝo = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">„Bloko de registriĝo“ nomiĝas nun „PIN“, kaj ĝi faras pli. Ĝisdatigu ĝin nun.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Legu pli pri PIN.</string>
   <string name="KbsSplashFragment__update_pin">Ĝisdatigi PIN-on</string>
   <string name="KbsSplashFragment__create_your_pin">Krei vian PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Legu pli pri PIN</string>
+  <string name="KbsSplashFragment__disable_pin">Malŝalti PIN-on</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Entajpu vian Signal-PIN-on</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Por helpi vin memorigi vian PIN, ni petos vin entajpi ĝin tempaltempe. Ni mapli petos vin laŭtempe.</string>

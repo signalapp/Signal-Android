@@ -46,6 +46,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Blocare ecran %1$s, Blocare înregistrare %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Blocare ecran %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Limba %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Codurile PIN sunt necesare pentru blocarea înregistrării. Pentru a dezactiva codurile PIN, vă rugăm mai întâi să dezactivați blocarea înregistrării.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Dezactivarea codurilor PIN nu a reușit. Încercați mai târziu.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Pin creat.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Pin dezactivat.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -661,6 +665,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ai primit un mesaj care a fost criptat cu o versiune mai veche de Signal care nu mai este suportată. Roagă-l pe expeditor să-și actualizeze aplicația la ultima versiune și să retrimită mesajul.</string>
   <string name="MessageRecord_left_group">Ați părăsit grupul.</string>
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
+  <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
   <string name="MessageRecord_you_called">Ați apelat</string>
   <string name="MessageRecord_called_you">Contactul te-a sunat</string>
   <string name="MessageRecord_missed_call">Apel nepreluat</string>
@@ -673,6 +678,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a dezactivat dispariția mesajelor.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ați setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Timpul setat pentru dispariția mesajele a fost setat la %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Ați creat grupul.</string>
   <string name="MessageRecord_group_updated">Grupul a fost actualizat.</string>
@@ -688,6 +694,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s v-a scos din grup.</string>
   <string name="MessageRecord_you_left_the_group">Ați părăsit grupul.</string>
   <string name="MessageRecord_s_left_the_group">%1$s a părăsit grupul.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Nu mai faci parte din grup.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s nu mai face parte din grup.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">L-ați făcut pe %1$s admin.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s l-a făcut pe %2$s admin.</string>
@@ -695,7 +703,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Ați revocat privilegiile admin de la %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a revocat privilegiile dvs. de admin.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a revocat privilegiile de admin pentru %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s este acum admin.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sunteți acum admin.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s nu mai este admin.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Nu mai ești admin.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Ai invitat pe %1$s la grup.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s v-a invitat la grup.</string>
@@ -705,6 +716,11 @@
     <item quantity="other">%1$s a invitat %2$d persoane la grup.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Ai fost invitat la grup.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">O persoană a fost invitată la grup.</item>
+    <item quantity="few">%1$d persoane au fost invitate la grup.</item>
+    <item quantity="other">%1$d persoane au fost invitate la grup.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Ați revocat o invitație la grup.</item>
@@ -719,6 +735,11 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Cineva a refuzat o invitație la grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Ați refuzat invitația la grup.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Invitația dvs. la grup a fost revocată.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">O invitație la grup a fost revocată.</item>
+    <item quantity="few">%1$d  invitații la grup au fost revocate.</item>
+    <item quantity="other">%1$d invitații la grup au fost revocate.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Ați acceptat invitația la grup.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s a acceptat o invitație la grup.</string>
@@ -727,15 +748,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Ai schimbat numele grupului în \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a schimbat numele grupului în \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Numele grupului a fost schimbat în \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Ai schimbat avatarul grupului.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s a schimbat avatarul grupului.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Avatarul grupului a fost schimbat.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Ați modificat cine poate edita detaliile grupului la \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s a modificat cine poate edita detaliile grupului la \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Persoana care poate edita detaliile grupului este acum \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Ați modificat cine poate edita apartenența la grup la \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a modificat cine poate edita apartenența la grup la \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Persoana care poate edita apartenența la grup este acum \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul dvs. de siguranță pentru %s s-a schimbat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ați marcat numărul tău de siguranță cu %s ca și verificat</string>
@@ -835,6 +860,8 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Creați un PIN nou</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Avertizare</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Dezactivarea codului PIN va crea un cod PIN ascuns, de mare entropie, asociat contului dvs. care nu poate fi recuperat. Când vă înregistrați din nou la Signal, veți pierde toate datele cu excepția cazului când faceți backup și restaurați manual. Nu puteți activa Blocarea înregistrării dacă codul PIN este dezactivat.</string> -->
+  <string name="PinOptOutDialog_disable_pin">Dezactivare PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Evaluați aplicaţia</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Dacă vă place aplicaţia, vă rog ajutați-ne cu o evaluare.</string>
@@ -950,6 +977,7 @@ furnizat (%s) este invalid.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vă reamintim în câteva zile.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vă reamintim într-o săptămână.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vă reamintim în câteva săptămâni.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vă reamintim într-o lună.</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_sticker">Autocolant</string>
@@ -1106,6 +1134,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Șterg mesajul?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s la %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Media nu mai este disponibilă.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
@@ -1250,6 +1279,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nu este un utilizator de Signal. Verificați numele de utilizator și încercați din nou.</string>
   <string name="ContactSelectionListFragment_okay">Okay</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Grupul este plin</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nu trebuie să vă adăugați pe sine la grup</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nu aveți contacte blocate</string>
   <!--contact_selection_list_fragment-->
@@ -1627,10 +1657,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__dark_theme">Întunecată</string>
   <string name="preferences__appearance">Aspect</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__disable_pin">Dezactivare PIN</string>
+  <string name="preferences__enable_pin">Activare PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Dezactivarea codului PIN va crea un cod PIN ascuns, de mare entropie, asociat contului dvs. care nu poate fi recuperat. Când vă înregistrați din nou la Signal, veți pierde toate datele cu excepția cazului când faceți backup și restaurați manual. Nu puteți activa Blocarea înregistrării dacă codul PIN este dezactivat.</string> -->
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal. Nu aveți nevoie de PIN pentru a deschide aplicația.</string>
   <string name="preferences__system_default">Setarea telefonului</string>
   <string name="preferences__default">Implicit</string>
   <string name="preferences__language">Limba</string>
   <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal</string>
+  <string name="preferences__advanced_pin_settings">Setări PIN avansate</string>
   <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private şi gratuite cu utilizatorii Signal
     </string>
   <string name="preferences__submit_debug_log">Trimiteți jurnalul de depanare</string>
@@ -1839,6 +1874,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreateKbsPinFragment__create_a_new_pin">Creați un nou PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puteți schimba codul PIN atât timp cât acest dispozitiv este înregistrat.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Creați-vă PIN-ul</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Alegeți un PIN mai puternic</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-urile nu se potrivesc. Încercați din nou.</string>
@@ -1850,6 +1886,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConfirmKbsPinFragment__creating_pin">Se creează PIN-ul…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vă prezentăm PIN-uri</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="KbsSplashFragment__learn_more">Află mai multe</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocarea Înregistrării = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Blocarea înregistrării este numită acum PIN și face mai multe. Actualizați-l acum.</string>
@@ -1857,6 +1894,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsSplashFragment__update_pin">Actualizați PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Creați-vă PIN-ul</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Aflați mai multe despre PIN-uri</string>
+  <string name="KbsSplashFragment__disable_pin">Dezactivare PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Introduceți PIN-ul dvs. Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pentru a vă ajuta să memorați codul PIN, vă vom rugă să îl introduceți periodic. În timp, o să-l cerem mai rar.</string>

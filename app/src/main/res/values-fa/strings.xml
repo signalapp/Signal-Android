@@ -822,10 +822,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">اخطار</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">رد کردن ایجاد پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">رد کردن ایجاد پین</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">می‌خواهید پین را غیر فعال کنید؟</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string> -->
   <string name="PinOptOutDialog_disable_pin">غیرفعال کردن پین</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">امتیازدهی این برنامه</string>
@@ -1614,7 +1611,7 @@
   <string name="preferences__theme">طرح زمینه</string>
   <string name="preferences__disable_pin">غیرفعال کردن پین</string>
   <string name="preferences__enable_pin">فعال کردن پین</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="preferences__system_default">پیش‌فرض سیستم</string>
   <string name="preferences__default">پیش‌فرض</string>
@@ -1845,7 +1842,7 @@
   <string name="KbsSplashFragment__update_pin">به‌روزرسانی پین</string>
   <string name="KbsSplashFragment__create_your_pin">پین خود را ایجاد کنید</string>
   <string name="KbsSplashFragment__learn_more_about_pins">درباره پین ​​اطلاعات بیشتری کسب کنید</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">رد کردن ایجاد پین</string> -->
+  <string name="KbsSplashFragment__disable_pin">غیرفعال کردن پین</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">پین Signal خود را وارد کنید</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">برای کمک به شما در به‌خاطرسپاری پین، آن را به صورت دوره‌ای از شما می‌پرسیم. با گذر زمان این‌ کار را کمتر انجام خواهیم داد.</string>

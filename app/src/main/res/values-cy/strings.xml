@@ -900,10 +900,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Creu PIN newydd</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Rhybudd</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Bydd hepgor creu PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Hepgor creu PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Analluogi\'r PIN?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string> -->
   <string name="PinOptOutDialog_disable_pin">Analluogi\'r PIN?</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Graddio\'r ap</string>
@@ -1717,7 +1714,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__disable_pin">Analluogi\'r PIN</string>
   <string name="preferences__enable_pin">Galluogi\'r PIN</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Mae PINau\'n cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond i chi gael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod y rhaglen. Nid oes angen eich PIN arnoch i agor yr ap.</string>
   <string name="preferences__system_default">Rhagosodiad y system</string>
   <string name="preferences__default">Rhagosodiad</string>
@@ -1954,7 +1951,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsSplashFragment__update_pin">Diweddaru PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crëwch eich PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Dysgu mwy am PINiau</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Hepgor creu PIN</string> -->
+  <string name="KbsSplashFragment__disable_pin">Analluogi\'r PIN?</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Rhowch eich PIN Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">I helpu i chi gofio\'ch PIN, byddwn yn gofyn i chi ei roi o bryd i\'w gilydd. Byddwn yn gofyn yn llai aml dros amser.</string>

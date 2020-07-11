@@ -821,10 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Krijoni PIN të ri</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Paralajmërim</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Anashkalimi i krijimit të PIN-it do të krijojë një PIN të fshehur, me entropi të lartë, përshoqëruar llogarisë tuaj, i cili është i pakthyeshëm. Kur të riregjistroni Signal-in, do të humbni krejt të dhënat, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Anashkalo krijim PIN-i</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Të çaktivizohet PIN-i?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Çaktivizimi i PIN-it do të krijojë një PIN të fshehur, me entropi të lartë, përshoqëruar llogarisë tuaj, i cili është i pakthyeshëm. Kur të riregjistroni Signal-in, do të humbni krejt të dhënat, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Çaktivizimi i PIN-it do të krijojë një PIN të fshehur, me entropi të lartë, përshoqëruar llogarisë tuaj, i cili është i pakthyeshëm. Kur të riregjistroni Signal-in, do të humbni krejt të dhënat, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string> -->
   <string name="PinOptOutDialog_disable_pin">Çaktivizoje PIN-in</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vlerësojeni këtë aplikacion</string>
@@ -1613,7 +1610,7 @@
   <string name="preferences__theme">Temë</string>
   <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
   <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Çaktivizimi i PIN-it do të krijojë një PIN të fshehur, me entropi të lartë, përshoqëruar llogarisë tuaj, i cili është i pakthyeshëm. Kur të riregjistroni Signal-in, do të humbni krejt të dhënat, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Çaktivizimi i PIN-it do të krijojë një PIN të fshehur, me entropi të lartë, përshoqëruar llogarisë tuaj, i cili është i pakthyeshëm. Kur të riregjistroni Signal-in, do të humbni krejt të dhënat, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-et i mbajnë të fshehtëzuara të dhëna e depozituara me Signal, që kështu të mund t’i përdorni. Profili, rregullimet dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal-in. S’do t’ju duhet PIN-i për të hapur aplikacionin.</string>
   <string name="preferences__system_default">Parazgjedhje sistemi</string>
   <string name="preferences__default">Parazgjedhje</string>
@@ -1844,7 +1841,7 @@
   <string name="KbsSplashFragment__update_pin">Përditësoni PIN-in</string>
   <string name="KbsSplashFragment__create_your_pin">Krijoni PIN-in tuaj</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Mësoni më tepër rreth PIN-ësh</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Anashkalo krijim PIN-i</string> -->
+  <string name="KbsSplashFragment__disable_pin">Çaktivizoje PIN-in</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Jepni PIN-in tuaj për Signal-in</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Për t’ju ndihmuar të fiksoni në kujtesë PIN,-in tuaj, do t’ju kërkojmë në mënyrë periodike ta jepni. Me kalimin e kohës do t’jua kërkojmë më rrallë.</string>

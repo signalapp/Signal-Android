@@ -822,10 +822,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Crea nuovo PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Attenzione</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Saltare la creazione del PIN creerà un PIN nascosto ad alta entropia associato al tuo account che è irrecuperabile. Quando ti registri nuovamente con Signal, perderai tutti i dati a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Salta creazione PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Disabilitare PIN?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Disabilitare il PIN creerà un PIN nascosto ad alta entropia associato al tuo account che è irrecuperabile. Quando ti registri nuovamente con Signal, perderai tutti i dati a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Disabilitare il PIN creerà un PIN nascosto ad alta entropia associato al tuo account che è irrecuperabile. Quando ti registri nuovamente con Signal, perderai tutti i dati a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string> -->
   <string name="PinOptOutDialog_disable_pin">Disabilita PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
@@ -1617,7 +1614,7 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Disabilita PIN</string>
   <string name="preferences__enable_pin">Abilita PIN</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Disabilitare il PIN creerà un PIN nascosto ad alta entropia associato al tuo account che è irrecuperabile. Quando ti registri nuovamente con Signal, perderai tutti i dati a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Disabilitare il PIN creerà un PIN nascosto ad alta entropia associato al tuo account che è irrecuperabile. Quando ti registri nuovamente con Signal, perderai tutti i dati a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
   <string name="preferences__system_default">Predefinito di sistema</string>
   <string name="preferences__default">Predefinito</string>
@@ -1848,7 +1845,7 @@
   <string name="KbsSplashFragment__update_pin">Aggiorna PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crea il tuo PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Scopri di più sui PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Salta creazione PIN</string> -->
+  <string name="KbsSplashFragment__disable_pin">Disabilita PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Inserisci il tuo PIN di Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Per aiutarti a memorizzare il tuo PIN, ti chiederemo di inserirlo periodicamente. Lo chiederemo di meno nel corso del tempo.</string>

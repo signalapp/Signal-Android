@@ -821,10 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Skapa ny PIN-kod</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Varning</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Överhoppning av PIN-kod skapar en dold PIN-kod med hög entropi som är kopplad till ditt konto som inte kan återvinnas. När du registrerar Signal om igen förlorar du all data om du inte säkerhetskopierar och återställer manuellt. Du kan inte sätta på registreringslåset medan PIN-koden är inaktiverad.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Hoppa över skapande av PIN-kod</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Inaktivera PIN-koden?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Om du inaktiverar PIN-koden skapas en dold PIN-kod med hög entropi som är kopplad till ditt konto som inte kan återvinnas. När du registrerar Signal om igen förlorar du all data om du inte säkerhetskopierar och återställer manuellt. Du kan inte sätta på registreringslås medan PIN-koden är inaktiverad.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Om du inaktiverar PIN-koden skapas en dold PIN-kod med hög entropi som är kopplad till ditt konto som inte kan återvinnas. När du registrerar Signal om igen förlorar du all data om du inte säkerhetskopierar och återställer manuellt. Du kan inte sätta på registreringslås medan PIN-koden är inaktiverad.</string> -->
   <string name="PinOptOutDialog_disable_pin">Inaktivera PIN-koden</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Betygsätt denna app</string>
@@ -1611,7 +1608,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Inaktivera PIN-koden</string>
   <string name="preferences__enable_pin">Aktivera PIN-koden</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Om du inaktiverar PIN-koden skapas en dold PIN-kod med hög entropi som är kopplad till ditt konto som inte kan återvinnas. När du registrerar Signal om igen förlorar du all data om du inte säkerhetskopierar och återställer manuellt. Du kan inte sätta på registreringslås medan PIN-koden är inaktiverad.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Om du inaktiverar PIN-koden skapas en dold PIN-kod med hög entropi som är kopplad till ditt konto som inte kan återvinnas. När du registrerar Signal om igen förlorar du all data om du inte säkerhetskopierar och återställer manuellt. Du kan inte sätta på registreringslås medan PIN-koden är inaktiverad.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koden håller information lagrad med Signal krypterad så att du bara kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om. Du behöver inte din PIN-kod för att öppna appen.</string>
   <string name="preferences__system_default">Systemets standardinställning</string>
   <string name="preferences__default">Standard</string>
@@ -1842,7 +1839,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsSplashFragment__update_pin">Uppdatera PIN-kod</string>
   <string name="KbsSplashFragment__create_your_pin">Skapa din PIN-kod</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Läs mer om PIN-koder</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Hoppa över skapande av PIN-kod</string> -->
+  <string name="KbsSplashFragment__disable_pin">Inaktivera PIN-koden</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Ange din Signal PIN-kod</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">För att hjälpa dig att memorera din PIN-kod ber vi dig att skriva in den regelbundet. Vi ber dig färre gånger med tiden.</string>

@@ -821,10 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Crea un PIN nou</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Advertiment</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Ometre la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Omet la creació del PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Desactivo el PIN?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string> -->
   <string name="PinOptOutDialog_disable_pin">Desactiva el PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valoreu l\'aplicació</string>
@@ -1611,7 +1608,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Desactiva el PIN</string>
   <string name="preferences__enable_pin">Activa el PIN</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu. No necessitareu el PIN per obrir l\'aplicació.</string>
   <string name="preferences__system_default">Per defecte del sistema</string>
   <string name="preferences__default">Per defecte</string>
@@ -1842,7 +1839,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsSplashFragment__update_pin">Actualitza el PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Creeu el PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Apreneu més coses sobre els PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Omet la creació del PIN</string> -->
+  <string name="KbsSplashFragment__disable_pin">Desactiva el PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Marqueu el PIN del Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Per ajudar-vos a recordar el PIN, us el demanarem periòdicament. Amb el temps, ho farem menys.</string>

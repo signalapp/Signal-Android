@@ -897,10 +897,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Vytvořit nový PIN?</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Varování</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Pokud přeskočíte vytvoření PIN, bude vytvořen skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Přeskočit vytvoření PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Deaktivovat PIN?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string> -->
   <string name="PinOptOutDialog_disable_pin">Deaktivovat PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotit tuto aplikaci</string>
@@ -1714,7 +1711,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__theme">Motiv</string>
   <string name="preferences__disable_pin">Deaktivovat PIN</string>
   <string name="preferences__enable_pin">Povolit PIN</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="preferences__system_default">Podle systému</string>
   <string name="preferences__default">Výchozí</string>
@@ -1951,7 +1948,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KbsSplashFragment__update_pin">Aktualizovat PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Vytvořit váš PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Zjistěte víc o PINech</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Přeskočit vytvoření PIN</string> -->
+  <string name="KbsSplashFragment__disable_pin">Deaktivovat PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Zadejte váš PIN k Signalu</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Abychom vám pomohli zapamatovat si PIN, budeme vás opakovaně žádat o jeho zadání. Postupem času vás budeme žádat méně.</string>

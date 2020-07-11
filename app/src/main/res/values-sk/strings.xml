@@ -798,7 +798,6 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Vytvoriť nový PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Varovanie</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">PIN creation will create a hidden, high-entropy PIN associated with your account that is unrecoverable. When you re-register Signal you will lose all data unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string> -->
   <string name="PinOptOutDialog_disable_pin">Vypnúť PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotiť túto aplikáciu</string>
@@ -1797,6 +1796,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="KbsSplashFragment__update_pin">Aktualizovať PIN kód</string>
   <string name="KbsSplashFragment__create_your_pin">Vytvorte si PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Dozvedieť sa viac o PINoch</string>
+  <string name="KbsSplashFragment__disable_pin">Vypnúť PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Zadajte váš PIN pre Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Aby sme vám pomohli zapamätať si váš PIN kód, budeme vás opakovanie žiadať o jeho zadanie. Postupom času vás o to budeme žiadať menej často.</string>

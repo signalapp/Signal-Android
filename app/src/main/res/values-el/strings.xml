@@ -821,10 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Δημιουργία νέου PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Προσοχή</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Αν δεν δημιουργήσεις ένα PIN τώρα, θα δημιουργηθεί ένα κρυφό PIN με μεγάλη εντροπία που θα συσχετιστεί με τον λογαριασμό σου. Αυτό το PIN δεν μπορεί να επανακτηθεί. Αν επανεγγραφτείς στο Signal θα χάσεις όλα τα δεδομένα σου, εκτός αν κάνεις χειροκίνητα αντίγραφο ασφαλείας και το επανακτήσεις. Δεν θα μπορείς να ενεργοποιήσεις το Κλείδωμα εγγραφής όσο το PIN είναι απενεργοποιημένο. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Παράλειψη δημιουργίας PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Απενεργοποίηση PIN.</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Αν απενεργοποιήσεις το PIN, θα δημιουργηθεί ένα κρυφό PIN με μεγάλη εντροπία που θα συσχετιστεί με τον λογαριασμό σου. Αυτό το PIN δεν μπορεί να επανακτηθεί. Αν επανεγγραφτείς στο Signal θα χάσεις όλα τα δεδομένα σου, εκτός αν κάνεις χειροκίνητα αντίγραφο ασφαλείας και το επανακτήσεις. Δεν θα μπορείς να ενεργοποιήσεις το Κλείδωμα εγγραφής όσο το PIN είναι απενεργοποιημένο. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Αν απενεργοποιήσεις το PIN, θα δημιουργηθεί ένα κρυφό PIN με μεγάλη εντροπία που θα συσχετιστεί με τον λογαριασμό σου. Αυτό το PIN δεν μπορεί να επανακτηθεί. Αν επανεγγραφτείς στο Signal θα χάσεις όλα τα δεδομένα σου, εκτός αν κάνεις χειροκίνητα αντίγραφο ασφαλείας και το επανακτήσεις. Δεν θα μπορείς να ενεργοποιήσεις το Κλείδωμα εγγραφής όσο το PIN είναι απενεργοποιημένο. </string> -->
   <string name="PinOptOutDialog_disable_pin">Απενεργοποίηση PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Αξιολόγησε αυτή την εφαρμογή</string>
@@ -1612,7 +1609,7 @@
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
   <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Αν απενεργοποιήσεις το PIN, θα δημιουργηθεί ένα κρυφό PIN με μεγάλη εντροπία που θα συσχετιστεί με τον λογαριασμό σου. Αυτό το PIN δεν μπορεί να επανακτηθεί. Αν επανεγγραφτείς στο Signal θα χάσεις όλα τα δεδομένα σου, εκτός και αν κάνεις χειροκίνητα αντίγραφα ασφαλείας και τα επανακτήσεις. Δεν θα μπορείς να ενεργοποιήσεις το Κλείδωμα εγγραφής όσο το PIN είναι απενεργοποιημένο. </string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Αν απενεργοποιήσεις το PIN, θα δημιουργηθεί ένα κρυφό PIN με μεγάλη εντροπία που θα συσχετιστεί με τον λογαριασμό σου. Αυτό το PIN δεν μπορεί να επανακτηθεί. Αν επανεγγραφτείς στο Signal θα χάσεις όλα τα δεδομένα σου, εκτός και αν κάνεις χειροκίνητα αντίγραφα ασφαλείας και τα επανακτήσεις. Δεν θα μπορείς να ενεργοποιήσεις το Κλείδωμα εγγραφής όσο το PIN είναι απενεργοποιημένο. </string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσεις το Signal. Δεν θα χρειάζεται να γράψεις το PIN για να ανοίξεις την εφαρμογή.</string>
   <string name="preferences__system_default">Προκαθορισμένο του συστήματος</string>
   <string name="preferences__default">Προκαθορισμένο</string>
@@ -1844,7 +1841,7 @@
   <string name="KbsSplashFragment__update_pin">Ανανέωση PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Δημιουργία του PIN σου</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Μάθε περισσότερα για τα PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Παράλειψη δημιουργίας PIN</string> -->
+  <string name="KbsSplashFragment__disable_pin">Απενεργοποίηση PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Γράψε το PIN του Signal σου</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Για να σε βοηθήσουμε να απομνημονεύσεις το PIN σου, θα σου ζητάμε κάθε τόσο να το γράψεις. Θα σ\' το ζητάμε λιγότερο όσο περνάει ο καιρός.</string>

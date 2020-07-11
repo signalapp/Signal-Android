@@ -860,10 +860,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Kreiraj novi PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Upozorenje</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Ako propustite kreirati PIN, za Vaš će se račun kreirati skriveni bespovratni PIN visoke entropije. Kada se ponovo registrujete na Signal, svi Vaši podaci bit će izbrisani izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Preskoči kreiranje PIN-a</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Isključiti PIN?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Ako isključite PIN, za Vaš će se račun kreirati skriveni bespovratni PIN visoke entropije. Kada se ponovo registrujete na Signal, svi Vaši podaci bit će izbrisani izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Ako isključite PIN, za Vaš će se račun kreirati skriveni bespovratni PIN visoke entropije. Kada se ponovo registrujete na Signal, svi Vaši podaci bit će izbrisani izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string> -->
   <string name="PinOptOutDialog_disable_pin">Isključi PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ocijenite ovu aplikaciju</string>
@@ -1666,7 +1663,7 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Isključi PIN</string>
   <string name="preferences__enable_pin">Uključi PIN</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Ako isključite PIN, za Vaš će se račun kreirati skriveni bespovratni PIN visoke entropije. Kada se ponovo registrujete na Signal, svi Vaši podaci bit će izbrisani izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Ako isključite PIN, za Vaš će se račun kreirati skriveni bespovratni PIN visoke entropije. Kada se ponovo registrujete na Signal, svi Vaši podaci bit će izbrisani izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN služi za šifriranje informacija na Signalu tako da im samo Vi možete pristupiti. Vaš profil, podešavanja i kontakti bit će sačuvani i učitani kad ponovo instalirate Signal. PIN Vam neće trebati da otvorite aplikaciju.</string>
   <string name="preferences__system_default">Sistemske postavke</string>
   <string name="preferences__default">Standardno</string>
@@ -1900,7 +1897,7 @@
   <string name="KbsSplashFragment__update_pin">Ažurirajte PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Kreirajte svoj PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Saznajte više o PIN-ovima</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Preskoči kreiranje PIN-a</string> -->
+  <string name="KbsSplashFragment__disable_pin">Isključi PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Unesite svoj Signal PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Kako bismo Vam pomogli da upamtite svoj PIN, povremeno ćemo od Vas tražiti da ga ponovo unesete. Vremenom ćemo Vas rjeđe podsjećati.</string>

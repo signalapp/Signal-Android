@@ -897,10 +897,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Создать новый PIN-код</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Предупреждение</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">При пропуске создания PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Пропустить создание PIN-кода</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Отключить PIN-код?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string> -->
   <string name="PinOptOutDialog_disable_pin">Отключить PIN-код</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
@@ -1708,7 +1705,7 @@
   <string name="preferences__theme">Тема</string>
   <string name="preferences__disable_pin">Отключить PIN-код</string>
   <string name="preferences__enable_pin">Включить PIN-код</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
   <string name="preferences__system_default">По умолчанию</string>
   <string name="preferences__default">По умолчанию</string>
@@ -1945,7 +1942,7 @@
   <string name="KbsSplashFragment__update_pin">Обновить PIN-код</string>
   <string name="KbsSplashFragment__create_your_pin">Создать PIN-код</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Узнать больше о PIN-кодах</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Пропустить создание PIN-кода</string> -->
+  <string name="KbsSplashFragment__disable_pin">Отключить PIN-код</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Введите свой PIN-код</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Чтобы помочь вам запомнить свой PIN-код, мы будем просить вас периодически вводить его. Со временем это будет происходить реже.</string>

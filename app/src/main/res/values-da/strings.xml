@@ -823,10 +823,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Opret ny pinkode</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Advarsel</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">Ved annullering af oprettelse af pinkode, oprettes der en skjult, høj entropi-pinkode, der er knyttet til din konto, som ikke kan gendannes. Når du omregistrerer Signal, mister du alle data medmindre du manuelt sikkerhedskopierer og gendanner. Du kan ikke aktivere Registreringslås mens pinkoden er deaktiveret</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Annuller oprettelse af PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Déaktiver PIN?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Ved deaktivering af pinkode oprettes der en skjult, høj entropi-pinkode, der er knyttet til din konto, som ikke kan gendannes. Når du omregistrerer Signal, mister du alle data, medmindre du manuelt sikkerhedskopierer og gendanner. Du kan ikke slå Registreringslås til, mens pinkoden er deaktiveret.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Ved deaktivering af pinkode oprettes der en skjult, høj entropi-pinkode, der er knyttet til din konto, som ikke kan gendannes. Når du omregistrerer Signal, mister du alle data, medmindre du manuelt sikkerhedskopierer og gendanner. Du kan ikke aktivere Registreringslås, mens pinkoden er deaktiveret.</string> -->
   <string name="PinOptOutDialog_disable_pin">Déaktiver PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bedøm app\'en</string>
@@ -1617,7 +1614,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Déaktiver PIN</string>
   <string name="preferences__enable_pin">Aktivér PIN</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Ved deaktivering af pinkode oprettes der en skjult, høj entropi-pinkode, der er knyttet til din konto, som ikke kan gendannes. Når du omregistrerer Signal, mister du alle data, medmindre du manuelt sikkerhedskopierer og gendanner. Du kan ikke slå Registreringslås til, mens pinkoden er deaktiveret.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Ved deaktivering af pinkode oprettes der en skjult, høj entropi-pinkode, der er knyttet til din konto, som ikke kan gendannes. Når du omregistrerer Signal, mister du alle data, medmindre du manuelt sikkerhedskopierer og gendanner. Du kan ikke aktivere Registreringslås, mens pinkoden er deaktiveret.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Pinkoder opbevarer krypteret information, lagret med Signal, så kun du kan få adgang til den. Din profil, indstillinger og kontaktpersoner gendannes mens du geninstallerer. Du har ikke brug for din pinkode for at åbne app´en</string>
   <string name="preferences__system_default">System standard</string>
   <string name="preferences__default">Standard</string>
@@ -1848,7 +1845,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="KbsSplashFragment__update_pin">Opdatér PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Opret din PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Lær mere om PIN´s</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Annuller oprettelse af PIN</string> -->
+  <string name="KbsSplashFragment__disable_pin">Deaktivér pinkode</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Skriv din Signal PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For at hjælpe med at huske din PIN, beder vi dig om at skrive den periodisk. Vi vil bede om den sjældnere over tid</string>

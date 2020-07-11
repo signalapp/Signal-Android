@@ -819,8 +819,6 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Avertissement</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">Ignorer la création du NIP</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">Désactiver le NIP ?</string> -->
   <string name="PinOptOutDialog_disable_pin">Désactiver le NIP</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette appli</string>
@@ -1601,6 +1599,7 @@
   <string name="preferences__theme">Thème</string>
   <string name="preferences__disable_pin">Désactiver le NIP</string>
   <string name="preferences__enable_pin">Activer le NIP</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Les NIP permettent de chiffrer les renseignements stockés avec Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lors de la réinstallation. Vous n’aurez pas besoin de votre NIP pour ouvrir l’application.</string>
   <string name="preferences__system_default">Valeur par défaut du système</string>
   <string name="preferences__default">Valeur par défaut</string>
   <string name="preferences__language">Langue</string>
@@ -1828,7 +1827,7 @@
   <string name="KbsSplashFragment__update_pin">Mettre le NIP à jour</string>
   <string name="KbsSplashFragment__create_your_pin">Créer votre NIP</string>
   <string name="KbsSplashFragment__learn_more_about_pins">En apprendre davantage sur les NIP</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">Ignorer la création du NIP</string> -->
+  <string name="KbsSplashFragment__disable_pin">Désactiver le NIP</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Saisissez votre NIP Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pour vous aider à mémoriser votre NIP, nous vous demanderons de le saisir régulièrement. Nous vous le demanderons de moins en moins souvent.</string>

@@ -44,6 +44,8 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekraanilukk %1$s, registreerimislukk %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekraanilukk %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN loodud.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN keelatud.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -800,6 +802,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Loo uus PIN-kood</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Hoiatus</string>
+  <string name="PinOptOutDialog_disable_pin">Keela PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Hinda seda rakendust</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palun võta aega ja hinda seda, et meid aidata.</string>
@@ -917,6 +920,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Me tuletame sulle paari päeva pärast uuesti meelde.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Me tuletame sulle nädala pärast uuesti meelde.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Me tuletame sulle paari nädala pärast uuesti meelde.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Me tuletame sulle kuu aja pärast uuesti meelde.</string>
   <!--Slide-->
   <string name="Slide_image">Pilt</string>
   <string name="Slide_sticker">Kleeps</string>
@@ -1074,6 +1078,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Kustutad sõnumi?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">See kustutab püsivalt valitud sõnumi.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s saajale %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Meedia ei ole enam saadaval.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uut sõnumit %2$d vestluses</string>
   <string name="MessageNotifier_most_recent_from_s">Viimatine kontaktilt %1$s</string>
@@ -1217,6 +1222,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti.</string>
   <string name="ContactSelectionListFragment_okay">Sobib</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Grupp on täis</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sa ei pea ennast gruppi lisama</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeeritud kontakte pole</string>
   <!--contact_selection_list_fragment-->
@@ -1241,6 +1247,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Salvesta ja saada helimanus</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lukusta helimanuse salvestamine</string>
   <string name="conversation_activity__enable_signal_for_sms">Luba Signal SMSide jaoks</string>
+  <string name="conversation_activity__message_could_not_be_sent">Sõnumit ei saanud saata. Kontrolli oma ühendust ja proovi uuesti.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Libista tühistamiseks</string>
   <string name="conversation_input_panel__cancel">Loobu</string>
@@ -1273,6 +1280,7 @@
   <string name="safety_number_change_dialog__send_anyway">Saada siiski</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Need inimised on võibolla rakendust reinstallinud või seadet vahetanud. Privaatsuse kindlustamiseks kontrolli nendega turvanumbrit.</string>
   <string name="safety_number_change_dialog__view">Näita</string>
+  <string name="safety_number_change_dialog__previous_verified">Eelnevalt kinnitatud</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Riikide laadimine…</string>
   <string name="country_selection_fragment__search">Otsi</string>
@@ -1583,10 +1591,13 @@
   <string name="preferences__dark_theme">Tume</string>
   <string name="preferences__appearance">Välimus</string>
   <string name="preferences__theme">Teema</string>
+  <string name="preferences__disable_pin">Keela PIN</string>
+  <string name="preferences__enable_pin">Luba PIN</string>
   <string name="preferences__system_default">Süsteemi vaikeväärtus</string>
   <string name="preferences__default">Vaikimisi</string>
   <string name="preferences__language">Keel</string>
   <string name="preferences__signal_messages_and_calls">Signali sõnumid ja kõned</string>
+  <string name="preferences__advanced_pin_settings">Täpsemad PINi seaded</string>
   <string name="preferences__free_private_messages_and_calls">Tasuta privaatsõnumid ja kõned Signali kasutajatele</string>
   <string name="preferences__submit_debug_log">Saada silumislogi</string>
   <string name="preferences__support_wifi_calling">\"WiFi kõnede\" ühilduvusrežiim</string>
@@ -1809,6 +1820,7 @@
   <string name="KbsSplashFragment__update_pin">Uuenda PIN-koodi</string>
   <string name="KbsSplashFragment__create_your_pin">Loo enda PIN-kood</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Uuri lähemalt PIN-koodide kohta</string>
+  <string name="KbsSplashFragment__disable_pin">Keela PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Sisesta Signal-i PIN-kood</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PIN-koodi meeldejätmise aitamiseks palume sul seda aeg-ajalt sisestada. Aja möödudes küsime seda harvem.</string>

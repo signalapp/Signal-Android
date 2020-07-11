@@ -824,10 +824,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="PinRestoreLockedFragment_create_new_pin">Új PIN létrehozása</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Figyelmeztetés</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skipping_pin_creation_will_create_a_hidden_high_entropy_pin">A PIN létrehozásának kihagyásával egy rejtett, nagy entrópiát tartalmazó PIN-t rendelünk fiókodhoz, amit nem lehet helyreállítani. A Signal-ra történő újraregisztráció során minden adatod elveszik, kivéve ha azt előtte manuálisan elmented, majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_skip_pin_creation">PIN létrehozásának kihagyása</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disable_pin_title">PIN letiltása?</string> -->
-  <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">A PIN letiltásával egy rejtett, nagy entrópiát tartalmazó PIN-t rendelünk fiókodhoz, amit nem lehet helyreállítani. A Signal-ra történő újraregisztráció során minden adatod elveszik, kivéve ha azt előtte manuálisan elmented, majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">A PIN letiltásával egy rejtett, nagy entrópiát tartalmazó PIN-t rendelünk fiókodhoz, amit nem lehet helyreállítani. A Signal-ra történő újraregisztráció során minden adatod elveszik, kivéve ha azt előtte manuálisan elmented, majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string> -->
   <string name="PinOptOutDialog_disable_pin">PIN letiltása</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Értékeld az alkalmazást</string>
@@ -1620,7 +1617,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__theme">Téma</string>
   <string name="preferences__disable_pin">PIN letiltása</string>
   <string name="preferences__enable_pin">PIN engedélyezése</string>
-  <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">A PIN letiltásával egy rejtett, nagy entrópiát tartalmazó PIN-t rendelünk fiókodhoz, amit nem lehet helyreállítani. A Signal-ra történő újraregisztráció során minden adatod elveszik, kivéve ha azt előtte manuálisan elmented, majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">A PIN letiltásával egy rejtett, nagy entrópiát tartalmazó PIN-t rendelünk fiókodhoz, amit nem lehet helyreállítani. A Signal-ra történő újraregisztráció során minden adatod elveszik, kivéve ha azt előtte manuálisan elmented, majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">A PIN-nek köszönhetően a Signal által tárolt információk titkosítva lesznek, így csak te férhetsz hozzájuk. Újratelepítés esetén profilod, beállításaid és kontaktjaid visszaállításra kerülnek. Az alkalmazás megnyitásához nincs szükség a PIN kódra.</string>
   <string name="preferences__system_default">Alapbeállítás</string>
   <string name="preferences__default">Alapértelmezett</string>
@@ -1851,7 +1848,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KbsSplashFragment__update_pin">PIN kód frissítése</string>
   <string name="KbsSplashFragment__create_your_pin">PIN létrehozása</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Bővebben a PIN kódokról</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__skip_pin_creation">PIN létrehozásának kihagyása</string> -->
+  <string name="KbsSplashFragment__disable_pin">PIN letiltása</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Add meg Signal PIN kódodat</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">A PIN kód megjegyzése érdekében időnként megkérünk annak begépelésére. Az idő múlásával ez egyre ritkábban fog megtörténni.</string>

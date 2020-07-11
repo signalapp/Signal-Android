@@ -44,6 +44,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Schermvergrendeling %1$s, Registratievergrendeling %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Schermvergrendeling %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Taal %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs zijn vereist voor registratievergrendeling. Om PINs uit te schakelen moet eerst de registratievergrendeling uitgezet worden.</string>
+  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Uitzetten PINs is mislukt, probeer het later nog eens.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Pin uitgeschakeld.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuut</item>
@@ -632,6 +636,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
+  <string name="MessageRecord_the_group_was_updated">De groep is aangepast.</string>
   <string name="MessageRecord_you_called">Jij hebt gebeld</string>
   <string name="MessageRecord_called_you">Contactpersoon heeft gebeld</string>
   <string name="MessageRecord_missed_call">Gemiste oproep</string>
@@ -644,6 +649,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft zelfwissende berichten uitgeschakeld.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor zelfwissende berichten op %1$s ingesteld.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor zelfwissende berichten op %2$s ingesteld.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">De timer voor zelfwissende berichten is op %1$s ingesteld.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
   <string name="MessageRecord_group_updated">Groep aangepast.</string>
@@ -659,6 +665,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s heeft je verwijderd van de groep.</string>
   <string name="MessageRecord_you_left_the_group">Je kunt geen berichten verzenden omdat je de groep hebt verlaten.</string>
   <string name="MessageRecord_s_left_the_group">%1$s heeft de groep verlaten.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Je bent niet langer lid van de groep.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$sis niet langer lid van de groep.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Je hebt %1$s een beheerder gemaakt.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s heeft %2$s een beheerder gemaakt.</string>
@@ -666,7 +674,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Je hebt de beheerdersbevoegdheden van %1$s ingetrokken.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s heeft je beheerdersbevoegdheden ingetrokken.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s heeft de beheerdersbevoegdheden van %2$s ingetrokken.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$sis nu een beheerder.</string>
   <string name="MessageRecord_you_are_now_an_admin">Je bent nu een beheerder.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$sis niet langer een beheerder.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Je bent niet langer een beheerder.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Je hebt %1$s uitgenodigd voor de groep.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s heeft je uitgenodigd voor de groep.</string>
@@ -675,6 +686,10 @@
     <item quantity="other">%1$s heeft %2$d personen uitgenodigd om lid te worden van de groep.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Je bent uitgenodigd voor de groep.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">Een persoon is uitgenodigd om lid te worden van de groep.</item>
+    <item quantity="other">%1$dpersonen zijn uitgenodigd om lid te worden van de groep.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Je hebt een uitnodiging voor de groep ingetrokken.</item>
@@ -687,6 +702,10 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Iemand heeft een uitnodiging om lid te worden van de groep verworpen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Je hebt de uitnodiging om lid te worden van de groep verworpen.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Je uitnodiging om lid de worden van de groep is ingetrokken.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Een uitnodiging om lid te worden van de groep is ingetrokken.</item>
+    <item quantity="other">%1$duitnodigingen om lid te worden van de groep zijn ingetrokken.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Je hebt een uitnodiging om lid te worden van de groep aanvaard.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s heeft een uitnodiging om lid te worden van de groep aanvaard.</string>
@@ -695,15 +714,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Je hebt de naam van de groep gewijzigd naar “%1$s”.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s heeft de naam van de groep gewijzigd naar “%2$s”.</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">De naam van de groep is gewijzigd in \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Je hebt de groepsafbeelding aangepast.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s heeft de groepsafbeelding aangepast.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">De groepsafbeeldig is aangepast.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Je hebt de instelling voor wie de groepsinformatie kan wijzigen op ‘%1$s’ ingesteld.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s heeft de instelling voor wie de groepsinformatie kan wijzigen op ‘%2$s’ ingesteld.</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Je hebt de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%1$s’ ingesteld.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’</string>
@@ -799,6 +822,8 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarschuwing</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Het uitschakelen van de PIN maakt een verborgen PIN met  hoge entropie aan met jouw account. Deze is niet herstelbaar: wanneer je Signal opnieuw registreert ben je al je gegevens kwijt tenzij je handmatig backupt en herstelt. Je kunt geen registratievergrendeling gebruiken zolang de PIN uitgeschakeld is.</string> -->
+  <string name="PinOptOutDialog_disable_pin">PIN uitschakelen</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons door anderen te laten weten wat je van de app vindt.</string>
@@ -918,6 +943,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Signal zal je binnen een paar dagen opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Signal zal je na een week opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Signal zal je binnen een aantal weken opnieuw verzoeken om te verifiëren dat je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">We herinneren je er opniew aan over een maand.</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
   <string name="Slide_sticker">Sticker</string>
@@ -1075,6 +1101,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk gewist worden, maar dus niet voor je gesprekspartner(s).</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Media niet langer beschikbaar.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
@@ -1218,6 +1245,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw.</string>
   <string name="ContactSelectionListFragment_okay">Oké</string>
   <string name="ContactSelectionListFragment_the_group_is_full">De groep is vol</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Het is niet nodig om jezelf toe te voegen aan de groep</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contactpersonen</string>
   <!--contact_selection_list_fragment-->
@@ -1588,10 +1616,15 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__dark_theme">Donker</string>
   <string name="preferences__appearance">Uiterlijk</string>
   <string name="preferences__theme">Thema</string>
+  <string name="preferences__disable_pin">PIN uitschakelen</string>
+  <string name="preferences__enable_pin">PIN inschakelen</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Het uitschakelen van de PIN maakt een verborgen PIN met  hoge entropie aan met jouw account. Deze is niet herstelbaar: wanneer je Signal opnieuw registreert ben je al je gegevens kwijt tenzij je handmatig backupt en herstelt. Je kunt geen registratievergrendeling gebruiken zolang de PIN uitgeschakeld is.</string> -->
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de PIN niet nodig om de app te openen.</string>
   <string name="preferences__system_default">Systeemstandaard</string>
   <string name="preferences__default">Systeemstandaard</string>
   <string name="preferences__language">Taal</string>
   <string name="preferences__signal_messages_and_calls">Signal-berichten en -oproepen</string>
+  <string name="preferences__advanced_pin_settings">Geavanceerde PIN instellingen</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
   <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
   <string name="preferences__support_wifi_calling">‘Bellen via wifi’-compatibiliteitsmodus</string>
@@ -1796,6 +1829,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zolang je telefoonnummer nog voor dit apparaat geregistreerd staat kun je je pincode nog wijzigen.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de PIN niet nodig om de app te openen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
@@ -1807,6 +1841,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de PIN niet nodig om de app te openen.</string>
   <string name="KbsSplashFragment__learn_more">Lees meer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu ‘pincode’, en je kunt er meer mee doen. Je moet de pincode welke je tot nog toe gebruikte bijwerken.</string>
@@ -1814,6 +1849,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsSplashFragment__update_pin">Pincode bijwerken</string>
   <string name="KbsSplashFragment__create_your_pin">Pincode aanmaken</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Lees meer over pincodes</string>
+  <string name="KbsSplashFragment__disable_pin">PIN uitschakelen</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om je pincode opnieuw in te voeren. Als je die een aantal keer juist invoert, dan zal Signal dit na verloop van tijd minder vaak vragen.</string>
