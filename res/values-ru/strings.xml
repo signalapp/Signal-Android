@@ -1353,5 +1353,214 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">КОСНИТЕСЬ, ЧТОБЫ РАЗБЛОКИРОВАТЬ</string>
   <string name="RegistrationLockDialog_reminder">Напоминание:</string>
   <string name="recipient_preferences__about">О Session</string>
-  <!--EOF-->
+
+
+
+
+
+  <string name="continue_2">Продолжить</string>
+  <string name="copy">Копировать</string>
+  <string name="invalid_url">Неверная ссылка</string>
+  <string name="copied_to_clipboard">Скопировано в буфер обмена</string>
+  <string name="device_linking_failed">Не удалось привязать устройство.</string>
+  <string name="next">Далее</string>
+  <string name="share">Поделиться</string>
+  <string name="invalid_session_id">Неверный идентификатор Session</string>
+  <string name="cancel">Отмена</string>
+  <string name="your_session_id">Ваш идентификатор Session</string>
+
+  <string name="activity_landing_title_2">Здесь начинается ваша Session...</string>
+  <string name="activity_landing_register_button_title">Создать идентификатор Session</string>
+  <string name="activity_landing_restore_button_title">Продолжить Сессию</string>
+  <string name="activity_landing_link_button_title">Привязать к существующему аккаунту</string>
+  <string name="activity_landing_device_unlinked_dialog_title">Ваше устройство успешно отвязано</string>
+
+  <string name="view_fake_chat_bubble_1">Что такое Session?</string>
+  <string name="view_fake_chat_bubble_2">Это децентрализованное, зашифрованное приложение для обмена сообщениями</string>
+  <string name="view_fake_chat_bubble_3">Значит ли это, что оно не собирает мою личную информацию или метаданные моего разговора? Как оно работает?</string>
+  <string name="view_fake_chat_bubble_4">С использованием комбинации передовых технологий анонимной маршрутизации и сквозного шифрования.</string>
+  <string name="view_fake_chat_bubble_5">Друзья не позволят друзьям использовать ненадежные мессенджеры. Пользуйтесь на здоровье.</string>
+
+  <string name="activity_register_title">Познакомьтесь со своим идентификатором Session</string>
+  <string name="activity_register_explanation">Ваш идентификатор Session - это уникальный адрес, который могут использовать другие люди для связи с вами с помощью Session. Поскольку ваш идентификатор Session никак не связан с вашей настоящей личностью, он по определению является полностью анонимным и конфиденциальным.</string>
+  <string name="activity_register_public_key_copied_message">Скопировано в буфер обмена</string>
+
+  <string name="activity_restore_title">Восстановите свой аккаунт</string>
+  <string name="activity_restore_explanation">Для восстановления учетной записи введите восстановительную фразу, которая была предоставлена вам при регистрации.</string>
+  <string name="activity_restore_seed_edit_text_hint">Введите восстановительную фразу</string>
+
+  <string name="activity_link_device_title">Привязать устройство</string>
+  <string name="activity_link_device_enter_session_id_tab_title">Введите идентификатор Session</string>
+  <string name="activity_link_device_scan_qr_code_tab_title">Сканировать QR-код</string>
+  <string name="activity_link_device_scan_qr_code_explanation">Перейдите в «Настройки» &gt; «Устройства»&gt; «Привязать устройство» на другом устройстве, а затем отсканируйте появившийся QR-код, чтобы начать процесс привязки.</string>
+
+  <string name="fragment_enter_session_id_title">Привяжите свое устройство</string>
+  <string name="fragment_enter_session_id_explanation">Перейдите в «Настройки» &gt; «Устройства» &gt; «Привязать устройство» на другом устройстве и введите сюда свой идентификатор Session, чтобы начать процесс привязки.</string>
+  <string name="fragment_enter_session_id_edit_text_hint">Введите свой идентификатор Session</string>
+
+  <string name="activity_display_name_title_2">Выберите ваше отображаемое имя</string>
+  <string name="activity_display_name_explanation">Это имя будет отображаться, когда вы используете Сессию. Это может быть ваше настоящее имя, псевдоним или что угодно по вашему выбору.</string>
+  <string name="activity_display_name_edit_text_hint">Введите отображаемое имя</string>
+  <string name="activity_display_name_display_name_missing_error">Пожалуйста, выберите отображаемое имя</string>
+  <string name="activity_display_name_display_name_invalid_error">Пожалуйста, выберите отображаемое имя, чтобы оно состояло только из символов AZ, AZ, 0-9 и _</string>
+  <string name="activity_display_name_display_name_too_long_error">Пожалуйста, выберите более короткое отображаемое имя</string>
+
+  <string name="activity_pn_mode_title">Всплывающее уведомление</string>
+  <string name="activity_pn_mode_explanation">Есть два способа, при помощи которых Session может обрабатывать всплывающие уведомления. Внимательно прочитайте описания, прежде чем сделать выбор.</string>
+  <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
+  <string name="activity_pn_mode_fcm_option_explanation">Session будет использовать сервис Firebase Cloud Messaging для получения всплывающих уведомлений. Вы будете надежно и незамедлительно получать уведомления о новых сообщениях. Использование FCM означает, что ваш IP-адрес и токен устройства будут доступны Google. Так будет, если вы используете всплывающие уведомления для других приложений. Ваш IP-адрес и токен устройства также будут доступны Loki, но ваши сообщения будут по-прежнему маршрутизироваться и шифроваться, поэтому содержимое ваших сообщений останется полностью конфиденциальным.</string>
+  <string name="activity_pn_mode_background_polling_option_title">Фоновые опросы</string>
+  <string name="activity_pn_mode_background_polling_option_explanation">Session в фоновом режиме будет периодически проверять наличие новых сообщений. При этом гарантируется полная защита метаданных, но возможна значительная задержка при уведомлении о сообщениях.</string>
+  <string name="activity_pn_mode_recommended_option_tag">Рекомендуется</string>
+  <string name="activity_pn_mode_no_option_picked_dialog_title">Пожалуйста, выберите вариант</string>
+
+  <string name="activity_home_empty_state_message">У вас еще нет контактов</string>
+  <string name="activity_home_empty_state_button_title">Начать Сессию</string>
+  <string name="activity_home_leave_group_dialog_message">Вы уверены, что хотите покинуть эту группу?</string>
+  <string name="activity_home_leaving_group_failed_message">Не удалось покинуть группу</string>
+  <string name="activity_home_delete_conversation_dialog_message">Вы уверены, что хотите удалить этот разговор?</string>
+  <string name="activity_home_conversation_deleted_message">Разговор удален</string>
+
+  <string name="sheet_pn_mode_title">Всплывающее уведомление</string>
+  <string name="sheet_pn_mode_explanation">Теперь при работе Session имеется два способа обработки всплывающих уведомлений. Внимательно прочитайте описания, прежде чем сделать выбор.</string>
+  <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
+  <string name="sheet_pn_mode_fcm_option_explanation">Session будет использовать сервис Firebase Cloud Messaging для получения всплывающих уведомлений. Вы будете надежно и незамедлительно получать уведомления о новых сообщениях. Использование FCM означает, что ваш IP-адрес и токен устройства будут доступны Google. Так будет, если вы используете всплывающие уведомления для других приложений. Ваш IP-адрес и токен устройства также будут доступны Loki, но ваши сообщения будут по-прежнему маршрутизироваться и шифроваться, поэтому содержимое ваших сообщений останется полностью конфиденциальным.</string>
+  <string name="sheet_pn_mode_background_polling_option_title">Фоновые опросы</string>
+  <string name="sheet_pn_mode_background_polling_option_explanation">Session в фоновом режиме будет периодически проверять наличие новых сообщений. При этом гарантируется полная защита метаданных, но возможна значительная задержка при уведомлении о сообщениях.</string>
+  <string name="sheet_pn_mode_recommended_option_tag">Рекомендуется</string>
+  <string name="sheet_pn_mode_no_option_picked_dialog_title">Пожалуйста, выберите вариант</string>
+  <string name="sheet_pn_mode_confirm_button_title">Подтвердить</string>
+  <string name="sheet_pn_mode_skip_button_title">Пропустить</string>
+
+  <string name="activity_seed_title">Ваша восстановительная фраза</string>
+  <string name="activity_seed_title_2">А вот и ваша восстановительная фраза</string>
+  <string name="activity_seed_explanation">Ваша восстановительная фраза является главным ключом к вашему идентификатору Session. Вы можете использовать ее для восстановления идентификатора Session, если потеряете доступ к своему устройству. Сохраните свою восстановительную фразу в безопасном месте, и никому её не передавайте.</string>
+  <string name="activity_seed_reveal_button_title">Удерживайте, чтобы показать</string>
+
+  <string name="view_seed_reminder_subtitle_1">Защитите свой аккаунт, сохранив восстановительную фразу</string>
+  <string name="view_seed_reminder_subtitle_2">Нажмите и удерживайте сокращенные слова, чтобы открыть восстановительную фразу, а затем сохраните ее в надежном месте, чтобы защитить свой идентификатор Session.</string>
+  <string name="view_seed_reminder_subtitle_3">Обязательно сохраните восстановительную фразу в надежном месте.</string>
+
+  <string name="activity_path_title">Путь</string>
+  <string name="activity_path_explanation">Session скрывает ваш IP, перенаправляя ваши сообщения через несколько сервисных узлов своей децентрализованной сети. Вот страны, через которые в данный момент проходит ваш сеанс связи:</string>
+  <string name="activity_path_device_row_title">Вы</string>
+  <string name="activity_path_guard_node_row_title">Узел входа</string>
+  <string name="activity_path_service_node_row_title">Служебный узел</string>
+  <string name="activity_path_destination_row_title">Место назначения</string>
+  <string name="activity_path_learn_more_button_title">Узнать больше</string>
+
+  <string name="activity_create_private_chat_title">Новый Диалог</string>
+  <string name="activity_create_private_chat_enter_session_id_tab_title">Введите идентификатор Session</string>
+  <string name="activity_create_private_chat_scan_qr_code_tab_title">Сканировать QR-код</string>
+  <string name="activity_create_private_chat_scan_qr_code_explanation">Сканируйте QR-код пользователя, чтобы начать сессию. QR-коды можно найти, нажав значок QR-кода в настройках учетной записи.</string>
+
+  <string name="fragment_enter_public_key_edit_text_hint">Введите идентификатор Session получателя</string>
+  <string name="fragment_enter_public_key_explanation">Пользователи могут поделиться своим идентификатором Session, зайдя в настройки своей учетной записи и нажав «Отправить идентификатор Session», или поделившись своим QR-кодом.</string>
+
+  <string name="fragment_scan_qr_code_camera_access_explanation">Session нужен доступ к камере для сканирования QR-кодов</string>
+  <string name="fragment_scan_qr_code_grant_camera_access_button_title">Предоставить доступ к камере</string>
+
+  <string name="activity_create_closed_group_title">Новая закрытая группа</string>
+  <string name="activity_create_closed_group_edit_text_hint">Введите название группы</string>
+  <string name="activity_create_closed_group_explanation">Закрытые группы поддерживают до 10 участников и обеспечивают те же меры защиты конфиденциальности, что и сессии один-на-один.</string>
+  <string name="activity_create_closed_group_empty_state_message">У вас еще нет контактов</string>
+  <string name="activity_create_closed_group_empty_state_button_title">Начать Сессию</string>
+  <string name="activity_create_closed_group_group_name_missing_error">Пожалуйста, введите название группы</string>
+  <string name="activity_create_closed_group_group_name_too_long_error">Пожалуйста, введите более короткое имя группы</string>
+  <string name="activity_create_closed_group_not_enough_group_members_error">Пожалуйста, выберите как минимум 2 участников группы</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">В закрытой группе не может быть больше 10 участников</string>
+  <string name="activity_create_closed_group_invalid_session_id_error">Один из участников вашей группы имеет недопустимый идентификатор Session</string>
+
+  <string name="activity_join_public_chat_title">Присоединиться к открытой группе</string>
+  <string name="activity_join_public_chat_error">Не удалось присоединиться к группе</string>
+  <string name="activity_join_public_chat_enter_group_url_tab_title">URL открытой группы</string>
+  <string name="activity_join_public_chat_scan_qr_code_tab_title">Сканировать QR-код</string>
+  <string name="activity_join_public_chat_scan_qr_code_explanation">Отсканируйте QR-код открытой группы, в которую вы хотите вступить</string>
+
+  <string name="fragment_enter_chat_url_edit_text_hint">Введите URL открытой группы</string>
+  <string name="fragment_enter_chat_url_privacy_warning">К открытым группам может присоединиться кто угодно. Они не обеспечивают полной защиты конфиденциальности</string>
+
+  <string name="activity_settings_title">Настройки</string>
+  <string name="activity_settings_display_name_edit_text_hint">Введите отображаемое имя</string>
+  <string name="activity_settings_display_name_missing_error">Пожалуйста, выберите отображаемое имя</string>
+  <string name="activity_settings_invalid_display_name_error">Пожалуйста, выберите отображаемое имя, чтобы оно состояло только из символов AZ, AZ, 0-9 и _</string>
+  <string name="activity_settings_display_name_too_long_error">Пожалуйста, выберите более короткое отображаемое имя</string>
+  <string name="activity_settings_privacy_button_title">Конфиденциальность</string>
+  <string name="activity_settings_notifications_button_title">Уведомления</string>
+  <string name="activity_settings_chats_button_title">Чаты</string>
+  <string name="activity_settings_devices_button_title">Устройства</string>
+  <string name="activity_settings_recovery_phrase_button_title">Восстановительная фраза</string>
+  <string name="activity_settings_clear_all_data_button_title">Очистить данные</string>
+
+  <string name="activity_notification_settings_title">Уведомления</string>
+  <string name="activity_notification_settings_style_section_title">Стиль уведомлений</string>
+  <string name="activity_notification_settings_content_section_title">Содержание уведомления</string>
+
+  <string name="activity_privacy_settings_title">Конфиденциальность</string>
+
+  <string name="activity_chat_settings_title">Чаты</string>
+
+  <string name="activity_linked_devices_title">Устройства</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_title">Достигнуто предельное кол-во устройств</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">В настоящее время запрещено привязывать более одного устройства.</string>
+  <string name="activity_linked_devices_unlinking_failed_message">Не удалось отвязать устройство.</string>
+  <string name="activity_linked_devices_unlinking_successful_message">Ваше устройство успешно отвязано</string>
+  <string name="activity_linked_devices_linking_failed_message">Не удалось привязать устройство.</string>
+  <string name="activity_linked_devices_empty_state_message">Вы еще не привязали ни одного устройства</string>
+  <string name="activity_linked_devices_empty_state_button_title">Привязать устройство (бета)</string>
+
+  <string name="preferences_notifications_strategy_category_title">Стратегия уведомлений</string>
+  <string name="preferences_notifications_use_fcm_option_title">Использовать FCM</string>
+  <string name="preferences_notifications_use_fcm_option_explanation">Использование Firebase Cloud Messaging позволяет получать более надежные всплывающие уведомления, но предоставляет ваш IP и токен устройства в адрес Google и Loki.</string>
+
+  <string name="dialog_link_device_slave_mode_title_1">Ожидание авторизации</string>
+  <string name="dialog_link_device_slave_mode_title_2">Привязка устройства авторизована</string>
+  <string name="dialog_link_device_slave_mode_explanation_1">Пожалуйста, убедитесь, что слова ниже соответствуют тем, которые показаны на вашем другом устройстве.</string>
+  <string name="dialog_link_device_slave_mode_explanation_2">Ваше устройство успешно привязано</string>
+
+  <string name="dialog_link_device_master_mode_title_1">Ожидание устройства</string>
+  <string name="dialog_link_device_master_mode_title_2">Запрос на привязывание получен</string>
+  <string name="dialog_link_device_master_mode_title_3">Ссылка на авторизирующее устройство</string>
+  <string name="dialog_link_device_master_mode_explanation_1">Загрузите Сессию на другое устройство и нажмите «Привязать к существующей учетной записи» в нижней части целевого экрана. Если у вас уже есть учетная запись на другом устройстве, вам придется сначала удалить такую учетную запись.</string>
+  <string name="dialog_link_device_master_mode_explanation_2">Пожалуйста, убедитесь, что слова ниже соответствуют тем, которые показаны на вашем другом устройстве.</string>
+  <string name="dialog_link_device_master_mode_explanation_3">Пожалуйста, подождите, пока будет создана ссылка на устройство. Это может занять до минуты.</string>
+  <string name="dialog_link_device_master_mode_authorize_button_title">Авторизация</string>
+
+  <string name="fragment_device_list_bottom_sheet_change_name_button_title">Сменить имя</string>
+  <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Отключить устройство</string>
+
+  <string name="dialog_edit_device_name_edit_text_hint">Введите имя</string>
+
+  <string name="dialog_seed_title">Ваша восстановительная фраза</string>
+  <string name="dialog_seed_explanation">Это ваша восстановительная фраза. С ее помощью вы можете восстановить или перенести свой идентификатор Session на новое устройство.</string>
+
+  <string name="dialog_clear_all_data_title">Очистить все данные</string>
+  <string name="dialog_clear_all_data_explanation">Это навсегда удалит ваши сообщения, сессии и контакты.</string>
+
+  <string name="activity_qr_code_title">QR-код</string>
+  <string name="activity_qr_code_view_my_qr_code_tab_title">Посмотреть мой QR-код</string>
+  <string name="activity_qr_code_view_scan_qr_code_tab_title">Сканировать QR-код</string>
+  <string name="activity_qr_code_view_scan_qr_code_explanation">Отсканируйте QR-код другого человека, чтобы начать с ним разговор</string>
+
+  <string name="fragment_view_my_qr_code_explanation">Это ваш QR-код. Другие пользователи могут сканировать его, чтобы начать Сессию с вами.</string>
+  <string name="fragment_view_my_qr_code_share_title">Поделиться QR-кодом</string>
+
+  <string name="view_friend_request_accept_button_title">Принять</string>
+  <string name="view_friend_request_reject_button_title">Отклонить</string>
+  <string name="view_friend_request_incoming_pending_message">%1$s отправил(а) вам запрос на Сессию</string>
+  <string name="view_friend_request_incoming_accepted_message">Вы приняли запрос на Сессию от %1$s</string>
+  <string name="view_friend_request_incoming_declined_message">Вы отклонили запрос на Сессию от %1$s</string>
+  <string name="view_friend_request_incoming_expired_message">Время запроса на Сессию от %1$s истекло</string>
+  <string name="view_friend_request_outgoing_pending_message">Вы отправили %1$s запрос на Сессию</string>
+  <string name="view_friend_request_outgoing_accepted_message">%1$s принял ваш запрос на Сессию</string>
+  <string name="view_friend_request_outgoing_expired_message">Время вашего запроса на Сессию с %1$s истекло</string>
+
+  <string name="session_reset_banner_message">Хотите восстановить Сессию с %s?</string>
+  <string name="session_reset_banner_dismiss_button_title">Отклонить</string>
+  <string name="session_reset_banner_restore_button_title">Восстановить</string>
+
+  <string name="fragment_contact_selection_contacts_title">Контакты</string>
+  <string name="fragment_contact_selection_closed_groups_title">Закрытые группы</string>
+  <string name="fragment_contact_selection_open_groups_title">Открытые группы</string>
+
 </resources>
