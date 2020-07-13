@@ -1510,4 +1510,5 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="fragment_contact_selection_contacts_title">Contactos</string>
   <string name="fragment_contact_selection_closed_groups_title">Grupos cerrados</string>
   <string name="fragment_contact_selection_open_groups_title">Grupos abiertos</string>
+
 </resources>
