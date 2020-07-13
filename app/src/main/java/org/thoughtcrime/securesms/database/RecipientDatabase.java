@@ -804,8 +804,8 @@ public class RecipientDatabase extends Database {
    */
   public @NonNull Map<RecipientId, StorageId> getContactStorageSyncIdsMap() {
     SQLiteDatabase              db    = databaseHelper.getReadableDatabase();
-    String                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + DIRTY + " != ? AND " + ID + " != ?";
-    String[]                    args  = new String[]{String.valueOf(DirtyState.DELETE), Recipient.self().getId().serialize() };
+    String                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + DIRTY + " != ? AND " + ID + " != ? AND " + GROUP_TYPE + " != ?";
+    String[]                    args  = { String.valueOf(DirtyState.DELETE), Recipient.self().getId().serialize(), String.valueOf(GroupType.SIGNAL_V2.getId()) };
     Map<RecipientId, StorageId> out   = new HashMap<>();
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID, STORAGE_SERVICE_ID, GROUP_TYPE }, query, args, null, null, null)) {
@@ -818,10 +818,27 @@ public class RecipientDatabase extends Database {
         switch (groupType) {
           case NONE      : out.put(id, StorageId.forContact(key)); break;
           case SIGNAL_V1 : out.put(id, StorageId.forGroupV1(key)); break;
-          case SIGNAL_V2 : out.put(id, StorageId.forGroupV2(key)); break;
           default        : throw new AssertionError();
         }
       }
+    }
+
+    for (GroupId.V2 id : DatabaseFactory.getGroupDatabase(context).getAllGroupV2Ids()) {
+      Recipient         recipient                = Recipient.externalGroup(context, id);
+      RecipientId       recipientId              = recipient.getId();
+      RecipientSettings recipientSettingsForSync = getRecipientSettingsForSync(recipientId);
+
+      if (recipientSettingsForSync == null) {
+        throw new AssertionError();
+      }
+
+      byte[] key = recipientSettingsForSync.storageId;
+
+      if (key == null) {
+        throw new AssertionError();
+      }
+
+      out.put(recipientId, StorageId.forGroupV2(key));
     }
 
     return out;
