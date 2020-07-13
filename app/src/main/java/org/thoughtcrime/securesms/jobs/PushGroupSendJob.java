@@ -108,13 +108,13 @@ public class PushGroupSendJob extends PushSendJob {
         throw new AssertionError("Not a group!");
       }
 
-      if (!DatabaseFactory.getGroupDatabase(context).isActive(group.requireGroupId())) {
+      MmsDatabase          database            = DatabaseFactory.getMmsDatabase(context);
+      OutgoingMediaMessage message             = database.getOutgoingMessage(messageId);
+      Set<String>          attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
+
+      if (!DatabaseFactory.getGroupDatabase(context).isActive(group.requireGroupId()) && !isGv2UpdateMessage(message)) {
         throw new MmsException("Inactive group!");
       }
-
-      MmsDatabase            database                    = DatabaseFactory.getMmsDatabase(context);
-      OutgoingMediaMessage   message                     = database.getOutgoingMessage(messageId);
-      Set<String>            attachmentUploadIds         = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
       jobManager.add(new PushGroupSendJob(messageId, destination, filterAddress, !attachmentUploadIds.isEmpty()), attachmentUploadIds, attachmentUploadIds.isEmpty() ? null : destination.toQueueKey());
 
@@ -130,6 +130,10 @@ public class PushGroupSendJob extends PushSendJob {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
                              .putString(KEY_FILTER_RECIPIENT, filterRecipient != null ? filterRecipient.serialize() : null)
                              .build();
+  }
+
+  private static boolean isGv2UpdateMessage(@NonNull OutgoingMediaMessage message) {
+    return (message instanceof OutgoingGroupUpdateMessage && ((OutgoingGroupUpdateMessage) message).isV2Group());
   }
 
   @Override
