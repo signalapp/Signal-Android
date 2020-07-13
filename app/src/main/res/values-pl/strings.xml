@@ -49,7 +49,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Blokada ekranu %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Motyw %1$s, Język %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kody PIN są wymagane do korzystania z blokady rejestracji. Aby wyłączyć PIN, wyłącz najpierw blokadę rejestracji.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nie udało się wyłączyć PINu. Spróbuj ponownie później.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nie udało się wyłączyć PINu. Spróbuj ponownie później.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">Utworzono PIN.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Wyłączono PIN</string>
   <!--AppProtectionPreferenceFragment-->
@@ -897,7 +897,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Utwórz nowy PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Uwaga</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Wyłączenie PINu spowoduje utworzenie ukrytego, powiązanego z Twoim kontem kodu PIN o wysokiej entropii, którego nie można odzyskać. Kiedy ponownie zarejestrujesz się w Signal, stracisz wszystkie dane, chyba, że ręcznie utworzysz i przywrócisz kopię zapasową. Gdy PIN jest wyłączony, nie możesz włączyć blokady rejestracji.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Jeśli wyłączysz PIN, przy ponownej rejestracji Signal stracisz wszystkie dane, chyba że ręcznie wykonasz i przywrócisz kopię zapasową. Gdy PIN jest wyłączony, nie możesz włączyć blokady rejestracji.</string>
   <string name="PinOptOutDialog_disable_pin">Wyłącz PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceń tę aplikację</string>
@@ -1704,7 +1704,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__theme">Motyw</string>
   <string name="preferences__disable_pin">Wyłącz PIN</string>
   <string name="preferences__enable_pin">Włącz PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Wyłączenie PINu spowoduje utworzenie ukrytego, powiązanego z Twoim kontem kodu PIN o wysokiej entropii, którego nie można odzyskać. Kiedy ponownie zarejestrujesz się w Signal, stracisz wszystkie dane, chyba, że ręcznie utworzysz i przywrócisz kopię zapasową. Gdy PIN jest wyłączony, nie możesz włączyć blokady rejestracji.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jeśli wyłączysz PIN, przy ponownej rejestracji Signal stracisz wszystkie dane, chyba że ręcznie wykonasz i przywrócisz kopię zapasową. Gdy PIN jest wyłączony, nie możesz włączyć blokady rejestracji.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal. Nie będziesz potrzebować swojego kodu PIN do otwarcia aplikacji.</string>
   <string name="preferences__system_default">Domyślny systemu</string>
   <string name="preferences__default">Domyślne</string>

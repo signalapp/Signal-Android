@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Kifunga skrini%1$s, Kifunga usajili %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Kifunga Skrini %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Mandhari %1$s, Lugha %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Nenosiri limeundwa</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">dakika %d </item>

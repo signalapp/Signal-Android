@@ -46,6 +46,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekrāna bloķēšana %1$s, Reģistrācijas bloķēšana %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekrāna bloķēšana %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Ādiņa %1$s, valoda %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN izveidots.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="zero">%d minūšu</item>

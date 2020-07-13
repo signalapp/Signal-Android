@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">ಸ್ಕ್ರೀನ್ ಲಾಕ್ %1$s, ನೋಂದಣಿ ಲಾಕ್ %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್  %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ಥೀಮ್‌ %1$s, ಭಾಷೆ %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">ಪಿನ್ ರಚಿಸಲಾಗಿದೆ.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dನಿಮಿಷಗಳು</item>

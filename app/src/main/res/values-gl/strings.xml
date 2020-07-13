@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueo da pantalla %1$s, bloqueo do rexistro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueo de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN establecido.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -1209,6 +1210,7 @@
   <string name="HelpFragment__contact_us">Contacto</string>
   <string name="HelpFragment__tell_us_whats_going_on">Envíanos o teu problema ou consulta</string>
   <string name="HelpFragment__include_debug_log">Incluír rexistro de depuración.</string>
+  <string name="HelpFragment__whats_this">Que é isto?</string>
   <string name="HelpFragment__how_do_you_feel">Como te sintes? (Optativo)</string>
   <string name="HelpFragment__no_email_app_found">Non se atopou app para email.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->

@@ -52,6 +52,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">إقفال الشاشة %1$s، إنهاء التسجيل %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل الشاشة %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">تم إنشاء الرقم التعريفي الشخصي.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="zero">%d دقيقة</item>

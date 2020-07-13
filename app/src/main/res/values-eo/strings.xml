@@ -45,8 +45,8 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekranŝloso %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Etoso %1$s, lingvo %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN estas bezonata por la bloko de registriĝo. Por malŝalti la uzon de PIN, unue vi devas malŝati vian blokon de registriĝo.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Malsukceso malebligi PIN-on. Reprovu poste.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">PIN kreita.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Malsukceso malebligi PIN-on. Reprovu poste.</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN kreiĝis.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN malŝaltita.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -822,7 +822,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Krei novan PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Averto</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">La malŝalto de via PIN kreos novan kaŝitan PIN altentropian, kiu estas ligita al via konto, kaj kiu estas nerestaŭrebla. Kiam vi re-registros kun Signal, vi perdos ĉiujn datumojn, krom tio ke vi permane faras savkopion kaj restaŭras tiun savkopion. Vi ne povas uzi blokon de registriĝo, kiam PIN estas malŝaltita.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se vi malŝaltas la uzon de PIN, vi perdos ĉiujn datumojn, kiam vi re-registros kun Signal, krom tio ke vi permane faris savkopion kaj restaŭras tiun savkopion. Vi ne povas uzi blokon de registriĝo, kiam PIN estas malŝaltita.</string>
   <string name="PinOptOutDialog_disable_pin">Malŝalti PIN-on</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Pritaksi tiun aplikaĵon</string>
@@ -1613,7 +1613,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__theme">Etoso</string>
   <string name="preferences__disable_pin">Malŝalti PIN-on</string>
   <string name="preferences__enable_pin">Ŝalti PIN-on</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">La malŝalto de via PIN kreos novan kaŝitan PIN altentropian, kiu estas ligita al via konto, kaj kiu estas nerestaŭrebla. Kiam vi re-registros kun Signal, vi perdos ĉiujn datumojn, krom tio ke vi permane faras savkopion kaj restaŭras tiun savkopion. Vi ne povas uzi blokon de registriĝo, kiam PIN estas malŝaltita.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se vi malŝaltas la uzon de PIN, vi perdos ĉiujn datumojn, kiam vi re-registros kun Signal, krom tio ke vi permane faris savkopion kaj restaŭras tiun savkopion. Vi ne povas uzi blokon de registriĝo, kiam PIN estas malŝaltita.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on. Vian PIN-on vi ne bezonos por malfermi la aplikaĵon.</string>
   <string name="preferences__system_default">Sistema defaŭlto</string>
   <string name="preferences__default">Defaŭlta</string>

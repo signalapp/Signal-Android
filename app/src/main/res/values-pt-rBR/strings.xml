@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de Tela %1$s, Desbloqueio de Cadastro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueio de tela %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>

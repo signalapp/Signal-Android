@@ -47,7 +47,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zaključavanje ekrana %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s tema. %2$s jezik</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je neophodan za zaključavanje registracije. Da biste isključili PIN, prvo isključite zaključavanje registracije.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Neuspjelo deaktiviranje PIN-a. Pokušajte kasnije.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Neuspjelo deaktiviranje PIN-a. Pokušajte kasnije.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN je kreiran.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN je isključen.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -860,7 +860,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Kreiraj novi PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Upozorenje</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Ako isključite PIN, za Vaš će se račun kreirati skriveni bespovratni PIN visoke entropije. Kada se ponovo registrujete na Signal, svi Vaši podaci bit će izbrisani izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ako isključite PIN, svi Vaši podaci bit će izbrisani kada se ponovo registrujete na Signal, izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string>
   <string name="PinOptOutDialog_disable_pin">Isključi PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ocijenite ovu aplikaciju</string>
@@ -1663,7 +1663,7 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Isključi PIN</string>
   <string name="preferences__enable_pin">Uključi PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Ako isključite PIN, za Vaš će se račun kreirati skriveni bespovratni PIN visoke entropije. Kada se ponovo registrujete na Signal, svi Vaši podaci bit će izbrisani izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ako isključite PIN, svi Vaši podaci bit će izbrisani kada se ponovo registrujete na Signal, izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN služi za šifriranje informacija na Signalu tako da im samo Vi možete pristupiti. Vaš profil, podešavanja i kontakti bit će sačuvani i učitani kad ponovo instalirate Signal. PIN Vam neće trebati da otvorite aplikaciju.</string>
   <string name="preferences__system_default">Sistemske postavke</string>
   <string name="preferences__default">Standardno</string>

@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Khóa màn hình %1$s, Khóa đăng kí %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Khóa màn hình %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Chủ đề %1$s, Ngôn ngữ %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Mã PIN đã được tạo.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d phút</item>

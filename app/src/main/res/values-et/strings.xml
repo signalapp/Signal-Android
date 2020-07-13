@@ -44,8 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekraanilukk %1$s, registreerimislukk %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekraanilukk %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
-  <string name="ApplicationPreferencesActivity_pin_created">PIN loodud.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN keelatud.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN-kood loodud.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>

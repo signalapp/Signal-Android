@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Pantaila-blokeoa %1$s, Erregistratze-blokeoa %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Pantailaren blokeoa %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Gaia %1$s, Hizkuntza %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN-a sortua.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">minutu %d</item>

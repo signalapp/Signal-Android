@@ -44,6 +44,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Skjermlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Skjermlås %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder er påkrevet for registreringslås. For å deaktivere PIN-koder, vær vennlig å deaktivere registreringslås.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">PIN-kode deaktivering mislyktes. Prøv igjen senere.</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN laget.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kode deaktivert.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -632,6 +636,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen oppdatere til den nyeste versjonen og sende meldingen på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
+  <string name="MessageRecord_the_group_was_updated">Gruppen ble oppdatert.</string>
   <string name="MessageRecord_you_called">Du ringte</string>
   <string name="MessageRecord_called_you">Kontakt ringte</string>
   <string name="MessageRecord_missed_call">Ubesvart anrop</string>
@@ -644,6 +649,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverte forsvinnende meldinger.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satt utløpstid for meldinger til %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satt utløpstiden for meldinger til %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Utløpstid for meldinger er blit satt til %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du laget gruppen.</string>
   <string name="MessageRecord_group_updated">Gruppen oppdatert.</string>
@@ -659,6 +665,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s fjernet deg fra gruppen. </string>
   <string name="MessageRecord_you_left_the_group">Du forlot gruppen.</string>
   <string name="MessageRecord_s_left_the_group">%1$s forlot gruppen.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Du er ikke lenger i gruppen.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s er ikke lenger i gruppen.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Du gjorde %1$s til en administrator.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s til en administrator.</string>
@@ -666,7 +674,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du fjernet administratorrettigheter fra %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s fjernet administratorrettighetene dine.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s fjernet administratorrettigheter fra %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s er nå en administrator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Du er nå administrator</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s er ikke lenger en administrator.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Du er ikke lenger en administrator.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Du inviterte %1$s til gruppen.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s inviterte deg til gruppen.</string>
@@ -675,6 +686,10 @@
     <item quantity="other">%1$s inviterte %2$d personer til gruppen.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Du har blitt invitert til gruppen.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 person ble invitert til gruppen.</item>
+    <item quantity="other">%1$d personer ble invitert til gruppen.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Du fjernet en invitasjon til gruppen.</item>
@@ -687,6 +702,10 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Noen avslo en invitasjon til gruppen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avslo invitasjonen til gruppen.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Din invitasjon til gruppen har blitt trukket tilbake.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">En invitasjon til gruppen ble trukket tilbake.</item>
+    <item quantity="other">%1$d invitasjoner ble trukket tilbake.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Du aksepterte invitasjonen til gruppen.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s aksepterte en invitasjon til gruppen.</string>
@@ -695,15 +714,19 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Du endret gruppens navn til \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s endret gruppens navn til \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Gruppens navn er endret til \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Du endret gruppens avatar.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s endret gruppens avatar.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Gruppeavataren ble endret.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Du endret hvem som kan redigere gruppeinfo til \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s endret hvem som kan redigere gruppeinfo til \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Den som kan redigere gruppeinformasjon er endret til \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du endret hvem som kan redigere gruppemedlemskap til \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endret hvem som kan redigere gruppemedlemskap til \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Den som kan redigere gruppemedlemskap er endret til \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt for %s er endret.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte sikkerhetsnummeret for %s som bekreftet</string>
@@ -799,6 +822,8 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Opprett ny PIN-kode</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Advarsel</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all data når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
+  <string name="PinOptOutDialog_disable_pin">Deaktiver PIN-kode</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du liker dette programmet, vil vi gjerne at du hjelper oss ved å gi din vurdering.</string>
@@ -913,6 +938,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vi minner deg på nytt om noen dager.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vi minner deg på nytt om en uke.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vi minner deg på nytt om et par uker.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vi minner deg på nytt om en måned.</string>
   <!--Slide-->
   <string name="Slide_image">Bilde</string>
   <string name="Slide_sticker">Klistremerke</string>
@@ -1068,6 +1094,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldinga?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldinga blir slettet for godt.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Media er ikke lenger tilgjengelig.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
@@ -1211,6 +1238,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Signal-bruker. Kontroller brukernavnet og prøv igjen.</string>
   <string name="ContactSelectionListFragment_okay">Greit</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Gruppen er full</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Det er ikke nødvendig å legge deg selv til gruppen</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
   <!--contact_selection_list_fragment-->
@@ -1579,10 +1607,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__disable_pin">Deaktiver PIN-kode</string>
+  <string name="preferences__enable_pin">Aktiver PIN-kode</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all informasjon når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
   <string name="preferences__system_default">System standard</string>
   <string name="preferences__default">Forvalgt</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__signal_messages_and_calls">Signal-meldinger og samtaler</string>
+  <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
   <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Signal-brukere</string>
   <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
   <string name="preferences__support_wifi_calling">«Wi-Fi-anrop»-tilbakefallsmodus</string>
@@ -1787,6 +1820,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endre PIN-koden din så lenge denne enheten er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Velg en sterkere PIN-kode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder stemmer ikke overens. Prøv igjen.</string>
@@ -1798,6 +1832,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
   <string name="KbsSplashFragment__learn_more">Lær mer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringskode kalles nå PIN, og den gjør mer. Oppdater den nå.</string>
@@ -1805,6 +1840,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsSplashFragment__update_pin">Oppdater PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Opprett PIN-koden</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Lær mer om PIN-koder</string>
+  <string name="KbsSplashFragment__disable_pin">Deaktiver PIN-kode</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Skriv inn din Signal PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For å hjelpe deg med å huske PIN-koden din, ber vi deg om å oppgi den med jevne mellomrom. Vi ber deg mindre etter hvert.</string>

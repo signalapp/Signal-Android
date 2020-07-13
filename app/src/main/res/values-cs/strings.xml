@@ -49,9 +49,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zámek obrazovky %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, Jazyk %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je vyžadován pro zámek registrace. Nejprve prosím zakažte zámek registrace, aby bylo možné PIN deaktivovat.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nepodařilo se deaktivovat PIN. Zkuste to později znovu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nepodařilo se deaktivovat PIN. Zkuste to později znovu.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN vytvořen.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktivován.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN zakázán</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -897,7 +897,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Vytvořit nový PIN?</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Varování</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Pokud kód PIN zakážete, ztratíte všechna data při opětovné registraci Signal, pokud jej ručně nezálohujete a opět neobnovíte. Pokud je PIN deaktivován, nemůžete zapnout zámek registrace.</string>
   <string name="PinOptOutDialog_disable_pin">Deaktivovat PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotit tuto aplikaci</string>
@@ -1711,7 +1711,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__theme">Motiv</string>
   <string name="preferences__disable_pin">Deaktivovat PIN</string>
   <string name="preferences__enable_pin">Povolit PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Deaktivace PIN vytvoří skrytý PIN s vysokou entropií, který bude přiřazen k vašemu účtu, jenž je neobnovitelný. Když se pak znovu zaregistrujete u Signalu, budou veškerá vaše data ztracena, pokud si je ručně nezálohujete a neobnovíte. Když je PIN deaktivován, nelze zapnout zámek registrace.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud kód PIN zakážete, ztratíte všechna data při opětovné registraci Signal, pokud jej ručně nezálohujete a opět neobnovíte. Pokud je PIN deaktivován, nemůžete zapnout zámek registrace.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="preferences__system_default">Podle systému</string>
   <string name="preferences__default">Výchozí</string>

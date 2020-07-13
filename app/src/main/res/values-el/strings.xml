@@ -45,9 +45,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Κλείδωμα οθόνης %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Θέμα %1$s, Γλώσσα %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Τα PIN χρειάζονται για το κλείδωμα εγγραφής. Για να απενεργοποιήσεις τα PIN, παρακαλώ πρώτα να απενεργοποιήσεις το κλείδωμα εγγραφής.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Η απενεργοποίηση των PIN απέτυχε. Ξαναπροσπάθησε αργότερα.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Η απενεργοποίηση των PIN απέτυχε. Ξαναπροσπάθησε αργότερα.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">Το PIN δημιουργήθηκε.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">Το PIN απενεργοποιήθηκε.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN απενεργοποιημένο.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d λεπτό</item>
@@ -821,7 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Δημιουργία νέου PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Προσοχή</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Αν απενεργοποιήσεις το PIN, θα δημιουργηθεί ένα κρυφό PIN με μεγάλη εντροπία που θα συσχετιστεί με τον λογαριασμό σου. Αυτό το PIN δεν μπορεί να επανακτηθεί. Αν επανεγγραφτείς στο Signal θα χάσεις όλα τα δεδομένα σου, εκτός αν κάνεις χειροκίνητα αντίγραφο ασφαλείας και το επανακτήσεις. Δεν θα μπορείς να ενεργοποιήσεις το Κλείδωμα εγγραφής όσο το PIN είναι απενεργοποιημένο. </string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Εάν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
   <string name="PinOptOutDialog_disable_pin">Απενεργοποίηση PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Αξιολόγησε αυτή την εφαρμογή</string>
@@ -1609,7 +1609,7 @@
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
   <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Αν απενεργοποιήσεις το PIN, θα δημιουργηθεί ένα κρυφό PIN με μεγάλη εντροπία που θα συσχετιστεί με τον λογαριασμό σου. Αυτό το PIN δεν μπορεί να επανακτηθεί. Αν επανεγγραφτείς στο Signal θα χάσεις όλα τα δεδομένα σου, εκτός και αν κάνεις χειροκίνητα αντίγραφα ασφαλείας και τα επανακτήσεις. Δεν θα μπορείς να ενεργοποιήσεις το Κλείδωμα εγγραφής όσο το PIN είναι απενεργοποιημένο. </string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Εάν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσεις το Signal. Δεν θα χρειάζεται να γράψεις το PIN για να ανοίξεις την εφαρμογή.</string>
   <string name="preferences__system_default">Προκαθορισμένο του συστήματος</string>
   <string name="preferences__default">Προκαθορισμένο</string>

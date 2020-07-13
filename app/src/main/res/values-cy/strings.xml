@@ -49,9 +49,8 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Clo sgrin %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Iaith %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Mae angen PIN ar gyfer y clo cofrestru. I analluogi\'r PIN, analluogwch y clo cofrestru yn gyntaf.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Wedi methu analluogi\'r PIN. Ceisiwch eto.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Wedi methu analluogi\'r PIN. Ceisiwch eto.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">Crëwyd y PIN.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">Analluogwyd y PIN</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d munud</item>
@@ -900,7 +899,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Creu PIN newydd</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Rhybudd</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string> -->
   <string name="PinOptOutDialog_disable_pin">Analluogi\'r PIN?</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Graddio\'r ap</string>
@@ -1714,7 +1712,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__disable_pin">Analluogi\'r PIN</string>
   <string name="preferences__enable_pin">Galluogi\'r PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Bydd analluogi PIN yn creu PIN cudd, entropi uchel sy\'n gysylltiedig â\'ch cyfrif na fydd modd ei adfer. Pan fyddwch yn ailgofrestru Signal byddwch yn colli\'r holl ddata oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Nid oes modd troi Cloi Cofrestru ymlaen tra bod y PIN wedi\'i analluogi.</string> -->
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Mae PINau\'n cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond i chi gael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod y rhaglen. Nid oes angen eich PIN arnoch i agor yr ap.</string>
   <string name="preferences__system_default">Rhagosodiad y system</string>
   <string name="preferences__default">Rhagosodiad</string>

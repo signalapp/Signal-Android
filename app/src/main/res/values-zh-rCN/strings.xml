@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">屏幕锁定：%1$s，注册锁定：%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">屏幕锁定 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题：%1$s，语言：%2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN 已创建。</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分钟</item>

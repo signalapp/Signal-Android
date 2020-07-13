@@ -45,7 +45,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل صفحه %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">طرح زمینه %1$s، زبان %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام ضروری هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">غیرفعال کردن پین موفق نبود. بعداً دوباره امتحان کنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">غیرفعال کردن پین موفق نبود. بعداً دوباره امتحان کنید.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -772,7 +772,7 @@
 </string>
   <string name="DeviceProvisioningActivity_content_progress_title">در حال پیوند دادن دستگاه</string>
   <string name="DeviceProvisioningActivity_content_progress_content">پیوند دهی دستگاه جدید…</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">دستگاه تایید شد!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">دستگاه تأیید شد!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">هیچ دستگاهی یافت نشد.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطای شبکه.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">کد QR نامعتبر است.</string>
@@ -822,7 +822,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">اخطار</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در Signal ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
   <string name="PinOptOutDialog_disable_pin">غیرفعال کردن پین</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">امتیازدهی این برنامه</string>
@@ -894,7 +894,7 @@
     <item quantity="one">شما %d قدم از ثبت گزارش اشکال زدایی فاصله دارید.</item>
     <item quantity="other">شما  %d قدم از ارسال گزارش اشکال‌زدایی فاصله دارید.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ما باید تایید کنیم که شما یک انسان هستید.</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ما باید تأیید کنیم که شما یک انسان هستید.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">عدم موفقیت در تأیید کپچا</string>
   <string name="RegistrationActivity_next">بعدی</string>
   <string name="RegistrationActivity_continue">ادامه</string>
@@ -1013,8 +1013,8 @@
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پیام ناپدید شونده  روی %s تنظیم شد</string>
   <string name="ThreadRecord_safety_number_changed">شمارهٔ امنیتی تغییر یافت</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
-  <string name="ThreadRecord_you_marked_verified">شما تایید شده علامت زدید</string>
-  <string name="ThreadRecord_you_marked_unverified">شما تایید نشده علامت زدید</string>
+  <string name="ThreadRecord_you_marked_verified">شما تأیید شده علامت زدید</string>
+  <string name="ThreadRecord_you_marked_unverified">شما تأیید نشده علامت زدید</string>
   <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نیست</string>
   <string name="ThreadRecord_message_request">درخواست تبادل پیام</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s شما را به گروه اضافه کرد</string>
@@ -1274,7 +1274,7 @@
   <string name="conversation_item__secure_message_description">پیام امن</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__send_failed_indicator_description">ارسال ناموفق بود</string>
-  <string name="conversation_item_sent__pending_approval_description">در انتظار تایید</string>
+  <string name="conversation_item_sent__pending_approval_description">در انتظار موافقت</string>
   <string name="conversation_item_sent__delivered_description">تحویل داده شد</string>
   <string name="conversation_item_sent__message_read">پیام خوانده شد</string>
   <!--conversation_item_received-->
@@ -1344,7 +1344,7 @@
   <string name="expiration_weeks_abbreviated">%dه </string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">شمارهٔ امنیتی شما با %s تغییر کرده است و دیگر مورد تأیید نیست</string>
-  <string name="IdentityUtil_unverified_banner_two">شماره‌های امنیتی شما با %1$s و %2$s دیگر مورد تایید نیستند</string>
+  <string name="IdentityUtil_unverified_banner_two">شماره‌های امنیتی شما با %1$s و %2$s دیگر تأیید شده نیستند</string>
   <string name="IdentityUtil_unverified_banner_many">شماره‌های امنیتی شما با %1$s، %2$s و %3$s دیگر مورد تأیید نیستند </string>
   <string name="IdentityUtil_unverified_dialog_one">شمارهٔ امنیتی شما با %1$s تغییر کرده و دیگر معتبر نیست. این می‌تواند به این معنا باشد که شخصی سعی دارد تا مکالمهٔ شما را شنود کند یا %1$s Signal را دوباره نصب کرده است.</string>
   <string name="IdentityUtil_unverified_dialog_two">شماره‌های امنیتی شما با %1$s و %2$s دیگر مورد تأیید نیستند. این می‌تواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند، یا اینکه آن‌ها برنامهٔ Signal را دوباره نصب کرده‌اند.</string>
@@ -1424,7 +1424,7 @@
   <!--registration_activity-->
   <string name="registration_activity__phone_number">شمارهٔ همراه</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal با کمک شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبانی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود به آسانی با شما از طریق Signal ارتباط برقرار کنند.\n\nثبت نام، برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
-  <string name="registration_activity__verify_your_number">شماره خود را تایید کنید</string>
+  <string name="registration_activity__verify_your_number">شمارهٔ خود را تأیید کنید</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفاً شمارهٔ موبایل خود را جهت دریافت کد تأیید وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>یک نام یا شماره را وارد کنید</small></string>
@@ -1438,7 +1438,7 @@
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تأیید کنید، عدد بالا را با عدد روی دستگاه آن‌ها مقایسه کنید. در غیر این صورت، می‌توانید کد روی گوشی آن‌ها را اسکن کرده یا از آن‌ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
   <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
-  <string name="verify_display_fragment__verified">تایید شده</string>
+  <string name="verify_display_fragment__verified">تأیید شده</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">اشتراک‌گذاری شمارهٔ امنیتی</string>
   <!--webrtc_answer_decline_button-->
@@ -1611,7 +1611,7 @@
   <string name="preferences__theme">طرح زمینه</string>
   <string name="preferences__disable_pin">غیرفعال کردن پین</string>
   <string name="preferences__enable_pin">فعال کردن پین</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">غیرفعال کردن پین یک پین مخفی، با آنتروپی بالا مرتبط با حساب کاربری شما خواهد ساخت که قابل بازیابی نخواهد بود. هنگامی که شما دوباره در Signal ثبت‌نام می‌کنید، تمام داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در Signal ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="preferences__system_default">پیش‌فرض سیستم</string>
   <string name="preferences__default">پیش‌فرض</string>
@@ -1826,7 +1826,7 @@
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">یک پین قوی‌تر انتخاب کنید</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
-  <string name="ConfirmKbsPinFragment__confirm_your_pin">پین خود را تایید کنید</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">پین خود را تأیید کنید</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">پین ایجاد نشد</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">پین شما ذخیره نشد. ما بعداً از شما خواهیم خواست تا یک پین دیگر ایجاد کنید.</string>
   <string name="ConfirmKbsPinFragment__pin_created">پین ایجاد شد.</string>

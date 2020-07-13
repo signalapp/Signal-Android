@@ -48,6 +48,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekrano užraktas %1$s, Registracijos užraktas %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekrano užraktas %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Apipavidalinimas %1$s, Kalba %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kodai yra reikalingi registracijos užraktui. Norėdami išjungti PIN kodus, iš pradžių, išjunkite registracijos užraktą.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nepavyko išjungti PIN kodų. Vėliau bandykite dar kartą.</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN kodas sukurtas.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN kodas išjungtas.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutė</item>
@@ -742,6 +746,12 @@
     <item quantity="other">%1$s pakvietė %2$d žmogų į grupę.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Jūs buvote pakviesti į grupę.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">Į grupę buvo pakviestas 1 žmogus.</item>
+    <item quantity="few">Į grupę buvo pakviesti %1$d žmonės.</item>
+    <item quantity="many">Į grupę buvo pakviesta %1$d žmonių.</item>
+    <item quantity="other">Į grupę buvo pakviestas %1$d žmogus.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Jūs panaikinote pakvietimą prisijungti prie grupės.</item>
@@ -758,6 +768,12 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kažkas atmetė pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atmetėte pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Jūsų pakvietimas prisijungti prie grupės buvo panaikintas.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Pakvietimas prisijungti prie grupės buvo panaikintas.</item>
+    <item quantity="few">Buvo panaikinti %1$d pakvietimai prisijungti prie grupės.</item>
+    <item quantity="many">Buvo panaikinta %1$d pakvietimų prisijungti prie grupės.</item>
+    <item quantity="other">Buvo panaikintas %1$d pakvietimas prisijungti prie grupės.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Jūs priėmėte pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s priėmė pakvietimą prisijungti prie grupės.</string>
@@ -774,9 +790,11 @@
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės informaciją į \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės informaciją į \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Buvo pakeista, kad \"%1$s\" gali taisyti grupės informacija.</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės narystes į \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės narystes į \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Buvo pakeista, kad \"%1$s\" gali keisti grupės narystes.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
@@ -880,6 +898,8 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Sukurti naują PIN kodą</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Įspėjimas</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Jei išjungsite PIN kodą, tuomet registruodamiesi iš naujo Signal programėlėje, prarasite visus duomenis, nebent rankiniu būdu pasidarysite atsarginę kopiją ir ją atkursite. Tol, kol PIN kodas yra išjungtas, negalėsite įjungti Registracijos užrakto.</string>
+  <string name="PinOptOutDialog_disable_pin">Išjungti PIN kodą</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeigu jūs mėgaujatės naudodamiesi šia programėle, skirkite minutėlę mums padėti ir įvertinkite ją.</string>
@@ -1157,6 +1177,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ištrinti žinutę?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naudotojui %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Medija daugiau nebeprieinama.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d naujų(-os) žinutės(-ių) %2$d pokalbyje(-iuose)</string>
   <string name="MessageNotifier_most_recent_from_s">Paskiausia nuo: %1$s</string>
@@ -1302,6 +1323,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nėra Signal naudotojas. Patikrinkite naudotojo vardą ir bandykite dar kartą.</string>
   <string name="ContactSelectionListFragment_okay">Gerai</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Grupė pilna</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jūs neturite pridėti savęs į grupę</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų adresatų</string>
   <!--contact_selection_list_fragment-->
@@ -1688,10 +1710,15 @@
   <string name="preferences__dark_theme">Tamsi</string>
   <string name="preferences__appearance">Išvaizda</string>
   <string name="preferences__theme">Apipavidalinimas</string>
+  <string name="preferences__disable_pin">Išjungti PIN kodą</string>
+  <string name="preferences__enable_pin">Įjungti PIN kodą</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jei išjungsite PIN kodą, tuomet registruodamiesi iš naujo Signal programėlėje, prarasite visus duomenis, nebent rankiniu būdu pasidarysite atsarginę kopiją ir ją atkursite. Tol, kol PIN kodas yra išjungtas, negalėsite įjungti Registracijos užrakto.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal programėlėje, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti. Norint atverti programėlę jums nereikės įvesti PIN kodo.</string>
   <string name="preferences__system_default">Sistemos numatytasis</string>
   <string name="preferences__default">Numatytoji</string>
   <string name="preferences__language">Kalba</string>
   <string name="preferences__signal_messages_and_calls">Signal žinutės ir skambučiai</string>
+  <string name="preferences__advanced_pin_settings">Išplėstiniai PIN kodo nustatymai</string>
   <string name="preferences__free_private_messages_and_calls">Nemokamos privačios žinutės ir skambučiai Signal naudotojams</string>
   <string name="preferences__submit_debug_log">Pateikti derinimo žurnalą</string>
   <string name="preferences__support_wifi_calling">„Wi-Fi skambučių“ suderinamumo veiksena</string>
@@ -1902,6 +1929,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Sukurti naują PIN kodą</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Kol šis įrenginys yra registruotas, galite keisti savo PIN kodą.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Susikurti PIN kodą</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal programėlėje, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti. Norint atverti programėlę jums nereikės įvesti PIN kodo.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pasirinkite stipresnį PIN kodą</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kodai nesutampa. Bandykite dar kartą.</string>
@@ -1913,6 +1941,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Kuriamas PIN kodas…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Pristatome PIN kodus</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal programėlėje, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti. Norint atverti programėlę jums nereikės įvesti PIN kodo.</string>
   <string name="KbsSplashFragment__learn_more">Sužinoti daugiau</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registracijos užraktas = PIN kodas</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Dabar, registracijos užraktas yra vadinamas PIN kodu ir jis atlieka daugiau. Atnaujinkite jį dabar.</string>
@@ -1920,6 +1949,7 @@
   <string name="KbsSplashFragment__update_pin">Atnaujinti PIN kodą</string>
   <string name="KbsSplashFragment__create_your_pin">Susikurti PIN kodą</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Sužinokite daugiau apie PIN kodus</string>
+  <string name="KbsSplashFragment__disable_pin">Išjungti PIN kodą</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Įveskite savo Signal PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Tam, kad įsimintumėte savo PIN kodą, mes periodiškai prašysime jį įvesti. Bėgant laikui, mes tai darysime rečiau.</string>

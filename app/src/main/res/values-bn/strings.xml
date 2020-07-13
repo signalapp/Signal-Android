@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">স্ক্রিন লক%1$s, নিবন্ধন লক%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">স্ক্রিন লক %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$sথীম, %2$s ভাষা</string>
+  <string name="ApplicationPreferencesActivity_pin_created">পিন তৈরি করা হয়েছে।</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d মিনিট</item>

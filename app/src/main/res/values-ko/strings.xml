@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">화면 잠금 %1$s, 등록 잠금 %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">화면 잠금 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">번호가 생성되었습니다.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d분</item>

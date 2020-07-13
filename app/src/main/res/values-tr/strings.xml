@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekran kilidi %1$s, Kayıt kilidi %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekran kilidi %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Dil %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN oluşturuldu.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d dakika</item>

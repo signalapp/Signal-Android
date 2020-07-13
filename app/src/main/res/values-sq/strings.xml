@@ -45,9 +45,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Kyçje ekrani %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Temë %1$s, Gjuhë %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-et janë të domosdoshëm për kyçje regjistrimi. Për të çaktivizuar PIN-e, ju lutemi, së pari çaktivizoni kyçjeje regjistrimi.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">S’u arrit të çaktivizohen PIN-e. Riprovoni më vonë.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">Pin-i u krijua.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">Pin-i u çaktivizua.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">S’u arrit të çaktivizohen PIN-e. Riprovoni më vonë.</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN-i u krijua.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutë</item>
@@ -821,7 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Krijoni PIN të ri</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Paralajmërim</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Çaktivizimi i PIN-it do të krijojë një PIN të fshehur, me entropi të lartë, përshoqëruar llogarisë tuaj, i cili është i pakthyeshëm. Kur të riregjistroni Signal-in, do të humbni krejt të dhënat, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni PIN-in, do të humbni krejt të dhënat, kur riregjistroni Signal-in, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PinOptOutDialog_disable_pin">Çaktivizoje PIN-in</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vlerësojeni këtë aplikacion</string>
@@ -1610,7 +1610,9 @@
   <string name="preferences__theme">Temë</string>
   <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
   <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Çaktivizimi i PIN-it do të krijojë një PIN të fshehur, me entropi të lartë, përshoqëruar llogarisë tuaj, i cili është i pakthyeshëm. Kur të riregjistroni Signal-in, do të humbni krejt të dhënat, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni PIN-in, do të humbni krejt të dhënat, kur riregjistroni
+ Signal-in, veç në i kopjeruajtshi dhe rikthefshi dorazi. S’mund të 
+aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-et i mbajnë të fshehtëzuara të dhëna e depozituara me Signal, që kështu të mund t’i përdorni. Profili, rregullimet dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal-in. S’do t’ju duhet PIN-i për të hapur aplikacionin.</string>
   <string name="preferences__system_default">Parazgjedhje sistemi</string>
   <string name="preferences__default">Parazgjedhje</string>

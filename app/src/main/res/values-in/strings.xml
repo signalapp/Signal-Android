@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Kunci layar %1$s, Kunci pendaftaran%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Kunci layar %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN dibuat.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%dmenit</item>

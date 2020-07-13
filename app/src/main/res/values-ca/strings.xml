@@ -45,7 +45,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueig de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Llengua: %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Els PIN són necessaris per al bloqueig de registre. Per desactivar-los, primer desactiveu el bloqueig de registre.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Ha fallat desactivar els PIN. Torneu-ho a provar més tard.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Ha fallat desactivar els PIN. Torneu-ho a provar més tard.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN creat.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivat.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -821,7 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Crea un PIN nou</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Advertiment</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
   <string name="PinOptOutDialog_disable_pin">Desactiva el PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valoreu l\'aplicació</string>
@@ -1608,7 +1608,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Desactiva el PIN</string>
   <string name="preferences__enable_pin">Activa el PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Desactivar la creació del PIN crearà un PIN ocult i d’alta entropia associat al compte que no es podrà recuperar. Quan torneu a registrar el Signal, perdreu totes les dades tret que en feu una còpia de seguretat i una restauració manual. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu. No necessitareu el PIN per obrir l\'aplicació.</string>
   <string name="preferences__system_default">Per defecte del sistema</string>
   <string name="preferences__default">Per defecte</string>

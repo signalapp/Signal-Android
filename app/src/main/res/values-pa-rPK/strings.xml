@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">اسکرین لاک %1$s، رجسٹریشن لاک %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">سکریں لاک %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">تھیم %1$s، زبان %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">پن بن گیا اے۔</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d منٹمنٹ</item>

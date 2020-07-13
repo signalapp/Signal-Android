@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">స్క్రీన్ లాక్ %1$s, నమోదు లాక్ %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">తెరకి తాళం%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">థీమ్ %1$s, భాష %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">పిన్ సృష్టించబడింది.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d నిమిషాలు</item>

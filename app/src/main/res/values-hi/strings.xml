@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">स्क्रीन लॉक %1$s, पंजीकरण लॉक %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">विषय%1$s, भाषा%2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">पिन बनाया गया।</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनट</item>

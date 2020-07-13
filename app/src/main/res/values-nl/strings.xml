@@ -45,7 +45,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Schermvergrendeling %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Taal %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs zijn vereist voor registratievergrendeling. Om PINs uit te schakelen moet eerst de registratievergrendeling uitgezet worden.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Uitzetten PINs is mislukt, probeer het later nog eens.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Uitzetten PINs is mislukt, probeer het later nog eens.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Pin uitgeschakeld.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -704,7 +704,7 @@
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Je uitnodiging om lid de worden van de groep is ingetrokken.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Een uitnodiging om lid te worden van de groep is ingetrokken.</item>
-    <item quantity="other">%1$duitnodigingen om lid te worden van de groep zijn ingetrokken.</item>
+    <item quantity="other">%1$d uitnodigingen om lid te worden van de groep zijn ingetrokken.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Je hebt een uitnodiging om lid te worden van de groep aanvaard.</string>
@@ -822,7 +822,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarschuwing</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Het uitschakelen van de PIN maakt een verborgen PIN met  hoge entropie aan met jouw account. Deze is niet herstelbaar: wanneer je Signal opnieuw registreert ben je al je gegevens kwijt tenzij je handmatig backupt en herstelt. Je kunt geen registratievergrendeling gebruiken zolang de PIN uitgeschakeld is.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de PIN uitschakelt zul je alle gegevens kwijtraken wanneer je Signal opnieuw registreert tenzij je  je handmatig een backupt en herstelt..  Je kunt geen registratievergrendeling gebruiken zolang de PIN uitgeschakeld is.</string>
   <string name="PinOptOutDialog_disable_pin">PIN uitschakelen</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
@@ -1618,7 +1618,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__theme">Thema</string>
   <string name="preferences__disable_pin">PIN uitschakelen</string>
   <string name="preferences__enable_pin">PIN inschakelen</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Het uitschakelen van de PIN maakt een verborgen PIN met  hoge entropie aan met jouw account. Deze is niet herstelbaar: wanneer je Signal opnieuw registreert ben je al je gegevens kwijt tenzij je handmatig backupt en herstelt. Je kunt geen registratievergrendeling gebruiken zolang de PIN uitgeschakeld is.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de PIN uitschakelt zul je alle gegevens kwijtraken wanneer je Signal opnieuw registreert tenzij je  je handmatig een backupt en herstelt..  Je kunt geen registratievergrendeling gebruiken zolang de PIN uitgeschakeld is.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de PIN niet nodig om de app te openen.</string>
   <string name="preferences__system_default">Systeemstandaard</string>
   <string name="preferences__default">Systeemstandaard</string>

@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Näytön lukitus %1$s, Rekisteröinnin lukitus %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Näytön lukitus %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, Kieli %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN-koodi luotu.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuutti</item>

@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">സ്‌ക്രീൻ ലോക്ക് %1$s, രജിസ്‌ട്രേഷൻ ലോക്ക് %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">സ്‌ക്രീൻ ലോക്ക് %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">തീം %1$s, ഭാഷ %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">പിൻ സൃഷ്ടിച്ചു.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d മിനിറ്റ്</item>

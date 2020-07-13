@@ -48,6 +48,10 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">נעילת מסך %1$s, נעילת הרשמה %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">נעילת מסך %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ערכת נושא %1$s, שפה %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">קודי PIN נדרשים עבור נעילת הרשמה. כדי להשבית קודי PIN, אנא השבת תחילה נעילת הרשמה.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">נכשל בהשבתת קודי PIN. נסה שוב מאוחר יותר.</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN נוצר.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN הושבת.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">דקה %d</item>
@@ -296,7 +300,7 @@
   <string name="ConversationFragment_delete_for_everyone">מחק עבור כולם</string>
   <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">הודעה זו תימחק לצמיתות עבור כל אחד שנמצא בשיחה. חברי קבוצה יוכלו לראות שמחקת הודעה.</string>
   <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
-  <string name="ConversationFragment_quoted_message_no_longer_available">הודעה מקורית כבר אינה זמינה</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">ההודעה המקורית אינה זמינה יותר</string>
   <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">אתה יכול להחליק ימינה על הודעה כלשהי כדי להשיב בזריזות</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">אתה יכול להחליק שמאלה על הודעה כלשהי כדי להשיב בזריזות</string>
@@ -894,6 +898,8 @@
   <string name="PinRestoreLockedFragment_create_new_pin">צור PIN חדש</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">אזהרה</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">אם תשבית את ה־PIN, תאבד את כל הנתונים כאשר תירשם מחדש אל Signal אלא אם תגבה ותשחזר באופן ידני. אינך יכול להפעיל נעילת הרשמה בזמן שה־PIN מושבת.</string>
+  <string name="PinOptOutDialog_disable_pin">השבת PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">דרג יישום זה</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">אם אתה נהנה להשתמש ביישום זה, אנא הקדש רגע כדי לעזור לנו ע״י דירוג שלו.</string>
@@ -1171,6 +1177,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">למחוק הודעה?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">זה ימחק לצמיתות הודעה זו.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s אל %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">מדיה אינה זמינה יותר.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d הודעות חדשות ב־%2$d שיחות</string>
   <string name="MessageNotifier_most_recent_from_s">הודעה אחרונה מאת: %1$s</string>
@@ -1703,10 +1710,15 @@
   <string name="preferences__dark_theme">כהה</string>
   <string name="preferences__appearance">מַרְאֶה</string>
   <string name="preferences__theme">ערכת נושא</string>
+  <string name="preferences__disable_pin">השבת PIN</string>
+  <string name="preferences__enable_pin">אפשר PIN</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">אם תשבית את ה־PIN, תאבד את כל הנתונים כאשר תירשם מחדש אל Signal אלא אם תגבה ותשחזר באופן ידני. אינך יכול להפעיל נעילת הרשמה בזמן שה־PIN מושבת.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal. לא תצטרך את ה־PIN שלך כדי לפתוח את היישום.</string>
   <string name="preferences__system_default">ברירת מחדל</string>
   <string name="preferences__default">ברירת מחדל</string>
   <string name="preferences__language">שפה</string>
   <string name="preferences__signal_messages_and_calls">הודעות ושיחות של Signal</string>
+  <string name="preferences__advanced_pin_settings">הגדרות PIN מתקדמות</string>
   <string name="preferences__free_private_messages_and_calls">הודעות ושיחות פרטיות חינמיות אל משתמשי Signal</string>
   <string name="preferences__submit_debug_log">הגש יומן ניפוי תקלים</string>
   <string name="preferences__support_wifi_calling">מצב תאימות \'התקשרות WiFi\'</string>
@@ -1917,6 +1929,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">צור PIN חדש</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">אתה יכול לשנות את ה־PIN שלך כל עוד מכשיר זה רשום.</string>
   <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal. לא תצטרך את ה־PIN שלך כדי לפתוח את היישום.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">בחר PIN חזק יותר</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>
@@ -1928,13 +1941,15 @@
   <string name="ConfirmKbsPinFragment__creating_pin">יוצר PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal. לא תצטרך את ה־PIN שלך כדי לפתוח את היישום.</string>
   <string name="KbsSplashFragment__learn_more">למד עוד</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת.</string>
   <string name="KbsSplashFragment__read_more_about_pins">למד עוד על PIN.</string>
   <string name="KbsSplashFragment__update_pin">עדכן PIN</string>
   <string name="KbsSplashFragment__create_your_pin">צור את ה־PIN שלך</string>
-  <string name="KbsSplashFragment__learn_more_about_pins">למד עוד אודות קודי PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">למד עוד על קודי PIN</string>
+  <string name="KbsSplashFragment__disable_pin">השבת PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">הכנס את ה־PIN של Signal שלך</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">כדי לעזור לך לשנן את ה־PIN שלך, נבקש ממך להכניס אותו מעת לעת. נבקש ממך פחות עם הזמן.</string>

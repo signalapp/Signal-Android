@@ -45,9 +45,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Låseskærm %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Sprog %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN´s er påkrævet for registreringslås. For at deaktivere PIN´s skal registreringslås først déaktiveres</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Kan ikke déaktivere PIN´s. Forsøg igen senere</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Kan ikke déaktivere PIN´s. Forsøg igen senere</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN oprettet</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN déaktiveret</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Pinkode deaktiveret.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -823,7 +823,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Opret ny pinkode</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Advarsel</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Ved deaktivering af pinkode oprettes der en skjult, høj entropi-pinkode, der er knyttet til din konto, som ikke kan gendannes. Når du omregistrerer Signal, mister du alle data, medmindre du manuelt sikkerhedskopierer og gendanner. Du kan ikke aktivere Registreringslås, mens pinkoden er deaktiveret.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkoden, mister du alle data, når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere Registreringslås, mens pinkoden er deaktiveret.</string>
   <string name="PinOptOutDialog_disable_pin">Déaktiver PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bedøm app\'en</string>
@@ -1614,7 +1614,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Déaktiver PIN</string>
   <string name="preferences__enable_pin">Aktivér PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Ved deaktivering af pinkode oprettes der en skjult, høj entropi-pinkode, der er knyttet til din konto, som ikke kan gendannes. Når du omregistrerer Signal, mister du alle data, medmindre du manuelt sikkerhedskopierer og gendanner. Du kan ikke aktivere Registreringslås, mens pinkoden er deaktiveret.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkoden, mister du alle data, når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere Registreringslås, mens pinkoden er deaktiveret.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Pinkoder opbevarer krypteret information, lagret med Signal, så kun du kan få adgang til den. Din profil, indstillinger og kontaktpersoner gendannes mens du geninstallerer. Du har ikke brug for din pinkode for at åbne app´en</string>
   <string name="preferences__system_default">System standard</string>
   <string name="preferences__default">Standard</string>

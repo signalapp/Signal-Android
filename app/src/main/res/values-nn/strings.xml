@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Skjermlås %1$s, registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Skjermlås %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN oppretta.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>

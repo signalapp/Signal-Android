@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ایس ایم ایس %1$s، ایم ایم ایس %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">سکرین لاک%1$s،رجسٹریشن لاک%2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">موضوع%1$s، زبان%2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">پن تیار کیا گیا۔</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dمنٹس</item>

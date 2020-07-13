@@ -44,9 +44,8 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Verrouillage de l’écran %1$s, blocage de l’inscription %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Verrouillage de l’écran %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, langue %2$s</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Échec de désactivation des NIP. Veuillez ressayer plus tard.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Échec de désactivation des NIP. Veuillez ressayer plus tard.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">Le NIP a été créé.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">Le NIP a été désactivé.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>

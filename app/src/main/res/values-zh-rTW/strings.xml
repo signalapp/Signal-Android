@@ -43,9 +43,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">螢幕鎖%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主題 %1$s，語言 %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN碼是註冊鎖定所必需的。 要停用PIN碼，請先關閉註冊鎖功能。</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">關閉 PIN碼失敗，稍後再試。</string>
-  <string name="ApplicationPreferencesActivity_pin_created">PIN碼已被建立。</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN碼已被停用。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">關閉 PIN碼失敗，稍後再試。</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN碼已建立。</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN碼功能已停用</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分鐘</item>
@@ -783,7 +783,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">建立新的PIN碼</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">停用PIN碼將建立與你的帳號相關聯的隱藏的，高隱密的PIN碼，該PIN碼無法回復。 重新註冊Signal時，除非手動備份和還原，否則所有資料都會遺失。 停用PIN碼時無法開啟註冊鎖。</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果停用了PIN碼功能，則除非手動備份和還原，否則重新註冊Signal時，所有資料都會遺失。 停用PIN碼功能時無法開啟註冊鎖。</string>
   <string name="PinOptOutDialog_disable_pin">停用PIN碼</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">評分這個應用程式</string>
@@ -1562,7 +1562,7 @@
   <string name="preferences__theme">主題</string>
   <string name="preferences__disable_pin">停用PIN碼</string>
   <string name="preferences__enable_pin">啟用PIN碼</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">停用PIN碼將建立與你的帳號相關聯的隱藏的，高隱密的PIN碼，該PIN碼無法回復。 重新註冊Signal時，除非手動備份和還原，否則所有資料都會遺失。 停用PIN碼時無法開啟註冊鎖。</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果停用了PIN碼功能，則除非手動備份和還原，否則重新註冊Signal時，所有資料都會遺失。 停用PIN碼功能時無法開啟註冊鎖。</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN碼會以Signal加密方式儲存訊息，因此只有你可以讀取。 重新安裝後，你的個人資料，設定和聯絡人將回復。 你不需要PIN碼即可開啟應用程式。</string>
   <string name="preferences__system_default">系統預設</string>
   <string name="preferences__default">預設</string>

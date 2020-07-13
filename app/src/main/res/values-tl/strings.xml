@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Lock ng screen %1$s, Lock ng pagpaparehistro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Lock ng screen %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Wika%2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Nalikha na ang PIN.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dminuto</item>

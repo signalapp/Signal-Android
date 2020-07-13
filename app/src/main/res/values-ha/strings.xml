@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary"> Kullewar fuska %1$s, Kullewar rijista %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Jigo %1$s, Harshe %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">An kirkiri lambobin sirri.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d mintina</item>

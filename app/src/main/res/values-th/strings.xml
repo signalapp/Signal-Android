@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">ล็อกหน้าจอ%1$s กุญแจลงทะเบียน %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">ล็อคหน้าจอ %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ธีม %1$s ภาษา %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">สร้างรหัส PIN แล้ว</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d นาที</item>

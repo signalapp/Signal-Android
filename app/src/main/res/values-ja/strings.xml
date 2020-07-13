@@ -43,7 +43,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">画面ロック %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">テーマ %1$s、言語 %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">登録ロックを使うにはPINが必要です。PINを無効にする前に登録ロックを無効にしてください。</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">PINを無効にできませんでした。もう一度試してみてください。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">PINを無効にできませんでした。もう一度試してみてください。</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN を作成しました。</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PINを無効にしました。</string>
   <!--AppProtectionPreferenceFragment-->
@@ -783,7 +783,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">新しい PIN を作成</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">ご注意ください</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">PINを無効にすると、代わりに複雑なPINが自動生成されてアカウントに紐づけられます。このPINをあとで取り出すことはできません。自分でデータをバックアップしていない場合、Signalを再登録するとすべてのデータが失われて復元できなくなります。また、PINが無効になっていると登録ロックも使えません。</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PINを無効にすると、自分でバックアップを取っておかない限り、Signalを再登録するときにすべてのデータが失われます。PINを無効にしている間は登録ロックを使用することができません。</string>
   <string name="PinOptOutDialog_disable_pin">PINを無効化</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
@@ -1554,7 +1554,7 @@
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__disable_pin">PINを無効化</string>
   <string name="preferences__enable_pin">PINを有効化</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">PINを無効にすると、代わりに複雑なPINが自動生成されてアカウントに紐づけられます。このPINをあとで取り出すことはできません。自分でデータをバックアップしていない場合、Signalを再登録するとすべてのデータが失われて復元できなくなります。また、PINが無効になっていると登録ロックも使えません。</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PINを無効にすると、自分でバックアップを取っておかない限り、Signalを再登録するときにすべてのデータが失われます。PINを無効にしている間は登録ロックを使用することができません。</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINは Signal 上に保管されている情報を暗号化するのに使われます。これによって、あなた以外の誰もその情報にアクセスできないようにしています。PINを使うことで、Signal を再インストールしたときにあなたのプロフィール、設定、連絡先の情報が復元されます。アプリを利用するときにPINを入力する必要はありません。</string>
   <string name="preferences__system_default">システム既定</string>
   <string name="preferences__default">既定</string>

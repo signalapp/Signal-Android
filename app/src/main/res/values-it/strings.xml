@@ -45,9 +45,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Blocco schermo %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Lingua %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">I PIN sono richiesti per il blocco registrazione. Per disabilitare i PIN, disabilita prima il blocco registrazione.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Impossibile disabilitare i PIN. Riprova più tardi.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">Pin creato.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">Pin disabilitato.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Impossibile disabilitare i PIN. Riprova più tardi.</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN creato.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabilitato.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -822,7 +822,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Crea nuovo PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Attenzione</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">Disabilitare il PIN creerà un PIN nascosto ad alta entropia associato al tuo account che è irrecuperabile. Quando ti registri nuovamente con Signal, perderai tutti i dati a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Signal a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
   <string name="PinOptOutDialog_disable_pin">Disabilita PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
@@ -1614,7 +1614,7 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Disabilita PIN</string>
   <string name="preferences__enable_pin">Abilita PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">Disabilitare il PIN creerà un PIN nascosto ad alta entropia associato al tuo account che è irrecuperabile. Quando ti registri nuovamente con Signal, perderai tutti i dati a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Signal a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
   <string name="preferences__system_default">Predefinito di sistema</string>
   <string name="preferences__default">Predefinito</string>

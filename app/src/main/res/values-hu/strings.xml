@@ -45,9 +45,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Képernyőzár %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s téma, %2$s nyelv</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">A regisztrációs zárhoz PIN kódra van szükség. A PIN kód letiltásához előbb ki kell kapcsolni a regisztrációs zárat.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nem sikerült a PIN letiltása. Kérlek próbáld újra!</string>
-  <string name="ApplicationPreferencesActivity_pin_created">Pin létrehozva.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">Pin letiltva.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nem sikerült a PIN letiltása. Kérlek próbáld újra!</string> -->
+  <string name="ApplicationPreferencesActivity_pin_created">PIN kód létrehozva.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN letiltva.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d perc</item>
@@ -824,7 +824,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="PinRestoreLockedFragment_create_new_pin">Új PIN létrehozása</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Figyelmeztetés</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">A PIN letiltásával egy rejtett, nagy entrópiát tartalmazó PIN-t rendelünk fiókodhoz, amit nem lehet helyreállítani. A Signal-ra történő újraregisztráció során minden adatod elveszik, kivéve ha azt előtte manuálisan elmented, majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN kódod letiltásával egy esetleges újraregisztráció során az összes Signal adatod el fog veszni, kivéve ha azokat előtte külön lemented majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
   <string name="PinOptOutDialog_disable_pin">PIN letiltása</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Értékeld az alkalmazást</string>
@@ -1617,7 +1617,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__theme">Téma</string>
   <string name="preferences__disable_pin">PIN letiltása</string>
   <string name="preferences__enable_pin">PIN engedélyezése</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">A PIN letiltásával egy rejtett, nagy entrópiát tartalmazó PIN-t rendelünk fiókodhoz, amit nem lehet helyreállítani. A Signal-ra történő újraregisztráció során minden adatod elveszik, kivéve ha azt előtte manuálisan elmented, majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN kódod letiltásával egy esetleges újraregisztráció során az összes Signal adatod el fog veszni, kivéve ha azokat előtte külön lemented majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">A PIN-nek köszönhetően a Signal által tárolt információk titkosítva lesznek, így csak te férhetsz hozzájuk. Újratelepítés esetén profilod, beállításaid és kontaktjaid visszaállításra kerülnek. Az alkalmazás megnyitásához nincs szükség a PIN kódra.</string>
   <string name="preferences__system_default">Alapbeállítás</string>
   <string name="preferences__default">Alapértelmezett</string>

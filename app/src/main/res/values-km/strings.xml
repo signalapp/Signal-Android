@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">ចាក់សោរអេក្រង់ %1$s, ចាក់សោេរចុះឈ្មោះ %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">ចាក់សោអេក្រង់ %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ប្រធានបទ %1$s, ភាសា %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN ត្រូវបានបង្កើត។</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d នាទី</item>

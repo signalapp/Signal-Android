@@ -49,7 +49,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Блокировка экрана %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, язык %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коды необходимы для блокировки регистрации. Чтобы отключить PIN-коды, пожалуйста, сначала отключите блокировку регистрации.</string>
-  <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Не удалось отключить PIN-коды. Попробуйте ещё раз позже.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Не удалось отключить PIN-коды. Попробуйте ещё раз позже.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN-код создан.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-код отключён.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -897,7 +897,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Создать новый PIN-код</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Предупреждение</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinOptOutDialog_disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string> -->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
   <string name="PinOptOutDialog_disable_pin">Отключить PIN-код</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
@@ -1705,7 +1705,7 @@
   <string name="preferences__theme">Тема</string>
   <string name="preferences__disable_pin">Отключить PIN-код</string>
   <string name="preferences__enable_pin">Включить PIN-код</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__disabling_pins_will_create_a_hidden_high_entropy_pin">При отключении PIN-кода будет создан скрытый PIN-код с высокой энтропией, связанный с вашей учётной записью, который невозможно восстановить. При повторной регистрации в Signal вы потеряете все данные, если не создадите и восстановите резервную копию вручную. Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string> -->
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
   <string name="preferences__system_default">По умолчанию</string>
   <string name="preferences__default">По умолчанию</string>

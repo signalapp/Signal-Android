@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">திரை பூட்டி%1$sபதிவு பூட்டு%2$s, </string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">திரை பூட்டு%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">பின்புலத்தோற்றம் %1$s, மொழி %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">பின் உருவாக்கப்பட்டது.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d நிமிடம்</item>

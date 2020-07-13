@@ -41,6 +41,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Kunci layar %1$s, Kunci pendaftaran %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Basa %2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN dipundamelaken.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d menit</item>
