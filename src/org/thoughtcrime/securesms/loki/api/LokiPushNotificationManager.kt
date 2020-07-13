@@ -5,14 +5,14 @@ import okhttp3.*
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.logging.Log
 import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.loki.api.LokiPushNotificationAcknowledgement
+import org.whispersystems.signalservice.loki.api.PushNotificationAcknowledgement
 import java.io.IOException
 
 object LokiPushNotificationManager {
     private val connection = OkHttpClient()
 
     private val server by lazy {
-        LokiPushNotificationAcknowledgement.shared.server
+        PushNotificationAcknowledgement.shared.server
     }
 
     private const val tokenExpirationInterval = 12 * 60 * 60 * 1000

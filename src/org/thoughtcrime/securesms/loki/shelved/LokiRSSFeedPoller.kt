@@ -14,8 +14,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.rssfeeds.LokiRSSFeed
-import org.whispersystems.signalservice.loki.api.rssfeeds.LokiRSSFeedProxy
+import org.whispersystems.signalservice.loki.api.shelved.rssfeeds.LokiRSSFeed
+import org.whispersystems.signalservice.loki.api.shelved.rssfeeds.LokiRSSFeedProxy
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 
@@ -66,7 +66,7 @@ class LokiRSSFeedPoller(private val context: Context, private val feed: LokiRSSF
                 val id = feed.id.toByteArray()
                 val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, SignalServiceGroup.GroupType.RSS_FEED, null, null, null, null)
                 val x2 = SignalServiceDataMessage(timestamp, x1, null, body)
-                val x3 = SignalServiceContent(x2, "Loki", SignalServiceAddress.DEFAULT_DEVICE_ID, timestamp, false, false, false, false, false)
+                val x3 = SignalServiceContent(x2, "Loki", SignalServiceAddress.DEFAULT_DEVICE_ID, timestamp, false, false, false, false)
                 PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.absent())
             }
         }.fail { exception ->

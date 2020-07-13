@@ -32,7 +32,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.SnodeAPI;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 
 import java.io.IOException;
@@ -173,7 +173,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         database.markAsSentFailed(record.getId());
         database.markAsPush(record.getId());
       }
-    } catch (LokiAPI.Error e) {
+    } catch (SnodeAPI.Error e) {
       Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
       if (messageId >= 0) {
         LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
@@ -204,7 +204,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   }
 
   private boolean deliver(SmsMessageRecord message)
-      throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException, LokiAPI.Error
+      throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException, SnodeAPI.Error
   {
     try {
       Recipient                        recipient          = Recipient.from(context, destination, false);

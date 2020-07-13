@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.loki.api.LokiPublicChatManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.whispersystems.signalservice.loki.api.LokiPoller;
+import org.whispersystems.signalservice.loki.api.Poller;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,9 +40,9 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context) {
-    LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
@@ -56,9 +56,9 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId) {
-    LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
@@ -72,9 +72,9 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId, boolean signal) {
-    LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }
@@ -88,9 +88,9 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount) {
-    LokiPoller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
     LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
-    Boolean isCaughtUp = false;
+    boolean isCaughtUp = false;
     if (lokiPoller != null && lokiPublicChatManager != null) {
       isCaughtUp = lokiPoller.isCaughtUp() && lokiPublicChatManager.areAllCaughtUp();
     }

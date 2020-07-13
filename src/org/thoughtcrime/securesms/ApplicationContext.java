@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -91,18 +92,20 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.LokiPoller;
-import org.whispersystems.signalservice.loki.api.LokiPushNotificationAcknowledgement;
-import org.whispersystems.signalservice.loki.api.LokiSwarmAPI;
+import org.whispersystems.signalservice.loki.api.Poller;
+import org.whispersystems.signalservice.loki.api.PushNotificationAcknowledgement;
+import org.whispersystems.signalservice.loki.api.SnodeAPI;
+import org.whispersystems.signalservice.loki.api.SwarmAPI;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
-import org.whispersystems.signalservice.loki.api.p2p.LokiP2PAPI;
-import org.whispersystems.signalservice.loki.api.p2p.LokiP2PAPIDelegate;
+import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPI;
+import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
@@ -151,7 +154,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   // Loki
   public MessageNotifier messageNotifier = null;
-  public LokiPoller lokiPoller = null;
+  public Poller lokiPoller = null;
   public LokiPublicChatManager lokiPublicChatManager = null;
   private LokiPublicChatAPI lokiPublicChatAPI = null;
   public Broadcaster broadcaster = null;
@@ -184,8 +187,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     LokiSessionResetImplementation sessionResetImpl = new LokiSessionResetImplementation(this);
     if (userPublicKey != null) {
-      LokiSwarmAPI.Companion.configureIfNeeded(apiDB);
-      LokiAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
+      SwarmAPI.Companion.configureIfNeeded(apiDB);
+      SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
       FriendRequestProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
@@ -194,7 +197,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
     SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, threadDB, this);
     setUpP2PAPIIfNeeded();
-    LokiPushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
+    PushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     if (setUpStorageAPIIfNeeded()) {
       if (userPublicKey != null) {
         Set<DeviceLink> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey);
@@ -493,15 +496,15 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userPublicKey == null) return;
     if (lokiPoller != null) {
-      LokiAPI.shared.setUserHexEncodedPublicKey(userPublicKey);
-      lokiPoller.setUserHexEncodedPublicKey(userPublicKey);
+      SnodeAPI.shared.setUserPublicKey(userPublicKey);
+      lokiPoller.setUserPublicKey(userPublicKey);
       return;
     }
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    LokiSwarmAPI.Companion.configureIfNeeded(apiDB);
-    LokiAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
-    lokiPoller = new LokiPoller(userPublicKey, apiDB, protos -> {
+    SwarmAPI.Companion.configureIfNeeded(apiDB);
+    SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
+    lokiPoller = new Poller(userPublicKey, apiDB, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
         new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto), false);
       }
@@ -588,6 +591,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   @Override
   public void sendSessionRequest(@NotNull String publicKey) {
+    // It's never necessary to establish a session with self
+    String userPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (publicKey.equals(userPublicKey)) { return; }
+    // Check that we don't already have a session
+    SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
+    boolean hasSession = new TextSecureSessionStore(this).containsSession(address);
+    if (hasSession) { return; }
+    // Check that we didn't already send or process a session request
+    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
+    boolean hasSentOrProcessedSessionRequest = (apiDB.getSessionRequestTimestamp(publicKey) != null);
+    if (hasSentOrProcessedSessionRequest) { return; }
+    // Send the session request
     DatabaseFactory.getLokiAPIDatabase(this).setSessionRequestTimestamp(publicKey, new Date().getTime());
     EphemeralMessage sessionRequest = EphemeralMessage.createSessionRequest(publicKey);
     jobManager.add(new PushEphemeralMessageSendJob(sessionRequest));

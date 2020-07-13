@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.loki.LokiSessionResetStatus
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
+import java.util.*
 
 object SessionManagementProtocol {
 
@@ -59,6 +59,14 @@ object SessionManagementProtocol {
         val registrationID = TextSecurePreferences.getLocalRegistrationId(context) // TODO: It seems wrong to use the local registration ID for this?
         val lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context)
         Log.d("Loki", "Received a pre key bundle from: " + content.sender.toString() + ".")
+        if (content.dataMessage.isPresent && content.dataMessage.get().isSessionRequest) {
+            val sessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
+            if (sessionRequestTimestamp != null && content.timestamp < sessionRequestTimestamp) {
+                // We sent or processed a session request after this one was sent
+                Log.d("Loki", "Ignoring session request from: ${content.sender}.")
+                return
+            }
+        }
         val preKeyBundle = preKeyBundleMessage.getPreKeyBundle(registrationID)
         lokiPreKeyBundleDatabase.setPreKeyBundle(content.sender, preKeyBundle)
     }
@@ -66,11 +74,13 @@ object SessionManagementProtocol {
     @JvmStatic
     fun handleSessionRequestIfNeeded(context: Context, content: SignalServiceContent): Boolean {
         if (!content.dataMessage.isPresent || !content.dataMessage.get().isSessionRequest) { return false }
-        val sentSessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
-        if (sentSessionRequestTimestamp != null && content.timestamp < sentSessionRequestTimestamp) {
-            // We sent a session request after this one was sent
+        val sessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
+        if (sessionRequestTimestamp != null && content.timestamp < sessionRequestTimestamp) {
+            // We sent or processed a session request after this one was sent
+            Log.d("Loki", "Ignoring session request from: ${content.sender}.")
             return false
         }
+        DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestTimestamp(content.sender, Date().time)
         val ephemeralMessage = EphemeralMessage.create(content.sender)
         ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
         return true
