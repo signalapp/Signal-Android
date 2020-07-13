@@ -1449,7 +1449,7 @@
   <string name="activity_path_destination_row_title">Место назначения</string>
   <string name="activity_path_learn_more_button_title">Узнать больше</string>
 
-  <string name="activity_create_private_chat_title">Новая Session</string>
+  <string name="activity_create_private_chat_title">Новый Диалог</string>
   <string name="activity_create_private_chat_enter_session_id_tab_title">Введите идентификатор Session</string>
   <string name="activity_create_private_chat_scan_qr_code_tab_title">Сканировать QR-код</string>
   <string name="activity_create_private_chat_scan_qr_code_explanation">Сканируйте QR-код пользователя, чтобы начать сессию. QR-коды можно найти, нажав значок QR-кода в настройках учетной записи.</string>
