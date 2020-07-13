@@ -367,7 +367,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (message.isDeliveryReceipt()) handleDeliveryReceipt(content, message);
       } else if (content.getTypingMessage().isPresent()) {
         handleTypingMessage(content, content.getTypingMessage().get());
-      } else {
+      } else if (content.isNullMessage()) {
 
         // Loki - This is needed for compatibility with refactored desktop clients
         // ========

@@ -801,7 +801,8 @@ public class ConversationItem extends LinearLayout
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
     int groupThreadMargin = (int)((12 * getResources().getDisplayMetrics().density) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;
-    String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId()).getName();
+    Recipient r = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId());
+    String threadName = r != null ? r.getName() : "";
     boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Session Updates"));
     layoutParams.setMarginStart((groupThread && !isRSSFeed) ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
