@@ -117,7 +117,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
           public void onAnimationEnd(Animator animation) {
             requireActivity().setResult(Activity.RESULT_OK);
             closeNavGraphBranch();
-            RegistrationUtil.markRegistrationPossiblyComplete();
+            RegistrationUtil.markRegistrationPossiblyComplete(requireContext());
             StorageSyncHelper.scheduleSyncForDataChange();
           }
         });
@@ -126,7 +126,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
         startEndAnimationOnNextProgressRepetition(R.raw.lottie_kbs_failure, new AnimationCompleteListener() {
           @Override
           public void onAnimationEnd(Animator animation) {
-            RegistrationUtil.markRegistrationPossiblyComplete();
+            RegistrationUtil.markRegistrationPossiblyComplete(requireContext());
             displayFailedDialog();
           }
         });

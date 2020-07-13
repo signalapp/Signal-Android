@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.PinOptOutDialog;
 import org.thoughtcrime.securesms.pin.PinState;
+import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
@@ -215,6 +216,9 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
   }
 
   private void onPinSkipped() {
-    PinOptOutDialog.show(requireContext(), this::closeNavGraphBranch);
+    PinOptOutDialog.show(requireContext(), () -> {
+      RegistrationUtil.markRegistrationPossiblyComplete(requireContext());
+      closeNavGraphBranch();
+    });
   }
 }
