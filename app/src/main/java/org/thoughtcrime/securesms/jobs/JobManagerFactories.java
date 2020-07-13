@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 import org.thoughtcrime.securesms.migrations.PassingMigrationJob;
+import org.thoughtcrime.securesms.migrations.PinOptOutMigration;
 import org.thoughtcrime.securesms.migrations.PinReminderMigrationJob;
 import org.thoughtcrime.securesms.migrations.ProfileMigrationJob;
 import org.thoughtcrime.securesms.migrations.RecipientSearchMigrationJob;
@@ -128,7 +129,9 @@ public final class JobManagerFactories {
       put(DatabaseMigrationJob.KEY,                  new DatabaseMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                    new LegacyMigrationJob.Factory());
       put(MigrationCompleteJob.KEY,                  new MigrationCompleteJob.Factory());
+      put(PinOptOutMigration.KEY,                    new PinOptOutMigration.Factory());
       put(PinReminderMigrationJob.KEY,               new PinReminderMigrationJob.Factory());
+      put(ProfileMigrationJob.KEY,                   new ProfileMigrationJob.Factory());
       put(RecipientSearchMigrationJob.KEY,           new RecipientSearchMigrationJob.Factory());
       put(RegistrationPinV2MigrationJob.KEY,         new RegistrationPinV2MigrationJob.Factory());
       put(StickerLaunchMigrationJob.KEY,             new StickerLaunchMigrationJob.Factory());
@@ -136,7 +139,6 @@ public final class JobManagerFactories {
       put(StorageCapabilityMigrationJob.KEY,         new StorageCapabilityMigrationJob.Factory());
       put(StorageServiceMigrationJob.KEY,            new StorageServiceMigrationJob.Factory());
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
-      put(ProfileMigrationJob.KEY,                   new ProfileMigrationJob.Factory());
 
       // Dead jobs
       put(FailingJob.KEY,                            new FailingJob.Factory());
