@@ -17,6 +17,7 @@
         android:text="@string/dialog_seed_title"
         android:textColor="@color/text"
         android:textStyle="bold"
+        android:textAlignment="center"
         android:textSize="@dimen/medium_font_size" />
 
     <TextView
