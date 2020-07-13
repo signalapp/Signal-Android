@@ -54,7 +54,6 @@
     <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Screen lock %1$s</string>
     <string name="ApplicationPreferencesActivity_appearance_summary">Theme %1$s, Language %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs are required for registration lock. To disable PINs, please first disable registration lock.</string>
-    <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Failed to disable PINs. Try again later.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN created.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabled.</string>
 

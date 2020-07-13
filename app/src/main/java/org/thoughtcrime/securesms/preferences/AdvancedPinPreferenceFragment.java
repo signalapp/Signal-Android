@@ -82,12 +82,11 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
                      .setPositiveButton(android.R.string.ok, (d, which) -> d.dismiss())
                      .show();
     } else if (!enabled) {
-      PinOptOutDialog.showForOptOut(requireContext(),
-                                    () -> {
-                                      updatePreferenceState();
-                                      Snackbar.make(requireView(), R.string.ApplicationPreferencesActivity_pin_disabled, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
-                                    },
-                                    () -> Toast.makeText(requireContext(), R.string.ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later, Toast.LENGTH_LONG).show());
+      PinOptOutDialog.show(requireContext(),
+                           () -> {
+                             updatePreferenceState();
+                             Snackbar.make(requireView(), R.string.ApplicationPreferencesActivity_pin_disabled, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
+                           });
     } else {
       startActivityForResult(CreateKbsPinActivity.getIntentForPinCreate(requireContext()), CreateKbsPinActivity.REQUEST_NEW_PIN);
     }

@@ -215,11 +215,6 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
   }
 
   private void onPinSkipped() {
-    PinOptOutDialog.showForSkip(requireContext(),
-                                this::closeNavGraphBranch,
-                                () -> {
-                                  PinState.onPinCreateFailure();
-                                  closeNavGraphBranch();
-                                });
+    PinOptOutDialog.show(requireContext(), this::closeNavGraphBranch);
   }
 }

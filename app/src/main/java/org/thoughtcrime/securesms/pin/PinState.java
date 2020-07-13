@@ -203,19 +203,6 @@ public final class PinState {
   }
 
   /**
-   * Invoked when the user has chosen to skip PIN creation.
-   */
-  @WorkerThread
-  public static synchronized void onPinCreationSkipped() {
-    Log.i(TAG, "onPinCreationSkipped()");
-    assertState(State.NO_REGISTRATION_LOCK);
-
-    optOutOfPin();
-
-    updateState(buildInferredStateFromOtherFields());
-  }
-
-  /**
    * Invoked whenever a Signal PIN user enables registration lock.
    */
   @WorkerThread

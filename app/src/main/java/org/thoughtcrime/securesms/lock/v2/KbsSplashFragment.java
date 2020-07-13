@@ -126,11 +126,6 @@ public final class KbsSplashFragment extends Fragment {
   }
 
   private void onPinSkipped() {
-    PinOptOutDialog.showForSkip(requireContext(),
-                       () -> requireActivity().finish(),
-                       () -> {
-                         PinState.onPinCreateFailure();
-                         requireActivity().finish();
-                       });
+    PinOptOutDialog.show(requireContext(), () -> requireActivity().finish());
   }
 }
