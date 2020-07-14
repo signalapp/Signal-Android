@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
+import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
 import org.thoughtcrime.securesms.keyvalue.InternalValues;
@@ -49,6 +50,12 @@ public class InternalOptionsPreferenceFragment extends CorrectedPreferenceFragme
     findPreference("pref_rotate_profile_key").setOnPreferenceClickListener(preference -> {
       ApplicationDependencies.getJobManager().add(new RotateProfileKeyJob());
       Toast.makeText(getContext(), "Scheduled profile key rotation", Toast.LENGTH_SHORT).show();
+      return true;
+    });
+
+    findPreference("pref_refresh_remote_values").setOnPreferenceClickListener(preference -> {
+      ApplicationDependencies.getJobManager().add(new RemoteConfigRefreshJob());
+      Toast.makeText(getContext(), "Scheduled remote config refresh", Toast.LENGTH_SHORT).show();
       return true;
     });
 
