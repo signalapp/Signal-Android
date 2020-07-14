@@ -113,7 +113,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
-      name.setVisibility(isMms ? View.GONE : View.VISIBLE);
+      //name.setVisibility(isMms ? View.GONE : View.VISIBLE);
       avatar.setVisibility(isMms ? View.GONE : View.VISIBLE);
       toolbar.setTitle(isMms ? R.string.AddGroupDetailsFragment__create_group : R.string.AddGroupDetailsFragment__name_this_group);
     });

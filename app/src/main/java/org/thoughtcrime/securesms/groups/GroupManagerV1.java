@@ -73,7 +73,7 @@ final class GroupManagerV1 {
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
       return sendGroupUpdate(context, groupIdV1, memberIds, name, avatarBytes);
     } else {
-      groupDatabase.create(groupId.requireMms(), memberIds);
+      groupDatabase.create(groupId.requireMms(), name, memberIds);
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }

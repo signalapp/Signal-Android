@@ -207,7 +207,7 @@ public final class GroupDatabase extends Database {
                       .requireMms();
       } else {
         GroupId.Mms groupId = GroupId.createMms(new SecureRandom());
-        create(groupId, members);
+        create(groupId, null, members);
         return groupId;
       }
     } finally {
@@ -280,9 +280,10 @@ public final class GroupDatabase extends Database {
   }
 
   public void create(@NonNull GroupId.Mms groupId,
+                     @Nullable String title,
                      @NonNull Collection<RecipientId> members)
   {
-    create(groupId, null, members, null, null, null, null);
+    create(groupId, title, members, null, null, null, null);
   }
 
   public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
