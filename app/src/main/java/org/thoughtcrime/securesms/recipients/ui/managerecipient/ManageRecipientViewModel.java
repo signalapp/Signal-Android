@@ -257,6 +257,10 @@ public final class ManageRecipientViewModel extends ViewModel {
     withRecipient(r -> CommunicationActions.startVideoCall(activity, r));
   }
 
+  void onAddedToContacts() {
+    manageRecipientRepository.refreshRecipient();
+  }
+
   static final class MediaCursor {
              private final long          threadId;
     @NonNull private final CursorFactory mediaCursorFactory;

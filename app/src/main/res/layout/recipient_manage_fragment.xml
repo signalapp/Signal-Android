@@ -153,7 +153,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-        tools:text="Rob Aneesh" />
+        tools:text="Gwen Stacy" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -167,12 +167,60 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/recipient_disappearing_messages_card"
+                android:id="@+id/recipient_contact_card"
                 style="@style/Widget.Signal.CardView.PreferenceRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/recipient_contact_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/group_manage_fragment_row_height"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/recipient_contact_text"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|start"
+                        android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:text="@string/ManageRecipientActivity_this_person_is_in_your_contacts"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Signal.Text.Body" />
+
+                    <ImageView
+                        android:id="@+id/recipient_contact_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:minWidth="48dp"
+                        android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:textAppearance="@style/Signal.Text.Body"
+                        android:textColor="@color/ultramarine_text_button"
+                        android:tint="?colorAccent"
+                        app:srcCompat="@drawable/ic_profile_circle_outline_24"
+                        tools:text="Off" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recipient_disappearing_messages_card"
+                style="@style/Widget.Signal.CardView.PreferenceRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
+                app:layout_constraintTop_toBottomOf="@id/recipient_contact_card">
 
                 <LinearLayout
                     android:id="@+id/disappearing_messages_row"

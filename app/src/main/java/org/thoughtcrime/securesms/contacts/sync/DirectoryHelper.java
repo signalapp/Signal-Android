@@ -159,7 +159,7 @@ public class DirectoryHelper {
     RegisteredState   originalRegisteredState = recipient.resolve().getRegistered();
     RegisteredState   newRegisteredState      = null;
 
-    if (recipient.getUuid().isPresent()) {
+    if (recipient.hasUuid() && !recipient.hasE164()) {
       boolean isRegistered = isUuidRegistered(context, recipient);
       if (isRegistered) {
         recipientDatabase.markRegistered(recipient.getId(), recipient.getUuid().get());

@@ -544,6 +544,8 @@
     
     
     <!-- ManageRecipientActivity -->
+    <string name="ManageRecipientActivity_add_to_system_contacts">Add to system contacts</string>
+    <string name="ManageRecipientActivity_this_person_is_in_your_contacts">This person is in your contacts</string>
     <string name="ManageRecipientActivity_disappearing_messages">Disappearing messages</string>
     <string name="ManageRecipientActivity_chat_color">Chat color</string>
     <string name="ManageRecipientActivity_block">Block</string>
