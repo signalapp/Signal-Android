@@ -45,7 +45,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueo de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">El bloqueo de registro necesita el PIN. Desactiva primero el bloqueo de registro y después el PIN.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Fallo al desactivar tu PIN. Inténtalo más tarde.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN creado.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
   <!--AppProtectionPreferenceFragment-->

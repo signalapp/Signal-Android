@@ -45,7 +45,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Blocco schermo %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Lingua %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">I PIN sono richiesti per il blocco registrazione. Per disabilitare i PIN, disabilita prima il blocco registrazione.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Impossibile disabilitare i PIN. Riprova più tardi.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN creato.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabilitato.</string>
   <!--AppProtectionPreferenceFragment-->

@@ -47,7 +47,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Blocare ecran %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Limba %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Codurile PIN sunt necesare pentru blocarea înregistrării. Pentru a dezactiva codurile PIN, vă rugăm mai întâi să dezactivați blocarea înregistrării.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Dezactivarea codurilor PIN nu a reușit. Încercați mai târziu.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN creat.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">

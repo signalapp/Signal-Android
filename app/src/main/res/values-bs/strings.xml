@@ -47,7 +47,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zaključavanje ekrana %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s tema. %2$s jezik</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je neophodan za zaključavanje registracije. Da biste isključili PIN, prvo isključite zaključavanje registracije.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Neuspjelo deaktiviranje PIN-a. Pokušajte kasnije.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN je kreiran.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN je isključen.</string>
   <!--AppProtectionPreferenceFragment-->

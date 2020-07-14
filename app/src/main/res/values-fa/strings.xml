@@ -45,7 +45,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل صفحه %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">طرح زمینه %1$s، زبان %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام ضروری هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">غیرفعال کردن پین موفق نبود. بعداً دوباره امتحان کنید.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
   <!--AppProtectionPreferenceFragment-->

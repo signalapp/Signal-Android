@@ -45,6 +45,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueio de ecrã %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -633,6 +634,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recebeu uma mensagem encriptada com uma versão antiga do Signal, que já não é suportada. Por favor, peça ao remetente para atualizar para a versão mais recente e reenviar a mensagem.</string>
   <string name="MessageRecord_left_group">Você abandonou o grupo.</string>
   <string name="MessageRecord_you_updated_group">Você atualizou o grupo.</string>
+  <string name="MessageRecord_the_group_was_updated">O grupo foi atualizado.</string>
   <string name="MessageRecord_you_called">Você ligou</string>
   <string name="MessageRecord_called_you">Contacto ligado</string>
   <string name="MessageRecord_missed_call">Chamada perdida</string>
@@ -660,6 +662,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s removeu-o do grupo.</string>
   <string name="MessageRecord_you_left_the_group">Você abandonou o grupo.</string>
   <string name="MessageRecord_s_left_the_group">%1$s abandonou o grupo.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Deixou de pertencer ao grupo.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s já não pertence ao grupo.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Você tornou %1$s num administrador.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s tornou %2$s num administrador.</string>
@@ -667,7 +671,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você revogou os privilégios de administrador a %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revogou os seus privilégios de administrador.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revogou os privilégios de administrador a %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s é agora um administrador.</string>
   <string name="MessageRecord_you_are_now_an_admin">Você, é agora administrador.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s deixou de ser administrador.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Deixou de ser administrador.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Você convidou %1$s para o grupo.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s convidou-o para o grupo.</string>
@@ -799,6 +806,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Criar novo PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Aviso</string>
+  <string name="PinOptOutDialog_disable_pin">Desativar PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avaliar esta aplicação</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se gostou desta aplicação, ajude-nos avaliando-a.</string>
@@ -1581,6 +1589,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aspeto</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__disable_pin">Desativar PIN</string>
+  <string name="preferences__enable_pin">Ativar PIN</string>
   <string name="preferences__system_default">Configuração por omissão</string>
   <string name="preferences__default">Pré-definição</string>
   <string name="preferences__language">Idioma</string>
@@ -1807,6 +1817,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crie o seu PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Saber mais acerca dos PINs</string>
+  <string name="KbsSplashFragment__disable_pin">Desativar PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Introduza o seu PIN do Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para o ajudar a memorizar o seu PIN, vamos pedir-lhe para o introduzir periodicamente. Iremos pedir-lhe menos vezes ao longo do tempo.</string>

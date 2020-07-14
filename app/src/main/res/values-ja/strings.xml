@@ -43,7 +43,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">画面ロック %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">テーマ %1$s、言語 %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">登録ロックを使うにはPINが必要です。PINを無効にする前に登録ロックを無効にしてください。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">PINを無効にできませんでした。もう一度試してみてください。</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN を作成しました。</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PINを無効にしました。</string>
   <!--AppProtectionPreferenceFragment-->
@@ -309,7 +308,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定中に問題が発生しました</string>
   <string name="CreateProfileActivity_profile_photo">プロフィール写真</string>
   <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィールはエンドツーエンドで暗号化されていますが、会話をする相手、グループ内の人から閲覧可能です。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィールはエンドツーエンドで暗号化されています。会話を開始するか承認するとき、またはグループに参加した時に表示されます。</string>
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>

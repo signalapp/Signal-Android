@@ -44,8 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Verrouillage de l’écran %1$s, blocage de l’inscription %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Verrouillage de l’écran %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, langue %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Échec de désactivation des NIP. Veuillez ressayer plus tard.</string> -->
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Un NIP est requis pour le blocage de l’inscription. Pour désactiver le NIP, veuillez d’abord désactiver le blocage de l’inscription.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Le NIP a été créé.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Le NIP a été désactivé.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
@@ -720,9 +721,11 @@
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Vous avez changé qui peut modifier les renseignements du groupe en « %1$s ».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s a changé qui peut modifier les renseignements du groupe en « %2$s ».</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Qui peut modifier les renseignements du groupe a été changé en « %1$s ».</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vous avez changé qui peut modifier les membres du groupe en « %1$s ».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a changé qui peut modifier les membres du groupe en « %2$s ».</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Qui peut modifier les membres du groupe a été changé en « %1$s ».</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vous avez marqué votre numéro de sécurité avec %s comme confirmé</string>
@@ -818,6 +821,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Avertissement</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
   <string name="PinOptOutDialog_disable_pin">Désactiver le NIP</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette appli</string>
@@ -1229,6 +1233,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">« %1$s » n’est pas un utilisateur de Signal. Veuillez confirmer le nom d’utilisateur et ressayer.</string>
   <string name="ContactSelectionListFragment_okay">Valider</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Le groupe est plein</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vous n’avez pas besoin de vous ajouter au groupe</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact n’est bloqué</string>
   <!--contact_selection_list_fragment-->
@@ -1598,7 +1603,8 @@
   <string name="preferences__theme">Thème</string>
   <string name="preferences__disable_pin">Désactiver le NIP</string>
   <string name="preferences__enable_pin">Activer le NIP</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Les NIP permettent de chiffrer les renseignements stockés avec Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lors de la réinstallation. Vous n’aurez pas besoin de votre NIP pour ouvrir l’application.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
   <string name="preferences__system_default">Valeur par défaut du système</string>
   <string name="preferences__default">Valeur par défaut</string>
   <string name="preferences__language">Langue</string>
@@ -1808,6 +1814,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vous pouvez modifier votre NIP tant que cet appareil est inscrit.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Choisissez une NIP plus robuste</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez ressayez.</string>
@@ -1819,6 +1826,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal. Vous n’aurez pas besoin de votre NIP pour ouvrir l’appli.</string>
   <string name="KbsSplashFragment__learn_more">En apprendre davantage</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant.</string>

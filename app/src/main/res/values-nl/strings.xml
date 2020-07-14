@@ -45,7 +45,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Schermvergrendeling %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Taal %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs zijn vereist voor registratievergrendeling. Om PINs uit te schakelen moet eerst de registratievergrendeling uitgezet worden.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Uitzetten PINs is mislukt, probeer het later nog eens.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Pin uitgeschakeld.</string>
   <!--AppProtectionPreferenceFragment-->

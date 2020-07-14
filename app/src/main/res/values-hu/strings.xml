@@ -45,7 +45,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Képernyőzár %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s téma, %2$s nyelv</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">A regisztrációs zárhoz PIN kódra van szükség. A PIN kód letiltásához előbb ki kell kapcsolni a regisztrációs zárat.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nem sikerült a PIN letiltása. Kérlek próbáld újra!</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN kód létrehozva.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN letiltva.</string>
   <!--AppProtectionPreferenceFragment-->

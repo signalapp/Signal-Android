@@ -45,7 +45,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Skjermlås %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder er påkrevet for registreringslås. For å deaktivere PIN-koder, vær vennlig å deaktivere registreringslås.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">PIN-kode deaktivering mislyktes. Prøv igjen senere.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN laget.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kode deaktivert.</string>
   <!--AppProtectionPreferenceFragment-->

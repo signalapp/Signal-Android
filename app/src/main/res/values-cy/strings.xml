@@ -49,7 +49,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Clo sgrin %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Iaith %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Mae angen PIN ar gyfer y clo cofrestru. I analluogi\'r PIN, analluogwch y clo cofrestru yn gyntaf.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Wedi methu analluogi\'r PIN. Ceisiwch eto.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">Crëwyd y PIN.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">

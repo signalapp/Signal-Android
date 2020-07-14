@@ -43,7 +43,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">螢幕鎖%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主題 %1$s，語言 %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN碼是註冊鎖定所必需的。 要停用PIN碼，請先關閉註冊鎖功能。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">關閉 PIN碼失敗，稍後再試。</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN碼已建立。</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN碼功能已停用</string>
   <!--AppProtectionPreferenceFragment-->

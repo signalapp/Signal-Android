@@ -49,7 +49,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekrano užraktas %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Apipavidalinimas %1$s, Kalba %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kodai yra reikalingi registracijos užraktui. Norėdami išjungti PIN kodus, iš pradžių, išjunkite registracijos užraktą.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_failed_to_disable_pins_try_again_later">Nepavyko išjungti PIN kodų. Vėliau bandykite dar kartą.</string> -->
   <string name="ApplicationPreferencesActivity_pin_created">PIN kodas sukurtas.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN kodas išjungtas.</string>
   <!--AppProtectionPreferenceFragment-->
