@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de ecrã %1$s, Bloqueio de registo %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueio de ecrã %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Os PINs são necessários para o bloqueio do registo. Para desativar os PINs, primeiro desative o bloqueio do registo.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -647,6 +648,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desativou a destruição de mensagens.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu %1$s como o tempo a decorrer até as mensagens serem destruídas.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu %2$s como o tempo a decorrer até as mensagens serem destruídas.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">O tempo a decorrer até que as mensagens sejam destruídas foi definido para %1$s.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Criou o grupo.</string>
   <string name="MessageRecord_group_updated">Grupo atualizado.</string>
@@ -683,6 +685,10 @@
     <item quantity="other">%1$s convidou %2$d pessoas para o grupo.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Foi convidado para o grupo.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 pessoa foi convidada para o grupo.</item>
+    <item quantity="other">%1$d pessoas foram convidados para o grupo.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Você revogou um convite para o grupo.</item>
@@ -695,6 +701,10 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguém declinou um pedido para o grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Você recusou o convite para o grupo.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">O seu convite para o grupo foi revogado.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Foi revogado um convite para o grupo.</item>
+    <item quantity="other">Foram revogados %1$d convites para o grupo.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Você aceitou o convite para o grupo.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s aceitou um convite para o grupo.</string>

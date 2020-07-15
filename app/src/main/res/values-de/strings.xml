@@ -46,6 +46,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Design %1$s, Sprache %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs sind für die Registrierungssperre erforderlich. Zum Deaktivieren deiner PIN musst du daher zuerst auch die Registrierungssperre deaktivieren.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN erstellt.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktiviert.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d Minute</item>
@@ -818,6 +819,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Neue PIN erstellen</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Warnung</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
   <string name="PinOptOutDialog_disable_pin">PIN deaktivieren</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
@@ -930,7 +932,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Wir erinnern dich in einigen Tagen.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Wir erinnern dich in einer Woche.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Wir erinnern dich in einigen Wochen.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Wir erinnern dich in einem Monat.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Wir erinnern dich in einem Monat erneut.</string>
   <!--Slide-->
   <string name="Slide_image">Bild</string>
   <string name="Slide_sticker">Sticker</string>
@@ -1600,7 +1602,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__theme">Design</string>
   <string name="preferences__disable_pin">PIN deaktivieren</string>
   <string name="preferences__enable_pin">PIN aktivieren</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
   <string name="preferences__system_default">Systemstandard</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprache</string>
@@ -1810,7 +1813,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateKbsPinFragment__create_a_new_pin">Neue PIN erstellen</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kannst deine PIN solange ändern, wie dieses Gerät registriert ist.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Deine PIN erstellen</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Wähle eine stärkere PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINs stimmen nicht überein. Bitte erneut versuchen.</string>
@@ -1822,7 +1825,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConfirmKbsPinFragment__creating_pin">PIN wird erstellt …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Einführung von PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
   <string name="KbsSplashFragment__learn_more">Mehr erfahren</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registrierungssperre = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Deine Registrierungssperre heißt nun PIN und kann mehr. Aktualisiere sie jetzt.</string>

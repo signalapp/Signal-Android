@@ -373,7 +373,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fallo al obtener el GIF a resolución completa</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
-  <string name="GiphyFragmentPagerAdapter_stickers">Cromos (stickers)</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Cromos</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">¿Agregar participante?</string>
   <string name="AddToGroupActivity_add_s_to_s">¿Agregar a %1$s a «%2$s»?</string>

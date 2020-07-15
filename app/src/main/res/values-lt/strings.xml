@@ -1322,7 +1322,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nėra Signal naudotojas. Patikrinkite naudotojo vardą ir bandykite dar kartą.</string>
   <string name="ContactSelectionListFragment_okay">Gerai</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Grupė pilna</string>
-  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jūs neturite pridėti savęs į grupę</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jums nereikia pridėti save į grupę</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų adresatų</string>
   <!--contact_selection_list_fragment-->

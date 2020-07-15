@@ -674,6 +674,8 @@
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Bạn đã chấp nhận lời mời vào nhóm.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s đã chấp nhận lời mời vào nhóm.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Bạn đã thêm thành viên được mời %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s đã thêm thành viên được mời %2$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Bạn đã đổi tên nhóm thành \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s đã đổi tên nhóm thành \"%2$s\".</string>
@@ -945,6 +947,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SupportEmailUtil_device_info">Thông tin thiết bị:</string>
   <string name="SupportEmailUtil_android_version">Phiên bản Android:</string>
   <string name="SupportEmailUtil_signal_version">Phiên bản Signal:</string>
+  <string name="SupportEmailUtil_signal_package">Gói Signal:</string>
   <string name="SupportEmailUtil_registration_lock">Khóa đăng kí:</string>
   <string name="SupportEmailUtil_locale">Vùng:</string>
   <!--ThreadRecord-->
@@ -1254,6 +1257,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Đang tải các quốc gia…</string>
   <string name="country_selection_fragment__search">Tìm kiếm</string>
+  <string name="country_selection_fragment__no_matching_countries">Không tìm thấy quốc gia</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Quét mã QR hiển thị trên thiết bị để liên kết</string>
   <!--device_link_fragment-->
@@ -1555,10 +1559,12 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__disable_pin">Tắt PIN</string>
   <string name="preferences__enable_pin">Bật PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nếu bạn tắt PIN, bạn sẽ mất toàn bộ dữ liệu khi bạn đăng kí lại với Signal trừ khi bạn sao lưu và khôi phục dữ liệu thủ công. Bạn không thể bật Khóa đăng kí khi PIN đang tắt.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài lại Signal. Bạn không cần điền PIN mỗi lần mở ứng dụng.</string>
   <string name="preferences__system_default">Theo hệ điều hành</string>
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
   <string name="preferences__signal_messages_and_calls">Tin nhắn và cuộc gọi Signal</string>
+  <string name="preferences__advanced_pin_settings">Cài đặt PIN nâng cao</string>
   <string name="preferences__free_private_messages_and_calls">Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal</string>
   <string name="preferences__submit_debug_log">Gửi nhật kí dò lỗi</string>
   <string name="preferences__support_wifi_calling">Chế độ tương thích với \"Gọi qua WiFi\"</string>
@@ -1641,6 +1647,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Bỏ lưu trữ mục đã chọn</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Bỏ lưu trữ mục đã chọn</string>
   <string name="conversation_list_batch__menu_mark_as_read">Đánh dấu đã đọc</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Đánh dấu chưa đọc</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Phím tắt cài đặt</string>
   <string name="conversation_list_search_description">Tìm kiếm</string>
@@ -1662,6 +1669,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Thêm tệp đính kèm</string>
   <string name="conversation__menu_edit_group">Sửa nhóm</string>
+  <string name="conversation__menu_group_settings">Cài đặt nhóm</string>
   <string name="conversation__menu_leave_group">Rời nhóm</string>
   <string name="conversation__menu_view_all_media">Tất cả tệp đa phương tiện</string>
   <string name="conversation__menu_conversation_settings">Cài đặt cuộc trò chuyện</string>
@@ -1758,6 +1766,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bạn có thể thay đổi mã PIN của bạn với điều kiện thiết bị được đăng ký.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài lại Signal. Bạn không cần điền PIN mỗi lần mở ứng dụng.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Chọn mã PIN mạnh hơn</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
@@ -1769,6 +1778,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConfirmKbsPinFragment__creating_pin">Đang tạo mã PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Giới thiệu mã PIN</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài lại Signal. Bạn không cần điền PIN mỗi lần mở ứng dụng.</string>
   <string name="KbsSplashFragment__learn_more">Tìm hiểu thêm</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Khóa Đăng ký = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN hữu dụng hơn. Cập nhật mã PIN ngay.</string>
@@ -1817,6 +1827,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">OK</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s sẽ nhận được yêu cầu nhắn tin từ bạn. Bạn chỉ có thể gọi sau khi yêu cầu nhắn tin được chấp nhận.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Tạo mã PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Mã PIN giúp dữ liệu lưu trữ với Signal được bảo mật.</string>
