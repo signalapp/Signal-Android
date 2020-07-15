@@ -377,8 +377,16 @@ public class RetrieveProfileJob extends BaseJob {
       String plaintextProfileName = ProfileUtil.decryptName(profileKey, profileName);
 
       if (!Objects.equals(plaintextProfileName, recipient.getProfileName().serialize())) {
+        String newProfileName      = TextUtils.isEmpty(plaintextProfileName) ? ProfileName.EMPTY.serialize() : plaintextProfileName;
+        String previousProfileName = recipient.getProfileName().serialize();
+
         Log.i(TAG, "Profile name updated. Writing new value.");
         DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getId(), ProfileName.fromSerialized(plaintextProfileName));
+
+        if (!recipient.isGroup() && !recipient.isLocalNumber()) {
+          //noinspection ConstantConditions
+          DatabaseFactory.getSmsDatabase(context).insertProfileNameChangeMessages(recipient, newProfileName, previousProfileName);
+        }
       }
 
       if (TextUtils.isEmpty(plaintextProfileName)) {

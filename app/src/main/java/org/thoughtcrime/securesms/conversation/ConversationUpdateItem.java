@@ -134,6 +134,7 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isIdentityUpdate())        setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
              messageRecord.isIdentityDefault())       setIdentityVerifyUpdate(messageRecord);
+    else if (messageRecord.isProfileChange())         setProfileNameChangeRecord(messageRecord);
     else                                              throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
@@ -187,6 +188,16 @@ public class ConversationUpdateItem extends LinearLayout
     if (messageRecord.isIdentityVerified()) icon.setImageResource(R.drawable.ic_check_white_24dp);
     else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24dp);
 
+    icon.setColorFilter(getIconTintFilter());
+    body.setText(messageRecord.getDisplayBody(getContext()));
+
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
+  }
+
+  private void setProfileNameChangeRecord(MessageRecord messageRecord) {
+    icon.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_profile_outline_20));
     icon.setColorFilter(getIconTintFilter());
     body.setText(messageRecord.getDisplayBody(getContext()));
 

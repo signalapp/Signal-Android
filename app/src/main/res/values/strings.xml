@@ -368,7 +368,7 @@
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile is end-to-end encrypted. It will be visible to your contacts, when you initiate or accept new conversations, and when you join new groups.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts, when you initiate or accept new conversations, and when you join new groups.</string>
     <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
 
     <!-- CustomDefaultPreference -->
@@ -761,6 +761,11 @@
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set the disappearing message timer to %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s.</string>
     <string name="MessageRecord_disappearing_message_time_set_to_s">The disappearing message timer has been set to %1$s.</string>
+
+    <!-- Profile change updates -->
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s changed their profile name to %2$s.</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s changed their profile name from %2$s to %3$s.</string>
+    <string name="MessageRecord_changed_their_profile">%1$s changed their profile.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">You created the group.</string>

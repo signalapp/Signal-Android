@@ -175,14 +175,16 @@ public class ThreadDatabase extends Database {
       }
     }
 
-    ContentValues contentValues = new ContentValues(7);
-    contentValues.put(DATE, date - date % 1000);
+    ContentValues contentValues = new ContentValues();
+    if (!MmsSmsColumns.Types.isProfileChange(type)) {
+      contentValues.put(DATE, date - date % 1000);
+      contentValues.put(SNIPPET, body);
+      contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
+      contentValues.put(SNIPPET_TYPE, type);
+      contentValues.put(SNIPPET_CONTENT_TYPE, contentType);
+      contentValues.put(SNIPPET_EXTRAS, extraSerialized);
+    }
     contentValues.put(MESSAGE_COUNT, count);
-    contentValues.put(SNIPPET, body);
-    contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
-    contentValues.put(SNIPPET_TYPE, type);
-    contentValues.put(SNIPPET_CONTENT_TYPE, contentType);
-    contentValues.put(SNIPPET_EXTRAS, extraSerialized);
     contentValues.put(STATUS, status);
     contentValues.put(DELIVERY_RECEIPT_COUNT, deliveryReceiptCount);
     contentValues.put(READ_RECEIPT_COUNT, readReceiptCount);
@@ -202,8 +204,11 @@ public class ThreadDatabase extends Database {
   }
 
   public void updateSnippet(long threadId, String snippet, @Nullable Uri attachment, long date, long type, boolean unarchive) {
-    ContentValues contentValues = new ContentValues(4);
+    if (MmsSmsColumns.Types.isProfileChange(type)) {
+      return;
+    }
 
+    ContentValues contentValues = new ContentValues();
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(SNIPPET, snippet);
     contentValues.put(SNIPPET_TYPE, type);

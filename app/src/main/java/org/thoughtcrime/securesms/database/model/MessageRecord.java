@@ -31,7 +31,9 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
@@ -142,6 +144,8 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isIdentityDefault()) {
       if (isOutgoing()) return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().getDisplayName(context)));
       else              return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().getDisplayName(context)));
+    } else if (isProfileChange()) {
+      return new SpannableString(getProfileChangeDescription(context));
     }
 
     return new SpannableString(getBody());
@@ -175,6 +179,29 @@ public abstract class MessageRecord extends DisplayRecord {
       Log.w(TAG, "GV2 Message update detail could not be read", e);
       return context.getString(R.string.MessageRecord_group_updated);
     }
+  }
+
+  private @NonNull String getProfileChangeDescription(@NonNull Context context) {
+    try {
+      byte[]               decoded              = Base64.decode(getBody());
+      ProfileChangeDetails profileChangeDetails = ProfileChangeDetails.parseFrom(decoded);
+
+      if (profileChangeDetails.hasProfileNameChange()) {
+        String displayName  = getIndividualRecipient().getDisplayName(context);
+        String newName      = ProfileName.fromSerialized(profileChangeDetails.getProfileNameChange().getNew()).toString();
+        String previousName = ProfileName.fromSerialized(profileChangeDetails.getProfileNameChange().getPrevious()).toString();
+
+        if (getIndividualRecipient().isSystemContact()) {
+          return context.getString(R.string.MessageRecord_changed_their_profile_name_from_to, displayName, previousName, newName);
+        } else {
+          return context.getString(R.string.MessageRecord_changed_their_profile_name_to, previousName, newName);
+        }
+      }
+    } catch (IOException e) {
+      Log.w(TAG, "Profile name change details could not be read", e);
+    }
+
+    return context.getString(R.string.MessageRecord_changed_their_profile, getIndividualRecipient().getDisplayName(context));
   }
 
   /**
@@ -254,7 +281,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isUpdate() {
     return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
-           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault();
+           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() || isProfileChange();
   }
 
   public boolean isMediaPending() {

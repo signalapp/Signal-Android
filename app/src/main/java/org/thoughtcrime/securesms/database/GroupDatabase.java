@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -224,11 +225,21 @@ public final class GroupDatabase extends Database {
 
   @WorkerThread
   public @NonNull List<GroupRecord> getPushGroupsContainingMember(@NonNull RecipientId recipientId) {
+    return getGroupsContainingMember(recipientId, true);
+  }
+
+  @WorkerThread
+  public @NonNull List<GroupRecord> getGroupsContainingMember(@NonNull RecipientId recipientId, boolean pushOnly) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
     String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
-    String         query      = MEMBERS + " LIKE ? AND " + MMS + " = ?";
-    String[]       args       = new String[]{"%" + recipientId.serialize() + "%", "0"};
+    String         query      = MEMBERS + " LIKE ?";
+    String[]       args       = new String[]{"%" + recipientId.serialize() + "%"};
     String         orderBy    = ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
+
+    if (pushOnly) {
+      query += " AND " + MMS + " = ?";
+      args = SqlUtil.appendArg(args, "0");
+    }
 
     List<GroupRecord> groups = new LinkedList<>();
 

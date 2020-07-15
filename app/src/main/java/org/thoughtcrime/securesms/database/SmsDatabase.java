@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -629,6 +631,57 @@ public class SmsDatabase extends MessagingDatabase {
     ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
 
     return new Pair<>(messageId, threadId);
+  }
+
+  public void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName) {
+    ThreadDatabase                  threadDatabase    = DatabaseFactory.getThreadDatabase(context);
+    List<GroupDatabase.GroupRecord> groupRecords      = DatabaseFactory.getGroupDatabase(context).getGroupsContainingMember(recipient.getId(), false);
+    List<Long>                      threadIdsToUpdate = new LinkedList<>();
+
+    byte[] profileChangeDetails = ProfileChangeDetails.newBuilder()
+                                                      .setProfileNameChange(ProfileChangeDetails.StringChange.newBuilder()
+                                                                                                             .setNew(newProfileName)
+                                                                                                             .setPrevious(previousProfileName))
+                                                      .build()
+                                                      .toByteArray();
+
+    String body = Base64.encodeBytes(profileChangeDetails);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      threadIdsToUpdate.add(threadDatabase.getThreadIdFor(recipient.getId()));
+      for (GroupDatabase.GroupRecord groupRecord : groupRecords) {
+        threadIdsToUpdate.add(threadDatabase.getThreadIdFor(groupRecord.getRecipientId()));
+      }
+
+      Stream.of(threadIdsToUpdate)
+            .withoutNulls()
+            .forEach(threadId -> {
+              ContentValues values = new ContentValues();
+              values.put(RECIPIENT_ID, recipient.getId().serialize());
+              values.put(ADDRESS_DEVICE_ID, 1);
+              values.put(DATE_RECEIVED, System.currentTimeMillis());
+              values.put(DATE_SENT, System.currentTimeMillis());
+              values.put(READ, 1);
+              values.put(TYPE, Types.PROFILE_CHANGE_TYPE);
+              values.put(THREAD_ID, threadId);
+              values.put(BODY, body);
+
+              db.insert(TABLE_NAME, null, values);
+            });
+
+      for (long threadId : threadIdsToUpdate) {
+        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+        notifyConversationListeners(threadId);
+        ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   protected Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type) {
