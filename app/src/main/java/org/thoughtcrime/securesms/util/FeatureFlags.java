@@ -200,9 +200,11 @@ public final class FeatureFlags {
     return getBoolean(GROUPS_V2, false);
   }
 
-  /** Groups v2 send and receive. */
+  /** Attempt groups v2 creation. */
   public static boolean groupsV2create() {
-    return groupsV2() && getBoolean(GROUPS_V2_CREATE, false);
+    return groupsV2() &&
+           getBoolean(GROUPS_V2_CREATE, false) &&
+           !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
   }
 
   /**

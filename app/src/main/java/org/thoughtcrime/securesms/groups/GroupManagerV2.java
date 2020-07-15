@@ -119,7 +119,7 @@ final class GroupManagerV2 {
       GroupCandidate      self       = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
       Set<GroupCandidate> candidates = new HashSet<>(groupCandidateHelper.recipientIdsToCandidates(members));
 
-      if (SignalStore.internalValues().forceGv2Invites()) {
+      if (SignalStore.internalValues().gv2ForceInvites()) {
         candidates = GroupCandidate.withoutProfileKeyCredentials(candidates);
       }
 
@@ -193,7 +193,7 @@ final class GroupManagerV2 {
 
       Set<GroupCandidate> groupCandidates = groupCandidateHelper.recipientIdsToCandidates(new HashSet<>(newMembers));
 
-      if (SignalStore.internalValues().forceGv2Invites()) {
+      if (SignalStore.internalValues().gv2ForceInvites()) {
         groupCandidates = GroupCandidate.withoutProfileKeyCredentials(groupCandidates);
       }
 

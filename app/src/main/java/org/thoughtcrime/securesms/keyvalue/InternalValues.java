@@ -4,6 +4,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public final class InternalValues extends SignalStoreValues {
 
+  public static final String GV2_DO_NOT_CREATE_GV2     = "internal.gv2.do_not_create_gv2";
   public static final String GV2_FORCE_INVITES         = "internal.gv2.force_invites";
   public static final String GV2_IGNORE_SERVER_CHANGES = "internal.gv2.ignore_server_changes";
   public static final String GV2_IGNORE_P2P_CHANGES    = "internal.gv2.ignore_p2p_changes";
@@ -16,7 +17,17 @@ public final class InternalValues extends SignalStoreValues {
   void onFirstEverAppLaunch() {
   }
 
-  public synchronized boolean forceGv2Invites() {
+  /**
+   * Do not attempt to create GV2 groups, i.e. will force creation of GV1 or MMS groups.
+   */
+  public synchronized boolean gv2DoNotCreateGv2Groups() {
+    return FeatureFlags.internalUser() && getBoolean(GV2_DO_NOT_CREATE_GV2, false);
+  }
+
+  /**
+   * Members will not be added directly to a GV2 even if they could be.
+   */
+  public synchronized boolean gv2ForceInvites() {
     return FeatureFlags.internalUser() && getBoolean(GV2_FORCE_INVITES, false);
   }
 

@@ -45,7 +45,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class CreateGroupActivity extends ContactSelectionActivity {
 
-  private static String TAG = Log.tag(CreateGroupActivity.class);
+  private static final String TAG = Log.tag(CreateGroupActivity.class);
 
   private static final int   MINIMUM_GROUP_SIZE       = 1;
   private static final short REQUEST_CODE_ADD_DETAILS = 17275;
