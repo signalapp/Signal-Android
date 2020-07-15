@@ -17,6 +17,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     private val userPublicKey get() = TextSecurePreferences.getLocalNumber(context)
 
     companion object {
+        // Shared
+        private val publicKey = "public_key"
+        private val timestamp = "timestamp"
         // Snode pool cache
         private val snodePoolCache = "loki_snode_pool_cache"
         private val dummyKey = "dummy_key"
@@ -72,22 +75,16 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         @JvmStatic val createUserCountCacheCommand = "CREATE TABLE $userCountCache ($publicChatID STRING PRIMARY KEY, $userCount INTEGER DEFAULT 0);"
         // Session request sent timestamp cache
         private val sessionRequestSentTimestampCache = "session_request_sent_timestamp_cache"
-        private val sessionRequestSentPublicKey = "public_key"
-        private val sessionRequestSentTimestamp = "timestamp"
-        @JvmStatic val createSessionRequestSentTimestampCacheCommand = "CREATE TABLE $sessionRequestSentTimestampCache ($sessionRequestSentPublicKey STRING PRIMARY KEY, $sessionRequestSentTimestamp INTEGER DEFAULT 0);"
+        @JvmStatic val createSessionRequestSentTimestampCacheCommand = "CREATE TABLE $sessionRequestSentTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
         // Session request processed timestamp cache
         private val sessionRequestProcessedTimestampCache = "session_request_processed_timestamp_cache"
-        private val sessionRequestProcessedPublicKey = "public_key"
-        private val sessionRequestProcessedTimestamp = "timestamp"
-        @JvmStatic val createSessionRequestProcessedTimestampCacheCommand = "CREATE TABLE $sessionRequestProcessedTimestampCache ($sessionRequestProcessedPublicKey STRING PRIMARY KEY, $sessionRequestProcessedTimestamp INTEGER DEFAULT 0);"
+        @JvmStatic val createSessionRequestProcessedTimestampCacheCommand = "CREATE TABLE $sessionRequestProcessedTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
 
 
 
         // region Deprecated
         private val sessionRequestTimestampCache = "session_request_timestamp_cache"
-        private val sessionRequestPublicKey = "public_key"
-        private val timestamp = "timestamp"
-        @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($sessionRequestPublicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
+        @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
         // endregion
     }
 
@@ -339,28 +336,28 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun getSessionRequestSentTimestamp(publicKey: String): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(sessionRequestSentTimestampCache, "${LokiAPIDatabase.sessionRequestSentPublicKey} = ?", wrap(publicKey)) { cursor ->
-            cursor.getInt(LokiAPIDatabase.sessionRequestSentTimestamp)
+        return database.get(sessionRequestSentTimestampCache, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey)) { cursor ->
+            cursor.getInt(LokiAPIDatabase.timestamp)
         }?.toLong()
     }
 
     override fun setSessionRequestSentTimestamp(publicKey: String, timestamp: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.sessionRequestSentPublicKey to publicKey, LokiAPIDatabase.sessionRequestSentTimestamp to timestamp.toString()))
-        database.insertOrUpdate(sessionRequestSentTimestampCache, row, "${LokiAPIDatabase.sessionRequestSentPublicKey} = ?", wrap(publicKey))
+        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
+        database.insertOrUpdate(sessionRequestSentTimestampCache, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
     }
 
     override fun getSessionRequestProcessedTimestamp(publicKey: String): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(sessionRequestProcessedTimestampCache, "${LokiAPIDatabase.sessionRequestProcessedPublicKey} = ?", wrap(publicKey)) { cursor ->
-            cursor.getInt(LokiAPIDatabase.sessionRequestProcessedTimestamp)
+        return database.get(sessionRequestProcessedTimestampCache, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey)) { cursor ->
+            cursor.getInt(LokiAPIDatabase.timestamp)
         }?.toLong()
     }
 
     override fun setSessionRequestProcessedTimestamp(publicKey: String, timestamp: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.sessionRequestProcessedPublicKey to publicKey, LokiAPIDatabase.sessionRequestProcessedTimestamp to timestamp.toString()))
-        database.insertOrUpdate(sessionRequestProcessedTimestampCache, row, "${LokiAPIDatabase.sessionRequestProcessedPublicKey} = ?", wrap(publicKey))
+        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
+        database.insertOrUpdate(sessionRequestProcessedTimestampCache, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
     }
 }
 
