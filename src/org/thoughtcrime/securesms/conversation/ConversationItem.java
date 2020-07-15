@@ -112,8 +112,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -1001,9 +1001,9 @@ public class ConversationItem extends LinearLayout
         profilePictureView.setVisibility(VISIBLE);
         int visibility = View.GONE;
 
-        LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
+        PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
         if (publicChat != null) {
-          boolean isModerator = LokiPublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
+          boolean isModerator = PublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
         }
 

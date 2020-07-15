@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_mention_candidate.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI
 import org.whispersystems.signalservice.loki.protocol.mentions.Mention
 
 class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
@@ -31,13 +31,13 @@ class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr:
 
     private fun update() {
         displayNameTextView.text = mentionCandidate.displayName
-        profilePictureView.hexEncodedPublicKey = mentionCandidate.hexEncodedPublicKey
+        profilePictureView.hexEncodedPublicKey = mentionCandidate.publicKey
         profilePictureView.additionalHexEncodedPublicKey = null
         profilePictureView.isRSSFeed = false
         profilePictureView.glide = glide!!
         profilePictureView.update()
         if (publicChatServer != null && publicChatChannel != null) {
-            val isUserModerator = LokiPublicChatAPI.isUserModerator(mentionCandidate.hexEncodedPublicKey, publicChatChannel!!, publicChatServer!!)
+            val isUserModerator = PublicChatAPI.isUserModerator(mentionCandidate.publicKey, publicChatChannel!!, publicChatServer!!)
             moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE
         } else {
             moderatorIconImageView.visibility = View.GONE

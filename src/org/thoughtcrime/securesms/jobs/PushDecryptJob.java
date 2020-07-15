@@ -73,7 +73,6 @@ import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob;
-import org.thoughtcrime.securesms.loki.protocol.PushNullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
@@ -103,7 +102,7 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.loki.LokiSessionResetProtocol;
+import org.whispersystems.libsignal.loki.SessionResetProtocol;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -128,7 +127,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
@@ -263,11 +262,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void handleMessage(@NonNull SignalServiceEnvelope envelope, @NonNull Optional<Long> smsMessageId, boolean isPushNotification) {
     try {
-      GroupDatabase            groupDatabase            = DatabaseFactory.getGroupDatabase(context);
-      SignalProtocolStore      axolotlStore             = new SignalProtocolStoreImpl(context);
-      LokiSessionResetProtocol lokiSessionResetProtocol = new LokiSessionResetImplementation(context);
-      SignalServiceAddress     localAddress             = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiSessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
+      GroupDatabase        groupDatabase        = DatabaseFactory.getGroupDatabase(context);
+      SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
+      SessionResetProtocol sessionResetProtocol = new LokiSessionResetImplementation(context);
+      SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
+      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -298,12 +297,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
         // Loki - Handle unlinking request if needed
-        if (message.isUnlinkingRequest()) {
+        if (message.isDeviceUnlinkingRequest()) {
           MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
         } else {
-          // Loki - Don't process session restoration requests any further
-          if (message.isSessionRestorationRequest()) { return; }
-
           // Loki - Handle friend request acceptance if needed
           FriendRequestProtocol.handleFriendRequestAcceptanceIfNeeded(context, content.getSender(), content);
 
@@ -371,11 +367,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         // Loki - This is needed for compatibility with refactored desktop clients
         // ========
-        if (content.isFriendRequest()) {
-          ApplicationContext.getInstance(context).getJobManager().add(new PushNullMessageSendJob(content.getSender()));
-        } else {
-          Log.w(TAG, "Got unrecognized message...");
-        }
+//        if (content.isFriendRequest()) {
+//          ApplicationContext.getInstance(context).getJobManager().add(new PushNullMessageSendJob(content.getSender()));
+//        } else {
+//          Log.w(TAG, "Got unrecognized message...");
+//        }
         Recipient recipient = recipient(context, content.getSender());
         long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
         LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
@@ -1432,7 +1428,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else {
         try {
           // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
+          PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
           String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
@@ -1464,7 +1460,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else {
         try {
           // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
+          PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
           String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;

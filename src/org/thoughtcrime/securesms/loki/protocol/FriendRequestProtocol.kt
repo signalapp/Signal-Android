@@ -140,7 +140,6 @@ object FriendRequestProtocol {
     fun handleFriendRequestAcceptanceIfNeeded(context: Context, publicKey: String, content: SignalServiceContent) {
         // If we get an envelope that isn't a friend request, then we can infer that we had to use
         // Signal cipher decryption and thus that we have a session with the other person.
-        if (content.isFriendRequest) { return }
         val recipient = recipient(context, publicKey)
         // Friend requests don't apply to groups
         if (recipient.isGroupRecipient) { return }
@@ -200,7 +199,6 @@ object FriendRequestProtocol {
 
     @JvmStatic
     fun handleFriendRequestMessageIfNeeded(context: Context, publicKey: String, content: SignalServiceContent) {
-        if (!content.isFriendRequest) { return }
         val recipient = recipient(context, publicKey)
         // Friend requests don't apply to groups
         if (recipient.isGroupRecipient) { return }
@@ -241,7 +239,7 @@ object FriendRequestProtocol {
 
     @JvmStatic
     fun isFriendRequestFromBeforeRestoration(context: Context, content: SignalServiceContent): Boolean {
-        return content.isFriendRequest && content.timestamp < TextSecurePreferences.getRestorationTime(context)
+        return content.timestamp < TextSecurePreferences.getRestorationTime(context)
     }
 
     @JvmStatic

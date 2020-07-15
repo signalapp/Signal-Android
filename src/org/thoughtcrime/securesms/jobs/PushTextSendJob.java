@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
@@ -229,7 +228,6 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
                                                                            .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                            .withProfileKey(profileKey.orNull())
                                                                            .asEndSessionMessage(message.isEndSession())
-                                                                           .asFriendRequest(isLokiPreKeyBundleMessage)
                                                                            .withPreKeyBundle(preKeyBundle)
                                                                            .build();
 

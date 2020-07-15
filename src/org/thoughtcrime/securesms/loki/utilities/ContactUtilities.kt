@@ -47,7 +47,7 @@ object ContactUtilities {
             var isSlave = false
             if (!recipient.isGroupRecipient) {
                 val deviceLinks = lokiAPIDatabase.getDeviceLinks(publicKey)
-                isSlave = deviceLinks.find { it.slaveHexEncodedPublicKey == publicKey } != null
+                isSlave = deviceLinks.find { it.slavePublicKey == publicKey } != null
             }
             result.add(Contact(recipient, isFriend, isSlave, isUserDevice))
         }

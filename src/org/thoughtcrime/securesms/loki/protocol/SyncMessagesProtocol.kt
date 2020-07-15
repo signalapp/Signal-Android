@@ -22,7 +22,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInputStream
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
@@ -151,7 +151,7 @@ object SyncMessagesProtocol {
     }
 
     @JvmStatic
-    fun handleOpenGroupSyncMessage(context: Context, content: SignalServiceContent, openGroups: List<LokiPublicChat>) {
+    fun handleOpenGroupSyncMessage(context: Context, content: SignalServiceContent, openGroups: List<PublicChat>) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
         if (!allUserDevices.contains(content.sender)) { return }

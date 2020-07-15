@@ -40,10 +40,8 @@ import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegat
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
-import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
@@ -160,7 +158,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         val sessionResetImpl = LokiSessionResetImplementation(this)
         if (userPublicKey != null) {
-            FriendRequestProtocol.configureIfNeeded(apiDB, userPublicKey)
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
             SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
             SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
@@ -175,7 +172,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }.map {
             it.recipient.address.toPhoneString()
         }.toSet()
-        LokiFileServerAPI.shared.getDeviceLinks(publicKeys)
+        FileServerAPI.shared.getDeviceLinks(publicKeys)
         // TODO: Temporary hack to unbork existing clients
         val allContacts = DatabaseFactory.getRecipientDatabase(this).allAddresses.map {
             MultiDeviceProtocol.shared.getMasterDevice(it.serialize()) ?: it.serialize()
@@ -311,7 +308,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                             val apiDatabase = DatabaseFactory.getLokiAPIDatabase(activity)
                             apiDatabase.removeLastMessageServerID(publicChat.channel, publicChat.server)
                             apiDatabase.removeLastDeletionServerID(publicChat.channel, publicChat.server)
-                            ApplicationContext.getInstance(activity).lokiPublicChatAPI!!.leave(publicChat.channel, publicChat.server)
+                            ApplicationContext.getInstance(activity).publicChatAPI!!.leave(publicChat.channel, publicChat.server)
                         }
                         threadDatabase.deleteConversation(threadID)
                         ApplicationContext.getInstance(activity).messageNotifier.updateNotification(activity)

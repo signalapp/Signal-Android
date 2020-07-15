@@ -44,12 +44,11 @@ class PushEphemeralMessageSendJob private constructor(parameters: Parameters, pr
         // Attach a pre key bundle if needed
         if (message.get("friendRequest", false)) {
             val bundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(recipient)
-            dataMessage.withPreKeyBundle(bundle).asFriendRequest(true)
+            dataMessage.withPreKeyBundle(bundle)
         }
         // Set flags if needed (these are mutually exclusive)
         when {
-            message.get("unpairingRequest", false) -> dataMessage.asUnlinkingRequest(true)
-            message.get("sessionRestore", false) -> dataMessage.asSessionRestorationRequest(true)
+            message.get("unpairingRequest", false) -> dataMessage.asDeviceUnlinkingRequest(true)
             message.get("sessionRequest", false) -> dataMessage.asSessionRequest(true)
         }
         // Send the message

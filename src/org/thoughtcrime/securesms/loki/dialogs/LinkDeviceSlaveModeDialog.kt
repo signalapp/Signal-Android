@@ -41,7 +41,7 @@ class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener
     }
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
-        if (deviceLink.type != DeviceLink.Type.AUTHORIZATION || deviceLink.slaveHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
+        if (deviceLink.type != DeviceLink.Type.AUTHORIZATION || deviceLink.slavePublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
         Util.runOnMain {
             this.deviceLink = deviceLink
             DeviceLinkingSession.shared.stopListeningForLinkingRequests()

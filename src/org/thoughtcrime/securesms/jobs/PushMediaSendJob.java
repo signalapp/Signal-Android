@@ -291,7 +291,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                       .withPreviews(previews)
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withPreKeyBundle(preKeyBundle)
-                                                                      .asFriendRequest(isLokiPreKeyBundleMessage)
                                                                       .build();
 
       if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {

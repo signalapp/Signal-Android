@@ -27,7 +27,6 @@ import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
@@ -111,7 +110,6 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         val sessionResetImpl = LokiSessionResetImplementation(this)
-        FriendRequestProtocol.configureIfNeeded(apiDB, userPublicKey)
         MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
         SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
         org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
@@ -124,13 +122,13 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         linkDeviceDialog.show(supportFragmentManager, "Link Device Dialog")
         AsyncTask.execute {
             retryIfNeeded(8) {
-                MultiDeviceProtocol.sendDeviceLinkMessage(this@LandingActivity, deviceLink.masterHexEncodedPublicKey, deviceLink)
+                MultiDeviceProtocol.sendDeviceLinkMessage(this@LandingActivity, deviceLink.masterPublicKey, deviceLink)
             }
         }
     }
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
-        TextSecurePreferences.setMasterHexEncodedPublicKey(this, deviceLink.masterHexEncodedPublicKey)
+        TextSecurePreferences.setMasterHexEncodedPublicKey(this, deviceLink.masterPublicKey)
         val intent = Intent(this, HomeActivity::class.java)
         show(intent)
         finish()

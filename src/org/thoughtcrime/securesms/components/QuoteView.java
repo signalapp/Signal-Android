@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
 
 import java.util.List;
 
@@ -197,7 +197,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
     long threadID = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
     String senderHexEncodedPublicKey = author.getAddress().serialize();
-    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
+    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
     if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {
       quoteeDisplayName = TextSecurePreferences.getProfileName(getContext());
     } else if (publicChat != null) {

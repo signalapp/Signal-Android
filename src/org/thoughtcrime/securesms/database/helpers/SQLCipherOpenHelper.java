@@ -45,7 +45,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
 
 import java.io.File;
 
@@ -545,7 +545,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         try (Cursor lokiPublicChatCursor = db.rawQuery("SELECT public_chat FROM loki_public_chat_database", null)) {
           while (lokiPublicChatCursor != null && lokiPublicChatCursor.moveToNext()) {
             String chatString = lokiPublicChatCursor.getString(0);
-            LokiPublicChat publicChat = LokiPublicChat.fromJSON(chatString);
+            PublicChat publicChat = PublicChat.fromJSON(chatString);
             if (publicChat != null) {
               byte[] groupId = publicChat.getId().getBytes();
               String oldId = GroupUtil.getEncodedId(groupId, false);

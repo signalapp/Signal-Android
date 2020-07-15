@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.loki.LokiSessionResetStatus
+import org.whispersystems.libsignal.loki.SessionResetStatus
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import java.util.*
@@ -93,7 +93,7 @@ object SessionManagementProtocol {
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
         Log.d("Loki", "Received a session reset request from: ${content.sender}; archiving the session.")
         sessionStore.archiveAllSessions(content.sender)
-        lokiThreadDB.setSessionResetStatus(content.sender, LokiSessionResetStatus.REQUEST_RECEIVED)
+        lokiThreadDB.setSessionResetStatus(content.sender, SessionResetStatus.REQUEST_RECEIVED)
         Log.d("Loki", "Sending an ephemeral message back to: ${content.sender}.")
         val ephemeralMessage = EphemeralMessage.create(content.sender)
         ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))

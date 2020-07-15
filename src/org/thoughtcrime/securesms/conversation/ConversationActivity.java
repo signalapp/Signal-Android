@@ -187,7 +187,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
@@ -227,7 +226,7 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
 import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
@@ -465,9 +464,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
 
-    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {
-      ApplicationContext.getInstance(this).getLokiPublicChatAPI().getChannelInfo(publicChat.getChannel(), publicChat.getServer()).success( displayName -> {
+      ApplicationContext.getInstance(this).getPublicChatAPI().getChannelInfo(publicChat.getChannel(), publicChat.getServer()).success(displayName -> {
         updateSubtitleTextView();
         return Unit.INSTANCE;
       });
@@ -2172,7 +2171,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       try {
         int startIndex = result.indexOf("@" + mention.getDisplayName());
         int endIndex = startIndex + mention.getDisplayName().length() + 1; // + 1 to include the @
-        result = result.substring(0, startIndex) + "@" + mention.getHexEncodedPublicKey() + result.substring(endIndex);
+        result = result.substring(0, startIndex) + "@" + mention.getPublicKey() + result.substring(endIndex);
       } catch (Exception exception) {
         Log.d("Loki", "Couldn't process mention due to error: " + exception.toString() + ".");
       }
@@ -3107,7 +3106,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       subtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
     } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
-      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+      PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
       if (publicChat != null) {
         Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());
         if (userCount == null) { userCount = 0; }

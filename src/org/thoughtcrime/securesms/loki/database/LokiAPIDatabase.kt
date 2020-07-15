@@ -29,9 +29,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         @JvmStatic val createOnionRequestPathCacheCommand = "CREATE TABLE $onionRequestPathCache ($indexPath TEXT PRIMARY KEY, $snode TEXT);"
         // Swarm cache
         private val swarmCache = "loki_api_swarm_cache"
-        private val hexEncodedPublicKey = "hex_encoded_public_key"
+        private val swarmPublicKey = "hex_encoded_public_key"
         private val swarm = "swarm"
-        @JvmStatic val createSwarmCacheCommand = "CREATE TABLE $swarmCache ($hexEncodedPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
+        @JvmStatic val createSwarmCacheCommand = "CREATE TABLE $swarmCache ($swarmPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
         // Last message hash value cache
         private val lastMessageHashValueCache = "loki_api_last_message_hash_value_cache"
         private val target = "target"
@@ -59,12 +59,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         @JvmStatic val createLastDeletionServerIDCacheCommand = "CREATE TABLE $lastDeletionServerIDCache ($lastDeletionServerIDCacheIndex STRING PRIMARY KEY, $lastDeletionServerID INTEGER DEFAULT 0);"
         // Device link cache
         private val deviceLinkCache = "loki_pairing_authorisation_cache"
-        private val masterHexEncodedPublicKey = "primary_device"
-        private val slaveHexEncodedPublicKey = "secondary_device"
+        private val masterPublicKey = "primary_device"
+        private val slavePublicKey = "secondary_device"
         private val requestSignature = "request_signature"
         private val authorizationSignature = "grant_signature"
-        @JvmStatic val createDeviceLinkCacheCommand = "CREATE TABLE $deviceLinkCache ($masterHexEncodedPublicKey TEXT, $slaveHexEncodedPublicKey TEXT, " +
-            "$requestSignature TEXT NULLABLE DEFAULT NULL, $authorizationSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($masterHexEncodedPublicKey, $slaveHexEncodedPublicKey));"
+        @JvmStatic val createDeviceLinkCacheCommand = "CREATE TABLE $deviceLinkCache ($masterPublicKey TEXT, $slavePublicKey TEXT, " +
+            "$requestSignature TEXT NULLABLE DEFAULT NULL, $authorizationSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($masterPublicKey, $slavePublicKey));"
         // User count cache
         private val userCountCache = "loki_user_count_cache"
         private val publicChatID = "public_chat_id"
@@ -72,9 +72,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         @JvmStatic val createUserCountCacheCommand = "CREATE TABLE $userCountCache ($publicChatID STRING PRIMARY KEY, $userCount INTEGER DEFAULT 0);"
         // Session request timestamp cache
         private val sessionRequestTimestampCache = "session_request_timestamp_cache"
-        private val publicKey = "public_key"
+        private val sessionRequestPublicKey = "public_key"
         private val timestamp = "timestamp"
-        @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
+        @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($sessionRequestPublicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
     }
 
     override fun getSnodePool(): Set<Snode> {
@@ -161,9 +161,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         set("1-1", path1[1]); set("1-2", path1[2])
     }
 
-    override fun getSwarm(hexEncodedPublicKey: String): Set<Snode>? {
+    override fun getSwarm(publicKey: String): Set<Snode>? {
         val database = databaseHelper.readableDatabase
-        return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
+        return database.get(swarmCache, "${Companion.swarmPublicKey} = ?", wrap(publicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
             swarmAsString.split(", ").mapNotNull { targetAsString ->
                 val components = targetAsString.split("-")
@@ -176,7 +176,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }?.toSet()
     }
 
-    override fun setSwarm(hexEncodedPublicKey: String, newValue: Set<Snode>) {
+    override fun setSwarm(publicKey: String, newValue: Set<Snode>) {
         val database = databaseHelper.writableDatabase
         val swarmAsString = newValue.joinToString(", ") { target ->
             var string = "${target.address}-${target.port}"
@@ -186,21 +186,21 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             }
             string
         }
-        val row = wrap(mapOf(Companion.hexEncodedPublicKey to hexEncodedPublicKey, swarm to swarmAsString))
-        database.insertOrUpdate(swarmCache, row, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
+        val row = wrap(mapOf(Companion.swarmPublicKey to publicKey, swarm to swarmAsString))
+        database.insertOrUpdate(swarmCache, row, "${Companion.swarmPublicKey} = ?", wrap(publicKey))
     }
 
-    override fun getLastMessageHashValue(target: Snode): String? {
+    override fun getLastMessageHashValue(snode: Snode): String? {
         val database = databaseHelper.readableDatabase
-        return database.get(lastMessageHashValueCache, "${Companion.target} = ?", wrap(target.address)) { cursor ->
+        return database.get(lastMessageHashValueCache, "${Companion.target} = ?", wrap(snode.address)) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(lastMessageHashValue))
         }
     }
 
-    override fun setLastMessageHashValue(target: Snode, newValue: String) {
+    override fun setLastMessageHashValue(snode: Snode, newValue: String) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(Companion.target to target.address, lastMessageHashValue to newValue))
-        database.insertOrUpdate(lastMessageHashValueCache, row, "${Companion.target} = ?", wrap(target.address))
+        val row = wrap(mapOf(Companion.target to snode.address, lastMessageHashValue to newValue))
+        database.insertOrUpdate(lastMessageHashValueCache, row, "${Companion.target} = ?", wrap(snode.address))
     }
 
     override fun getReceivedMessageHashValues(): Set<String>? {
@@ -277,35 +277,35 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.delete(lastDeletionServerIDCache,"$lastDeletionServerIDCacheIndex = ?", wrap(index))
     }
 
-    override fun getDeviceLinks(hexEncodedPublicKey: String): Set<DeviceLink> {
+    override fun getDeviceLinks(publicKey: String): Set<DeviceLink> {
         val database = databaseHelper.readableDatabase
-        return database.getAll(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey )) { cursor ->
-            val masterHexEncodedPublicKey = cursor.getString(masterHexEncodedPublicKey)
-            val slaveHexEncodedPublicKey = cursor.getString(slaveHexEncodedPublicKey)
+        return database.getAll(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( publicKey, publicKey )) { cursor ->
+            val masterHexEncodedPublicKey = cursor.getString(masterPublicKey)
+            val slaveHexEncodedPublicKey = cursor.getString(slavePublicKey)
             val requestSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(requestSignature))) null else cursor.getBase64EncodedData(requestSignature)
             val authorizationSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(authorizationSignature))) null else cursor.getBase64EncodedData(authorizationSignature)
             DeviceLink(masterHexEncodedPublicKey, slaveHexEncodedPublicKey, requestSignature, authorizationSignature)
         }.toSet()
     }
 
-    override fun clearDeviceLinks(hexEncodedPublicKey: String) {
+    override fun clearDeviceLinks(publicKey: String) {
         val database = databaseHelper.writableDatabase
-        database.delete(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
+        database.delete(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( publicKey, publicKey ))
     }
 
     override fun addDeviceLink(deviceLink: DeviceLink) {
         val database = databaseHelper.writableDatabase
         val values = ContentValues()
-        values.put(masterHexEncodedPublicKey, deviceLink.masterHexEncodedPublicKey)
-        values.put(slaveHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey)
+        values.put(masterPublicKey, deviceLink.masterPublicKey)
+        values.put(slavePublicKey, deviceLink.slavePublicKey)
         if (deviceLink.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(deviceLink.requestSignature)) }
         if (deviceLink.authorizationSignature != null) { values.put(authorizationSignature, Base64.encodeBytes(deviceLink.authorizationSignature)) }
-        database.insertOrUpdate(deviceLinkCache, values, "$masterHexEncodedPublicKey = ? AND $slaveHexEncodedPublicKey = ?", arrayOf( deviceLink.masterHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey ))
+        database.insertOrUpdate(deviceLinkCache, values, "$masterPublicKey = ? AND $slavePublicKey = ?", arrayOf( deviceLink.masterPublicKey, deviceLink.slavePublicKey ))
     }
 
     override fun removeDeviceLink(deviceLink: DeviceLink) {
         val database = databaseHelper.writableDatabase
-        database.delete(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( deviceLink.masterHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey ))
+        database.delete(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( deviceLink.masterPublicKey, deviceLink.slavePublicKey ))
     }
 
     fun getUserCount(group: Long, server: String): Int? {
@@ -332,8 +332,8 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun setSessionRequestTimestamp(publicKey: String, timestamp: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
-        database.insertOrUpdate(sessionRequestTimestampCache, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
+        val row = wrap(mapOf(LokiAPIDatabase.sessionRequestPublicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
+        database.insertOrUpdate(sessionRequestTimestampCache, row, "${LokiAPIDatabase.sessionRequestPublicKey} = ?", wrap(publicKey))
     }
 }
 

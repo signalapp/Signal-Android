@@ -26,8 +26,8 @@ import org.whispersystems.signalservice.loki.database.LokiPreKeyBundleDatabasePr
 class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyBundleDatabaseProtocol {
 
     companion object {
-        private val tableName = "loki_pre_key_bundle_database"
-        private val hexEncodedPublicKey = "public_key"
+        private val table = "loki_pre_key_bundle_database"
+        private val publicKey = "public_key"
         private val preKeyID = "pre_key_id"
         private val preKeyPublic = "pre_key_public"
         private val signedPreKeyID = "signed_pre_key_id"
@@ -36,16 +36,16 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         private val identityKey = "identity_key"
         private val deviceID = "device_id"
         private val registrationID = "registration_id"
-        @JvmStatic val createTableCommand = "CREATE TABLE $tableName (" + "$hexEncodedPublicKey TEXT PRIMARY KEY," + "$preKeyID INTEGER," +
+        @JvmStatic val createTableCommand = "CREATE TABLE $table (" + "$publicKey TEXT PRIMARY KEY," + "$preKeyID INTEGER," +
             "$preKeyPublic TEXT NOT NULL," + "$signedPreKeyID INTEGER," + "$signedPreKeyPublic TEXT NOT NULL," +
             "$signedPreKeySignature TEXT," + "$identityKey TEXT NOT NULL," + "$deviceID INTEGER," + "$registrationID INTEGER" + ");"
     }
 
-    fun generatePreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
+    fun generatePreKeyBundle(publicKey: String): PreKeyBundle? {
         var failureCount = 0
         while (failureCount < 3) {
             try {
-                val preKey = generatePreKeyBundle(hexEncodedPublicKey, failureCount > 0) ?: return null
+                val preKey = generatePreKeyBundle(publicKey, failureCount > 0) ?: return null
                 // Verify the bundle is correct
                 if (!Curve.verifySignature(preKey.identityKey.publicKey, preKey.signedPreKey.serialize(), preKey.signedPreKeySignature)) {
                     throw InvalidKeyException()
@@ -55,19 +55,19 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
                 failureCount += 1
             }
         }
-        Log.w("Loki", "Failed to generate a valid pre key bundle for: $hexEncodedPublicKey.")
+        Log.w("Loki", "Failed to generate a valid pre key bundle for: $publicKey.")
         return null
     }
 
-    private fun generatePreKeyBundle(hexEncodedPublicKey: String, forceClean: Boolean): PreKeyBundle? {
-        if (hexEncodedPublicKey.isEmpty()) return null
+    private fun generatePreKeyBundle(publicKey: String, forceClean: Boolean): PreKeyBundle? {
+        if (publicKey.isEmpty()) return null
         var registrationID = TextSecurePreferences.getLocalRegistrationId(context)
         if (registrationID == 0) {
             registrationID = KeyHelper.generateRegistrationId(false)
             TextSecurePreferences.setLocalRegistrationId(context, registrationID)
         }
         val deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID
-        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKeyRecord(hexEncodedPublicKey)
+        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKeyRecord(publicKey)
         val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
         if (!forceClean && TextSecurePreferences.isSignedPreKeyRegistered(context)) {
             Log.d("Loki", "A signed pre key has already been registered.")
@@ -80,9 +80,9 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         return PreKeyBundle(registrationID, deviceID, preKeyRecord.id, preKeyRecord.keyPair.publicKey, activeSignedPreKey.id, activeSignedPreKey.keyPair.publicKey, activeSignedPreKey.signature, identityKeyPair.publicKey)
     }
 
-    override fun getPreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
+    override fun getPreKeyBundle(publicKey: String): PreKeyBundle? {
         val database = databaseHelper.readableDatabase
-        return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
+        return database.get(table, "${Companion.publicKey} = ?", arrayOf( publicKey )) { cursor ->
             val registrationID = cursor.getInt(registrationID)
             val deviceID = cursor.getInt(deviceID)
             val preKeyID = cursor.getInt(preKeyID)
@@ -95,7 +95,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         }
     }
 
-    fun setPreKeyBundle(hexEncodedPublicKey: String, preKeyBundle: PreKeyBundle) {
+    fun setPreKeyBundle(publicKey: String, preKeyBundle: PreKeyBundle) {
         val database = databaseHelper.writableDatabase
         val values = ContentValues(9)
         values.put(registrationID, preKeyBundle.registrationId)
@@ -106,20 +106,20 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         values.put(signedPreKeyPublic, Base64.encodeBytes(preKeyBundle.signedPreKey.serialize()))
         values.put(signedPreKeySignature, Base64.encodeBytes(preKeyBundle.signedPreKeySignature))
         values.put(identityKey, Base64.encodeBytes(preKeyBundle.identityKey.serialize()))
-        values.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
-        database.insertOrUpdate(tableName, values, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
+        values.put(Companion.publicKey, publicKey)
+        database.insertOrUpdate(table, values, "${Companion.publicKey} = ?", arrayOf( publicKey ))
     }
 
-    override fun removePreKeyBundle(hexEncodedPublicKey: String) {
+    override fun removePreKeyBundle(publicKey: String) {
         val database = databaseHelper.writableDatabase
-        database.delete(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
+        database.delete(table, "${Companion.publicKey} = ?", arrayOf( publicKey ))
     }
 
-    fun hasPreKeyBundle(hexEncodedPublicKey: String): Boolean {
+    fun hasPreKeyBundle(publicKey: String): Boolean {
         val database = databaseHelper.readableDatabase
         var cursor: Cursor? = null
         return try {
-            cursor = database.query(tableName, null, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ), null, null, null)
+            cursor = database.query(table, null, "${Companion.publicKey} = ?", arrayOf( publicKey ), null, null, null)
             cursor != null && cursor.count > 0
         } catch (e: Exception) {
             false

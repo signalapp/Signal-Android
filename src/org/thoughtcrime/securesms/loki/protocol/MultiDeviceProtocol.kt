@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
@@ -80,7 +80,7 @@ object MultiDeviceProtocol {
             }
         }
         val publicKey = recipient.address.serialize()
-        LokiFileServerAPI.shared.getDeviceLinks(publicKey).success {
+        FileServerAPI.shared.getDeviceLinks(publicKey).success {
             val devices = MultiDeviceProtocol.shared.getAllLinkedDevices(publicKey)
             val jobs = devices.map { sendMessagePushToDevice(context, recipient(context, it), messageID, messageType, isEndSession) }
             @Suppress("UNCHECKED_CAST")
@@ -105,7 +105,7 @@ object MultiDeviceProtocol {
         // A request should include a pre key bundle. An authorization should be a normal message.
         if (deviceLink.type == DeviceLink.Type.REQUEST) {
             val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.number)
-            message.asFriendRequest(true).withPreKeyBundle(preKeyBundle)
+            message.withPreKeyBundle(preKeyBundle)
         } else {
             // Include the user's profile key so that the slave device can get the user's profile picture
             message.withProfileKey(ProfileKeyUtil.getProfileKey(context))
@@ -135,7 +135,7 @@ object MultiDeviceProtocol {
             return Promise.ofFail(Exception("Failed to sign device link."))
         }
         return retryIfNeeded(8) {
-            sendDeviceLinkMessage(context, deviceLink.slaveHexEncodedPublicKey, signedDeviceLink)
+            sendDeviceLinkMessage(context, deviceLink.slavePublicKey, signedDeviceLink)
         }
     }
 
@@ -144,7 +144,7 @@ object MultiDeviceProtocol {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         if (deviceLink.type == DeviceLink.Type.REQUEST) {
             handleDeviceLinkRequestMessage(context, deviceLink, content)
-        } else if (deviceLink.slaveHexEncodedPublicKey == userPublicKey) {
+        } else if (deviceLink.slavePublicKey == userPublicKey) {
             handleDeviceLinkAuthorizedMessage(context, deviceLink, content)
         }
     }
@@ -158,10 +158,10 @@ object MultiDeviceProtocol {
         } else if (isRequest && TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null) {
             Log.d("Loki", "Ignoring unexpected device link message (the device is a slave device).")
             return false
-        } else if (isRequest && deviceLink.masterHexEncodedPublicKey != userPublicKey) {
+        } else if (isRequest && deviceLink.masterPublicKey != userPublicKey) {
             Log.d("Loki", "Ignoring device linking message addressed to another user.")
             return false
-        } else if (isRequest && deviceLink.slaveHexEncodedPublicKey == userPublicKey) {
+        } else if (isRequest && deviceLink.slavePublicKey == userPublicKey) {
             Log.d("Loki", "Ignoring device linking request message from self.")
             return false
         }
@@ -193,9 +193,9 @@ object MultiDeviceProtocol {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         DatabaseFactory.getLokiAPIDatabase(context).clearDeviceLinks(userPublicKey)
         DatabaseFactory.getLokiAPIDatabase(context).addDeviceLink(deviceLink)
-        TextSecurePreferences.setMasterHexEncodedPublicKey(context, deviceLink.masterHexEncodedPublicKey)
+        TextSecurePreferences.setMasterHexEncodedPublicKey(context, deviceLink.masterPublicKey)
         TextSecurePreferences.setMultiDevice(context, true)
-        LokiFileServerAPI.shared.addDeviceLink(deviceLink)
+        FileServerAPI.shared.addDeviceLink(deviceLink)
         org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content)
         org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.duplicate_handleProfileKey(context, content)
     }
@@ -210,19 +210,19 @@ object MultiDeviceProtocol {
         // Ignore the request if we don't know about the device link in question
         val masterDeviceLinks = DatabaseFactory.getLokiAPIDatabase(context).getDeviceLinks(masterDevicePublicKey)
         if (masterDeviceLinks.none {
-            it.masterHexEncodedPublicKey == masterDevicePublicKey && it.slaveHexEncodedPublicKey == userPublicKey
+            it.masterPublicKey == masterDevicePublicKey && it.slavePublicKey == userPublicKey
         }) {
             return
         }
-        LokiFileServerAPI.shared.getDeviceLinks(userPublicKey, true).success { slaveDeviceLinks ->
+        FileServerAPI.shared.getDeviceLinks(userPublicKey, true).success { slaveDeviceLinks ->
             // Check that the device link IS present on the file server.
             // Note that the device link as seen from the master device's perspective has been deleted at this point, but the
             // device link as seen from the slave perspective hasn't.
             if (slaveDeviceLinks.any {
-                it.masterHexEncodedPublicKey == masterDevicePublicKey && it.slaveHexEncodedPublicKey == userPublicKey
+                it.masterPublicKey == masterDevicePublicKey && it.slavePublicKey == userPublicKey
             }) {
                 for (slaveDeviceLink in slaveDeviceLinks) { // In theory there should only be one
-                    LokiFileServerAPI.shared.removeDeviceLink(slaveDeviceLink) // Attempt to clean up on the file server
+                    FileServerAPI.shared.removeDeviceLink(slaveDeviceLink) // Attempt to clean up on the file server
                 }
                 TextSecurePreferences.setWasUnlinked(context, true)
                 ApplicationContext.getInstance(context).clearData()
