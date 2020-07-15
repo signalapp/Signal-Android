@@ -101,15 +101,8 @@ public class MessageSender {
     Recipient   recipient   = message.getRecipient();
     boolean     keyExchange = message.isKeyExchange();
 
-    long allocatedThreadId;
-
-    if (threadId == -1) {
-      allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-    } else {
-      allocatedThreadId = threadId;
-    }
-
-    long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
+    long allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateValidThreadId(recipient, threadId);
+    long messageId         = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     onMessageSent();
@@ -127,16 +120,9 @@ public class MessageSender {
       ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
       MmsDatabase    database       = DatabaseFactory.getMmsDatabase(context);
 
-      long allocatedThreadId;
-
-      if (threadId == -1) {
-        allocatedThreadId = threadDatabase.getThreadIdFor(message.getRecipient(), message.getDistributionType());
-      } else {
-        allocatedThreadId = threadId;
-      }
-
-      Recipient recipient = message.getRecipient();
-      long      messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+      long      allocatedThreadId = threadDatabase.getOrCreateValidThreadId(message.getRecipient(), threadId, message.getDistributionType());
+      Recipient recipient         = message.getRecipient();
+      long      messageId         = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
 
       sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
       onMessageSent();

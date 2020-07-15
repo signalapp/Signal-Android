@@ -23,7 +23,7 @@ public class GroupReceiptDatabase extends Database {
 
   private static final String ID           = "_id";
   public  static final String MMS_ID       = "mms_id";
-  private static final String RECIPIENT_ID = "address";
+          static final String RECIPIENT_ID = "address";
   private static final String STATUS       = "status";
   private static final String TIMESTAMP    = "timestamp";
   private static final String UNIDENTIFIED = "unidentified";

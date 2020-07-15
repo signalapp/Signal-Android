@@ -70,4 +70,8 @@ final class RecipientIdCache {
 
     return null;
   }
+
+  synchronized void clear() {
+    ids.clear();
+  }
 }

@@ -240,7 +240,7 @@ public final class CodeVerificationRequest {
     RecipientId       selfId            = recipientDatabase.getOrInsertFromE164(credentials.getE164number());
 
     recipientDatabase.setProfileSharing(selfId, true);
-    recipientDatabase.markRegistered(selfId, uuid);
+    recipientDatabase.markRegisteredOrThrow(selfId, uuid);
 
     TextSecurePreferences.setLocalNumber(context, credentials.getE164number());
     TextSecurePreferences.setLocalUuid(context, uuid);

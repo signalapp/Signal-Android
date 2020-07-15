@@ -53,7 +53,7 @@ public final class GroupDatabase extends Database {
           static final String GROUP_ID            = "group_id";
           static final String RECIPIENT_ID        = "recipient_id";
   private static final String TITLE               = "title";
-  private static final String MEMBERS             = "members";
+          static final String MEMBERS             = "members";
   private static final String AVATAR_ID           = "avatar_id";
   private static final String AVATAR_KEY          = "avatar_key";
   private static final String AVATAR_CONTENT_TYPE = "avatar_content_type";

@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +40,22 @@ public final class SqlUtil {
     }
 
     return false;
+  }
+
+  public static String[] buildArgs(Object... objects) {
+    String[] args = new String[objects.length];
+
+    for (int i = 0; i < objects.length; i++) {
+      if (objects[i] == null) {
+        throw new NullPointerException("Cannot have null arg!");
+      } else if (objects[i] instanceof RecipientId) {
+        args[i] = ((RecipientId) objects[i]).serialize();
+      } else {
+        args[i] = objects[i].toString();
+      }
+    }
+
+    return args;
   }
 
   /**

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 import com.google.android.gms.common.util.ArrayUtils;
 
+import net.sqlcipher.database.SQLiteConstraintException;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.zkgroup.InvalidInputException;
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -66,6 +68,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -358,6 +361,156 @@ public class RecipientDatabase extends Database {
     return getByColumn(USERNAME, username);
   }
 
+  public @NonNull RecipientId getAndPossiblyMerge(@Nullable UUID uuid, @Nullable String e164, boolean highTrust) {
+    if (uuid == null && e164 == null) {
+      throw new IllegalArgumentException("Must provide a UUID or E164!");
+    }
+
+    RecipientId                    recipientNeedingRefresh = null;
+    Pair<RecipientId, RecipientId> remapped                = null;
+    boolean                        transactionSuccessful   = false;
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      Optional<RecipientId> byE164 = e164 != null ? getByE164(e164) : Optional.absent();
+      Optional<RecipientId> byUuid = uuid != null ? getByUuid(uuid) : Optional.absent();
+
+      RecipientId finalId;
+
+      if (!byE164.isPresent() && !byUuid.isPresent()) {
+        Log.i(TAG, "Discovered a completely new user. Inserting.");
+        if (highTrust) {
+          long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(e164, uuid));
+          finalId = RecipientId.from(id);
+        } else {
+          long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(uuid == null ? e164 : null, uuid));
+          finalId = RecipientId.from(id);
+        }
+      } else if (byE164.isPresent() && !byUuid.isPresent()) {
+        if (uuid != null) {
+          RecipientSettings e164Settings = getRecipientSettings(byE164.get());
+          if (e164Settings.uuid != null) {
+            if (highTrust) {
+              Log.w(TAG, "Found out about a UUID for a known E164 user, but that user already has a UUID. Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to a new entry.");
+
+              removePhoneNumber(byE164.get(), db);
+              recipientNeedingRefresh = byE164.get();
+
+              ContentValues insertValues = buildContentValuesForNewUser(e164, uuid);
+              insertValues.put(BLOCKED, e164Settings.blocked ? 1 : 0);
+
+              long id = db.insert(TABLE_NAME, null, insertValues);
+              finalId = RecipientId.from(id);
+            } else {
+              Log.w(TAG, "Found out about a UUID for a known E164 user, but that user already has a UUID. Likely a case of re-registration. Low-trust, so making a new user for the UUID.");
+
+              long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, uuid));
+              finalId = RecipientId.from(id);
+            }
+          } else {
+            if (highTrust) {
+              Log.i(TAG, "Found out about a UUID for a known E164 user. High-trust, so updating.");
+              markRegisteredOrThrow(byE164.get(), uuid);
+              finalId = byE164.get();
+            } else {
+              Log.i(TAG, "Found out about a UUID for a known E164 user. Low-trust, so making a new user for the UUID.");
+              long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, uuid));
+              finalId = RecipientId.from(id);
+            }
+          }
+        } else {
+          finalId = byE164.get();
+        }
+      } else if (!byE164.isPresent() && byUuid.isPresent()) {
+        if (e164 != null) {
+          if (highTrust) {
+            Log.i(TAG, "Found out about an E164 for a known UUID user. High-trust, so updating.");
+            setPhoneNumberOrThrow(byUuid.get(), e164);
+            finalId = byUuid.get();
+          } else {
+            Log.i(TAG, "Found out about an E164 for a known UUID user. Low-trust, so doing nothing.");
+            finalId = byUuid.get();
+          }
+        } else {
+          finalId = byUuid.get();
+        }
+      } else {
+        if (byE164.equals(byUuid)) {
+          finalId = byUuid.get();
+        } else {
+          Log.w(TAG, "Hit a conflict between " + byE164.get() + " (E164) and " + byUuid.get() + " (UUID). They map to different recipients.", new Throwable());
+
+          RecipientSettings e164Settings = getRecipientSettings(byE164.get());
+
+          if (e164Settings.getUuid() != null) {
+            if (highTrust) {
+              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to the UUID entry.");
+
+              removePhoneNumber(byE164.get(), db);
+              recipientNeedingRefresh = byE164.get();
+
+              setPhoneNumberOrThrow(byUuid.get(), Objects.requireNonNull(e164));
+
+              finalId = byUuid.get();
+            } else {
+              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. Low-trust, so doing nothing.");
+              finalId = byUuid.get();
+            }
+          } else {
+            if (highTrust) {
+              Log.w(TAG, "We have one contact with just an E164, and another with UUID. High-trust, so merging the two rows together.");
+              finalId                 = merge(byUuid.get(), byE164.get());
+              recipientNeedingRefresh = byUuid.get();
+              remapped                = new Pair<>(byE164.get(), byUuid.get());
+            } else {
+              Log.w(TAG, "We have one contact with just an E164, and another with UUID. Low-trust, so doing nothing.");
+              finalId  = byUuid.get();
+            }
+          }
+        }
+      }
+
+      db.setTransactionSuccessful();
+      transactionSuccessful = true;
+      return finalId;
+    } finally {
+      db.endTransaction();
+
+      if (transactionSuccessful) {
+        if (recipientNeedingRefresh != null) {
+          Recipient.live(recipientNeedingRefresh).refresh();
+        }
+
+        if (remapped != null) {
+          Recipient.live(remapped.first()).refresh(remapped.second());
+        }
+
+        if (recipientNeedingRefresh != null || remapped != null) {
+          StorageSyncHelper.scheduleSyncForDataChange();
+          RecipientId.clearCache();
+        }
+      }
+    }
+  }
+
+  private static ContentValues buildContentValuesForNewUser(@Nullable String e164, @Nullable UUID uuid) {
+    ContentValues values = new ContentValues();
+
+    values.put(PHONE, e164);
+
+    if (uuid != null) {
+      values.put(UUID, uuid.toString().toLowerCase());
+      values.put(REGISTERED, RegisteredState.REGISTERED.getId());
+      values.put(DIRTY, DirtyState.INSERT.getId());
+      values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+    }
+
+    return values;
+  }
+
+
   public @NonNull RecipientId getOrInsertFromUuid(@NonNull UUID uuid) {
     return getOrInsertByColumn(UUID, uuid.toString()).recipientId;
   }
@@ -423,7 +576,13 @@ public class RecipientDatabase extends Database {
       if (cursor != null && cursor.moveToNext()) {
         return getRecipientSettings(context, cursor);
       } else {
-        throw new MissingRecipientException(id);
+        Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(context, id);
+        if (remapped.isPresent()) {
+          Log.w(TAG, "Missing recipient, but found it in the remapped records.");
+          return getRecipientSettings(remapped.get());
+        } else {
+          throw new MissingRecipientException(id);
+        }
       }
     }
   }
@@ -527,46 +686,73 @@ public class RecipientDatabase extends Database {
     db.beginTransaction();
 
     try {
-
       for (SignalContactRecord insert : contactInserts) {
         ContentValues values = validateContactValuesForInsert(getValuesForStorageContact(insert, true));
         long          id     = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+
+        RecipientId recipientId;
 
         if (id < 0) {
           values = validateContactValuesForInsert(getValuesForStorageContact(insert, false));
           Log.w(TAG, "Failed to insert! It's likely that these were newly-registered users that were missed in the merge. Doing an update instead.");
 
           if (insert.getAddress().getNumber().isPresent()) {
-            int count = db.update(TABLE_NAME, values, PHONE + " = ?", new String[] { insert.getAddress().getNumber().get() });
-            Log.w(TAG, "Updated " + count + " users by E164.");
-          } else {
-            int count = db.update(TABLE_NAME, values, UUID + " = ?", new String[] { insert.getAddress().getUuid().get().toString() });
-            Log.w(TAG, "Updated " + count + " users by UUID.");
-          }
-        } else {
-          RecipientId recipientId = RecipientId.from(id);
-
-          if (insert.getIdentityKey().isPresent()) {
             try {
-              IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
-
-              DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
-            } catch (InvalidKeyException e) {
-              Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
+              int count = db.update(TABLE_NAME, values, PHONE + " = ?", new String[] { insert.getAddress().getNumber().get() });
+              recipientId = getByE164(insert.getAddress().getNumber().get()).get();
+              Log.w(TAG, "Updated " + count + " users by E164.");
+            } catch (SQLiteConstraintException e) {
+              Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Failed to update the UUID on an existing E164 user. Possibly merging.");
+              recipientId = getAndPossiblyMerge(insert.getAddress().getUuid().get(), insert.getAddress().getNumber().get(), true);
+              Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Resulting id: " + recipientId);
+            }
+          } else {
+            try {
+              int count = db.update(TABLE_NAME, values, UUID + " = ?", new String[] { insert.getAddress().getUuid().get().toString() });
+              recipientId = getByUuid(insert.getAddress().getUuid().get()).get();
+              Log.w(TAG, "Updated " + count + " users by UUID.");
+            } catch (SQLiteConstraintException e) {
+              Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Failed to update the E164 on an existing UUID user. Possibly merging.");
+              recipientId = getAndPossiblyMerge(insert.getAddress().getUuid().get(), insert.getAddress().getNumber().get(), true);
+              Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Resulting id: " + recipientId);
             }
           }
-
-          threadDatabase.setArchived(recipientId, insert.isArchived());
-          needsRefresh.add(recipientId);
+        } else {
+          recipientId = RecipientId.from(id);
         }
+
+        if (insert.getIdentityKey().isPresent()) {
+          try {
+            IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
+
+            DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
+          } catch (InvalidKeyException e) {
+            Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
+          }
+        }
+
+        threadDatabase.setArchived(recipientId, insert.isArchived());
+        needsRefresh.add(recipientId);
       }
 
       for (RecordUpdate<SignalContactRecord> update : contactUpdates) {
-        ContentValues values      = getValuesForStorageContact(update.getNew(), false);
-        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
+        ContentValues values = getValuesForStorageContact(update.getNew(), false);
 
-        if (updateCount < 1) {
-          throw new AssertionError("Had an update, but it didn't match any rows!");
+        try {
+          int updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
+          if (updateCount < 1) {
+            throw new AssertionError("Had an update, but it didn't match any rows!");
+          }
+        } catch (SQLiteConstraintException e) {
+          Log.w(TAG,  "[applyStorageSyncUpdates -- Update] Failed to update a user by storageId.");
+
+          RecipientId recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getOld().getId().getRaw())).get();
+          Log.w(TAG,  "[applyStorageSyncUpdates -- Update] Found user " + recipientId + ". Possibly merging.");
+
+          recipientId = getAndPossiblyMerge(update.getNew().getAddress().getUuid().orNull(), update.getNew().getAddress().getNumber().orNull(), true);
+          Log.w(TAG,  "[applyStorageSyncUpdates -- Update] Merged into " + recipientId);
+
+          db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
         }
 
         RecipientId recipientId = getByStorageKeyOrThrow(update.getNew().getId().getRaw());
@@ -1284,9 +1470,44 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public void setPhoneNumber(@NonNull RecipientId id, @NonNull String e164) {
+  /**
+   * @return True if setting the phone number resulted in changed recipientId, otherwise false.
+   */
+  public boolean setPhoneNumber(@NonNull RecipientId id, @NonNull String e164) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      setPhoneNumberOrThrow(id, e164);
+      db.setTransactionSuccessful();
+      return false;
+    } catch (SQLiteConstraintException e) {
+      Log.w(TAG, "[setPhoneNumber] Hit a conflict when trying to update " + id + ". Possibly merging.");
+
+      RecipientSettings existing = getRecipientSettings(id);
+      RecipientId       newId    = getAndPossiblyMerge(existing.getUuid(), e164, true);
+      Log.w(TAG, "[setPhoneNumber] Resulting id: " + newId);
+
+      db.setTransactionSuccessful();
+      return !newId.equals(existing.getId());
+    } finally {
+      db.endTransaction();
+    }
+  }
+
+  private void removePhoneNumber(@NonNull RecipientId recipientId, @NonNull SQLiteDatabase db) {
+    ContentValues values = new ContentValues();
+    values.putNull(PHONE);
+    db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
+  }
+
+  /**
+   * Should only use if you are confident that this will not result in any contact merging.
+   */
+  public void setPhoneNumberOrThrow(@NonNull RecipientId id, @NonNull String e164) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(PHONE, e164);
+
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
@@ -1337,13 +1558,38 @@ public class RecipientDatabase extends Database {
     return results;
   }
 
-  public void markRegistered(@NonNull RecipientId id, @Nullable UUID uuid) {
+  /**
+   * @return True if setting the UUID resulted in changed recipientId, otherwise false.
+   */
+  public boolean markRegistered(@NonNull RecipientId id, @NonNull UUID uuid) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      markRegisteredOrThrow(id, uuid);
+      db.setTransactionSuccessful();
+      return false;
+    } catch (SQLiteConstraintException e) {
+      Log.w(TAG, "[markRegistered] Hit a conflict when trying to update " + id + ". Possibly merging.");
+
+      RecipientSettings existing = getRecipientSettings(id);
+      RecipientId       newId    = getAndPossiblyMerge(uuid, existing.getE164(), true);
+      Log.w(TAG, "[markRegistered] Merged into " + newId);
+
+      db.setTransactionSuccessful();
+      return !newId.equals(existing.getId());
+    } finally {
+      db.endTransaction();
+    }
+  }
+
+  /**
+   * Should only use if you are confident that this shouldn't result in any contact merging.
+   */
+  public void markRegisteredOrThrow(@NonNull RecipientId id, @NonNull UUID uuid) {
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-
-    if (uuid != null) {
-      contentValues.put(UUID, uuid.toString().toLowerCase());
-    }
+    contentValues.put(UUID, uuid.toString().toLowerCase());
 
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.INSERT);
@@ -1368,7 +1614,6 @@ public class RecipientDatabase extends Database {
   public void markUnregistered(@NonNull RecipientId id) {
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
-    contentValues.putNull(UUID);
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.DELETE);
       Recipient.live(id).refresh();
@@ -1388,8 +1633,16 @@ public class RecipientDatabase extends Database {
           values.put(UUID, entry.getValue().toLowerCase());
         }
 
-        if (update(entry.getKey(), values)) {
-          markDirty(entry.getKey(), DirtyState.INSERT);
+        try {
+          if (update(entry.getKey(), values)) {
+            markDirty(entry.getKey(), DirtyState.INSERT);
+          }
+        } catch (SQLiteConstraintException e) {
+          Log.w(TAG, "[bulkUpdateRegisteredStatus] Hit a conflict when trying to update " + entry.getKey() + ". Possibly merging.");
+
+          RecipientSettings existing = getRecipientSettings(entry.getKey());
+          RecipientId       newId    = getAndPossiblyMerge(UuidUtil.parseOrThrow(entry.getValue()), existing.getE164(), true);
+          Log.w(TAG, "[bulkUpdateRegisteredStatus] Merged into " + newId);
         }
       }
 
@@ -1447,6 +1700,37 @@ public class RecipientDatabase extends Database {
         Recipient.live(inactiveId).refresh();
       }
     }
+  }
+
+  public @NonNull Map<RecipientId, String> bulkProcessCdsResult(@NonNull Map<String, UUID> mapping) {
+    SQLiteDatabase               db      = databaseHelper.getWritableDatabase();
+    HashMap<RecipientId, String> uuidMap = new HashMap<>();
+
+    db.beginTransaction();
+    try {
+      for (Map.Entry<String, UUID> entry : mapping.entrySet()) {
+        String                e164      = entry.getKey();
+        UUID                  uuid      = entry.getValue();
+        Optional<RecipientId> uuidEntry = uuid != null ? getByUuid(uuid) : Optional.absent();
+
+        if (uuidEntry.isPresent()) {
+          boolean idChanged = setPhoneNumber(uuidEntry.get(), e164);
+          if (idChanged) {
+            uuidEntry = getByUuid(Objects.requireNonNull(uuid));
+          }
+        }
+
+        RecipientId id = uuidEntry.isPresent() ? uuidEntry.get() : getOrInsertFromE164(e164);
+
+        uuidMap.put(id, uuid != null ? uuid.toString() : null);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    return uuidMap;
   }
 
   public @NonNull List<RecipientId> getUninvitedRecipientsForInsights() {
@@ -1745,7 +2029,13 @@ public class RecipientDatabase extends Database {
       values.put(DIRTY, DirtyState.CLEAN.getId());
 
       for (RecipientId id : recipients) {
-        db.update(TABLE_NAME, values, ID_WHERE, new String[]{ id.serialize() });
+        Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(context, id);
+        if (remapped.isPresent()) {
+          Log.w(TAG, "While clearing dirty state, noticed we have a remapped contact (" + id + " to " + remapped.get() + "). Safe to delete now.");
+          db.delete(TABLE_NAME, ID_WHERE, new String[]{id.serialize()});
+        } else {
+          db.update(TABLE_NAME, values, ID_WHERE, new String[]{id.serialize()});
+        }
       }
 
       db.setTransactionSuccessful();
@@ -1855,6 +2145,136 @@ public class RecipientDatabase extends Database {
       throw new UuidRecipientError();
     } else {
       return values;
+    }
+  }
+
+  /**
+   * Merges one UUID recipient with an E164 recipient. It is assumed that the E164 recipient does
+   * *not* have a UUID.
+   */
+  @SuppressWarnings("ConstantConditions")
+  private @NonNull RecipientId merge(@NonNull RecipientId byUuid, @NonNull RecipientId byE164) {
+    ensureInTransaction();
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    RecipientSettings uuidSettings = getRecipientSettings(byUuid);
+    RecipientSettings e164Settings = getRecipientSettings(byE164);
+
+    // Recipient
+    if (e164Settings.getStorageId() == null) {
+      Log.w(TAG, "No storageId on the E164 recipient. Can delete right away.");
+      db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(byE164));
+    } else {
+      Log.w(TAG, "The E164 recipient has a storageId. Clearing data and marking for deletion.");
+      ContentValues values = new ContentValues();
+      values.putNull(PHONE);
+      values.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
+      values.put(DIRTY, DirtyState.DELETE.getId());
+      db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(byE164));
+    }
+    RemappedRecords.getInstance().addRecipient(context, byE164, byUuid);
+
+    ContentValues uuidValues = new ContentValues();
+    uuidValues.put(PHONE, e164Settings.getE164());
+    uuidValues.put(BLOCKED, e164Settings.isBlocked() || uuidSettings.isBlocked());
+    uuidValues.put(MESSAGE_RINGTONE, Optional.fromNullable(uuidSettings.getMessageRingtone()).or(Optional.fromNullable(e164Settings.getMessageRingtone())).transform(Uri::toString).orNull());
+    uuidValues.put(MESSAGE_VIBRATE, uuidSettings.getMessageVibrateState() != VibrateState.DEFAULT ? uuidSettings.getMessageVibrateState().getId() : e164Settings.getMessageVibrateState().getId());
+    uuidValues.put(CALL_RINGTONE, Optional.fromNullable(uuidSettings.getCallRingtone()).or(Optional.fromNullable(e164Settings.getCallRingtone())).transform(Uri::toString).orNull());
+    uuidValues.put(CALL_VIBRATE, uuidSettings.getCallVibrateState() != VibrateState.DEFAULT ? uuidSettings.getCallVibrateState().getId() : e164Settings.getCallVibrateState().getId());
+    uuidValues.put(NOTIFICATION_CHANNEL, uuidSettings.getNotificationChannel() != null ? uuidSettings.getNotificationChannel() : e164Settings.getNotificationChannel());
+    uuidValues.put(MUTE_UNTIL, uuidSettings.getMuteUntil() > 0 ? uuidSettings.getMuteUntil() : e164Settings.getMuteUntil());
+    uuidValues.put(COLOR, Optional.fromNullable(uuidSettings.getColor()).or(Optional.fromNullable(e164Settings.getColor())).transform(MaterialColor::serialize).orNull());
+    uuidValues.put(SEEN_INVITE_REMINDER, e164Settings.getInsightsBannerTier().getId());
+    uuidValues.put(DEFAULT_SUBSCRIPTION_ID, e164Settings.getDefaultSubscriptionId().or(-1));
+    uuidValues.put(MESSAGE_EXPIRATION_TIME, uuidSettings.getExpireMessages() > 0 ? uuidSettings.getExpireMessages() : e164Settings.getExpireMessages());
+    uuidValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
+    uuidValues.put(SYSTEM_DISPLAY_NAME, e164Settings.getSystemDisplayName());
+    uuidValues.put(SYSTEM_PHOTO_URI, e164Settings.getSystemContactPhotoUri());
+    uuidValues.put(SYSTEM_PHONE_LABEL, e164Settings.getSystemPhoneLabel());
+    uuidValues.put(SYSTEM_CONTACT_URI, e164Settings.getSystemContactUri());
+    uuidValues.put(PROFILE_SHARING, uuidSettings.isProfileSharing() || e164Settings.isProfileSharing());
+    uuidValues.put(GROUPS_V2_CAPABILITY, uuidSettings.getGroupsV2Capability() != Recipient.Capability.UNKNOWN ? uuidSettings.getGroupsV2Capability().serialize() : e164Settings.getGroupsV2Capability().serialize());
+    if (uuidSettings.getProfileKey() != null) {
+      updateProfileValuesForMerge(uuidValues, uuidSettings);
+    } else if (e164Settings.getProfileKey() != null) {
+      updateProfileValuesForMerge(uuidValues, e164Settings);
+    }
+    db.update(TABLE_NAME, uuidValues, ID_WHERE, SqlUtil.buildArgs(byUuid));
+
+    // Identities
+    db.delete(IdentityDatabase.TABLE_NAME, IdentityDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    // Group Receipts
+    ContentValues groupReceiptValues = new ContentValues();
+    groupReceiptValues.put(GroupReceiptDatabase.RECIPIENT_ID, byUuid.serialize());
+    db.update(GroupReceiptDatabase.TABLE_NAME, groupReceiptValues, GroupReceiptDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    // Groups
+    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    for (GroupDatabase.GroupRecord group : groupDatabase.getGroupsContainingMember(byE164, false)) {
+      List<RecipientId> newMembers = new ArrayList<>(group.getMembers());
+      newMembers.remove(byE164);
+
+      ContentValues groupValues = new ContentValues();
+      groupValues.put(GroupDatabase.MEMBERS, RecipientId.toSerializedList(newMembers));
+      db.update(GroupDatabase.TABLE_NAME, groupValues, GroupDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(group.getRecipientId()));
+    }
+
+    // Threads
+    ThreadDatabase.MergeResult threadMerge = DatabaseFactory.getThreadDatabase(context).merge(byUuid, byE164);
+
+    // SMS Messages
+    ContentValues smsValues = new ContentValues();
+    smsValues.put(SmsDatabase.RECIPIENT_ID, byUuid.serialize());
+    if (threadMerge.neededMerge) {
+      smsValues.put(SmsDatabase.THREAD_ID, threadMerge.threadId);
+    }
+    db.update(SmsDatabase.TABLE_NAME, smsValues, SmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    // MMS Messages
+    ContentValues mmsValues = new ContentValues();
+    mmsValues.put(MmsDatabase.RECIPIENT_ID, byUuid.serialize());
+    if (threadMerge.neededMerge) {
+      mmsValues.put(MmsDatabase.THREAD_ID, threadMerge.threadId);
+    }
+    db.update(MmsDatabase.TABLE_NAME, mmsValues, MmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    // Sessions
+    boolean hasE164Session = DatabaseFactory.getSessionDatabase(context).getAllFor(byE164).size() > 0;
+    boolean hasUuidSession = DatabaseFactory.getSessionDatabase(context).getAllFor(byUuid).size() > 0;
+
+    if (hasE164Session && hasUuidSession) {
+      Log.w(TAG, "Had a session for both users. Deleting the E164.");
+      db.delete(SessionDatabase.TABLE_NAME, SessionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+    } else if (hasE164Session && !hasUuidSession) {
+      Log.w(TAG, "Had a session for E164, but not UUID. Re-assigning to the UUID.");
+      ContentValues values = new ContentValues();
+      values.put(SessionDatabase.RECIPIENT_ID, byUuid.serialize());
+      db.update(SessionDatabase.TABLE_NAME, values, SessionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+    } else if (!hasE164Session && hasUuidSession) {
+      Log.w(TAG, "Had a session for UUID, but not E164. No action necessary.");
+    } else {
+      Log.w(TAG, "Had no sessions. No action necessary.");
+    }
+
+    DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false);
+
+    return byUuid;
+  }
+
+  private static void updateProfileValuesForMerge(@NonNull ContentValues values, @NonNull RecipientSettings settings) {
+    values.put(PROFILE_KEY, settings.getProfileKey() != null ? Base64.encodeBytes(settings.getProfileKey()) : null);
+    values.put(PROFILE_KEY_CREDENTIAL, settings.getProfileKeyCredential() != null ? Base64.encodeBytes(settings.getProfileKeyCredential()) : null);
+    values.put(SIGNAL_PROFILE_AVATAR, settings.getProfileAvatar());
+    values.put(PROFILE_GIVEN_NAME, settings.getProfileName().getGivenName());
+    values.put(PROFILE_FAMILY_NAME, settings.getProfileName().getFamilyName());
+    values.put(PROFILE_JOINED_NAME, settings.getProfileName().toString());
+  }
+
+  private void ensureInTransaction() {
+    if (!databaseHelper.getWritableDatabase().inTransaction()) {
+      throw new IllegalStateException("Must be in a transaction!");
     }
   }
 
@@ -2242,6 +2662,24 @@ public class RecipientDatabase extends Database {
 
     public void close() {
       cursor.close();
+    }
+  }
+
+  public final static class RecipientIdResult {
+    private final RecipientId recipientId;
+    private final boolean     requiresDirectoryRefresh;
+
+    public RecipientIdResult(@NonNull RecipientId recipientId, boolean requiresDirectoryRefresh) {
+      this.recipientId              = recipientId;
+      this.requiresDirectoryRefresh = requiresDirectoryRefresh;
+    }
+
+    public @NonNull RecipientId getRecipientId() {
+      return recipientId;
+    }
+
+    public boolean requiresDirectoryRefresh() {
+      return requiresDirectoryRefresh;
     }
   }
 

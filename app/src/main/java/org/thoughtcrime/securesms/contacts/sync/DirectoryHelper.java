@@ -59,6 +59,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -102,32 +103,14 @@ public class DirectoryHelper {
       recipientDatabase.updatePhoneNumbers(result.getNumberRewrites());
     }
 
-    HashMap<RecipientId, String> uuidMap = new HashMap<>();
-
-    // TODO [greyson] [cds] Probably want to do this in a DB transaction to prevent concurrent operations
-    for (Map.Entry<String, UUID> entry : result.getRegisteredNumbers().entrySet()) {
-      // TODO [greyson] [cds] This is where we'll have to do record merging
-      String                e164      = entry.getKey();
-      UUID                  uuid      = entry.getValue();
-      Optional<RecipientId> uuidEntry = uuid != null ? recipientDatabase.getByUuid(uuid) : Optional.absent();
-
-      // TODO [greyson] [cds] Handle phone numbers changing, possibly conflicting
-      if (uuidEntry.isPresent()) {
-        recipientDatabase.setPhoneNumber(uuidEntry.get(), e164);
-      }
-
-      RecipientId id = uuidEntry.isPresent() ? uuidEntry.get() : recipientDatabase.getOrInsertFromE164(e164);
-
-      uuidMap.put(id, uuid != null ? uuid.toString() : null);
-    }
-
-    Set<String>      activeNumbers = result.getRegisteredNumbers().keySet();
-    Set<RecipientId> activeIds     = uuidMap.keySet();
-    Set<RecipientId> inactiveIds   = Stream.of(allNumbers)
-                                           .filterNot(activeNumbers::contains)
-                                           .filterNot(n -> result.getNumberRewrites().containsKey(n))
-                                           .map(recipientDatabase::getOrInsertFromE164)
-                                           .collect(Collectors.toSet());
+    Map<RecipientId, String> uuidMap       = recipientDatabase.bulkProcessCdsResult(result.getRegisteredNumbers());
+    Set<String>              activeNumbers = result.getRegisteredNumbers().keySet();
+    Set<RecipientId>         activeIds     = uuidMap.keySet();
+    Set<RecipientId>         inactiveIds   = Stream.of(allNumbers)
+                                                   .filterNot(activeNumbers::contains)
+                                                   .filterNot(n -> result.getNumberRewrites().containsKey(n))
+                                                   .map(recipientDatabase::getOrInsertFromE164)
+                                                   .collect(Collectors.toSet());
 
     recipientDatabase.bulkUpdatedRegisteredStatus(uuidMap, inactiveIds);
 
@@ -162,7 +145,10 @@ public class DirectoryHelper {
     if (recipient.hasUuid() && !recipient.hasE164()) {
       boolean isRegistered = isUuidRegistered(context, recipient);
       if (isRegistered) {
-        recipientDatabase.markRegistered(recipient.getId(), recipient.getUuid().get());
+        boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), recipient.getUuid().get());
+        if (idChanged) {
+          Log.w(TAG, "ID changed during refresh by UUID.");
+        }
       } else {
         recipientDatabase.markUnregistered(recipient.getId());
       }
@@ -189,7 +175,15 @@ public class DirectoryHelper {
     }
 
     if (result.getRegisteredNumbers().size() > 0) {
-      recipientDatabase.markRegistered(recipient.getId(), result.getRegisteredNumbers().values().iterator().next());
+      UUID uuid = result.getRegisteredNumbers().values().iterator().next();
+      if (uuid != null) {
+        boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), uuid);
+        if (idChanged) {
+          recipient = Recipient.resolved(recipientDatabase.getByUuid(uuid).get());
+        }
+      } else {
+        recipientDatabase.markRegistered(recipient.getId());
+      }
     } else {
       recipientDatabase.markUnregistered(recipient.getId());
     }

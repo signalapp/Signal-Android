@@ -142,18 +142,27 @@ public final class LiveRecipient {
     return updated;
   }
 
+  @WorkerThread
+  public void refresh() {
+    refresh(getId());
+  }
+
   /**
    * Forces a reload of the underlying recipient.
    */
   @WorkerThread
-  public void refresh() {
+  public void refresh(@NonNull RecipientId id) {
+    if (!getId().equals(id)) {
+      Log.w(TAG, "Switching ID from " + getId() + " to " + id);
+    }
+
     if (getId().isUnknown()) return;
 
     if (Util.isMainThread()) {
-      Log.w(TAG, "[Refresh][MAIN] " + getId(), new Throwable());
+      Log.w(TAG, "[Refresh][MAIN] " + id, new Throwable());
     }
 
-    Recipient       recipient    = fetchAndCacheRecipientFromDisk(getId());
+    Recipient       recipient    = fetchAndCacheRecipientFromDisk(id);
     List<Recipient> participants = Stream.of(recipient.getParticipants())
                                          .map(Recipient::getId)
                                          .map(this::fetchAndCacheRecipientFromDisk)

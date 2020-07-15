@@ -74,7 +74,7 @@ public class UuidMigrationJob extends MigrationJob {
     RecipientId self      = Recipient.self().getId();
     UUID        localUuid = ApplicationDependencies.getSignalServiceAccountManager().getOwnUuid();
 
-    DatabaseFactory.getRecipientDatabase(context).markRegistered(self, localUuid);
+    DatabaseFactory.getRecipientDatabase(context).markRegisteredOrThrow(self, localUuid);
     TextSecurePreferences.setLocalUuid(context, localUuid);
   }
 

@@ -22,6 +22,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.net.Uri;
+import android.util.SparseArray;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +50,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -729,6 +731,19 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public long getOrCreateValidThreadId(@NonNull Recipient recipient, long candidateId) {
+    return getOrCreateValidThreadId(recipient, candidateId, DistributionTypes.DEFAULT);
+  }
+
+  public long getOrCreateValidThreadId(@NonNull Recipient recipient, long candidateId, int distributionType) {
+    if (candidateId != -1) {
+      Optional<Long> remapped = RemappedRecords.getInstance().getThread(context, candidateId);
+      return remapped.isPresent() ? remapped.get() : candidateId;
+    } else {
+      return getThreadIdFor(recipient, distributionType);
+    }
+  }
+
   public long getThreadIdFor(@NonNull Recipient recipient) {
     return getThreadIdFor(recipient, DistributionTypes.DEFAULT);
   }
@@ -742,7 +757,7 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public Long getThreadIdFor(@NonNull RecipientId recipientId) {
+  public @Nullable Long getThreadIdFor(@NonNull RecipientId recipientId) {
     SQLiteDatabase db            = databaseHelper.getReadableDatabase();
     String         where         = RECIPIENT_ID + " = ?";
     String[]       recipientsArg = new String[]{recipientId.serialize()};
@@ -799,12 +814,18 @@ public class ThreadDatabase extends Database {
   }
 
   public boolean update(long threadId, boolean unarchive) {
+    return update(threadId, unarchive, true);
+  }
+
+  public boolean update(long threadId, boolean unarchive, boolean allowDeletion) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
     if (count == 0) {
-      deleteThread(threadId);
-      notifyConversationListListeners();
+      if (allowDeletion) {
+        deleteThread(threadId);
+        notifyConversationListListeners();
+      }
       return true;
     }
 
@@ -830,6 +851,81 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
+  }
+
+  @NonNull MergeResult merge(@NonNull RecipientId primaryRecipientId, @NonNull RecipientId secondaryRecipientId) {
+    if (!databaseHelper.getWritableDatabase().inTransaction()) {
+      throw new IllegalStateException("Must be in a transaction!");
+    }
+
+    Log.w(TAG, "Merging threads. Primary: " + primaryRecipientId + ", Secondary: " + secondaryRecipientId);
+
+    ThreadRecord primary   = getThreadRecord(getThreadIdFor(primaryRecipientId));
+    ThreadRecord secondary = getThreadRecord(getThreadIdFor(secondaryRecipientId));
+
+    if (primary != null && secondary == null) {
+      Log.w(TAG, "[merge] Only had a thread for primary. Returning that.");
+      return new MergeResult(primary.getThreadId(), false);
+    } else if (primary == null && secondary != null) {
+      Log.w(TAG, "[merge] Only had a thread for secondary. Updating it to have the recipientId of the primary.");
+
+      ContentValues values = new ContentValues();
+      values.put(RECIPIENT_ID, primaryRecipientId.serialize());
+
+      databaseHelper.getWritableDatabase().update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(secondary.getThreadId()));
+      return new MergeResult(secondary.getThreadId(), false);
+    } else if (primary == null && secondary == null) {
+      Log.w(TAG, "[merge] No thread for either.");
+      return new MergeResult(-1, false);
+    } else {
+      Log.w(TAG, "[merge] Had a thread for both. Deleting the secondary and merging the attributes together.");
+
+      SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+      db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(secondary.getThreadId()));
+
+      if (primary.getExpiresIn() != secondary.getExpiresIn()) {
+        ContentValues values = new ContentValues();
+        if (primary.getExpiresIn() == 0) {
+          values.put(EXPIRES_IN, secondary.getExpiresIn());
+        } else if (secondary.getExpiresIn() == 0) {
+          values.put(EXPIRES_IN, primary.getExpiresIn());
+        } else {
+          values.put(EXPIRES_IN, Math.min(primary.getExpiresIn(), secondary.getExpiresIn()));
+        }
+
+        db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(primary.getThreadId()));
+      }
+
+      ContentValues draftValues = new ContentValues();
+      draftValues.put(DraftDatabase.THREAD_ID, primary.getThreadId());
+      db.update(DraftDatabase.TABLE_NAME, draftValues, DraftDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(secondary.getThreadId()));
+
+      ContentValues searchValues = new ContentValues();
+      searchValues.put(SearchDatabase.THREAD_ID, primary.getThreadId());
+      db.update(SearchDatabase.SMS_FTS_TABLE_NAME, searchValues, SearchDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(secondary.getThreadId()));
+      db.update(SearchDatabase.MMS_FTS_TABLE_NAME, searchValues, SearchDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(secondary.getThreadId()));
+
+      RemappedRecords.getInstance().addThread(context, secondary.getThreadId(), primary.getThreadId());
+
+      return new MergeResult(primary.getThreadId(), true);
+    }
+  }
+
+  private @Nullable ThreadRecord getThreadRecord(@Nullable Long threadId) {
+    if (threadId == null) {
+      return null;
+    }
+
+    String query = createQuery(TABLE_NAME + "." + ID + " = ?", 1);
+
+    try (Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(query, SqlUtil.buildArgs(threadId))) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return readerFor(cursor).getCurrent();
+      }
+    }
+
+    return null;
   }
 
   private @Nullable Uri getAttachmentUriFor(MessageRecord record) {
@@ -1162,6 +1258,16 @@ public class ThreadDatabase extends Database {
 
     public long getLastScrolled() {
       return lastScrolled;
+    }
+  }
+
+  static final class MergeResult {
+    final long    threadId;
+    final boolean neededMerge;
+
+    private MergeResult(long threadId, boolean neededMerge) {
+      this.threadId    = threadId;
+      this.neededMerge = neededMerge;
     }
   }
 }

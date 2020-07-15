@@ -108,7 +108,7 @@ public final class GroupV1MessageProcessor {
     database.create(id, group.getName().orNull(), members,
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null);
 
-    Recipient sender = Recipient.externalPush(context, content.getSender());
+    Recipient sender = Recipient.externalHighTrustPush(context, content.getSender());
 
     if (sender.isSystemContact() || sender.isProfileSharing()) {
       Log.i(TAG, "Auto-enabling profile sharing because 'adder' is trusted. contact: " + sender.isSystemContact() + ", profileSharing: " + sender.isProfileSharing());
@@ -186,7 +186,7 @@ public final class GroupV1MessageProcessor {
                                              @NonNull SignalServiceContent content,
                                              @NonNull GroupRecord record)
   {
-    Recipient sender = Recipient.externalPush(context, content.getSender());
+    Recipient sender = Recipient.externalHighTrustPush(context, content.getSender());
 
     if (record.getMembers().contains(sender.getId())) {
       ApplicationDependencies.getJobManager().add(new PushGroupUpdateJob(sender.getId(), record.getId()));
@@ -208,8 +208,10 @@ public final class GroupV1MessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    if (members.contains(Recipient.externalPush(context, content.getSender()).getId())) {
-      database.remove(id, Recipient.externalPush(context, content.getSender()).getId());
+    RecipientId senderId = RecipientId.fromHighTrust(content.getSender());
+
+    if (members.contains(senderId)) {
+      database.remove(id, senderId);
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, content, group, builder.build(), outgoing);
@@ -245,7 +247,7 @@ public final class GroupV1MessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerReceivedTimestamp(), body, Optional.of(GroupId.v1orThrow(group.getGroupId())), 0, content.isNeedsReceipt());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalHighTrustPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerReceivedTimestamp(), body, Optional.of(GroupId.v1orThrow(group.getGroupId())), 0, content.isNeedsReceipt());
         IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

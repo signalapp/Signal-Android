@@ -251,7 +251,7 @@ public final class PushProcessMessageJob extends BaseJob {
           Log.w(TAG, "Bad groupId! Using default queue.");
         }
       } else {
-        queueSuffix = RecipientId.from(content.getSender()).toQueueKey();
+        queueSuffix = RecipientId.fromHighTrust(content.getSender()).toQueueKey();
       }
     } else if (exceptionMetadata != null) {
       Recipient recipient = exceptionMetadata.groupId != null ? Recipient.externalGroup(context, exceptionMetadata.groupId)
@@ -498,7 +498,7 @@ public final class PushProcessMessageJob extends BaseJob {
       database.markAsMissedCall(smsMessageId.get());
     } else {
       Intent     intent     = new Intent(context, WebRtcCallService.class);
-      RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+      RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
       intent.setAction(WebRtcCallService.ACTION_RECEIVE_OFFER)
             .putExtra(WebRtcCallService.EXTRA_CALL_ID,                    message.getId())
@@ -520,7 +520,7 @@ public final class PushProcessMessageJob extends BaseJob {
   {
     Log.i(TAG, "handleCallAnswerMessage...");
     Intent     intent     = new Intent(context, WebRtcCallService.class);
-    RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+    RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
     intent.setAction(WebRtcCallService.ACTION_RECEIVE_ANSWER)
           .putExtra(WebRtcCallService.EXTRA_CALL_ID,            message.getId())
@@ -545,7 +545,7 @@ public final class PushProcessMessageJob extends BaseJob {
     }
 
     Intent     intent     = new Intent(context, WebRtcCallService.class);
-    RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+    RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
     intent.setAction(WebRtcCallService.ACTION_RECEIVE_ICE_CANDIDATES)
           .putExtra(WebRtcCallService.EXTRA_CALL_ID,       callId)
@@ -565,7 +565,7 @@ public final class PushProcessMessageJob extends BaseJob {
       DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get());
     } else {
       Intent     intent     = new Intent(context, WebRtcCallService.class);
-      RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+      RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
       intent.setAction(WebRtcCallService.ACTION_RECEIVE_HANGUP)
             .putExtra(WebRtcCallService.EXTRA_CALL_ID,          message.getId())
@@ -585,7 +585,7 @@ public final class PushProcessMessageJob extends BaseJob {
     Log.i(TAG, "handleCallBusyMessage");
 
     Intent     intent     = new Intent(context, WebRtcCallService.class);
-    RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+    RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
     intent.setAction(WebRtcCallService.ACTION_RECEIVE_BUSY)
           .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
@@ -599,7 +599,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                        @NonNull Optional<Long>       smsMessageId)
   {
     SmsDatabase         smsDatabase         = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(),
+    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Recipient.externalHighTrustPush(context, content.getSender()).getId(),
                                                                       content.getSenderDevice(),
                                                                       content.getTimestamp(),
                                                                       content.getServerReceivedTimestamp(),
@@ -677,7 +677,7 @@ public final class PushProcessMessageJob extends BaseJob {
     if (group.getGroupV1().isPresent()) {
       SignalServiceGroup groupV1 = group.getGroupV1().get();
       if (groupV1.getType() != SignalServiceGroup.Type.REQUEST_INFO) {
-        ApplicationDependencies.getJobManager().add(new RequestGroupInfoJob(Recipient.externalPush(context, content.getSender()).getId(), GroupId.v1(groupV1.getGroupId())));
+        ApplicationDependencies.getJobManager().add(new RequestGroupInfoJob(Recipient.externalHighTrustPush(context, content.getSender()).getId(), GroupId.v1(groupV1.getGroupId())));
       } else {
         Log.w(TAG, "Received a REQUEST_INFO message for a group we don't know about. Ignoring.");
       }
@@ -708,7 +708,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-      Recipient            sender       = Recipient.externalPush(context, content.getSender());
+      Recipient            sender       = Recipient.externalHighTrustPush(context, content.getSender());
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(sender.getId(),
                                                                    content.getTimestamp(),
                                                                    content.getServerReceivedTimestamp(),
@@ -744,7 +744,7 @@ public final class PushProcessMessageJob extends BaseJob {
     MessageRecord targetMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
 
     if (targetMessage != null && !targetMessage.isRemoteDelete()) {
-      Recipient         reactionAuthor = Recipient.externalPush(context, content.getSender());
+      Recipient         reactionAuthor = Recipient.externalHighTrustPush(context, content.getSender());
       MessagingDatabase db             = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
 
       if (reaction.isRemove()) {
@@ -766,7 +766,7 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleRemoteDelete(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     SignalServiceDataMessage.RemoteDelete delete = message.getRemoteDelete().get();
 
-    Recipient     sender        = Recipient.externalPush(context, content.getSender());
+    Recipient     sender        = Recipient.externalHighTrustPush(context, content.getSender());
     MessageRecord targetMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(delete.getTargetSentTimestamp(), sender.getId());
 
     if (targetMessage != null && RemoteDeleteUtil.isValidReceive(targetMessage, sender, content.getServerReceivedTimestamp())) {
@@ -1024,7 +1024,7 @@ public final class PushProcessMessageJob extends BaseJob {
       Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
       Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
       Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
-      IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Recipient.externalPush(context, content.getSender()).getId(),
+      IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(RecipientId.fromHighTrust(content.getSender()),
                                                                             message.getTimestamp(),
                                                                             content.getServerReceivedTimestamp(),
                                                                             -1,
@@ -1243,7 +1243,7 @@ public final class PushProcessMessageJob extends BaseJob {
     } else {
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
-      IncomingTextMessage textMessage = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(),
+      IncomingTextMessage textMessage = new IncomingTextMessage(RecipientId.fromHighTrust(content.getSender()),
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(),
                                                                 content.getServerReceivedTimestamp(),
@@ -1445,7 +1445,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                 @NonNull byte[] messageProfileKeyBytes)
   {
     RecipientDatabase database          = DatabaseFactory.getRecipientDatabase(context);
-    Recipient         recipient         = Recipient.externalPush(context, content.getSender());
+    Recipient         recipient         = Recipient.externalHighTrustPush(context, content.getSender());
     ProfileKey        messageProfileKey = ProfileKeyUtil.profileKeyOrNull(messageProfileKeyBytes);
 
     if (messageProfileKey != null) {
@@ -1460,7 +1460,7 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,
                                           @NonNull SignalServiceDataMessage message)
   {
-    ApplicationDependencies.getJobManager().add(new SendDeliveryReceiptJob(Recipient.externalPush(context, content.getSender()).getId(), message.getTimestamp()));
+    ApplicationDependencies.getJobManager().add(new SendDeliveryReceiptJob(RecipientId.fromHighTrust(content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")
@@ -1470,7 +1470,7 @@ public final class PushProcessMessageJob extends BaseJob {
     for (long timestamp : message.getTimestamps()) {
       Log.i(TAG, String.format("Received encrypted delivery receipt: (XXXXX, %d)", timestamp));
       DatabaseFactory.getMmsSmsDatabase(context)
-                     .incrementDeliveryReceiptCount(new SyncMessageId(Recipient.externalPush(context, content.getSender()).getId(), timestamp), System.currentTimeMillis());
+                     .incrementDeliveryReceiptCount(new SyncMessageId(RecipientId.fromHighTrust(content.getSender()), timestamp), System.currentTimeMillis());
     }
   }
 
@@ -1482,7 +1482,7 @@ public final class PushProcessMessageJob extends BaseJob {
       for (long timestamp : message.getTimestamps()) {
         Log.i(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp));
 
-        Recipient     sender  = Recipient.externalPush(context, content.getSender());
+        Recipient     sender  = Recipient.externalHighTrustPush(context, content.getSender());
         SyncMessageId id      = new SyncMessageId(sender.getId(), timestamp);
         boolean       handled = DatabaseFactory.getMmsSmsDatabase(context)
                                                .incrementReadReceiptCount(id, content.getTimestamp());
@@ -1503,7 +1503,7 @@ public final class PushProcessMessageJob extends BaseJob {
       return;
     }
 
-    Recipient author = Recipient.externalPush(context, content.getSender());
+    Recipient author = Recipient.externalHighTrustPush(context, content.getSender());
 
     long threadId;
 
@@ -1703,7 +1703,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                           @NonNull SignalServiceDataMessage message)
       throws BadGroupIdException
   {
-    return getGroupRecipient(message.getGroupContext()).or(() -> Recipient.externalPush(context, content.getSender()));
+    return getGroupRecipient(message.getGroupContext()).or(() -> Recipient.externalHighTrustPush(context, content.getSender()));
   }
 
   private Recipient getMessageDestination(@NonNull SignalServiceContent content,
@@ -1740,7 +1740,7 @@ public final class PushProcessMessageJob extends BaseJob {
       return true;
     }
 
-    Recipient sender = Recipient.externalPush(context, content.getSender());
+    Recipient sender = Recipient.externalHighTrustPush(context, content.getSender());
 
     if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();

@@ -22,6 +22,7 @@ import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
+import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -137,8 +138,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int SERVER_DELIVERED_TIMESTAMP       = 64;
   private static final int QUOTE_CLEANUP                    = 65;
   private static final int BORDERLESS                       = 66;
+  private static final int REMAPPED_RECORDS                 = 67;
 
-  private static final int    DATABASE_VERSION = 66;
+  private static final int    DATABASE_VERSION = 67;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -184,6 +186,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(MegaphoneDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, JobDatabase.CREATE_TABLE);
+    executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
 
     executeStatements(db, RecipientDatabase.CREATE_INDEXS);
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
@@ -956,6 +959,15 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < BORDERLESS) {
         db.execSQL("ALTER TABLE part ADD COLUMN borderless INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < REMAPPED_RECORDS) {
+        db.execSQL("CREATE TABLE remapped_recipients (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                     "old_id INTEGER UNIQUE, " +
+                                                     "new_id INTEGER)");
+        db.execSQL("CREATE TABLE remapped_threads (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                  "old_id INTEGER UNIQUE, " +
+                                                  "new_id INTEGER)");
       }
 
       db.setTransactionSuccessful();

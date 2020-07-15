@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientIdResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -129,7 +130,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalUsername(@NonNull Context context, @NonNull UUID uuid, @NonNull String username) {
-    Recipient recipient = externalPush(context, uuid, null);
+    Recipient recipient = externalPush(context, uuid, null, false);
     DatabaseFactory.getRecipientDatabase(context).setUsername(recipient.getId(), username);
     return recipient;
   }
@@ -137,11 +138,25 @@ public class Recipient {
   /**
    * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
    * creating one in the database if necessary. Convenience overload of
-   * {@link #externalPush(Context, UUID, String)}
+   * {@link #externalPush(Context, UUID, String, boolean)}
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull());
+    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), false);
+  }
+
+  /**
+   * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
+   * creating one in the database if necessary. This should only used for high-trust sources,
+   * which are limited to:
+   * - Envelopes
+   * - UD Certs
+   * - CDS
+   * - Storage Service
+   */
+  @WorkerThread
+  public static @NonNull Recipient externalHighTrustPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
+    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), true);
   }
 
   /**
@@ -152,73 +167,20 @@ public class Recipient {
    * In particular, while we'll eventually get the UUID of a user created via a phone number
    * (through a directory sync), the only way we can store the phone number is by retrieving it from
    * sent messages and whatnot. So we should store it when available.
+   *
+   * @param highTrust This should only be set to true if the source of the E164-UUID pairing is one
+   *                  that can be trusted as accurate (like an envelope).
    */
   @WorkerThread
-  public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable UUID uuid, @Nullable String e164) {
+  public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable UUID uuid, @Nullable String e164, boolean highTrust) {
     if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
       throw new AssertionError();
     }
 
-    RecipientDatabase     db       = DatabaseFactory.getRecipientDatabase(context);
-    Optional<RecipientId> uuidUser = uuid != null ? db.getByUuid(uuid) : Optional.absent();
-    Optional<RecipientId> e164User = e164 != null ? db.getByE164(e164) : Optional.absent();
+    RecipientDatabase db          = DatabaseFactory.getRecipientDatabase(context);
+    RecipientId       recipientId = db.getAndPossiblyMerge(uuid, e164, highTrust);
 
-    if (uuidUser.isPresent()) {
-      Recipient recipient = resolved(uuidUser.get());
-
-      if (e164 != null && !recipient.getE164().isPresent() && !e164User.isPresent()) {
-        db.setPhoneNumber(recipient.getId(), e164);
-      }
-
-      return resolved(recipient.getId());
-    } else if (e164User.isPresent()) {
-      Recipient recipient = resolved(e164User.get());
-
-      if (uuid != null && !recipient.getUuid().isPresent()) {
-        db.markRegistered(recipient.getId(), uuid);
-      } else if (!recipient.isRegistered()) {
-        db.markRegistered(recipient.getId());
-
-        if (FeatureFlags.cds()) {
-          Log.i(TAG, "No UUID! Scheduling a fetch.");
-          ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
-        }
-      }
-
-      return resolved(recipient.getId());
-    } else if (uuid != null) {
-      if (FeatureFlags.uuidOnlyContacts() || e164 != null) {
-        RecipientId id = db.getOrInsertFromUuid(uuid);
-        db.markRegistered(id, uuid);
-
-        if (e164 != null) {
-          db.setPhoneNumber(id, e164);
-        }
-
-        return resolved(id);
-      } else {
-        if (!FeatureFlags.uuidOnlyContacts() && FeatureFlags.groupsV2()) {
-          throw new RuntimeException(new UuidRecipientError());
-        } else {
-          throw new UuidRecipientError();
-        }
-      }
-    } else if (e164 != null) {
-      Recipient recipient = resolved(db.getOrInsertFromE164(e164));
-
-      if (!recipient.isRegistered()) {
-        db.markRegistered(recipient.getId());
-
-        if (FeatureFlags.cds()) {
-          Log.i(TAG, "No UUID! Scheduling a fetch.");
-          ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
-        }
-      }
-
-      return resolved(recipient.getId());
-    } else {
-      throw new AssertionError("You must provide either a UUID or phone number!");
-    }
+    return resolved(recipientId);
   }
 
   /**
@@ -259,7 +221,7 @@ public class Recipient {
    * or serialized groupId.
    *
    * If the identifier is a UUID of a Signal user, prefer using
-   * {@link #externalPush(Context, UUID, String)} or its overload, as this will let us associate
+   * {@link #externalPush(Context, UUID, String, boolean)} or its overload, as this will let us associate
    * the phone number with the recipient.
    */
   @WorkerThread

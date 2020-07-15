@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class DraftDatabase extends Database {
 
-  private static final String TABLE_NAME  = "drafts";
+          static final String TABLE_NAME  = "drafts";
   public  static final String ID          = "_id";
   public  static final String THREAD_ID   = "thread_id";
   public  static final String DRAFT_TYPE  = "type";
