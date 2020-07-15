@@ -11,8 +11,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="11dp"
-        android:textAppearance="@style/Signal.Text.MessageRequest.Description"
         android:paddingTop="16dp"
+        android:textAppearance="@style/Signal.Text.MessageRequest.Description"
         app:layout_constraintBottom_toTopOf="@id/message_request_button_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,12 +20,12 @@
 
     <Button
         android:id="@+id/message_request_block"
+        style="@style/Signal.MessageRequest.Button.Deny"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        style="@style/Signal.MessageRequest.Button.Deny"
         android:text="@string/MessageRequestBottomView_block"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/message_request_delete"
@@ -34,10 +34,10 @@
 
     <Button
         android:id="@+id/message_request_delete"
+        style="@style/Signal.MessageRequest.Button.Deny"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        style="@style/Signal.MessageRequest.Button.Deny"
         android:text="@string/MessageRequestBottomView_delete"
         app:layout_constraintBottom_toBottomOf="@id/message_request_block"
         app:layout_constraintEnd_toStartOf="@+id/message_request_accept"
@@ -47,10 +47,10 @@
 
     <Button
         android:id="@+id/message_request_accept"
+        style="@style/Signal.MessageRequest.Button.Accept"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
-        style="@style/Signal.MessageRequest.Button.Accept"
         android:text="@string/MessageRequestBottomView_accept"
         app:layout_constraintBottom_toBottomOf="@id/message_request_block"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,35 +60,35 @@
 
     <Button
         android:id="@+id/message_request_big_delete"
+        style="@style/Signal.MessageRequest.Button.Deny"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        style="@style/Signal.MessageRequest.Button.Deny"
         android:text="@string/MessageRequestBottomView_delete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/message_request_big_unblock"/>
+        app:layout_constraintEnd_toStartOf="@id/message_request_big_unblock"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/message_request_big_unblock"
+        style="@style/Signal.MessageRequest.Button.Accept"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
-        style="@style/Signal.MessageRequest.Button.Accept"
         android:text="@string/MessageRequestBottomView_unblock"
-        app:layout_constraintTop_toTopOf="@id/message_request_big_delete"
-        app:layout_constraintStart_toEndOf="@id/message_request_big_delete"
+        app:layout_constraintBottom_toBottomOf="@id/message_request_big_delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/message_request_big_delete"/>
+        app:layout_constraintStart_toEndOf="@id/message_request_big_delete"
+        app:layout_constraintTop_toTopOf="@id/message_request_big_delete" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/message_request_button_barrier"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="message_request_block,message_request_big_delete"/>
+        app:constraint_referenced_ids="message_request_block,message_request_big_delete" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/message_request_normal_buttons"
@@ -102,6 +102,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        tools:visibility="visible"
-        app:constraint_referenced_ids="message_request_big_delete,message_request_big_unblock" />
+        app:constraint_referenced_ids="message_request_big_delete,message_request_big_unblock"
+        tools:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/message_request_busy_indicator"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/message_request_question"
+        tools:visibility="visible" />
+
 </merge>

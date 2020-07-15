@@ -120,7 +120,7 @@ final class RecipientDialogViewModel extends ViewModel {
   }
 
   void onBlockClicked(@NonNull FragmentActivity activity) {
-    recipientDialogRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.block(context, recipient)));
+    recipientDialogRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.blockNonGroup(context, recipient)));
   }
 
   void onUnblockClicked(@NonNull FragmentActivity activity) {

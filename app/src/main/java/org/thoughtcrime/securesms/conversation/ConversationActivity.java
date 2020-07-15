@@ -2847,23 +2847,42 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onMessageRequest(@NonNull MessageRequestViewModel viewModel) {
-    messageRequestBottomView.setAcceptOnClickListener(v -> viewModel.onAccept(this::showGroupChangeErrorToast));
+    messageRequestBottomView.setAcceptOnClickListener(v -> viewModel.onAccept());
     messageRequestBottomView.setDeleteOnClickListener(v -> onMessageRequestDeleteClicked(viewModel));
     messageRequestBottomView.setBlockOnClickListener(v -> onMessageRequestBlockClicked(viewModel));
     messageRequestBottomView.setUnblockOnClickListener(v -> onMessageRequestUnblockClicked(viewModel));
 
     viewModel.getRecipient().observe(this, this::presentMessageRequestBottomViewTo);
     viewModel.getMessageRequestDisplayState().observe(this, this::presentMessageRequestDisplayState);
+    viewModel.getFailures().observe(this, this::showGroupChangeErrorToast);
     viewModel.getMessageRequestStatus().observe(this, status -> {
       switch (status) {
+        case IDLE:
+          hideMessageRequestBusy();
+          break;
+        case ACCEPTING:
+        case BLOCKING:
+        case DELETING:
+          showMessageRequestBusy();
+          break;
         case ACCEPTED:
+          hideMessageRequestBusy();
           messageRequestBottomView.setVisibility(View.GONE);
-          return;
+          break;
         case DELETED:
         case BLOCKED:
+          hideMessageRequestBusy();
           finish();
       }
     });
+  }
+
+  private void showMessageRequestBusy() {
+    messageRequestBottomView.showBusy();
+  }
+
+  private void hideMessageRequestBusy() {
+    messageRequestBottomView.hideBusy();
   }
 
   private void showGroupChangeErrorToast(@NonNull GroupChangeFailureReason e) {

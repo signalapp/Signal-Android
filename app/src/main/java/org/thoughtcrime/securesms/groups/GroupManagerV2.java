@@ -14,6 +14,8 @@ import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
+import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
+import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
@@ -54,6 +56,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -268,7 +271,20 @@ final class GroupManagerV2 {
     @NonNull GroupManager.GroupActionResult leaveGroup()
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
-      return ejectMember(Recipient.self().getId());
+      Recipient                        self               = Recipient.self();
+      GroupDatabase.GroupRecord        groupRecord        = groupDatabase.getGroup(groupId).get();
+      List<DecryptedPendingMember>     pendingMembersList = groupRecord.requireV2GroupProperties().getDecryptedGroup().getPendingMembersList();
+      Optional<DecryptedPendingMember> selfPendingMember  = DecryptedGroupUtil.findPendingByUuid(pendingMembersList, selfUuid);
+
+      if (selfPendingMember.isPresent()) {
+        try {
+          return cancelInvites(Collections.singleton(new UuidCiphertext(selfPendingMember.get().getUuidCipherText().toByteArray())));
+        } catch (InvalidInputException e) {
+          throw new AssertionError(e);
+        }
+      } else {
+        return ejectMember(self.getId());
+      }
     }
 
     @WorkerThread

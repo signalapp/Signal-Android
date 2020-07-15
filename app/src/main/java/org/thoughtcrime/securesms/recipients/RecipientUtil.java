@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,12 +8,13 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
@@ -66,8 +66,32 @@ public class RecipientUtil {
     return resolved.isPushGroup() || resolved.hasServiceIdentifier();
   }
 
+  /**
+   * You can call this for non-groups and not have to handle any network errors.
+   */
   @WorkerThread
-  public static void block(@NonNull Context context, @NonNull Recipient recipient) {
+  public static void blockNonGroup(@NonNull Context context, @NonNull Recipient recipient) {
+    if (recipient.isGroup()) {
+      throw new AssertionError();
+    }
+
+    try {
+      block(context, recipient);
+    } catch (GroupChangeBusyException | IOException | GroupChangeFailedException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  /**
+   * You can call this for any type of recipient but must handle network errors that can occur from
+   * GV2.
+   * <p>
+   * GV2 operations can also take longer due to the network.
+   */
+  @WorkerThread
+  public static void block(@NonNull Context context, @NonNull Recipient recipient)
+      throws GroupChangeBusyException, IOException, GroupChangeFailedException
+  {
     if (!isBlockable(recipient)) {
       throw new AssertionError("Recipient is not blockable!");
     }
@@ -76,8 +100,8 @@ public class RecipientUtil {
 
     DatabaseFactory.getRecipientDatabase(context).setBlocked(resolved.getId(), true);
 
-    if (resolved.isGroup()) {
-      leaveGroup(context, recipient);
+    if (resolved.isGroup() && recipient.getGroupId().get().isPush()) {
+      GroupManager.leaveGroupFromBlockOrMessageRequest(context, recipient.getGroupId().get().requirePush());
     }
 
     if (resolved.isSystemContact() || resolved.isProfileSharing() || isProfileSharedViaGroup(context,resolved)) {
@@ -99,20 +123,6 @@ public class RecipientUtil {
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
     StorageSyncHelper.scheduleSyncForDataChange();
     ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipient.getId()));
-  }
-
-  @WorkerThread
-  public static void leaveGroup(@NonNull Context context, @NonNull Recipient recipient) {
-    Recipient resolved = recipient.resolve();
-
-    if (!resolved.isGroup()) {
-      throw new AssertionError("Not a group!");
-    }
-
-    if (!GroupManager.silentLeaveGroup(context, resolved.requireGroupId().requirePush())) {
-      Log.w(TAG, "Failed to leave group.");
-      Toast.makeText(context, R.string.RecipientPreferenceActivity_error_leaving_group, Toast.LENGTH_LONG).show();
-    }
   }
 
   /**

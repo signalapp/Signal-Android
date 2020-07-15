@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -41,6 +43,7 @@ import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -205,8 +208,10 @@ public class ManageGroupViewModel extends ViewModel {
   }
 
   void blockAndLeave(@NonNull FragmentActivity activity) {
-    manageGroupRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient,
-                                       () -> RecipientUtil.block(context, recipient)));
+    manageGroupRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity,
+                                                                                    activity.getLifecycle(),
+                                                                                    recipient,
+                                                                                    () -> manageGroupRepository.blockAndLeaveGroup(this::showErrorToast)));
   }
 
   void unblock(@NonNull FragmentActivity activity) {

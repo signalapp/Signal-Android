@@ -11,12 +11,11 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.livedata.LiveDataTriple;
@@ -26,13 +25,14 @@ import java.util.List;
 
 public class MessageRequestViewModel extends ViewModel {
 
-  private final SingleLiveEvent<Status>           status        = new SingleLiveEvent<>();
-  private final MutableLiveData<Recipient>        recipient     = new MutableLiveData<>();
-  private final MutableLiveData<List<String>>     groups        = new MutableLiveData<>(Collections.emptyList());
-  private final MutableLiveData<GroupMemberCount> memberCount   = new MutableLiveData<>(GroupMemberCount.ZERO);
-  private final MutableLiveData<DisplayState>     displayState  = new MutableLiveData<>();
-  private final LiveData<RecipientInfo>           recipientInfo = Transformations.map(new LiveDataTriple<>(recipient, memberCount, groups),
-                                                                                      triple -> new RecipientInfo(triple.first(), triple.second(), triple.third()));
+  private final SingleLiveEvent<Status>                   status        = new SingleLiveEvent<>();
+  private final SingleLiveEvent<GroupChangeFailureReason> failures      = new SingleLiveEvent<>();
+  private final MutableLiveData<Recipient>                recipient     = new MutableLiveData<>();
+  private final MutableLiveData<List<String>>             groups        = new MutableLiveData<>(Collections.emptyList());
+  private final MutableLiveData<GroupMemberCount>         memberCount   = new MutableLiveData<>(GroupMemberCount.ZERO);
+  private final MutableLiveData<DisplayState>             displayState  = new MutableLiveData<>();
+  private final LiveData<RecipientInfo>                   recipientInfo = Transformations.map(new LiveDataTriple<>(recipient, memberCount, groups),
+                                                                                              triple -> new RecipientInfo(triple.first(), triple.second(), triple.third()));
 
   private final MessageRequestRepository repository;
 
@@ -85,44 +85,58 @@ public class MessageRequestViewModel extends ViewModel {
     return status;
   }
 
+  public LiveData<GroupChangeFailureReason> getFailures() {
+    return failures;
+  }
+
   public boolean shouldShowMessageRequest() {
     return displayState.getValue() == DisplayState.DISPLAY_MESSAGE_REQUEST;
   }
 
   @MainThread
-  public void onAccept(@NonNull GroupChangeErrorCallback error) {
-    repository.acceptMessageRequest(liveRecipient, threadId, () -> {
-      status.postValue(Status.ACCEPTED);
-    },
-    error);
+  public void onAccept() {
+    status.setValue(Status.ACCEPTING);
+    repository.acceptMessageRequest(liveRecipient,
+                                    threadId,
+                                    () -> status.postValue(Status.ACCEPTED),
+                                    this::onGroupChangeError);
   }
 
   @MainThread
   public void onDelete() {
-    repository.deleteMessageRequest(liveRecipient, threadId, () -> {
-      status.postValue(Status.DELETED);
-    });
+    status.setValue(Status.DELETING);
+    repository.deleteMessageRequest(liveRecipient,
+                                    threadId,
+                                    () -> status.postValue(Status.DELETED),
+                                    this::onGroupChangeError);
   }
 
   @MainThread
   public void onBlock() {
-    repository.blockMessageRequest(liveRecipient, () -> {
-      status.postValue(Status.BLOCKED);
-    });
+    status.setValue(Status.BLOCKING);
+    repository.blockMessageRequest(liveRecipient,
+                                   () -> status.postValue(Status.BLOCKED),
+                                   this::onGroupChangeError);
   }
 
   @MainThread
   public void onUnblock() {
-    repository.unblockAndAccept(liveRecipient, threadId, () -> {
-      status.postValue(Status.ACCEPTED);
-    });
+    repository.unblockAndAccept(liveRecipient,
+                                threadId,
+                                () -> status.postValue(Status.ACCEPTED));
   }
 
   @MainThread
   public void onBlockAndDelete() {
-    repository.blockAndDeleteMessageRequest(liveRecipient, threadId, () -> {
-      status.postValue(Status.BLOCKED);
-    });
+    repository.blockAndDeleteMessageRequest(liveRecipient,
+                                            threadId,
+                                            () -> status.postValue(Status.BLOCKED),
+                                            this::onGroupChangeError);
+  }
+
+  private void onGroupChangeError(@NonNull GroupChangeFailureReason error) {
+    status.postValue(Status.IDLE);
+    failures.postValue(error);
   }
 
   private void loadRecipient() {
@@ -191,8 +205,12 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   public enum Status {
+    IDLE,
+    BLOCKING,
     BLOCKED,
+    DELETING,
     DELETED,
+    ACCEPTING,
     ACCEPTED
   }
 

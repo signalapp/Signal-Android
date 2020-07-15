@@ -127,11 +127,15 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static boolean silentLeaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId) {
+  public static void leaveGroupFromBlockOrMessageRequest(@NonNull Context context, @NonNull GroupId.Push groupId)
+      throws IOException, GroupChangeBusyException, GroupChangeFailedException
+  {
     if (groupId.isV2()) {
-      throw new AssertionError("NYI"); // TODO [Alan] GV2 support silent leave for block and leave operations on GV2
+      leaveGroup(context, groupId.requireV2());
     } else {
-      return GroupManagerV1.silentLeaveGroup(context, groupId.requireV1());
+      if (!GroupManagerV1.silentLeaveGroup(context, groupId.requireV1())) {
+        throw new GroupChangeFailedException();
+      }
     }
   }
 

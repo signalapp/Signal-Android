@@ -210,7 +210,7 @@ public final class ManageRecipientViewModel extends ViewModel {
   }
 
   void onBlockClicked(@NonNull FragmentActivity activity) {
-    withRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.block(context, recipient)));
+    withRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.blockNonGroup(context, recipient)));
   }
 
   void onUnblockClicked(@NonNull FragmentActivity activity) {

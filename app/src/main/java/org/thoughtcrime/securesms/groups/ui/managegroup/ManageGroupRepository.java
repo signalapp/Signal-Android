@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -156,6 +157,17 @@ final class ManageGroupRepository {
       } catch (MembershipNotSuitableForV2Exception e) {
         Log.w(TAG, e);
         error.onError(GroupChangeFailureReason.NOT_CAPABLE);
+      }
+    });
+  }
+
+  void blockAndLeaveGroup(@NonNull GroupChangeErrorCallback error) {
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      try {
+        RecipientUtil.block(context, Recipient.externalGroup(context, groupId));
+      } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
+        Log.w(TAG, e);
+        error.onError(GroupChangeFailureReason.OTHER);
       }
     });
   }
