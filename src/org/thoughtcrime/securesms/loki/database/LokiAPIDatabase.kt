@@ -70,11 +70,25 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val publicChatID = "public_chat_id"
         private val userCount = "user_count"
         @JvmStatic val createUserCountCacheCommand = "CREATE TABLE $userCountCache ($publicChatID STRING PRIMARY KEY, $userCount INTEGER DEFAULT 0);"
-        // Session request timestamp cache
+        // Session request sent timestamp cache
+        private val sessionRequestSentTimestampCache = "session_request_sent_timestamp_cache"
+        private val sessionRequestSentPublicKey = "public_key"
+        private val sessionRequestSentTimestamp = "timestamp"
+        @JvmStatic val createSessionRequestSentTimestampCacheCommand = "CREATE TABLE $sessionRequestSentTimestampCache ($sessionRequestSentPublicKey STRING PRIMARY KEY, $sessionRequestSentTimestamp INTEGER DEFAULT 0);"
+        // Session request processed timestamp cache
+        private val sessionRequestProcessedTimestampCache = "session_request_processed_timestamp_cache"
+        private val sessionRequestProcessedPublicKey = "public_key"
+        private val sessionRequestProcessedTimestamp = "timestamp"
+        @JvmStatic val createSessionRequestProcessedTimestampCacheCommand = "CREATE TABLE $sessionRequestProcessedTimestampCache ($sessionRequestProcessedPublicKey STRING PRIMARY KEY, $sessionRequestProcessedTimestamp INTEGER DEFAULT 0);"
+
+
+
+        // region Deprecated
         private val sessionRequestTimestampCache = "session_request_timestamp_cache"
         private val sessionRequestPublicKey = "public_key"
         private val timestamp = "timestamp"
         @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($sessionRequestPublicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
+        // endregion
     }
 
     override fun getSnodePool(): Set<Snode> {
@@ -323,17 +337,30 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(userCountCache, row, "$publicChatID = ?", wrap(index))
     }
 
-    override fun getSessionRequestTimestamp(publicKey: String): Long? {
+    override fun getSessionRequestSentTimestamp(publicKey: String): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(sessionRequestTimestampCache, "$LokiAPIDatabase.publicKey = ?", wrap(publicKey)) { cursor ->
-            cursor.getInt(LokiAPIDatabase.timestamp)
+        return database.get(sessionRequestSentTimestampCache, "${LokiAPIDatabase.sessionRequestSentPublicKey} = ?", wrap(publicKey)) { cursor ->
+            cursor.getInt(LokiAPIDatabase.sessionRequestSentTimestamp)
         }?.toLong()
     }
 
-    override fun setSessionRequestTimestamp(publicKey: String, timestamp: Long) {
+    override fun setSessionRequestSentTimestamp(publicKey: String, timestamp: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.sessionRequestPublicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
-        database.insertOrUpdate(sessionRequestTimestampCache, row, "${LokiAPIDatabase.sessionRequestPublicKey} = ?", wrap(publicKey))
+        val row = wrap(mapOf(LokiAPIDatabase.sessionRequestSentPublicKey to publicKey, LokiAPIDatabase.sessionRequestSentTimestamp to timestamp.toString()))
+        database.insertOrUpdate(sessionRequestSentTimestampCache, row, "${LokiAPIDatabase.sessionRequestSentPublicKey} = ?", wrap(publicKey))
+    }
+
+    override fun getSessionRequestProcessedTimestamp(publicKey: String): Long? {
+        val database = databaseHelper.readableDatabase
+        return database.get(sessionRequestProcessedTimestampCache, "${LokiAPIDatabase.sessionRequestProcessedPublicKey} = ?", wrap(publicKey)) { cursor ->
+            cursor.getInt(LokiAPIDatabase.sessionRequestProcessedTimestamp)
+        }?.toLong()
+    }
+
+    override fun setSessionRequestProcessedTimestamp(publicKey: String, timestamp: Long) {
+        val database = databaseHelper.writableDatabase
+        val row = wrap(mapOf(LokiAPIDatabase.sessionRequestProcessedPublicKey to publicKey, LokiAPIDatabase.sessionRequestProcessedTimestamp to timestamp.toString()))
+        database.insertOrUpdate(sessionRequestProcessedTimestampCache, row, "${LokiAPIDatabase.sessionRequestProcessedPublicKey} = ?", wrap(publicKey))
     }
 }
 

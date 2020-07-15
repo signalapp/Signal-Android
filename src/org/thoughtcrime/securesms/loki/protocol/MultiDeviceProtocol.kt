@@ -169,7 +169,7 @@ object MultiDeviceProtocol {
         TextSecurePreferences.setMasterHexEncodedPublicKey(context, deviceLink.masterPublicKey)
         TextSecurePreferences.setMultiDevice(context, true)
         FileServerAPI.shared.addDeviceLink(deviceLink)
-        org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.duplicate_handleProfileKey(context, content)
+        org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileKeyUpdate(context, content)
     }
 
     @JvmStatic

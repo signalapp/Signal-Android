@@ -19,22 +19,23 @@ import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class PushSessionRequestMessageSendJob private constructor(parameters: Parameters, private val publicKey: String) : BaseJob(parameters) {
+class PushSessionRequestMessageSendJob private constructor(parameters: Parameters, private val publicKey: String, private val timestamp: Long) : BaseJob(parameters) {
 
     companion object {
         const val KEY = "PushSessionRequestMessageSendJob"
     }
 
-    constructor(publicKey: String) : this(Parameters.Builder()
+    constructor(publicKey: String, timestamp: Long) : this(Parameters.Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue(KEY)
             .setLifespan(TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(1)
             .build(),
-            publicKey)
+            publicKey,
+            timestamp)
 
     override fun serialize(): Data {
-        return Data.Builder().putString("publicKey", publicKey).build()
+        return Data.Builder().putString("publicKey", publicKey).putLong("timestamp", timestamp).build()
     }
 
     override fun getFactoryKey(): String { return KEY }
@@ -83,14 +84,21 @@ class PushSessionRequestMessageSendJob private constructor(parameters: Parameter
         return false
     }
 
-    override fun onCanceled() { }
+    override fun onCanceled() {
+        // Update the DB on fail if this is still the most recently sent session request (should always be true)
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
+        if (apiDB.getSessionRequestSentTimestamp(publicKey) == timestamp) {
+            apiDB.setSessionRequestSentTimestamp(publicKey, 0)
+        }
+    }
 
     class Factory : Job.Factory<PushSessionRequestMessageSendJob> {
 
         override fun create(parameters: Parameters, data: Data): PushSessionRequestMessageSendJob {
             try {
                 val publicKey = data.getString("publicKey")
-                return PushSessionRequestMessageSendJob(parameters, publicKey)
+                val timestamp = data.getLong("timestamp")
+                return PushSessionRequestMessageSendJob(parameters, publicKey, timestamp)
             } catch (e: IOException) {
                 throw AssertionError(e)
             }

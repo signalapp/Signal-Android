@@ -594,13 +594,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
     boolean hasSession = new TextSecureSessionStore(this).containsSession(address);
     if (hasSession) { return; }
-    // Check that we didn't already send or process a session request
+    // Check that we didn't already send a session request
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-    boolean hasSentOrProcessedSessionRequest = (apiDB.getSessionRequestTimestamp(publicKey) != null);
-    if (hasSentOrProcessedSessionRequest) { return; }
+    boolean hasSentSessionRequest = (apiDB.getSessionRequestSentTimestamp(publicKey) != null);
+    if (hasSentSessionRequest) { return; }
     // Send the session request
-    DatabaseFactory.getLokiAPIDatabase(this).setSessionRequestTimestamp(publicKey, new Date().getTime());
-    PushSessionRequestMessageSendJob job = new PushSessionRequestMessageSendJob(publicKey);
+    long timestamp = new Date().getTime();
+    DatabaseFactory.getLokiAPIDatabase(this).setSessionRequestSentTimestamp(publicKey, timestamp);
+    PushSessionRequestMessageSendJob job = new PushSessionRequestMessageSendJob(publicKey, timestamp);
     jobManager.add(job);
   }
   // endregion

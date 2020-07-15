@@ -54,24 +54,29 @@ object SessionManagementProtocol {
     }
 
     @JvmStatic
+    fun shouldProcessSessionRequest(context: Context, publicKey: String, timestamp: Long): Boolean {
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
+        val sentTimestamp = apiDB.getSessionRequestSentTimestamp(publicKey) ?: 0
+        val processedTimestamp = apiDB.getSessionRequestProcessedTimestamp(publicKey) ?: 0
+        return timestamp > sentTimestamp && timestamp > processedTimestamp
+    }
+
+    @JvmStatic
     fun handlePreKeyBundleMessageIfNeeded(context: Context, content: SignalServiceContent) {
-        val publicKey = content.sender
-        val recipient = recipient(context, publicKey)
-        if (recipient.isGroupRecipient) { return } // Should never occur
         val preKeyBundleMessage = content.preKeyBundleMessage.orNull() ?: return
-        val registrationID = TextSecurePreferences.getLocalRegistrationId(context) // TODO: It seems wrong to use the local registration ID for this?
-        val lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context)
+        val publicKey = content.sender
+        if (recipient(context, publicKey).isGroupRecipient) { return } // Should never occur
         Log.d("Loki", "Received a pre key bundle from: $publicKey.")
-        val sessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
-        if (sessionRequestTimestamp != null && content.timestamp < sessionRequestTimestamp) {
-            // We sent or processed a session request after this one was sent
-            Log.d("Loki", "Ignoring session request from: ${content.sender}.")
+        if (!shouldProcessSessionRequest(context, publicKey, content.timestamp)) {
+            Log.d("Loki", "Ignoring session request from: $publicKey.")
             return
         }
+        val registrationID = TextSecurePreferences.getLocalRegistrationId(context)
+        val lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context)
         val preKeyBundle = preKeyBundleMessage.getPreKeyBundle(registrationID)
-        lokiPreKeyBundleDatabase.setPreKeyBundle(content.sender, preKeyBundle)
-        DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestTimestamp(content.sender, Date().time)
-        val job = PushNullMessageSendJob(content.sender)
+        lokiPreKeyBundleDatabase.setPreKeyBundle(publicKey, preKeyBundle)
+        DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestProcessedTimestamp(publicKey, Date().time)
+        val job = PushNullMessageSendJob(publicKey)
         ApplicationContext.getInstance(context).jobManager.add(job)
     }
 
