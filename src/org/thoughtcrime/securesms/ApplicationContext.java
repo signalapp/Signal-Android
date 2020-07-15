@@ -152,7 +152,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   // Loki
   public MessageNotifier messageNotifier = null;
-  public Poller lokiPoller = null;
+  public Poller poller = null;
   public PublicChatManager publicChatManager = null;
   private PublicChatAPI publicChatAPI = null;
   public Broadcaster broadcaster = null;
@@ -226,7 +226,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     // Loki
-    if (lokiPoller != null) { lokiPoller.setCaughtUp(false); }
+    if (poller != null) { poller.setCaughtUp(false); }
     startPollingIfNeeded();
     publicChatManager.markAllAsNotCaughtUp();
     publicChatManager.startPollersIfNeeded();
@@ -239,7 +239,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppBackgrounded(this);
     messageNotifier.setVisibleThread(-1);
     // Loki
-    if (lokiPoller != null) { lokiPoller.stopIfNeeded(); }
+    if (poller != null) { poller.stopIfNeeded(); }
     if (publicChatManager != null) { publicChatManager.stopPollers(); }
   }
 
@@ -491,16 +491,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void setUpPollingIfNeeded() {
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userPublicKey == null) return;
-    if (lokiPoller != null) {
+    if (poller != null) {
       SnodeAPI.shared.setUserPublicKey(userPublicKey);
-      lokiPoller.setUserPublicKey(userPublicKey);
+      poller.setUserPublicKey(userPublicKey);
       return;
     }
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
     SwarmAPI.Companion.configureIfNeeded(apiDB);
     SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
-    lokiPoller = new Poller(userPublicKey, apiDB, protos -> {
+    poller = new Poller(userPublicKey, apiDB, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
         new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto), false);
       }
@@ -510,12 +510,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void startPollingIfNeeded() {
     setUpPollingIfNeeded();
-    if (lokiPoller != null) { lokiPoller.startIfNeeded(); }
+    if (poller != null) { poller.startIfNeeded(); }
   }
 
   public void stopPolling() {
-    if (lokiPoller == null) { return; }
-    lokiPoller.stopIfNeeded();
+    if (poller == null) { return; }
+    poller.stopIfNeeded();
   }
 
   private void resubmitProfilePictureIfNeeded() {

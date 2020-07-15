@@ -47,9 +47,8 @@ object SessionMetaProtocol {
         }
     }
 
-    // FIXME: Basically a duplicate of PushDecryptJob's handleProfileKey
     @JvmStatic
-    fun duplicate_handleProfileKey(context: Context, content: SignalServiceContent) {
+    fun handleProfileKeyUpdate(context: Context, content: SignalServiceContent) {
         val message = content.dataMessage.get()
         if (!message.profileKey.isPresent) { return }
         val database = DatabaseFactory.getRecipientDatabase(context)
@@ -59,15 +58,11 @@ object SessionMetaProtocol {
             database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN)
             val url = content.senderProfilePictureURL.or("")
             ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, url))
-            handleProfileKeyUpdateIfNeeded(context, content)
+            val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+            if (userMasterPublicKey == content.sender) {
+                ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
+            }
         }
-    }
-
-    @JvmStatic
-    fun handleProfileKeyUpdateIfNeeded(context: Context, content: SignalServiceContent) {
-        val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-        if (userMasterPublicKey != content.sender) { return }
-        ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
     }
 
     /**

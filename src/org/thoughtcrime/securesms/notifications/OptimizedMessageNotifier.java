@@ -40,7 +40,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
     PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {
@@ -60,7 +60,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
     PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {
@@ -80,7 +80,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId, boolean signal) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
     PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {
@@ -100,7 +100,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
     PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {

@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -68,7 +67,6 @@ import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
-import org.thoughtcrime.securesms.loki.protocol.PushNullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
@@ -129,7 +127,6 @@ import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
-import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -298,7 +295,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
 
           if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
-            handleProfileKey(content, message);
+            SessionMetaProtocol.handleProfileKeyUpdate(context, content);
           }
 
           if (content.isNeedsReceipt()) {
@@ -335,12 +332,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (message.isDeliveryReceipt()) handleDeliveryReceipt(content, message);
       } else if (content.getTypingMessage().isPresent()) {
         handleTypingMessage(content, content.getTypingMessage().get());
-      } else if (content.getNullMessage().isPresent()) {
-        if (content.preKeyBundleMessage.isPresent()) {
-          ApplicationContext.getInstance(context).getJobManager().add(new PushNullMessageSendJob(content.getSender()));
-        } else {
-          Log.w(TAG, "Got unrecognized message...");
-        }
+      } else {
+        Log.w(TAG, "Got unrecognized message...");
       }
 
       resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
@@ -637,7 +630,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
-        handleProfileKey(content, message.getMessage());
+        SessionMetaProtocol.handleProfileKeyUpdate(context, content);
       }
 
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
@@ -781,20 +774,28 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       messageNotifier.updateNotification(context, insertResult.get().getThreadId());
     }
 
-    // Loki - Store message open group server ID if needed
-    if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
-      long messageID = insertResult.get().getMessageId();
-      long messageServerID = messageServerIDOrNull.get();
-      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-      lokiMessageDatabase.setServerID(messageID, messageServerID);
-    }
-
-    // Loki - Update mapping of message ID to original thread ID
     if (insertResult.isPresent()) {
-      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-      long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
-      lokiMessageDatabase.setOriginalThreadID(insertResult.get().getMessageId(), originalThreadId);
+      InsertResult result = insertResult.get();
+
+      // Loki - Cache the user hex encoded public key (for mentions)
+      MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(result.getThreadId(), context);
+      MentionsManager.shared.cache(content.getSender(), result.getThreadId());
+
+      // Loki - Store message open group server ID if needed
+      if (messageServerIDOrNull.isPresent()) {
+        long messageID = result.getMessageId();
+        long messageServerID = messageServerIDOrNull.get();
+        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+        lokiMessageDatabase.setServerID(messageID, messageServerID);
+      }
+
+      // Loki - Update mapping of message ID to original thread ID
+      if (result.getMessageId() > -1) {
+        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+        long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
+        lokiMessageDatabase.setOriginalThreadID(result.getMessageId(), originalThreadId);
+      }
     }
   }
 
@@ -958,17 +959,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         // Loki - Cache the user hex encoded public key (for mentions)
         MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(result.getThreadId(), context);
-        MentionsManager.shared.cache(textMessage.getSender().serialize(), result.getThreadId());
+        MentionsManager.shared.cache(content.getSender(), result.getThreadId());
 
-        // Loki - Store message server ID
-        if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
-          long messageID = insertResult.get().getMessageId();
+        // Loki - Store message open group server ID if needed
+        if (messageServerIDOrNull.isPresent()) {
+          long messageID = result.getMessageId();
           long messageServerID = messageServerIDOrNull.get();
           LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
           lokiMessageDatabase.setServerID(messageID, messageServerID);
         }
 
-        // Loki - Update mapping of message to original thread ID
+        // Loki - Update mapping of message ID to original thread ID
         if (result.getMessageId() > -1) {
           ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
           LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
@@ -1125,28 +1126,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 //    } else {
 //      smsDatabase.markAsDecryptDuplicate(smsMessageId);
 //    }
-  }
-
-  private void handleProfileKey(@NonNull SignalServiceContent content,
-                                @NonNull SignalServiceDataMessage message)
-  {
-    if (!message.getProfileKey().isPresent()) { return; }
-
-    /*
-    If we get a profile key then we don't need to map it to the primary device.
-    For now a profile key is mapped one-to-one to avoid secondary devices setting the incorrect avatar for a primary device.
-     */
-    RecipientDatabase database      = DatabaseFactory.getRecipientDatabase(context);
-    Recipient         recipient     = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
-
-    if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
-      database.setProfileKey(recipient, message.getProfileKey().get());
-      database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
-      String url = content.senderProfilePictureURL.or("");
-      ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(recipient, url));
-
-      SessionMetaProtocol.handleProfileKeyUpdateIfNeeded(context, content);
-    }
   }
 
   private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,

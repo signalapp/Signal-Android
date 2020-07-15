@@ -162,9 +162,6 @@ object MultiDeviceProtocol {
         }
         val isValid = isValidDeviceLinkMessage(context, deviceLink)
         if (!isValid) { return }
-        // The line below isn't actually necessary because this is called after PushDecryptJob
-        // calls handlePreKeyBundleMessageIfNeeded, but it also doesn't hurt.
-        SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content)
         linkingSession.processLinkingAuthorization(deviceLink)
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         DatabaseFactory.getLokiAPIDatabase(context).clearDeviceLinks(userPublicKey)
@@ -172,7 +169,6 @@ object MultiDeviceProtocol {
         TextSecurePreferences.setMasterHexEncodedPublicKey(context, deviceLink.masterPublicKey)
         TextSecurePreferences.setMultiDevice(context, true)
         FileServerAPI.shared.addDeviceLink(deviceLink)
-        org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content)
         org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.duplicate_handleProfileKey(context, content)
     }
 
