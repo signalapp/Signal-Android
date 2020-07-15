@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
 
+    <!-- Wont pass lint or qa with a STOPSHIP in a comment -->
+    <issue id="StopShip" severity="fatal" />
+
     <!-- L10N errors -->
     <!-- This is a runtime crash so we don't want to ship with this. -->
     <issue id="StringFormatMatches" severity="error" />
