@@ -61,14 +61,13 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
-import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
+import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage;
+import org.thoughtcrime.securesms.loki.protocol.PushSessionRequestMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
-import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -601,8 +600,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (hasSentOrProcessedSessionRequest) { return; }
     // Send the session request
     DatabaseFactory.getLokiAPIDatabase(this).setSessionRequestTimestamp(publicKey, new Date().getTime());
-    EphemeralMessage sessionRequest = EphemeralMessage.createSessionRequest(publicKey);
-    jobManager.add(new PushEphemeralMessageSendJob(sessionRequest));
+    PushSessionRequestMessageSendJob job = new PushSessionRequestMessageSendJob(publicKey);
+    jobManager.add(job);
   }
   // endregion
 }

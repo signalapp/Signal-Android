@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
+import org.thoughtcrime.securesms.loki.protocol.PushNullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
@@ -266,13 +267,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-      // Loki - Handle pre key bundle message if needed
       SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content);
 
-      // Loki - Handle session request if needed
-      if (SessionManagementProtocol.handleSessionRequestIfNeeded(context, content)) { return; } // Don't process the message any further
-
-      // Loki - Handle profile update if needed
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (content.getDeviceLink().isPresent()) {
@@ -281,7 +277,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        // Loki - Handle unlinking request if needed
         if (message.isDeviceUnlinkingRequest()) {
           MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
         } else {
@@ -341,14 +336,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else if (content.getTypingMessage().isPresent()) {
         handleTypingMessage(content, content.getTypingMessage().get());
       } else if (content.getNullMessage().isPresent()) {
-        // Loki - This is needed for compatibility with refactored desktop clients
-        // ========
-//        if (content.isFriendRequest()) {
-//          ApplicationContext.getInstance(context).getJobManager().add(new PushNullMessageSendJob(content.getSender()));
-//        } else {
-//          Log.w(TAG, "Got unrecognized message...");
-//        }
-        // ========
+        if (content.preKeyBundleMessage.isPresent()) {
+          ApplicationContext.getInstance(context).getJobManager().add(new PushNullMessageSendJob(content.getSender()));
+        } else {
+          Log.w(TAG, "Got unrecognized message...");
+        }
       }
 
       resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
@@ -645,11 +637,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
-        // Loki - Handle profile key update if needed
         handleProfileKey(content, message.getMessage());
       }
 
-      // Loki - Update profile if needed
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (threadId != null) {
@@ -754,7 +744,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
 
-    // Loki - Ignore message if it has no body and no attachments
+    // Ignore message if it has no body and no attachments
     if (mediaMessage.getBody().isEmpty() && mediaMessage.getAttachments().isEmpty() && mediaMessage.getLinkPreviews().isEmpty()) {
       return;
     }

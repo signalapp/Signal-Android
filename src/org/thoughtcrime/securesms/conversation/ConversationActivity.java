@@ -2359,6 +2359,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
+    if (!recipient.isGroupRecipient()) {
+      ApplicationContext.getInstance(this).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+    }
+
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... param) {
@@ -2401,6 +2405,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     silentlySetComposeText("");
     final long id = fragment.stageOutgoingMessage(message);
+
+    if (!recipient.isGroupRecipient()) {
+      ApplicationContext.getInstance(this).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+    }
 
     new AsyncTask<OutgoingTextMessage, Void, Long>() {
       @Override

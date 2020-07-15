@@ -11,6 +11,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.loki.SessionResetStatus
@@ -27,8 +29,8 @@ object SessionManagementProtocol {
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         val devices = lokiThreadDB.getSessionRestoreDevices(threadID)
         for (device in devices) {
-            val sessionRequest = EphemeralMessage.createSessionRequest(recipient.address.serialize())
-            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRequest))
+            val endSessionMessage = OutgoingEndSessionMessage(OutgoingTextMessage(recipient, "TERMINATE", 0, -1))
+            MessageSender.send(context, endSessionMessage, threadID, false, null)
         }
         val infoMessage = OutgoingTextMessage(recipient, "", 0, 0)
         val infoMessageID = smsDB.insertMessageOutbox(threadID, infoMessage, false, System.currentTimeMillis(), null)
@@ -53,37 +55,24 @@ object SessionManagementProtocol {
 
     @JvmStatic
     fun handlePreKeyBundleMessageIfNeeded(context: Context, content: SignalServiceContent) {
-        val recipient = recipient(context, content.sender)
-        if (recipient.isGroupRecipient) { return }
-        val preKeyBundleMessage = content.lokiServiceMessage.orNull()?.preKeyBundleMessage ?: return
+        val publicKey = content.sender
+        val recipient = recipient(context, publicKey)
+        if (recipient.isGroupRecipient) { return } // Should never occur
+        val preKeyBundleMessage = content.preKeyBundleMessage.orNull() ?: return
         val registrationID = TextSecurePreferences.getLocalRegistrationId(context) // TODO: It seems wrong to use the local registration ID for this?
         val lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context)
-        Log.d("Loki", "Received a pre key bundle from: " + content.sender.toString() + ".")
-        if (content.dataMessage.isPresent && content.dataMessage.get().isSessionRequest) {
-            val sessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
-            if (sessionRequestTimestamp != null && content.timestamp < sessionRequestTimestamp) {
-                // We sent or processed a session request after this one was sent
-                Log.d("Loki", "Ignoring session request from: ${content.sender}.")
-                return
-            }
-        }
-        val preKeyBundle = preKeyBundleMessage.getPreKeyBundle(registrationID)
-        lokiPreKeyBundleDatabase.setPreKeyBundle(content.sender, preKeyBundle)
-    }
-
-    @JvmStatic
-    fun handleSessionRequestIfNeeded(context: Context, content: SignalServiceContent): Boolean {
-        if (!content.dataMessage.isPresent || !content.dataMessage.get().isSessionRequest) { return false }
+        Log.d("Loki", "Received a pre key bundle from: $publicKey.")
         val sessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
         if (sessionRequestTimestamp != null && content.timestamp < sessionRequestTimestamp) {
             // We sent or processed a session request after this one was sent
             Log.d("Loki", "Ignoring session request from: ${content.sender}.")
-            return false
+            return
         }
+        val preKeyBundle = preKeyBundleMessage.getPreKeyBundle(registrationID)
+        lokiPreKeyBundleDatabase.setPreKeyBundle(content.sender, preKeyBundle)
         DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestTimestamp(content.sender, Date().time)
-        val ephemeralMessage = EphemeralMessage.create(content.sender)
-        ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
-        return true
+        val job = PushNullMessageSendJob(content.sender)
+        ApplicationContext.getInstance(context).jobManager.add(job)
     }
 
     @JvmStatic
@@ -95,8 +84,8 @@ object SessionManagementProtocol {
         sessionStore.archiveAllSessions(content.sender)
         lokiThreadDB.setSessionResetStatus(content.sender, SessionResetStatus.REQUEST_RECEIVED)
         Log.d("Loki", "Sending an ephemeral message back to: ${content.sender}.")
-        val ephemeralMessage = EphemeralMessage.create(content.sender)
-        ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
+        val job = PushNullMessageSendJob(content.sender)
+        ApplicationContext.getInstance(context).jobManager.add(job)
         SecurityEvent.broadcastSecurityUpdateEvent(context)
     }
 

@@ -75,7 +75,7 @@ public class MessageSender {
 
     long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
-    sendTextMessage(context, recipient, forceSms, keyExchange, messageId, message.isEndSession());
+    sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
 
     return allocatedThreadId;
   }
@@ -124,7 +124,7 @@ public class MessageSender {
     if (messageRecord.isMms()) {
       sendMediaMessage(context, recipient, forceSms, messageId, expiresIn);
     } else {
-      sendTextMessage(context, recipient, forceSms, keyExchange, messageId, messageRecord.isEndSession());
+      sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     }
   }
 
@@ -141,17 +141,17 @@ public class MessageSender {
 
   private static void sendTextMessage(Context context, Recipient recipient,
                                       boolean forceSms, boolean keyExchange,
-                                      long messageId, boolean isEndSession)
+                                      long messageId)
   {
     if (isLocalSelfSend(context, recipient, forceSms)) {
       sendLocalTextSelf(context, messageId);
     } else {
-      sendTextPush(context, recipient, messageId, isEndSession);
+      sendTextPush(context, recipient, messageId);
     }
   }
 
-  private static void sendTextPush(Context context, Recipient recipient, long messageId, boolean isEndSession) {
-    MultiDeviceProtocol.sendTextPush(context, recipient, messageId, isEndSession);
+  private static void sendTextPush(Context context, Recipient recipient, long messageId) {
+    MultiDeviceProtocol.sendTextPush(context, recipient, messageId);
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {

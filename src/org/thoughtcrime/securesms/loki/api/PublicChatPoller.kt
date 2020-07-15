@@ -165,7 +165,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
             }
             val senderHexEncodedPublicKey = masterHexEncodedPublicKey ?: message.publicKey
             val serviceDataMessage = getDataMessage(message)
-            val serviceContent = SignalServiceContent(serviceDataMessage, senderHexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false, false, false)
+            val serviceContent = SignalServiceContent(serviceDataMessage, senderHexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false, false)
             if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
                 PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             } else {

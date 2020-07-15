@@ -30,16 +30,16 @@ object MultiDeviceProtocol {
     enum class MessageType { Text, Media }
 
     @JvmStatic
-    fun sendTextPush(context: Context, recipient: Recipient, messageID: Long, isEndSession: Boolean) {
-        sendMessagePush(context, recipient, messageID, MessageType.Text, isEndSession)
+    fun sendTextPush(context: Context, recipient: Recipient, messageID: Long) {
+        sendMessagePush(context, recipient, messageID, MessageType.Text)
     }
 
     @JvmStatic
     fun sendMediaPush(context: Context, recipient: Recipient, messageID: Long) {
-        sendMessagePush(context, recipient, messageID, MessageType.Media, false)
+        sendMessagePush(context, recipient, messageID, MessageType.Media)
     }
 
-    private fun sendMessagePush(context: Context, recipient: Recipient, messageID: Long, messageType: MessageType, isEndSession: Boolean) {
+    private fun sendMessagePush(context: Context, recipient: Recipient, messageID: Long, messageType: MessageType) {
         val jobManager = ApplicationContext.getInstance(context).jobManager
         val isMultiDeviceRequired = !recipient.address.isOpenGroup
         if (!isMultiDeviceRequired) {
@@ -162,6 +162,8 @@ object MultiDeviceProtocol {
         }
         val isValid = isValidDeviceLinkMessage(context, deviceLink)
         if (!isValid) { return }
+        // The line below isn't actually necessary because this is called after PushDecryptJob
+        // calls handlePreKeyBundleMessageIfNeeded, but it also doesn't hurt.
         SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content)
         linkingSession.processLinkingAuthorization(deviceLink)
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)

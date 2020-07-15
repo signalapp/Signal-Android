@@ -19,8 +19,8 @@ class SessionResetImplementation(private val context: Context) : SessionResetPro
 
     override fun onNewSessionAdopted(publicKey: String, oldSessionResetStatus: SessionResetStatus) {
         if (oldSessionResetStatus == SessionResetStatus.IN_PROGRESS) {
-            val ephemeralMessage = EphemeralMessage.create(publicKey)
-            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
+            val job = PushNullMessageSendJob(publicKey)
+            ApplicationContext.getInstance(context).jobManager.add(job)
         }
         // TODO: Show session reset succeed message
     }

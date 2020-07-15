@@ -27,7 +27,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
 
     constructor() : this(Parameters.Builder()
         .addConstraint(NetworkConstraint.KEY)
-        .setQueue("MultiDeviceOpenGroupUpdateJob")
+        .setQueue(KEY)
         .setLifespan(TimeUnit.DAYS.toMillis(1))
         .setMaxAttempts(Parameters.UNLIMITED)
         .build())

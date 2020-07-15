@@ -94,10 +94,8 @@ object SyncMessagesProtocol {
         val contactPublicKeys = contactsInputStream.readAll().map { it.number }
         for (contactPublicKey in contactPublicKeys) {
             if (contactPublicKey == userPublicKey || !PublicKeyValidation.isValid(contactPublicKey)) { return }
-            val recipient = recipient(context, contactPublicKey)
             val applicationContext = context.applicationContext as ApplicationContext
             applicationContext.sendSessionRequestIfNeeded(contactPublicKey)
-            // TODO: Make the thread visible
         }
     }
 

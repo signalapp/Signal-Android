@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -196,11 +197,17 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
       log(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
 
+      PreKeyBundle preKeyBundle = null;
+      if (message.isEndSession()) {
+        preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(destination.serialize());
+      }
+
       SignalServiceDataMessage textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getDateSent())
                                                                            .withBody(message.getBody())
                                                                            .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                            .withProfileKey(profileKey.orNull())
+                                                                           .withPreKeyBundle(preKeyBundle)
                                                                            .asEndSessionMessage(message.isEndSession())
                                                                            .build();
 
