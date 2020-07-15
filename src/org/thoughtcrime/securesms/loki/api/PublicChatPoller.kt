@@ -27,11 +27,10 @@ import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChatMessage
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import java.security.MessageDigest
 import java.util.*
 
-class LokiPublicChatPoller(private val context: Context, private val group: PublicChat) {
+class PublicChatPoller(private val context: Context, private val group: PublicChat) {
     private val handler = Handler()
     private var hasStarted = false
     public var isCaughtUp = false
@@ -181,13 +180,6 @@ class LokiPublicChatPoller(private val context: Context, private val group: Publ
                     val database = DatabaseFactory.getRecipientDatabase(context)
                     database.setProfileKey(senderAsRecipient, profileKey)
                     ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderAsRecipient, url))
-                }
-            } else if (senderAsRecipient.profileAvatar.orEmpty().isNotEmpty()) {
-                // Clear the profile picture if we had a profile picture before and we're not friends with the person
-                val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(senderAsRecipient)
-                val friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID)
-                if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
-                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderAsRecipient, ""))
                 }
             }
         }

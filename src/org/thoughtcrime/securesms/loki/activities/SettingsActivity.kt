@@ -73,7 +73,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         showQRCodeButton.setOnClickListener { showQRCode() }
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
-        profilePictureView.hexEncodedPublicKey = hexEncodedPublicKey
+        profilePictureView.publicKey = hexEncodedPublicKey
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }

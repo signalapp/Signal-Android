@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.dialogs.PNModeBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
-import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation
+import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
@@ -47,18 +47,16 @@ import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
-import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import kotlin.math.abs
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
 
-    private val hexEncodedPublicKey: String
+    private val publicKey: String
         get() {
-            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
-            return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
+            val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+            return masterPublicKey ?: userPublicKey
         }
 
     // region Lifecycle
@@ -94,7 +92,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         glide = GlideApp.with(this)
         // Set up toolbar buttons
         profileButton.glide = glide
-        profileButton.hexEncodedPublicKey = hexEncodedPublicKey
+        profileButton.publicKey = publicKey
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
         pathStatusViewContainer.setOnClickListener { showPath() }
@@ -156,45 +154,23 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        val sessionResetImpl = LokiSessionResetImplementation(this)
+        val sessionResetImpl = SessionResetImplementation(this)
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
             SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
             SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
-            application.lokiPublicChatManager.startPollersIfNeeded()
+            application.publicChatManager.startPollersIfNeeded()
         }
         SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
         MultiDeviceProtocol.configureIfNeeded(apiDB)
         IP2Country.configureIfNeeded(this)
         // Preload device links to make message sending quicker
         val publicKeys = ContactUtilities.getAllContacts(this).filter { contact ->
-            !contact.recipient.isGroupRecipient && contact.isFriend && !contact.isOurDevice && !contact.isSlave
+            !contact.recipient.isGroupRecipient && !contact.isOurDevice && !contact.isSlave
         }.map {
             it.recipient.address.toPhoneString()
         }.toSet()
         FileServerAPI.shared.getDeviceLinks(publicKeys)
-        // TODO: Temporary hack to unbork existing clients
-        val allContacts = DatabaseFactory.getRecipientDatabase(this).allAddresses.map {
-            MultiDeviceProtocol.shared.getMasterDevice(it.serialize()) ?: it.serialize()
-        }.toSet()
-        val lokiMessageDB = DatabaseFactory.getLokiMessageDatabase(this)
-        for (contact in allContacts) {
-            val slaveDeviceHasPendingFR = MultiDeviceProtocol.shared.getSlaveDevices(contact).any {
-                val slaveDeviceThreadID = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipient(this, it))
-                DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(slaveDeviceThreadID) == LokiThreadFriendRequestStatus.REQUEST_RECEIVED
-            }
-            val masterDeviceThreadID = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipient(this, contact))
-            val masterDeviceHasNoPendingFR = (DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(masterDeviceThreadID) == LokiThreadFriendRequestStatus.NONE)
-            if (slaveDeviceHasPendingFR && masterDeviceHasNoPendingFR) {
-                val lastMessageID = org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol.getLastMessageID(this, masterDeviceThreadID)
-                if (lastMessageID != null) {
-                    val lastMessageFRStatus = lokiMessageDB.getFriendRequestStatus(lastMessageID)
-                    if (lastMessageFRStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) {
-                        lokiMessageDB.setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_PENDING)
-                    }
-                }
-            }
-        }
     }
 
     override fun onResume() {

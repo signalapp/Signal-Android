@@ -61,13 +61,13 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
-import org.thoughtcrime.securesms.loki.api.LokiPublicChatManager;
+import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage;
-import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
+import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
@@ -154,7 +154,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   // Loki
   public MessageNotifier messageNotifier = null;
   public Poller lokiPoller = null;
-  public LokiPublicChatManager lokiPublicChatManager = null;
+  public PublicChatManager publicChatManager = null;
   private PublicChatAPI publicChatAPI = null;
   public Broadcaster broadcaster = null;
   public SignalCommunicationModule communicationModule;
@@ -184,7 +184,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
     LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-    LokiSessionResetImplementation sessionResetImpl = new LokiSessionResetImplementation(this);
+    SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
     if (userPublicKey != null) {
       SwarmAPI.Companion.configureIfNeeded(apiDB);
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
@@ -203,7 +203,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
     }
     resubmitProfilePictureIfNeeded();
-    lokiPublicChatManager = new LokiPublicChatManager(this);
+    publicChatManager = new PublicChatManager(this);
     updateOpenGroupProfilePicturesIfNeeded();
     registerForFCMIfNeeded(false);
     // ========
@@ -229,8 +229,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki
     if (lokiPoller != null) { lokiPoller.setCaughtUp(false); }
     startPollingIfNeeded();
-    lokiPublicChatManager.markAllAsNotCaughtUp();
-    lokiPublicChatManager.startPollersIfNeeded();
+    publicChatManager.markAllAsNotCaughtUp();
+    publicChatManager.startPollersIfNeeded();
   }
 
   @Override
@@ -241,7 +241,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     messageNotifier.setVisibleThread(-1);
     // Loki
     if (lokiPoller != null) { lokiPoller.stopIfNeeded(); }
-    if (lokiPublicChatManager != null) { lokiPublicChatManager.stopPollers(); }
+    if (publicChatManager != null) { publicChatManager.stopPollers(); }
   }
 
   @Override

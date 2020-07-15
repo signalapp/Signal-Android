@@ -84,7 +84,7 @@ public class TypingStatusSender {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
     // Loki - Check whether we want to send a typing indicator to this user
-    if (!SessionMetaProtocol.shouldSendTypingIndicator(recipient, context)) { return; }
+    if (recipient != null && !SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
     // Loki - Take into account multi device
     Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.getAddress().serialize());
     for (String device : linkedDevices) {

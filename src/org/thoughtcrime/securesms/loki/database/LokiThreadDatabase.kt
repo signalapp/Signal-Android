@@ -15,21 +15,18 @@ import org.whispersystems.libsignal.loki.SessionResetStatus
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 import org.whispersystems.signalservice.loki.database.LokiThreadDatabaseProtocol
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
     var delegate: LokiThreadDatabaseDelegate? = null
 
     companion object {
-        private val friendRequestTable = "loki_thread_friend_request_database"
         private val sessionResetTable = "loki_thread_session_reset_database"
         val publicChatTable = "loki_public_chat_database"
         val threadID = "thread_id"
         private val friendRequestStatus = "friend_request_status"
         private val sessionResetStatus = "session_reset_status"
         val publicChat = "public_chat"
-        @JvmStatic val createFriendRequestTableCommand = "CREATE TABLE $friendRequestTable ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTable ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
         @JvmStatic val createPublicChatTableCommand = "CREATE TABLE $publicChatTable ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
     }
@@ -42,34 +39,6 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     fun getThreadID(messageID: Long): Long {
         return DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageID)
-    }
-
-    fun getFriendRequestStatus(threadID: Long): LokiThreadFriendRequestStatus {
-        if (threadID < 0) { return LokiThreadFriendRequestStatus.NONE }
-        val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)
-        if (recipient != null && recipient.isGroupRecipient) { return LokiThreadFriendRequestStatus.FRIENDS; }
-        val database = databaseHelper.readableDatabase
-        val result = database.get(friendRequestTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
-            cursor.getInt(friendRequestStatus)
-        }
-        return if (result != null) {
-            LokiThreadFriendRequestStatus.values().first { it.rawValue == result }
-        } else {
-            LokiThreadFriendRequestStatus.NONE
-        }
-    }
-
-    fun setFriendRequestStatus(threadID: Long, friendRequestStatus: LokiThreadFriendRequestStatus) {
-        if (threadID < 0) { return }
-        Log.d("Loki", "Setting FR status for thread with ID $threadID to $friendRequestStatus.")
-        val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues(2)
-        contentValues.put(Companion.threadID, threadID)
-        contentValues.put(Companion.friendRequestStatus, friendRequestStatus.rawValue)
-        database.insertOrUpdate(friendRequestTable, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
-        notifyConversationListListeners()
-        notifyConversationListeners(threadID)
-        delegate?.handleThreadFriendRequestStatusChanged(threadID)
     }
 
     fun getSessionResetStatus(hexEncodedPublicKey: String): SessionResetStatus {

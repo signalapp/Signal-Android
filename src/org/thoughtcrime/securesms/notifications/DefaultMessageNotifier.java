@@ -325,7 +325,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 
-    boolean canReply = SessionMetaProtocol.canUserReplyToNotification(recipient, context);
+    boolean canReply = SessionMetaProtocol.canUserReplyToNotification(recipient);
 
     PendingIntent quickReplyIntent = canReply ? notificationState.getQuickReplyIntent(context, recipient) :  null;
     PendingIntent remoteReplyIntent = canReply ? notificationState.getRemoteReplyIntent(context, recipient, replyMethod) : null;

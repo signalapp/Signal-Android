@@ -14,9 +14,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 
-class LokiPublicChatManager(private val context: Context) {
+class PublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, PublicChat>()
-  private val pollers = mutableMapOf<Long, LokiPublicChatPoller>()
+  private val pollers = mutableMapOf<Long, PublicChatPoller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
 
@@ -24,7 +24,7 @@ class LokiPublicChatManager(private val context: Context) {
     var areAllCaughtUp = true
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
-      val poller = pollers[threadID] ?: LokiPublicChatPoller(context, chat)
+      val poller = pollers[threadID] ?: PublicChatPoller(context, chat)
       areAllCaughtUp = areAllCaughtUp && poller.isCaughtUp
     }
     return areAllCaughtUp
@@ -33,7 +33,7 @@ class LokiPublicChatManager(private val context: Context) {
   public fun markAllAsNotCaughtUp() {
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
-      val poller = pollers[threadID] ?: LokiPublicChatPoller(context, chat)
+      val poller = pollers[threadID] ?: PublicChatPoller(context, chat)
       poller.isCaughtUp = false
     }
   }
@@ -42,7 +42,7 @@ class LokiPublicChatManager(private val context: Context) {
     refreshChatsAndPollers()
 
     for ((threadId, chat) in chats) {
-      val poller = pollers[threadId] ?: LokiPublicChatPoller(context, chat)
+      val poller = pollers[threadId] ?: PublicChatPoller(context, chat)
       poller.startIfNeeded()
       listenToThreadDeletion(threadId)
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }

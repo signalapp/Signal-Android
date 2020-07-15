@@ -27,8 +27,8 @@ object SessionManagementProtocol {
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         val devices = lokiThreadDB.getSessionRestoreDevices(threadID)
         for (device in devices) {
-            val sessionRestorationRequest = EphemeralMessage.createSessionRestorationRequest(recipient.address.serialize())
-            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRestorationRequest))
+            val sessionRequest = EphemeralMessage.createSessionRequest(recipient.address.serialize())
+            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRequest))
         }
         val infoMessage = OutgoingTextMessage(recipient, "", 0, 0)
         val infoMessageID = smsDB.insertMessageOutbox(threadID, infoMessage, false, System.currentTimeMillis(), null)

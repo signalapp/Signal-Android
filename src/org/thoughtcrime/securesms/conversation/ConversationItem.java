@@ -86,10 +86,7 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
-import org.thoughtcrime.securesms.loki.views.FriendRequestView;
-import org.thoughtcrime.securesms.loki.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -158,7 +155,6 @@ public class ConversationItem extends LinearLayout
   private   ViewGroup              contactPhotoHolder;
   private   AlertView              alertView;
   private   ViewGroup              container;
-  private   FriendRequestView      friendRequestView;
 
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
   private           Recipient                       conversationRecipient;
@@ -181,8 +177,6 @@ public class ConversationItem extends LinearLayout
   private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
 
   private final Context context;
-
-  public FriendRequestViewDelegate friendRequestViewDelegate; // Loki
 
   public ConversationItem(Context context) {
     this(context, null);
@@ -223,7 +217,6 @@ public class ConversationItem extends LinearLayout
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
     this.container               =            findViewById(R.id.container);
-    this.friendRequestView       =            findViewById(R.id.friend_request_view);
 
     setOnClickListener(new ClickListener(null));
 
@@ -269,7 +262,6 @@ public class ConversationItem extends LinearLayout
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread);
-    setFriendRequestView(messageRecord);
     adjustMarginsIfNeeded(messageRecord);
   }
 
@@ -807,8 +799,8 @@ public class ConversationItem extends LinearLayout
     layoutParams.setMarginStart((groupThread && !isRSSFeed) ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
     if (profilePictureView == null) return;
-    profilePictureView.setHexEncodedPublicKey(recipient.getAddress().toString());
-    profilePictureView.setAdditionalHexEncodedPublicKey(null);
+    profilePictureView.setPublicKey(recipient.getAddress().toString());
+    profilePictureView.setAdditionalPublicKey(null);
     profilePictureView.setRSSFeed(false);
     profilePictureView.setGlide(glideRequests);
     profilePictureView.update();
@@ -918,11 +910,6 @@ public class ConversationItem extends LinearLayout
       activeFooter.setVisibility(VISIBLE);
       activeFooter.setMessageRecord(current, locale);
     }
-  }
-
-  private void setFriendRequestView(@NonNull MessageRecord record) {
-    friendRequestView.setDelegate(friendRequestViewDelegate);
-    friendRequestView.update(record);
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
@@ -1067,10 +1054,8 @@ public class ConversationItem extends LinearLayout
     int spacingBottom = spacingTop;
 
     boolean isOutgoingStack = current.isOutgoing() && previous.orNull() != null && previous.get().isOutgoing();
-    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-    boolean isPreviousMessageFriendRequest = previous.orNull() != null && lokiMessageDatabase.isFriendRequest(previous.get().id);
 
-    if (isOutgoingStack && isPreviousMessageFriendRequest) {
+    if (isOutgoingStack) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 

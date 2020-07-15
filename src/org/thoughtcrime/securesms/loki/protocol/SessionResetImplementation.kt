@@ -7,7 +7,7 @@ import org.whispersystems.libsignal.loki.SessionResetProtocol
 import org.whispersystems.libsignal.loki.SessionResetStatus
 import org.whispersystems.libsignal.protocol.PreKeySignalMessage
 
-class LokiSessionResetImplementation(private val context: Context) : SessionResetProtocol {
+class SessionResetImplementation(private val context: Context) : SessionResetProtocol {
 
     override fun getSessionResetStatus(publicKey: String): SessionResetStatus {
         return DatabaseFactory.getLokiThreadDatabase(context).getSessionResetStatus(publicKey)

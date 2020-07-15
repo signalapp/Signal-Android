@@ -22,7 +22,7 @@ object OpenGroupUtilities {
     val application = ApplicationContext.getInstance(context)
     val displayName = TextSecurePreferences.getProfileName(context)
     val lokiPublicChatAPI = application.publicChatAPI ?: throw Error("LokiPublicChatAPI is not initialized.")
-    return application.lokiPublicChatManager.addChat(url, channel).then { group ->
+    return application.publicChatManager.addChat(url, channel).then { group ->
       DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(channel, url)
       DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(channel, url)
       lokiPublicChatAPI.getMessages(channel, url)

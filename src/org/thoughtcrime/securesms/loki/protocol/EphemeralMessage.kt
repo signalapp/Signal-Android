@@ -10,10 +10,7 @@ class EphemeralMessage private constructor(val data: Map<*, *>) {
         fun create(publicKey: String) = EphemeralMessage(mapOf( "recipient" to publicKey ))
 
         @JvmStatic
-        fun createUnlinkingRequest(publicKey: String) = EphemeralMessage(mapOf( "recipient" to publicKey, "unpairingRequest" to true ))
-
-        @JvmStatic
-        fun createSessionRestorationRequest(publicKey: String) = EphemeralMessage(mapOf( "recipient" to publicKey, "friendRequest" to true, "sessionRestore" to true ))
+        fun createDeviceUnlinkingRequest(publicKey: String) = EphemeralMessage(mapOf( "recipient" to publicKey, "unpairingRequest" to true ))
 
         @JvmStatic
         fun createSessionRequest(publicKey: String) = EphemeralMessage(mapOf( "recipient" to publicKey, "friendRequest" to true, "sessionRequest" to true ))

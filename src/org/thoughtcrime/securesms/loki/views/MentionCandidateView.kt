@@ -31,8 +31,8 @@ class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr:
 
     private fun update() {
         displayNameTextView.text = mentionCandidate.displayName
-        profilePictureView.hexEncodedPublicKey = mentionCandidate.publicKey
-        profilePictureView.additionalHexEncodedPublicKey = null
+        profilePictureView.publicKey = mentionCandidate.publicKey
+        profilePictureView.additionalPublicKey = null
         profilePictureView.isRSSFeed = false
         profilePictureView.glide = glide!!
         profilePictureView.update()

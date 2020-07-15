@@ -93,7 +93,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     for (Address address : addressMap.keySet()) {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
       // Loki - Check whether we want to send a read receipt to this user
-      if (!SessionMetaProtocol.shouldSendReadReceipt(address, context)) { continue; }
+      if (!SessionMetaProtocol.shouldSendReadReceipt(address)) { continue; }
       // Loki - Take into account multi device
       Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(address.serialize());
       for (String device : linkedDevices) {

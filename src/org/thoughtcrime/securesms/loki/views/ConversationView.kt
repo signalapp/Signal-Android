@@ -50,18 +50,18 @@ class ConversationView : LinearLayout {
         unreadMessagesIndicatorView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
         if (thread.recipient.isGroupRecipient) {
             if ("Session Public Chat" == thread.recipient.name) {
-                profilePictureView.hexEncodedPublicKey = ""
+                profilePictureView.publicKey = ""
                 profilePictureView.isRSSFeed = true
             } else {
                 val users = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
-                profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
+                profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
                 profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
             }
         } else {
-            profilePictureView.hexEncodedPublicKey = thread.recipient.address.toString()
-            profilePictureView.additionalHexEncodedPublicKey = null
+            profilePictureView.publicKey = thread.recipient.address.toString()
+            profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
         profilePictureView.glide = glide

@@ -139,7 +139,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
       Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
       Optional<VerifiedMessage>                 verifiedMessage = getVerifiedMessage(recipient, identityRecord);
 
-      // Loki - Only sync contacts we are friends with
       if (SyncMessagesProtocol.shouldSyncContact(context, address)) {
         out.write(new DeviceContact(address.toPhoneString(),
                                     Optional.fromNullable(recipient.getName()),

@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -76,11 +75,6 @@ public class MessageSender {
 
     long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
-    // Loki - Set the message's friend request status as soon as it hits the database
-    if (FriendRequestProtocol.shouldUpdateFriendRequestStatusFromOutgoingTextMessage(context, message)) {
-      FriendRequestProtocol.setFriendRequestStatusToSendingIfNeeded(context, messageId, allocatedThreadId);
-    }
-
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId, message.isEndSession());
 
     return allocatedThreadId;
@@ -106,11 +100,6 @@ public class MessageSender {
 
       Recipient recipient = message.getRecipient();
       long      messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
-
-      // Loki - Set the message's friend request status as soon as it hits the database
-      if (FriendRequestProtocol.shouldUpdateFriendRequestStatusFromOutgoingMediaMessage(context, message)) {
-        FriendRequestProtocol.setFriendRequestStatusToSendingIfNeeded(context, messageId, allocatedThreadId);
-      }
 
       sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
       return allocatedThreadId;

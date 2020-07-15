@@ -66,15 +66,11 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
-import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage;
-import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
-import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
-import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
+import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.utilities.PromiseUtilities;
@@ -130,7 +126,6 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
 import java.security.MessageDigest;
@@ -144,8 +139,6 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import network.loki.messenger.R;
-
-import static org.thoughtcrime.securesms.loki.utilities.RecipientUtilitiesKt.recipient;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 
@@ -225,9 +218,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public void onCanceled() {
-
-  }
+  public void onCanceled() { }
 
   public void processMessage(@NonNull SignalServiceEnvelope envelope, boolean isPushNotification) {
     synchronized (PushReceivedJob.RECEIVE_LOCK) {
@@ -264,17 +255,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     try {
       GroupDatabase        groupDatabase        = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
-      SessionResetProtocol sessionResetProtocol = new LokiSessionResetImplementation(context);
+      SessionResetProtocol sessionResetProtocol = new SessionResetImplementation(context);
       SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
-
-      // Loki - Ignore any friend requests from before restoration
-      if (FriendRequestProtocol.isFriendRequestFromBeforeRestoration(context, content)) {
-        Log.d("Loki", "Ignoring friend request from before restoration.");
-        return;
-      }
 
       if (shouldIgnore(content)) {
         Log.i(TAG, "Ignoring message.");
@@ -300,8 +285,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (message.isDeviceUnlinkingRequest()) {
           MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
         } else {
-          // Loki - Handle friend request acceptance if needed
-          FriendRequestProtocol.handleFriendRequestAcceptanceIfNeeded(context, content.getSender(), content);
 
           if (message.isEndSession()) {
             handleEndSessionMessage(content, smsMessageId);
@@ -311,14 +294,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             handleExpirationUpdate(content, message, smsMessageId);
           } else if (isMediaMessage) {
             handleMediaMessage(content, message, smsMessageId, Optional.absent());
-
-            // Loki - Handle friend request message if needed
-            FriendRequestProtocol.handleFriendRequestMessageIfNeeded(context, content.getSender(), content);
           } else if (message.getBody().isPresent()) {
             handleTextMessage(content, message, smsMessageId, Optional.absent());
-
-            // Loki - Handle friend request message if needed
-            FriendRequestProtocol.handleFriendRequestMessageIfNeeded(context, content.getSender(), content);
           }
 
           if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
@@ -364,7 +341,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else if (content.getTypingMessage().isPresent()) {
         handleTypingMessage(content, content.getTypingMessage().get());
       } else if (content.getNullMessage().isPresent()) {
-
         // Loki - This is needed for compatibility with refactored desktop clients
         // ========
 //        if (content.isFriendRequest()) {
@@ -372,18 +348,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 //        } else {
 //          Log.w(TAG, "Got unrecognized message...");
 //        }
-        Recipient recipient = recipient(context, content.getSender());
-        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-        LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
-        LokiThreadFriendRequestStatus threadFriendRequestStatus = threadDB.getFriendRequestStatus(threadID);
-        if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.NONE || threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
-          threadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
-        } else if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
-          threadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-          EphemeralMessage ephemeralMessage = EphemeralMessage.create(content.getSender());
-          ApplicationContext.getInstance(context).getJobManager().add(new PushEphemeralMessageSendJob(ephemeralMessage));
-          SyncMessagesProtocol.syncContact(context, Address.fromSerialized(content.getSender()));
-        }
         // ========
       }
 

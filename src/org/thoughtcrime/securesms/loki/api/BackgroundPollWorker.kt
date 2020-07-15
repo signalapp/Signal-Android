@@ -47,7 +47,7 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
             }
             val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }
             for (openGroup in openGroups) {
-                val poller = LokiPublicChatPoller(context, openGroup)
+                val poller = PublicChatPoller(context, openGroup)
                 poller.stop()
                 poller.pollForNewMessages()
             }
