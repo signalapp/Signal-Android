@@ -108,6 +108,7 @@ import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
+import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities;
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink;
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol;
@@ -585,6 +586,17 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Runtime.getRuntime().exit(0);
   }
 
+  public boolean hasSentSessionRequestExpired(@NotNull String publicKey) {
+    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
+    Long timestamp = apiDB.getSessionRequestSentTimestamp(publicKey);
+    if (timestamp != null) {
+      long expiration = timestamp + TTLUtilities.getTTL(TTLUtilities.MessageType.SessionRequest);
+      return new Date().getTime() > expiration;
+    } else {
+      return false;
+    }
+  }
+
   @Override
   public void sendSessionRequestIfNeeded(@NotNull String publicKey) {
     // It's never necessary to establish a session with self
@@ -597,10 +609,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Check that we didn't already send a session request
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     boolean hasSentSessionRequest = (apiDB.getSessionRequestSentTimestamp(publicKey) != null);
-    if (hasSentSessionRequest) { return; }
+    boolean hasSentSessionRequestExpired = hasSentSessionRequestExpired(publicKey);
+    if (hasSentSessionRequestExpired) {
+      apiDB.setSessionRequestSentTimestamp(publicKey, 0);
+    }
+    if (hasSentSessionRequest && !hasSentSessionRequestExpired) { return; }
     // Send the session request
     long timestamp = new Date().getTime();
-    DatabaseFactory.getLokiAPIDatabase(this).setSessionRequestSentTimestamp(publicKey, timestamp);
+    apiDB.setSessionRequestSentTimestamp(publicKey, timestamp);
     PushSessionRequestMessageSendJob job = new PushSessionRequestMessageSendJob(publicKey, timestamp);
     jobManager.add(job);
   }
