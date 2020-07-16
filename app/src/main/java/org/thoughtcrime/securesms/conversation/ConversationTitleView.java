@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.TextViewCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -99,7 +102,7 @@ public class ConversationTitleView extends RelativeLayout {
     }
 
     title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, 0, endDrawable, 0);
-
+    TextViewCompat.setCompoundDrawableTintList(title, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent_white_90)));
 
     if (recipient != null) {
       this.avatar.setAvatar(glideRequests, recipient, false);
