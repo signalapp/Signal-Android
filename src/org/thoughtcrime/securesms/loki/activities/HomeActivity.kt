@@ -1,21 +1,15 @@
 package org.thoughtcrime.securesms.loki.activities
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.database.Cursor
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -31,6 +25,8 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
+import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.PNModeBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
@@ -41,13 +37,13 @@ import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
-import kotlin.math.abs
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
@@ -116,7 +112,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         homeAdapter.conversationClickListener = this
         recyclerView.adapter = homeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        ItemTouchHelper(SwipeCallback(this)).attachToRecyclerView(recyclerView)
         // Set up empty state view
         createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
@@ -224,7 +219,104 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     }
 
     override fun onLongConversationClick(view: ConversationView) {
-        // Do nothing
+        val thread = view.thread ?: return
+        val bottomSheet = ConversationOptionsBottomSheet()
+        bottomSheet.recipient = thread.recipient
+        bottomSheet.onBlockOrUnblockTapped = {
+            bottomSheet.dismiss()
+            if (thread.recipient.isBlocked) {
+                unblockConversation(thread)
+            } else {
+                blockConversation(thread)
+            }
+        }
+        bottomSheet.onDeleteTapped = {
+            bottomSheet.dismiss()
+            deleteConversation(thread)
+        }
+        bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+    }
+
+    private fun blockConversation(thread: ThreadRecord) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.RecipientPreferenceActivity_block_this_contact_question)
+            .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(R.string.RecipientPreferenceActivity_block) { dialog, _ ->
+                Thread {
+                    DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, true)
+                    ApplicationContext.getInstance(this).jobManager.add(MultiDeviceBlockedUpdateJob())
+                    Util.runOnMain {
+                        recyclerView.adapter!!.notifyDataSetChanged()
+                        dialog.dismiss()
+                    }
+                }.start()
+            }.show()
+    }
+
+    private fun unblockConversation(thread: ThreadRecord) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.RecipientPreferenceActivity_unblock_this_contact_question)
+            .setMessage(R.string.RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(R.string.RecipientPreferenceActivity_unblock) { dialog, _ ->
+                Thread {
+                    DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, false)
+                    ApplicationContext.getInstance(this).jobManager.add(MultiDeviceBlockedUpdateJob())
+                    Util.runOnMain {
+                        recyclerView.adapter!!.notifyDataSetChanged()
+                        dialog.dismiss()
+                    }
+                }.start()
+            }.show()
+    }
+
+    private fun deleteConversation(thread: ThreadRecord) {
+        val threadID = thread.threadId
+        val recipient = thread.recipient
+        val threadDB = DatabaseFactory.getThreadDatabase(this)
+        val deleteThread = object : Runnable {
+
+            override fun run() {
+                AsyncTask.execute {
+                    val publicChat = DatabaseFactory.getLokiThreadDatabase(this@HomeActivity).getPublicChat(threadID)
+                    if (publicChat != null) {
+                        val apiDB = DatabaseFactory.getLokiAPIDatabase(this@HomeActivity)
+                        apiDB.removeLastMessageServerID(publicChat.channel, publicChat.server)
+                        apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
+                        ApplicationContext.getInstance(this@HomeActivity).publicChatAPI!!.leave(publicChat.channel, publicChat.server)
+                    }
+                    threadDB.deleteConversation(threadID)
+                    ApplicationContext.getInstance(this@HomeActivity).messageNotifier.updateNotification(this@HomeActivity)
+                }
+            }
+        }
+        val dialogMessage = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_dialog_message else R.string.activity_home_delete_conversation_dialog_message
+        val dialog = AlertDialog.Builder(this)
+        dialog.setMessage(dialogMessage)
+        dialog.setPositiveButton(R.string.yes) { _, _ ->
+            val isClosedGroup = recipient.address.isClosedGroup
+            // Send a leave group message if this is an active closed group
+            if (isClosedGroup && DatabaseFactory.getGroupDatabase(this).isActive(recipient.address.toGroupString())) {
+                if (!ClosedGroupsProtocol.leaveGroup(this, recipient)) {
+                    Toast.makeText(this, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
+                    return@setPositiveButton
+                }
+            }
+            // Archive the conversation and then delete it after 10 seconds (the case where the
+            // app was closed before the conversation could be deleted is handled in onCreate)
+            threadDB.archiveConversation(threadID)
+            val delay = if (isClosedGroup) 10000L else 1000L
+            val handler = Handler()
+            handler.postDelayed(deleteThread, delay)
+            // Notify the user
+            val toastMessage = if (recipient.isGroupRecipient) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
+            Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show()
+        }
+        dialog.setNegativeButton(R.string.no) { _, _ ->
+            // Do nothing
+        }
+        dialog.create().show()
     }
 
     private fun openConversation(thread: ThreadRecord) {
@@ -261,93 +353,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     override fun joinOpenGroup() {
         val intent = Intent(this, JoinPublicChatActivity::class.java)
         show(intent)
-    }
-
-    private class SwipeCallback(val activity: HomeActivity) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-
-        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-            return false
-        }
-
-        @SuppressLint("StaticFieldLeak")
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            viewHolder as HomeAdapter.ViewHolder
-            val threadID = viewHolder.view.thread!!.threadId
-            val recipient = viewHolder.view.thread!!.recipient
-            val threadDatabase = DatabaseFactory.getThreadDatabase(activity)
-            val deleteThread = object : Runnable {
-
-                override fun run() {
-                    AsyncTask.execute {
-                        val publicChat = DatabaseFactory.getLokiThreadDatabase(activity).getPublicChat(threadID)
-                        if (publicChat != null) {
-                            val apiDatabase = DatabaseFactory.getLokiAPIDatabase(activity)
-                            apiDatabase.removeLastMessageServerID(publicChat.channel, publicChat.server)
-                            apiDatabase.removeLastDeletionServerID(publicChat.channel, publicChat.server)
-                            ApplicationContext.getInstance(activity).publicChatAPI!!.leave(publicChat.channel, publicChat.server)
-                        }
-                        threadDatabase.deleteConversation(threadID)
-                        ApplicationContext.getInstance(activity).messageNotifier.updateNotification(activity)
-                    }
-                }
-            }
-            val dialogMessage = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_dialog_message else R.string.activity_home_delete_conversation_dialog_message
-            val dialog = AlertDialog.Builder(activity)
-            dialog.setMessage(dialogMessage)
-            dialog.setPositiveButton(R.string.yes) { _, _ ->
-                val isClosedGroup = recipient.address.isClosedGroup
-                // Send a leave group message if this is an active closed group
-                if (isClosedGroup && DatabaseFactory.getGroupDatabase(activity).isActive(recipient.address.toGroupString())) {
-                    if (!ClosedGroupsProtocol.leaveGroup(activity, recipient)) {
-                        Toast.makeText(activity, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
-                        clearView(activity.recyclerView, viewHolder)
-                        return@setPositiveButton
-                    }
-                }
-                // Archive the conversation and then delete it after 10 seconds (the case where the
-                // app was closed before the conversation could be deleted is handled in onCreate)
-                threadDatabase.archiveConversation(threadID)
-                val delay = if (isClosedGroup) 10000L else 1000L
-                val handler = Handler()
-                handler.postDelayed(deleteThread, delay)
-                // Notify the user
-                val toastMessage = if (recipient.isGroupRecipient) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
-                Toast.makeText(activity, toastMessage, Toast.LENGTH_LONG).show()
-            }
-            dialog.setNegativeButton(R.string.no) { _, _ ->
-                clearView(activity.recyclerView, viewHolder)
-            }
-            dialog.create().show()
-        }
-
-        override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dx: Float, dy: Float, actionState: Int, isCurrentlyActive: Boolean) {
-            if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && dx < 0) {
-                val itemView = viewHolder.itemView
-                animate(viewHolder, dx)
-                val backgroundPaint = Paint()
-                backgroundPaint.color = activity.resources.getColorWithID(R.color.destructive, activity.theme)
-                c.drawRect(itemView.right.toFloat() - abs(dx), itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat(), backgroundPaint)
-                val icon = BitmapFactory.decodeResource(activity.resources, R.drawable.ic_trash_filled_32)
-                val iconPaint = Paint()
-                val left = itemView.right.toFloat() - abs(dx) + activity.resources.getDimension(R.dimen.medium_spacing)
-                val top = itemView.top.toFloat() + (itemView.bottom.toFloat() - itemView.top.toFloat() - icon.height) / 2
-                c.drawBitmap(icon, left, top, iconPaint)
-            } else {
-                super.onChildDraw(c, recyclerView, viewHolder, dx, dy, actionState, isCurrentlyActive)
-            }
-        }
-
-        private fun animate(viewHolder: RecyclerView.ViewHolder, dx: Float) {
-            val alpha = 1.0f - abs(dx) / viewHolder.itemView.width.toFloat()
-            viewHolder.itemView.alpha = alpha
-            viewHolder.itemView.translationX = dx
-        }
-
-        override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-            super.clearView(recyclerView, viewHolder)
-            viewHolder.itemView.alpha = 1.0f
-            viewHolder.itemView.translationX = 0.0f
-        }
     }
     // endregion
 }
