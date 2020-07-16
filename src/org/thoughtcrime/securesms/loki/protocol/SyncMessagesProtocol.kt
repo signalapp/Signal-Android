@@ -102,7 +102,6 @@ object SyncMessagesProtocol {
             val applicationContext = context.applicationContext as ApplicationContext
             applicationContext.sendSessionRequestIfNeeded(contactPublicKey)
             DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient(context, contactPublicKey), contact.isBlocked)
-            DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient(context, contactPublicKey)) // Creates the thread if needed
         }
     }
 
