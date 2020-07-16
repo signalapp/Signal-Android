@@ -670,13 +670,11 @@ public class SmsDatabase extends MessagingDatabase {
               values.put(BODY, body);
 
               db.insert(TABLE_NAME, null, values);
-            });
 
-      for (long threadId : threadIdsToUpdate) {
-        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
-        notifyConversationListeners(threadId);
-        ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
-      }
+              DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+              notifyConversationListeners(threadId);
+              ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+            });
 
       db.setTransactionSuccessful();
     } finally {
