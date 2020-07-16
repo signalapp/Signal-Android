@@ -1053,12 +1053,6 @@ public class ConversationItem extends LinearLayout
     int spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
     int spacingBottom = spacingTop;
 
-    boolean isOutgoingStack = current.isOutgoing() && previous.orNull() != null && previous.get().isOutgoing();
-
-    if (isOutgoingStack) {
-      spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
-    }
-
     if (isStartOfMessageCluster(current, previous, isGroupThread)) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
