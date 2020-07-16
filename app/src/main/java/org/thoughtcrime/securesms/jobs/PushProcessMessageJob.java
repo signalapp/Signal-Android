@@ -1778,8 +1778,9 @@ public final class PushProcessMessageJob extends BaseJob {
       return sender.isBlocked();
     } else if (content.getTypingMessage().isPresent()) {
       if (content.getTypingMessage().get().getGroupId().isPresent()) {
-        GroupId groupId = GroupId.push(content.getTypingMessage().get().getGroupId().get());
-        return Recipient.externalGroup(context, groupId).isBlocked();
+        GroupId   groupId        = GroupId.push(content.getTypingMessage().get().getGroupId().get());
+        Recipient groupRecipient = Recipient.externalGroup(context, groupId);
+        return groupRecipient.isBlocked() || !groupRecipient.isActiveGroup();
       } else {
         return sender.isBlocked();
       }
