@@ -466,7 +466,8 @@ final class GroupManagerV2 {
         GroupsV2Operations.GroupOperations groupOperations = groupsV2Operations.forGroup(GroupSecretParams.deriveFromMasterKey(groupMasterKey));
 
         try {
-          return groupOperations.decryptChange(GroupChange.parseFrom(signedGroupChange), true);
+          return groupOperations.decryptChange(GroupChange.parseFrom(signedGroupChange), true)
+                                .orNull();
         } catch (VerificationFailedException | InvalidGroupStateException | InvalidProtocolBufferException e) {
           Log.w(TAG, "Unable to verify supplied group change", e);
         }

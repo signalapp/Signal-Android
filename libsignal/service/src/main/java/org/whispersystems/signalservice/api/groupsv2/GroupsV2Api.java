@@ -17,6 +17,7 @@ import org.signal.zkgroup.auth.AuthCredentialResponse;
 import org.signal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.zkgroup.groups.GroupSecretParams;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -100,12 +101,8 @@ public final class GroupsV2Api {
     GroupsV2Operations.GroupOperations    groupOperations = groupsOperations.forGroup(groupSecretParams);
 
     for (GroupChanges.GroupChangeState change : changesList) {
-      DecryptedGroup       decryptedGroup  = groupOperations.decryptGroup(change.getGroupState());
-      DecryptedGroupChange decryptedChange = groupOperations.decryptChange(change.getGroupChange(), false);
-
-      if (decryptedChange.getRevision() != decryptedGroup.getRevision()) {
-        throw new InvalidGroupStateException();
-      }
+      Optional<DecryptedGroup>       decryptedGroup  = change.hasGroupState () ? Optional.of(groupOperations.decryptGroup(change.getGroupState())) : Optional.absent();
+      Optional<DecryptedGroupChange> decryptedChange = change.hasGroupChange() ? groupOperations.decryptChange(change.getGroupChange(), false)     : Optional.absent();
 
       result.add(new DecryptedGroupHistoryEntry(decryptedGroup, decryptedChange));
     }

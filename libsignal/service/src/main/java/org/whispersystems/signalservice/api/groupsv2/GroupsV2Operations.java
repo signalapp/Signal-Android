@@ -39,6 +39,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 
@@ -51,6 +52,9 @@ public final class GroupsV2Operations {
 
   /** Used for undecryptable pending invites */
   public static final UUID UNKNOWN_UUID = UuidUtil.UNKNOWN_UUID;
+
+  /** Highest change epoch this class knows now to decrypt */
+  public static final int HIGHEST_KNOWN_EPOCH = 0;
 
   private final ServerPublicParams        serverPublicParams;
   private final ClientZkProfileOperations clientZkProfileOperations;
@@ -289,18 +293,24 @@ public final class GroupsV2Operations {
     }
 
     /**
-     * @param verify You might want to avoid verification if you already know it's correct, or you
-     *               are not going to pass to other clients.
-     *               <p>
-     *               Also, if you know it's version 0, do not verify because changes for version 0
-     *               are not signed, but should be empty.
+     * @param verifySignature You might want to avoid verification if you already know it's correct, or you
+     *                        are not going to pass to other clients.
+     *                        <p>
+     *                        Also, if you know it's version 0, do not verify because changes for version 0
+     *                        are not signed, but should be empty.
+     * @return {@link Optional#absent} if the epoch for the change is higher that this code can decrypt.
      */
-    public DecryptedGroupChange decryptChange(GroupChange groupChange, boolean verify)
+    public Optional<DecryptedGroupChange> decryptChange(GroupChange groupChange, boolean verifySignature)
         throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException
     {
-      GroupChange.Actions actions = verify ? getVerifiedActions(groupChange) : getActions(groupChange);
+      if (groupChange.getChangeEpoch() > HIGHEST_KNOWN_EPOCH) {
+        Log.w(TAG, String.format(Locale.US, "Ignoring change from Epoch %d. Highest known Epoch is %d", groupChange.getChangeEpoch(), HIGHEST_KNOWN_EPOCH));
+        return Optional.absent();
+      }
 
-      return decryptChange(actions);
+      GroupChange.Actions actions = verifySignature ? getVerifiedActions(groupChange) : getActions(groupChange);
+
+      return Optional.of(decryptChange(actions));
     }
 
     public DecryptedGroupChange decryptChange(GroupChange.Actions actions)

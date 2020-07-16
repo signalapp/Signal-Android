@@ -341,7 +341,12 @@ public final class GroupsV2StateProcessor {
         }
 
         for (DecryptedGroupHistoryEntry entry : groupStatesFromRevision) {
-          history.add(new ServerGroupLogEntry(entry.getGroup(), ignoreServerChanges ? null : entry.getChange()));
+          DecryptedGroup       group  = entry.getGroup().orNull();
+          DecryptedGroupChange change = ignoreServerChanges ? null : entry.getChange().orNull();
+
+          if (group != null || change != null) {
+            history.add(new ServerGroupLogEntry(group, change));
+          }
         }
 
         return history;

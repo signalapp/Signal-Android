@@ -130,8 +130,9 @@ message GroupChange {
              ModifyMembersAccessControlAction      modifyMemberAccess              = 14;
   }
 
-  bytes actions         = 1;
-  bytes serverSignature = 2;
+  bytes  actions         = 1;
+  bytes  serverSignature = 2;
+  uint32 changeEpoch     = 3;
 }
 
 message GroupChanges {
