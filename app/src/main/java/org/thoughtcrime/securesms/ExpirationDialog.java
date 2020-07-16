@@ -1,13 +1,16 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+
+import java.util.Arrays;
 
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 
@@ -36,7 +39,7 @@ public class ExpirationDialog extends AlertDialog {
     builder.setView(view);
     builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
       int selected = ((NumberPickerView)view.findViewById(R.id.expiration_number_picker)).getValue();
-      listener.onClick(context.getResources().getIntArray(R.array.expiration_times)[selected]);
+      listener.onClick(getExpirationTimes(context, currentExpiration)[selected]);
     });
     builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
@@ -47,7 +50,7 @@ public class ExpirationDialog extends AlertDialog {
     final View             view                    = inflater.inflate(R.layout.expiration_dialog, null);
     final NumberPickerView numberPickerView        = view.findViewById(R.id.expiration_number_picker);
     final TextView         textView                = view.findViewById(R.id.expiration_details);
-    final int[]            expirationTimes         = context.getResources().getIntArray(R.array.expiration_times);
+    final int[]            expirationTimes         = getExpirationTimes(context, currentExpiration);
     final String[]         expirationDisplayValues = new String[expirationTimes.length];
 
     int selectedIndex = expirationTimes.length - 1;
@@ -78,6 +81,19 @@ public class ExpirationDialog extends AlertDialog {
     listener.onValueChange(numberPickerView, selectedIndex, selectedIndex);
 
     return view;
+  }
+
+  private static int[] getExpirationTimes(Context context, int currentExpiration) {
+    int[] expirationTimes = context.getResources().getIntArray(R.array.expiration_times);
+    int   location        = Arrays.binarySearch(expirationTimes, currentExpiration);
+    if (location < 0) {
+      int[] temp = Arrays.copyOf(expirationTimes, expirationTimes.length + 1);
+      temp[temp.length - 1] = currentExpiration;
+      Arrays.sort(temp);
+      expirationTimes = temp;
+    }
+
+    return expirationTimes;
   }
 
   public interface OnClickListener {

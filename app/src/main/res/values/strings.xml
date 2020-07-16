@@ -1587,6 +1587,7 @@
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%dw</string>
+    <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Your safety number with %s has changed and is no longer verified</string>
