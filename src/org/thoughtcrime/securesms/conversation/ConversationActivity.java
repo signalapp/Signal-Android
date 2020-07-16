@@ -753,10 +753,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (isSingleConversation()) {
-      /*
-      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
-      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
-       */
+      if (recipient.isBlocked()) {
+        inflater.inflate(R.menu.conversation_unblock, menu);
+      } else {
+        inflater.inflate(R.menu.conversation_block, menu);
+      }
     } else if (isGroupConversation() && !isOpenGroupOrRSSFeed) {
       inflater.inflate(R.menu.conversation_group_options, menu);
 
@@ -860,8 +861,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-    case R.id.menu_call_secure:               handleDial(getRecipient(), true);                  return true;
-    case R.id.menu_call_insecure:             handleDial(getRecipient(), false);                 return true;
+    case R.id.menu_call_secure:               handleDial(getRecipient(), true);         return true;
+    case R.id.menu_call_insecure:             handleDial(getRecipient(), false);        return true;
+    case R.id.menu_unblock:                   handleUnblock();                                   return true;
+    case R.id.menu_block:                     handleBlock();                                     return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
@@ -986,12 +989,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     int titleRes = R.string.ConversationActivity_unblock_this_contact_question;
     int bodyRes  = R.string.ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact;
 
-    if (recipient.isGroupRecipient()) {
-      titleRes = R.string.ConversationActivity_unblock_this_group_question;
-      bodyRes  = R.string.ConversationActivity_unblock_this_group_description;
-    }
-
-    //noinspection CodeBlock2Expr
     new AlertDialog.Builder(this)
                    .setTitle(titleRes)
                    .setMessage(bodyRes)
@@ -1068,6 +1065,33 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
     builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
+  }
+
+  private void handleBlock() {
+    int titleRes = R.string.RecipientPreferenceActivity_block_this_contact_question;
+    int bodyRes  = R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact;
+
+    new AlertDialog.Builder(this)
+            .setTitle(titleRes)
+            .setMessage(bodyRes)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(R.string.RecipientPreferenceActivity_block, (dialog, which) -> {
+              new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                  DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
+                          .setBlocked(recipient, true);
+
+                  ApplicationContext.getInstance(ConversationActivity.this)
+                          .getJobManager()
+                          .add(new MultiDeviceBlockedUpdateJob());
+
+                  Util.runOnMain(() -> finish());
+
+                  return null;
+                }
+              }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            }).show();
   }
 
   private void handleViewMedia() {
