@@ -93,11 +93,13 @@ object SyncMessagesProtocol {
         if (!allUserDevices.contains(content.sender)) { return }
         Log.d("Loki", "Received a contact sync message.")
         val contactsInputStream = DeviceContactsInputStream(message.contactsStream.asStream().inputStream)
-        val contactPublicKeys = contactsInputStream.readAll().map { it.number }
-        for (contactPublicKey in contactPublicKeys) {
+        val contacts = contactsInputStream.readAll()
+        for (contact in contacts) {
+            val contactPublicKey = contact.number
             if (contactPublicKey == userPublicKey || !PublicKeyValidation.isValid(contactPublicKey)) { return }
             val applicationContext = context.applicationContext as ApplicationContext
             applicationContext.sendSessionRequestIfNeeded(contactPublicKey)
+            DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient(context, contactPublicKey), contact.isBlocked)
         }
     }
 
