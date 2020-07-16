@@ -20,7 +20,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
@@ -45,6 +44,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
+import java.util.List;
 import java.util.Objects;
 
 public class AddGroupDetailsFragment extends LoggingFragment {
@@ -202,7 +202,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   private void handleGroupCreateResultSuccess(@NonNull GroupCreateResult.Success success) {
-    callback.onGroupCreated(success.getGroupRecipient().getId(), success.getThreadId());
+    callback.onGroupCreated(success.getGroupRecipient().getId(), success.getThreadId(), success.getInvitedMembers());
   }
 
   private void handleGroupCreateResultError(@NonNull GroupCreateResult.Error error) {
@@ -252,7 +252,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   public interface Callback {
-    void onGroupCreated(@NonNull RecipientId recipientId, long threadId);
+    void onGroupCreated(@NonNull RecipientId recipientId, long threadId, @NonNull List<Recipient> invitedMembers);
     void onNavigationButtonPressed();
   }
 }

@@ -156,7 +156,12 @@ final class GroupManagerV2 {
         groupDatabase.onAvatarUpdated(groupId, avatar != null);
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
 
-        return sendGroupUpdate(masterKey, decryptedGroup, null, null);
+        RecipientAndThread recipientAndThread = sendGroupUpdate(masterKey, decryptedGroup, null, null);
+
+        return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient,
+                                                  recipientAndThread.threadId,
+                                                  decryptedGroup.getMembersCount() - 1,
+                                                  getPendingMemberRecipientIds(decryptedGroup.getPendingMembersList()));
       } catch (VerificationFailedException | InvalidGroupStateException e) {
         throw new GroupChangeFailedException(e);
       }
@@ -378,7 +383,7 @@ final class GroupManagerV2 {
             Recipient groupRecipient = Recipient.externalGroup(context, groupId);
             long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
 
-            return new GroupManager.GroupActionResult(groupRecipient, threadId);
+            return new GroupManager.GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
           }
         }
       }
@@ -429,7 +434,11 @@ final class GroupManagerV2 {
       GroupChange signedGroupChange = commitToServer(changeActions);
       groupDatabase.update(groupId, decryptedGroupState);
 
-      return sendGroupUpdate(groupMasterKey, decryptedGroupState, decryptedChange, signedGroupChange);
+      RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, decryptedGroupState, decryptedChange, signedGroupChange);
+      int                newMembersCount    = decryptedChange.getNewMembersCount();
+      List<RecipientId>  newPendingMembers  = getPendingMemberRecipientIds(decryptedChange.getNewPendingMembersList());
+
+      return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient, recipientAndThread.threadId, newMembersCount, newPendingMembers);
     }
 
     private GroupChange commitToServer(GroupChange.Actions change)
@@ -494,10 +503,10 @@ final class GroupManagerV2 {
     }
   }
 
-  private @NonNull GroupManager.GroupActionResult sendGroupUpdate(@NonNull GroupMasterKey masterKey,
-                                                                  @NonNull DecryptedGroup decryptedGroup,
-                                                                  @Nullable DecryptedGroupChange plainGroupChange,
-                                                                  @Nullable GroupChange signedGroupChange)
+  private @NonNull RecipientAndThread sendGroupUpdate(@NonNull GroupMasterKey masterKey,
+                                                      @NonNull DecryptedGroup decryptedGroup,
+                                                      @Nullable DecryptedGroupChange plainGroupChange,
+                                                      @Nullable GroupChange signedGroupChange)
   {
     GroupId.V2                groupId                 = GroupId.v2(masterKey);
     Recipient                 groupRecipient          = Recipient.externalGroup(context, groupId);
@@ -514,11 +523,17 @@ final class GroupManagerV2 {
 
     if (plainGroupChange != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(plainGroupChange)) {
       ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, decryptedGroup, outgoingMessage));
-      return new GroupManager.GroupActionResult(groupRecipient, -1);
+      return new RecipientAndThread(groupRecipient, -1);
     } else {
       long threadId = MessageSender.send(context, outgoingMessage, -1, false, null);
-      return new GroupManager.GroupActionResult(groupRecipient, threadId);
+      return new RecipientAndThread(groupRecipient, threadId);
     }
+  }
+
+  private static @NonNull List<RecipientId> getPendingMemberRecipientIds(@NonNull List<DecryptedPendingMember> newPendingMembersList) {
+    return Stream.of(DecryptedGroupUtil.pendingToUuidList(newPendingMembersList))
+                 .map(uuid-> RecipientId.from(uuid,null))
+                 .toList();
   }
 
   private static @NonNull AccessControl.AccessRequired rightsToAccessControl(@NonNull GroupAccessControl rights) {
@@ -529,6 +544,16 @@ final class GroupManagerV2 {
         return AccessControl.AccessRequired.ADMINISTRATOR;
       default:
       throw new AssertionError();
+    }
+  }
+
+  static class RecipientAndThread {
+    private final Recipient groupRecipient;
+    private final long      threadId;
+
+    RecipientAndThread(@NonNull Recipient groupRecipient, long threadId) {
+      this.groupRecipient = groupRecipient;
+      this.threadId       = threadId;
     }
   }
 }

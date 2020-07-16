@@ -472,6 +472,15 @@
         <item>@string/GroupManagement_access_level_only_admins</item>
     </array>
 
+    <!-- GV2 invites sent -->
+    <plurals name="GroupManagement_invitation_sent">
+        <item quantity="one">Invitation sent</item>
+        <item quantity="other">%d invitations sent</item>
+    </plurals>
+    <string name="GroupManagement_invite_single_user">“%1$s” can’t be automatically added to this group by you.\n\nThey’ve been invited to join, and won’t see any group messages until they accept.</string>
+    <string name="GroupManagement_learn_more">Learn more</string>
+    <string name="GroupManagement_invite_multiple_users">These users can’t be automatically added to this group by you.\n\nThey’ve been invited to join the group, and won’t see any group messages until they accept.</string>
+
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
     <string name="PendingMembersActivity_people_you_invited">People you invited</string>

@@ -80,7 +80,7 @@ class EditPushGroupProfileRepository implements EditProfileRepository {
   {
     SimpleTask.run(() -> {
       try {
-        GroupManager.updateGroup(context, groupId, avatar, avatarChanged, displayName, displayNameChanged);
+        GroupManager.updateGroupDetails(context, groupId, avatar, avatarChanged, displayName, displayNameChanged);
 
         return UploadResult.SUCCESS;
       } catch (GroupChangeFailedException | GroupInsufficientRightsException | IOException | GroupNotAMemberException | GroupChangeBusyException e) {

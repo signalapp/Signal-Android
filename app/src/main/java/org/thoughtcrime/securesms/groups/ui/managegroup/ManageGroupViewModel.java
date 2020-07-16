@@ -25,8 +25,6 @@ import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -43,7 +41,6 @@ import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +51,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final Context                                     context;
   private final ManageGroupRepository                       manageGroupRepository;
   private final SingleLiveEvent<SnackbarEvent>              snackbarEvents            = new SingleLiveEvent<>();
+  private final SingleLiveEvent<InvitedDialogEvent>         invitedDialogEvents       = new SingleLiveEvent<>();
   private final LiveData<String>                            title;
   private final LiveData<Boolean>                           isAdmin;
   private final LiveData<Boolean>                           canEditGroupAttributes;
@@ -91,7 +89,7 @@ public class ManageGroupViewModel extends ViewModel {
                                                                 (state, hasEnoughMembers) -> state != CollapseState.OPEN && hasEnoughMembers);
     this.members                   = LiveDataUtil.combineLatest(liveGroup.getFullMembers(),
                                                                 memberListCollapseState,
-                                                                this::filterMemberList);
+                                                                ManageGroupViewModel::filterMemberList);
     this.pendingMemberCount        = liveGroup.getPendingMemberCount();
     this.memberCountSummary        = liveGroup.getMembershipCountDescription(context.getResources());
     this.fullMemberCountSummary    = liveGroup.getFullMembershipCountDescription(context.getResources());
@@ -180,6 +178,10 @@ public class ManageGroupViewModel extends ViewModel {
     return snackbarEvents;
   }
 
+  SingleLiveEvent<InvitedDialogEvent> getInvitedDialogEvents() {
+    return invitedDialogEvents;
+  }
+
   LiveData<Boolean> getCanCollapseMemberList() {
     return canCollapseMemberList;
   }
@@ -220,7 +222,7 @@ public class ManageGroupViewModel extends ViewModel {
   }
 
   void onAddMembers(List<RecipientId> selected) {
-    manageGroupRepository.addMembers(selected, this::showSuccessSnackbar, this::showErrorToast);
+    manageGroupRepository.addMembers(selected, this::showAddSuccess, this::showErrorToast);
   }
 
   void setMuteUntil(long muteUntil) {
@@ -235,8 +237,8 @@ public class ManageGroupViewModel extends ViewModel {
     memberListCollapseState.setValue(CollapseState.OPEN);
   }
 
-  private @NonNull List<GroupMemberEntry.FullMember> filterMemberList(@NonNull List<GroupMemberEntry.FullMember> members,
-                                                                      @NonNull CollapseState collapseState)
+  private static @NonNull List<GroupMemberEntry.FullMember> filterMemberList(@NonNull List<GroupMemberEntry.FullMember> members,
+                                                                             @NonNull CollapseState collapseState)
   {
     if (collapseState == CollapseState.COLLAPSED && members.size() > MAX_COLLAPSED_MEMBERS) {
       return members.subList(0, MAX_COLLAPSED_MEMBERS);
@@ -246,8 +248,14 @@ public class ManageGroupViewModel extends ViewModel {
   }
 
   @WorkerThread
-  private void showSuccessSnackbar(int numberOfMembersAdded) {
-    snackbarEvents.postValue(new SnackbarEvent(numberOfMembersAdded));
+  private void showAddSuccess(int numberOfMembersAdded, @NonNull List<RecipientId> newInvitedMembers) {
+    if (!newInvitedMembers.isEmpty()) {
+      invitedDialogEvents.postValue(new InvitedDialogEvent(Recipient.resolvedList(newInvitedMembers)));
+    }
+
+    if (numberOfMembersAdded > 0) {
+      snackbarEvents.postValue(new SnackbarEvent(numberOfMembersAdded));
+    }
   }
 
   @WorkerThread
@@ -325,6 +333,19 @@ public class ManageGroupViewModel extends ViewModel {
 
     public int getNumberOfMembersAdded() {
       return numberOfMembersAdded;
+    }
+  }
+
+  static final class InvitedDialogEvent {
+
+    private final List<Recipient> newInvitedMembers;
+
+    private InvitedDialogEvent(@NonNull List<Recipient> newInvitedMembers) {
+      this.newInvitedMembers = newInvitedMembers;
+    }
+
+    public @NonNull List<Recipient> getNewInvitedMembers() {
+      return newInvitedMembers;
     }
   }
 

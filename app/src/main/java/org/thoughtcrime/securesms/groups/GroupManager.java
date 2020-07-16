@@ -54,22 +54,12 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static @NonNull GroupActionResult createGroupV1(@NonNull  Context        context,
-                                                         @NonNull  Set<Recipient> members,
-                                                         @Nullable byte[]         avatar,
-                                                         @Nullable String         name,
-                                                                   boolean        mms)
-  {
-    return GroupManagerV1.createGroup(context, getMemberIds(members), avatar, name, mms);
-  }
-
-  @WorkerThread
-  public static GroupActionResult updateGroup(@NonNull  Context context,
-                                              @NonNull  GroupId groupId,
-                                              @Nullable byte[]  avatar,
-                                                        boolean avatarChanged,
-                                              @NonNull  String  name,
-                                                        boolean nameChanged)
+  public static GroupActionResult updateGroupDetails(@NonNull  Context context,
+                                                     @NonNull  GroupId groupId,
+                                                     @Nullable byte[]  avatar,
+                                                               boolean avatarChanged,
+                                                     @NonNull  String  name,
+                                                               boolean nameChanged)
     throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     if (groupId.isV2()) {
@@ -80,23 +70,15 @@ public final class GroupManager {
       List<Recipient> members = DatabaseFactory.getGroupDatabase(context)
                                                .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-      return updateGroup(context, groupId.requireV1(), new HashSet<>(members), avatar, name);
+      Set<RecipientId> recipientIds = getMemberIds(new HashSet<>(members));
+
+      return GroupManagerV1.updateGroup(context, groupId.requireV1(), recipientIds, avatar, name, 0);
     }
   }
 
-  public static @Nullable GroupActionResult updateGroup(@NonNull  Context        context,
-                                                        @NonNull  GroupId.V1     groupId,
-                                                        @NonNull  Set<Recipient> members,
-                                                        @Nullable byte[]         avatar,
-                                                        @Nullable String         name)
-  {
-    Set<RecipientId> addresses = getMemberIds(members);
-
-    return GroupManagerV1.updateGroup(context, groupId, addresses, avatar, name);
-  }
-
   private static Set<RecipientId> getMemberIds(Collection<Recipient> recipients) {
-    final Set<RecipientId> results = new HashSet<>();
+    Set<RecipientId> results = new HashSet<>(recipients.size());
+
     for (Recipient recipient : recipients) {
       results.add(recipient.getId());
     }
@@ -250,41 +232,59 @@ public final class GroupManager {
     }
   }
 
-  public static void addMembers(@NonNull Context context,
-                                @NonNull GroupId.Push groupId,
-                                @NonNull Collection<RecipientId> newMembers)
+  @WorkerThread
+  public static @NonNull GroupActionResult addMembers(@NonNull Context context,
+                                                      @NonNull GroupId.Push groupId,
+                                                      @NonNull Collection<RecipientId> newMembers)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException, MembershipNotSuitableForV2Exception
   {
     if (groupId.isV2()) {
       try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-        editor.addMembers(newMembers);
+        return editor.addMembers(newMembers);
       }
     } else {
-      GroupDatabase.GroupRecord groupRecord = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
-      List<RecipientId>         members     = groupRecord.getMembers();
-      byte[]                    avatar      = groupRecord.hasAvatar() ? Util.readFully(AvatarHelper.getAvatar(context, groupRecord.getRecipientId())) : null;
-      Set<RecipientId>          addresses   = new HashSet<>(members);
+      GroupDatabase.GroupRecord groupRecord  = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
+      List<RecipientId>         members      = groupRecord.getMembers();
+      byte[]                    avatar       = groupRecord.hasAvatar() ? Util.readFully(AvatarHelper.getAvatar(context, groupRecord.getRecipientId())) : null;
+      Set<RecipientId>          recipientIds = new HashSet<>(members);
+      int                       originalSize = recipientIds.size();
 
-      addresses.addAll(newMembers);
-      GroupManagerV1.updateGroup(context, groupId, addresses, avatar, groupRecord.getTitle());
+      recipientIds.addAll(newMembers);
+      return GroupManagerV1.updateGroup(context, groupId, recipientIds, avatar, groupRecord.getTitle(), recipientIds.size() - originalSize);
     }
   }
 
   public static class GroupActionResult {
-    private final Recipient groupRecipient;
-    private final long      threadId;
+    private final Recipient         groupRecipient;
+    private final long              threadId;
+    private final int               addedMemberCount;
+    private final List<RecipientId> invitedMembers;
 
-    public GroupActionResult(Recipient groupRecipient, long threadId) {
-      this.groupRecipient = groupRecipient;
-      this.threadId       = threadId;
+    public GroupActionResult(@NonNull Recipient groupRecipient,
+                             long threadId,
+                             int addedMemberCount,
+                             @NonNull List<RecipientId> invitedMembers)
+    {
+      this.groupRecipient   = groupRecipient;
+      this.threadId         = threadId;
+      this.addedMemberCount = addedMemberCount;
+      this.invitedMembers   = invitedMembers;
     }
 
-    public Recipient getGroupRecipient() {
+    public @NonNull Recipient getGroupRecipient() {
       return groupRecipient;
     }
 
     public long getThreadId() {
       return threadId;
+    }
+
+    public int getAddedMemberCount() {
+      return addedMemberCount;
+    }
+
+    public @NonNull List<RecipientId> getInvitedMembers() {
+      return invitedMembers;
     }
   }
 }

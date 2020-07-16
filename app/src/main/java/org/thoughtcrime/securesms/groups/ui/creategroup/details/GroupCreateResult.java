@@ -1,15 +1,19 @@
 package org.thoughtcrime.securesms.groups.ui.creategroup.details;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.List;
+
 abstract class GroupCreateResult {
 
+  @WorkerThread
   static GroupCreateResult success(@NonNull GroupManager.GroupActionResult result) {
-    return new GroupCreateResult.Success(result.getThreadId(), result.getGroupRecipient());
+    return new GroupCreateResult.Success(result.getThreadId(), result.getGroupRecipient(), result.getAddedMemberCount(), Recipient.resolvedList(result.getInvitedMembers()));
   }
 
   static GroupCreateResult error(@NonNull GroupCreateResult.Error.Type errorType) {
@@ -20,12 +24,20 @@ abstract class GroupCreateResult {
   }
 
   static final class Success extends GroupCreateResult {
-    private final long      threadId;
-    private final Recipient groupRecipient;
+    private final long            threadId;
+    private final Recipient       groupRecipient;
+    private final int             addedMemberCount;
+    private final List<Recipient> invitedMembers;
 
-    private Success(long threadId, @NonNull Recipient groupRecipient) {
-      this.threadId       = threadId;
-      this.groupRecipient = groupRecipient;
+    private Success(long threadId,
+                    @NonNull Recipient groupRecipient,
+                    int addedMemberCount,
+                    @NonNull List<Recipient> invitedMembers)
+    {
+      this.threadId         = threadId;
+      this.groupRecipient   = groupRecipient;
+      this.addedMemberCount = addedMemberCount;
+      this.invitedMembers   = invitedMembers;
     }
 
     long getThreadId() {
@@ -34,6 +46,14 @@ abstract class GroupCreateResult {
 
     @NonNull Recipient getGroupRecipient() {
       return groupRecipient;
+    }
+
+    int getAddedMemberCount() {
+      return addedMemberCount;
+    }
+
+    List<Recipient> getInvitedMembers() {
+      return invitedMembers;
     }
 
     @Override

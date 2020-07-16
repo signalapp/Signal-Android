@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.groups.ui.creategroup.details;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +15,13 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+
+import java.util.List;
 
 public class AddGroupDetailsActivity extends PassphraseRequiredActivity implements AddGroupDetailsFragment.Callback {
 
@@ -58,7 +63,19 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
   }
 
   @Override
-  public void onGroupCreated(@NonNull RecipientId recipientId, long threadId) {
+  public void onGroupCreated(@NonNull RecipientId recipientId,
+                             long threadId,
+                             @NonNull List<Recipient> invitedMembers)
+  {
+    Dialog dialog = GroupInviteSentDialog.showInvitesSent(this, invitedMembers);
+    if (dialog != null) {
+      dialog.setOnDismissListener((d) -> goToConversation(recipientId, threadId));
+    } else {
+      goToConversation(recipientId, threadId);
+    }
+  }
+
+  void goToConversation(@NonNull RecipientId recipientId, long threadId) {
     Intent intent = ConversationActivity.buildIntent(this,
                                                      recipientId,
                                                      threadId,

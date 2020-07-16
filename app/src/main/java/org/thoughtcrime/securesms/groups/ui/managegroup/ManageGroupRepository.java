@@ -146,8 +146,8 @@ final class ManageGroupRepository {
   void addMembers(@NonNull List<RecipientId> selected, @NonNull AddMembersResultCallback addMembersResultCallback, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        GroupManager.addMembers(context, groupId.requirePush(), selected);
-        addMembersResultCallback.onMembersAdded(selected.size());
+        GroupManager.GroupActionResult groupActionResult = GroupManager.addMembers(context, groupId.requirePush(), selected);
+        addMembersResultCallback.onMembersAdded(groupActionResult.getAddedMemberCount(), groupActionResult.getInvitedMembers());
       } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
         Log.w(TAG, e);
         error.onError(GroupChangeFailureReason.NO_RIGHTS);

@@ -47,6 +47,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -123,6 +124,17 @@ public class Recipient {
   public static @NonNull Recipient resolved(@NonNull RecipientId id) {
     Preconditions.checkNotNull(id, "ID cannot be null.");
     return live(id).resolve();
+  }
+
+  @WorkerThread
+  public static @NonNull List<Recipient> resolvedList(@NonNull Collection<RecipientId> ids) {
+    List<Recipient> recipients = new ArrayList<>(ids.size());
+
+    for (RecipientId recipientId : ids) {
+      recipients.add(resolved(recipientId));
+    }
+
+    return recipients;
   }
 
   /**

@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
+import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupRightsDialog;
 import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.logging.Log;
@@ -317,6 +318,7 @@ public class ManageGroupFragment extends LoggingFragment {
     }
 
     viewModel.getSnackbarEvents().observe(getViewLifecycleOwner(), this::handleSnackbarEvent);
+    viewModel.getInvitedDialogEvents().observe(getViewLifecycleOwner(), this::handleInvitedDialogEvent);
 
     viewModel.getCanLeaveGroup().observe(getViewLifecycleOwner(), canLeave -> leaveGroup.setVisibility(canLeave ? View.VISIBLE : View.GONE));
     viewModel.getCanBlockGroup().observe(getViewLifecycleOwner(), canBlock -> {
@@ -362,6 +364,10 @@ public class ManageGroupFragment extends LoggingFragment {
 
   private void handleSnackbarEvent(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {
     Snackbar.make(requireView(), buildSnackbarString(snackbarEvent), Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
+  }
+
+  private void handleInvitedDialogEvent(@NonNull ManageGroupViewModel.InvitedDialogEvent invitedDialogEvent) {
+    GroupInviteSentDialog.showInvitesSent(requireContext(), invitedDialogEvent.getNewInvitedMembers());
   }
 
   private @NonNull String buildSnackbarString(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {
