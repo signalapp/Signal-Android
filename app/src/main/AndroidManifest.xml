@@ -504,6 +504,9 @@
     <activity android:name=".groups.ui.creategroup.details.AddGroupDetailsActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
 
+    <activity android:name=".groups.ui.chooseadmin.ChooseNewAdminActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
+
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>

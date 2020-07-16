@@ -1203,10 +1203,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-    LeaveGroupDialog.handleLeavePushGroup(ConversationActivity.this,
-                                          getLifecycle(),
-                                          getRecipient().requireGroupId().requirePush(),
-                                          null);
+    LeaveGroupDialog.handleLeavePushGroup(this, getRecipient().requireGroupId().requirePush(), this::finish);
   }
 
   private void handleManageGroup() {

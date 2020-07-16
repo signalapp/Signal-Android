@@ -15,7 +15,20 @@
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/recipient_selected"
+        android:background="?attr/contact_selection_checkbox_background"
+        android:button="@null"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:focusable="false"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/recipient_avatar"
+        tools:checked="true"/>
 
     <TextView
         android:id="@+id/recipient_name"

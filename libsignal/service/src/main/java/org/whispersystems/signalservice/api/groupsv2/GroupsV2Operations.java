@@ -207,6 +207,18 @@ public final class GroupsV2Operations {
       return actions;
     }
 
+    public GroupChange.Actions.Builder createLeaveAndPromoteMembersToAdmin(UUID self, List<UUID> membersToMakeAdmin) {
+      GroupChange.Actions.Builder actions = createRemoveMembersChange(Collections.singleton(self));
+
+      for (UUID member : membersToMakeAdmin) {
+        actions.addModifyMemberRoles(GroupChange.Actions.ModifyMemberRoleAction.newBuilder()
+                                                                               .setUserId(encryptUuid(member))
+                                                                               .setRole(Member.Role.ADMINISTRATOR));
+      }
+
+      return actions;
+    }
+
     public GroupChange.Actions.Builder createModifyGroupTimerChange(int timerDurationSeconds) {
       return GroupChange.Actions
                         .newBuilder()

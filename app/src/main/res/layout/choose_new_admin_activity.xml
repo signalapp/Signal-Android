@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@android:color/transparent"
+            app:title="@string/ChooseNewAdminActivity_choose_new_admin"
+            app:titleTextColor="?title_text_color_primary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+            android:id="@+id/choose_new_admin_group_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:selectable="true"
+            tools:listitem="@layout/group_recipient_list_item" />
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/choose_new_admin_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            app:cpb_colorIndicator="@color/white"
+            app:cpb_colorProgress="?colorAccent"
+            app:cpb_cornerRadius="28dp"
+            app:cpb_selectorIdle="?attr/circular_progress_button_state"
+            app:cpb_textIdle="@string/ChooseNewAdminActivity_done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </FrameLayout>
+
+</LinearLayout>

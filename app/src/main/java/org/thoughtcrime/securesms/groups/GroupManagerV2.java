@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Stream;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.storageservice.protos.groups.AccessControl;
@@ -294,6 +295,17 @@ final class GroupManagerV2 {
       Recipient recipient = Recipient.resolved(recipientId);
 
       return commitChangeWithConflictResolution(groupOperations.createRemoveMembersChange(Collections.singleton(recipient.getUuid().get())));
+    }
+
+    @WorkerThread
+    @NonNull GroupManager.GroupActionResult addMemberAdminsAndLeaveGroup(Collection<RecipientId> newAdmins)
+        throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
+    {
+      Recipient  self               = Recipient.self();
+      List<UUID> newAdminRecipients = Stream.of(newAdmins).map(id -> Recipient.resolved(id).getUuid().get()).toList();
+
+      return commitChangeWithConflictResolution(groupOperations.createLeaveAndPromoteMembersToAdmin(self.getUuid().get(),
+                                                                                                    newAdminRecipients));
     }
 
     @WorkerThread

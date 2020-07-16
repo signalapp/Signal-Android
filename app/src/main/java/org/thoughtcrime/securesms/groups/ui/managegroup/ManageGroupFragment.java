@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PushContactSelectionActivity;
@@ -234,10 +235,7 @@ public class ManageGroupFragment extends LoggingFragment {
     });
 
     leaveGroup.setVisibility(groupId.isPush() ? View.VISIBLE : View.GONE);
-    leaveGroup.setOnClickListener(v -> LeaveGroupDialog.handleLeavePushGroup(context,
-                                                                             getLifecycle(),
-                                                                             groupId.requirePush(),
-                                                                             null));
+    leaveGroup.setOnClickListener(v -> LeaveGroupDialog.handleLeavePushGroup(requireActivity(), groupId.requirePush(), () -> startActivity(new Intent(requireActivity(), MainActivity.class))));
 
     viewModel.getDisappearingMessageTimer().observe(getViewLifecycleOwner(), string -> disappearingMessages.setText(string));
 

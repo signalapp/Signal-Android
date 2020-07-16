@@ -37,9 +37,10 @@ public final class LiveGroup {
                                                                                                            .thenComparing(HAS_DISPLAY_NAME)
                                                                                                            .thenComparing(ALPHABETICAL);
 
-  private final GroupDatabase                       groupDatabase;
-  private final LiveData<Recipient>                 recipient;
-  private final LiveData<GroupDatabase.GroupRecord> groupRecord;
+  private final GroupDatabase                               groupDatabase;
+  private final LiveData<Recipient>                         recipient;
+  private final LiveData<GroupDatabase.GroupRecord>         groupRecord;
+  private final LiveData<List<GroupMemberEntry.FullMember>> fullMembers;
 
   public LiveGroup(@NonNull GroupId groupId) {
     Context                        context       = ApplicationDependencies.getApplication();
@@ -47,7 +48,15 @@ public final class LiveGroup {
 
     this.groupDatabase = DatabaseFactory.getGroupDatabase(context);
     this.recipient     = Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData);
-    this.groupRecord   = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient-> groupDatabase.getGroup(groupRecipient.getId()).orNull()));
+    this.groupRecord   = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orNull()));
+    this.fullMembers   = LiveDataUtil.mapAsync(groupRecord,
+                                               g -> Stream.of(g.getMembers())
+                                                          .map(m -> {
+                                                            Recipient recipient = Recipient.resolved(m);
+                                                            return new GroupMemberEntry.FullMember(recipient, g.isAdmin(recipient));
+                                                          })
+                                                          .sorted(MEMBER_ORDER)
+                                                          .toList());
 
     SignalExecutors.BOUNDED.execute(() -> liveRecipient.postValue(Recipient.externalGroup(context, groupId).live()));
   }
@@ -90,15 +99,15 @@ public final class LiveGroup {
     return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getAttributesAccessControl);
   }
 
+  public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {
+    return Transformations.map(fullMembers,
+                               members -> Stream.of(members)
+                                                .filterNot(GroupMemberEntry.FullMember::isAdmin)
+                                                .toList());
+  }
+
   public LiveData<List<GroupMemberEntry.FullMember>> getFullMembers() {
-    return LiveDataUtil.mapAsync(groupRecord,
-                                 g -> Stream.of(g.getMembers())
-                                            .map(m -> {
-                                              Recipient recipient = Recipient.resolved(m);
-                                              return new GroupMemberEntry.FullMember(recipient, g.isAdmin(recipient));
-                                            })
-                                            .sorted(MEMBER_ORDER)
-                                            .toList());
+    return fullMembers;
   }
 
   public LiveData<Integer> getExpireMessages() {

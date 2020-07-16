@@ -227,6 +227,9 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
     <string name="ConversationActivity_leave_group">Leave group?</string>
     <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Are you sure you want to leave this group?</string>
+    <string name="ConversationActivity_choose_new_admin">Choose new admin</string>
+    <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Before you leave, you must choose at least one new admin for this group.</string>
+    <string name="ConversationActivity_choose_admin">Choose admin</string>
     <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
     <string name="ConversationActivity_transport_signal">Signal</string>
@@ -441,6 +444,11 @@
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" added to \"%2$s\".</string>
     <string name="AddToGroupActivity_add_to_group">Add to group</string>
     <string name="AddToGroupActivity_add_to_groups">Add to groups</string>
+
+    <!-- ChooseNewAdminActivity -->
+    <string name="ChooseNewAdminActivity_choose_new_admin">Choose new admin</string>
+    <string name="ChooseNewAdminActivity_done">Done</string>
+    <string name="ChooseNewAdminActivity_you_left">You left \"%1$s.\"</string>
 
     <!-- GroupShareProfileView -->
     <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>

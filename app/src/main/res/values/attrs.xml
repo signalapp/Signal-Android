@@ -529,6 +529,7 @@
 
     <declare-styleable name="GroupMemberListView">
         <attr name="maxHeight" />
+        <attr name="selectable" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="WebRtcAudioOutputToggleButtonState">

@@ -140,6 +140,16 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void addMemberAdminsAndLeaveGroup(@NonNull Context context, @NonNull GroupId.V2 groupId, @NonNull Collection<RecipientId> newAdmins)
+      throws GroupChangeBusyException, GroupChangeFailedException, IOException, GroupInsufficientRightsException, GroupNotAMemberException
+  {
+    try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      edit.addMemberAdminsAndLeaveGroup(newAdmins);
+      Log.i(TAG, "Left group " + groupId);
+    }
+  }
+
+  @WorkerThread
   public static void ejectFromGroup(@NonNull Context context, @NonNull GroupId.V2 groupId, @NonNull Recipient recipient)
       throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
   {
