@@ -318,7 +318,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Profiili seadistamisel tekkis probleem</string>
   <string name="CreateProfileActivity_profile_photo">Profiilipilt</string>
   <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Sinu profiil on otspunktkrüptitud. See on nähtav sinu kontaktidele, kui algatad või nõustud uute vestlustega ja liitud uute gruppidega.</string>
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
@@ -644,6 +643,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s keelas kaduvad sõnumid.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid kaduvate sõnumite taimeriks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras kaduvate sõnumite taimeriks %2$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Sa lõid uue grupi.</string>
   <string name="MessageRecord_group_updated">Grupp uuendatud.</string>
@@ -1204,7 +1204,6 @@
   <string name="contact_selection_activity__enter_name_or_number">Sisesta nimi või number</string>
   <string name="contact_selection_activity__invite_to_signal">Kutsu Signalisse</string>
   <string name="contact_selection_activity__new_group">Uus grupp</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tühjenda sisestatud tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Kuva klaviatuuri</string>

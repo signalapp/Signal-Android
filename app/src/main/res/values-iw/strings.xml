@@ -350,7 +350,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">בעיה בהגדרת פרופיל</string>
   <string name="CreateProfileActivity_profile_photo">תמונת פרופיל</string>
   <string name="CreateProfileActivity_set_up_your_profile">הגדר את הפרופיל שלך</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">הפרופיל שלך מוצפן מקצה לקצה. הוא יהיה גלוי לאנשי הקשר שלך, כאשר תיזום או תקבל שיחות, וכאשר תצטרף אל קבוצות חדשות.</string>
   <string name="CreateProfileActivity_set_avatar_description">הגדר יצגן</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">משתמש בהתאמה אישית: %s</string>
@@ -707,6 +706,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">הִגְדַּרְתָּ את קוצב הזמן של ההודעות הנעלמות אל %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sהגדיר את קוצב הזמן של ההודעות הנעלמות אל %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">קוצב הזמן של ההודעות הנעלמות הוגדר אל %1$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">יצרת את הקבוצה.</string>
   <string name="MessageRecord_group_updated">קבוצה עודכנה.</string>
@@ -1305,7 +1305,6 @@
   <string name="contact_selection_activity__enter_name_or_number">הכנס שם או מספר</string>
   <string name="contact_selection_activity__invite_to_signal">הזמן אל Signal</string>
   <string name="contact_selection_activity__new_group">קבוצה חדשה</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">נקה טקסט מוכנס</string>
   <string name="contact_filter_toolbar__show_keyboard_description">הראה מקלדת</string>

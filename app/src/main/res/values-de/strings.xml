@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem beim Festlegen des Profils</string>
   <string name="CreateProfileActivity_profile_photo">Profilfoto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Richte dein Profil ein</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dein Profil ist Ende-zu-Ende-verschlüsselt. Es wird für deine Kontakte sichtbar, sobald du neue Unterhaltungen beginnst oder annimmst, oder wenn du neuen Gruppen beitrittst.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dein Profil ist Ende-zu-Ende-verschlüsselt. Dein Profil und Änderungen daran werden für deine Kontakte sichtbar, sobald du neue Unterhaltungen beginnst oder annimmst, oder wenn du neuen Gruppen beitrittst.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar festlegen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalisiert: %s</string>
@@ -460,6 +460,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Wähle aus, wer neue Mitglieder hinzufügen oder einladen kann</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Wähle aus, wer Gruppenname und -bild ändern kann</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Zu Systemkontakten hinzufügen</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Diese Person ist in deinen Kontakten</string>
   <string name="ManageRecipientActivity_disappearing_messages">Verschwindende Nachrichten</string>
   <string name="ManageRecipientActivity_chat_color">Unterhaltungsfarbe</string>
   <string name="ManageRecipientActivity_block">Blockieren</string>
@@ -649,6 +651,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Ablaufzeit verschwindender Nachrichten auf %1$s festgelegt.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Ablaufzeit verschwindender Nachrichten auf %2$s festgelegt.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Die Ablaufzeit für verschwindende Nachrichten wurde auf %1$s festgelegt.</string>
+  <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s hat den Profilnamen in %2$s geändert.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s hat den Profilnamen von %2$s in %3$s geändert.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s hat das Profil geändert.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du hast die Gruppe erstellt.</string>
   <string name="MessageRecord_group_updated">Gruppe aktualisiert.</string>
@@ -1214,7 +1220,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
   <string name="contact_selection_activity__invite_to_signal">Zu Signal einladen</string>
   <string name="contact_selection_activity__new_group">Neue Gruppe</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Texteingabe leeren</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Tastatur anzeigen</string>

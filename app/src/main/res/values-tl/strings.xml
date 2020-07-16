@@ -545,6 +545,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">Dinisable ni %1$s ang mga naglalahong mensahe.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Itinakda mo ang timer ng naglalahong mensahe sa %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Itinakda ni %1$s ang timer ng naglalahong mensahe sa %2$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Ginawa mo ang grupo.</string>
   <string name="MessageRecord_group_updated">In-update ang grupo.</string>
@@ -1020,7 +1021,6 @@
   <string name="contact_selection_activity__enter_name_or_number">Ilagay ang pangalan o numero</string>
   <string name="contact_selection_activity__invite_to_signal">Imbitahan sa Signal</string>
   <string name="contact_selection_activity__new_group">Bagong grupo</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Burahin ang inilagay na text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Ipakita ang keyboard</string>

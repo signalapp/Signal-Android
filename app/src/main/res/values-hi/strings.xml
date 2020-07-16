@@ -528,6 +528,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sने गायब मेसेज अक्षम कर दिए हैं। </string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">आपने गायब मेसेज टाइमर को %1$s में सेट कर दिया है।</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ने गायब मेसेज टाइमर को %2$s तक सेट कर दिया है।</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">यह ग्रूप आपने बनाया है।</string>
   <string name="MessageRecord_group_updated">ग्रुप अपडेट हो गया है।</string>
@@ -970,7 +971,6 @@
   <string name="contact_selection_activity__enter_name_or_number">नाम या संख्या दर्ज करें</string>
   <string name="contact_selection_activity__invite_to_signal">Signal का उपयोग करने के लिए आमंत्रित करें</string>
   <string name="contact_selection_activity__new_group">नया समूह</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">लिखे गये शब्दों को मिटा दें</string>
   <string name="contact_filter_toolbar__show_keyboard_description">कीबोर्ड दिखाएं</string>

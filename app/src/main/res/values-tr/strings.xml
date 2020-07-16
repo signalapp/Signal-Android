@@ -319,7 +319,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Profil ayarlanırken hata</string>
   <string name="CreateProfileActivity_profile_photo">Profil fotoğrafı</string>
   <string name="CreateProfileActivity_set_up_your_profile">Profilinizi ayarlayın</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiliniz uçtan uca şifrelidir. Yeni konuşmalar başlattığınızda veya kabul ettiğinizde ve yeni gruplara girdiğinizde kişilerinize görünür olacaktır.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar seçin</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Özelleştirilmiş \'%s\' kullanılıyor</string>
@@ -644,6 +643,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s kaybolan iletileri devre dışı bıraktı.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Kaybolan ileti zamanlayıcısını %1$s olarak ayarladınız.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s kaybolan ileti zamanlayıcısını %2$s olarak ayarladı.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Grubu oluşturdunuz.</string>
   <string name="MessageRecord_group_updated">Grup güncellendi.</string>
@@ -1190,7 +1190,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="contact_selection_activity__enter_name_or_number">İsim veya numara girin</string>
   <string name="contact_selection_activity__invite_to_signal">Signal\'e davet et</string>
   <string name="contact_selection_activity__new_group">Yeni grup</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Yazılı metni temizle</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Klavyeyi göster</string>

@@ -529,6 +529,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s نے غائب ہون آلے سنیہے غیر فعال کر دتے نیں۔</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">تسیں غائب ہون آلے سنیہے دا ویلا %1$s تے سیٹ کیتا اے۔</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s نے غائب ہون الے سنیہیاں دا ویلا %2$s تے سیٹ کیتا اے۔</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">تساں گروپ تخلیق کیتا۔</string>
   <string name="MessageRecord_group_updated">گروپ اپ ڈیٹ کیتا گیا۔</string>
@@ -975,7 +976,6 @@
   <string name="contact_selection_activity__enter_name_or_number">ناں یا نمبر درج کرو</string>
   <string name="contact_selection_activity__invite_to_signal">Signal تے سدھو</string>
   <string name="contact_selection_activity__new_group">نواں گروپ</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">داخل کیتا متن صاف کرو</string>
   <string name="contact_filter_toolbar__show_keyboard_description">کی بورڈ وکھاؤ</string>

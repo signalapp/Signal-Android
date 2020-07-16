@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemo dum agordo de profilo</string>
   <string name="CreateProfileActivity_profile_photo">Profila foto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Agordi vian profilon</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Via profilo estas tutvoje ĉifrita. Ĝi estos videbla de viaj kontaktoj, kiam vi komencas aŭ akceptas novajn interparolojn, kaj kiam vi aliĝas al novaj grupoj.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Via profilo estas tutvoje ĉifrita. Via profilo kaj ties ŝanĝoj estos videblaj de viaj kontaktoj, kiam vi komencas aŭ akceptas novajn interparolojn, kaj kiam vi aliĝas al novaj grupoj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Difini la avataron</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uzante propran: %s</string>
@@ -460,6 +460,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Elekti tiun, kiu povas aldoni aŭ inviti novajn anojn</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Elekti tiun, kiu povas ŝanĝi la nomon kaj la foton de la grupo</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Aldoni al sistemaj kontaktoj</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tiu persono estas en viaj kontaktoj.</string>
   <string name="ManageRecipientActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="ManageRecipientActivity_chat_color">Koloro de interparolo</string>
   <string name="ManageRecipientActivity_block">Bloki</string>
@@ -649,6 +651,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vi agordis la malaperon de la memviŝontaj mesaĝoj al %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s agordis la malaperon de la memviŝontaj mesaĝoj al %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">La malapero de la memviŝontaj mesaĝoj agordiĝis al %1$s.</string>
+  <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s ŝanĝis sian profilnomon al %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ŝanĝis sian profilnomon de %2$s al %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s ŝanĝis sian profilon.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Vi kreis la grupon.</string>
   <string name="MessageRecord_group_updated">Grupo ĝisdatigita.</string>
@@ -1224,7 +1230,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="contact_selection_activity__enter_name_or_number">Entajpu nomon aŭ numeron</string>
   <string name="contact_selection_activity__invite_to_signal">Inviti al Signal</string>
   <string name="contact_selection_activity__new_group">Nova grupo</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Viŝi la entajpitan tekston</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Montri la klavaron</string>

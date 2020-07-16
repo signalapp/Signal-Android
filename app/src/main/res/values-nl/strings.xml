@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen worden eind-tot-eind-versleuteld uitgewisseld, dus zelfs Signal\'s ontwikkelaars hebben nooit toegang tot je profielfoto en naam. Deze gegevens zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, alle leden van een groep waarvan jij een uitnodiging aanvaard, en voor personen voor wie je expliciet toestemming hebt gegeven door op “Profielnaam en -foto zichtbaar maken” te tikken.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen worden eind-tot-eind-versleuteld. Deze gegevens zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, alle leden van een groep waarvan jij een uitnodiging aanvaard.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar instellen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
@@ -460,6 +460,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Kies wie nieuwe leden kan toevoegen of uitnodigen</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Kies wie de naam en afbeelding van het groepsgesprek kan aanpassen</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Toevoegen aan systeem contactpersonen</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Deze persoon staat in je contactenlijst</string>
   <string name="ManageRecipientActivity_disappearing_messages">Zelfwissende berichten</string>
   <string name="ManageRecipientActivity_chat_color">Gesprekskleur</string>
   <string name="ManageRecipientActivity_block">Blokkeren</string>
@@ -649,6 +651,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor zelfwissende berichten op %1$s ingesteld.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor zelfwissende berichten op %2$s ingesteld.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">De timer voor zelfwissende berichten is op %1$s ingesteld.</string>
+  <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$sheeft zijn profielnaam gewijzigd in %2$s</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$sheeft zijn profielnaam van %2$s in %3$s gewijzigd.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s heeft zijn profielgewijzigd.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
   <string name="MessageRecord_group_updated">Groep aangepast.</string>
@@ -1227,7 +1233,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Uitnodigen voor Signal</string>
   <string name="contact_selection_activity__new_group">Nieuwe groep</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Ingevoerde tekst wissen</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Toetsenbord weergeven</string>

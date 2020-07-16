@@ -350,7 +350,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemos, nustatant profilį</string>
   <string name="CreateProfileActivity_profile_photo">Profilio nuotrauka</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nusistatykite savo profilį</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jūsų profilis yra šifruotas ištisiniu būdu. Jis bus matomas jūsų adresatams, kai inicijuosite ar priimsite naujus pokalbius, arba, kai prisijungsite prie naujų grupių.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nustatyti avatarą</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
@@ -707,6 +706,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laikmatį į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Išnykstančių žinučių laikmatis nustatytas į %1$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Jūs sukūrėte grupę.</string>
   <string name="MessageRecord_group_updated">Grupė atnaujinta.</string>
@@ -1305,7 +1305,6 @@
   <string name="contact_selection_activity__enter_name_or_number">Įveskite vardą ar numerį</string>
   <string name="contact_selection_activity__invite_to_signal">Pakviesti į Signal</string>
   <string name="contact_selection_activity__new_group">Nauja grupė</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Išvalyti įvestą tekstą</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Rodyti klaviatūrą</string>

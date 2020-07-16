@@ -321,7 +321,6 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="CreateProfileActivity_problem_setting_profile">Klarte ikkje endra profilen</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
   <string name="CreateProfileActivity_set_up_your_profile">Lag profilen din</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din er ende-til-ende-kryptert. Den blir synleg for dine kontaktar, når du startar eller godkjenner nye samtalar, og når du blir med i nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Vel avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Brukar sjølvvald: %s</string>
@@ -648,6 +647,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du stilte inn utløpstida for forsvinnande meldingar til %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s stilte inn utløpstida for forsvinnande meldingar til %2$s</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Nedtellinga for forsvinnande meldingar er stilt til %1$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du oppretta gruppa.</string>
   <string name="MessageRecord_group_updated">Gruppe oppdatert.</string>
@@ -1219,7 +1219,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="contact_selection_activity__enter_name_or_number">Skriv inn namn eller nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Inviter til Signal</string>
   <string name="contact_selection_activity__new_group">Ny gruppe</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tøm tekstfeltet</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>

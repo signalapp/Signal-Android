@@ -316,7 +316,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ എൻഡ് ടു എൻഡ് എൻക്രിപ്റ്റഡ് ആണ്. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ ഇത് നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
@@ -641,6 +640,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ അപ്രാപ്തമാക്കി.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">നിങ്ങൾ സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള ടൈമർ %1$s ആയി ക്രമീകരിച്ചു.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള ടൈമർ %2$s ആയി ക്രമീകരിച്ചു.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">നിങ്ങൾ ഗ്രൂപ്പ് സൃഷ്ടിച്ചു.</string>
   <string name="MessageRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
@@ -1188,7 +1188,6 @@ grūpp ap‌ḍē</string>
   <string name="contact_selection_activity__enter_name_or_number">പേരോ നമ്പറോ നൽകുക</string>
   <string name="contact_selection_activity__invite_to_signal">Signalലേക്ക് ക്ഷണിക്കുക</string>
   <string name="contact_selection_activity__new_group">പുതിയ ഗ്രൂപ്പ്</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">നൽകിയ വാചകം മായ്‌ക്കുക</string>
   <string name="contact_filter_toolbar__show_keyboard_description">കീബോർഡ് കാണിക്കുക</string>

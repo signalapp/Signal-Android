@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem med att ställa in profilen</string>
   <string name="CreateProfileActivity_profile_photo">Profilbild</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ställ in din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil är ände-till-ände-krypterad. Den kommer att vara synlig för dina kontakter, när du initierar eller accepterar nya konversationer och när du går med i nya grupper.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil är ände-till-ände-krypterad. Din profil och ändringar av den kommer att synas för dina kontakter, när du initierar eller accepterar nya konversationer och när du går med i nya grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ställ in avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
@@ -460,6 +460,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Välj vem som kan ändra gruppnamn och foto</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Den här personen är i dina kontakter</string>
   <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageRecipientActivity_chat_color">Konversationsfärg</string>
   <string name="ManageRecipientActivity_block">Blockera</string>
@@ -649,6 +651,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tidsgränsen för att försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tidsgränsen för försvinnande meddelanden till %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Den försvinnande meddelandetidtagaren har ställts in till %1$s.</string>
+  <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s ändrade sitt profilnamn till %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ändrade sitt profilnamn från %2$s till %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s ändrade sin profil.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du skapade gruppen.</string>
   <string name="MessageRecord_group_updated">Gruppen uppdaterad.</string>
@@ -1219,7 +1225,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="contact_selection_activity__enter_name_or_number">Ange namn eller nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Bjud in till Signal</string>
   <string name="contact_selection_activity__new_group">Ny grupp</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Rensa inmatad text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Visa tangentbordet</string>

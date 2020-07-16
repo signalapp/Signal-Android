@@ -525,6 +525,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s અદૃશ્ય થઈ રહેલા મેસેજ અક્ષમ કરો.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">તમે અદૃશ્ય થઈ રહેલા મેસેજ ટાઈમરને %1$s પર સેટ કર્યો છે.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s અદૃશ્ય થઈ રહેલા મેસેજ ટાઈમરને સેટ કરો %2$s. </string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">તમે ગ્રુપ બનાવ્યું છે.</string>
   <string name="MessageRecord_group_updated">ગ્રુપ અપડેટ કર્યું.</string>
@@ -968,7 +969,6 @@
   <string name="contact_selection_activity__enter_name_or_number">નામ અથવા નંબર દાખલ કરો</string>
   <string name="contact_selection_activity__invite_to_signal">Signal માટે આમંત્રણ આપો</string>
   <string name="contact_selection_activity__new_group">નવું ગ્રુપ</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">દાખલ કરેલો ટેક્સ્ટ સાફ કરો</string>
   <string name="contact_filter_toolbar__show_keyboard_description">કીબોર્ડ બતાવો</string>

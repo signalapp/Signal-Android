@@ -292,7 +292,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_profile_photo">프로필 사진</string>
   <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필은 단대단 암호화됩니다. 내 연락처에게, 새로운 대화를 시작하거나 수락할 때, 새 그룹에 참가할 때 표시됩니다.</string>
   <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">맞춤형 값 사용: %s</string>
@@ -530,6 +529,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 님이 사라지는 메시지 기능을 비활성화했습니다.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 님이 사라지는 메시지 시간을 %2$s(으)로 설정했습니다.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">그룹을 생성했습니다.</string>
   <string name="MessageRecord_group_updated">그룹 업데이트됨.</string>
@@ -996,7 +996,6 @@
   <string name="contact_selection_activity__enter_name_or_number">이름 또는 전화번호 입력</string>
   <string name="contact_selection_activity__invite_to_signal">Signal로 초대</string>
   <string name="contact_selection_activity__new_group">새 그룹</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">입력된 텍스트 삭제</string>
   <string name="contact_filter_toolbar__show_keyboard_description">키보드 표시</string>

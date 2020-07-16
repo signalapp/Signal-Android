@@ -322,7 +322,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema na configuração do perfil</string>
   <string name="CreateProfileActivity_profile_photo">Fotografia de perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurar o seu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil é encriptado de topo a topo. Ele estará visível para todos os seus contactos, quando inicia ou aceita novas conversas e quando se junta a novos grupos. </string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
@@ -649,6 +648,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu %1$s como o tempo a decorrer até as mensagens serem destruídas.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu %2$s como o tempo a decorrer até as mensagens serem destruídas.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">O tempo a decorrer até que as mensagens sejam destruídas foi definido para %1$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Criou o grupo.</string>
   <string name="MessageRecord_group_updated">Grupo atualizado.</string>
@@ -713,12 +713,15 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Você alterou o nome do grupo para \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s alterou o nome do grupo para \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">O nome do grupo foi alterado para \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Você alterou o avatar do grupo.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s alterou o avatar do grupo.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">O avatar do grupo foi alterado.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Você alterou quem pode editar a informação do grupo para \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s alterou quem pode editar a informação do grupo para \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Quem pode editar a informação de grupo foi alterado para \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Você alterou quem pode editar a participação do grupo para \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s alterou quem pode editar os membros do grupo para \"%2$s\".</string>
@@ -931,6 +934,7 @@ especificou (%s) é inválido.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Iremos recordar-lhe de novo dentro de alguns dias.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Iremos recordar-lhe dentro de uma semana.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Iremos recordar-lhe dentro de algumas semanas.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Iremos recordar-lhe dentro de um mês</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_sticker">Autocolante</string>
@@ -1088,6 +1092,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Apagar mensagem?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Isto irá eliminar permanentemente esta mensagem.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s para %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Multimédia atualmente indisponível.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
@@ -1214,7 +1219,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="contact_selection_activity__enter_name_or_number">Introduza o nome ou número</string>
   <string name="contact_selection_activity__invite_to_signal">Convite para o Signal</string>
   <string name="contact_selection_activity__new_group">Novo grupo</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Limpar o texto introduzido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>
@@ -1605,6 +1609,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__default">Pré-definição</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
+  <string name="preferences__advanced_pin_settings">Definições avançadas do PIN</string>
   <string name="preferences__free_private_messages_and_calls">Mensagens e chamadas privadas gratuitas para utilizadores do Signal</string>
   <string name="preferences__submit_debug_log">Submeter registo de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada Wi-Fi\"</string>

@@ -531,6 +531,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s  amelemaza jumbe zinazopotea</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Umeweka kitufe cha wakati cha ujumbe unaotoweka kwa %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s Weka kitufe cha wakati cha ujumbe unaotoweka kwa %2$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Uliunda kundi</string>
   <string name="MessageRecord_group_updated">Kundi limesasishwa.</string>
@@ -975,7 +976,6 @@ nambari yako ya simu</string>
   <string name="contact_selection_activity__enter_name_or_number">Ingiza jina au nambari</string>
   <string name="contact_selection_activity__invite_to_signal">Mwalike kwenye Signal</string>
   <string name="contact_selection_activity__new_group">Kikundi kipya</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Futa matini iliyoingizwa</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Onyesha kicharazio</string>

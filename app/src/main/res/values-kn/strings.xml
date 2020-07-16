@@ -541,6 +541,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ಅವರು ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದಾರೆ</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">ನೀವು ಕಾಣದಂತಾಗುವ ಸಂದೇಶದ ಟೈಮರ್ ಅನ್ನು %1$s ಗೆ ನಿಗದಿಪಡಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sಕಾಣದಂತಾಗುತ್ತಿರುವ ಸಂದೇಶದ ಟೈಮರ್ ಅನ್ನು %2$s ಗೆ ಹೊಂದಿಸಿ.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">ನೀವು ಗುಂಪನ್ನು ರಚಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_group_updated">ಗುಂಪು ನವೀಕರಿಸಲಾಗಿದೆ.</string>
@@ -1000,7 +1001,6 @@
   <string name="contact_selection_activity__enter_name_or_number">ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
   <string name="contact_selection_activity__invite_to_signal">Signalಗೆ ಆಮಂತ್ರಿಸಿ</string>
   <string name="contact_selection_activity__new_group">ಹೊಸ ಗುಂಪು</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">ನಮೂದಿಸಿದ ಪಠ್ಯ ತೆರವುಗೊಳಿಸಿ</string>
   <string name="contact_filter_toolbar__show_keyboard_description">ಕೀಬೋರ್ಡ್ ತೋರಿಸು</string>

@@ -350,7 +350,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Ошибка при установке профиля</string>
   <string name="CreateProfileActivity_profile_photo">Фото профиля</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профиль защищён сквозным шифрованием. Он становится виден вашим контактам, когда вы начинаете или принимаете новые разговоры и когда вы присоединяетесь к новым группам.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профиль защищён сквозным шифрованием. Ваш профиль и его изменения становятся видны вашим контактам, когда вы начинаете или принимаете новые разговоры и когда вы присоединяетесь к новым группам.</string>
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
@@ -498,6 +498,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Выберите, кто может добавлять или приглашать новых участников</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Выберите, кто может изменять имя и фото группы</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string>
   <string name="ManageRecipientActivity_disappearing_messages">Исчезающие сообщения</string>
   <string name="ManageRecipientActivity_chat_color">Цвет разговора</string>
   <string name="ManageRecipientActivity_block">Заблокировать</string>
@@ -707,6 +709,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(-а) время исчезновения сообщений в%2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Было установлено время исчезновения сообщений — %1$s.</string>
+  <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s изменил(-а) своё имя профиля на %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s изменил(-а) своё имя профиля с %2$s на %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s изменил(-а) свой профиль.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Вы создали группу.</string>
   <string name="MessageRecord_group_updated">Группа обновлена.</string>
@@ -1298,7 +1304,6 @@
   <string name="contact_selection_activity__enter_name_or_number">Введите имя или номер</string>
   <string name="contact_selection_activity__invite_to_signal">Пригласить в Signal</string>
   <string name="contact_selection_activity__new_group">Новая группа</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Стереть введённый текст</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Показать клавиатуру</string>

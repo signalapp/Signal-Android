@@ -313,7 +313,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाईल फोटो</string>
   <string name="CreateProfileActivity_set_up_your_profile">आपली प्रोफाईल सेट अप करा</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपले प्रोफाईल एंड-टू-एंड एन्क्रिप्टेड आहे. जेव्हा आपण नवीन संभाषणे सुरू करता किंवा स्वीकारता आणि आपण नवीन गटांमध्ये सामील होता तेव्हा हे आपल्या संपर्कांना दृश्यमान असेल.</string>
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
@@ -577,6 +576,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ने हरवणारे संदेश अक्षम केले.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">आपण हरवणारे संदेश टायमर %1$s वर सेट केले.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ने हरवणारे संदेश टायमर %2$s वर सेट केले.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">आपण गट तयार केला.</string>
   <string name="MessageRecord_group_updated">गट अद्यतनित.</string>
@@ -1024,7 +1024,6 @@
   <string name="contact_selection_activity__enter_name_or_number">नाव किंवा नंबर प्रविष्ट करा</string>
   <string name="contact_selection_activity__invite_to_signal">Signal वर आमंत्रित करा</string>
   <string name="contact_selection_activity__new_group">नवीन गट</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">प्रविष्ट केलेले मजकूर साफ करा</string>
   <string name="contact_filter_toolbar__show_keyboard_description">कीबोर्ड दाखवा</string>

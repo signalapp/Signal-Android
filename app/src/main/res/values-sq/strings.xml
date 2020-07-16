@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem në rregullim profili</string>
   <string name="CreateProfileActivity_profile_photo">Foto profili</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili juaj është i fshehtëzuar skaj-më-skaj. Do të jetë i dukshëm për kontaktet tuaj, kur filloni ose pranoni biseda të reja, dhe kur bëheni anëtar grupesh të rinj.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili juaj është i fshehtëzuar skaj-më-skaj. Profili juaj dhe ndryshime në të do të jenë të dukshme për kontaktet tuaj, kur nisni ose pranoni biseda të reja, dhe kur merrni pjesë në grupe të rinj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Caktoni avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
@@ -460,6 +460,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Zgjidhni cilët mund të shtojnë ose ftojnë anëtarë të rinj</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Zgjidhni cilët mund të ndryshojnë emrin dhe foton e grupit</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Shtoje te kontakte sistemi</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ky person gjendet në kontaktet tuaja</string>
   <string name="ManageRecipientActivity_disappearing_messages">Zhdukje mesazhesh</string>
   <string name="ManageRecipientActivity_chat_color">Ngjyrë fjalosjeje</string>
   <string name="ManageRecipientActivity_block">Bllokoje</string>
@@ -649,6 +651,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutë kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Koha për zhdukje mesazhesh është vënë 1%1$s.</string>
+  <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s ndryshoi emrin e tij te profili si %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ndryshoi emrin e tij të profilit nga %2$s në %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s ndryshoi profilin e tij.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">E krijuat grupin.</string>
   <string name="MessageRecord_group_updated">Grupi u përditësua.</string>
@@ -1221,7 +1227,6 @@
   <string name="contact_selection_activity__enter_name_or_number">Jepni emër ose numër</string>
   <string name="contact_selection_activity__invite_to_signal">Ftojeni në Signal</string>
   <string name="contact_selection_activity__new_group">Grup i ri</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Spastro tekstin e dhënë</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Shfaq tastierën</string>

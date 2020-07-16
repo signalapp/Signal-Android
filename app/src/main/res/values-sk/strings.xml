@@ -342,7 +342,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Chyba pri nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotka</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil využíva koncové šifrovanie. Zobrazí sa vašim kontaktom, keď začnete alebo prijímete nové konverzácie s nimi a keď sa pridáte do nových skupín.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastaviť avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa vlastné: %s</string>
@@ -635,6 +634,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s vypol/la miznúce správy.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili ste časovač miznúcich správ na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil/a časovač miznúcich správ na %2$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Vytvorili ste skupinu.</string>
   <string name="MessageRecord_group_updated">Skupina aktualizovaná.</string>
@@ -1186,7 +1186,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="contact_selection_activity__enter_name_or_number">Zadajte meno alebo číslo</string>
   <string name="contact_selection_activity__invite_to_signal">Pozvať do Signalu</string>
   <string name="contact_selection_activity__new_group">Nová skupina</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Vymazať zadaný text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Zobraziť klávesnicu</string>

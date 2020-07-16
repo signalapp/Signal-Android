@@ -509,6 +509,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ngenonaktifaken pesen ngical.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sampeyan ngatur wekdal supados pesen ngical saksampune %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ngatur wekdal supados pesen ngical saksampune %2$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Sampeyan sampun ndamelaken grup.</string>
   <string name="MessageRecord_group_updated">Grup dienggalaken.</string>
@@ -956,7 +957,6 @@
   <string name="contact_selection_activity__enter_name_or_number">Lebetaken nami utawi nomer</string>
   <string name="contact_selection_activity__invite_to_signal">Ajak ngginakaken Signal</string>
   <string name="contact_selection_activity__new_group">Grup enggal</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Brusak teks ingkang dipunlebetaken</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Tampilaken keyboard</string>

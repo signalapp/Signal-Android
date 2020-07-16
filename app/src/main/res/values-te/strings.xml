@@ -582,6 +582,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s డిసేబుల్ కనుమరుగవుతున్న సందేశాలు.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">మీరు కనుమరుగైన సందేశ టైమర్ను సెట్ చేసారు %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s కనుమరుగవుతున్న సందేశాన్ని టైమర్కు సెట్ చేయండి %2$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">మీరు సమూహాన్ని సృష్టించారు.</string>
   <string name="MessageRecord_group_updated">సమూహం నవీకరించబడింది</string>
@@ -1086,7 +1087,6 @@
   <string name="contact_selection_activity__enter_name_or_number">పేరు లేదా నంబరు ఎంటర్ చేయండి</string>
   <string name="contact_selection_activity__invite_to_signal">Signal కు ఆహ్వానించండి</string>
   <string name="contact_selection_activity__new_group">కొత్త సమూహం</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">నమోదు చేసిన వచనాన్ని క్లియర్ చేయండి</string>
   <string name="contact_filter_toolbar__show_keyboard_description">కీబోర్డ్ చూపించు</string>

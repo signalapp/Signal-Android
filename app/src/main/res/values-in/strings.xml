@@ -576,6 +576,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s menonaktifkan penghilangan pesan.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Anda mengatur waktu penghilangan pesan menjadi%1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mengatur waktu penghilangan pesan menjadi %2$s</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Grup telah dibuat.</string>
   <string name="MessageRecord_group_updated">Group dimutakhirkan</string>
@@ -1094,7 +1095,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="contact_selection_activity__enter_name_or_number">Masukkan nama atau nomor</string>
   <string name="contact_selection_activity__invite_to_signal">Undang ke Signal</string>
   <string name="contact_selection_activity__new_group">Grup baru</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Hapus teks yang dimasukkan</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Munculkan papan ketik</string>

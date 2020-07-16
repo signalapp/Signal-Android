@@ -322,7 +322,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
   <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل شما به صورت سرتاسر رمزنگاری شده است و برای مخاطبان شما، هنگامی که شما مکالمهٔ جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید قابل مشاهده خواهد بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
@@ -649,6 +648,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان‌سنج پیام‌ ناپدید شونده را روی %1$s تنظیم کردید.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان‌سنج پیام ناپدید شونده را روی %2$s تنظیم کرد.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">زمان‌سنج پیام ناپدید شونده روی %1$s تنظیم شد.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه رو خلق کردی</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
@@ -1222,7 +1222,6 @@
   <string name="contact_selection_activity__enter_name_or_number">نام یا شماره را وارد کنید</string>
   <string name="contact_selection_activity__invite_to_signal">دعوت به Signal</string>
   <string name="contact_selection_activity__new_group">گروه جدید</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">پاک کردن متن وارد شده</string>
   <string name="contact_filter_toolbar__show_keyboard_description">نمایش صفحه‌کلید</string>

@@ -524,6 +524,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desactivou a desaparición das mensaxes.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Estableciches a desaparición das mensaxes en %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableceu a desaparición das mensaxes en %2$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_group_updated">Grupo actualizado.</string>
   <!--GV2 member additions-->
@@ -976,7 +977,6 @@
   <string name="contact_selection_activity__enter_name_or_number">Inserir nome ou número</string>
   <string name="contact_selection_activity__invite_to_signal">Convidar a Signal</string>
   <string name="contact_selection_activity__new_group">Novo grupo</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Limpar o texto inserido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>

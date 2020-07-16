@@ -528,6 +528,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sپیغامات غیر فعال ہو رہے ہیں۔</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">آپ غائب پیغام ٹائمر کو %1$sمیں ترتیب دے رہے ہیں۔</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sغائب پیغام ٹائمر کو %2$sمیں ترتیب دے رہے ہیں۔</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">آپ نے گروپ بنایا ہے۔</string>
   <string name="MessageRecord_group_updated">گروپ کی تجدید ہوئی۔</string>
@@ -968,7 +969,6 @@
   <string name="contact_selection_activity__enter_name_or_number">نمبر یا نام داخل کریں</string>
   <string name="contact_selection_activity__invite_to_signal">Signal میں مدعو کریں</string>
   <string name="contact_selection_activity__new_group">نیا گروپ</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">داخل کیا گیا ٹیکسٹ صاف کریں</string>
   <string name="contact_filter_toolbar__show_keyboard_description">کی بورڈ دکھائیں</string>

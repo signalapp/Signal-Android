@@ -308,7 +308,6 @@
   <string name="CreateProfileActivity_problem_setting_profile">Lỗi thiết lập hồ sơ</string>
   <string name="CreateProfileActivity_profile_photo">Ảnh đại diện</string>
   <string name="CreateProfileActivity_set_up_your_profile">Thiết lập hồ sơ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Hồ sơ của bạn được mã hóa đầu cuối. Hồ sơ sẽ hiển thị với liên hệ trong danh bạ của bạn, khi bạn bắt đầu hoặc chấp nhận cuộc trò chuyện mới, hoặc khi bạn tham gia nhóm mới.</string>
   <string name="CreateProfileActivity_set_avatar_description">Đặt ảnh đại diện</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
@@ -620,6 +619,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Bạn đã đặt tự hủy tin nhắn sau %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s đã đặt tự hủy tin nhắn sau %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Tin nhắn sẽ tự hủy sau %1$s.</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Bạn đã tạo nhóm.</string>
   <string name="MessageRecord_group_updated">Nhóm được cập nhật.</string>
@@ -1179,7 +1179,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="contact_selection_activity__enter_name_or_number">Điền tên hoặc số</string>
   <string name="contact_selection_activity__invite_to_signal">Mời dùng Signal</string>
   <string name="contact_selection_activity__new_group">Tạo nhóm mới</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Xóa văn bản đã nhập </string>
   <string name="contact_filter_toolbar__show_keyboard_description">Hiện bàn phím</string>
