@@ -714,7 +714,7 @@ Send neges heb ei ddiogelu?</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">Newidiodd %$s eu henwau proffil i %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">Newidiodd %$s eu henwau proffil o %2$s i %3$s.</string>
-  <string name="MessageRecord_changed_their_profile">Newidiodd %$s eu proffil.</string>
+  <string name="MessageRecord_changed_their_profile">Newidiodd %1$s eu proffil.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Crëwyd y grŵp gennych chi.</string>
   <string name="MessageRecord_group_updated">Grŵp wedi\'i ddiweddaru.</string>
