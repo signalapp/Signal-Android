@@ -52,8 +52,9 @@ object SyncMessagesProtocol {
         val allAddresses = ArrayList(DatabaseFactory.getRecipientDatabase(context).allAddresses)
         val result = mutableSetOf<ContactData>()
         for (address in allAddresses) {
-            if (!shouldSyncContact(context, address)) { continue }
-            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, address, false))
+            if (!shouldSyncContact(context, address.serialize())) { continue }
+            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(Recipient.from(context, address, false))
+            if (threadID < 0) { continue }
             val displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(address.serialize())
             val contactData = ContactData(threadID, displayName)
             contactData.numbers.add(NumberData("TextSecure", address.serialize()))
@@ -63,10 +64,11 @@ object SyncMessagesProtocol {
     }
 
     @JvmStatic
-    fun shouldSyncContact(context: Context, address: Address): Boolean {
-        if (!PublicKeyValidation.isValid(address.serialize())) { return false }
-        if (address.serialize() == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) { return false }
-        if (address.serialize() == TextSecurePreferences.getLocalNumber(context)) { return false }
+    fun shouldSyncContact(context: Context, publicKey: String): Boolean {
+        if (!PublicKeyValidation.isValid(publicKey)) { return false }
+        if (publicKey == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) { return false }
+        if (publicKey == TextSecurePreferences.getLocalNumber(context)) { return false }
+        if (MultiDeviceProtocol.shared.getSlaveDevices(publicKey).contains(publicKey)) { return false }
         return true
     }
 
@@ -100,6 +102,7 @@ object SyncMessagesProtocol {
             val applicationContext = context.applicationContext as ApplicationContext
             applicationContext.sendSessionRequestIfNeeded(contactPublicKey)
             DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient(context, contactPublicKey), contact.isBlocked)
+            DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient(context, contactPublicKey)) // Creates the thread if needed
         }
     }
 
@@ -122,9 +125,9 @@ object SyncMessagesProtocol {
                 closedGroup.avatar.orNull(),
                 closedGroup.admins
             )
-            val signalServiceDataMessage = SignalServiceDataMessage(content.timestamp, signalServiceGroup, null, null)
+            val dataMessage = SignalServiceDataMessage(content.timestamp, signalServiceGroup, null, null)
             // This establishes sessions internally
-            GroupMessageProcessor.process(context, content, signalServiceDataMessage, false)
+            GroupMessageProcessor.process(context, content, dataMessage, false)
         }
     }
 
