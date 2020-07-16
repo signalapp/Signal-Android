@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.WakeGroupV2Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -54,6 +55,7 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.StorageId;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
@@ -850,11 +852,13 @@ public class RecipientDatabase extends Database {
   public void applyStorageSyncUpdates(@NonNull StorageId storageId, SignalAccountRecord update) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-    ContentValues values      = new ContentValues();
-    ProfileName   profileName = ProfileName.fromParts(update.getGivenName().orNull(), update.getFamilyName().orNull());
-    String        profileKey  = update.getProfileKey().or(Optional.fromNullable(Recipient.self().getProfileKey())).transform(Base64::encodeBytes).orNull();
+    ContentValues        values      = new ContentValues();
+    ProfileName          profileName = ProfileName.fromParts(update.getGivenName().orNull(), update.getFamilyName().orNull());
+    Optional<ProfileKey> localKey    = ProfileKeyUtil.profileKeyOptional(Recipient.self().getProfileKey());
+    Optional<ProfileKey> remoteKey   = ProfileKeyUtil.profileKeyOptional(update.getProfileKey().orNull());
+    String               profileKey  = remoteKey.or(localKey).transform(ProfileKey::serialize).transform(Base64::encodeBytes).orNull();
 
-    if (!update.getProfileKey().isPresent()) {
+    if (!remoteKey.isPresent()) {
       Log.w(TAG, "Got an empty profile key while applying an account record update!");
     }
 
@@ -868,6 +872,10 @@ public class RecipientDatabase extends Database {
     int updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(storageId.getRaw())});
     if (updateCount < 1) {
       throw new AssertionError("Account update didn't match any rows!");
+    }
+
+    if (!remoteKey.equals(localKey)) {
+      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }
 
     Recipient.self().live().refresh();
