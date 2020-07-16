@@ -374,7 +374,7 @@ public class RetrieveProfileJob extends BaseJob {
       ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
       if (profileKey == null) return;
 
-      String plaintextProfileName = ProfileUtil.decryptName(profileKey, profileName);
+      String plaintextProfileName = Util.emptyIfNull(ProfileUtil.decryptName(profileKey, profileName));
 
       if (!Objects.equals(plaintextProfileName, recipient.getProfileName().serialize())) {
         String newProfileName      = TextUtils.isEmpty(plaintextProfileName) ? ProfileName.EMPTY.serialize() : plaintextProfileName;
