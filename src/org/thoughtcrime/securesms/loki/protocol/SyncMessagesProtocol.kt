@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
@@ -19,6 +20,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
+import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage
 import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInputStream
@@ -137,5 +139,28 @@ object SyncMessagesProtocol {
             val channel = openGroup.channel
             OpenGroupUtilities.addGroup(context, url, channel)
         }
+    }
+
+    @JvmStatic
+    fun handleBlockedContactsSyncMessage(context: Context, content: SignalServiceContent, blockedContacts: BlockedListMessage) {
+        val recipientDB = DatabaseFactory.getRecipientDatabase(context)
+        val cursor = recipientDB.blocked
+        val blockedPublicKeys = blockedContacts.numbers.toSet()
+        val publicKeysToUnblock = mutableSetOf<String>()
+        fun addToUnblockListIfNeeded() {
+            val publicKey = cursor.getString(cursor.getColumnIndex(RecipientDatabase.ADDRESS)) ?: return
+            if (blockedPublicKeys.contains(publicKey)) { return }
+            publicKeysToUnblock.add(publicKey)
+        }
+        while (cursor.moveToNext()) {
+            addToUnblockListIfNeeded()
+        }
+        publicKeysToUnblock.forEach {
+            recipientDB.setBlocked(recipient(context, it), false)
+        }
+        blockedPublicKeys.forEach {
+            recipientDB.setBlocked(recipient(context, it), true)
+        }
+        ApplicationContext.getInstance(context).broadcaster.broadcast("blockedContactsChanged")
     }
 }

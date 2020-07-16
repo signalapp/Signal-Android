@@ -2,13 +2,17 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.app.AlertDialog
 import android.arch.lifecycle.Observer
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.database.Cursor
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
+import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Spannable
 import android.text.SpannableString
@@ -47,6 +51,7 @@ import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesP
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
+    private var broadcastReceiver: BroadcastReceiver? = null
 
     private val publicKey: String
         get() {
@@ -166,6 +171,15 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             it.recipient.address.toPhoneString()
         }.toSet()
         FileServerAPI.shared.getDeviceLinks(publicKeys)
+        // Observe blocked contacts changed events
+        val broadcastReceiver = object : BroadcastReceiver() {
+
+            override fun onReceive(context: Context, intent: Intent) {
+                recyclerView.adapter!!.notifyDataSetChanged()
+            }
+        }
+        this.broadcastReceiver = broadcastReceiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
     }
 
     override fun onResume() {
@@ -197,6 +211,14 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         if (resultCode == CreateClosedGroupActivity.createNewPrivateChatResultCode) {
             createNewPrivateChat()
         }
+    }
+
+    override fun onDestroy() {
+        val broadcastReceiver = this.broadcastReceiver
+        if (broadcastReceiver != null) {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver)
+        }
+        super.onDestroy()
     }
     // endregion
 

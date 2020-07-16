@@ -27,15 +27,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
 
 public class RecipientDatabase extends Database {
 
   private static final String TAG = RecipientDatabase.class.getSimpleName();
 
-          static final         String TABLE_NAME       = "recipient_preferences";
+          static final String TABLE_NAME               = "recipient_preferences";
   private static final String ID                       = "_id";
-          static final         String ADDRESS          = "recipient_ids";
+  public  static final String ADDRESS                  = "recipient_ids";
   private static final String BLOCK                    = "block";
   private static final String NOTIFICATION             = "notification";
   private static final String VIBRATE                  = "vibrate";
