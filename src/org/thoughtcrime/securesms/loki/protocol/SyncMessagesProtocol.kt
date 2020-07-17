@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob
+import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -49,15 +50,16 @@ object SyncMessagesProtocol {
 
     @JvmStatic
     fun getContactsToSync(context: Context): List<ContactData> {
-        val allAddresses = ArrayList(DatabaseFactory.getRecipientDatabase(context).allAddresses)
+        val contacts = ContactUtilities.getAllContacts(context)
         val result = mutableSetOf<ContactData>()
-        for (address in allAddresses) {
-            if (!shouldSyncContact(context, address.serialize())) { continue }
-            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(Recipient.from(context, address, false))
+        for (contact in contacts) {
+            val contactPublicKey = contact.recipient.address.serialize()
+            if (!shouldSyncContact(context, contactPublicKey)) { continue }
+            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient(context, contactPublicKey))
             if (threadID < 0) { continue }
-            val displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(address.serialize())
+            val displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(contactPublicKey)
             val contactData = ContactData(threadID, displayName)
-            contactData.numbers.add(NumberData("TextSecure", address.serialize()))
+            contactData.numbers.add(NumberData("TextSecure", contactPublicKey))
             result.add(contactData)
         }
         return result.toList()
