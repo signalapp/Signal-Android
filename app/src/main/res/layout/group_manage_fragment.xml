@@ -21,7 +21,8 @@
             app:expandedTitleMarginTop="156dp"
             app:expandedTitleTextAppearance="@style/TextAppearance.Signal.Body1.Bold"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:scrimAnimationDuration="200">
+            app:scrimAnimationDuration="200"
+            app:scrimVisibleHeightTrigger="156dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
