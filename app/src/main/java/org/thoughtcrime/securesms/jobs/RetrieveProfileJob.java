@@ -383,7 +383,7 @@ public class RetrieveProfileJob extends BaseJob {
         Log.i(TAG, "Profile name updated. Writing new value.");
         DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getId(), ProfileName.fromSerialized(plaintextProfileName));
 
-        if (!recipient.isGroup() && !recipient.isLocalNumber()) {
+        if (!(recipient.isGroup() || recipient.isLocalNumber() || TextUtils.isEmpty(previousProfileName))) {
           //noinspection ConstantConditions
           DatabaseFactory.getSmsDatabase(context).insertProfileNameChangeMessages(recipient, newProfileName, previousProfileName);
         }
