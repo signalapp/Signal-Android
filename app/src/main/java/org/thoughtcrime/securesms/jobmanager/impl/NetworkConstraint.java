@@ -22,10 +22,7 @@ public class NetworkConstraint implements Constraint {
 
   @Override
   public boolean isMet() {
-    ConnectivityManager connectivityManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
-
-    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    return isMet(application);
   }
 
   @Override
@@ -38,6 +35,14 @@ public class NetworkConstraint implements Constraint {
   public void applyToJobInfo(@NonNull JobInfo.Builder jobInfoBuilder) {
     jobInfoBuilder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
   }
+
+  public static boolean isMet(@NonNull Context context) {
+    ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
+
+    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+  }
+
 
   public static final class Factory implements Constraint.Factory<NetworkConstraint> {
 
