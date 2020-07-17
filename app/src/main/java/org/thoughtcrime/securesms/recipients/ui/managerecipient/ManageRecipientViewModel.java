@@ -261,6 +261,10 @@ public final class ManageRecipientViewModel extends ViewModel {
     manageRecipientRepository.refreshRecipient();
   }
 
+  void onFinishedViewingContact() {
+    manageRecipientRepository.refreshRecipient();
+  }
+
   static final class MediaCursor {
              private final long          threadId;
     @NonNull private final CursorFactory mediaCursorFactory;

@@ -61,6 +61,7 @@ public class ManageRecipientFragment extends LoggingFragment {
 
   private static final int REQUEST_CODE_RETURN_FROM_MEDIA = 405;
   private static final int REQUEST_CODE_ADD_CONTACT       = 588;
+  private static final int REQUEST_CODE_VIEW_CONTACT      = 610;
 
   private ManageRecipientViewModel               viewModel;
   private GroupMemberListView                    sharedGroupList;
@@ -259,6 +260,8 @@ public class ManageRecipientFragment extends LoggingFragment {
       applyMediaCursorFactory();
     } else if (requestCode == REQUEST_CODE_ADD_CONTACT) {
       viewModel.onAddedToContacts();
+    } else if (requestCode == REQUEST_CODE_VIEW_CONTACT) {
+      viewModel.onFinishedViewingContact();
     }
   }
 
@@ -267,7 +270,7 @@ public class ManageRecipientFragment extends LoggingFragment {
       contactText.setText(R.string.ManageRecipientActivity_this_person_is_in_your_contacts);
       contactIcon.setVisibility(View.VISIBLE);
       contactRow.setOnClickListener(v -> {
-        startActivity(new Intent(Intent.ACTION_VIEW, recipient.getContactUri()));
+        startActivityForResult(new Intent(Intent.ACTION_VIEW, recipient.getContactUri()), REQUEST_CODE_VIEW_CONTACT);
       });
     } else {
       contactText.setText(R.string.ManageRecipientActivity_add_to_system_contacts);
