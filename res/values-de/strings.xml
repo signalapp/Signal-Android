@@ -1308,43 +1308,43 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="activity_landing_title_2">Ihre Session beginnt hier...</string>
   <string name="activity_landing_register_button_title">Session ID erstellen</string>
   <string name="activity_landing_restore_button_title">Ihre Session fortsetzen</string>
-  <string name="activity_landing_link_button_title">Link zu einem bestehenden Konto</string>
+  <string name="activity_landing_link_button_title">Mit einem bestehenden Konto verlinken</string>
   <string name="activity_landing_device_unlinked_dialog_title">Ihr Gerät wurde erfolgreich getrennt.</string>
 
   <string name="view_fake_chat_bubble_1">Was ist Session?</string>
   <string name="view_fake_chat_bubble_2">Es ist eine dezentrale, verschlüsselte Messaging-App.</string>
-  <string name="view_fake_chat_bubble_3">Es werden also weder meine persönlichen Daten noch die Metadaten meines Gesprächs erfasst? Wie funktioniert die App?</string>
-  <string name="view_fake_chat_bubble_4">Die App kombiniert fortschrittliche anonyme Routing- und End-to-End-Verschlüsselungstechnologien.</string>
+  <string name="view_fake_chat_bubble_3">Es werden also weder meine persönlichen Daten noch die Metadaten meiner Konversation erfasst? Wie funktioniert das?</string>
+  <string name="view_fake_chat_bubble_4">Mit einer Kombination fortschrittlicher anonyme Routing- und End-to-End-Verschlüsselungstechnologien.</string>
   <string name="view_fake_chat_bubble_5">Freunde lassen Freunde keine kompromittierten Messenger verwenden. Herzlich Willkommen.</string>
 
   <string name="activity_register_title">Das ist Ihre Session ID.</string>
-  <string name="activity_register_explanation">Ihre Session ID ist die eindeutige Adresse, unter der Personen Sie während Session kontaktieren können. Ihre Session ID ist nicht mit Ihrer realen Identität verbunden und völlig anonym und vom Design her privat.</string>
+  <string name="activity_register_explanation">Ihre Session ID ist die eindeutige Adresse, unter der Personen Sie über Session kontaktieren können. Ihre Session ID ist nicht mit Ihrer realen Identität verbunden, völlig anonym und von Natur aus privat.</string>
   <string name="activity_register_public_key_copied_message">In die Zwischenablage kopiert.</string>
 
   <string name="activity_restore_title">Ihr Konto wiederherstellen</string>
   <string name="activity_restore_explanation">Geben Sie den Wiederherstellungssatz ein, den Sie bei der Anmeldung zur Wiederherstellung Ihres Kontos erhalten haben.</string>
-  <string name="activity_restore_seed_edit_text_hint">Ihren Wiederherstellungssatz</string>
+  <string name="activity_restore_seed_edit_text_hint">Ihr Wiederherstellungssatz</string>
 
   <string name="activity_link_device_title">Gerät verbinden</string>
   <string name="activity_link_device_enter_session_id_tab_title">Session ID eingeben</string>
   <string name="activity_link_device_scan_qr_code_tab_title">QR-Code scannen</string>
-  <string name="activity_link_device_scan_qr_code_explanation">Navigieren Sie zu Einstellungen &gt; Geräte &gt; Gerät mit Ihrem anderen Gerät verknüpfen und scannen Sie den angezeigten QR-Code, um den Verknüpfungsprozess zu starten.</string>
+  <string name="activity_link_device_scan_qr_code_explanation">Navigieren Sie zu "Einstellungen" &gt; "Geräte" &gt; "Ihr Gerät verknüpfen" und scannen Sie den angezeigten QR-Code, um den Verknüpfungsprozess zu starten.</string>
 
   <string name="fragment_enter_session_id_title">Ihr Gerät verknüpfen</string>
-  <string name="fragment_enter_session_id_explanation">Navigieren Sie zu Einstellungen &gt; Geräte &gt; Gerät mit Ihrem anderen Gerät verknüpfen und geben Sie Ihre Session ID hier ein, um den Verknüpfungsprozess zu starten.</string>
+  <string name="fragment_enter_session_id_explanation">Navigieren Sie zu "Einstellungen" &gt; "Geräte" &gt; "Ihr Gerät verknüpfen" und geben Sie Ihre Session ID hier ein, um den Verknüpfungsprozess zu starten.</string>
   <string name="fragment_enter_session_id_edit_text_hint">Geben Sie Ihre Session ID ein.</string>
 
-  <string name="activity_display_name_title_2">Wählen Sie Ihren Anzeigenamen aus.</string>
-  <string name="activity_display_name_explanation">Dies ist Ihr Name, wenn Sie Session verwenden. Es kann Ihr richtiger Name, ein Alias oder alles andere sein, was Sie möchten.</string>
-  <string name="activity_display_name_edit_text_hint">Geben Sie einen Anzeigenamen ein.</string>
-  <string name="activity_display_name_display_name_missing_error">Bitte wählen Sie einen Anzeigenamen.</string>
-  <string name="activity_display_name_display_name_invalid_error">Bitte wählen Sie einen Anzeigenamen, der nur aus den Zeichen a -z, A - Z, 0 - 9 und _ besteht.</string>
-  <string name="activity_display_name_display_name_too_long_error">Bitte wählen Sie einen kürzeren Anzeigenamen.</string>
+  <string name="activity_display_name_title_2">Wählen Sie Ihren Anzeigenamen</string>
+  <string name="activity_display_name_explanation">Dies ist Ihr Name, wenn Sie Session verwenden. Es kann Ihr richtiger Name, ein Alias oder etwas andere sein.</string>
+  <string name="activity_display_name_edit_text_hint">Geben Sie einen Anzeigenamen ein</string>
+  <string name="activity_display_name_display_name_missing_error">Bitte wählen Sie einen Anzeigenamen</string>
+  <string name="activity_display_name_display_name_invalid_error">Bitte wählen Sie einen Anzeigenamen, der nur aus den Zeichen a - z, A - Z, 0 - 9 und _ besteht.</string>
+  <string name="activity_display_name_display_name_too_long_error">Bitte wählen Sie einen kürzeren Anzeigenamen</string>
 
   <string name="activity_pn_mode_title">Benachrichtigungen</string>
-  <string name="activity_pn_mode_explanation">Session kann Push-Benachrichtigungen mit zwei Methoden verarbeiten. Lesen Sie die Beschreibungen sorgfältig, bevor Sie sich entscheiden.</string>
+  <string name="activity_pn_mode_explanation">Session verfügt über zwei Methoden zur Verarbeitung von Benachrichtigungen. Lesen Sie die Beschreibungen sorgfältig, bevor Sie sich entscheiden.</string>
   <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-  <string name="activity_pn_mode_fcm_option_explanation">Session verwendet den Firebase Cloud Messaging-Dienst, um Push-Benachrichtigungen zu empfangen. Sie werden zuverlässig und sofort über neue Nachrichten informiert. Die Verwendung von FCM bedeutet, dass Ihre IP-Adresse und Ihr Geräte-Token für Google verfügbar sind. Wenn Sie Push-Benachrichtigungen anderer Apps verwenden, ist dies auch der Fall. Auch Loki erfährt Ihre IP-Adresse und Ihren Geräte-Token Ihre Nachrichten werden jedoch weiterhin per Onion geroutet und durchgängig verschlüsselt, sodass der Inhalt Ihrer Nachrichten vollständig privat bleibt.</string>
+  <string name="activity_pn_mode_fcm_option_explanation">Session verwendet den Firebase Cloud Messaging-Dienst, um Push-Benachrichtigungen zu empfangen. Sie werden zuverlässig und sofort über neue Nachrichten informiert. Die Verwendung von FCM bedeutet, dass Ihre IP-Adresse und Ihr Geräte-Token für Google verfügbar sind. Wenn Sie Push-Benachrichtigungen anderer Apps verwenden, ist dies auch der Fall. Auch Loki erfährt Ihre IP-Adresse und Ihren Geräte-Token, jedoch werden Ihre Nachrichten weiterhin per Onion geroutet und durchgängig verschlüsselt, sodass der Inhalt Ihrer Nachrichten vollständig privat bleibt.</string>
   <string name="activity_pn_mode_background_polling_option_title">Hintergrundabfrage</string>
   <string name="activity_pn_mode_background_polling_option_explanation">Session sucht von Zeit zu Zeit im Hintergrund nach neuen Nachrichten. Das garantiert einen vollständigen Schutz der Metadaten, aber Benachrichtigungen können sich jedoch erheblich verzögern.</string>
   <string name="activity_pn_mode_recommended_option_tag">Empfohlen</string>
@@ -1352,15 +1352,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
 
   <string name="activity_home_empty_state_message">Sie haben noch keine Kontakte.</string>
   <string name="activity_home_empty_state_button_title">Session starten</string>
-  <string name="activity_home_leave_group_dialog_message">Sind Sie sicher, dass Sie diese Gruppe verlassen möchten?</string>
+  <string name="activity_home_leave_group_dialog_message">Sind Sie sich sicher, dass Sie diese Gruppe verlassen möchten?</string>
   <string name="activity_home_leaving_group_failed_message">Gruppe konnte nicht verlassen werden.</string>
-  <string name="activity_home_delete_conversation_dialog_message">Möchten Sie dieses Gespräch wirklich löschen?</string>
-  <string name="activity_home_conversation_deleted_message">Das Gespräch wurde gelöscht.</string>
+  <string name="activity_home_delete_conversation_dialog_message">Möchten Sie diese Unterhaltung wirklich löschen?</string>
+  <string name="activity_home_conversation_deleted_message">Die Unterhaltung wurde gelöscht.</string>
 
   <string name="sheet_pn_mode_title">Benachrichtigungen</string>
-  <string name="sheet_pn_mode_explanation">Session verfügt über zwei Funktionen, zur Verarbeitung von Benachrichtigungen. Lesen Sie die Beschreibungen sorgfältig, bevor Sie sich entscheiden.</string>
+  <string name="sheet_pn_mode_explanation">Session verfügt über zwei Methoden zur Verarbeitung von Benachrichtigungen. Lesen Sie die Beschreibungen sorgfältig, bevor Sie sich entscheiden.</string>
   <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-  <string name="sheet_pn_mode_fcm_option_explanation">Session verwendet den Firebase Cloud Messaging-Dienst, um Push-Benachrichtigungen zu empfangen. Sie werden zuverlässig und sofort über neue Nachrichten informiert. Die Verwendung von FCM bedeutet, dass Ihre IP-Adresse und Ihr Geräte-Token für Google verfügbar sind. Wenn Sie Push-Benachrichtigungen anderer Apps verwenden, ist dies auch der Fall. Auch Loki erfährt Ihre IP-Adresse und Ihren Geräte-Token Ihre Nachrichten werden jedoch weiterhin per Onion geroutet und durchgängig verschlüsselt, sodass der Inhalt Ihrer Nachrichten vollständig privat bleibt.</string>
+  <string name="sheet_pn_mode_fcm_option_explanation">Session verwendet den Firebase Cloud Messaging-Dienst, um Push-Benachrichtigungen zu empfangen. Sie werden zuverlässig und sofort über neue Nachrichten informiert. Die Verwendung von FCM bedeutet, dass Ihre IP-Adresse und Ihr Geräte-Token für Google verfügbar sind. Wenn Sie Push-Benachrichtigungen anderer Apps verwenden, ist dies auch der Fall. Auch Loki erfährt Ihre IP-Adresse und Ihren Geräte-Token, jedoch werden Ihre Nachrichten weiterhin per Onion geroutet und durchgängig verschlüsselt, sodass der Inhalt Ihrer Nachrichten vollständig privat bleibt.</string>
   <string name="sheet_pn_mode_background_polling_option_title">Hintergrundabfrage</string>
   <string name="sheet_pn_mode_background_polling_option_explanation">Session sucht von Zeit zu Zeit im Hintergrund nach neuen Nachrichten. Das garantiert einen vollständigen Schutz der Metadaten, aber Benachrichtigungen können sich jedoch erheblich verzögern.</string>
   <string name="sheet_pn_mode_recommended_option_tag">Empfohlen</string>
@@ -1374,7 +1374,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="activity_seed_reveal_button_title">Zur Anzeige gedrückt halten</string>
 
   <string name="view_seed_reminder_subtitle_1">Sichern Sie Ihr Konto, indem Sie Ihren Wiederherstellungssatz speichern</string>
-  <string name="view_seed_reminder_subtitle_2">Tippen und halten Sie die bearbeiteten Wörter, um Ihren Wiederherstellungssatz anzuzeigen, und speichern Sie ihn dann sicher, um Ihre Session ID zu sichern.</string>
+  <string name="view_seed_reminder_subtitle_2">Tippen und halten Sie die verborgenen Wörter, um Ihren Wiederherstellungssatz anzuzeigen, und speichern Sie ihn dann sicher, um Ihre Session ID zu sichern.</string>
   <string name="view_seed_reminder_subtitle_3">Bewahren Sie Ihren Wiederherstellungssatz an einem sicheren Ort auf.</string>
 
   <string name="activity_path_title">Pfad</string>
@@ -1388,10 +1388,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="activity_create_private_chat_title">Neue Session</string>
   <string name="activity_create_private_chat_enter_session_id_tab_title">Session ID eingeben</string>
   <string name="activity_create_private_chat_scan_qr_code_tab_title">QR-Code scannen</string>
-  <string name="activity_create_private_chat_scan_qr_code_explanation">Scannen Sie den QR-Code eines Benutzers, um eine Session zu starten. QR-Codes finden Sie, indem Sie in den Kontoeinstellungen auf das QR-Code-Symbol tippen.</string>
+  <string name="activity_create_private_chat_scan_qr_code_explanation">Scannen Sie den QR-Code eines Benutzers, um eine Session zu starten. QR-Codes finden Sie, indem Sie in den Einstellungen auf das QR-Code-Symbol tippen.</string>
 
   <string name="fragment_enter_public_key_edit_text_hint">Geben Sie eine Session ID ein.</string>
-  <string name="fragment_enter_public_key_explanation">Benutzer können ihre Session ID freigeben, indem sie in ihren Kontoeinstellungen auf Session ID freigeben tippen oder ihren QR-Code freigeben.</string>
+  <string name="fragment_enter_public_key_explanation">Benutzer können ihre Session ID freigeben, indem sie in ihren Einstellungen auf "Session ID freigeben" tippen oder ihren QR-Code freigeben.</string>
 
   <string name="fragment_scan_qr_code_camera_access_explanation">Session benötigt Kamerazugriff, um die QR-Codes scannen zu können.</string>
   <string name="fragment_scan_qr_code_grant_camera_access_button_title">Kamerazugriff gewähren</string>
@@ -1404,7 +1404,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="activity_create_closed_group_group_name_missing_error">Bitte geben Sie einen Gruppennamen ein.</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Bitte geben Sie einen kürzeren Gruppennamen ein.</string>
   <string name="activity_create_closed_group_not_enough_group_members_error">Bitte wählen Sie mindestens zwei Gruppenmitglieder aus.</string>
-  <string name="activity_create_closed_group_too_many_group_members_error">Eine geschlossene Gruppe kann nicht höchsten zehn Mitglieder haben.</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">Eine geschlossene Gruppe kann maximal zehn Mitglieder haben.</string>
   <string name="activity_create_closed_group_invalid_session_id_error">Ein Mitglied Ihrer Gruppe hat eine ungültige Session ID.</string>
 
   <string name="activity_join_public_chat_title">Offener Gruppe beitreten</string>
@@ -1419,7 +1419,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="activity_settings_title">Einstellungen</string>
   <string name="activity_settings_display_name_edit_text_hint">Geben Sie einen Anzeigenamen ein.</string>
   <string name="activity_settings_display_name_missing_error">Bitte wählen Sie einen Anzeigenamen.</string>
-  <string name="activity_settings_invalid_display_name_error">Bitte wählen Sie einen Anzeigenamen, der nur aus den Zeichen a -z, A - Z, 0 - 9 und _ besteht.</string>
+  <string name="activity_settings_invalid_display_name_error">Bitte wählen Sie einen Anzeigenamen, der nur aus den Zeichen a - z, A - Z, 0 - 9 und _ besteht.</string>
   <string name="activity_settings_display_name_too_long_error">Bitte wählen Sie einen kürzeren Anzeigenamen.</string>
   <string name="activity_settings_privacy_button_title">Datenschutz</string>
   <string name="activity_settings_notifications_button_title">Benachrichtigungen</string>
@@ -1457,7 +1457,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="dialog_link_device_master_mode_title_1">Warten auf Gerät</string>
   <string name="dialog_link_device_master_mode_title_2">Verknüpfungsanfrage empfangen</string>
   <string name="dialog_link_device_master_mode_title_3">Gerätelink wird autorisiert</string>
-  <string name="dialog_link_device_master_mode_explanation_1">Laden Sie Session auf Ihr anderes Gerät herunter und tippen Sie unten auf dem Startbildschirm auf Link zu einem vorhandenen Konto. Wenn Sie bereits ein Konto auf Ihrem anderen Gerät haben, müssen Sie dieses Konto zuerst löschen.</string>
+  <string name="dialog_link_device_master_mode_explanation_1">Laden Sie Session auf Ihr anderes Gerät herunter und tippen Sie unten auf dem Startbildschirm auf "Mit einem bestehenden Konto verlinken". Wenn Sie bereits ein Konto auf Ihrem anderen Gerät haben, müssen Sie dieses Konto zuerst löschen.</string>
   <string name="dialog_link_device_master_mode_explanation_2">Bitte überprüfen Sie, ob die folgenden Wörter mit denen auf Ihrem anderen Gerät übereinstimmen.</string>
   <string name="dialog_link_device_master_mode_explanation_3">Bitte warten Sie, während der Gerätelink erstellt wird. Dies kann bis zu einer Minute dauern.</string>
   <string name="dialog_link_device_master_mode_authorize_button_title">Autorisieren</string>
@@ -1483,16 +1483,16 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
 
   <string name="view_friend_request_accept_button_title">Akzeptieren</string>
   <string name="view_friend_request_reject_button_title">Ablehnen</string>
-  <string name="view_friend_request_incoming_pending_message">%1$s hat Ihnen eine Sitzungsanfrage gesendet.</string>
-  <string name="view_friend_request_incoming_accepted_message">Sie haben die Sitzungsanfrage von %1$s akzeptiert.</string>
-  <string name="view_friend_request_incoming_declined_message">Sie haben die Sitzungsanfrage von %1$s abgelehnt.</string>
-  <string name="view_friend_request_incoming_expired_message">Die Sitzungsanfragte von %1$s ist abgelaufen.</string>
-  <string name="view_friend_request_outgoing_pending_message">Sie haben %1$s eine Sitzungsanfrage gesendet.</string>
-  <string name="view_friend_request_outgoing_accepted_message">%1$s hat Ihre Sitzungsanfrage akzeptiert.</string>
-  <string name="view_friend_request_outgoing_expired_message">Ihre Sitzungsanfrage an %1$s ist abgelaufen.</string>
+  <string name="view_friend_request_incoming_pending_message">%1$s hat Ihnen eine Session-Anfrage gesendet.</string>
+  <string name="view_friend_request_incoming_accepted_message">Sie haben die Session-Anfrage von %1$s akzeptiert.</string>
+  <string name="view_friend_request_incoming_declined_message">Sie haben die Session-Anfrage von %1$s abgelehnt.</string>
+  <string name="view_friend_request_incoming_expired_message">Die Session-Anfragte von %1$s ist abgelaufen.</string>
+  <string name="view_friend_request_outgoing_pending_message">Sie haben %1$s eine Session-Anfrage gesendet.</string>
+  <string name="view_friend_request_outgoing_accepted_message">%1$s hat Ihre Session-Anfrage akzeptiert.</string>
+  <string name="view_friend_request_outgoing_expired_message">Ihre Session-Anfrage an %1$s ist abgelaufen.</string>
 
   <string name="session_reset_banner_message">Möchten Sie Ihre Session mit %s wiederherstellen?</string>
-  <string name="session_reset_banner_dismiss_button_title">Entlassen</string>
+  <string name="session_reset_banner_dismiss_button_title">Verwerfen</string>
   <string name="session_reset_banner_restore_button_title">Wiederherstellen</string>
 
   <string name="fragment_contact_selection_contacts_title">Kontakte</string>
