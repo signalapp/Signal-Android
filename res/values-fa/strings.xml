@@ -1221,7 +1221,7 @@
 
   <!-- Session -->
   <string name="continue_2">ادامه </string>
-  <string name="copy">کپی &#126980;</string>
+  <string name="copy">رونویسی کردن</string>
   <string name="invalid_url">URL نامعتبر است</string>
   <string name="copied_to_clipboard">در کلیپ بورد کپی شد</string>
   <string name="device_linking_failed">پیوند دستگاه امکان پذیر نیست.</string>

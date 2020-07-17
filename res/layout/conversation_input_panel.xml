@@ -96,6 +96,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:textAlignment="viewStart"
                         android:layout_weight="1"
                         android:textColorHint="#99FFFFFF"
                         android:textSize="@dimen/small_font_size"
@@ -137,7 +138,7 @@
                                 android:id="@+id/recorder_view"
                                 android:layout_height="match_parent"
                                 android:layout_width="36dp"
-                                android:layout_gravity="center_vertical"
+                                android:layout_gravity="center"
                                 android:clipChildren="false"
                                 android:clipToPadding="false">
 

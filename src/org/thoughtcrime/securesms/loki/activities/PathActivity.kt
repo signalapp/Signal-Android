@@ -121,6 +121,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         titleTextView.setTextColor(resources.getColorWithID(R.color.text, theme))
         titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.medium_font_size))
         titleTextView.text = title
+        titleTextView.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
         val titleContainer = LinearLayout(this)
         titleContainer.orientation = LinearLayout.VERTICAL
         titleContainer.addView(titleTextView)
@@ -133,6 +134,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
             subtitleTextView.setTextColor(resources.getColorWithID(R.color.text, theme))
             subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.small_font_size))
             subtitleTextView.text = subtitle
+            subtitleTextView.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
             titleContainer.addView(subtitleTextView)
         }
         return mainContainer
