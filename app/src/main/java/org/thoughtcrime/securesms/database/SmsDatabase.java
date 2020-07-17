@@ -653,7 +653,9 @@ public class SmsDatabase extends MessagingDatabase {
     try {
       threadIdsToUpdate.add(threadDatabase.getThreadIdFor(recipient.getId()));
       for (GroupDatabase.GroupRecord groupRecord : groupRecords) {
-        threadIdsToUpdate.add(threadDatabase.getThreadIdFor(groupRecord.getRecipientId()));
+        if (groupRecord.isActive()) {
+          threadIdsToUpdate.add(threadDatabase.getThreadIdFor(groupRecord.getRecipientId()));
+        }
       }
 
       Stream.of(threadIdsToUpdate)
