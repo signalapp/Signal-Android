@@ -1508,7 +1508,7 @@
   <string name="activity_linked_devices_unlinking_successful_message">Ваше устройство успешно отвязано</string>
   <string name="activity_linked_devices_linking_failed_message">Не удалось привязать устройство.</string>
   <string name="activity_linked_devices_empty_state_message">Вы еще не привязали ни одного устройства</string>
-  <string name="activity_linked_devices_empty_state_button_title">Привязать устройство (бета)</string>
+  <string name="activity_linked_devices_empty_state_button_title">Привязать устройство</string>
 
   <string name="preferences_notifications_strategy_category_title">Метод уведомлений</string>
   <string name="preferences_notifications_use_fcm_option_title">Использовать FCM</string>

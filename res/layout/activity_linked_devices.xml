@@ -28,7 +28,7 @@
         <Button
             style="@style/MediumProminentOutlineButton"
             android:id="@+id/linkDeviceButton"
-            android:layout_width="212dp"
+            android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"
             android:layout_marginTop="@dimen/medium_spacing"
             android:text="@string/activity_linked_devices_empty_state_button_title" />
