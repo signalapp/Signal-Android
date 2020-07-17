@@ -18,6 +18,11 @@ object SessionMetaProtocol {
     private val timestamps = mutableSetOf<Long>()
 
     @JvmStatic
+    fun dropFromTimestampCacheIfNeeded(timestamp: Long) {
+        timestamps.remove(timestamp)
+    }
+
+    @JvmStatic
     fun shouldIgnoreMessage(content: SignalServiceContent): Boolean {
         val timestamp = content.timestamp
         val shouldIgnoreMessage = timestamps.contains(timestamp)

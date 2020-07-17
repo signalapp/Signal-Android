@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.successBackground
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -190,6 +191,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
             if (message.body.isEmpty() && message.attachments.isEmpty() && message.quote == null) { return }
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val dataMessage = getDataMessage(message)
+            SessionMetaProtocol.dropFromTimestampCacheIfNeeded(dataMessage.timestamp)
             val transcript = SentTranscriptMessage(userHexEncodedPublicKey, dataMessage.timestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(userHexEncodedPublicKey, false))
             transcript.messageServerID = messageServerID
             if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
