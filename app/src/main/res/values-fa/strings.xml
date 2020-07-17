@@ -322,6 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
   <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">نمایه شما رمزگذاری سرتاسری شده است. نمایه شما و تغییرات آن، هنگامی که شما مکالمه‌های جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید، برای مخاطبان شما قابل مشاهده خواهد بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
@@ -459,6 +460,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسانی می‌توانند اعضای جدید را دعوت یا اضافه کنند</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">انتخاب کنید چه کسانی می‌توانند نام و عکس گروه را تغییر دهند</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبان سیستم</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این کاربر در مخاطبان شما است</string>
   <string name="ManageRecipientActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageRecipientActivity_chat_color">رنگ گفتگو</string>
   <string name="ManageRecipientActivity_block">مسدود کردن</string>
@@ -649,6 +652,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان‌سنج پیام ناپدید شونده را روی %2$s تنظیم کرد.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">زمان‌سنج پیام ناپدید شونده روی %1$s تنظیم شد.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s نام نمایه خود را به %2$s تغییر دادند.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام نمایه خود را از %2$s  به %3$s تغییر دادند.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s نمایه خود را تغییر دادند.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه رو خلق کردی</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>

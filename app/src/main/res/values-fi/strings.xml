@@ -44,7 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Näytön lukitus %1$s, Rekisteröinnin lukitus %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Näytön lukitus %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, Kieli %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Rekisteröinnin lukitus vaatii PIN-koodin. Poistaaksesi PIN-koodin käytöstä, poista ensin rekisteröinnin lukitus käytöstä.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-koodi luotu.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN poistettu käytöstä.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuutti</item>
@@ -457,6 +459,7 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Valitse ketkä voivat lisätä tai kutsua uusia jäseniä</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Valitse ketkä voivat muuttaa ryhmän nimeä ja kuvaa</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tämä henkilö on yhteystiedoissasi</string>
   <string name="ManageRecipientActivity_disappearing_messages">Katoavat viestit</string>
   <string name="ManageRecipientActivity_chat_color">Keskustelun väri</string>
   <string name="ManageRecipientActivity_block">Estä</string>
@@ -705,6 +708,7 @@
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Muutit ryhmän kuvakkeen.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s muutti ryhmän kuvakkeen.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Ryhmän kuvake on vaihdettu.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Muutit kuka voi muokata ryhmän tietoja käyttäjiin \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s muutti kuka voi muokata ryhmän tietoja käyttäjiin \"%2$s\".</string>
@@ -805,6 +809,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Luo uusi PIN-koodi</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Varoitus</string>
+  <string name="PinOptOutDialog_disable_pin">Poista PIN käytöstä</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Arvostele tämä sovellus</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jos pidät Signalista, voit auttaa meitä arvostelemalla sen.</string>
@@ -1586,6 +1591,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__dark_theme">Tumma</string>
   <string name="preferences__appearance">Ulkonäkö</string>
   <string name="preferences__theme">Teema</string>
+  <string name="preferences__disable_pin">Poista PIN käytöstä</string>
+  <string name="preferences__enable_pin">Ota PIN käyttöön</string>
   <string name="preferences__system_default">Järjestelmän oletus</string>
   <string name="preferences__default">Oletus</string>
   <string name="preferences__language">Kieli</string>
@@ -1812,6 +1819,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsSplashFragment__update_pin">Päivitä PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Luo PIN-koodisi</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Lisätietoja PIN-koodeista</string>
+  <string name="KbsSplashFragment__disable_pin">Poista PIN käytöstä</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Syötä Signal PIN-koodisi</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pyydämme sinulta PIN-koodia ajoittain sen muistamisen helpottamiseksi. Pyynnöt harvenevat ajan myötä.</string>

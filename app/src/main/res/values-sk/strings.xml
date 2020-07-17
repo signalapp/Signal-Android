@@ -342,6 +342,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Chyba pri nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotka</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil využíva koncové šifrovanie. Váš profil a jeho zmeny budú vidieť vaše kontakty, keď začnete alebo prijmete nové konverzácie a keď sa pridáte do nových skupín.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastaviť avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa vlastné: %s</string>

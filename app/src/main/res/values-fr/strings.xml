@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problème de définition du profil</string>
   <string name="CreateProfileActivity_profile_photo">Photo de profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurez votre profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Votre profil est chiffré de bout en bout. Votre profil et les modifications qui y apportées seront visibles par vos contacts quand vous lancerez ou accepterez de nouvelles conversations et quand vous vous joindrez à de nouveaux groupes.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Votre profil est chiffré de bout en bout. Votre profil et les modifications qui y sont apportées seront visibles par vos contacts quand vous lancerez ou accepterez de nouvelles conversations et quand vous vous joindrez à de nouveaux groupes.</string>
   <string name="CreateProfileActivity_set_avatar_description">Définir un avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé utilisé : %s</string>

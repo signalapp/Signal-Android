@@ -22,10 +22,10 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Ištrinti visas senas žinutes dabar?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">Tai nedelsiant apkirps visus pokalbius iki %d naujausios žinutės.</item>
-    <item quantity="few">Tai nedelsiant apkirps visus pokalbius iki %d naujausių žinučių.</item>
-    <item quantity="many">Tai nedelsiant apkirps visus pokalbius iki %d naujausių žinučių.</item>
-    <item quantity="other">Tai nedelsiant apkirps visus pokalbius iki %d naujausių žinučių.</item>
+    <item quantity="one">Tai nedelsiant išvalys visus pokalbius iki naujausios žinutės.</item>
+    <item quantity="few">Tai nedelsiant išvalys visus pokalbius iki %d naujausių žinučių.</item>
+    <item quantity="many">Tai nedelsiant išvalys visus pokalbius iki %d naujausių žinučių.</item>
+    <item quantity="other">Tai nedelsiant išvalys visus pokalbius iki %d naujausios žinutės.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Ištrinti</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Išjungti slaptafrazę?</string>
@@ -350,6 +350,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemos, nustatant profilį</string>
   <string name="CreateProfileActivity_profile_photo">Profilio nuotrauka</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nusistatykite savo profilį</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jūsų profilis yra šifruotas ištisiniu būdu. Jūsų profilis ir jam atliekami pakeitimai bus matomi jūsų adresatams, kai inicijuosite ar priimsite naujus pokalbius, arba, kai prisijungsite prie naujų grupių.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nustatyti avatarą</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
@@ -409,7 +410,7 @@
   <string name="AddToGroupActivity_add_to_groups">Pridėti į grupes</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bendrinti jūsų profilio vardą ir nuotrauką su šia grupe?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti savo profilio vardą ir nuotrauką matomą visiems esamiems ir būsimiems šios grupės nariams?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti, kad jūsų profilio vardas ir nuotrauka būtų matomi visiems esamiems ir būsimiems šios grupės nariams?</string>
   <string name="GroupShareProfileView_make_visible">Padaryti matomą</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Jūs</string>
@@ -497,6 +498,8 @@
   <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius</string>
   <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pasirinkite, kas gali keisti grupės pavadinimą ir nuotrauką</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Pridėti į sistemos adresatus</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Šis žmogus yra jūsų adresatų sąraše</string>
   <string name="ManageRecipientActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageRecipientActivity_chat_color">Pokalbio spalva</string>
   <string name="ManageRecipientActivity_block">Užblokuoti</string>
@@ -561,7 +564,7 @@
   <string name="InviteActivity_share">Bendrinti</string>
   <string name="InviteActivity_choose_contacts">Pasirinkti adresatus</string>
   <string name="InviteActivity_share_with_contacts">Bendrinti su adresatais</string>
-  <string name="InviteActivity_choose_how_to_share">Pasirinkite kaip bendrinti</string>
+  <string name="InviteActivity_choose_how_to_share">Pasirinkti kaip bendrinti</string>
   <string name="InviteActivity_cancel">Atsisakyti</string>
   <string name="InviteActivity_sending">Siunčiama…</string>
   <string name="InviteActivity_heart_content_description">Širdis</string>
@@ -707,6 +710,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Išnykstančių žinučių laikmatis nustatytas į %1$s.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s pasikeitė profilio vardą į %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s pasikeitė profilio vardą iš %2$s į %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s pasikeitė profilį.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Jūs sukūrėte grupę.</string>
   <string name="MessageRecord_group_updated">Grupė atnaujinta.</string>
@@ -1701,18 +1707,18 @@
   <string name="preferences__chats">Pokalbiai ir medija</string>
   <string name="preferences__storage">Saugykla</string>
   <string name="preferences__conversation_length_limit">Pokalbio ilgio riba</string>
-  <string name="preferences__trim_all_conversations_now">Apkirpti visus pokalbius dabar</string>
+  <string name="preferences__trim_all_conversations_now">Išvalyti visus pokalbius dabar</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Peržiūrėti visus pokalbius ir priverstinai taikyti pokalbio ilgio ribas</string>
   <string name="preferences__linked_devices">Susieti įrenginiai</string>
-  <string name="preferences__light_theme">Šviesi</string>
-  <string name="preferences__dark_theme">Tamsi</string>
+  <string name="preferences__light_theme">Šviesus</string>
+  <string name="preferences__dark_theme">Tamsus</string>
   <string name="preferences__appearance">Išvaizda</string>
   <string name="preferences__theme">Apipavidalinimas</string>
   <string name="preferences__disable_pin">Išjungti PIN kodą</string>
   <string name="preferences__enable_pin">Įjungti PIN kodą</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jei išjungsite PIN kodą, tuomet registruodamiesi iš naujo Signal programėlėje, prarasite visus duomenis, nebent rankiniu būdu pasidarysite atsarginę kopiją ir ją atkursite. Tol, kol PIN kodas yra išjungtas, negalėsite įjungti Registracijos užrakto.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal programėlėje, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti. Norint atverti programėlę jums nereikės įvesti PIN kodo.</string>
-  <string name="preferences__system_default">Sistemos numatytasis</string>
+  <string name="preferences__system_default">Sistemos numatytoji</string>
   <string name="preferences__default">Numatytoji</string>
   <string name="preferences__language">Kalba</string>
   <string name="preferences__signal_messages_and_calls">Signal žinutės ir skambučiai</string>
@@ -1720,7 +1726,7 @@
   <string name="preferences__free_private_messages_and_calls">Nemokamos privačios žinutės ir skambučiai Signal naudotojams</string>
   <string name="preferences__submit_debug_log">Pateikti derinimo žurnalą</string>
   <string name="preferences__support_wifi_calling">„Wi-Fi skambučių“ suderinamumo veiksena</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite jeigu jūsų įrenginys siunčia SMS/MMS per WiFi tinklą (įjunkite tik tuo atveju jeigu jūsų įrenginyje yra aktyvuota \"WiFi skambučių\" funkcija)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite jeigu jūsų įrenginys siunčia SMS/MMS per belaidį (WiFi) tinklą (įjunkite tik tuo atveju jeigu jūsų įrenginyje yra aktyvuota \"WiFi skambučių\" funkcija)</string>
   <string name="preferences__incognito_keyboard">Incognito klaviatūra</string>
   <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
@@ -1732,7 +1738,7 @@
   <string name="preferences_chats__when_using_wifi">Naudojant belaidį ryšį (Wi-Fi)</string>
   <string name="preferences_chats__when_roaming">Naudojant tarptinklinį ryšį</string>
   <string name="preferences_chats__media_auto_download">Automatinis medijos atsisiuntimas</string>
-  <string name="preferences_chats__message_trimming">Žinučių apkirpimas</string>
+  <string name="preferences_chats__message_trimming">Žinučių išvalymas</string>
   <string name="preferences_storage__storage_usage">Saugyklos naudojimas</string>
   <string name="preferences_storage__photos">Nuotraukos</string>
   <string name="preferences_storage__videos">Vaizdo įrašai</string>
