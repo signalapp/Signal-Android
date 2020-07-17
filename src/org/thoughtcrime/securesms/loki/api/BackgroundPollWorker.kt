@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 class BackgroundPollWorker : PersistentAlarmManagerListener() {
 
     companion object {
-        private val pollInterval = TimeUnit.MINUTES.toMillis(15)
+        private val pollInterval = TimeUnit.MINUTES.toMillis(30)
 
         @JvmStatic
         fun schedule(context: Context) {
@@ -29,7 +29,7 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
 
     override fun onAlarm(context: Context, scheduledTime: Long): Long {
         if (scheduledTime != 0L) {
-            if (TextSecurePreferences.isUsingFCM(context)) {
+            if (!TextSecurePreferences.isUsingFCM(context)) {
                 val userPublicKey = TextSecurePreferences.getLocalNumber(context)
                 val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
                 try {
@@ -47,7 +47,7 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
             }
             val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }
             for (openGroup in openGroups) {
-                val poller = LokiPublicChatPoller(context, openGroup)
+                val poller = PublicChatPoller(context, openGroup)
                 poller.stop()
                 poller.pollForNewMessages()
             }

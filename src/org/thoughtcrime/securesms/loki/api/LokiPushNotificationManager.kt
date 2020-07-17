@@ -47,11 +47,11 @@ object LokiPushNotificationManager {
     }
 
     @JvmStatic
-    fun register(token: String, hexEncodedPublicKey: String, context: Context?, force: Boolean) {
+    fun register(token: String, publicKey: String, context: Context?, force: Boolean) {
         val oldToken = TextSecurePreferences.getFCMToken(context)
         val lastUploadDate = TextSecurePreferences.getLastFCMUploadTime(context)
         if (!force && token == oldToken && System.currentTimeMillis() - lastUploadDate < tokenExpirationInterval) { return }
-        val parameters = mapOf( "token" to token, "pubKey" to hexEncodedPublicKey )
+        val parameters = mapOf( "token" to token, "pubKey" to publicKey )
         val url = "$server/register"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body).build()

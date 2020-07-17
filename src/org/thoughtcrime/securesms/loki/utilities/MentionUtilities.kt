@@ -28,22 +28,22 @@ object MentionUtilities {
         val mentions = mutableListOf<Tuple2<Range<Int>, String>>()
         var startIndex = 0
         val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         if (matcher.find(startIndex)) {
             while (true) {
-                val hexEncodedPublicKey = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
-                val userDisplayName: String? = if (hexEncodedPublicKey.toLowerCase() == userHexEncodedPublicKey.toLowerCase()) {
+                val publicKey = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
+                val userDisplayName: String? = if (publicKey.toLowerCase() == userPublicKey.toLowerCase()) {
                     TextSecurePreferences.getProfileName(context)
                 } else if (publicChat != null) {
-                    DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, hexEncodedPublicKey)
+                    DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
                 } else {
-                    DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey)
+                    DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 }
                 if (userDisplayName != null) {
                     text = text.subSequence(0, matcher.start()).toString() + "@" + userDisplayName + text.subSequence(matcher.end(), text.length)
                     val endIndex = matcher.start() + 1 + userDisplayName.length
                     startIndex = endIndex
-                    mentions.add(Tuple2(Range.create(matcher.start(), endIndex), hexEncodedPublicKey))
+                    mentions.add(Tuple2(Range.create(matcher.start(), endIndex), publicKey))
                 } else {
                     startIndex = matcher.end()
                 }

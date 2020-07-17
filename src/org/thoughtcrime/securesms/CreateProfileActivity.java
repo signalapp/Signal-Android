@@ -58,8 +58,8 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -386,7 +386,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         Context context    = CreateProfileActivity.this;
 
         TextSecurePreferences.setProfileName(context, name);
-        LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(context).getLokiPublicChatAPI();
+        PublicChatAPI publicChatAPI = ApplicationContext.getInstance(context).getPublicChatAPI();
         if (publicChatAPI != null) {
           Set<String> servers = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChatServers();
           for (String server : servers) {
@@ -409,7 +409,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             // Loki - Upload the profile photo here
             if (avatar != null) {
               Log.d("Loki", "Start uploading profile photo");
-              LokiFileServerAPI storageAPI = LokiFileServerAPI.shared;
+              FileServerAPI storageAPI = FileServerAPI.shared;
               LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePicture(storageAPI.getServer(), profileKey, avatar, () -> {
                 TextSecurePreferences.setLastProfilePictureUpload(CreateProfileActivity.this, new Date().getTime());
                 return Unit.INSTANCE;

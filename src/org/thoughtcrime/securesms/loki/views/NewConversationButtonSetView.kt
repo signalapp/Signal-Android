@@ -16,6 +16,7 @@ import android.os.Vibrator
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -91,6 +92,7 @@ class NewConversationButtonSetView : RelativeLayout {
             addView(imageView)
             imageView.x = collapsedImageViewPosition.x
             imageView.y = collapsedImageViewPosition.y
+            gravity = Gravity.TOP or Gravity.LEFT // Intentionally not Gravity.START
         }
 
         fun expand() {

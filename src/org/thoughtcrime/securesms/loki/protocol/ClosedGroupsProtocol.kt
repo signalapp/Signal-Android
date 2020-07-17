@@ -18,7 +18,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.SnodeAPI
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import java.util.*
 
@@ -32,7 +32,7 @@ object ClosedGroupsProtocol {
         if (!conversation.address.isClosedGroup || groupID == null) { return false }
         // A closed group's members should never include slave devices
         val senderPublicKey = content.sender
-        LokiFileServerAPI.shared.getDeviceLinks(senderPublicKey).timeout(6000).get()
+        FileServerAPI.shared.getDeviceLinks(senderPublicKey).timeout(6000).get()
         val senderMasterPublicKey = MultiDeviceProtocol.shared.getMasterDevice(senderPublicKey)
         val publicKeyToCheckFor = senderMasterPublicKey ?: senderPublicKey
         val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, true)
@@ -57,7 +57,7 @@ object ClosedGroupsProtocol {
         } else {
             // A closed group's members should never include slave devices
             val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false)
-            return LokiFileServerAPI.shared.getDeviceLinks(members.map { it.address.serialize() }.toSet()).map {
+            return FileServerAPI.shared.getDeviceLinks(members.map { it.address.serialize() }.toSet()).map {
                 val result = members.flatMap { member ->
                     MultiDeviceProtocol.shared.getAllLinkedDevices(member.address.serialize()).map { Address.fromSerialized(it) }
                 }.toMutableSet()
@@ -106,7 +106,7 @@ object ClosedGroupsProtocol {
             allDevices.remove(userPublicKey)
         }
         for (device in allDevices) {
-            ApplicationContext.getInstance(context).sendSessionRequest(device)
+            ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(device)
         }
     }
 }

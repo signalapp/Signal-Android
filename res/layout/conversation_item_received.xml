@@ -208,12 +208,6 @@
 
             </LinearLayout>
 
-            <org.thoughtcrime.securesms.loki.views.FriendRequestView
-                android:id="@+id/friend_request_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
-
         </LinearLayout>
 
         <org.thoughtcrime.securesms.components.AlertView
@@ -225,4 +219,5 @@
             android:gravity="center_vertical"/>
 
     </RelativeLayout>
+
 </org.thoughtcrime.securesms.conversation.ConversationItem>

@@ -7,7 +7,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.loki.api.LokiPublicChatManager;
+import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.whispersystems.signalservice.loki.api.Poller;
@@ -40,15 +40,15 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
-    LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
+    PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {
       isCaughtUp = isCaughtUp && lokiPoller.isCaughtUp();
     }
 
-    if (lokiPublicChatManager != null) {
-      isCaughtUp = isCaughtUp && lokiPublicChatManager.areAllCaughtUp();
+    if (publicChatManager != null) {
+      isCaughtUp = isCaughtUp && publicChatManager.areAllCaughtUp();
     }
 
     if (isCaughtUp) {
@@ -60,15 +60,15 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
-    LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
+    PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {
       isCaughtUp = isCaughtUp && lokiPoller.isCaughtUp();
     }
 
-    if (lokiPublicChatManager != null) {
-      isCaughtUp = isCaughtUp && lokiPublicChatManager.areAllCaughtUp();
+    if (publicChatManager != null) {
+      isCaughtUp = isCaughtUp && publicChatManager.areAllCaughtUp();
     }
     
     if (isCaughtUp) {
@@ -80,15 +80,15 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@NonNull Context context, long threadId, boolean signal) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
-    LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
+    PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {
       isCaughtUp = isCaughtUp && lokiPoller.isCaughtUp();
     }
 
-    if (lokiPublicChatManager != null) {
-      isCaughtUp = isCaughtUp && lokiPublicChatManager.areAllCaughtUp();
+    if (publicChatManager != null) {
+      isCaughtUp = isCaughtUp && publicChatManager.areAllCaughtUp();
     }
 
     if (isCaughtUp) {
@@ -100,15 +100,15 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @Override
   public void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount) {
-    Poller lokiPoller = ApplicationContext.getInstance(context).lokiPoller;
-    LokiPublicChatManager lokiPublicChatManager = ApplicationContext.getInstance(context).lokiPublicChatManager;
+    Poller lokiPoller = ApplicationContext.getInstance(context).poller;
+    PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;
     if (lokiPoller != null) {
       isCaughtUp = isCaughtUp && lokiPoller.isCaughtUp();
     }
 
-    if (lokiPublicChatManager != null) {
-      isCaughtUp = isCaughtUp && lokiPublicChatManager.areAllCaughtUp();
+    if (publicChatManager != null) {
+      isCaughtUp = isCaughtUp && publicChatManager.areAllCaughtUp();
     }
 
     if (isCaughtUp) {

@@ -1358,6 +1358,7 @@
 
 
 
+  <!-- Session -->
   <string name="continue_2">Продолжить</string>
   <string name="copy">Копировать</string>
   <string name="invalid_url">Неверная ссылка</string>

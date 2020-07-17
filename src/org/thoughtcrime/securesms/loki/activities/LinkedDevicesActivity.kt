@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -126,30 +126,30 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
         val deviceLinks = apiDB.getDeviceLinks(userPublicKey)
-        val deviceLink = deviceLinks.find { it.masterHexEncodedPublicKey == userPublicKey && it.slaveHexEncodedPublicKey == slaveDevicePublicKey }
+        val deviceLink = deviceLinks.find { it.masterPublicKey == userPublicKey && it.slavePublicKey == slaveDevicePublicKey }
         if (deviceLink == null) {
             return Toast.makeText(this, R.string.activity_linked_devices_unlinking_failed_message, Toast.LENGTH_LONG).show()
         }
-        LokiFileServerAPI.shared.setDeviceLinks(setOf()).successUi {
+        FileServerAPI.shared.setDeviceLinks(setOf()).successUi {
             DatabaseFactory.getLokiAPIDatabase(this).clearDeviceLinks(userPublicKey)
             deviceLinks.forEach { deviceLink ->
                 // We don't use PushEphemeralMessageJob because want these messages to send before the pre key and
                 // session associated with the slave device have been deleted
                 val unlinkingRequest = SignalServiceDataMessage.newBuilder()
                     .withTimestamp(System.currentTimeMillis())
-                    .asUnlinkingRequest(true)
+                    .asDeviceUnlinkingRequest(true)
                 val messageSender = ApplicationContext.getInstance(this@LinkedDevicesActivity).communicationModule.provideSignalMessageSender()
-                val address = SignalServiceAddress(deviceLink.slaveHexEncodedPublicKey)
+                val address = SignalServiceAddress(deviceLink.slavePublicKey)
                 try {
-                    val udAccess = UnidentifiedAccessUtil.getAccessFor(this@LinkedDevicesActivity, recipient(this@LinkedDevicesActivity, deviceLink.slaveHexEncodedPublicKey))
+                    val udAccess = UnidentifiedAccessUtil.getAccessFor(this@LinkedDevicesActivity, recipient(this@LinkedDevicesActivity, deviceLink.slavePublicKey))
                     messageSender.sendMessage(0, address, udAccess, unlinkingRequest.build()) // The message ID doesn't matter
                 } catch (e: Exception) {
                     Log.d("Loki", "Failed to send unlinking request due to error: $e.")
                     throw e
                 }
-                DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
+                DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slavePublicKey)
                 val sessionStore = TextSecureSessionStore(this@LinkedDevicesActivity)
-                sessionStore.deleteAllSessions(deviceLink.slaveHexEncodedPublicKey)
+                sessionStore.deleteAllSessions(deviceLink.slavePublicKey)
             }
             LoaderManager.getInstance(this).restartLoader(0, null, this)
             Toast.makeText(this, R.string.activity_linked_devices_unlinking_successful_message, Toast.LENGTH_LONG).show()

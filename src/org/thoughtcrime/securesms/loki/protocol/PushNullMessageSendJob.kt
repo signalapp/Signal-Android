@@ -56,7 +56,7 @@ class PushNullMessageSendJob private constructor(parameters: Parameters, private
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                 Date().time, serializedContentMessage, false, ttl, false,
-                false, false, false, false)
+                false, false, false)
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send null message to: $publicKey due to error: $e.")
             throw e

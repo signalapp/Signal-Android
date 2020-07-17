@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -27,7 +27,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
 
     constructor() : this(Parameters.Builder()
         .addConstraint(NetworkConstraint.KEY)
-        .setQueue("MultiDeviceOpenGroupUpdateJob")
+        .setQueue(KEY)
         .setLifespan(TimeUnit.DAYS.toMillis(1))
         .setMaxAttempts(Parameters.UNLIMITED)
         .build())
@@ -43,7 +43,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
             return
         }
         // Gather open groups
-        val openGroups = mutableListOf<LokiPublicChat>()
+        val openGroups = mutableListOf<PublicChat>()
         DatabaseFactory.getGroupDatabase(context).groups.use { reader ->
             while (true) {
                 val record = reader.next ?: return@use

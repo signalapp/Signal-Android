@@ -1214,5 +1214,215 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Session قفل شده است</string>
   <string name="RegistrationLockDialog_reminder">یادآور:</string>
   <string name="recipient_preferences__about">درباره ی ما</string>
-  <!--EOF-->
+
+
+
+
+
+  <!-- Session -->
+  <string name="continue_2">ادامه </string>
+  <string name="copy">رونویسی کردن</string>
+  <string name="invalid_url">URL نامعتبر است</string>
+  <string name="copied_to_clipboard">در کلیپ بورد کپی شد</string>
+  <string name="device_linking_failed">پیوند دستگاه امکان پذیر نیست.</string>
+  <string name="next">بعد</string>
+  <string name="share">اشتراک گذاری</string>
+  <string name="invalid_session_id">شناسه نامعتبر جلسه</string>
+  <string name="cancel">لغو</string>
+  <string name="your_session_id">شناسه جلسه شما</string>
+
+  <string name="activity_landing_title_2">جلسه شما از اینجا شروع می شود...</string>
+  <string name="activity_landing_register_button_title">شناسه جلسه را ایجاد کنید</string>
+  <string name="activity_landing_restore_button_title">جلسه خود را ادامه دهید</string>
+  <string name="activity_landing_link_button_title">پیوند به یک حساب کاربری موجود</string>
+  <string name="activity_landing_device_unlinked_dialog_title">ارتباط دستگاه شما با موفقیت انجام نشد</string>
+
+  <string name="view_fake_chat_bubble_1">جلسه چیست؟</string>
+  <string name="view_fake_chat_bubble_2">این یک برنامه پیام رسانی غیرمتمرکز و رمزگذاری شده است</string>
+  <string name="view_fake_chat_bubble_3">بنابراین اطلاعات شخصی یا ابرداده گفتگوی من جمع نمی شود؟ چگونه کار می کند؟</string>
+  <string name="view_fake_chat_bubble_4">استفاده از ترکیبی از فن آوری های رمزگذاری پیشرفته مسیریابی ناشناس و پایان به پایان.</string>
+  <string name="view_fake_chat_bubble_5">دوستان اجازه نمی دهند تا دوستان از پیام رسان های مصالحه استفاده کنند. خواهش میکنم.</string>
+
+  <string name="activity_register_title">سلام به شناسه جلسه خود</string>
+  <string name="activity_register_explanation">شناسه جلسه شما آدرس منحصر به فردی است که افراد می توانند از آنها برای تماس با شما در جلسه استفاده کنند. بدون ارتباط با هویت واقعی شما ، شناسه جلسه شما کاملاً ناشناس و خصوصی است.</string>
+  <string name="activity_register_public_key_copied_message">در کلیپ بورد کپی شد</string>
+
+  <string name="activity_restore_title">حساب خود را بازیابی کنید</string>
+  <string name="activity_restore_explanation">عبارت بازیابی را هنگام ثبت نام برای بازیابی حساب خود وارد کنید.</string>
+  <string name="activity_restore_seed_edit_text_hint">عبارت بازیابی خود را وارد کنید</string>
+
+  <string name="activity_link_device_title">دستگاه پیوند</string>
+  <string name="activity_link_device_enter_session_id_tab_title">شناسه جلسه را وارد کنید</string>
+  <string name="activity_link_device_scan_qr_code_tab_title">اسکن کد QR</string>
+  <string name="activity_link_device_scan_qr_code_explanation">به تنظیمات &gt; دستگاه ها &gt; پیوند دستگاه در دستگاه دیگر خود بروید و سپس کد QR را که برای شروع کار پیوند داده است ، اسکن کنید.</string>
+
+  <string name="fragment_enter_session_id_title">دستگاه خود را پیوند دهید</string>
+  <string name="fragment_enter_session_id_explanation">به تنظیمات &gt; دستگاه ها &gt; پیوند دستگاه در دستگاه دیگر خود بروید و سپس شناسه جلسه خود را در اینجا وارد کنید تا فرایند پیوند آغاز شود.</string>
+  <string name="fragment_enter_session_id_edit_text_hint">شناسه جلسه خود را وارد کنید</string>
+
+  <string name="activity_display_name_title_2">نام صفحه نمایش خود را انتخاب کنید</string>
+  <string name="activity_display_name_explanation">این نام شما هنگام استفاده از جلسه خواهد بود. این می تواند نام واقعی شما باشد ، نام مستعار یا هر چیز دیگری که دوست دارید.</string>
+  <string name="activity_display_name_edit_text_hint">نام نمایشگر را وارد کنید</string>
+  <string name="activity_display_name_display_name_missing_error">لطفاً نام نمایشگر را انتخاب کنید</string>
+  <string name="activity_display_name_display_name_invalid_error">لطفاً یک نام نمایشگر را انتخاب کنید که فقط از نویسه های Az ، AZ ، 0-9 و _ تشکیل شده باشد</string>
+  <string name="activity_display_name_display_name_too_long_error">لطفاً نام نمایشگر کوتاه تری انتخاب کنید</string>
+
+  <string name="activity_pn_mode_title">اعلانهای فشار</string>
+  <string name="activity_pn_mode_explanation">دو راه وجود دارد که جلسه می تواند اعلان های فشار را کنترل کند. حتما قبل از انتخاب توضیحات را با دقت بخوانید.</string>
+  <string name="activity_pn_mode_fcm_option_title">پیام ابری فایربیس</string>
+  <string name="activity_pn_mode_fcm_option_explanation">جلسه برای دریافت اعلان های فشار از سرویس پیام ابری فایربیس استفاده می کند. با اطمینان و بلافاصله از پیامهای جدید مطلع خواهید شد. استفاده از FCM بدان معنا است که آدرس IP و نشانه دستگاه شما در معرض گوگل قرار خواهد گرفت. اگر از اعلانهای فشار برای سایر برنامه ها استفاده می کنید ، این مورد در حال حاضر اینگونه خواهد بود. آدرس IP و نشانه دستگاه شما نیز در معرض Loki قرار خواهد گرفت ، اما پیام های شما هنوز هم از طریق رمزگذاری شده توسط اونیون و رمزگذاری نهایی به پایان می رسد ، بنابراین محتوای پیام های شما کاملاً خصوصی خواهد بود.</string>
+  <string name="activity_pn_mode_background_polling_option_title">زمینه رای گیری</string>
+  <string name="activity_pn_mode_background_polling_option_explanation">جلسه گاه به گاه پیام های جدید را در پس زمینه بررسی می کند. این محافظت کامل از ابرداده را تضمین می کند ، اما اعلان های پیام ممکن است به میزان قابل توجهی به تأخیر بیفتند.</string>
+  <string name="activity_pn_mode_recommended_option_tag">توصیه شده</string>
+  <string name="activity_pn_mode_no_option_picked_dialog_title">لطفا گزینه ای را انتخاب کنید</string>
+
+  <string name="activity_home_empty_state_message">شما هنوز هیچ تماسی ندارید</string>
+  <string name="activity_home_empty_state_button_title">شروع جلسه</string>
+  <string name="activity_home_leave_group_dialog_message">آیا مطمئن هستید که می خواهید این گروه را ترک کنید؟</string>
+  <string name="activity_home_leaving_group_failed_message">نمی توان گروه را ترک کرد</string>
+  <string name="activity_home_delete_conversation_dialog_message">آیا مطمئن هستید که می خواهید این مکالمه را حذف کنید؟</string>
+  <string name="activity_home_conversation_deleted_message">مکالمه حذف شد</string>
+
+  <string name="sheet_pn_mode_title">اعلانهای فشار</string>
+  <string name="sheet_pn_mode_explanation">جلسه اکنون دو راه برای رسیدگی به اعلان های فشار دارد. حتما قبل از انتخاب توضیحات را با دقت بخوانید.</string>
+  <string name="sheet_pn_mode_fcm_option_title">پیام ابری فایربیس</string>
+  <string name="sheet_pn_mode_fcm_option_explanation">جلسه برای دریافت اعلان های فشار از سرویس پیام ابری فایربیس استفاده می کند. با اطمینان و بلافاصله از پیامهای جدید مطلع خواهید شد. استفاده از FCM بدان معنا است که آدرس IP و نشانه دستگاه شما در معرض گوگل قرار خواهد گرفت. اگر از اعلانهای فشار برای سایر برنامه ها استفاده می کنید ، این مورد در حال حاضر اینگونه خواهد بود. آدرس IP و نشانه دستگاه شما نیز در معرض Loki قرار خواهد گرفت ، اما پیام های شما هنوز هم از طریق رمزگذاری شده توسط پیاز و رمزگذاری نهایی به پایان می رسد ، بنابراین محتوای پیام های شما کاملاً خصوصی خواهد بود.</string>
+  <string name="sheet_pn_mode_background_polling_option_title">زمینه رای گیری</string>
+  <string name="sheet_pn_mode_background_polling_option_explanation">جلسه گاه به گاه پیام های جدید را در پس زمینه بررسی می کند. این محافظت کامل از ابرداده را تضمین می کند ، اما اعلان های پیام ممکن است به میزان قابل توجهی به تأخیر بیفتند.</string>
+  <string name="sheet_pn_mode_recommended_option_tag">توصیه شده</string>
+  <string name="sheet_pn_mode_no_option_picked_dialog_title">لطفا گزینه ای را انتخاب کنید</string>
+  <string name="sheet_pn_mode_confirm_button_title">تایید</string>
+  <string name="sheet_pn_mode_skip_button_title">رد</string>
+
+  <string name="activity_seed_title">عبارت بازیابی شما</string>
+  <string name="activity_seed_title_2">با عبارت بازیابی خود مطابقت داشته باشید</string>
+  <string name="activity_seed_explanation">عبارت بازیابی شما کلید اصلی شناسه جلسه شما است - در صورت عدم دسترسی به دستگاه خود می توانید از آن برای بازگرداندن شناسه جلسه استفاده کنید. عبارت بازیابی خود را در مکانی امن ذخیره کنید و آن را به کسی ندهید.</string>
+  <string name="activity_seed_reveal_button_title">نگه دارید تا فاش شود</string>
+
+  <string name="view_seed_reminder_subtitle_1">با ذخیره کردن عبارت بازیابی ، حساب خود را ایمن کنید</string>
+  <string name="view_seed_reminder_subtitle_2">برای فاش کردن عبارت بازیابی ، بر روی کلمات redacted ضربه زده و نگه دارید ، سپس با خیال راحت آن را ذخیره کنید تا شناسه جلسه خود را ایمن نمایید.</string>
+  <string name="view_seed_reminder_subtitle_3">حتماً عبارت بازیابی خود را در مکانی امن ذخیره کنید</string>
+
+  <string name="activity_path_title">مسیر</string>
+  <string name="activity_path_explanation">جلسه IP شما را با گزاف گویی پیام های خود از طریق چندین گره سرویس در شبکه غیرمتمرکز جلسه مخفی می کند. اینها کشورهایی هستند که اتصال شما در حال حاضر از طریق آن فراخوانی می شوند:</string>
+  <string name="activity_path_device_row_title">شما</string>
+  <string name="activity_path_guard_node_row_title">گره ورود</string>
+  <string name="activity_path_service_node_row_title">گره سرویس</string>
+  <string name="activity_path_destination_row_title">مقصد</string>
+  <string name="activity_path_learn_more_button_title">بیشتر بدانید</string>
+
+  <string name="activity_create_private_chat_title">جلسه جدید</string>
+  <string name="activity_create_private_chat_enter_session_id_tab_title">شناسه جلسه را وارد کنید</string>
+  <string name="activity_create_private_chat_scan_qr_code_tab_title">اسکن کد QR</string>
+  <string name="activity_create_private_chat_scan_qr_code_explanation">برای شروع جلسه ، کد QR کاربر را اسکن کنید. با ضربه زدن روی نماد کد QR در تنظیمات حساب ، کدهای QR را می توان یافت.</string>
+
+  <string name="fragment_enter_public_key_edit_text_hint">شناسه گیرنده را وارد کنید</string>
+  <string name="fragment_enter_public_key_explanation">کاربران می توانند با وارد کردن به تنظیمات حساب خود و ضربه زدن به Share Share Session ID یا با به اشتراک گذاشتن کد QR خود ، شناسه جلسه خود را به اشتراک بگذارند.</string>
+
+  <string name="fragment_scan_qr_code_camera_access_explanation">جلسه برای اسکن کدهای QR به دوربین دسترسی دارد</string>
+  <string name="fragment_scan_qr_code_grant_camera_access_button_title">دسترسی به کمک دوربین</string>
+
+  <string name="activity_create_closed_group_title">گروه بسته شده جدید</string>
+  <string name="activity_create_closed_group_edit_text_hint">نام گروه را وارد کنید</string>
+  <string name="activity_create_closed_group_explanation">گروه های بسته تا 10 عضو را پشتیبانی می کنند و همان محافظت از حریم خصوصی را به عنوان جلسات یک به یک ارائه می دهند.</string>
+  <string name="activity_create_closed_group_empty_state_message">شما هنوز هیچ تماسی ندارید</string>
+  <string name="activity_create_closed_group_empty_state_button_title">شروع جلسه</string>
+  <string name="activity_create_closed_group_group_name_missing_error">لطفاً یک نام گروه وارد کنید</string>
+  <string name="activity_create_closed_group_group_name_too_long_error">لطفاً نام گروه کوتاه تری وارد کنید</string>
+  <string name="activity_create_closed_group_not_enough_group_members_error">لطفا حداقل 2 عضو گروه را انتخاب کنید</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">یک گروه بسته نمی تواند بیش از 10 عضو داشته باشد</string>
+  <string name="activity_create_closed_group_invalid_session_id_error">یکی از اعضای گروه شما دارای شناسه نامعتبر است</string>
+
+  <string name="activity_join_public_chat_title">به گروه باز بپیوندید</string>
+  <string name="activity_join_public_chat_error">امکان پیوستن به گروه نیست</string>
+  <string name="activity_join_public_chat_enter_group_url_tab_title">آدرس اینترنتی گروه را باز کنید</string>
+  <string name="activity_join_public_chat_scan_qr_code_tab_title">اسکن کد QR</string>
+  <string name="activity_join_public_chat_scan_qr_code_explanation">کد QR گروه باز را که می خواهید بپیوندید اسکن کنید</string>
+
+  <string name="fragment_enter_chat_url_edit_text_hint">یک URL گروه باز وارد کنید</string>
+  <string name="fragment_enter_chat_url_privacy_warning">گروه های باز می توانند توسط هر کسی بپیوندند و محافظت کامل از حریم خصوصی ارائه نمی دهند</string>
+
+  <string name="activity_settings_title">تنظیمات</string>
+  <string name="activity_settings_display_name_edit_text_hint">نام نمایشگر را وارد کنید</string>
+  <string name="activity_settings_display_name_missing_error">لطفاً نام نمایشگر را انتخاب کنید</string>
+  <string name="activity_settings_invalid_display_name_error">لطفاً یک نام نمایشگر را انتخاب کنید که فقط از نویسه های Az ، AZ ، 0-9 و _ تشکیل شده باشد</string>
+  <string name="activity_settings_display_name_too_long_error">لطفاً نام نمایشگر کوتاه تری انتخاب کنید</string>
+  <string name="activity_settings_privacy_button_title">حریم خصوصی</string>
+  <string name="activity_settings_notifications_button_title">اطلاعیه</string>
+  <string name="activity_settings_chats_button_title">چت</string>
+  <string name="activity_settings_devices_button_title">دستگاه ها</string>
+  <string name="activity_settings_recovery_phrase_button_title">عبارت بازیابی</string>
+  <string name="activity_settings_clear_all_data_button_title">اطلاعات روشن</string>
+
+  <string name="activity_notification_settings_title">اطلاعیه</string>
+  <string name="activity_notification_settings_style_section_title">سبک اطلاع رسانی</string>
+  <string name="activity_notification_settings_content_section_title">محتوای اطلاع رسانی</string>
+
+  <string name="activity_privacy_settings_title">حریم خصوصی</string>
+
+  <string name="activity_chat_settings_title">چت</string>
+
+  <string name="activity_linked_devices_title">دستگاه ها</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_title">دستگاه محدود شد</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">در حال حاضر مجاز به پیوند بیش از یک دستگاه نیست.</string>
+  <string name="activity_linked_devices_unlinking_failed_message">دستگاه را نمی توان ارتباط برقرار کرد.</string>
+  <string name="activity_linked_devices_unlinking_successful_message">دستگاه شما با موفقیت ارتباط برقرار نشد</string>
+  <string name="activity_linked_devices_linking_failed_message">پیوند دستگاه امکان پذیر نیست.</string>
+  <string name="activity_linked_devices_empty_state_message">شما هنوز هیچ دستگاهی را پیوند نداده اید</string>
+  <string name="activity_linked_devices_empty_state_button_title">پیوند یک دستگاه (بتا)</string>
+
+  <string name="preferences_notifications_strategy_category_title">استراتژی اعلان</string>
+  <string name="preferences_notifications_use_fcm_option_title">از FCM استفاده کنید</string>
+  <string name="preferences_notifications_use_fcm_option_explanation">با استفاده از پیام ابری فایربیس، اعلان های فشار قابل اطمینان تر امکان پذیر است ، اما نشانگر IP و دستگاه شما را در گوگل و لوکی قرار می دهد.</string>
+
+  <string name="dialog_link_device_slave_mode_title_1">در انتظار مجوز</string>
+  <string name="dialog_link_device_slave_mode_title_2">پیوند دستگاه مجاز است</string>
+  <string name="dialog_link_device_slave_mode_explanation_1">لطفاً بررسی کنید که کلمات زیر با کلمات نشان داده شده در دستگاه دیگر شما مطابقت دارند.</string>
+  <string name="dialog_link_device_slave_mode_explanation_2">دستگاه شما با موفقیت پیوند خورده است</string>
+
+  <string name="dialog_link_device_master_mode_title_1">منتظر دستگاه</string>
+  <string name="dialog_link_device_master_mode_title_2">درخواست پیوند دریافت شد</string>
+  <string name="dialog_link_device_master_mode_title_3">پیوند دستگاه مجاز</string>
+  <string name="dialog_link_device_master_mode_explanation_1">جلسه را در دستگاه دیگر خود دانلود کرده و روی پیوند به یک حساب موجود در پایین صفحه فرود ضربه بزنید. اگر در حال حاضر دارای یک حساب کاربری در دستگاه دیگر خود هستید ، ابتدا باید آن حساب را حذف کنید.</string>
+  <string name="dialog_link_device_master_mode_explanation_2">لطفاً بررسی کنید که کلمات زیر با کلمات نشان داده شده در دستگاه دیگر شما مطابقت دارند.</string>
+  <string name="dialog_link_device_master_mode_explanation_3">لطفاً منتظر بمانید تا پیوند دستگاه ایجاد شود. این ممکن است تا یک دقیقه طول بکشد.</string>
+  <string name="dialog_link_device_master_mode_authorize_button_title">اجازه دهید</string>
+
+  <string name="fragment_device_list_bottom_sheet_change_name_button_title">تغییر نام</string>
+  <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">دستگاه را جدا کنید</string>
+
+  <string name="dialog_edit_device_name_edit_text_hint">یک نام وارد کنید</string>
+
+  <string name="dialog_seed_title">عبارت بازیابی شما</string>
+  <string name="dialog_seed_explanation">این عبارت بازیابی شماست. با استفاده از آن ، می توانید شناسه جلسه خود را به دستگاه جدید بازیابی یا انتقال دهید.</string>
+
+  <string name="dialog_clear_all_data_title">پاک کردن همه داده ها</string>
+  <string name="dialog_clear_all_data_explanation">این به طور دائم پیام ها، جلسات و مخاطبین شما را حذف می کند.</string>
+
+  <string name="activity_qr_code_title">کد QR</string>
+  <string name="activity_qr_code_view_my_qr_code_tab_title">مشاهده کد QR من</string>
+  <string name="activity_qr_code_view_scan_qr_code_tab_title">اسکن کد QR</string>
+  <string name="activity_qr_code_view_scan_qr_code_explanation">برای شروع مکالمه با آنها ، کد QR شخصی را اسکن کنید</string>
+
+  <string name="fragment_view_my_qr_code_explanation">این کد QR شماست. سایر کاربران می توانند برای شروع جلسه با شما آن را اسکن کنند.</string>
+  <string name="fragment_view_my_qr_code_share_title">کد QR را به اشتراک بگذارید</string>
+
+  <string name="view_friend_request_accept_button_title">تایید کنید</string>
+  <string name="view_friend_request_reject_button_title">کاهش می یابد</string>
+  <string name="view_friend_request_incoming_pending_message">%1$s برای شما درخواست جلسه ارسال کرد</string>
+  <string name="view_friend_request_incoming_accepted_message">شما قبول کرده اید %1$s درخواست جلسه</string>
+  <string name="view_friend_request_incoming_declined_message">شما کاهش داده اید %1$s درخواست جلسه</string>
+  <string name="view_friend_request_incoming_expired_message">%1$s درخواست جلسه منقضی شده است</string>
+  <string name="view_friend_request_outgoing_pending_message">شما ارسال کرده اید %1$s درخواست جلسه</string>
+  <string name="view_friend_request_outgoing_accepted_message">%1$s درخواست جلسه خود را پذیرفته اید</string>
+  <string name="view_friend_request_outgoing_expired_message">درخواست جلسه شما به %1$s منقضی شده است</string>
+
+  <string name="session_reset_banner_message">آیا می خواهید جلسه خود را با آن بازیابی کنید %s ؟</string>
+  <string name="session_reset_banner_dismiss_button_title">رد</string>
+  <string name="session_reset_banner_restore_button_title">بازگرداندن</string>
+
+  <string name="fragment_contact_selection_contacts_title">مخاطبین</string>
+  <string name="fragment_contact_selection_closed_groups_title">گروه های بسته</string>
+  <string name="fragment_contact_selection_open_groups_title">باز کردن گروه ها</string>
+
 </resources>

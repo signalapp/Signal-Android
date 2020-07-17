@@ -20,60 +20,60 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         private val displayName = "display_name"
         // Display name cache
         private val displayNameTable = "loki_user_display_name_database"
-        private val hexEncodedPublicKey = "hex_encoded_public_key"
-        @JvmStatic val createDisplayNameTableCommand = "CREATE TABLE $displayNameTable ($hexEncodedPublicKey TEXT PRIMARY KEY, $displayName TEXT);"
+        private val publicKey = "hex_encoded_public_key"
+        @JvmStatic val createDisplayNameTableCommand = "CREATE TABLE $displayNameTable ($publicKey TEXT PRIMARY KEY, $displayName TEXT);"
         // Server display name cache
         private val serverDisplayNameTable = "loki_user_server_display_name_database"
         private val serverID = "server_id"
-        @JvmStatic val createServerDisplayNameTableCommand = "CREATE TABLE $serverDisplayNameTable ($hexEncodedPublicKey TEXT, $serverID TEXT, $displayName TEXT, PRIMARY KEY ($hexEncodedPublicKey, $serverID));"
+        @JvmStatic val createServerDisplayNameTableCommand = "CREATE TABLE $serverDisplayNameTable ($publicKey TEXT, $serverID TEXT, $displayName TEXT, PRIMARY KEY ($publicKey, $serverID));"
     }
 
-    override fun getDisplayName(hexEncodedPublicKey: String): String? {
-        if (hexEncodedPublicKey == TextSecurePreferences.getLocalNumber(context)) {
+    override fun getDisplayName(publicKey: String): String? {
+        if (publicKey == TextSecurePreferences.getLocalNumber(context)) {
             return TextSecurePreferences.getProfileName(context)
         } else {
             val database = databaseHelper.readableDatabase
-            return database.get(displayNameTable, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
+            return database.get(displayNameTable, "${Companion.publicKey} = ?", arrayOf( publicKey )) { cursor ->
                 cursor.getString(cursor.getColumnIndexOrThrow(displayName))
             }
         }
     }
 
-    fun setDisplayName(hexEncodedPublicKey: String, displayName: String) {
+    fun setDisplayName(publicKey: String, displayName: String) {
         val database = databaseHelper.writableDatabase
         val row = ContentValues(2)
-        row.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
+        row.put(Companion.publicKey, publicKey)
         row.put(Companion.displayName, displayName)
-        database.insertOrUpdate(displayNameTable, row, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
-        Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
+        database.insertOrUpdate(displayNameTable, row, "${Companion.publicKey} = ?", arrayOf( publicKey ))
+        Recipient.from(context, Address.fromSerialized(publicKey), false).notifyListeners()
     }
 
-    override fun getServerDisplayName(serverID: String, hexEncodedPublicKey: String): String? {
+    override fun getServerDisplayName(serverID: String, publicKey: String): String? {
         val database = databaseHelper.readableDatabase
-        return database.get(serverDisplayNameTable, "${Companion.hexEncodedPublicKey} = ? AND ${Companion.serverID} = ?", arrayOf( hexEncodedPublicKey, serverID )) { cursor ->
+        return database.get(serverDisplayNameTable, "${Companion.publicKey} = ? AND ${Companion.serverID} = ?", arrayOf( publicKey, serverID )) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(displayName))
         }
     }
 
-    fun setServerDisplayName(serverID: String, hexEncodedPublicKey: String, displayName: String) {
+    fun setServerDisplayName(serverID: String, publicKey: String, displayName: String) {
         val database = databaseHelper.writableDatabase
         val values = ContentValues(3)
         values.put(Companion.serverID, serverID)
-        values.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
+        values.put(Companion.publicKey, publicKey)
         values.put(Companion.displayName, displayName)
         try {
             database.insertWithOnConflict(serverDisplayNameTable, null, values, SQLiteDatabase.CONFLICT_REPLACE)
-            Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
+            Recipient.from(context, Address.fromSerialized(publicKey), false).notifyListeners()
         } catch (e: Exception) {
             Log.d("Loki", "Couldn't save server display name due to exception: $e.")
         }
     }
 
-    override fun getProfilePictureURL(hexEncodedPublicKey: String): String? {
-        return if (hexEncodedPublicKey == TextSecurePreferences.getLocalNumber(context)) {
+    override fun getProfilePictureURL(publicKey: String): String? {
+        return if (publicKey == TextSecurePreferences.getLocalNumber(context)) {
             TextSecurePreferences.getProfilePictureURL(context)
         } else {
-            Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).resolve().profileAvatar
+            Recipient.from(context, Address.fromSerialized(publicKey), false).resolve().profileAvatar
         }
     }
 }

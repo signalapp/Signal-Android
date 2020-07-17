@@ -8,7 +8,7 @@
     android:gravity="center_vertical">
 
     <View
-        android:id="@+id/unreadMessagesIndicatorView"
+        android:id="@+id/accentView"
         android:layout_width="@dimen/accent_line_thickness"
         android:layout_height="match_parent"
         android:background="@color/accent" />
@@ -18,14 +18,14 @@
         android:layout_width="@dimen/medium_profile_picture_size"
         android:layout_height="@dimen/medium_profile_picture_size"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:layout_marginLeft="@dimen/medium_spacing"
+        android:layout_marginStart="@dimen/medium_spacing"
         android:layout_marginBottom="@dimen/medium_spacing" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/medium_spacing"
-        android:layout_marginRight="@dimen/medium_spacing"
+        android:layout_marginStart="@dimen/medium_spacing"
+        android:layout_marginEnd="@dimen/medium_spacing"
         android:orientation="vertical">
 
         <LinearLayout
@@ -54,7 +54,7 @@
                 android:id="@+id/timestampTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_spacing"
+                android:layout_marginStart="@dimen/medium_spacing"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textSize="@dimen/small_font_size"
@@ -76,7 +76,7 @@
                 android:layout_height="12dp"
                 android:src="@drawable/ic_mute"
                 android:layout_marginTop="1dp"
-                android:layout_marginRight="4dp" />
+                android:layout_marginEnd="4dp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                 android:id="@+id/statusIndicatorImageView"
                 android:layout_width="@dimen/conversation_view_status_indicator_size"
                 android:layout_height="@dimen/conversation_view_status_indicator_size"
-                android:layout_marginLeft="@dimen/medium_spacing" />
+                android:layout_marginStart="@dimen/medium_spacing" />
 
         </LinearLayout>
 
