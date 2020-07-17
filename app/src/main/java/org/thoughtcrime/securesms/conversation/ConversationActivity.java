@@ -340,6 +340,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   protected HidingLinearLayout       inlineAttachmentToggle;
   private   InputPanel               inputPanel;
   private   View                     panelParent;
+  private   View                     noLongerMemberBanner;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -1419,7 +1420,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private void initializeEnabledCheck() {
     groupViewModel.getGroupActiveState().observe(this, state -> {
-      boolean enabled = state == null || !(isPushGroupConversation() && !state.isActiveGroup());
+      boolean inactivePushGroup = state != null && isPushGroupConversation() && !state.isActiveGroup();
+      boolean enabled = !inactivePushGroup;
+      noLongerMemberBanner.setVisibility(enabled ? View.GONE : View.VISIBLE);
+      inputPanel.setVisibility(enabled ? View.VISIBLE : View.GONE);
       inputPanel.setEnabled(enabled);
       sendButton.setEnabled(enabled);
       attachButton.setEnabled(enabled);
@@ -1700,6 +1704,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
+
+    noLongerMemberBanner = findViewById(R.id.conversation_no_longer_member_banner);
 
     container.addOnKeyboardShownListener(this);
     inputPanel.setListener(this);
@@ -2145,7 +2151,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       makeDefaultSmsButton.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
     } else {
-      inputPanel.setVisibility(View.VISIBLE);
+      boolean inactivePushGroup = isPushGroupConversation() && !recipient.isActiveGroup();
+      inputPanel.setVisibility(inactivePushGroup ? View.GONE : View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);

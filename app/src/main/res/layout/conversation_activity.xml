@@ -83,6 +83,10 @@
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
+                <include
+                    layout="@layout/conversation_no_longer_a_member"
+                    android:visibility="gone" />
+
                 <include layout="@layout/conversation_input_panel" />
 
                 <include layout="@layout/conversation_search_nav" />

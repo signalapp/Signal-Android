@@ -189,6 +189,7 @@
         <item name="colorControlHighlight">@color/core_ultramarine</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="secondary_background">@color/core_grey_02</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
@@ -493,6 +494,7 @@
         <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/core_ultramarine_light</item>
         <item name="android:windowBackground">@color/core_grey_95</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="secondary_background">@color/core_grey_90</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
