@@ -1357,6 +1357,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
 
 
   <!-- Session -->
+  <!--
   <string name="continue_2">Kontyntynuj</string>
   <string name="copy">Kopiuj</string>
   <string name="invalid_url">nieprawidłowy URL</string>
@@ -1561,5 +1562,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="fragment_contact_selection_contacts_title">Łączność</string>
   <string name="fragment_contact_selection_closed_groups_title">Grupy zamknięte</string>
   <string name="fragment_contact_selection_open_groups_title">Otwórz grupy</string>
+  -->
 
 </resources>
