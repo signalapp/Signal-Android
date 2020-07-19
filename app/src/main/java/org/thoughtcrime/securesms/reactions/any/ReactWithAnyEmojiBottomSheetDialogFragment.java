@@ -40,7 +40,10 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import static org.thoughtcrime.securesms.R.layout.react_with_any_emoji_tab;
 
-public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomSheetDialogFragment implements EmojiKeyboardProvider.EmojiEventListener, EmojiPageViewGridAdapter.VariationSelectorListener {
+public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomSheetDialogFragment
+                                                              implements EmojiKeyboardProvider.EmojiEventListener,
+                                                                         EmojiPageViewGridAdapter.VariationSelectorListener
+{
 
   private static final String ARG_MESSAGE_ID = "arg_message_id";
   private static final String ARG_IS_MMS     = "arg_is_mms";
@@ -202,6 +205,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
   @Override
   public void onVariationSelectorStateChanged(boolean open) {
+    categoryPager.setUserInputEnabled(!open);
   }
 
   private void updateFocusedRecycler(int position) {
