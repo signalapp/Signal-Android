@@ -27,16 +27,16 @@ public class ReactionsViewModel extends ViewModel {
     return Transformations.switchMap(filterEmoji,
                                      emoji -> Transformations.map(repository.getReactions(),
                                                                   reactions -> Stream.of(reactions)
-                                                                                     .filter(reaction -> emoji == null || reaction.getEmoji().equals(emoji))
+                                                                                     .filter(reaction -> emoji == null || reaction.getBaseEmoji().equals(emoji))
                                                                                      .toList()));
   }
 
   public @NonNull LiveData<List<EmojiCount>> getEmojiCounts() {
     return Transformations.map(repository.getReactions(),
                                reactionList -> Stream.of(reactionList)
-                                                     .groupBy(Reaction::getEmoji)
+                                                     .groupBy(Reaction::getBaseEmoji)
                                                      .sorted(this::compareReactions)
-                                                     .map(entry -> new EmojiCount(entry.getKey(), entry.getValue().size()))
+                                                     .map(entry -> new EmojiCount(entry.getKey(), getCountDisplayEmoji(entry.getValue()), entry.getValue().size()))
                                                      .toList());
   }
 
@@ -59,6 +59,16 @@ public class ReactionsViewModel extends ViewModel {
                  .max((a, b) -> Long.compare(a.getTimestamp(), b.getTimestamp()))
                  .map(Reaction::getTimestamp)
                  .orElse(-1L);
+  }
+
+  private @NonNull String getCountDisplayEmoji(@NonNull List<Reaction> reactions) {
+    for (Reaction reaction : reactions) {
+      if (reaction.getSender().isLocalNumber()) {
+        return reaction.getDisplayEmoji();
+      }
+    }
+
+    return reactions.get(reactions.size() - 1).getDisplayEmoji();
   }
 
   interface Repository {

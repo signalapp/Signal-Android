@@ -38,7 +38,7 @@ final class ReactionEmojiCountAdapter extends RecyclerView.Adapter<ReactionEmoji
       int        newPosition   = -1;
 
       for (int i = 0; i < newEmojiCount.size(); i++) {
-        if (newEmojiCount.get(i).getEmoji().equals(oldSelection.getEmoji())) {
+        if (newEmojiCount.get(i).getBaseEmoji().equals(oldSelection.getBaseEmoji())) {
           newPosition = i;
           break;
         }
@@ -66,7 +66,7 @@ final class ReactionEmojiCountAdapter extends RecyclerView.Adapter<ReactionEmoji
   public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.reactions_bottom_sheet_dialog_fragment_emoji_item, parent, false), position -> {
       if (position != -1 && position != selectedPosition) {
-        onEmojiCountSelectedListener.onSelected(position == 0 ? null : emojiCountList.get(position - 1).getEmoji());
+        onEmojiCountSelectedListener.onSelected(position == 0 ? null : emojiCountList.get(position - 1).getBaseEmoji());
 
         int oldPosition  = selectedPosition;
         selectedPosition = position;
@@ -83,7 +83,7 @@ final class ReactionEmojiCountAdapter extends RecyclerView.Adapter<ReactionEmoji
       holder.bind(null, totalCount, selectedPosition == position);
     } else {
       EmojiCount item = emojiCountList.get(position - 1);
-      holder.bind(item.getEmoji(), item.getCount(), selectedPosition == position);
+      holder.bind(item.getDisplayEmoji(), item.getCount(), selectedPosition == position);
     }
   }
 

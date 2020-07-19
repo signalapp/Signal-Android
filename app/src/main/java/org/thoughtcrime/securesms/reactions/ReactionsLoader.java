@@ -6,18 +6,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.util.Pair;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -57,6 +55,7 @@ public class ReactionsLoader implements ReactionsViewModel.Repository, LoaderMan
       } else {
         internalLiveData.postValue(Stream.of(record.getReactions())
                                          .map(reactionRecord -> new Reaction(Recipient.resolved(reactionRecord.getAuthor()),
+                                                                             EmojiUtil.getCanonicalRepresentation(reactionRecord.getEmoji()),
                                                                              reactionRecord.getEmoji(),
                                                                              reactionRecord.getDateReceived()))
                                          .toList());
@@ -106,21 +105,27 @@ public class ReactionsLoader implements ReactionsViewModel.Repository, LoaderMan
 
   static class Reaction {
     private final Recipient sender;
-    private final String    emoji;
+    private final String    baseEmoji;
+    private final String    displayEmoji;
     private final long      timestamp;
 
-    private Reaction(@NonNull Recipient sender, @NonNull String emoji, long timestamp) {
-      this.sender    = sender;
-      this.emoji     = emoji;
-      this.timestamp = timestamp;
+    private Reaction(@NonNull Recipient sender, @NonNull String baseEmoji, @NonNull String displayEmoji, long timestamp) {
+      this.sender       = sender;
+      this.baseEmoji    = baseEmoji;
+      this.displayEmoji = displayEmoji;
+      this.timestamp    = timestamp;
     }
 
     public @NonNull Recipient getSender() {
       return sender;
     }
 
-    public @NonNull String getEmoji() {
-      return emoji;
+    public @NonNull String getBaseEmoji() {
+      return baseEmoji;
+    }
+
+    public @NonNull String getDisplayEmoji() {
+      return displayEmoji;
     }
 
     public long getTimestamp() {

@@ -3,16 +3,22 @@ package org.thoughtcrime.securesms.reactions;
 import androidx.annotation.NonNull;
 
 final class EmojiCount {
-  private final String  emoji;
-  private final int     count;
+  private final String baseEmoji;
+  private final String displayEmoji;
+  private final int    count;
 
-  EmojiCount(@NonNull String emoji, int count) {
-    this.emoji = emoji;
-    this.count = count;
+  EmojiCount(@NonNull String baseEmoji, @NonNull String emoji, int count) {
+    this.baseEmoji    = baseEmoji;
+    this.displayEmoji = emoji;
+    this.count        = count;
   }
 
-  public @NonNull String getEmoji() {
-    return emoji;
+  public @NonNull String getBaseEmoji() {
+    return baseEmoji;
+  }
+
+  public @NonNull String getDisplayEmoji() {
+    return displayEmoji;
   }
 
   public int getCount() {

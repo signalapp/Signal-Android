@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -107,15 +108,16 @@ public class ReactionsConversationView extends LinearLayout {
     RecipientId           selfId   = Recipient.self().getId();
 
     for (ReactionRecord record : records) {
-      Reaction info = counters.get(record.getEmoji());
+      String   baseEmoji = EmojiUtil.getCanonicalRepresentation(record.getEmoji());
+      Reaction info      = counters.get(baseEmoji);
 
       if (info == null) {
-        info = new Reaction(record.getEmoji(), 1, record.getDateReceived(), selfId.equals(record.getAuthor()));
+        info = new Reaction(baseEmoji, record.getEmoji(), 1, record.getDateReceived(), selfId.equals(record.getAuthor()));
       } else {
-        info.update(record.getDateReceived(), selfId.equals(record.getAuthor()));
+        info.update(record.getEmoji(), record.getDateReceived(), selfId.equals(record.getAuthor()));
       }
 
-      counters.put(record.getEmoji(), info);
+      counters.put(baseEmoji, info);
     }
 
     List<Reaction> reactions = new ArrayList<>(counters.values());
@@ -126,7 +128,7 @@ public class ReactionsConversationView extends LinearLayout {
       List<Reaction> shortened = new ArrayList<>(3);
       shortened.add(reactions.get(0));
       shortened.add(reactions.get(1));
-      shortened.add(Stream.of(reactions).skip(2).reduce(new Reaction(null, 0, 0, false), Reaction::merge));
+      shortened.add(Stream.of(reactions).skip(2).reduce(new Reaction(null, null, 0, 0, false), Reaction::merge));
 
       return shortened;
     } else {
@@ -140,8 +142,8 @@ public class ReactionsConversationView extends LinearLayout {
     TextView countView = root.findViewById(R.id.reactions_pill_count);
     View     spacer    = root.findViewById(R.id.reactions_pill_spacer);
 
-    if (reaction.emoji != null) {
-      emojiView.setText(reaction.emoji);
+    if (reaction.displayEmoji != null) {
+      emojiView.setText(reaction.displayEmoji);
 
       if (reaction.count > 1) {
         countView.setText(String.valueOf(reaction.count));
@@ -166,19 +168,27 @@ public class ReactionsConversationView extends LinearLayout {
   }
 
   private static class Reaction implements Comparable<Reaction> {
-    private String  emoji;
+    private String  baseEmoji;
+    private String  displayEmoji;
     private int     count;
     private long    lastSeen;
     private boolean userWasSender;
 
-    Reaction(@Nullable String emoji, int count, long lastSeen, boolean userWasSender) {
-      this.emoji         = emoji;
+    Reaction(@Nullable String baseEmoji, @Nullable String displayEmoji, int count, long lastSeen, boolean userWasSender) {
+      this.baseEmoji     = baseEmoji;
+      this.displayEmoji  = displayEmoji;
       this.count         = count;
       this.lastSeen      = lastSeen;
       this.userWasSender = userWasSender;
     }
 
-    void update(long lastSeen, boolean userWasSender) {
+    void update(@NonNull String displayEmoji, long lastSeen, boolean userWasSender) {
+      if (!this.userWasSender) {
+        if (userWasSender || lastSeen > this.lastSeen) {
+          this.displayEmoji = displayEmoji;
+        }
+      }
+
       this.count         = this.count + 1;
       this.lastSeen      = Math.max(this.lastSeen, lastSeen);
       this.userWasSender = this.userWasSender || userWasSender;

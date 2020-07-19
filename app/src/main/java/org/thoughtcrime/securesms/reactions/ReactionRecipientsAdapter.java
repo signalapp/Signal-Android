@@ -59,7 +59,7 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
     }
 
     void bind(@NonNull Reaction reaction) {
-      this.emoji.setText(reaction.getEmoji());
+      this.emoji.setText(reaction.getDisplayEmoji());
 
       if (reaction.getSender().isLocalNumber()) {
         this.recipient.setText(R.string.ReactionsRecipientAdapter_you);
