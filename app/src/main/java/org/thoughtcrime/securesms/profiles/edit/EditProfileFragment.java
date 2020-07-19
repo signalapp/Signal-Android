@@ -32,13 +32,11 @@ import com.google.android.gms.common.util.IOUtils;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -336,7 +334,7 @@ public class EditProfileFragment extends LoggingFragment {
   private void handleUpload() {
     viewModel.submitProfile(uploadResult -> {
       if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
-        RegistrationUtil.markRegistrationPossiblyComplete(requireContext());
+        RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) handleFinishedLollipop();
         else                                                       handleFinishedLegacy();

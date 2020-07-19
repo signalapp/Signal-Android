@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
@@ -55,11 +56,9 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -76,12 +75,18 @@ public class DirectoryHelper {
   @WorkerThread
   public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
-      Log.i(TAG, "Have not yet set our own local number. Skipping.");
+      Log.w(TAG, "Have not yet set our own local number. Skipping.");
       return;
     }
 
     if (!Permissions.hasAll(context, Manifest.permission.WRITE_CONTACTS)) {
-      Log.i(TAG, "No contact permissions. Skipping.");
+      Log.w(TAG, "No contact permissions. Skipping.");
+      return;
+    }
+
+    if (!SignalStore.registrationValues().isRegistrationComplete()) {
+      Log.w(TAG, "Registration is not yet complete. Skipping, but running a routine to possibly mark it complete.");
+      RegistrationUtil.maybeMarkRegistrationComplete(context);
       return;
     }
 

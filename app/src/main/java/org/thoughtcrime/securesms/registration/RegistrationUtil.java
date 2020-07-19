@@ -25,7 +25,7 @@ public final class RegistrationUtil {
    * path a user has taken. This will only truly mark registration as complete if all of the
    * requirements are met.
    */
-  public static void markRegistrationPossiblyComplete(@NonNull Context context) {
+  public static void maybeMarkRegistrationComplete(@NonNull Context context) {
     if (!SignalStore.registrationValues().isRegistrationComplete() &&
         TextSecurePreferences.isPushRegistered(context)            &&
         !Recipient.self().getProfileName().isEmpty()               &&

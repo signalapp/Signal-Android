@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.KeyBackupSystemWrongPinException;
@@ -18,6 +19,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 
 class PinRestoreRepository {
 
@@ -50,6 +52,9 @@ class PinRestoreRepository {
 
         ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
         stopwatch.split("AccountRestore");
+
+        ApplicationDependencies.getJobManager().runSynchronously(new StorageSyncJob(), TimeUnit.SECONDS.toMillis(10));
+        stopwatch.split("ContactRestore");
 
         stopwatch.stop(TAG);
 

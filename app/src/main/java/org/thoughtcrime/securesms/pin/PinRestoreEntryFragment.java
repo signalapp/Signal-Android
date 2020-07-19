@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.pin;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.autofill.HintConstants;
 import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
@@ -239,7 +237,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       profile.putExtra("next_intent", main);
       startActivity(profile);
     } else {
-      RegistrationUtil.markRegistrationPossiblyComplete(requireContext());
+      RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
       ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
       startActivity(new Intent(activity, MainActivity.class));
     }
@@ -287,13 +285,5 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       button.setIndeterminateProgressMode(false);
       button.setClickable(true);
     }
-  }
-
-  private static String getDevice() {
-    return String.format("%s %s (%s)", Build.MANUFACTURER, Build.MODEL, Build.PRODUCT);
-  }
-
-  private static String getAndroidVersion() {
-    return String.format("%s (%s, %s)", Build.VERSION.RELEASE, Build.VERSION.INCREMENTAL, Build.DISPLAY);
   }
 }
