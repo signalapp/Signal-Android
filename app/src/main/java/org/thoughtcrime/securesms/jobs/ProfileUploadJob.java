@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
+import java.util.concurrent.TimeUnit;
+
 public final class ProfileUploadJob extends BaseJob {
 
   private static final String TAG = Log.tag(ProfileUploadJob.class);
@@ -34,9 +36,9 @@ public final class ProfileUploadJob extends BaseJob {
     this(new Job.Parameters.Builder()
                             .addConstraint(NetworkConstraint.KEY)
                             .setQueue(QUEUE)
-                            .setLifespan(Parameters.IMMORTAL)
+                            .setLifespan(TimeUnit.DAYS.toMillis(30))
                             .setMaxAttempts(Parameters.UNLIMITED)
-                            .setMaxInstances(1)
+                            .setMaxInstances(2)
                             .build());
   }
 

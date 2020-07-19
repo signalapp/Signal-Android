@@ -31,6 +31,7 @@ public class RefreshAttributesJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("RefreshAttributesJob")
+                           .setMaxInstances(2)
                            .build());
   }
 
