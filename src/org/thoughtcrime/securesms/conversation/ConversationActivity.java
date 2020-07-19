@@ -1338,6 +1338,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.isDefaultSms          = isDefaultSms;
     this.isSecurityInitialized = true;
 
+    if (recipient == null || attachmentManager == null) { return; }
+
     boolean isMediaMessage = recipient.isMmsGroupRecipient() || attachmentManager.isAttachmentPresent();
 
     sendButton.resetAvailableTransports(isMediaMessage);

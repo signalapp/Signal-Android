@@ -86,6 +86,7 @@ public class TypingStatusSender {
     // Loki - Check whether we want to send a typing indicator to this user
     if (recipient != null && !SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
     // Loki - Take into account multi device
+    if (recipient == null) { return; }
     Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.getAddress().serialize());
     for (String device : linkedDevices) {
       Recipient deviceAsRecipient = Recipient.from(context, Address.fromSerialized(device), false);
