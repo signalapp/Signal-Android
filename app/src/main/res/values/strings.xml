@@ -525,8 +525,10 @@
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_disappearing_messages">Disappearing messages</string>
     <string name="ManageGroupActivity_pending_group_invites">Pending group invites</string>
-    <string name="ManageGroupActivity_who_can_edit_group_membership">Who can edit group membership</string>
-    <string name="ManageGroupActivity_who_can_edit_group_info">Who can edit group info</string>
+    <string name="ManageGroupActivity_add_members">Add members</string>
+    <string name="ManageGroupActivity_edit_group_info">Edit group info</string>
+    <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Choose who can edit the group name, avatar, and disappearing messages.</string>
+    <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Choose who can add or invite new members.</string>
     <string name="ManageGroupActivity_block_group">Block group</string>
     <string name="ManageGroupActivity_unblock_group">Unblock group</string>
     <string name="ManageGroupActivity_leave_group">Leave group</string>
@@ -535,7 +537,6 @@
     <string name="ManageGroupActivity_until_s">Until %1$s</string>
     <string name="ManageGroupActivity_off">Off</string>
     <string name="ManageGroupActivity_on">On</string>
-    <string name="ManageGroupActivity_add_members">Add members</string>
     <string name="ManageGroupActivity_view_all_members">View all members</string>
     <string name="ManageGroupActivity_see_all">See all</string>
 
@@ -560,9 +561,6 @@
     <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
     <string name="ManageGroupActivity_legacy_group_learn_more">This is a Legacy Group. To access features like group admins, create a New Group.</string>
 
-    <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Choose who can add or invite new members</string>
-    <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Choose who can change the group name and photo</string>
-    
     
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_add_to_system_contacts">Add to system contacts</string>
