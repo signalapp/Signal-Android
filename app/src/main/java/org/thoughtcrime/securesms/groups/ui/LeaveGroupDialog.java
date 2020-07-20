@@ -12,14 +12,14 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
+import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.chooseadmin.ChooseNewAdminActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
 import java.util.List;
@@ -90,26 +90,32 @@ public final class LeaveGroupDialog {
                    .setIconAttribute(R.attr.dialog_info_icon)
                    .setCancelable(true)
                    .setMessage(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group)
-                   .setPositiveButton(R.string.yes, (dialog, which) -> SimpleTask.run(activity.getLifecycle(), this::leaveGroup, this::handleLeaveGroupResult))
+                   .setPositiveButton(R.string.yes, (dialog, which) -> {
+                     SimpleProgressDialog.DismissibleDialog progressDialog = SimpleProgressDialog.showDelayed(activity);
+                     SimpleTask.run(activity.getLifecycle(), this::leaveGroup, result -> {
+                       progressDialog.dismiss();
+                       handleLeaveGroupResult(result);
+                     });
+                   })
                    .setNegativeButton(R.string.no, null)
                    .show();
   }
 
-  private boolean leaveGroup() {
+  private @NonNull GroupChangeResult leaveGroup() {
     try {
       GroupManager.leaveGroup(activity, groupId);
-      return true;
-    } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
+      return GroupChangeResult.SUCCESS;
+    } catch (GroupChangeException | IOException e) {
       Log.w(TAG, e);
-      return false;
+      return GroupChangeResult.failure(GroupChangeFailureReason.fromException(e));
     }
   }
 
-  private void handleLeaveGroupResult(boolean success) {
-    if (success) {
+  private void handleLeaveGroupResult(@NonNull GroupChangeResult result) {
+    if (result.isSuccess()) {
       if (onSuccess != null) onSuccess.run();
     } else {
-      Toast.makeText(activity, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
+      Toast.makeText(activity, GroupErrors.getUserDisplayMessage(result.getFailureReason()), Toast.LENGTH_LONG).show();
     }
   }
 }

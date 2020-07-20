@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -213,7 +214,7 @@ public class ManageGroupViewModel extends ViewModel {
     manageGroupRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity,
                                                                                     activity.getLifecycle(),
                                                                                     recipient,
-                                                                                    () -> manageGroupRepository.blockAndLeaveGroup(this::showErrorToast)));
+                                                                                    this::onBlockAndLeaveConfirmed));
   }
 
   void unblock(@NonNull FragmentActivity activity) {
@@ -235,6 +236,16 @@ public class ManageGroupViewModel extends ViewModel {
 
   void revealCollapsedMembers() {
     memberListCollapseState.setValue(CollapseState.OPEN);
+  }
+
+  private void onBlockAndLeaveConfirmed() {
+    SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(context);
+
+    manageGroupRepository.blockAndLeaveGroup(e -> {
+                                               dismissibleDialog.dismiss();
+                                               showErrorToast(e);
+                                             },
+                                             dismissibleDialog::dismiss);
   }
 
   private static @NonNull List<GroupMemberEntry.FullMember> filterMemberList(@NonNull List<GroupMemberEntry.FullMember> members,

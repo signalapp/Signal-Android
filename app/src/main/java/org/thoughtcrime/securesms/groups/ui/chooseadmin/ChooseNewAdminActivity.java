@@ -20,10 +20,10 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
-import org.thoughtcrime.securesms.groups.ui.chooseadmin.ChooseNewAdminRepository.UpdateResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -108,7 +108,7 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
     viewModel.getSelection().observe(this, selection -> done.setVisibility(selection.isEmpty() ? View.GONE : View.VISIBLE));
   }
 
-  private void handleUpdateAndLeaveResult(@NonNull UpdateResult updateResult) {
+  private void handleUpdateAndLeaveResult(@NonNull GroupChangeResult updateResult) {
     if (updateResult.isSuccess()) {
       String title = Recipient.externalGroup(this, groupId).getDisplayName(this);
       Toast.makeText(this, getString(R.string.ChooseNewAdminActivity_you_left, title), Toast.LENGTH_LONG).show();

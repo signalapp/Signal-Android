@@ -9,7 +9,7 @@ import androidx.core.util.Consumer;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
+import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -57,7 +57,7 @@ final class AddGroupDetailsRepository {
         resultConsumer.accept(GroupCreateResult.success(result));
       } catch (GroupChangeBusyException e) {
         resultConsumer.accept(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_BUSY));
-      } catch (GroupChangeFailedException e) {
+      } catch (GroupChangeException e) {
         resultConsumer.accept(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_FAILED));
       } catch (IOException e) {
         resultConsumer.accept(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_IO));

@@ -10,12 +10,9 @@ import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
+import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.logging.Log;
@@ -89,12 +86,9 @@ final class RecipientDialogRepository {
                      try {
                        GroupManager.ejectFromGroup(context, Objects.requireNonNull(groupId).requireV2(), Recipient.resolved(recipientId));
                        return true;
-                     } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
+                     } catch (GroupChangeException | IOException e) {
                        Log.w(TAG, e);
-                       error.onError(GroupChangeFailureReason.NO_RIGHTS);
-                     } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
-                       Log.w(TAG, e);
-                       error.onError(GroupChangeFailureReason.OTHER);
+                       error.onError(GroupChangeFailureReason.fromException(e));
                      }
                      return false;
                    },
@@ -107,12 +101,9 @@ final class RecipientDialogRepository {
                      try {
                        GroupManager.setMemberAdmin(context, Objects.requireNonNull(groupId).requireV2(), recipientId, admin);
                        return true;
-                     } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
+                     } catch (GroupChangeException | IOException e) {
                        Log.w(TAG, e);
-                       error.onError(GroupChangeFailureReason.NO_RIGHTS);
-                     } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
-                       Log.w(TAG, e);
-                       error.onError(GroupChangeFailureReason.OTHER);
+                       error.onError(GroupChangeFailureReason.fromException(e));
                      }
                      return false;
                    },

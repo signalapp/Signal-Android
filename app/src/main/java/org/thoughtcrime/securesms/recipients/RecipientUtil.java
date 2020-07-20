@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
@@ -77,7 +78,7 @@ public class RecipientUtil {
 
     try {
       block(context, recipient);
-    } catch (GroupChangeBusyException | IOException | GroupChangeFailedException e) {
+    } catch (GroupChangeException | IOException e) {
       throw new AssertionError(e);
     }
   }

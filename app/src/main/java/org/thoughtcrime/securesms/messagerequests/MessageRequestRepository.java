@@ -12,11 +12,8 @@ import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
+import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
@@ -101,12 +98,9 @@ final class MessageRequestRepository {
           recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
 
           onMessageRequestAccepted.run();
-        } catch (GroupInsufficientRightsException e) {
+        } catch (GroupChangeException | IOException e) {
           Log.w(TAG, e);
-          error.onError(GroupChangeFailureReason.NO_RIGHTS);
-        } catch (GroupChangeBusyException | GroupChangeFailedException | GroupNotAMemberException | IOException e) {
-          Log.w(TAG, e);
-          error.onError(GroupChangeFailureReason.OTHER);
+          error.onError(GroupChangeFailureReason.fromException(e));
         }
       } else {
         RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
@@ -139,9 +133,9 @@ final class MessageRequestRepository {
       if (resolved.isGroup() && resolved.requireGroupId().isPush()) {
         try {
           GroupManager.leaveGroupFromBlockOrMessageRequest(context, resolved.requireGroupId().requirePush());
-        } catch (GroupChangeBusyException | GroupChangeFailedException | IOException e) {
+        } catch (GroupChangeException | IOException e) {
           Log.w(TAG, e);
-          error.onError(GroupChangeFailureReason.OTHER);
+          error.onError(GroupChangeFailureReason.fromException(e));
           return;
         }
       }
@@ -165,8 +159,9 @@ final class MessageRequestRepository {
       Recipient recipient = liveRecipient.resolve();
       try {
         RecipientUtil.block(context, recipient);
-      } catch (GroupChangeBusyException | GroupChangeFailedException | IOException e) {
-        error.onError(GroupChangeFailureReason.OTHER);
+      } catch (GroupChangeException | IOException e) {
+        Log.w(TAG, e);
+        error.onError(GroupChangeFailureReason.fromException(e));
         return;
       }
       liveRecipient.refresh();
@@ -188,8 +183,9 @@ final class MessageRequestRepository {
       Recipient recipient = liveRecipient.resolve();
       try{
         RecipientUtil.block(context, recipient);
-      } catch (GroupChangeBusyException | GroupChangeFailedException | IOException e) {
-        error.onError(GroupChangeFailureReason.OTHER);
+      } catch (GroupChangeException | IOException e) {
+        Log.w(TAG, e);
+        error.onError(GroupChangeFailureReason.fromException(e));
         return;
       }
       liveRecipient.refresh();

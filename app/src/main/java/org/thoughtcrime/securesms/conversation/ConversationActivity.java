@@ -148,12 +148,10 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
+import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
@@ -1003,26 +1001,20 @@ public class ConversationActivity extends PassphraseRequiredActivity
             if (activeGroup) {
               try {
                 GroupManager.updateGroupTimer(ConversationActivity.this, getRecipient().requireGroupId().requirePush(), expirationTime);
-              } catch (GroupInsufficientRightsException e) {
+                } catch (GroupChangeException | IOException e) {
                 Log.w(TAG, e);
-                return ConversationActivity.this.getString(R.string.ManageGroupActivity_you_dont_have_the_rights_to_do_this);
-              } catch (GroupNotAMemberException e) {
-                Log.w(TAG, e);
-                return ConversationActivity.this.getString(R.string.ManageGroupActivity_youre_not_a_member_of_the_group);
-              } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
-                Log.w(TAG, e);
-                return ConversationActivity.this.getString(R.string.ManageGroupActivity_failed_to_update_the_group);
+                return GroupChangeResult.failure(GroupChangeFailureReason.fromException(e));
               }
             } else {
               DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient.getId(), expirationTime);
               OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
               MessageSender.send(ConversationActivity.this, outgoingMessage, threadId, false, null);
             }
-            return null;
+            return GroupChangeResult.SUCCESS;
           },
-          (errorString) -> {
-            if (errorString != null) {
-              Toast.makeText(ConversationActivity.this, errorString, Toast.LENGTH_SHORT).show();
+          (changeResult) -> {
+            if (changeResult.isSuccess()) {
+              Toast.makeText(ConversationActivity.this, GroupErrors.getUserDisplayMessage(changeResult.getFailureReason()), Toast.LENGTH_SHORT).show();
             } else {
               invalidateOptionsMenu();
               if (fragment != null) fragment.setLastSeen(0);

@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.groups.ui.chooseadmin;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,13 +12,10 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
-import org.thoughtcrime.securesms.groups.ui.GroupErrors;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
-import org.thoughtcrime.securesms.groups.ui.chooseadmin.ChooseNewAdminRepository.UpdateResult;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +48,7 @@ final class ChooseNewAdminViewModel extends ViewModel {
     this.selection.setValue(selection);
   }
 
-  void updateAdminsAndLeave(@NonNull Consumer<UpdateResult> consumer) {
+  void updateAdminsAndLeave(@NonNull Consumer<GroupChangeResult> consumer) {
     //noinspection ConstantConditions
     List<RecipientId> recipientIds = Stream.of(selection.getValue()).map(entry -> entry.getMember().getId()).toList();
     SimpleTask.run(() -> repository.updateAdminsAndLeave(groupId, recipientIds), consumer::accept);

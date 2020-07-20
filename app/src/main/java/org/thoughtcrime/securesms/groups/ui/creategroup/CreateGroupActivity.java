@@ -8,7 +8,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 
@@ -24,24 +23,14 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CreateGroupActivity extends ContactSelectionActivity {
 
@@ -133,15 +122,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   }
 
   private void handleNextPressed() {
-    Stopwatch                    stopwatch      = new Stopwatch("Recipient Refresh");
-    AtomicReference<AlertDialog> progressDialog = new AtomicReference<>();
-
-    Runnable showDialogRunnable = () -> {
-      Log.i(TAG, "Taking some time. Showing a progress dialog.");
-      progressDialog.set(SimpleProgressDialog.show(this));
-    };
-
-    next.postDelayed(showDialogRunnable, 300);
+    Stopwatch                              stopwatch         = new Stopwatch("Recipient Refresh");
+    SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this);
 
     SimpleTask.run(getLifecycle(), () -> {
       RecipientId[] ids = Stream.of(contactsFragment.getSelectedContacts())
@@ -182,11 +164,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       return ids;
     }, ids -> {
-      if (progressDialog.get() != null) {
-        progressDialog.get().dismiss();
-      }
+      dismissibleDialog.dismiss();
 
-      next.removeCallbacks(showDialogRunnable);
       stopwatch.stop(TAG);
 
       startActivityForResult(AddGroupDetailsActivity.newIntent(this, ids), REQUEST_CODE_ADD_DETAILS);

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.groups;
 
 import androidx.annotation.NonNull;
 
-public final class GroupChangeFailedException extends Exception {
+public final class GroupChangeFailedException extends GroupChangeException {
 
   GroupChangeFailedException() {
   }

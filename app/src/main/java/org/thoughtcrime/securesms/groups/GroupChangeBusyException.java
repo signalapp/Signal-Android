@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.groups;
 
 import androidx.annotation.NonNull;
 
-public final class GroupChangeBusyException extends Exception {
+public final class GroupChangeBusyException extends GroupChangeException {
 
   public GroupChangeBusyException(@NonNull Throwable throwable) {
     super(throwable);
