@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -96,6 +98,7 @@ final class ManageRecipientRepository {
       MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(context, color);
       if (selectedColor != null) {
         DatabaseFactory.getRecipientDatabase(context).setColor(recipientId, selectedColor);
+        ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(recipientId));
       }
     });
   }

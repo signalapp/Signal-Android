@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -259,14 +260,17 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       throws UntrustedIdentityException, NetworkException
   {
     if (length > 0) {
-      SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
-                                                                                .withStream(stream)
-                                                                                .withContentType("application/octet-stream")
-                                                                                .withLength(length)
-                                                                                .build();
-
       try {
-        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)),
+        SignalServiceAttachmentStream.Builder attachmentStream   = SignalServiceAttachment.newStreamBuilder()
+                                                                                          .withStream(stream)
+                                                                                          .withContentType("application/octet-stream")
+                                                                                          .withLength(length);
+
+        if (FeatureFlags.attachmentsV3()) {
+          attachmentStream.withResumableUploadSpec(messageSender.getResumableUploadSpec());
+        }
+
+        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream.build(), complete)),
                                   UnidentifiedAccessUtil.getAccessForSync(context));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
