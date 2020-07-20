@@ -2,25 +2,17 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.WebsocketDrainedConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
+/**
+ * Schedules a {@link RequestGroupV2InfoWorkerJob} to happen after message queues are drained.
+ */
 public final class RequestGroupV2InfoJob extends BaseJob {
 
   public static final String KEY = "RequestGroupV2InfoJob";
@@ -34,11 +26,13 @@ public final class RequestGroupV2InfoJob extends BaseJob {
   private final GroupId.V2 groupId;
   private final int        toRevision;
 
+  /**
+   * Get a particular group state revision for group after message queues are drained.
+   */
   public RequestGroupV2InfoJob(@NonNull GroupId.V2 groupId, int toRevision) {
     this(new Parameters.Builder()
-                       .setQueue("RequestGroupV2InfoJob::" + groupId)
-                       .addConstraint(NetworkConstraint.KEY)
-                       .setLifespan(TimeUnit.DAYS.toMillis(1))
+                       .setQueue("RequestGroupV2InfoSyncJob")
+                       .addConstraint(WebsocketDrainedConstraint.KEY)
                        .setMaxAttempts(Parameters.UNLIMITED)
                        .build(),
          groupId,
@@ -46,7 +40,7 @@ public final class RequestGroupV2InfoJob extends BaseJob {
   }
 
   /**
-   * Get latest group state for group.
+   * Get latest group state for group after message queues are drained.
    */
   public RequestGroupV2InfoJob(@NonNull GroupId.V2 groupId) {
     this(groupId, GroupsV2StateProcessor.LATEST);
@@ -72,29 +66,13 @@ public final class RequestGroupV2InfoJob extends BaseJob {
   }
 
   @Override
-  public void onRun() throws IOException, GroupNotAMemberException, GroupChangeBusyException {
-    if (!FeatureFlags.groupsV2()) {
-      Log.w(TAG, "Group update skipped due to feature flag " + groupId);
-      return;
-    }
-
-    Log.i(TAG, "Updating group to revision " + toRevision);
-
-    Optional<GroupDatabase.GroupRecord> group = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);
-
-    if (!group.isPresent()) {
-      Log.w(TAG, "Group not found");
-      return;
-    }
-
-    GroupManager.updateGroupFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis(), null);
+  public void onRun() {
+    ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoWorkerJob(groupId, toRevision));
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
-    return e instanceof PushNetworkException ||
-           e instanceof NoCredentialForRedemptionTimeException ||
-           e instanceof GroupChangeBusyException;
+    return false;
   }
 
   @Override

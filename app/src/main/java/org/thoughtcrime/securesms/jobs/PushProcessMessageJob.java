@@ -222,12 +222,16 @@ public final class PushProcessMessageJob extends BaseJob {
     this.timestamp         = timestamp;
   }
 
+  static @NonNull String getQueueName(@NonNull RecipientId recipientId) {
+    return QUEUE_PREFIX + recipientId.toQueueKey();
+  }
+
   @WorkerThread
   private static @NonNull Parameters createParameters(@Nullable SignalServiceContent content, @Nullable ExceptionMetadata exceptionMetadata) {
-    Context            context     = ApplicationDependencies.getApplication();
-    String             queueSuffix = "";
-    Parameters.Builder builder     = new Parameters.Builder()
-                                                   .setMaxAttempts(Parameters.UNLIMITED);
+    Context            context   = ApplicationDependencies.getApplication();
+    String             queueName = QUEUE_PREFIX;
+    Parameters.Builder builder   = new Parameters.Builder()
+                                                 .setMaxAttempts(Parameters.UNLIMITED);
 
     if (content != null) {
       if (content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
@@ -236,7 +240,7 @@ public final class PushProcessMessageJob extends BaseJob {
           GroupId                   groupId                   = GroupUtil.idFromGroupContext(signalServiceGroupContext);
           Recipient                 recipient                 = Recipient.externalGroup(context, groupId);
 
-          queueSuffix = recipient.getId().toQueueKey();
+          queueName = getQueueName(recipient.getId());
 
           if (groupId.isV2()) {
             int localRevision = DatabaseFactory.getGroupDatabase(context)
@@ -251,15 +255,15 @@ public final class PushProcessMessageJob extends BaseJob {
           Log.w(TAG, "Bad groupId! Using default queue.");
         }
       } else {
-        queueSuffix = RecipientId.fromHighTrust(content.getSender()).toQueueKey();
+        queueName = getQueueName(RecipientId.fromHighTrust(content.getSender()));
       }
     } else if (exceptionMetadata != null) {
       Recipient recipient = exceptionMetadata.groupId != null ? Recipient.externalGroup(context, exceptionMetadata.groupId)
                                                               : Recipient.external(context, exceptionMetadata.sender);
-      queueSuffix = recipient.getId().toQueueKey();
+      queueName = getQueueName(recipient.getId());
     }
 
-    builder.setQueue(QUEUE_PREFIX + queueSuffix);
+    builder.setQueue(queueName);
 
     return builder.build();
   }
