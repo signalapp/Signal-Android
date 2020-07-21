@@ -97,17 +97,17 @@ public class RecipientUtil {
       throw new AssertionError("Recipient is not blockable!");
     }
 
-    Recipient resolved = recipient.resolve();
+    recipient = recipient.resolve();
 
-    DatabaseFactory.getRecipientDatabase(context).setBlocked(resolved.getId(), true);
-
-    if (resolved.isGroup() && recipient.getGroupId().get().isPush()) {
+    if (recipient.isGroup() && recipient.getGroupId().get().isPush()) {
       GroupManager.leaveGroupFromBlockOrMessageRequest(context, recipient.getGroupId().get().requirePush());
     }
 
-    if (resolved.isSystemContact() || resolved.isProfileSharing() || isProfileSharedViaGroup(context,resolved)) {
+    DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient.getId(), true);
+
+    if (recipient.isSystemContact() || recipient.isProfileSharing() || isProfileSharedViaGroup(context, recipient)) {
       ApplicationDependencies.getJobManager().add(new RotateProfileKeyJob());
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(resolved.getId(), false);
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getId(), false);
     }
 
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
