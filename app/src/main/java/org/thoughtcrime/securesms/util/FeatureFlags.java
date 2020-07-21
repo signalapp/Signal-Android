@@ -50,7 +50,7 @@ public final class FeatureFlags {
 
   private static final String UUIDS                      = "android.uuids";
   private static final String USERNAMES                  = "android.usernames";
-  private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
+  private static final String ATTACHMENTS_V3             = "android.attachmentsV3.2";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling.2";
   private static final String GROUPS_V2                  = "android.groupsv2";
