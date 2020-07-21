@@ -405,7 +405,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       return;
     }
 
-    if (FeatureFlags.profileForCalling() && (remotePeer.getRecipient() == null || !RecipientUtil.isMessageRequestAccepted(getApplicationContext(), remotePeer.getRecipient()))) {
+    if (remotePeer.getRecipient() == null || !RecipientUtil.isMessageRequestAccepted(getApplicationContext(), remotePeer.getRecipient())) {
       Log.i(TAG, "handleReceivedOffer(): Caller is untrusted.");
       intent.putExtra(EXTRA_BROADCAST, true);
       intent.putExtra(EXTRA_HANGUP_TYPE, HangupMessage.Type.NEED_PERMISSION.getCode());

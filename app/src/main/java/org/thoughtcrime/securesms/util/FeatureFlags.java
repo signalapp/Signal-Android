@@ -52,7 +52,6 @@ public final class FeatureFlags {
   private static final String USERNAMES                  = "android.usernames";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3.2";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
-  private static final String PROFILE_FOR_CALLING        = "android.profileForCalling.2";
   private static final String GROUPS_V2_OLD              = "android.groupsv2";
   private static final String GROUPS_V2                  = "android.groupsv2.2";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.2";
@@ -68,7 +67,6 @@ public final class FeatureFlags {
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
       ATTACHMENTS_V3,
       REMOTE_DELETE,
-      PROFILE_FOR_CALLING,
       GROUPS_V2,
       GROUPS_V2_CREATE,
       GROUPS_V2_CAPACITY,
@@ -191,11 +189,6 @@ public final class FeatureFlags {
   /** Send support for remotely deleting a message. */
   public static boolean remoteDelete() {
     return getBoolean(REMOTE_DELETE, false);
-  }
-
-  /** Whether or not profile sharing is required for calling */
-  public static boolean profileForCalling() {
-    return getBoolean(PROFILE_FOR_CALLING, false);
   }
 
   /** Groups v2 send and receive. */
