@@ -276,6 +276,16 @@ public final class GroupIdTest {
     GroupId.v2orThrow(Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0f"));
   }
 
+  @Test(expected = BadGroupIdException.class)
+  public void cannot_create_v1_with_a_bad_length() throws IOException, BadGroupIdException {
+    GroupId.v1(Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0fff"));
+  }
+
+  @Test(expected = AssertionError.class)
+  public void cannot_create_v1_with_a_bad_length_assert() throws IOException {
+    GroupId.v1orThrow(Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0fff"));
+  }
+
   @Test
   public void create_mms() {
     GroupId.Mms mms = GroupId.createMms(mockRandom(new byte[]{ 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8 }));

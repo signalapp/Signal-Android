@@ -88,7 +88,7 @@ public class RecipientIdJobMigrationTest {
   @Test
   public void migrate_requestGroupInfoJob() throws Exception {
     JobData testData = new JobData("RequestGroupInfoJob", null, new Data.Builder().putString("source", "+16101234567")
-                                                                                  .putString("group_id", "__textsecure_group__!abcd")
+                                                                                  .putString("group_id", "__textsecure_group__!abcdef01234567899876543210fedcba")
                                                                                   .build());
     mockRecipientResolve("+16101234567", 1);
 
@@ -98,7 +98,7 @@ public class RecipientIdJobMigrationTest {
     assertEquals("RequestGroupInfoJob", converted.getFactoryKey());
     assertNull(converted.getQueueKey());
     assertEquals("1", converted.getData().getString("source"));
-    assertEquals("__textsecure_group__!abcd", converted.getData().getString("group_id"));
+    assertEquals("__textsecure_group__!abcdef01234567899876543210fedcba", converted.getData().getString("group_id"));
 
     new RequestGroupInfoJob.Factory().create(mock(Job.Parameters.class), converted.getData());
   }
@@ -185,7 +185,7 @@ public class RecipientIdJobMigrationTest {
   @Test
   public void migrate_pushGroupUpdateJob() throws Exception {
     JobData testData = new JobData("PushGroupUpdateJob", null, new Data.Builder().putString("source", "+16101234567")
-                                                                                 .putString("group_id", "__textsecure_group__!abcd")
+                                                                                 .putString("group_id", "__textsecure_group__!abcdef01234567899876543210fedcba")
                                                                                  .build());
     mockRecipientResolve("+16101234567", 1);
 
@@ -195,7 +195,7 @@ public class RecipientIdJobMigrationTest {
     assertEquals("PushGroupUpdateJob", converted.getFactoryKey());
     assertNull(converted.getQueueKey());
     assertEquals("1", converted.getData().getString("source"));
-    assertEquals("__textsecure_group__!abcd", converted.getData().getString("group_id"));
+    assertEquals("__textsecure_group__!abcdef01234567899876543210fedcba", converted.getData().getString("group_id"));
 
     new PushGroupUpdateJob.Factory().create(mock(Job.Parameters.class), converted.getData());
   }
