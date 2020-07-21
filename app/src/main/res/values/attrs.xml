@@ -535,6 +535,10 @@
         <attr name="selectable" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="PopupMenuView">
+        <attr name="background_tint" format="color" />
+    </declare-styleable>
+
     <declare-styleable name="WebRtcAudioOutputToggleButtonState">
         <attr name="state_speaker_on" format="boolean" />
         <attr name="state_speaker_off" format="boolean" />
