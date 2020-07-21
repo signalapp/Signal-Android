@@ -381,7 +381,7 @@ public class SignalServiceMessageSender {
                                                                  attachment.getCancelationSignal(),
                                                                  attachment.getResumableUploadSpec().orNull());
 
-    if (attachmentsV3.get()) {
+    if (attachment.getResumableUploadSpec().isPresent()) {
       return uploadAttachmentV3(attachment, attachmentKey, attachmentData);
     } else {
       return uploadAttachmentV2(attachment, attachmentKey, attachmentData);
