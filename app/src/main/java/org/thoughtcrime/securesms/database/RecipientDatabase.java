@@ -689,13 +689,13 @@ public class RecipientDatabase extends Database {
 
     try {
       for (SignalContactRecord insert : contactInserts) {
-        ContentValues values = validateContactValuesForInsert(getValuesForStorageContact(insert, true));
+        ContentValues values = getValuesForStorageContact(insert, true);
         long          id     = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
 
         RecipientId recipientId;
 
         if (id < 0) {
-          values = validateContactValuesForInsert(getValuesForStorageContact(insert, false));
+          values = getValuesForStorageContact(insert, false);
           Log.w(TAG, "Failed to insert! It's likely that these were newly-registered users that were missed in the merge. Doing an update instead.");
 
           if (insert.getAddress().getNumber().isPresent()) {
@@ -2142,17 +2142,6 @@ public class RecipientDatabase extends Database {
       } else {
         return new GetOrInsertResult(RecipientId.from(id), true);
       }
-    }
-  }
-
-  private static ContentValues validateContactValuesForInsert(ContentValues values) {
-    if (!FeatureFlags.uuidOnlyContacts() &&
-        values.getAsString(UUID) != null &&
-        values.getAsString(PHONE) == null)
-    {
-      throw new UuidRecipientError();
-    } else {
-      return values;
     }
   }
 

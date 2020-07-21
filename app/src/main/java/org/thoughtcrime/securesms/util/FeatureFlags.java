@@ -48,7 +48,6 @@ public final class FeatureFlags {
 
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(0);
 
-  private static final String UUIDS                      = "android.uuids";
   private static final String USERNAMES                  = "android.usernames";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3.2";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
@@ -169,16 +168,9 @@ public final class FeatureFlags {
     Log.i(TAG, "[Disk]   After : " + result.getDisk().toString());
   }
 
-  /** Whether or not we allow UUID-only contacts. */
-  public static synchronized boolean uuidOnlyContacts() {
-    return getBoolean(UUIDS, false);
-  }
-
   /** Creating usernames, sending messages by username. Requires {@link #uuidOnlyContacts()}. */
   public static synchronized boolean usernames() {
-    boolean value = getBoolean(USERNAMES, false);
-    if (value && !uuidOnlyContacts()) throw new MissingFlagRequirementError();
-    return value;
+    return getBoolean(USERNAMES, false);
   }
 
   /** Whether or not we use the attachments v3 form. */

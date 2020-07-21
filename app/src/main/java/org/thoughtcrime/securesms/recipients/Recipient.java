@@ -245,22 +245,7 @@ public class Recipient {
 
     if (UuidUtil.isUuid(identifier)) {
       UUID uuid = UuidUtil.parseOrThrow(identifier);
-
-      if (FeatureFlags.uuidOnlyContacts()) {
-        id = db.getOrInsertFromUuid(uuid);
-      } else {
-        Optional<RecipientId> possibleId = db.getByUuid(uuid);
-
-        if (possibleId.isPresent()) {
-          id = possibleId.get();
-        } else {
-          if (!FeatureFlags.uuidOnlyContacts() && FeatureFlags.groupsV2()) {
-            throw new RuntimeException(new UuidRecipientError());
-          } else {
-            throw new UuidRecipientError();
-          }
-        }
-      }
+      id = db.getOrInsertFromUuid(uuid);
     } else if (GroupId.isEncodedGroup(identifier)) {
       id = db.getOrInsertFromGroupId(GroupId.parseOrThrow(identifier));
     } else if (NumberUtil.isValidEmail(identifier)) {
@@ -728,7 +713,7 @@ public class Recipient {
     if (FeatureFlags.usernames()) {
       return true;
     } else {
-      return FeatureFlags.uuidOnlyContacts() && uuidCapability == Capability.SUPPORTED;
+      return uuidCapability == Capability.SUPPORTED;
     }
   }
 
