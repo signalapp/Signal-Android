@@ -205,7 +205,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nesaugi MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Persijunkime į Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Klaida, išeinant iš grupės</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Klaida, išeinant iš grupės</string> -->
   <string name="ConversationActivity_specify_recipient">Prašome pasirinkti adresatą</string>
   <string name="ConversationActivity_unblock_this_contact_question">Atblokuoti šį adresatą?</string>
   <string name="ConversationActivity_unblock_this_group_question">Atblokuoti šią grupę?</string>
@@ -464,8 +464,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageGroupActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Kas gali keisti grupės narystes</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Kas gali taisyti grupės informaciją</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kas gali keisti grupės narystes</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kas gali taisyti grupės informaciją</string> -->
   <string name="ManageGroupActivity_block_group">Užblokuoti grupę</string>
   <string name="ManageGroupActivity_unblock_group">Atblokuoti grupę</string>
   <string name="ManageGroupActivity_leave_group">Išeiti iš grupės</string>
@@ -495,8 +495,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepavyko atnaujinti grupės</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs nesate šios grupės narys</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pasirinkite, kas gali keisti grupės pavadinimą ir nuotrauką</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pasirinkite, kas gali keisti grupės pavadinimą ir nuotrauką</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Pridėti į sistemos adresatus</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Šis žmogus yra jūsų adresatų sąraše</string>

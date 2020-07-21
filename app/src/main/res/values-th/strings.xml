@@ -190,7 +190,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">เกิดข้อผิดพลาดระหว่างออกจากกลุ่ม</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">เกิดข้อผิดพลาดระหว่างออกจากกลุ่ม</string> -->
   <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
   <string name="ConversationActivity_unblock_this_contact_question">เลิกปิดกั้นผู้ติดต่อรายนี้หรือไม่?</string>
   <string name="ConversationActivity_unblock_this_group_question">เลิกปิดกั้นกลุ่มนี้หรือไม่?</string>
@@ -395,8 +395,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">ข้อความที่ลบตัวเอง</string>
   <string name="ManageGroupActivity_pending_group_invites">คำเชิญเข้ากลุ่มที่รอตอบกลับ</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">ใครสามารถแก้ไขสถานะสมาชิกของกลุ่ม</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">ใครสามารถแก้ไขข้อมูลของกลุ่ม</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">ใครสามารถแก้ไขสถานะสมาชิกของกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">ใครสามารถแก้ไขข้อมูลของกลุ่ม</string> -->
   <string name="ManageGroupActivity_block_group">ปิดกั้นกลุ่ม</string>
   <string name="ManageGroupActivity_unblock_group">เลิกปิดกั้นกลุ่ม</string>
   <string name="ManageGroupActivity_leave_group">ออกจากกลุ่ม</string>
@@ -416,7 +416,7 @@
     <item quantity="other">%d สมาชิกถูกเพิ่ม</item>
   </plurals>
   <string name="ManageGroupActivity_edit_name_and_picture">แก้ไขชื่อและภาพ</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">เลือกว่าใครสามารถเพิ่มหรือเชิญสมาชิกใหม่</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">เลือกว่าใครสามารถเพิ่มหรือเชิญสมาชิกใหม่</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">ข้อความที่ลบตัวเอง</string>
   <string name="ManageRecipientActivity_block">ปิดกั้น</string>

@@ -184,7 +184,7 @@
   <string name="ConversationActivity_transport_insecure_mms">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ಗೆ ಬದಲಾಯಿಸೋಣ</string>
-  <string name="ConversationActivity_error_leaving_group">ಗುಂಪನ್ನು ಬಿಡುವಾಗ ದೋಷವಾಯಿತು</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">ಗುಂಪನ್ನು ಬಿಡುವಾಗ ದೋಷವಾಯಿತು</string> -->
   <string name="ConversationActivity_specify_recipient">ದಯವಿಟ್ಟು ಒಂದು ಸಂಪರ್ಕವನ್ನು ಆರಿಸಿಕೊಳ್ಳಿ</string>
   <string name="ConversationActivity_unblock_this_contact_question">ಈ ಸಂಪರ್ಕವನ್ನು ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="ConversationActivity_unblock_this_group_question">ಈ ಗುಂಪಿನ ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>

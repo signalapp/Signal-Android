@@ -192,7 +192,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_signal"> Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">តោះដូរទៅកាន់ Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">បញ្ហាសម្រាប់ការចាកចេញពីក្រុម</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">បញ្ហាសម្រាប់ការចាកចេញពីក្រុម</string> -->
   <string name="ConversationActivity_specify_recipient">សូមជ្រើសរើសលេខទំនាក់ទំនង១</string>
   <string name="ConversationActivity_unblock_this_contact_question">បើកលេខទំនាក់ទំនងនេះ?</string>
   <string name="ConversationActivity_unblock_this_group_question">បើកសោរក្រុមនេះ?</string>
@@ -408,8 +408,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
   <string name="ManageGroupActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">នរណាអាចកែប្រែសមាជិកភាពក្រុម</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">នរណាអាចកែប្រែព័ត៌មានក្រុម</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">នរណាអាចកែប្រែសមាជិកភាពក្រុម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">នរណាអាចកែប្រែព័ត៌មានក្រុម</string> -->
   <string name="ManageGroupActivity_block_group">ហាមឃាត់ក្រុម</string>
   <string name="ManageGroupActivity_unblock_group">លែងហាមឃាត់ក្រុម</string>
   <string name="ManageGroupActivity_leave_group">ចាកចេញពីក្រុម</string>
@@ -433,8 +433,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">អ្នកមិនមែនជាសមាជិកនៃក្រុម</string>
   <string name="ManageGroupActivity_edit_name_and_picture">កែប្រែឈ្មោះ និងរូបភាព</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">ជ្រើសរើសអ្នកដែលអាចបន្ថែម ឬអញ្ជើញសមាជិកថ្មី</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">ជ្រើសរើសអ្នកដែលអាចផ្លាស់ប្តូរឈ្មោះក្រុម និងរូបភាព</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">ជ្រើសរើសអ្នកដែលអាចបន្ថែម ឬអញ្ជើញសមាជិកថ្មី</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">ជ្រើសរើសអ្នកដែលអាចផ្លាស់ប្តូរឈ្មោះក្រុម និងរូបភាព</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
   <string name="ManageRecipientActivity_chat_color">ពណ៌ការជជែក</string>

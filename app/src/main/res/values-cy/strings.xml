@@ -207,7 +207,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS anniogel</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Gadewch i ni newid i Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Gwall wrth adael grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Gwall wrth adael grŵp</string> -->
   <string name="ConversationActivity_specify_recipient">Dewiswch gyswllt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Dadrwystro\'r cyswllt hwn?</string>
   <string name="ConversationActivity_unblock_this_group_question">Dadrwystro\'r grŵp hwn?</string>
@@ -466,8 +466,8 @@ Send neges heb ei ddiogelu?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Negeseuon yn diflannu</string>
   <string name="ManageGroupActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Pwy all olygu aelodaeth grŵp</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Pwy all olygu manylion grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Pwy all olygu aelodaeth grŵp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Pwy all olygu manylion grŵp</string> -->
   <string name="ManageGroupActivity_block_group">Rhwystro\'r grŵp</string>
   <string name="ManageGroupActivity_unblock_group">Dad-rwystro grŵp</string>
   <string name="ManageGroupActivity_leave_group">Gadael y grŵp</string>
@@ -497,8 +497,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Wedi methu diweddaru\'r grŵp</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nid ydych yn aelod o\'r grŵp</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Golygu enw a llun</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Dewiswch pwy all ychwanegu neu wahodd aelodau newydd</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Dewiswch pwy all newid enw\'r grŵp a\'r llun</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Dewiswch pwy all ychwanegu neu wahodd aelodau newydd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Dewiswch pwy all newid enw\'r grŵp a\'r llun</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string>

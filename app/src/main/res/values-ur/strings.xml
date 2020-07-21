@@ -179,7 +179,7 @@
   <string name="ConversationActivity_transport_insecure_mms">غیر محفوظ ایم ایم ایس</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">چلیں Signal کو چلاتے ہیں%1$s</string>
-  <string name="ConversationActivity_error_leaving_group">گروپ چھوڑنے میں غلطی ہو رہی ہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">گروپ چھوڑنے میں غلطی ہو رہی ہے</string> -->
   <string name="ConversationActivity_specify_recipient">براۓ مہربانی رابطہ منتخب کریں</string>
   <string name="ConversationActivity_unblock_this_contact_question">اس رابطہ کو ان بلاک کریں؟</string>
   <string name="ConversationActivity_unblock_this_group_question">اس گروپ کو ان بلاک کریں؟</string>

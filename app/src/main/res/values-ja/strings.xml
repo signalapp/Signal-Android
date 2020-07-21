@@ -196,7 +196,7 @@
   <string name="ConversationActivity_transport_insecure_mms">保護されていない MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s に切り替えましょう</string>
-  <string name="ConversationActivity_error_leaving_group">グループから抜ける際にエラーが発生しました</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">グループから抜ける際にエラーが発生しました</string> -->
   <string name="ConversationActivity_specify_recipient">連絡先を選択してください</string>
   <string name="ConversationActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか？</string>
   <string name="ConversationActivity_unblock_this_group_question">このグループのブロックを解除しますか？</string>
@@ -413,8 +413,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">消えるメッセージ</string>
   <string name="ManageGroupActivity_pending_group_invites">保留中のグループ招待</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">グループメンバーシップを編集できるメンバーを選択</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">グループ情報を編集できるユーザー</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">グループメンバーシップを編集できるメンバーを選択</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">グループ情報を編集できるユーザー</string> -->
   <string name="ManageGroupActivity_block_group">グループをブロック</string>
   <string name="ManageGroupActivity_unblock_group">グループのブロック解除</string>
   <string name="ManageGroupActivity_leave_group">グループを抜ける</string>
@@ -438,8 +438,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">グループの更新に失敗しました</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">あなたはこのグループのメンバーではありません</string>
   <string name="ManageGroupActivity_edit_name_and_picture">名前と写真の編集</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">新しいメンバーを追加、または招待できる人を選択</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">グループ名と写真を変更できるメンバーを選択</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">新しいメンバーを追加、または招待できる人を選択</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">グループ名と写真を変更できるメンバーを選択</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">この人は連絡先にいます</string>

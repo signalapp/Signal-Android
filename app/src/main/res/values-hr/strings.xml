@@ -194,7 +194,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nesigurni MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prebaci se na Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Greška pri napuštanju grupe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Greška pri napuštanju grupe</string> -->
   <string name="ConversationActivity_specify_recipient">Odaberite kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ukloni blokadu ovog kontakta?</string>
   <string name="ConversationActivity_unblock_this_group_question">Odblokiraj ovu grupu?</string>
@@ -425,8 +425,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Nestajuće poruke</string>
   <string name="ManageGroupActivity_pending_group_invites">Pozivnice na čekanju</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Tko može uređivati članstvo u grupi</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Tko može uređivati informacije o grupi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Tko može uređivati članstvo u grupi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Tko može uređivati informacije o grupi</string> -->
   <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
   <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
   <string name="ManageGroupActivity_mute_notifications">Utišaj obavijesti</string>
@@ -442,8 +442,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Napuštanje grupe nije uspjelo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Niste član grupe</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Uredite ime i sliku</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Odaberite tko može dodati ili pozvati nove članove</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Odaberite tko može promijeniti naziv grupe i fotografiju</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Odaberite tko može dodati ili pozvati nove članove</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Odaberite tko može promijeniti naziv grupe i fotografiju</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Nestajuće poruke</string>
   <string name="ManageRecipientActivity_block">Blokiraj</string>

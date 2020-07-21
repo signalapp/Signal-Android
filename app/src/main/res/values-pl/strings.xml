@@ -205,7 +205,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Zacznij używać Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Błąd podczas opuszczania grupy</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Błąd podczas opuszczania grupy</string> -->
   <string name="ConversationActivity_specify_recipient">Proszę wybierz kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Odblokować tę grupę? </string>
@@ -464,8 +464,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Znikające wiadomości</string>
   <string name="ManageGroupActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Kto może edytować członkostwo w grupie</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Kto może edytować informacje o grupie</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kto może edytować członkostwo w grupie</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kto może edytować informacje o grupie</string> -->
   <string name="ManageGroupActivity_block_group">Zablokuj grupę</string>
   <string name="ManageGroupActivity_unblock_group">Odblokuj grupę</string>
   <string name="ManageGroupActivity_leave_group">Opuść grupę</string>
@@ -495,8 +495,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Aktualizacja grupy nie powiodła się</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nie jesteś członkiem tej grupy</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Edytuj nazwę i zdjęcie</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Wybierz, kto może dodawać lub zapraszać nowych członków</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Wybierz kto może zmienić nazwę i zdjęcie grupy</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Wybierz, kto może dodawać lub zapraszać nowych członków</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Wybierz kto może zmienić nazwę i zdjęcie grupy</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj do kontaktów systemu</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ta osoba jest w Twoich kontaktach</string>

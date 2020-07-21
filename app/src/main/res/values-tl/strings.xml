@@ -188,7 +188,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Hindi secure na MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lumipat tayo sa Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Nagka-error sa pag-alis sa grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Nagka-error sa pag-alis sa grupo</string> -->
   <string name="ConversationActivity_specify_recipient">Pumili ng kontak</string>
   <string name="ConversationActivity_unblock_this_contact_question">I-unblock ang kontak na ito?</string>
   <string name="ConversationActivity_unblock_this_group_question">I-unblock ang grupong ito?</string>

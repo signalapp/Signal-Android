@@ -194,7 +194,7 @@
   <string name="ConversationActivity_transport_insecure_mms">സുരക്ഷിതമല്ലാത്ത MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">നമുക്ക് Signal ലേക്ക് മാറാം %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">ഗ്രൂപ്പിൽ നിന്നും ഒഴിയുന്നതിൽ പിശക് </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">ഗ്രൂപ്പിൽ നിന്നും ഒഴിയുന്നതിൽ പിശക് </string> -->
   <string name="ConversationActivity_specify_recipient">ദയവായി ഒരു കോൺ‌ടാക്റ്റ് തിരഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_unblock_this_contact_question">ഈ കോൺ‌ടാക്റ്റ് തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="ConversationActivity_unblock_this_group_question">ഈ ഗ്രൂപ്പ് തടഞ്ഞത് മാറ്റണോ?</string>
@@ -423,8 +423,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">ആർ‌ക്ക് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാൻ‌ കഴിയും</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">ഗ്രൂപ്പ് വിവരങ്ങൾ ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകും</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">ആർ‌ക്ക് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാൻ‌ കഴിയും</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">ഗ്രൂപ്പ് വിവരങ്ങൾ ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകും</string> -->
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
@@ -450,8 +450,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
   <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">പുതിയ അംഗങ്ങളെ ആർക്കൊക്കെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ഫോട്ടോയും ആർക്കൊക്കെ മാറ്റാൻ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">പുതിയ അംഗങ്ങളെ ആർക്കൊക്കെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ഫോട്ടോയും ആർക്കൊക്കെ മാറ്റാൻ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="ManageRecipientActivity_chat_color">ചാറ്റ് നിറം</string>

@@ -163,7 +163,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS easlán</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Téimís i muinín Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Tharla botún ag fágáil an bhaicle</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Tharla botún ag fágáil an bhaicle</string> -->
   <string name="ConversationActivity_specify_recipient">Roghnaigh teagmhálaí</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bain an bac den teagmhálaí seo?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bain an bac den bhaicle sin?</string>

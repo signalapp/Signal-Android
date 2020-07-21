@@ -199,14 +199,14 @@
   <string name="ConversationActivity_transport_insecure_mms">فراپیام ناامن</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">بیایید از Signal استفاده کنیم: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">خطا‌ در ترک گروه</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">خطا‌ در ترک گروه</string> -->
   <string name="ConversationActivity_specify_recipient">لطفاً یک مخاطب را انتخاب کنید</string>
   <string name="ConversationActivity_unblock_this_contact_question">رفع مسدودیت این مخاطب؟</string>
   <string name="ConversationActivity_unblock_this_group_question">رفع مسدودیت این گروه؟</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">شما مجدداً قادر به دریافت تماس و پیام از این مخاطب خواهید بود.</string>
   <string name="ConversationActivity_unblock_this_group_description">اعضای موجود قادر خواهند بود مجدداً شما را به گروه اضافه کنند.</string>
   <string name="ConversationActivity_unblock">رفع مسدودیت</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل ضمیمه شده بیش از اندازۀ مجاز برای این نوع پیام است.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل پیوست شده بیش از اندازۀ مجاز برای این نوع پیام است.</string>
   <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
   <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">نمایه شما رمزگذاری سرتاسری شده است. نمایه شما و تغییرات آن، هنگامی که شما مکالمه‌های جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید، برای مخاطبان شما قابل مشاهده خواهد بود.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل شما رمزگذاری سرتاسری شده است. پروفایل شما و تغییرات آن، هنگامی که شما مکالمه‌های جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید، برای مخاطبان شما قابل مشاهده خواهد بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
@@ -430,8 +430,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageGroupActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">کسانی که می‌توانند اعضای گروه را ویرایش کنند</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">کسانی که می‌توانند اطلاعات گروه را ویرایش کنند</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">کسانی که می‌توانند اعضای گروه را ویرایش کنند</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">کسانی که می‌توانند اطلاعات گروه را ویرایش کنند</string> -->
   <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
   <string name="ManageGroupActivity_leave_group">ترک گروه</string>
@@ -457,11 +457,11 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">به‌روزرسانی گروه با اشکال مواجه شد</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">شما عضو گروه نیستید</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ویرایش نام و عکس</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسانی می‌توانند اعضای جدید را دعوت یا اضافه کنند</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">انتخاب کنید چه کسانی می‌توانند نام و عکس گروه را تغییر دهند</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسانی می‌توانند اعضای جدید را دعوت یا اضافه کنند</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">انتخاب کنید چه کسانی می‌توانند نام و عکس گروه را تغییر دهند</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبان سیستم</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این کاربر در مخاطبان شما است</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این کاربر از مخاطبان شماست</string>
   <string name="ManageRecipientActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageRecipientActivity_chat_color">رنگ گفتگو</string>
   <string name="ManageRecipientActivity_block">مسدود کردن</string>
@@ -652,9 +652,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان‌سنج پیام ناپدید شونده را روی %2$s تنظیم کرد.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">زمان‌سنج پیام ناپدید شونده روی %1$s تنظیم شد.</string>
   <!--Profile change updates-->
-  <string name="MessageRecord_changed_their_profile_name_to">%1$s نام نمایه خود را به %2$s تغییر دادند.</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام نمایه خود را از %2$s  به %3$s تغییر دادند.</string>
-  <string name="MessageRecord_changed_their_profile">%1$s نمایه خود را تغییر دادند.</string>
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s نام پروفایل خود را به %2$s تغییر داد.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام پروفایل خود را از %2$s  به %3$s تغییر داد.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s پروفایل خود را تغییر داد.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه رو خلق کردی</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
@@ -1489,7 +1489,7 @@
   <string name="HelpFragment__next">بعدی</string>
   <string name="HelpFragment__contact_us">تماس با ما</string>
   <string name="HelpFragment__tell_us_whats_going_on">در مورد اشکال به ما توضیح دهید</string>
-  <string name="HelpFragment__include_debug_log">ضمیمه‌کردن گزارش اشکال‌زدایی</string>
+  <string name="HelpFragment__include_debug_log">پیوست گزارش اشکال‌زدایی</string>
   <string name="HelpFragment__whats_this">توضیحات</string>
   <string name="HelpFragment__how_do_you_feel">چه حسی دارید؟ (اختیاری)</string>
   <string name="HelpFragment__support_info">اطلاعات پشتیبانی</string>

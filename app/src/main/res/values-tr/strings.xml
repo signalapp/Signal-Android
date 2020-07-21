@@ -197,7 +197,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Şifresiz MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal uygulamasından konuşalım %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Gruptan ayrılırken hata</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Gruptan ayrılırken hata</string> -->
   <string name="ConversationActivity_specify_recipient">Lütfen bir kişi seçin</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bu kişinin engellemesini kaldır?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bu grubun engeli kaldırılsın mı?</string>
@@ -426,8 +426,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaybolan iletiler</string>
   <string name="ManageGroupActivity_pending_group_invites">Beklemedeki grup davetleri</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Grup üyeliğini kimler düzenleyebilir</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Grup bilgisini kimler düzenleyebilir</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Grup üyeliğini kimler düzenleyebilir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Grup bilgisini kimler düzenleyebilir</string> -->
   <string name="ManageGroupActivity_block_group">Grubu engelle</string>
   <string name="ManageGroupActivity_unblock_group">Grubun engelini kaldır</string>
   <string name="ManageGroupActivity_leave_group">Gruptan ayrıl</string>
@@ -453,8 +453,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Grubu güncelleme başarısız oldu</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Grubun üyesi değilsiniz</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Adı ve resmi düzenleyin</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Yeni üyeleri kimlerin ekleyebileceğini veya davet edebileceğini seçin</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Grup adını ve resmini kimlerin değiştirebileceğini seçin</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Yeni üyeleri kimlerin ekleyebileceğini veya davet edebileceğini seçin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Grup adını ve resmini kimlerin değiştirebileceğini seçin</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string>
   <string name="ManageRecipientActivity_chat_color">Sohbet rengi</string>

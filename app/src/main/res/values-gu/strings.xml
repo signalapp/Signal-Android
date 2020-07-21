@@ -178,7 +178,7 @@
   <string name="ConversationActivity_transport_insecure_mms">અસુરક્ષિત MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">ચાલો સિગ્નલ પર સ્વિચ કરીએ %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">ગ્રુપ માંથી નિકળવામાં ભૂલ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">ગ્રુપ માંથી નિકળવામાં ભૂલ</string> -->
   <string name="ConversationActivity_specify_recipient">કૃપા કરીને સંપર્ક પસંદ કરો</string>
   <string name="ConversationActivity_unblock_this_contact_question">આ સંપર્કને અનાવરોધિત કરો?</string>
   <string name="ConversationActivity_unblock_this_group_question">આ ગ્રુપ ને અનાવરોધિત કરો?</string>

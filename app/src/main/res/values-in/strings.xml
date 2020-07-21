@@ -190,7 +190,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS tidak terenkripsi</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string> -->
   <string name="ConversationActivity_specify_recipient">Silahkan pilih kontak</string>
   <string name="ConversationActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
   <string name="ConversationActivity_unblock_this_group_question">Buka blokir grup ini?</string>
@@ -394,8 +394,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Penghilangan pesan</string>
   <string name="ManageGroupActivity_pending_group_invites">Undangan grup yang tertunda</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Pemilik akses untuk menyunting keanggotaan grup</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Pemilik akses untuk menyunting informasi grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Pemilik akses untuk menyunting keanggotaan grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Pemilik akses untuk menyunting informasi grup</string> -->
   <string name="ManageGroupActivity_block_group">Blokir grup</string>
   <string name="ManageGroupActivity_leave_group">Keluar grup</string>
   <string name="ManageGroupActivity_mute_notifications">Senyapkan pemberitahuan</string>
@@ -411,8 +411,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Gagal untuk memperbarui grup</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Anda bukan member grup ini</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Sunting nama dan gambar</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pilih siapa yang dapat menambahkan atau mengundang anggota baru</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pilih siapa yang dapat mengubah nama dan foto grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pilih siapa yang dapat menambahkan atau mengundang anggota baru</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pilih siapa yang dapat mengubah nama dan foto grup</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Penghilangan pesan</string>
   <string name="ManageRecipientActivity_block">Blokir</string>

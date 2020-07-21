@@ -196,7 +196,7 @@
   <string name="ConversationActivity_transport_insecure_mms">不安全的多媒體訊息</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">我們要不要切換到 Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">離開群組時發生錯誤</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">離開群組時發生錯誤</string> -->
   <string name="ConversationActivity_specify_recipient">請選擇聯絡人</string>
   <string name="ConversationActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
   <string name="ConversationActivity_unblock_this_group_question">解除封鎖這個群組？</string>
@@ -413,8 +413,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">自動銷毀訊息</string>
   <string name="ManageGroupActivity_pending_group_invites">待處理的群組邀請</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">誰可以編輯群組成員</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">誰可以編輯群組資訊</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">誰可以編輯群組成員</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">誰可以編輯群組資訊</string> -->
   <string name="ManageGroupActivity_block_group">封鎖群組</string>
   <string name="ManageGroupActivity_unblock_group">解封鎖群組</string>
   <string name="ManageGroupActivity_leave_group">離開對話群組</string>
@@ -438,8 +438,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">更新群組失敗</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">你不是群組組員</string>
   <string name="ManageGroupActivity_edit_name_and_picture">編輯名稱及圖片</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">選擇誰可以新增或邀請新成員</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">選擇誰可以改變群組名稱及照片</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">選擇誰可以新增或邀請新成員</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">選擇誰可以改變群組名稱及照片</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">加入系統聯絡人</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">這個人在你的聯絡人清單中</string>

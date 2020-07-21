@@ -173,7 +173,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS yang tidak selamat</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Mari beralih kepada Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Ralat keluar daripada kumpulan</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Ralat keluar daripada kumpulan</string> -->
   <string name="ConversationActivity_specify_recipient">Sila pilih kenalan</string>
   <string name="ConversationActivity_unblock_this_contact_question">Nyahsekat kenalan ini?</string>
   <string name="ConversationActivity_unblock_this_group_question">Nyahsekat kumpulan ini?</string>

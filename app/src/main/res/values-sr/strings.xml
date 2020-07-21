@@ -196,7 +196,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Необезбеђени ММС</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Пребацимо се на Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Грешка при напуштању групе</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Грешка при напуштању групе</string> -->
   <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
   <string name="ConversationActivity_unblock_this_contact_question">Одлокирати овај контакт?</string>
   <string name="ConversationActivity_unblock_this_group_question">Одблокирај ову групу?</string>

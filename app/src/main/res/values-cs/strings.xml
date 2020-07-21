@@ -205,7 +205,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Přejít na Signal: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Chyba při opouštění skupiny</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Chyba při opouštění skupiny</string> -->
   <string name="ConversationActivity_specify_recipient">Vyberte prosím kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokovat tento kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Odblokovat tuto skupinu?</string>
@@ -350,6 +350,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problém při nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavit váš profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil je end-to-end šifrován. Váš profil a změny na něm budou viditelné pro vaše kontakty, když zahájíte nebo přijmete novou konverzaci a když se připojíte k novým skupinám.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastavit avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
@@ -463,8 +464,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zmizení zpráv</string>
   <string name="ManageGroupActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Kdo může upravovat členství ve skupině</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Kdo může upravovat informace o skupině</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kdo může upravovat členství ve skupině</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kdo může upravovat informace o skupině</string> -->
   <string name="ManageGroupActivity_block_group">Zablokovat skupinu</string>
   <string name="ManageGroupActivity_unblock_group">Odblokovat skupinu</string>
   <string name="ManageGroupActivity_leave_group">Opustit skupinu</string>
@@ -494,9 +495,11 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nejste členem skupiny</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Upravit název a obrázek</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Vyberte, kdo může přidat nebo pozvat nové členy</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Vyberte, kdo může změnit název skupiny a fotografii</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Vyberte, kdo může přidat nebo pozvat nové členy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Vyberte, kdo může změnit název skupiny a fotografii</string> -->
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Přidat k systémovým kontaktům</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tato osoba je ve vašich kontaktech</string>
   <string name="ManageRecipientActivity_disappearing_messages">Zmizení zpráv</string>
   <string name="ManageRecipientActivity_chat_color">Barva konverzace</string>
   <string name="ManageRecipientActivity_block">Blokovat</string>
@@ -707,6 +710,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil(a) časovač pro zmizení zpráv na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač pro zmizení zprávy byl nastaven na %1$s.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s změnil jméno svého profilu na %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s změnil jméno svého profilu z %2$s na %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s upravil svůj profil.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Vytvořili jste skupinu.</string>
   <string name="MessageRecord_group_updated">Skupina aktualizována.</string>

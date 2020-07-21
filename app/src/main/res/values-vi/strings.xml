@@ -196,7 +196,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Lỗi khi rời nhóm</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Lỗi khi rời nhóm</string> -->
   <string name="ConversationActivity_specify_recipient">Vui lòng chọn một liên lạc</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bỏ chặn liên lạc này?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bỏ chặn nhóm này?</string>
@@ -412,8 +412,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Tin nhắn tạm thời</string>
   <string name="ManageGroupActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Ai có thể thay đổi thành viên nhóm</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Ai có thể sửa thông tin nhóm</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Ai có thể thay đổi thành viên nhóm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Ai có thể sửa thông tin nhóm</string> -->
   <string name="ManageGroupActivity_block_group">Chặn nhóm</string>
   <string name="ManageGroupActivity_unblock_group">Bỏ chặn nhóm</string>
   <string name="ManageGroupActivity_leave_group">Rời nhóm</string>
@@ -437,8 +437,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Không thể cập nhật nhóm</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Bạn không phải thành viên nhóm này</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Sửa tên và ảnh</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Chọn ai có quyền sửa tên và ảnh nhóm</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Chọn ai có quyền sửa tên và ảnh nhóm</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Tin nhắn tự hủy</string>
   <string name="ManageRecipientActivity_chat_color">Màu trò chuyện</string>

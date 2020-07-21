@@ -196,7 +196,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Ebaturvaline MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lähme Signalile üle %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Grupist lahkumisel tekkis viga</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Grupist lahkumisel tekkis viga</string> -->
   <string name="ConversationActivity_specify_recipient">Palun vali kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Eemaldada kontakti blokeering?</string>
   <string name="ConversationActivity_unblock_this_group_question">Eemaldad grupi blokeeringu?</string>
@@ -425,8 +425,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaduvad sõnumid</string>
   <string name="ManageGroupActivity_pending_group_invites">Ootel grupikutsed</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Kes saavad muuta grupi liikmeid</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Kes saavad muuta grupi infot</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kes saavad muuta grupi liikmeid</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kes saavad muuta grupi infot</string> -->
   <string name="ManageGroupActivity_block_group">Blokeeri grupp</string>
   <string name="ManageGroupActivity_unblock_group">Eemalda grupi blokeering</string>
   <string name="ManageGroupActivity_leave_group">Lahku grupist</string>
@@ -452,8 +452,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Grupi uuendamine ei õnnestunud</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Sa ei ole grupi liige</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Muuda nime ja pilti</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Vali, kes saavad lisada või kutsuda uusi liikmeid</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Vali, kes saavad muuta grupi nime ja fotot</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Vali, kes saavad lisada või kutsuda uusi liikmeid</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Vali, kes saavad muuta grupi nime ja fotot</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Kaduvad sõnumid</string>
   <string name="ManageRecipientActivity_chat_color">Vestluse värv</string>

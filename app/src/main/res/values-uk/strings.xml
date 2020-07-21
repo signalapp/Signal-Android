@@ -157,7 +157,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Незахищене MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давай перейдемо у Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string> -->
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string>
   <string name="ConversationActivity_unblock_this_group_question">Розблокувати цю групу?</string>

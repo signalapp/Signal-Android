@@ -205,7 +205,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS בלתי מאובטח</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">בוא נחליף אל Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת קבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת קבוצה</string> -->
   <string name="ConversationActivity_specify_recipient">אנא בחר איש קשר</string>
   <string name="ConversationActivity_unblock_this_contact_question">לבטל חסימת איש קשר זה?</string>
   <string name="ConversationActivity_unblock_this_group_question">לבטל חסימה של קבוצה זו?</string>
@@ -463,8 +463,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">הודעות נעלמות</string>
   <string name="ManageGroupActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">מי יכול לערוך חברות קבוצה</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">מי יכול לערוך מידע קבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">מי יכול לערוך חברות קבוצה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">מי יכול לערוך מידע קבוצה</string> -->
   <string name="ManageGroupActivity_block_group">חסום קבוצה</string>
   <string name="ManageGroupActivity_unblock_group">בטל חסימת קבוצה</string>
   <string name="ManageGroupActivity_leave_group">עזוב קבוצה</string>
@@ -494,8 +494,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">כישלון בעדכון הקבוצה</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">אינך חבר קבוצה בקבוצה זו</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ערוך שם ותמונה</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">בחר מי יכול להוסיף או להזמין חברי קבוצה חדשים</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">בחר מי יכול לשנות את השם והתמונה של הקבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">בחר מי יכול להוסיף או להזמין חברי קבוצה חדשים</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">בחר מי יכול לשנות את השם והתמונה של הקבוצה</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">הודעות נעלמות</string>
   <string name="ManageRecipientActivity_chat_color">צבע התכתבות</string>

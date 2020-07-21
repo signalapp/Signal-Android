@@ -150,7 +150,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Zəmanətsiz MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Gəl %1$s Signal-a keçək</string>
-  <string name="ConversationActivity_error_leaving_group">Qrupdan çıxarkən xəta</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Qrupdan çıxarkən xəta</string> -->
   <string name="ConversationActivity_specify_recipient">Zəgmət olmasa əlaqəni seç</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bi əlaqənin kilidini açırsan?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bu qrupun kilidini açırsan?</string>

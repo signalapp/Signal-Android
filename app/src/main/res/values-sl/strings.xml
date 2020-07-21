@@ -205,7 +205,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nezavarovan MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Začni uporabljati aplikacijo Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Napaka ob zapuščanju skupine</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Napaka ob zapuščanju skupine</string> -->
   <string name="ConversationActivity_specify_recipient">Prosimo, izberite uporabnika/co</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokiram uporabnika/co?</string>
   <string name="ConversationActivity_unblock_this_group_question">Odblokiram skupino?</string>
@@ -464,8 +464,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Izginjajoča sporočila</string>
   <string name="ManageGroupActivity_pending_group_invites">Čakajoča povabila v skupine</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Kdo lahko ureja članstvo v skupini</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Kdo lahko ureja informacije o skupini</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kdo lahko ureja članstvo v skupini</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kdo lahko ureja informacije o skupini</string> -->
   <string name="ManageGroupActivity_block_group">Blokiraj skupino</string>
   <string name="ManageGroupActivity_unblock_group">Odblokiraj skupino</string>
   <string name="ManageGroupActivity_leave_group">Zapusti skupino</string>
@@ -495,8 +495,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Posodobitev skupine ni uspela</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Niste član/ica skupine</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Uredi ime in sliko</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Izberite, kdo lahko dodaja ali povabi nove člane</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Izberite, kdo lahko spreminja ime in fotografijo skupine</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Izberite, kdo lahko dodaja ali povabi nove člane</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Izberite, kdo lahko spreminja ime in fotografijo skupine</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj k sistemskim stikom</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ta oseba je med vašimi stiki</string>

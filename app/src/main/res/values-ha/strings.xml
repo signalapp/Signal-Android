@@ -178,7 +178,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS mara tsaro</string>
   <string name="ConversationActivity_transport_signal">Signal.</string>
   <string name="ConversationActivity_lets_switch_to_signal">Mu koma Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Ba\'a samu dacewar fita daga rukuni ba</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Ba\'a samu dacewar fita daga rukuni ba</string> -->
   <string name="ConversationActivity_specify_recipient">Zabi lamba.</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bude wannan lambar?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bude wannan rukuni</string>

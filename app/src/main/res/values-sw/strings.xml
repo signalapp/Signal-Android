@@ -182,7 +182,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS isiyo salama</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Wacha tubadili kwa Signal 1%1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Hitilafu kuondoka kwenye kundi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Hitilafu kuondoka kwenye kundi</string> -->
   <string name="ConversationActivity_specify_recipient">Tafadhali chagua mawasiliano</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ondoa kizuizi kwa mawasiliano haya?</string>
   <string name="ConversationActivity_unblock_this_group_question">Ondoa kizuizi kwa kundi hili?</string>

@@ -199,7 +199,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Έλα να χρησιμοποιήσουμε το Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Σφάλμα κατά την αποχώρηση απ\' την ομάδα</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Σφάλμα κατά την αποχώρηση απ\' την ομάδα</string> -->
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επέλεξε μια επαφή</string>
   <string name="ConversationActivity_unblock_this_contact_question">Κατάργηση φραγής αυτής της επαφής;</string>
   <string name="ConversationActivity_unblock_this_group_question">Κατάργηση φραγής αυτής της ομάδας;</string>
@@ -430,8 +430,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <string name="ManageGroupActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Ποιοί μπορούν να επεξεργαστούν τα μέλη της ομάδας</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Ποιοί μπορούν να επεξεργαστούν τα μέλη της ομάδας</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας</string> -->
   <string name="ManageGroupActivity_block_group">Φραγή ομάδας</string>
   <string name="ManageGroupActivity_unblock_group">Κατάργηση φραγής ομάδας</string>
   <string name="ManageGroupActivity_leave_group">Αποχώρηση απ\' την ομάδα</string>
@@ -457,8 +457,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Δεν είσαι μέλος της ομάδας</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Διάλεξε ποιοί μπορούν να προσθέτουν ή να προσκαλούν νέα μέλη</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Διάλεξε ποιοί μπορούν να αλλάζουν το όνομα και τη φωτογραφία της ομάδας.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Διάλεξε ποιοί μπορούν να προσθέτουν ή να προσκαλούν νέα μέλη</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Διάλεξε ποιοί μπορούν να αλλάζουν το όνομα και τη φωτογραφία της ομάδας.</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Προσθήκη στις επαφές συστήματος</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Αυτό το άτομο είναι στις επαφές σου</string>

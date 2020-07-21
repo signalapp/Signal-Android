@@ -199,7 +199,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signalera aldatu dezagun %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Taldetik irteterakoan huts egin du</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Taldetik irteterakoan huts egin du</string> -->
   <string name="ConversationActivity_specify_recipient">Kontaktu bat aukeratu, mesedez</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desblokeatu kontaktu hau?</string>
   <string name="ConversationActivity_unblock_this_group_question">Desblokeatu talde hau?</string>
@@ -430,8 +430,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mezuen desagerpena</string>
   <string name="ManageGroupActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Taldearen kide zeintzuk diren edita dezakeena</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Taldearen informazioa edita dezakeena</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Taldearen kide zeintzuk diren edita dezakeena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Taldearen informazioa edita dezakeena</string> -->
   <string name="ManageGroupActivity_block_group">Blokeatu taldea</string>
   <string name="ManageGroupActivity_unblock_group">Desblokeatu taldea</string>
   <string name="ManageGroupActivity_leave_group">Utzi taldea</string>
@@ -457,8 +457,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ez zara taldeko kidea</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Aukeratu partaide berriak gehitu edo gonbidatu dezakeena</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Aukeratu taldearen izena eta argazkia aldatu dezakeena</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Aukeratu partaide berriak gehitu edo gonbidatu dezakeena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Aukeratu taldearen izena eta argazkia aldatu dezakeena</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Gehitu sistemaren kontaktuetara</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Pertsona hau zure kontaktuetan dago</string>

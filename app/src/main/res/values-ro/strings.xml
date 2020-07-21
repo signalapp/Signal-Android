@@ -202,7 +202,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hai să folosim Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Eroare la părăsirea grupului</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Eroare la părăsirea grupului</string> -->
   <string name="ConversationActivity_specify_recipient">Vă rog alegeți un contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">Deblochez acest contact?</string>
   <string name="ConversationActivity_unblock_this_group_question">Deblochez acest grup?</string>
@@ -336,6 +336,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemă la setarea profilului</string>
   <string name="CreateProfileActivity_profile_photo">Poză profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurează-ți profilul</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilul dvs. este criptat integral. Profilul dvs. și modificările sale vor fi vizibile pentru contactele dvs., atunci când inițiați sau acceptați conversații noi și când vă alăturați grupurilor noi.</string>
   <string name="CreateProfileActivity_set_avatar_description">Setează avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
@@ -446,8 +447,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Dispariție mesaje</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitații la grup în așteptare</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Cine poate edita apartenența la grup</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Cine poate edita informațiile grupului</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Cine poate edita apartenența la grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Cine poate edita informațiile grupului</string> -->
   <string name="ManageGroupActivity_block_group">Blocați grupul</string>
   <string name="ManageGroupActivity_unblock_group">Deblocare grup</string>
   <string name="ManageGroupActivity_leave_group">Părăsiți grupul</string>
@@ -475,9 +476,11 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Actualizarea grupului a eșuat.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nu sunteți membru în acest grup</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editare nume și poză</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Alegeți cine poate adăuga sau invita membri noi</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Alegeți cine poate schimba numele grupului si poza</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Alegeți cine poate adăuga sau invita membri noi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Alegeți cine poate schimba numele grupului si poza</string> -->
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Adăugați la contactele de sistem</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Această persoană se află în lista dvs. de contacte</string>
   <string name="ManageRecipientActivity_disappearing_messages">Dispariție mesaje</string>
   <string name="ManageRecipientActivity_chat_color">Culoare conversaţie</string>
   <string name="ManageRecipientActivity_block">Blochează</string>
@@ -678,6 +681,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Timpul setat pentru dispariția mesajele a fost setat la %1$s.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s și-a schimbat numele profilului în %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s și-a schimbat numele profilul din %2$s în %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s și-a schimbat profilul.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Ați creat grupul.</string>
   <string name="MessageRecord_group_updated">Grupul a fost actualizat.</string>

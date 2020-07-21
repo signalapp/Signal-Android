@@ -189,7 +189,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS insegura</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Imos cambiar a Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Erro ao abandonar o grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Erro ao abandonar o grupo</string> -->
   <string name="ConversationActivity_specify_recipient">Por favor, elixe un contacto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
   <string name="ConversationActivity_unblock_this_group_question">Desbloquear este grupo?</string>

@@ -143,7 +143,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMSa neparastî</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Biçe Signalê %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Ji komê derketin pêk nehat</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Ji komê derketin pêk nehat</string> -->
   <string name="ConversationActivity_specify_recipient">Ji kerema xwe berdengekî bibijêre</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bila astengkirina vî berdengî rabe?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bila astengkirina vê komê rabe?</string>

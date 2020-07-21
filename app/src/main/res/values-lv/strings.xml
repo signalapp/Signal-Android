@@ -196,7 +196,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nedrošs MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pārslēdzamies uz Signal messenger %1$s!</string>
-  <string name="ConversationActivity_error_leaving_group">Kļūda, pametot grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Kļūda, pametot grupu</string> -->
   <string name="ConversationActivity_specify_recipient">Lūdzu, izvēlaties kontaktu!</string>
   <string name="ConversationActivity_unblock_this_contact_question">Atbloķēt šo kontaktu?</string>
   <string name="ConversationActivity_unblock_this_group_question">Atbloķēt grupu?</string>
@@ -416,8 +416,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Gaistošās ziņas</string>
   <string name="ManageGroupActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Kas var labot grupas dalību</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Kas var labot grupas informāciju</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kas var labot grupas dalību</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kas var labot grupas informāciju</string> -->
   <string name="ManageGroupActivity_block_group">Bloķēt grupu</string>
   <string name="ManageGroupActivity_leave_group">Pamest grupu</string>
   <string name="ManageGroupActivity_mute_notifications">Noklusināt paziņojumus</string>
@@ -433,8 +433,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Grupas atjaunināšanā notikusi kļūda</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs neesat grupas dalībnieks</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Labot vārdu un attēlu</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Atzīmējiet kurš var pievienot un aicināt jaunus dalībniekus</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Atzīmējiet kurš var mainīt grupas nosaukumu un attēlu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Atzīmējiet kurš var pievienot un aicināt jaunus dalībniekus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Atzīmējiet kurš var mainīt grupas nosaukumu un attēlu</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Gaistošās ziņas</string>
   <string name="ManageRecipientActivity_block">Bloķēt</string>

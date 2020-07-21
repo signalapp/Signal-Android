@@ -199,7 +199,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Salaamaton MMS-viesti</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hei, vaihdetaan Signaliin %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Virhe ryhmästä lähtiessä</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Virhe ryhmästä lähtiessä</string> -->
   <string name="ConversationActivity_specify_recipient">Valitse yhteystieto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Poista esto tältä yhteystiedolta?</string>
   <string name="ConversationActivity_unblock_this_group_question">Poista tämän ryhmän esto?</string>
@@ -429,8 +429,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Katoavat viestit</string>
   <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Ketkä voivat muokata ryhmän jäsenyyttä</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Ketkä voivat muokata ryhmän tietoja</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Ketkä voivat muokata ryhmän jäsenyyttä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Ketkä voivat muokata ryhmän tietoja</string> -->
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
   <string name="ManageGroupActivity_leave_group">Poistu ryhmästä</string>
@@ -456,8 +456,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Ryhmän päivitys epäonnistui</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Et ole ryhmän jäsen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Muokkaa nimeä ja kuvaa</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Valitse ketkä voivat lisätä tai kutsua uusia jäseniä</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Valitse ketkä voivat muuttaa ryhmän nimeä ja kuvaa</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Valitse ketkä voivat lisätä tai kutsua uusia jäseniä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Valitse ketkä voivat muuttaa ryhmän nimeä ja kuvaa</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tämä henkilö on yhteystiedoissasi</string>
   <string name="ManageRecipientActivity_disappearing_messages">Katoavat viestit</string>

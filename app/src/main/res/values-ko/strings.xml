@@ -186,7 +186,7 @@
   <string name="ConversationActivity_transport_insecure_mms">비보안 MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal로 대화해요! %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">그룹 탈퇴 오류</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">그룹 탈퇴 오류</string> -->
   <string name="ConversationActivity_specify_recipient">연락처를 선택해 주세요.</string>
   <string name="ConversationActivity_unblock_this_contact_question">연락처를 차단 해제하시겠습니까?</string>
   <string name="ConversationActivity_unblock_this_group_question">그룹을 차단 해제하시겠습니까?</string>

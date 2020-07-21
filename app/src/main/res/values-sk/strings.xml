@@ -201,7 +201,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prejdime na Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Chyba pri opustení skupiny</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Chyba pri opustení skupiny</string> -->
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokovať tento kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Odblokovať túto skupinu?</string>

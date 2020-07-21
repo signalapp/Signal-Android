@@ -185,7 +185,7 @@
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">用 Signal 来聊天吧 %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">离开群组时出错</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">离开群组时出错</string> -->
   <string name="ConversationActivity_specify_recipient">请选择联系人</string>
   <string name="ConversationActivity_unblock_this_contact_question">取消屏蔽该联系人？</string>
   <string name="ConversationActivity_unblock_this_group_question">取消屏蔽该群组？</string>
@@ -356,6 +356,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完成</string>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">命名该群组</string>
   <string name="AddGroupDetailsFragment__create_group">创建群组</string>
   <string name="AddGroupDetailsFragment__create">创建</string>
   <string name="AddGroupDetailsFragment__members">成员</string>
@@ -372,7 +373,10 @@
   <string name="ManageGroupActivity_view_all_members">查看全体群成员</string>
   <string name="ManageGroupActivity_none">无</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">添加至系统联系人</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">此人是你的联系人</string>
   <string name="ManageRecipientActivity_disappearing_messages">阅后即焚</string>
+  <string name="ManageRecipientActivity_chat_color">聊天颜色</string>
   <string name="ManageRecipientActivity_block">屏蔽</string>
   <string name="ManageRecipientActivity_unblock">取消屏蔽</string>
   <string name="ManageRecipientActivity_view_safety_number">查看安全码</string>
@@ -396,6 +400,10 @@
   <string name="CropImageActivity_group_avatar">群组头像</string>
   <string name="CropImageActivity_profile_avatar">头像</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">面部模糊</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">新功能：在脸部或任意位置涂抹，可实现模糊效果</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">任意位置涂抹实现模糊效果</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">涂抹更多脸部或区域进行模糊</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住录制语音，松开发送</string>
   <!--InviteActivity-->
@@ -620,6 +628,8 @@
   <string name="PinRestoreLockedFragment_create_your_pin">创建 PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
+  <string name="PinOptOutDialog_disable_pin">禁用 PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -995,7 +1005,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">请输入名称或号码</string>
   <string name="contact_selection_activity__invite_to_signal">邀请使用 Signal</string>
-  <string name="contact_selection_activity__new_group">新群组</string>
+  <string name="contact_selection_activity__new_group">新建群组</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">清除已输入文字</string>
   <string name="contact_filter_toolbar__show_keyboard_description">显示键盘</string>
@@ -1344,10 +1354,15 @@
   <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">外观</string>
   <string name="preferences__theme">主题</string>
+  <string name="preferences__disable_pin">禁用 PIN</string>
+  <string name="preferences__enable_pin">启用 PIN</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装之后，可恢复你的个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
   <string name="preferences__system_default">系统默认</string>
   <string name="preferences__default">默认</string>
   <string name="preferences__language">语言</string>
   <string name="preferences__signal_messages_and_calls">Signal 消息和通话</string>
+  <string name="preferences__advanced_pin_settings">高级 PIN 设置</string>
   <string name="preferences__free_private_messages_and_calls">Signal 用户可使用免费的加密消息和通话</string>
   <string name="preferences__submit_debug_log">提交调试日志</string>
   <string name="preferences__support_wifi_calling">“WiFi 呼叫”兼容模式</string>
@@ -1465,7 +1480,7 @@
   <string name="conversation_group_options__conversation">对话</string>
   <string name="conversation_group_options__broadcast">广播</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_group">新群组</string>
+  <string name="text_secure_normal__menu_new_group">新建群组</string>
   <string name="text_secure_normal__menu_settings">设置</string>
   <string name="text_secure_normal__menu_clear_passphrase">锁定</string>
   <string name="text_secure_normal__mark_all_as_read">全部已读</string>
@@ -1563,6 +1578,7 @@
   <string name="KbsSplashFragment__update_pin">更新 PIN</string>
   <string name="KbsSplashFragment__create_your_pin">创建 PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">了解更多关于 PIN 的信息</string>
+  <string name="KbsSplashFragment__disable_pin">禁用 PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">请输入 Signal 的 PIN 密码</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">为了便于记住 PIN，我们将定期提示输入该密码。提示次数将逐渐减少。</string>
@@ -1673,7 +1689,10 @@
   <string name="preferences_app_protection__signal_pin">Signal PIN 密码</string>
   <string name="preferences_app_protection__create_a_pin">创建你的密码</string>
   <string name="preferences_app_protection__change_your_pin">更改 PIN</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 令信息以 Signal 加密方式保存，这样只有你可以访问它。重新安装 Signal 时，可恢复你的个人资料、设置和联系人。</string>
+  <string name="preferences_app_protection__pin_reminders">PIN 提醒</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装 Signal 之后，可恢复你的个人资料、设置和联系人。</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">再次使用电话号码注册 Signal 时，要求输入 PIN，这样提供了更多安全性。</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN 无法恢复，提醒有助于记住它。提醒频率将逐渐降低。</string>
   <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">请验证你的 Signal 安全码</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN 错误，请重试。</string>

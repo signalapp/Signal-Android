@@ -176,7 +176,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS ingkang Mboten Aman</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ayo ngginakaken Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Enten masalah kala medal saking grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Enten masalah kala medal saking grup</string> -->
   <string name="ConversationActivity_specify_recipient">Pileh kontak</string>
   <string name="ConversationActivity_unblock_this_contact_question">Uculaken blokiranipun kontak niki?</string>
   <string name="ConversationActivity_unblock_this_group_question">Uculaken blokiranipun grup niki?</string>

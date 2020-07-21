@@ -197,7 +197,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss byte til Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Klarte ikkje forlata gruppa</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Klarte ikkje forlata gruppa</string> -->
   <string name="ConversationActivity_specify_recipient">Vel ein kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Vil du fjerne blokkering av denne kontakten?</string>
   <string name="ConversationActivity_unblock_this_group_question">Ublokker denne gruppa?</string>
@@ -428,8 +428,8 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnande meldingar</string>
   <string name="ManageGroupActivity_pending_group_invites">Ventande gruppeinvitasjonar</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Kven kan endra gruppemedlemskap</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Kven kan endra gruppeinfo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kven kan endra gruppemedlemskap</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kven kan endra gruppeinfo</string> -->
   <string name="ManageGroupActivity_block_group">Blokker gruppa</string>
   <string name="ManageGroupActivity_unblock_group">Ikkje blokker gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlat gruppe</string>
@@ -455,8 +455,8 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="ManageGroupActivity_failed_to_update_the_group">Klarte ikkje oppdatera gruppa</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du er ikkje medlem av gruppa</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Endra namn og bilde</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Vel kven som kan legga til eller invitera nye medlemmar</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Vel kven som kan endra gruppenamnet og bildet</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Vel kven som kan legga til eller invitera nye medlemmar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Vel kven som kan endra gruppenamnet og bildet</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Forsvinnande meldingar</string>
   <string name="ManageRecipientActivity_chat_color">Samtalefarge</string>

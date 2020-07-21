@@ -200,7 +200,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Titkosítatlan MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Váltsunk Signal-ra %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Hiba történt a csoport elhagyásakor</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Hiba történt a csoport elhagyásakor</string> -->
   <string name="ConversationActivity_specify_recipient">Kérlek válassz egy kontaktot</string>
   <string name="ConversationActivity_unblock_this_contact_question">Feloldod ezt a kontaktot?</string>
   <string name="ConversationActivity_unblock_this_group_question">Feloldod a csoport blokkolását?</string>
@@ -431,8 +431,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Eltűnő üzenetek</string>
   <string name="ManageGroupActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Ki szerkesztheti a csoporttagságot</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Ki szerkesztheti a csoport adatait</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Ki szerkesztheti a csoporttagságot</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Ki szerkesztheti a csoport adatait</string> -->
   <string name="ManageGroupActivity_block_group">Csoport letiltása</string>
   <string name="ManageGroupActivity_unblock_group">Csoport blokkolásának feloldása</string>
   <string name="ManageGroupActivity_leave_group">Kilépés a csoportból</string>
@@ -458,8 +458,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nem vagy a csoport tagja</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Név és kép szerkesztése</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Add meg, hogy ki adhat hozzá és hívhat meg új tagokat</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Add meg, hogy ki változtathatja meg a csoport nevét és képét</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Add meg, hogy ki adhat hozzá és hívhat meg új tagokat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Add meg, hogy ki változtathatja meg a csoport nevét és képét</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Hozzáadás a rendszer-kontaktokhoz</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ez a személy szerepel a kontakjaid közt</string>

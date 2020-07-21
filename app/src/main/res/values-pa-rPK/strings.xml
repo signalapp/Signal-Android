@@ -181,7 +181,7 @@
   <string name="ConversationActivity_transport_insecure_mms">غیر محفوظ MMS</string>
   <string name="ConversationActivity_transport_signal"> Signal </string>
   <string name="ConversationActivity_lets_switch_to_signal">آؤ Signal %1$s تے تبدیل کردئی اے</string>
-  <string name="ConversationActivity_error_leaving_group">گروپ چھڈن اچ نقص اے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">گروپ چھڈن اچ نقص اے</string> -->
   <string name="ConversationActivity_specify_recipient">مہربانی کر کے اک رابطہ چنو </string>
   <string name="ConversationActivity_unblock_this_contact_question">ایس رابطے نوں ان بلاک کردئی اے ؟</string>
   <string name="ConversationActivity_unblock_this_group_question">ایس گروپ نوں ان بلاک کر دئی اے ؟</string>

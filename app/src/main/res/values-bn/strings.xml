@@ -192,7 +192,7 @@
   <string name="ConversationActivity_transport_insecure_mms">অনিরাপদ এমএমএস</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">চলুন Signal এ যোগ দেই %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">গ্রুপ ত্যাগ করতে সমস্যা হয়েছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">গ্রুপ ত্যাগ করতে সমস্যা হয়েছে</string> -->
   <string name="ConversationActivity_specify_recipient">দয়া করে একটি পরিচিতি চয়ন করুন</string>
   <string name="ConversationActivity_unblock_this_contact_question">এই পরিচিতিকে আনব্লক করতে চাচ্ছেন?</string>
   <string name="ConversationActivity_unblock_this_group_question">এই গ্রুপটিকে আনব্লক করতে চাচ্ছেন?</string>
@@ -417,8 +417,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">অদৃশ্য বার্তা</string>
   <string name="ManageGroupActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">গ্রুপের সদস্যপদ কে সম্পাদনা করতে পারবে</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">কে গ্রুপের তথ্য সম্পাদনা করতে পারবে</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">গ্রুপের সদস্যপদ কে সম্পাদনা করতে পারবে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">কে গ্রুপের তথ্য সম্পাদনা করতে পারবে</string> -->
   <string name="ManageGroupActivity_block_group">গ্রুপ ব্লক করুন</string>
   <string name="ManageGroupActivity_unblock_group">গ্রুপ আনব্লক করুন</string>
   <string name="ManageGroupActivity_leave_group">গ্রুপ ত্যাগ করুন</string>
@@ -444,8 +444,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">গ্রুপ আপডেটকরণ ব্যার্থ হয়েছে</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">আপনি গ্রুপটির সদস্য নন</string>
   <string name="ManageGroupActivity_edit_name_and_picture">নাম এবং ছবি সম্পাদনা করেন</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">কে কে নতুন সদস্য সংযুক্ত করতে অথবা আমন্ত্রণ জানাতে পারবে তা নির্বাচন করুন</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">কে কে গ্রুপের নাম এবং ছবি পরিবর্তন করতে পারবে তা নির্বাচন করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">কে কে নতুন সদস্য সংযুক্ত করতে অথবা আমন্ত্রণ জানাতে পারবে তা নির্বাচন করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">কে কে গ্রুপের নাম এবং ছবি পরিবর্তন করতে পারবে তা নির্বাচন করুন</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">অদৃশ্য বার্তা</string>
   <string name="ManageRecipientActivity_block">অবরূদ্ধ</string>

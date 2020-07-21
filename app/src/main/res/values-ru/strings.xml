@@ -205,7 +205,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдем на Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы</string> -->
   <string name="ConversationActivity_specify_recipient">Пожалуйста, выберите контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Разблокировать этот контакт?</string>
   <string name="ConversationActivity_unblock_this_group_question">Разблокировать эту группу?</string>
@@ -464,8 +464,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
   <string name="ManageGroupActivity_pending_group_invites">Приглашения в группу в ожидании</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Кто может редактировать членство в группе</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Кто может редактировать информацию группы</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Кто может редактировать членство в группе</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Кто может редактировать информацию группы</string> -->
   <string name="ManageGroupActivity_block_group">Заблокировать группу</string>
   <string name="ManageGroupActivity_unblock_group">Разблокировать группу</string>
   <string name="ManageGroupActivity_leave_group">Покинуть группу</string>
@@ -495,8 +495,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Не удалось обновить группу</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Вы не являетесь участником этой группы</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Редактировать имя и фото</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Выберите, кто может добавлять или приглашать новых участников</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Выберите, кто может изменять имя и фото группы</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Выберите, кто может добавлять или приглашать новых участников</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Выберите, кто может изменять имя и фото группы</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string>

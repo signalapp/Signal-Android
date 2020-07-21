@@ -199,7 +199,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Låt oss använda Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp</string> -->
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sluta blockera denna kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Sluta blockera denna grupp?</string>
@@ -430,8 +430,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageGroupActivity_pending_group_invites">Väntande gruppinbjudningar</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Vem kan redigera gruppmedlemskap</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Vem kan redigera gruppinformation</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Vem kan redigera gruppmedlemskap</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Vem kan redigera gruppinformation</string> -->
   <string name="ManageGroupActivity_block_group">Blockera grupp</string>
   <string name="ManageGroupActivity_unblock_group">Sluta blockera grupp</string>
   <string name="ManageGroupActivity_leave_group">Lämna grupp</string>
@@ -457,8 +457,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du är inte medlem i gruppen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Redigera namn och bild</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Välj vem som kan ändra gruppnamn och foto</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Välj vem som kan ändra gruppnamn och foto</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Den här personen är i dina kontakter</string>

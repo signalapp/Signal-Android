@@ -44,7 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">स्क्रीन लॉक %1$s, नोंदणी लॉक %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">स्क्रीन लॉक %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">थीम %1$s, भाषा %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">नोंदणी लॉकसाठी पिन आवश्यक आहेत. पिन अक्षम करण्यासाठी, कृपया प्रथम नोंदणी लॉक अक्षम करा.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN तयार केले</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN अक्षम केले.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनिट</item>
@@ -158,6 +160,8 @@
   <string name="ContactShareEditActivity_type_missing">इतर</string>
   <string name="ContactShareEditActivity_invalid_contact">निवडलेला संपर्क अवैध होता</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">पाठविले नाही, तपशीलांसाठी टॅप करा</string>
+  <string name="ConversationItem_error_partially_not_delivered">अर्धवट पाठविले, तपशीलांसाठी टॅप करा</string>
   <string name="ConversationItem_error_network_not_delivered">पाठविणे अयशस्वी</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">की विनिमय संदेश प्राप्त झाला आहे, प्रक्रिया करण्यासाठी टॅप करा.</string>
   <string name="ConversationItem_group_action_left">%1$s याने गट सोडले आहे.</string>
@@ -173,6 +177,7 @@
   <string name="ConversationItem_download_more">  अधिक डाऊनलोड करा</string>
   <string name="ConversationItem_pending">  प्रलंबित</string>
   <string name="ConversationItem_this_message_was_deleted">हा संदेश हटविला गेला.</string>
+  <string name="ConversationItem_you_deleted_this_message">आपण हा संदेश हटविला.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करायचे?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">जर या संभाषणात आपल्याला एन्क्रिप्शन समस्या येत असतील तर हे मदत करू शकते. आपले संदेश ठेवले जातील.</string>
@@ -194,7 +199,7 @@
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s वर स्विच करूया</string>
-  <string name="ConversationActivity_error_leaving_group">गट सोडण्यात त्रुटी</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">गट सोडण्यात त्रुटी</string> -->
   <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क निवडा</string>
   <string name="ConversationActivity_unblock_this_contact_question">हा संपर्क अनब्लॉक करायचा?</string>
   <string name="ConversationActivity_unblock_this_group_question">हा गट अनब्लॉक करायचा?</string>
@@ -229,6 +234,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आपण हे गट सोडाल, आणि ते आपल्या सर्व डिव्हाईस वरून हटविले जाईल.</string>
   <string name="ConversationActivity_delete">हटवा</string>
   <string name="ConversationActivity_delete_and_leave">गटातून बाहेत पडा आणि गट हटवा</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s कॉल करण्यासाठी, सिग्नलला आपल्या मायक्रोफोन मध्ये प्रवेश करण्याची आवश्यकता आहे</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s कॉल करण्यासाठी, सिग्नलला आपल्या मायक्रोफोन आणि कॅमेर्‍यामध्ये प्रवेश करण्याची आवश्यकता आहे</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">\"गट सेटिंग्ज\" मध्ये आता अधिक पर्याय</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -270,6 +277,7 @@
   <string name="ConversationFragment_deleting_messages">संदेश हटवत आहे…</string>
   <string name="ConversationFragment_delete_for_me">माझ्यासाठी हटवा</string>
   <string name="ConversationFragment_delete_for_everyone">प्रत्येकासाठी हटवा</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">हा संदेश संभाषणातील प्रत्येकासाठी कायमचा हटविला जाईल. आपण संदेश हटविला हे सदस्य पाहण्यास सक्षम असतील.</string>
   <string name="ConversationFragment_quoted_message_not_found">मूळ संदेश आढळला नाही</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">मूळ संदेश आता उपलब्ध नाही</string>
   <string name="ConversationFragment_failed_to_open_message">संदेश उघडण्यात अयशस्वी</string>
@@ -277,6 +285,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या एकदा-बघा मिडिया फाईल स्वयंचलितपणे काढल्या जातील</string>
   <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">आपण या संभाषणात आपल्यासाठी नोट्स जोडू शकता. \nआपल्या खात्यात कोणतेही दुवा साधलेले डिव्हाइस असल्यास, नवीन नोट्स संकालित केल्या जातील.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">आपल्या डिव्हाईसवर कुठलेही ब्राऊझर स्थापन केलेले नाही.</string>
   <!--ConversationListFragment-->
@@ -313,6 +322,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाईल फोटो</string>
   <string name="CreateProfileActivity_set_up_your_profile">आपली प्रोफाईल सेट अप करा</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपले प्रोफाइल एंड टू एंड एन्क्रिप्टेड आहे. जेव्हा आपण नवीन संभाषणे प्रारंभ करता किंवा स्वीकार करता आणि आपण नवीन गटांमध्ये सामील होता तेव्हा आपले प्रोफाइल आणि त्यामधील बदल आपल्या संपर्कांना दृश्यमान असतील.</string>
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
@@ -366,6 +376,8 @@
   <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">सदस्य जोडायचा?</string>
+  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" मध्ये \"%2$s\" जोडायचे?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" मध्ये \"%2$s\" जोडले.</string>
   <string name="AddToGroupActivity_add_to_group">गटात जोडा</string>
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
   <!--GroupShareProfileView-->
@@ -406,8 +418,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">हरवणारे संदेश</string>
   <string name="ManageGroupActivity_pending_group_invites">प्रलंबित गट आमंत्रणे</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">गट सदस्यता कोण संपादित करू शकते</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">गट माहिती कोण संपादित करू शकते</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">गट सदस्यता कोण संपादित करू शकते</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">गट माहिती कोण संपादित करू शकते</string> -->
   <string name="ManageGroupActivity_block_group">गट अवरोधित करा</string>
   <string name="ManageGroupActivity_unblock_group">गट अनवरोधित करा</string>
   <string name="ManageGroupActivity_leave_group">गट सोडा</string>
@@ -820,6 +832,7 @@
   <string name="ThreadRecord_view_once_video">एकदा-बघा व्हिडिओ</string>
   <string name="ThreadRecord_view_once_media">एकदा-बघा मिडिया</string>
   <string name="ThreadRecord_this_message_was_deleted">हा संदेश हटविला गेला.</string>
+  <string name="ThreadRecord_you_deleted_this_message">आपण हा संदेश हटविला.</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal वर आहे!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">हरवणारे संदेश अक्षम केले</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">हरवणारा संदेश वेळ %s वर सेट केली</string>

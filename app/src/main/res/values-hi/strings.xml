@@ -181,7 +181,7 @@
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s चलो Signal पर स्विच करें</string>
-  <string name="ConversationActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string> -->
   <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क चुनें</string>
   <string name="ConversationActivity_unblock_this_contact_question">इस संपर्क को अनवरोधित करें?</string>
   <string name="ConversationActivity_unblock_this_group_question">इस समूह को अनावरोधित करें?</string>

@@ -199,7 +199,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS i pasigurt</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Le të kalojmë në Signal %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Gabim braktisje grupi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Gabim braktisje grupi</string> -->
   <string name="ConversationActivity_specify_recipient">Ju lutem, zgjidhni një kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Të zhbllokohet ky kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Të zhbllokohet ky grup?</string>
@@ -430,8 +430,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zhdukje mesazhesh</string>
   <string name="ManageGroupActivity_pending_group_invites">Ftesa për në grupe pezull</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Cilët mund të përpunojnë anëtarësi grupi</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Cilët mund të përpunojnë të dhëna grupi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Cilët mund të përpunojnë anëtarësi grupi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Cilët mund të përpunojnë të dhëna grupi</string> -->
   <string name="ManageGroupActivity_block_group">Blloko grup</string>
   <string name="ManageGroupActivity_unblock_group">Zhbllokoje grupin</string>
   <string name="ManageGroupActivity_leave_group">Braktise grupin</string>
@@ -457,8 +457,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">S’u arrit të përditësohej grupi</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">S’jeni anëtar i grupit</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Përpunoni emër dhe foto</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Zgjidhni cilët mund të shtojnë ose ftojnë anëtarë të rinj</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Zgjidhni cilët mund të ndryshojnë emrin dhe foton e grupit</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Zgjidhni cilët mund të shtojnë ose ftojnë anëtarë të rinj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Zgjidhni cilët mund të ndryshojnë emrin dhe foton e grupit</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Shtoje te kontakte sistemi</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ky person gjendet në kontaktet tuaja</string>

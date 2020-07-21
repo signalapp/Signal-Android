@@ -199,7 +199,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS no segur</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Canviem al Signal, %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Error en abandonar el grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Error en abandonar el grup</string> -->
   <string name="ConversationActivity_specify_recipient">Trieu un contacte</string>
   <string name="ConversationActivity_unblock_this_contact_question">Voleu desblocar aquest contacte?</string>
   <string name="ConversationActivity_unblock_this_group_question">Voleu desblocar aquest grup?</string>
@@ -430,8 +430,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Missatges efímers</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitacions de grup pendents</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Qui pot editar els membres del grup</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Qui pot editar la informació del grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Qui pot editar els membres del grup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Qui pot editar la informació del grup</string> -->
   <string name="ManageGroupActivity_block_group">Bloca el grup</string>
   <string name="ManageGroupActivity_unblock_group">Desbloca el grup</string>
   <string name="ManageGroupActivity_leave_group">Abandona el grup</string>
@@ -457,8 +457,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Ha fallat actualitzar el grup.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">No sou membre del grup.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editeu el nom i la imatge</string>
-  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Trieu qui pot afegir-hi o convidar-hi membres nous.</string>
-  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Trieu qui pot canviar el nom i la imatge del grup.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Trieu qui pot afegir-hi o convidar-hi membres nous.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Trieu qui pot canviar el nom i la imatge del grup.</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Afegeix als contactes del sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Aquesta persona és als vostres contactes.</string>
