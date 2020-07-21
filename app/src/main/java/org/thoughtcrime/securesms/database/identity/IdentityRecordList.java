@@ -1,30 +1,27 @@
 package org.thoughtcrime.securesms.database.identity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public final class IdentityRecordList {
 
-  private final List<IdentityRecord> identityRecords = new LinkedList<>();
+  private final List<IdentityRecord> identityRecords;
+  private final boolean              isVerified;
+  private final boolean              isUnverified;
 
-  public void add(@NonNull IdentityRecord identityRecord) {
-    identityRecords.add(identityRecord);
-  }
-
-  public void replaceWith(@NonNull IdentityRecordList identityRecordList) {
-    identityRecords.clear();
-    identityRecords.addAll(identityRecordList.identityRecords);
+  public IdentityRecordList(@NonNull Collection<IdentityRecord> records) {
+    identityRecords = new ArrayList<>(records);
+    isVerified      = isVerified(identityRecords);
+    isUnverified    = isUnverified(identityRecords);
   }
 
   public List<IdentityRecord> getIdentityRecords() {
@@ -32,6 +29,14 @@ public final class IdentityRecordList {
   }
 
   public boolean isVerified() {
+    return isVerified;
+  }
+
+  public boolean isUnverified() {
+    return isUnverified;
+  }
+
+  private static boolean isVerified(@NonNull Collection<IdentityRecord> identityRecords) {
     for (IdentityRecord identityRecord : identityRecords) {
       if (identityRecord.getVerifiedStatus() != VerifiedStatus.VERIFIED) {
         return false;
@@ -41,7 +46,7 @@ public final class IdentityRecordList {
     return identityRecords.size() > 0;
   }
 
-  public boolean isUnverified() {
+  private static boolean isUnverified(@NonNull Collection<IdentityRecord> identityRecords) {
     for (IdentityRecord identityRecord : identityRecords) {
       if (identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
         return true;
@@ -85,7 +90,7 @@ public final class IdentityRecordList {
     return untrusted;
   }
 
-  public List<IdentityRecord> getUnverifiedRecords() {
+  public @NonNull List<IdentityRecord> getUnverifiedRecords() {
     List<IdentityRecord> results = new ArrayList<>(identityRecords.size());
 
     for (IdentityRecord identityRecord : identityRecords) {
@@ -97,7 +102,7 @@ public final class IdentityRecordList {
     return results;
   }
 
-  public List<Recipient> getUnverifiedRecipients() {
+  public @NonNull List<Recipient> getUnverifiedRecipients() {
     List<Recipient> unverified = new ArrayList<>(identityRecords.size());
 
     for (IdentityRecord identityRecord : identityRecords) {

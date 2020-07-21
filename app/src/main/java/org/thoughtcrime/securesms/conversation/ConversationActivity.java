@@ -355,7 +355,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private boolean       isMmsEnabled                  = true;
   private boolean       isSecurityInitialized         = false;
 
-  private final IdentityRecordList identityRecords = new IdentityRecordList();
+  private       IdentityRecordList identityRecords = new IdentityRecordList(Collections.emptyList());
   private final DynamicTheme       dynamicTheme    = new DynamicDarkToolbarTheme();
   private final DynamicLanguage    dynamicLanguage = new DynamicLanguage();
 
@@ -1648,7 +1648,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       @Override
       protected void onPostExecute(@NonNull Pair<IdentityRecordList, String> result) {
         Log.i(TAG, "Got identity records: " + result.first().isUnverified());
-        identityRecords.replaceWith(result.first());
+        identityRecords = result.first();
 
         if (result.second() != null) {
           Log.d(TAG, "Replacing banner...");
