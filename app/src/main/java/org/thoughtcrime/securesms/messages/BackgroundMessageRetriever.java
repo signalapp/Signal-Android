@@ -29,7 +29,6 @@ public class BackgroundMessageRetriever {
 
   private static final Semaphore ACTIVE_LOCK = new Semaphore(2);
 
-  private static final long CATCHUP_TIMEOUT = TimeUnit.SECONDS.toMillis(60);
   private static final long NORMAL_TIMEOUT  = TimeUnit.SECONDS.toMillis(10);
 
   /**
@@ -64,21 +63,8 @@ public class BackgroundMessageRetriever {
           Log.w(TAG, "We may be operating in a constrained environment. Doze: " + doze + " Network: " + network);
         }
 
-        if (ApplicationDependencies.getInitialMessageRetriever().isCaughtUp()) {
-          Log.i(TAG, "Performing normal message fetch.");
-          return executeBackgroundRetrieval(context, startTime, strategies);
-        } else {
-          Log.i(TAG, "Performing initial message fetch.");
-          InitialMessageRetriever.Result result = ApplicationDependencies.getInitialMessageRetriever().begin(CATCHUP_TIMEOUT);
-          if (result == InitialMessageRetriever.Result.SUCCESS) {
-            Log.i(TAG, "Initial message request was completed successfully. " + logSuffix(startTime));
-            TextSecurePreferences.setNeedsMessagePull(context, false);
-            return true;
-          } else {
-            Log.w(TAG, "Initial message fetch returned result " + result + ", so doing a normal message fetch.");
-            return executeBackgroundRetrieval(context, System.currentTimeMillis(), strategies);
-          }
-        }
+        Log.i(TAG, "Performing normal message fetch.");
+        return executeBackgroundRetrieval(context, startTime, strategies);
       } finally {
         WakeLockUtil.release(wakeLock, WAKE_LOCK_TAG);
         ACTIVE_LOCK.release();

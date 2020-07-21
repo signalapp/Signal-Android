@@ -14,8 +14,6 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
-import org.thoughtcrime.securesms.messages.InitialMessageRetriever;
-import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
@@ -48,6 +46,7 @@ public class ApplicationDependencies {
   private static SignalServiceAccountManager  accountManager;
   private static SignalServiceMessageSender   messageSender;
   private static SignalServiceMessageReceiver messageReceiver;
+  private static IncomingMessageObserver      incomingMessageObserver;
   private static IncomingMessageProcessor     incomingMessageProcessor;
   private static BackgroundMessageRetriever   backgroundMessageRetriever;
   private static LiveRecipientCache           recipientCache;
@@ -59,7 +58,6 @@ public class ApplicationDependencies {
   private static GroupsV2StateProcessor       groupsV2StateProcessor;
   private static GroupsV2Operations           groupsV2Operations;
   private static EarlyMessageCache            earlyMessageCache;
-  private static InitialMessageRetriever      initialMessageRetriever;
   private static MessageNotifier              messageNotifier;
 
   @MainThread
@@ -242,19 +240,19 @@ public class ApplicationDependencies {
     return earlyMessageCache;
   }
 
-  public static synchronized @NonNull InitialMessageRetriever getInitialMessageRetriever() {
-    assertInitialization();
-
-    if (initialMessageRetriever == null) {
-      initialMessageRetriever = provider.provideInitialMessageRetriever();
-    }
-
-    return initialMessageRetriever;
-  }
-
   public static synchronized @NonNull MessageNotifier getMessageNotifier() {
     assertInitialization();
     return messageNotifier;
+  }
+
+  public static synchronized @NonNull IncomingMessageObserver getIncomingMessageObserver() {
+    assertInitialization();
+
+    if (incomingMessageObserver == null) {
+      incomingMessageObserver = provider.provideIncomingMessageObserver();
+    }
+
+    return incomingMessageObserver;
   }
 
   private static void assertInitialization() {
@@ -277,8 +275,8 @@ public class ApplicationDependencies {
     @NonNull KeyValueStore provideKeyValueStore();
     @NonNull MegaphoneRepository provideMegaphoneRepository();
     @NonNull EarlyMessageCache provideEarlyMessageCache();
-    @NonNull InitialMessageRetriever provideInitialMessageRetriever();
     @NonNull MessageNotifier provideMessageNotifier();
+    @NonNull IncomingMessageObserver provideIncomingMessageObserver();
   }
 
   private static class UninitializedException extends IllegalStateException {

@@ -132,8 +132,10 @@ public class SignalServiceMessagePipe {
    * {@link Optional#absent()} when an empty response is hit, which indicates the websocket is
    * empty.
    *
-   * Important: The empty response will only be hit once for each instance of {@link SignalServiceMessagePipe}.
-   * That means subsequent calls will block until an envelope is available.
+   * Important: The empty response will only be hit once for each connection. That means if you get
+   * an empty response and call readOrEmpty() again on the same instance, you will not get an empty
+   * response, and instead will block until you get an actual message. This will, however, reset if
+   * connection breaks (if, for instance, you lose and regain network).
    */
   public Optional<SignalServiceEnvelope> readOrEmpty(long timeout, TimeUnit unit, MessagePipeCallback callback)
       throws TimeoutException, IOException, InvalidVersionException

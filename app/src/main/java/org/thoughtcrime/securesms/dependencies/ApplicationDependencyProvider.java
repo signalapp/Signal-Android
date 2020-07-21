@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
-import org.thoughtcrime.securesms.messages.InitialMessageRetriever;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
@@ -55,7 +54,6 @@ import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 
 import java.util.UUID;
-import java.util.concurrent.Executors;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -171,13 +169,13 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull InitialMessageRetriever provideInitialMessageRetriever() {
-    return new InitialMessageRetriever();
+  public @NonNull MessageNotifier provideMessageNotifier() {
+    return new OptimizedMessageNotifier(new DefaultMessageNotifier());
   }
 
   @Override
-  public @NonNull MessageNotifier provideMessageNotifier() {
-    return new OptimizedMessageNotifier(new DefaultMessageNotifier());
+  public @NonNull IncomingMessageObserver provideIncomingMessageObserver() {
+    return new IncomingMessageObserver(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {
