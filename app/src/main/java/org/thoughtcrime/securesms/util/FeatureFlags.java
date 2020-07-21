@@ -56,6 +56,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.2";
   private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
   private static final String CDS                        = "android.cds";
+  private static final String RECIPIENT_TRUST            = "android.recipientTrust";
   private static final String INTERNAL_USER              = "android.internalUser";
 
   /**
@@ -69,6 +70,7 @@ public final class FeatureFlags {
       GROUPS_V2,
       GROUPS_V2_CREATE,
       GROUPS_V2_CAPACITY,
+      RECIPIENT_TRUST,
       INTERNAL_USER
   );
 
@@ -91,7 +93,8 @@ public final class FeatureFlags {
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       ATTACHMENTS_V3,
-      GROUPS_V2_CREATE
+      GROUPS_V2_CREATE,
+      RECIPIENT_TRUST
   );
 
   /**
@@ -99,7 +102,8 @@ public final class FeatureFlags {
    */
   private static final Set<String> STICKY = Sets.newHashSet(
       GROUPS_V2,
-      GROUPS_V2_OLD
+      GROUPS_V2_OLD,
+      RECIPIENT_TRUST
   );
 
   /**
@@ -210,6 +214,11 @@ public final class FeatureFlags {
   /** Whether or not to use the new contact discovery service endpoint, which supports UUIDs. */
   public static boolean cds() {
     return getBoolean(CDS, false);
+  }
+
+  /** Whether or not we allow different trust levels for recipient address sources. */
+  public static boolean recipientTrust() {
+    return getBoolean(RECIPIENT_TRUST, false);
   }
 
   /** Only for rendering debug info. */
