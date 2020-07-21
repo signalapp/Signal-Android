@@ -18,6 +18,7 @@
     <attr name="attachment_keyboard_button_foreground" format="color" />
 
     <attr name="secondary_background" format="reference" />
+    <attr name="secondary_background_bubble" format="reference" />
 
     <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>

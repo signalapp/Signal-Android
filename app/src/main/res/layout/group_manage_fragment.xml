@@ -53,6 +53,25 @@
                     android:textAppearance="@style/Signal.Text.Body"
                     android:textColor="?title_text_color_secondary"
                     tools:text="12 members (4 invited)" />
+
+                <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+                    android:id="@+id/manage_group_group_v1_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?secondary_background_bubble"
+                    android:paddingStart="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/ManageGroupActivity_legacy_group_learn_more"
+                    android:textAppearance="@style/TextAppearance.Signal.Caption"
+                    android:textColor="?title_text_color_secondary"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
             </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar

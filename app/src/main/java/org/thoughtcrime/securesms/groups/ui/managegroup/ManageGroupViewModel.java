@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -72,6 +73,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final DefaultValueLiveData<CollapseState>         memberListCollapseState   = new DefaultValueLiveData<>(CollapseState.COLLAPSED);
   private final LiveData<Boolean>                           canLeaveGroup;
   private final LiveData<Boolean>                           canBlockGroup;
+  private final LiveData<Boolean>                           showLegacyIndicator;
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -79,7 +81,8 @@ public class ManageGroupViewModel extends ViewModel {
 
     manageGroupRepository.getGroupState(this::groupStateLoaded);
 
-    LiveGroup liveGroup = new LiveGroup(manageGroupRepository.getGroupId());
+    GroupId   groupId   = manageGroupRepository.getGroupId();
+    LiveGroup liveGroup = new LiveGroup(groupId);
 
     this.title                     = Transformations.map(liveGroup.getTitle(),
                                                          title -> TextUtils.isEmpty(title) ? context.getString(R.string.Recipient_unknown)
@@ -92,7 +95,11 @@ public class ManageGroupViewModel extends ViewModel {
                                                                 memberListCollapseState,
                                                                 ManageGroupViewModel::filterMemberList);
     this.pendingMemberCount        = liveGroup.getPendingMemberCount();
-    this.memberCountSummary        = liveGroup.getMembershipCountDescription(context.getResources());
+    this.showLegacyIndicator       = new MutableLiveData<>(groupId.isV1() && FeatureFlags.groupsV2create());
+    this.memberCountSummary        = LiveDataUtil.combineLatest(liveGroup.getMembershipCountDescription(context.getResources()),
+                                                                this.showLegacyIndicator,
+                                                                (description, legacy) -> legacy ? String.format("%s · %s", description, context.getString(R.string.ManageGroupActivity_legacy_group))
+                                                                                                : description);
     this.fullMemberCountSummary    = liveGroup.getFullMembershipCountDescription(context.getResources());
     this.editMembershipRights      = liveGroup.getMembershipAdditionAccessControl();
     this.editGroupAttributesRights = liveGroup.getAttributesAccessControl();
@@ -131,7 +138,11 @@ public class ManageGroupViewModel extends ViewModel {
     return fullMemberCountSummary;
   }
 
-  public LiveData<Recipient> getGroupRecipient() {
+  LiveData<Boolean> getShowLegacyIndicator() {
+    return showLegacyIndicator;
+  }
+
+  LiveData<Recipient> getGroupRecipient() {
     return groupRecipient;
   }
 

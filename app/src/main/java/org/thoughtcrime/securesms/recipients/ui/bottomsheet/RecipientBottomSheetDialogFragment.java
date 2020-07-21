@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -32,6 +31,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -88,8 +88,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     setStyle(DialogFragment.STYLE_NORMAL,
-             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Theme_Signal_RecipientBottomSheet
-                                                     : R.style.Theme_Signal_RecipientBottomSheet_Light);
+             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Theme_Signal_RoundedBottomSheet
+                                                     : R.style.Theme_Signal_RoundedBottomSheet_Light);
 
     super.onCreate(savedInstanceState);
   }
@@ -256,8 +256,6 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
   @Override
   public void show(@NonNull FragmentManager manager, @Nullable String tag) {
-    FragmentTransaction transaction = manager.beginTransaction();
-    transaction.add(this, tag);
-    transaction.commitAllowingStateLoss();
+    BottomSheetUtil.show(manager, tag, this);
   }
 }

@@ -190,6 +190,7 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="secondary_background">@color/core_grey_02</item>
+        <item name="secondary_background_bubble">@drawable/round_background_light</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
@@ -495,6 +496,7 @@
         <item name="android:windowBackground">@color/core_grey_95</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="secondary_background">@color/core_grey_90</item>
+        <item name="secondary_background_bubble">@drawable/round_background_dark</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
@@ -882,13 +884,15 @@
         <item name="backgroundTint">@color/white</item>
     </style>
 
-    <style name="Theme.Signal.RecipientBottomSheet.Light">
+    <style name="Theme.Signal.RoundedBottomSheet.Light">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded.Light</item>
         <item name="icon_tint">@color/core_grey_75</item>
 
         <item name="android:textColorPrimary">@color/core_grey_90</item>
         <item name="title_text_color_primary">@color/core_grey_90</item>
         <item name="title_text_color_secondary">@color/core_grey_60</item>
+
+        <item name="colorAccent">@color/core_ultramarine</item>
 
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/white</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
@@ -902,7 +906,7 @@
         <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
     </style>
 
-    <style name="Theme.Signal.RecipientBottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+    <style name="Theme.Signal.RoundedBottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
         <item name="icon_tint">@color/core_grey_15</item>
@@ -910,6 +914,8 @@
         <item name="android:textColorPrimary">@color/core_grey_05</item>
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>
+
+        <item name="colorAccent">@color/core_ultramarine_light</item>
 
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_grey_75</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>

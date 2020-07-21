@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupRightsDialog;
+import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
@@ -51,6 +52,7 @@ import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheet
 import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
+import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 import java.util.List;
 import java.util.Locale;
@@ -70,6 +72,7 @@ public class ManageGroupFragment extends LoggingFragment {
   private TextView                           pendingMembersCount;
   private Toolbar                            toolbar;
   private TextView                           groupName;
+  private LearnMoreTextView                  groupV1Indicator;
   private TextView                           memberCountUnderAvatar;
   private TextView                           memberCountAboveList;
   private AvatarImageView                    avatar;
@@ -125,6 +128,7 @@ public class ManageGroupFragment extends LoggingFragment {
     avatar                      = view.findViewById(R.id.group_avatar);
     toolbar                     = view.findViewById(R.id.toolbar);
     groupName                   = view.findViewById(R.id.name);
+    groupV1Indicator            = view.findViewById(R.id.manage_group_group_v1_indicator);
     memberCountUnderAvatar      = view.findViewById(R.id.member_count);
     memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);
@@ -153,6 +157,9 @@ public class ManageGroupFragment extends LoggingFragment {
     customNotificationsButton   = view.findViewById(R.id.group_custom_notifications_button);
     customNotificationsRow      = view.findViewById(R.id.group_custom_notifications_row);
     toggleAllMembers            = view.findViewById(R.id.toggle_all_members);
+
+    groupV1Indicator.setOnLinkClickListener(v -> GroupsLearnMoreBottomSheetDialogFragment.show(requireFragmentManager()));
+    groupV1Indicator.setLearnMoreVisible(true);
 
     return view;
   }
@@ -208,6 +215,7 @@ public class ManageGroupFragment extends LoggingFragment {
 
     viewModel.getTitle().observe(getViewLifecycleOwner(), groupName::setText);
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
+    viewModel.getShowLegacyIndicator().observe(getViewLifecycleOwner(), showLegacyIndicators -> groupV1Indicator.setVisibility(showLegacyIndicators ? View.VISIBLE : View.GONE));
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
     viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), groupRecipient -> {
       avatar.setRecipient(groupRecipient);

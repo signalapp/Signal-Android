@@ -557,6 +557,8 @@
     <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Edit name and picture</string>
+    <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">This is a Legacy Group. To access features like group admins, create a New Group.</string>
 
     <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Choose who can add or invite new members</string>
     <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Choose who can change the group name and photo</string>
@@ -2426,6 +2428,15 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
 
     <string name="GroupRecipientListItem_admin">Admin</string>
+
+
+    <!-- GroupsLearnMoreBottomSheetDialogFragment -->
+    <string name="GroupsLearnMore_legacy_vs_new_groups">Legacy vs. New Groups</string>
+    <string name="GroupsLearnMore_what_are_legacy_groups">What are Legacy Groups?</string>
+    <string name="GroupsLearnMore_paragraph_1">Legacy Groups are groups that are not compatible with New Group features like admins and more descriptive group updates.</string>
+    <string name="GroupsLearnMore_how_do_i_use_new_groups">How do I use New Groups?</string>
+    <string name="GroupsLearnMore_paragraph_2">Legacy Groups can’t be converted into New Groups, but you can create a New Group with the same members.</string>
+    <string name="GroupsLearnMore_paragraph_3">To create a New Group, all members should update to the latest version of Signal.</string>
 
     <!-- EOF -->
 

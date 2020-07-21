@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:theme="@style/Theme.Signal.RecipientBottomSheet.Light">
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/rbs_recipient_avatar"
