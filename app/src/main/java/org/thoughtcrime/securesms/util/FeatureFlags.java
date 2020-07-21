@@ -53,8 +53,9 @@ public final class FeatureFlags {
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3.2";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling.2";
-  private static final String GROUPS_V2                  = "android.groupsv2";
-  private static final String GROUPS_V2_CREATE           = "android.groupsv2.create";
+  private static final String GROUPS_V2_OLD              = "android.groupsv2";
+  private static final String GROUPS_V2                  = "android.groupsv2.2";
+  private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.2";
   private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
   private static final String CDS                        = "android.cds";
   private static final String INTERNAL_USER              = "android.internalUser";
@@ -92,14 +93,16 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
-      ATTACHMENTS_V3
+      ATTACHMENTS_V3,
+      GROUPS_V2_CREATE
   );
 
   /**
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
   private static final Set<String> STICKY = Sets.newHashSet(
-      GROUPS_V2
+      GROUPS_V2,
+      GROUPS_V2_OLD
   );
 
   /**
@@ -197,7 +200,7 @@ public final class FeatureFlags {
 
   /** Groups v2 send and receive. */
   public static boolean groupsV2() {
-    return getBoolean(GROUPS_V2, false);
+    return getBoolean(GROUPS_V2_OLD, false) || getBoolean(GROUPS_V2, false);
   }
 
   /** Attempt groups v2 creation. */
