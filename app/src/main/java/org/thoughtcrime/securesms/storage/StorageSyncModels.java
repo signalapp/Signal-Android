@@ -47,7 +47,7 @@ public final class StorageSyncModels {
                                   .setGivenName(recipient.getProfileName().getGivenName())
                                   .setFamilyName(recipient.getProfileName().getFamilyName())
                                   .setBlocked(recipient.isBlocked())
-                                  .setProfileSharingEnabled(recipient.isProfileSharing())
+                                  .setProfileSharingEnabled(recipient.isProfileSharing() || recipient.getSystemContactUri() != null)
                                   .setIdentityKey(recipient.getIdentityKey())
                                   .setIdentityState(localToRemoteIdentityState(recipient.getIdentityStatus()))
                                   .setArchived(archived.contains(recipient.getId()))
