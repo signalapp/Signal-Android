@@ -24,6 +24,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -35,6 +36,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
   private static final String RECIPIENT_IDS_EXTRA = "recipient_ids";
   private static final String MESSAGE_ID_EXTRA    = "message_id";
+  private static final String MESSAGE_TYPE_EXTRA  = "message_type";
 
   private SafetyNumberChangeViewModel viewModel;
   private SafetyNumberChangeAdapter   adapter;
@@ -62,6 +64,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     Bundle arguments = new Bundle();
     arguments.putStringArray(RECIPIENT_IDS_EXTRA, ids.toArray(new String[0]));
     arguments.putLong(MESSAGE_ID_EXTRA, messageRecord.getId());
+    arguments.putString(MESSAGE_TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
     SafetyNumberChangeDialog fragment = new SafetyNumberChangeDialog();
     fragment.setArguments(arguments);
     return fragment;
@@ -78,10 +81,12 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
+    //noinspection ConstantConditions
     List<RecipientId> recipientIds = Stream.of(getArguments().getStringArray(RECIPIENT_IDS_EXTRA)).map(RecipientId::from).toList();
     long              messageId    = getArguments().getLong(MESSAGE_ID_EXTRA, -1);
+    String            messageType  = getArguments().getString(MESSAGE_TYPE_EXTRA, null);
 
-    viewModel = ViewModelProviders.of(this, new SafetyNumberChangeViewModel.Factory(recipientIds, (messageId != -1) ? messageId : null)).get(SafetyNumberChangeViewModel.class);
+    viewModel = ViewModelProviders.of(this, new SafetyNumberChangeViewModel.Factory(recipientIds, (messageId != -1) ? messageId : null, messageType)).get(SafetyNumberChangeViewModel.class);
     viewModel.getChangedRecipients().observe(getViewLifecycleOwner(), adapter::submitList);
   }
 

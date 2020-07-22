@@ -19,9 +19,13 @@ public final class SafetyNumberChangeViewModel extends ViewModel {
   private final SafetyNumberChangeRepository      safetyNumberChangeRepository;
   private final LiveData<SafetyNumberChangeState> safetyNumberChangeState;
 
-  private SafetyNumberChangeViewModel(@NonNull List<RecipientId> recipientIds, @Nullable Long messageId, SafetyNumberChangeRepository safetyNumberChangeRepository) {
+  private SafetyNumberChangeViewModel(@NonNull List<RecipientId> recipientIds,
+                                      @Nullable Long messageId,
+                                      @Nullable String messageType,
+                                      SafetyNumberChangeRepository safetyNumberChangeRepository)
+  {
     this.safetyNumberChangeRepository = safetyNumberChangeRepository;
-    safetyNumberChangeState           = this.safetyNumberChangeRepository.getSafetyNumberChangeState(recipientIds, messageId);
+    safetyNumberChangeState           = this.safetyNumberChangeRepository.getSafetyNumberChangeState(recipientIds, messageId, messageType);
   }
 
   @NonNull LiveData<List<ChangedRecipient>> getChangedRecipients() {
@@ -40,16 +44,18 @@ public final class SafetyNumberChangeViewModel extends ViewModel {
   public static final class Factory implements ViewModelProvider.Factory {
     private final List<RecipientId> recipientIds;
     private final Long              messageId;
+    private final String            messageType;
 
-    public Factory(@NonNull List<RecipientId> recipientIds, @Nullable Long messageId) {
+    public Factory(@NonNull List<RecipientId> recipientIds, @Nullable Long messageId, @Nullable String messageType) {
       this.recipientIds = recipientIds;
       this.messageId    = messageId;
+      this.messageType  = messageType;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       SafetyNumberChangeRepository repo = new SafetyNumberChangeRepository(ApplicationDependencies.getApplication());
-      return Objects.requireNonNull(modelClass.cast(new SafetyNumberChangeViewModel(recipientIds, messageId, repo)));
+      return Objects.requireNonNull(modelClass.cast(new SafetyNumberChangeViewModel(recipientIds, messageId, messageType, repo)));
     }
   }
 }
