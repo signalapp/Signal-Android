@@ -126,13 +126,11 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this);
 
     SimpleTask.run(getLifecycle(), () -> {
-      RecipientId[] ids = Stream.of(contactsFragment.getSelectedContacts())
-                                .map(selectedContact -> selectedContact.getOrCreateRecipientId(this))
-                                .toArray(RecipientId[]::new);
+      List<RecipientId> ids = Stream.of(contactsFragment.getSelectedContacts())
+                                    .map(selectedContact -> selectedContact.getOrCreateRecipientId(this))
+                                    .toList();
 
-      List<Recipient> resolved = Stream.of(ids)
-                                       .map(Recipient::resolved)
-                                       .toList();
+      List<Recipient> resolved = Recipient.resolvedList(ids);
 
       stopwatch.split("resolve");
 

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,9 +31,9 @@ final class AddGroupDetailsRepository {
     this.context = context;
   }
 
-  void resolveMembers(@NonNull RecipientId[] recipientIds, Consumer<List<GroupMemberEntry.NewGroupCandidate>> consumer) {
+  void resolveMembers(@NonNull Collection<RecipientId> recipientIds, Consumer<List<GroupMemberEntry.NewGroupCandidate>> consumer) {
     SignalExecutors.BOUNDED.execute(() -> {
-      List<GroupMemberEntry.NewGroupCandidate> members = new ArrayList<>(recipientIds.length);
+      List<GroupMemberEntry.NewGroupCandidate> members = new ArrayList<>(recipientIds.size());
 
       for (RecipientId id : recipientIds) {
         members.add(new GroupMemberEntry.NewGroupCandidate(Recipient.resolved(id)));

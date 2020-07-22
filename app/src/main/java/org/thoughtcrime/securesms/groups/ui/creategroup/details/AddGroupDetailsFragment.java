@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -170,7 +171,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   private void initializeViewModel() {
     AddGroupDetailsFragmentArgs      args       = AddGroupDetailsFragmentArgs.fromBundle(requireArguments());
     AddGroupDetailsRepository        repository = new AddGroupDetailsRepository(requireContext());
-    AddGroupDetailsViewModel.Factory factory    = new AddGroupDetailsViewModel.Factory(args.getRecipientIds(), repository);
+    AddGroupDetailsViewModel.Factory factory    = new AddGroupDetailsViewModel.Factory(Arrays.asList(args.getRecipientIds()), repository);
 
     viewModel = ViewModelProviders.of(this, factory).get(AddGroupDetailsViewModel.class);
 

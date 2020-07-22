@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +20,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class AddGroupDetailsActivity extends PassphraseRequiredActivity implements AddGroupDetailsFragment.Callback {
@@ -29,10 +30,10 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
 
   private final DynamicTheme theme = new DynamicNoActionBarTheme();
 
-  public static Intent newIntent(@NonNull Context context, @NonNull RecipientId[] recipients) {
+  public static Intent newIntent(@NonNull Context context, @NonNull Collection<RecipientId> recipients) {
     Intent intent = new Intent(context, AddGroupDetailsActivity.class);
 
-    intent.putExtra(EXTRA_RECIPIENTS, recipients);
+    intent.putParcelableArrayListExtra(EXTRA_RECIPIENTS, new ArrayList<>(recipients));
 
     return intent;
   }
@@ -44,13 +45,9 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
     setContentView(R.layout.add_group_details_activity);
 
     if (bundle == null) {
-      Parcelable[]  parcelables = getIntent().getParcelableArrayExtra(EXTRA_RECIPIENTS);
-      RecipientId[] ids         = new RecipientId[parcelables.length];
-
-      System.arraycopy(parcelables, 0, ids, 0, parcelables.length);
-
-      AddGroupDetailsFragmentArgs arguments = new AddGroupDetailsFragmentArgs.Builder(ids).build();
-      NavGraph                    graph     = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
+      ArrayList<RecipientId>      recipientIds = getIntent().getParcelableArrayListExtra(EXTRA_RECIPIENTS);
+      AddGroupDetailsFragmentArgs arguments    = new AddGroupDetailsFragmentArgs.Builder(recipientIds.toArray(new RecipientId[0])).build();
+      NavGraph                    graph        = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
 
       Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, arguments.toBundle());
     }

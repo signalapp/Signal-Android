@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -67,15 +66,14 @@ public final class GroupsV2CapabilityChecker {
       throws IOException
   {
     Set<RecipientId> recipientIdsSet = new HashSet<>(recipientIds);
-    Set<Recipient>   resolved        = Stream.of(recipientIdsSet).map(Recipient::resolved).collect(Collectors.toSet());
-
-    refreshCapabilitiesIfNecessary(resolved);
+    refreshCapabilitiesIfNecessary(Recipient.resolvedList(recipientIdsSet));
 
     boolean noSelfGV2Support = false;
     int     noGv2Count       = 0;
     int     noUuidCount      = 0;
 
-    for (Recipient member : resolved) {
+    for (RecipientId id : recipientIds) {
+      Recipient            member        = Recipient.resolved(id);
       Recipient.Capability gv2Capability = member.getGroupsV2Capability();
 
       if (gv2Capability != Recipient.Capability.SUPPORTED) {
