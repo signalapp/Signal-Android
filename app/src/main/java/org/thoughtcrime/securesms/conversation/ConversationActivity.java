@@ -1013,7 +1013,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
             return GroupChangeResult.SUCCESS;
           },
           (changeResult) -> {
-            if (changeResult.isSuccess()) {
+            if (!changeResult.isSuccess()) {
               Toast.makeText(ConversationActivity.this, GroupErrors.getUserDisplayMessage(changeResult.getFailureReason()), Toast.LENGTH_SHORT).show();
             } else {
               invalidateOptionsMenu();
