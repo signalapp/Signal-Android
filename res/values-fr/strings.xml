@@ -1339,7 +1339,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
 
   <string name="fragment_enter_session_id_title">Reliez votre appareil</string>
   <string name="fragment_enter_session_id_explanation">Rendez-vous dans Paramètres &gt; Appareils reliés &gt; Relier un appareil sur votre autre appareil, puis saisissez votre Session ID pour démarrer le processus de liaison.</string>
-
   <string name="fragment_enter_session_id_edit_text_hint">Saisissez votre Session ID</string>
 
   <string name="activity_display_name_title_2">Choisissez votre nom d\'utilisateur</string>
