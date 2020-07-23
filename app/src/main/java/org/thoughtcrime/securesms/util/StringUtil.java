@@ -45,13 +45,44 @@ public final class StringUtil {
       return true;
     }
 
-    for (int i = 0; i < value.length(); i++) {
+    return indexOfFirstNonEmptyChar(value) == -1;
+  }
+
+  /**
+   * @return String without any leading or trailing whitespace.
+   *         Accounts for various unicode whitespace characters.
+   */
+  public static String trimToVisualBounds(@NonNull String value) {
+    int start = indexOfFirstNonEmptyChar(value);
+
+    if (start == -1) {
+      return "";
+    }
+
+    int end = indexOfLastNonEmptyChar(value);
+
+    return value.substring(start, end + 1);
+  }
+
+  private static int indexOfFirstNonEmptyChar(@NonNull String value) {
+    int length = value.length();
+
+    for (int i = 0; i < length; i++) {
       if (!isVisuallyEmpty(value.charAt(i))) {
-        return false;
+        return i;
       }
     }
 
-    return true;
+    return -1;
+  }
+
+  private static int indexOfLastNonEmptyChar(@NonNull String value) {
+    for (int i = value.length() - 1; i >= 0; i--) {
+      if (!isVisuallyEmpty(value.charAt(i))) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   /**

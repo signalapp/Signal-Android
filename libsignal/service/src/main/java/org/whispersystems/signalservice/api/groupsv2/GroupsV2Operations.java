@@ -545,7 +545,7 @@ public final class GroupsV2Operations {
     }
 
     private String decryptTitle(ByteString cipherText) {
-      return decryptBlob(cipherText).getTitle();
+      return decryptBlob(cipherText).getTitle().trim();
     }
 
     private int decryptDisappearingMessagesTimer(ByteString encryptedTimerMessage) {
