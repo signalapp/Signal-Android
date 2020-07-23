@@ -201,11 +201,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
   <string name="ConversationActivity_leave_group">לעזוב קבוצה?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">האם אתה בטוח שאתה רוצה לעזוב קבוצה זו?</string>
+  <string name="ConversationActivity_choose_new_admin">בחר מנהלן חדש</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">לפני שאתה עוזב, אתה חייב לבחור לפחות מנהלן חדש אחד עבור קבוצה זו.</string>
+  <string name="ConversationActivity_choose_admin">בחר מנהלן</string>
   <string name="ConversationActivity_transport_insecure_sms">מסרון בלתי מאובטח</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS בלתי מאובטח</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">בוא נחליף אל Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת קבוצה</string> -->
   <string name="ConversationActivity_specify_recipient">אנא בחר איש קשר</string>
   <string name="ConversationActivity_unblock_this_contact_question">לבטל חסימת איש קשר זה?</string>
   <string name="ConversationActivity_unblock_this_group_question">לבטל חסימה של קבוצה זו?</string>
@@ -215,6 +217,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה חורגת ממגבלות הגודל עבור הסוג של ההודעה שאתה שולח.</string>
   <string name="ConversationActivity_quick_camera_unavailable">המצלמה אינה זמינה</string>
   <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">אינך יכול לשלוח הודעות אל קבוצה זו מאחר שאינך חבר קבוצה יותר.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין יישום זמין לטיפול בקישור זה במכשיר שלך.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">כדי לשלוח הודעות שמע, התר אל Signal לקבל גישה אל המיקרופון שלך.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal דורש את הרשאת המיקרופון על מנת לשלוח הודעות שמע, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\".</string>
@@ -350,6 +353,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">בעיה בהגדרת פרופיל</string>
   <string name="CreateProfileActivity_profile_photo">תמונת פרופיל</string>
   <string name="CreateProfileActivity_set_up_your_profile">הגדר את הפרופיל שלך</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">הפרופיל שלך מוצפן מקצה־אל־קצה. הפרופיל שלך ושינויים שלו יהיו גלויים אל אנשי הקשר שלך, כאשר תיזום או תקבל שיחות חדשות, וכאשר תצטרף אל קבוצות חדשות.</string>
   <string name="CreateProfileActivity_set_avatar_description">הגדר יצגן</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">משתמש בהתאמה אישית: %s</string>
@@ -407,6 +411,10 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" התווסף/ה אל \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">הוסף לקבוצה</string>
   <string name="AddToGroupActivity_add_to_groups">הוסף לקבוצות</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">בחר מנהלן חדש</string>
+  <string name="ChooseNewAdminActivity_done">סיים</string>
+  <string name="ChooseNewAdminActivity_you_left">עזבת את \"%1$s\".</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">לשתף את השם והתמונה של הפרופיל שלך עם קבוצה זו?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">האם אתה רוצה להפוך את השם והתמונה של הפרופיל שלך לגלויים לכל חברי הקבוצה הנוכחיים והעתידיים של קבוצה זו?</string>
@@ -417,6 +425,16 @@
   <string name="GroupManagement_access_level_anyone">כל אחד</string>
   <string name="GroupManagement_access_level_all_members">כל חברי הקבוצה</string>
   <string name="GroupManagement_access_level_only_admins">רק מנהלנים</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">הזמנה נשלחה</item>
+    <item quantity="two">%d הזמנות נשלחו</item>
+    <item quantity="many">%d הזמנות נשלחו</item>
+    <item quantity="other">%d הזמנות נשלחו</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">“%1$s” אינו יכול להתווסף באופן אוטומטי אל קבוצה זו על ידך.\n\nהוא הוזמן להצטרף, ולא יראה הודעות קבוצה כלשהן עד שהוא יסכים.</string>
+  <string name="GroupManagement_learn_more">למד עוד</string>
+  <string name="GroupManagement_invite_multiple_users">משתמשים אלו אינם יכולים להתווסף באופן אוטומטי אל קבוצה זו על ידך.\n\nהם הוזמנו להצטרף אל הקבוצה, ולא יראו הודעות קבוצה כלשהן עד שהם יסכימו.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
   <string name="PendingMembersActivity_people_you_invited">אנשים שהזמנת</string>
@@ -463,8 +481,10 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">הודעות נעלמות</string>
   <string name="ManageGroupActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">מי יכול לערוך חברות קבוצה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">מי יכול לערוך מידע קבוצה</string> -->
+  <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
+  <string name="ManageGroupActivity_edit_group_info">ערוך מידע קבוצה</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">בחר מי יכול לערוך את השם, היצגן וההודעות הנעלמות של הקבוצה.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">בחר מי יכול להוסיף או להזמין חברי קבוצה חדשים.</string>
   <string name="ManageGroupActivity_block_group">חסום קבוצה</string>
   <string name="ManageGroupActivity_unblock_group">בטל חסימת קבוצה</string>
   <string name="ManageGroupActivity_leave_group">עזוב קבוצה</string>
@@ -473,7 +493,6 @@
   <string name="ManageGroupActivity_until_s">עד %1$s</string>
   <string name="ManageGroupActivity_off">כבוי</string>
   <string name="ManageGroupActivity_on">מופעל</string>
-  <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_view_all_members">הצג את כל חברי הקבוצה</string>
   <string name="ManageGroupActivity_see_all">ראה הכל</string>
   <string name="ManageGroupActivity_none">אין</string>
@@ -493,10 +512,12 @@
   <string name="ManageGroupActivity_not_capable">למישהו שהוספת אין תמיכה בקבוצות חדשות והוא צריך לעדכן את Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">כישלון בעדכון הקבוצה</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">אינך חבר קבוצה בקבוצה זו</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">נכשל בעדכון הקבוצה. אנא נסה שוב מאוחר יותר.</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">נכשל בעדכון הקבוצה עקב שגיאת רשת, אנא נסה שוב מאוחר יותר.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ערוך שם ותמונה</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">בחר מי יכול להוסיף או להזמין חברי קבוצה חדשים</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">בחר מי יכול לשנות את השם והתמונה של הקבוצה</string> -->
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">הוסף לאנשי קשר של המערכת</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">איש זה נמצא באנשי הקשר שלך</string>
   <string name="ManageRecipientActivity_disappearing_messages">הודעות נעלמות</string>
   <string name="ManageRecipientActivity_chat_color">צבע התכתבות</string>
   <string name="ManageRecipientActivity_block">חסום</string>
@@ -707,6 +728,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sהגדיר את קוצב הזמן של ההודעות הנעלמות אל %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">קוצב הזמן של ההודעות הנעלמות הוגדר אל %1$s.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s שינה/שינתה את שם הפרופיל שלו/שלה אל %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s שינה/שינתה את שם הפרופיל שלו/שלה מן %2$s אל %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s שינה/שינתה את הפרופיל שלו/שלה.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">יצרת את הקבוצה.</string>
   <string name="MessageRecord_group_updated">קבוצה עודכנה.</string>
@@ -1435,6 +1459,7 @@
     <item quantity="other">%d שבועות</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d שב׳</string>
+  <string name="expiration_combined">%1$s%2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">מספר הביטחון שלך עם %s השתנה ואינו מוודא יותר</string>
   <string name="IdentityUtil_unverified_banner_two">מספרי הביטחון שלך עם %1$s ו־%2$s אינם מוודאים יותר</string>
@@ -2148,5 +2173,7 @@
   <string name="RecipientBottomSheet_remove">הסר</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupRecipientListItem_admin">מנהלן</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">איך אני משתמש בקבוצות חדשות?</string>
   <!--EOF-->
 </resources>

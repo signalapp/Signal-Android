@@ -195,11 +195,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">این دستگاه قابلیت پشتیبانی از عملیات‌ شماره‌گیری را ندارد.</string>
   <string name="ConversationActivity_leave_group">ترک گروه؟</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا مطمئنید که می‌خواهید این گروه را ترک کنید؟</string>
+  <string name="ConversationActivity_choose_new_admin">مدیر جدید را انتخاب کنید</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">قبل از ترک کردن، باید حداقل یک مدیر جدید برای این گروه انتخاب کنید.</string>
+  <string name="ConversationActivity_choose_admin">انتخاب مدیر</string>
   <string name="ConversationActivity_transport_insecure_sms">پیامک ناامن</string>
   <string name="ConversationActivity_transport_insecure_mms">فراپیام ناامن</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">بیایید از Signal استفاده کنیم: %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">خطا‌ در ترک گروه</string> -->
   <string name="ConversationActivity_specify_recipient">لطفاً یک مخاطب را انتخاب کنید</string>
   <string name="ConversationActivity_unblock_this_contact_question">رفع مسدودیت این مخاطب؟</string>
   <string name="ConversationActivity_unblock_this_group_question">رفع مسدودیت این گروه؟</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل پیوست شده بیش از اندازۀ مجاز برای این نوع پیام است.</string>
   <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، زیرا دیگر عضو نیستید.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال پیام‌ های صوتی، به Signal اجازه دهید تا به میکروفون شما دسترسی داشته باشد.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal به منظور ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
@@ -380,6 +383,10 @@
   <string name="AddToGroupActivity_s_added_to_s">«%1$s» به «%2$s» افزوده شد.</string>
   <string name="AddToGroupActivity_add_to_group">اضافه کردن به گروه</string>
   <string name="AddToGroupActivity_add_to_groups">اضافه کردن به گروه‌ها</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">مدیر جدید را انتخاب کنید</string>
+  <string name="ChooseNewAdminActivity_done">انجام شد</string>
+  <string name="ChooseNewAdminActivity_you_left">شما «%1$s» را ترک کردید.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک‌گذاری نام و عکس پروفایل خود با این گروه؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و عکس پروفایل شما به همهٔ اعضای کنونی و آتی این گروه نشان داده شود؟</string>
@@ -390,6 +397,14 @@
   <string name="GroupManagement_access_level_anyone">همه</string>
   <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
   <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">دعوت‌نامه ارسال شد</item>
+    <item quantity="other">%d دعوت‌نامه ارسال شدند</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">«%1$s» نمی‌تواند به صورت خودکار توسط شما به این گروه اضافه شود.\n\nآن‌ها برای پیوستن دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را نپذیرند، نخواهند دید.</string>
+  <string name="GroupManagement_learn_more">بیشتر یاد بگیرید</string>
+  <string name="GroupManagement_invite_multiple_users">این کاربران نمی‌توانند به صورت خودکار توسط شما به این گروه اضافه شوند.\n\nآن ها برای پیوستن به گروه دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را نپذیرند، نخواهند دید.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
   <string name="PendingMembersActivity_people_you_invited">افرادی که شما دعوت کردید</string>
@@ -430,8 +445,10 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageGroupActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">کسانی که می‌توانند اعضای گروه را ویرایش کنند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">کسانی که می‌توانند اطلاعات گروه را ویرایش کنند</string> -->
+  <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
+  <string name="ManageGroupActivity_edit_group_info">ویرایش اطلاعات گروه</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">انتخاب کنید چه کسی می‌تواند نام، عکس گروه و پیام‌های ناپدید شونده را ویرایش کند.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسی می‌تواند اعضای جدید را دعوت یا اضافه کند.</string>
   <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
   <string name="ManageGroupActivity_leave_group">ترک گروه</string>
@@ -440,7 +457,6 @@
   <string name="ManageGroupActivity_until_s">تا %1$s</string>
   <string name="ManageGroupActivity_off">خاموش</string>
   <string name="ManageGroupActivity_on">روشن</string>
-  <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
   <string name="ManageGroupActivity_view_all_members">نمایش همه اعضا</string>
   <string name="ManageGroupActivity_see_all">مشاهدهٔ همه</string>
   <string name="ManageGroupActivity_none">هیچکدام</string>
@@ -456,9 +472,10 @@
   <string name="ManageGroupActivity_not_capable">کسی که شما به گروه اضافه کردید از گروه‌های جدید پشتیبانی نمی‌کند و باید Signal را به‌روزرسانی کند</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">به‌روزرسانی گروه با اشکال مواجه شد</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">شما عضو گروه نیستید</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">به‌روزرسانی گروه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">به‌روزرسانی گروه به علت اشکال شبکه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ویرایش نام و عکس</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسانی می‌توانند اعضای جدید را دعوت یا اضافه کنند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">انتخاب کنید چه کسانی می‌توانند نام و عکس گروه را تغییر دهند</string> -->
+  <string name="ManageGroupActivity_legacy_group">گروه موروثی</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبان سیستم</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این کاربر از مخاطبان شماست</string>
@@ -806,14 +823,14 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخه گوگل پلی سرویس که شما نصب کرده اید به درستی کار نمی کند. لطفاً آن را دوباره کنید و مجددا تلاش کنید.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">پین نادرست</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">رد ورود پین؟</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">رد کردن ورود پین؟</string>
   <string name="PinRestoreEntryFragment_need_help">به راهنمایی نیاز دارید؟</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">پین شما یک کد %1$d+ رقمی است که می‌تواند شامل اعداد یا حروف باشد.\n\n اگر نمی‌توانید پین را به یاد بیاورید، می‌توانید یک پین جدید ایجاد کنید. می‌توانید دوباره ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره شده مانند اطلاعات پروفایل‌‌تان را از دست می‌دهید.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">اگر نمی‌توانید پین را به یاد بیاورید، یک پین جدید ایجاد کنید. شما می‌توانید ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره‌ شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ایجاد پین جدید</string>
   <string name="PinRestoreEntryFragment_contact_support">ارتباط با پشتیبانی</string>
   <string name="PinRestoreEntryFragment_cancel">لغو</string>
-  <string name="PinRestoreEntryFragment_skip">پرش</string>
+  <string name="PinRestoreEntryFragment_skip">رد شدن</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">شما %1$d فرصت دیگر باقی دارید. اگر فرصت‌های شما تمام شوند، می‌توانید یک پین جدید بسازید. شما می‌توانید ثبت‌نام و از حساب خود استفاده کنید ولی برخی تنظیمات ذخیره‌شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</item>
     <item quantity="other">شما %1$d فرصت دیگر باقی دارید. اگر فرصت‌های شما تمام شوند، می‌توانید یک پین جدید بسازید. شما می‌توانید ثبت‌نام و از حساب خود استفاده کنید ولی برخی تنظیمات ذخیره‌شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</item>
@@ -1346,6 +1363,7 @@
     <item quantity="other">%d هفته</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dه </string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">شمارهٔ امنیتی شما با %s تغییر کرده است و دیگر مورد تأیید نیست</string>
   <string name="IdentityUtil_unverified_banner_two">شماره‌های امنیتی شما با %1$s و %2$s دیگر تأیید شده نیستند</string>
@@ -1382,7 +1400,7 @@
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">آیا مایل به وارد کردن پیام‌های متنی موجود خود به پایگاه داده رمزگذاری شدهٔ Signal هستید؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پایگاه دادهٔ پيش‌‌فرض سيستم به هيچ شکلی تغییر نخواهد کرد.</string>
-  <string name="database_migration_activity__skip">پرش</string>
+  <string name="database_migration_activity__skip">رد شدن</string>
   <string name="database_migration_activity__import">وارد کردن</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ممکن است مدتی زمان ببرد. لطفاً صبور باشید، هنگامی که فرایند وارد کردن به پایان برسد به شما اطلاع می‌دهیم.</string>
   <string name="database_migration_activity__importing">وارد کردن</string>
@@ -1489,7 +1507,7 @@
   <string name="HelpFragment__next">بعدی</string>
   <string name="HelpFragment__contact_us">تماس با ما</string>
   <string name="HelpFragment__tell_us_whats_going_on">در مورد اشکال به ما توضیح دهید</string>
-  <string name="HelpFragment__include_debug_log">پیوست گزارش اشکال‌زدایی</string>
+  <string name="HelpFragment__include_debug_log">شامل گزارش اشکال‌زدایی</string>
   <string name="HelpFragment__whats_this">توضیحات</string>
   <string name="HelpFragment__how_do_you_feel">چه حسی دارید؟ (اختیاری)</string>
   <string name="HelpFragment__support_info">اطلاعات پشتیبانی</string>
@@ -1850,7 +1868,7 @@
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">پین Signal خود را وارد کنید</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">برای کمک به شما در به‌خاطرسپاری پین، آن را به صورت دوره‌ای از شما می‌پرسیم. با گذر زمان این‌ کار را کمتر انجام خواهیم داد.</string>
-  <string name="KbsReminderDialog__skip">پرش</string>
+  <string name="KbsReminderDialog__skip">رد شدن</string>
   <string name="KbsReminderDialog__submit">ارسال</string>
   <string name="KbsReminderDialog__forgot_pin">پین را فراموش کرده اید؟</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
@@ -1918,7 +1936,7 @@
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">پشتیبان‌ها روی یک حافظهٔ خارجی ذخیره و با گذرواژهٔ زیر رمزنگاری خواهند شد. شما برای بازگردانی پشتیبان خود باید گذرواژهٔ زیر را داشته باشید.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازگردانی پشتیبان خود نخواهم بود.</string>
   <string name="registration_activity__restore_backup">بازگردانی پشتیبان</string>
-  <string name="registration_activity__skip">پرش</string>
+  <string name="registration_activity__skip">رد شدن</string>
   <string name="registration_activity__register">ثبت نام</string>
   <string name="preferences_chats__chat_backups">پشتیبان‌های گفتگو</string>
   <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان‌گیری از گفتگوها در حافظهٔ خارجی</string>
@@ -2037,5 +2055,8 @@
   <string name="RecipientBottomSheet_remove">حذف</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
   <string name="GroupRecipientListItem_admin">مدیر</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">چگونه از گروه‌های جدید استفاده کنم؟</string>
+  <string name="GroupsLearnMore_paragraph_3">برای ایجاد یک گروه جدید، همهٔ اعضا باید به آخرین نسخهٔ Signal به‌روزرسانی کنند.</string>
   <!--EOF-->
 </resources>

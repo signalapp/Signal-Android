@@ -203,11 +203,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Nid yw\'n ymddangos bod y ddyfais hon yn cefnogi gweithrediadau deialu.</string>
   <string name="ConversationActivity_leave_group">Gadael y grŵp?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ydych chi\'n siŵr eich bod am adael y grŵp?</string>
+  <string name="ConversationActivity_choose_new_admin">Dewiswch gweinyddwr newydd</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS aniogel</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS anniogel</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Gadewch i ni newid i Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Gwall wrth adael grŵp</string> -->
   <string name="ConversationActivity_specify_recipient">Dewiswch gyswllt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Dadrwystro\'r cyswllt hwn?</string>
   <string name="ConversationActivity_unblock_this_group_question">Dadrwystro\'r grŵp hwn?</string>
@@ -410,6 +410,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" wedi\'i ychwanegu i \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Ychwanegu i grŵp</string>
   <string name="AddToGroupActivity_add_to_groups">Ychwanegu i grwpiau</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Dewiswch gweinyddwr newydd</string>
+  <string name="ChooseNewAdminActivity_done">Wedi Gorffen</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Rhannu\'ch enw a\'ch llun proffil gyda\'r grŵp hwn?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Hoffech chi wneud eich enw a\'ch llun proffil yn weladwy i bob aelod cyfredol ac i\'r dyfodol o\'r grŵp hwn?</string>
@@ -420,6 +423,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupManagement_access_level_anyone">Unrhyw un</string>
   <string name="GroupManagement_access_level_all_members">Pob aelod</string>
   <string name="GroupManagement_access_level_only_admins">Dim ond gweinyddwyr</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Dysgu rhagor</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
   <string name="PendingMembersActivity_people_you_invited">Pobl rydych wedi eu gwahodd</string>
@@ -466,8 +471,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Negeseuon yn diflannu</string>
   <string name="ManageGroupActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Pwy all olygu aelodaeth grŵp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Pwy all olygu manylion grŵp</string> -->
+  <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
   <string name="ManageGroupActivity_block_group">Rhwystro\'r grŵp</string>
   <string name="ManageGroupActivity_unblock_group">Dad-rwystro grŵp</string>
   <string name="ManageGroupActivity_leave_group">Gadael y grŵp</string>
@@ -476,7 +480,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_until_s">Tan %1$s</string>
   <string name="ManageGroupActivity_off">I ffwrdd</string>
   <string name="ManageGroupActivity_on">Ymlaen</string>
-  <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
   <string name="ManageGroupActivity_view_all_members">Gweld pob aelod</string>
   <string name="ManageGroupActivity_see_all">Gweld y cyfan</string>
   <string name="ManageGroupActivity_none">Dim</string>
@@ -497,8 +500,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Wedi methu diweddaru\'r grŵp</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nid ydych yn aelod o\'r grŵp</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Golygu enw a llun</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Dewiswch pwy all ychwanegu neu wahodd aelodau newydd</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Dewiswch pwy all newid enw\'r grŵp a\'r llun</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string>
@@ -1443,6 +1444,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">%d wythnos</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Mae\'ch rhif diogelwch gyda %s wedi newid ac nid yw wedi\'i dilysu bellach</string>
   <string name="IdentityUtil_unverified_banner_two">Nid yw eich rhif diogelwch gyda %1$s a %2$s wedi\'i dilysu bellach</string>
@@ -2156,5 +2158,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_remove">Tynnu</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <string name="GroupRecipientListItem_admin">Gweinyddwr</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

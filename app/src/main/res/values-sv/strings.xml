@@ -195,11 +195,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp-handlingar.</string>
   <string name="ConversationActivity_leave_group">Lämna grupp?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna denna grupp?</string>
+  <string name="ConversationActivity_choose_new_admin">Välj ny administratör</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Innan du lämnar måste du välja minst en ny administratör för denna grupp.</string>
+  <string name="ConversationActivity_choose_admin">Välj administratör</string>
   <string name="ConversationActivity_transport_insecure_sms">Osäkert SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Låt oss använda Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp</string> -->
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sluta blockera denna kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Sluta blockera denna grupp?</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bilagan överskrider storleksgränserna för den typ av meddelande du skickar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera otillgänglig</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan inte skicka meddelanden till den här gruppen eftersom du inte längre är medlem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal åtkomst till din mikrofon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
@@ -380,6 +383,10 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lagd till \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Lägg till i grupp</string>
   <string name="AddToGroupActivity_add_to_groups">Lägg till i grupper</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Välj ny administratör</string>
+  <string name="ChooseNewAdminActivity_done">Klar</string>
+  <string name="ChooseNewAdminActivity_you_left">Du lämnade \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Dela ditt profilnamn och bild med denna grupp?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vill du göra ditt profilbild och profilnamn synligt för alla nuvarande och framtida medlemmar i denna grupp?</string>
@@ -390,6 +397,14 @@
   <string name="GroupManagement_access_level_anyone">Någon</string>
   <string name="GroupManagement_access_level_all_members">Alla medlemmar</string>
   <string name="GroupManagement_access_level_only_admins">Endast administratörer</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Inbjudan skickad</item>
+    <item quantity="other">%d inbjudningar skickade</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">\"%1$s\" kan inte läggas till automatiskt till denna grupp av dig.\n\nDe har blivit inbjudna att gå med och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
+  <string name="GroupManagement_learn_more">Läs mer</string>
+  <string name="GroupManagement_invite_multiple_users">Dessa användare kan inte automatiskt läggas till i denna grupp.\n\nDe har blivit inbjudna att gå med i gruppen och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du bjudit in</string>
@@ -430,8 +445,10 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageGroupActivity_pending_group_invites">Väntande gruppinbjudningar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Vem kan redigera gruppmedlemskap</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Vem kan redigera gruppinformation</string> -->
+  <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
+  <string name="ManageGroupActivity_edit_group_info">Redigera gruppinformation</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Välj vem som kan redigera gruppnamn, avatar och försvinnande meddelanden.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar.</string>
   <string name="ManageGroupActivity_block_group">Blockera grupp</string>
   <string name="ManageGroupActivity_unblock_group">Sluta blockera grupp</string>
   <string name="ManageGroupActivity_leave_group">Lämna grupp</string>
@@ -440,7 +457,6 @@
   <string name="ManageGroupActivity_until_s">Fram tills %1$s</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
-  <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_view_all_members">Visa alla medlemmar</string>
   <string name="ManageGroupActivity_see_all">Se alla</string>
   <string name="ManageGroupActivity_none">Ingen</string>
@@ -456,9 +472,11 @@
   <string name="ManageGroupActivity_not_capable">Någon som du har lagt till stöder inte nya grupper och behöver uppdatera Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du är inte medlem i gruppen</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Det gick inte att uppdatera gruppen. Vänligen försök igen senare</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, vänligen försök igen senare</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Redigera namn och bild</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Välj vem som kan ändra gruppnamn och foto</string> -->
+  <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en Äldre grupp. Skapa en Ny grupp för att få åtkomst till funktioner som gruppadministratörer.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Den här personen är i dina kontakter</string>
@@ -1343,6 +1361,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%d veckor</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dv</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Ditt säkerhetsnummer med %s har ändrats och är inte längre verifierat</string>
   <string name="IdentityUtil_unverified_banner_two">Dina säkerhetsnummer med %1$s och %2$s är inte längre verifierat</string>
@@ -2034,5 +2053,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_remove">Ta bort</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupRecipientListItem_admin">Administratör</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Legacy vs. Nya grupper</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Vad är Äldre grupper?</string>
+  <string name="GroupsLearnMore_paragraph_1">Äldre grupper är grupper som inte är kompatibla med nya gruppfunktioner som administratörer och mer beskrivande gruppuppdateringar.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Hur använder jag Nya grupper?</string>
+  <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan inte konverteras till Nya grupper, men du kan skapa en Ny grupp med samma medlemmar.</string>
+  <string name="GroupsLearnMore_paragraph_3">För att skapa en Ny grupp, bör alla medlemmar uppdatera till den senaste versionen av Signal.</string>
   <!--EOF-->
 </resources>

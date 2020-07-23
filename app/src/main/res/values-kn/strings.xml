@@ -180,11 +180,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನವು ಡಯಲ್ ಕ್ರಮಗಳನ್ನು ಬೆಂಬಲಿಸುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
   <string name="ConversationActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯುವುದೇ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಗುಂಪನ್ನು ಬಿಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
+  <string name="ConversationActivity_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string>
   <string name="ConversationActivity_transport_insecure_sms">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_insecure_mms">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ಗೆ ಬದಲಾಯಿಸೋಣ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">ಗುಂಪನ್ನು ಬಿಡುವಾಗ ದೋಷವಾಯಿತು</string> -->
   <string name="ConversationActivity_specify_recipient">ದಯವಿಟ್ಟು ಒಂದು ಸಂಪರ್ಕವನ್ನು ಆರಿಸಿಕೊಳ್ಳಿ</string>
   <string name="ConversationActivity_unblock_this_contact_question">ಈ ಸಂಪರ್ಕವನ್ನು ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="ConversationActivity_unblock_this_group_question">ಈ ಗುಂಪಿನ ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
@@ -353,6 +353,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFಗಳು</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ಸ್ಟಿಕ್ಕರುಗಳು</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string>
+  <string name="ChooseNewAdminActivity_done">ಮುಗಿದಿದೆ</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವಿರಾ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ನೀವು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಮಾಡಲು ಹಾಗೂ ಎಲ್ಲ ಸದ್ಯದ ಮತ್ತು ಭವಿಷ್ಯದ ಸದಸ್ಯರುಗಳಿಗೆ ಈ ಗುಂಪಿನಲ್ಲಿ ಫೋಟೊವನ್ನು ಕಾಣುವಂತೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?</string>
@@ -360,6 +363,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">ನೀವು</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">ನೀವು ಆಹ್ವಾನಿಸಿದ ಜನರು</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">ಗುಂಪಿನ ಇತರ ಸದಸ್ಯರು ಆಹ್ವಾನಿಸಿದ ಜನರು</string>
@@ -373,12 +378,12 @@
   <string name="AddGroupDetailsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
+  <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
   <string name="ManageGroupActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯಿರಿ </string>
   <string name="ManageGroupActivity_mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <string name="ManageGroupActivity_off">ಆಫ಼್</string>
   <string name="ManageGroupActivity_on">ಆನ್</string>
-  <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
   <string name="ManageGroupActivity_view_all_members">ಎಲ್ಲಾ ಸದಸ್ಯರನ್ನು ವೀಕ್ಷಿಸಿ</string>
   <string name="ManageGroupActivity_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <!--ManageRecipientActivity-->
@@ -1107,6 +1112,7 @@
     <item quantity="other">%d ವಾರಗಳು</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dವಾ</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s ನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗಿದೆ ಮತ್ತು ಇನ್ನು ಮುಂದೆ ದೃಢೀಕರಿಸಲಾಗುವುದಿಲ್ಲ</string>
   <string name="IdentityUtil_unverified_banner_two">%1$sಮತ್ತು  %2$sನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಗಳು ಬದಲಾಗಿವೆ ಮತ್ತು ಇನ್ನು ಮುಂದೆ ದೃಢೀಕರಿಸಲಾಗುವುದಿಲ್ಲ</string>
@@ -1731,5 +1737,6 @@
   <string name="RecipientBottomSheet_remove">ತೆಗೆದುಹಾಕಿ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <string name="GroupRecipientListItem_admin">ಅಡ್ಮಿನ್‌‌</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

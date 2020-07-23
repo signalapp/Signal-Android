@@ -199,7 +199,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Nesekura MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ni ŝanĝiĝu al Signal: %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Eraro dum forlaso de grupo</string> -->
   <string name="ConversationActivity_specify_recipient">Bonvolu elekti kontakon</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ĉu malbloki ĉi tiun kontakton?</string>
   <string name="ConversationActivity_unblock_this_group_question">Ĉu malbloki tiun grupon?</string>
@@ -380,6 +379,8 @@
   <string name="AddToGroupActivity_s_added_to_s">„%1$s“ aldonita al „%2$s“.</string>
   <string name="AddToGroupActivity_add_to_group">Aldoni al grupo</string>
   <string name="AddToGroupActivity_add_to_groups">Aldoni al grupoj</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_done">Farita</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ĉu kunhavigi viajn profilajn nomon kaj foton kun tiu ĉi grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ĉu vi volas videbligi viajn profilajn nomon kaj foton al ĉiuj nunaj kaj venontaj grupanoj?</string>
@@ -390,6 +391,8 @@
   <string name="GroupManagement_access_level_anyone">Iu</string>
   <string name="GroupManagement_access_level_all_members">Ĉiuj grupanoj</string>
   <string name="GroupManagement_access_level_only_admins">Nur administrantoj</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Scii pli</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
@@ -430,8 +433,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="ManageGroupActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kiu povas modifi grupan membrecon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kiu povas modifi grupan informon</string> -->
+  <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
   <string name="ManageGroupActivity_block_group">Bloki la grupon</string>
   <string name="ManageGroupActivity_unblock_group">Malbloki la grupon</string>
   <string name="ManageGroupActivity_leave_group">Forlasi la grupon</string>
@@ -440,7 +442,6 @@
   <string name="ManageGroupActivity_until_s">Ĝis %1$s</string>
   <string name="ManageGroupActivity_off">Malŝaltita</string>
   <string name="ManageGroupActivity_on">Ŝaltita</string>
-  <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
   <string name="ManageGroupActivity_view_all_members">Vidi ĉiujn grupanojn</string>
   <string name="ManageGroupActivity_see_all">Vidu ĉiujn</string>
   <string name="ManageGroupActivity_none">Neniu</string>
@@ -457,8 +458,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Malsukceso ĝisdatigi la grupon</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vi ne estas ano de tiu grupo</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Modifi nomon kaj bildon</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Elekti tiun, kiu povas aldoni aŭ inviti novajn anojn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Elekti tiun, kiu povas ŝanĝi la nomon kaj la foton de la grupo</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Aldoni al sistemaj kontaktoj</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tiu persono estas en viaj kontaktoj.</string>
@@ -1348,6 +1347,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">%d semajnoj</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Via sekuriga numero kun %s ŝanĝiĝis kaj ne plu estas konfirmita</string>
   <string name="IdentityUtil_unverified_banner_two">Viaj sekurigaj numeroj kun %1$s kaj %2$s ne plu estas konfirmitaj</string>
@@ -2039,5 +2039,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_remove">Forviŝi</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiita al tondujo</string>
   <string name="GroupRecipientListItem_admin">Administranto</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

@@ -193,11 +193,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo parece não possuir suporte para chamadas.</string>
   <string name="ConversationActivity_leave_group">Sair do grupo?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
+  <string name="ConversationActivity_choose_new_admin">Escolha novo admin</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo</string> -->
   <string name="ConversationActivity_specify_recipient">Favor escolher um contato</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contato?</string>
   <string name="ConversationActivity_unblock_this_group_question">Desbloquear este grupo?</string>
@@ -377,6 +377,9 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" foi adicionado/a a \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Adicional ao grupo</string>
   <string name="AddToGroupActivity_add_to_groups">Adicionar aos grupos</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Escolha novo admin</string>
+  <string name="ChooseNewAdminActivity_done">Pronto</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Você quer tornar seu nome e foto do perfil visíveis para todos os membros atuais e futuros deste grupo?</string>
@@ -387,6 +390,8 @@
   <string name="GroupManagement_access_level_anyone">Qualquer pessoa</string>
   <string name="GroupManagement_access_level_all_members">Todos os membros</string>
   <string name="GroupManagement_access_level_only_admins">Somente admins</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Saiba mais</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Convites de grupo pendentes</string>
   <string name="PendingMembersActivity_people_you_invited">Pessoas que você convidou</string>
@@ -425,8 +430,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mensagens efêmeras</string>
   <string name="ManageGroupActivity_pending_group_invites">Convites de grupo pendentes</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Quem pode editar os membros do grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Quem pode editar as informações do grupo</string> -->
+  <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_block_group">Bloquear grupo</string>
   <string name="ManageGroupActivity_unblock_group">Desbloquear o grupo</string>
   <string name="ManageGroupActivity_leave_group">Sair do grupo</string>
@@ -435,7 +439,6 @@
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_off">Desligado</string>
   <string name="ManageGroupActivity_on">Ligado</string>
-  <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
   <string name="ManageGroupActivity_see_all">Ver todas</string>
   <string name="ManageGroupActivity_none">Nenhum</string>
@@ -451,8 +454,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar grupo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é membro do grupo</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e foto</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Escolha quem pode adicionar ou convidar novos membros</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Escolha quem pode mudar o nome do grupo e a foto</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Mensagens efêmeras</string>
   <string name="ManageRecipientActivity_chat_color">Cor da conversa</string>
@@ -1256,6 +1257,7 @@
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dsem</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Seu número de segurança com %s mudou e não está verificado</string>
   <string name="IdentityUtil_unverified_banner_two">Seus números de segurança com %1$s e %2$s não estão verificados</string>
@@ -1905,5 +1907,6 @@
   <string name="RecipientBottomSheet_remove">Remover</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

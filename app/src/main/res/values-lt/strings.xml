@@ -201,11 +201,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Atrodo, kad šis įrenginys nepalaiko numerio rinkimo veiksmų.</string>
   <string name="ConversationActivity_leave_group">Išeiti iš grupės?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ar tikrai norite išeiti iš šios grupės?</string>
+  <string name="ConversationActivity_choose_new_admin">Pasirinkti naują administratorių</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prieš išeidami, privalote pasirinkti šiai grupei bent vieną naują administratorių.</string>
+  <string name="ConversationActivity_choose_admin">Pasirinkite administratorių</string>
   <string name="ConversationActivity_transport_insecure_sms">Nesaugi SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesaugi MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Persijunkime į Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Klaida, išeinant iš grupės</string> -->
   <string name="ConversationActivity_specify_recipient">Prašome pasirinkti adresatą</string>
   <string name="ConversationActivity_unblock_this_contact_question">Atblokuoti šį adresatą?</string>
   <string name="ConversationActivity_unblock_this_group_question">Atblokuoti šią grupę?</string>
@@ -215,6 +217,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera neprieinama</string>
   <string name="ConversationActivity_unable_to_record_audio">Nepavyksta įrašyti garso!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Negalite siųsti žinučių į šią grupę, nes daugiau nebesate jos narys.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Norėdami siųsti garso žinutes, leiskite Signal prieigą prie mikrofono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Signal reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\".</string>
@@ -408,6 +411,10 @@
   <string name="AddToGroupActivity_s_added_to_s">Naudotojas \"%1$s\" pridėtas į \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Pridėti į grupę</string>
   <string name="AddToGroupActivity_add_to_groups">Pridėti į grupes</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Pasirinkti naują administratorių</string>
+  <string name="ChooseNewAdminActivity_done">Atlikta</string>
+  <string name="ChooseNewAdminActivity_you_left">Jūs išėjote iš \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bendrinti jūsų profilio vardą ir nuotrauką su šia grupe?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti, kad jūsų profilio vardas ir nuotrauka būtų matomi visiems esamiems ir būsimiems šios grupės nariams?</string>
@@ -418,6 +425,16 @@
   <string name="GroupManagement_access_level_anyone">Bet kas</string>
   <string name="GroupManagement_access_level_all_members">Visi nariai</string>
   <string name="GroupManagement_access_level_only_admins">Tik administratoriai</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Pakvietimas išsiųstas</item>
+    <item quantity="few">Išsiųsti %d pakvietimai</item>
+    <item quantity="many">Išsiųsta %d pakvietimų</item>
+    <item quantity="other">Išsiųstas %d pakvietimas</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">Jūs negalite automatiškai pridėti naudotojo \"%1$s\" į šią grupę.\n\nJis yra pakviestas prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
+  <string name="GroupManagement_learn_more">Sužinoti daugiau</string>
+  <string name="GroupManagement_invite_multiple_users">Jūs negalite automatiškai pridėti šių naudotojų į šią grupę.\n\nJie yra pakviesti prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
@@ -464,8 +481,10 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageGroupActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kas gali keisti grupės narystes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kas gali taisyti grupės informaciją</string> -->
+  <string name="ManageGroupActivity_add_members">Pridėti narius</string>
+  <string name="ManageGroupActivity_edit_group_info">Taisyti grupės informaciją</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Pasirinkite, kas gali taisyti grupės pavadinimą, avatarą bei išnykstančias žinutes.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius.</string>
   <string name="ManageGroupActivity_block_group">Užblokuoti grupę</string>
   <string name="ManageGroupActivity_unblock_group">Atblokuoti grupę</string>
   <string name="ManageGroupActivity_leave_group">Išeiti iš grupės</string>
@@ -474,7 +493,6 @@
   <string name="ManageGroupActivity_until_s">Iki %1$s</string>
   <string name="ManageGroupActivity_off">Išjungta</string>
   <string name="ManageGroupActivity_on">Įjungta</string>
-  <string name="ManageGroupActivity_add_members">Pridėti narius</string>
   <string name="ManageGroupActivity_view_all_members">Rodyti visus narius</string>
   <string name="ManageGroupActivity_see_all">Rodyti visus</string>
   <string name="ManageGroupActivity_none">Nėra</string>
@@ -494,9 +512,11 @@
   <string name="ManageGroupActivity_not_capable">Kažkas iš jūsų pridėtų asmenų nepalaiko naujų grupių ir turi atsinaujinti Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepavyko atnaujinti grupės</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs nesate šios grupės narys</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nepavyko atnaujinti grupės, vėliau bandykite dar kartą</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Nepavyko atnaujinti grupės dėl tinklo klaidos, vėliau bandykite dar kartą</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pasirinkite, kas gali keisti grupės pavadinimą ir nuotrauką</string> -->
+  <string name="ManageGroupActivity_legacy_group">Pasenusi grupė</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Tai yra pasenusi grupė. Norėdami naudoti tokias ypatybes kaip grupės administratoriai, sukurkite naująją grupę.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Pridėti į sistemos adresatus</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Šis žmogus yra jūsų adresatų sąraše</string>
@@ -1441,6 +1461,7 @@
     <item quantity="other">%d savaičių</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sav.</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Jūsų saugumo numeris su %s pasikeitė ir yra daugiau nebepatvirtintas</string>
   <string name="IdentityUtil_unverified_banner_two">Jūsų saugumo numeriai su %1$s ir %2$s yra daugiau nebepatvirtinti</string>
@@ -2154,5 +2175,12 @@
   <string name="RecipientBottomSheet_remove">Šalinti</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="GroupRecipientListItem_admin">Administratorius</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Pasenusios grupės lyginant su naujosiomis</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Kas yra pasenusios grupės?</string>
+  <string name="GroupsLearnMore_paragraph_1">Pasenusios grupės – tai grupės, kurios yra nesuderinamos su naujųjų grupių ypatybėmis, tokiomis kaip administratoriai ir išsamesni grupių atnaujinimai.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kaip naudoti naująsias grupes?</string>
+  <string name="GroupsLearnMore_paragraph_2">Pasenusios grupės negali būti pakeistos į naująsias grupes, bet galite sukurti naująją grupę su tais pačiais nariais.</string>
+  <string name="GroupsLearnMore_paragraph_3">Norint sukurti naująją grupę, visi nariai turėtų atsinaujinti į naujausią Signal versiją.</string>
   <!--EOF-->
 </resources>

@@ -184,11 +184,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Mukhang hindi suportado ng device na ito ang mga pag-dial na aksyon.</string>
   <string name="ConversationActivity_leave_group">Umalis sa grupo?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sigurado ka bang gusto mong umalis sa grupong ito?</string>
+  <string name="ConversationActivity_choose_new_admin">Pumili ng bagong admin</string>
   <string name="ConversationActivity_transport_insecure_sms">Hindi secure na SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Hindi secure na MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lumipat tayo sa Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Nagka-error sa pag-alis sa grupo</string> -->
   <string name="ConversationActivity_specify_recipient">Pumili ng kontak</string>
   <string name="ConversationActivity_unblock_this_contact_question">I-unblock ang kontak na ito?</string>
   <string name="ConversationActivity_unblock_this_group_question">I-unblock ang grupong ito?</string>
@@ -357,6 +357,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">Mga GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Mga Sticker</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Pumili ng bagong admin</string>
+  <string name="ChooseNewAdminActivity_done">Tapos na</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ibahagi ang iyong profile name at photo sa grupong ito?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ang profile name at photo mo ba ay gusto mong gawing nakikita ng lahat ng kasapi ng grupong ito sa kasalukuyan at hinaharap?</string>
@@ -364,6 +367,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Ikaw</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Matuto pa</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Mga taong iyong inimbitahan</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Mga imbitasyon ng iba pang mga kasapi ng grupo</string>
@@ -377,12 +382,12 @@
   <string name="AddGroupDetailsFragment__remove">Tanggalin</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mga naglalahong mensahe</string>
+  <string name="ManageGroupActivity_add_members">Magdagdag ng mga kasapi</string>
   <string name="ManageGroupActivity_leave_group">Umalis sa grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Patahimikin ang mga notipikasyon</string>
   <string name="ManageGroupActivity_custom_notifications">Custom na mga notipikasyon</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
-  <string name="ManageGroupActivity_add_members">Magdagdag ng mga kasapi</string>
   <string name="ManageGroupActivity_view_all_members">Tignan ang lahat ng mga kasapi</string>
   <string name="ManageGroupActivity_none">Wala</string>
   <!--ManageRecipientActivity-->
@@ -1126,6 +1131,7 @@
     <item quantity="other">%d linggo</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dl</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Hindi na beripikado ang iyong numerong pangkaligtasan kay %s</string>
   <string name="IdentityUtil_unverified_banner_two">Hindi na beripikado ang iyong mga numerong pangkaligtasan kina %1$s at %2$s</string>
@@ -1768,5 +1774,6 @@
   <string name="RecipientBottomSheet_remove">Tanggalin</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Nakopya na sa clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

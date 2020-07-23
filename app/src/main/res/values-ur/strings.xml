@@ -175,11 +175,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">یہ ڈیوائس ڈائل سرگرمیوں کی تائید کو ظاہر نہیں کر رہی۔</string>
   <string name="ConversationActivity_leave_group">گروپ چھوڑنا ہے؟</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">کیا آپ واقعی اس گروپ کو چھوڑنا چاہتے ہیں؟</string>
+  <string name="ConversationActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string>
   <string name="ConversationActivity_transport_insecure_sms">غیر محفوظ ایس ایم ایس</string>
   <string name="ConversationActivity_transport_insecure_mms">غیر محفوظ ایم ایم ایس</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">چلیں Signal کو چلاتے ہیں%1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">گروپ چھوڑنے میں غلطی ہو رہی ہے</string> -->
   <string name="ConversationActivity_specify_recipient">براۓ مہربانی رابطہ منتخب کریں</string>
   <string name="ConversationActivity_unblock_this_contact_question">اس رابطہ کو ان بلاک کریں؟</string>
   <string name="ConversationActivity_unblock_this_group_question">اس گروپ کو ان بلاک کریں؟</string>
@@ -342,6 +342,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">اسٹیکرز</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string>
+  <string name="ChooseNewAdminActivity_done">ہو گیا</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">پروفائل نام اور تصویر اس گروپ کے ساتھ اشتراک کریں؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">کیا آپ اپنی پروفائل کا نام اور تصویر اس گروپ کے تمام موجودہ اور مستقبل کے اراکین کو دیکھانا چاہتے ہیں؟</string>
@@ -349,6 +352,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">آپ</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">مزید پڑھیں</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">جن لوگوں کو آپ نے مدعو کیا</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">گروپ کے دوسرے ممبروں کے ذریعہ دعوت نامے</string>
@@ -362,12 +367,12 @@
   <string name="AddGroupDetailsFragment__remove">ہٹا دیں</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <string name="ManageGroupActivity_add_members">اراکین شامل کریں</string>
   <string name="ManageGroupActivity_leave_group">گروپ چھوڑ دیں</string>
   <string name="ManageGroupActivity_mute_notifications">خاموش اطلاعات</string>
   <string name="ManageGroupActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <string name="ManageGroupActivity_off">بند کریں</string>
   <string name="ManageGroupActivity_on">چلائیں</string>
-  <string name="ManageGroupActivity_add_members">اراکین شامل کریں</string>
   <string name="ManageGroupActivity_view_all_members">تمام ممبروں کو دیکھیں</string>
   <string name="ManageGroupActivity_none">کوئی نہیں</string>
   <!--ManageRecipientActivity-->
@@ -1075,6 +1080,7 @@
     <item quantity="other">%dہفتے</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dڈبلیو</string>
+  <string name="expiration_combined">%1$s%2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">آپ کا حفاظتی نمبر %sکے ساتھ تبدیل ہو چکا ہے اور یہ مزید تصدیق شدہ نہیں ہے</string>
   <string name="IdentityUtil_unverified_banner_two">آپ کا حفاظتی نمبر %1$s اور %2$sکے ساتھ مزید تصدیق شدہ نہیں ہیں</string>
@@ -1653,5 +1659,6 @@
   <string name="RecipientBottomSheet_remove">ہٹا دیں</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="GroupRecipientListItem_admin">ایڈمن</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

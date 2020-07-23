@@ -195,11 +195,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
   <string name="ConversationActivity_leave_group">Αποχώρηση απ\' την ομάδα;</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είσαι σίγουρος/η πως θέλεις να αποχωρήσεις απ\' την ομάδα;</string>
+  <string name="ConversationActivity_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Πριν αποχωρήσεις, θα πρέπει να επιλέξεις τουλάχιστον έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.</string>
+  <string name="ConversationActivity_choose_admin">Επιλογή διαχειριστή</string>
   <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές μήνυμα SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Έλα να χρησιμοποιήσουμε το Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Σφάλμα κατά την αποχώρηση απ\' την ομάδα</string> -->
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επέλεξε μια επαφή</string>
   <string name="ConversationActivity_unblock_this_contact_question">Κατάργηση φραγής αυτής της επαφής;</string>
   <string name="ConversationActivity_unblock_this_group_question">Κατάργηση φραγής αυτής της ομάδας;</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συνημμένο υπερβαίνει τα όρια μεγέθους για τον τύπο μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Κάμερα μη διαθέσιμη</string>
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Δεν μπορείς να στείλεις μηνύματα σε αυτή την ομάδα γιατί δεν είσαι πια μέλος.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν έχεις κάποια εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Για να στείλεις μηνύματα ήχου, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Το Signal χρειάζεται τα δικαιώματα Μικροφώνου για την αποστολή μηνυμάτων ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Μικρόφωνο\".</string>
@@ -380,6 +383,10 @@
   <string name="AddToGroupActivity_s_added_to_s">Ο/Η \"%1$s\" προστέθηκε στο \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Προσθήκη σε ομάδα</string>
   <string name="AddToGroupActivity_add_to_groups">Προσθήκη σε ομάδες</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
+  <string name="ChooseNewAdminActivity_done">Τέλος</string>
+  <string name="ChooseNewAdminActivity_you_left">Έφυγες από \"%1$s\".</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Θες να μοιραστείς το όνομα και τη φωτογραφία προφίλ σου με αυτή την ομάδα;</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Θες να κάνεις το όνομα και τη φωτογραφία προφίλ σου ορατά σε όλα τα τωρινά και τα μελλοντικά μέλη αυτής της ομάδας; </string>
@@ -390,6 +397,14 @@
   <string name="GroupManagement_access_level_anyone">Οποιοσδήποτε</string>
   <string name="GroupManagement_access_level_all_members">Όλα τα μέλη</string>
   <string name="GroupManagement_access_level_only_admins">Μόνο διαχειριστές/τριες</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Η πρόσκληση στάλθηκε</item>
+    <item quantity="other">Στάλθηκαν %d προσκλήσεις</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">Δεν μπορείς να προσθέσεις τον/την \"%1$s\"  αυτόματα στην ομάδα.\n\nΈχει λάβει πρόσκληση, και δεν θα βλέπει τα μηνύματα της ομάδας μέχρι να την αποδεχτεί.</string>
+  <string name="GroupManagement_learn_more">Μάθε περισσότερα</string>
+  <string name="GroupManagement_invite_multiple_users">Δεν μπορείς να προσθέσεις αυτόματα αυτούς τους χρήστες στην ομάδα.\n\nΈχουν λάβει πρ΄σκληση, και δεν θα βλέπουν τα μηνύματα της ομάδας μέχρι να την αποδεχτούν.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
   <string name="PendingMembersActivity_people_you_invited">Άτομα που έχεις προσκαλέσει</string>
@@ -430,8 +445,10 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <string name="ManageGroupActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Ποιοί μπορούν να επεξεργαστούν τα μέλη της ομάδας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας</string> -->
+  <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
+  <string name="ManageGroupActivity_edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Επέλεξε ποιός μπορεί να επεξεργαστεί το όνομα της ομάδας, το εικονίδιο, και τα μηνύματα που εξαφανίζονται.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Επέλεξε ποιος μπορεί να προσθέσει ή να προσκαλέσει νέα μέλη.</string>
   <string name="ManageGroupActivity_block_group">Φραγή ομάδας</string>
   <string name="ManageGroupActivity_unblock_group">Κατάργηση φραγής ομάδας</string>
   <string name="ManageGroupActivity_leave_group">Αποχώρηση απ\' την ομάδα</string>
@@ -440,7 +457,6 @@
   <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
   <string name="ManageGroupActivity_off">Απενεργοποιημένο</string>
   <string name="ManageGroupActivity_on">Ενεργοποιημένο</string>
-  <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
   <string name="ManageGroupActivity_view_all_members">Προβολή όλων των μελών</string>
   <string name="ManageGroupActivity_see_all">Προβολή όλων</string>
   <string name="ManageGroupActivity_none">Κανένα</string>
@@ -456,9 +472,11 @@
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Δεν είσαι μέλος της ομάδας</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Αποτυχία ανανέωσης της ομάδας, παρακαλώ προσπάθησε ξανά αργότερα</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Αποτυχία ανανέωσης της ομάδας λόγω σφάλματος δικτύου, παρακαλώ προσπάθησε ξανά αργότερα</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Διάλεξε ποιοί μπορούν να προσθέτουν ή να προσκαλούν νέα μέλη</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Διάλεξε ποιοί μπορούν να αλλάζουν το όνομα και τη φωτογραφία της ομάδας.</string> -->
+  <string name="ManageGroupActivity_legacy_group">Ομάδα παλαιού τύπου</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Αυτή η ομάδα είναι παλαιού τύπου. Για να έχετε χαρακτηριστικά όπως τους διαχειριστές ομάδας, δημιουργήστε μια νέα ομάδα.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Προσθήκη στις επαφές συστήματος</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Αυτό το άτομο είναι στις επαφές σου</string>
@@ -1344,6 +1362,7 @@
     <item quantity="other">%d εβδομάδες</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dεβ</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Ο αριθμός ασφαλείας σου με τον/την %s άλλαξε και δεν είναι πια επιβεβαιωμένος</string>
   <string name="IdentityUtil_unverified_banner_two">Οι αριθμοί ασφαλείας σου με τους/τις %1$s και %2$s δεν είναι πια επιβεβαιωμένοι</string>
@@ -2036,5 +2055,12 @@
   <string name="RecipientBottomSheet_remove">Αφαίρεση</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="GroupRecipientListItem_admin">Διαχειριστής/τρια</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Ομάδες παλαιού τύπου και νέες ομάδες</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Τι είναι οι ομάδες παλαιού τύπου;</string>
+  <string name="GroupsLearnMore_paragraph_1">Οι ομάδες παλαιού τύπου είναι ομάδες που δεν είναι συμβατές με χαρακτηριστικά των νέων ομαδών, όπως οι διαχειριστές και οι πιο περιγραφικές ανανεώσεις της ομάδας.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Πως χρησιμοποιώ τις νέες ομάδες;</string>
+  <string name="GroupsLearnMore_paragraph_2">Οι ομάδες παλαιού τύπου δεν μπορούν να μετατραπούν σε νέες ομάδες, αλλά μπορείς να δημιουργήσεις μια νέα ομάδα με τα ίδια μέλη.</string>
+  <string name="GroupsLearnMore_paragraph_3">Για τη δημιουργία ομάδας νέου τύπου, όλα τα μέλη θα πρέπει να αναβαθμίσουν στην πιο πρόσφατη έκδοση του Signal.</string>
   <!--EOF-->
 </resources>

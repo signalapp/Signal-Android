@@ -195,11 +195,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dieses Gerät scheint keine Wahlvorgänge zu unterstützen.</string>
   <string name="ConversationActivity_leave_group">Gruppe verlassen?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Möchtest du wirklich diese Gruppe verlassen?</string>
+  <string name="ConversationActivity_choose_new_admin">Neuen Admin wählen</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Bevor du diese Gruppe verlässt, musst du für sie mindestens einen neuen Admin auswählen.</string>
+  <string name="ConversationActivity_choose_admin">Admin wählen</string>
   <string name="ConversationActivity_transport_insecure_sms">Unverschlüsselte SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Unverschlüsselte MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe</string> -->
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
   <string name="ConversationActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
   <string name="ConversationActivity_unblock_this_group_question">Diese Gruppe freigeben?</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die gesendete Nachrichtenart.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kannst keine Nachrichten an diese Gruppe versenden, da du kein Gruppenmitglied mehr bist.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Auf deinem Gerät ist derzeit keine App installiert, die mit diesem Link umgehen kann.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Zum Versenden von Sprachnachrichten benötigt Signal Zugriff auf dein Mikrofon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal benötigt die Berechtigung »Mikrofon« für das Senden von Sprachnachrichten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon«.</string>
@@ -380,6 +383,10 @@
   <string name="AddToGroupActivity_s_added_to_s">»%1$s« zu »%2$s« hinzugefügt.</string>
   <string name="AddToGroupActivity_add_to_group">Zur Gruppe hinzufügen</string>
   <string name="AddToGroupActivity_add_to_groups">Zu Gruppen hinzufügen</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Neuen Admin wählen</string>
+  <string name="ChooseNewAdminActivity_done">Fertig</string>
+  <string name="ChooseNewAdminActivity_you_left">Du hast »%1$s« verlassen.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profilname und -foto mit dieser Gruppe teilen?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Möchtest du deinen Profilnamen und dein Profilfoto für alle derzeitigen und zukünftigen Mitglieder dieser Gruppe sichtbar machen?</string>
@@ -390,6 +397,14 @@
   <string name="GroupManagement_access_level_anyone">Jeder</string>
   <string name="GroupManagement_access_level_all_members">Alle Mitglieder</string>
   <string name="GroupManagement_access_level_only_admins">Nur Admins</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Einladung versendet</item>
+    <item quantity="other">%d Einladungen versendet</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDer Benutzer wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
+  <string name="GroupManagement_learn_more">Mehr erfahren</string>
+  <string name="GroupManagement_invite_multiple_users">Diese Benutzer können von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nSie wurden eingeladen, der Gruppe beizutreten, werden aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen haben.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
   <string name="PendingMembersActivity_people_you_invited">Von dir eingeladene Personen</string>
@@ -430,8 +445,10 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verschwindende Nachrichten</string>
   <string name="ManageGroupActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Wer kann Gruppenmitgliedschaften bearbeiten</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Wer kann Gruppendetails bearbeiten</string> -->
+  <string name="ManageGroupActivity_add_members">Mitglieder hinzufügen</string>
+  <string name="ManageGroupActivity_edit_group_info">Gruppendetails bearbeiten</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Wähle aus, wer Gruppenname, Avatar und verschwindende Nachrichten bearbeiten kann.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Wähle aus, wer neue Mitglieder hinzufügen oder einladen kann.</string>
   <string name="ManageGroupActivity_block_group">Gruppe blockieren</string>
   <string name="ManageGroupActivity_unblock_group">Gruppe freigeben</string>
   <string name="ManageGroupActivity_leave_group">Gruppe verlassen</string>
@@ -440,7 +457,6 @@
   <string name="ManageGroupActivity_until_s">Bis %1$s</string>
   <string name="ManageGroupActivity_off">Aus</string>
   <string name="ManageGroupActivity_on">Ein</string>
-  <string name="ManageGroupActivity_add_members">Mitglieder hinzufügen</string>
   <string name="ManageGroupActivity_view_all_members">Alle Mitglieder anzeigen</string>
   <string name="ManageGroupActivity_see_all">Alle anzeigen</string>
   <string name="ManageGroupActivity_none">Keine</string>
@@ -456,9 +472,11 @@
   <string name="ManageGroupActivity_not_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt nicht die neueste Version von Gruppenunterhaltungen und muss daher aktualisiert werden</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Gruppe konnte nicht aktualisiert werden</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du bist kein Mitglied der Gruppe</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gruppe konnte nicht aktualisiert werden, bitte versuche es später erneut</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gruppe konnte aufgrund eines Netzfehlers nicht aktualisiert werden, bitte versuche es später erneut</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Name und Bild bearbeiten</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Wähle aus, wer neue Mitglieder hinzufügen oder einladen kann</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Wähle aus, wer Gruppenname und -bild ändern kann</string> -->
+  <string name="ManageGroupActivity_legacy_group">Alt-Gruppe</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Dies ist eine Alt-Gruppe. Erstelle für neue Funktionen wie Gruppenadmins eine Neu-Gruppe.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Zu Systemkontakten hinzufügen</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Diese Person ist in deinen Kontakten</string>
@@ -743,11 +761,11 @@
   <string name="MessageRequestBottomView_delete">Löschen</string>
   <string name="MessageRequestBottomView_block">Blockieren</string>
   <string name="MessageRequestBottomView_unblock">Freigeben</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du erlauben, dass %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen kann? Der Benutzer wird nicht wissen, dass du seine Nachricht gesehen hast, solange du die Anfrage nicht annimmst.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Möchtest du erlauben, dass %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen kann? Du wirst keine Nachrichten erhalten, solange du die Unterhaltung nicht freigibst.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Sie werden nicht wissen, dass du ihre Nachrichten gesehen hast, solange du die Einladung nicht annimmst.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Der Benutzer weiß nicht, dass du seine Nachricht gesehen hast, bis du die Anfrage annimmst.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Du wirst keine Nachrichten erhalten, bis du die Unterhaltung freigibst.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Sie wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du wurdest in die Gruppe %1$s eingeladen. Möchtest du Mitgliedern dieser Gruppe erlauben, dir Nachrichten zu senden?</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Möchtest du diese Gruppe freigeben und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du wirst keine Nachrichten erhalten, solange du die Gruppe nicht freigibst.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Möchtest du diese Gruppe freigeben und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du wirst keine Nachrichten erhalten, bis du die Gruppe freigibst.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Mitglied von %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Mitglied von %1$s und %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Mitglied von %1$s, %2$s und %3$s</string>
@@ -1338,6 +1356,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">%d Wochen</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Deine Sicherheitsnummer mit %s hat sich geändert und ist nicht mehr verifiziert</string>
   <string name="IdentityUtil_unverified_banner_two">Deine Sicherheitsnummern mit %1$s und %2$s sind nicht mehr verifiziert</string>
@@ -2029,5 +2048,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RecipientBottomSheet_remove">Entfernen</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Alt- vs. Neu-Gruppen</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Was sind Alt-Gruppen?</string>
+  <string name="GroupsLearnMore_paragraph_1">Alt-Gruppen sind Gruppen, die nicht kompatibel sind mit Features von Neu-Gruppen wie Admins oder anschaulicheren Gruppenaktualisierungen.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Wie verwende ich Neu-Gruppen?</string>
+  <string name="GroupsLearnMore_paragraph_2">Alt-Gruppen können nicht in Neu-Gruppen umgewandelt werden, aber du kannst eine Neu-Gruppe mit denselben Mitgliedern erstellen.</string>
+  <string name="GroupsLearnMore_paragraph_3">Zum Erstellen einer Neu-Gruppe sollten alle Mitglieder Signal auf die neueste Version aktualisieren.</string>
   <!--EOF-->
 </resources>

@@ -196,11 +196,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Úgy tűnik, hogy ez a készülék nem támogatja a tárcsázási műveleteket.</string>
   <string name="ConversationActivity_leave_group">Kilépsz a csoportból?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Biztosan ki szeretnél lépni ebből a csoportból?</string>
+  <string name="ConversationActivity_choose_new_admin">Új admin választása</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Kilépés előtt ki kell jelölnöd legalább egy új admint.</string>
+  <string name="ConversationActivity_choose_admin">Admin kiválasztása</string>
   <string name="ConversationActivity_transport_insecure_sms">Titkosítatlan SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Titkosítatlan MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Váltsunk Signal-ra %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Hiba történt a csoport elhagyásakor</string> -->
   <string name="ConversationActivity_specify_recipient">Kérlek válassz egy kontaktot</string>
   <string name="ConversationActivity_unblock_this_contact_question">Feloldod ezt a kontaktot?</string>
   <string name="ConversationActivity_unblock_this_group_question">Feloldod a csoport blokkolását?</string>
@@ -210,6 +212,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet mérete meghaladja az adott típushoz tartozó mérethatárt.</string>
   <string name="ConversationActivity_quick_camera_unavailable">A kamera nem érhető el</string>
   <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nem küldhetsz ebbe a csoportba üzenetet, mivel nem vagy a tagja.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nem található eszközödön megfelelő alkalmazás a hivatkozás kezeléséhez.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Hangüzenetek küldéséhez engedélyezd, hogy a Signal hozzáférhessen a mikrofonhoz!</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">A Signal-nak szüksége van a Mikrofon engedélyre, hogy hangüzeneteket küldhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd az \"Mikrofon\"-t.</string>
@@ -381,6 +384,10 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" hozzáadva a \"%2$s\" csoporthoz.</string>
   <string name="AddToGroupActivity_add_to_group">Hozzáadás a csoporthoz</string>
   <string name="AddToGroupActivity_add_to_groups">Hozzáadás csoportokhoz</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Új admin választása</string>
+  <string name="ChooseNewAdminActivity_done">Befejezés</string>
+  <string name="ChooseNewAdminActivity_you_left">Kilépétél a \"%1$s\" csoportból.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Megosztod a profilneved- és képed ezzel a csoporttal?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Szeretnéd láthatóvá tenni profilneved- és képed a csoport összes jelenlegi és jövőbeli tagja számára?</string>
@@ -391,6 +398,12 @@
   <string name="GroupManagement_access_level_anyone">Bárki</string>
   <string name="GroupManagement_access_level_all_members">Összes tag</string>
   <string name="GroupManagement_access_level_only_admins">Csak adminisztrátorok</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Meghívó elküldve</item>
+    <item quantity="other">%d meghívó elküldve</item>
+  </plurals>
+  <string name="GroupManagement_learn_more">További információ</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
   <string name="PendingMembersActivity_people_you_invited">Általad meghívott személyek</string>
@@ -431,8 +444,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Eltűnő üzenetek</string>
   <string name="ManageGroupActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Ki szerkesztheti a csoporttagságot</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Ki szerkesztheti a csoport adatait</string> -->
+  <string name="ManageGroupActivity_add_members">Tagok hozzáadása</string>
+  <string name="ManageGroupActivity_edit_group_info">Csoportinfó szerkesztése</string>
   <string name="ManageGroupActivity_block_group">Csoport letiltása</string>
   <string name="ManageGroupActivity_unblock_group">Csoport blokkolásának feloldása</string>
   <string name="ManageGroupActivity_leave_group">Kilépés a csoportból</string>
@@ -441,7 +454,6 @@
   <string name="ManageGroupActivity_until_s">%1$s-ig</string>
   <string name="ManageGroupActivity_off">Ki</string>
   <string name="ManageGroupActivity_on">Be</string>
-  <string name="ManageGroupActivity_add_members">Tagok hozzáadása</string>
   <string name="ManageGroupActivity_view_all_members">Összes tag megtekintése</string>
   <string name="ManageGroupActivity_see_all">Összes megtekintése</string>
   <string name="ManageGroupActivity_none">Egyik sem</string>
@@ -458,8 +470,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nem vagy a csoport tagja</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Név és kép szerkesztése</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Add meg, hogy ki adhat hozzá és hívhat meg új tagokat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Add meg, hogy ki változtathatja meg a csoport nevét és képét</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Hozzáadás a rendszer-kontaktokhoz</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ez a személy szerepel a kontakjaid közt</string>
@@ -1352,6 +1362,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">%d hét</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">A biztonsági számod megváltozott, és már nincs megerősítve %s nevű partnereddel</string>
   <string name="IdentityUtil_unverified_banner_two">A biztonsági számod már nincs megerősítve %1$s és %2$s nevű partnereiddel</string>
@@ -2043,5 +2054,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RecipientBottomSheet_remove">Eltávolítás</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Vágólapra másolva</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

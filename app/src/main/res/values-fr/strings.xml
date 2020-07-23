@@ -195,11 +195,13 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Cet appareil ne semble pas prendre en charge les actions de numérotation.</string>
   <string name="ConversationActivity_leave_group">Quitter le groupe ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Voulez-vous vraiment quitter ce groupe ?</string>
+  <string name="ConversationActivity_choose_new_admin">Choisir un nouvel administrateur</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Avant de quitter le groupe, vous devez choisir au moins un nouvel administrateur pour ce groupe.</string>
+  <string name="ConversationActivity_choose_admin">Choisir un administrateur</string>
   <string name="ConversationActivity_transport_insecure_sms">Texto non sécurisé</string>
   <string name="ConversationActivity_transport_insecure_mms">Message multimédia non sécurisé</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Passons à Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Erreur en quittant le groupe</string> -->
   <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
   <string name="ConversationActivity_unblock_this_group_question">Débloquer ce groupe ?</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier joint dépasse la limite de taille pour le type de message que vous envoyé.</string>
   <string name="ConversationActivity_quick_camera_unavailable">L’appareil photo n’est pas disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossible d’enregistrer le son.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vous ne pouvez pas envoyer de messages à ce groupe, car vous n’en faites plus partie.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez Signal à accéder à votre microphone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal exige l’autorisation Microphone afin d’envoyer des messages audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner Autorisations et activer Microphone.</string>
@@ -380,6 +383,10 @@
   <string name="AddToGroupActivity_s_added_to_s">« %1$s » a été ajouté à « %2$s ».</string>
   <string name="AddToGroupActivity_add_to_group">Ajouter au groupe</string>
   <string name="AddToGroupActivity_add_to_groups">Ajouter aux groupes</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Choisir un nouvel administrateur</string>
+  <string name="ChooseNewAdminActivity_done">Terminé</string>
+  <string name="ChooseNewAdminActivity_you_left">Vous avez quitté « %1$s ».</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager vos nom et photo de profil avec ce groupe ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
@@ -390,6 +397,14 @@
   <string name="GroupManagement_access_level_anyone">Tout le monde</string>
   <string name="GroupManagement_access_level_all_members">Tous les membres</string>
   <string name="GroupManagement_access_level_only_admins">Seulement les administrateurs</string>
+  <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">L’invitation a été envoyée</item>
+    <item quantity="other">%d invitations ont été envoyées</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">« %1$s » ne peut pas être ajouté automatiquement par vous à ce groupe.\n\nUne invitation a été envoyée et l’utilisateur ne verra aucun message du groupe tant que l’invitation n’aura pas été acceptée.</string>
+  <string name="GroupManagement_learn_more">En apprendre davantage</string>
+  <string name="GroupManagement_invite_multiple_users">Ces utilisateurs ne peuvent pas être ajoutés automatiquement par vous à ce groupe.\n\nDes invitations ont été envoyées et ces utilisateurs ne verront aucun message du groupe tant que les invitations n’auront pas été acceptées.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitations de groupe en attente</string>
   <string name="PendingMembersActivity_people_you_invited">Les personnes que vous avez invitées</string>
@@ -430,8 +445,10 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitations de groupe en attente</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Qui peut modifier les membres du groupe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Qui peut personnaliser les renseignements du groupe</string> -->
+  <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
+  <string name="ManageGroupActivity_edit_group_info">Modifier les renseignements du groupe</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Choisissez qui peut modifier le nom, l’avatar et les messages éphémères du groupe.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Choisissez qui peut ajouter ou inviter de nouveaux membres.</string>
   <string name="ManageGroupActivity_block_group">Bloquer le groupe</string>
   <string name="ManageGroupActivity_unblock_group">Débloquer le groupe</string>
   <string name="ManageGroupActivity_leave_group">Quitter le groupe</string>
@@ -440,7 +457,6 @@
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
   <string name="ManageGroupActivity_on">Activé</string>
-  <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
   <string name="ManageGroupActivity_view_all_members">Visualiser tous les membres</string>
   <string name="ManageGroupActivity_see_all">Tout voir</string>
   <string name="ManageGroupActivity_none">Aucune</string>
@@ -456,9 +472,11 @@
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Échec de mise à jour du groupe</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vous n’êtes pas un membre du groupe</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Échec de mise à jour du groupe, veuillez ressayer</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de mise à jour du groupe en raison d’une erreur réseau, veuillez ressayer plus tard</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Choisissez qui peut ajouter ou inviter de nouveaux membres</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Choisissez qui peut changer le nom et la photo du groupe</string> -->
+  <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est hérité. Afin d’accéder aux fonctions telles que les administrateur du groupe, veuillez créer un nouveau groupe.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ajouter aux contacts du système </string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Cette personne est dans vos contacts</string>
@@ -1339,6 +1357,7 @@
     <item quantity="other">%d semaines</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Votre numéro de sécurité avec %s a changé et n’est plus confirmé</string>
   <string name="IdentityUtil_unverified_banner_two">Vos numéros de sécurité avec %1$s et %2$s ont changé et ne sont plus confirmés</string>
@@ -1946,7 +1965,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d messages jusqu’à présent</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de confirmation envoyé à %s.</string>
   <string name="RegistrationActivity_wrong_number">Mauvais numéro</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi plutôt \n (disponible dans (%1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi plutôt \n(Proposé dans (%1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contacter l’assistance de Signal</string>
   <string name="RegistrationActivity_code_support_subject">Inscription à Signal – Code de confirmation pour Android</string>
   <string name="BackupUtil_never">Jamais</string>
@@ -2030,5 +2049,12 @@
   <string name="RecipientBottomSheet_remove">Supprimer</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="GroupRecipientListItem_admin">Administrateur</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Les groupes hérités comparés aux nouveaux</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Que sont les groupes hérités ?</string>
+  <string name="GroupsLearnMore_paragraph_1">Les groupes hérités sont des groupes qui ne sont pas compatibles avec les fonctions des nouveaux groupes telles que les administrateurs et les mises à jour plus descriptives des groupes.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Comment utiliser les nouveaux groupes ?</string>
+  <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pas être convertis en nouveaux groupes, mais vous pouvez créer un nouveau groupe avec les mêmes membres.</string>
+  <string name="GroupsLearnMore_paragraph_3">Pour créer un nouveau groupe, tous les membres devraient mettre Signal à jour vers la version la plus récente.</string>
   <!--EOF-->
 </resources>

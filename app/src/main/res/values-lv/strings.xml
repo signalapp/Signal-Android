@@ -192,11 +192,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Izskatās, ka šī ierīce neatbalsta zvanu veikšanu.</string>
   <string name="ConversationActivity_leave_group">Pamest grupu?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Vai tiešām vēlaties pamest šo grupu?</string>
+  <string name="ConversationActivity_choose_new_admin">Izvēlēties jaunu administratoru</string>
   <string name="ConversationActivity_transport_insecure_sms">Nedrošs SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nedrošs MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pārslēdzamies uz Signal messenger %1$s!</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Kļūda, pametot grupu</string> -->
   <string name="ConversationActivity_specify_recipient">Lūdzu, izvēlaties kontaktu!</string>
   <string name="ConversationActivity_unblock_this_contact_question">Atbloķēt šo kontaktu?</string>
   <string name="ConversationActivity_unblock_this_group_question">Atbloķēt grupu?</string>
@@ -380,6 +380,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-i</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Uzlīmes</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Izvēlēties jaunu administratoru</string>
+  <string name="ChooseNewAdminActivity_done">Gatavs</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Dalīties ar Jūsu profila attēlu un vārdu šajā grupā?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vai vēlieties padarīt Jūsu profila attēlu un vārdu redzamu visiem grupas pašreizējiem un nākotnes dalībniekiem?</string>
@@ -390,6 +393,8 @@
   <string name="GroupManagement_access_level_anyone">Jebkurš</string>
   <string name="GroupManagement_access_level_all_members">Visi lietotāji</string>
   <string name="GroupManagement_access_level_only_admins">Tikai administratori</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Lasīt vairāk</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsu ielūgumi</string>
@@ -416,8 +421,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Gaistošās ziņas</string>
   <string name="ManageGroupActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Kas var labot grupas dalību</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Kas var labot grupas informāciju</string> -->
+  <string name="ManageGroupActivity_add_members">Pievienot dalībniekus</string>
   <string name="ManageGroupActivity_block_group">Bloķēt grupu</string>
   <string name="ManageGroupActivity_leave_group">Pamest grupu</string>
   <string name="ManageGroupActivity_mute_notifications">Noklusināt paziņojumus</string>
@@ -425,7 +429,6 @@
   <string name="ManageGroupActivity_until_s">Līdz %1$s</string>
   <string name="ManageGroupActivity_off">Izslēgts</string>
   <string name="ManageGroupActivity_on">Ieslēgts</string>
-  <string name="ManageGroupActivity_add_members">Pievienot dalībniekus</string>
   <string name="ManageGroupActivity_view_all_members">Parādīt visus dalībniekus</string>
   <string name="ManageGroupActivity_none">Neviens</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jums nav tiesību veikt šīs darbības</string>
@@ -433,8 +436,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Grupas atjaunināšanā notikusi kļūda</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs neesat grupas dalībnieks</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Labot vārdu un attēlu</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Atzīmējiet kurš var pievienot un aicināt jaunus dalībniekus</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Atzīmējiet kurš var mainīt grupas nosaukumu un attēlu</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Gaistošās ziņas</string>
   <string name="ManageRecipientActivity_block">Bloķēt</string>
@@ -1251,6 +1252,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item quantity="other">%d nedēļas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d ned</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Jūsu drošības numurs ar %s ir mainījies un vairāk nav verificēts</string>
   <string name="IdentityUtil_unverified_banner_two">Jūsu drošības numuri ar %1$s un %2$s vairāk nav verificēti</string>
@@ -1915,5 +1917,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_remove">Noņemt/Izņemt</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="GroupRecipientListItem_admin">Administrators</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

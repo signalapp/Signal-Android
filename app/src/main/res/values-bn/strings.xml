@@ -188,11 +188,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">এই ডিভাইস ডায়াল ক্রিয়া সমর্থন করে বলে মনে হচ্ছে না।</string>
   <string name="ConversationActivity_leave_group">গ্রুপ ত্যাগ করবেন?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">আপনি কি সত্যিই গ্রুপ ত্যাগ করতে চাচ্ছেন?</string>
+  <string name="ConversationActivity_choose_new_admin">নতুন প্রশাসক চয়ন করুন</string>
   <string name="ConversationActivity_transport_insecure_sms">অনিরাপদ এসএমএস</string>
   <string name="ConversationActivity_transport_insecure_mms">অনিরাপদ এমএমএস</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">চলুন Signal এ যোগ দেই %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">গ্রুপ ত্যাগ করতে সমস্যা হয়েছে</string> -->
   <string name="ConversationActivity_specify_recipient">দয়া করে একটি পরিচিতি চয়ন করুন</string>
   <string name="ConversationActivity_unblock_this_contact_question">এই পরিচিতিকে আনব্লক করতে চাচ্ছেন?</string>
   <string name="ConversationActivity_unblock_this_group_question">এই গ্রুপটিকে আনব্লক করতে চাচ্ছেন?</string>
@@ -367,6 +367,9 @@
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">সদস্য যোগ করবে?</string>
   <string name="AddToGroupActivity_add_to_group">গ্রুপে যুক্ত করুন</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">নতুন প্রশাসক চয়ন করুন</string>
+  <string name="ChooseNewAdminActivity_done">শেষ</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">আপনার প্রোফাইলের নাম ও ছবি গ্রুপের সাথে শেয়ার করবেন?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">আপনি কি এই গ্রুপের বর্তমান এবং ভবিষ্যতের সকল সদস্যের কাছে নিজের প্রোফাইল নাম এবং ফটো দৃশ্যমান করতে চান?</string>
@@ -377,6 +380,8 @@
   <string name="GroupManagement_access_level_anyone">যেকেউ</string>
   <string name="GroupManagement_access_level_all_members">সকল সদস্য</string>
   <string name="GroupManagement_access_level_only_admins">শুধুমাত্র এডমিন</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">আরও জানুন</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
   <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
@@ -417,8 +422,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">অদৃশ্য বার্তা</string>
   <string name="ManageGroupActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">গ্রুপের সদস্যপদ কে সম্পাদনা করতে পারবে</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">কে গ্রুপের তথ্য সম্পাদনা করতে পারবে</string> -->
+  <string name="ManageGroupActivity_add_members">সদস্য যোগ করুন</string>
   <string name="ManageGroupActivity_block_group">গ্রুপ ব্লক করুন</string>
   <string name="ManageGroupActivity_unblock_group">গ্রুপ আনব্লক করুন</string>
   <string name="ManageGroupActivity_leave_group">গ্রুপ ত্যাগ করুন</string>
@@ -427,7 +431,6 @@
   <string name="ManageGroupActivity_until_s">%1$s পর্যন্ত</string>
   <string name="ManageGroupActivity_off">বন্ধ</string>
   <string name="ManageGroupActivity_on">চালু</string>
-  <string name="ManageGroupActivity_add_members">সদস্য যোগ করুন</string>
   <string name="ManageGroupActivity_view_all_members">সব সদস্যদের দেখুন</string>
   <string name="ManageGroupActivity_see_all">সব দেখুন</string>
   <string name="ManageGroupActivity_none">কিছুই না</string>
@@ -444,8 +447,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">গ্রুপ আপডেটকরণ ব্যার্থ হয়েছে</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">আপনি গ্রুপটির সদস্য নন</string>
   <string name="ManageGroupActivity_edit_name_and_picture">নাম এবং ছবি সম্পাদনা করেন</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">কে কে নতুন সদস্য সংযুক্ত করতে অথবা আমন্ত্রণ জানাতে পারবে তা নির্বাচন করুন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">কে কে গ্রুপের নাম এবং ছবি পরিবর্তন করতে পারবে তা নির্বাচন করুন</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">অদৃশ্য বার্তা</string>
   <string name="ManageRecipientActivity_block">অবরূদ্ধ</string>
@@ -1265,6 +1266,7 @@
     <item quantity="other">%d সপ্তাহ</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dসপ্তাহ</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%sএর  সাথে আপনার নিরাপত্তা নাম্বার পরিবর্তিত হয়েছে এবং যাচাইকৃত নয়</string>
   <string name="IdentityUtil_unverified_banner_two">%1$s এবং%2$s সাথে আপনার নিরাপত্তা নম্বরগুলি আর যাচাইকৃত নেই</string>
@@ -1917,5 +1919,6 @@
   <string name="RecipientBottomSheet_remove">সরান</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
   <string name="GroupRecipientListItem_admin">প্রশাসক</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

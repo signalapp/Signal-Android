@@ -177,11 +177,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">यह डिवाइस डायल क्रियाओं का समर्थन करने के लिए प्रकट नहीं होता है।</string>
   <string name="ConversationActivity_leave_group">समूह छोड़ दें?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">क्या आप वाकई इस समूह को छोड़ना चाहते हैं?</string>
+  <string name="ConversationActivity_choose_new_admin">नया एडमिन चुनें</string>
   <string name="ConversationActivity_transport_insecure_sms">असुरक्षित SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s चलो Signal पर स्विच करें</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string> -->
   <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क चुनें</string>
   <string name="ConversationActivity_unblock_this_contact_question">इस संपर्क को अनवरोधित करें?</string>
   <string name="ConversationActivity_unblock_this_group_question">इस समूह को अनावरोधित करें?</string>
@@ -342,6 +342,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">नया एडमिन चुनें</string>
+  <string name="ChooseNewAdminActivity_done">पूर्ण</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">इस समूह के साथ अपना प्रोफाइल नाम और फोटो साझा करें?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">क्या आप इस प्रोफाइल के सभी मौजूदा और भविष्य के सदस्यों को अपना प्रोफाइल नाम और फोटो दिखाना चाहते हैं?</string>
@@ -349,6 +352,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">आप</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">अधिक जानें</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">आपके द्वारा आमंत्रित लोग</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">ग्रूप के बाकी सदस्यों के आमंत्रण</string>
@@ -362,12 +367,12 @@
   <string name="AddGroupDetailsFragment__remove">हटा दें </string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">गायब होने वाले मेसेज</string>
+  <string name="ManageGroupActivity_add_members">सदस्य जोड़ें</string>
   <string name="ManageGroupActivity_leave_group">समूह छोड़ दें</string>
   <string name="ManageGroupActivity_mute_notifications">नोटिफिकेशन म्यूट करें</string>
   <string name="ManageGroupActivity_custom_notifications">कस्टम अधिसूचनाएं</string>
   <string name="ManageGroupActivity_off">बंद </string>
   <string name="ManageGroupActivity_on">पर</string>
-  <string name="ManageGroupActivity_add_members">सदस्य जोड़ें</string>
   <string name="ManageGroupActivity_view_all_members">सारे सदस्य देखें</string>
   <string name="ManageGroupActivity_none">कुछ नहीं</string>
   <!--ManageRecipientActivity-->
@@ -1077,6 +1082,7 @@
     <item quantity="other">%dसप्ताह </item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <string name="expiration_combined">%1$s%2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s के साथ आपका सुरक्षा नंबर बदल गया है और अब सत्यापित नहीं है</string>
   <string name="IdentityUtil_unverified_banner_two">%1$s और %2$s के साथ आपकी सुरक्षा संख्या अब सत्यापित नहीं है</string>
@@ -1655,5 +1661,6 @@
   <string name="RecipientBottomSheet_remove">हटा दें </string>
   <string name="RecipientBottomSheet_copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
   <string name="GroupRecipientListItem_admin">एडमिन</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

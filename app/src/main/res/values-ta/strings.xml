@@ -183,11 +183,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">இந்த சாதனம் டயல் செயல்பாட்டை ஆதரிப்பதுபோல் தோன்றவில்லை.</string>
   <string name="ConversationActivity_leave_group">குழுவிலுருந்து விலகலாமா?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">நீங்கள் குழுவை விட்டு நிச்சயமாக விலகவேண்டுமா?</string>
+  <string name="ConversationActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
   <string name="ConversationActivity_transport_insecure_sms">பாதுகாப்பற்ற SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் Signalக்கு மாறுவோம்</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">குழுவிலிருந்து வெளியேறுவதில் பிழை</string> -->
   <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
   <string name="ConversationActivity_unblock_this_contact_question">இந்தத் தொடர்பை விடுவிக்கவா?</string>
   <string name="ConversationActivity_unblock_this_group_question">இந்தத் குழுவை விடுவிக்கவா?</string>
@@ -350,6 +350,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF கள் </string>
   <string name="GiphyFragmentPagerAdapter_stickers">ஒட்டிகள்</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
+  <string name="ChooseNewAdminActivity_done">முடிந்தது</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">இந்த குழுவுடன் உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் பகிரவா?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">இந்த குழுவின் தற்போதைய மற்றும் எதிர்கால உறுப்பினர்கள் அனைவருக்கும் உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் காண விரும்புகிறீர்களா?</string>
@@ -357,6 +360,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">நீங்கள்</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">மேலும் அறிக</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">மக்கள் நீங்கள் அழைக்கப்பட்டார்</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">மூலம் அழைக்கிறது மற்றவை குழு உறுப்பினர்கள்</string>
@@ -371,12 +376,12 @@
   <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
+  <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
   <string name="ManageGroupActivity_leave_group">குழுவிலுருந்து விலகு</string>
   <string name="ManageGroupActivity_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
   <string name="ManageGroupActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="ManageGroupActivity_off">அணை</string>
   <string name="ManageGroupActivity_on">இயக்க</string>
-  <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
   <string name="ManageGroupActivity_view_all_members">காண்க அனைத்து உறுப்பினர்கள்</string>
   <string name="ManageGroupActivity_none">யாரும்</string>
   <!--ManageRecipientActivity-->
@@ -1101,6 +1106,7 @@
     <item quantity="other">%d வாரங்கள்</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d வ</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s உடன் உங்கள் பாதுகாப்பு எண் மாறிவிட்டது, இனி சரிபார்க்கப்படாது</string>
   <string name="IdentityUtil_unverified_banner_two">%1$s மற்றும் %2$s உடன் உங்கள் பாதுகாப்பு எண்கள் இனி சரிபார்க்கப்படாது</string>
@@ -1691,5 +1697,6 @@
   <string name="RecipientBottomSheet_remove">நீக்கு</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="GroupRecipientListItem_admin">நிர்வாகம்</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

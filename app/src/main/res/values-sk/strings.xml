@@ -197,11 +197,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Zdá sa, že toto zariadenie nedokáže vytočiť telefónne číslo.</string>
   <string name="ConversationActivity_leave_group">Opustiť skupinu?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste si istí že chcete opustiť túto skupinu?</string>
+  <string name="ConversationActivity_choose_new_admin">Vybrať nového admina</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezabezpečená SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prejdime na Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Chyba pri opustení skupiny</string> -->
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokovať tento kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Odblokovať túto skupinu?</string>
@@ -395,6 +395,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFy</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nálepky</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Vybrať nového admina</string>
+  <string name="ChooseNewAdminActivity_done">Hotovo</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Zdieľať vaše meno a profilovú fotku s touto skupinou?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Chcete aby vaše meno a profilová fotka boli viditeľné všetkým súčasným a budúcim členom tejto skupiny?</string>
@@ -405,6 +408,8 @@
   <string name="GroupManagement_access_level_anyone">Ktokoľvek</string>
   <string name="GroupManagement_access_level_all_members">Všetci členovia</string>
   <string name="GroupManagement_access_level_only_admins">Iba správcovia</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Dozvedieť sa viac</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Nevybavené pozvánky do skupín</string>
   <string name="PendingMembersActivity_people_you_invited">Ľudia, ktorých ste pozvali vy</string>
@@ -437,12 +442,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Miznúce správy</string>
   <string name="ManageGroupActivity_pending_group_invites">Nevybavené pozvánky do skupín</string>
+  <string name="ManageGroupActivity_add_members">Pridať členov</string>
   <string name="ManageGroupActivity_leave_group">Opustiť skupinu</string>
   <string name="ManageGroupActivity_mute_notifications">Stlmiť upozornenia</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastné upozornenia</string>
   <string name="ManageGroupActivity_off">Vypnuté</string>
   <string name="ManageGroupActivity_on">Zapnuté</string>
-  <string name="ManageGroupActivity_add_members">Pridať členov</string>
   <string name="ManageGroupActivity_view_all_members">Zobraziť všetkých členov</string>
   <string name="ManageGroupActivity_none">Žiadny</string>
   <!--ManageRecipientActivity-->
@@ -1305,6 +1310,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="other">%d týždňov</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Vaše bezpečnostné číslo s %s sa zmenilo, a už nie je overené</string>
   <string name="IdentityUtil_unverified_banner_two">Vaše bezpečnostné čísla s %1$s a %2$s už nie sú overené</string>
@@ -1981,5 +1987,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RecipientBottomSheet_remove">Odstrániť</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Skopírované do schránky</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

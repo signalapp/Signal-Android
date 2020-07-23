@@ -190,11 +190,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ഈ ഉപകരണം ഡയൽ പ്രവർത്തനങ്ങളെ പിന്തുണയ്ക്കുന്നതായി കാണുന്നില്ല.</string>
   <string name="ConversationActivity_leave_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയണോ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയുന്നത് ഉറപ്പാണോ ?</string>
+  <string name="ConversationActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_transport_insecure_sms">സുരക്ഷിതമല്ലാത്ത SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">സുരക്ഷിതമല്ലാത്ത MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">നമുക്ക് Signal ലേക്ക് മാറാം %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">ഗ്രൂപ്പിൽ നിന്നും ഒഴിയുന്നതിൽ പിശക് </string> -->
   <string name="ConversationActivity_specify_recipient">ദയവായി ഒരു കോൺ‌ടാക്റ്റ് തിരഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_unblock_this_contact_question">ഈ കോൺ‌ടാക്റ്റ് തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="ConversationActivity_unblock_this_group_question">ഈ ഗ്രൂപ്പ് തടഞ്ഞത് മാറ്റണോ?</string>
@@ -373,6 +373,9 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക്  ചേർത്തു.</string>
   <string name="AddToGroupActivity_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="AddToGroupActivity_add_to_groups">ഗ്രൂപ്പുകളിലേക്ക് ചേർക്കുക</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
+  <string name="ChooseNewAdminActivity_done">ചെയ്‌തു</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ഈ ഗ്രൂപ്പുമായി നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും പങ്കിടണോ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ഈ ഗ്രൂപ്പിലെ നിലവിലുള്ളതും ഭാവിയിലുള്ളതുമായ എല്ലാ അംഗങ്ങൾക്കും നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും ദൃശ്യമാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
@@ -383,6 +386,8 @@
   <string name="GroupManagement_access_level_anyone">ആർക്കും</string>
   <string name="GroupManagement_access_level_all_members">എല്ലാ അംഗങ്ങളും</string>
   <string name="GroupManagement_access_level_only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">കൂടുതൽ അറിയുക</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
@@ -423,8 +428,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">ആർ‌ക്ക് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാൻ‌ കഴിയും</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">ഗ്രൂപ്പ് വിവരങ്ങൾ ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകും</string> -->
+  <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
@@ -433,7 +437,6 @@
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
   <string name="ManageGroupActivity_on">ഓൺ</string>
-  <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ManageGroupActivity_view_all_members">എല്ലാ അംഗങ്ങളെയും കാണുക</string>
   <string name="ManageGroupActivity_see_all">എല്ലാം കാണുക</string>
   <string name="ManageGroupActivity_none">ഒന്നുമില്ല</string>
@@ -450,8 +453,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
   <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">പുതിയ അംഗങ്ങളെ ആർക്കൊക്കെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ഫോട്ടോയും ആർക്കൊക്കെ മാറ്റാൻ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="ManageRecipientActivity_chat_color">ചാറ്റ് നിറം</string>
@@ -1299,6 +1300,7 @@ grūpp ap‌ḍē</string>
     <item quantity="other">%d ആഴ്ചകൾ</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല</string>
   <string name="IdentityUtil_unverified_banner_two">%1$s, %2$s എന്നിവരുമായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി, ഇത് മേലിൽ സ്ഥിരീകരിച്ചില്ല </string>
@@ -1983,5 +1985,6 @@ grūpp ap‌ḍē</string>
   <string name="RecipientBottomSheet_remove">ഒഴിവാക്കുക</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

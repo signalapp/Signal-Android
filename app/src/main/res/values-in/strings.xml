@@ -186,11 +186,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Perangkat ini sepertinya tidak mendukung untuk melakukan panggilan.</string>
   <string name="ConversationActivity_leave_group">Tinggalkan grup?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Apakah Anda yakin ingin meninggalkan grup ini?</string>
+  <string name="ConversationActivity_choose_new_admin">Pilih admin baru</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS tidak terenkripsi</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS tidak terenkripsi</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string> -->
   <string name="ConversationActivity_specify_recipient">Silahkan pilih kontak</string>
   <string name="ConversationActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
   <string name="ConversationActivity_unblock_this_group_question">Buka blokir grup ini?</string>
@@ -351,6 +351,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stiker</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Pilih admin baru</string>
+  <string name="ChooseNewAdminActivity_done">Selesai</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bagi nama profil dan foto anda di grup ini?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Apakah anda ingin nama dan profil anda ditampilkan untuk semua anggota group saat ini dan yang akan datang? </string>
@@ -361,6 +364,8 @@
   <string name="GroupManagement_access_level_anyone">Siapapun</string>
   <string name="GroupManagement_access_level_all_members">Semua anggota</string>
   <string name="GroupManagement_access_level_only_admins">Khusus para admin</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Pelajari lebih lanjut</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Undangan grup yang tertunda</string>
   <string name="PendingMembersActivity_people_you_invited">Orang yang Anda undang</string>
@@ -394,8 +399,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Penghilangan pesan</string>
   <string name="ManageGroupActivity_pending_group_invites">Undangan grup yang tertunda</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Pemilik akses untuk menyunting keanggotaan grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Pemilik akses untuk menyunting informasi grup</string> -->
+  <string name="ManageGroupActivity_add_members">Tambahkan anggota</string>
   <string name="ManageGroupActivity_block_group">Blokir grup</string>
   <string name="ManageGroupActivity_leave_group">Keluar grup</string>
   <string name="ManageGroupActivity_mute_notifications">Senyapkan pemberitahuan</string>
@@ -403,7 +407,6 @@
   <string name="ManageGroupActivity_until_s">Sampai %1$s</string>
   <string name="ManageGroupActivity_off">Mati</string>
   <string name="ManageGroupActivity_on">Aktif</string>
-  <string name="ManageGroupActivity_add_members">Tambahkan anggota</string>
   <string name="ManageGroupActivity_view_all_members">Lihat semua anggota</string>
   <string name="ManageGroupActivity_none">Kosong</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Anda tidak memiliki hak untuk melakukan hal ini</string>
@@ -411,8 +414,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Gagal untuk memperbarui grup</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Anda bukan member grup ini</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Sunting nama dan gambar</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pilih siapa yang dapat menambahkan atau mengundang anggota baru</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pilih siapa yang dapat mengubah nama dan foto grup</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Penghilangan pesan</string>
   <string name="ManageRecipientActivity_block">Blokir</string>
@@ -1196,6 +1197,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">%d minggu</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dminggu</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Nomor keamanan anda dengan %s telah berubah dan tidak lagi terverifikasi</string>
   <string name="IdentityUtil_unverified_banner_two">Nomor keamanan anda dengan %1$s dan %2$s tidak lagi terverifikasi</string>
@@ -1838,5 +1840,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RecipientBottomSheet_remove">Hapus</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Disalin ke papan klip</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

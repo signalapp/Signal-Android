@@ -192,11 +192,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác quay số.</string>
   <string name="ConversationActivity_leave_group">Rời nhóm?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc muốn rời nhóm này?</string>
+  <string name="ConversationActivity_choose_new_admin">Chọn quản trị viên mới</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Lỗi khi rời nhóm</string> -->
   <string name="ConversationActivity_specify_recipient">Vui lòng chọn một liên lạc</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bỏ chặn liên lạc này?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bỏ chặn nhóm này?</string>
@@ -365,6 +365,9 @@
   <string name="AddToGroupActivity_s_added_to_s">Đã thêm \"%1$s\" vào \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Thêm vào nhóm</string>
   <string name="AddToGroupActivity_add_to_groups">Thêm vào các nhóm</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Chọn quản trị viên mới</string>
+  <string name="ChooseNewAdminActivity_done">Xong</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Chia sẻ ảnh đại diện và tên của bạn với nhóm này?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Bạn có muốn tất cả thành viên hiện có và trong tương lai của nhóm thấy ảnh đại diện và tên bạn?</string>
@@ -375,6 +378,8 @@
   <string name="GroupManagement_access_level_anyone">Bất cứ ai</string>
   <string name="GroupManagement_access_level_all_members">Tất cả thành viên</string>
   <string name="GroupManagement_access_level_only_admins">Chỉ quản trị viên</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">Tìm hiểu thêm</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
   <string name="PendingMembersActivity_people_you_invited">Người dùng bạn đã mời</string>
@@ -412,8 +417,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Tin nhắn tạm thời</string>
   <string name="ManageGroupActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">Ai có thể thay đổi thành viên nhóm</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">Ai có thể sửa thông tin nhóm</string> -->
+  <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
   <string name="ManageGroupActivity_block_group">Chặn nhóm</string>
   <string name="ManageGroupActivity_unblock_group">Bỏ chặn nhóm</string>
   <string name="ManageGroupActivity_leave_group">Rời nhóm</string>
@@ -422,7 +426,6 @@
   <string name="ManageGroupActivity_until_s">Cho đến %1$s</string>
   <string name="ManageGroupActivity_off">Tắt</string>
   <string name="ManageGroupActivity_on">Bật</string>
-  <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
   <string name="ManageGroupActivity_view_all_members">Xem tất cả thành viên</string>
   <string name="ManageGroupActivity_see_all">Xem tất cả</string>
   <string name="ManageGroupActivity_none">Không</string>
@@ -437,8 +440,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Không thể cập nhật nhóm</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Bạn không phải thành viên nhóm này</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Sửa tên và ảnh</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Chọn ai có quyền sửa tên và ảnh nhóm</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Tin nhắn tự hủy</string>
   <string name="ManageRecipientActivity_chat_color">Màu trò chuyện</string>
@@ -1291,6 +1292,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
     <item quantity="other">%d tuần</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
+  <string name="expiration_combined">%1$s%2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Mã số an toàn với %s đã thay đổi và không còn hợp lệ</string>
   <string name="IdentityUtil_unverified_banner_two">Mã số an toàn với %1$s và %2$s không còn hợp lệ</string>
@@ -1971,5 +1973,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RecipientBottomSheet_remove">Loại bỏ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="GroupRecipientListItem_admin">Quản trị viên</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

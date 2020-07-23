@@ -188,11 +188,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ឧបករណ៍នេះមិនបង្ហាញដើម្បីគាំទ្រសកម្មភាពការហៅ។</string>
   <string name="ConversationActivity_leave_group">ចាកចេញពីក្រុម?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">តើអ្នកប្រាកដទេ ថាចង់ចាកចេញពីក្រុមនេះ?</string>
+  <string name="ConversationActivity_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
   <string name="ConversationActivity_transport_insecure_sms">សារ មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_signal"> Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">តោះដូរទៅកាន់ Signal %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">បញ្ហាសម្រាប់ការចាកចេញពីក្រុម</string> -->
   <string name="ConversationActivity_specify_recipient">សូមជ្រើសរើសលេខទំនាក់ទំនង១</string>
   <string name="ConversationActivity_unblock_this_contact_question">បើកលេខទំនាក់ទំនងនេះ?</string>
   <string name="ConversationActivity_unblock_this_group_question">បើកសោរក្រុមនេះ?</string>
@@ -361,6 +361,9 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" បានបន្ថែមទៅ \"%2$s\"។</string>
   <string name="AddToGroupActivity_add_to_group">បន្ថែមចូលក្រុម</string>
   <string name="AddToGroupActivity_add_to_groups">បន្ថែមទៅក្រុម</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
+  <string name="ChooseNewAdminActivity_done">បញ្ចប់</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ចែករំលែកឈ្មោះប្រវត្តិរូប និងរូបថតរបស់អ្នកជាមួយនឹងក្រុមនេះ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">តើអ្នកចង់ដាក់បង្ហាញប្រវត្តរូប និងរូបភាពអ្នកទៅកាន់សមាជិកបច្ចុប្បន្ន និងអនាគតក្នុងក្រុមនេះទេ?</string>
@@ -371,6 +374,8 @@
   <string name="GroupManagement_access_level_anyone">អ្នកណាមួយ</string>
   <string name="GroupManagement_access_level_all_members">សមាជិកទាំងអស់</string>
   <string name="GroupManagement_access_level_only_admins">តែអ្នកគ្រប់គ្រង</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">សិក្សាបន្ថែម</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
   <string name="PendingMembersActivity_people_you_invited">មនុស្សដែលអ្នកបានអញ្ជើញ</string>
@@ -408,8 +413,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
   <string name="ManageGroupActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_membership">នរណាអាចកែប្រែសមាជិកភាពក្រុម</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_who_can_edit_group_info">នរណាអាចកែប្រែព័ត៌មានក្រុម</string> -->
+  <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
   <string name="ManageGroupActivity_block_group">ហាមឃាត់ក្រុម</string>
   <string name="ManageGroupActivity_unblock_group">លែងហាមឃាត់ក្រុម</string>
   <string name="ManageGroupActivity_leave_group">ចាកចេញពីក្រុម</string>
@@ -418,7 +422,6 @@
   <string name="ManageGroupActivity_until_s">រហូតដល់ %1$s</string>
   <string name="ManageGroupActivity_off">បិទ</string>
   <string name="ManageGroupActivity_on">បើក</string>
-  <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
   <string name="ManageGroupActivity_view_all_members">បង្ហាញសមាជិកទាំងអស់</string>
   <string name="ManageGroupActivity_see_all">មើលទាំងអស់</string>
   <string name="ManageGroupActivity_none">គ្មាន</string>
@@ -433,8 +436,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">អ្នកមិនមែនជាសមាជិកនៃក្រុម</string>
   <string name="ManageGroupActivity_edit_name_and_picture">កែប្រែឈ្មោះ និងរូបភាព</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_add_or_invite_new_members">ជ្រើសរើសអ្នកដែលអាចបន្ថែម ឬអញ្ជើញសមាជិកថ្មី</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">ជ្រើសរើសអ្នកដែលអាចផ្លាស់ប្តូរឈ្មោះក្រុម និងរូបភាព</string> -->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
   <string name="ManageRecipientActivity_chat_color">ពណ៌ការជជែក</string>
@@ -1258,6 +1259,7 @@
     <item quantity="other">%d សប្តាហ៍</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dសប្តាហ៍</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">លេខសុវត្ថិភាពរបស់អ្នក %s បានផ្លាស់ប្តូរ តែមិនទាន់បានផ្ទៀងផ្ទាត់</string>
   <string name="IdentityUtil_unverified_banner_two">លេខសុវត្ថិភាពរបស់អ្នក %1$s និង %2$s មិនទាន់បានផ្ទៀងផ្ទាត់</string>
@@ -1930,5 +1932,6 @@
   <string name="RecipientBottomSheet_remove">លុបចេញ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="GroupRecipientListItem_admin">អ្នកគ្រប់គ្រង</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

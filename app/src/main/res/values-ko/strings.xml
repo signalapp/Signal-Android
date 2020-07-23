@@ -182,11 +182,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">해당 기기에서는 전화를 지원하지 않는 것 같습니다.</string>
   <string name="ConversationActivity_leave_group">그룹을 탈퇴하시겠습니까?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">그룹에서 정말로 탈퇴하시겠습니까?</string>
+  <string name="ConversationActivity_choose_new_admin">새 관리자 선택</string>
   <string name="ConversationActivity_transport_insecure_sms">비보안 SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">비보안 MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal로 대화해요! %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">그룹 탈퇴 오류</string> -->
   <string name="ConversationActivity_specify_recipient">연락처를 선택해 주세요.</string>
   <string name="ConversationActivity_unblock_this_contact_question">연락처를 차단 해제하시겠습니까?</string>
   <string name="ConversationActivity_unblock_this_group_question">그룹을 차단 해제하시겠습니까?</string>
@@ -344,6 +344,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF 파일</string>
   <string name="GiphyFragmentPagerAdapter_stickers">스티커</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">새 관리자 선택</string>
+  <string name="ChooseNewAdminActivity_done">확인</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">프로필 이름과 사진을 그룹과 공유하시겠습니까?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">프로필 이름과 사진이 그룹의 모든 멤버에게 항상 표시되도록 하시겠습니까?</string>
@@ -351,6 +354,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">나</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">더 알아보기</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">초대한 사람들</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">다른 그룹 멤버들의 초대</string>
@@ -365,12 +370,12 @@
   <string name="AddGroupDetailsFragment__remove">삭제</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">사라지는 메시지</string>
+  <string name="ManageGroupActivity_add_members">멤버 추가</string>
   <string name="ManageGroupActivity_leave_group">그룹 탈퇴</string>
   <string name="ManageGroupActivity_mute_notifications">대화 알림 끄기</string>
   <string name="ManageGroupActivity_custom_notifications">맞춤형 알림</string>
   <string name="ManageGroupActivity_off">꺼짐</string>
   <string name="ManageGroupActivity_on">켜짐</string>
-  <string name="ManageGroupActivity_add_members">멤버 추가</string>
   <string name="ManageGroupActivity_view_all_members">모든 멤버 보기</string>
   <string name="ManageGroupActivity_none">없음</string>
   <!--ManageRecipientActivity-->
@@ -626,6 +631,7 @@
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">번호 생성</string>
   <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_disable_pin">PIN 비활성화</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">앱 평가</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">앱이 마음에 들면 평가해 주세요.</string>
@@ -1099,6 +1105,7 @@
     <item quantity="other">%d주</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d주</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s 님과의 안전 번호가 변경되었으며 인증이 취소되었습니다.</string>
   <string name="IdentityUtil_unverified_banner_two">%1$s, %2$s 님과의 안전 번호가 변경되었으며 인증이 취소되었습니다.</string>
@@ -1335,6 +1342,7 @@
   <string name="preferences__dark_theme">어둡게</string>
   <string name="preferences__appearance">모양</string>
   <string name="preferences__theme">테마</string>
+  <string name="preferences__disable_pin">PIN 비활성화</string>
   <string name="preferences__system_default">시스템 기본값</string>
   <string name="preferences__default">기본값</string>
   <string name="preferences__language">언어</string>
@@ -1553,6 +1561,7 @@
   <string name="KbsSplashFragment__update_pin">번호 업데이트</string>
   <string name="KbsSplashFragment__create_your_pin">번호 생성</string>
   <string name="KbsSplashFragment__learn_more_about_pins">PIN에 대해 더 알아보기</string>
+  <string name="KbsSplashFragment__disable_pin">PIN 비활성화</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Signal 번호 입력</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">주기적으로 번호를 입력하면 외우는 데 도움이 됩니다. 가끔씩만 여쭤보겠습니다.</string>
@@ -1716,5 +1725,6 @@
   <string name="RecipientBottomSheet_remove">삭제</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="GroupRecipientListItem_admin">관리자</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

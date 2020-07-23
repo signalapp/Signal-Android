@@ -192,11 +192,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ਇਸ ਡਿਵਾਈਸ ਤੇ ਕਾਲ਼ਾਂ ਨਹੀਂ ਹੋ ਸਕਦੀਆਂ </string>
   <string name="ConversationActivity_leave_group">ਗਰੁੱਪ ਛੱਡੋ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਤ ਰੂਪ ਤੋਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="ConversationActivity_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string>
   <string name="ConversationActivity_transport_insecure_sms">ਅਸੁਰੱਖਿਅਤ ਐਸਐਮਐਸ</string>
   <string name="ConversationActivity_transport_insecure_mms">ਅਸੁਰੱਖਿਅਤ ਐਮਐਮਐਸ</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">ਆਓ Signal ਤੇ ਸਵਿਚ ਕਰੀਏ %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">ਗਰੁੱਪ ਛੱਡਣ ਵਿੱਚ ਗਲਤੀ</string> -->
   <string name="ConversationActivity_specify_recipient">ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਸੰਪਰਕ ਚੁਣੋ</string>
   <string name="ConversationActivity_unblock_this_contact_question">ਇਸ ਸੰਪਰਕ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ ?</string>
   <string name="ConversationActivity_unblock_this_group_question">ਇਸ ਗਰੁੱਪ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ ?</string>
@@ -375,6 +375,9 @@
   <string name="AddToGroupActivity_s_added_to_s">%1$s %2$s ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ</string>
   <string name="AddToGroupActivity_add_to_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="AddToGroupActivity_add_to_groups">ਸਮੂਹਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string>
+  <string name="ChooseNewAdminActivity_done">ਹੋ ਗਿਆ</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ਕੀ ਇਸ ਸਮੂਹ ਦੇ ਨਾਲ ਤੁਸੀਂ ਆਪਣਾ ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਅਤੇ ਫੋਟੋ ਸਾਂਝੀ ਕਰਨਾ ਚਾਉਂਦੇ ਹੋ ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਨਾਂ ਅਤੇ ਫੋਟੋ ਨੂੰ ਇਸ ਸਮੂਹ ਦੇ ਸਾਰੇ ਮੌਜੂਦਾ ਅਤੇ ਭਵਿੱਖ ਦੇ ਮੈਂਬਰਾਂ ਲਈ ਦ੍ਰਿਸ਼ਤ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
@@ -385,7 +388,10 @@
   <string name="GroupManagement_access_level_anyone">ਕੋਈ ਵੀ</string>
   <string name="GroupManagement_access_level_all_members">ਸਾਰੇ ਮੈਂਬਰ</string>
   <string name="GroupManagement_access_level_only_admins">ਸਿਰਫ਼ ਐਡਮਿਨ</string>
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">ਜਿਆਦਾ ਜਾਣੋ</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">ਗਰੁੱਪ ਦੇ ਲੰਬਿਤ ਸੱਦੇ</string>
   <string name="PendingMembersActivity_people_you_invited">ਤੁਹਾਡੇ ਵੱਲੋਂ ਸੱਦੇ ਗਏ ਲੋਕ</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">ਗਰੁੱਪ ਦੇ ਹੋਰਨਾਂ ਮੈਂਬਰਾਂ ਵੱਲੋਂ ਭੇਜੇ ਗਏ ਸੱਦੇ</string>
   <string name="PendingMembersActivity_missing_detail_explanation">ਗਰੁੱਪ ਦੇ ਹੋਰਨਾਂ ਮੈਂਬਰਾਂ ਵੱਲੋਂ ਸੱਦੇ ਲੋਕਾਂ ਦੇ ਵੇਰਵੇ ਨਹੀਂ ਦਿਖਾਏ ਜਾਂਦੇ. ਜੇਕਰ ਸੱਦਾ ਭੇਜੇ ਗਏ ਵਿਅਕਤੀ ਜੁੜਨ ਦਾ ਫੈਸਲਾ ਕਰਦੇ ਹਨ, ਤਾਂ ਉਹਨਾਂ ਦੀ ਜਾਣਕਾਰੀ ਗਰੁੱਪ ਦੇ ਨਾਲ ਉਸ ਸਮੇਂ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇਗੀ. ਜਦੋਂ ਤੱਕ ਉਹ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਜਾਂਦੇ, ਉਹ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਨਹੀਂ ਦੇਖਣਗੇ.</string>
@@ -393,28 +399,50 @@
   <string name="AddMembersActivity__done">ਹੋ ਗਿਆ</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ਇਸ ਗਰੁੱਪ ਦਾ ਨਾਂ</string>
+  <string name="AddGroupDetailsFragment__create_group">ਸਮੂਹ ਬਣਾਓ</string>
   <string name="AddGroupDetailsFragment__create">ਰਚੋ</string>
   <string name="AddGroupDetailsFragment__members">ਮੈਂਬਰ</string>
   <string name="AddGroupDetailsFragment__group_name_required">ਗਰੁੱਪ ਦਾ ਨਾਮ (ਜ਼ਰੂਰੀ)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">ਇਹ ਖੇਤਰ ਲਾਜ਼ਮੀ ਹੈ।</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">ਗਰੁੱਪ ਲਈ ਘੱਟੋ-ਘੱਟ ਦੋ ਮੈਂਬਰ ਲੋੜੀਂਦੇ ਹਨ।</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">ਸਮੂਹ ਨਿਰਮਾਣ ਅਸਫਲ ਰਿਹਾ.</string>
   <string name="AddGroupDetailsFragment__try_again_later">ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="AddGroupDetailsFragment__remove">ਹਟਾਓ </string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS ਸੰਪਰਕ</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">ਗੁੰਮ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
+  <string name="ManageGroupActivity_pending_group_invites">ਗਰੁੱਪ ਦੇ ਲੰਬਿਤ ਸੱਦੇ</string>
+  <string name="ManageGroupActivity_add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="ManageGroupActivity_block_group">ਗਰੁੱਪ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
+  <string name="ManageGroupActivity_unblock_group">ਗਰੁੱਪ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ</string>
   <string name="ManageGroupActivity_leave_group">ਗਰੁੱਪ ਛੱਡੋ</string>
   <string name="ManageGroupActivity_mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
   <string name="ManageGroupActivity_custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <string name="ManageGroupActivity_until_s">%1$s ਤੱਕ</string>
   <string name="ManageGroupActivity_off">ਬੰਦ </string>
   <string name="ManageGroupActivity_on">ਚਲਾਓ </string>
-  <string name="ManageGroupActivity_add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ManageGroupActivity_view_all_members">ਸਾਰੇ ਮੈਂਬਰ ਦਿਖਾਓ</string>
+  <string name="ManageGroupActivity_see_all">ਸਾਰੇ ਵੇਖੋ</string>
   <string name="ManageGroupActivity_none">ਕੋਈ ਨਹੀਂ</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d ਨੂੰ ਬੁਲਾਇਆ</item>
+    <item quantity="other">%d ਨੂੰ ਬੁਲਾਇਆ</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d ਮੈਂਬਰ ਸ਼ਾਮਲ ਕੀਤੇ ਗਏ.</item>
+    <item quantity="other">%d ਮੈਂਬਰ ਸ਼ਾਮਲ ਕੀਤੇ ਗਏ.</item>
+  </plurals>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ਤੁਹਾਡੇ ਕੋਲ ਅਜਿਹਾ ਕਰਨ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ</string>
+  <string name="ManageGroupActivity_not_capable">ਕੋਈ ਵਿਅਕਤੀ ਜੋ ਤੁਸੀਂ ਜੋੜਿਆ ਹੈ ਉਹ ਨਵੇਂ ਸਮੂਹਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਅਤੇ Signal ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">ਸਮੂਹ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">ਤੁਸੀਂ ਸਮੂਹ ਦੇ ਮੈਂਬਰ ਨਹੀਂ ਹੋ</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">ਨਾਮ ਅਤੇ ਤਸਵੀਰ ਨੂੰ ਸੋਧੋ</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">ਸਿਸਟਮ ਸੰਪਰਕਾਂ ਵਿੱਚ ਜੋੜੋ</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ਇਹ ਉਪਭੋਗਤਾ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਹੈ</string>
   <string name="ManageRecipientActivity_disappearing_messages">ਗੁੰਮ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
+  <string name="ManageRecipientActivity_chat_color">ਗੱਲਬਾਤ ਦਾ ਰੰਗ</string>
   <string name="ManageRecipientActivity_block">ਬਲੌਕ ਕਰੋ</string>
   <string name="ManageRecipientActivity_unblock">ਅਨਬਲੌਕ ਕਰੋ</string>
   <string name="ManageRecipientActivity_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
@@ -423,7 +451,19 @@
   <string name="ManageRecipientActivity_until_s">%1$s ਤੱਕ</string>
   <string name="ManageRecipientActivity_off">ਬੰਦ </string>
   <string name="ManageRecipientActivity_on">ਚਲਾਓ </string>
+  <string name="ManageRecipientActivity_add_to_a_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="ManageRecipientActivity_view_all_groups">ਸਾਰੇ ਸਮੂਹ ਵੇਖੋ</string>
+  <string name="ManageRecipientActivity_see_all">ਸਾਰੇ ਵੇਖੋ</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">ਕੋਈ ਸਮੂਹ ਸਾਂਝੇ ਨਹੀਂ</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d ਸਮੂਹ ਸਾਂਝੇ ਹਨ</item>
+    <item quantity="other">%d ਸਮੂਹ ਸਾਂਝੇ ਹਨ</item>
+  </plurals>
+  <string name="ManageRecipientActivity_edit_name_and_picture">ਨਾਮ ਅਤੇ ਤਸਵੀਰ ਨੂੰ ਸੋਧੋ</string>
   <string name="ManageRecipientActivity_message_description">ਸੁਨੇਹਾ</string>
+  <string name="ManageRecipientActivity_voice_call_description">ਵੌਇਸ ਕਾਲ</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">ਅਸੁਰੱਖਿਅਤ ਵੌਇਸ ਕਾਲ</string>
+  <string name="ManageRecipientActivity_video_call_description">ਵੀਡੀਓ ਕਾਲ</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <string name="CustomNotificationsDialogFragment__messages">ਸੁਨੇਹੇ </string>
@@ -439,11 +479,17 @@
   <string name="CropImageActivity_group_avatar">ਗਰੁੱਪ ਦਾ ਅਵਤਾਰ</string>
   <string name="CropImageActivity_profile_avatar">ਅਵਤਾਰ</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">ਧੁੰਦਲੇ ਚਿਹਰੇ</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">ਨਵਾਂ: ਚਿਹਰੇ ਧੁੰਦਲੇ ਕਰੋ ਜਾਂ ਕਿਤੇ ਵੀ ਧੁੰਦਲਾ ਕਰਨ ਲਈ ਖਿੱਚੋ</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">ਧੁੰਦਲਾ ਕਰਨ ਲਈ ਕਿਤੇ ਵੀ ਖਿੱਚੋ</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">ਅਤਿਰਿਕਤ ਚਿਹਰੇ ਜਾਂ ਖੇਤਰ ਧੁੰਦਲਾ ਕਰਨ ਲਈ ਖਿੱਚੋ</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ਆਡੀਓ ਸੁਨੇਹਾ ਨੂੰ ਰਿਕਾਰਡ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ ਅਤੇ ਰੱਖੋ, ਭੇਜਣ ਲਈ ਛੱਡੋ </string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="InviteActivity_choose_contacts">ਸੰਪਰਕ ਚੁਣੋ</string>
+  <string name="InviteActivity_share_with_contacts">ਸੰਪਰਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="InviteActivity_choose_how_to_share">ਸਾਂਝਾ ਕਰਨ ਦੀ ਚੋਣ ਕਰੋ</string>
   <string name="InviteActivity_cancel">ਰੱਦ ਕਰੋ</string>
   <string name="InviteActivity_sending">ਭੇਜ ਰਿਹਾ ਹੈ … </string>
   <string name="InviteActivity_heart_content_description">ਦਿਲ</string>
@@ -478,20 +524,44 @@
   <string name="MediaOverviewActivity_Files">ਫਾਇਲਾਂ</string>
   <string name="MediaOverviewActivity_Audio">ਆਡੀਓ</string>
   <string name="MediaOverviewActivity_All">ਸਾਰੇ</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">ਚੁਣੀਆਂ ਗਈਆਂ ਚੀਜ਼ਾਂ ਮਿਟਾਉਣੀਆਂ ਹਨ?</item>
+    <item quantity="other">ਚੁਣੀਆਂ ਗਈਆਂ ਚੀਜ਼ਾਂ ਮਿਟਾਉਣੀਆਂ ਹਨ?</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
   <string name="MediaOverviewActivity_Select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
   <string name="MediaOverviewActivity_collecting_attachments">ਅਟੈਚਮੈਂਟ ਇਕੱਠੇ ਕਰਨੇ …</string>
+  <string name="MediaOverviewActivity_Sort_by">ਕ੍ਰਮਬੱਧ</string>
+  <string name="MediaOverviewActivity_Newest">ਨਵੀਨਤਮ</string>
+  <string name="MediaOverviewActivity_Oldest">ਸਭ ਤੋਂ ਪੁਰਾਣਾ</string>
+  <string name="MediaOverviewActivity_Storage_used">ਸਟੋਰੇਜ਼ ਦੀ ਵਰਤੋਂ</string>
+  <string name="MediaOverviewActivity_All_storage_use">ਸਾਰੀ ਸਟੋਰੇਜ ਦੀ ਵਰਤੋਂ</string>
+  <string name="MediaOverviewActivity_Grid_view_description">ਗਰਿੱਡ ਝਲਕ</string>
+  <string name="MediaOverviewActivity_List_view_description">ਸੂਚੀ ਝਲਕ</string>
+  <string name="MediaOverviewActivity_Selected_description">ਚੁਣਿਆ ਹੋਇਆ</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d ਚੀਜਾਂ %2$s</item>
+    <item quantity="other">%1$d ਚੀਜਾਂ %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d ਚੀਜਾਂ</item>
+    <item quantity="other">%1$d ਚੀਜਾਂ</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">ਫਾਇਲ</string>
   <string name="MediaOverviewActivity_audio">ਆਡੀਓ</string>
   <string name="MediaOverviewActivity_video">ਵੀਡੀਓ</string>
   <string name="MediaOverviewActivity_image">ਤਸਵੀਰ</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s ਵਲੋਂ ਭੇਜਿਆ</string>
   <string name="MediaOverviewActivity_sent_by_you">ਤੁਹਾਡੇ ਵਲੋਂ ਭੇਜਿਆ</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ਦੁਆਰਾ %2$s ਨੂੰ ਭੇਜਿਆ</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">ਤੁਹਾਡੇ ਦੁਆਰਾ %1$s ਨੂੰ ਭੇਜਿਆ</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">ਪੇਸ਼ ਕਰਦੇ ਹਾਂ ਪ੍ਰਤਿਕਿਰਿਆਵਾਂ</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ \'ਤੇ ਟੈਪ ਕਰਕੇ ਉਸ ਨੂੰ ਦਬਾ ਕੇ ਰੱਖੋ ਅਤੇ ਤੁਰੰਤ ਜਵਾਬ ਦਿਓ ਕਿ ਤੁਸੀਂ ਕਿਸ ਤਰ੍ਹਾਂ ਮਹਿਸੂਸ ਕਰਦੇ ਹੋ.</string>
   <string name="Megaphones_remind_me_later">ਮੈਨੂੰ ਬਾਅਦ ਵਿੱਚ ਯਾਦ ਕਰਾਓ</string>
   <string name="Megaphones_verify_your_signal_pin">ਆਪਣੇ Signal ਦੇ ਪਿਨ ਦੀ ਤਸਦੀਕ ਕਰੋ</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕਦੇ-ਕਦਾਈਂ ਤੁਹਾਡਾ ਪਿਨ ਤਸਦੀਕ ਕਰਨ ਲਈ ਕਹਾਂਗੇ ਤਾਂ ਜੋ ਤੁਹਾਨੂੰ ਇਹ ਯਾਦ ਰਹੇ.</string>
   <string name="Megaphones_verify_pin">ਪਿਨ ਦੀ ਤਸਦੀਕ ਕਰੋ</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ਕਾਲ ਪ੍ਰਗਤੀ ਵਿੱਚ ਹੈ</string>
@@ -532,6 +602,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਦੀ ਵਰਤੋਂ ਨਾਲ ਇਕ੍ਰਿਪਟਡ ਸੰਦੇਸ਼ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਿਹੜਾ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ ਕਿਰਪਾ ਕਰਕੇ ਭੇਜਣ ਵਾਲੇ ਨੂੰ ਤਾਜ਼ਾ ਹਾਲੀਆ ਵਰਜ਼ਨ ਤੇ ਅਪਡੇਟ ਕਰਨ ਅਤੇ ਸੁਨੇਹਾ ਦੁਬਾਰਾ ਭੇਜਣ ਲਈ ਕਹੋ.</string>
   <string name="MessageRecord_left_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਛੱਡ ਦਿੱਤਾ ਹੈ</string>
   <string name="MessageRecord_you_updated_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਅਪਡੇਟ ਕੀਤਾ.</string>
+  <string name="MessageRecord_the_group_was_updated">ਸਮੂਹ ਨੂੰ ਅਪਡੇਟ ਕੀਤਾ ਗਿਆ ਸੀ</string>
   <string name="MessageRecord_you_called">ਤੁਸੀਂ ਕਾਲ ਕੀਤੀ </string>
   <string name="MessageRecord_called_you">ਸੰਪਰਕ ਨੂੰ ਕਾਲ ਕੀਤੀ </string>
   <string name="MessageRecord_missed_call">ਮਿਸਡ ਕਾਲ</string>
@@ -544,20 +615,46 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sਨੇ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">ਤੁਸੀਂ ਅਲੋਪਿੰਗ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %1$s ਤੇ ਸੈਟ ਕਰ ਦਿੱਤਾ ਹੈ </string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ਨੇ ਅਲੋਪਿੰਗ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %2$s ਤੇ ਸੈਟ ਕਰ ਦਿੱਤਾ ਹੈ </string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">ਅਲੋਪ ਹੋ ਰਹੇ ਸੰਦੇਸ਼ ਟਾਈਮਰ ਨੂੰ %1$s ਨਿਰਧਾਰਤ ਕੀਤਾ ਗਿਆ ਹੈ</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s ਨੇ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਨੂੰ %2$s ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ਨੇ ਉਹਨਾਂ ਦਾ ਪ੍ਰੋਫਾਈਲ ਨਾਮ %2$s ਤੋਂ %3$s ਵਿੱਚ ਬਦਲਿਆ.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s ਨੇ ਆਪਣਾ ਪ੍ਰੋਫਾਈਲ ਬਦਲਿਆ</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਬਣਾਇਆ.</string>
   <string name="MessageRecord_group_updated">ਗਰੁੱਪ ਅਪਡੇਟ ਹੋਇਆ.</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">ਤੁਸੀਂ %1$s ਨੂੰ ਸ਼ਾਮਲ ਕੀਤਾ.</string>
+  <string name="MessageRecord_s_added_s">%1$s ਨੇ %2$s ਨੂੰ ਸ਼ਾਮਲ ਕੀਤਾ.</string>
+  <string name="MessageRecord_s_added_you">%1$s ਨੇ ਤੁਹਾਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ.</string>
   <string name="MessageRecord_you_joined_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਏ.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s ਗਰੁੱਪ ਵਿਚ ਸ਼ਾਮਲ ਹੋ ਗਏ.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">ਤੁਸੀਂ %1$s ਨੂੰ ਹਟਾਇਆ।</string>
+  <string name="MessageRecord_s_removed_s">%1$s ਨੇ %2$s ਨੂੰ ਕੱਢ ਦਿੱਤਾ.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s ਨੇ ਤੁਹਾਨੂੰ ਸਮੂਹ ਤੋਂ ਹਟਾ ਦਿੱਤਾ</string>
   <string name="MessageRecord_you_left_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
   <string name="MessageRecord_s_left_the_group">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">ਤੁਸੀਂ ਹੁਣ ਸਮੂਹ ਵਿੱਚ ਨਹੀਂ ਹੋ</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ਹੁਣ ਗਰੁੱਪ ਵਿਚ ਨਹੀਂ ਹੈ</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">ਤੁਸੀਂ %1$s ਨੂੰ ਪ੍ਰਬੰਧਕ ਬਣਾਇਆ</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s ਨੇ %2$s ਨੂੰ ਇੱਕ ਪ੍ਰਬੰਧਕ ਬਣਾਇਆ.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s ਨੇ ਤੁਹਾਨੂੰ ਪ੍ਰਬੰਧਕ ਬਣਾਇਆ.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">ਤੁਸੀਂ %1$s ਦੇ ਪ੍ਰਬੰਧਕ ਅਧਿਕਾਰ ਰੱਦ ਕਰ ਦਿੱਤੇ.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ਨੇ ਤੁਹਾਡੇ ਪ੍ਰਬੰਧਕ ਅਧਿਕਾਰਾਂ ਨੂੰ ਰੱਦ ਕਰ ਦਿੱਤਾ.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ਨੇ %2$s ਦੇ ਪ੍ਰਬੰਧਕ ਅਧਿਕਾਰ ਰੱਦ ਕਰ ਦਿੱਤੇ.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s ਹੁਣ ਪ੍ਰਬੰਧਕ ਹੈ.</string>
   <string name="MessageRecord_you_are_now_an_admin">ਹੁਣ ਤੁਸੀਂ ਇੱਕ ਐਡਮਿਨ ਹੋ.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ਹੁਣ ਕੋਈ ਪ੍ਰਬੰਧਕ ਨਹੀਂ ਹੈ</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">ਤੁਸੀਂ ਹੁਣ ਪ੍ਰਬੰਧਕ ਨਹੀਂ ਹੋ</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">ਤੁਸੀਂ %1$s ਨੂੰ ਸਮੂਹ ਵਿੱਚ ਬੁਲਾਇਆ ਹੈ</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s ਨੇ ਤੁਹਾਨੂੰ ਸਮੂਹ ਵਿੱਚ ਬੁਲਾਇਆ</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s ਨੇ 1 ਵਿਅਕਤੀ ਨੂੰ ਸਮੂਹ ਵਿੱਚ ਬੁਲਾਇਆ</item>
+    <item quantity="other">%1$s ਨੇ %2$d ਲੋਕਾਂ ਨੂੰ ਸਮੂਹ ਵਿੱਚ ਬੁਲਾਇਆ</item>
+  </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">ਤੁਹਾਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸੱਦਾ ਭੇਜਿਆ ਗਿਆ ਸੀ.</string>
   <!--GV2 invitation revokes-->
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ਗਰੁੱਪ ਵਿੱਚ ਤੁਹਾਡੇ ਸੱਦੇ ਨੂੰ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਸੀ.</string>
@@ -1089,6 +1186,7 @@
     <item quantity="other">%d ਹਫ਼ਤੇ</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw  </string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s ਨਾਲ ਤੁਹਾਡਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਬਦਲ ਗਿਆ ਹੈ ਅਤੇ ਹੁਣ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹੈ</string>
   <string name="IdentityUtil_unverified_banner_two">%1$s ਅਤੇ %2$s ਦੇ ਨਾਲ ਤੁਹਾਡਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਹੁਣ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹੈ</string>
@@ -1640,10 +1738,15 @@
   <string name="RecipientBottomSheet_block">ਬਲਾਕ</string>
   <string name="RecipientBottomSheet_unblock">ਅਨਬਲੌਕ</string>
   <string name="RecipientBottomSheet_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="RecipientBottomSheet_add_to_a_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="RecipientBottomSheet_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
   <string name="RecipientBottomSheet_message_description">ਸੁਨੇਹਾ</string>
+  <string name="RecipientBottomSheet_voice_call_description">ਵੌਇਸ ਕਾਲ</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">ਅਸੁਰੱਖਿਅਤ ਵੌਇਸ ਕਾਲ</string>
+  <string name="RecipientBottomSheet_video_call_description">ਵੀਡੀਓ ਕਾਲ</string>
   <string name="RecipientBottomSheet_remove">ਹਟਾਓ </string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <string name="GroupRecipientListItem_admin">ਐਡਮਿਨ</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

@@ -181,11 +181,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">该设备看起来不支持拨号操作。</string>
   <string name="ConversationActivity_leave_group">离开群组？</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">是否确定离开该群组？</string>
+  <string name="ConversationActivity_choose_new_admin">选择新的管理员。</string>
   <string name="ConversationActivity_transport_insecure_sms">不安全的短信</string>
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">用 Signal 来聊天吧 %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">离开群组时出错</string> -->
   <string name="ConversationActivity_specify_recipient">请选择联系人</string>
   <string name="ConversationActivity_unblock_this_contact_question">取消屏蔽该联系人？</string>
   <string name="ConversationActivity_unblock_this_group_question">取消屏蔽该群组？</string>
@@ -342,6 +342,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF 图片</string>
   <string name="GiphyFragmentPagerAdapter_stickers">表情图片</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">选择新的管理员。</string>
+  <string name="ChooseNewAdminActivity_done">完成</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">是否与该群组分享你的个人资料名称和头像？</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">对于该群组现有和未来成员，你的个人资料名称和头像是否可见？</string>
@@ -349,6 +352,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">您</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">了解更多</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">你邀请的人</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">其他群组成员的邀请</string>
@@ -364,12 +369,12 @@
   <string name="AddGroupDetailsFragment__remove">删除</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">阅后即焚</string>
+  <string name="ManageGroupActivity_add_members">添加成员</string>
   <string name="ManageGroupActivity_leave_group">离开群组</string>
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
   <string name="ManageGroupActivity_off">关</string>
   <string name="ManageGroupActivity_on">开</string>
-  <string name="ManageGroupActivity_add_members">添加成员</string>
   <string name="ManageGroupActivity_view_all_members">查看全体群成员</string>
   <string name="ManageGroupActivity_none">无</string>
   <!--ManageRecipientActivity-->
@@ -1107,6 +1112,7 @@
     <item quantity="other">%d weeks</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d 周</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">您与 %s 的安全码已更改，并不再标识为已验证</string>
   <string name="IdentityUtil_unverified_banner_two">您与 %1$s 和 %2$s 的安全码已不再标识未已验证</string>
@@ -1745,5 +1751,6 @@
   <string name="RecipientBottomSheet_remove">删除</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">已复制到剪切板</string>
   <string name="GroupRecipientListItem_admin">管理员</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>
