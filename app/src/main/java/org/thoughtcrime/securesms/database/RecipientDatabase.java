@@ -56,7 +56,6 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.StorageId;
-import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
@@ -1832,7 +1831,7 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
-    query = buildGlobPattern(query);
+    query = buildCaseInsensitiveGlobPattern(query);
 
     String   selection = BLOCKED     + " = ? AND " +
                          REGISTERED  + " = ? AND " +
@@ -1870,7 +1869,7 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor queryNonSignalContacts(@NonNull String query) {
-    query = buildGlobPattern(query);
+    query = buildCaseInsensitiveGlobPattern(query);
 
     String   selection = BLOCKED    + " = ? AND " +
                          REGISTERED + " != ? AND " +
@@ -1889,8 +1888,7 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor queryAllContacts(@NonNull String query) {
-    query = buildGlobPattern(query);
-    query = "*" + query + "*";
+    query = buildCaseInsensitiveGlobPattern(query);
 
     String   selection = BLOCKED + " = ? AND " +
                          "(" +
@@ -1904,7 +1902,14 @@ public class RecipientDatabase extends Database {
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
   }
 
-  private static String buildGlobPattern(@NonNull String query) {
+  /**
+   * Builds a case-insensitive GLOB pattern for fuzzy text queries. Works with all unicode
+   * characters.
+   *
+   * Ex:
+   *   cat -> [cC][aA][tT]
+   */
+  private static String buildCaseInsensitiveGlobPattern(@NonNull String query) {
     if (TextUtils.isEmpty(query)) {
       return "*";
     }
