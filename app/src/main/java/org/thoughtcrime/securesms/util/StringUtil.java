@@ -61,4 +61,11 @@ public final class StringUtil {
   public static boolean isVisuallyEmpty(char c) {
     return Character.isWhitespace(c) || WHITESPACE.contains(c);
   }
+
+  /**
+   * @return A string representation of the provided unicode code point.
+   */
+  public static @NonNull String codePointToString(int codePoint) {
+    return new String(Character.toChars(codePoint));
+  }
 }

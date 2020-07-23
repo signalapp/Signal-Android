@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -1831,17 +1832,16 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
-    query = TextUtils.isEmpty(query) ? "*" : query;
-    query = "%" + query + "%";
+    query = buildGlobPattern(query);
 
     String   selection = BLOCKED     + " = ? AND " +
                          REGISTERED  + " = ? AND " +
                          GROUP_ID    + " IS NULL AND " +
                          "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
                          "(" +
-                           PHONE     + " LIKE ? OR " +
-                           SORT_NAME + " LIKE ? OR " +
-                           USERNAME  + " LIKE ?" +
+                           PHONE     + " GLOB ? OR " +
+                           SORT_NAME + " GLOB ? OR " +
+                           USERNAME  + " GLOB ?" +
                          ")";
     String[] args;
 
@@ -1870,8 +1870,7 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor queryNonSignalContacts(@NonNull String query) {
-    query = TextUtils.isEmpty(query) ? "*" : query;
-    query = "%" + query + "%";
+    query = buildGlobPattern(query);
 
     String   selection = BLOCKED    + " = ? AND " +
                          REGISTERED + " != ? AND " +
@@ -1879,9 +1878,9 @@ public class RecipientDatabase extends Database {
                          SYSTEM_DISPLAY_NAME + " NOT NULL AND " +
                          "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL) AND " +
                          "(" +
-                           PHONE               + " LIKE ? OR " +
-                           EMAIL               + " LIKE ? OR " +
-                           SYSTEM_DISPLAY_NAME + " LIKE ?" +
+                           PHONE               + " GLOB ? OR " +
+                           EMAIL               + " GLOB ? OR " +
+                           SYSTEM_DISPLAY_NAME + " GLOB ?" +
                          ")";
     String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query };
     String   orderBy   = SYSTEM_DISPLAY_NAME + ", " + PHONE;
@@ -1890,19 +1889,38 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor queryAllContacts(@NonNull String query) {
-    query = TextUtils.isEmpty(query) ? "*" : query;
-    query = "%" + query + "%";
+    query = buildGlobPattern(query);
+    query = "*" + query + "*";
 
     String   selection = BLOCKED + " = ? AND " +
                          "(" +
-                           SORT_NAME + " LIKE ? OR " +
-                           USERNAME  + " LIKE ? OR " +
-                           PHONE     + " LIKE ? OR " +
-                           EMAIL     + " LIKE ?" +
+                           SORT_NAME + " GLOB ? OR " +
+                           USERNAME  + " GLOB ? OR " +
+                           PHONE     + " GLOB ? OR " +
+                           EMAIL     + " GLOB ?" +
                          ")";
     String[] args      = new String[] { "0", query, query, query, query };
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
+  }
+
+  private static String buildGlobPattern(@NonNull String query) {
+    if (TextUtils.isEmpty(query)) {
+      return "*";
+    }
+
+    StringBuilder pattern = new StringBuilder();
+
+    for (int i = 0, len = query.codePointCount(0, query.length()); i < len; i++) {
+      String point = StringUtil.codePointToString(query.codePointAt(i));
+
+      pattern.append("[");
+      pattern.append(point.toLowerCase());
+      pattern.append(point.toUpperCase());
+      pattern.append("]");
+    }
+
+    return "*" + pattern.toString() + "*";
   }
 
   public @NonNull List<Recipient> getRecipientsForMultiDeviceSync() {
