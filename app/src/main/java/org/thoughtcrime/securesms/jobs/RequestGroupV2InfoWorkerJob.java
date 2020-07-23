@@ -71,11 +71,6 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, GroupNotAMemberException, GroupChangeBusyException {
-    if (!FeatureFlags.groupsV2()) {
-      Log.w(TAG, "Group update skipped due to feature flag " + groupId);
-      return;
-    }
-
     Log.i(TAG, "Updating group to revision " + toRevision);
 
     Optional<GroupDatabase.GroupRecord> group = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);

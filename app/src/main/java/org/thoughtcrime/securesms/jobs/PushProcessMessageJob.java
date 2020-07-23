@@ -1755,6 +1755,12 @@ public final class PushProcessMessageJob extends BaseJob {
       } else if (conversation.isGroup()) {
         GroupDatabase     groupDatabase = DatabaseFactory.getGroupDatabase(context);
         Optional<GroupId> groupId       = GroupUtil.idFromGroupContext(message.getGroupContext());
+        boolean           isGv2Message  = message.isGroupV2Message();
+
+        if (isGv2Message && !FeatureFlags.groupsV2() && groupDatabase.isUnknownGroup(groupId.get())) {
+          Log.i(TAG, "Ignoring GV2 message for a new group by feature flag.");
+          return true;
+        }
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           return false;
@@ -1763,16 +1769,10 @@ public final class PushProcessMessageJob extends BaseJob {
         boolean isTextMessage    = message.getBody().isPresent();
         boolean isMediaMessage   = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent();
         boolean isExpireMessage  = message.isExpirationUpdate();
-        boolean isGv2Message     = message.isGroupV2Message();
         boolean isGv2Update      = message.isGroupV2Update();
         boolean isContentMessage = !message.isGroupV1Update() && !isGv2Update && !isExpireMessage && (isTextMessage || isMediaMessage);
         boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
         boolean isLeaveMessage   = message.getGroupContext().isPresent() && message.getGroupContext().get().getGroupV1Type() == SignalServiceGroup.Type.QUIT;
-
-        if (isGv2Message && !FeatureFlags.groupsV2()) {
-          Log.i(TAG, "Ignoring GV2 message by feature flag.");
-          return true;
-        }
 
         return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage && !isGv2Update);
       } else {

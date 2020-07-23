@@ -150,7 +150,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       stopwatch.split("registered");
 
-      if (FeatureFlags.groupsV2()) {
+      if (FeatureFlags.groupsV2create()) {
         try {
           new GroupsV2CapabilityChecker().refreshCapabilitiesIfNecessary(resolved);
         } catch (IOException e) {
