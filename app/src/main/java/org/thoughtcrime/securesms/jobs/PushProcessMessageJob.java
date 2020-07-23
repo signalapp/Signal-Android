@@ -1781,12 +1781,14 @@ public final class PushProcessMessageJob extends BaseJob {
     } else if (content.getCallMessage().isPresent()) {
       return sender.isBlocked();
     } else if (content.getTypingMessage().isPresent()) {
+      if (sender.isBlocked()) {
+        return true;
+      }
+
       if (content.getTypingMessage().get().getGroupId().isPresent()) {
         GroupId   groupId        = GroupId.push(content.getTypingMessage().get().getGroupId().get());
         Recipient groupRecipient = Recipient.externalGroup(context, groupId);
         return groupRecipient.isBlocked() || !groupRecipient.isActiveGroup();
-      } else {
-        return sender.isBlocked();
       }
     }
 
