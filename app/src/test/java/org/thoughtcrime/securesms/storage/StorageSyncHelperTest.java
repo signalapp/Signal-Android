@@ -417,7 +417,7 @@ public final class StorageSyncHelperTest {
                                              boolean blocked,
                                              boolean profileSharing)
   {
-    return new SignalGroupV1Record.Builder(byteArray(key), byteArray(groupId, 16)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
+    return new SignalGroupV1Record.Builder(byteArray(key), byteArray(groupId)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
   }
 
   private static SignalGroupV2Record groupV2(int key,

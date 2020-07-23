@@ -40,7 +40,7 @@ public abstract class GroupId {
   }
 
   public static @NonNull GroupId.V1 v1(byte[] gv1GroupIdBytes) throws BadGroupIdException {
-    if (gv1GroupIdBytes.length != MMS_BYTE_LENGTH) {
+    if (gv1GroupIdBytes.length == V2_BYTE_LENGTH) {
       throw new BadGroupIdException();
     }
     return new GroupId.V1(gv1GroupIdBytes);

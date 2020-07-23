@@ -31,7 +31,7 @@ public class RecipientIdFollowUpJobMigrationTest {
   @Test
   public void migrate_requestGroupInfoJob_good() throws Exception {
     JobData testData = new JobData("RequestGroupInfoJob", null, new Data.Builder().putString("source", "1")
-                                                                                  .putString("group_id", "__textsecure_group__!abcdef01234567899876543210fedcba")
+                                                                                  .putString("group_id", "__textsecure_group__!abcd")
                                                                                   .build());
     RecipientIdFollowUpJobMigration subject   = new RecipientIdFollowUpJobMigration();
     JobData                         converted = subject.migrate(testData);
@@ -39,7 +39,7 @@ public class RecipientIdFollowUpJobMigrationTest {
     assertEquals("RequestGroupInfoJob", converted.getFactoryKey());
     assertNull(converted.getQueueKey());
     assertEquals("1", converted.getData().getString("source"));
-    assertEquals("__textsecure_group__!abcdef01234567899876543210fedcba", converted.getData().getString("group_id"));
+    assertEquals("__textsecure_group__!abcd", converted.getData().getString("group_id"));
 
     new RequestGroupInfoJob.Factory().create(mock(Job.Parameters.class), converted.getData());
   }
