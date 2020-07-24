@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -24,17 +25,17 @@ public final class GroupsV2CapabilityChecker {
 
   private static final String TAG = Log.tag(GroupsV2CapabilityChecker.class);
 
-  public GroupsV2CapabilityChecker() {}
+  private GroupsV2CapabilityChecker() {}
 
   /**
    * @param resolved A collection of resolved recipients.
    */
   @WorkerThread
-  public void refreshCapabilitiesIfNecessary(@NonNull Collection<Recipient> resolved) throws IOException {
-    List<RecipientId> needsRefresh = Stream.of(resolved)
-                                           .filter(r -> r.getGroupsV2Capability() != Recipient.Capability.SUPPORTED)
-                                           .map(Recipient::getId)
-                                           .toList();
+  public static void refreshCapabilitiesIfNecessary(@NonNull Collection<Recipient> resolved) throws IOException {
+    Set<RecipientId> needsRefresh = Stream.of(resolved)
+                                          .filter(r -> r.getGroupsV2Capability() != Recipient.Capability.SUPPORTED)
+                                          .map(Recipient::getId)
+                                          .collect(Collectors.toSet());
 
     if (needsRefresh.size() > 0) {
       Log.d(TAG, "[refreshCapabilitiesIfNecessary] Need to refresh " + needsRefresh.size() + " recipients.");
@@ -51,7 +52,7 @@ public final class GroupsV2CapabilityChecker {
   }
 
   @WorkerThread
-  boolean allAndSelfSupportGroupsV2AndUuid(@NonNull Collection<RecipientId> recipientIds)
+  static boolean allAndSelfSupportGroupsV2AndUuid(@NonNull Collection<RecipientId> recipientIds)
       throws IOException
   {
     HashSet<RecipientId> recipientIdsSet = new HashSet<>(recipientIds);
@@ -62,7 +63,7 @@ public final class GroupsV2CapabilityChecker {
   }
 
   @WorkerThread
-  boolean allSupportGroupsV2AndUuid(@NonNull Collection<RecipientId> recipientIds)
+  static boolean allSupportGroupsV2AndUuid(@NonNull Collection<RecipientId> recipientIds)
       throws IOException
   {
     Set<RecipientId> recipientIdsSet = new HashSet<>(recipientIds);

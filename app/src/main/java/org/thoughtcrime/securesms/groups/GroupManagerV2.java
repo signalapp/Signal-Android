@@ -65,15 +65,14 @@ final class GroupManagerV2 {
 
   private static final String TAG = Log.tag(GroupManagerV2.class);
 
-  private final Context                   context;
-  private final GroupDatabase             groupDatabase;
-  private final GroupsV2Api               groupsV2Api;
-  private final GroupsV2Operations        groupsV2Operations;
-  private final GroupsV2Authorization     authorization;
-  private final GroupsV2StateProcessor    groupsV2StateProcessor;
-  private final UUID                      selfUuid;
-  private final GroupCandidateHelper      groupCandidateHelper;
-  private final GroupsV2CapabilityChecker capabilityChecker;
+  private final Context                context;
+  private final GroupDatabase          groupDatabase;
+  private final GroupsV2Api            groupsV2Api;
+  private final GroupsV2Operations     groupsV2Operations;
+  private final GroupsV2Authorization  authorization;
+  private final GroupsV2StateProcessor groupsV2StateProcessor;
+  private final UUID                   selfUuid;
+  private final GroupCandidateHelper   groupCandidateHelper;
 
   GroupManagerV2(@NonNull Context context) {
     this.context                = context;
@@ -84,7 +83,6 @@ final class GroupManagerV2 {
     this.groupsV2StateProcessor = ApplicationDependencies.getGroupsV2StateProcessor();
     this.selfUuid               = Recipient.self().getUuid().get();
     this.groupCandidateHelper   = new GroupCandidateHelper(context);
-    this.capabilityChecker      = new GroupsV2CapabilityChecker();
   }
 
   @WorkerThread
@@ -116,7 +114,7 @@ final class GroupManagerV2 {
                                                         @Nullable byte[] avatar)
         throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception
     {
-      if (!capabilityChecker.allAndSelfSupportGroupsV2AndUuid(members)) {
+      if (!GroupsV2CapabilityChecker.allAndSelfSupportGroupsV2AndUuid(members)) {
         throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 or UUID capabilities");
       }
 
@@ -196,7 +194,7 @@ final class GroupManagerV2 {
     @NonNull GroupManager.GroupActionResult addMembers(@NonNull Collection<RecipientId> newMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, MembershipNotSuitableForV2Exception
     {
-      if (!capabilityChecker.allSupportGroupsV2AndUuid(newMembers)) {
+      if (!GroupsV2CapabilityChecker.allSupportGroupsV2AndUuid(newMembers)) {
         throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 or UUID capabilities");
       }
 

@@ -152,7 +152,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       if (FeatureFlags.groupsV2create()) {
         try {
-          new GroupsV2CapabilityChecker().refreshCapabilitiesIfNecessary(resolved);
+          GroupsV2CapabilityChecker.refreshCapabilitiesIfNecessary(resolved);
         } catch (IOException e) {
           Log.w(TAG, "Failed to refresh all recipient capabilities.", e);
         }

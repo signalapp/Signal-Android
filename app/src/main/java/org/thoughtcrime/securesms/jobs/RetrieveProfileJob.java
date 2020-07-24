@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.zkgroup.profiles.ProfileKey;
@@ -50,10 +50,9 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -73,22 +72,20 @@ public class RetrieveProfileJob extends BaseJob {
 
   private static final String KEY_RECIPIENTS = "recipients";
 
-  private final List<RecipientId> recipientIds;
+  private final Set<RecipientId> recipientIds;
 
   /**
-   * Identical to {@link #enqueue(Collection)})}, but run on a background thread for convenience.
+   * Identical to {@link #enqueue(Set)})}, but run on a background thread for convenience.
    */
   public static void enqueueAsync(@NonNull RecipientId recipientId) {
-    SignalExecutors.BOUNDED.execute(() -> {
-      ApplicationDependencies.getJobManager().add(forRecipient(recipientId));
-    });
+    SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(forRecipient(recipientId)));
   }
 
   /**
    * Submits the necessary job to refresh the profile of the requested recipient. Works for any
    * RecipientId, including individuals, groups, or yourself.
    *
-   * Identical to {@link #enqueue(Collection)})}
+   * Identical to {@link #enqueue(Set)})}
    */
   @WorkerThread
   public static void enqueue(@NonNull RecipientId recipientId) {
@@ -100,7 +97,7 @@ public class RetrieveProfileJob extends BaseJob {
    * RecipientIds, including individuals, groups, or yourself.
    */
   @WorkerThread
-  public static void enqueue(@NonNull Collection<RecipientId> recipientIds) {
+  public static void enqueue(@NonNull Set<RecipientId> recipientIds) {
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     for (Job job : forRecipients(recipientIds)) {
@@ -121,26 +118,28 @@ public class RetrieveProfileJob extends BaseJob {
       Context         context    = ApplicationDependencies.getApplication();
       List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-      return new RetrieveProfileJob(Stream.of(recipients).map(Recipient::getId).toList());
+      return new RetrieveProfileJob(Stream.of(recipients).map(Recipient::getId).collect(Collectors.toSet()));
     } else {
-      return new RetrieveProfileJob(Collections.singletonList(recipientId));
+      return new RetrieveProfileJob(Collections.singleton(recipientId));
     }
   }
 
   /**
    * Works for any RecipientId, whether it's an individual, group, or yourself.
+   *
+   * @return A list of length 2 or less. Two iff you are in the recipients.
    */
   @WorkerThread
-  public static @NonNull List<Job> forRecipients(@NonNull Collection<RecipientId> recipientIds) {
-    Context           context    = ApplicationDependencies.getApplication();
-    List<RecipientId> combined   = new LinkedList<>();
-    List<Job>         jobs       = new LinkedList<>();
+  public static @NonNull List<Job> forRecipients(@NonNull Set<RecipientId> recipientIds) {
+    Context          context     = ApplicationDependencies.getApplication();
+    Set<RecipientId> combined    = new HashSet<>(recipientIds.size());
+    boolean          includeSelf = false;
 
     for (RecipientId recipientId : recipientIds) {
       Recipient recipient = Recipient.resolved(recipientId);
 
       if (recipient.isLocalNumber()) {
-        jobs.add(new RefreshOwnProfileJob());
+        includeSelf = true;
       } else if (recipient.isGroup()) {
         List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
         combined.addAll(Stream.of(recipients).map(Recipient::getId).toList());
@@ -149,7 +148,15 @@ public class RetrieveProfileJob extends BaseJob {
       }
     }
 
-    jobs.add(new RetrieveProfileJob(combined));
+    List<Job> jobs = new ArrayList<>(2);
+
+    if (includeSelf) {
+      jobs.add(new RefreshOwnProfileJob());
+    }
+
+    if (combined.size() > 0) {
+      jobs.add(new RetrieveProfileJob(combined));
+    }
 
     return jobs;
   }
@@ -158,7 +165,7 @@ public class RetrieveProfileJob extends BaseJob {
    * Will fetch some profiles to ensure we're decently up-to-date if we haven't done so within a
    * certain time period.
    */
-  public static void enqueueRoutineFetchIfNeccessary(Application application) {
+  public static void enqueueRoutineFetchIfNecessary(Application application) {
     long timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc().getLastProfileRefreshTime();
     if (timeSinceRefresh < TimeUnit.HOURS.toMillis(12)) {
       Log.i(TAG, "Too soon to refresh. Did the last refresh " + timeSinceRefresh + " ms ago.");
@@ -175,7 +182,7 @@ public class RetrieveProfileJob extends BaseJob {
 
       if (ids.size() > 0) {
         Log.i(TAG, "Optimistically refreshing " + ids.size() + " eligible recipient(s).");
-        enqueue(ids);
+        enqueue(new HashSet<>(ids));
       } else {
         Log.i(TAG, "No recipients to refresh.");
       }
@@ -184,7 +191,7 @@ public class RetrieveProfileJob extends BaseJob {
     });
   }
 
-  private RetrieveProfileJob(@NonNull List<RecipientId> recipientIds) {
+  private RetrieveProfileJob(@NonNull Set<RecipientId> recipientIds) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(3)
@@ -192,7 +199,7 @@ public class RetrieveProfileJob extends BaseJob {
          recipientIds);
   }
 
-  private RetrieveProfileJob(@NonNull Job.Parameters parameters, @NonNull List<RecipientId> recipientIds) {
+  private RetrieveProfileJob(@NonNull Job.Parameters parameters, @NonNull Set<RecipientId> recipientIds) {
     super(parameters);
     this.recipientIds = recipientIds;
   }
@@ -279,7 +286,7 @@ public class RetrieveProfileJob extends BaseJob {
   @Override
   public void onFailure() {}
 
-  private void process(Recipient recipient, ProfileAndCredential profileAndCredential) throws IOException {
+  private void process(Recipient recipient, ProfileAndCredential profileAndCredential) {
     SignalServiceProfile profile              = profileAndCredential.getProfile();
     ProfileKey           recipientProfileKey  = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
 
@@ -410,7 +417,7 @@ public class RetrieveProfileJob extends BaseJob {
     }
   }
 
-  private void setProfileAvatar(Recipient recipient, String profileAvatar) {
+  private static void setProfileAvatar(Recipient recipient, String profileAvatar) {
     if (recipient.getProfileKey() == null) return;
 
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
@@ -434,8 +441,8 @@ public class RetrieveProfileJob extends BaseJob {
 
     @Override
     public @NonNull RetrieveProfileJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      String[]          ids          = data.getStringArray(KEY_RECIPIENTS);
-      List<RecipientId> recipientIds = Stream.of(ids).map(RecipientId::from).toList();
+      String[]         ids          = data.getStringArray(KEY_RECIPIENTS);
+      Set<RecipientId> recipientIds = Stream.of(ids).map(RecipientId::from).collect(Collectors.toSet());
 
       return new RetrieveProfileJob(parameters, recipientIds);
     }
