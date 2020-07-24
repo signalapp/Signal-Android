@@ -376,19 +376,27 @@ public class RetrieveProfileJob extends BaseJob {
 
       String plaintextProfileName = Util.emptyIfNull(ProfileUtil.decryptName(profileKey, profileName));
 
-      if (!Objects.equals(plaintextProfileName, recipient.getProfileName().serialize())) {
-        String newProfileName      = TextUtils.isEmpty(plaintextProfileName) ? ProfileName.EMPTY.serialize() : plaintextProfileName;
-        String previousProfileName = recipient.getProfileName().serialize();
+      ProfileName remoteProfileName = ProfileName.fromSerialized(plaintextProfileName);
+      ProfileName localProfileName  = recipient.getProfileName();
 
+      if (!remoteProfileName.equals(localProfileName)) {
         Log.i(TAG, "Profile name updated. Writing new value.");
-        DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getId(), ProfileName.fromSerialized(plaintextProfileName));
+        DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getId(), remoteProfileName);
 
-        if (!recipient.isBlocked() && !recipient.isGroup() && !recipient.isLocalNumber() && !TextUtils.isEmpty(previousProfileName)) {
+        String remoteDisplayName = remoteProfileName.toString();
+        String localDisplayName  = localProfileName.toString();
+
+        if (!recipient.isBlocked()      &&
+            !recipient.isGroup()        &&
+            !recipient.isLocalNumber()  &&
+            !localDisplayName.isEmpty() &&
+            !remoteDisplayName.equals(localDisplayName))
+        {
           Log.i(TAG, "Writing a profile name change event.");
-          DatabaseFactory.getSmsDatabase(context).insertProfileNameChangeMessages(recipient, newProfileName, previousProfileName);
+          DatabaseFactory.getSmsDatabase(context).insertProfileNameChangeMessages(recipient, remoteDisplayName, localDisplayName);
         } else {
-          Log.i(TAG, String.format(Locale.US, "Name changed, but wasn't relevant to write an event. blocked: %b, group: %b, self: %b, firstSet: %b",
-                                               recipient.isBlocked(), recipient.isGroup(), recipient.isLocalNumber(), TextUtils.isEmpty(previousProfileName)));
+          Log.i(TAG, String.format(Locale.US, "Name changed, but wasn't relevant to write an event. blocked: %s, group: %s, self: %s, firstSet: %s, displayChange: %s",
+                                               recipient.isBlocked(), recipient.isGroup(), recipient.isLocalNumber(), localDisplayName.isEmpty(), !remoteDisplayName.equals(localDisplayName)));
         }
       }
 

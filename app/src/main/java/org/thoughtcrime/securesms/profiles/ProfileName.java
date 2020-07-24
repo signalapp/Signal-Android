@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.cjkv.CJKVUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 
+import java.util.Objects;
+
 public final class ProfileName implements Parcelable {
 
   public static final ProfileName EMPTY           = new ProfileName("", "");
@@ -131,6 +133,20 @@ public final class ProfileName implements Parcelable {
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(givenName);
     dest.writeString(familyName);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ProfileName that = (ProfileName) o;
+    return Objects.equals(givenName, that.givenName) &&
+        Objects.equals(familyName, that.familyName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(givenName, familyName);
   }
 
   public static final Creator<ProfileName> CREATOR = new Creator<ProfileName>() {
