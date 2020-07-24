@@ -14,7 +14,7 @@ public final class LiveDataTestUtil {
    * <p>
    * This will therefore only work in conjunction with {@link LiveDataRule}.
    */
-  public static <T> T getValue(final LiveData<T> liveData) {
+  public static <T> T observeAndGetOneValue(final LiveData<T> liveData) {
     AtomicReference<T> data     = new AtomicReference<>();
     Observer<T>        observer = data::set;
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableString;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,43 +14,54 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.Transformations;
 
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ConversationUpdateItem extends LinearLayout
-    implements RecipientForeverObserver, BindableConversationItem
+public final class ConversationUpdateItem extends LinearLayout
+                                          implements RecipientForeverObserver,
+                                                     BindableConversationItem,
+                                                     Observer<SpannableString>
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
   private Set<MessageRecord> batchSelected;
 
-  private ImageView     icon;
-  private TextView      title;
-  private TextView      body;
-  private TextView      date;
-  private LiveRecipient sender;
-  private MessageRecord messageRecord;
-  private Locale        locale;
+  private ImageView                 icon;
+  private TextView                  title;
+  private TextView                  body;
+  private TextView                  date;
+  private LiveRecipient             sender;
+  private MessageRecord             messageRecord;
+  private Locale                    locale;
+  private LiveData<SpannableString> displayBody;
+
+  private final Debouncer bodyClearDebouncer = new Debouncer(150);
 
   public ConversationUpdateItem(Context context) {
     super(context);
@@ -108,9 +120,8 @@ public class ConversationUpdateItem extends LinearLayout
       this.sender.removeForeverObserver(this);
     }
 
-    if (this.messageRecord != null && messageRecord.isGroupAction()) {
-      GroupUtil.getDescription(getContext(), messageRecord.getBody(), messageRecord.isGroupV2()).removeObserver(this);
-    }
+    observeDisplayBody(null);
+    setBodyText(null);
 
     this.messageRecord = messageRecord;
     this.sender        = messageRecord.getIndividualRecipient().live();
@@ -118,23 +129,49 @@ public class ConversationUpdateItem extends LinearLayout
 
     this.sender.observeForever(this);
 
-    if (this.messageRecord != null && messageRecord.isGroupAction()) {
-      GroupUtil.getDescription(getContext(), messageRecord.getBody(), messageRecord.isGroupV2()).addObserver(this);
-    }
+    UpdateDescription         updateDescription      = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));
+    LiveData<String>          liveUpdateMessage      = LiveUpdateMessage.fromMessageDescription(updateDescription);
+    LiveData<SpannableString> spannableStringMessage = Transformations.map(liveUpdateMessage, SpannableString::new);
 
     present(messageRecord);
+
+    observeDisplayBody(spannableStringMessage);
+  }
+
+  private void observeDisplayBody(@Nullable LiveData<SpannableString> displayBody) {
+    if (this.displayBody != displayBody) {
+      if (this.displayBody != null) {
+        this.displayBody.removeObserver(this);
+      }
+
+      this.displayBody = displayBody;
+
+      if (this.displayBody != null) {
+        this.displayBody.observeForever(this);
+      }
+    }
+  }
+
+  private void setBodyText(@Nullable CharSequence text) {
+    if (text == null) {
+      bodyClearDebouncer.publish(() -> body.setText(null));
+    } else {
+      bodyClearDebouncer.clear();
+      body.setText(text);
+      body.setVisibility(VISIBLE);
+    }
   }
 
   private void present(MessageRecord messageRecord) {
-    if      (messageRecord.isGroupAction())           setGroupRecord(messageRecord);
+    if      (messageRecord.isGroupAction())           setGroupRecord();
     else if (messageRecord.isCallLog())               setCallRecord(messageRecord);
-    else if (messageRecord.isJoined())                setJoinedRecord(messageRecord);
+    else if (messageRecord.isJoined())                setJoinedRecord();
     else if (messageRecord.isExpirationTimerUpdate()) setTimerRecord(messageRecord);
-    else if (messageRecord.isEndSession())            setEndSessionRecord(messageRecord);
-    else if (messageRecord.isIdentityUpdate())        setIdentityRecord(messageRecord);
+    else if (messageRecord.isEndSession())            setEndSessionRecord();
+    else if (messageRecord.isIdentityUpdate())        setIdentityRecord();
     else if (messageRecord.isIdentityVerified() ||
              messageRecord.isIdentityDefault())       setIdentityVerifyUpdate(messageRecord);
-    else if (messageRecord.isProfileChange())         setProfileNameChangeRecord(messageRecord);
+    else if (messageRecord.isProfileChange())         setProfileNameChangeRecord();
     else                                              throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
@@ -146,11 +183,9 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isOutgoingCall()) icon.setImageResource(R.drawable.ic_call_made_grey600_24dp);
     else                                     icon.setImageResource(R.drawable.ic_call_missed_grey600_24dp);
 
-    body.setText(messageRecord.getDisplayBody(getContext()));
     date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
 
     title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
     date.setVisibility(View.VISIBLE);
   }
 
@@ -163,10 +198,8 @@ public class ConversationUpdateItem extends LinearLayout
 
     icon.setColorFilter(getIconTintFilter());
     title.setText(ExpirationUtil.getExpirationDisplayValue(getContext(), (int)(messageRecord.getExpiresIn() / 1000)));
-    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(VISIBLE);
-    body.setVisibility(VISIBLE);
     date.setVisibility(GONE);
   }
 
@@ -174,13 +207,11 @@ public class ConversationUpdateItem extends LinearLayout
     return new PorterDuffColorFilter(ThemeUtil.getThemedColor(getContext(), R.attr.icon_tint), PorterDuff.Mode.SRC_IN);
   }
 
-  private void setIdentityRecord(final MessageRecord messageRecord) {
+  private void setIdentityRecord() {
     icon.setImageDrawable(ThemeUtil.getThemedDrawable(getContext(), R.attr.safety_number_icon));
     icon.setColorFilter(getIconTintFilter());
-    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
     date.setVisibility(GONE);
   }
 
@@ -189,54 +220,40 @@ public class ConversationUpdateItem extends LinearLayout
     else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24dp);
 
     icon.setColorFilter(getIconTintFilter());
-    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
     date.setVisibility(GONE);
   }
 
-  private void setProfileNameChangeRecord(MessageRecord messageRecord) {
+  private void setProfileNameChangeRecord() {
     icon.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_profile_outline_20));
     icon.setColorFilter(getIconTintFilter());
-    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
     date.setVisibility(GONE);
   }
 
-  private void setGroupRecord(MessageRecord messageRecord) {
+  private void setGroupRecord() {
     icon.setImageDrawable(ThemeUtil.getThemedDrawable(getContext(), R.attr.menu_group_icon));
     icon.clearColorFilter();
 
-    body.setText(messageRecord.getDisplayBody(getContext()));
-
     title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
     date.setVisibility(GONE);
   }
 
-  private void setJoinedRecord(MessageRecord messageRecord) {
+  private void setJoinedRecord() {
     icon.setImageResource(R.drawable.ic_favorite_grey600_24dp);
     icon.clearColorFilter();
-    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
     date.setVisibility(GONE);
   }
 
-  private void setEndSessionRecord(MessageRecord messageRecord) {
+  private void setEndSessionRecord() {
     icon.setImageResource(R.drawable.ic_refresh_white_24dp);
     icon.setColorFilter(getIconTintFilter());
-    body.setText(messageRecord.getDisplayBody(getContext()));
-
-    title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
-    date.setVisibility(GONE);
   }
-  
+
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
     present(messageRecord);
@@ -252,9 +269,13 @@ public class ConversationUpdateItem extends LinearLayout
     if (sender != null) {
       sender.removeForeverObserver(this);
     }
-    if (this.messageRecord != null && messageRecord.isGroupAction()) {
-      GroupUtil.getDescription(getContext(), messageRecord.getBody(), messageRecord.isGroupV2()).removeObserver(this);
-    }
+
+    observeDisplayBody(null);
+  }
+
+  @Override
+  public void onChanged(SpannableString update) {
+    setBodyText(update);
   }
 
   private class InternalClickListener implements View.OnClickListener {

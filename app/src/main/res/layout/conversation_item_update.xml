@@ -41,7 +41,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
         android:gravity="center"
@@ -50,7 +50,7 @@
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_update_body"
             style="@style/Signal.Text.Preview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="all"
             android:gravity="center"

@@ -63,6 +63,11 @@ public final class UuidUtil {
     return parseOrNull(bytes.toByteArray());
   }
 
+  public static UUID fromByteStringOrUnknown(ByteString bytes) {
+    UUID uuid = fromByteStringOrNull(bytes);
+    return uuid != null ? uuid : UNKNOWN_UUID;
+  }
+
   private static UUID parseOrNull(byte[] byteArray) {
     return byteArray != null && byteArray.length == 16 ? parseOrThrow(byteArray) : null;
   }

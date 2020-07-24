@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 
 import static org.junit.Assert.assertEquals;
 import static org.thoughtcrime.securesms.util.livedata.LiveDataTestUtil.assertNoValue;
-import static org.thoughtcrime.securesms.util.livedata.LiveDataTestUtil.getValue;
+import static org.thoughtcrime.securesms.util.livedata.LiveDataTestUtil.observeAndGetOneValue;
 
-public final class LiveDataUtilTest {
+public final class LiveDataUtilTest_combineLatest {
 
   @Rule
   public TestRule rule = new LiveDataRule();
@@ -61,7 +61,7 @@ public final class LiveDataUtilTest {
     liveDataA.setValue("Hello, ");
     liveDataB.setValue("World!");
 
-    assertEquals("Hello, World!", getValue(combined));
+    assertEquals("Hello, World!", observeAndGetOneValue(combined));
   }
 
   @Test
@@ -74,10 +74,10 @@ public final class LiveDataUtilTest {
     liveDataA.setValue("Hello, ");
     liveDataB.setValue("World!");
 
-    assertEquals("Hello, World!", getValue(combined));
+    assertEquals("Hello, World!", observeAndGetOneValue(combined));
 
     liveDataA.setValue("Welcome, ");
-    assertEquals("Welcome, World!", getValue(combined));
+    assertEquals("Welcome, World!", observeAndGetOneValue(combined));
   }
 
   @Test
@@ -90,10 +90,10 @@ public final class LiveDataUtilTest {
     liveDataA.setValue("Hello, ");
     liveDataB.setValue("World!");
 
-    assertEquals("Hello, World!", getValue(combined));
+    assertEquals("Hello, World!", observeAndGetOneValue(combined));
 
     liveDataB.setValue("Joe!");
-    assertEquals("Hello, Joe!", getValue(combined));
+    assertEquals("Hello, Joe!", observeAndGetOneValue(combined));
   }
 
   @Test
@@ -104,7 +104,7 @@ public final class LiveDataUtilTest {
 
     liveDataA.setValue("Echo! ");
 
-    assertEquals("Echo! Echo! ", getValue(combined));
+    assertEquals("Echo! Echo! ", observeAndGetOneValue(combined));
   }
 
   @Test
@@ -118,7 +118,7 @@ public final class LiveDataUtilTest {
 
     liveDataB.setValue("World!");
 
-    assertEquals("Hello, World!", getValue(combined));
+    assertEquals("Hello, World!", observeAndGetOneValue(combined));
   }
 
   @Test
@@ -128,6 +128,6 @@ public final class LiveDataUtilTest {
 
     LiveData<Integer> combined = LiveDataUtil.combineLatest(liveDataA, liveDataB, (a, b) -> a * b);
 
-    assertEquals(Integer.valueOf(300), getValue(combined));
+    assertEquals(Integer.valueOf(300), observeAndGetOneValue(combined));
   }
 }
