@@ -149,6 +149,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
@@ -158,6 +159,7 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
@@ -504,7 +506,12 @@ public class ConversationActivity extends PassphraseRequiredActivity
     calculateCharactersRemaining();
 
     if (recipientSnapshot.getGroupId().isPresent() && recipientSnapshot.getGroupId().get().isV2()) {
-      ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(recipientSnapshot.getGroupId().get().requireV2()));
+      GroupId.V2 groupId = recipientSnapshot.getGroupId().get().requireV2();
+
+      ApplicationDependencies.getJobManager()
+                             .startChain(new RequestGroupV2InfoJob(groupId))
+                             .then(new GroupV2UpdateSelfProfileKeyJob(groupId))
+                             .enqueue();
     }
 
     ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);

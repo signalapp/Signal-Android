@@ -36,7 +36,7 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
 
   private final GroupId.V2 groupId;
 
-  GroupV2UpdateSelfProfileKeyJob(@NonNull GroupId.V2 groupId) {
+  public GroupV2UpdateSelfProfileKeyJob(@NonNull GroupId.V2 groupId) {
     this(new Parameters.Builder()
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
