@@ -173,12 +173,12 @@ public class ComposeText extends EmojiEditText {
       inputType = (inputType & ~InputType.TYPE_MASK_VARIATION) | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE;
     }
 
-    setInputType(inputType);
     setImeOptions(imeOptions);
     setHint(transport.getComposeHint(),
             transport.getSimName().isPresent()
                 ? getContext().getString(R.string.conversation_activity__from_sim_name, transport.getSimName().get())
                 : null);
+    setInputType(inputType);
   }
 
   @Override
