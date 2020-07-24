@@ -197,7 +197,7 @@
   <string name="ConversationActivity_leave_group">Forlad gruppe?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på du vil forlade gruppen?</string>
   <string name="ConversationActivity_choose_new_admin">Vælg ny administrator</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Før du forlader gruppen, skal du vælge mindst én ny administrator.</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Før du forlader gruppen, skal du vælge mindst én ny administrator</string>
   <string name="ConversationActivity_choose_admin">Vælg administrator</string>
   <string name="ConversationActivity_transport_insecure_sms">Ukrypteret SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Ukrypteret MMS</string>
@@ -212,7 +212,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedhæftningen overskrider max. grænsen for filstørrelser, for den type af meddelelse du sender</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgængeligt</string>
   <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende beskeder til gruppen, fordi du ikke længere er medlem.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende beskeder til gruppen, fordi du ikke længere er medlem</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig på enheden, der kan åbne linket</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Signal tilladelse til at tilgå mikrofonen</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\"</string>
@@ -401,11 +401,11 @@
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Invitation er sendt</item>
-    <item quantity="other">%d invitationer er sendt</item>
+    <item quantity="other">%d invitationer sendt</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">%1$s kan ikke automatisk tilføjes gruppen af dig. \n\nDe er blevet inviteret til at deltage, og kan ikke se nogen gruppebeskeder, før de accepterer.</string>
+  <string name="GroupManagement_invite_single_user">%1$s kan ikke automatisk tilføjes gruppen af dig. \n\nDe er blevet inviteret til at deltage, og kan ikke se nogen gruppebeskeder, før de accepterer</string>
   <string name="GroupManagement_learn_more">Læs mere</string>
-  <string name="GroupManagement_invite_multiple_users">Disse brugere kan ikke automatisk tilføjes gruppen af dig. De er blevet inviteret til at deltage, og kan ikke se gruppebeskeder, før de accepterer.</string>
+  <string name="GroupManagement_invite_multiple_users">Disse brugere kan ikke automatisk tilføjes gruppen af dig. De er blevet inviteret til at deltage, og kan ikke se gruppebeskeder før de accepterer</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Afventende gruppeinvitationer</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du har inviteret</string>
@@ -448,8 +448,8 @@
   <string name="ManageGroupActivity_pending_group_invites">Afventende gruppeinvitationer</string>
   <string name="ManageGroupActivity_add_members">Tilføj medlemmer</string>
   <string name="ManageGroupActivity_edit_group_info">Rediger gruppeinformation</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vælg hvem som kan ændre navnet og avataren for gruppen, og forsvindende beskeder.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vælg hvem der kan tilføje eller invitere nye medlemmer.</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vælg hvem som kan ændre navn og avatar for gruppen, og beskeder med tidsudløb</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vælg hvem der kan tilføje eller invitere nye medlemmer</string>
   <string name="ManageGroupActivity_block_group">Blokér gruppe</string>
   <string name="ManageGroupActivity_unblock_group">Ophæv blokering af gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlad gruppe</string>
@@ -477,7 +477,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gruppen kunne ikke opdateres på grund af en netværksfejl. Prøv igen senere</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Redigér navn og billede</string>
   <string name="ManageGroupActivity_legacy_group">Forældet gruppe</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Dette er en Forældet gruppe. Opret en ny gruppe for at få adgang til funktioner som gruppeadministratorer.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Dette er en forældet gruppe. Opret en ny gruppe for at få adgang til funktioner som gruppeadministratorer</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Tilføj til dine kontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Personen findes i dine kontakter</string>
@@ -2062,10 +2062,10 @@ Der er %d dage tilbage</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Forældede vs. nye grupper</string>
-  <string name="GroupsLearnMore_what_are_legacy_groups">Hvad er Forældede grupper?</string>
-  <string name="GroupsLearnMore_paragraph_1">Forældede grupper er grupper, der ikke er kompatible med nye gruppefunktioner som administratorer og mere beskrivende gruppeopdateringer.</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Hvad er forældede grupper?</string>
+  <string name="GroupsLearnMore_paragraph_1">Forældede grupper, er grupper der ikke er kompatible med nye gruppefunktioner, som administratorer og mere beskrivende opdateringer af grupper</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Hvordan bruger jeg nye grupper?</string>
-  <string name="GroupsLearnMore_paragraph_2">Forældede grupper kan ikke konverteres til nye grupper, men du kan oprette en ny gruppe med de samme medlemmer.</string>
-  <string name="GroupsLearnMore_paragraph_3">For at oprette en ny gruppe, skal alle medlemmer opdatere til den nyeste version af Signal.</string>
+  <string name="GroupsLearnMore_paragraph_2">Forældede grupper kan ikke konverteres til nye grupper, men du kan oprette en ny gruppe med de samme medlemmer</string>
+  <string name="GroupsLearnMore_paragraph_3">For at oprette en ny gruppe, skal alle medlemmer opdatere til den nyeste version af Signal</string>
   <!--EOF-->
 </resources>

@@ -204,6 +204,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_leave_group">Gadael y grŵp?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ydych chi\'n siŵr eich bod am adael y grŵp?</string>
   <string name="ConversationActivity_choose_new_admin">Dewiswch gweinyddwr newydd</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Cyn i chi adael, rhaid i chi ddewis o leiaf un gweinyddwr newydd ar gyfer y grŵp hwn.</string>
+  <string name="ConversationActivity_choose_admin">Dewiswch weinyddwr</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS aniogel</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS anniogel</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -217,6 +219,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Mae atodiad yn fwy na therfynau maint y math o neges rydych chi\'n ei hanfon.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera ddim ar gael</string>
   <string name="ConversationActivity_unable_to_record_audio">Methu recordio sain!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nid oes moddi chi anfon negeseuon i\'r grŵp hwn oherwydd nid ydych yn aelod mwyach.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nid oes ap ar gael i drin y ddolen hon ar eich dyfais.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">I anfon negeseuon sain, caniatewch i Signal gael mynediad i\'ch meicroffon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Mae ar Signal angen caniatâd Meicroffon i anfon negeseuon sain, ond mae wed\'i atal yn barhaol. Ewch i osodiadau\'r ap, dewis "Caniatâd", a galluogi "Microffon".</string>
@@ -413,6 +416,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Dewiswch gweinyddwr newydd</string>
   <string name="ChooseNewAdminActivity_done">Wedi Gorffen</string>
+  <string name="ChooseNewAdminActivity_you_left">Rydych wedi gadael \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Rhannu\'ch enw a\'ch llun proffil gyda\'r grŵp hwn?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Hoffech chi wneud eich enw a\'ch llun proffil yn weladwy i bob aelod cyfredol ac i\'r dyfodol o\'r grŵp hwn?</string>
@@ -424,7 +428,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupManagement_access_level_all_members">Pob aelod</string>
   <string name="GroupManagement_access_level_only_admins">Dim ond gweinyddwyr</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Anfonwyd y Gwahoddiad</item>
+    <item quantity="two">%d gwahoddiad wedi\'u hanfon</item>
+    <item quantity="many">%d gwahoddiad wedi\'u hanfon</item>
+    <item quantity="other">%d gwahoddiad wedi\'u hanfon</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">Nid oes modd i chi ychwanegu “%1$s” yn awtomatig at y grŵp hwn.\n\nRydych wedi eich gwahodd i ymuno, a fyddwch chi ddim yn gweld unrhyw negeseuon grŵp nes eich bod yn derbyn.</string>
   <string name="GroupManagement_learn_more">Dysgu rhagor</string>
+  <string name="GroupManagement_invite_multiple_users">Nid oes modd i chi ychwanegu\'r defnyddwyr hyn yn awtomatig at y grŵp hwn.\n\nRydych wedi eich gwahodd i ymuno, a fyddwch chi ddim yn gweld unrhyw negeseuon grŵp nes eich bod yn derbyn.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
   <string name="PendingMembersActivity_people_you_invited">Pobl rydych wedi eu gwahodd</string>
@@ -472,6 +484,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_disappearing_messages">Negeseuon yn diflannu</string>
   <string name="ManageGroupActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
   <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
+  <string name="ManageGroupActivity_edit_group_info">Golygu manylion y grŵp</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Dewiswch pwy all olygu enw\'r grŵp, afatar, a negeseuon sy\'n diflannu.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Dewiswch pwy all ychwanegu neu wahodd aelodau newydd</string>
   <string name="ManageGroupActivity_block_group">Rhwystro\'r grŵp</string>
   <string name="ManageGroupActivity_unblock_group">Dad-rwystro grŵp</string>
   <string name="ManageGroupActivity_leave_group">Gadael y grŵp</string>
@@ -499,7 +514,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_not_capable">Nid yw rhywun a ychwanegwyd gennych yn cefnogi grwpiau newydd ac mae angen iddo ddiweddaru Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Wedi methu diweddaru\'r grŵp</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nid ydych yn aelod o\'r grŵp</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Wedi methu diweddaru\'r grŵp, aildrydarwch yn nes ymlaen</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Wedi methu diweddaru\'r grŵp oherwydd gwall rhwydwaith, ceisiwch eto yn nes ymlaen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Golygu enw a llun</string>
+  <string name="ManageGroupActivity_legacy_group">Hen Grŵp</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Mae hwn yn Hen Grŵp. I gael nodweddion fel gweinyddwr grŵp, crëwch Grŵp Newydd.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string>
@@ -2159,5 +2178,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <string name="GroupRecipientListItem_admin">Gweinyddwr</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Hen Grŵp o\'i gymharu â Grŵp Newydd</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Beth yw Hen Grwpiau?</string>
+  <string name="GroupsLearnMore_paragraph_1">Mae Hen Grwpiau yn grwpiau sydd ddim yn gydnaws â nodweddion Grŵp Newydd fel gweinyddwyr a diweddariadau grwpiau mwy disgrifiadol.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Sut mae defnyddio Grwpiau Newydd?</string>
+  <string name="GroupsLearnMore_paragraph_2">Nid oes modd trosi Hen Grwpiau yn Grwpiau Newydd, ond gallwch greu Grŵp Newydd gyda\'r un aelodau.</string>
+  <string name="GroupsLearnMore_paragraph_3">I greu Grŵp Newydd, dylai\'r holl aelodau ddiweddaru i\'r fersiwn ddiweddaraf o Signal.</string>
   <!--EOF-->
 </resources>

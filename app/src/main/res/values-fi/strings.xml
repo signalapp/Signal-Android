@@ -196,6 +196,8 @@
   <string name="ConversationActivity_leave_group">Poistu ryhmästä?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Haluatko varmasti poistua tästä ryhmästä?</string>
   <string name="ConversationActivity_choose_new_admin">Valitse uusi ylläpitäjä</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Ennen kuin lähdet, sinun on valittava vähintään yksi uusi ylläpitäjä tälle ryhmälle.</string>
+  <string name="ConversationActivity_choose_admin">Valitse ylläpitäjä</string>
   <string name="ConversationActivity_transport_insecure_sms">Salaamaton tekstiviesti</string>
   <string name="ConversationActivity_transport_insecure_mms">Salaamaton MMS-viesti</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Liitetiedosto ylittää kyseisen viestityypin kokorajoituikset.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ei käytettävissä</string>
   <string name="ConversationActivity_unable_to_record_audio">Äänen nauhoitus ei onnistunut!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Et voi lähettää viestejä tälle ryhmälle, koska et enää ole sen jäsen.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Laitteessasi ei ole sovellusta, joka osaa avata tämän linkin.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Jotta voit lähettää ääniviestejä, Signal tarvitsee lupaa käyttää mikrofonia.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee lupaa käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\".</string>
@@ -382,6 +385,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Valitse uusi ylläpitäjä</string>
   <string name="ChooseNewAdminActivity_done">Valmis</string>
+  <string name="ChooseNewAdminActivity_you_left">Lähdit ryhmästä \"%1$s\".</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Jaa profiilikuvasi ja -nimesi tämän ryhmän kanssa?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Haluatko tehdä profiilikuvasi ja -nimesi näkyväksi kaikille tämän ryhmän nykyisille ja tuleville jäsenille?</string>
@@ -393,6 +397,10 @@
   <string name="GroupManagement_access_level_all_members">Kaikki jäsenet</string>
   <string name="GroupManagement_access_level_only_admins">Vain ylläpitäjät</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Kutsu lähetetty</item>
+    <item quantity="other">%d kutsua lähetetty</item>
+  </plurals>
   <string name="GroupManagement_learn_more">Lue lisää</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
@@ -435,6 +443,7 @@
   <string name="ManageGroupActivity_disappearing_messages">Katoavat viestit</string>
   <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
+  <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
   <string name="ManageGroupActivity_leave_group">Poistu ryhmästä</string>
@@ -459,6 +468,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Ryhmän päivitys epäonnistui</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Et ole ryhmän jäsen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Muokkaa nimeä ja kuvaa</string>
+  <string name="ManageGroupActivity_legacy_group">Vanha ryhmä</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Tämä on vanha ryhmä. Luo uusi ryhmä käyttääksesi uusia ominaisuuksia, kuten ylläpitäjyyttä.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tämä henkilö on yhteystiedoissasi</string>
   <string name="ManageRecipientActivity_disappearing_messages">Katoavat viestit</string>
@@ -1081,6 +1092,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Poistetaanko viesti?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tämä poistaa pysyvästi tämän viestin.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s henkilölle %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Media ei ole enää saatavilla.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uutta viestiä %2$d keskustelussa</string>
   <string name="MessageNotifier_most_recent_from_s">Uusin lähettäjältä: %1$s</string>
@@ -2013,5 +2025,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="GroupRecipientListItem_admin">Ylläpitäjä</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Vanhat vs. uudet ryhmät</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Mitä ovat vanhat ryhmät?</string>
+  <string name="GroupsLearnMore_paragraph_1">Vanhat ryhmät ovat ryhmiä, jotka eivät ole yhteensopivia uusien ryhmien ominaisuuksien kanssa, kuten ylläpitäjyyden ja kuvaavien ryhmäpäivityksien.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuinka voin käyttää uusia ryhmiä?</string>
+  <string name="GroupsLearnMore_paragraph_2">Vanhoja ryhmiä ei voida muuttaa uusiksi ryhmiksi, mutta voit luoda uuden ryhmän samoilla jäsenillä.</string>
+  <string name="GroupsLearnMore_paragraph_3">Uuden ryhmän luomiseksi kaikkien jäsenten tulee päivittää Signalin uusimpaan versioon.</string>
   <!--EOF-->
 </resources>

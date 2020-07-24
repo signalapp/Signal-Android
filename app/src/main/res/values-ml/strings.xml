@@ -44,7 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">സ്‌ക്രീൻ ലോക്ക് %1$s, രജിസ്‌ട്രേഷൻ ലോക്ക് %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">സ്‌ക്രീൻ ലോക്ക് %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">തീം %1$s, ഭാഷ %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">രജിസ്ട്രേഷൻ ലോക്കിനായി പിൻ ആവശ്യമാണ്. പിൻ അപ്രാപ്‌തമാക്കുന്നതിന്, ആദ്യം രജിസ്‌ട്രേഷൻ ലോക്ക് പ്രവർത്തനരഹിതമാക്കുക.</string>
   <string name="ApplicationPreferencesActivity_pin_created">പിൻ സൃഷ്ടിച്ചു.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">പിൻ പ്രവർത്തനരഹിതമാക്കി.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d മിനിറ്റ്</item>
@@ -158,6 +160,9 @@
   <string name="ContactShareEditActivity_type_missing">മറ്റുള്ളവ</string>
   <string name="ContactShareEditActivity_invalid_contact">തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് അസാധുവായിരുന്നു</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">അയച്ചില്ല, വിശദാംശങ്ങൾക്ക് ടാപ്പുചെയ്യുക</string>
+  <string name="ConversationItem_error_partially_not_delivered">ഭാഗികമായി അയച്ചു, വിശദാംശങ്ങൾക്ക് ടാപ്പുചെയ്യുക</string>
+  <string name="ConversationItem_error_network_not_delivered">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">കീ കൈമാറ്റ സന്ദേശം ലഭിച്ചു, പ്രോസസ്സുചെയ്യാൻ തൊടുക</string>
   <string name="ConversationItem_group_action_left">%1$s ഈ ഗ്രൂപ്പില്‍ നിന്നും പോയി.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു, സുരക്ഷിതമല്ലാത്ത പക്ഷെ പകരം ഉപയോഗിക്കാവുന്ന പ്രക്രിയയ്ക്കായി തൊടുക</string>
@@ -191,6 +196,8 @@
   <string name="ConversationActivity_leave_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയണോ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയുന്നത് ഉറപ്പാണോ ?</string>
   <string name="ConversationActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">നിങ്ങൾ പോകുന്നതിനുമുമ്പ്, ഈ ഗ്രൂപ്പിനായി ഒരു പുതിയ അഡ്‌മിനെയെങ്കിലും തിരഞ്ഞെടുക്കണം.</string>
+  <string name="ConversationActivity_choose_admin">അഡ്‌മിനെ തിരഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_transport_insecure_sms">സുരക്ഷിതമല്ലാത്ത SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">സുരക്ഷിതമല്ലാത്ത MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -204,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">അറ്റാച്ചുമെന്റ് നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശത്തിന്റെ വലുപ്പ പരിധി കവിയുന്നു.</string>
   <string name="ConversationActivity_quick_camera_unavailable">ക്യാമറ ലഭ്യമല്ല</string>
   <string name="ConversationActivity_unable_to_record_audio">ഓഡിയോ റെക്കോർഡുചെയ്യാനായില്ല!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">നിങ്ങൾ മേലിൽ അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയില്ല.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ലിങ്ക് കൈകാര്യം ചെയ്യുന്നതിന് ഒരു അപ്ലിക്കേഷനും ലഭ്യമല്ല.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ഓഡിയോ സന്ദേശങ്ങൾ അയയ്‌ക്കാൻ, നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് Signal ന് ആക്‌സസ്സ് അനുവദിക്കുക.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ഓഡിയോ സന്ദേശങ്ങൾ അയയ്‌ക്കാൻ Signal ന് മൈക്രോഫോൺ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
@@ -272,6 +280,7 @@
   <string name="ConversationFragment_deleting_messages">സന്ദേശങ്ങൾ ഇല്ലാതാക്കുന്നു…</string>
   <string name="ConversationFragment_delete_for_me">എനിക്കായി ഇല്ലാതാക്കുക</string>
   <string name="ConversationFragment_delete_for_everyone">എല്ലാവർക്കുമായി ഇല്ലാതാക്കുക</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">സംഭാഷണത്തിലെ എല്ലാവർക്കുമായി ഈ സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കിയതായി അംഗങ്ങൾക്ക് കാണാൻ കഴിയും.</string>
   <string name="ConversationFragment_quoted_message_not_found">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">യഥാർത്ഥ സന്ദേശം മേലിൽ ലഭ്യമല്ല</string>
   <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>

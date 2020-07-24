@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Kunci layar %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN dibuat.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN Ternonaktifkan.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%dmenit</item>
@@ -80,6 +81,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Anda tidak lagi dapat menerima pesan atau info terbaru dari grup ini, dan anggota grup tidak dapat menambahkan Anda ke grup ini lagi.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anggota grup tidak dapat lagi menambahkan Anda ke grup ini.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anggota grup dapat mengundang Anda kembali ke dalam grup.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan bisa memberi pesan dan saling menelepon dan Anda akan membagikan nama dan foto dengan mereka.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang yang Anda blokir tidak akan dapat menelepon atau mengirim pesan pada Anda</string>
   <string name="BlockUnblockDialog_unblock_s">Berhenti blok %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Buka blokir</string>
@@ -154,6 +156,8 @@
   <string name="ContactShareEditActivity_type_missing">Kontak lain</string>
   <string name="ContactShareEditActivity_invalid_contact">Kontak yang dipilih salah</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Tidak terkirim, sentuh untuk detail.</string>
+  <string name="ConversationItem_error_partially_not_delivered">Terkirim sebagian, sentuh untuk detail.</string>
   <string name="ConversationItem_error_network_not_delivered">Pengiriman gagal</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
   <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
@@ -169,6 +173,7 @@
   <string name="ConversationItem_download_more">  Unduh Lebih Banyak</string>
   <string name="ConversationItem_pending">  Tertunda</string>
   <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus.</string>
+  <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hal ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string>
@@ -187,6 +192,8 @@
   <string name="ConversationActivity_leave_group">Tinggalkan grup?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Apakah Anda yakin ingin meninggalkan grup ini?</string>
   <string name="ConversationActivity_choose_new_admin">Pilih admin baru</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Sebelum Anda keluar, pilih admin baru untuk grup ini.</string>
+  <string name="ConversationActivity_choose_admin">Pilih admin.</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS tidak terenkripsi</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS tidak terenkripsi</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -888,6 +895,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_view_once_video">Video satu-tayangan</string>
   <string name="ThreadRecord_view_once_media">Media satu-tayangan</string>
   <string name="ThreadRecord_this_message_was_deleted">Pesan ini telah dihapus.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Anda menghapus pesan ini.</string>
   <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu penghilangan pesan diatur menjadi %s</string>

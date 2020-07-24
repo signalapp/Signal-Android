@@ -196,6 +196,8 @@
   <string name="ConversationActivity_leave_group">Të braktiset grupi?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">A jeni i sigurt se dëshironi ta braktisni grupin?</string>
   <string name="ConversationActivity_choose_new_admin">Zgjidhni përgjegjës të ri</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Përpara se të largoheni, duhet të zgjidhni të paktën një përgjegjës të ri për këtë grup.</string>
+  <string name="ConversationActivity_choose_admin">Zgjidhni përgjegjës</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS i pasigurt</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS i pasigurt</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bashkëngjitja tejkalon kufij madhësie për llojin e mesazhit që po dërgoni.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera jo gati</string>
   <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">S’mund të dërgoni mesazhe te ky grup, ngaqë s’jeni më anëtar.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Signal-in të përdorë mikrofonin tuaj.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Signal-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
@@ -383,6 +386,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Zgjidhni përgjegjës të ri</string>
   <string name="ChooseNewAdminActivity_done">U bë</string>
+  <string name="ChooseNewAdminActivity_you_left">E braktisët \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Të ndahet emri dhe fotoja juaj e profilit me këtë grup?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Doni t\’i bëni emrin dhe foton e profilit të dukshme për krejt anëtarët e tanishëm dhe të ardhshëm të këtij grupi?</string>
@@ -394,7 +398,13 @@
   <string name="GroupManagement_access_level_all_members">Krejt anëtarët</string>
   <string name="GroupManagement_access_level_only_admins">Vetëm përgjegjësit</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Ftesa u dërgua</item>
+    <item quantity="other">U dërguan %d ftesa</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">“%1$s” s’mund të shtohet automatikisht te ky grup nga ju.\n\nËshtë ftuar të marrë pjesë, dhe s’do të shohë ndonjë mesazh grupi, para se të pranojnë ftesën.</string>
   <string name="GroupManagement_learn_more">Mësoni më tepër</string>
+  <string name="GroupManagement_invite_multiple_users">Këta përdorues s’mund të shtohen automatikisht te ky grup nga ju.\n\n Janë ftuar të marrin pjesë te grupi, dhe s’do të shohin ndonjë mesazh grupi, përpara se të pranojnë ftesat.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
@@ -436,6 +446,9 @@
   <string name="ManageGroupActivity_disappearing_messages">Zhdukje mesazhesh</string>
   <string name="ManageGroupActivity_pending_group_invites">Ftesa për në grupe pezull</string>
   <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
+  <string name="ManageGroupActivity_edit_group_info">Përpunoni të dhëna grupi</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Zgjidhni kush mund të përpunojë emër grupi, avatar dhe mesazhe që zhduken.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Zgjidhni kush mund të shtojë ose ftojë anëtarë të rinj.</string>
   <string name="ManageGroupActivity_block_group">Blloko grup</string>
   <string name="ManageGroupActivity_unblock_group">Zhbllokoje grupin</string>
   <string name="ManageGroupActivity_leave_group">Braktise grupin</string>
@@ -459,7 +472,11 @@
   <string name="ManageGroupActivity_not_capable">Dikush që shtuat, nuk mbulon grupe të reja dhe lypset të përditësojë Signal-in</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">S’u arrit të përditësohej grupi</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">S’jeni anëtar i grupit</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">S’u arrit të përditësohet grupi, ju lutemi, riprovoni më vonë.</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">S’u arrit të përditësohet grupi, për shkak të një gabimi rrjeti, ju lutemi, riprovoni më vonë</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Përpunoni emër dhe foto</string>
+  <string name="ManageGroupActivity_legacy_group">Grup i Dikurshëm</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Ky është një Grup i Dikurshëm. Për të përdorur veçori të tilla si përgjegjës grupi, krijoni një Grup të Ri.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Shtoje te kontakte sistemi</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ky person gjendet në kontaktet tuaja</string>
@@ -2043,5 +2060,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_copied_to_clipboard">U kopjua në të papastër!</string>
   <string name="GroupRecipientListItem_admin">Përgjegjës</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Grupe të Dikurshëm vs. Grupesh të Rinj</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Ç’janë Grupet e Dikurshëm?</string>
+  <string name="GroupsLearnMore_paragraph_1">Grupet e dikurshëm janë grupe që nuk janë të përputhshëm me veçori Grupesh të Rinj, bie fjala, përgjegjës dhe përditësime grupi më përshkruese.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Si t’i përdor Grupet e Rinj?</string>
+  <string name="GroupsLearnMore_paragraph_2">Grupet e Dikurshëm s’mund të shndërrohen në Grupe të Rinj, por mund të krijoni një Grup të ri me të njëjtët anëtarë.</string>
+  <string name="GroupsLearnMore_paragraph_3">Që të krijoni një Grup të Ri, krejt anëtarët duhet ta përditësojnë Signal-in me versionin më të ri.</string>
   <!--EOF-->
 </resources>

@@ -29,12 +29,12 @@
   <string name="ApplicationPreferencesActivity_disable">Desgaitu</string>
   <string name="ApplicationPreferencesActivity_unregistering">Deserregistratzen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Deserregistratzen Signal mezu eta deietatik…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal mezu eta deiak desgaitu?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desgaitu Signal mezu eta deiak zerbitzaritik deserregistratuz. Zure telefono zenbakia bererregistratu beharko duzu mezu eta deiak berriro erabili ahal izateko.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desaktibatu Signal-en mezuak eta deiak?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desaktibatu Signal-en mezu eta deiak zerbitzaritik deserregistratuz. Zure telefono zenbakia bererregistratu beharko duzu mezu eta deiak berriro erabili ahal izateko.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errorea zerbitzariarekin konektatzerakoan!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Gaituta</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktibatuta</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Ukitu zure SMS aplikazio lehenetsia aldatzeko</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Desgaituta</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Desaktibatuta</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Bilakatu Signal zure SMS aplikazio lehenetsia.</string>
   <string name="ApplicationPreferencesActivity_on">piztuta</string>
   <string name="ApplicationPreferencesActivity_On">Aktibatuta</string>
@@ -68,8 +68,8 @@
   <string name="AttachmentKeyboard_give_access">Eman baimena</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ez da euskarria aukeratzeko aplikaziorik aurkitu.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal aplikazioak Gordailurako baimena behar du argazkiak, bideoak edo audioak bidaltzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal aplikazioak Kontaktuen baimena behar du kontaktuak atzitu ahal izateko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal aplikazioak Gordailurako baimena behar du argazkiak, bideoak edo audioak bidaltzeko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal aplikazioak Kontaktuen baimena behar du kontaktuak atzitu ahal izateko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal aplikazioak baimena behar du kokalekuak bidali ahal izateko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kokalekua\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal aplikazioak Kamera baimena behar du argazkiak egiteko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamara\".</string>
   <!--AttachmentUploadJob-->
@@ -196,6 +196,8 @@
   <string name="ConversationActivity_leave_group">Taldea utzi?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ziur zaude talde hau utzi nahi izateaz?</string>
   <string name="ConversationActivity_choose_new_admin">Hautatu administratzaile berria</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Taldea utzi baino lehenago, gutxienez administratzaile berri bat aukeratu behar duzu talde honetarako.</string>
+  <string name="ConversationActivity_choose_admin">Hautatu administratzailea</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS ez segurua</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Eranskina handiegia da bidaltzen ari zaren mezu motarako.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ez dago eskuragarri</string>
   <string name="ConversationActivity_unable_to_record_audio">Ezgai audioa grabatzeko!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ezin diozu talde honi mezurik bidali dagoeneko kide ez zarelako.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ez dago erabil daitekeen aplikaziorik lotura hau kudeatzeko zure gailuan.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Audio mezuak bidaltzeko, onartu Signalek zure mikrofonoa erabiltzea</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signalek Mikrofono baimena behar du audio mezuak bidaltzeko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\"</string>
@@ -383,6 +386,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Hautatu administratzaile berria</string>
   <string name="ChooseNewAdminActivity_done">Eginda</string>
+  <string name="ChooseNewAdminActivity_you_left">\"%1$s\" utzi duzu.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partekatu zure profileko izena eta argazkia talde honekin?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Zure profileko izena eta argazkia talde honetako egungo eta etorkizuneko kide guztiekin partekatu nahi duzu?</string>
@@ -394,7 +398,13 @@
   <string name="GroupManagement_access_level_all_members">Partaide guztiak</string>
   <string name="GroupManagement_access_level_only_admins">Administratzaileak bakarrik</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Gonbidapena bidalita</item>
+    <item quantity="other">%d gonbidapen bidalita</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">\"%1$s\" erabiltzailea ezin duzu talde honetan modu automatikoan sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
   <string name="GroupManagement_learn_more">Gehiago jakin</string>
+  <string name="GroupManagement_invite_multiple_users">Ezin duzu erabiltzaile hauek modu automatikoan taldean sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
   <string name="PendingMembersActivity_people_you_invited">Gondibatu duzun jendea</string>
@@ -436,6 +446,9 @@
   <string name="ManageGroupActivity_disappearing_messages">Mezuen desagerpena</string>
   <string name="ManageGroupActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
+  <string name="ManageGroupActivity_edit_group_info">Editatu taldeari buruzko informazioa</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Aukeratu taldearen izena, abatarra eta mezuak desagertzeko tenporizadorea alda dezakeena.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Aukeratu kide berriak gehitu edo gonbidatu dezakeena</string>
   <string name="ManageGroupActivity_block_group">Blokeatu taldea</string>
   <string name="ManageGroupActivity_unblock_group">Desblokeatu taldea</string>
   <string name="ManageGroupActivity_leave_group">Utzi taldea</string>
@@ -459,7 +472,11 @@
   <string name="ManageGroupActivity_not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ez zara taldeko kidea</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Taldea eguneratzeak huts egin du; mesedez, beranduago saia zaitez</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ezin izan da taldea eguneratu sare errore bat dela eta; mesedez, beranduago saia zaitez</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
+  <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Hau Jarauntsitako Talde bat da. Talde administratzaile moduko ezaugarriak erabili ahal izateko, Talde Berri bat sortu.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Gehitu sistemaren kontaktuetara</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Pertsona hau zure kontaktuetan dago</string>
@@ -2044,5 +2061,11 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RecipientBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="GroupRecipientListItem_admin">Administratzailea</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Jarauntsitako Taldeak vs. Talde Berriak</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Zer dira Jarauntsitako Taldeak?</string>
+  <string name="GroupsLearnMore_paragraph_1">Jarauntsitako Taldeak ez dira taldeen ezaugarri berriekin bateragarriak; esate baterako, administratzaileak eta taldeen egunerapenei buruzko informazio zehatzagoa izateko aukerak.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Nola erabili dezaket Talde Berriak?</string>
+  <string name="GroupsLearnMore_paragraph_2">Jarauntsitako Taldeak ezin dira Talde Berri bihurtu, baina kide berak dituen Talde Berri bat sortu dezakezu.</string>
+  <string name="GroupsLearnMore_paragraph_3">Talde Berri bat sortzeko, kide guztiek Signal-en azkenengo bertsioa izan behar dute.</string>
   <!--EOF-->
 </resources>

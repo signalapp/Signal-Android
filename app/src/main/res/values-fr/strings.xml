@@ -885,7 +885,7 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Touchez ici pour activer votre vidéo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pour appeler %1$s, Signal a besoin d’accéder à votre appareil photo</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Appel en cours…</string>
+  <string name="WebRtcCallActivity__calling">Appel…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
@@ -1159,7 +1159,7 @@
   <string name="ProfileEditNameFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n’est pas proposée quand Signal est verrouillée.</string>
-  <string name="QuickResponseService_problem_sending_message">Erreur d’envoi du message.</string>
+  <string name="QuickResponseService_problem_sending_message">Un problème d’envoi du message est survenu.</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Enregistrée dans %s</string>
   <string name="SaveAttachmentTask_saved">Enregistrée</string>
@@ -1565,7 +1565,7 @@
   <string name="preferences__send_link_previews">Envoyer des aperçus de liens</string>
   <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Pinterest, Reddit et YouTube</string>
   <string name="preferences__choose_identity">Choisir une identité</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans la liste des contacts.</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans la liste de contacts.</string>
   <string name="preferences__change_passphrase">Changer la phrase de passe</string>
   <string name="preferences__change_your_passphrase">Changer votre phrase de passe</string>
   <string name="preferences__enable_passphrase">Activer le verrouillage d’écran par phrase de passe</string>

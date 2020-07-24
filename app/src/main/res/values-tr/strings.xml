@@ -275,6 +275,7 @@
   <string name="ConversationFragment_deleting_messages">İletiler siliniyor…</string>
   <string name="ConversationFragment_delete_for_me">Benden sil</string>
   <string name="ConversationFragment_delete_for_everyone">Herkesten sil</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">İleti sohbetteki herkesten kalıcı olarak silinecektir. Üyeler iletiyi sildiğinizi görebileceklerdir.</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
   <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
