@@ -82,7 +82,7 @@ final class GroupsV2UpdateMessageProducer {
 
     if (change.getEditor().isEmpty() || UuidUtil.UNKNOWN_UUID.equals(UuidUtil.fromByteString(change.getEditor()))) {
       describeUnknownEditorMemberAdditions(change, updates);
-      describeUnknownEditorMemberRemovals(change, updates);
+
       describeUnknownEditorModifyMemberRoles(change, updates);
       describeUnknownEditorInvitations(change, updates);
       describeUnknownEditorRevokedInvitations(change, updates);
@@ -93,13 +93,15 @@ final class GroupsV2UpdateMessageProducer {
       describeUnknownEditorNewAttributeAccess(change, updates);
       describeUnknownEditorNewMembershipAccess(change, updates);
 
+      describeUnknownEditorMemberRemovals(change, updates);
+
       if (updates.isEmpty()) {
         describeUnknownEditorUnknownChange(updates);
       }
 
     } else {
       describeMemberAdditions(change, updates);
-      describeMemberRemovals(change, updates);
+
       describeModifyMemberRoles(change, updates);
       describeInvitations(change, updates);
       describeRevokedInvitations(change, updates);
@@ -109,6 +111,8 @@ final class GroupsV2UpdateMessageProducer {
       describeNewTimer(change, updates);
       describeNewAttributeAccess(change, updates);
       describeNewMembershipAccess(change, updates);
+
+      describeMemberRemovals(change, updates);
 
       if (updates.isEmpty()) {
         describeUnknownChange(change, updates);

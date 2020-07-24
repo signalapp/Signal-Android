@@ -768,6 +768,30 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   @Test
+  public void multiple_changes_leave_and_promote() {
+    DecryptedGroupChange change = changeBy(alice)
+                                    .deleteMember(alice)
+                                    .promoteToAdmin(bob)
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList(
+      "Alice made Bob an admin.",
+      "Alice left the group.")));
+  }
+
+  @Test
+  public void multiple_changes_leave_and_promote_by_unknown() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .deleteMember(alice)
+                                    .promoteToAdmin(bob)
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList(
+      "Bob is now an admin.",
+      "Alice is no longer in the group.")));
+  }
+
+  @Test
   public void multiple_changes_by_unknown() {
     DecryptedGroupChange change = changeByUnknown()
                                     .addMember(bob)
@@ -783,6 +807,22 @@ public final class GroupsV2UpdateMessageProducerTest {
       "The group avatar has been changed.",
       "The disappearing message timer has been set to 10 minutes.",
       "Who can edit group membership has been changed to \"All members\".")));
+  }
+
+  @Test
+  public void multiple_changes_join_and_leave_by_unknown() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .addMember(alice)
+                                    .promoteToAdmin(alice)
+                                    .deleteMember(alice)
+                                    .title("Updated title")
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList(
+      "Alice joined the group.",
+      "Alice is now an admin.",
+      "The group name has changed to \"Updated title\".",
+      "Alice is no longer in the group.")));
   }
 
   // Group state without a change record
