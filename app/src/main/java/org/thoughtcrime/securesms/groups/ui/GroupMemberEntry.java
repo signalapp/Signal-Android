@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public abstract class GroupMemberEntry {
 
@@ -152,7 +153,7 @@ public abstract class GroupMemberEntry {
 
       PendingMember other = (PendingMember) obj;
       return other.invitee.equals(invitee) &&
-             other.inviteeCipherText.equals(inviteeCipherText) &&
+             Objects.equals(other.inviteeCipherText, inviteeCipherText) &&
              other.cancellable == cancellable;
     }
 
@@ -160,7 +161,7 @@ public abstract class GroupMemberEntry {
     public int hashCode() {
       int hash = invitee.hashCode();
       hash *= 31;
-      hash += inviteeCipherText.hashCode();
+      hash += Objects.hashCode(inviteeCipherText);
       hash *= 31;
       return hash + (cancellable ? 1 : 0);
     }
