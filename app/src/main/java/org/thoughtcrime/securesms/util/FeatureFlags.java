@@ -46,7 +46,7 @@ public final class FeatureFlags {
 
   private static final String TAG = Log.tag(FeatureFlags.class);
 
-  private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(0);
+  private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
   private static final String USERNAMES                  = "android.usernames";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3.2";
