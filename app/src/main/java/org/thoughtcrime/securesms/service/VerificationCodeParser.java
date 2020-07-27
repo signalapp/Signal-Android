@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 
 public class VerificationCodeParser {
 
-  private static final Pattern CHALLENGE_PATTERN = Pattern.compile(".*Your (Signal|TextSecure) verification code:? ([0-9]{3,4})-([0-9]{3,4}).*", Pattern.DOTALL);
+  private static final Pattern CHALLENGE_PATTERN = Pattern.compile("(.*\\D|^)([0-9]{3,4})-([0-9]{3,4}).*", Pattern.DOTALL);
 
   public static Optional<String> parse(Context context, String messageBody) {
     if (messageBody == null) {
@@ -39,6 +39,7 @@ public class VerificationCodeParser {
       return Optional.absent();
     }
 
-    return Optional.of(challengeMatcher.group(2) + challengeMatcher.group(3));
+    return Optional.of(challengeMatcher.group(challengeMatcher.groupCount() - 1) +
+                       challengeMatcher.group(challengeMatcher.groupCount()));
   }
 }
