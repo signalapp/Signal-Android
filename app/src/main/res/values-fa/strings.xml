@@ -44,7 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل ثبت‌نام %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل صفحه %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">طرح زمینه %1$s، زبان %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام ضروری هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
   <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -82,10 +82,10 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">مسدود کردن و ترک گروه %1$s؟</string>
   <string name="BlockUnblockDialog_block_s"> مسدود کردن %1$s؟</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">شما دیگر از این گروه پیام و به‌روزرسانی دریافت نخواهید کرد. و اعضا قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">اعضای گروه دیگر قادر نخواهند بود شما را به این گروه اضافه کنند.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">شما دیگر از این گروه پیام و به‌روزرسانی دریافت نخواهید کرد و اعضا قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">اعضای گروه قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما می‌توانید به دیگران پیام دهید و با آنها تماس بگیرید و نام و عکس شما با آن‌ها به اشتراک گذاشته خواهد شد.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما می‌توانید به دیگران پیام دهید و با آن‌ها تماس بگیرید و نام و عکس شما با آن‌ها به اشتراک گذاشته خواهد شد.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس با شما یا ارسال پیام به شما نخواهند بود.</string>
   <string name="BlockUnblockDialog_unblock_s">رفع مسدودیت %1$s؟</string>
   <string name="BlockUnblockDialog_unblock">رفع مسدودیت</string>
@@ -234,7 +234,7 @@
   <string name="ConversationActivity_delete_conversation">مکالمه حذف شود؟</string>
   <string name="ConversationActivity_delete_and_leave_group">حذف و ترک گروه؟</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">این مکالمه از روی تمام دستگاه‌های شما حذف خواهد شد.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">شما این گروه را ترک کرده و از روی تمام دستگاه‌های شما حذف خواهد شد.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">شما این گروه را ترک می‌کنید و گروه از روی تمام دستگاه‌های شما حذف خواهد شد.</string>
   <string name="ConversationActivity_delete">حذف</string>
   <string name="ConversationActivity_delete_and_leave">حذف و ترک گروه</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">برای تماس با %1$s، Signal به دسترسی میکروفون شما نیاز دارد.</string>
@@ -280,7 +280,7 @@
   <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
   <string name="ConversationFragment_delete_for_me">حذف برای من</string>
   <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">این پیام به طور دائم برای همه در این مکالمه حذف خواهد شد. اعضا قادر خواهند بود تا ببینند که شما پیامی را حذف کرده‌آید.</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">این پیام به طور دائم برای همه در این مکالمه حذف خواهد شد. اعضا قادر خواهند بود تا ببینند که شما پیامی را حذف کرده‌اید.</string>
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
   <string name="ConversationFragment_failed_to_open_message">عدم موفقیت در باز کردن پیام</string>

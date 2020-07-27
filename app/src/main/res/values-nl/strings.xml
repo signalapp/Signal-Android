@@ -478,7 +478,7 @@
   <string name="ManageGroupActivity_legacy_group">Verouderde groep</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten te kunnen gebruiken zoals beheerders moet je een nieuwe groep aanmaken.</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Toevoegen aan systeem-contactenlijst</string>
+  <string name="ManageRecipientActivity_add_to_system_contacts">Aan systeem-contactenlijst toevoegen</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Deze persoon staat in je contactenlijst</string>
   <string name="ManageRecipientActivity_disappearing_messages">Zelfwissende berichten</string>
   <string name="ManageRecipientActivity_chat_color">Gesprekskleur</string>

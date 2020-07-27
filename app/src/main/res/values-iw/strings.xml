@@ -515,6 +515,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">נכשל בעדכון הקבוצה. אנא נסה שוב מאוחר יותר.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">נכשל בעדכון הקבוצה עקב שגיאת רשת, אנא נסה שוב מאוחר יותר.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ערוך שם ותמונה</string>
+  <string name="ManageGroupActivity_legacy_group">קבוצה מיושנת</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">זוהי קבוצה מיושנת. כדי להשיג גישה אל מאפיינים כמו מנהלני קבוצה, צור קבוצה חדשה.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">הוסף לאנשי קשר של המערכת</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">איש זה נמצא באנשי הקשר שלך</string>
@@ -2174,6 +2176,11 @@
   <string name="RecipientBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupRecipientListItem_admin">מנהלן</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">קבוצות מיושנות לעומת חדשות</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">מהן קבוצות מיושנות?</string>
+  <string name="GroupsLearnMore_paragraph_1">קבוצות מיושנות הן קבוצות שאינן תואמות עם מאפיינים של קבוצה חדשה כמו מנהלנים ועדכוני קבוצה תיאוריים יותר.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">איך אני משתמש בקבוצות חדשות?</string>
+  <string name="GroupsLearnMore_paragraph_2">קבוצות מיושנות אינן ניתנות להמרה אל קבוצות חדשות, אבל אתה יכול ליצור קבוצה חדשה עם אותם חברי קבוצה.</string>
+  <string name="GroupsLearnMore_paragraph_3">כדי ליצור קבוצה חדשה, כל חברי הקבוצה צריכים לעדכן אל הגרסה האחרונה של Signal.</string>
   <!--EOF-->
 </resources>

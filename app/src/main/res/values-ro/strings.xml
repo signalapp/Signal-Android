@@ -199,6 +199,8 @@
   <string name="ConversationActivity_leave_group">Părăsiți grupul?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string>
   <string name="ConversationActivity_choose_new_admin">Alegeți un nou admin</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Înainte de a pleca, trebuie să alegeți cel puțin un nou administrator pentru acest grup.</string>
+  <string name="ConversationActivity_choose_admin">Alegeți un admin</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -212,6 +214,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vreți să-l trimiteți.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cameră indisponibilă</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu puteți trimite mesaje acestui grup, deoarece nu mai sunteți membru.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pentru a trimite mesaje audio, permite-i aplicației Signal accesul la microfonul tău.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal are nevoie de permisiunea pentru Microfon pentru a putea trimite mesaje audio dar i-a fost refuzat accesul permanent. Vă rugăm să navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\".</string>
@@ -397,6 +400,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Alegeți un nou admin</string>
   <string name="ChooseNewAdminActivity_done">Gata</string>
+  <string name="ChooseNewAdminActivity_you_left">Ați părăsit \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Distribui numele și poza profilului cu acest grup?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vrei să faci numele și poza profilului tău vizibile pentru toți membrii actuali și viitori ai acestui grup?</string>
@@ -408,7 +412,14 @@
   <string name="GroupManagement_access_level_all_members">Toți membrii</string>
   <string name="GroupManagement_access_level_only_admins">Doar administratorii</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Invitație trimisă</item>
+    <item quantity="few">%d invitații trimise</item>
+    <item quantity="other">%d invitații trimise</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">\"%1$s\" nu poate fi adăugat automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
   <string name="GroupManagement_learn_more">Aflați mai multe</string>
+  <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitații la grup în așteptare</string>
   <string name="PendingMembersActivity_people_you_invited">Persoane pe care le-ați invitat</string>
@@ -453,6 +464,9 @@
   <string name="ManageGroupActivity_disappearing_messages">Dispariție mesaje</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitații la grup în așteptare</string>
   <string name="ManageGroupActivity_add_members">Adăugați membri</string>
+  <string name="ManageGroupActivity_edit_group_info">Editare informații despre grup</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Alegeți cine poate edita numele grupului, avatarul și dispariția mesajelor.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Alegeți cine poate adăuga sau invita membri noi.</string>
   <string name="ManageGroupActivity_block_group">Blocați grupul</string>
   <string name="ManageGroupActivity_unblock_group">Deblocare grup</string>
   <string name="ManageGroupActivity_leave_group">Părăsiți grupul</string>
@@ -478,7 +492,11 @@
   <string name="ManageGroupActivity_not_capable">Cineva pe care l-ai adăugat nu acceptă noile grupuri și trebuie să-și actualizeze Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Actualizarea grupului a eșuat.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nu sunteți membru în acest grup</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Grupul nu a putut fi actualizat, vă rugăm să încercați mai târziu</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Grupul nu a putut fi actualizat din cauza unei erori de rețea, vă rugăm să încercați mai târziu</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editare nume și poză</string>
+  <string name="ManageGroupActivity_legacy_group">Grup vechi</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Pentru a accesa funcții precum administratorii de grup, creați un grup nou.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Adăugați la contactele de sistem</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Această persoană se află în lista dvs. de contacte</string>
@@ -2097,5 +2115,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Grupuri vechi vs. grupuri noi</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Ce sunt grupurile vechi?</string>
+  <string name="GroupsLearnMore_paragraph_1">Grupurile vechi sunt grupuri care nu sunt compatibile cu funcționalitățiile Grupului nou, cum ar fi administratorii și actualizări mai descriptive ale grupului.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Cum folosesc noile grupuri?</string>
+  <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi convertite la Noul grup, dar puteți creea un nou grup cu aceeași membrii.</string>
+  <string name="GroupsLearnMore_paragraph_3">Pentru a creea un grup nou, toți membrii ar trebui să se actualizeze la cea mai recentă versiune a Signal.</string>
   <!--EOF-->
 </resources>

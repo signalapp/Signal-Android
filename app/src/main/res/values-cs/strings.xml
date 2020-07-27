@@ -414,6 +414,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vyberte nového administrátora.</string>
   <string name="ChooseNewAdminActivity_done">Hotovo</string>
+  <string name="ChooseNewAdminActivity_you_left">Opustili jste \"%1$s\".</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Sdílet profilové jméno a fotografii s touto skupinou?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Chcete, aby vaše profilové jméno a fotografie byly viditelné všem současným i budoucím členům této skupiny?</string>
@@ -425,6 +426,12 @@
   <string name="GroupManagement_access_level_all_members">Všichni členové</string>
   <string name="GroupManagement_access_level_only_admins">Pouze správci</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Pozvánka odeslána</item>
+    <item quantity="few">%d pozvánky odeslány</item>
+    <item quantity="many">%d pozvánek odesláno</item>
+    <item quantity="other">%d pozvánek odesláno</item>
+  </plurals>
   <string name="GroupManagement_invite_single_user">“%1$s” nemůže být přidán do skupiny automaticky.\n\nByl pozván, ale neuvidí žádné zprávy, dokud pozvání nepřijme.</string>
   <string name="GroupManagement_learn_more">Zjistit více</string>
   <string name="GroupManagement_invite_multiple_users">Tyto uživatele nemůžete přidat do skupiny automaticky.\n\nByli pozváni, ale neuvidí žádné zprávy dokud pozvání nepřijmou.</string>
