@@ -784,7 +784,7 @@ public class Recipient {
     return ApplicationDependencies.getRecipientCache().getLive(id);
   }
 
-  private @Nullable String getDisplayUsername() {
+  public @Nullable String getDisplayUsername() {
     if (!TextUtils.isEmpty(username)) {
       return "@" + username;
     } else {

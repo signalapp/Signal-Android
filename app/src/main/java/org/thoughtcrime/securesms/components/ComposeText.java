@@ -2,40 +2,50 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.view.inputmethod.EditorInfoCompat;
-import androidx.core.view.inputmethod.InputConnectionCompat;
-import androidx.core.view.inputmethod.InputContentInfoCompat;
-import androidx.core.os.BuildCompat;
-
+import android.text.Editable;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.text.method.QwertyKeyListener;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.os.BuildCompat;
+import androidx.core.view.inputmethod.EditorInfoCompat;
+import androidx.core.view.inputmethod.InputConnectionCompat;
+import androidx.core.view.inputmethod.InputContentInfoCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.util.UUID;
 
 public class ComposeText extends EmojiEditText {
 
-  private CharSequence    hint;
-  private SpannableString subHint;
+  private CharSequence            hint;
+  private SpannableString         subHint;
+  private MentionRendererDelegate mentionRendererDelegate;
 
   @Nullable private InputPanel.MediaListener      mediaListener;
   @Nullable private CursorPositionChangedListener cursorPositionChangedListener;
+  @Nullable private MentionQueryChangedListener   mentionQueryChangedListener;
 
   public ComposeText(Context context) {
     super(context);
@@ -75,9 +85,31 @@ public class ComposeText extends EmojiEditText {
   protected void onSelectionChanged(int selStart, int selEnd) {
     super.onSelectionChanged(selStart, selEnd);
 
+    if (FeatureFlags.mentions()) {
+      if (selStart == selEnd) {
+        doAfterCursorChange();
+      } else {
+        updateQuery("");
+      }
+    }
+
     if (cursorPositionChangedListener != null) {
       cursorPositionChangedListener.onCursorPositionChanged(selStart, selEnd);
     }
+  }
+
+  @Override
+  protected void onDraw(Canvas canvas) {
+    if (FeatureFlags.mentions() && getText() != null && getLayout() != null) {
+      int checkpoint = canvas.save();
+      canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
+      try {
+        mentionRendererDelegate.draw(canvas, getText(), getLayout());
+      } finally {
+        canvas.restoreToCount(checkpoint);
+      }
+    }
+    super.onDraw(canvas);
   }
 
   private CharSequence ellipsizeToWidth(CharSequence text) {
@@ -117,6 +149,10 @@ public class ComposeText extends EmojiEditText {
 
   public void setCursorPositionChangedListener(@Nullable CursorPositionChangedListener listener) {
     this.cursorPositionChangedListener = listener;
+  }
+
+  public void setMentionQueryChangedListener(@Nullable MentionQueryChangedListener listener) {
+    this.mentionQueryChangedListener = listener;
   }
 
   private boolean isLandscape() {
@@ -169,9 +205,89 @@ public class ComposeText extends EmojiEditText {
     if (TextSecurePreferences.isIncognitoKeyboardEnabled(getContext())) {
       setImeOptions(getImeOptions() | 16777216);
     }
+
+    if (FeatureFlags.mentions()) {
+      mentionRendererDelegate = new MentionRendererDelegate(getContext());
+    }
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
+  private void doAfterCursorChange() {
+    Editable text = getText();
+    if (text != null && enoughToFilter(text)) {
+      performFiltering(text);
+    } else {
+      updateQuery("");
+    }
+  }
+
+  private void performFiltering(@NonNull Editable text) {
+    int          end   = getSelectionEnd();
+    int          start = findQueryStart(text, end);
+    CharSequence query = text.subSequence(start, end);
+    updateQuery(query);
+  }
+
+  private void updateQuery(@NonNull CharSequence query) {
+    if (mentionQueryChangedListener != null) {
+      mentionQueryChangedListener.onQueryChanged(query);
+    }
+  }
+
+  private boolean enoughToFilter(@NonNull Editable text) {
+    int end = getSelectionEnd();
+    if (end < 0) {
+      return false;
+    }
+    return end - findQueryStart(text, end) >= 1;
+  }
+
+  public void replaceTextWithMention(@NonNull String displayName, @NonNull UUID uuid) {
+    Editable text = getText();
+    if (text == null) {
+      return;
+    }
+
+    clearComposingText();
+
+    int    end      = getSelectionEnd();
+    int    start    = findQueryStart(text, end) - 1;
+    String original = TextUtils.substring(text, start, end);
+
+    QwertyKeyListener.markAsReplaced(text, start, end, original);
+    text.replace(start, end, createReplacementToken(displayName, uuid));
+  }
+
+  private @NonNull CharSequence createReplacementToken(@NonNull CharSequence text, @NonNull UUID uuid) {
+    SpannableStringBuilder builder = new SpannableStringBuilder("@");
+    if (text instanceof Spanned) {
+      SpannableString spannableString = new SpannableString(text + " ");
+      TextUtils.copySpansFrom((Spanned) text, 0, text.length(), Object.class, spannableString, 0);
+      builder.append(spannableString);
+    } else {
+      builder.append(text).append(" ");
+    }
+
+    builder.setSpan(MentionAnnotation.mentionAnnotationForUuid(uuid), 0, builder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    return builder;
+  }
+
+  private int findQueryStart(@NonNull CharSequence text, int inputCursorPosition) {
+    if (inputCursorPosition == 0) {
+      return inputCursorPosition;
+    }
+
+    int delimiterSearchIndex = inputCursorPosition - 1;
+    while (delimiterSearchIndex >= 0 && (text.charAt(delimiterSearchIndex) != '@' && text.charAt(delimiterSearchIndex) != ' ')) {
+      delimiterSearchIndex--;
+    }
+
+    if (delimiterSearchIndex >= 0 && text.charAt(delimiterSearchIndex) == '@') {
+      return delimiterSearchIndex + 1;
+    }
+    return inputCursorPosition;
+  }
+
   private static class CommitContentListener implements InputConnectionCompat.OnCommitContentListener {
 
     private static final String TAG = CommitContentListener.class.getSimpleName();
@@ -206,5 +322,9 @@ public class ComposeText extends EmojiEditText {
 
   public interface CursorPositionChangedListener {
     void onCursorPositionChanged(int start, int end);
+  }
+
+  public interface MentionQueryChangedListener {
+    void onQueryChanged(CharSequence query);
   }
 }

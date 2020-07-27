@@ -4,7 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 public final class DrawableUtil {
 
@@ -18,5 +20,14 @@ public final class DrawableUtil {
     drawable.draw(canvas);
 
     return bitmap;
+  }
+
+  /**
+   * Returns a new {@link Drawable} that safely wraps and tints the provided drawable.
+   */
+  public static @NonNull Drawable tint(@NonNull Drawable drawable, @ColorInt int tint) {
+    Drawable tinted = DrawableCompat.wrap(drawable).mutate();
+    DrawableCompat.setTint(tinted, tint);
+    return tinted;
   }
 }

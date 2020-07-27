@@ -125,6 +125,7 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.conversation.ConversationGroupViewModel.GroupActiveState;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
+import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -226,6 +227,7 @@ import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
@@ -341,6 +343,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   InputPanel               inputPanel;
   private   View                     panelParent;
   private   View                     noLongerMemberBanner;
+  private   Stub<View>               mentionsSuggestions;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -414,6 +417,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     initializeStickerObserver();
     initializeViewModel();
     initializeGroupViewModel();
+    if (FeatureFlags.mentions()) initializeMentionsViewModel();
     initializeEnabledCheck();
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
@@ -1700,6 +1704,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     searchNav                = ViewUtil.findById(this, R.id.conversation_search_nav);
     messageRequestBottomView = ViewUtil.findById(this, R.id.conversation_activity_message_request_bottom_bar);
     reactionOverlay          = ViewUtil.findById(this, R.id.conversation_reaction_scrubber);
+    mentionsSuggestions      = ViewUtil.findStubById(this, R.id.conversation_mention_suggestions_stub);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -1862,6 +1867,28 @@ public class ConversationActivity extends PassphraseRequiredActivity
     groupViewModel = ViewModelProviders.of(this, new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
     recipient.observe(this, groupViewModel::onRecipientChange);
     groupViewModel.getGroupActiveState().observe(this, unused -> invalidateOptionsMenu());
+  }
+
+  private void initializeMentionsViewModel() {
+    MentionsPickerViewModel mentionsViewModel = ViewModelProviders.of(this, new MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel.class);
+
+    recipient.observe(this, mentionsViewModel::onRecipientChange);
+    composeText.setMentionQueryChangedListener(query -> {
+      if (getRecipient().isGroup()) {
+        if (!mentionsSuggestions.resolved()) {
+          mentionsSuggestions.get();
+        }
+        mentionsViewModel.onQueryChange(query);
+      }
+    });
+
+    mentionsViewModel.getSelectedRecipient().observe(this, recipient -> {
+      String replacementDisplayName = recipient.getDisplayName(this);
+      if (replacementDisplayName.equals(recipient.getDisplayUsername())) {
+        replacementDisplayName = recipient.getUsername().or(replacementDisplayName);
+      }
+      composeText.replaceTextWithMention(replacementDisplayName, recipient.requireUuid());
+    });
   }
 
   private void showStickerIntroductionTooltip() {
