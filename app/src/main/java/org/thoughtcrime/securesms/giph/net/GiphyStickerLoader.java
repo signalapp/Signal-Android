@@ -18,6 +18,6 @@ public class GiphyStickerLoader extends GiphyLoader {
 
   @Override
   protected String getSearchUrl() {
-    return "https://api.giphy.com/v1/stickers/search?q=cat&api_key=3o6ZsYH6U6Eri53TXy&offset=%d&limit=" + PAGE_SIZE + "&q=%s";
+    return "https://api.giphy.com/v1/stickers/search?api_key=3o6ZsYH6U6Eri53TXy&offset=%d&limit=" + PAGE_SIZE + "&q=%s";
   }
 }
