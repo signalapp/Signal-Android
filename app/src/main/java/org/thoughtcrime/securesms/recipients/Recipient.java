@@ -159,6 +159,20 @@ public class Recipient {
 
   /**
    * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
+   * creating one in the database if necessary. We special-case GV1 members because we want to
+   * prioritize E164 addresses and not use the UUIDs if possible.
+   */
+  @WorkerThread
+  public static @NonNull Recipient externalGV1Member(@NonNull Context context, @NonNull SignalServiceAddress address) {
+    if (address.getNumber().isPresent()) {
+      return externalPush(context, null, address.getNumber().get(), false);
+    } else {
+      return externalPush(context, address.getUuid().orNull(), null, false);
+    }
+  }
+
+  /**
+   * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
    * creating one in the database if necessary. This should only used for high-trust sources,
    * which are limited to:
    * - Envelopes

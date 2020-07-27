@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -122,12 +123,15 @@ final class GroupManagerV1 {
     RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
     Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
 
-    List<GroupContext.Member> uuidMembers = new LinkedList<>();
-    List<String>              e164Members = new LinkedList<>();
+    List<GroupContext.Member> uuidMembers = new ArrayList<>(members.size());
+    List<String>              e164Members = new ArrayList<>(members.size());
 
     for (RecipientId member : members) {
       Recipient recipient = Recipient.resolved(member);
-      uuidMembers.add(GroupV1MessageProcessor.createMember(RecipientUtil.toSignalServiceAddress(context, recipient)));
+      if (recipient.hasE164()) {
+        e164Members.add(recipient.requireE164());
+        uuidMembers.add(GroupV1MessageProcessor.createMember(recipient.requireE164()));
+      }
     }
 
     GroupContext.Builder groupContextBuilder = GroupContext.newBuilder()
@@ -135,7 +139,9 @@ final class GroupManagerV1 {
                                                            .setType(GroupContext.Type.UPDATE)
                                                            .addAllMembersE164(e164Members)
                                                            .addAllMembers(uuidMembers);
+
     if (groupName != null) groupContextBuilder.setName(groupName);
+
     GroupContext groupContext = groupContextBuilder.build();
 
     if (avatar != null) {

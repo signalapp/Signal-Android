@@ -65,18 +65,13 @@ public class DeviceGroupsOutputStream extends ChunkedOutputStream {
     List<String>              membersE164 = new ArrayList<>(group.getMembers().size());
 
     for (SignalServiceAddress address : group.getMembers()) {
-      GroupDetails.Member.Builder builder = GroupDetails.Member.newBuilder();
-
-      if (address.getUuid().isPresent()) {
-        builder.setUuid(address.getUuid().get().toString());
-      }
-
       if (address.getNumber().isPresent()) {
-        builder.setE164(address.getNumber().get());
         membersE164.add(address.getNumber().get());
-      }
 
-      members.add(builder.build());
+        GroupDetails.Member.Builder builder = GroupDetails.Member.newBuilder();
+        builder.setE164(address.getNumber().get());
+        members.add(builder.build());
+      }
     }
 
     groupDetails.addAllMembers(members);

@@ -873,8 +873,8 @@ public final class SignalServiceContent {
         members = new ArrayList<>(content.getGroup().getMembersCount());
 
         for (SignalServiceProtos.GroupContext.Member member : content.getGroup().getMembersList()) {
-          if (SignalServiceAddress.isValidAddress(member.getUuid(), member.getE164())) {
-            members.add(new SignalServiceAddress(UuidUtil.parseOrNull(member.getUuid()), member.getE164()));
+          if (SignalServiceAddress.isValidAddress(null, member.getE164())) {
+            members.add(new SignalServiceAddress(null, member.getE164()));
           } else {
             throw new ProtocolInvalidMessageException(new InvalidMessageException("GroupContext.Member had no address!"), null, 0);
           }

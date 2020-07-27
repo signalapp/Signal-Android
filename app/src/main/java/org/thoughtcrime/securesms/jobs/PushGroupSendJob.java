@@ -323,8 +323,8 @@ public final class PushGroupSendJob extends PushSendJob {
         GroupContext               groupContext     = properties.getGroupContext();
         SignalServiceAttachment    avatar           = attachmentPointers.isEmpty() ? null : attachmentPointers.get(0);
         SignalServiceGroup.Type    type             = properties.isQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
-        List<SignalServiceAddress> members          = Stream.of(groupContext.getMembersList())
-                                                            .map(m -> new SignalServiceAddress(UuidUtil.parseOrNull(m.getUuid()), m.getE164()))
+        List<SignalServiceAddress> members          = Stream.of(groupContext.getMembersE164List())
+                                                            .map(e164 -> new SignalServiceAddress(null, e164))
                                                             .toList();
         SignalServiceGroup         group            = new SignalServiceGroup(type, groupId.getDecodedId(), groupContext.getName(), members, avatar);
         SignalServiceDataMessage   groupDataMessage = SignalServiceDataMessage.newBuilder()

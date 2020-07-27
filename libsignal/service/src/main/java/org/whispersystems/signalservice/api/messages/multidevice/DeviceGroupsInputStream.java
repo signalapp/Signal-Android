@@ -61,8 +61,8 @@ public class DeviceGroupsInputStream extends ChunkedInputStream{
 
     List<SignalServiceAddress> addressMembers = new ArrayList<>(members.size());
     for (GroupDetails.Member member : members) {
-      if (SignalServiceAddress.isValidAddress(member.getUuid(), member.getE164())) {
-        addressMembers.add(new SignalServiceAddress(UuidUtil.parseOrNull(member.getUuid()), member.getE164()));
+      if (SignalServiceAddress.isValidAddress(null, member.getE164())) {
+        addressMembers.add(new SignalServiceAddress(null, member.getE164()));
       } else {
         throw new IOException("Missing group member address!");
       }

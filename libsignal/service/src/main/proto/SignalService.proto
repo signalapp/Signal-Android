@@ -435,7 +435,7 @@ message GroupContext {
   }
 
   message Member {
-    optional string uuid = 1;
+    // 1 is reserved
     optional string e164 = 2;
   }
 
@@ -479,7 +479,7 @@ message GroupDetails {
   }
 
   message Member {
-    optional string uuid = 1;
+    // 1 is reserved
     optional string e164 = 2;
   }
 

@@ -1060,19 +1060,12 @@ public class SignalServiceMessageSender {
         for (SignalServiceAddress address : group.getMembers().get()) {
           if (address.getNumber().isPresent()) {
             builder.addMembersE164(address.getNumber().get());
-          }
 
-          GroupContext.Member.Builder memberBuilder = GroupContext.Member.newBuilder();
-
-          if (address.getUuid().isPresent()) {
-            memberBuilder.setUuid(address.getUuid().get().toString());
-          }
-
-          if (address.getNumber().isPresent()) {
+            GroupContext.Member.Builder memberBuilder = GroupContext.Member.newBuilder();
             memberBuilder.setE164(address.getNumber().get());
-          }
 
-          builder.addMembers(memberBuilder.build());
+            builder.addMembers(memberBuilder.build());
+          }
         }
       }
 
