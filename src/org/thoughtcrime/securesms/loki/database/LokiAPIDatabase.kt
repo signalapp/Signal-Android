@@ -79,12 +79,15 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         // Session request processed timestamp cache
         private val sessionRequestProcessedTimestampCache = "session_request_processed_timestamp_cache"
         @JvmStatic val createSessionRequestProcessedTimestampCacheCommand = "CREATE TABLE $sessionRequestProcessedTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
+        // Open group public keys
+        private val openGroupPublicKeyDB = "open_group_public_keys"
+        @JvmStatic val createOpenGroupPublicKeyDBCommand = "CREATE TABLE $openGroupPublicKeyDB ($server STRING PRIMARY KEY, $publicKey INTEGER DEFAULT 0);"
 
 
 
         // region Deprecated
         private val sessionRequestTimestampCache = "session_request_timestamp_cache"
-        @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
+        @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp STRING);"
         // endregion
     }
 
@@ -327,10 +330,10 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }?.toInt()
     }
 
-    override fun setUserCount(userCount: Int, group: Long, server: String) {
+    override fun setUserCount(group: Long, server: String, newValue: Int) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf(publicChatID to index, Companion.userCount to userCount.toString()))
+        val row = wrap(mapOf(publicChatID to index, Companion.userCount to newValue.toString()))
         database.insertOrUpdate(userCountCache, row, "$publicChatID = ?", wrap(index))
     }
 
@@ -341,9 +344,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }?.toLong()
     }
 
-    override fun setSessionRequestSentTimestamp(publicKey: String, timestamp: Long) {
+    override fun setSessionRequestSentTimestamp(publicKey: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
+        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to newValue.toString()))
         database.insertOrUpdate(sessionRequestSentTimestampCache, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
     }
 
@@ -354,10 +357,23 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }?.toLong()
     }
 
-    override fun setSessionRequestProcessedTimestamp(publicKey: String, timestamp: Long) {
+    override fun setSessionRequestProcessedTimestamp(publicKey: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
+        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to newValue.toString()))
         database.insertOrUpdate(sessionRequestProcessedTimestampCache, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
+    }
+
+    override fun getOpenGroupPublicKey(server: String): String? {
+        val database = databaseHelper.readableDatabase
+        return database.get(openGroupPublicKeyDB, "${LokiAPIDatabase.server} = ?", wrap(server)) { cursor ->
+            cursor.getString(LokiAPIDatabase.publicKey)
+        }
+    }
+
+    override fun setOpenGroupPublicKey(server: String, newValue: String) {
+        val database = databaseHelper.writableDatabase
+        val row = wrap(mapOf(LokiAPIDatabase.server to server, LokiAPIDatabase.publicKey to publicKey))
+        database.insertOrUpdate(openGroupPublicKeyDB, row, "${LokiAPIDatabase.server} = ?", wrap(server))
     }
 }
 
