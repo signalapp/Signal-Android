@@ -500,9 +500,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void initializeViewModel() {
     viewModel = ViewModelProviders.of(this, new ConversationListViewModel.Factory(isArchived())).get(ConversationListViewModel.class);
 
-    viewModel.getSearchResult().observe(this, this::onSearchResultChanged);
-    viewModel.getMegaphone().observe(this, this::onMegaphoneChanged);
-    viewModel.getConversationList().observe(this, this::onSubmitList);
+    viewModel.getSearchResult().observe(getViewLifecycleOwner(), this::onSearchResultChanged);
+    viewModel.getMegaphone().observe(getViewLifecycleOwner(), this::onMegaphoneChanged);
+    viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onSubmitList);
 
     ProcessLifecycleOwner.get().getLifecycle().addObserver(new DefaultLifecycleObserver() {
       @Override
@@ -751,6 +751,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void onSubmitList(@NonNull ConversationListViewModel.ConversationList conversationList) {
     if (conversationList.isEmpty()) {
+      Log.i(TAG, "Received an empty data set.");
       list.setVisibility(View.INVISIBLE);
       emptyState.setVisibility(View.VISIBLE);
       emptyImage.setImageResource(EMPTY_IMAGES[(int) (Math.random() * EMPTY_IMAGES.length)]);

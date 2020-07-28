@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.thoughtcrime.securesms.util.paging.SizeFixResult;
@@ -83,9 +82,10 @@ class ConversationDataSource extends PositionalDataSource<ConversationMessage> {
                                               .toList();
 
       callback.onResult(items, params.requestedStartPosition, result.getTotal());
+      Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | thread: " + threadId + ", start: " + params.requestedStartPosition + ", requestedSize: " + params.requestedLoadSize + ", actualSize: " + result.getItems().size() + ", totalCount: " + result.getTotal());
+    } else {
+      Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | thread: " + threadId + ", start: " + params.requestedStartPosition + ", requestedSize: " + params.requestedLoadSize + ", totalCount: " + totalCount + " -- invalidated");
     }
-
-    Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | thread: " + threadId + ", start: " + params.requestedStartPosition + ", size: " + params.requestedLoadSize + (isInvalid() ? " -- invalidated" : ""));
   }
 
   @Override

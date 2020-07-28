@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.thoughtcrime.securesms.util.paging.SizeFixResult;
@@ -84,11 +85,11 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
 
     if (!isInvalid()) {
       SizeFixResult<Conversation> result = SizeFixResult.ensureMultipleOfPageSize(conversations, params.requestedStartPosition, params.pageSize, totalCount);
-
       callback.onResult(result.getItems(), params.requestedStartPosition, result.getTotal());
+      Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | start: " + params.requestedStartPosition + ", requestedSize: " + params.requestedLoadSize + ", actualSize: " + result.getItems().size() + ", totalCount: " + result.getTotal() + ", class: " + getClass().getSimpleName());
+    } else {
+      Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | start: " + params.requestedStartPosition + ", requestedSize: " + params.requestedLoadSize + ", totalCount: " + totalCount + ", class: " + getClass().getSimpleName() + " -- invalidated");
     }
-
-    Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | start: " + params.requestedStartPosition + ", size: " + params.requestedLoadSize + ", totalCount: " + totalCount + ", class: " + getClass().getSimpleName() + (isInvalid() ? " -- invalidated" : ""));
   }
 
   @Override
