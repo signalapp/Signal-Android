@@ -50,13 +50,14 @@ public final class ConversationUpdateItem extends LinearLayout
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
-  private Set<MessageRecord> batchSelected;
+  private Set<ConversationMessage> batchSelected;
 
   private ImageView                 icon;
   private TextView                  title;
   private TextView                  body;
   private TextView                  date;
   private LiveRecipient             sender;
+  private ConversationMessage       conversationMessage;
   private MessageRecord             messageRecord;
   private Locale                    locale;
   private LiveData<SpannableString> displayBody;
@@ -84,19 +85,19 @@ public final class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
-  public void bind(@NonNull MessageRecord           messageRecord,
+  public void bind(@NonNull ConversationMessage conversationMessage,
                    @NonNull Optional<MessageRecord> previousMessageRecord,
                    @NonNull Optional<MessageRecord> nextMessageRecord,
-                   @NonNull GlideRequests           glideRequests,
-                   @NonNull Locale                  locale,
-                   @NonNull Set<MessageRecord>      batchSelected,
-                   @NonNull Recipient               conversationRecipient,
-                   @Nullable String                 searchQuery,
-                            boolean                 pulseUpdate)
+                   @NonNull GlideRequests glideRequests,
+                   @NonNull Locale locale,
+                   @NonNull Set<ConversationMessage> batchSelected,
+                   @NonNull Recipient conversationRecipient,
+                   @Nullable String searchQuery,
+                   boolean pulseUpdate)
   {
     this.batchSelected = batchSelected;
 
-    bind(messageRecord, locale);
+    bind(conversationMessage, locale);
   }
 
   @Override
@@ -111,11 +112,11 @@ public final class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
-  public MessageRecord getMessageRecord() {
-    return messageRecord;
+  public ConversationMessage getConversationMessage() {
+    return conversationMessage;
   }
 
-  private void bind(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
+  private void bind(@NonNull ConversationMessage conversationMessage, @NonNull Locale locale) {
     if (this.sender != null) {
       this.sender.removeForeverObserver(this);
     }
@@ -123,9 +124,10 @@ public final class ConversationUpdateItem extends LinearLayout
     observeDisplayBody(null);
     setBodyText(null);
 
-    this.messageRecord = messageRecord;
-    this.sender        = messageRecord.getIndividualRecipient().live();
-    this.locale        = locale;
+    this.conversationMessage = conversationMessage;
+    this.messageRecord       = conversationMessage.getMessageRecord();
+    this.sender              = messageRecord.getIndividualRecipient().live();
+    this.locale              = locale;
 
     this.sender.observeForever(this);
 
@@ -133,7 +135,7 @@ public final class ConversationUpdateItem extends LinearLayout
     LiveData<String>          liveUpdateMessage      = LiveUpdateMessage.fromMessageDescription(updateDescription);
     LiveData<SpannableString> spannableStringMessage = Transformations.map(liveUpdateMessage, SpannableString::new);
 
-    present(messageRecord);
+    present(conversationMessage);
 
     observeDisplayBody(spannableStringMessage);
   }
@@ -162,7 +164,8 @@ public final class ConversationUpdateItem extends LinearLayout
     }
   }
 
-  private void present(MessageRecord messageRecord) {
+  private void present(ConversationMessage conversationMessage) {
+    MessageRecord messageRecord = conversationMessage.getMessageRecord();
     if      (messageRecord.isGroupAction())           setGroupRecord();
     else if (messageRecord.isCallLog())               setCallRecord(messageRecord);
     else if (messageRecord.isJoined())                setJoinedRecord();
@@ -174,8 +177,8 @@ public final class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isProfileChange())         setProfileNameChangeRecord();
     else                                              throw new AssertionError("Neither group nor log nor joined.");
 
-    if (batchSelected.contains(messageRecord)) setSelected(true);
-    else                                       setSelected(false);
+    if (batchSelected.contains(conversationMessage)) setSelected(true);
+    else                                             setSelected(false);
   }
 
   private void setCallRecord(MessageRecord messageRecord) {
@@ -256,7 +259,7 @@ public final class ConversationUpdateItem extends LinearLayout
 
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
-    present(messageRecord);
+    present(conversationMessage);
   }
 
   @Override

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
+import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -80,7 +81,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
       else if (messageRecord.isOutgoing())    conversationItem = (ConversationItem) sentStub.inflate();
       else                                    conversationItem = (ConversationItem) receivedStub.inflate();
     }
-    conversationItem.bind(messageRecord, Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), messageRecord.getRecipient(), null, false);
+    conversationItem.bind(new ConversationMessage(messageRecord), Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), messageRecord.getRecipient(), null, false);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

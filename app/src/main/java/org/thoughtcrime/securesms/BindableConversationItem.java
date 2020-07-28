@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import android.view.View;
 
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
@@ -21,17 +22,17 @@ import java.util.Locale;
 import java.util.Set;
 
 public interface BindableConversationItem extends Unbindable {
-  void bind(@NonNull MessageRecord           messageRecord,
+  void bind(@NonNull ConversationMessage messageRecord,
             @NonNull Optional<MessageRecord> previousMessageRecord,
             @NonNull Optional<MessageRecord> nextMessageRecord,
-            @NonNull GlideRequests           glideRequests,
-            @NonNull Locale                  locale,
-            @NonNull Set<MessageRecord>      batchSelected,
-            @NonNull Recipient               recipients,
-            @Nullable String                 searchQuery,
-                     boolean                 pulseHighlight);
+            @NonNull GlideRequests glideRequests,
+            @NonNull Locale locale,
+            @NonNull Set<ConversationMessage> batchSelected,
+            @NonNull Recipient recipients,
+            @Nullable String searchQuery,
+            boolean pulseHighlight);
 
-  MessageRecord getMessageRecord();
+  ConversationMessage getConversationMessage();
 
   void setEventListener(@Nullable EventListener listener);
 

@@ -28,14 +28,14 @@ class ConversationViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ConversationViewModel.class);
 
-  private final Application                        context;
-  private final MediaRepository                    mediaRepository;
-  private final ConversationRepository             conversationRepository;
-  private final MutableLiveData<List<Media>>       recentMedia;
-  private final MutableLiveData<Long>              threadId;
-  private final LiveData<PagedList<MessageRecord>> messages;
-  private final LiveData<ConversationData>         conversationMetadata;
-  private final Invalidator                        invalidator;
+  private final Application                              context;
+  private final MediaRepository                          mediaRepository;
+  private final ConversationRepository                   conversationRepository;
+  private final MutableLiveData<List<Media>>             recentMedia;
+  private final MutableLiveData<Long>                    threadId;
+  private final LiveData<PagedList<ConversationMessage>> messages;
+  private final LiveData<ConversationData>               conversationMetadata;
+  private final Invalidator                              invalidator;
 
   private int jumpToPosition;
 
@@ -55,12 +55,12 @@ class ConversationViewModel extends ViewModel {
       return conversationData;
     });
 
-    LiveData<Pair<Long, PagedList<MessageRecord>>> messagesForThreadId = Transformations.switchMap(metadata, data -> {
-      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, data.getThreadId(), invalidator);
-      PagedList.Config                           config  = new PagedList.Config.Builder()
-                                                                               .setPageSize(25)
-                                                                               .setInitialLoadSizeHint(25)
-                                                                               .build();
+    LiveData<Pair<Long, PagedList<ConversationMessage>>> messagesForThreadId = Transformations.switchMap(metadata, data -> {
+      DataSource.Factory<Integer, ConversationMessage> factory = new ConversationDataSource.Factory(context, data.getThreadId(), invalidator);
+      PagedList.Config                                 config  = new PagedList.Config.Builder()
+                                                                                     .setPageSize(25)
+                                                                                     .setInitialLoadSizeHint(25)
+                                                                                     .build();
 
       final int startPosition;
       if (data.shouldJumpToMessage()) {
@@ -109,7 +109,7 @@ class ConversationViewModel extends ViewModel {
     return conversationMetadata;
   }
 
-  @NonNull LiveData<PagedList<MessageRecord>> getMessages() {
+  @NonNull LiveData<PagedList<ConversationMessage>> getMessages() {
     return messages;
   }
 

@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.paging.DataSource;
 import androidx.paging.PositionalDataSource;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -24,7 +26,7 @@ import java.util.concurrent.Executor;
 /**
  * Core data source for loading an individual conversation.
  */
-class ConversationDataSource extends PositionalDataSource<MessageRecord> {
+class ConversationDataSource extends PositionalDataSource<ConversationMessage> {
 
   private static final String TAG = Log.tag(ConversationDataSource.class);
 
@@ -57,7 +59,7 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
   }
 
   @Override
-  public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<MessageRecord> callback) {
+  public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<ConversationMessage> callback) {
     long start = System.currentTimeMillis();
 
     MmsSmsDatabase      db             = DatabaseFactory.getMmsSmsDatabase(context);
@@ -76,14 +78,18 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     if (!isInvalid()) {
       SizeFixResult<MessageRecord> result = SizeFixResult.ensureMultipleOfPageSize(records, params.requestedStartPosition, params.pageSize, totalCount);
 
-      callback.onResult(result.getItems(), params.requestedStartPosition, result.getTotal());
+      List<ConversationMessage> items = Stream.of(result.getItems())
+                                              .map(ConversationMessage::new)
+                                              .toList();
+
+      callback.onResult(items, params.requestedStartPosition, result.getTotal());
     }
 
     Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms | thread: " + threadId + ", start: " + params.requestedStartPosition + ", size: " + params.requestedLoadSize + (isInvalid() ? " -- invalidated" : ""));
   }
 
   @Override
-  public void loadRange(@NonNull LoadRangeParams params, @NonNull LoadRangeCallback<MessageRecord> callback) {
+  public void loadRange(@NonNull LoadRangeParams params, @NonNull LoadRangeCallback<ConversationMessage> callback) {
     long start = System.currentTimeMillis();
 
     MmsSmsDatabase      db      = DatabaseFactory.getMmsSmsDatabase(context);
@@ -96,12 +102,15 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
       }
     }
 
-    callback.onResult(records);
+    List<ConversationMessage> items = Stream.of(records)
+                                            .map(ConversationMessage::new)
+                                            .toList();
+    callback.onResult(items);
 
     Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms | thread: " + threadId + ", start: " + params.startPosition + ", size: " + params.loadSize + (isInvalid() ? " -- invalidated" : ""));
   }
 
-  static class Factory extends DataSource.Factory<Integer, MessageRecord> {
+  static class Factory extends DataSource.Factory<Integer, ConversationMessage> {
 
     private final Context             context;
     private final long                threadId;
@@ -114,7 +123,7 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     }
 
     @Override
-    public @NonNull DataSource<Integer, MessageRecord> create() {
+    public @NonNull DataSource<Integer, ConversationMessage> create() {
       return new ConversationDataSource(context, threadId, invalidator);
     }
   }
