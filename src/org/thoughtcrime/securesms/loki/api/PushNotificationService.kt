@@ -14,8 +14,8 @@ class PushNotificationService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d("Loki", "New FCM token: $token.")
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this) ?: return
-        LokiPushNotificationManager.register(token, userHexEncodedPublicKey, this, false)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this) ?: return
+        LokiPushNotificationManager.register(token, userPublicKey, this, false)
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
