@@ -1454,7 +1454,7 @@
   <string name="activity_linked_devices_unlinking_successful_message">O seu dispositivo foi dessincronizado com sucesso</string>
   <string name="activity_linked_devices_linking_failed_message">Não foi possível sincronizar o dispositivo.</string>
   <string name="activity_linked_devices_empty_state_message">Você ainda não sincronizou nenhum dispositivo</string>
-  <string name="activity_linked_devices_empty_state_button_title">Sincronizar um dispositivo (Beta)</string>
+  <string name="activity_linked_devices_empty_state_button_title">Sincronizar um dispositivo</string>
 
   <string name="preferences_notifications_strategy_category_title">Estratégia de notificação</string>
   <string name="preferences_notifications_use_fcm_option_title">Usar FCM</string>

@@ -1451,7 +1451,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="activity_linked_devices_unlinking_successful_message">Il dispositivo è stato scollegato correttamente</string>
   <string name="activity_linked_devices_linking_failed_message">Impossibile collegare il dispositivo.</string>
   <string name="activity_linked_devices_empty_state_message">Non hai ancora collegato nessun dispositivo</string>
-  <string name="activity_linked_devices_empty_state_button_title">Collega un dispositivo (Beta)</string>
+  <string name="activity_linked_devices_empty_state_button_title">Collega un dispositivo</string>
 
   <string name="preferences_notifications_strategy_category_title">Strategia di notifica</string>
   <string name="preferences_notifications_use_fcm_option_title">Usa FCM</string>
