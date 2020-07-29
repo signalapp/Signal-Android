@@ -3,10 +3,14 @@ package org.thoughtcrime.securesms.loki.activities
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.drawable.TransitionDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.DrawableRes
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_display_name.registerButton
 import kotlinx.android.synthetic.main.activity_pn_mode.*
 import network.loki.messenger.R
@@ -28,6 +32,11 @@ class PNModeActivity : BaseActionBarActivity() {
         backgroundPollingOptionView.setOnClickListener { toggleBackgroundPolling() }
         registerButton.setOnClickListener { register() }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_pn_mode, menu)
+        return true
+    }
     // endregion
 
     // region Animation
@@ -39,6 +48,25 @@ class PNModeActivity : BaseActionBarActivity() {
     // endregion
 
     // region Interaction
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when(id) {
+            R.id.learnMoreButton -> learnMore()
+            else -> { /* Do nothing */ }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun learnMore() {
+        try {
+            val url = "https://getsession.org/faq/#privacy"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun toggleFCM() {
         when (selectedOptionView) {
             null -> {
