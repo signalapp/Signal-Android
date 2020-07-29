@@ -48,7 +48,8 @@ import java.util.List;
 
 public class ManageGroupViewModel extends ViewModel {
 
-  private static final int MAX_COLLAPSED_MEMBERS = 5;
+  private static final int MAX_UNCOLLAPSED_MEMBERS = 6;
+  private static final int SHOW_COLLAPSED_MEMBERS  = 5;
 
   private final Context                                     context;
   private final ManageGroupRepository                       manageGroupRepository;
@@ -89,7 +90,7 @@ public class ManageGroupViewModel extends ViewModel {
                                                                                            : title);
     this.isAdmin                   = liveGroup.isSelfAdmin();
     this.canCollapseMemberList     = LiveDataUtil.combineLatest(memberListCollapseState,
-                                                                Transformations.map(liveGroup.getFullMembers(), m -> m.size() > MAX_COLLAPSED_MEMBERS),
+                                                                Transformations.map(liveGroup.getFullMembers(), m -> m.size() > MAX_UNCOLLAPSED_MEMBERS),
                                                                 (state, hasEnoughMembers) -> state != CollapseState.OPEN && hasEnoughMembers);
     this.members                   = LiveDataUtil.combineLatest(liveGroup.getFullMembers(),
                                                                 memberListCollapseState,
@@ -262,8 +263,8 @@ public class ManageGroupViewModel extends ViewModel {
   private static @NonNull List<GroupMemberEntry.FullMember> filterMemberList(@NonNull List<GroupMemberEntry.FullMember> members,
                                                                              @NonNull CollapseState collapseState)
   {
-    if (collapseState == CollapseState.COLLAPSED && members.size() > MAX_COLLAPSED_MEMBERS) {
-      return members.subList(0, MAX_COLLAPSED_MEMBERS);
+    if (collapseState == CollapseState.COLLAPSED && members.size() > MAX_UNCOLLAPSED_MEMBERS) {
+      return members.subList(0, SHOW_COLLAPSED_MEMBERS);
     } else {
       return members;
     }

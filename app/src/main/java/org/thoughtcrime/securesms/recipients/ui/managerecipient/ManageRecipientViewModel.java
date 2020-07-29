@@ -41,7 +41,8 @@ import java.util.List;
 
 public final class ManageRecipientViewModel extends ViewModel {
 
-  private static final int MAX_COLLAPSED_GROUPS = 5;
+  private static final int MAX_UNCOLLAPSED_GROUPS = 6;
+  private static final int SHOW_COLLAPSED_GROUPS  = 5;
 
   private final Context                                          context;
   private final ManageRecipientRepository                        manageRecipientRepository;
@@ -80,7 +81,7 @@ public final class ManageRecipientViewModel extends ViewModel {
     });
 
     this.canCollapseMemberList = LiveDataUtil.combineLatest(this.groupListCollapseState,
-                                                            Transformations.map(allSharedGroups, m -> m.size() > MAX_COLLAPSED_GROUPS),
+                                                            Transformations.map(allSharedGroups, m -> m.size() > MAX_UNCOLLAPSED_GROUPS),
                                                             (state, hasEnoughMembers) -> state != CollapseState.OPEN && hasEnoughMembers);
     this.visibleSharedGroups   = Transformations.map(LiveDataUtil.combineLatest(allSharedGroups,
                                                      this.groupListCollapseState,
@@ -198,8 +199,8 @@ public final class ManageRecipientViewModel extends ViewModel {
   private static @NonNull List<Recipient> filterSharedGroupList(@NonNull List<Recipient> groups,
                                                                 @NonNull CollapseState collapseState)
   {
-    if (collapseState == CollapseState.COLLAPSED && groups.size() > MAX_COLLAPSED_GROUPS) {
-      return groups.subList(0, MAX_COLLAPSED_GROUPS);
+    if (collapseState == CollapseState.COLLAPSED && groups.size() > MAX_UNCOLLAPSED_GROUPS) {
+      return groups.subList(0, SHOW_COLLAPSED_GROUPS);
     } else {
       return groups;
     }
