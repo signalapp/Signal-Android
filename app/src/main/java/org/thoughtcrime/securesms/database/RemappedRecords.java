@@ -64,7 +64,7 @@ class RemappedRecords {
    */
   void addThread(@NonNull Context context, long oldId, long newId) {
     ensureInTransaction(context);
-    ensureRecipientMapIsPopulated(context);
+    ensureThreadMapIsPopulated(context);
     threadMap.put(oldId, newId);
     DatabaseFactory.getRemappedRecordsDatabase(context).addThreadMapping(oldId, newId);
   }
