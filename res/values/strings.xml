@@ -1702,12 +1702,6 @@
     <string name="activity_display_name_display_name_invalid_error">Please pick a display name that consists of only a-z, A-Z, 0-9 and _ characters</string>
     <string name="activity_display_name_display_name_too_long_error">Please pick a shorter display name</string>
 
-    <string name="activity_pn_mode_title">Push Notifications</string>
-    <string name="activity_pn_mode_explanation">There are two ways Session can handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
-    <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-    <string name="activity_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\'ll be notified of new messages reliably and immediately. Using FCM means that your IP address and device token will be exposed to Google. If you use push notifications for other apps, this will already be the case. Your IP address and device token will also be exposed to Loki, but your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
-    <string name="activity_pn_mode_background_polling_option_title">Background Polling</string>
-    <string name="activity_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full metadata protection, but message notifications may be significantly delayed.</string>
     <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
     <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
 
@@ -1717,17 +1711,6 @@
     <string name="activity_home_leaving_group_failed_message">"Couldn\'t leave group"</string>
     <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
     <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
-
-    <string name="sheet_pn_mode_title">Push Notifications</string>
-    <string name="sheet_pn_mode_explanation">Session now features two ways to handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
-    <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-    <string name="sheet_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\'ll be notified of new messages reliably and immediately. Using FCM means that your IP address and device token will be exposed to Google. If you use push notifications for other apps, this will already be the case. Your IP address and device token will also be exposed to Loki, but your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
-    <string name="sheet_pn_mode_background_polling_option_title">Background Polling</string>
-    <string name="sheet_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full metadata protection, but message notifications may be significantly delayed.</string>
-    <string name="sheet_pn_mode_recommended_option_tag">Recommended</string>
-    <string name="sheet_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
-    <string name="sheet_pn_mode_confirm_button_title">Confirm</string>
-    <string name="sheet_pn_mode_skip_button_title">Skip</string>
 
     <string name="activity_seed_title">Your Recovery Phrase</string>
     <string name="activity_seed_title_2">Meet your recovery phrase</string>
@@ -1775,7 +1758,6 @@
     <string name="activity_join_public_chat_scan_qr_code_explanation">Scan the QR code of the open group you\'d like to join</string>
 
     <string name="fragment_enter_chat_url_edit_text_hint">Enter an open group URL</string>
-    <string name="fragment_enter_chat_url_privacy_warning">Open groups can be joined by anyone and do not provide full privacy protection</string>
 
     <string name="activity_settings_title">Settings</string>
     <string name="activity_settings_display_name_edit_text_hint">Enter a display name</string>
@@ -1807,8 +1789,6 @@
     <string name="activity_linked_devices_empty_state_button_title">Link a Device (Beta)</string>
 
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
-    <string name="preferences_notifications_use_fcm_option_title">Use FCM</string>
-    <string name="preferences_notifications_use_fcm_option_explanation">Using Firebase Cloud Messaging allows for more reliable push notifications, but exposes your IP and device token to Google and Loki.</string>
 
     <string name="dialog_link_device_slave_mode_title_1">Waiting for Authorization</string>
     <string name="dialog_link_device_slave_mode_title_2">Device Link Authorized</string>
@@ -1841,16 +1821,6 @@
 
     <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
     <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
-
-    <string name="view_friend_request_accept_button_title">Accept</string>
-    <string name="view_friend_request_reject_button_title">Decline</string>
-    <string name="view_friend_request_incoming_pending_message">%1$s sent you a session request</string>
-    <string name="view_friend_request_incoming_accepted_message">You\'ve accepted %1$s\'s session request</string>
-    <string name="view_friend_request_incoming_declined_message">You\'ve declined %1$s\'s session request</string>
-    <string name="view_friend_request_incoming_expired_message">%1$s\'s session request has expired</string>
-    <string name="view_friend_request_outgoing_pending_message">You\'ve sent %1$s a session request</string>
-    <string name="view_friend_request_outgoing_accepted_message">%1$s accepted your session request</string>
-    <string name="view_friend_request_outgoing_expired_message">Your session request to %1$s has expired</string>
 
     <string name="session_reset_banner_message">Would you like to restore your session with %s?</string>
     <string name="session_reset_banner_dismiss_button_title">Dismiss</string>

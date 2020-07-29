@@ -1319,12 +1319,6 @@
   <string name="activity_display_name_display_name_invalid_error">请选择一个仅包含 az，AZ，0-9 和_字符的显示名称</string>
   <string name="activity_display_name_display_name_too_long_error">请选择一个较短的显示名称</string>
 
-  <string name="activity_pn_mode_title">推送通知</string>
-  <string name="activity_pn_mode_explanation">Session可以通过两种方式处理推送通知。选择之前，请务必仔细阅读说明。</string>
-  <string name="activity_pn_mode_fcm_option_title">Firebase云消息传递</string>
-  <string name="activity_pn_mode_fcm_option_explanation">会话将使用 Firebase 云消息服务接收推送通知。您会立即可靠地收到新消息的通知。使用 FCM 意味着您的 IP 地址和设备令牌将向 Google 公开。如果您对其他应用程序使用推送通知，则情况也如此。您的 IP 地址和设备令牌也将向 Loki 公开，但是您的消息仍将经过洋葱路由和端到端加密，因此消息的内容将完全保密。</string>
-  <string name="activity_pn_mode_background_polling_option_title">背景轮询</string>
-  <string name="activity_pn_mode_background_polling_option_explanation">Session偶尔会在后台检查新消息。这样可以保证完整的元数据保护，但是消息通知可能会大大延迟。</string>
   <string name="activity_pn_mode_recommended_option_tag">推荐的选项</string>
   <string name="activity_pn_mode_no_option_picked_dialog_title">请选择一个选项</string>
 
@@ -1334,17 +1328,6 @@
   <string name="activity_home_leaving_group_failed_message">无法离开群组</string>
   <string name="activity_home_delete_conversation_dialog_message">您确定要删除此对话吗？</string>
   <string name="activity_home_conversation_deleted_message">对话已删除</string>
-
-  <string name="sheet_pn_mode_title">推送通知</string>
-  <string name="sheet_pn_mode_explanation">会话现在具有两种处理推送通知的方式。选择之前，请务必仔细阅读说明。</string>
-  <string name="sheet_pn_mode_fcm_option_title">Firebase 云消息传递</string>
-  <string name="sheet_pn_mode_fcm_option_explanation">会话将使用 Firebase 云消息服务接收推送通知。您会立即可靠地收到新消息的通知。使用 FCM 意味着您的 IP 地址和设备令牌将向 Google 公开。如果您对其他应用程序使用推送通知，则情况也如此。您的 IP 地址和设备令牌也将向 Loki 公开，但是您的消息仍将经过洋葱路由和端到端加密，因此消息的内容将完全保密。</string>
-  <string name="sheet_pn_mode_background_polling_option_title">背景轮询</string>
-  <string name="sheet_pn_mode_background_polling_option_explanation">Session偶尔会在后台检查新消息。这样可以保证完整的元数据保护，但是消息通知可能会大大延迟。</string>
-  <string name="sheet_pn_mode_recommended_option_tag">推荐的</string>
-  <string name="sheet_pn_mode_no_option_picked_dialog_title">请选择一个选项</string>
-  <string name="sheet_pn_mode_confirm_button_title">确认</string>
-  <string name="sheet_pn_mode_skip_button_title">跳过</string>
 
   <string name="activity_seed_title">您的恢复短语</string>
   <string name="activity_seed_title_2">符合您的恢复短语</string>
@@ -1392,7 +1375,6 @@
   <string name="activity_join_public_chat_scan_qr_code_explanation">扫描您想加入的公开群组的二维码</string>
 
   <string name="fragment_enter_chat_url_edit_text_hint">输入一个公开群组网址</string>
-  <string name="fragment_enter_chat_url_privacy_warning">公开群组可以被任何人加入，并且不能提供全面的隐私保护</string>
 
   <string name="activity_settings_title">设置</string>
   <string name="activity_settings_display_name_edit_text_hint">输入显示的名称</string>
@@ -1424,8 +1406,6 @@
   <string name="activity_linked_devices_empty_state_button_title">链接设备（测试版）</string>
 
   <string name="preferences_notifications_strategy_category_title">通知选项</string>
-  <string name="preferences_notifications_use_fcm_option_title">使用 FCM</string>
-  <string name="preferences_notifications_use_fcm_option_explanation">使用 Firebase 云消息可以提供更可靠的推送通知，但会将您的 IP 和设备令牌公开给 Google 和 Loki。</string>
 
   <string name="dialog_link_device_slave_mode_title_1">等待授权</string>
   <string name="dialog_link_device_slave_mode_title_2">设备链接授权</string>
@@ -1458,16 +1438,6 @@
 
   <string name="fragment_view_my_qr_code_explanation">这是您的二维码。其他用户可以对其进行扫描以开始对话。</string>
   <string name="fragment_view_my_qr_code_share_title">分享二维码</string>
-
-  <string name="view_friend_request_accept_button_title">接受</string>
-  <string name="view_friend_request_reject_button_title">拒绝</string>
-  <string name="view_friend_request_incoming_pending_message">%1$s向您发送了一个会话请求</string>
-  <string name="view_friend_request_incoming_accepted_message">您已接受%1$s的会话请求</string>
-  <string name="view_friend_request_incoming_declined_message">您拒绝了%1$s的会话请求</string>
-  <string name="view_friend_request_incoming_expired_message">%1$s的会话请求已过期</string>
-  <string name="view_friend_request_outgoing_pending_message">您已向%1$s发送了会话请求</string>
-  <string name="view_friend_request_outgoing_accepted_message">%1$s接受了会话请求</string>
-  <string name="view_friend_request_outgoing_expired_message">您对%1$s的会话请求已过期</string>
 
   <string name="session_reset_banner_message">您要恢复与%s的会话吗？</string>
   <string name="session_reset_banner_dismiss_button_title">解散</string>
