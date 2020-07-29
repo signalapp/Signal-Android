@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.BidiFormatter;
 
 import com.google.android.collect.Sets;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.Set;
 
 public final class StringUtil {
@@ -13,6 +15,27 @@ public final class StringUtil {
   private static final Set<Character> WHITESPACE = Sets.newHashSet('\u200E',  // left-to-right mark
                                                                    '\u200F',  // right-to-left mark
                                                                    '\u2007'); // figure space
+
+  private static final class Bidi {
+    /** Override text direction  */
+    private static final Set<Integer> OVERRIDES = Sets.newHashSet("\u202a".codePointAt(0), /* LRE */
+                                                                  "\u202b".codePointAt(0), /* RLE */
+                                                                  "\u202d".codePointAt(0), /* LRO */
+                                                                  "\u202e".codePointAt(0)  /* RLO */);
+
+    /** Set direction and isolate surrounding text */
+    private static final Set<Integer> ISOLATES = Sets.newHashSet("\u2066".codePointAt(0), /* LRI */
+                                                                 "\u2067".codePointAt(0), /* RLI */
+                                                                 "\u2068".codePointAt(0)  /* FSI */);
+    /** Closes things in {@link #OVERRIDES} */
+    private static final int PDF = "\u202c".codePointAt(0);
+
+    /** Closes things in {@link #ISOLATES} */
+    private static final int PDI = "\u2069".codePointAt(0);
+
+    /** Auto-detecting isolate */
+    private static final int FSI = "\u2068".codePointAt(0);
+  }
 
   private StringUtil() {
   }
@@ -98,5 +121,59 @@ public final class StringUtil {
    */
   public static @NonNull String codePointToString(int codePoint) {
     return new String(Character.toChars(codePoint));
+  }
+
+  /**
+   * Isolates bi-directional text from influencing surrounding text. You should use this whenever
+   * you're injecting user-generated text into a larger string.
+   *
+   * You'd think we'd be able to trust {@link BidiFormatter}, but unfortunately it just misses some
+   * corner cases, so here we are.
+   *
+   * The general idea is just to balance out the opening and closing codepoints, and then wrap the
+   * whole thing in FSI/PDI to isolate it.
+   *
+   * For more details, see:
+   * https://www.w3.org/International/questions/qa-bidi-unicode-controls
+   */
+  public static @NonNull String isolateBidi(@NonNull String text) {
+    int overrideCount      = 0;
+    int overrideCloseCount = 0;
+    int isolateCount       = 0;
+    int isolateCloseCount  = 0;
+
+    for (int i = 0, len = text.codePointCount(0, text.length()); i < len; i++) {
+      int codePoint = text.codePointAt(i);
+
+      if (Bidi.OVERRIDES.contains(codePoint)) {
+        overrideCount++;
+      } else if (codePoint == Bidi.PDF) {
+        overrideCloseCount++;
+      } else if (Bidi.ISOLATES.contains(codePoint)) {
+        isolateCount++;
+      } else if (codePoint == Bidi.PDI) {
+        isolateCloseCount++;
+      }
+    }
+
+    StringBuilder suffix = new StringBuilder();
+
+    while (overrideCount > overrideCloseCount) {
+      suffix.appendCodePoint(Bidi.PDF);
+      overrideCloseCount++;
+    }
+
+    while (isolateCount > isolateCloseCount) {
+      suffix.appendCodePoint(Bidi.FSI);
+      isolateCloseCount++;
+    }
+
+    StringBuilder out = new StringBuilder();
+
+    return out.appendCodePoint(Bidi.FSI)
+              .append(text)
+              .append(suffix)
+              .appendCodePoint(Bidi.PDI)
+              .toString();
   }
 }

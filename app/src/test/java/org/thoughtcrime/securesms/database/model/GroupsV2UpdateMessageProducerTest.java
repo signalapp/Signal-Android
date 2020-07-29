@@ -28,6 +28,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.thoughtcrime.securesms.testutil.MainThreadUtil;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -43,6 +44,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.thoughtcrime.securesms.util.StringUtil.isolateBidi;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
@@ -603,7 +605,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .title("New title")
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Alice changed the group name to \"New title\".")));
+    assertThat(describeChange(change), is(singletonList("Alice changed the group name to \"" + isolateBidi("New title") + "\".")));
   }
 
   @Test
@@ -612,7 +614,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .title("Title 2")
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("You changed the group name to \"Title 2\".")));
+    assertThat(describeChange(change), is(singletonList("You changed the group name to \"" + isolateBidi("Title 2") + "\".")));
   }
 
   @Test
@@ -621,7 +623,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .title("Title 3")
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("The group name has changed to \"Title 3\".")));
+    assertThat(describeChange(change), is(singletonList("The group name has changed to \"" + isolateBidi("Title 3") + "\".")));
   }
   
   // Avatar change
@@ -762,7 +764,7 @@ public final class GroupsV2UpdateMessageProducerTest {
 
     assertThat(describeChange(change), is(Arrays.asList(
       "Alice added Bob.",
-      "Alice changed the group name to \"Title\".",
+      "Alice changed the group name to \"" + isolateBidi("Title") + "\".",
       "Alice set the disappearing message timer to 5 minutes.",
       "Alice changed who can edit group membership to \"All members\".")));
   }
@@ -803,7 +805,7 @@ public final class GroupsV2UpdateMessageProducerTest {
 
     assertThat(describeChange(change), is(Arrays.asList(
       "Bob joined the group.",
-      "The group name has changed to \"Title 2\".",
+      "The group name has changed to \"" + isolateBidi("Title 2") + "\".",
       "The group avatar has been changed.",
       "The disappearing message timer has been set to 10 minutes.",
       "Who can edit group membership has been changed to \"All members\".")));
@@ -821,7 +823,7 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(describeChange(change), is(Arrays.asList(
       "Alice joined the group.",
       "Alice is now an admin.",
-      "The group name has changed to \"Updated title\".",
+      "The group name has changed to \"" + isolateBidi("Updated title") + "\".",
       "Alice is no longer in the group.")));
   }
 

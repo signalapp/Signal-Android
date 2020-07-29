@@ -125,7 +125,7 @@ public final class GroupUtil {
         return description.toString();
       }
 
-      String title = groupContext.getName();
+      String title = StringUtil.isolateBidi(groupContext.getName());
 
       if (members != null && members.size() > 0) {
         description.append("\n");

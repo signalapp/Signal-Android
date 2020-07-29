@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -196,8 +197,8 @@ public abstract class MessageRecord extends DisplayRecord {
 
       if (profileChangeDetails.hasProfileNameChange()) {
         String displayName  = getIndividualRecipient().getDisplayName(context);
-        String newName      = ProfileName.fromSerialized(profileChangeDetails.getProfileNameChange().getNew()).toString();
-        String previousName = ProfileName.fromSerialized(profileChangeDetails.getProfileNameChange().getPrevious()).toString();
+        String newName      = StringUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.getProfileNameChange().getNew()).toString());
+        String previousName = StringUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.getProfileNameChange().getPrevious()).toString());
 
         if (getIndividualRecipient().isSystemContact()) {
           return context.getString(R.string.MessageRecord_changed_their_profile_name_from_to, displayName, previousName, newName);

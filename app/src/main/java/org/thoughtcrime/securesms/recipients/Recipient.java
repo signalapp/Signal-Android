@@ -26,19 +26,18 @@ import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientIdResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -400,18 +399,22 @@ public class Recipient {
   }
 
   public @NonNull String getDisplayName(@NonNull Context context) {
-    return Util.getFirstNonEmpty(getName(context),
-                                 getProfileName().toString(),
-                                 getDisplayUsername(),
-                                 e164,
-                                 email,
-                                 context.getString(R.string.Recipient_unknown));
+    String name = Util.getFirstNonEmpty(getName(context),
+                                        getProfileName().toString(),
+                                        getDisplayUsername(),
+                                        e164,
+                                        email,
+                                        context.getString(R.string.Recipient_unknown));
+
+    return StringUtil.isolateBidi(name);
   }
 
   public @NonNull String getShortDisplayName(@NonNull Context context) {
-    return Util.getFirstNonEmpty(getName(context),
-                                 getProfileName().getGivenName(),
-                                 getDisplayName(context));
+    String name = Util.getFirstNonEmpty(getName(context),
+                                        getProfileName().getGivenName(),
+                                        getDisplayName(context));
+
+    return StringUtil.isolateBidi(name);
   }
 
   public @NonNull MaterialColor getColor() {

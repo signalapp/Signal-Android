@@ -18,6 +18,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -396,7 +397,7 @@ final class GroupsV2UpdateMessageProducer {
     boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
 
     if (change.hasNewTitle()) {
-      String newTitle = change.getNewTitle().getValue();
+      String newTitle = StringUtil.isolateBidi(change.getNewTitle().getValue());
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle)));
       } else {
@@ -407,7 +408,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.hasNewTitle()) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, change.getNewTitle().getValue())));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(change.getNewTitle().getValue()))));
     }
   }
 
