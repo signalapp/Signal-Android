@@ -372,7 +372,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun setOpenGroupPublicKey(server: String, newValue: String) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.server to server, LokiAPIDatabase.publicKey to publicKey))
+        val row = wrap(mapOf(LokiAPIDatabase.server to server, LokiAPIDatabase.publicKey to newValue))
         database.insertOrUpdate(openGroupPublicKeyDB, row, "${LokiAPIDatabase.server} = ?", wrap(server))
     }
 }
