@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
-import org.thoughtcrime.securesms.loki.dialogs.PNModeBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -189,20 +188,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed || !isMasterDevice) {
             seedReminderView.visibility = View.GONE
-        }
-        if (!TextSecurePreferences.hasSeenPNModeSheet(this)) {
-            val bottomSheet = PNModeBottomSheet()
-            bottomSheet.onConfirmTapped = { isUsingFCM ->
-                TextSecurePreferences.setHasSeenPNModeSheet(this, true)
-                TextSecurePreferences.setIsUsingFCM(this, isUsingFCM)
-                ApplicationContext.getInstance(this).registerForFCMIfNeeded(true)
-                bottomSheet.dismiss()
-            }
-            bottomSheet.onSkipTapped = {
-                TextSecurePreferences.setHasSeenPNModeSheet(this, true)
-                bottomSheet.dismiss()
-            }
-            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
     }
 
