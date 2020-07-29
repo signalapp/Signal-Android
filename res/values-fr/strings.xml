@@ -1348,12 +1348,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="activity_display_name_display_name_invalid_error">Veuillez choisir un nom d\'utilisateur composé uniquement de caractères a-z, A-Z, 0-9 et _</string>
   <string name="activity_display_name_display_name_too_long_error">Veuillez choisir un nom d\'utilisateur plus court</string>
 
-  <string name="activity_pn_mode_title">Notifications push</string>
-  <string name="activity_pn_mode_explanation">Session peut gérer les notifications push de deux manières. Assurez-vous de lire attentivement les détails avant de faire votre choix.</string>
-  <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-  <string name="activity_pn_mode_fcm_option_explanation">Session utilisera le service Firebase Cloud Messaging pour la réception des notifications. Vous serez notifié immédiatement des nouveaux messages. L\'utilisation de FCM signifie que votre adresse IP et votre jeton d\'appareil seront exposés à Google. Cela est déjà le cas si vous utilisez des notifications push dans d’autres applications. Ceux-ci seront également exposés à Loki. Vos messages seront toujours routés anonymement et chiffrés de bout en bout, ainsi leur contenu restera totalement confidentiel.</string>
-  <string name="activity_pn_mode_background_polling_option_title">Consultation d\'arrière-plan</string>
-  <string name="activity_pn_mode_background_polling_option_explanation">Session vérifiera de temps en temps les nouveaux messages en arrière-plan. Cette option garantit une confidentialité totale, mais les notifications de messages peuvent être retardées.</string>
   <string name="activity_pn_mode_recommended_option_tag">Recommandé</string>
   <string name="activity_pn_mode_no_option_picked_dialog_title">Veuillez choisir une option</string>
 
@@ -1363,17 +1357,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="activity_home_leaving_group_failed_message">Impossible de quitter le groupe</string>
   <string name="activity_home_delete_conversation_dialog_message">Voulez-vous vraiment supprimer cette conversation ?</string>
   <string name="activity_home_conversation_deleted_message">Conversation supprimée</string>
-
-  <string name="sheet_pn_mode_title">Notifications push</string>
-  <string name="sheet_pn_mode_explanation">Session propose désormais deux façons de gérer les notifications push. Assurez-vous de lire attentivement les descriptions avant de choisir.</string>
-  <string name="sheet_pn_mode_fcm_option_title">Messagerie Cloud Firebase</string>
-  <string name="sheet_pn_mode_fcm_option_explanation">Session utilisera le service Firebase Cloud Messaging pour la réception des notifications. Vous serez notifié immédiatement des nouveaux messages. L\'utilisation de FCM signifie que votre adresse IP et votre jeton d\'appareil seront exposés à Google. Cela est déjà le cas si vous utilisez des notifications push dans d’autres applications. Ceux-ci seront également exposés à Loki. Vos messages seront toujours routés anonymement et chiffrés de bout en bout, ainsi leur contenu restera totalement confidentiel.</string>
-  <string name="sheet_pn_mode_background_polling_option_title">Consultation d\'arrière-plan</string>
-  <string name="sheet_pn_mode_background_polling_option_explanation">Session vérifiera de temps en temps les nouveaux messages en arrière-plan. Cette option garantit une confidentialité totale, mais les notifications de messages peuvent être retardées.</string>
-  <string name="sheet_pn_mode_recommended_option_tag">Recommandé</string>
-  <string name="sheet_pn_mode_no_option_picked_dialog_title">Veuillez choisir une option</string>
-  <string name="sheet_pn_mode_confirm_button_title">Confirmer</string>
-  <string name="sheet_pn_mode_skip_button_title">Ignorer</string>
 
   <string name="activity_seed_title">Votre phrase de récupération</string>
   <string name="activity_seed_title_2">Voici votre phrase de récupération</string>
@@ -1421,7 +1404,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="activity_join_public_chat_scan_qr_code_explanation">Scannez le code QR du groupe public que vous souhaitez rejoindre</string>
 
   <string name="fragment_enter_chat_url_edit_text_hint">Saisissez une URL de groupe public</string>
-  <string name="fragment_enter_chat_url_privacy_warning">Les groupes publics peuvent être rejoints par n\'importe qui et ne fournissent pas une confidentialité totale</string>
 
   <string name="activity_settings_title">Paramètres</string>
   <string name="activity_settings_display_name_edit_text_hint">Saisissez un nom d\'utilisateur</string>
@@ -1453,8 +1435,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="activity_linked_devices_empty_state_button_title">Relier un appareil</string>
 
   <string name="preferences_notifications_strategy_category_title">Stratégie de notification</string>
-  <string name="preferences_notifications_use_fcm_option_title">Utiliser FCM</string>
-  <string name="preferences_notifications_use_fcm_option_explanation">L\'utilisation de Firebase Cloud Messaging permet des notifications push plus fiables, mais expose votre IP et votre jeton d\'appareil à Google et à Loki.</string>
 
   <string name="dialog_link_device_slave_mode_title_1">En attente d\'autorisation</string>
   <string name="dialog_link_device_slave_mode_title_2">Liaison de l\'appareil autorisée</string>
@@ -1487,16 +1467,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
 
   <string name="fragment_view_my_qr_code_explanation">Ceci est votre code QR. Les autres utilisateurs peuvent le scanner pour démarrer une session avec vous.</string>
   <string name="fragment_view_my_qr_code_share_title">Partager le code QR</string>
-
-  <string name="view_friend_request_accept_button_title">Accepter</string>
-  <string name="view_friend_request_reject_button_title">Refuser</string>
-  <string name="view_friend_request_incoming_pending_message">%1$s vous a envoyé une demande de Session</string>
-  <string name="view_friend_request_incoming_accepted_message">Vous avez accepté la demande de Session de %1$s</string>
-  <string name="view_friend_request_incoming_declined_message">Vous avez refusé la demande de Session de %1$s</string>
-  <string name="view_friend_request_incoming_expired_message">La demande de Session de %1$s a expiré</string>
-  <string name="view_friend_request_outgoing_pending_message">Vous avez envoyé une demande de Session à %1$s</string>
-  <string name="view_friend_request_outgoing_accepted_message">%1$s a accepté votre demande de Session</string>
-  <string name="view_friend_request_outgoing_expired_message">Votre demande de Session à %1$s a expiré</string>
 
   <string name="session_reset_banner_message">Voulez-vous restaurer votre session avec %s ?</string>
   <string name="session_reset_banner_dismiss_button_title">Fermer</string>

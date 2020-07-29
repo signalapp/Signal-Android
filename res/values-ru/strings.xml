@@ -1406,12 +1406,6 @@
   <string name="activity_display_name_display_name_invalid_error">Пожалуйста, выберите отображаемое имя состоящее только из символов a-z, A-Z, 0-9 и _</string>
   <string name="activity_display_name_display_name_too_long_error">Пожалуйста, выберите более короткое отображаемое имя</string>
 
-  <string name="activity_pn_mode_title">Всплывающие уведомления</string>
-  <string name="activity_pn_mode_explanation">Есть два метода, при помощи которых Session может присылать всплывающие уведомления. Внимательно прочитайте их отличия прежде чем сделать выбор.</string>
-  <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-  <string name="activity_pn_mode_fcm_option_explanation">Session будет использовать сервис Firebase Cloud Messaging (FCM) для получения всплывающих уведомлений. Вы будете надежно и незамедлительно получать уведомления о новых сообщениях. Использование FCM означает, что ваш IP-адрес и токен устройства будут доступны Google. Обратите внимание что эта информация уже доступна Google если вы используете всплывающие уведомления в других приложениях. Ваш IP-адрес и токен устройства также будут доступны Loki, но ваши сообщения будут по-прежнему маршрутизироваться и шифроваться, поэтому содержимое ваших сообщений останется полностью конфиденциальным.</string>
-  <string name="activity_pn_mode_background_polling_option_title">Фоновые запросы</string>
-  <string name="activity_pn_mode_background_polling_option_explanation">Session в фоновом режиме будет периодически проверять наличие новых сообщений. При этом гарантируется полная защита метаданных, однако возможна значительная задержка при уведомлении о сообщениях.</string>
   <string name="activity_pn_mode_recommended_option_tag">Рекомендуется</string>
   <string name="activity_pn_mode_no_option_picked_dialog_title">Пожалуйста, выберите метод</string>
 
@@ -1421,17 +1415,6 @@
   <string name="activity_home_leaving_group_failed_message">Не удалось покинуть группу</string>
   <string name="activity_home_delete_conversation_dialog_message">Вы уверены, что хотите удалить этот разговор?</string>
   <string name="activity_home_conversation_deleted_message">Разговор удален</string>
-
-  <string name="sheet_pn_mode_title">Всплывающее уведомление</string>
-  <string name="sheet_pn_mode_explanation">Теперь при работе Session имеется два метода обработки всплывающих уведомлений. Внимательно прочитайте их отличия прежде чем сделать выбор.</string>
-  <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-  <string name="sheet_pn_mode_fcm_option_explanation">Session будет использовать сервис Firebase Cloud Messaging для получения всплывающих уведомлений. Вы будете надежно и незамедлительно получать уведомления о новых сообщениях. Использование FCM означает, что ваш IP-адрес и токен устройства будут доступны Google. Так будет, если вы используете всплывающие уведомления для других приложений. Ваш IP-адрес и токен устройства также будут доступны Loki, но ваши сообщения будут по-прежнему маршрутизироваться и шифроваться, поэтому содержимое ваших сообщений останется полностью конфиденциальным.</string>
-  <string name="sheet_pn_mode_background_polling_option_title">Фоновые запросы</string>
-  <string name="sheet_pn_mode_background_polling_option_explanation">Session в фоновом режиме будет периодически проверять наличие новых сообщений. При этом гарантируется полная защита метаданных, однако возможна значительная задержка при уведомлении о сообщениях.</string>
-  <string name="sheet_pn_mode_recommended_option_tag">Рекомендуется</string>
-  <string name="sheet_pn_mode_no_option_picked_dialog_title">Пожалуйста, выберите метод</string>
-  <string name="sheet_pn_mode_confirm_button_title">Подтвердить</string>
-  <string name="sheet_pn_mode_skip_button_title">Пропустить</string>
 
   <string name="activity_seed_title">Ваша секретная фраза для восстановления</string>
   <string name="activity_seed_title_2">А вот и ваша секретная фраза для восстановления</string>
@@ -1479,7 +1462,6 @@
   <string name="activity_join_public_chat_scan_qr_code_explanation">Отсканируйте QR-код открытой группы, в которую вы хотите вступить</string>
 
   <string name="fragment_enter_chat_url_edit_text_hint">Введите URL открытой группы</string>
-  <string name="fragment_enter_chat_url_privacy_warning">К открытым группам может присоединиться кто угодно. Они не обеспечивают полной защиты конфиденциальности</string>
 
   <string name="activity_settings_title">Настройки</string>
   <string name="activity_settings_display_name_edit_text_hint">Введите отображаемое имя</string>
@@ -1511,8 +1493,6 @@
   <string name="activity_linked_devices_empty_state_button_title">Привязать устройство</string>
 
   <string name="preferences_notifications_strategy_category_title">Метод уведомлений</string>
-  <string name="preferences_notifications_use_fcm_option_title">Использовать FCM</string>
-  <string name="preferences_notifications_use_fcm_option_explanation">Использование Firebase Cloud Messaging позволяет получать более надежные всплывающие уведомления, но предоставляет ваш IP и токен устройства в адрес Google и Loki.</string>
 
   <string name="dialog_link_device_slave_mode_title_1">Ожидание авторизации</string>
   <string name="dialog_link_device_slave_mode_title_2">Привязка устройства авторизована</string>
@@ -1545,16 +1525,6 @@
 
   <string name="fragment_view_my_qr_code_explanation">Это ваш QR-код. Другие пользователи могут сканировать его, чтобы начать диалог с вами.</string>
   <string name="fragment_view_my_qr_code_share_title">Поделиться QR-кодом</string>
-
-  <string name="view_friend_request_accept_button_title">Принять</string>
-  <string name="view_friend_request_reject_button_title">Отклонить</string>
-  <string name="view_friend_request_incoming_pending_message">%1$s отправил(а) вам запрос на сессию</string>
-  <string name="view_friend_request_incoming_accepted_message">Вы приняли запрос на сессию от %1$s</string>
-  <string name="view_friend_request_incoming_declined_message">Вы отклонили запрос на сессию от %1$s</string>
-  <string name="view_friend_request_incoming_expired_message">Время запроса на сессию от %1$s истекло</string>
-  <string name="view_friend_request_outgoing_pending_message">Вы отправили %1$s запрос на сессию</string>
-  <string name="view_friend_request_outgoing_accepted_message">%1$s принял ваш запрос на сессию</string>
-  <string name="view_friend_request_outgoing_expired_message">Время вашего запроса на сессию с %1$s истекло</string>
 
   <string name="session_reset_banner_message">Хотите восстановить сессию с %s?</string>
   <string name="session_reset_banner_dismiss_button_title">Отклонить</string>

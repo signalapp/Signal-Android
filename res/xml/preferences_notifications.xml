@@ -26,8 +26,8 @@
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:dependency="pref_key_enable_notifications"
             android:key="pref_key_use_fcm"
-            android:title="@string/preferences_notifications_use_fcm_option_title"
-            android:summary="@string/preferences_notifications_use_fcm_option_explanation"
+            android:title="Use Fast Mode"
+            android:summary="You’ll be notified of new messages reliably and immediately using Google’s notification servers. The contents of your messages, and who you’re messaging, are never exposed to Google."
             android:defaultValue="false" />
 
     </PreferenceCategory>
