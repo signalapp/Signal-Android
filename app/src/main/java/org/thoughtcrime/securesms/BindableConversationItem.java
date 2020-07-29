@@ -46,7 +46,7 @@ public interface BindableConversationItem extends Unbindable {
     void onAddToContactsClicked(@NonNull Contact contact);
     void onMessageSharedContactClicked(@NonNull List<Recipient> choices);
     void onInviteSharedContactClicked(@NonNull List<Recipient> choices);
-    void onReactionClicked(long messageId, boolean isMms);
+    void onReactionClicked(@NonNull View reactionTarget, long messageId, boolean isMms);
     void onGroupMemberAvatarClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId);
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
   }

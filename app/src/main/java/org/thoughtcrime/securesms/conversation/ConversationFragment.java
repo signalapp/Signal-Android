@@ -1014,6 +1014,7 @@ public class ConversationFragment extends LoggingFragment {
     void onCursorChanged();
     void onListVerticalTranslationChanged(float translationY);
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
+    void handleReactionDetails(@NonNull View maskTarget);
   }
 
   private class ConversationScrollListener extends OnScrollListener {
@@ -1264,9 +1265,10 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     @Override
-    public void onReactionClicked(long messageId, boolean isMms) {
+    public void onReactionClicked(@NonNull View reactionTarget, long messageId, boolean isMms) {
       if (getContext() == null) return;
 
+      listener.handleReactionDetails(reactionTarget);
       ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
     }
 

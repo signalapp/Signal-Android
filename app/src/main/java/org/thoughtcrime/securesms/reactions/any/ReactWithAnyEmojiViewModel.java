@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
   }
 
   void onEmojiSelected(@NonNull String emoji) {
+    SignalStore.emojiValues().setPreferredVariation(emoji);
     repository.addEmojiToMessage(emoji, messageId, isMms);
   }
 

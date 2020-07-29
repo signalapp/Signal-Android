@@ -107,6 +107,9 @@
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
 
+    <attr name="reactions_overlay_toolbar_icon_tint" format="color" />
+    <attr name="reactions_overlay_toolbar_background_color" format="color" />
+    <attr name="reactions_overlay_custom_emoji_icon" format="reference" />
     <attr name="reactions_overlay_old_background" format="reference" />
     <attr name="reactions_overlay_scrubber_background" format="reference" />
     <attr name="reactions_bottom_dialog_fragment_emoji_selected" format="reference" />

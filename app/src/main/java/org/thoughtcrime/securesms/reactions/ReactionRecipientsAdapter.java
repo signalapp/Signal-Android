@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.reactions.ReactionsLoader.Reaction;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 
 import java.util.Collections;
@@ -19,9 +18,9 @@ import java.util.List;
 
 final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecipientsAdapter.ViewHolder> {
 
-  private List<Reaction> data = Collections.emptyList();
+  private List<ReactionDetails> data = Collections.emptyList();
 
-  public void updateData(List<Reaction> newData) {
+  public void updateData(List<ReactionDetails> newData) {
     data = newData;
     notifyDataSetChanged();
   }
@@ -44,7 +43,7 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
     return data.size();
   }
 
-  final class ViewHolder extends RecyclerView.ViewHolder {
+  static final class ViewHolder extends RecyclerView.ViewHolder {
 
     private final AvatarImageView avatar;
     private final TextView        recipient;
@@ -58,7 +57,7 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
       emoji     = itemView.findViewById(R.id.reactions_bottom_view_recipient_emoji);
     }
 
-    void bind(@NonNull Reaction reaction) {
+    void bind(@NonNull ReactionDetails reaction) {
       this.emoji.setText(reaction.getDisplayEmoji());
 
       if (reaction.getSender().isLocalNumber()) {

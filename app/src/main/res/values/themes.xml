@@ -296,8 +296,11 @@
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
-        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
-        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
+        <item name="reactions_overlay_toolbar_icon_tint">?icon_tint</item>
+        <item name="reactions_overlay_toolbar_background_color">@color/core_white</item>
+        <item name="reactions_overlay_custom_emoji_icon">@drawable/ic_any_emoji_32_light</item>
+        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_light</item>
+        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_light</item>
         <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_light</item>
         <item name="reactions_pill_background">@drawable/reaction_pill_background_light</item>
         <item name="reactions_pill_selected_background">@drawable/reaction_pill_background_selected_light</item>
@@ -615,6 +618,9 @@
         <item name="conversation_scroll_to_bottom_background">@drawable/scroll_to_bottom_background_dark</item>
         <item name="conversation_scroll_to_bottom_foreground_color">@color/core_white</item>
 
+        <item name="reactions_overlay_toolbar_icon_tint">@color/core_white</item>
+        <item name="reactions_overlay_toolbar_background_color">@color/action_mode_status_bar</item>
+        <item name="reactions_overlay_custom_emoji_icon">@drawable/ic_any_emoji_32_dark</item>
         <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
         <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
         <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_dark</item>

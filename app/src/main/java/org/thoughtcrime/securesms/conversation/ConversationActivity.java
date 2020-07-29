@@ -201,6 +201,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -281,7 +282,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                AttachmentKeyboard.Callback,
                ConversationReactionOverlay.OnReactionSelectedListener,
                ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
-               SafetyNumberChangeDialog.Callback
+               SafetyNumberChangeDialog.Callback,
+               ReactionsBottomSheetDialogFragment.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -2763,6 +2765,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
     typingTextWatcher.setEnabled(true);
   }
 
+  @Override
+  public void onReactionsDialogDismissed() {
+    reactionOverlay.hideMask();
+  }
+
   // Listeners
 
   private class QuickCameraToggleListener implements OnClickListener {
@@ -2948,6 +2955,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
     } else {
       startActivity(MessageDetailsActivity.getIntentForMessageDetails(this, messageRecord, messageRecord.getRecipient().getId(), messageRecord.getThreadId()));
     }
+  }
+
+  @Override
+  public void handleReactionDetails(@NonNull View maskTarget) {
+    reactionOverlay.showMask(maskTarget, titleView.getMeasuredHeight(), panelParent.getMeasuredHeight());
   }
 
   @Override

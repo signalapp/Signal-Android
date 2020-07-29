@@ -970,7 +970,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     reactionsView.setOnClickListener(v -> {
       if (eventListener == null) return;
 
-      eventListener.onReactionClicked(current.getId(), current.isMms());
+      eventListener.onReactionClicked(this, current.getId(), current.isMms());
     });
   }
 

@@ -109,6 +109,21 @@
         <item name="android:colorControlActivated" tools:ignore="NewApi">@color/core_ultramarine</item>
     </style>
 
+    <style name="TextSecure.DarkActionBar.ReactionOverlay">
+        <item name="android:popupTheme" tools:ignore="NewApi">?conversation_popup_theme</item>
+        <item name="popupTheme">?conversation_popup_theme</item>
+        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
+        <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
+        <item name="colorControlHighlight">?colorAccent</item>
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">?colorAccent</item>
+        <item name="colorControlNormal">?title_text_color_secondary</item>
+        <item name="android:colorControlNormal" tools:ignore="NewApi">?title_text_color_primary</item>
+        <item name="colorControlActivated">?colorAccent</item>
+        <item name="android:colorControlActivated" tools:ignore="NewApi">?colorAccent</item>
+    </style>
+
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">?attr/title_text_color_primary</item>
         <item name="android:textColorHint">?attr/title_text_color_secondary</item>

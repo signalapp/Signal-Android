@@ -2,15 +2,25 @@ package org.thoughtcrime.securesms.reactions;
 
 import androidx.annotation.NonNull;
 
-final class EmojiCount {
-  private final String baseEmoji;
-  private final String displayEmoji;
-  private final int    count;
+import java.util.List;
 
-  EmojiCount(@NonNull String baseEmoji, @NonNull String emoji, int count) {
+final class EmojiCount {
+
+  static EmojiCount all(@NonNull List<ReactionDetails> reactions) {
+    return new EmojiCount("", "", reactions);
+  }
+
+  private final String                baseEmoji;
+  private final String                displayEmoji;
+  private final List<ReactionDetails> reactions;
+
+  EmojiCount(@NonNull String baseEmoji,
+             @NonNull String emoji,
+             @NonNull List<ReactionDetails> reactions)
+  {
     this.baseEmoji    = baseEmoji;
     this.displayEmoji = emoji;
-    this.count        = count;
+    this.reactions    = reactions;
   }
 
   public @NonNull String getBaseEmoji() {
@@ -22,6 +32,10 @@ final class EmojiCount {
   }
 
   public int getCount() {
-    return count;
+    return reactions.size();
+  }
+
+  public @NonNull List<ReactionDetails> getReactions() {
+    return reactions;
   }
 }

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/action_mode_status_bar"
-    android:theme="@style/TextSecure.DarkActionBar.Conversation"
+    android:background="?attr/reactions_overlay_toolbar_background_color"
+    android:theme="@style/TextSecure.DarkActionBar.ReactionOverlay"
     app:contentInsetStart="0dp"
     app:contentInsetStartWithNavigation="48sp"
     app:menu="@menu/conversation_reactions_long_press_menu"
-    app:navigationIcon="@drawable/ic_x_conversation">
+    app:navigationIcon="@drawable/ic_x_tinted">
 
 </org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar>

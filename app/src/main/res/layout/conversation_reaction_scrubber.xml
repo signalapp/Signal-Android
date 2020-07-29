@@ -27,9 +27,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
         android:alpha="0"
-        tools:alpha="1"
         android:background="?reactions_overlay_scrubber_background"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        tools:alpha="1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/conversation_reaction_scrubber_foreground"

@@ -79,7 +79,6 @@ public class MaskView extends View {
     target.getDrawingRect(drawingRect);
     activityContentView.offsetDescendantRectToMyCoords(target, drawingRect);
 
-    drawingRect.bottom = Math.min(drawingRect.bottom, getBottom() - getPaddingBottom());
     drawingRect.top    += targetParentTranslationY;
     drawingRect.bottom += targetParentTranslationY;
 
@@ -88,6 +87,7 @@ public class MaskView extends View {
 
     target.draw(maskCanvas);
 
+    canvas.clipRect(drawingRect.left, Math.max(drawingRect.top, getTop() + getPaddingTop()), drawingRect.right, Math.min(drawingRect.bottom, getBottom() - getPaddingBottom()));
     canvas.drawBitmap(mask, 0, drawingRect.top, maskPaint);
 
     mask.recycle();
