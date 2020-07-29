@@ -46,7 +46,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:gravity="center"
-        android:textSize="@dimen/medium_font_size"
+        android:textSize="14sp"
         android:textAlignment="center"
         android:text="nautical novelty populate onion awkward bent etiquette plant submarine itches vipers september axis maximum populate" />
 
@@ -59,6 +59,7 @@
         android:textSize="14sp"
         android:textColor="@color/text"
         android:alpha="0.6"
+        android:visibility="gone"
         android:text="@string/activity_seed_reveal_button_title" />
 
     <View

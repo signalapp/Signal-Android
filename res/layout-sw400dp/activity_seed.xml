@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:textSize="@dimen/very_large_font_size"
+        android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="@color/text"
         android:text="@string/activity_seed_title_2" />
@@ -31,9 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:textSize="@dimen/medium_font_size"
+        android:textSize="16sp"
         android:textColor="@color/text"
         android:text="@string/activity_seed_explanation" />
 
@@ -43,10 +43,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginTop="12dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:gravity="center"
-        android:textSize="@dimen/medium_font_size"
+        android:textSize="16sp"
         android:textAlignment="center"
         android:text="nautical novelty populate onion awkward bent etiquette plant submarine itches vipers september axis maximum populate" />
 
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:textAlignment="center"
-        android:textSize="@dimen/medium_font_size"
+        android:textSize="16sp"
         android:textColor="@color/text"
         android:alpha="0.6"
         android:text="@string/activity_seed_reveal_button_title" />
