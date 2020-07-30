@@ -57,6 +57,7 @@
         android:layout_height="@dimen/onboarding_button_bottom_offset"
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
+        android:visibility="invisible"
         android:gravity="center"
         android:background="@color/transparent"
         android:textAllCaps="false"

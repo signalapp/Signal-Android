@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.database.Cursor
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
@@ -30,7 +31,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
+import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
+import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -188,6 +191,25 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed || !isMasterDevice) {
             seedReminderView.visibility = View.GONE
+        }
+        val hasSeenMultiDeviceRemovalSheet = TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)
+        if (!hasSeenMultiDeviceRemovalSheet) {
+            TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+            val deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey)
+            if (deviceLinks.isNotEmpty()) {
+                val bottomSheet = MultiDeviceRemovalBottomSheet()
+                bottomSheet.onOKTapped = {
+                    bottomSheet.dismiss()
+                }
+                bottomSheet.onLinkTapped = {
+                    bottomSheet.dismiss()
+                    val url = "https://getsession.org/faq"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                }
+                bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+            }
         }
     }
 
