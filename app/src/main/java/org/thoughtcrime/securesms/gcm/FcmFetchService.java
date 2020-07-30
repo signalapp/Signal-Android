@@ -75,7 +75,7 @@ public class FcmFetchService extends Service {
     retrieveMessages(this);
 
     if (activeCount.decrementAndGet() == 0) {
-      Log.e(TAG, "stopping");
+      Log.d(TAG, "No more active. Stopping.");
       stopSelf();
     }
   }
