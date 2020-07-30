@@ -459,7 +459,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">これは古いバージョンのグループです。グループの管理機能などの新機能を利用するには、新しいグループを作ってください。</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">この人は連絡先にいます</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">この人物は連絡先にいます</string>
   <string name="ManageRecipientActivity_disappearing_messages">消えるメッセージ</string>
   <string name="ManageRecipientActivity_chat_color">チャットの色</string>
   <string name="ManageRecipientActivity_block">ブロック</string>

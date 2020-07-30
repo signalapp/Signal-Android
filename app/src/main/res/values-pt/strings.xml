@@ -196,6 +196,8 @@
   <string name="ConversationActivity_leave_group">Abandonar o grupo?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem a certeza que deseja abandonar este grupo?</string>
   <string name="ConversationActivity_choose_new_admin">Escolha um administrador novo</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de abandonar, deverá escolher pelo menos um administrador para este grupo.</string>
+  <string name="ConversationActivity_choose_admin">Escolher administrador</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo tem um tamanho superior ao limite do tipo de mensagem que está a enviar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Câmara indisponível</string>
   <string name="ConversationActivity_unable_to_record_audio">Não é possível gravar áudio!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Não pode enviar mensagens para este grupo pois já não é membro.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não existe no seu dispositivo uma aplicação capaz de lidar com este tipo de ligação.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para poder enviar mensagens de áudio, permita que o Signal aceda ao microfone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Signal requer permissão de acesso ao microfone para enviar mensagens áudio, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do telemóvel, selecione a aplicação Signal e nas \"Permissões\" ative \"Microfone\".</string>
@@ -383,6 +386,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Escolha um administrador novo</string>
   <string name="ChooseNewAdminActivity_done">Concluído</string>
+  <string name="ChooseNewAdminActivity_you_left">Abandonou \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Deseja partilhar o seu nome e foto de perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Quer tornar o seu nome e foto de perfil visíveis para todos os membros presentes e futuros deste grupo?</string>
@@ -394,7 +398,13 @@
   <string name="GroupManagement_access_level_all_members">Todos os membros</string>
   <string name="GroupManagement_access_level_only_admins">Apenas administradores</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Convite enviado</item>
+    <item quantity="other">%d convites enviados</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">“%1$s” não pode ser adicionado(a) automaticamente para este grupo por si.\n\nEle(a) foi convidado(a) a juntar-se, mas não irá ver nenhuma mensagem do grupo até que ele(a) aceite.</string>
   <string name="GroupManagement_learn_more">Saber mais</string>
+  <string name="GroupManagement_invite_multiple_users">Estes utilizadores não podem ser adicionados automaticamente a este grupo por si.\n\nEles foram convidados a juntarem-se, mas não irão ver nenhuma mensagem do grupo até que aceite</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Convites de grupo pendentes</string>
   <string name="PendingMembersActivity_people_you_invited">Pessoas que convidou</string>
@@ -436,6 +446,9 @@
   <string name="ManageGroupActivity_disappearing_messages">Destruição de mensagens</string>
   <string name="ManageGroupActivity_pending_group_invites">Convites de grupo pendentes</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
+  <string name="ManageGroupActivity_edit_group_info">Editar informação do grupo</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Escolha quem pode editar o nome do grupo, avatar e destruição de mensagens.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Escolha quem pode adicionar ou convidar novos membros.</string>
   <string name="ManageGroupActivity_block_group">Bloquear grupo</string>
   <string name="ManageGroupActivity_unblock_group">Desbloquear grupo</string>
   <string name="ManageGroupActivity_leave_group">Abandonar grupo</string>
@@ -459,7 +472,11 @@
   <string name="ManageGroupActivity_not_capable">Alguém que você adicionou não suporta novos grupos e necessita de atualizar o Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar o grupo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é um membro do grupo</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo. Por favor tente novamente mais tarde</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo devido a um erro de rede. Por favor, tente novamente mais tarde</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e imagem</string>
+  <string name="ManageGroupActivity_legacy_group">Grupo legado</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Este é um \'Grupo legado\'. Para aceder a recursos como os administradores do grupo, crie um \'Grupo novo\'.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Adicionar aos contactos do sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Este utilizador encontra-se nos seus contactos</string>
@@ -2039,5 +2056,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Administrador</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Grupos legados vs Grupos novos</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">O que são \'Grupos legados\'?</string>
+  <string name="GroupsLearnMore_paragraph_1">Os \'Grupos legados\' são grupos que não são compatíveis com os recursos de \'Grupo novo\' tais como administradores e atualizações mais descritivas do grupo.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizo os \'Grupos novos\'?</string>
+  <string name="GroupsLearnMore_paragraph_2">OS \'Grupos legados\' não podem ser convertidos em \'Grupos novos\', mas você pode criar um \'Grupo novo\' com os mesmos membros.</string>
+  <string name="GroupsLearnMore_paragraph_3">Para criar um \'Grupo novo\', todos os membros deverão atualizar para a última versão do Signal.</string>
   <!--EOF-->
 </resources>
