@@ -473,11 +473,15 @@ public final class ContactSelectionListFragment extends LoggingFragment
             if (uuid.isPresent()) {
               Recipient recipient = Recipient.externalUsername(requireContext(), uuid.get(), contact.getNumber());
               SelectedContact selected = SelectedContact.forUsername(recipient.getId(), contact.getNumber());
-              markContactSelected(selected);
-              cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
 
               if (onContactSelectedListener != null) {
-                onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null);
+                if (onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null)) {
+                  markContactSelected(selected);
+                  cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
+                }
+              } else {
+                markContactSelected(selected);
+                cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
               }
             } else {
               new AlertDialog.Builder(requireContext())
@@ -488,11 +492,14 @@ public final class ContactSelectionListFragment extends LoggingFragment
             }
           });
         } else {
-          markContactSelected(selectedContact);
-          cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
-
           if (onContactSelectedListener != null) {
-            onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
+            if (onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber())) {
+              markContactSelected(selectedContact);
+              cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
+            }
+          } else {
+            markContactSelected(selectedContact);
+            cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
           }
         }
       } else {
@@ -624,7 +631,8 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   public interface OnContactSelectedListener {
-    void onContactSelected(Optional<RecipientId> recipientId, String number);
+    /** @return True if the contact is allowed to be selected, otherwise false. */
+    boolean onContactSelected(Optional<RecipientId> recipientId, String number);
     void onContactDeselected(Optional<RecipientId> recipientId, String number);
   }
 

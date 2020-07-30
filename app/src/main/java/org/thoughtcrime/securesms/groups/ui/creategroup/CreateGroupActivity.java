@@ -8,6 +8,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 
@@ -30,6 +31,8 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class CreateGroupActivity extends ContactSelectionActivity {
@@ -90,14 +93,14 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public boolean onContactSelected(Optional<RecipientId> recipientId, String number) {
     if (contactsFragment.hasQueryFilter()) {
       getToolbar().clear();
     }
 
-    if (contactsFragment.getSelectedContactsCount() >= MINIMUM_GROUP_SIZE) {
-      enableNext();
-    }
+    enableNext();
+
+    return true;
   }
 
   @Override
@@ -160,13 +163,31 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       stopwatch.split("capabilities");
 
+      resolved = Recipient.resolvedList(ids);
+
+      if (Stream.of(resolved).anyMatch(r -> r.getGroupsV2Capability() != Recipient.Capability.SUPPORTED) &&
+          Stream.of(resolved).anyMatch(r -> !r.hasE164()))
+      {
+        Log.w(TAG, "Invalid GV1 group...");
+        ids = Collections.emptyList();
+      }
+
+      stopwatch.split("gv1-check");
+
       return ids;
     }, ids -> {
       dismissibleDialog.dismiss();
 
       stopwatch.stop(TAG);
 
-      startActivityForResult(AddGroupDetailsActivity.newIntent(this, ids), REQUEST_CODE_ADD_DETAILS);
+      if (ids.isEmpty()) {
+        new AlertDialog.Builder(this)
+                       .setMessage(R.string.CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups)
+                       .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss())
+                       .show();
+      } else {
+        startActivityForResult(AddGroupDetailsActivity.newIntent(this, ids), REQUEST_CODE_ADD_DETAILS);
+      }
     });
   }
 }

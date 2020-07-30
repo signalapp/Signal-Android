@@ -91,6 +91,8 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
                        .setPositiveButton(android.R.string.ok, (dialog, which) -> viewModel.onAddToGroupsConfirmed(addEvent))
                        .setNegativeButton(android.R.string.cancel, null)
                        .show();
+      } else if (event instanceof Event.LegacyGroupDenialEvent) {
+        Toast.makeText(this, R.string.AddToGroupActivity_this_person_cant_be_added_to_legacy_groups, Toast.LENGTH_SHORT).show();
       } else {
         throw new AssertionError();
       }
@@ -112,20 +114,23 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public boolean onContactSelected(Optional<RecipientId> recipientId, String number) {
     if (contactsFragment.isMulti()) {
-      if (contactsFragment.hasQueryFilter()) {
-        getToolbar().clear();
-      }
-
-      if (contactsFragment.getSelectedContactsCount() >= MINIMUM_GROUP_SELECT_SIZE) {
-        enableNext();
-      }
+      throw new UnsupportedOperationException("Not yet built to handle multi-select.");
+//      if (contactsFragment.hasQueryFilter()) {
+//        getToolbar().clear();
+//      }
+//
+//      if (contactsFragment.getSelectedContactsCount() >= MINIMUM_GROUP_SELECT_SIZE) {
+//        enableNext();
+//      }
     } else {
       if (recipientId.isPresent()) {
         viewModel.onContinueWithSelection(Collections.singletonList(recipientId.get()));
       }
     }
+
+    return true;
   }
 
   @Override

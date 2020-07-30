@@ -365,6 +365,9 @@
     <string name="ConversationTitleView_verified">Verified</string>
     <string name="ConversationTitleView_you">You</string>
 
+    <!-- CreateGroupActivity -->
+    <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Some contacts cannot be in legacy groups.</string>
+
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profile</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
@@ -444,6 +447,7 @@
     <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" added to \"%2$s\".</string>
     <string name="AddToGroupActivity_add_to_group">Add to group</string>
     <string name="AddToGroupActivity_add_to_groups">Add to groups</string>
+    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Choose new admin</string>
@@ -502,6 +506,7 @@
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Done</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
         <item quantity="other">Add %3$d members to \"%2$s\"?</item>

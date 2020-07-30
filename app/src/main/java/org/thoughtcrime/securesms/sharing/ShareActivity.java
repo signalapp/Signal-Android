@@ -148,8 +148,9 @@ public class ShareActivity extends PassphraseRequiredActivity
     else                           super.onBackPressed();
   }
 
+
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public boolean onContactSelected(Optional<RecipientId> recipientId, String number) {
     SimpleTask.run(this.getLifecycle(), () -> {
       Recipient recipient;
       if (recipientId.isPresent()) {
@@ -162,6 +163,8 @@ public class ShareActivity extends PassphraseRequiredActivity
       long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
       return new Pair<>(existingThread, recipient);
     }, result -> onDestinationChosen(result.first(), result.second().getId()));
+
+    return true;
   }
 
   @Override

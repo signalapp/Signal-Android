@@ -113,7 +113,9 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {}
+  public boolean onContactSelected(Optional<RecipientId> recipientId, String number) {
+    return true;
+  }
 
   @Override
   public void onContactDeselected(Optional<RecipientId> recipientId, String number) {}

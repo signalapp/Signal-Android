@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups.ui.addmembers;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -58,14 +59,19 @@ public class AddMembersActivity extends PushContactSelectionActivity {
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public boolean onContactSelected(Optional<RecipientId> recipientId, String number) {
+    if (getGroupId().isV1() && recipientId.isPresent() && !Recipient.resolved(recipientId.get()).hasE164()) {
+      Toast.makeText(this, R.string.AddMembersActivity__this_person_cant_be_added_to_legacy_groups, Toast.LENGTH_SHORT).show();
+      return false;
+    }
+
     if (contactsFragment.hasQueryFilter()) {
       getToolbar().clear();
     }
 
-    if (contactsFragment.getSelectedContactsCount() >= 1) {
-      enableDone();
-    }
+    enableDone();
+
+    return true;
   }
 
   @Override
