@@ -371,7 +371,7 @@
         <item name="menu_accept_icon">@drawable/ic_check_24</item>
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
         <item name="menu_copy_icon">@drawable/ic_copy_outline_24</item>
-        <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
+        <item name="menu_info_icon">@drawable/ic_info_outline_white_24</item>
         <item name="menu_forward_icon">@drawable/ic_forward_outline_24</item>
         <item name="menu_save_icon">@drawable/ic_save_24</item>
         <item name="menu_reply_icon">@drawable/ic_reply_outline_24</item>

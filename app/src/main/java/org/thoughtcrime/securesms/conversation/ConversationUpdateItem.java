@@ -220,7 +220,7 @@ public final class ConversationUpdateItem extends LinearLayout
 
   private void setIdentityVerifyUpdate(final MessageRecord messageRecord) {
     if (messageRecord.isIdentityVerified()) icon.setImageResource(R.drawable.ic_check_white_24dp);
-    else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24dp);
+    else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24);
 
     icon.setColorFilter(getIconTintFilter());
 
