@@ -7,12 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.google.protobuf.ByteString;
+
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
+import org.signal.zkgroup.util.UUIDUtil;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -152,8 +157,8 @@ public final class GroupsV2StateProcessor {
                                                .transform(g -> g.requireV2GroupProperties().getDecryptedGroup())
                                                .orNull();
 
-      if (signedGroupChange != null &&
-          localState != null &&
+      if (signedGroupChange != null                                       &&
+          localState != null                                              &&
           localState.getRevision() + 1 == signedGroupChange.getRevision() &&
           revision == signedGroupChange.getRevision())
       {
@@ -274,9 +279,30 @@ public final class GroupsV2StateProcessor {
         jobManager.add(new AvatarGroupsV2DownloadJob(groupId, newLocalState.getAvatar()));
       }
 
-      final boolean fullMemberPostUpdate = GroupProtoUtil.isMember(Recipient.self().getUuid().get(), newLocalState.getMembersList());
-      if (fullMemberPostUpdate) {
+      boolean fullMemberPostUpdate = GroupProtoUtil.isMember(Recipient.self().getUuid().get(), newLocalState.getMembersList());
+      boolean trustedAdder         = false;
+
+      if (newLocalState.getRevision() == 0) {
+        Optional<DecryptedMember> foundingMember = DecryptedGroupUtil.firstMember(newLocalState.getMembersList());
+
+        if (foundingMember.isPresent()) {
+          UUID      foundingMemberUuid = UuidUtil.fromByteString(foundingMember.get().getUuid());
+          Recipient foundingRecipient  = Recipient.externalPush(context, foundingMemberUuid, null, false);
+
+          if (foundingRecipient.isSystemContact() || foundingRecipient.isProfileSharing()) {
+            Log.i(TAG, "Group 'adder' is trusted. contact: " + foundingRecipient.isSystemContact() + ", profileSharing: " + foundingRecipient.isProfileSharing());
+            trustedAdder = true;
+          }
+        } else {
+          Log.i(TAG, "Could not find founding member during gv2 create. Not enabling profile sharing.");
+        }
+      }
+
+      if (fullMemberPostUpdate && trustedAdder) {
+        Log.i(TAG, "Added to a group and auto-enabling profile sharing");
         recipientDatabase.setProfileSharing(Recipient.externalGroup(context, groupId).getId(), true);
+      } else {
+        Log.i(TAG, "Added to a group, but not enabling profile sharing. fullMember: " + fullMemberPostUpdate + ", trustedAdded: " + trustedAdder);
       }
     }
 

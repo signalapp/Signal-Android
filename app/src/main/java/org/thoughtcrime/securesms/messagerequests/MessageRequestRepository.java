@@ -68,12 +68,7 @@ final class MessageRequestRepository {
 
   void getMessageRequestState(@NonNull Recipient recipient, long threadId, @NonNull Consumer<MessageRequestState> state) {
     executor.execute(() -> {
-      if (recipient.isPushV2Group()) {
-        boolean pendingMember = DatabaseFactory.getGroupDatabase(context)
-                                               .isPendingMember(recipient.requireGroupId().requireV2(), Recipient.self());
-        state.accept(pendingMember ? MessageRequestState.UNACCEPTED
-                                   : MessageRequestState.ACCEPTED);
-      } else if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+      if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
         state.accept(MessageRequestState.UNACCEPTED);
       } else if (RecipientUtil.isPreMessageRequestThread(context, threadId) && !RecipientUtil.isLegacyProfileSharingAccepted(recipient)) {
         state.accept(MessageRequestState.LEGACY);

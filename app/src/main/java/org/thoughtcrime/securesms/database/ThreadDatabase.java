@@ -33,6 +33,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -55,6 +56,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -964,9 +966,16 @@ public class ThreadDatabase extends Database {
           DecryptedGroup decryptedGroup = DatabaseFactory.getGroupDatabase(context).requireGroup(resolved.requireGroupId().requireV2()).requireV2GroupProperties().getDecryptedGroup();
           Optional<UUID> inviter        = DecryptedGroupUtil.findInviter(decryptedGroup.getPendingMembersList(), Recipient.self().getUuid().get());
 
-          RecipientId recipientId = inviter.isPresent() ? RecipientId.from(inviter.get(), null) : RecipientId.UNKNOWN;
+          if (inviter.isPresent()) {
+            RecipientId recipientId = RecipientId.from(inviter.get(), null);
+            return Extra.forGroupV2invite(recipientId);
+          } else if (decryptedGroup.getRevision() == 0) {
+            Optional<DecryptedMember> foundingMember = DecryptedGroupUtil.firstMember(decryptedGroup.getMembersList());
 
-          return Extra.forGroupV2invite(recipientId);
+            if (foundingMember.isPresent()) {
+              return Extra.forGroupMessageRequest(RecipientId.from(UuidUtil.fromByteString(foundingMember.get().getUuid()), null));
+            }
+          }
         } else {
           RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getGroupAddedBy(record.getThreadId());
 
