@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -48,6 +49,7 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
       @Override
       public void onEmojiSelected(String emoji) {
         recentModel.onCodePointSelected(emoji);
+        SignalStore.emojiValues().setPreferredVariation(emoji);
 
         if (emojiEventListener != null) {
           emojiEventListener.onEmojiSelected(emoji);
