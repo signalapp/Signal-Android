@@ -92,7 +92,7 @@ public class SmsSentJob extends BaseJob {
   private void handleSentResult(long messageId, int result) {
     try {
       SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
-      SmsMessageRecord record   = database.getMessage(messageId);
+      SmsMessageRecord record   = database.getMessageRecord(messageId);
 
       switch (result) {
         case Activity.RESULT_OK:

@@ -2,32 +2,40 @@ package org.thoughtcrime.securesms.reactions.any;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.reactions.ReactionsLoader;
 
+import java.util.Collections;
 import java.util.List;
 
 public final class ReactWithAnyEmojiViewModel extends ViewModel {
 
+  private final ReactionsLoader             reactionsLoader;
   private final ReactWithAnyEmojiRepository repository;
   private final long                        messageId;
   private final boolean                     isMms;
 
-  private ReactWithAnyEmojiViewModel(@NonNull ReactWithAnyEmojiRepository repository, long messageId, boolean isMms) {
-    this.repository = repository;
-    this.messageId  = messageId;
-    this.isMms      = isMms;
+  private final LiveData<List<ReactWithAnyEmojiPage>> pages;
+
+  private ReactWithAnyEmojiViewModel(@NonNull ReactionsLoader reactionsLoader,
+                                     @NonNull ReactWithAnyEmojiRepository repository,
+                                     long messageId,
+                                     boolean isMms) {
+    this.reactionsLoader = reactionsLoader;
+    this.repository      = repository;
+    this.messageId       = messageId;
+    this.isMms           = isMms;
+    this.pages           = Transformations.map(reactionsLoader.getReactions(), repository::getEmojiPageModels);
   }
 
-  List<EmojiPageModel> getEmojiPageModels() {
-    return repository.getEmojiPageModels();
-  }
-
-  int getStartIndex() {
-    return repository.getEmojiPageModels().get(0).getEmoji().size() == 0 ? 1 : 0;
+  LiveData<List<ReactWithAnyEmojiPage>> getEmojiPageModels() {
+    return pages;
   }
 
   void onEmojiSelected(@NonNull String emoji) {
@@ -35,26 +43,24 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
     repository.addEmojiToMessage(emoji, messageId, isMms);
   }
 
-  @AttrRes int getCategoryIconAttr(int position) {
-    return repository.getEmojiPageModels().get(position).getIconAttr();
-  }
-
   static class Factory implements ViewModelProvider.Factory {
 
+    private final ReactionsLoader             reactionsLoader;
     private final ReactWithAnyEmojiRepository repository;
     private final long                        messageId;
     private final boolean                     isMms;
 
-    Factory(@NonNull ReactWithAnyEmojiRepository repository, long messageId, boolean isMms) {
-      this.repository = repository;
-      this.messageId  = messageId;
-      this.isMms      = isMms;
+    Factory(@NonNull ReactionsLoader reactionsLoader, @NonNull ReactWithAnyEmojiRepository repository, long messageId, boolean isMms) {
+      this.reactionsLoader = reactionsLoader;
+      this.repository      = repository;
+      this.messageId       = messageId;
+      this.isMms           = isMms;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new ReactWithAnyEmojiViewModel(repository, messageId, isMms));
+      return modelClass.cast(new ReactWithAnyEmojiViewModel(reactionsLoader, repository, messageId, isMms));
     }
   }
 

@@ -78,7 +78,7 @@ public class SmsSendJob extends SendJob {
     }
 
     SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
-    SmsMessageRecord record   = database.getMessage(messageId);
+    SmsMessageRecord record   = database.getMessageRecord(messageId);
 
     if (!record.isPending() && !record.isFailed()) {
       warn(TAG, "Message " + messageId + " was already sent. Ignoring.");

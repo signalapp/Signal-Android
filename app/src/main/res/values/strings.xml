@@ -1809,6 +1809,7 @@
     <string name="HelpFragment__no_email_app_found">No email app found.</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">This Message</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recently Used</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; People</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>

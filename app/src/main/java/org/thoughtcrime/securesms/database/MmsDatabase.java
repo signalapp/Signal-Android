@@ -445,6 +445,7 @@ public class MmsDatabase extends MessagingDatabase {
     return rawQuery(RAW_ID_WHERE, new String[] {messageId + ""});
   }
 
+  @Override
   public MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException {
     try (Cursor cursor = rawQuery(RAW_ID_WHERE, new String[] {messageId + ""})) {
       MessageRecord record = new Reader(cursor).getNext();

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-class ReactionDetails {
+public class ReactionDetails {
   private final Recipient sender;
   private final String    baseEmoji;
   private final String    displayEmoji;

@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -35,6 +36,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.reactions.ReactionsLoader;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -48,13 +50,14 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   private static final String ARG_MESSAGE_ID = "arg_message_id";
   private static final String ARG_IS_MMS     = "arg_is_mms";
 
-  private ReactWithAnyEmojiViewModel viewModel;
-  private TextSwitcher               categoryLabel;
-  private ViewPager2                 categoryPager;
-  private ReactWithAnyEmojiAdapter   adapter;
-  private OnPageChanged              onPageChanged;
-  private SparseArray<EmojiPageView> pageArray = new SparseArray<>();
-  private Callback                   callback;
+  private ReactWithAnyEmojiViewModel                            viewModel;
+  private TextSwitcher                                          categoryLabel;
+  private ViewPager2                                            categoryPager;
+  private ReactWithAnyEmojiAdapter                              adapter;
+  private OnPageChanged                                         onPageChanged;
+  private SparseArray<ReactWithAnyEmojiAdapter.ScrollableChild> pageArray = new SparseArray<>();
+  private Callback                                              callback;
+  private ReactionsLoader                                       reactionsLoader;
 
   public static DialogFragment createForMessageRecord(@NonNull MessageRecord messageRecord) {
     DialogFragment fragment = new ReactWithAnyEmojiBottomSheetDialogFragment();
@@ -122,12 +125,18 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    reactionsLoader = new ReactionsLoader(requireContext(),
+                                          requireArguments().getLong(ARG_MESSAGE_ID),
+                                          requireArguments().getBoolean(ARG_IS_MMS));
+
+    LoaderManager.getInstance(requireActivity()).initLoader((int) requireArguments().getLong(ARG_MESSAGE_ID), null, reactionsLoader);
+
     initializeViewModel();
 
-    categoryLabel    = view.findViewById(R.id.category_label);
-    categoryPager    = view.findViewById(R.id.category_pager);
+    categoryLabel = view.findViewById(R.id.category_label);
+    categoryPager = view.findViewById(R.id.category_pager);
 
-    adapter = new ReactWithAnyEmojiAdapter(viewModel.getEmojiPageModels(), this, this, (position, pageView) -> {
+    adapter = new ReactWithAnyEmojiAdapter(this, this, (position, pageView) -> {
       pageArray.put(position, pageView);
 
       if (categoryPager.getCurrentItem() == position) {
@@ -140,10 +149,15 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
     categoryPager.setAdapter(adapter);
     categoryPager.registerOnPageChangeCallback(onPageChanged);
 
-    int startPateIndex = viewModel.getStartIndex();
+    viewModel.getEmojiPageModels().observe(getViewLifecycleOwner(), pages -> {
+      int pageToSet = adapter.getItemCount() == 0 ? (pages.get(0).hasEmoji() ? 0 : 1) : -1;
 
-    categoryPager.setCurrentItem(startPateIndex, false);
-    presentCategoryLabel(viewModel.getCategoryIconAttr(startPateIndex));
+      adapter.submitList(pages);
+
+      if (pageToSet >= 0) {
+        categoryPager.setCurrentItem(pageToSet);
+      }
+    });
   }
 
   @Override
@@ -166,7 +180,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
       new TabLayoutMediator(categoryTabs, categoryPager, (tab, position) -> {
         tab.setCustomView(react_with_any_emoji_tab)
-            .setIcon(ThemeUtil.getThemedDrawable(requireContext(), viewModel.getCategoryIconAttr(position)));
+           .setIcon(ThemeUtil.getThemedDrawable(requireContext(), adapter.getItem(position).getIconAttr()));
       }).attach();
     }
   }
@@ -174,6 +188,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   @Override
   public void onDestroyView() {
     super.onDestroyView();
+    LoaderManager.getInstance(requireActivity()).destroyLoader((int) requireArguments().getLong(ARG_MESSAGE_ID));
 
     categoryPager.unregisterOnPageChangeCallback(onPageChanged);
   }
@@ -188,7 +203,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   private void initializeViewModel() {
     Bundle                             args       = requireArguments();
     ReactWithAnyEmojiRepository        repository = new ReactWithAnyEmojiRepository(requireContext());
-    ReactWithAnyEmojiViewModel.Factory factory    = new ReactWithAnyEmojiViewModel.Factory(repository, args.getLong(ARG_MESSAGE_ID), args.getBoolean(ARG_IS_MMS));
+    ReactWithAnyEmojiViewModel.Factory factory    = new ReactWithAnyEmojiViewModel.Factory(reactionsLoader, repository, args.getLong(ARG_MESSAGE_ID), args.getBoolean(ARG_IS_MMS));
 
     viewModel = ViewModelProviders.of(this, factory).get(ReactWithAnyEmojiViewModel.class);
   }
@@ -210,53 +225,16 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
   private void updateFocusedRecycler(int position) {
     for (int i = 0; i < pageArray.size(); i++) {
-      pageArray.valueAt(i).setRecyclerNestedScrollingEnabled(false);
+      pageArray.valueAt(i).setNestedScrollingEnabled(false);
     }
 
-    EmojiPageView toFocus = pageArray.get(position);
+    ReactWithAnyEmojiAdapter.ScrollableChild toFocus = pageArray.get(position);
     if (toFocus != null) {
-      toFocus.setRecyclerNestedScrollingEnabled(true);
+      toFocus.setNestedScrollingEnabled(true);
       categoryPager.requestLayout();
     }
 
-    presentCategoryLabel(viewModel.getCategoryIconAttr(position));
-  }
-
-  private void presentCategoryLabel(@AttrRes int iconAttr) {
-    switch (iconAttr) {
-      case R.attr.emoji_category_recent:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__recently_used));
-        break;
-      case R.attr.emoji_category_people:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people));
-        break;
-      case R.attr.emoji_category_nature:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__nature));
-        break;
-      case R.attr.emoji_category_foods:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__food));
-        break;
-      case R.attr.emoji_category_activity:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__activities));
-        break;
-      case R.attr.emoji_category_places:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__places));
-        break;
-      case R.attr.emoji_category_objects:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__objects));
-        break;
-      case R.attr.emoji_category_symbols:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__symbols));
-        break;
-      case R.attr.emoji_category_flags:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__flags));
-        break;
-      case R.attr.emoji_category_emoticons:
-        categoryLabel.setText(getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__emoticons));
-        break;
-      default:
-        throw new AssertionError();
-    }
+    categoryLabel.setText(getString(adapter.getItem(position).getLabel()));
   }
 
   private class OnPageChanged extends ViewPager2.OnPageChangeCallback {

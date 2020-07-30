@@ -57,7 +57,7 @@ public class RemoteDeleteSendJob extends BaseJob {
       throws NoSuchMessageException
   {
     MessageRecord message = isMms ? DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId)
-                                  : DatabaseFactory.getSmsDatabase(context).getMessage(messageId);
+                                  : DatabaseFactory.getSmsDatabase(context).getMessageRecord(messageId);
 
     Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message.getThreadId());
 
@@ -119,7 +119,7 @@ public class RemoteDeleteSendJob extends BaseJob {
       message = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
     } else {
       db      = DatabaseFactory.getSmsDatabase(context);
-      message = DatabaseFactory.getSmsDatabase(context).getMessage(messageId);
+      message = DatabaseFactory.getSmsDatabase(context).getMessageRecord(messageId);
     }
 
     long       targetSentTimestamp  = message.getDateSent();

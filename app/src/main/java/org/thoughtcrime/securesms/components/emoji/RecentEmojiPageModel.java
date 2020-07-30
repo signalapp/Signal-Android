@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
@@ -13,6 +15,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,6 +76,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     return true;
   }
 
+  @MainThread
   public void onCodePointSelected(String emoji) {
     recentlyUsed.remove(emoji);
     recentlyUsed.add(emoji);
@@ -84,22 +88,16 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     }
 
     final LinkedHashSet<String> latestRecentlyUsed = new LinkedHashSet<>(recentlyUsed);
-    new AsyncTask<Void, Void, Void>() {
-
-      @Override
-      protected Void doInBackground(Void... params) {
-        try {
-          String serialized = JsonUtils.toJson(latestRecentlyUsed);
-          prefs.edit()
-               .putString(preferenceName, serialized)
-               .apply();
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
-
-        return null;
+    SignalExecutors.BOUNDED.execute(() -> {
+      try {
+        String serialized = JsonUtils.toJson(latestRecentlyUsed);
+        prefs.edit()
+             .putString(preferenceName, serialized)
+             .apply();
+      } catch (IOException e) {
+        Log.w(TAG, e);
       }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    });
   }
 
   private String[] toReversePrimitiveArray(@NonNull LinkedHashSet<String> emojiSet) {

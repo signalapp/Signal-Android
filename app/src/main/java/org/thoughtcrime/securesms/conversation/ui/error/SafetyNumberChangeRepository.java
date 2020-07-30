@@ -80,7 +80,7 @@ final class SafetyNumberChangeRepository {
     try {
       switch (messageType) {
         case MmsSmsDatabase.SMS_TRANSPORT:
-          return DatabaseFactory.getSmsDatabase(context).getMessage(messageId);
+          return DatabaseFactory.getSmsDatabase(context).getMessageRecord(messageId);
         case MmsSmsDatabase.MMS_TRANSPORT:
           return DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
         default:
