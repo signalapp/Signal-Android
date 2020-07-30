@@ -508,7 +508,8 @@ public final class PushProcessMessageJob extends BaseJob {
             .putExtra(WebRtcCallService.EXTRA_CALL_ID,                    message.getId())
             .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,                remotePeer)
             .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,              content.getSenderDevice())
-            .putExtra(WebRtcCallService.EXTRA_OFFER_DESCRIPTION,          message.getDescription())
+            .putExtra(WebRtcCallService.EXTRA_OFFER_OPAQUE,               message.getOpaque())
+            .putExtra(WebRtcCallService.EXTRA_OFFER_SDP,                  message.getSdp())
             .putExtra(WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP,  content.getServerReceivedTimestamp())
             .putExtra(WebRtcCallService.EXTRA_SERVER_DELIVERED_TIMESTAMP, content.getServerDeliveredTimestamp())
             .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE,                 message.getType().getCode())
@@ -527,11 +528,12 @@ public final class PushProcessMessageJob extends BaseJob {
     RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
     intent.setAction(WebRtcCallService.ACTION_RECEIVE_ANSWER)
-          .putExtra(WebRtcCallService.EXTRA_CALL_ID,            message.getId())
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,        remotePeer)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,      content.getSenderDevice())
-          .putExtra(WebRtcCallService.EXTRA_ANSWER_DESCRIPTION, message.getDescription())
-          .putExtra(WebRtcCallService.EXTRA_MULTI_RING,         content.getCallMessage().get().isMultiRing());
+          .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice())
+          .putExtra(WebRtcCallService.EXTRA_ANSWER_OPAQUE, message.getOpaque())
+          .putExtra(WebRtcCallService.EXTRA_ANSWER_SDP,    message.getSdp())
+          .putExtra(WebRtcCallService.EXTRA_MULTI_RING,    content.getCallMessage().get().isMultiRing());
 
     context.startService(intent);
   }

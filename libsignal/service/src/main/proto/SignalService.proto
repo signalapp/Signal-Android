@@ -49,21 +49,29 @@ message CallMessage {
       // 2 is reserved, removed OFFER_NEED_PERMISSION
     }
 
-    optional uint64 id          = 1;
-    optional string description = 2;
-    optional Type   type        = 3;
+    optional uint64 id     = 1;
+    // Legacy/deprecated; replaced by 'opaque'
+    optional string sdp    = 2;
+    optional Type   type   = 3;
+    optional bytes  opaque = 4;
   }
 
   message Answer {
-    optional uint64 id          = 1;
-    optional string description = 2;
+    optional uint64 id     = 1;
+    // Legacy/deprecated; replaced by 'opaque'
+    optional string sdp    = 2;
+    optional bytes  opaque = 3;
   }
 
   message IceUpdate {
-    optional uint64 id            = 1;
-    optional string sdpMid        = 2;
-    optional uint32 sdpMLineIndex = 3;
-    optional string sdp           = 4;
+    optional uint64 id     = 1;
+    // Legacy/deprecated; remove when old clients are gone.
+    optional string mid    = 2;
+    // Legacy/deprecated; remove when old clients are gone.
+    optional uint32 line   = 3;
+    // Legacy/deprecated; replaced by 'opaque'
+    optional string sdp    = 4;
+    optional bytes  opaque = 5;
   }
 
   message Busy {

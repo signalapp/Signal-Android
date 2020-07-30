@@ -4,30 +4,24 @@ package org.whispersystems.signalservice.api.messages.calls;
 public class IceUpdateMessage {
 
   private final long   id;
-  private final String sdpMid;
-  private final int    sdpMLineIndex;
+  private final byte[] opaque;
   private final String sdp;
 
-  public IceUpdateMessage(long id, String sdpMid, int sdpMLineIndex, String sdp) {
-    this.id            = id;
-    this.sdpMid        = sdpMid;
-    this.sdpMLineIndex = sdpMLineIndex;
-    this.sdp           = sdp;
-  }
-
-  public String getSdpMid() {
-    return sdpMid;
-  }
-
-  public int getSdpMLineIndex() {
-    return sdpMLineIndex;
-  }
-
-  public String getSdp() {
-    return sdp;
+  public IceUpdateMessage(long id, byte[] opaque, String sdp) {
+    this.id     = id;
+    this.opaque = opaque;
+    this.sdp    = sdp;
   }
 
   public long getId() {
     return id;
+  }
+
+  public byte[] getOpaque() {
+    return opaque;
+  }
+
+  public String getSdp() {
+    return sdp;
   }
 }

@@ -683,24 +683,51 @@ public class SignalServiceMessageSender {
 
     if (callMessage.getOfferMessage().isPresent()) {
       OfferMessage offer = callMessage.getOfferMessage().get();
-      builder.setOffer(CallMessage.Offer.newBuilder()
-                                        .setId(offer.getId())
-                                        .setDescription(offer.getDescription())
-                                        .setType(offer.getType().getProtoType()));
+      CallMessage.Offer.Builder offerBuilder = CallMessage.Offer.newBuilder()
+                                                                .setId(offer.getId())
+                                                                .setType(offer.getType().getProtoType());
+
+      if (offer.getOpaque() != null) {
+        offerBuilder.setOpaque(ByteString.copyFrom(offer.getOpaque()));
+      }
+
+      if (offer.getSdp() != null) {
+        offerBuilder.setSdp(offer.getSdp());
+      }
+
+      builder.setOffer(offerBuilder);
     } else if (callMessage.getAnswerMessage().isPresent()) {
       AnswerMessage answer = callMessage.getAnswerMessage().get();
-      builder.setAnswer(CallMessage.Answer.newBuilder()
-                                          .setId(answer.getId())
-                                          .setDescription(answer.getDescription()));
+      CallMessage.Answer.Builder answerBuilder = CallMessage.Answer.newBuilder()
+                                                                   .setId(answer.getId());
+
+      if (answer.getOpaque() != null) {
+        answerBuilder.setOpaque(ByteString.copyFrom(answer.getOpaque()));
+      }
+
+      if (answer.getSdp() != null) {
+        answerBuilder.setSdp(answer.getSdp());
+      }
+
+      builder.setAnswer(answerBuilder);
     } else if (callMessage.getIceUpdateMessages().isPresent()) {
       List<IceUpdateMessage> updates = callMessage.getIceUpdateMessages().get();
 
       for (IceUpdateMessage update : updates) {
-        builder.addIceUpdate(CallMessage.IceUpdate.newBuilder()
-                                                  .setId(update.getId())
-                                                  .setSdp(update.getSdp())
-                                                  .setSdpMid(update.getSdpMid())
-                                                  .setSdpMLineIndex(update.getSdpMLineIndex()));
+        CallMessage.IceUpdate.Builder iceBuilder = CallMessage.IceUpdate.newBuilder()
+                                                                        .setId(update.getId())
+                                                                        .setMid("audio")
+                                                                        .setLine(0);
+
+        if (update.getOpaque() != null) {
+          iceBuilder.setOpaque(ByteString.copyFrom(update.getOpaque()));
+        }
+
+        if (update.getSdp() != null) {
+          iceBuilder.setSdp(update.getSdp());
+        }
+
+        builder.addIceUpdate(iceBuilder);
       }
     } else if (callMessage.getHangupMessage().isPresent()) {
       CallMessage.Hangup.Type    protoType        = callMessage.getHangupMessage().get().getType().getProtoType();

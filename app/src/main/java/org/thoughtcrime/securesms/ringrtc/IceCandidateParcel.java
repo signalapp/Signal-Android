@@ -4,9 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
-import org.signal.ringrtc.CallId;
+import com.google.protobuf.ByteString;
 
-import org.webrtc.IceCandidate;
+import org.signal.ringrtc.CallId;
+import org.signal.ringrtc.IceCandidate;
+
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 
 /**
@@ -24,14 +26,11 @@ public class IceCandidateParcel implements Parcelable {
   }
 
   public IceCandidateParcel(@NonNull IceUpdateMessage iceUpdateMessage) {
-    this.iceCandidate = new IceCandidate(iceUpdateMessage.getSdpMid(),
-                                         iceUpdateMessage.getSdpMLineIndex(),
-                                         iceUpdateMessage.getSdp());
+    this.iceCandidate = new IceCandidate(iceUpdateMessage.getOpaque(), iceUpdateMessage.getSdp());
   }
 
   private IceCandidateParcel(@NonNull Parcel in) {
-    this.iceCandidate = new IceCandidate(in.readString(),
-                                         in.readInt(),
+    this.iceCandidate = new IceCandidate(in.createByteArray(),
                                          in.readString());
   }
 
@@ -41,9 +40,8 @@ public class IceCandidateParcel implements Parcelable {
 
   public @NonNull IceUpdateMessage getIceUpdateMessage(@NonNull CallId callId) {
     return new IceUpdateMessage(callId.longValue(),
-                                iceCandidate.sdpMid,
-                                iceCandidate.sdpMLineIndex,
-                                iceCandidate.sdp);
+                                iceCandidate.getOpaque(),
+                                iceCandidate.getSdp());
   }
 
   @Override
@@ -53,9 +51,8 @@ public class IceCandidateParcel implements Parcelable {
 
   @Override
   public void writeToParcel(@NonNull Parcel dest, int flags) {
-    dest.writeString(iceCandidate.sdpMid);
-    dest.writeInt(iceCandidate.sdpMLineIndex);
-    dest.writeString(iceCandidate.sdp);
+    dest.writeByteArray(iceCandidate.getOpaque());
+    dest.writeString(iceCandidate.getSdp());
   }
 
   public static final Creator<IceCandidateParcel> CREATOR = new Creator<IceCandidateParcel>() {
