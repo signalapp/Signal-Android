@@ -115,7 +115,7 @@ class PNModeActivity : BaseActionBarActivity() {
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         TextSecurePreferences.setPromptedPushRegistration(this, true)
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
-        TextSecurePreferences.setHasSeenPNModeSheet(this, true) // Shouldn't be shown to users who've done the new onboarding
+        TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()
         application.setUpP2PAPIIfNeeded()

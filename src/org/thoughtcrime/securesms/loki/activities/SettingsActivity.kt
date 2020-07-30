@@ -83,16 +83,16 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
+        linkedDevicesButtonTopSeparator.visibility = View.GONE
+        linkedDevicesButton.visibility = View.GONE
         if (!isMasterDevice) {
-            linkedDevicesButtonTopSeparator.visibility = View.GONE
-            linkedDevicesButton.visibility = View.GONE
             seedButtonTopSeparator.visibility = View.GONE
             seedButton.visibility = View.GONE
         }
         privacyButton.setOnClickListener { showPrivacySettings() }
         notificationsButton.setOnClickListener { showNotificationSettings() }
         chatsButton.setOnClickListener { showChatSettings() }
-        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
+//        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
         versionTextView.text = String.format(getString(R.string.version_s), BuildConfig.VERSION_NAME)

@@ -214,14 +214,6 @@ public class TextSecurePreferences {
   public static void setLastFCMUploadTime(Context context, long value) {
     setLongPreference(context, LAST_FCM_TOKEN_UPLOAD_TIME, value);
   }
-
-  public static boolean hasSeenPNModeSheet(Context context) {
-    return getBooleanPreference(context, HAS_SEEN_PN_MODE_SHEET, false);
-  }
-
-  public static void setHasSeenPNModeSheet(Context context, boolean value) {
-    setBooleanPreference(context, HAS_SEEN_PN_MODE_SHEET, value);
-  }
   // endregion
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
@@ -1315,6 +1307,14 @@ public class TextSecurePreferences {
 
   public static void clearAll(Context context) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
+  }
+
+  public static boolean getHasSeenMultiDeviceRemovalSheet(Context context) {
+    return getBooleanPreference(context, "has_seen_multi_device_removal_sheet", false);
+  }
+
+  public static void setHasSeenMultiDeviceRemovalSheet(Context context) {
+    setBooleanPreference(context, "has_seen_multi_device_removal_sheet", true);
   }
   // endregion
 }

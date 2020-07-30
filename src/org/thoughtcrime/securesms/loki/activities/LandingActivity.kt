@@ -44,7 +44,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         fakeChatView.startAnimating()
         registerButton.setOnClickListener { register() }
         restoreButton.setOnClickListener { restore() }
-        linkButton.setOnClickListener { linkDevice() }
+//        linkButton.setOnClickListener { linkDevice() }
         if (TextSecurePreferences.getWasUnlinked(this)) {
             Toast.makeText(this, R.string.activity_landing_device_unlinked_dialog_title, Toast.LENGTH_LONG).show()
         }
