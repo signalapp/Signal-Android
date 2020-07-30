@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 public class UnknownSenderView extends FrameLayout {
 
@@ -50,10 +51,14 @@ public class UnknownSenderView extends FrameLayout {
             protected Void doInBackground(Void... params) {
               DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient.getId(), true);
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
-              listener.onActionTaken();
               return null;
             }
-          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+              listener.onActionTaken();
+            }
+          }.executeOnExecutor(SignalExecutors.BOUNDED);
         })
         .setNegativeButton(android.R.string.cancel, null)
         .show();
@@ -78,10 +83,14 @@ public class UnknownSenderView extends FrameLayout {
             protected Void doInBackground(Void... params) {
               DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getId(), true);
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
-              listener.onActionTaken();
               return null;
             }
-          }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+              listener.onActionTaken();
+            }
+          }.executeOnExecutor(SignalExecutors.BOUNDED);
         })
         .setNegativeButton(android.R.string.cancel, null)
         .show();
