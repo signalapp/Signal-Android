@@ -2934,7 +2934,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   {
     reactionOverlay.setOnToolbarItemClickedListener(toolbarListener);
     reactionOverlay.setOnHideListener(onHideListener);
-    reactionOverlay.show(this, maskTarget, messageRecord, panelParent.getMeasuredHeight());
+    reactionOverlay.show(this, maskTarget, messageRecord, inputAreaHeight());
   }
 
   @Override
@@ -2959,7 +2959,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void handleReactionDetails(@NonNull View maskTarget) {
-    reactionOverlay.showMask(maskTarget, titleView.getMeasuredHeight(), panelParent.getMeasuredHeight());
+    reactionOverlay.showMask(maskTarget, titleView.getMeasuredHeight(), inputAreaHeight());
   }
 
   @Override
@@ -3057,6 +3057,19 @@ public class ConversationActivity extends PassphraseRequiredActivity
     handleSecurityChange(isSecureText, isDefaultSms);
     updateToggleButtonState();
     updateLinkPreviewState();
+  }
+
+  private int inputAreaHeight() {
+    int height = panelParent.getMeasuredHeight();
+
+    if (attachmentKeyboardStub.resolved()) {
+      View keyboard = attachmentKeyboardStub.get();
+      if (keyboard.getVisibility() == View.VISIBLE) {
+        return height + keyboard.getMeasuredHeight();
+      }
+    }
+
+    return height;
   }
 
   private void onMessageRequestDeleteClicked(@NonNull MessageRequestViewModel requestModel) {
