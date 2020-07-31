@@ -320,6 +320,7 @@
   <string name="ConversationTitleView_verified">U verifikua</string>
   <string name="ConversationTitleView_you">Ju</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Disa kontakte s’mund të jenë në grupe të dikurshëm.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gabim në caktim fotoje profili</string>
@@ -384,6 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" u shtua te \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Shtoje te grupi</string>
   <string name="AddToGroupActivity_add_to_groups">Shtoni te grupe</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ky person s’mund të shtohet te grupe të dikurshëm.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Zgjidhni përgjegjës të ri</string>
   <string name="ChooseNewAdminActivity_done">U bë</string>
@@ -425,6 +427,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">U bë</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ky përdorues s’mund të shtohet te grupe të dikurshëm.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Të shtohet \"%1$s\" te \"%2$s\"?</item>
     <item quantity="other">Të shtohen %3$d anëtarë te \"%2$s\"?</item>

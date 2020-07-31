@@ -1576,6 +1576,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
   <string name="HelpFragment__no_email_app_found">Nije pronađena aplikacija za email.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smješko i osobe</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Priroda</string>

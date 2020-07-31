@@ -1475,6 +1475,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
   <string name="HelpFragment__no_email_app_found">找不到 email 軟體。</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用的</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">笑臉 &amp; 人們</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">自然</string>

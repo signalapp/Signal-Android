@@ -132,7 +132,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Usunąć zdjęcie grupy?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nie znaleziono przeglądarki internetowej.</string>
-  <string name="CommunicationActions_no_email_app_found">Nie znaleziono aplikacji email.</string>
+  <string name="CommunicationActions_no_email_app_found">Nie znaleziono aplikacji e-mail.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Trwa już połączenie komórkowe.</string>
   <string name="CommunicationActions_start_video_call">Rozpocząć połączenie wideo?</string>
   <string name="CommunicationActions_start_voice_call">Rozpocząć połączenie głosowe?</string>
@@ -1486,11 +1486,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="log_submit_activity__button_dont_submit">Nie wysyłaj</string>
   <string name="log_submit_activity__button_submit">Wyślij</string>
   <string name="log_submit_activity__button_got_it">Rozumiem</string>
-  <string name="log_submit_activity__button_compose_email">Utwórz email</string>
+  <string name="log_submit_activity__button_compose_email">Utwórz e-mail</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Ten log zostanie upubliczniony online, aby umożliwić twórcom aplikacji jego sprawdzenie. Możesz go przejrzeć i edytować przed przesłaniem.</string>
   <string name="log_submit_activity__loading_logs">Wczytywanie logów…</string>
   <string name="log_submit_activity__uploading_logs">Przesyłanie logów…</string>
-  <string name="log_submit_activity__choose_email_app">Wybierz aplikację email</string>
+  <string name="log_submit_activity__choose_email_app">Wybierz aplikację e-mail</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Przejrzyj proszę ten log z mojej aplikacji: %1$s</string>
   <string name="log_submit_activity__network_failure">Błąd sieci. Spróbuj ponownie.</string>
   <!--database_migration_activity-->
@@ -1615,8 +1615,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__signal_support">Pomoc techniczna Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
-  <string name="HelpFragment__no_email_app_found">Nie znaleziono aplikacji email.</string>
+  <string name="HelpFragment__no_email_app_found">Nie znaleziono aplikacji e-mail.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ta wiadomość</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Ostatnio używane</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Buźki i ludzie</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natura</string>

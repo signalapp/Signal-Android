@@ -334,6 +334,7 @@
   <string name="ConversationTitleView_verified">Verificat</string>
   <string name="ConversationTitleView_you">Dvs.</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Anumite contacte nu pot exista în grupurile vechi.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eroare la setarea pozei de profil</string>
@@ -398,6 +399,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" adăugat la \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Adaugaţi la grup</string>
   <string name="AddToGroupActivity_add_to_groups">Adaugaţi la grupuri</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Alegeți un nou admin</string>
   <string name="ChooseNewAdminActivity_done">Gata</string>
@@ -442,6 +444,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gata</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Adăugaţi \"%1$s\" la \"%2$s\"?</item>
     <item quantity="few">Adăugați %3$d membrii la \"%2$s\"?</item>
@@ -1569,6 +1572,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
   <string name="HelpFragment__no_email_app_found">Nu a fost găsită nici o aplicație de email.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley-uri &amp; Oameni</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natură</string>

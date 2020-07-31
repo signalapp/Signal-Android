@@ -382,6 +382,7 @@
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">உறுப்பினரைச் சேர்க்கவா?</string>
   <string name="AddToGroupActivity_add_to_group">குழுவில் சேர்</string>
+  <string name="AddToGroupActivity_add_to_groups">குழுக்களில் சேர்க்கவும்</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
@@ -395,6 +396,8 @@
   <string name="GroupMembersDialog_you">நீங்கள்</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">யார் வேண்டுமானாலும்</string>
+  <string name="GroupManagement_access_level_all_members">அனைத்து உறுப்பினர்கள்</string>
+  <string name="GroupManagement_access_level_only_admins">நிர்வாகிகள் மட்டுமே</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">மேலும் அறிக</string>
   <!--PendingMembersActivity-->

@@ -348,6 +348,7 @@
   <string name="ConversationTitleView_verified">Potrjeno</string>
   <string name="ConversationTitleView_you">Vi</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nekateri uporabniki/ce ne morejo biti v starih skupinah.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Napaka pri pošiljanju predstavitvene fotografije</string>
@@ -412,6 +413,7 @@
   <string name="AddToGroupActivity_s_added_to_s">Uporabnik/ca \"%1$s\" dodan/a v skupino \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Dodaj v skupino</string>
   <string name="AddToGroupActivity_add_to_groups">Dodaj v skupine</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Uporabnik/ca ne more biti dodan/a v staro skupino.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Določi novega skrbnika/co</string>
   <string name="ChooseNewAdminActivity_done">OK</string>
@@ -459,6 +461,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">OK</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Uporabnik/ca ne more biti dodan/a v staro skupino.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Želite dodati uporabnika \"%1$s\" v skupino \"%2$s\"?</item>
     <item quantity="two">Želite dodati %3$d člana v skupino \"%2$s\"?</item>
@@ -520,7 +523,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">To je zastarela oblika skupine. Za dostop do naprednih funkcij kot so skrbniki skupin, ustvarite Novo skupino.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj k sistemskim stikom</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ta oseba je med vašimi stiki</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Uporabnik/ca je med vašimi stiki</string>
   <string name="ManageRecipientActivity_disappearing_messages">Izginjajoča sporočila</string>
   <string name="ManageRecipientActivity_chat_color">Barva pogovora</string>
   <string name="ManageRecipientActivity_block">Blokiraj</string>
@@ -811,7 +814,7 @@
   <string name="MessageRecord_the_group_name_has_changed_to_s">Ime skupine je bilo spremenjeno v \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Spremenili ste skupinin avatar.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">Oseba %1$s je spremenila skupinin avatar.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">Uporabnik/ca %1$s je spremenil/a skupinin avatar.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">Avatar skupine je bil spremenjen.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Spremenili ste, kdo lahko ureja informacije o skupini: \"%1$s\".</string>
@@ -1051,7 +1054,7 @@ sporočilo za izmenjavo ključev!</string>
 Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Prejeto je bilo sporočilo z novim varnostnim številom. Tapnite za vpogled in potrditev.</string>
   <string name="SmsMessageRecord_secure_session_reset">Ponastavili ste varno sejo.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">Oseba %s je ponastavila varno sejo.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">Uporabnik/ca %s je ponastavil/a varno sejo.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Sporočilo ni moglo biti obdelano, ker je bilo poslano iz novejše različice aplikacije Signal. Po posodobitvi aplikacije lahko prosite osebo na drugi strani naj vam ga ponovno pošlje.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Napaka pri obdelavi dohodnega sporočila.</string>
@@ -1569,7 +1572,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">V teku</string>
   <string name="message_details_recipient_header__sent_to">Poslano uporabniku/ci</string>
-  <string name="message_details_recipient_header__sent_from">Poslal/a uporabnika/ca</string>
+  <string name="message_details_recipient_header__sent_from">Poslal/a uporabnik/ca</string>
   <string name="message_details_recipient_header__delivered_to">Dostavljeno uporabniku/ci</string>
   <string name="message_details_recipient_header__read_by">Prebral uporabnik/ca</string>
   <string name="message_details_recipient_header__not_sent">Neposlano</string>
@@ -1613,6 +1616,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
   <string name="HelpFragment__no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smeški &amp; Ljudje</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Narava</string>

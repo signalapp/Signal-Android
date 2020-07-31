@@ -320,6 +320,7 @@
   <string name="ConversationTitleView_verified">Verifierat</string>
   <string name="ConversationTitleView_you">Du</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Vissa kontakter kan inte vara i gamla grupper.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Det gick inte att ställa in profilbild</string>
@@ -384,6 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lagd till \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Lägg till i grupp</string>
   <string name="AddToGroupActivity_add_to_groups">Lägg till i grupper</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Den här personen kan inte läggas till i äldre grupper.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Välj ny administratör</string>
   <string name="ChooseNewAdminActivity_done">Klar</string>
@@ -425,6 +427,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klar</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Den här personen kan inte läggas till i äldre grupper.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Lägg till \"%1$s\" i \"%2$s\"?</item>
     <item quantity="other">Lägg till %3$d medlemmar i \"%2$s\"?</item>
@@ -477,7 +480,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, vänligen försök igen senare</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Redigera namn och bild</string>
   <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en Äldre grupp. Skapa en Ny grupp för att få åtkomst till funktioner som gruppadministratörer.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en äldre grupp. Skapa en ny grupp för att få åtkomst till funktioner som gruppadministratörer.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Den här personen är i dina kontakter</string>
@@ -2059,7 +2062,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Vad är Äldre grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Äldre grupper är grupper som inte är kompatibla med nya gruppfunktioner som administratörer och mer beskrivande gruppuppdateringar.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Hur använder jag Nya grupper?</string>
-  <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan inte konverteras till Nya grupper, men du kan skapa en Ny grupp med samma medlemmar.</string>
+  <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan inte konverteras till nya grupper, men du kan skapa en ny grupp med samma medlemmar.</string>
   <string name="GroupsLearnMore_paragraph_3">För att skapa en Ny grupp, bör alla medlemmar uppdatera till den senaste versionen av Signal.</string>
   <!--EOF-->
 </resources>

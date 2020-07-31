@@ -698,7 +698,7 @@
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s امتیازات مدیریتی شما را لغو کرد.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s امتیازات مدیریتی %2$s را لغو کرد.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s حالا یک مدیر است.</string>
-  <string name="MessageRecord_you_are_now_an_admin">شما حالا مدیر هستید.</string>
+  <string name="MessageRecord_you_are_now_an_admin">شما حالا یک مدیر هستید.</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s دیگر یک مدیر نیست.</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">شما دیگر یک مدیر نیستید.</string>
   <!--GV2 invitations-->
@@ -1446,7 +1446,7 @@
   <string name="redphone_call_card__signal_call">تماس Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">شمارهٔ همراه</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal با کمک شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبانی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود به آسانی با شما از طریق Signal ارتباط برقرار کنند.\n\nثبت نام، برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal با کمک شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبانی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود به آسانی با شما از طریق Signal ارتباط برقرار کنند.\n\nثبت‌نام، برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
   <string name="registration_activity__verify_your_number">شمارهٔ خود را تأیید کنید</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفاً شمارهٔ موبایل خود را جهت دریافت کد تأیید وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <!--recipients_panel-->
@@ -1497,11 +1497,11 @@
   <string name="AndroidManifest_remove_photo">حذف تصویر</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">درخواست‌های تبادل پیام</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">کاربران اکنون می‌توانند درخواست مکالمهٔ جدید را قبول یا رد کنند. نام‌های پروفایل به کاربران نشان می‌دهند که چه کسی در حال پیام دادن به آن‌هاست.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">کاربران حالا می‌توانند درخواست مکالمهٔ جدید را قبول یا رد کنند. نام‌های پروفایل به کاربران نشان می‌دهند که چه کسی در حال پیام دادن به آن‌هاست.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">افزودن نام پروفایل</string>
   <string name="MessageRequestsMegaphone__new_message_requests">جدید: درخواست‌های تبادل پیام</string>
   <string name="MessageRequestsMegaphone__add_name">افزودن نام</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">شما اکنون می‌توانید مکالمهٔ جدید را قبول یا رد کنید. گزینه‌های «قبول»، «حذف» و «مسدود کردن» نشان داده خواهند شد.</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">شما حالا می‌توانید مکالمهٔ جدید را قبول یا رد کنید. گزینه‌های «قبول»، «حذف» و «مسدود کردن» نشان داده خواهند شد.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">راهنمایی</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">آیا قسمت پرسش‌های متداول را خوانده‌اید؟</string>
@@ -1625,7 +1625,7 @@
   <string name="preferences__chats">گفتگوها و رسانه‌ها</string>
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
-  <string name="preferences__trim_all_conversations_now">همین حالا همهٔ مکالمات را پیرایش کن</string>
+  <string name="preferences__trim_all_conversations_now">همین حالا همهٔ مکالمه‌ها را پیرایش کن</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">اسکن کردن تمام مکالمه‌ها و اعمال محدودیت طول مکالمه</string>
   <string name="preferences__linked_devices">دستگاه‌های پیوند داده شده</string>
   <string name="preferences__light_theme">روشن</string>
