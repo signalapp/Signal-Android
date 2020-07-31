@@ -288,6 +288,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">تصدیق کیتا ہویا</string>
   <string name="ConversationTitleView_you">تساں</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفائل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">پروفائل فوٹو ترتیب دین اچ نقص</string>

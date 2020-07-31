@@ -312,6 +312,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ਪ੍ਰਮਾਣਿਤ</string>
   <string name="ConversationTitleView_you">ਤੁਸੀਂ</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ਪ੍ਰੋਫਾਈਲ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਨੂੰ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ</string>

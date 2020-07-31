@@ -319,12 +319,15 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Varmennettu</string>
   <string name="ConversationTitleView_you">Sinä</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Jotkut yhteystiedot eivät voi olla vanhoissa ryhmissä.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiili</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Virhe asetettaessa profiilikuvaa</string>
   <string name="CreateProfileActivity_problem_setting_profile">Virhe asetettaessa profiilia</string>
   <string name="CreateProfileActivity_profile_photo">Profiilikuva</string>
   <string name="CreateProfileActivity_set_up_your_profile">Aseta profiilisi</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiilisi on päästä päähän salattu. Profiilisi ja tekemäsi muutokset näkyvät yhteystiedoillesi, kun aloitat tai hyväksyt uusia keskusteluja ja kun liityt uusiin ryhmiin.</string>
   <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
@@ -382,6 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lisätty ryhmään \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Lisää ryhmään</string>
   <string name="AddToGroupActivity_add_to_groups">Lisää ryhmiin</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhoihin ryhmiin.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Valitse uusi ylläpitäjä</string>
   <string name="ChooseNewAdminActivity_done">Valmis</string>
@@ -421,6 +425,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Valmis</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhoihin ryhmiin.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Lisää \"%1$s\" ryhmään \"%2$s\"?</item>
     <item quantity="other">Lisää %3$d jäsentä ryhmään \"%2$s\"?</item>
@@ -444,6 +449,8 @@
   <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Valitse ketkä voivat muokata ryhmän nimeä, kuvaketta ja katoavien viestien ajastinta.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Valitse ketkä voivat lisätä tai kutsua uusia jäseniä.</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
   <string name="ManageGroupActivity_leave_group">Poistu ryhmästä</string>
@@ -467,10 +474,13 @@
   <string name="ManageGroupActivity_not_capable">Joku lisäämistäsi käyttäjistä ei tue uusia ryhmiä ja hänen on siis päivitettävä Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ryhmän päivitys epäonnistui</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Et ole ryhmän jäsen</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ryhmän päivitys epäonnistui, yritä myöhemmin uudelleen</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ryhmän päivitys epäonnistui verkkovirheen vuoksi, yritä myöhemmin uudelleen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Muokkaa nimeä ja kuvaa</string>
   <string name="ManageGroupActivity_legacy_group">Vanha ryhmä</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Tämä on vanha ryhmä. Luo uusi ryhmä käyttääksesi uusia ominaisuuksia, kuten ylläpitäjyyttä.</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Lisää yhteystietoihin</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tämä henkilö on yhteystiedoissasi</string>
   <string name="ManageRecipientActivity_disappearing_messages">Katoavat viestit</string>
   <string name="ManageRecipientActivity_chat_color">Keskustelun väri</string>
@@ -660,7 +670,10 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s asetti katoavat viestit pois päältä.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Katoavien viestien ajaksi asetettiin %1$s.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s muutti profiilinimekseen %2$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s muutti profiiliaan.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Sinä loit ryhmän.</string>
   <string name="MessageRecord_group_updated">Ryhmä päivitetty.</string>
@@ -697,6 +710,10 @@
     <item quantity="other">%1$s kutsui %2$d henkilöä ryhmään.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Sinut kutsuttiin ryhmään.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 henkilö kutsuttiin ryhmään.</item>
+    <item quantity="other">%1$d henkilöä kutsuttiin ryhmään.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Peruutit yhden kutsun ryhmään.</item>
@@ -709,6 +726,10 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Joku hylkäsi kutsun ryhmään.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hylkäsit kutsun ryhmään.</string>
   <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Kutsusi ryhmään peruttiin.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Kutsu ryhmään peruttiin.</item>
+    <item quantity="other">%1$d kutsua ryhmään peruttiin.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Hyväksyit kutsun ryhmään.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s hyväksyi kutsun ryhmään.</string>
@@ -717,6 +738,7 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Muutit ryhmän nimeksi \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s muutti ryhmän nimeksi \"%2$s\".</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Ryhmän nimeksi asetettiin \"%1$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Muutit ryhmän kuvakkeen.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s muutti ryhmän kuvakkeen.</string>

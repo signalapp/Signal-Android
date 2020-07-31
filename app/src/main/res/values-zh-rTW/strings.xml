@@ -305,6 +305,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">已驗證</string>
   <string name="ConversationTitleView_you">您</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">某些聯絡人不能在舊群組中。</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">個人資訊</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">頭像照片設定出現錯誤</string>
@@ -369,6 +371,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\"被加入\"%2$s\"。</string>
   <string name="AddToGroupActivity_add_to_group">新增到群組</string>
   <string name="AddToGroupActivity_add_to_groups">新增到群組</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">無法將此人新增到舊群組中。</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">選擇新的管理者</string>
   <string name="ChooseNewAdminActivity_done">完成</string>
@@ -407,6 +410,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完成</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">無法將此人新增到舊群組中。</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">新增%3$d成員到\"%2$s\"嗎？</item>
   </plurals>

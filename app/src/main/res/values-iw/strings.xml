@@ -347,6 +347,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">מוודא</string>
   <string name="ConversationTitleView_you">את/ה</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">פרופיל</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">שגיאה בהגדרת תמונת פרופיל</string>

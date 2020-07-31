@@ -319,6 +319,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">പരിശോധിച്ചു </string>
   <string name="ConversationTitleView_you">നിങ്ങൾ</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">പ്രൊഫൈൽ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ ക്രമീകരിക്കുന്നതിൽ പിശക്</string>

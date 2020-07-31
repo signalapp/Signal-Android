@@ -320,6 +320,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificeret</string>
   <string name="ConversationTitleView_you">Dig</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nogle kontakter kan ikke være i forældede grupper.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fejl opstået ved oprettelse af profilbilledet</string>
@@ -384,6 +386,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" blev tilføjet \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Tilføj til gruppe</string>
   <string name="AddToGroupActivity_add_to_groups">Tilføj til grupper</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Denne person kan ikke føjes til forældede grupper.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vælg ny administrator</string>
   <string name="ChooseNewAdminActivity_done">Udført</string>
@@ -425,6 +428,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Udført</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne person kan ikke føjes til forældede grupper.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Tilføj \"%1$s\" til \"%2$s\"?</item>
     <item quantity="other">Tilføj %3$d medlemmer til \"%2$s\"?</item>

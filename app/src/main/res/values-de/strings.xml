@@ -319,6 +319,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verifiziert</string>
   <string name="ConversationTitleView_you">Du</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Festlegen des Profilfotos</string>

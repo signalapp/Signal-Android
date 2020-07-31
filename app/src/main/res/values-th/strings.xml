@@ -291,6 +291,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ตรวจยืนยันแล้ว</string>
   <string name="ConversationTitleView_you">คุณ</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">โปรไฟล์</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>

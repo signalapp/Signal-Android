@@ -319,6 +319,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">U verifikua</string>
   <string name="ConversationTitleView_you">Ju</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gabim në caktim fotoje profili</string>

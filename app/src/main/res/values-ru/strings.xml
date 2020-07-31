@@ -347,6 +347,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Подтверждён</string>
   <string name="ConversationTitleView_you">Вы</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некоторые контакты не могут находиться в старых группах.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профиль</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка при установке фото профиля</string>
@@ -411,6 +413,7 @@
   <string name="AddToGroupActivity_s_added_to_s">«%1$s» добавлен(-а) в «%2$s».</string>
   <string name="AddToGroupActivity_add_to_group">Добавить в группу</string>
   <string name="AddToGroupActivity_add_to_groups">Добавить в группы</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Выберите нового администратора</string>
   <string name="ChooseNewAdminActivity_done">Готово</string>
@@ -458,6 +461,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Добавить «%1$s» в «%2$s»?</item>
     <item quantity="few">Добавить %3$d участника в «%2$s»?</item>

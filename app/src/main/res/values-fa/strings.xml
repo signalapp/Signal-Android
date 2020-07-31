@@ -319,6 +319,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">تأیید شده</string>
   <string name="ConversationTitleView_you">شما</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم عکس پروفایل</string>
@@ -820,7 +821,7 @@
   <string name="PlacePickerActivity_drop_pin">قرار دادن نشانگر</string>
   <string name="PlacePickerActivity_accept_address">پذیرش نشانی</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخه گوگل پلی سرویس که شما نصب کرده اید به درستی کار نمی کند. لطفاً آن را دوباره کنید و مجددا تلاش کنید.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخهٔ Google Play Services که نصب کرده‌اید به درستی کار نمی‌کند. لطفاً دوباره آن را نصب کرده و مجدداً امتحان کنید.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">پین نادرست</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">رد کردن ورود پین؟</string>
@@ -982,7 +983,7 @@
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">استیکر ها</string>
   <!--StickerManagementAdapter-->
-  <string name="StickerManagementAdapter_installed_stickers">استیکر های نصب شده</string>
+  <string name="StickerManagementAdapter_installed_stickers">استیکرهای نصب شده</string>
   <string name="StickerManagementAdapter_stickers_you_received">استیکر هایی که دریافت کردید</string>
   <string name="StickerManagementAdapter_signal_artist_series">سری های هنرمند Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نشده است</string>
@@ -1342,12 +1343,12 @@
     <item quantity="one">%d ثانیه</item>
     <item quantity="other">%d ثانیه</item>
   </plurals>
-  <string name="expiration_seconds_abbreviated">%dث</string>
+  <string name="expiration_seconds_abbreviated">%d ثانیه</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d دقیقه</item>
     <item quantity="other">%d دقیقه</item>
   </plurals>
-  <string name="expiration_minutes_abbreviated">%dد</string>
+  <string name="expiration_minutes_abbreviated">%d دقیقه</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d ساعت</item>
     <item quantity="other">%d ساعت</item>
@@ -1357,12 +1358,12 @@
     <item quantity="one">%d روز</item>
     <item quantity="other">%d روز</item>
   </plurals>
-  <string name="expiration_days_abbreviated">%dر</string>
+  <string name="expiration_days_abbreviated">%d روز</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d هفته</item>
     <item quantity="other">%d هفته</item>
   </plurals>
-  <string name="expiration_weeks_abbreviated">%dه </string>
+  <string name="expiration_weeks_abbreviated">%d هفته</string>
   <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">شمارهٔ امنیتی شما با %s تغییر کرده است و دیگر مورد تأیید نیست</string>
@@ -1583,9 +1584,9 @@
   <string name="preferences__inactivity_timeout_interval">بازهٔ زمان عدم فعالیت</string>
   <string name="preferences__notifications">اعلان‌ها</string>
   <string name="preferences__system_notification_settings">تنظیمات اعلان سیستم</string>
-  <string name="preferences__led_color">رنگ ال‌ای‌دی</string>
+  <string name="preferences__led_color">رنگ LED</string>
   <string name="preferences__led_color_unknown">ناشناخته</string>
-  <string name="preferences__pref_led_blink_title">الگوی چشمک زدن ال‌ای‌دی</string>
+  <string name="preferences__pref_led_blink_title">الگوی چشمک زدن LED</string>
   <string name="preferences__sound">زنگ</string>
   <string name="preferences__silent">خاموش</string>
   <string name="preferences__repeat_alerts">تکرار هشدار ها</string>

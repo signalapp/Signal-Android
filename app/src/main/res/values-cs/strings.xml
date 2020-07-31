@@ -347,6 +347,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Ověřeno</string>
   <string name="ConversationTitleView_you">Vy</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba při nastavení profilové fotografie</string>

@@ -302,6 +302,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Đã xác minh</string>
   <string name="ConversationTitleView_you">Bạn</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Hồ sơ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Lỗi đặt ảnh đại diện</string>

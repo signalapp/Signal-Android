@@ -376,6 +376,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified"> تم التحقق </string>
   <string name="ConversationTitleView_you">أنت</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">الملف الشخصي</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الملف الشخصي</string>

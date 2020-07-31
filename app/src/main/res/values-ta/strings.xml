@@ -44,7 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">திரை பூட்டு %1$s, பதிவு பூட்டு %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">திரை பூட்டு %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">பின்புலத்தோற்றம் %1$s, மொழி %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">பதிவு பூட்டுக்கு கடவுஎண்கள் பின்ஸ் தேவை. பின்ஸை முடக்க, முதலில் பதிவு பூட்டை முடக்கவும்.</string>
   <string name="ApplicationPreferencesActivity_pin_created">பின் உருவாக்கப்பட்டது.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">கடவுஎண்கள் முடக்கப்பட்டது</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d நிமிடம்</item>
@@ -78,11 +80,17 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">முடக்கப்பட்ட தொடர்புகள்</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">தடுத்து %1$sஐ விடவா?</string>
+  <string name="BlockUnblockDialog_block_s">  %1$sஐ தடுத்து விடவா?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">இந்த குழுவிலிருந்து நீங்கள் இனி செய்திகளையோ புதுப்பிப்புகளையோ பெறமாட்டீர்கள், மேலும் உறுப்பினர்கள் உங்களை மீண்டும் இந்தக் குழுவில் சேர்க்க முடியாது.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">குழு உறுப்பினர்கள் உங்களை மீண்டும் இந்த குழுவில் சேர்க்க முடியாது.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">குழு உறுப்பினர்கள் சேர்க்க முடியும் நீங்கள் இந்த குழுவிற்கு மீண்டும்.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">நீங்கள் ஒருவருக்கொருவர் செய்தி அனுப்பவும் அழைக்கவும் முடியும், மேலும் உங்கள் பெயரும் புகைப்படமும் அவர்களுடன் பகிரப்படும்.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">தடுக்கப்பட்ட நபர்கள் உங்களை அழைக்கவோ அல்லது செய்திகளை அனுப்பவோ முடியாது.</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$sஐ தடைநீக்கவா?</string>
   <string name="BlockUnblockDialog_unblock">தடைநீக்கு </string>
   <string name="BlockUnblockDialog_block">தடு </string>
+  <string name="BlockUnblockDialog_block_and_leave">தடுத்து வெளியேறு</string>
   <string name="BlockUnblockDialog_block_and_delete">தடுமற்றும் அழி</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">இன்று</string>
@@ -115,6 +123,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">நீக்கு</string>
   <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை நீக்கவா?</string>
+  <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்றவா?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
   <string name="CommunicationActions_no_email_app_found">மின்னஞ்சல் பயன்பாடு எதுவும் கிடைக்கவில்லை.</string>
@@ -151,6 +160,8 @@
   <string name="ContactShareEditActivity_type_missing">மற்றவை</string>
   <string name="ContactShareEditActivity_invalid_contact">தேர்ந்தெடுத்த தொடர்பு தவறானது</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">அனுப்பப்படவில்லை, மேலும் விவரங்களுக்கு இங்கே தட்டவும்</string>
+  <string name="ConversationItem_error_partially_not_delivered">சிலருக்கு இது அனுப்பப்படுகிறது, விவரங்களுக்கு இங்கே தட்டவும்</string>
   <string name="ConversationItem_error_network_not_delivered">அனுப்புவது தோல்வியுற்றது</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">முக்கிய பரிமாற்ற செய்தி பெறப்பட்டது, செயலாக்க தட்டவும்.</string>
   <string name="ConversationItem_group_action_left">%1$s இந்தக் குழுவை விட்டு விலகினார்.</string>
@@ -166,6 +177,7 @@
   <string name="ConversationItem_download_more">மேலும் பதிவிறக்க</string>
   <string name="ConversationItem_pending">நிலுவையில்</string>
   <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
+  <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">இந்த உரையாடலில் குறியாக்க சிக்கல்கள் இருந்தால் இது உதவக்கூடும். உங்கள் செய்திகள் வைக்கப்படும்.</string>
@@ -184,6 +196,8 @@
   <string name="ConversationActivity_leave_group">குழுவிலுருந்து விலகலாமா?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">நீங்கள் குழுவை விட்டு நிச்சயமாக விலகவேண்டுமா?</string>
   <string name="ConversationActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">நீங்கள் வெளியேறுவதற்கு முன், இந்த குழுவிற்கு குறைந்தபட்சம் ஒரு புதிய new admin நிர்வாகியையாவது தேர்வு செய்ய வேண்டும்.</string>
+  <string name="ConversationActivity_choose_admin">நிர்வாகியைத் admin தேர்வுசெய்க</string>
   <string name="ConversationActivity_transport_insecure_sms">பாதுகாப்பற்ற SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -197,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">நீங்கள் அனுப்பும் இணைப்பு செய்தி அளவு வரம்பை மீறுகிறது .</string>
   <string name="ConversationActivity_quick_camera_unavailable">புகைப்படக் கருவி கிடைப்பிலில்லை</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">நீங்கள் இனி உறுப்பினராக இல்லாததால் இந்த குழுவிற்கு செய்திகளை அனுப்ப முடியாது.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">உஙகள் சாதனத்தில் இந்த இணைப்பை பெறக்கூடிய  செயலி கிடைப்பில்  இல்லை  .</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ஆடியோ செய்திகளை அனுப்ப, உங்கள் மைக்ரோஃபோனுக்கு Signal அணுகலை அனுமதிக்கவும்.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ஆடியோ செய்திகளை அனுப்ப Signal க்கு மைக்ரோஃபோன் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோனை\" இயக்கவும்.</string>
@@ -217,9 +232,14 @@
   <string name="ConversationActivity_new_say_it_with_stickers">புதிய! ஒட்டிகளால் சொல்லுங்கள்</string>
   <string name="ConversationActivity_cancel">ரத்து</string>
   <string name="ConversationActivity_delete_conversation">உரையாடலை நீக்கவா?</string>
+  <string name="ConversationActivity_delete_and_leave_group">குழுவை நீக்கி விட்டு வெளியேறலாமா?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">இந்த உரையாடல் எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">நீங்கள் இந்த குழுவை விட்டு வெளியேறும், மற்றும் இது எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
   <string name="ConversationActivity_delete">அழி</string>
+  <string name="ConversationActivity_delete_and_leave">நீக்கி வெளியேறவும்</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sஐ அழைக்க, சிக்னலுக்கு உங்கள் மைக்ரோஃபோனுக்கு அனுமதி தேவை microphone access and permission for Signal</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$sஐ அழைக்க, உங்கள் மைக்ரோஃபோன் மற்றும் கேமராவிற்கு சிக்னலுக்கு அனுமதி தேவை. Signal needs permission to your microphone and camera.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">கூடுதல் அம்சங்கள் இப்போது \"குழு அமைப்புகளில்\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d படிக்காத செய்தி</item>
@@ -258,6 +278,9 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">நீக்கப்படுகிறது</string>
   <string name="ConversationFragment_deleting_messages">செய்திகள் நீக்கப்படுகிறது…</string>
+  <string name="ConversationFragment_delete_for_me">எனக்கு மட்டும் நீக்கு</string>
+  <string name="ConversationFragment_delete_for_everyone">அனைவருக்கும் நீக்கு</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">உரையாடலில் உள்ள அனைவருக்கும் இந்த செய்தி நிரந்தரமாக நீக்கப்படும். நீங்கள் ஒரு செய்தியை நீக்கியதை உறுப்பினர்களால் பார்க்க முடியும்.</string>
   <string name="ConversationFragment_quoted_message_not_found">அசல் செய்தி கிடைக்கவில்லை</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">அசல் செய்தி இனி கிடப்பில்  இல்லை  </string>
   <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
@@ -265,6 +288,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
   <string name="ConversationFragment_you_already_viewed_this_message">நீங்கள் ஏற்கனவே இந்த செய்தியைப் பார்த்தீர்கள்</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">இந்த உரையாடலில் உங்களுக்காக குறிப்புகளைச் சேர்க்கலாம். உங்கள் கணக்கில் இணைக்கப்பட்ட பிற சாதனங்கள் இருந்தால், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">உங்கள் சாதனத்தில் எந்த உலாவியும் நிறுவப்படவில்லை.</string>
   <!--ConversationListFragment-->
@@ -295,12 +319,15 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">சரிபார்க்கப்பட்டது</string>
   <string name="ConversationTitleView_you">நீங்கள்</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">சில தொடர்புகள் பழைய மரபு குழுக்களில் இருக்க முடியாது.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">விவரம்</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">சுயவிவர புகைப்படத்தை அமைப்பதில் பிழை</string>
   <string name="CreateProfileActivity_problem_setting_profile">சுயவிவரம் அமைப்பதில் சிக்கல் </string>
   <string name="CreateProfileActivity_profile_photo">சுயவிவர புகைப்படம்</string>
   <string name="CreateProfileActivity_set_up_your_profile">உங்கள் சுயவிவரத்தை அமைக்கவும்</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">உங்கள் சுயவிவரம் முடிவுக்கு இறுதி குறியாக்கம் end-to-end encrypted செய்யப்பட்டுள்ளது. நீங்கள் புதிய உரையாடல்களைத் தொடங்கும்போது அல்லது ஏற்றுக்கொள்ளும்போது, புதிய குழுக்களில் சேரும்போது உங்கள் சுயவிவரமும் அதற்கான மாற்றங்களும் உங்கள் தொடர்புகளுக்குத் தெரியும்.</string>
   <string name="CreateProfileActivity_set_avatar_description">அவதாரம் அமைக்கவும்</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் வழக்கம் : %s</string>
@@ -308,6 +335,8 @@
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">புகைப்படத்தைத் தேர்வுசெய்க</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">புகைப்படம் எடுக்கவும்</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">கேலரியில் இருந்து தேர்வு செய்யவும்</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">புகைப்படத்தை அகற்று</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">இப்போது</string>
@@ -339,6 +368,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">பல இணைப்புகள் படங்கள் மற்றும் வீடியோக்களுக்கு மட்டுமே துணைபுரிகின்றன</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">ஒரு செய்தியை மீட்டெடுக்கிறது …</string>
   <!--GcmRefreshJob-->
@@ -350,9 +380,13 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF கள் </string>
   <string name="GiphyFragmentPagerAdapter_stickers">ஒட்டிகள்</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add_member">உறுப்பினரைச் சேர்க்கவா?</string>
+  <string name="AddToGroupActivity_add_to_group">குழுவில் சேர்</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
   <string name="ChooseNewAdminActivity_done">முடிந்தது</string>
+  <string name="ChooseNewAdminActivity_you_left">நீங்கள்%1$s இலிருந்து வெளியேறினீர்கள்.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">இந்த குழுவுடன் உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் பகிரவா?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">இந்த குழுவின் தற்போதைய மற்றும் எதிர்கால உறுப்பினர்கள் அனைவருக்கும் உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் காண விரும்புகிறீர்களா?</string>
@@ -360,6 +394,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">நீங்கள்</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">யார் வேண்டுமானாலும்</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">மேலும் அறிக</string>
   <!--PendingMembersActivity-->
@@ -368,6 +403,7 @@
   <string name="PendingMembersActivity_missing_detail_explanation">விவரங்கள் அழைக்கப்பட்ட நபர்களின் மற்றவை குழு உறுப்பினர்கள் காட்டப்படவில்லை. என்றால் அழைப்பாளர்கள் தேர்வு சேர, அவர்களது தகவல்அந்த நேரத்தில் குழுவுடன் பகிரப்படும். அவர்கள் குழுவில் எந்த செய்திகளையும் அவர்கள் பார்க்க மாட்டார்கள்சேர.</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">முடிந்தது</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create_group">குழு உருவாக்குக</string>
   <string name="AddGroupDetailsFragment__create">உருவாக்கவும்</string>
@@ -383,8 +419,11 @@
   <string name="ManageGroupActivity_off">அணை</string>
   <string name="ManageGroupActivity_on">இயக்க</string>
   <string name="ManageGroupActivity_view_all_members">காண்க அனைத்து உறுப்பினர்கள்</string>
+  <string name="ManageGroupActivity_see_all">அனைத்தையும் பார்</string>
   <string name="ManageGroupActivity_none">யாரும்</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">தொலைபேசி தொடர்புகளில் சேர்க்கவும்</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">இந்த நபர் உங்கள் தொலைபேசி தொடர்புகளில் உள்ளார்</string>
   <string name="ManageRecipientActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <string name="ManageRecipientActivity_block">தடு </string>
   <string name="ManageRecipientActivity_unblock">தடைநீக்கு </string>
@@ -393,7 +432,12 @@
   <string name="ManageRecipientActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="ManageRecipientActivity_off">அணை</string>
   <string name="ManageRecipientActivity_on">இயக்க</string>
+  <string name="ManageRecipientActivity_add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string>
+  <string name="ManageRecipientActivity_see_all">அனைத்தையும் பார்</string>
   <string name="ManageRecipientActivity_message_description">செய்தி</string>
+  <string name="ManageRecipientActivity_voice_call_description">குரல் அழைப்பு</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">பாதுகாப்பற்ற குரல் அழைப்பு </string>
+  <string name="ManageRecipientActivity_video_call_description">காணொளி அழைப்பு</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="CustomNotificationsDialogFragment__messages">செய்திகள்</string>
@@ -409,6 +453,10 @@
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
   <string name="CropImageActivity_profile_avatar">அவதாரம்</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">முகங்களை மங்கலாக்குங்கள்</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">புதியது: முகங்களை மங்கலாக்குங்கள் அல்லது மங்கலாக்குவதற்கு வரையவும்</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">மங்கலாக இருக்க எங்கும் வரையவும்</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">கூடுதல் முகங்கள் அல்லது பகுதிகளை மங்கச் செய்ய வரையவும்</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">குரல் செய்தியைப் பதிவுசெய்ய தட்டவும், பிடிக்கவும். வெளியீடு செய்ய அனுப்பவும் </string>
   <!--InviteActivity-->
@@ -625,6 +673,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">நீங்கள் நிறுவிய Google Play சேவைகளின் பதிப்பு சரியாக செயல்படவில்லை. Google Play சேவைகளை மீண்டும் நிறுவி மீண்டும் முயற்சிக்கவும்.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">தவறான பின்</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">சிக்னல் பின்னைத் தவிர்க்கவா?</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">என்றால் நீங்கள் நினைவில் இல்லை உங்கள் பின், நீங்கள் முடியும் உருவாக்கு புதியது. நீங்கள் பதிவு செய்யலாம் மற்றும் பயன்பாடு உங்கள் கணக்கு ஆனால் நீங்கள்சேமித்த சிலவற்றை இழப்பேன் அமைப்புகள் போன்ற உங்கள் சுயவிவரம் தகவல்.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">உருவாக்கு புதியது பின்</string>
   <string name="PinRestoreEntryFragment_contact_support">தொடர்பு ஆதரவு</string>
@@ -634,7 +683,10 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">எண் பின்னை உள்ளிடவும்</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">புதிய பின்னை உருவாக்கவும்</string>
   <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் PIN ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் சிக்னலை மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். பின் முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
+  <string name="PinOptOutDialog_disable_pin">பின் முடக்கு</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">இச் செயலியை மதிப்புரை செய்க</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">இச் செயலியின்  பயன்பாட்டை விரும்பினால் தயை கூர்ந்து  எங்கள் செயலியை   மதிப்புரை செய்க    </string>
@@ -670,8 +722,11 @@
   <string name="RedPhone_got_it">அறிந்துகொண்டேன் .</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">உங்கள் வீடியோவை இயக்க இங்கே தட்டவும்</string>
+  <string name="WebRtcCallActivity__signal_s">சிக்னல் Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">அழைக்கிறது…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Signal குரல் அழைப்பு…</string>
+  <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக  குறிப்பிடவேண்டியது உங்கள்:
@@ -714,6 +769,7 @@
   <string name="RegistrationActivity_call">அழை</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">என்றால் நீங்கள் மறந்து விடுங்கள் உங்கள் Signal பின் பதிவு செய்யும் போது சிக்னல் மீண்டும், நீங்கள்வெளியே பூட்டப்படும் உங்கள் கணக்கு 7 நாட்களுக்கு.</string>
+  <string name="RegistrationLockV2Dialog_turn_off">அணைக்க</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">புகைப்படத்தைக் காண்க</string>
   <string name="RevealableMessageView_view_video">காணொளியை காண்க</string>
@@ -796,6 +852,7 @@
   <string name="ThreadRecord_view_once_video">காண்க-ஒருமுறை காணொளி</string>
   <string name="ThreadRecord_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
   <string name="ThreadRecord_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
+  <string name="ThreadRecord_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal உள்ளது!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">காணாமல் போகும் செய்திகள் முடக்கப்பட்டது</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">காணாமல் போகும் செய்திகளின் நேரம் %s ஆக அமைக்கப்பட்டுள்ளது</string>
@@ -961,8 +1018,12 @@
   <string name="WebRtcCallScreen_accept">ஏற்க</string>
   <string name="WebRtcCallScreen_end_call">அழைப்பைத் துண்டி</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">மறு</string>
   <string name="WebRtcCallScreen__answer">பதில்</string>
+  <string name="WebRtcCallScreen__answer_without_video">வீடியோ இல்லாமல் பதில்</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__audio_output">ஆடியோ வெளியீடு</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">தொலைபேசி காதணி</string>
   <string name="WebRtcAudioOutputToggle__speaker">ஒலி பெருக்கி</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ப்ளூடூத்</string>
   <!--WebRtcCallControls-->
@@ -1216,6 +1277,12 @@
   <string name="message_details_header__disappears">மறைந்து</string>
   <string name="message_details_header__via">வழியாக</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">நிலுவையில் உள்ளது</string>
+  <string name="message_details_recipient_header__sent_to">அனுப்பப்பட்டது</string>
+  <string name="message_details_recipient_header__sent_from">அனுப்புனர்</string>
+  <string name="message_details_recipient_header__delivered_to">வழங்கப்பட்டது</string>
+  <string name="message_details_recipient_header__read_by">படிப்பவர்கள்</string>
+  <string name="message_details_recipient_header__not_sent">அனுப்ப முடியவில்லை</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">அனுப்ப முடியவில்லை</string>
   <string name="message_details_recipient__new_safety_number">புதிய பாதுகாப்பு எண்</string>
@@ -1232,6 +1299,7 @@
   <string name="AndroidManifest_archived_conversations">பெட்டகப்படுத்தப்பட்ட உரையாடல்கள்</string>
   <string name="AndroidManifest_remove_photo">புகைப்படத்தை அகற்று</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__new_message_requests">புதியது: உரையாடல் கோரிக்கைகள்</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">உதவி</string>
   <string name="HelpFragment__next">அடுத்தது</string>
@@ -1341,10 +1409,15 @@
   <string name="preferences__dark_theme">இருட்டு</string>
   <string name="preferences__appearance">தோற்றம்</string>
   <string name="preferences__theme">நிறவடிவமைப்பு</string>
+  <string name="preferences__disable_pin">பின் முடக்கு</string>
+  <string name="preferences__enable_pin">பின்னை மீண்டும் திறக்கவும்</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் Signal PIN ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் சிக்னலை மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். பின் முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Signal PINS கடவுஎண் குறியாக்கத்துடன் தகவல்களை சேமித்து வைத்திருப்பதால் நீங்கள் மட்டுமே அதை அணுக முடியும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் பின் தேவையில்லை.</string>
   <string name="preferences__system_default">கருவி இயல்புநிலை</string>
   <string name="preferences__default">இயல்புநிலை</string>
   <string name="preferences__language">மொழி</string>
   <string name="preferences__signal_messages_and_calls">Signal செய்திகள் மற்றும் அழைப்புகள்</string>
+  <string name="preferences__advanced_pin_settings">மேம்பட்ட பின் அமைப்புகள்</string>
   <string name="preferences__free_private_messages_and_calls">Signal பயனர்களுக்கு இலவச தனிப்பட்ட செய்திகள் மற்றும் அழைப்புகள்</string>
   <string name="preferences__submit_debug_log">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
   <string name="preferences__support_wifi_calling">\'WiFi அழைப்புகள்\' பொருந்தக்கூடிய முறை</string>
@@ -1397,6 +1470,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact"> புதிய செய்தி இவருக்கு…</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">குழுவில் சேர்</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">அழை</string>
   <!--conversation_callable_secure-->
@@ -1426,6 +1500,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">தேர்ந்தெடுக்கப்பட்டவையை வெளிக்கொணர்</string>
   <string name="conversation_list_batch__menu_unarchive_selected">தேர்ந்தெடுக்கப்பட்டவையை வெளிக்கொணர்</string>
   <string name="conversation_list_batch__menu_mark_as_read"> படித்தாக குறியிடு</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">படிக்காதது என்று குறி</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">அமைப்புகள் குறுக்குவழி</string>
   <string name="conversation_list_search_description">தேடல்</string>
@@ -1447,10 +1522,12 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="conversation__menu_edit_group">குழுவைத் திருத்து</string>
+  <string name="conversation__menu_group_settings">குழு அமைப்புகள்</string>
   <string name="conversation__menu_leave_group">குழுவிலுருந்து விலகு</string>
   <string name="conversation__menu_view_all_media">அனைத்து ஊடகங்களும்</string>
   <string name="conversation__menu_conversation_settings">உரையாடல் அமைப்புகள்</string>
   <string name="conversation__menu_add_shortcut">முகப்புத் திரையில் சேர்க்கவும்</string>
+  <string name="conversation__menu_pending_members">நிலுவையில் உள்ள உறுப்பினர்கள்</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">பாப்அப்பை விரிவாக்கு</string>
   <!--conversation_callable_insecure-->
@@ -1537,6 +1614,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் பின் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
   <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் சிக்னல் Signal PINS குறியாக்கத்துடன் தகவல்களை சேமித்து வைத்திருப்பதால் நீங்கள் மட்டுமே அதை அணுக முடியும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் பின் தேவையில்லை.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">வலுவானதைத் தேர்வுசெய்க பின்</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">பின்-கள் பொருந்தவில்லை. மீண்டும் முயற்சி செய்க.</string>
@@ -1544,15 +1622,19 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">பின் உருவாக்கம் தோல்வியடைந்தது</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">உங்கள் பின் சேமிக்கப்படவில்லை. பின்னை உருவாக்க நாங்கள் உங்களைத் தூண்டுவோம்.</string>
   <string name="ConfirmKbsPinFragment__pin_created">பின் உருவாக்கப்பட்டது.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">உங்கள் பின்னை மீண்டும் உள்ளிடவும்</string>
   <string name="ConfirmKbsPinFragment__creating_pin">பின் உருவாக்குகிறது…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் சிக்னல் குறியாக்கத்துடன் தகவல்களை சேமித்து வைத்திருப்பதால் நீங்கள் மட்டுமே அதை அணுக முடியும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் பின் தேவையில்லை.</string>
   <string name="KbsSplashFragment__learn_more">மேலும் அறிக</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">பதிவு பூட்டு = பின்</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">உங்கள் பதிவு பூட்டு இப்போது PIN என அழைக்கப்படுகிறது, மேலும் இது மேலும் செய்கிறது. இப்போது புதுப்பிக்கவும்.</string>
   <string name="KbsSplashFragment__read_more_about_pins">பின்ஸைப் பற்றி மேலும் வாசிக்க.</string>
   <string name="KbsSplashFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <string name="KbsSplashFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
   <string name="KbsSplashFragment__learn_more_about_pins">பின்கள் பற்றி மேலும் அறிக</string>
+  <string name="KbsSplashFragment__disable_pin">சிக்னல் பின்னை முடக்கு</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">உங்கள் Signal பின்னை உள்ளிடவும்</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">உங்கள் பின்னை மனப்பாடம் செய்ய உங்களுக்கு உதவ, அதை அவ்வப்போது உள்ளிடுமாறு கேட்டுக்கொள்கிறோம். காலப்போக்கில் நாங்கள் உங்களிடம் குறைவாகக் கேட்கிறோம்.</string>
@@ -1562,6 +1644,7 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">கணக்கில் பூட்டப்பட்டுள்ளது</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$dநாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவைப்படாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
   <string name="AccountLockedFragment__next">அடுத்தது</string>
   <string name="AccountLockedFragment__learn_more">மேலும் அறிக</string>
   <!--KbsLockFragment-->
@@ -1577,11 +1660,15 @@
   <string name="RegistrationLockFragment__not_many_tries_left">பல முயற்சிகள் மீதமில்லை!</string>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">சரி</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s உங்களிடமிருந்து செய்தி கோரிக்கையைப் பெறும். உங்கள் செய்தி கோரிக்கை ஏற்றுக்கொள்ளப்பட்டவுடன் நீங்கள் அழைக்கலாம்.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">பின்னை உருவாக்கவும்</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">சிக்னல் குறியாக்கத்துடன் சேமிக்கப்பட்ட தகவல்களை கடவுஎண் பின்ஸ் வைத்திருக்கிறது.</string>
   <string name="KbsMegaphone__create_pin">பின் உருவாக்கவும்</string>
   <string name="KbsMegaphone__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
   <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம். PIN ஐ உருவாக்குவது %1$dநாட்களில் கட்டாயமாகிவிடும்.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம்.%1$dநாட்களில் உங்கள் பின்னை உறுதிப்படுத்துவது கட்டாயமாகிவிடும்.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
@@ -1645,10 +1732,17 @@
   <string name="preferences_app_protection__signal_pin">Signal பின்</string>
   <string name="preferences_app_protection__create_a_pin">பின்னை உருவாக்கவும்</string>
   <string name="preferences_app_protection__change_your_pin">உங்கள் பின்னை மாற்றவும்</string>
+  <string name="preferences_app_protection__pin_reminders">கடவுஎண் பின் நினைவூட்டல்கள்</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் வைத்திருக்கின்றன தகவல் உடன் சேமிக்கப்படுகிறது Signal மறைகுறியாக்கப்பட்டது எனவே மட்டுமே நீங்கள் முடியும் அணுகல் அது. உங்கள் சுயவிவரம், அமைப்புகள், மற்றும் தொடர்புகள் இருக்கும் மீட்டமை எப்பொழுது நீங்கள் மீண்டும் நிறுவவும் Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">உங்கள் தொலைபேசி எண்ணை மீண்டும் சிக்னலுடன் பதிவு செய்ய உங்கள் சிக்னல் பின் தேவைப்படுவதன் மூலம் கூடுதல் பாதுகாப்பைச் சேர்க்கவும்.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">உங்கள் பின்னை மீட்டெடுக்க முடியாததால் நினைவூட்டல்கள் உங்களுக்கு உதவுகின்றன. காலப்போக்கில் உங்களிடம் குறைவாகவே கேட்கப்படும்.</string>
+  <string name="preferences_app_protection__turn_off">அணைக்க</string>
   <string name="preferences_app_protection__confirm_pin">பின்னை உறுதிப்படுத்தவும்</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">உறுதிப்படுத்தவும் உங்கள் Signal பின்</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">உங்கள் PIN ஐ மீட்டெடுக்க முடியாததால் அதை நினைவில் வைத்துக் கொள்ளுங்கள் அல்லது பாதுகாப்பாக சேமித்து வைக்கவும். உங்கள் பின்னை மறந்துவிட்டால், உங்கள் சிக்னல் கணக்கை மீண்டும் பதிவு செய்யும் போது தரவை இழக்க நேரிடும்.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">பதிவு பூட்டை இயக்குவதில் தோல்வி.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">பதிவு பூட்டை முடக்குவதில் தோல்வி.</string>
   <string name="AppProtectionPreferenceFragment_none">எதுவும் இல்லை</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">பதிவு பூட்டு பின் நீங்கள் பெற்ற எஸ்எம்எஸ் சரிபார்ப்புக் குறியீட்டைப் போன்றது அல்ல. பயன்பாட்டில் நீங்கள் முன்பு கட்டமைத்த பின்னை உள்ளிடவும்.</string>
   <string name="registration_activity__registration_lock_pin">பதிவு பூட்டு பின்</string>
@@ -1662,9 +1756,11 @@
   <string name="preferences_app_protection__registration_lock_pin">பதிவு பூட்டு பின்</string>
   <string name="preferences_app_protection__registration_lock">பதிவு பூட்டு</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">உங்கள் பதிவு பூட்டு பின்னை உள்ளிட வேண்டும்</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">உங்கள் PIN இல் குறைந்தது %d இலக்கங்கள் அல்லது எழுத்துக்கள் இருக்க வேண்டும்</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">தவறான பதிவு பூட்டு பின்</string>
   <string name="RegistrationActivity_too_many_attempts">மிக அதிக முயற்சிகள்</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">நீங்கள் பல தவறான பதிவு பூட்டு பின் முயற்சிகளை செய்துள்ளீர்கள். ஒரு நாளில் மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">நீங்கள் பல முயற்சிகள் செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_error_connecting_to_service">சேவைக்கு இணைப்பதில் பிழை</string>
   <string name="RegistrationActivity_oh_no">அச்சச்சோ!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Signal லில் இந்த தொலைபேசி எண் கடைசியாக செயலில் இருந்து 7 நாட்கள் கடந்துவிட்ட பிறகு இந்த தொலைபேசி எண்ணை பதிவு செய்வது உங்கள் பதிவு பூட்டு பின் இல்லாமல் சாத்தியமாகும். உங்களுக்கு %d நாட்கள் உள்ளன.</string>
@@ -1674,6 +1770,7 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">எனது பின்னை மறந்துவிட்டேன்.</string>
   <string name="RegistrationLockDialog_forgotten_pin">பின்னை மறந்துவிட்டர்களா?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">பதிவு பூட்டு உங்கள் தொலைபேசி எண்ணை அங்கீகரிக்கப்படாத பதிவு முயற்சிகளிலிருந்து பாதுகாக்க உதவுகிறது. உங்கள் Signal தனியுரிமை அமைப்புகளில் எந்த நேரத்திலும் இந்த அம்சத்தை முடக்கலாம்</string>
+  <string name="RegistrationLockDialog_registration_lock">பதிவு பூட்டு</string>
   <string name="RegistrationLockDialog_enable">செயல்படுத்து</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">பதிவு பூட்டு பின் குறைந்தபட்சம்  %d இலக்கங்கள் இருக்க வேண்டும்.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">நீங்கள் உள்ளிட்ட இரண்டு பின்களும்  பொருந்தவில்லை.</string>
@@ -1692,11 +1789,28 @@
   <string name="RecipientBottomSheet_block">தடு </string>
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>
   <string name="RecipientBottomSheet_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
+  <string name="RecipientBottomSheet_add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string>
+  <string name="RecipientBottomSheet_add_to_another_group">மற்றொரு குழுவில் சேர்க்கவும்</string>
   <string name="RecipientBottomSheet_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
+  <string name="RecipientBottomSheet_make_group_admin">குழு நிர்வாகியை admin உருவாக்குங்கள்</string>
+  <string name="RecipientBottomSheet_remove_as_admin">நிர்வாகி நிலையிலிருந்து அகற்று</string>
+  <string name="RecipientBottomSheet_remove_from_group">குழுவிலிருந்து அகற்று</string>
   <string name="RecipientBottomSheet_message_description">செய்தி</string>
+  <string name="RecipientBottomSheet_voice_call_description">குரல் அழைப்பு</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">பாதுகாப்பற்ற குரல் அழைப்பு </string>
+  <string name="RecipientBottomSheet_video_call_description">காணொளி அழைப்பு</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">குழு நிர்வாக நிலையாக %1$sஐ அகற்றவா?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s இந்த குழுவையும் அதன் உறுப்பினர்களையும் திருத்த மற்றும் மாற்ற முடியும்</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">\"%2$s\" இலிருந்து %1$sஐ அகற்றவா?</string>
   <string name="RecipientBottomSheet_remove">நீக்கு</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="GroupRecipientListItem_admin">நிர்வாகம்</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">மரபு vs புதிய குழுக்கள்</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">மரபு குழுக்கள் என்றால் என்ன?</string>
+  <string name="GroupsLearnMore_paragraph_1">மரபு குழுக்கள் old legacy groups என்பது நிர்வாகிகள் admin மற்றும் புதிய விளக்கக் குழு புதுப்பிப்புகள் போன்ற புதிய குழு அம்சங்களுடன் பொருந்தாத குழுக்கள்.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">புதிய குழுக்களை எவ்வாறு பயன்படுத்துவது?</string>
+  <string name="GroupsLearnMore_paragraph_2">மரபு குழுக்களை புதிய குழுக்களாக மாற்ற முடியாது, ஆனால் அதே உறுப்பினர்களுடன் புதிய குழுவை உருவாக்கலாம்.</string>
+  <string name="GroupsLearnMore_paragraph_3">புதிய குழுவை உருவாக்க, அனைத்து உறுப்பினர்களும் சிக்னலின் சமீபத்திய பதிப்பிற்கு புதுப்பிக்க Signal Update வேண்டும்.</string>
   <!--EOF-->
 </resources>

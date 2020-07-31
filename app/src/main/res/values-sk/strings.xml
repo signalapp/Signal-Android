@@ -336,6 +336,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Overený</string>
   <string name="ConversationTitleView_you">Vy</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba pri nastavení profilovej fotky</string>

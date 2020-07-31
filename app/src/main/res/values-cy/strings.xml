@@ -349,6 +349,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Gwiriwyd</string>
   <string name="ConversationTitleView_you">Chi</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Proffil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gwall gosod llun proffil</string>

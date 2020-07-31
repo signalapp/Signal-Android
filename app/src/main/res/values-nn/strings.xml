@@ -314,6 +314,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Godkjent</string>
   <string name="ConversationTitleView_you">Du</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbildet</string>

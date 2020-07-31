@@ -305,6 +305,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">確認済み</string>
   <string name="ConversationTitleView_you">あなた</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">古いバージョンのグループには入れられない連絡先があります。</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">プロフィール</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール写真の設定中にエラーが発生しました</string>
@@ -369,6 +371,7 @@
   <string name="AddToGroupActivity_s_added_to_s">「%1$s」が「%2$s」へ追加しました。</string>
   <string name="AddToGroupActivity_add_to_group">グループに追加</string>
   <string name="AddToGroupActivity_add_to_groups">グループへ追加</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">この相手を古いバージョンのグループに入れることはできません。</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">新しい管理者を選択</string>
   <string name="ChooseNewAdminActivity_done">完了</string>
@@ -407,6 +410,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完了</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">この相手を古いバージョンのグループに入れることはできません。</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">%3$d人のメンバーを「%2$s」へ追加しますか?</item>
   </plurals>

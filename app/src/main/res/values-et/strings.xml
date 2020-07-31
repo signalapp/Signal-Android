@@ -312,6 +312,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Kontrollitud</string>
   <string name="ConversationTitleView_you">Sina</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>

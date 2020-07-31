@@ -319,6 +319,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Egiaztatua</string>
   <string name="ConversationTitleView_you">Zu</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kontaktu batzuk ezin dira jarauntsitako taldeetan egon.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profila</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errorea gertatu da profileko argazkia gordetzean</string>
@@ -383,6 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" erabiltzailea \"%2$s\" taldera gehitua.</string>
   <string name="AddToGroupActivity_add_to_group">Gehitu taldera</string>
   <string name="AddToGroupActivity_add_to_groups">Gehitu taldeetara</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Hautatu administratzaile berria</string>
   <string name="ChooseNewAdminActivity_done">Eginda</string>
@@ -424,6 +427,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Eginda</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%1$s\" kidea gehitu \"%2$s\" taldera</item>
     <item quantity="other">%3$d kideak gehitu \"%2$s\"  taldera?</item>

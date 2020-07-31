@@ -347,6 +347,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Potrjeno</string>
   <string name="ConversationTitleView_you">Vi</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Napaka pri pošiljanju predstavitvene fotografije</string>

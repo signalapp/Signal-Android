@@ -290,6 +290,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Imethibitishwa</string>
   <string name="ConversationTitleView_you">Wewe</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Wasifa</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Hitilafu kuweka picha ya wasifu</string>

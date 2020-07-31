@@ -316,6 +316,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <string name="ConversationTitleView_you">आपण</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">प्रोफाईल</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>

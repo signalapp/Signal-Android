@@ -299,6 +299,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Beripikado</string>
   <string name="ConversationTitleView_you">Ikaw</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profile</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Nagka-error sa pagtatakda ng iyong profile photo</string>

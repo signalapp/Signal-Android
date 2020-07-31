@@ -286,6 +286,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">인증됨</string>
   <string name="ConversationTitleView_you">나</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">프로필</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>

@@ -319,6 +319,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Identidad verificada</string>
   <string name="ConversationTitleView_you">Tú</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algunas personas no pueden agregarse a grupos antiguos.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
@@ -383,6 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">Se ha agregado a %1$s a «%2$s».</string>
   <string name="AddToGroupActivity_add_to_group">Agregar al grupo</string>
   <string name="AddToGroupActivity_add_to_groups">Agregar a grupos</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">No se puede agregar a esta persona a grupos del sistema antiguo.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Selecciona nuev* admin</string>
   <string name="ChooseNewAdminActivity_done">Hecho</string>
@@ -424,6 +427,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hecho</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">No se puede agregar a esta persona a grupos del sistema antiguo.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">¿Agregar %1$s a «%2$s»?</item>
     <item quantity="other">¿Agregar %3$d participantes a «%2$s»?</item>

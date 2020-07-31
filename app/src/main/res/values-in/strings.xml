@@ -300,6 +300,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Terverifikasi</string>
   <string name="ConversationTitleView_you">Anda</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gagal mengatur foto profil</string>

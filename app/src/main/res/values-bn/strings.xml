@@ -307,6 +307,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">যাচাইকৃত</string>
   <string name="ConversationTitleView_you">আপনি</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">প্রোফাইল</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">প্রোফাইলের ছবি সেট করতে সমস্যা হয়েছে</string>
