@@ -2737,7 +2737,4 @@ public class RecipientDatabase extends Database {
       this.neededInsert = neededInsert;
     }
   }
-
-  private static class UuidRecipientError extends AssertionError {
-  }
 }

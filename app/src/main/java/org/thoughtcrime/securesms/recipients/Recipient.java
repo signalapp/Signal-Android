@@ -221,7 +221,7 @@ public class Recipient {
     RecipientId       id = null;
 
     if (UuidUtil.isUuid(identifier)) {
-      throw new UuidRecipientError();
+      throw new AssertionError("UUIDs are not valid system contact identifiers!");
     } else if (NumberUtil.isValidEmail(identifier)) {
       id = db.getOrInsertFromEmail(identifier);
     } else {
@@ -874,8 +874,5 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
-  }
-
-  private static class UuidRecipientError extends AssertionError {
   }
 }
