@@ -4,10 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="36dp"
-    android:layout_marginStart="6dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="4dp"
-    android:layout_marginBottom="8dp"
     android:gravity="center"
     android:orientation="horizontal">
 
@@ -15,7 +11,7 @@
         android:id="@+id/reactions_bottom_view_emoji_item_emoji"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="4dp"
         android:gravity="center"
         android:textStyle="bold"
         app:emoji_forceCustom="true" />
