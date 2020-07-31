@@ -8,6 +8,7 @@ public final class InternalValues extends SignalStoreValues {
   public static final String GV2_FORCE_INVITES         = "internal.gv2.force_invites";
   public static final String GV2_IGNORE_SERVER_CHANGES = "internal.gv2.ignore_server_changes";
   public static final String GV2_IGNORE_P2P_CHANGES    = "internal.gv2.ignore_p2p_changes";
+  public static final String RECIPIENT_DETAILS         = "internal.recipient_details";
 
   InternalValues(KeyValueStore store) {
     super(store);
@@ -50,5 +51,12 @@ public final class InternalValues extends SignalStoreValues {
    */
   public synchronized boolean gv2IgnoreP2PChanges() {
     return FeatureFlags.internalUser() && getBoolean(GV2_IGNORE_P2P_CHANGES, false);
+  }
+
+  /**
+   * Show detailed recipient info in the {@link org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientFragment}.
+   */
+  public synchronized boolean recipientDetails() {
+    return FeatureFlags.internalUser() && getBoolean(RECIPIENT_DETAILS, false);
   }
 }

@@ -23,6 +23,18 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="internal_display"
+        android:title="@string/preferences__internal_display">
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:key="internal.recipient_details"
+            android:defaultValue="false"
+            android:summary="@string/preferences__internal_user_details_description"
+            android:title="@string/preferences__internal_user_details" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="internal_storage"
         android:title="@string/preferences__internal_storage_service">
 

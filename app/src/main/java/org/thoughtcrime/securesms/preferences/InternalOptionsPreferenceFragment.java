@@ -34,6 +34,7 @@ public class InternalOptionsPreferenceFragment extends CorrectedPreferenceFragme
 
     PreferenceDataStore preferenceDataStore = SignalStore.getPreferenceDataStore();
 
+    initializeSwitchPreference(preferenceDataStore, InternalValues.RECIPIENT_DETAILS, SignalStore.internalValues().recipientDetails());
     initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_DO_NOT_CREATE_GV2, SignalStore.internalValues().gv2DoNotCreateGv2Groups());
     initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_FORCE_INVITES, SignalStore.internalValues().gv2ForceInvites());
     initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_IGNORE_SERVER_CHANGES, SignalStore.internalValues().gv2IgnoreServerChanges());

@@ -55,6 +55,18 @@
                     android:textColor="?title_text_color_secondary"
                     tools:text="\@spidergwen  +1 555-654-6657" />
 
+                <TextView
+                    android:id="@+id/recipient_internal_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="14dp"
+                    android:textAppearance="@style/Signal.Text.Caption"
+                    android:textColor="?title_text_color_secondary"
+                    android:gravity="center"
+                    android:textIsSelectable="true"
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
