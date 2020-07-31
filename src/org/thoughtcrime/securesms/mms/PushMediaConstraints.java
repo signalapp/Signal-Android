@@ -22,26 +22,26 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize(Context context) {
-    return FileServerAPI.Companion.getMaxFileSize();
+    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
   }
 
   @Override
   public int getGifMaxSize(Context context) {
-    return FileServerAPI.Companion.getMaxFileSize();
+    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
   }
 
   @Override
   public int getVideoMaxSize(Context context) {
-    return FileServerAPI.Companion.getMaxFileSize();
+    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
   }
 
   @Override
   public int getAudioMaxSize(Context context) {
-    return FileServerAPI.Companion.getMaxFileSize();
+    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
   }
 
   @Override
   public int getDocumentMaxSize(Context context) {
-    return FileServerAPI.Companion.getMaxFileSize();
+    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
   }
 }
