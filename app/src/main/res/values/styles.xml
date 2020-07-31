@@ -346,6 +346,12 @@
         <item name="android:tint">@color/core_white</item>
     </style>
 
+    <style name="Signal.Toolbar.Overflow.Light">
+        <item name="srcCompat">@drawable/ic_more_vert_24</item>
+        <item name="android:src">@null</item>
+        <item name="android:tint">?icon_tint</item>
+    </style>
+
     <style name="Signal.Toolbar.Overflow.Conversation">
         <item name="srcCompat">@drawable/ic_more_vert_conversation_24</item>
         <item name="android:tint">@null</item>

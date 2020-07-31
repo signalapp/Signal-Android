@@ -108,6 +108,7 @@
     <attr name="emoji_variation_selector_background" format="reference|color" />
 
     <attr name="reactions_overlay_toolbar_icon_tint" format="color" />
+    <attr name="reactions_overlay_toolbar_overflow_style" format="reference" />
     <attr name="reactions_overlay_toolbar_background_color" format="color" />
     <attr name="reactions_overlay_custom_emoji_icon" format="reference" />
     <attr name="reactions_overlay_old_background" format="reference" />

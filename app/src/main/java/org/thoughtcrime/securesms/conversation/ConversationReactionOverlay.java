@@ -236,13 +236,9 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     revealAnimatorSet.end();
     hideAnimatorSet.start();
 
-    if (Build.VERSION.SDK_INT >= 21 && activity != null) {
+    if (Build.VERSION.SDK_INT >= 23 && activity != null) {
       activity.getWindow().setStatusBarColor(originalStatusBarColor);
-
-      if (!ThemeUtil.isDarkTheme(getContext()) && Build.VERSION.SDK_INT >= 23) {
-        activity.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-      }
-
+      activity.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
       activity = null;
     }
 
