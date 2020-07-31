@@ -153,6 +153,7 @@ public class ConversationFragment extends LoggingFragment {
   private Locale                      locale;
   private RecyclerView                list;
   private RecyclerView.ItemDecoration lastSeenDecoration;
+  private RecyclerView.ItemDecoration stickyHeaderDecoration;
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
   private ConversationTypingView      typingView;
@@ -435,7 +436,7 @@ public class ConversationFragment extends LoggingFragment {
       Log.d(TAG, "Initializing adapter for " + recipient.getId());
       ConversationAdapter adapter = new ConversationAdapter(GlideApp.with(this), locale, selectionClickListener, this.recipient.get());
       list.setAdapter(adapter);
-      list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
+      setStickyHeaderDecoration(adapter);
       ConversationAdapter.initializePool(list.getRecycledViewPool());
 
       adapter.registerAdapterDataObserver(snapToTopDataObserver);
@@ -571,6 +572,15 @@ public class ConversationFragment extends LoggingFragment {
     } else {
       list.scrollToPosition(0);
     }
+  }
+
+  public void setStickyHeaderDecoration(@NonNull ConversationAdapter adapter) {
+    if (stickyHeaderDecoration != null) {
+      list.removeItemDecoration(stickyHeaderDecoration);
+    }
+
+    stickyHeaderDecoration = new StickyHeaderDecoration(adapter, false, false);
+    list.addItemDecoration(stickyHeaderDecoration);
   }
 
   public void setLastSeen(long lastSeen) {
