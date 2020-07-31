@@ -137,6 +137,10 @@ public final class StringUtil {
    * https://www.w3.org/International/questions/qa-bidi-unicode-controls
    */
   public static @NonNull String isolateBidi(@NonNull String text) {
+    if (text.isEmpty()) {
+      return text;
+    }
+
     int overrideCount      = 0;
     int overrideCloseCount = 0;
     int isolateCount       = 0;

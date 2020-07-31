@@ -133,7 +133,7 @@ public final class GroupUtil {
                                                                     members.size(), toString(members)));
       }
 
-      if (title != null && !title.trim().isEmpty()) {
+      if (!title.trim().isEmpty()) {
         if (members != null) description.append(" ");
         else                 description.append("\n");
         description.append(context.getString(R.string.GroupUtil_group_name_is_now, title));

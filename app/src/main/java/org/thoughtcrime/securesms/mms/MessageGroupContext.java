@@ -128,7 +128,9 @@ public final class MessageGroupContext {
     public @NonNull List<RecipientId> getMembersListExcludingSelf() {
       RecipientId selfId = Recipient.self().getId();
 
-      return Stream.of(groupContext.getMembersE164List())
+      return Stream.of(groupContext.getMembersList())
+                   .map(GroupContext.Member::getE164)
+                   .withoutNulls()
                    .map(e164 -> new SignalServiceAddress(null, e164))
                    .map(RecipientId::from)
                    .filterNot(selfId::equals)
