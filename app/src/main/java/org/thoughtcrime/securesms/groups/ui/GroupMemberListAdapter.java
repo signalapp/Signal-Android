@@ -210,7 +210,9 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
           if (recipientClickListener != null) {
             recipientClickListener.onClick(recipient);
           }
-          selectionChangeListener.onSelectionChange(getAdapterPosition(), !selected.isChecked());
+          if (selected != null) {
+            selectionChangeListener.onSelectionChange(getAdapterPosition(), !selected.isChecked());
+          }
         }
       });
       this.itemView.setOnLongClickListener(v -> {
