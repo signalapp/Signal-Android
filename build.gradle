@@ -197,7 +197,7 @@ dependencies {
     implementation "com.opencsv:opencsv:$opencsv_version"
 }
 
-def canonicalVersionCode = 62
+def canonicalVersionCode = 63
 def canonicalVersionName = "1.4.0"
 
 def postFixSize = 10
