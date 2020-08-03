@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
@@ -16,8 +14,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
-import org.signal.zkgroup.util.UUIDUtil;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -320,9 +316,11 @@ public final class GroupsV2StateProcessor {
       final ProfileKeySet profileKeys = new ProfileKeySet();
 
       for (ServerGroupLogEntry entry : globalGroupState.getServerHistory()) {
-        Optional<UUID> editor = DecryptedGroupUtil.editorUuid(entry.getChange());
-        if (editor.isPresent() && entry.getGroup() != null) {
-          profileKeys.addKeysFromGroupState(entry.getGroup(), editor.get());
+        if (entry.getGroup() != null) {
+          profileKeys.addKeysFromGroupState(entry.getGroup());
+        }
+        if (entry.getChange() != null) {
+          profileKeys.addKeysFromGroupChange(entry.getChange());
         }
       }
 

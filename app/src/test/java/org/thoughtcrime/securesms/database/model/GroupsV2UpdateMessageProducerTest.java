@@ -18,17 +18,11 @@ import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.signal.storageservice.protos.groups.local.DecryptedString;
-import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.thoughtcrime.securesms.testutil.MainThreadUtil;
-import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -44,6 +38,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeBy;
+import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeByUnknown;
 import static org.thoughtcrime.securesms.util.StringUtil.isolateBidi;
 
 @RunWith(RobolectricTestRunner.class)
@@ -930,102 +926,6 @@ public final class GroupsV2UpdateMessageProducerTest {
     public DecryptedGroup build() {
       return builder.build();
     }
-  }
-
-  private static class ChangeBuilder {
-
-    private final DecryptedGroupChange.Builder builder;
-
-    ChangeBuilder(@NonNull UUID editor) {
-      builder = DecryptedGroupChange.newBuilder()
-                                    .setEditor(UuidUtil.toByteString(editor));
-    }
-
-    ChangeBuilder() {
-      builder = DecryptedGroupChange.newBuilder();
-    }
-
-    ChangeBuilder addMember(@NonNull UUID newMember) {
-      builder.addNewMembers(DecryptedMember.newBuilder()
-                                           .setUuid(UuidUtil.toByteString(newMember)));
-      return this;
-    }
-
-    ChangeBuilder deleteMember(@NonNull UUID removedMember) {
-      builder.addDeleteMembers(UuidUtil.toByteString(removedMember));
-      return this;
-    }
-
-    ChangeBuilder promoteToAdmin(@NonNull UUID member) {
-      builder.addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                            .setRole(Member.Role.ADMINISTRATOR)
-                                                            .setUuid(UuidUtil.toByteString(member)));
-      return this;
-    }
-
-    ChangeBuilder demoteToMember(@NonNull UUID member) {
-      builder.addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                            .setRole(Member.Role.DEFAULT)
-                                                            .setUuid(UuidUtil.toByteString(member)));
-      return this;
-    }
-
-    ChangeBuilder invite(@NonNull UUID potentialMember) {
-      builder.addNewPendingMembers(DecryptedPendingMember.newBuilder()
-                                                         .setUuid(UuidUtil.toByteString(potentialMember)));
-      return this;
-    }
-
-    ChangeBuilder uninvite(@NonNull UUID pendingMember) {
-      builder.addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                   .setUuid(UuidUtil.toByteString(pendingMember)));
-      return this;
-    }
-
-    ChangeBuilder promote(@NonNull UUID pendingMember) {
-      builder.addPromotePendingMembers(DecryptedMember.newBuilder().setUuid(UuidUtil.toByteString(pendingMember)));
-      return this;
-    }
-
-    ChangeBuilder title(@NonNull String newTitle) {
-      builder.setNewTitle(DecryptedString.newBuilder()
-                                         .setValue(newTitle));
-      return this;
-    }
-
-    ChangeBuilder avatar(@NonNull String newAvatar) {
-      builder.setNewAvatar(DecryptedString.newBuilder()
-                                          .setValue(newAvatar));
-      return this;
-    }
-
-    ChangeBuilder timer(int duration) {
-      builder.setNewTimer(DecryptedTimer.newBuilder()
-                                        .setDuration(duration));
-      return this;
-    }
-
-    ChangeBuilder attributeAccess(@NonNull AccessControl.AccessRequired accessRequired) {
-      builder.setNewAttributeAccess(accessRequired);
-      return this;
-    }
-
-    ChangeBuilder membershipAccess(@NonNull AccessControl.AccessRequired accessRequired) {
-      builder.setNewMemberAccess(accessRequired);
-      return this;
-    }
-
-    DecryptedGroupChange build() {
-      return builder.build();
-    }
-  }
-
-  private static ChangeBuilder changeBy(@NonNull UUID groupEditor) {
-    return new ChangeBuilder(groupEditor);
-  }
-
-  private static ChangeBuilder changeByUnknown() {
-    return new ChangeBuilder();
   }
 
   private static @NonNull GroupsV2UpdateMessageProducer.DescribeMemberStrategy createDescriber(@NonNull Map<UUID, String> map) {
