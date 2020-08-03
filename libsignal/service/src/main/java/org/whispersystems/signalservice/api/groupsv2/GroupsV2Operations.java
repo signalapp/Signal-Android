@@ -136,42 +136,9 @@ public final class GroupsV2Operations {
       this.clientZkGroupCipher = new ClientZkGroupCipher(groupSecretParams);
     }
 
-    public GroupChange.Actions.Builder createModifyGroupTitleAndMembershipChange(final Optional<String> title,
-                                                                                 final Set<GroupCandidate> membersToAdd,
-                                                                                 final Set<UUID> membersToRemove)
-    {
-      if (!Collections.disjoint(GroupCandidate.toUuidList(membersToAdd), membersToRemove)) {
-        throw new IllegalArgumentException("Overlap between add and remove sets");
-      }
-
-      final GroupOperations groupOperations = forGroup(groupSecretParams);
-
-      GroupChange.Actions.Builder actions = GroupChange.Actions.newBuilder();
-
-      if (title.isPresent()) {
-        actions.setModifyTitle(GroupChange.Actions.ModifyTitleAction.newBuilder()
-                                                                    .setTitle(encryptTitle(title.get())));
-      }
-
-      for (GroupCandidate credential : membersToAdd) {
-        Member.Role          newMemberRole        = Member.Role.DEFAULT;
-        ProfileKeyCredential profileKeyCredential = credential.getProfileKeyCredential().orNull();
-
-        if (profileKeyCredential != null) {
-          actions.addAddMembers(GroupChange.Actions.AddMemberAction.newBuilder()
-                                                                   .setAdded(groupOperations.member(profileKeyCredential, newMemberRole)));
-        } else {
-          actions.addAddPendingMembers(GroupChange.Actions.AddPendingMemberAction.newBuilder()
-                                                                                 .setAdded(groupOperations.invitee(credential.getUuid(), newMemberRole)));
-        }
-      }
-
-      for (UUID remove: membersToRemove) {
-        actions.addDeleteMembers(GroupChange.Actions.DeleteMemberAction.newBuilder()
-                                                                       .setDeletedUserId(encryptUuid(remove)));
-      }
-
-      return actions;
+    public GroupChange.Actions.Builder createModifyGroupTitle(final String title) {
+      return GroupChange.Actions.newBuilder().setModifyTitle(GroupChange.Actions.ModifyTitleAction.newBuilder()
+                                                                                                  .setTitle(encryptTitle(title)));
     }
 
     public GroupChange.Actions.Builder createModifyGroupMembershipChange(Set<GroupCandidate> membersToAdd, UUID selfUuid) {
@@ -511,7 +478,7 @@ public final class GroupsV2Operations {
       return ByteString.copyFrom(UUIDUtil.serialize(decryptUuid(userId)));
     }
 
-    private ByteString encryptUuid(UUID uuid) {
+    ByteString encryptUuid(UUID uuid) {
       return ByteString.copyFrom(clientZkGroupCipher.encryptUuid(uuid).serialize());
     }
 

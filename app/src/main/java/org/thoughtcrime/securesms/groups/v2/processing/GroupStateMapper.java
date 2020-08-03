@@ -7,6 +7,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
+import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -88,7 +89,7 @@ final class GroupStateMapper {
       DecryptedGroup groupWithChangeApplied;
       try {
         groupWithChangeApplied = DecryptedGroupUtil.applyWithoutRevisionCheck(current, changeAtRevision);
-      } catch (DecryptedGroupUtil.NotAbleToApplyChangeException e) {
+      } catch (NotAbleToApplyGroupV2ChangeException e) {
         Log.w(TAG, "Unable to apply V" + revision, e);
         continue;
       }

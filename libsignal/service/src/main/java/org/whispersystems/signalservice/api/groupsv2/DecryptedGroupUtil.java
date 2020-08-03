@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.groupsv2;
 import com.google.protobuf.ByteString;
 
 import org.signal.storageservice.protos.groups.AccessControl;
+import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
@@ -24,16 +25,6 @@ import java.util.UUID;
 public final class DecryptedGroupUtil {
 
   static final int MAX_CHANGE_FIELD = 14;
-
-  public static Set<UUID> toUuidSet(Collection<DecryptedMember> membersList) {
-    HashSet<UUID> uuids = new HashSet<>(membersList.size());
-
-    for (DecryptedMember member : membersList) {
-      uuids.add(toUuid(member));
-    }
-
-    return uuids;
-  }
 
   public static ArrayList<UUID> toUuidList(Collection<DecryptedMember> membersList) {
     ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
@@ -191,17 +182,17 @@ public final class DecryptedGroupUtil {
   }
 
   public static DecryptedGroup apply(DecryptedGroup group, DecryptedGroupChange change)
-      throws NotAbleToApplyChangeException
+      throws NotAbleToApplyGroupV2ChangeException
   {
     if (change.getRevision() != group.getRevision() + 1) {
-      throw new NotAbleToApplyChangeException();
+      throw new NotAbleToApplyGroupV2ChangeException();
     }
 
     return applyWithoutRevisionCheck(group, change);
   }
 
   public static DecryptedGroup applyWithoutRevisionCheck(DecryptedGroup group, DecryptedGroupChange change)
-      throws NotAbleToApplyChangeException
+      throws NotAbleToApplyGroupV2ChangeException
   {
     DecryptedGroup.Builder builder = DecryptedGroup.newBuilder(group);
 
@@ -211,7 +202,7 @@ public final class DecryptedGroupUtil {
       int index = indexOfUuid(builder.getMembersList(), removedMember);
 
       if (index == -1) {
-        throw new NotAbleToApplyChangeException();
+        throw new NotAbleToApplyGroupV2ChangeException();
       }
 
       builder.removeMembers(index);
@@ -221,7 +212,11 @@ public final class DecryptedGroupUtil {
       int index = indexOfUuid(builder.getMembersList(), modifyMemberRole.getUuid());
 
       if (index == -1) {
-        throw new NotAbleToApplyChangeException();
+        throw new NotAbleToApplyGroupV2ChangeException();
+      }
+
+      if (modifyMemberRole.getRole() != Member.Role.ADMINISTRATOR && modifyMemberRole.getRole() != Member.Role.DEFAULT) {
+        throw new NotAbleToApplyGroupV2ChangeException();
       }
 
       builder.setMembers(index, DecryptedMember.newBuilder(builder.getMembers(index)).setRole(modifyMemberRole.getRole()).build());
@@ -231,7 +226,7 @@ public final class DecryptedGroupUtil {
       int index = indexOfUuid(builder.getMembersList(), modifyProfileKey.getUuid());
 
       if (index == -1) {
-        throw new NotAbleToApplyChangeException();
+        throw new NotAbleToApplyGroupV2ChangeException();
       }
 
       builder.setMembers(index, DecryptedMember.newBuilder(builder.getMembers(index)).setProfileKey(modifyProfileKey.getProfileKey()).build());
@@ -241,7 +236,7 @@ public final class DecryptedGroupUtil {
       int index = findPendingIndexByUuidCipherText(builder.getPendingMembersList(), removedMember.getUuidCipherText());
 
       if (index == -1) {
-        throw new NotAbleToApplyChangeException();
+        throw new NotAbleToApplyGroupV2ChangeException();
       }
 
       builder.removePendingMembers(index);
@@ -251,7 +246,7 @@ public final class DecryptedGroupUtil {
       int index = findPendingIndexByUuid(builder.getPendingMembersList(), newMember.getUuid());
 
       if (index == -1) {
-        throw new NotAbleToApplyChangeException();
+        throw new NotAbleToApplyGroupV2ChangeException();
       }
 
       builder.removePendingMembers(index);
@@ -336,6 +331,4 @@ public final class DecryptedGroupUtil {
     return newAttributeAccess == AccessControl.AccessRequired.UNKNOWN;
   }
 
-  public static class NotAbleToApplyChangeException extends Throwable {
-  }
 }

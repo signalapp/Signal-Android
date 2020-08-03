@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupChangeUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
+import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -233,7 +234,8 @@ final class GroupManagerV2 {
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       try {
-        GroupChange.Actions.Builder change = groupOperations.createModifyGroupTitleAndMembershipChange(Optional.fromNullable(title), Collections.emptySet(), Collections.emptySet());
+        GroupChange.Actions.Builder change = title != null ? groupOperations.createModifyGroupTitle(title)
+                                                           : GroupChange.Actions.newBuilder();
 
         if (avatarChanged) {
           String cdnKey = avatarBytes != null ? groupsV2Api.uploadAvatar(avatarBytes, groupSecretParams, authorization.getAuthorizationForToday(selfUuid, groupSecretParams))
@@ -424,7 +426,7 @@ final class GroupManagerV2 {
       try {
         decryptedChange     = groupOperations.decryptChange(changeActions, selfUuid);
         decryptedGroupState = DecryptedGroupUtil.apply(v2GroupProperties.getDecryptedGroup(), decryptedChange);
-      } catch (VerificationFailedException | InvalidGroupStateException | DecryptedGroupUtil.NotAbleToApplyChangeException e) {
+      } catch (VerificationFailedException | InvalidGroupStateException | NotAbleToApplyGroupV2ChangeException e) {
         Log.w(TAG, e);
         throw new IOException(e);
       }
