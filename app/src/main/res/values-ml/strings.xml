@@ -805,6 +805,7 @@
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">നിങ്ങളുടെ നിഗമനങ്ങൾ തീർന്നു, പക്ഷേ ഒരു പുതിയ പിന് സൃഷ്ടിച്ചുകൊണ്ട് നിങ്ങൾക്ക് ഇപ്പോഴും സിഗ്നൽ അക്കൗണ്ടില്ലെക് പ്രവേശിക്കാൻ കഴിയും. നിങ്ങളുടെ സ്വകാര്യതയ്ക്കും സുരക്ഷയ്ക്കുമായി സംരക്ഷിച്ച പ്രൊഫൈൽ വിവരങ്ങളോ ക്രമീകരണങ്ങളോ ഇല്ലാതെ നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കപ്പെടും.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">പുതിയ പിൻ സൃഷ്ടിക്കുക</string>
   <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_disable_pin">പിൻ അപ്രാപ്‌തമാക്കുക</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ഈ അപ്ലിക്കേഷൻ റേറ്റുചെയ്യുക</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ഈ അപ്ലിക്കേഷൻ ഉപയോഗിക്കുന്നത് നിങ്ങൾ ആസ്വദിക്കുകയാണെങ്കിൽ, ഇത് റേറ്റുചെയ്ത് ഞങ്ങളെ സഹായിക്കാൻ അൽപ്പസമയം ചെലവഴിക്കുക.</string>
@@ -1466,6 +1467,7 @@ grūpp ap‌ḍē</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
   <string name="HelpFragment__no_email_app_found">ഇമെയിൽ അപ്ലിക്കേഷനുകളൊന്നും കണ്ടെത്തിയില്ല.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">സ്മൈലി &amp; ആളുകൾ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">പ്രകൃതി</string>
@@ -1578,10 +1580,13 @@ grūpp ap‌ḍē</string>
   <string name="preferences__dark_theme">ഡാർക്ക്</string>
   <string name="preferences__appearance">ദൃശ്യത</string>
   <string name="preferences__theme">തീം</string>
+  <string name="preferences__disable_pin">പിൻ അപ്രാപ്‌തമാക്കുക</string>
+  <string name="preferences__enable_pin">പിൻ പ്രവർത്തനക്ഷമമാക്കുക</string>
   <string name="preferences__system_default">സിസ്റ്റം സ്ഥിരസ്ഥിതി</string>
   <string name="preferences__default">സ്ഥിരസ്ഥിതി</string>
   <string name="preferences__language">ഭാഷ</string>
   <string name="preferences__signal_messages_and_calls">Signal സന്ദേശങ്ങളും കോളുകളും</string>
+  <string name="preferences__advanced_pin_settings">വിപുലമായ പിൻ ക്രമീകരണങ്ങൾ</string>
   <string name="preferences__free_private_messages_and_calls">സിഗ്നൽ ഉപയോക്താക്കൾക്ക് സൗജന്യ സ്വകാര്യ സന്ദേശങ്ങളും കോളുകളും</string>
   <string name="preferences__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
   <string name="preferences__support_wifi_calling">\'WiFi കോളിംഗ്\' അനുയോജ്യത മോഡ്</string>
@@ -1804,6 +1809,7 @@ grūpp ap‌ḍē</string>
   <string name="KbsSplashFragment__update_pin">പിൻ അപ്‌ഡേറ്റുചെയ്യുക</string>
   <string name="KbsSplashFragment__create_your_pin">നിങ്ങളുടെ പിൻ സൃഷ്ടിക്കുക</string>
   <string name="KbsSplashFragment__learn_more_about_pins">PIN-കളെക്കുറിച്ച് കൂടുതൽ പഠിക്കുക.</string>
+  <string name="KbsSplashFragment__disable_pin">പിൻ അപ്രാപ്‌തമാക്കുക</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">നിങ്ങളുടെ Signal PIN നൽകുക</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">നിങ്ങളുടെ PIN മനഃപാഠമാക്കാൻ സഹായിക്കുന്നതിന്, ഇടയ്ക്കിടെ അത് നൽകാൻ ഞങ്ങൾ നിങ്ങളോട് ആവശ്യപ്പെടും. കാലക്രമേണ ഞങ്ങൾ നിങ്ങളോട് കുറച്ച് ചോദിക്കുന്നു.</string>
@@ -1996,5 +2002,10 @@ grūpp ap‌ḍē</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">ലെഗസി vs. പുതിയ ഗ്രൂപ്പുകൾ</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">ലെഗസി ഗ്രൂപ്പുകൾ എന്താണ്?</string>
+  <string name="GroupsLearnMore_paragraph_1">പുതിയ ഗ്രൂപ്പ് സവിശേഷതകളായ അഡ്‌മിനുകൾ, കൂടുതൽ വിവരണാത്മക ഗ്രൂപ്പ് അപ്‌ഡേറ്റുകൾ എന്നിവയുമായി പൊരുത്തപ്പെടാത്ത ഗ്രൂപ്പുകളാണ് ലെഗസി ഗ്രൂപ്പുകൾ.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എങ്ങനെ ഉപയോഗിക്കാം?</string>
+  <string name="GroupsLearnMore_paragraph_2">ലെഗസി ഗ്രൂപ്പുകളെ പുതിയ ഗ്രൂപ്പുകളായി പരിവർത്തനം ചെയ്യാൻ കഴിയില്ല, എന്നാൽ സമാന അംഗങ്ങളുമായി നിങ്ങൾക്ക് ഒരു പുതിയ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയും.</string>
   <!--EOF-->
 </resources>

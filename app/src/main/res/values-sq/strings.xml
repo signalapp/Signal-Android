@@ -1523,6 +1523,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
   <string name="HelpFragment__no_email_app_found">S’u gjet aplikacion email-esh.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikone &amp; Persona</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natyrë</string>

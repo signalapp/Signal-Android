@@ -1521,6 +1521,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
   <string name="HelpFragment__no_email_app_found">Ingen e-postapp hittades.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senaste använda</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Humörsymboler &amp; personer</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>

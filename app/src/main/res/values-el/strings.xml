@@ -1739,7 +1739,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Νέα συνομιλία</string>
   <string name="conversation_list_fragment__open_camera_description">Άνοιγμα κάμερας</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Δώστε ζωή στα εισερχόμενά σου! Ξεκίνα στέλνοντας μήνυμα σε έναν φίλο ή φίλη σου.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Δώσε ζωή στα εισερχόμενά σου! Κάνε την αρχή, στείλε μήνυμα σε έναν φίλο ή φίλη σου.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Επανεκκίνηση ασφαλούς συνεδρίας</string>
   <!--conversation_muted-->

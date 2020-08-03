@@ -959,19 +959,19 @@
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">線をタップして削除</string>
   <string name="SubmitDebugLogActivity_submit">送信</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ログを送信するのに失敗しました。</string>
-  <string name="SubmitDebugLogActivity_success">成功しました!</string>
+  <string name="SubmitDebugLogActivity_success">送信を完了しました。</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b></string>
-  <string name="SubmitDebugLogActivity_copied_to_clipboard">クリップボードにコピーしました</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">クリップボードにコピーしました。</string>
   <string name="SubmitDebugLogActivity_share">共有</string>
   <!--SupportEmailUtil-->
-  <string name="SupportEmailUtil_subject">Subject:</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Signal Android Support Request</string>
-  <string name="SupportEmailUtil_device_info">Device info:</string>
-  <string name="SupportEmailUtil_android_version">Android version:</string>
-  <string name="SupportEmailUtil_signal_version">Signal version:</string>
+  <string name="SupportEmailUtil_subject">件名:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal Android サポートリクエスト</string>
+  <string name="SupportEmailUtil_device_info">デバイスの情報</string>
+  <string name="SupportEmailUtil_android_version">Androidのバージョン:</string>
+  <string name="SupportEmailUtil_signal_version">Signal のバージョン:</string>
   <string name="SupportEmailUtil_signal_package">Signal パッケージ:</string>
   <string name="SupportEmailUtil_registration_lock">登録ロック</string>
-  <string name="SupportEmailUtil_locale">Locale:</string>
+  <string name="SupportEmailUtil_locale">言語設定:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">グループが更新されました</string>
   <string name="ThreadRecord_left_the_group">グループを抜けました</string>
@@ -1467,6 +1467,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">どのような問題が発生しているのか、詳細に記述してください。</string>
   <string name="HelpFragment__no_email_app_found">メールアプリがありません。</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使った</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">スマイリーと人々</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">自然</string>

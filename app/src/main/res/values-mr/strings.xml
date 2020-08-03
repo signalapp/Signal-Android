@@ -196,6 +196,8 @@
   <string name="ConversationActivity_leave_group">गट सोडायचा?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">आपल्याला हा गट सोडण्याची खात्री आहे का?</string>
   <string name="ConversationActivity_choose_new_admin">नवीन प्रशासक निवडा</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">आपण सोडण्यापूर्वी, आपण या गटासाठी कमीत कमी एक नवीन प्रशासक निवडणे आवश्यक आहे.</string>
+  <string name="ConversationActivity_choose_admin">प्रशासक निवडा</string>
   <string name="ConversationActivity_transport_insecure_sms">असुरक्षित SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -209,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">संलग्नचा आकार आपण पाठवत असलेल्या संदेशाच्या प्रकारासाठीच्या मर्यादेपेक्षा जास्त आहे</string>
   <string name="ConversationActivity_quick_camera_unavailable">कॅमेरा अनुपलब्ध</string>
   <string name="ConversationActivity_unable_to_record_audio">ऑडिओ रेकॉर्ड करण्यास अक्षम!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">आपण या गटास संदेश पाठवू शकत नाही कारण आपण यापुढे सदस्‍य नाही.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपल्या डिव्हाईस वर हा दुवा हाताळण्यासाठी कुठलाही अॅप नाही.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ऑडिओ संदेश पाठविण्यासाठी, Signal यास आपले मायक्रोफोन अॅक्सेस करण्याची अनुमती द्या.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ऑडिओ संदेश पाठवण्यासाठी Signal ला मायक्रोफोन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"मायक्रोफोन\" सक्षम करा.</string>
@@ -317,6 +320,7 @@
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <string name="ConversationTitleView_you">आपण</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">काही संपर्क लेगसी गटात असू शकत नाहीत.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">प्रोफाईल</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>
@@ -381,9 +385,11 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" मध्ये \"%2$s\" जोडले.</string>
   <string name="AddToGroupActivity_add_to_group">गटात जोडा</string>
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">नवीन प्रशासक निवडा</string>
   <string name="ChooseNewAdminActivity_done">ठीक</string>
+  <string name="ChooseNewAdminActivity_you_left">आपण \"%1$s\" तून बाहेर पडलात.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">या गटासोबत आपले प्रोफाईल नाव आणि फोटो सामायिक करायचे?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">या गटाच्या सर्व वर्तमान आणि भविष्यातील सदस्यांसाठी आपले प्रोफाईल नाव आणि फोटो आपल्याला दृश्यमान करायचे?</string>
@@ -407,6 +413,7 @@
   <string name="PendingMembersActivity_cancel_invites">आमंत्रणे रद्द करा</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ठीक</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">या गटाला नाव द्या</string>
   <string name="AddGroupDetailsFragment__create_group">गट तयार करा</string>

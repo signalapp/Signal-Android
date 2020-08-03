@@ -1527,6 +1527,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
   <string name="HelpFragment__no_email_app_found">Ingen email app fundet</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; Mennesker</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>

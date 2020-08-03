@@ -195,6 +195,9 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ĉi tiu aparato ŝajne ne subtenas telefonecajn agojn.</string>
   <string name="ConversationActivity_leave_group">Ĉu forlasi grupon?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ĉu vi certas, ke vi volas forlasi ĉi tiun grupon?</string>
+  <string name="ConversationActivity_choose_new_admin">Elekti novan administranton</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antaŭ ol foriri, vi devas elekti almenaŭ unu novan administraton por tiu ĉi grupo.</string>
+  <string name="ConversationActivity_choose_admin">Elektu administranton</string>
   <string name="ConversationActivity_transport_insecure_sms">Nesekura SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesekura MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -208,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Kunsendaĵo transpasas la grandlimon por tia mesaĝo, kian vi sendas.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Fotilo ne disponeblas</string>
   <string name="ConversationActivity_unable_to_record_audio">Ne eblas registri sonaĵon!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vi ne povas sendi mesaĝojn al tiu grupo, ĉar vi ne plu partoprenas en ĝi.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Estas neniu aplikaĵo disponebla por trakti ĉi tiun ligilon ĉe via aparato.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Por registri aŭdajn mesaĝojn, donu al Signal permeson uzi vian mikrofonon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal bezonas la Mikrofono-permeson por sendi aŭdajn mesaĝojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“.</string>
@@ -316,6 +320,7 @@
   <string name="ConversationTitleView_verified">Konfirmita</string>
   <string name="ConversationTitleView_you">Vi</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kelkaj kontaktoj ne povas esti en malnovtipaj grupoj.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eraro dum agordo de profila foto</string>
@@ -380,8 +385,11 @@
   <string name="AddToGroupActivity_s_added_to_s">„%1$s“ aldonita al „%2$s“.</string>
   <string name="AddToGroupActivity_add_to_group">Aldoni al grupo</string>
   <string name="AddToGroupActivity_add_to_groups">Aldoni al grupoj</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tiu persono ne aldoneblas al malnovtipaj grupoj.</string>
   <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Elekti novan administranton</string>
   <string name="ChooseNewAdminActivity_done">Farita</string>
+  <string name="ChooseNewAdminActivity_you_left">Vi forlasis „%1$s“.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ĉu kunhavigi viajn profilajn nomon kaj foton kun tiu ĉi grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ĉu vi volas videbligi viajn profilajn nomon kaj foton al ĉiuj nunaj kaj venontaj grupanoj?</string>
@@ -393,7 +401,13 @@
   <string name="GroupManagement_access_level_all_members">Ĉiuj grupanoj</string>
   <string name="GroupManagement_access_level_only_admins">Nur administrantoj</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Invito sendita</item>
+    <item quantity="other">%d invitoj senditaj</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">Vi ne povas aŭtomate aldoni „%1$s“ al tiu grupo.\n\nŜi aŭ li estis invitita kaj ne vidos iujn grupmesaĝojn, antaŭ ol ŝi aŭ li akceptas la inviton.</string>
   <string name="GroupManagement_learn_more">Scii pli</string>
+  <string name="GroupManagement_invite_multiple_users">Vi ne povas aŭtomate aldoni tiujn uzantoj al tiu grupo.\n\nIli estis invititaj kaj ne vidos iujn grupmesaĝojn, antaŭ ol ili akceptas la inviton.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
@@ -413,6 +427,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Farita</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tiu persono ne aldoneblas al malnovtipaj grupoj.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Ĉu aldoni „%1$s“ al „%2$s“?</item>
     <item quantity="other">Ĉu aldoni %3$d anojn al „%2$s“?</item>
@@ -435,6 +450,9 @@
   <string name="ManageGroupActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="ManageGroupActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
+  <string name="ManageGroupActivity_edit_group_info">Modifi grupinformon</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Elekti tiun, kiu povas ŝanĝi la nomon, la foton kaj la agordojn pri la memvisôntaj mesaĝoj de la grupo.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Elekti tiun, kiu povas aldoni aŭ inviti novajn anojn.</string>
   <string name="ManageGroupActivity_block_group">Bloki la grupon</string>
   <string name="ManageGroupActivity_unblock_group">Malbloki la grupon</string>
   <string name="ManageGroupActivity_leave_group">Forlasi la grupon</string>
@@ -458,7 +476,11 @@
   <string name="ManageGroupActivity_not_capable">Iu, kiun vi aldonis ne subtenas novajn grupojn kaj bezonas ĝisdatigi sian Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Malsukceso ĝisdatigi la grupon</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vi ne estas ano de tiu grupo</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Malsukceso ĝisdatigi la grupon. Reprovu poste.</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Malsukceso ĝisdatigi la grupon pro reteraro. Reprovu poste.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Modifi nomon kaj bildon</string>
+  <string name="ManageGroupActivity_legacy_group">Malnovtipaj grupoj</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Tiu estas malnovtipa grupo. Por uzi eblon kiel grupadministranton, kreu novtipan grupon.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Aldoni al sistemaj kontaktoj</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tiu persono estas en viaj kontaktoj.</string>
@@ -1504,6 +1526,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
   <string name="HelpFragment__no_email_app_found">Neniu retpoŝtilo trovita.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Miensimboloj kaj homoj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Naturo</string>
@@ -2041,5 +2064,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiita al tondujo</string>
   <string name="GroupRecipientListItem_admin">Administranto</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Malnovtipaj kaj novtipaj grupoj</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Kio estas malnovtipaj grupoj?</string>
+  <string name="GroupsLearnMore_paragraph_1">Malnovtipaj grupoj estas grupoj, kiuj ne kongruas kun trajtoj de Novtipaj grupoj kiel administrantoj kaj grupaj ĝisdatigoj.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kiel uzi Novtipajn grupojn?</string>
+  <string name="GroupsLearnMore_paragraph_2">Malnovtipaj grupoj ne konverteblas al Novtipaj grupoj, sed vi povas krei novtipan grupon kun la samaj anoj.</string>
+  <string name="GroupsLearnMore_paragraph_3">Por krei novtipan grupon, ĉiuj anoj devas ĝisdatigi ilian Signal-version al la lasta.</string>
   <!--EOF-->
 </resources>

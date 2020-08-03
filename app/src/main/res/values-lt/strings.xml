@@ -348,6 +348,7 @@
   <string name="ConversationTitleView_verified">Patvirtinta(-s)</string>
   <string name="ConversationTitleView_you">Jūs</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kai kurie adresatai negali būti pasenusiose grupėse.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilis</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klaida, nustatant profilio nuotrauką</string>
@@ -412,6 +413,7 @@
   <string name="AddToGroupActivity_s_added_to_s">Naudotojas \"%1$s\" pridėtas į \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Pridėti į grupę</string>
   <string name="AddToGroupActivity_add_to_groups">Pridėti į grupes</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Pasirinkti naują administratorių</string>
   <string name="ChooseNewAdminActivity_done">Atlikta</string>
@@ -459,6 +461,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Atlikta</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Pridėti \"%1$s\" į \"%2$s\"?</item>
     <item quantity="few">Pridėti %3$d narius į \"%2$s\"?</item>
@@ -1622,6 +1625,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
   <string name="HelpFragment__no_email_app_found">Nerasta jokios el. pašto programėlės.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Paskiausi</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Šypsenėlės ir žmonės</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Gamta</string>

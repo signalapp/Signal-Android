@@ -48,7 +48,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Blokada ekranu %1$s, Blokada rejestracji %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Blokada ekranu %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Motyw %1$s, Język %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kody PIN są wymagane do korzystania z blokady rejestracji. Aby wyłączyć PIN, wyłącz najpierw blokadę rejestracji.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Blokada rejestracji wymaga kodów PIN. Aby wyłączyć PIN, wyłącz najpierw blokadę rejestracji.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Utworzono PIN.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Wyłączono PIN</string>
   <!--AppProtectionPreferenceFragment-->
@@ -141,8 +141,8 @@
   <string name="CommunicationActions_insecure_call">Niezaszyfrowane połączenie</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Mogą obowiązywać opłaty operatora sieci. Numer, do którego dzwonisz, nie jest zarejestrowany w Signal. Połączenie zostanie nawiązane przez Twojego operatora sieci, a nie przez internet.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %2$s przeinstalował Signal. </string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa dla %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %2$s przeinstalował Signal. </string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa dla tego kontaktu.</string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Ostatnie rozmowy</string>
@@ -202,7 +202,7 @@
   <string name="ConversationActivity_leave_group">Opuścić grupę?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string>
   <string name="ConversationActivity_choose_new_admin">Wybierz nowego administratora</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Przed opuszczeniem tej grupy musisz wybrać nowego administratora.</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Przed opuszczeniem tej grupy musisz wybrać co najmniej jednego nowego administratora.</string>
   <string name="ConversationActivity_choose_admin">Wybierz administratora</string>
   <string name="ConversationActivity_transport_insecure_sms">Nieszyfrowany SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
@@ -312,7 +312,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">Brak wyników dla \'%s\'</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Brak wyników dla \"%s\"</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Usunąć wybraną rozmowę?</item>
     <item quantity="few">Usunąć wybrane rozmowy?</item>
@@ -355,7 +355,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem ustawiania profilu</string>
   <string name="CreateProfileActivity_profile_photo">Zdjęcie profilowe</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ustaw swój profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Twój profil jest szyfrowany metodą end-to-end. Twój profil i jego zmiany będą widoczne dla Twoich kontaktów, gdy rozpoczniesz, lub zaakceptujesz nowe konwersacje, i gdy dołączysz do nowych grup.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Twój profil jest szyfrowany metodą end-to-end. Twój profil i jego zmiany będą widoczne dla Twoich kontaktów, gdy rozpoczniesz lub zaakceptujesz nowe konwersacje, i gdy dołączysz do nowych grup.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ustaw awatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
@@ -377,7 +377,7 @@
   <string name="DeliveryStatus_delivered">Dostarczono</string>
   <string name="DeliveryStatus_read">Przeczytano</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_unlink_s">Wyrejestrować \'%s\'?</string>
+  <string name="DeviceListActivity_unlink_s">Odłączyć \"%s\"?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Wyrejestrowanie tego urządzenia spowoduje, że nie będziesz miał(a) możliwości wysyłania i odbierania wiadomości.</string>
   <string name="DeviceListActivity_network_connection_failed">Błąd połączenia sieciowego</string>
   <string name="DeviceListActivity_try_again">Spróbuj ponownie</string>
@@ -487,7 +487,7 @@
   <string name="ManageGroupActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string>
   <string name="ManageGroupActivity_add_members">Dodaj członków</string>
   <string name="ManageGroupActivity_edit_group_info">Edytuj informacje o grupie</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Wybierz kto może edytować nazwę i awatara tej grupy, oraz czas znikania wiadomości.</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Wybierz kto może edytować nazwę i awatara grupy, oraz czas znikania wiadomości.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Wybierz, kto może dodawać lub zapraszać nowych członków.</string>
   <string name="ManageGroupActivity_block_group">Zablokuj grupę</string>
   <string name="ManageGroupActivity_unblock_group">Odblokuj grupę</string>
@@ -520,7 +520,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Aktualizacja grupy nie powiodła się z powodu błędu sieci, spróbuj później</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Edytuj nazwę i zdjęcie</string>
   <string name="ManageGroupActivity_legacy_group">Stara grupa</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">To stara wersja grupy. Aby moc korzystać z takich funkcji jak administratorzy grup, stwórz nową grupę.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">To stara wersja grupy. Aby móc korzystać z takich funkcji jak administratorzy grup, stwórz nową grupę.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj do kontaktów systemu</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ta osoba jest w Twoich kontaktach</string>
@@ -776,7 +776,7 @@
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Zostałeś(aś) zaproszony(a) do grupy.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-    <item quantity="one">1 osoba została zaproszona do grupy..</item>
+    <item quantity="one">1 osoba została zaproszona do grupy.</item>
     <item quantity="few">%1$d osoby zostały zaproszone do grupy.</item>
     <item quantity="many">%1$d osób zostało zaproszonych do grupy.</item>
     <item quantity="other">%1$d osoby zostały zaproszone do grupy.</item>
@@ -825,11 +825,11 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s zmienił(a), kto może edytować członkostwo w grupie na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Zmieniono, kto może edytować członkostwo w grupie na \"%1$s\".</string>
   <!--End of GV2 specific update messages-->
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Oznaczyłeś(aś) numer bezpieczeństwa z %s jako zweryfikowany</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Oznaczyłeś(aś) numer bezpieczeństwa z %s jako zweryfikowany na innym urządzeniu</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Oznaczyłeś(aś) numer bezpieczeństwa z %s jako niezweryfikowany</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Oznaczyłeś(aś) numer bezpieczeństwa z %s jako niezweryfikowany na innym urządzeniu</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa dla %s zmienił się.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Oznaczyłeś(aś) numer bezpieczeństwa dla %s jako zweryfikowany</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Oznaczyłeś(aś) numer bezpieczeństwa dla %s jako zweryfikowany na innym urządzeniu</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Oznaczyłeś(aś) numer bezpieczeństwa dla %s jako niezweryfikowany</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Oznaczyłeś(aś) numer bezpieczeństwa dla %s jako niezweryfikowany na innym urządzeniu</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Akceptuj</string>
   <string name="MessageRequestBottomView_delete">Usuń</string>
@@ -979,7 +979,7 @@
         (%s) jest niepoprawny.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Brak Usług Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play na tym urządzeniu. Nadal możesz używać Signal, lecz ta konfiguracja może skutkować mniejszą niezawodnością i wydajnością\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego Androida, lub jeśli sądzisz, że to błąd, wyślij email na support@signal.org, aby otrzymać pomoc.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play na tym urządzeniu. Nadal możesz używać Signal, lecz ta konfiguracja może powodować mniejszą niezawodność i wydajność\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego systemu Android, lub sądzisz, że to błąd, wyślij e-mail na adres support@signal.org, aby otrzymać pomoc.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
   <string name="RegistrationActivity_play_services_error">Błąd Usług Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Sklepu Google Play lub są one niedostępne. Spróbuj ponownie.</string>
@@ -1008,7 +1008,7 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Wprowadź kod, który wysłaliśmy na %s</string>
   <string name="RegistrationActivity_phone_number_description">Numer telefonu</string>
-  <string name="RegistrationActivity_country_code_description">Numer kierunkowy</string>
+  <string name="RegistrationActivity_country_code_description">Kod kraju</string>
   <string name="RegistrationActivity_call">Zadzwoń</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Włączyć blokadę rejestracji?</string>
@@ -1024,7 +1024,7 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
   <!--Search-->
-  <string name="SearchFragment_no_results">Brak wyników dla \'%s\'</string>
+  <string name="SearchFragment_no_results">Brak wyników dla \"%s\"</string>
   <string name="SearchFragment_header_conversations">Rozmowy</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Wiadomości</string>
@@ -1113,8 +1113,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_s_is_on_signal">%s jest w Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
-  <string name="ThreadRecord_safety_number_changed">Numer bezpieczeństwa zmienił się</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
+  <string name="ThreadRecord_safety_number_changed">Numer bezpieczeństwa uległ zmianie</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa dla %s zmienił się.</string>
   <string name="ThreadRecord_you_marked_verified">Oznaczyłeś(aś) jako zweryfikowany</string>
   <string name="ThreadRecord_you_marked_unverified">Oznaczyłeś(aś) jako niezweryfikowany</string>
   <string name="ThreadRecord_message_could_not_be_processed">Wiadomość nie mogła zostać przetworzona</string>
@@ -1279,7 +1279,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Zajęte na połączonym urządzeniu.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numer bezpieczeństwa dla konwersacji z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub po prostu %2$s przeinstalował Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Możesz zweryfikować numer bezpieczeństwa dla tego kontaktu.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nowy numer bezpieczeństwa</string>
   <string name="WebRtcCallScreen_accept">Akceptuj</string>
   <string name="WebRtcCallScreen_end_call">Zakończ rozmowę</string>
@@ -1401,7 +1401,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Zmiany numeru bezpieczeństwa</string>
   <string name="safety_number_change_dialog__send_anyway">Wyślij mimo to</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Następujące osoby mogły ponownie zainstalować aplikację lub zmienić urządzenie. Zweryfikuj wasz numer bezpieczeństwa, aby zapewnić prywatność.</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Następujące osoby mogły ponownie zainstalować aplikację lub zmienić urządzenie. Zweryfikuj wasze numery bezpieczeństwa, aby zapewnić prywatność.</string>
   <string name="safety_number_change_dialog__view">Zobacz</string>
   <string name="safety_number_change_dialog__previous_verified">Wcześniej zweryfikowane</string>
   <!--country_selection_fragment-->
@@ -1459,15 +1459,15 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="expiration_weeks_abbreviated">%dt</string>
   <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">Twój numer bezpieczeństwa z %s zmienił się i nie jest już zweryfikowany</string>
-  <string name="IdentityUtil_unverified_banner_two">Numery z bezpieczeństwa z %1$s i %2$s nie są już zweryfikowane</string>
-  <string name="IdentityUtil_unverified_banner_many">Numery z bezpieczeństwa z %1$s, %2$s i %3$s nie są już zweryfikowane</string>
-  <string name="IdentityUtil_unverified_dialog_one">Twój numer bezpieczeństwa z %1$s zmienił się i nie już zweryfikowany. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub, że %1$s przeinstalował Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Twoje numery bezpieczeństwa z %1$s i %2$s zmieniły się i nie są już zweryfikowane. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub, że rozmówcy przeinstalowali Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Twoje numery bezpieczeństwa z %1$s, %2$s i %3$s zmieniły się i nie są już zweryfikowane. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub, że rozmówcy przeinstalowali Signal.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">Twój numer bezpieczeństwa z %s zmienił się.</string>
-  <string name="IdentityUtil_untrusted_dialog_two">Twoje numery bezpieczeństwa z %1$s i %2$s zmieniły się.</string>
-  <string name="IdentityUtil_untrusted_dialog_many">Twoje numery bezpieczeństwa z %1$s, %2$s i %3$s zmieniły się.</string>
+  <string name="IdentityUtil_unverified_banner_one">Twój numer bezpieczeństwa dla %s zmienił się i nie jest już zweryfikowany</string>
+  <string name="IdentityUtil_unverified_banner_two">Numery bezpieczeństwa dla %1$s i %2$s nie są już zweryfikowane</string>
+  <string name="IdentityUtil_unverified_banner_many">Numery bezpieczeństwa dla %1$s, %2$s i %3$s nie są już zweryfikowane</string>
+  <string name="IdentityUtil_unverified_dialog_one">Twój numer bezpieczeństwa dla %1$s zmienił się i nie już zweryfikowany. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub, że %1$s przeinstalował Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Twoje numery bezpieczeństwa dla %1$s i %2$s zmieniły się i nie są już zweryfikowane. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub, że rozmówcy przeinstalowali Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Twoje numery bezpieczeństwa dla %1$s, %2$s i %3$s zmieniły się i nie są już zweryfikowane. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub, że rozmówcy przeinstalowali Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Twój numer bezpieczeństwa dla %s zmienił się.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Twoje numery bezpieczeństwa dla %1$s i %2$s zmieniły się.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Twoje numery bezpieczeństwa dla %1$s, %2$s i %3$s zmieniły się.</string>
   <plurals name="identity_others">
     <item quantity="one">%d inny</item>
     <item quantity="few">%d innych</item>
@@ -1503,7 +1503,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="import_fragment__import_system_sms_database">Importuj systemową bazę danych SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importuj wiadomości z domyślnej aplikacji SMS</string>
   <string name="import_fragment__import_plaintext_backup">Importuj nieszyfrowaną kopię zapasową</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMS Backup &amp; Restore\'.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z "SMS Backup &amp; Restore".</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Zobacz pełną konwersację</string>
   <string name="load_more_header__loading">Ładowanie</string>
@@ -1520,7 +1520,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="many">%1$s dołączyli do grupy.</item>
     <item quantity="other">%1$s dołączyli do grupy.</item>
   </plurals>
-  <string name="GroupUtil_group_name_is_now">Aktualna nazwa grupy to \'%1$s\'.</string>
+  <string name="GroupUtil_group_name_is_now">Aktualna nazwa grupy to \"%1$s\".</string>
   <!--profile_group_share_view-->
   <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Czy uczynić nazwę i zdjęcie profilowe widocznymi dla tej grupy?</string>
   <!--prompt_passphrase_activity-->
@@ -1714,8 +1714,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manualne ustawienia MMS</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">Host Proxy MMS\'a </string>
-  <string name="preferences__mms_proxy_port">Port Proxy MMS\'a </string>
+  <string name="preferences__mms_proxy_host">Host Proxy MMSa </string>
+  <string name="preferences__mms_proxy_port">Port Proxy MMSa </string>
   <string name="preferences__mmsc_username">Użytkownik MMSC</string>
   <string name="preferences__mmsc_password">Hasło MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporty dostarczenia SMS</string>
@@ -1744,7 +1744,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
   <string name="preferences__support_wifi_calling">Tryb zgodności \"WiFi Calling\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \"WiFi Calling\" jest włączone na Twoim urządzeniu)</string>
   <string name="preferences__incognito_keyboard">Klawiatura w trybie prywatnym</string>
   <string name="preferences__read_receipts">Potwierdzenia przeczytania</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Gdy potwierdzenia przeczytania są wyłączone, Ty również nie będziesz otrzymywać potwierdzeń od innych użytkowników.</string>
@@ -1820,7 +1820,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_list_batch__menu_delete_selected">Usuń zaznaczone</string>
   <string name="conversation_list_batch__menu_select_all">Zaznacz wszystko</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Wybrane archiwum</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Przenieś do skrzynki odbiorczej</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Przywróć z archiwum</string>
   <string name="conversation_list_batch__menu_unarchive_selected">Przenieś do skrzynki odbiorczej</string>
   <string name="conversation_list_batch__menu_mark_as_read">Oznacz jako przeczytane</string>
   <string name="conversation_list_batch__menu_mark_as_unread">Oznacz jako nieprzeczytane</string>
@@ -2175,8 +2175,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare vs. nowe grupy</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Czym są stare grupy?</string>
-  <string name="GroupsLearnMore_paragraph_1">Stare grupy nie obsługują z takich funkcji nowych grup jak administratorzy i dokładniejsze informacje o zmianach w grupach.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak użyć nowych grup?</string>
+  <string name="GroupsLearnMore_paragraph_1">Stare grupy nie obsługują takich funkcji nowych grup jak administratorzy i dokładniejsze informacje o zmianach w grupach.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak skorzystać z nowych grup?</string>
   <string name="GroupsLearnMore_paragraph_2">Starych grup nie można przekonwertować na nowe, ale możesz stworzyć nową grupę z tymi samymi członkami.</string>
   <string name="GroupsLearnMore_paragraph_3">Aby utworzyć nową grupę, wszyscy członkowie muszą zaktualizować Signal do najnowszej wersji.</string>
   <!--EOF-->

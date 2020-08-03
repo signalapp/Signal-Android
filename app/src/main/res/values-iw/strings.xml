@@ -348,6 +348,7 @@
   <string name="ConversationTitleView_verified">מוודא</string>
   <string name="ConversationTitleView_you">את/ה</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">כמה אנשי קשר אינם יכולים להיות בקבוצות מיושנות.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">פרופיל</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">שגיאה בהגדרת תמונת פרופיל</string>
@@ -412,6 +413,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" התווסף/ה אל \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">הוסף לקבוצה</string>
   <string name="AddToGroupActivity_add_to_groups">הוסף לקבוצות</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">בחר מנהלן חדש</string>
   <string name="ChooseNewAdminActivity_done">סיים</string>
@@ -459,6 +461,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">סיים</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">להוסיף את \"%1$s\" אל \"%2$s\"?</item>
     <item quantity="two">להוסיף %3$d חברי קבוצה אל \"%2$s\"?</item>
@@ -1622,6 +1625,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
   <string name="HelpFragment__no_email_app_found">יישום דוא״ל לא נמצא.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">פרצופונים ואנשים</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">טבע</string>

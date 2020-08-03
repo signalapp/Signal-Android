@@ -1527,6 +1527,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
   <string name="HelpFragment__no_email_app_found">No se encontró la aplicación de email.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usados recientemente</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emoticonos y personas</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Animales y naturaleza</string>

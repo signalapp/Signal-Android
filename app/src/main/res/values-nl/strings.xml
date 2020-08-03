@@ -320,7 +320,7 @@
   <string name="ConversationTitleView_verified">Geverifieerd</string>
   <string name="ConversationTitleView_you">Jij</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sommige contactpersonen kunnen geen lid worden van oude stijl groep. </string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sommige contactpersonen kunnen geen lid worden van oude groepen.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiel</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
@@ -385,7 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">%1$s aan de groep “%2$s” toegevoegd.</string>
   <string name="AddToGroupActivity_add_to_group">Aan groep toevoegen</string>
   <string name="AddToGroupActivity_add_to_groups">Aan groepen toevoegen</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een oude stijl groep.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een oude groep.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Kies een nieuwe beheerder</string>
   <string name="ChooseNewAdminActivity_done">Klaar</string>
@@ -427,7 +427,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klaar</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een oude stijl groep.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan oude groepen.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">%1$s toevoegen aan “%2$s”?</item>
     <item quantity="other">%3$d personen toevoegen aan “%2$s”?</item>
@@ -1531,6 +1531,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
   <string name="HelpFragment__no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Gezichtjes &amp; mensen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natuur</string>
