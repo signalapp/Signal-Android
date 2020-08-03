@@ -2282,7 +2282,7 @@ public class RecipientDatabase extends Database {
       Log.w(TAG, "Had no sessions. No action necessary.");
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false);
+    DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false, false);
 
     return byUuid;
   }

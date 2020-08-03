@@ -464,6 +464,8 @@ public final class ConversationListItem extends RelativeLayout
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_unverified));
     } else if (SmsDatabase.Types.isUnsupportedMessageType(thread.getType())) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_message_could_not_be_processed));
+    } else if (SmsDatabase.Types.isProfileChange(thread.getType())) {
+      return emphasisAdded("");
     } else {
       ThreadDatabase.Extra extra = thread.getExtra();
       if (extra != null && extra.isViewOnce()) {

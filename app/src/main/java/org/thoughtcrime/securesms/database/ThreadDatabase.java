@@ -165,7 +165,7 @@ public class ThreadDatabase extends Database {
   private void updateThread(long threadId, long count, String body, @Nullable Uri attachment,
                             @Nullable String contentType, @Nullable Extra extra,
                             long date, int status, int deliveryReceiptCount, long type, boolean unarchive,
-                            long expiresIn, int readReceiptCount)
+                            long expiresIn, int readReceiptCount, boolean causedByDeletion)
   {
     String extraSerialized = null;
 
@@ -178,7 +178,7 @@ public class ThreadDatabase extends Database {
     }
 
     ContentValues contentValues = new ContentValues();
-    if (!MmsSmsColumns.Types.isProfileChange(type)) {
+    if (!MmsSmsColumns.Types.isProfileChange(type) || causedByDeletion) {
       contentValues.put(DATE, date - date % 1000);
       contentValues.put(SNIPPET, body);
       contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
@@ -814,10 +814,10 @@ public class ThreadDatabase extends Database {
   }
 
   public boolean update(long threadId, boolean unarchive) {
-    return update(threadId, unarchive, true);
+    return update(threadId, unarchive, true, false);
   }
 
-  public boolean update(long threadId, boolean unarchive, boolean allowDeletion) {
+  public boolean update(long threadId, boolean unarchive, boolean allowDeletion, boolean causedByDeletion) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
@@ -839,7 +839,7 @@ public class ThreadDatabase extends Database {
         updateThread(threadId, count, ThreadBodyUtil.getFormattedBodyFor(context, record), getAttachmentUriFor(record),
                      getContentTypeFor(record), getExtrasFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
-                     record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
+                     record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount(), causedByDeletion);
         notifyConversationListListeners();
         return false;
       } else {
