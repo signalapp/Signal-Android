@@ -273,7 +273,10 @@ public final class GroupV1MessageProcessor {
     GroupContext.Builder builder = GroupContext.newBuilder();
     builder.setId(ByteString.copyFrom(group.getGroupId()));
 
-    if (group.getAvatar().isPresent() && group.getAvatar().get().isPointer()) {
+    if (group.getAvatar().isPresent()       &&
+        group.getAvatar().get().isPointer() &&
+        group.getAvatar().get().asPointer().getRemoteId().getV2().isPresent())
+    {
       builder.setAvatar(AttachmentPointer.newBuilder()
                                          .setCdnId(group.getAvatar().get().asPointer().getRemoteId().getV2().get())
                                          .setKey(ByteString.copyFrom(group.getAvatar().get().asPointer().getKey()))
