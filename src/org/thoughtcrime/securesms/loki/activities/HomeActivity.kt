@@ -182,6 +182,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
+        // Clear all data if this is a secondary device
+        if (TextSecurePreferences.getMasterHexEncodedPublicKey(this) != null) {
+            ApplicationContext.getInstance(this).clearData()
+        }
     }
 
     override fun onResume() {
