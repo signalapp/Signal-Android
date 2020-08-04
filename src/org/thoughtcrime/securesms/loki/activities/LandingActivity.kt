@@ -29,9 +29,9 @@ import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
-import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
@@ -112,7 +112,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         val sessionResetImpl = SessionResetImplementation(this)
         MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
         SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
-        org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
+        org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
         SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
         SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
         application.setUpP2PAPIIfNeeded()

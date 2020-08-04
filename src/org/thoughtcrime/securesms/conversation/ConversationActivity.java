@@ -226,7 +226,7 @@ import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
 import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
 import java.io.IOException;

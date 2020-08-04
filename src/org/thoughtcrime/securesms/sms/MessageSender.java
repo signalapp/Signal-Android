@@ -36,9 +36,10 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
+import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
+import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -151,11 +152,15 @@ public class MessageSender {
   }
 
   private static void sendTextPush(Context context, Recipient recipient, long messageId) {
-    MultiDeviceProtocol.sendTextPush(context, recipient, messageId);
+    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
+    jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
+//    MultiDeviceProtocol.sendTextPush(context, recipient, messageId);
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
-    MultiDeviceProtocol.sendMediaPush(context, recipient, messageId);
+    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
+    PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
+//    MultiDeviceProtocol.sendMediaPush(context, recipient, messageId);
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {

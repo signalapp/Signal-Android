@@ -1356,14 +1356,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       String publicKey = message.getDestination().get();
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
+      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
         return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
           PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }
@@ -1388,14 +1388,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
+      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
         return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
           PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }
