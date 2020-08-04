@@ -340,10 +340,18 @@ public class ThreadDatabase extends Database {
   }
 
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
-    return setRead(Collections.singletonList(threadId), lastSeen);
+    return setReadInternal(Collections.singletonList(threadId), lastSeen, -1);
+  }
+
+  public List<MarkedMessageInfo> setReadSince(long threadId, boolean lastSeen, long sinceTimestamp) {
+    return setReadInternal(Collections.singletonList(threadId), lastSeen, sinceTimestamp);
   }
 
   public List<MarkedMessageInfo> setRead(Collection<Long> threadIds, boolean lastSeen) {
+    return setReadInternal(threadIds, lastSeen, -1);
+  }
+
+  private List<MarkedMessageInfo> setReadInternal(Collection<Long> threadIds, boolean lastSeen, long sinceTimestamp) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     List<MarkedMessageInfo> smsRecords = new LinkedList<>();
@@ -354,20 +362,23 @@ public class ThreadDatabase extends Database {
     try {
       ContentValues contentValues = new ContentValues(2);
       contentValues.put(READ, ReadStatus.READ.serialize());
-      contentValues.put(UNREAD_COUNT, 0);
 
       if (lastSeen) {
-        contentValues.put(LAST_SEEN, System.currentTimeMillis());
+        contentValues.put(LAST_SEEN, sinceTimestamp == -1 ? System.currentTimeMillis() : sinceTimestamp);
       }
 
       for (long threadId : threadIds) {
+        smsRecords.addAll(DatabaseFactory.getSmsDatabase(context).setMessagesReadSince(threadId, sinceTimestamp));
+        mmsRecords.addAll(DatabaseFactory.getMmsDatabase(context).setMessagesReadSince(threadId, sinceTimestamp));
+
+        DatabaseFactory.getSmsDatabase(context).setReactionsSeen(threadId, sinceTimestamp);
+        DatabaseFactory.getMmsDatabase(context).setReactionsSeen(threadId, sinceTimestamp);
+
+        int unreadCount = DatabaseFactory.getMmsSmsDatabase(context).getUnreadCount(threadId);
+
+        contentValues.put(UNREAD_COUNT, unreadCount);
+
         db.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{threadId + ""});
-
-        smsRecords.addAll(DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId));
-        mmsRecords.addAll(DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId));
-
-        DatabaseFactory.getSmsDatabase(context).setReactionsSeen(threadId);
-        DatabaseFactory.getMmsDatabase(context).setReactionsSeen(threadId);
       }
 
       db.setTransactionSuccessful();

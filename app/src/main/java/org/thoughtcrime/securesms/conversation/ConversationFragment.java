@@ -129,9 +129,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 @SuppressLint("StaticFieldLeak")
@@ -166,6 +166,7 @@ public class ConversationFragment extends LoggingFragment {
   private MessageRequestViewModel     messageRequestViewModel;
   private ConversationViewModel       conversationViewModel;
   private SnapToTopDataObserver       snapToTopDataObserver;
+  private MarkReadHelper              markReadHelper;
 
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
@@ -420,6 +421,7 @@ public class ConversationFragment extends LoggingFragment {
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId, () -> clearHeaderIfNotTyping(getListAdapter()));
+    this.markReadHelper    = new MarkReadHelper(threadId, requireContext());
 
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
 
@@ -658,6 +660,7 @@ public class ConversationFragment extends LoggingFragment {
 
             if (threadDeleted) {
               threadId = -1;
+              conversationViewModel.clearThreadId();
               listener.setThreadId(threadId);
             }
           }
@@ -697,6 +700,7 @@ public class ConversationFragment extends LoggingFragment {
 
             if (threadDeleted) {
               threadId = -1;
+              conversationViewModel.clearThreadId();
               listener.setThreadId(threadId);
             }
           }
@@ -1070,6 +1074,8 @@ public class ConversationFragment extends LoggingFragment {
       wasAtBottom           = currentlyAtBottom;
       wasAtZoomScrollHeight = currentlyAtZoomScrollHeight;
       lastPositionId        = positionId;
+
+      postMarkAsReadRequest();
     }
 
     @Override
@@ -1078,6 +1084,23 @@ public class ConversationFragment extends LoggingFragment {
         conversationDateHeader.show();
       } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
         conversationDateHeader.hide();
+      }
+    }
+
+    private void postMarkAsReadRequest() {
+      if (getListAdapter().hasNoConversationMessages()) {
+        return;
+      }
+
+      int position = getListLayoutManager().findFirstVisibleItemPosition();
+      if (position >= (isTypingIndicatorShowing() ? 1 : 0)) {
+        ConversationMessage item = getListAdapter().getItem(position);
+        if (item != null) {
+          long timestamp = item.getMessageRecord()
+                               .getDateReceived();
+
+          markReadHelper.onViewsRevealed(timestamp);
+        }
       }
     }
 

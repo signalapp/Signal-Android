@@ -151,6 +151,11 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   @Override
+  protected String getDateReceivedColumnName() {
+    return DATE_RECEIVED;
+  }
+
+  @Override
   protected String getTypeField() {
     return TYPE;
   }
@@ -509,8 +514,12 @@ public class SmsDatabase extends MessagingDatabase {
     return setMessagesRead(THREAD_ID + " = ?", new String[] {String.valueOf(threadId)});
   }
 
-  public List<MarkedMessageInfo> setMessagesRead(long threadId) {
-    return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
+  public List<MarkedMessageInfo> setMessagesReadSince(long threadId, long sinceTimestamp) {
+    if (sinceTimestamp == -1) {
+      return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
+    } else {
+      return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0 AND " + DATE_RECEIVED + " <= ?", new String[] {String.valueOf(threadId),String.valueOf(sinceTimestamp)});
+    }
   }
 
   public List<MarkedMessageInfo> setAllMessagesRead() {

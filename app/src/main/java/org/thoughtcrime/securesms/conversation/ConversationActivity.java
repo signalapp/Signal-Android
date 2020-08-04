@@ -521,7 +521,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
-    markThreadAsRead();
   }
 
   @Override
@@ -2283,21 +2282,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     return sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
            ? MediaConstraints.getPushMediaConstraints()
            : MediaConstraints.getMmsMediaConstraints(sendButton.getSelectedTransport().getSimSubscriptionId().or(-1));
-  }
-
-  private void markThreadAsRead() {
-    new AsyncTask<Long, Void, Void>() {
-      @Override
-      protected Void doInBackground(Long... params) {
-        Context                 context    = ConversationActivity.this;
-        List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
-
-        ApplicationDependencies.getMessageNotifier().updateNotification(context);
-        MarkReadReceiver.process(context, messageIds);
-
-        return null;
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
   }
 
   private void markLastSeen() {

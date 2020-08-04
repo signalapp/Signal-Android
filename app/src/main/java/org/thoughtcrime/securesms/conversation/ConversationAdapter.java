@@ -253,7 +253,9 @@ public class ConversationAdapter
   protected @Nullable ConversationMessage getItem(int position) {
     position = hasHeader() ? position - 1 : position;
 
-    if (position < fastRecords.size()) {
+    if (position == -1) {
+      return null;
+    } else if (position < fastRecords.size()) {
       return fastRecords.get(position);
     } else {
       int correctedPosition = position - fastRecords.size();
@@ -305,6 +307,10 @@ public class ConversationAdapter
 
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
     viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
+  }
+
+  boolean hasNoConversationMessages() {
+    return super.getItemCount() + fastRecords.size() == 0;
   }
 
   /**

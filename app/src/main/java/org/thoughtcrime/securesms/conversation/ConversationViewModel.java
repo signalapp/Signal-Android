@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.app.Application;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -94,11 +96,17 @@ class ConversationViewModel extends ViewModel {
     mediaRepository.getMediaInBucket(context, Media.ALL_MEDIA_BUCKET_ID, recentMedia::postValue);
   }
 
+  @MainThread
   void onConversationDataAvailable(long threadId, int startingPosition) {
     Log.d(TAG, "[onConversationDataAvailable] threadId: " + threadId + ", startingPosition: " + startingPosition);
     this.jumpToPosition = startingPosition;
 
     this.threadId.setValue(threadId);
+  }
+
+  void clearThreadId() {
+    this.jumpToPosition = -1;
+    this.threadId.postValue(-1L);
   }
 
   @NonNull LiveData<List<Media>> getRecentMedia() {
