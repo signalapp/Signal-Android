@@ -348,6 +348,7 @@
   <string name="ConversationTitleView_verified">Ověřeno</string>
   <string name="ConversationTitleView_you">Vy</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Některé kontakty nemůžou být v zastaralých skupinách.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba při nastavení profilové fotografie</string>
@@ -412,6 +413,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" přidán do \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Přidat do skupiny</string>
   <string name="AddToGroupActivity_add_to_groups">Přidat do skupin</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tohoto člověka nemůžete přidat do zastaralých skupin.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vyberte nového administrátora.</string>
   <string name="ChooseNewAdminActivity_done">Hotovo</string>
@@ -459,6 +461,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hotovo</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tohoto člověka nemůžete přidat do zastaralých skupin.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Přidat \"%1$s\" do \"%2$s\"?</item>
     <item quantity="few">Přidat %3$d členy do \"%2$s\"?</item>
@@ -1621,6 +1624,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
   <string name="HelpFragment__no_email_app_found">Nenalezena žádná emailová aplikace.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smajlíci &amp; Lidé</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Příroda</string>

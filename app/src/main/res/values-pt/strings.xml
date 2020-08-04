@@ -1523,6 +1523,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
   <string name="HelpFragment__no_email_app_found">Não foi encontrada nenhuma aplicação de e-mail.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys e Pessoas</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natureza</string>

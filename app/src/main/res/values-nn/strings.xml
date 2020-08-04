@@ -44,7 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Skjermlås %1$s, registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Skjermlås %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Du treng ein PIN for å ha registreringslås. For å skru av PIN, må du først skru av registreringslås.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN oppretta.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN skrudd av.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -166,7 +168,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Feil ved sending, trykk for å senda med utrygg alternativ metode</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Vil du bruka ukryptert SMS som reserveløysing?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Vil du bruka ukryptert MMS som reserveløysing?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldinga vert <b>ikkje</b> kryptert, fordi mottakaren ikkje brukar Signal lenger.\n\nVil du senda ho ukryptert?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldinga vert <b>ikkje</b> kryptert, fordi mottakaren ikkje bruker Signal lenger.\n\nVil du senda ho ukryptert?</string>
   <string name="ConversationItem_unable_to_open_media">Fann inga program som kan opna dette innhaldet.</string>
   <string name="ConversationItem_copied_text">Kopierte %s</string>
   <string name="ConversationItem_from_s">frå %s</string>
@@ -193,6 +195,9 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne eininga ser ikkje ut til å støtta oppringing.</string>
   <string name="ConversationActivity_leave_group">Vil du forlata gruppa?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du vil forlata gruppa?</string>
+  <string name="ConversationActivity_choose_new_admin">Vel ny administrator.</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Før du forlèt gruppa, må du velja minst éin ny administrator.</string>
+  <string name="ConversationActivity_choose_admin">Vel administrator.</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -206,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrid maksimal storleiksgrense for gjeldande meldingstype.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengeleg</string>
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikkje senda meldingar til denne gruppa sidan du ikkje lenger er medlem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenkja.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">La Signal få tilgang til mikrofonen for å senda lydmeldingar.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal treng tilgang til mikrofonen for å senda lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon».</string>
@@ -315,16 +321,18 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="ConversationTitleView_verified">Godkjent</string>
   <string name="ConversationTitleView_you">Du</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Visse kontaktar kan ikkje vera i eldre grupper.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbildet</string>
   <string name="CreateProfileActivity_problem_setting_profile">Klarte ikkje endra profilen</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
   <string name="CreateProfileActivity_set_up_your_profile">Lag profilen din</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din er ende-til-ende-kryptert. Profilen og endringar i han blir synleg for dine kontaktar, når du startar eller godkjenner nye samtalar, og når du blir med i nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Vel avatar</string>
   <!--CustomDefaultPreference-->
-  <string name="CustomDefaultPreference_using_custom">Brukar sjølvvald: %s</string>
-  <string name="CustomDefaultPreference_using_default">Brukar standard: %s</string>
+  <string name="CustomDefaultPreference_using_custom">Bruker sjølvvald: %s</string>
+  <string name="CustomDefaultPreference_using_default">Bruker standard: %s</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vel bilde</string>
@@ -378,8 +386,11 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="AddToGroupActivity_s_added_to_s">«%1$s» lagt til i «%2$s».</string>
   <string name="AddToGroupActivity_add_to_group">Legg til i gruppe</string>
   <string name="AddToGroupActivity_add_to_groups">Legg til i grupper</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Denne kontakten kan ikkje vera med i eldre grupper.</string>
   <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Vel ny administrator.</string>
   <string name="ChooseNewAdminActivity_done">Ferdig</string>
+  <string name="ChooseNewAdminActivity_you_left">Du forlét «%1$s».</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del profilnamnet og bildet ditt med denne gruppa?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vil du gjera profilnamnet og bildet ditt synleg for alle noverande og framtidige medlem av denne gruppa?</string>
@@ -391,7 +402,17 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="GroupManagement_access_level_all_members">Alle medlemmar</string>
   <string name="GroupManagement_access_level_only_admins">Berre administratorar</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Invitasjon sendt</item>
+    <item quantity="other">Sende %d invitasjonar</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">Du kan ikkje automatisk legga til «%1$s» i gruppa.
+
+Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="GroupManagement_learn_more">Lær meir</string>
+  <string name="GroupManagement_invite_multiple_users">Du kan ikkje automatisk legga til desse brukarane i gruppa.
+
+Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Usvarte gruppeinvitasjonar</string>
   <string name="PendingMembersActivity_people_you_invited">Folk du har invitert</string>
@@ -411,6 +432,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Ferdig</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne kontakten kan ikkje vera med i eldre grupper.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Legg til %1$s medlem til «%2$s»?</item>
     <item quantity="other">Legg til %3$d medlem til «%2$s»?</item>
@@ -433,6 +455,9 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnande meldingar</string>
   <string name="ManageGroupActivity_pending_group_invites">Ventande gruppeinvitasjonar</string>
   <string name="ManageGroupActivity_add_members">Legg til medlemmar</string>
+  <string name="ManageGroupActivity_edit_group_info">Endra gruppeinfo</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vel kven som kan endra gruppenamnet, -bildet og forsvinnande meldingar.</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vel kven som kan legga til eller invitera nye medlemmar.</string>
   <string name="ManageGroupActivity_block_group">Blokker gruppa</string>
   <string name="ManageGroupActivity_unblock_group">Ikkje blokker gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlat gruppe</string>
@@ -456,8 +481,14 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="ManageGroupActivity_not_capable">Nokon du la til må oppdatera Signal for å få støtte for nye grupper</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Klarte ikkje oppdatera gruppa</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du er ikkje medlem av gruppa</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Klarte ikkje oppdatera gruppa, prøv igjen seinare</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Klarte ikkje oppdatera gruppa pga. ein nettverksfeil, prøv igjen seinare</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Endra namn og bilde</string>
+  <string name="ManageGroupActivity_legacy_group">Eldre gruppe</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Dette er ei Eldre gruppe. For å få tilgang til nye funksjonar, som administratorar, må du laga ei Ny gruppe.</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Legg til i systemkontaktar</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denne personen er i kontaktlista di</string>
   <string name="ManageRecipientActivity_disappearing_messages">Forsvinnande meldingar</string>
   <string name="ManageRecipientActivity_chat_color">Samtalefarge</string>
   <string name="ManageRecipientActivity_block">Blokker</string>
@@ -648,6 +679,9 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s stilte inn utløpstida for forsvinnande meldingar til %2$s</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Nedtellinga for forsvinnande meldingar er stilt til %1$s.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s endra profilnamnet sitt til %2$s</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s endra profilnamnet sitt frå %2$s til %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s endra profilen sin.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du oppretta gruppa.</string>
   <string name="MessageRecord_group_updated">Gruppe oppdatert.</string>
@@ -820,6 +854,9 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har brukt opp PIN-forsøka, men du kan få tilgang til Signal-kontoen din ved å laga ein ny PIN. For din tryggleik og sikkerheit vil kontoen din bli gjenoppretta utan lagra profilinformasjon eller innstillingar.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Lag ny PIN</string>
   <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">Åtvaring</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar tryggleikskopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
+  <string name="PinOptOutDialog_disable_pin">Skru av PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Viss du liker dette programmet, vil vi gjerne at du hjelper oss ved å gje vurderinga di.</string>
@@ -1093,6 +1130,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Slett melding?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette vil sletta denne meldinga for godt.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Media ikkje tilgjengeleg lenger</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldingar i %2$d samtalar</string>
   <string name="MessageNotifier_most_recent_from_s">Nyaste frå: %1$s</string>
@@ -1495,6 +1533,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
   <string name="HelpFragment__no_email_app_found">Fann ingen e-postapp.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldinga</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyleg brukt</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smil &amp; folk</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
@@ -1607,10 +1646,15 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utsjåande</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__disable_pin">Skru av PIN</string>
+  <string name="preferences__enable_pin">Skru på PIN</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar tryggleikskopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Ein PIN held informasjonen som Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt. Du treng ikkje PIN-en din for å opna appen.</string>
   <string name="preferences__system_default">Systemstandard</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__signal_messages_and_calls">Signal-meldingar og -samtalar</string>
+  <string name="preferences__advanced_pin_settings">Avanserte PIN-innstillingar</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privatmeldingar og -samtalar til Signal-brukarar</string>
   <string name="preferences__submit_debug_log">Send feilsøkingslogg</string>
   <string name="preferences__support_wifi_calling">«Wifi-samtale»-tilbakefallsmodus</string>
@@ -1759,7 +1803,7 @@ Du er à jour!</string>
   <string name="reminder_header_invite_title">Inviter til Signal</string>
   <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
   <string name="reminder_header_share_title">Inviter vennane dine!</string>
-  <string name="reminder_header_share_text">Jo fleire vennar som brukar Signal, desto betre vert det.</string>
+  <string name="reminder_header_share_text">Jo fleire vennar som bruker Signal, desto betre vert det.</string>
   <string name="reminder_header_service_outage_text">Signal har for tida tekniske problem. Me jobbar hardt med å få tilbake tenesta så fort som mogleg.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Dei nyaste Signal-funksjonane fungerer ikkje i denne utgåva av Android. Oppgrader eininga for å få oppdateringar av Signal.</string>
   <string name="reminder_header_progress">%1$d%%</string>
@@ -1816,6 +1860,7 @@ Du er à jour!</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Lag ny PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endra PIN-en så lenge denne eininga er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Lag din PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Ein PIN held informasjonen som Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt. Du treng ikkje PIN-en din for å opna appen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vel ein sterkare PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-kodane er ulike. Prøv igjen.</string>
@@ -1827,12 +1872,15 @@ Du er à jour!</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Opprettar PIN …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Her kjem PIN-kodar</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Ein PIN held informasjonen som Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt. Du treng ikkje PIN-en din for å opna appen.</string>
   <string name="KbsSplashFragment__learn_more">Lær meir</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registreringslåsen er no kalla PIN-kode, og gjer meir enn før. Oppdater no.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Les meir om PIN-kodar.</string>
   <string name="KbsSplashFragment__update_pin">Oppdater PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Lag din PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Lær meir om PIN-ar</string>
+  <string name="KbsSplashFragment__disable_pin">Skru av PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Skriv inn Signal-PIN-koden din</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For å hjelpa deg å hugsa PIN-koden din, spør me innimellom om du kan skriva han inn. Me spør sjeldnare over tid.</string>
@@ -2025,5 +2073,11 @@ Du er à jour!</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Eldre vs. Nye grupper</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Kva er Eldre grupper?</string>
+  <string name="GroupsLearnMore_paragraph_1">Eldre grupper er grupper som ikkje er kompatible med funksjonane til Nye grupper, slik som administratorar og meir beskrivande gruppeoppdateringar.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Korleis bruker eg Nye grupper?</string>
+  <string name="GroupsLearnMore_paragraph_2">Eldre grupper kan ikkje konverterast til Nye grupper, men du kan oppretta ei Ny gruppe med same medlem.</string>
+  <string name="GroupsLearnMore_paragraph_3">For å laga ei Ny gruppe bør alle medlem oppdatera til nyaste utgåve av Signal.</string>
   <!--EOF-->
 </resources>
