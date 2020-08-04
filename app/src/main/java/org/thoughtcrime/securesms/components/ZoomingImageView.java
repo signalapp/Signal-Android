@@ -37,6 +37,12 @@ public class ZoomingImageView extends FrameLayout {
 
   private static final String TAG = ZoomingImageView.class.getSimpleName();
 
+  private static final int ZOOM_TRANSITION_DURATION = 300;
+
+  private static final float ZOOM_LEVEL_MIN = 1.0f;
+  private static final float ZOOM_LEVEL_MID = 1.5f;
+  private static final float ZOOM_LEVEL_MAX = 2.0f;
+
   private final PhotoView                 photoView;
   private final SubsamplingScaleImageView subsamplingImageView;
 
@@ -57,6 +63,12 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView = findViewById(R.id.subsampling_image_view);
 
     this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
+
+    this.photoView.setZoomTransitionDuration(ZOOM_TRANSITION_DURATION);
+    this.photoView.setScaleLevels(ZOOM_LEVEL_MIN, ZOOM_LEVEL_MID, ZOOM_LEVEL_MAX);
+
+    this.subsamplingImageView.setDoubleTapZoomDuration(ZOOM_TRANSITION_DURATION);
+    this.subsamplingImageView.setDoubleTapZoomScale(ZOOM_LEVEL_MID);
 
     this.photoView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
     this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
