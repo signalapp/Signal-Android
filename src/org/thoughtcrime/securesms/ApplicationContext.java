@@ -570,6 +570,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void clearData() {
+    String token = TextSecurePreferences.getFCMToken(this);
+    if (token != null && !token.isEmpty()) {
+      LokiPushNotificationManager.unregister(token, this);
+    }
     boolean wasUnlinked = TextSecurePreferences.getWasUnlinked(this);
     TextSecurePreferences.clearAll(this);
     TextSecurePreferences.setWasUnlinked(this, wasUnlinked);
