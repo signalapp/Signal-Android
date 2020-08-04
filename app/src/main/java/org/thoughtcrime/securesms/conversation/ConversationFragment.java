@@ -405,7 +405,7 @@ public class ConversationFragment extends LoggingFragment {
           description = context.getString(R.string.MessageRequestProfileView_member_of_many_groups,
                                           HtmlUtil.bold(groups.get(0)),
                                           HtmlUtil.bold(groups.get(1)),
-                                          context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_member_of_others, others, others));
+                                          context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, others, others));
       }
 
       conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0));

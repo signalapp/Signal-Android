@@ -906,9 +906,9 @@
         <item quantity="one">%1$d member (+%2$d invited)</item>
         <item quantity="other">%1$d members (+%2$d invited)</item>
     </plurals>
-    <plurals name="MessageRequestProfileView_member_of_others">
-        <item quantity="one">%d other</item>
-        <item quantity="other">%d others</item>
+    <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+        <item quantity="one">%d additional group</item>
+        <item quantity="other">%d additional groups</item>
     </plurals>
 
     <!-- PassphraseChangeActivity -->

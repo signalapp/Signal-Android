@@ -11,6 +11,7 @@
     <!-- L10N warnings -->
     <issue id="MissingTranslation" severity="ignore" />
     <issue id="MissingQuantity" severity="warning" />
+    <issue id="MissingDefaultResource" severity="warning" />
     <issue id="ExtraTranslation" severity="warning" />
     <issue id="ImpliedQuantity" severity="warning" />
     <issue id="TypographyDashes" severity="error" >
