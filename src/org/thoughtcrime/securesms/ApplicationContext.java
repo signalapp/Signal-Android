@@ -109,11 +109,11 @@ import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities;
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink;
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
-import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol;
+import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -570,6 +570,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void clearData() {
+    String token = TextSecurePreferences.getFCMToken(this);
+    if (token != null && !token.isEmpty()) {
+      LokiPushNotificationManager.unregister(token, this);
+    }
     boolean wasUnlinked = TextSecurePreferences.getWasUnlinked(this);
     TextSecurePreferences.clearAll(this);
     TextSecurePreferences.setWasUnlinked(this, wasUnlinked);

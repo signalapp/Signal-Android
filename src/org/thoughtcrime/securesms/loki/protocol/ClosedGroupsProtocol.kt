@@ -19,7 +19,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.SnodeAPI
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.util.*
 
 object ClosedGroupsProtocol {

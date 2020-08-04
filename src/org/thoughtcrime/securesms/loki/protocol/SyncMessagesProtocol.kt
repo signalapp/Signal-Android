@@ -26,7 +26,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInputStream
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 import java.util.*
 
@@ -35,7 +35,7 @@ object SyncMessagesProtocol {
     @JvmStatic
     fun shouldIgnoreSyncMessage(context: Context, sender: Recipient): Boolean {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-        return !MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey).contains(sender.address.serialize())
+        return userPublicKey == sender.address.serialize() // return !MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey).contains(sender.address.serialize())
     }
 
     @JvmStatic

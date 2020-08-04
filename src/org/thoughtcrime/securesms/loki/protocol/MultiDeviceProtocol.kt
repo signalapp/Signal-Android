@@ -20,9 +20,9 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSession
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
 object MultiDeviceProtocol {

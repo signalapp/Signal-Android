@@ -16,9 +16,9 @@ import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSessionListener
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSession
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
 
 class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }

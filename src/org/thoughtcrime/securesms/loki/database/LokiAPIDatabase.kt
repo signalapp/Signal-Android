@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.Snode
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 
@@ -292,6 +292,8 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     }
 
     override fun getDeviceLinks(publicKey: String): Set<DeviceLink> {
+        return setOf()
+        /*
         val database = databaseHelper.readableDatabase
         return database.getAll(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( publicKey, publicKey )) { cursor ->
             val masterHexEncodedPublicKey = cursor.getString(masterPublicKey)
@@ -300,14 +302,18 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             val authorizationSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(authorizationSignature))) null else cursor.getBase64EncodedData(authorizationSignature)
             DeviceLink(masterHexEncodedPublicKey, slaveHexEncodedPublicKey, requestSignature, authorizationSignature)
         }.toSet()
+         */
     }
 
     override fun clearDeviceLinks(publicKey: String) {
+        /*
         val database = databaseHelper.writableDatabase
         database.delete(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( publicKey, publicKey ))
+         */
     }
 
     override fun addDeviceLink(deviceLink: DeviceLink) {
+        /*
         val database = databaseHelper.writableDatabase
         val values = ContentValues()
         values.put(masterPublicKey, deviceLink.masterPublicKey)
@@ -315,11 +321,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         if (deviceLink.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(deviceLink.requestSignature)) }
         if (deviceLink.authorizationSignature != null) { values.put(authorizationSignature, Base64.encodeBytes(deviceLink.authorizationSignature)) }
         database.insertOrUpdate(deviceLinkCache, values, "$masterPublicKey = ? AND $slavePublicKey = ?", arrayOf( deviceLink.masterPublicKey, deviceLink.slavePublicKey ))
+         */
     }
 
     override fun removeDeviceLink(deviceLink: DeviceLink) {
+        /*
         val database = databaseHelper.writableDatabase
         database.delete(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( deviceLink.masterPublicKey, deviceLink.slavePublicKey ))
+         */
     }
 
     fun getUserCount(group: Long, server: String): Int? {

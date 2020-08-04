@@ -27,7 +27,7 @@ import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChatMessage
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.security.MessageDigest
 import java.util.*
 
@@ -159,12 +159,12 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
     fun pollForNewMessages() {
         fun processIncomingMessage(message: PublicChatMessage) {
             // If the sender of the current message is not a slave device, set the display name in the database
-            val masterHexEncodedPublicKey = MultiDeviceProtocol.shared.getMasterDevice(message.publicKey)
+            val masterHexEncodedPublicKey = MultiDeviceProtocol.shared.getMasterDevice(message.senderPublicKey)
             if (masterHexEncodedPublicKey == null) {
-                val senderDisplayName = "${message.displayName} (...${message.publicKey.takeLast(8)})"
-                DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.publicKey, senderDisplayName)
+                val senderDisplayName = "${message.displayName} (...${message.senderPublicKey.takeLast(8)})"
+                DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.senderPublicKey, senderDisplayName)
             }
-            val senderHexEncodedPublicKey = masterHexEncodedPublicKey ?: message.publicKey
+            val senderHexEncodedPublicKey = masterHexEncodedPublicKey ?: message.senderPublicKey
             val serviceDataMessage = getDataMessage(message)
             val serviceContent = SignalServiceContent(serviceDataMessage, senderHexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false, false)
             if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
@@ -200,7 +200,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
                 PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
             }
             // If we got a message from our master device then make sure our mapping stays in sync
-            val recipient = Recipient.from(context, Address.fromSerialized(message.publicKey), false)
+            val recipient = Recipient.from(context, Address.fromSerialized(message.senderPublicKey), false)
             if (recipient.isUserMasterDevice && message.profilePicture != null) {
                 val profileKey = message.profilePicture!!.profileKey
                 val url = message.profilePicture!!.url
@@ -219,26 +219,30 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
         FileServerAPI.configure(userHexEncodedPublicKey, userPrivateKey, apiDB)
         // Kovenant propagates a context to chained promises, so LokiPublicChatAPI.sharedContext should be used for all of the below
         api.getMessages(group.channel, group.server).bind(PublicChatAPI.sharedContext) { messages ->
+            /*
             if (messages.isNotEmpty()) {
                 // We need to fetch the device mapping for any devices we don't have
-                uniqueDevices = messages.map { it.publicKey }.toSet()
+                uniqueDevices = messages.map { it.senderPublicKey }.toSet()
                 val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && FileServerAPI.shared.hasDeviceLinkCacheExpired(publicKey = it) }
                 if (devicesToUpdate.isNotEmpty()) {
                     return@bind FileServerAPI.shared.getDeviceLinks(devicesToUpdate.toSet()).then { messages }
                 }
             }
+             */
             Promise.of(messages)
         }.successBackground {
+            /*
             val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
                 // This will return null if the current device is a master device
                 MultiDeviceProtocol.shared.getMasterDevice(it)
             }.toSet()
             // Fetch the display names of the master devices
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
+             */
         }.successBackground { messages ->
             // Process messages in the background
             messages.forEach { message ->
-                if (userDevices.contains(message.publicKey)) {
+                if (userDevices.contains(message.senderPublicKey)) {
                     processOutgoingMessage(message)
                 } else {
                     processIncomingMessage(message)

@@ -47,9 +47,9 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
-import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
@@ -182,6 +182,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
+        // Clear all data if this is a secondary device
+        if (TextSecurePreferences.getMasterHexEncodedPublicKey(this) != null) {
+            ApplicationContext.getInstance(this).clearData()
+        }
     }
 
     override fun onResume() {
