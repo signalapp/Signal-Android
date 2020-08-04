@@ -41,7 +41,6 @@ message PendingMember {
 message AccessControl {
   enum AccessRequired {
     UNKNOWN       = 0;
-    ANY           = 1;
     MEMBER        = 2;
     ADMINISTRATOR = 3;
   }

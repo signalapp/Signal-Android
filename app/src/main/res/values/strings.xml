@@ -463,7 +463,6 @@
     <string name="GroupMembersDialog_you">You</string>
 
     <!-- GV2 access levels -->
-    <string name="GroupManagement_access_level_anyone">Anyone</string>
     <string name="GroupManagement_access_level_all_members">All members</string>
     <string name="GroupManagement_access_level_only_admins">Only admins</string>
     <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
