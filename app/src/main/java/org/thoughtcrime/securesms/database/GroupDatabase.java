@@ -739,6 +739,15 @@ public final class GroupDatabase extends Database {
       return isV2Group() && requireV2GroupProperties().isAdmin(recipient);
     }
 
+    public MemberLevel memberLevel(@NonNull Recipient recipient) {
+      if (isV2Group()) {
+        return requireV2GroupProperties().memberLevel(recipient);
+      } else {
+        return members.contains(recipient.getId()) ? MemberLevel.FULL_MEMBER
+                                                   : MemberLevel.NOT_A_MEMBER;
+      }
+    }
+
     /**
      * Who is allowed to add to the membership of this group.
      */
@@ -817,6 +826,18 @@ public final class GroupDatabase extends Database {
                                .or(false);
     }
 
+    public MemberLevel memberLevel(@NonNull Recipient recipient) {
+      DecryptedGroup decryptedGroup = getDecryptedGroup();
+
+      return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), recipient.getUuid().get())
+                               .transform(member -> member.getRole() == Member.Role.ADMINISTRATOR
+                                                    ? MemberLevel.ADMINISTRATOR
+                                                    : MemberLevel.FULL_MEMBER)
+                               .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), recipient.getUuid().get())
+                                                           .isPresent() ? MemberLevel.PENDING_MEMBER
+                                                                        : MemberLevel.NOT_A_MEMBER);
+    }
+
     public List<Recipient> getMemberRecipients(@NonNull MemberSet memberSet) {
       return Recipient.resolvedList(getMemberRecipientIds(memberSet));
     }
@@ -866,6 +887,23 @@ public final class GroupDatabase extends Database {
     MemberSet(boolean includeSelf, boolean includePending) {
       this.includeSelf    = includeSelf;
       this.includePending = includePending;
+    }
+  }
+
+  public enum MemberLevel {
+    NOT_A_MEMBER(false),
+    PENDING_MEMBER(false),
+    FULL_MEMBER(true),
+    ADMINISTRATOR(true);
+
+    private final boolean inGroup;
+
+    MemberLevel(boolean inGroup){
+      this.inGroup = inGroup;
+    }
+
+    public boolean isInGroup() {
+      return inGroup;
     }
   }
 }

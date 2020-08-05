@@ -145,28 +145,15 @@ public final class LiveGroup {
                                                           fullMemberCount);
   }
 
-  private LiveData<MemberLevel> selfMemberLevel() {
-    return Transformations.map(groupRecord, g -> {
-      if (g.isAdmin(Recipient.self())) {
-        return MemberLevel.ADMIN;
-      } else {
-        return g.isActive() ? MemberLevel.MEMBER
-                            : MemberLevel.NOT_A_MEMBER;
-      }
-    });
+  private LiveData<GroupDatabase.MemberLevel> selfMemberLevel() {
+    return Transformations.map(groupRecord, g -> g.memberLevel(Recipient.self()));
   }
 
-  private static boolean applyAccessControl(@NonNull MemberLevel memberLevel, @NonNull GroupAccessControl rights) {
+  private static boolean applyAccessControl(@NonNull GroupDatabase.MemberLevel memberLevel, @NonNull GroupAccessControl rights) {
     switch (rights) {
-      case ALL_MEMBERS: return memberLevel != MemberLevel.NOT_A_MEMBER;
-      case ONLY_ADMINS: return memberLevel == MemberLevel.ADMIN;
+      case ALL_MEMBERS: return memberLevel.isInGroup();
+      case ONLY_ADMINS: return memberLevel == GroupDatabase.MemberLevel.ADMINISTRATOR;
       default:          throw new AssertionError();
     }
-  }
-
-  private enum MemberLevel {
-    NOT_A_MEMBER,
-    MEMBER,
-    ADMIN
   }
 }
