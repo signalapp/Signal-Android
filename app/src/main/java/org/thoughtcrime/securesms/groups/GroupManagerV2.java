@@ -258,7 +258,7 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult cancelInvites(@NonNull Collection<UuidCiphertext> uuidCipherTexts)
+    @NonNull GroupManager.GroupActionResult revokeInvites(@NonNull Collection<UuidCiphertext> uuidCipherTexts)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       return commitChangeWithConflictResolution(groupOperations.createRemoveInvitationChange(new HashSet<>(uuidCipherTexts)));
@@ -284,7 +284,7 @@ final class GroupManagerV2 {
 
       if (selfPendingMember.isPresent()) {
         try {
-          return cancelInvites(Collections.singleton(new UuidCiphertext(selfPendingMember.get().getUuidCipherText().toByteArray())));
+          return revokeInvites(Collections.singleton(new UuidCiphertext(selfPendingMember.get().getUuidCipherText().toByteArray())));
         } catch (InvalidInputException e) {
           throw new AssertionError(e);
         }

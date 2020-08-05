@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/cancel_invite"
-        android:title="@string/PendingMembersActivity_cancel_invite" />
+        android:id="@+id/revoke_invite"
+        android:title="@string/PendingMembersActivity_revoke_invite" />
 
 </menu>

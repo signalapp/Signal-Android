@@ -56,27 +56,27 @@ public class PendingMemberInvitesViewModel extends ViewModel {
     for (PendingMemberRepository.SinglePendingMemberInvitedByYou pendingMember : inviteeResult.getByMe()) {
       byMe.add(new GroupMemberEntry.PendingMember(pendingMember.getInvitee(),
                                                   pendingMember.getInviteeCipherText(),
-                                                  inviteeResult.isCanCancelInvites()));
+                                                  inviteeResult.isCanRevokeInvites()));
     }
 
     for (PendingMemberRepository.MultiplePendingMembersInvitedByAnother pendingMembers : inviteeResult.getByOthers()) {
       byOthers.add(new GroupMemberEntry.UnknownPendingMemberCount(pendingMembers.getInviter(),
                                                                   pendingMembers.getUuidCipherTexts(),
-                                                                  inviteeResult.isCanCancelInvites()));
+                                                                  inviteeResult.isCanRevokeInvites()));
     }
 
     setInvitees(byMe, byOthers);
   }
 
-  void cancelInviteFor(@NonNull GroupMemberEntry.PendingMember pendingMember) {
+  void revokeInviteFor(@NonNull GroupMemberEntry.PendingMember pendingMember) {
     UuidCiphertext inviteeCipherText = pendingMember.getInviteeCipherText();
 
-    InviteCancelConfirmationDialog.showOwnInviteCancelConfirmationDialog(context, pendingMember.getInvitee(), () ->
+    InviteRevokeConfirmationDialog.showOwnInviteRevokeConfirmationDialog(context, pendingMember.getInvitee(), () ->
       SimpleTask.run(
         () -> {
           pendingMember.setBusy(true);
           try {
-            return pendingMemberRepository.cancelInvites(Collections.singleton(inviteeCipherText));
+            return pendingMemberRepository.revokeInvites(Collections.singleton(inviteeCipherText));
           } finally {
             pendingMember.setBusy(false);
           }
@@ -100,13 +100,13 @@ public class PendingMemberInvitesViewModel extends ViewModel {
       ));
   }
 
-  void cancelInvitesFor(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
-    InviteCancelConfirmationDialog.showOthersInviteCancelConfirmationDialog(context, pendingMembers.getInviter(), pendingMembers.getInviteCount(),
+  void revokeInvitesFor(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
+    InviteRevokeConfirmationDialog.showOthersInviteRevokeConfirmationDialog(context, pendingMembers.getInviter(), pendingMembers.getInviteCount(),
       () -> SimpleTask.run(
         () -> {
           pendingMembers.setBusy(true);
           try {
-            return pendingMemberRepository.cancelInvites(pendingMembers.getCiphertexts());
+            return pendingMemberRepository.revokeInvites(pendingMembers.getCiphertexts());
           } finally {
             pendingMembers.setBusy(false);
           }
@@ -131,7 +131,7 @@ public class PendingMemberInvitesViewModel extends ViewModel {
   }
 
   private void toastErrorCanceling(int quantity) {
-    Toast.makeText(context, context.getResources().getQuantityText(R.plurals.PendingMembersActivity_error_canceling_invite, quantity), Toast.LENGTH_SHORT)
+    Toast.makeText(context, context.getResources().getQuantityText(R.plurals.PendingMembersActivity_error_revoking_invite, quantity), Toast.LENGTH_SHORT)
          .show();
   }
 

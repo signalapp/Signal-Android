@@ -8,40 +8,40 @@ import androidx.appcompat.app.AlertDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-final class InviteCancelConfirmationDialog {
+final class InviteRevokeConfirmationDialog {
 
-  private InviteCancelConfirmationDialog() {
+  private InviteRevokeConfirmationDialog() {
   }
 
   /**
-   * Confirms that you want to cancel an invite that you sent.
+   * Confirms that you want to revoke an invite that you sent.
    */
-  static AlertDialog showOwnInviteCancelConfirmationDialog(@NonNull Context context,
+  static AlertDialog showOwnInviteRevokeConfirmationDialog(@NonNull Context context,
                                                            @NonNull Recipient invitee,
-                                                           @NonNull Runnable onCancel)
+                                                           @NonNull Runnable onRevoke)
   {
     return new AlertDialog.Builder(context)
-                          .setMessage(context.getString(R.string.GroupManagement_cancel_own_single_invite,
+                          .setMessage(context.getString(R.string.InviteRevokeConfirmationDialog_revoke_own_single_invite,
                                                         invitee.getDisplayName(context)))
-                          .setPositiveButton(R.string.yes, (dialog, which) -> onCancel.run())
+                          .setPositiveButton(R.string.yes, (dialog, which) -> onRevoke.run())
                           .setNegativeButton(R.string.no, null)
                           .show();
   }
 
   /**
-   * Confirms that you want to cancel a number of invites that another member sent.
+   * Confirms that you want to revoke a number of invites that another member sent.
    */
-  static AlertDialog showOthersInviteCancelConfirmationDialog(@NonNull Context context,
+  static AlertDialog showOthersInviteRevokeConfirmationDialog(@NonNull Context context,
                                                               @NonNull Recipient inviter,
                                                               int numberOfInvitations,
-                                                              @NonNull Runnable onCancel)
+                                                              @NonNull Runnable onRevoke)
   {
     return new AlertDialog.Builder(context)
-                          .setMessage(context.getResources().getQuantityString(R.plurals.GroupManagement_cancel_others_invites,
+                          .setMessage(context.getResources().getQuantityString(R.plurals.InviteRevokeConfirmationDialog_revoke_others_invites,
                                                                                numberOfInvitations,
                                                                                inviter.getDisplayName(context),
                                                                                numberOfInvitations))
-                          .setPositiveButton(R.string.yes, (dialog, which) -> onCancel.run())
+                          .setPositiveButton(R.string.yes, (dialog, which) -> onRevoke.run())
                           .setNegativeButton(R.string.no, null)
                           .show();
   }

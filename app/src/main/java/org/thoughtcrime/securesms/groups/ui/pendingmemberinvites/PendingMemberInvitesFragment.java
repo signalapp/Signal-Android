@@ -50,12 +50,12 @@ public class PendingMemberInvitesFragment extends Fragment {
     youInvited.setAdminActionsListener(new AdminActionsListener() {
 
       @Override
-      public void onCancelInvite(@NonNull GroupMemberEntry.PendingMember pendingMember) {
-        viewModel.cancelInviteFor(pendingMember);
+      public void onRevokeInvite(@NonNull GroupMemberEntry.PendingMember pendingMember) {
+        viewModel.revokeInviteFor(pendingMember);
       }
 
       @Override
-      public void onCancelAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
+      public void onRevokeAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
         throw new AssertionError();
       }
     });
@@ -63,13 +63,13 @@ public class PendingMemberInvitesFragment extends Fragment {
     othersInvited.setAdminActionsListener(new AdminActionsListener() {
 
       @Override
-      public void onCancelInvite(@NonNull GroupMemberEntry.PendingMember pendingMember) {
+      public void onRevokeInvite(@NonNull GroupMemberEntry.PendingMember pendingMember) {
         throw new AssertionError();
       }
 
       @Override
-      public void onCancelAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
-        viewModel.cancelInvitesFor(pendingMembers);
+      public void onRevokeAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
+        viewModel.revokeInvitesFor(pendingMembers);
       }
     });
 

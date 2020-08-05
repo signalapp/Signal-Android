@@ -200,13 +200,13 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static void cancelInvites(@NonNull Context context,
+  public static void revokeInvites(@NonNull Context context,
                                    @NonNull GroupId.V2 groupId,
                                    @NonNull Collection<UuidCiphertext> uuidCipherTexts)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      editor.cancelInvites(uuidCipherTexts);
+      editor.revokeInvites(uuidCipherTexts);
     }
   }
 

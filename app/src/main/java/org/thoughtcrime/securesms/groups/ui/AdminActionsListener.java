@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 public interface AdminActionsListener {
 
-  void onCancelInvite(@NonNull GroupMemberEntry.PendingMember pendingMember);
+  void onRevokeInvite(@NonNull GroupMemberEntry.PendingMember pendingMember);
 
-  void onCancelAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers);
+  void onRevokeAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers);
 }

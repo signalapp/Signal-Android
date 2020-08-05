@@ -98,9 +98,9 @@ final class PendingMemberRepository {
   }
 
   @WorkerThread
-  boolean cancelInvites(@NonNull Collection<UuidCiphertext> uuidCipherTexts) {
+  boolean revokeInvites(@NonNull Collection<UuidCiphertext> uuidCipherTexts) {
     try {
-      GroupManager.cancelInvites(context, groupId, uuidCipherTexts);
+      GroupManager.revokeInvites(context, groupId, uuidCipherTexts);
       return true;
     } catch (GroupChangeException | IOException e) {
       Log.w(TAG, e);
@@ -111,15 +111,15 @@ final class PendingMemberRepository {
   public static final class InviteeResult {
     private final List<SinglePendingMemberInvitedByYou>        byMe;
     private final List<MultiplePendingMembersInvitedByAnother> byOthers;
-    private final boolean                                      canCancelInvites;
+    private final boolean                                      canRevokeInvites;
 
     private InviteeResult(List<SinglePendingMemberInvitedByYou> byMe,
                           List<MultiplePendingMembersInvitedByAnother> byOthers,
-                          boolean canCancelInvites)
+                          boolean canRevokeInvites)
     {
       this.byMe             = byMe;
       this.byOthers         = byOthers;
-      this.canCancelInvites = canCancelInvites;
+      this.canRevokeInvites = canRevokeInvites;
     }
 
     public List<SinglePendingMemberInvitedByYou> getByMe() {
@@ -130,8 +130,8 @@ final class PendingMemberRepository {
       return byOthers;
     }
 
-    public boolean isCanCancelInvites() {
-      return canCancelInvites;
+    public boolean isCanRevokeInvites() {
+      return canRevokeInvites;
     }
   }
 
