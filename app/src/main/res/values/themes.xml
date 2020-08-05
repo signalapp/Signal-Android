@@ -198,6 +198,9 @@
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
 
         <item name="kbs_splash_image">@drawable/ic_kbs_splash_light_svg</item>
+        <item name="kbs_confirm_lottie_loading">@raw/lottie_kbs_loading_light</item>
+        <item name="kbs_confirm_lottie_success">@raw/lottie_kbs_success_light</item>
+        <item name="kbs_confirm_lottie_failure">@raw/lottie_kbs_fail_light</item>
 
         <item name="attachment_type_selector_background">@color/white</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_light</item>
@@ -510,6 +513,9 @@
         <item name="tinted_circle_background">@drawable/tinted_circle_dark</item>
 
         <item name="kbs_splash_image">@drawable/ic_kbs_splash_dark_svg</item>
+        <item name="kbs_confirm_lottie_loading">@raw/lottie_kbs_loading_dark</item>
+        <item name="kbs_confirm_lottie_success">@raw/lottie_kbs_success_dark</item>
+        <item name="kbs_confirm_lottie_failure">@raw/lottie_kbs_fail_dark</item>
 
         <item name="attachment_type_selector_background">@color/core_grey_95</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>

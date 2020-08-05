@@ -41,6 +41,9 @@
     <attr name="avatar_selection_remove_photo" format="reference" />
 
     <attr name="kbs_splash_image" format="reference" />
+    <attr name="kbs_confirm_lottie_loading" format="reference" />
+    <attr name="kbs_confirm_lottie_success" format="reference" />
+    <attr name="kbs_confirm_lottie_failure" format="reference" />
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>

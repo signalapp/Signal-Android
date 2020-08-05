@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
 
@@ -103,13 +104,13 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
         lottieProgress.cancelAnimation();
         break;
       case LOADING:
-        lottieProgress.setAnimation(R.raw.lottie_kbs_loading);
+        lottieProgress.setAnimation(ThemeUtil.getThemedResourceId(requireContext(), R.attr.kbs_confirm_lottie_loading));
         lottieProgress.setRepeatMode(LottieDrawable.RESTART);
         lottieProgress.setRepeatCount(LottieDrawable.INFINITE);
         lottieProgress.playAnimation();
         break;
       case SUCCESS:
-        startEndAnimationOnNextProgressRepetition(R.raw.lottie_kbs_success, new AnimationCompleteListener() {
+        startEndAnimationOnNextProgressRepetition(ThemeUtil.getThemedResourceId(requireContext(), R.attr.kbs_confirm_lottie_success), new AnimationCompleteListener() {
           @Override
           public void onAnimationEnd(Animator animation) {
             requireActivity().setResult(Activity.RESULT_OK);
@@ -120,7 +121,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
         });
         break;
       case FAILURE:
-        startEndAnimationOnNextProgressRepetition(R.raw.lottie_kbs_failure, new AnimationCompleteListener() {
+        startEndAnimationOnNextProgressRepetition(ThemeUtil.getThemedResourceId(requireContext(), R.attr.kbs_confirm_lottie_failure), new AnimationCompleteListener() {
           @Override
           public void onAnimationEnd(Animator animation) {
             RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
