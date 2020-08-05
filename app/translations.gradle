@@ -79,18 +79,39 @@ task excludeNonTranslatables {
                 .toSet()
         def all = english.collect { it['@name'] }.toSet()
         def translatable = all - nonTranslatable
+        def inMultiline = false
+        def endBlockName = ""
 
         allStringsResourceFiles { f ->
             if (f != englishFile) {
                 def newLines = f.readLines()
                         .collect { line ->
-                            def matcher = line =~ /name="([^"]*)".*<\//
-                            if (matcher.find()) {
-                                def name = matcher.group(1)
-                                if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {
-                                    return "  <!-- Removed by excludeNonTranslatables ${line.trim()} -->"
+                            if (!inMultiline) {
+                                def singleLineMatcher = line =~ /name="([^"]*)".*<\//
+                                if (singleLineMatcher.find()) {
+                                    def name = singleLineMatcher.group(1)
+                                    if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {
+                                        return "  <!-- Removed by excludeNonTranslatables ${line.trim()} -->"
+                                    }
+                                } else {
+                                    def multilineStartMatcher = line =~ /<(.*) .?name="([^"]*)".*/
+                                    if (multilineStartMatcher.find()) {
+                                        endBlockName = multilineStartMatcher.group(1)
+                                        def name = multilineStartMatcher.group(2)
+                                        if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {
+                                            inMultiline = true;
+                                            return "  <!-- Removed by excludeNonTranslatables ${line.trim()}"
+                                        }
+                                    }
+                                }
+                            } else {
+                                def multilineEndMatcher = line =~ /<\/${endBlockName}/
+                                if (multilineEndMatcher.find()) {
+                                    inMultiline = false
+                                    return "${line} -->"
                                 }
                             }
+
                             return line
                         }
 

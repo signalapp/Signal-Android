@@ -11,11 +11,13 @@
     <!-- L10N warnings -->
     <issue id="MissingTranslation" severity="ignore" />
     <issue id="MissingQuantity" severity="warning" />
-    <issue id="MissingDefaultResource" severity="warning" />
+    <issue id="MissingDefaultResource" severity="error">
+        <ignore path="*/res/values-*/strings.xml" /> <!-- Ignore for non-English, excludeNonTranslatables task will remove these -->
+    </issue>
     <issue id="ExtraTranslation" severity="warning" />
     <issue id="ImpliedQuantity" severity="warning" />
     <issue id="TypographyDashes" severity="error" >
-        <ignore path="*/res/values-*" /> <!-- Ignore for non-English -->
+        <ignore path="*/res/values-*/strings.xml" /> <!-- Ignore for non-English -->
     </issue>
 
     <issue id="CanvasSize" severity="error" />
