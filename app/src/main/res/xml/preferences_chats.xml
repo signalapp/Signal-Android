@@ -84,4 +84,15 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/preferences_chats__google_map_type">
+        <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
+            android:key="pref_google_map_type"
+            android:defaultValue="normal"
+            android:title="@string/preferences__map_type"
+            android:entries="@array/pref_map_type_entries"
+            android:entryValues="@array/pref_map_type_values" />
+    </PreferenceCategory>
+
 </PreferenceScreen>
