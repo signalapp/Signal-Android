@@ -41,9 +41,6 @@ class DisplayNameActivity : BaseActionBarActivity() {
         if (displayName.isEmpty()) {
             return Toast.makeText(this, R.string.activity_display_name_display_name_missing_error, Toast.LENGTH_SHORT).show()
         }
-        if (!displayName.matches(Regex("[a-zA-Z0-9_]+"))) {
-            return Toast.makeText(this, R.string.activity_display_name_display_name_invalid_error, Toast.LENGTH_SHORT).show()
-        }
         if (displayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
             return Toast.makeText(this, R.string.activity_display_name_display_name_too_long_error, Toast.LENGTH_SHORT).show()
         }
