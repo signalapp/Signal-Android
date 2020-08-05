@@ -7,9 +7,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_private_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
@@ -24,6 +27,7 @@ import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelega
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
+
 
 class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = CreatePrivateChatActivityAdapter(this)
@@ -111,7 +115,18 @@ class EnterPublicKeyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        publicKeyTextView.imeOptions = publicKeyTextView.imeOptions or 16777216 // Always use incognito keyboard
+        publicKeyEditText.imeOptions = EditorInfo.IME_ACTION_DONE or 16777216 // Always use incognito keyboard
+        publicKeyEditText.setRawInputType(InputType.TYPE_CLASS_TEXT)
+        publicKeyEditText.setOnEditorActionListener { v, actionID, _ ->
+            if (actionID == EditorInfo.IME_ACTION_DONE) {
+                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+                createPrivateChatIfPossible()
+                true
+            } else {
+                false
+            }
+        }
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }

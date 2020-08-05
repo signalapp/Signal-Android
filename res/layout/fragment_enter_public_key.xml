@@ -18,8 +18,10 @@
         android:layout_marginRight="@dimen/large_spacing"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
-        android:maxLines="2"
         android:gravity="center_vertical"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:imeOptions="actionDone"
         android:hint="@string/fragment_enter_public_key_edit_text_hint" />
 
     <TextView
