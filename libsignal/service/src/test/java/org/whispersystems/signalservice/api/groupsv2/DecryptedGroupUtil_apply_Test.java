@@ -107,19 +107,25 @@ public final class DecryptedGroupUtil_apply_Test {
                  newGroup);
   }
 
-  @Test(expected = NotAbleToApplyGroupV2ChangeException.class)
+  @Test
   public void apply_remove_members_not_found() throws NotAbleToApplyGroupV2ChangeException {
     DecryptedMember member1 = member(UUID.randomUUID());
     DecryptedMember member2 = member(UUID.randomUUID());
 
-    DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                           .setRevision(13)
-                                           .addMembers(member1)
-                                           .build(),
-                             DecryptedGroupChange.newBuilder()
-                                                 .setRevision(14)
-                                                 .addDeleteMembers(member2.getUuid())
-                                                 .build());
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(13)
+                                                                     .addMembers(member1)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(14)
+                                                                           .addDeleteMembers(member2.getUuid())
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .addMembers(member1)
+                               .setRevision(14)
+                               .build(),
+                 newGroup);
   }
 
   @Test
@@ -280,6 +286,47 @@ public final class DecryptedGroupUtil_apply_Test {
   }
 
   @Test
+  public void apply_new_pending_member_already_pending() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedMember        member1 = member(UUID.randomUUID());
+    DecryptedPendingMember pending = pendingMember(UUID.randomUUID());
+
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(10)
+                                                                     .addMembers(member1)
+                                                                     .addPendingMembers(pending)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(11)
+                                                                           .addNewPendingMembers(pending)
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(11)
+                               .addMembers(member1)
+                               .addPendingMembers(pending)
+                               .build(),
+                 newGroup);
+  }
+
+  @Test(expected = NotAbleToApplyGroupV2ChangeException.class)
+  public void apply_new_pending_member_already_in_group() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedMember        member1  = member(UUID.randomUUID());
+    UUID                   uuid2    = UUID.randomUUID();
+    DecryptedMember        member2  = member(uuid2);
+    DecryptedPendingMember pending2 = pendingMember(uuid2);
+
+    DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                           .setRevision(10)
+                                           .addMembers(member1)
+                                           .addMembers(member2)
+                                           .build(),
+                             DecryptedGroupChange.newBuilder()
+                                                 .setRevision(11)
+                                                 .addNewPendingMembers(pending2)
+                                                 .build());
+  }
+
+  @Test
   public void remove_pending_member() throws NotAbleToApplyGroupV2ChangeException {
     DecryptedMember        member1     = member(UUID.randomUUID());
     UUID                   pendingUuid = UUID.randomUUID();
@@ -304,21 +351,27 @@ public final class DecryptedGroupUtil_apply_Test {
                  newGroup);
   }
 
-  @Test(expected = NotAbleToApplyGroupV2ChangeException.class)
+  @Test
   public void cannot_remove_pending_member_if_not_in_group() throws NotAbleToApplyGroupV2ChangeException {
     DecryptedMember member1     = member(UUID.randomUUID());
     UUID            pendingUuid = UUID.randomUUID();
 
-    DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
-                                           .setRevision(10)
-                                           .addMembers(member1)
-                                           .build(),
-                             DecryptedGroupChange.newBuilder()
-                                                 .setRevision(11)
-                                                 .addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                                                       .setUuidCipherText(ProtoTestUtils.encrypt(pendingUuid))
-                                                                                                       .build())
-                                                 .build());
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(10)
+                                                                     .addMembers(member1)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(11)
+                                                                           .addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
+                                                                                                                                 .setUuidCipherText(ProtoTestUtils.encrypt(pendingUuid))
+                                                                                                                                 .build())
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(11)
+                               .addMembers(member1)
+                               .build(),
+                  newGroup);
   }
 
   @Test
