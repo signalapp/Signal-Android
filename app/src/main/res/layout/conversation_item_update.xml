@@ -52,9 +52,7 @@
             style="@style/Signal.Text.Preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoLink="all"
             android:gravity="center"
-            android:linksClickable="true"
             android:textColor="?attr/conversation_item_update_text_color"
             tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
 
