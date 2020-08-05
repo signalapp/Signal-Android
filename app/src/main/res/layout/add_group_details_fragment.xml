@@ -54,8 +54,26 @@
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/white"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/member_list_header"
+        app:layout_constraintBottom_toTopOf="@id/gv2_warning"
         app:layout_constraintTop_toBottomOf="@id/group_avatar"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+        android:id="@+id/gv2_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="?secondary_background"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="?title_text_color_secondary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/member_list_header"
+        app:layout_constraintTop_toBottomOf="@id/mms_warning"
+        tools:text="8 members do not support New Groups, so this group will be a Legacy Group. Learn more"
         tools:visibility="visible" />
 
     <TextView
@@ -68,7 +86,7 @@
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
         android:textColor="?attr/title_text_color_secondary"
-        app:layout_constraintTop_toBottomOf="@id/mms_warning"
+        app:layout_constraintTop_toBottomOf="@id/gv2_warning"
         app:layout_goneMarginTop="30dp" />
 
     <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
