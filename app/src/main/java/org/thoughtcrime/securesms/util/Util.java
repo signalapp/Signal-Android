@@ -176,6 +176,10 @@ public class Util {
     return value != null ? value : "";
   }
 
+  public static @NonNull CharSequence emptyIfNull(@Nullable CharSequence value) {
+    return value != null ? value : "";
+  }
+
   public static <E> List<List<E>> chunk(@NonNull List<E> list, int chunkSize) {
     List<List<E>> chunks = new ArrayList<>(list.size() / chunkSize);
 

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Objects;
 
@@ -24,6 +25,10 @@ public final class MentionViewState implements MappingModel<MentionViewState> {
 
   @NonNull Recipient getRecipient() {
     return recipient;
+  }
+
+  @NonNull String getUsername() {
+    return Util.emptyIfNull(recipient.getDisplayUsername());
   }
 
   @Override

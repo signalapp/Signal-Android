@@ -43,15 +43,18 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadBodyUtil;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -59,6 +62,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -243,18 +247,14 @@ public class DefaultMessageNotifier implements MessageNotifier {
   {
     boolean isVisible = visibleThread == threadId;
 
-    ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
-    Recipient      recipients = DatabaseFactory.getThreadDatabase(context)
-                                               .getRecipientForThreadId(threadId);
+    ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
 
     if (isVisible) {
       List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
       MarkReadReceiver.process(context, messageIds);
     }
 
-    if (!TextSecurePreferences.isNotificationsEnabled(context) ||
-        (recipients != null && recipients.isMuted()))
-    {
+    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
     }
 
@@ -499,7 +499,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
       Recipient    recipient             = record.getIndividualRecipient().resolve();
       Recipient    conversationRecipient = record.getRecipient().resolve();
       long         threadId              = record.getThreadId();
-      CharSequence body                  = record.getDisplayBody(context);
+      CharSequence body                  = MentionUtil.updateBodyWithDisplayNames(context, record);
       Recipient    threadRecipients      = null;
       SlideDeck    slideDeck             = null;
       long         timestamp             = record.getTimestamp();
@@ -527,7 +527,17 @@ public class DefaultMessageNotifier implements MessageNotifier {
           slideDeck = ((MmsMessageRecord) record).getSlideDeck();
         }
 
-        if (threadRecipients == null || !threadRecipients.isMuted()) {
+        boolean includeMessage = true;
+        if (threadRecipients != null && threadRecipients.isMuted()) {
+          RecipientDatabase.MentionSetting mentionSetting = threadRecipients.getMentionSetting();
+
+          boolean overrideMuted = (mentionSetting == RecipientDatabase.MentionSetting.GLOBAL && SignalStore.notificationSettings().isMentionNotifiesMeEnabled()) ||
+                                  mentionSetting == RecipientDatabase.MentionSetting.ALWAYS_NOTIFY;
+
+          includeMessage = FeatureFlags.mentions() && overrideMuted && record.hasSelfMention();
+        }
+
+        if (threadRecipients == null || includeMessage) {
           notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, receivedTimestamp, slideDeck, false));
         }
       }

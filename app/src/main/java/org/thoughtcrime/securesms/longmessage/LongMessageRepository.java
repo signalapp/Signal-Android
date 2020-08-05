@@ -6,6 +6,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.thoughtcrime.securesms.conversation.ConversationMessage;
+import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -38,7 +40,7 @@ class LongMessageRepository {
       if (isMms) {
         callback.onComplete(getMmsLongMessage(context, mmsDatabase, messageId));
       } else {
-        callback.onComplete(getSmsLongMessage(smsDatabase, messageId));
+        callback.onComplete(getSmsLongMessage(context, smsDatabase, messageId));
       }
     });
   }
@@ -51,9 +53,9 @@ class LongMessageRepository {
       TextSlide textSlide = record.get().getSlideDeck().getTextSlide();
 
       if (textSlide != null && textSlide.getUri() != null) {
-        return Optional.of(new LongMessage(record.get(), readFullBody(context, textSlide.getUri())));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), readFullBody(context, textSlide.getUri())));
       } else {
-        return Optional.of(new LongMessage(record.get(), ""));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
       }
     } else {
       return Optional.absent();
@@ -61,11 +63,11 @@ class LongMessageRepository {
   }
 
   @WorkerThread
-  private Optional<LongMessage> getSmsLongMessage(@NonNull SmsDatabase smsDatabase, long messageId) {
+  private Optional<LongMessage> getSmsLongMessage(@NonNull Context context, @NonNull SmsDatabase smsDatabase, long messageId) {
     Optional<MessageRecord> record = getSmsMessage(smsDatabase, messageId);
 
     if (record.isPresent()) {
-      return Optional.of(new LongMessage(record.get(), ""));
+      return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
     } else {
       return Optional.absent();
     }

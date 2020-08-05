@@ -149,7 +149,7 @@ final class GroupManagerV1 {
       avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, false, null, null, null, null, null);
     }
 
-    OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList());
+    OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
     long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
 
     return new GroupActionResult(groupRecipient, threadId, newMemberCount, Collections.emptyList());
@@ -240,6 +240,7 @@ final class GroupManagerV1 {
                                                       0,
                                                       false,
                                                       null,
+                                                      Collections.emptyList(),
                                                       Collections.emptyList(),
                                                       Collections.emptyList()));
   }

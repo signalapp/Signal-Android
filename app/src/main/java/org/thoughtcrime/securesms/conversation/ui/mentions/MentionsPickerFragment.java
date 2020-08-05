@@ -27,13 +27,15 @@ public class MentionsPickerFragment extends LoggingFragment {
   private RecyclerView              list;
   private BottomSheetBehavior<View> behavior;
   private MentionsPickerViewModel   viewModel;
+  private int                       defaultPeekHeight;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.mentions_picker_fragment, container, false);
 
-    list     = view.findViewById(R.id.mentions_picker_list);
-    behavior = BottomSheetBehavior.from(view.findViewById(R.id.mentions_picker_bottom_sheet));
+    list              = view.findViewById(R.id.mentions_picker_list);
+    behavior          = BottomSheetBehavior.from(view.findViewById(R.id.mentions_picker_bottom_sheet));
+    defaultPeekHeight = view.getContext().getResources().getDimensionPixelSize(R.dimen.mentions_picker_peek_height);
 
     return view;
   }
@@ -72,13 +74,16 @@ public class MentionsPickerFragment extends LoggingFragment {
     if (mappingModels.isEmpty()) {
       updateBottomSheetBehavior(0);
     }
+    list.scrollToPosition(0);
   }
 
   private void updateBottomSheetBehavior(int count) {
     if (count > 0) {
       if (behavior.getPeekHeight() == 0) {
-        behavior.setPeekHeight(ViewUtil.dpToPx(240), true);
+        behavior.setPeekHeight(defaultPeekHeight, true);
         behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+      } else {
+        list.scrollToPosition(0);
       }
     } else {
       behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);

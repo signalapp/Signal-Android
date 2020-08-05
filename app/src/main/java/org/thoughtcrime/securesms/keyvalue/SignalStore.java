@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.OnLifecycleEvent;
 import androidx.preference.PreferenceDataStore;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -25,6 +24,7 @@ public final class SignalStore {
   private final MiscellaneousValues  misc;
   private final InternalValues       internalValues;
   private final EmojiValues          emojiValues;
+  private final NotificationSettings notificationSettings;
 
   private SignalStore() {
     this.store                = ApplicationDependencies.getKeyValueStore();
@@ -38,6 +38,7 @@ public final class SignalStore {
     this.misc                 = new MiscellaneousValues(store);
     this.internalValues       = new InternalValues(store);
     this.emojiValues          = new EmojiValues(store);
+    this.notificationSettings = new NotificationSettings(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -50,6 +51,7 @@ public final class SignalStore {
     tooltips().onFirstEverAppLaunch();
     misc().onFirstEverAppLaunch();
     internalValues().onFirstEverAppLaunch();
+    notificationSettings().onFirstEverAppLaunch();
   }
 
   public static @NonNull KbsValues kbsValues() {
@@ -90,6 +92,10 @@ public final class SignalStore {
 
   public static @NonNull EmojiValues emojiValues() {
     return INSTANCE.emojiValues;
+  }
+
+  public static @NonNull NotificationSettings notificationSettings() {
+    return INSTANCE.notificationSettings;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -239,6 +240,7 @@ public abstract class PushSendJob extends SendJob {
     long                                                  quoteId             = message.getOutgoingQuote().getId();
     String                                                quoteBody           = message.getOutgoingQuote().getText();
     RecipientId                                           quoteAuthor         = message.getOutgoingQuote().getAuthor();
+    List<SignalServiceDataMessage.Mention>                quoteMentions       = getMentionsFor(message.getOutgoingQuote().getMentions());
     List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments    = new LinkedList<>();
     List<Attachment>                                      filteredAttachments = Stream.of(message.getOutgoingQuote().getAttachments())
                                                                                       .filterNot(a -> MediaUtil.isViewOnceType(a.getContentType()))
@@ -284,7 +286,7 @@ public abstract class PushSendJob extends SendJob {
 
     Recipient            quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
     SignalServiceAddress quoteAddress         = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
-    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments));
+    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {
@@ -332,6 +334,12 @@ public abstract class PushSendJob extends SendJob {
       SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
       return new Preview(lp.getUrl(), lp.getTitle(), Optional.fromNullable(attachment));
     }).toList();
+  }
+
+  List<SignalServiceDataMessage.Mention> getMentionsFor(@NonNull List<Mention> mentions) {
+    return Stream.of(mentions)
+                 .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireUuid(), m.getStart(), m.getLength()))
+                 .toList();
   }
 
   protected void rotateSenderCertificateIfNecessary() throws IOException {

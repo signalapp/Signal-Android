@@ -66,7 +66,7 @@ public final class ThreadBodyUtil {
       return context.getString(R.string.ThreadRecord_media_message);
     } else {
       Log.w(TAG, "Got a media message with a body of a type we were not able to process. [contains media slide]:" + record.containsMediaSlide());
-      return record.getBody();
+      return getBody(context, record);
     }
   }
   
@@ -75,10 +75,10 @@ public final class ThreadBodyUtil {
   }
 
   private static @NonNull String getBodyOrDefault(@NonNull Context context, @NonNull MessageRecord record, @StringRes int defaultStringRes) {
-    if (TextUtils.isEmpty(record.getBody())) {
-      return context.getString(defaultStringRes);
-    } else {
-      return record.getBody();
-    }
+    return TextUtils.isEmpty(record.getBody()) ? context.getString(defaultStringRes) : getBody(context, record);
+  }
+
+  private static @NonNull String getBody(@NonNull Context context, @NonNull MessageRecord record) {
+    return MentionUtil.updateBodyWithDisplayNames(context, record, record.getBody()).toString();
   }
 }

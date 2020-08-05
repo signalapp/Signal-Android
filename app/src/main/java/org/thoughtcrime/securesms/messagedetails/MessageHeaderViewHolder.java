@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
+import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -63,25 +64,30 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
     receivedStub    = itemView.findViewById(R.id.message_details_header_message_view_received_multimedia);
   }
 
-  void bind(MessageRecord messageRecord, boolean running) {
-    bindMessageView(messageRecord);
+  void bind(ConversationMessage conversationMessage, boolean running) {
+    MessageRecord messageRecord = conversationMessage.getMessageRecord();
+    bindMessageView(conversationMessage);
     bindErrorState(messageRecord);
     bindSentReceivedDates(messageRecord);
     bindExpirationTime(messageRecord, running);
     bindTransport(messageRecord);
   }
 
-  void partialBind(MessageRecord messageRecord, boolean running) {
-    bindExpirationTime(messageRecord, running);
+  void partialBind(ConversationMessage conversationMessage, boolean running) {
+    bindExpirationTime(conversationMessage.getMessageRecord(), running);
   }
 
-  private void bindMessageView(MessageRecord messageRecord) {
+  private void bindMessageView(ConversationMessage conversationMessage) {
     if (conversationItem == null) {
-      if      (messageRecord.isGroupAction()) conversationItem = (ConversationItem) updateStub.inflate();
-      else if (messageRecord.isOutgoing())    conversationItem = (ConversationItem) sentStub.inflate();
-      else                                    conversationItem = (ConversationItem) receivedStub.inflate();
+      if (conversationMessage.getMessageRecord().isGroupAction()) {
+        conversationItem = (ConversationItem) updateStub.inflate();
+      } else if (conversationMessage.getMessageRecord().isOutgoing()) {
+        conversationItem = (ConversationItem) sentStub.inflate();
+      } else {
+        conversationItem = (ConversationItem) receivedStub.inflate();
+      }
     }
-    conversationItem.bind(new ConversationMessage(messageRecord), Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), messageRecord.getRecipient(), null, false);
+    conversationItem.bind(conversationMessage, Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), conversationMessage.getMessageRecord().getRecipient(), null, false);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

@@ -180,4 +180,21 @@ public final class StringUtil {
               .appendCodePoint(Bidi.PDI)
               .toString();
   }
+
+  /**
+   * Trims a {@link CharSequence} of starting and trailing whitespace. Behavior matches
+   * {@link String#trim()} to preserve expectations around results.
+   */
+  public static CharSequence trimSequence(CharSequence text) {
+    int length     = text.length();
+    int startIndex = 0;
+
+    while ((startIndex < length) && (text.charAt(startIndex) <= ' ')) {
+      startIndex++;
+    }
+    while ((startIndex < length) && (text.charAt(length - 1) <= ' ')) {
+      length--;
+    }
+    return (startIndex > 0 || length < text.length()) ? text.subSequence(startIndex, length) : text;
+  }
 }

@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.conversation.ui.mentions;
 
-import android.text.TextUtils;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerRepository.MentionQuery;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
@@ -20,7 +19,6 @@ import org.thoughtcrime.securesms.util.MappingModel;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
-import java.util.Collections;
 import java.util.List;
 
 public class MentionsPickerViewModel extends ViewModel {
@@ -28,17 +26,18 @@ public class MentionsPickerViewModel extends ViewModel {
   private final SingleLiveEvent<Recipient>      selectedRecipient;
   private final LiveData<List<MappingModel<?>>> mentionList;
   private final MutableLiveData<LiveGroup>      group;
-  private final MutableLiveData<CharSequence>   liveQuery;
+  private final MutableLiveData<String>         liveQuery;
 
-  MentionsPickerViewModel() {
+  MentionsPickerViewModel(@NonNull MentionsPickerRepository mentionsPickerRepository) {
     group             = new MutableLiveData<>();
     liveQuery         = new MutableLiveData<>();
     selectedRecipient = new SingleLiveEvent<>();
 
-    // TODO [cody] [mentions] simple query support implement for building UI/UX, to be replaced with better search before launch
-    LiveData<List<FullMember>> members = Transformations.distinctUntilChanged(Transformations.switchMap(group, LiveGroup::getFullMembers));
+    LiveData<List<FullMember>> fullMembers  = Transformations.distinctUntilChanged(Transformations.switchMap(group, LiveGroup::getFullMembers));
+    LiveData<String>           query        = Transformations.distinctUntilChanged(liveQuery);
+    LiveData<MentionQuery>     mentionQuery = LiveDataUtil.combineLatest(query, fullMembers, MentionQuery::new);
 
-    mentionList = LiveDataUtil.combineLatest(Transformations.distinctUntilChanged(liveQuery), members, this::filterMembers);
+    mentionList = LiveDataUtil.mapAsync(mentionQuery, q -> Stream.of(mentionsPickerRepository.search(q)).<MappingModel<?>>map(MentionViewState::new).toList());
   }
 
   @NonNull LiveData<List<MappingModel<?>>> getMentionList() {
@@ -54,7 +53,7 @@ public class MentionsPickerViewModel extends ViewModel {
   }
 
   public void onQueryChange(@NonNull CharSequence query) {
-    liveQuery.setValue(query);
+    liveQuery.setValue(query.toString());
   }
 
   public void onRecipientChange(@NonNull Recipient recipient) {
@@ -65,22 +64,11 @@ public class MentionsPickerViewModel extends ViewModel {
     }
   }
 
-  private @NonNull List<MappingModel<?>> filterMembers(@NonNull CharSequence query, @NonNull List<FullMember> members) {
-    if (TextUtils.isEmpty(query)) {
-      return Collections.emptyList();
-    }
-
-    return Stream.of(members)
-                 .filter(m -> m.getMember().getDisplayName(ApplicationDependencies.getApplication()).toLowerCase().replaceAll("\\s", "").startsWith(query.toString()))
-                 .<MappingModel<?>>map(m -> new MentionViewState(m.getMember()))
-                 .toList();
-  }
-
   public static final class Factory implements ViewModelProvider.Factory {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new MentionsPickerViewModel());
+      return modelClass.cast(new MentionsPickerViewModel(new MentionsPickerRepository(ApplicationDependencies.getApplication())));
     }
   }
 }

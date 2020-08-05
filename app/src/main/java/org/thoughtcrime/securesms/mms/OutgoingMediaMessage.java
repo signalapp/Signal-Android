@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -30,6 +31,7 @@ public class OutgoingMediaMessage {
   private   final List<IdentityKeyMismatch> identityKeyMismatches = new LinkedList<>();
   private   final List<Contact>             contacts              = new LinkedList<>();
   private   final List<LinkPreview>         linkPreviews          = new LinkedList<>();
+  private   final List<Mention>             mentions              = new LinkedList<>();
 
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
@@ -38,6 +40,7 @@ public class OutgoingMediaMessage {
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
+                              @NonNull List<Mention> mentions,
                               @NonNull List<NetworkFailure> networkFailures,
                               @NonNull List<IdentityKeyMismatch> identityKeyMismatches)
   {
@@ -53,6 +56,7 @@ public class OutgoingMediaMessage {
 
     this.contacts.addAll(contacts);
     this.linkPreviews.addAll(linkPreviews);
+    this.mentions.addAll(mentions);
     this.networkFailures.addAll(networkFailures);
     this.identityKeyMismatches.addAll(identityKeyMismatches);
   }
@@ -62,14 +66,15 @@ public class OutgoingMediaMessage {
                               boolean viewOnce, int distributionType,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
-                              @NonNull List<LinkPreview> linkPreviews)
+                              @NonNull List<LinkPreview> linkPreviews,
+                              @NonNull List<Mention> mentions)
   {
     this(recipient,
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
          expiresIn, viewOnce, distributionType, outgoingQuote,
-         contacts, linkPreviews, new LinkedList<>(), new LinkedList<>());
+         contacts, linkPreviews, mentions, new LinkedList<>(), new LinkedList<>());
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
@@ -87,6 +92,7 @@ public class OutgoingMediaMessage {
     this.networkFailures.addAll(that.networkFailures);
     this.contacts.addAll(that.contacts);
     this.linkPreviews.addAll(that.linkPreviews);
+    this.mentions.addAll(that.mentions);
   }
 
   public Recipient getRecipient() {
@@ -143,6 +149,10 @@ public class OutgoingMediaMessage {
 
   public @NonNull List<LinkPreview> getLinkPreviews() {
     return linkPreviews;
+  }
+
+  public @NonNull List<Mention> getMentions() {
+    return mentions;
   }
 
   public @NonNull List<NetworkFailure> getNetworkFailures() {

@@ -55,3 +55,16 @@ message ProfileChangeDetails {
 
     StringChange profileNameChange = 1;
 }
+
+message BodyRangeList {
+    message BodyRange {
+        int32 start  = 1;
+        int32 length = 2;
+
+        oneof associatedValue {
+            string mentionUuid = 3;
+        }
+    }
+
+    repeated BodyRange ranges = 1;
+}

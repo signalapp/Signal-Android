@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -26,10 +27,11 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
                                     boolean viewOnce,
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
-                                    @NonNull List<LinkPreview> previews)
+                                    @NonNull List<LinkPreview> previews,
+                                    @NonNull List<Mention> mentions)
   {
     super(recipient, groupContext.getEncodedGroupContext(), avatar, sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, viewOnce, quote, contacts, previews);
+          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, viewOnce, quote, contacts, previews, mentions);
 
     this.messageGroupContext = groupContext;
   }
@@ -42,9 +44,10 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
                                     boolean viewOnce,
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
-                                    @NonNull List<LinkPreview> previews)
+                                    @NonNull List<LinkPreview> previews,
+                                    @NonNull List<Mention> mentions)
   {
-    this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews);
+    this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews, mentions);
   }
 
   public OutgoingGroupUpdateMessage(@NonNull Recipient recipient,
@@ -55,9 +58,10 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
                                     boolean viewOnce,
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
-                                    @NonNull List<LinkPreview> previews)
+                                    @NonNull List<LinkPreview> previews,
+                                    @NonNull List<Mention> mentions)
   {
-    this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews);
+    this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews, mentions);
   }
 
   @Override

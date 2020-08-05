@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -21,9 +22,10 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                     boolean viewOnce,
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
-                                    @NonNull List<LinkPreview> previews)
+                                    @NonNull List<LinkPreview> previews,
+                                    @NonNull List<Mention> mentions)
   {
-    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, quote, contacts, previews, Collections.emptyList(), Collections.emptyList());
+    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, quote, contacts, previews, mentions, Collections.emptyList(), Collections.emptyList());
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {

@@ -22,6 +22,8 @@ import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.MentionUtil;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
@@ -31,6 +33,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.addmembers.AddMembersActivity;
+import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupMentionSettingDialog;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -75,6 +78,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final LiveData<Boolean>                           canLeaveGroup;
   private final LiveData<Boolean>                           canBlockGroup;
   private final LiveData<Boolean>                           showLegacyIndicator;
+  private final LiveData<String>                            mentionSetting;
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -114,6 +118,8 @@ public class ManageGroupViewModel extends ViewModel {
                                                          recipient -> recipient.getNotificationChannel() != null || !NotificationChannels.supported());
     this.canLeaveGroup             = liveGroup.isActive();
     this.canBlockGroup             = Transformations.map(this.groupRecipient, recipient -> !recipient.isBlocked());
+    this.mentionSetting            = Transformations.distinctUntilChanged(Transformations.map(this.groupRecipient,
+                                                                                              recipient -> MentionUtil.getMentionSettingDisplayValue(context, recipient.getMentionSetting())));
   }
 
   @WorkerThread
@@ -207,6 +213,10 @@ public class ManageGroupViewModel extends ViewModel {
     return canLeaveGroup;
   }
 
+  LiveData<String> getMentionSetting() {
+    return mentionSetting;
+  }
+
   void handleExpirationSelection() {
     manageGroupRepository.getRecipient(groupRecipient ->
                                          ExpirationDialog.show(context,
@@ -248,6 +258,10 @@ public class ManageGroupViewModel extends ViewModel {
 
   void revealCollapsedMembers() {
     memberListCollapseState.setValue(CollapseState.OPEN);
+  }
+
+  void handleMentionNotificationSelection() {
+    manageGroupRepository.getRecipient(r -> GroupMentionSettingDialog.show(context, r.getMentionSetting(), mentionSetting -> manageGroupRepository.setMentionSetting(mentionSetting)));
   }
 
   private void onBlockAndLeaveConfirmed() {

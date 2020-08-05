@@ -12,7 +12,7 @@ public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage 
   public OutgoingExpirationUpdateMessage(Recipient recipient, long sentTimeMillis, long expiresIn) {
     super(recipient, "", new LinkedList<Attachment>(), sentTimeMillis,
           ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, false, null, Collections.emptyList(),
-          Collections.emptyList());
+          Collections.emptyList(), Collections.emptyList());
   }
 
   @Override

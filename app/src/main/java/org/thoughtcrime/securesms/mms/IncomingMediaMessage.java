@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -35,6 +36,7 @@ public class IncomingMediaMessage {
   private final List<Attachment>  attachments    = new LinkedList<>();
   private final List<Contact>     sharedContacts = new LinkedList<>();
   private final List<LinkPreview> linkPreviews   = new LinkedList<>();
+  private final List<Mention>     mentions       = new LinkedList<>();
 
   public IncomingMediaMessage(@NonNull RecipientId from,
                               Optional<GroupId> groupId,
@@ -78,6 +80,7 @@ public class IncomingMediaMessage {
                               Optional<QuoteModel> quote,
                               Optional<List<Contact>> sharedContacts,
                               Optional<List<LinkPreview>> linkPreviews,
+                              Optional<List<Mention>> mentions,
                               Optional<Attachment> sticker)
   {
     this.push             = true;
@@ -98,6 +101,7 @@ public class IncomingMediaMessage {
     this.attachments.addAll(PointerAttachment.forPointers(attachments));
     this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
     this.linkPreviews.addAll(linkPreviews.or(Collections.emptyList()));
+    this.mentions.addAll(mentions.or(Collections.emptyList()));
 
     if (sticker.isPresent()) {
       this.attachments.add(sticker.get());
@@ -162,6 +166,10 @@ public class IncomingMediaMessage {
 
   public List<LinkPreview> getLinkPreviews() {
     return linkPreviews;
+  }
+
+  public @NonNull List<Mention> getMentions() {
+    return mentions;
   }
 
   public boolean isUnidentified() {

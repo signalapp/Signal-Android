@@ -12,6 +12,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
@@ -149,6 +150,13 @@ final class ManageGroupRepository {
         Log.w(TAG, e);
         error.onError(GroupChangeFailureReason.fromException(e));
       }
+    });
+  }
+
+  void setMentionSetting(RecipientDatabase.MentionSetting mentionSetting) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      RecipientId recipientId = Recipient.externalGroup(context, groupId).getId();
+      DatabaseFactory.getRecipientDatabase(context).setMentionSetting(recipientId, mentionSetting);
     });
   }
 

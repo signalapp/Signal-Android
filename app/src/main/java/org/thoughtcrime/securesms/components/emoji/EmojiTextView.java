@@ -2,12 +2,17 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.appcompat.widget.AppCompatTextView;
+
+import android.text.Annotation;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -15,9 +20,14 @@ import android.util.TypedValue;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.List;
 
 
 public class EmojiTextView extends AppCompatTextView {
@@ -35,6 +45,9 @@ public class EmojiTextView extends AppCompatTextView {
   private int          maxLength;
   private CharSequence overflowText;
   private CharSequence previousOverflowText;
+  private boolean      renderMentions;
+
+  private MentionRendererDelegate mentionRendererDelegate;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -48,14 +61,33 @@ public class EmojiTextView extends AppCompatTextView {
     super(context, attrs, defStyleAttr);
 
     TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
-    scaleEmojis = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
-    maxLength   = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
-    forceCustom = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
+    scaleEmojis    = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
+    maxLength      = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
+    forceCustom    = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
+    renderMentions = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
     a.recycle();
 
     a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
     originalFontSize = a.getDimensionPixelSize(0, 0);
     a.recycle();
+
+    if (renderMentions) {
+      mentionRendererDelegate = new MentionRendererDelegate(getContext(), ContextCompat.getColor(getContext(), R.color.transparent_black_20));
+    }
+  }
+
+  @Override
+  protected void onDraw(Canvas canvas) {
+    if (renderMentions && getText() instanceof Spanned && getLayout() != null) {
+      int checkpoint = canvas.save();
+      canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
+      try {
+        mentionRendererDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      } finally {
+        canvas.restoreToCount(checkpoint);
+      }
+    }
+    super.onDraw(canvas);
   }
 
   @Override public void setText(@Nullable CharSequence text, BufferType type) {
@@ -115,7 +147,19 @@ public class EmojiTextView extends AppCompatTextView {
   private void ellipsizeAnyTextForMaxLength() {
     if (maxLength > 0 && getText().length() > maxLength + 1) {
       SpannableStringBuilder newContent = new SpannableStringBuilder();
-      newContent.append(getText().subSequence(0, maxLength)).append(ELLIPSIS).append(Optional.fromNullable(overflowText).or(""));
+
+      CharSequence shortenedText = getText().subSequence(0, maxLength);
+      if (shortenedText instanceof Spanned) {
+        Spanned          spanned            = (Spanned) shortenedText;
+        List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(spanned, maxLength - 1, maxLength);
+        if (!mentionAnnotations.isEmpty()) {
+          shortenedText = shortenedText.subSequence(0, spanned.getSpanStart(mentionAnnotations.get(0)));
+        }
+      }
+
+      newContent.append(shortenedText)
+                .append(ELLIPSIS)
+                .append(Util.emptyIfNull(overflowText));
 
       EmojiParser.CandidateList newCandidates = EmojiProvider.getInstance(getContext()).getCandidates(newContent);
 

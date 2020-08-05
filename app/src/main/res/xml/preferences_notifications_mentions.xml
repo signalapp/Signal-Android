@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/preferences_notifications__mentions">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:key="notifications.mentions.notify_me"
+            android:title="@string/preferences_notifications__notify_me"
+            android:summary="@string/preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

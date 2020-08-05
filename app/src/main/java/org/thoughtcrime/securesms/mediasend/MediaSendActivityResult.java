@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.whispersystems.libsignal.util.guava.Preconditions;
@@ -24,36 +25,41 @@ public class MediaSendActivityResult implements Parcelable {
   private final String                      body;
   private final TransportOption             transport;
   private final boolean                     viewOnce;
+  private final Collection<Mention>         mentions;
 
   static @NonNull MediaSendActivityResult forPreUpload(@NonNull Collection<PreUploadResult> uploadResults,
                                                        @NonNull String body,
                                                        @NonNull TransportOption transport,
-                                                       boolean viewOnce)
+                                                       boolean viewOnce,
+                                                       @NonNull List<Mention> mentions)
   {
     Preconditions.checkArgument(uploadResults.size() > 0, "Must supply uploadResults!");
-    return new MediaSendActivityResult(uploadResults, Collections.emptyList(), body, transport, viewOnce);
+    return new MediaSendActivityResult(uploadResults, Collections.emptyList(), body, transport, viewOnce, mentions);
   }
 
   static @NonNull MediaSendActivityResult forTraditionalSend(@NonNull List<Media> nonUploadedMedia,
                                                              @NonNull String body,
                                                              @NonNull TransportOption transport,
-                                                             boolean viewOnce)
+                                                             boolean viewOnce,
+                                                             @NonNull List<Mention> mentions)
   {
     Preconditions.checkArgument(nonUploadedMedia.size() > 0, "Must supply media!");
-    return new MediaSendActivityResult(Collections.emptyList(), nonUploadedMedia, body, transport, viewOnce);
+    return new MediaSendActivityResult(Collections.emptyList(), nonUploadedMedia, body, transport, viewOnce, mentions);
   }
 
   private MediaSendActivityResult(@NonNull Collection<PreUploadResult> uploadResults,
                                   @NonNull List<Media> nonUploadedMedia,
                                   @NonNull String body,
                                   @NonNull TransportOption transport,
-                                  boolean viewOnce)
+                                  boolean viewOnce,
+                                  @NonNull List<Mention> mentions)
   {
     this.uploadResults    = uploadResults;
     this.nonUploadedMedia = nonUploadedMedia;
     this.body             = body;
     this.transport        = transport;
     this.viewOnce         = viewOnce;
+    this.mentions         = mentions;
   }
 
   private MediaSendActivityResult(Parcel in) {
@@ -62,6 +68,7 @@ public class MediaSendActivityResult implements Parcelable {
     this.body             = in.readString();
     this.transport        = in.readParcelable(TransportOption.class.getClassLoader());
     this.viewOnce         = ParcelUtil.readBoolean(in);
+    this.mentions         = ParcelUtil.readParcelableCollection(in, Mention.class);
   }
 
   public boolean isPushPreUpload() {
@@ -88,6 +95,10 @@ public class MediaSendActivityResult implements Parcelable {
     return viewOnce;
   }
 
+  public @NonNull Collection<Mention> getMentions() {
+    return mentions;
+  }
+
   public static final Creator<MediaSendActivityResult> CREATOR = new Creator<MediaSendActivityResult>() {
     @Override
     public MediaSendActivityResult createFromParcel(Parcel in) {
@@ -112,5 +123,6 @@ public class MediaSendActivityResult implements Parcelable {
     dest.writeString(body);
     dest.writeParcelable(transport, 0);
     ParcelUtil.writeBoolean(dest, viewOnce);
+    ParcelUtil.writeParcelableCollection(dest, mentions);
   }
 }

@@ -147,7 +147,7 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
       TextView               text   = bubble.findViewById(R.id.longmessage_text);
       ConversationItemFooter footer = bubble.findViewById(R.id.longmessage_footer);
 
-      String          trimmedBody = getTrimmedBody(message.get().getFullBody());
+      CharSequence    trimmedBody = getTrimmedBody(message.get().getFullBody(this));
       SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
 
       bubble.setVisibility(View.VISIBLE);
@@ -158,9 +158,9 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
     });
   }
 
-  private String getTrimmedBody(@NonNull String text) {
+  private CharSequence getTrimmedBody(@NonNull CharSequence text) {
     return text.length() <= MAX_DISPLAY_LENGTH ? text
-                                               : text.substring(0, MAX_DISPLAY_LENGTH);
+                                               : text.subSequence(0, MAX_DISPLAY_LENGTH);
   }
 
   private SpannableString linkifyMessageBody(SpannableString messageBody) {

@@ -578,11 +578,22 @@ public class SignalServiceMessageSender {
                                                                 .setText(message.getQuote().get().getText());
 
       if (message.getQuote().get().getAuthor().getUuid().isPresent()) {
-        quoteBuilder = quoteBuilder.setAuthorUuid(message.getQuote().get().getAuthor().getUuid().get().toString());
+        quoteBuilder.setAuthorUuid(message.getQuote().get().getAuthor().getUuid().get().toString());
       }
 
       if (message.getQuote().get().getAuthor().getNumber().isPresent()) {
-        quoteBuilder = quoteBuilder.setAuthorE164(message.getQuote().get().getAuthor().getNumber().get());
+        quoteBuilder.setAuthorE164(message.getQuote().get().getAuthor().getNumber().get());
+      }
+
+      if (!message.getQuote().get().getMentions().isEmpty()) {
+        for (SignalServiceDataMessage.Mention mention : message.getQuote().get().getMentions()) {
+          quoteBuilder.addBodyRanges(DataMessage.BodyRange.newBuilder()
+                                                          .setStart(mention.getStart())
+                                                          .setLength(mention.getLength())
+                                                          .setMentionUuid(mention.getUuid().toString()));
+        }
+        
+        builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
       }
 
       for (SignalServiceDataMessage.Quote.QuotedAttachment attachment : message.getQuote().get().getAttachments()) {
@@ -624,6 +635,16 @@ public class SignalServiceMessageSender {
 
         builder.addPreview(previewBuilder.build());
       }
+    }
+
+    if (message.getMentions().isPresent()) {
+      for (SignalServiceDataMessage.Mention mention : message.getMentions().get()) {
+        builder.addBodyRanges(DataMessage.BodyRange.newBuilder()
+                                                   .setStart(mention.getStart())
+                                                   .setLength(mention.getLength())
+                                                   .setMentionUuid(mention.getUuid().toString()));
+      }
+      builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
     }
 
     if (message.getSticker().isPresent()) {

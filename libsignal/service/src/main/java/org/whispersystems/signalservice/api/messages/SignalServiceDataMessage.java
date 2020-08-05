@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Represents a decrypted Signal Service data message.
@@ -32,6 +33,7 @@ public class SignalServiceDataMessage {
   private final Optional<Quote>                         quote;
   private final Optional<List<SharedContact>>           contacts;
   private final Optional<List<Preview>>                 previews;
+  private final Optional<List<Mention>>                 mentions;
   private final Optional<Sticker>                       sticker;
   private final boolean                                 viewOnce;
   private final Optional<Reaction>                      reaction;
@@ -54,7 +56,7 @@ public class SignalServiceDataMessage {
                            String body, boolean endSession, int expiresInSeconds,
                            boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
                            Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                           Sticker sticker, boolean viewOnce, Reaction reaction, RemoteDelete remoteDelete)
+                           List<Mention> mentions, Sticker sticker, boolean viewOnce, Reaction reaction, RemoteDelete remoteDelete)
   {
     try {
       this.group = SignalServiceGroupContext.createOptional(group, groupV2);
@@ -91,6 +93,12 @@ public class SignalServiceDataMessage {
       this.previews = Optional.of(previews);
     } else {
       this.previews = Optional.absent();
+    }
+
+    if (mentions != null && !mentions.isEmpty()) {
+      this.mentions = Optional.of(mentions);
+    } else {
+      this.mentions = Optional.absent();
     }
   }
 
@@ -174,6 +182,10 @@ public class SignalServiceDataMessage {
     return previews;
   }
 
+  public Optional<List<Mention>> getMentions() {
+    return mentions;
+  }
+
   public Optional<Sticker> getSticker() {
     return sticker;
   }
@@ -195,6 +207,7 @@ public class SignalServiceDataMessage {
     private List<SignalServiceAttachment> attachments    = new LinkedList<>();
     private List<SharedContact>           sharedContacts = new LinkedList<>();
     private List<Preview>                 previews       = new LinkedList<>();
+    private List<Mention>                 mentions       = new LinkedList<>();
 
     private long                 timestamp;
     private SignalServiceGroup   group;
@@ -302,6 +315,11 @@ public class SignalServiceDataMessage {
       return this;
     }
 
+    public Builder withMentions(List<Mention> mentions) {
+      this.mentions.addAll(mentions);
+      return this;
+    }
+
     public Builder withSticker(Sticker sticker) {
       this.sticker = sticker;
       return this;
@@ -327,7 +345,7 @@ public class SignalServiceDataMessage {
       return new SignalServiceDataMessage(timestamp, group, groupV2, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
-                                          sticker, viewOnce, reaction, remoteDelete);
+                                          mentions, sticker, viewOnce, reaction, remoteDelete);
     }
   }
 
@@ -336,12 +354,14 @@ public class SignalServiceDataMessage {
     private final SignalServiceAddress   author;
     private final String                 text;
     private final List<QuotedAttachment> attachments;
+    private final List<Mention>          mentions;
 
-    public Quote(long id, SignalServiceAddress author, String text, List<QuotedAttachment> attachments) {
+    public Quote(long id, SignalServiceAddress author, String text, List<QuotedAttachment> attachments, List<Mention> mentions) {
       this.id          = id;
       this.author      = author;
       this.text        = text;
       this.attachments = attachments;
+      this.mentions    = mentions;
     }
 
     public long getId() {
@@ -358,6 +378,10 @@ public class SignalServiceDataMessage {
 
     public List<QuotedAttachment> getAttachments() {
       return attachments;
+    }
+
+    public List<Mention> getMentions() {
+      return mentions;
     }
 
     public static class QuotedAttachment {
@@ -478,6 +502,30 @@ public class SignalServiceDataMessage {
 
     public long getTargetSentTimestamp() {
       return targetSentTimestamp;
+    }
+  }
+
+  public static class Mention {
+    private final UUID uuid;
+    private final int  start;
+    private final int  length;
+
+    public Mention(UUID uuid, int start, int length) {
+      this.uuid   = uuid;
+      this.start  = start;
+      this.length = length;
+    }
+
+    public UUID getUuid() {
+      return uuid;
+    }
+
+    public int getStart() {
+      return start;
+    }
+
+    public int getLength() {
+      return length;
     }
   }
 }

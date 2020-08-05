@@ -232,6 +232,7 @@ public final class GroupsV2StateProcessor {
                                                                                           false,
                                                                                           null,
                                                                                           Collections.emptyList(),
+                                                                                          Collections.emptyList(),
                                                                                           Collections.emptyList());
 
       try {
@@ -397,7 +398,7 @@ public final class GroupsV2StateProcessor {
           MmsDatabase                mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
           RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
           Recipient                  recipient       = Recipient.resolved(recipientId);
-          OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList());
+          OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
           long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
           long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 

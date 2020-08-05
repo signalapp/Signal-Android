@@ -296,7 +296,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   private void openConversation(long threadId, @NonNull RecipientId recipientId, @Nullable ShareData shareData) {
     Intent           intent          = new Intent(this, ConversationActivity.class);
-    String           textExtra       = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    CharSequence     textExtra       = getIntent().getCharSequenceExtra(Intent.EXTRA_TEXT);
     ArrayList<Media> mediaExtra      = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
     StickerLocator   stickerExtra    = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
     boolean          borderlessExtra = getIntent().getBooleanExtra(ConversationActivity.BORDERLESS_EXTRA, false);

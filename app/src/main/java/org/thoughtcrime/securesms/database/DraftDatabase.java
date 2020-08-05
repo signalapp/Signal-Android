@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -73,14 +75,11 @@ public class DraftDatabase extends Database {
     db.delete(TABLE_NAME, null, null);
   }
 
-  public List<Draft> getDrafts(long threadId) {
-    SQLiteDatabase db   = databaseHelper.getReadableDatabase();
-    List<Draft> results = new LinkedList<>();
-    Cursor cursor       = null;
+  public Drafts getDrafts(long threadId) {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    Drafts         results = new Drafts();
 
-    try {
-      cursor = db.query(TABLE_NAME, null, THREAD_ID + " = ?", new String[] {threadId+""}, null, null, null);
-
+    try (Cursor cursor = db.query(TABLE_NAME, null, THREAD_ID + " = ?", new String[] {threadId+""}, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         String type  = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_TYPE));
         String value = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_VALUE));
@@ -89,9 +88,6 @@ public class DraftDatabase extends Database {
       }
 
       return results;
-    } finally {
-      if (cursor != null)
-        cursor.close();
     }
   }
 
@@ -102,6 +98,7 @@ public class DraftDatabase extends Database {
     public static final String AUDIO    = "audio";
     public static final String LOCATION = "location";
     public static final String QUOTE    = "quote";
+    public static final String MENTION  = "mention";
 
     private final String type;
     private final String value;
@@ -133,7 +130,7 @@ public class DraftDatabase extends Database {
   }
 
   public static class Drafts extends LinkedList<Draft> {
-    private Draft getDraftOfType(String type) {
+    public @Nullable Draft getDraftOfType(String type) {
       for (Draft draft : this) {
         if (type.equals(draft.getType())) {
           return draft;
@@ -142,7 +139,7 @@ public class DraftDatabase extends Database {
       return null;
     }
 
-    public String getSnippet(Context context) {
+    public @NonNull String getSnippet(Context context) {
       Draft textDraft = getDraftOfType(Draft.TEXT);
       if (textDraft != null) {
         return textDraft.getSnippet(context);

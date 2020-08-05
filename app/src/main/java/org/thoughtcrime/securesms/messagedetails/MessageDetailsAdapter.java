@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
@@ -45,7 +46,7 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     if (holder instanceof MessageHeaderViewHolder) {
-      ((MessageHeaderViewHolder) holder).bind((MessageRecord) getItem(position).data, running);
+      ((MessageHeaderViewHolder) holder).bind((ConversationMessage) getItem(position).data, running);
     } else if (holder instanceof RecipientHeaderViewHolder) {
       ((RecipientHeaderViewHolder) holder).bind((RecipientHeader) getItem(position).data);
     } else if (holder instanceof RecipientViewHolder) {
@@ -60,7 +61,7 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
     if (payloads.isEmpty()) {
       super.onBindViewHolder(holder, position, payloads);
     } else if (holder instanceof MessageHeaderViewHolder) {
-      ((MessageHeaderViewHolder) holder).partialBind((MessageRecord) getItem(position).data, running);
+      ((MessageHeaderViewHolder) holder).partialBind((ConversationMessage) getItem(position).data, running);
     }
   }
 

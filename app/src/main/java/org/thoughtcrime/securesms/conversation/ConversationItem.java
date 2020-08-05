@@ -26,6 +26,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.text.Annotation;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -71,6 +72,7 @@ import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;
 import org.thoughtcrime.securesms.components.BorderlessImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -552,7 +554,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     } else if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      Spannable styledText = linkifyMessageBody(messageRecord.getDisplayBody(getContext()), batchSelected.isEmpty());
+      Spannable styledText = linkifyMessageBody(conversationMessage.getDisplayBody(getContext()), batchSelected.isEmpty());
       styledText = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), styledText, searchQuery);
       styledText = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), styledText, searchQuery);
 
@@ -855,7 +857,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
     contactPhoto.setOnClickListener(v -> {
       if (eventListener != null) {
-        eventListener.onGroupMemberAvatarClicked(recipientId, conversationRecipient.get().requireGroupId());
+        eventListener.onGroupMemberClicked(recipientId, conversationRecipient.get().requireGroupId());
       }
     });
 
@@ -879,6 +881,12 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         messageBody.setSpan(new LongClickCopySpan(urlSpan.getURL()), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
+
+    List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(messageBody);
+    for (Annotation annotation : mentionAnnotations) {
+      messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+
     return messageBody;
   }
 
@@ -901,7 +909,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       }
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       //noinspection ConstantConditions
-      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), quote.getText(), quote.isOriginalMissing(), quote.getAttachment());
+      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), quote.getDisplayText(), quote.isOriginalMissing(), quote.getAttachment());
       quoteView.setVisibility(View.VISIBLE);
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -1403,6 +1411,24 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         handleMessageApproval();
       }
     }
+  }
+
+  private class MentionClickableSpan extends ClickableSpan {
+    private final RecipientId mentionedRecipientId;
+
+    MentionClickableSpan(RecipientId mentionedRecipientId) {
+      this.mentionedRecipientId = mentionedRecipientId;
+    }
+
+    @Override
+    public void onClick(@NonNull View widget) {
+      if (eventListener != null && !Recipient.resolved(mentionedRecipientId).isLocalNumber()) {
+        eventListener.onGroupMemberClicked(mentionedRecipientId, conversationRecipient.get().requireGroupId());
+      }
+    }
+
+    @Override
+    public void updateDrawState(@NonNull TextPaint ds) { }
   }
 
   private void handleMessageApproval() {

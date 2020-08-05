@@ -290,6 +290,46 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/group_mentions_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/group_manage_fragment_row_height"
+                        android:background="?selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:id="@+id/group_mentions"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:text="@string/ManageGroupActivity_mentions"
+                            android:textAlignment="viewStart"
+                            android:textAppearance="@style/Signal.Text.Body"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/group_mute_notifications_switch"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/group_mentions_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|end"
+                            android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                            android:textAppearance="@style/Signal.Text.Body"
+                            android:textColor="@color/ultramarine_text_button"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/group_custom_notifications"
+                            app:layout_constraintTop_toBottomOf="@id/group_mute_notifications_switch"
+                            tools:text="Default (Notify me)" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

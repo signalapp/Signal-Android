@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -102,6 +103,7 @@ public class Recipient {
   private final byte[]                 storageId;
   private final byte[]                 identityKey;
   private final VerifiedStatus         identityStatus;
+  private final MentionSetting         mentionSetting;
 
 
   /**
@@ -316,6 +318,7 @@ public class Recipient {
     this.storageId              = null;
     this.identityKey            = null;
     this.identityStatus         = VerifiedStatus.DEFAULT;
+    this.mentionSetting         = MentionSetting.GLOBAL;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -359,6 +362,7 @@ public class Recipient {
     this.storageId              = details.storageId;
     this.identityKey            = details.identityKey;
     this.identityStatus         = details.identityStatus;
+    this.mentionSetting         = details.mentionSetting;
   }
 
   public @NonNull RecipientId getId() {
@@ -807,6 +811,10 @@ public class Recipient {
     } else {
       return null;
     }
+  }
+
+  public @NonNull MentionSetting getMentionSetting() {
+    return mentionSetting;
   }
 
   @Override

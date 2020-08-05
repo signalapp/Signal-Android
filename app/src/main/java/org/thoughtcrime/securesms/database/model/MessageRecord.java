@@ -374,4 +374,8 @@ public abstract class MessageRecord extends DisplayRecord {
   public @NonNull List<ReactionRecord> getReactions() {
     return reactions;
   }
+
+  public boolean hasSelfMention() {
+    return false;
+  }
 }

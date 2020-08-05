@@ -519,6 +519,7 @@ final class GroupManagerV2 {
                                                                                        false,
                                                                                        null,
                                                                                        Collections.emptyList(),
+                                                                                       Collections.emptyList(),
                                                                                        Collections.emptyList());
 
     if (plainGroupChange != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(plainGroupChange)) {

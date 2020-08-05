@@ -549,6 +549,7 @@
     <string name="ManageGroupActivity_leave_group">Leave group</string>
     <string name="ManageGroupActivity_mute_notifications">Mute notifications</string>
     <string name="ManageGroupActivity_custom_notifications">Custom notifications</string>
+    <string name="ManageGroupActivity_mentions">Mentions</string>
     <string name="ManageGroupActivity_until_s">Until %1$s</string>
     <string name="ManageGroupActivity_off">Off</string>
     <string name="ManageGroupActivity_on">On</string>
@@ -576,6 +577,13 @@
     <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
     <string name="ManageGroupActivity_legacy_group_learn_more">This is a Legacy Group. To access features like group admins, create a New Group.</string>
 
+    <!-- GroupMentionSettingDialog -->
+    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notify me for Mentions</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receive notifications when you’re mentioned in muted chats?</string>
+    <string name="GroupMentionSettingDialog_default_notify_me">Default (Notify me)</string>
+    <string name="GroupMentionSettingDialog_default_dont_notify_me">Default (Don\'t notify me)</string>
+    <string name="GroupMentionSettingDialog_always_notify_me">Always notify me</string>
+    <string name="GroupMentionSettingDialog_dont_notify_me">Don\'t notify me</string>
     
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_add_to_system_contacts">Add to system contacts</string>
@@ -1995,6 +2003,9 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Allow from anyone</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people with whom you have not shared your profile.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Learn more</string>
+    <string name="preferences_notifications__mentions">Mentions</string>
+    <string name="preferences_notifications__notify_me">Notify me</string>
+    <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receive notifications when you’re mentioned in muted chats</string>
 
     <!-- Internal only preferences -->
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>

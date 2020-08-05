@@ -2,10 +2,8 @@ package org.thoughtcrime.securesms.components;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -94,7 +92,6 @@ public class InputPanel extends LinearLayout
     super(context, attrs);
   }
 
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   public InputPanel(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
@@ -160,7 +157,7 @@ public class InputPanel extends LinearLayout
   public void setQuote(@NonNull GlideRequests glideRequests,
                        long id,
                        @NonNull Recipient author,
-                       @NonNull String body,
+                       @NonNull CharSequence body,
                        @NonNull SlideDeck attachments)
   {
     this.quoteView.setQuote(glideRequests, id, author, body, false, attachments);
@@ -228,7 +225,7 @@ public class InputPanel extends LinearLayout
 
   public Optional<QuoteModel> getQuote() {
     if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
-      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody(), false, quoteView.getAttachments()));
+      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions()));
     } else {
       return Optional.absent();
     }

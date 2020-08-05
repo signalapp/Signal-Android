@@ -98,6 +98,7 @@
                     style="@style/Signal.Text.Body"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    app:emoji_renderMentions="false"
                     tools:text="With great power comes great responsibility."
                     tools:visibility="visible" />
 

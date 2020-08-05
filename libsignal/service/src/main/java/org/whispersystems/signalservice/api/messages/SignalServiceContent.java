@@ -347,6 +347,7 @@ public final class SignalServiceContent {
     SignalServiceDataMessage.Quote         quote            = createQuote(content);
     List<SharedContact>                    sharedContacts   = createSharedContacts(content);
     List<SignalServiceDataMessage.Preview> previews         = createPreviews(content);
+    List<SignalServiceDataMessage.Mention> mentions         = createMentions(content);
     SignalServiceDataMessage.Sticker       sticker          = createSticker(content);
     SignalServiceDataMessage.Reaction      reaction         = createReaction(content);
     SignalServiceDataMessage.RemoteDelete  remoteDelete     = createRemoteDelete(content);
@@ -381,6 +382,7 @@ public final class SignalServiceContent {
                                         quote,
                                         sharedContacts,
                                         previews,
+                                        mentions,
                                         sticker,
                                         content.getIsViewOnce(),
                                         reaction,
@@ -662,7 +664,8 @@ public final class SignalServiceContent {
       return new SignalServiceDataMessage.Quote(content.getQuote().getId(),
                                                 address,
                                                 content.getQuote().getText(),
-                                                attachments);
+                                                attachments,
+                                                createMentions(content));
     } else {
       Log.w(TAG, "Quote was missing an author! Returning null.");
       return null;
@@ -687,6 +690,35 @@ public final class SignalServiceContent {
     }
 
     return results;
+  }
+
+  private static List<SignalServiceDataMessage.Mention> createMentions(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+    if (content.getBodyRangesCount() <= 0 || !content.hasBody()) return null;
+
+    List<SignalServiceDataMessage.Mention> mentions = new LinkedList<>();
+
+    for (SignalServiceProtos.DataMessage.BodyRange bodyRange : content.getBodyRangesList()) {
+      if (bodyRange.hasMentionUuid()) {
+        try {
+          validateBodyRange(content, bodyRange);
+          mentions.add(new SignalServiceDataMessage.Mention(UuidUtil.parseOrThrow(bodyRange.getMentionUuid()), bodyRange.getStart(), bodyRange.getLength()));
+        } catch (IllegalArgumentException e) {
+          throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
+        }
+      }
+    }
+
+    return mentions;
+  }
+
+  private static void validateBodyRange(SignalServiceProtos.DataMessage content, SignalServiceProtos.DataMessage.BodyRange bodyRange) throws ProtocolInvalidMessageException {
+    int incomingBodyLength = content.hasBody() ? content.getBody().length() : -1;
+    int start              = bodyRange.hasStart() ? bodyRange.getStart() : -1;
+    int length             = bodyRange.hasLength() ? bodyRange.getLength() : -1;
+
+    if (start < 0 || length < 0 || (start + length) > incomingBodyLength) {
+      throw new ProtocolInvalidMessageException(new InvalidMessageException("Incoming body range has out-of-bound range"), null, 0);
+    }
   }
 
   private static SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {

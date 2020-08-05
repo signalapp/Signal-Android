@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.ComparatorCompat;
 
+import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
@@ -17,7 +18,7 @@ final class MessageDetails {
   private static final Comparator<RecipientDeliveryStatus> ALPHABETICAL         = (r1, r2) -> r1.getRecipient().getDisplayName(ApplicationDependencies.getApplication()).compareToIgnoreCase(r2.getRecipient().getDisplayName(ApplicationDependencies.getApplication()));
   private static final Comparator<RecipientDeliveryStatus> RECIPIENT_COMPARATOR = ComparatorCompat.chain(HAS_DISPLAY_NAME).thenComparing(ALPHABETICAL);
 
-  private final MessageRecord messageRecord;
+  private final ConversationMessage conversationMessage;
 
   private final Collection<RecipientDeliveryStatus> pending;
   private final Collection<RecipientDeliveryStatus> sent;
@@ -25,8 +26,8 @@ final class MessageDetails {
   private final Collection<RecipientDeliveryStatus> read;
   private final Collection<RecipientDeliveryStatus> notSent;
 
-  MessageDetails(MessageRecord messageRecord, List<RecipientDeliveryStatus> recipients) {
-    this.messageRecord = messageRecord;
+  MessageDetails(@NonNull ConversationMessage conversationMessage, @NonNull List<RecipientDeliveryStatus> recipients) {
+    this.conversationMessage = conversationMessage;
 
     pending   = new TreeSet<>(RECIPIENT_COMPARATOR);
     sent      = new TreeSet<>(RECIPIENT_COMPARATOR);
@@ -34,7 +35,7 @@ final class MessageDetails {
     read      = new TreeSet<>(RECIPIENT_COMPARATOR);
     notSent   = new TreeSet<>(RECIPIENT_COMPARATOR);
 
-    if (messageRecord.isOutgoing()) {
+    if (conversationMessage.getMessageRecord().isOutgoing()) {
       for (RecipientDeliveryStatus status : recipients) {
         switch (status.getDeliveryStatus()) {
           case UNKNOWN:
@@ -59,8 +60,8 @@ final class MessageDetails {
     }
   }
 
-  @NonNull MessageRecord getMessageRecord() {
-    return messageRecord;
+  @NonNull ConversationMessage getConversationMessage() {
+    return conversationMessage;
   }
 
   @NonNull Collection<RecipientDeliveryStatus> getPending() {

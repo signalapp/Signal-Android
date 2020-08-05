@@ -98,7 +98,7 @@ public final class WakeGroupV2Job extends BaseJob {
       GroupDatabase.V2GroupProperties v2GroupProperties       = group.get().requireV2GroupProperties();
       DecryptedGroupV2Context         decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(v2GroupProperties.getGroupMasterKey(), v2GroupProperties.getDecryptedGroup(), null, null);
       MmsDatabase                     mmsDatabase             = DatabaseFactory.getMmsDatabase(context);
-      OutgoingGroupUpdateMessage      outgoingMessage         = new OutgoingGroupUpdateMessage(groupRecipient, decryptedGroupV2Context, null, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList());
+      OutgoingGroupUpdateMessage      outgoingMessage         = new OutgoingGroupUpdateMessage(groupRecipient, decryptedGroupV2Context, null, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
 
       long messageId = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 

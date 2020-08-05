@@ -16,7 +16,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/core_grey_65"/>
+            android:background="?conversation_mention_divider_color"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mentions_picker_list"

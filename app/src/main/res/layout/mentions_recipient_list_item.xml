@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:minHeight="52dp"
-    android:orientation="horizontal"
+    android:background="?selectableItemBackground"
     android:gravity="center_vertical"
-    android:background="?selectableItemBackground">
+    android:paddingStart="12dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="10dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/mention_recipient_avatar"
@@ -17,12 +18,25 @@
 
     <TextView
         android:id="@+id/mention_recipient_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.Preview"
         tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/mention_recipient_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.Preview"
+        android:textColor="@color/core_grey_60"
+        tools:text="@tools:sample/last_names" />
 
 </LinearLayout>

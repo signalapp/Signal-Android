@@ -9,7 +9,9 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
+import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
@@ -66,6 +68,7 @@ public class RecipientDetails {
   final byte[] storageId;
   final byte[]                 identityKey;
   final VerifiedStatus         identityStatus;
+  final MentionSetting         mentionSetting;
 
   public RecipientDetails(@Nullable String name,
                           @NonNull Optional<Long> groupAvatarId,
@@ -112,6 +115,7 @@ public class RecipientDetails {
     this.storageId                       = settings.getStorageId();
     this.identityKey                     = settings.getIdentityKey();
     this.identityStatus                  = settings.getIdentityStatus();
+    this.mentionSetting                  = settings.getMentionSetting();
 
     if (name == null) this.name = settings.getSystemDisplayName();
     else              this.name = name;
@@ -160,6 +164,7 @@ public class RecipientDetails {
     this.storageId              = null;
     this.identityKey            = null;
     this.identityStatus         = VerifiedStatus.DEFAULT;
+    this.mentionSetting         = MentionSetting.GLOBAL;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {

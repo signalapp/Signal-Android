@@ -124,7 +124,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
     assert getSupportActionBar() != null;
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (Build.VERSION.SDK_INT >= 21) {
       getWindow().setStatusBarColor(color.toStatusBarColor(this));
     }
   }
@@ -132,9 +132,9 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
   private List<MessageDetailsViewState<?>> convertToRows(MessageDetails details) {
     List<MessageDetailsViewState<?>> list = new ArrayList<>();
 
-    list.add(new MessageDetailsViewState<>(details.getMessageRecord(), MessageDetailsViewState.MESSAGE_HEADER));
+    list.add(new MessageDetailsViewState<>(details.getConversationMessage(), MessageDetailsViewState.MESSAGE_HEADER));
 
-    if (details.getMessageRecord().isOutgoing()) {
+    if (details.getConversationMessage().getMessageRecord().isOutgoing()) {
       addRecipients(list, RecipientHeader.NOT_SENT, details.getNotSent());
       addRecipients(list, RecipientHeader.READ, details.getRead());
       addRecipients(list, RecipientHeader.DELIVERED, details.getDelivered());

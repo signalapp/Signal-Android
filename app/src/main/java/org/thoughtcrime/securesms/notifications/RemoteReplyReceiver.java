@@ -77,7 +77,20 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
           switch (replyMethod) {
             case GroupMessage: {
-              OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, false, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+              OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient,
+                                                                    responseText.toString(),
+                                                                    new LinkedList<>(),
+                                                                    System.currentTimeMillis(),
+                                                                    subscriptionId,
+                                                                    expiresIn,
+                                                                    false,
+                                                                    0,
+                                                                    null,
+                                                                    Collections.emptyList(),
+                                                                    Collections.emptyList(),
+                                                                    Collections.emptyList(),
+                                                                    Collections.emptyList(),
+                                                                    Collections.emptyList());
               threadId = MessageSender.send(context, reply, -1, false, null);
               break;
             }
