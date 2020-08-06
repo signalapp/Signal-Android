@@ -209,7 +209,7 @@ public class ReactionSendJob extends BaseJob {
       throws IOException, UntrustedIdentityException
   {
     SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = Stream.of(destinations).map(t -> RecipientUtil.toSignalServiceAddress(context, t)).toList();
+    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations).map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient)).toList();
     SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
                                                                                         .withTimestamp(System.currentTimeMillis())
@@ -230,6 +230,7 @@ public class ReactionSendJob extends BaseJob {
                                                                  boolean remove,
                                                                  @NonNull Recipient targetAuthor,
                                                                  long targetSentTimestamp)
+      throws IOException
   {
     return new SignalServiceDataMessage.Reaction(reaction.getEmoji(),
                                                  remove,

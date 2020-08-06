@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -90,6 +91,7 @@ public class DirectoryHelper {
       return;
     }
 
+    Stopwatch         stopwatch         = new Stopwatch("full");
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     Set<String>       databaseNumbers   = sanitizeNumbers(recipientDatabase.getAllPhoneNumbers());
     Set<String>       systemNumbers     = sanitizeNumbers(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
@@ -102,6 +104,8 @@ public class DirectoryHelper {
     } else {
       result = ContactDiscoveryV1.getDirectoryResult(databaseNumbers, systemNumbers);
     }
+
+    stopwatch.split("network");
 
     if (result.getNumberRewrites().size() > 0) {
       Log.i(TAG, "[getDirectoryResult] Need to rewrite some numbers.");
@@ -139,16 +143,21 @@ public class DirectoryHelper {
     }
 
     StorageSyncHelper.scheduleSyncForDataChange();
+
+    stopwatch.split("disk");
+    stopwatch.stop(TAG);
   }
 
   @WorkerThread
   public static RegisteredState refreshDirectoryFor(@NonNull Context context, @NonNull Recipient recipient, boolean notifyOfNewUsers) throws IOException {
+    Stopwatch         stopwatch               = new Stopwatch("single");
     RecipientDatabase recipientDatabase       = DatabaseFactory.getRecipientDatabase(context);
     RegisteredState   originalRegisteredState = recipient.resolve().getRegistered();
     RegisteredState   newRegisteredState      = null;
 
     if (recipient.hasUuid() && !recipient.hasE164()) {
       boolean isRegistered = isUuidRegistered(context, recipient);
+      stopwatch.split("uuid-network");
       if (isRegistered) {
         boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), recipient.getUuid().get());
         if (idChanged) {
@@ -157,6 +166,9 @@ public class DirectoryHelper {
       } else {
         recipientDatabase.markUnregistered(recipient.getId());
       }
+
+      stopwatch.split("uuid-disk");
+      stopwatch.stop(TAG);
 
       return isRegistered ? RegisteredState.REGISTERED : RegisteredState.NOT_REGISTERED;
     }
@@ -173,6 +185,8 @@ public class DirectoryHelper {
     } else {
       result = ContactDiscoveryV1.getDirectoryResult(recipient.getE164().get());
     }
+
+    stopwatch.split("e164-network");
 
     if (result.getNumberRewrites().size() > 0) {
       Log.i(TAG, "[getDirectoryResult] Need to rewrite some numbers.");
@@ -209,6 +223,9 @@ public class DirectoryHelper {
 
       StorageSyncHelper.scheduleSyncForDataChange();
     }
+
+    stopwatch.split("e164-disk");
+    stopwatch.stop(TAG);
 
     return newRegisteredState;
   }

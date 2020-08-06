@@ -158,7 +158,7 @@ public class PushTextSendJob extends PushSendJob {
 
       Recipient                        messageRecipient   = message.getIndividualRecipient().fresh();
       SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-      SignalServiceAddress             address            = getPushAddress(messageRecipient);
+      SignalServiceAddress             address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       Optional<byte[]>                 profileKey         = getProfileKey(messageRecipient);
       Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, messageRecipient);
 

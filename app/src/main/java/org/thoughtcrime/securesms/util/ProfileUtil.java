@@ -68,7 +68,7 @@ public final class ProfileUtil {
                                                                                 @NonNull Recipient recipient,
                                                                                 @NonNull SignalServiceProfile.RequestType requestType)
   {
-    SignalServiceAddress         address            = RecipientUtil.toSignalServiceAddress(context, recipient);
+    SignalServiceAddress         address            = RecipientUtil.toSignalServiceAddressBestEffort(context, recipient);
     Optional<UnidentifiedAccess> unidentifiedAccess = getUnidentifiedAccess(context, recipient);
     Optional<ProfileKey>         profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 

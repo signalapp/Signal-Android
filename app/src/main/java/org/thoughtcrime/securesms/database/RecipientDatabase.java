@@ -390,7 +390,7 @@ public class RecipientDatabase extends Database {
       throw new IllegalArgumentException("Must provide a UUID or E164!");
     }
 
-    if (!FeatureFlags.recipientTrust()) {
+    if (!FeatureFlags.cds()) {
       highTrust = true;
     }
 

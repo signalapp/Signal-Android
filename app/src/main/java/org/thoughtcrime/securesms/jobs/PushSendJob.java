@@ -111,23 +111,6 @@ public abstract class PushSendJob extends SendJob {
     return Optional.of(ProfileKeyUtil.getProfileKey(context));
   }
 
-  protected SignalServiceAddress getPushAddress(@NonNull Recipient recipient) {
-    return RecipientUtil.toSignalServiceAddress(context, recipient);
-  }
-
-  protected List<SignalServiceAttachment> getAttachmentsFor(List<Attachment> parts) {
-    List<SignalServiceAttachment> attachments = new LinkedList<>();
-
-    for (final Attachment attachment : parts) {
-      SignalServiceAttachment converted = getAttachmentFor(attachment);
-      if (converted != null) {
-        attachments.add(converted);
-      }
-    }
-
-    return attachments;
-  }
-
   protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");

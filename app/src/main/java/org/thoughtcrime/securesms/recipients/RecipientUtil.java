@@ -29,6 +29,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecipientUtil {
 
@@ -40,7 +42,24 @@ public class RecipientUtil {
    * available.
    */
   @WorkerThread
-  public static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) {
+  public static @NonNull SignalServiceAddress toSignalServiceAddressBestEffort(@NonNull Context context, @NonNull Recipient recipient) {
+    try {
+      return toSignalServiceAddress(context, recipient);
+    } catch (IOException e) {
+      Log.w(TAG, "Failed to populate address!", e);
+      return new SignalServiceAddress(recipient.getUuid().orNull(), recipient.getE164().orNull());
+    }
+  }
+
+  /**
+   * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
+   * the provided recipient. This includes performing a possible network request if no UUID is
+   * available.
+   */
+  @WorkerThread
+  public static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient)
+      throws IOException
+  {
     recipient = recipient.resolve();
 
     if (!recipient.getUuid().isPresent() && !recipient.getE164().isPresent()) {
@@ -49,17 +68,37 @@ public class RecipientUtil {
 
     if (FeatureFlags.cds() && !recipient.getUuid().isPresent()) {
       Log.i(TAG, recipient.getId() + " is missing a UUID...");
-      try {
-        RegisteredState state = DirectoryHelper.refreshDirectoryFor(context, recipient, false);
-        recipient = Recipient.resolved(recipient.getId());
-        Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
-      } catch (IOException e) {
-        Log.w(TAG, "Failed to fetch a UUID for " + recipient.getId() + ". Scheduling a future fetch and building an address without one.");
-        ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
-      }
+      RegisteredState state = DirectoryHelper.refreshDirectoryFor(context, recipient, false);
+
+      recipient = Recipient.resolved(recipient.getId());
+      Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
     }
 
     return new SignalServiceAddress(Optional.fromNullable(recipient.getUuid().orNull()), Optional.fromNullable(recipient.resolve().getE164().orNull()));
+  }
+
+  public static @NonNull List<SignalServiceAddress> toSignalServiceAddresses(@NonNull Context context, @NonNull List<RecipientId> recipients)
+      throws IOException
+  {
+    List<SignalServiceAddress> addresses = new ArrayList<>(recipients.size());
+
+    for (RecipientId id : recipients) {
+      addresses.add(toSignalServiceAddress(context, Recipient.resolved(id)));
+    }
+
+    return addresses;
+  }
+
+  public static @NonNull List<SignalServiceAddress> toSignalServiceAddressesFromResolved(@NonNull Context context, @NonNull List<Recipient> recipients)
+      throws IOException
+  {
+    List<SignalServiceAddress> addresses = new ArrayList<>(recipients.size());
+
+    for (Recipient recipient : recipients) {
+      addresses.add(toSignalServiceAddress(context, recipient));
+    }
+
+    return addresses;
   }
 
   public static boolean isBlockable(@NonNull Recipient recipient) {

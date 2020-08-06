@@ -154,7 +154,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
       throws IOException, UntrustedIdentityException
   {
     SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = Stream.of(destinations).map(t -> RecipientUtil.toSignalServiceAddress(context, t)).toList();
+    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations).map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient)).toList();
 
     SignalServiceGroupV2     group            = SignalServiceGroupV2.fromProtobuf(groupContextV2);
