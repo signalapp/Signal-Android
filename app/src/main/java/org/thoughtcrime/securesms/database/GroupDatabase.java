@@ -228,17 +228,26 @@ public final class GroupDatabase extends Database {
     return getGroupsContainingMember(recipientId, true);
   }
 
-  @WorkerThread
   public @NonNull List<GroupRecord> getGroupsContainingMember(@NonNull RecipientId recipientId, boolean pushOnly) {
+    return getGroupsContainingMember(recipientId, pushOnly, false);
+  }
+
+  @WorkerThread
+  public @NonNull List<GroupRecord> getGroupsContainingMember(@NonNull RecipientId recipientId, boolean pushOnly, boolean includeInactive) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
     String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
     String         query      = MEMBERS + " LIKE ?";
-    String[]       args       = new String[]{"%" + recipientId.serialize() + "%"};
+    String[]       args       = SqlUtil.buildArgs("%" + recipientId.serialize() + "%");
     String         orderBy    = ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
 
     if (pushOnly) {
       query += " AND " + MMS + " = ?";
       args = SqlUtil.appendArg(args, "0");
+    }
+
+    if (!includeInactive) {
+      query += " AND " + ACTIVE + " = ?";
+      args = SqlUtil.appendArg(args, "1");
     }
 
     List<GroupRecord> groups = new LinkedList<>();

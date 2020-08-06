@@ -2290,7 +2290,7 @@ public class RecipientDatabase extends Database {
 
     // Groups
     GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    for (GroupDatabase.GroupRecord group : groupDatabase.getGroupsContainingMember(byE164, false)) {
+    for (GroupDatabase.GroupRecord group : groupDatabase.getGroupsContainingMember(byE164, false, true)) {
       List<RecipientId> newMembers = new ArrayList<>(group.getMembers());
       newMembers.remove(byE164);
 
