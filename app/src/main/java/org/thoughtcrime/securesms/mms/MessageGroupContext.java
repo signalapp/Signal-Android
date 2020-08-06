@@ -168,6 +168,7 @@ public final class MessageGroupContext {
       memberUuids.addAll(DecryptedGroupUtil.membersToUuidList(decryptedGroupV2Context.getGroupState().getMembersList()));
       memberUuids.addAll(DecryptedGroupUtil.pendingToUuidList(decryptedGroupV2Context.getGroupState().getPendingMembersList()));
       memberUuids.addAll(DecryptedGroupUtil.removedMembersUuidList(decryptedGroupV2Context.getChange()));
+      memberUuids.addAll(DecryptedGroupUtil.removedPendingMembersUuidList(decryptedGroupV2Context.getChange()));
 
       return UuidUtil.filterKnown(memberUuids);
     }

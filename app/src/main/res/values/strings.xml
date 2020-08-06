@@ -865,7 +865,8 @@
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Someone declined an invitation to the group.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">You declined the invitation to the group.</string>
-    <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Your invitation to the group was revoked.</string>
+    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s revoked your invitation to the group.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">An admin revoked your invitation to the group.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
       <item quantity="one">An invitation to the group was revoked.</item>
       <item quantity="other">%1$d invitations to the group were revoked.</item>

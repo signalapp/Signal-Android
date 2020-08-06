@@ -10,7 +10,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -43,7 +42,11 @@ public final class DecryptedGroupUtil {
     ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
 
     for (DecryptedMember member : membersList) {
-      uuidList.add(toUuid(member));
+      UUID uuid = toUuid(member);
+
+      if (!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+        uuidList.add(uuid);
+      }
     }
 
     return uuidList;
@@ -59,6 +62,9 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
+  /**
+   * Can return non-decryptable member UUIDs as {@link UuidUtil#UNKNOWN_UUID}.
+   */
   public static ArrayList<UUID> pendingToUuidList(Collection<DecryptedPendingMember> membersList) {
     ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
 
@@ -69,11 +75,37 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
+  /**
+   * Will not return any non-decryptable member UUIDs.
+   */
   public static ArrayList<UUID> removedMembersUuidList(DecryptedGroupChange groupChange) {
-    ArrayList<UUID> uuidList = new ArrayList<>(groupChange.getDeleteMembersCount());
+    List<ByteString> deletedMembers = groupChange.getDeleteMembersList();
+    ArrayList<UUID>  uuidList       = new ArrayList<>(deletedMembers.size());
 
-    for (ByteString member : groupChange.getDeleteMembersList()) {
-      uuidList.add(toUuid(member));
+    for (ByteString member : deletedMembers) {
+       UUID uuid = toUuid(member);
+
+      if (!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+        uuidList.add(uuid);
+      }
+    }
+
+    return uuidList;
+  }
+
+  /**
+   * Will not return any non-decryptable member UUIDs.
+   */
+  public static ArrayList<UUID> removedPendingMembersUuidList(DecryptedGroupChange groupChange) {
+    List<DecryptedPendingMemberRemoval> deletedPendingMembers = groupChange.getDeletePendingMembersList();
+    ArrayList<UUID>                     uuidList              = new ArrayList<>(deletedPendingMembers.size());
+
+    for (DecryptedPendingMemberRemoval member : deletedPendingMembers) {
+      UUID uuid = toUuid(member.getUuid());
+
+      if(!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+        uuidList.add(uuid);
+      }
     }
 
     return uuidList;
@@ -87,8 +119,8 @@ public final class DecryptedGroupUtil {
     return toUuid(member.getUuid());
   }
 
-  private static UUID toUuid(ByteString member) {
-    return UUIDUtil.deserialize(member.toByteArray());
+  private static UUID toUuid(ByteString memberUuid) {
+    return UuidUtil.fromByteStringOrUnknown(memberUuid);
   }
 
   /**

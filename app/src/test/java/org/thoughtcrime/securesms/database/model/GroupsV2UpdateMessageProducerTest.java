@@ -391,7 +391,16 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   @Test
-  public void unknown_invited_you() {
+  public void unknown_editor_but_known_invitee_invited_you() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .inviteBy(you, alice)
+                                    .build();
+
+    assertThat(describeChange(change), is(singletonList("Alice invited you to the group.")));
+  }
+
+  @Test
+  public void unknown_editor_and_unknown_inviter_invited_you() {
     DecryptedGroupChange change = changeByUnknown()
                                     .invite(you)
                                     .build();
@@ -428,6 +437,18 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList("You were invited to the group.", "3 people were invited to the group.")));
+  }
+
+  @Test
+  public void unknown_editor_invited_3_persons_and_you_inviter_known() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .invite(alice)
+                                    .inviteBy(you, bob)
+                                    .invite(UUID.randomUUID())
+                                    .invite(UUID.randomUUID())
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList("Bob invited you to the group.", "3 people were invited to the group.")));
   }
 
   // Member invitation revocation
@@ -494,7 +515,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .uninvite(you)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Your invitation to the group was revoked.")));
+    assertThat(describeChange(change), is(singletonList("An admin revoked your invitation to the group.")));
   }
 
   @Test
@@ -525,7 +546,16 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .uninvite(UUID.randomUUID())
                                     .build();
 
-    assertThat(describeChange(change), is(Arrays.asList("Your invitation to the group was revoked.", "3 invitations to the group were revoked.")));
+    assertThat(describeChange(change), is(Arrays.asList("An admin revoked your invitation to the group.", "3 invitations to the group were revoked.")));
+  }
+
+  @Test
+  public void your_invite_was_revoked_by_known_member() {
+    DecryptedGroupChange change = changeBy(bob)
+                                    .uninvite(you)
+                                    .build();
+
+    assertThat(describeChange(change), is(singletonList("Bob revoked your invitation to the group.")));
   }
 
   // Promote pending members

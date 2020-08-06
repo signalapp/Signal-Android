@@ -72,8 +72,13 @@ public final class ChangeBuilder {
   }
 
   public ChangeBuilder invite(@NonNull UUID potentialMember) {
+    return inviteBy(potentialMember, UuidUtil.UNKNOWN_UUID);
+  }
+
+  public ChangeBuilder inviteBy(@NonNull UUID potentialMember, @NonNull UUID inviter) {
     builder.addNewPendingMembers(DecryptedPendingMember.newBuilder()
-                                                       .setUuid(UuidUtil.toByteString(potentialMember)));
+                                                       .setUuid(UuidUtil.toByteString(potentialMember))
+                                                       .setAddedByUuid(UuidUtil.toByteString(inviter)));
     return this;
   }
 

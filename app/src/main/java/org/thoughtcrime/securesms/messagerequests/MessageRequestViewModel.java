@@ -161,10 +161,10 @@ public class MessageRequestViewModel extends ViewModel {
 
     repository.getMessageRequestState(recipient, threadId, accepted -> {
       switch (accepted) {
-        case ACCEPTED:
+        case NOT_REQUIRED:
           displayState.postValue(DisplayState.DISPLAY_NONE);
           break;
-        case UNACCEPTED:
+        case REQUIRED:
           displayState.postValue(DisplayState.DISPLAY_MESSAGE_REQUEST);
           break;
         case LEGACY:

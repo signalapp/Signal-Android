@@ -297,7 +297,13 @@ final class GroupsV2UpdateMessageProducer {
       boolean newMemberIsYou = invitee.getUuid().equals(selfUuidBytes);
 
       if (newMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group)));
+        UUID uuid = UuidUtil.fromByteStringOrUnknown(invitee.getAddedByUuid());
+
+        if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group)));
+        } else {
+          updates.add(updateDescription(invitee.getAddedByUuid(), editor -> context.getString(R.string.MessageRecord_s_invited_you_to_the_group, editor)));
+        }
       } else {
         notYouInviteCount++;
       }
@@ -320,6 +326,8 @@ final class GroupsV2UpdateMessageProducer {
         } else {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group)));
         }
+      } else if (invitee.getUuid().equals(selfUuidBytes)) {
+        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, editor)));
       } else {
         notDeclineCount++;
       }
@@ -342,7 +350,7 @@ final class GroupsV2UpdateMessageProducer {
       boolean inviteeWasYou = invitee.getUuid().equals(selfUuidBytes);
 
       if (inviteeWasYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_your_invitation_to_the_group_was_revoked)));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group)));
       } else {
         notDeclineCount++;
       }
