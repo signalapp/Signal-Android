@@ -184,6 +184,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
         // Clear all data if this is a secondary device
         if (TextSecurePreferences.getMasterHexEncodedPublicKey(this) != null) {
+            TextSecurePreferences.setWasUnlinked(this, true)
             ApplicationContext.getInstance(this).clearData()
         }
     }
