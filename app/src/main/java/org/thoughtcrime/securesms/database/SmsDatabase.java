@@ -682,7 +682,6 @@ public class SmsDatabase extends MessagingDatabase {
 
               db.insert(TABLE_NAME, null, values);
 
-              DatabaseFactory.getThreadDatabase(context).update(threadId, false);
               notifyConversationListeners(threadId);
               ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
             });
