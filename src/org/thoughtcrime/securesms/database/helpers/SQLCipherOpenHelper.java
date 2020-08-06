@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -85,8 +86,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV9                           = 30;
   private static final int lokiV10                          = 31;
   private static final int lokiV11                          = 32;
+  private static final int lokiV12                          = 33;
 
-  private static final int    DATABASE_VERSION = lokiV11; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV12; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -157,6 +159,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
+    db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupRatchetsTableCommand());
+    db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeysTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -601,6 +605,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV11) {
         db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyDBCommand());
+      }
+
+      if (oldVersion < lokiV12) {
+        db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupRatchetsTableCommand());
+        db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeysTableCommand());
       }
 
       db.setTransactionSuccessful();
