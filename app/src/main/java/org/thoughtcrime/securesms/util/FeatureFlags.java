@@ -51,9 +51,10 @@ public final class FeatureFlags {
   private static final String USERNAMES                  = "android.usernames";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3.2";
   private static final String REMOTE_DELETE              = "android.remoteDelete";
-  private static final String GROUPS_V2_OLD              = "android.groupsv2";
-  private static final String GROUPS_V2                  = "android.groupsv2.2";
-  private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.2";
+  private static final String GROUPS_V2_OLD_1            = "android.groupsv2";
+  private static final String GROUPS_V2_OLD_2            = "android.groupsv2.2";
+  private static final String GROUPS_V2                  = "android.groupsv2.3";
+  private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.3";
   private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
   private static final String CDS                        = "android.cds.2";
   private static final String INTERNAL_USER              = "android.internalUser";
@@ -101,8 +102,9 @@ public final class FeatureFlags {
    */
   private static final Set<String> STICKY = Sets.newHashSet(
       GROUPS_V2,
-      GROUPS_V2_OLD
-  );
+      GROUPS_V2_OLD_1,
+      GROUPS_V2_OLD_2
+    );
 
   /**
    * Listeners that are called when the value in {@link #REMOTE_VALUES} changes. That means that
@@ -187,14 +189,24 @@ public final class FeatureFlags {
 
   /** Groups v2 send and receive. */
   public static boolean groupsV2() {
-    return getBoolean(GROUPS_V2_OLD, false) || getBoolean(GROUPS_V2, false);
+    return groupsV2OlderStickyFlags() || groupsV2LatestFlag();
   }
 
   /** Attempt groups v2 creation. */
   public static boolean groupsV2create() {
-    return groupsV2() &&
+    return groupsV2LatestFlag() &&
            getBoolean(GROUPS_V2_CREATE, false) &&
            !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
+  }
+
+  private static boolean groupsV2LatestFlag() {
+    return getBoolean(GROUPS_V2, false);
+  }
+
+  /** Clients that previously saw these flags as true must continue to respect that */
+  private static boolean groupsV2OlderStickyFlags() {
+    return getBoolean(GROUPS_V2_OLD_1, false) ||
+           getBoolean(GROUPS_V2_OLD_2, false);
   }
 
   /**
