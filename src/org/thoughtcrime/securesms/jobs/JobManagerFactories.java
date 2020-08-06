@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceOpenGroupUpdateJob;
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.protocol.PushNullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.PushSessionRequestMessageSendJob;
 

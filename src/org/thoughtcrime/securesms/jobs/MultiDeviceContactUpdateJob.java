@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
+import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.dialogs.*
-import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol
+import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage

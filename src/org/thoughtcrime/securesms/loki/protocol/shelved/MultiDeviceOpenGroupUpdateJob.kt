@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.protocol
+package org.thoughtcrime.securesms.loki.protocol.shelved
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -32,7 +32,8 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
         .setMaxAttempts(Parameters.UNLIMITED)
         .build())
 
-    override fun getFactoryKey(): String { return KEY }
+    override fun getFactoryKey(): String { return KEY
+    }
 
     override fun serialize(): Data { return Data.EMPTY }
 

@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.dialogs.LinkDeviceSlaveModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.LinkDeviceSlaveModeDialogDelegate
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
