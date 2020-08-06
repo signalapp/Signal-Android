@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.text.SpannableStringBuilder;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -16,8 +18,6 @@ import androidx.core.app.NotificationCompat.Action;
 import androidx.core.app.Person;
 import androidx.core.app.RemoteInput;
 import androidx.core.graphics.drawable.IconCompat;
-
-import android.text.SpannableStringBuilder;
 
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -156,43 +156,57 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     extend(new NotificationCompat.CarExtender().setUnreadConversation(unreadConversationBuilder.build()));
   }
 
+  public void addTurnOffTheseNotificationsAction(@NonNull PendingIntent turnOffTheseNotificationsIntent) {
+    Action turnOffTheseNotifications = new Action(R.drawable.check,
+                                                  context.getString(R.string.MessageNotifier_turn_off_these_notifications),
+                                                  turnOffTheseNotificationsIntent);
+
+    addAction(turnOffTheseNotifications);
+  }
+
   public void addActions(@NonNull PendingIntent markReadIntent,
                          @NonNull PendingIntent quickReplyIntent,
                          @NonNull PendingIntent wearableReplyIntent,
-                         @NonNull ReplyMethod replyMethod)
+                         @NonNull ReplyMethod replyMethod,
+                         boolean replyEnabled)
   {
-    Action markAsReadAction = new Action(R.drawable.check,
-                                         context.getString(R.string.MessageNotifier_mark_read),
-                                         markReadIntent);
-
-    String actionName = context.getString(R.string.MessageNotifier_reply);
-    String label      = context.getString(replyMethodLongDescription(replyMethod));
-
-    Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
-                                    actionName,
-                                    quickReplyIntent);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-      replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
-                                       actionName,
-                                       wearableReplyIntent)
-          .addRemoteInput(new RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY)
-                              .setLabel(label).build())
-          .build();
-    }
-
-    Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
-                                                    actionName,
-                                                    wearableReplyIntent)
-        .addRemoteInput(new RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY)
-                            .setLabel(label).build())
-        .build();
+    NotificationCompat.WearableExtender extender         = new NotificationCompat.WearableExtender();
+    Action                              markAsReadAction = new Action(R.drawable.check,
+                                                                      context.getString(R.string.MessageNotifier_mark_read),
+                                                                      markReadIntent);
 
     addAction(markAsReadAction);
-    addAction(replyAction);
+    extender.addAction(markAsReadAction);
 
-    extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction)
-                                                    .addAction(wearableReplyAction));
+    if (replyEnabled) {
+      String actionName = context.getString(R.string.MessageNotifier_reply);
+      String label      = context.getString(replyMethodLongDescription(replyMethod));
+
+      Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
+                                      actionName,
+                                      quickReplyIntent);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
+                                         actionName,
+                                         wearableReplyIntent)
+            .addRemoteInput(new RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY)
+                                           .setLabel(label)
+                                           .build())
+            .build();
+      }
+
+      Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
+                                                    actionName,
+                                                    wearableReplyIntent)
+          .addRemoteInput(new RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY)
+                                         .setLabel(label)
+                                         .build())
+          .build();
+
+        addAction(replyAction);
+        extend(extender.addAction(wearableReplyAction));
+    }
   }
 
   @StringRes

@@ -492,6 +492,10 @@ public class TextSecurePreferences {
     return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
   }
 
+  public static void setNewContactsNotificationEnabled(Context context, boolean isEnabled) {
+    setBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, isEnabled);
+  }
+
   public static boolean isNewContactsNotificationEnabled(Context context) {
     return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, true);
   }

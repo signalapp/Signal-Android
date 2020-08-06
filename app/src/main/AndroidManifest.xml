@@ -455,6 +455,9 @@
         </intent-filter>
     </activity>
 
+    <activity android:name=".contacts.TurnOffContactJoinedNotificationsActivity"
+              android:theme="@style/Theme.AppCompat.Dialog.Alert" />
+
     <activity android:name=".messagerequests.MessageRequestMegaphoneActivity"
               android:theme="@style/TextSecure.LightRegistrationTheme"
               android:windowSoftInputMode="adjustResize"

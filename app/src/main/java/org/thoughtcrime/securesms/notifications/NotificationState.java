@@ -8,6 +8,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.contacts.TurnOffContactJoinedNotificationsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversation.ConversationPopupActivity;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -99,6 +100,15 @@ public class NotificationState {
 
     Collections.sort(list, notificationItemComparator);
     return list;
+  }
+
+  public PendingIntent getTurnOffTheseNotificationsIntent(Context context) {
+    long threadId = threads.iterator().next();
+
+    return PendingIntent.getActivity(context,
+                                     0,
+                                     TurnOffContactJoinedNotificationsActivity.newIntent(context, threadId),
+                                     PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
   public PendingIntent getMarkAsReadIntent(Context context, int notificationId) {

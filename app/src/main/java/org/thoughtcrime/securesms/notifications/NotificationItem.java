@@ -27,6 +27,7 @@ public class NotificationItem {
             private final long         messageReceivedTimestamp;
   @Nullable private final SlideDeck    slideDeck;
             private final boolean      jumpToMessage;
+            private final boolean      isJoin;
 
   public NotificationItem(long id,
                           boolean mms,
@@ -38,7 +39,8 @@ public class NotificationItem {
                           long notificationTimestamp,
                           long messageReceivedTimestamp,
                           @Nullable SlideDeck slideDeck,
-                          boolean jumpToMessage)
+                          boolean jumpToMessage,
+                          boolean isJoin)
   {
     this.id                       = id;
     this.mms                      = mms;
@@ -51,6 +53,7 @@ public class NotificationItem {
     this.messageReceivedTimestamp = messageReceivedTimestamp;
     this.slideDeck                = slideDeck;
     this.jumpToMessage            = jumpToMessage;
+    this.isJoin                   = isJoin;
   }
 
   public @NonNull  Recipient getRecipient() {
@@ -96,6 +99,10 @@ public class NotificationItem {
 
   public boolean isMms() {
     return mms;
+  }
+
+  public boolean isJoin() {
+    return isJoin;
   }
 
   private static int getStartingPosition(@NonNull Context context, long threadId, long receivedTimestampMs) {
