@@ -55,7 +55,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2_OLD_2            = "android.groupsv2.2";
   private static final String GROUPS_V2                  = "android.groupsv2.3";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.3";
-  private static final String GROUPS_V2_CAPACITY         = "android.groupsv2.capacity";
+  private static final String GROUPS_V2_CAPACITY         = "all.groupsv2.capacity";
   private static final String CDS                        = "android.cds.2";
   private static final String INTERNAL_USER              = "android.internalUser";
   private static final String MENTIONS                   = "android.mentions";
@@ -213,7 +213,7 @@ public final class FeatureFlags {
    * Maximum number of members allowed in a group.
    */
   public static int gv2GroupCapacity() {
-    return getInteger(GROUPS_V2_CAPACITY, 100);
+    return getInteger(GROUPS_V2_CAPACITY, 151);
   }
 
   /** Internal testing extensions. */
