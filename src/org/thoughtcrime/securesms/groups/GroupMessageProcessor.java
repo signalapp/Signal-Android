@@ -97,11 +97,6 @@ public class GroupMessageProcessor {
       }
     }
 
-    // Loki - Ignore message if needed
-    if (ClosedGroupsProtocol.shouldIgnoreGroupCreatedMessage(context, group)) {
-      return null;
-    }
-
     // Loki - Parse admins
     if (group.getAdmins().isPresent()) {
       for (String admin : group.getAdmins().get()) {

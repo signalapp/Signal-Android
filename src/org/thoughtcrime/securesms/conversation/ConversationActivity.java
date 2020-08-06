@@ -1166,7 +1166,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
     builder.setPositiveButton(R.string.yes, (dialog, which) -> {
       Recipient                           groupRecipient = getRecipient();
-      if (ClosedGroupsProtocol.leaveGroup(this, groupRecipient)) {
+      if (ClosedGroupsProtocol.leaveLegacyGroup(this, groupRecipient)) {
         initializeEnabledCheck();
       } else {
         Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();

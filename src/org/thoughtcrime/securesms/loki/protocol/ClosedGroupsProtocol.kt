@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import android.util.Log
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
@@ -24,39 +25,27 @@ import java.util.*
 
 object ClosedGroupsProtocol {
 
-    /**
-     * Blocks the calling thread.
-     */
     @JvmStatic
-    fun shouldIgnoreContentMessage(context: Context, conversation: Recipient, groupID: String?, content: SignalServiceContent): Boolean {
-        if (!conversation.address.isClosedGroup || groupID == null) { return false }
-        // A closed group's members should never include slave devices
-        val senderPublicKey = content.sender
+    fun shouldIgnoreContentMessage(context: Context, address: Address, groupID: String?, senderPublicKey: String): Boolean {
+        if (!address.isClosedGroup || groupID == null) { return false }
+        /*
         FileServerAPI.shared.getDeviceLinks(senderPublicKey).timeout(6000).get()
         val senderMasterPublicKey = MultiDeviceProtocol.shared.getMasterDevice(senderPublicKey)
         val publicKeyToCheckFor = senderMasterPublicKey ?: senderPublicKey
+         */
         val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, true)
-        return !members.contains(recipient(context, publicKeyToCheckFor))
+        return !members.contains(recipient(context, senderPublicKey))
     }
 
     @JvmStatic
-    fun shouldIgnoreGroupCreatedMessage(context: Context, group: SignalServiceGroup): Boolean {
-        val members = group.members
-        val masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-        val masterPublicKey = masterPublicKeyOrNull ?: TextSecurePreferences.getLocalNumber(context)
-        return !members.isPresent || !members.get().contains(masterPublicKey)
-    }
-
-    @JvmStatic
-    fun getDestinations(groupID: String, context: Context): Promise<List<Address>, Exception> {
-        if (GroupUtil.isRSSFeed(groupID)) { return Promise.of(listOf()) }
+    fun getMessageDestinations(context: Context, groupID: String): List<Address> {
+        if (GroupUtil.isRSSFeed(groupID)) { return listOf() }
         if (GroupUtil.isOpenGroup(groupID)) {
-            val result = mutableListOf<Address>()
-            result.add(Address.fromSerialized(groupID))
-            return Promise.of(result)
+            return listOf( Address.fromSerialized(groupID) )
         } else {
-            // A closed group's members should never include slave devices
-            val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false)
+            // TODO: Shared sender keys
+            return DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false).map { it.address }
+            /*
             return FileServerAPI.shared.getDeviceLinks(members.map { it.address.serialize() }.toSet()).map {
                 val result = members.flatMap { member ->
                     MultiDeviceProtocol.shared.getAllLinkedDevices(member.address.serialize()).map { Address.fromSerialized(it) }
@@ -71,29 +60,33 @@ object ClosedGroupsProtocol {
                 }
                 result.toList()
             }
+             */
         }
     }
 
     @JvmStatic
-    fun leaveGroup(context: Context, recipient: Recipient): Boolean {
+    fun leaveLegacyGroup(context: Context, recipient: Recipient): Boolean {
         if (!recipient.address.isClosedGroup) { return true }
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
-        val message = GroupUtil.createGroupLeaveMessage(context, recipient)
-        if (threadID < 0 || !message.isPresent) { return false }
-        MessageSender.send(context, message.get(), threadID, false, null)
-        // Remove the master device from the group (a closed group's members should never include slave devices)
+        val message = GroupUtil.createGroupLeaveMessage(context, recipient).orNull()
+        if (threadID < 0 || message == null) { return false }
+        MessageSender.send(context, message, threadID, false, null)
+        /*
         val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
         val publicKeyToRemove = masterPublicKey ?: TextSecurePreferences.getLocalNumber(context)
+         */
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val groupDatabase = DatabaseFactory.getGroupDatabase(context)
         val groupID = recipient.address.toGroupString()
         groupDatabase.setActive(groupID, false)
-        groupDatabase.remove(groupID, Address.fromSerialized(publicKeyToRemove))
+        groupDatabase.remove(groupID, Address.fromSerialized(userPublicKey))
         return true
     }
 
     @JvmStatic
     fun establishSessionsWithMembersIfNeeded(context: Context, members: List<String>) {
-        // A closed group's members should never include slave devices
+        @Suppress("NAME_SHADOWING") val members = members.toMutableSet()
+        /*
         val allDevices = members.flatMap { member ->
             MultiDeviceProtocol.shared.getAllLinkedDevices(member)
         }.toMutableSet()
@@ -101,12 +94,13 @@ object ClosedGroupsProtocol {
         if (userMasterPublicKey != null && allDevices.contains(userMasterPublicKey)) {
             allDevices.remove(userMasterPublicKey)
         }
+         */
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-        if (userPublicKey != null && allDevices.contains(userPublicKey)) {
-            allDevices.remove(userPublicKey)
+        if (userPublicKey != null && members.contains(userPublicKey)) {
+            members.remove(userPublicKey)
         }
-        for (device in allDevices) {
-            ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(device)
+        for (member in members) {
+            ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(member)
         }
     }
 }
