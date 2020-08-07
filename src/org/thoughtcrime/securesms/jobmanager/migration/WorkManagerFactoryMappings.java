@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.jobs.SmsSentJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.jobs.UpdateApkJob;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
 
 import java.util.HashMap;
@@ -76,6 +77,7 @@ public class WorkManagerFactoryMappings {
     put(PushNotificationReceiveJob.class.getName(), PushNotificationReceiveJob.KEY);
     put(PushTextSendJob.class.getName(), PushTextSendJob.KEY);
     put(NullMessageSendJob.class.getName(), NullMessageSendJob.KEY);
+    put(ClosedGroupUpdateMessageSendJob.class.getName(), ClosedGroupUpdateMessageSendJob.KEY);
     put(RefreshAttributesJob.class.getName(), RefreshAttributesJob.KEY);
     put(RefreshPreKeysJob.class.getName(), RefreshPreKeysJob.KEY);
     put(RefreshUnidentifiedDeliveryAbilityJob.class.getName(), RefreshUnidentifiedDeliveryAbilityJob.KEY);

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
@@ -51,7 +52,8 @@ public final class JobManagerFactories {
       put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
       put(PushNotificationReceiveJob.KEY,            new PushNotificationReceiveJob.Factory());
       put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
-      put(NullMessageSendJob.KEY,                new NullMessageSendJob.Factory());
+      put(NullMessageSendJob.KEY,                    new NullMessageSendJob.Factory());
+      put(ClosedGroupUpdateMessageSendJob.KEY,       new ClosedGroupUpdateMessageSendJob.Factory());
       put(RefreshAttributesJob.KEY,                  new RefreshAttributesJob.Factory());
       put(RefreshPreKeysJob.KEY,                     new RefreshPreKeysJob.Factory());
       put(RefreshUnidentifiedDeliveryAbilityJob.KEY, new RefreshUnidentifiedDeliveryAbilityJob.Factory());
