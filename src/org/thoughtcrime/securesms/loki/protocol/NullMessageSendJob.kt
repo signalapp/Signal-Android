@@ -18,7 +18,7 @@ import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class PushNullMessageSendJob private constructor(parameters: Parameters, private val publicKey: String) : BaseJob(parameters) {
+class NullMessageSendJob private constructor(parameters: Parameters, private val publicKey: String) : BaseJob(parameters) {
 
     companion object {
         const val KEY = "PushNullMessageSendJob"
@@ -70,12 +70,12 @@ class PushNullMessageSendJob private constructor(parameters: Parameters, private
 
     override fun onCanceled() { }
 
-    class Factory : Job.Factory<PushNullMessageSendJob> {
+    class Factory : Job.Factory<NullMessageSendJob> {
 
-      override fun create(parameters: Parameters, data: Data): PushNullMessageSendJob {
+      override fun create(parameters: Parameters, data: Data): NullMessageSendJob {
           try {
               val publicKey = data.getString("publicKey")
-              return PushNullMessageSendJob(parameters, publicKey)
+              return NullMessageSendJob(parameters, publicKey)
           } catch (e: IOException) {
               throw AssertionError(e)
           }

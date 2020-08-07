@@ -66,7 +66,7 @@ import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.protocol.PushSessionRequestMessageSendJob;
+import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
@@ -621,7 +621,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Send the session request
     long timestamp = new Date().getTime();
     apiDB.setSessionRequestSentTimestamp(publicKey, timestamp);
-    PushSessionRequestMessageSendJob job = new PushSessionRequestMessageSendJob(publicKey, timestamp);
+    SessionRequestMessageSendJob job = new SessionRequestMessageSendJob(publicKey, timestamp);
     jobManager.add(job);
   }
   // endregion

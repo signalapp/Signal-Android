@@ -19,7 +19,7 @@ import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class PushSessionRequestMessageSendJob private constructor(parameters: Parameters, private val publicKey: String, private val timestamp: Long) : BaseJob(parameters) {
+class SessionRequestMessageSendJob private constructor(parameters: Parameters, private val publicKey: String, private val timestamp: Long) : BaseJob(parameters) {
 
     companion object {
         const val KEY = "PushSessionRequestMessageSendJob"
@@ -92,13 +92,13 @@ class PushSessionRequestMessageSendJob private constructor(parameters: Parameter
         }
     }
 
-    class Factory : Job.Factory<PushSessionRequestMessageSendJob> {
+    class Factory : Job.Factory<SessionRequestMessageSendJob> {
 
-        override fun create(parameters: Parameters, data: Data): PushSessionRequestMessageSendJob {
+        override fun create(parameters: Parameters, data: Data): SessionRequestMessageSendJob {
             try {
                 val publicKey = data.getString("publicKey")
                 val timestamp = data.getLong("timestamp")
-                return PushSessionRequestMessageSendJob(parameters, publicKey, timestamp)
+                return SessionRequestMessageSendJob(parameters, publicKey, timestamp)
             } catch (e: IOException) {
                 throw AssertionError(e)
             }
