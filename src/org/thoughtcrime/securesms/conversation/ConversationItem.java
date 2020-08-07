@@ -290,6 +290,10 @@ public class ConversationItem extends LinearLayout
       }
     }
 
+    if (hasThumbnail(messageRecord) && messageRecord.getDisplayBody(context).length() > 0) {
+      ViewUtil.updateLayoutParams(bodyText, getAvailableMessageBubbleWidth(bodyText), ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
     ConversationItemFooter activeFooter   = getActiveFooter(messageRecord);
     int                    availableWidth = getAvailableMessageBubbleWidth(footer);
 
