@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -26,8 +27,8 @@ final class MentionsPickerRepository {
   }
 
   @WorkerThread
-  @NonNull List<Recipient> search(MentionQuery mentionQuery) {
-    if (TextUtils.isEmpty(mentionQuery.query)) {
+  @NonNull List<Recipient> search(@NonNull MentionQuery mentionQuery) {
+    if (mentionQuery.query == null) {
       return Collections.emptyList();
     }
 
@@ -40,10 +41,10 @@ final class MentionsPickerRepository {
   }
 
   static class MentionQuery {
-    private final String                            query;
-    private final List<GroupMemberEntry.FullMember> members;
+    @Nullable private final String                            query;
+    @NonNull  private final List<GroupMemberEntry.FullMember> members;
 
-    MentionQuery(@NonNull String query, @NonNull List<GroupMemberEntry.FullMember> members) {
+    MentionQuery(@Nullable String query, @NonNull List<GroupMemberEntry.FullMember> members) {
       this.query   = query;
       this.members = members;
     }

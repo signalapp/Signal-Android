@@ -1938,10 +1938,6 @@ public class RecipientDatabase extends Database {
   }
 
   public @NonNull List<Recipient> queryRecipientsForMentions(@NonNull String query, @Nullable List<RecipientId> recipientIds) {
-    if (TextUtils.isEmpty(query)) {
-      return Collections.emptyList();
-    }
-
     query = buildCaseInsensitiveGlobPattern(query);
 
     String ids = null;

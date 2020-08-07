@@ -102,7 +102,7 @@ public class ComposeText extends EmojiEditText {
       if (selectionStart == selectionEnd) {
         doAfterCursorChange(getText());
       } else {
-        updateQuery("");
+        updateQuery(null);
       }
     }
 
@@ -284,7 +284,7 @@ public class ComposeText extends EmojiEditText {
     if (enoughToFilter(text)) {
       performFiltering(text);
     } else {
-      updateQuery("");
+      updateQuery(null);
     }
   }
 
@@ -292,10 +292,10 @@ public class ComposeText extends EmojiEditText {
     int          end   = getSelectionEnd();
     int          start = findQueryStart(text, end);
     CharSequence query = text.subSequence(start, end);
-    updateQuery(query);
+    updateQuery(query.toString());
   }
 
-  private void updateQuery(@NonNull CharSequence query) {
+  private void updateQuery(@Nullable String query) {
     if (mentionQueryChangedListener != null) {
       mentionQueryChangedListener.onQueryChanged(query);
     }
@@ -306,7 +306,7 @@ public class ComposeText extends EmojiEditText {
     if (end < 0) {
       return false;
     }
-    return end - findQueryStart(text, end) >= 1;
+    return findQueryStart(text, end) != -1;
   }
 
   public void replaceTextWithMention(@NonNull String displayName, @NonNull RecipientId recipientId) {
@@ -340,7 +340,7 @@ public class ComposeText extends EmojiEditText {
 
   private int findQueryStart(@NonNull CharSequence text, int inputCursorPosition) {
     if (inputCursorPosition == 0) {
-      return inputCursorPosition;
+      return -1;
     }
 
     int delimiterSearchIndex = inputCursorPosition - 1;
@@ -351,7 +351,7 @@ public class ComposeText extends EmojiEditText {
     if (delimiterSearchIndex >= 0 && text.charAt(delimiterSearchIndex) == MENTION_STARTER) {
       return delimiterSearchIndex + 1;
     }
-    return inputCursorPosition;
+    return -1;
   }
 
   private static class CommitContentListener implements InputConnectionCompat.OnCommitContentListener {
@@ -391,6 +391,6 @@ public class ComposeText extends EmojiEditText {
   }
 
   public interface MentionQueryChangedListener {
-    void onQueryChanged(CharSequence query);
+    void onQueryChanged(@Nullable String query);
   }
 }
