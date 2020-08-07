@@ -715,10 +715,9 @@ public class RecipientDatabase extends Database {
 
     try {
       for (SignalContactRecord insert : contactInserts) {
-        ContentValues values = getValuesForStorageContact(insert, true);
-        long          id     = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
-
-        RecipientId recipientId;
+        ContentValues values      = getValuesForStorageContact(insert, true);
+        long          id          = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        RecipientId   recipientId = null;
 
         if (id < 0) {
           values = getValuesForStorageContact(insert, false);
@@ -727,23 +726,36 @@ public class RecipientDatabase extends Database {
           if (insert.getAddress().getNumber().isPresent()) {
             try {
               int count = db.update(TABLE_NAME, values, PHONE + " = ?", new String[] { insert.getAddress().getNumber().get() });
-              recipientId = getByE164(insert.getAddress().getNumber().get()).get();
               Log.w(TAG, "Updated " + count + " users by E164.");
             } catch (SQLiteConstraintException e) {
               Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Failed to update the UUID on an existing E164 user. Possibly merging.");
               recipientId = getAndPossiblyMerge(insert.getAddress().getUuid().get(), insert.getAddress().getNumber().get(), true);
               Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Resulting id: " + recipientId);
             }
-          } else {
+          }
+
+          if (recipientId == null && insert.getAddress().getUuid().isPresent()) {
             try {
               int count = db.update(TABLE_NAME, values, UUID + " = ?", new String[] { insert.getAddress().getUuid().get().toString() });
-              recipientId = getByUuid(insert.getAddress().getUuid().get()).get();
               Log.w(TAG, "Updated " + count + " users by UUID.");
             } catch (SQLiteConstraintException e) {
               Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Failed to update the E164 on an existing UUID user. Possibly merging.");
               recipientId = getAndPossiblyMerge(insert.getAddress().getUuid().get(), insert.getAddress().getNumber().get(), true);
               Log.w(TAG,  "[applyStorageSyncUpdates -- Insert] Resulting id: " + recipientId);
             }
+          }
+
+          if (recipientId == null && insert.getAddress().getNumber().isPresent()) {
+            recipientId = getByE164(insert.getAddress().getNumber().get()).orNull();
+          }
+
+          if (recipientId == null && insert.getAddress().getUuid().isPresent()) {
+            recipientId = getByUuid(insert.getAddress().getUuid().get()).orNull();
+          }
+
+          if (recipientId == null) {
+            Log.w(TAG, "Failed to recover from a failed insert!");
+            continue;
           }
         } else {
           recipientId = RecipientId.from(id);
