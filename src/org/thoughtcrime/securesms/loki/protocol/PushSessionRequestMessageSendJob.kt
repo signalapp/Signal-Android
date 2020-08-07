@@ -26,13 +26,13 @@ class PushSessionRequestMessageSendJob private constructor(parameters: Parameter
     }
 
     constructor(publicKey: String, timestamp: Long) : this(Parameters.Builder()
-            .addConstraint(NetworkConstraint.KEY)
-            .setQueue(KEY)
-            .setLifespan(TimeUnit.DAYS.toMillis(1))
-            .setMaxAttempts(1)
-            .build(),
-            publicKey,
-            timestamp)
+        .addConstraint(NetworkConstraint.KEY)
+        .setQueue(KEY)
+        .setLifespan(TimeUnit.DAYS.toMillis(1))
+        .setMaxAttempts(1)
+        .build(),
+        publicKey,
+        timestamp)
 
     override fun serialize(): Data {
         return Data.Builder().putString("publicKey", publicKey).putLong("timestamp", timestamp).build()

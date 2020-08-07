@@ -1,29 +1,55 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
-import android.util.Log
 import nl.komponents.kovenant.Promise
-import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.recipient
-import org.thoughtcrime.securesms.loki.utilities.timeout
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.GroupUtil
+import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.SignalProtocolAddress
-import org.whispersystems.signalservice.api.messages.SignalServiceContent
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.SnodeAPI
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
+import org.whispersystems.libsignal.ecc.Curve
+import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
+import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysImplementation
+import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
+import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.util.*
 
 object ClosedGroupsProtocol {
+
+    public fun createClosedGroup(context: Context, name: String, members: Collection<String>): Promise<Unit, Exception> {
+        // Prepare
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        // Generate a key pair for the group
+        val groupKeyPair = Curve.generateKeyPair()
+        val groupPublicKey = groupKeyPair.hexEncodedPublicKey // Includes the "05" prefix
+        val membersAsData = members.map { Hex.fromStringCondensed(it) }
+        // Create ratchets for all members
+        val senderKeys: List<ClosedGroupSenderKey> = members.map { publicKey ->
+            val ratchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, publicKey)
+            ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
+        }
+        // Create the group
+        val groupID = GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false);
+        val admins = setOf( Address.fromSerialized(userPublicKey) )
+        DatabaseFactory.getGroupDatabase(context).create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
+            null, null, LinkedList<Address>(admins))
+        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
+        // Establish sessions if needed
+        establishSessionsWithMembersIfNeeded(context, members)
+        // Send a closed group update message to all members using established channels
+        // TODO
+        // Add the group to the user's set of public keys to poll for
+        DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
+        // Notify the user
+        // TODO
+        // Return
+        return Promise.of(Unit)
+    }
 
     @JvmStatic
     fun shouldIgnoreContentMessage(context: Context, address: Address, groupID: String?, senderPublicKey: String): Boolean {
@@ -84,7 +110,7 @@ object ClosedGroupsProtocol {
     }
 
     @JvmStatic
-    fun establishSessionsWithMembersIfNeeded(context: Context, members: List<String>) {
+    fun establishSessionsWithMembersIfNeeded(context: Context, members: Collection<String>) {
         @Suppress("NAME_SHADOWING") val members = members.toMutableSet()
         /*
         val allDevices = members.flatMap { member ->
