@@ -61,7 +61,6 @@ object ClosedGroupsProtocol {
 
     public fun addMembers(context: Context, newMembers: Collection<String>, groupPublicKey: String) {
         // Prepare
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false)
         val group = groupDB.getGroup(groupID).orNull()
@@ -100,6 +99,61 @@ object ClosedGroupsProtocol {
             @Suppress("NAME_SHADOWING")
             val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
             ApplicationContext.getInstance(context).jobManager.add(job)
+        }
+        // Update the group
+        groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        // Notify the user
+        // TODO: Implement
+    }
+
+    public fun leave(context: Context, groupPublicKey: String) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        removeMembers(context, setOf( userPublicKey ), groupPublicKey)
+    }
+
+    public fun removeMembers(context: Context, membersToRemove: Collection<String>, groupPublicKey: String) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val sskDatabase = DatabaseFactory.getSSKDatabase(context)
+        val isUserLeaving = membersToRemove.contains(userPublicKey)
+        if (isUserLeaving && membersToRemove.count() != 1) {
+            Log.d("Loki", "Can't remove self and others simultaneously.")
+        }
+        val groupDB = DatabaseFactory.getGroupDatabase(context)
+        val groupID = GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false)
+        val group = groupDB.getGroup(groupID).orNull()
+        if (group == null) {
+            Log.d("Loki", "Can't add users to nonexistent closed group.")
+            return
+        }
+        val name = group.title
+        val admins = group.admins.map { Hex.fromStringCondensed(it.serialize()) }
+        // Remove the members from the member list
+        val members = group.members.map { it.serialize() }.toSet().minus(membersToRemove)
+        val membersAsData = members.map { Hex.fromStringCondensed(it) }
+        // Send the update to the group (don't include new ratchets as everyone should regenerate new ratchets individually)
+        val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey),
+            name, setOf(), membersAsData, admins)
+        val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
+        ApplicationContext.getInstance(context).jobManager.add(job)
+        // Delete all ratchets (it's important that this happens after sending out the update)
+        sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
+        // Remove the group from the user's set of public keys to poll for if the user is leaving. Otherwise generate a new ratchet and
+        // send it out to all members (minus the removed ones) using established channels.
+        if (isUserLeaving) {
+            sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
+        } else {
+            // Establish sessions if needed
+            establishSessionsWithMembersIfNeeded(context, members)
+            // Send out the user's new ratchet to all members (minus the removed ones) using established channels
+            val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
+            val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
+            for (member in members) {
+                @Suppress("NAME_SHADOWING")
+                val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
+                @Suppress("NAME_SHADOWING")
+                val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
+                ApplicationContext.getInstance(context).jobManager.add(job)
+            }
         }
         // Update the group
         groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
