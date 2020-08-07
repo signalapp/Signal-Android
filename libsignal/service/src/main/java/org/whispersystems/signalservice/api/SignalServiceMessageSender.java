@@ -304,7 +304,12 @@ public class SignalServiceMessageSender {
     }
 
     if (needsSyncInResults || isMultiDevice.get()) {
-      byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.<SignalServiceAddress>absent(), timestamp, results, isRecipientUpdate);
+      Optional<SignalServiceAddress> recipient = Optional.absent();
+      if (!message.getGroupContext().isPresent() && recipients.size() == 1) {
+        recipient = Optional.of(recipients.get(0));
+      }
+
+      byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, recipient, timestamp, results, isRecipientUpdate);
       sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, null);
     }
 
