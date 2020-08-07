@@ -470,6 +470,11 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
+  public Reader getMessages(Collection<Long> messageIds) {
+    String ids = TextUtils.join(",", messageIds);
+    return readerFor(rawQuery(MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " IN (" + ids + ")", null));
+  }
+
   public Reader getExpireStartedMessages() {
     String where = EXPIRE_STARTED + " > 0";
     return readerFor(rawQuery(where, null));

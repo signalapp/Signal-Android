@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -15,7 +18,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -86,27 +88,58 @@ public class MentionDatabase extends Database {
   }
 
   public @NonNull Map<Long, List<Mention>> getMentionsForMessages(@NonNull Collection<Long> messageIds) {
-    SQLiteDatabase           db       = databaseHelper.getReadableDatabase();
-    Map<Long, List<Mention>> mentions = new HashMap<>();
-
-    String ids = TextUtils.join(",", messageIds);
+    SQLiteDatabase db  = databaseHelper.getReadableDatabase();
+    String         ids = TextUtils.join(",", messageIds);
 
     try (Cursor cursor = db.query(TABLE_NAME, null, MESSAGE_ID + " IN (" + ids + ")", null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        long          messageId       = CursorUtil.requireLong(cursor, MESSAGE_ID);
-        List<Mention> messageMentions = mentions.get(messageId);
+      return readMentions(cursor);
+    }
+  }
 
-        if (messageMentions == null) {
-          messageMentions = new LinkedList<>();
-          mentions.put(messageId, messageMentions);
-        }
+  public @NonNull Map<Long, List<Mention>> getMentionsContainingRecipients(@NonNull Collection<RecipientId> recipientIds, long limit) {
+    return getMentionsContainingRecipients(recipientIds, -1, limit);
+  }
 
-        messageMentions.add(new Mention(RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID)),
-                                        CursorUtil.requireInt(cursor, RANGE_START),
-                                        CursorUtil.requireInt(cursor, RANGE_LENGTH)));
-      }
+  public @NonNull Map<Long, List<Mention>> getMentionsContainingRecipients(@NonNull Collection<RecipientId> recipientIds, long threadId, long limit) {
+    SQLiteDatabase db  = databaseHelper.getReadableDatabase();
+    String         ids = TextUtils.join(",", Stream.of(recipientIds).map(RecipientId::serialize).toList());
+
+    String where = " WHERE " + RECIPIENT_ID + " IN (" + ids + ")";
+    if (threadId != -1) {
+      where += " AND " + THREAD_ID + " = " + threadId;
     }
 
+    String subSelect = "SELECT DISTINCT " + MESSAGE_ID +
+                       " FROM " + TABLE_NAME +
+                       where +
+                       " ORDER BY " + ID + " DESC" +
+                       " LIMIT " + limit;
+
+    String query = "SELECT *" +
+                   " FROM " + TABLE_NAME +
+                   " WHERE " + MESSAGE_ID +
+                   " IN (" + subSelect + ")";
+
+    try (Cursor cursor = db.rawQuery(query, null)) {
+      return readMentions(cursor);
+    }
+  }
+
+  private @NonNull Map<Long, List<Mention>> readMentions(@Nullable Cursor cursor) {
+    Map<Long, List<Mention>> mentions = new HashMap<>();
+    while (cursor != null && cursor.moveToNext()) {
+      long          messageId       = CursorUtil.requireLong(cursor, MESSAGE_ID);
+      List<Mention> messageMentions = mentions.get(messageId);
+
+      if (messageMentions == null) {
+        messageMentions = new LinkedList<>();
+        mentions.put(messageId, messageMentions);
+      }
+
+      messageMentions.add(new Mention(RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID)),
+                                      CursorUtil.requireInt(cursor, RANGE_START),
+                                      CursorUtil.requireInt(cursor, RANGE_LENGTH)));
+    }
     return mentions;
   }
 }

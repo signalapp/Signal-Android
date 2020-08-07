@@ -1933,17 +1933,24 @@ public class RecipientDatabase extends Database {
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
   }
 
-  public @NonNull List<Recipient> queryRecipientsForMentions(@NonNull String query, @NonNull List<RecipientId> recipientIds) {
-    if (TextUtils.isEmpty(query) || recipientIds.isEmpty()) {
+  public @NonNull List<Recipient> queryRecipientsForMentions(@NonNull String query) {
+    return queryRecipientsForMentions(query, null);
+  }
+
+  public @NonNull List<Recipient> queryRecipientsForMentions(@NonNull String query, @Nullable List<RecipientId> recipientIds) {
+    if (TextUtils.isEmpty(query)) {
       return Collections.emptyList();
     }
 
     query = buildCaseInsensitiveGlobPattern(query);
 
-    String ids = TextUtils.join(",", Stream.of(recipientIds).map(RecipientId::serialize).toList());
+    String ids = null;
+    if (Util.hasItems(recipientIds)) {
+      ids = TextUtils.join(",", Stream.of(recipientIds).map(RecipientId::serialize).toList());
+    }
 
     String   selection = BLOCKED + " = 0 AND " +
-                         ID + " IN (" + ids + ") AND " +
+                         (ids != null ? ID + " IN (" + ids + ") AND " : "") +
                          SORT_NAME  + " GLOB ?";
 
     List<Recipient> recipients = new ArrayList<>();

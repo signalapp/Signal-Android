@@ -155,8 +155,12 @@ public class Util {
     return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());
   }
 
-  public static boolean isEmpty(Collection collection) {
+  public static boolean isEmpty(Collection<?> collection) {
     return collection == null || collection.isEmpty();
+  }
+
+  public static boolean hasItems(@Nullable Collection<?> collection) {
+    return collection != null && !collection.isEmpty();
   }
 
   public static <K, V> V getOrDefault(@NonNull Map<K, V> map, K key, V defaultValue) {

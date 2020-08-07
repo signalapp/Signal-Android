@@ -26,6 +26,10 @@ public class SearchDatabase extends Database {
   public static final String SNIPPET                = "snippet";
   public static final String CONVERSATION_RECIPIENT = "conversation_recipient";
   public static final String MESSAGE_RECIPIENT      = "message_recipient";
+  public static final String IS_MMS                 = "is_mms";
+  public static final String MESSAGE_ID             = "message_id";
+
+  public static final String SNIPPET_WRAP = "...";
 
   public static final String[] CREATE_TABLE = {
       "CREATE VIRTUAL TABLE " + SMS_FTS_TABLE_NAME + " USING fts5(" + BODY + ", " + THREAD_ID + " UNINDEXED, content=" + SmsDatabase.TABLE_NAME + ", content_rowid=" + SmsDatabase.ID + ");",
@@ -60,9 +64,12 @@ public class SearchDatabase extends Database {
       "SELECT " +
         ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
         MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
-        "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
+        "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
         SmsDatabase.TABLE_NAME + "." + SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
-        SMS_FTS_TABLE_NAME + "."  + THREAD_ID + " " +
+        SMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
+        SMS_FTS_TABLE_NAME + "." + BODY + ", " +
+        SMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
+        "0 AS " + IS_MMS + " " +
       "FROM " + SmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + SMS_FTS_TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + ID + " = " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.ID + " " +
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
@@ -71,9 +78,12 @@ public class SearchDatabase extends Database {
       "SELECT " +
         ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
         MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
-        "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
+        "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
         MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
-        MMS_FTS_TABLE_NAME + "." + THREAD_ID + " " +
+        MMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
+        MMS_FTS_TABLE_NAME + "." + BODY + ", " +
+        MMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
+        "1 AS " + IS_MMS + " " +
       "FROM " + MmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " " +
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
@@ -85,9 +95,12 @@ public class SearchDatabase extends Database {
       "SELECT " +
           ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
           MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
-          "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
+          "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
           SmsDatabase.TABLE_NAME + "." + SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
-          SMS_FTS_TABLE_NAME + "." + THREAD_ID + " " +
+          SMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
+          SMS_FTS_TABLE_NAME + "." + BODY + ", " +
+          SMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
+          "0 AS " + IS_MMS + " " +
         "FROM " + SmsDatabase.TABLE_NAME + " " +
         "INNER JOIN " + SMS_FTS_TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + ID + " = " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.ID + " " +
         "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
@@ -96,9 +109,12 @@ public class SearchDatabase extends Database {
         "SELECT " +
           ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
           MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
-          "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
+          "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
           MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
-          MMS_FTS_TABLE_NAME + "." + THREAD_ID + " " +
+          MMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
+          MMS_FTS_TABLE_NAME + "." + BODY + ", " +
+          MMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
+          "1 AS " + IS_MMS + " " +
         "FROM " + MmsDatabase.TABLE_NAME + " " +
         "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " " +
         "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
