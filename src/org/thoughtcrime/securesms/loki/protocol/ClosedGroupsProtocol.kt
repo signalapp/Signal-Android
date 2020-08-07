@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import android.util.Log
 import nl.komponents.kovenant.Promise
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
@@ -34,7 +35,7 @@ object ClosedGroupsProtocol {
             ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
         }
         // Create the group
-        val groupID = GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false);
+        val groupID = GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false)
         val admins = setOf( Address.fromSerialized(userPublicKey) )
         DatabaseFactory.getGroupDatabase(context).create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
             null, null, LinkedList<Address>(admins))
@@ -42,13 +43,68 @@ object ClosedGroupsProtocol {
         // Establish sessions if needed
         establishSessionsWithMembersIfNeeded(context, members)
         // Send a closed group update message to all members using established channels
-        // TODO
+        val adminsAsData = admins.map { Hex.fromStringCondensed(it.serialize()) }
+        val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, groupKeyPair.privateKey.serialize(),
+            senderKeys, membersAsData, adminsAsData)
+        for (member in members) {
+            val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
+            ApplicationContext.getInstance(context).jobManager.add(job)
+        }
+        // TODO: Wait for the messages to finish sending
         // Add the group to the user's set of public keys to poll for
         DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
         // Notify the user
-        // TODO
+        // TODO: Implement
         // Return
         return Promise.of(Unit)
+    }
+
+    public fun addMembers(context: Context, newMembers: Collection<String>, groupPublicKey: String) {
+        // Prepare
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val groupDB = DatabaseFactory.getGroupDatabase(context)
+        val groupID = GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false)
+        val group = groupDB.getGroup(groupID).orNull()
+        if (group == null) {
+            Log.d("Loki", "Can't add users to nonexistent closed group.")
+            return
+        }
+        val name = group.title
+        val admins = group.admins.map { Hex.fromStringCondensed(it.serialize()) }
+        val privateKey = DatabaseFactory.getSSKDatabase(context).getClosedGroupPrivateKey(groupPublicKey)
+        if (privateKey == null) {
+            Log.d("Loki", "Couldn't get private key for closed group.")
+            return
+        }
+        // Add the members to the member list
+        val members = group.members.map { it.serialize() }.toMutableSet()
+        members.addAll(newMembers)
+        val membersAsData = members.map { Hex.fromStringCondensed(it) }
+        // Generate ratchets for the new members
+        val senderKeys: List<ClosedGroupSenderKey> = newMembers.map { publicKey ->
+            val ratchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, publicKey)
+            ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
+        }
+        // Send a closed group update message to the existing members with the new members' ratchets (this message is aimed at the group)
+        val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey), name,
+            senderKeys, membersAsData, admins)
+        val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
+        ApplicationContext.getInstance(context).jobManager.add(job)
+        // Establish sessions if needed
+        establishSessionsWithMembersIfNeeded(context, newMembers)
+        // Send closed group update messages to the new members using established channels
+        for (member in members) {
+            @Suppress("NAME_SHADOWING")
+            val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey), name,
+                senderKeys, membersAsData, admins)
+            @Suppress("NAME_SHADOWING")
+            val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
+            ApplicationContext.getInstance(context).jobManager.add(job)
+        }
+        // Update the group
+        groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        // Notify the user
+        // TODO: Implement
     }
 
     @JvmStatic
