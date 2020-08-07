@@ -550,7 +550,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">Umealikwa kwenye kundi.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Mwaliko wako kwa kundi ulibatilishwa.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Mwaliko wako kwa kundi ulibatilishwa.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -570,10 +570,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Mwanachama wa %1$s na %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Mwanachama wa %1$s, %2$s, na %3$s </string>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">Mwingine %d</item>
     <item quantity="other">Wengine %d</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Nenosiro haiwiani</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nenosiri la zamani lisilo sahihi</string>

@@ -372,7 +372,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">អ្នក</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">អ្នកណាមួយ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">អ្នកណាមួយ</string> -->
   <string name="GroupManagement_access_level_all_members">សមាជិកទាំងអស់</string>
   <string name="GroupManagement_access_level_only_admins">តែអ្នកគ្រប់គ្រង</string>
   <!--GV2 invites sent-->
@@ -384,14 +384,14 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">អញ្ជើញតាមសមាជិកក្រុមផ្សេង</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">មិនមានការអញ្ជើញមិនទាន់សម្រេច ពីសមាជិកក្រុម។</string>
   <string name="PendingMembersActivity_missing_detail_explanation">ព័ត៌មានលំអិតនៃមនុស្ស ដែលត្រូវបានអញ្ជើញដោយសមាជិកក្រុមផ្សេង មិនត្រូវបានបង្ហាញ។ បើអ្នកត្រូវបានអញ្ជើញជ្រើសរើសចូលរួម ព័ត៌មានពួកគេនឹងត្រូវចែករំលែកជាមួយក្រុមគ្រប់ពេល។ ពួកគេនឹងមិនអាចឃើញសារក្នុងក្រុម រហូតដល់ពួកគេចូលរួមក្រុម។</string>
-  <string name="PendingMembersActivity_cancel_invite">បោះបង់ការអញ្ជើញ</string>
-  <string name="PendingMembersActivity_cancel_invites">បោះបង់ការអញ្ជើញ</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">បោះបង់ការអញ្ជើញ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">បោះបង់ការអញ្ជើញ</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="other">បោះបង់ការអញ្ជើញ %1$d </item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="other">បញ្ហាក្នុងការបោះបង់ការអញ្ជើញ</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">បញ្ចប់</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -475,10 +475,10 @@
   <string name="CustomNotificationsDialogFragment__disabled">បានបិទ</string>
   <string name="CustomNotificationsDialogFragment__default">លំនាំដើម</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">តើអ្នកចង់លះបង់ការអញ្ជើញដែលអ្នកបានផ្ញើទៅ %1$s?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">តើអ្នកចង់លះបង់ការអញ្ជើញដែលអ្នកបានផ្ញើទៅ %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="other">តើអ្នកចង់លះបង់ការអញ្ជើញ %2$d ដែលផ្ញើដោយ %1$s?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
   <string name="CropImageActivity_profile_avatar">រូបតំណាង</string>
@@ -655,7 +655,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">មានគេបានបដិសេធការអញ្ជើញទៅក្រុម។</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">អ្នកបានបដិសេធការអញ្ជើញទៅក្រុមនេះ។</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ការអញ្ជើញចូលក្រុមរបស់អ្នកត្រូវបានដកហូត។</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ការអញ្ជើញចូលក្រុមរបស់អ្នកត្រូវបានដកហូត។</string> -->
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">អ្នកបានយល់ព្រមការអញ្ជើញទៅក្រុមនេះ។</string>
   <string name="MessageRecord_s_accepted_invite">%1$s បានយល់ព្រមការអញ្ជើញទៅក្រុមនេះ។</string>
@@ -687,7 +687,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">អនុញ្ញាត %1$s ផ្ញើសារមកអ្នក និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយពួកគេ? ពួកគេនឹងមិនដឹងថា អ្នកបានមើលឃើញសាររបស់គេ រហូតដល់អ្នកយល់ព្រម។ </string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">អនុញ្ញាត %1$s ផ្ញើសារមកអ្នក និងចែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយសមាជិកក្រុម? អ្នកនឹងមិនទទួលសារណាមួយឡើយ រហូតអ្នកលែងហាមឃាត់ពួកគេ។</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ចូលក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបថតអ្នក ជាមួយសមាជិកក្រុម? ពួកគេនឹងមិនដឹងថាអ្នកបានឃើញសាររបស់ពួកគេ រហូតអ្នកយល់ព្រមទទួល។</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">អ្នកត្រូវបានអញ្ជើញចូលក្រុមនេះ %1$s។ តើអ្នកចង់ឲ្យសមាជិកក្រុមនេះ ផ្ញើសារមកអ្នកទេ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">អ្នកត្រូវបានអញ្ជើញចូលក្រុមនេះ %1$s។ តើអ្នកចង់ឲ្យសមាជិកក្រុមនេះ ផ្ញើសារមកអ្នកទេ?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">លែងហាមឃាត់ក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយសមាជិកក្រុម? អ្នកនឹងមិនទទួលសារណាមួយឡើយ រហូតអ្នកលែងហាមឃាត់ពួកគេ។</string>
   <string name="MessageRequestProfileView_member_of_one_group">សមាជិកនៃ %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">សមាជិកនៃ %1$s និង%2$s</string>
@@ -698,9 +698,9 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="other">%1$d សមាជិក (+%2$d បានអញ្ជើញ)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d ផ្សេងៗ</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ឃ្លាសម្ងាត់មិនត្រូវគ្នា!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ឃ្លាសម្ងាត់ចាស់មិនត្រឹមត្រូវ!</string>

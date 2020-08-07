@@ -411,7 +411,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Tu</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Oricine</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Oricine</string> -->
   <string name="GroupManagement_access_level_all_members">Toți membrii</string>
   <string name="GroupManagement_access_level_only_admins">Doar administratorii</string>
   <!--GV2 invites sent-->
@@ -430,18 +430,18 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitații de la alți membri ai grupului</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nu există invitații în așteptare din partea altor membri ai grupului.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Nu sunt afișate detalii despre persoanele invitate de alți membri ai grupului. Dacă invitații aleg să se alăture, informațiile lor vor fi partajate grupului în acel moment. Nu vor vedea niciun mesaj din grup până nu se alătură.</string>
-  <string name="PendingMembersActivity_cancel_invite">Anulați invitația</string>
-  <string name="PendingMembersActivity_cancel_invites">Anulați invitațiile</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Anulați invitația</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Anulați invitațiile</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Anulați invitația</item>
     <item quantity="few">Anulați %1$d invitații</item>
     <item quantity="other">Anulați %1$d invitații</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Eroare la anularea invitației</item>
     <item quantity="few">Eroare la anularea invitațiilor</item>
     <item quantity="other">Eroare la anularea invitațiilor</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gata</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
@@ -545,12 +545,12 @@
   <string name="CustomNotificationsDialogFragment__disabled">Dezactivat</string>
   <string name="CustomNotificationsDialogFragment__default">Implicit</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Doriți să anulați invitația pe care ai trimis-o lui %1$s?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Doriți să anulați invitația pe care ai trimis-o lui %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Doriți să anulați invitația trimisă de %1$s?</item>
     <item quantity="few">Doriți să anulați %2$d invitații trimise de %1$s?</item>
     <item quantity="other">Doriți să anulați %2$d invitații trimise de %1$s?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar de grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -762,7 +762,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Cineva a refuzat o invitație la grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Ați refuzat invitația la grup.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Invitația dvs. la grup a fost revocată.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Invitația dvs. la grup a fost revocată.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">O invitație la grup a fost revocată.</item>
     <item quantity="few">%1$d  invitații la grup au fost revocate.</item>
@@ -803,7 +803,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permiteţi lui %1$s să vă trimită mesaje și să vă împărtășiți numele și fotografia cu ei? Nu vor ști că le-ai văzut mesajul până nu accepți.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permiteţi lui %1$s să vă trimită mesaje și să vă împărtășiți numele și fotografia cu ei? Nu veți primi niciun mesaj până când nu îi deblocați.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vă alăturaţi acestui grup și împărtășiți numele și fotografia cu membrii săi? Nu vor ști că le-ai văzut mesajele până nu accepți.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Ai fost invitat să te alături grupului %1$s. Permiteți membrii acestui grup să vă trimită mesaje?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Ai fost invitat să te alături grupului %1$s. Permiteți membrii acestui grup să vă trimită mesaje?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Deblocați acest grup și împărtășiți numele și fotografia cu membrii săi? Nu veți primi niciun mesaj până când nu îi deblocați.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membru al %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membru al %1$s și %2$s</string>
@@ -818,11 +818,11 @@
     <item quantity="few">%1$d membrii (+%2$d invitați)</item>
     <item quantity="other">%1$d membrii (+%2$d invitați)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d altul</item>
     <item quantity="few">%d alții</item>
     <item quantity="other">%d alții</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>

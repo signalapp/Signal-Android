@@ -86,7 +86,7 @@
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Τα μέλη της ομάδας δεν θα μπορούν να σε ξαναπροσθέσουν σε αυτήν.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Τα μέλη της ομάδας θα μπορούν να σε ξαναπροσθέσουν σε αυτήν.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Θα μπορείτε να στέλνετε μηνύματα και να καλείτε ο ένας τον άλλον, και το όνομα και η φωτογραφία σου θα μοιραστεί μαζί του/της.`</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Τα φραγμένα άτομα δεν θα μπορούν να σας καλέσουν ή να σας στείλουν μηνύματα.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Τα φραγμένα άτομα δεν θα μπορούν να σε καλέσουν ή να σου στείλουν μηνύματα.</string>
   <string name="BlockUnblockDialog_unblock_s">Κατάργηση φραγής του/της %1$s;</string>
   <string name="BlockUnblockDialog_unblock">Κατάργηση φραγής</string>
   <string name="BlockUnblockDialog_block">Φραγή</string>
@@ -135,8 +135,8 @@
   <string name="CommunicationActions_insecure_call">Μη ασφαλής κλήση</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Ενδέχεται να ισχύουν χρεώσεις παρόχου. Ο αριθμός που καλείς δεν έχει εγγραφτεί στο Signal. Η κλήση θα πραγματοποιηθεί μέσω του παρόχου κινητής τηλεφωνίας, όχι μέσω του διαδικτύου.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας σου με τον/την %1$s άλλαξε. Είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Ίσως να θες να επιβεβαιώσεις τον αριθμό ασφαλείας σας με αυτή την επαφή.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας σου με τον/την %1$s άλλαξε. Είτε κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Ίσως να θες να επιβεβαιώσεις τον αριθμό ασφαλείας σου με αυτή την επαφή.</string>
   <string name="ConfirmIdentityDialog_accept">Αποδοχή</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Πρόσφατες συνομιλίες</string>
@@ -397,7 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Εσύ</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Οποιοσδήποτε</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Οποιοσδήποτε</string> -->
   <string name="GroupManagement_access_level_all_members">Όλα τα μέλη</string>
   <string name="GroupManagement_access_level_only_admins">Μόνο διαχειριστές/τριες</string>
   <!--GV2 invites sent-->
@@ -415,16 +415,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Προσκλήσεις από άλλα μέλη της ομάδας</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Δεν υπάρχουν προσκλήσεις που εκκρεμούν από άλλα μέλη της ομάδας.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Δεν εμφανίζονται λεπτομέρειες των ατόμων που έχουν προσκληθεί από άλλα μέλη της ομάδας. Αν οι προσκεκλημένοι επιλέξουν να δεχτούν την πρόσκληση, οι πληροφορίες τους θα μοιραστούν με την ομάδα εκείνη την ώρα. Δεν θα μπορούν να δουν οποιαδήποτε μηνύματα μέχρι να δεχτούν την πρόσκληση.</string>
-  <string name="PendingMembersActivity_cancel_invite">Ακύρωση πρόσκλησης</string>
-  <string name="PendingMembersActivity_cancel_invites">Ακύρωση προσκλήσεων</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Ακύρωση πρόσκλησης</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Ακύρωση προσκλήσεων</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Ακύρωση πρόσκλησης</item>
     <item quantity="other">Ακύρωση %1$d προσκλήσεων</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Σφάλμα στην ακύρωση πρόσκλησης</item>
     <item quantity="other">Σφάλμα στην ακύρωση προσκλήσεων</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Τέλος</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Αυτό το άτομο δεν μπορεί να προστεθεί σε ομάδες παλαιού τύπου.</string>
@@ -480,7 +480,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Αποτυχία ανανέωσης της ομάδας λόγω σφάλματος δικτύου, παρακαλώ προσπάθησε ξανά αργότερα</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
   <string name="ManageGroupActivity_legacy_group">Ομάδα παλαιού τύπου</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Αυτή η ομάδα είναι παλαιού τύπου. Για να έχετε χαρακτηριστικά όπως τους διαχειριστές ομάδας, δημιουργήστε μια νέα ομάδα.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Αυτή η ομάδα είναι παλαιού τύπου. Για πρόσβαση σε χαρακτηριστικά όπως οι διαχειριστές ομάδας, δημιουργήστε μια νέα ομάδα.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Προσθήκη στις επαφές συστήματος</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Αυτό το άτομο είναι στις επαφές σου</string>
@@ -523,11 +523,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Απενεργοποιημένο</string>
   <string name="CustomNotificationsDialogFragment__default">Προκαθορισμένη</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Θέλεις να ακυρώσεις την πρόσκληση που έστειλες στον/στην %1$s;</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Θέλεις να ακυρώσεις την πρόσκληση που έστειλες στον/στην %1$s;</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Θέλεις να ακυρώσεις την πρόσκληση που στάλθηκε από τον/την %1$s;</item>
     <item quantity="other">Θέλεις να ακυρώσεις %2$d προσκλήσεις που στάλθηκαν απ\' τον/την %1$s;</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Εικόνα ομάδας</string>
   <string name="CropImageActivity_profile_avatar">Εικόνα προφίλ</string>
@@ -728,7 +728,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Κάποιος απέρριψε μια πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Απέρριψες την πρόσκληση στην ομάδα.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Η πρόσκλησή σου στην ομάδα ανακλήθηκε.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Η πρόσκλησή σου στην ομάδα ανακλήθηκε.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Μια πρόσκληση στην ομάδα ανακλήθηκε.</item>
     <item quantity="other">%1$d προσκλήσεις στην ομάδα ανακλήθηκαν.</item>
@@ -768,7 +768,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή του/της.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχτείς.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Έχεις μια πρόσκληση να μπεις στην ομάδα %1$s. Θέλεις να επιτρέψεις στα μέλη αυτής της ομάδας να σου στείλουν μηνύματα;</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Έχεις μια πρόσκληση να μπεις στην ομάδα %1$s. Θέλεις να επιτρέψεις στα μέλη αυτής της ομάδας να σου στείλουν μηνύματα;</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Θέλεις να καταργηθεί η φραγή αυτής της ομάδας και να μοιραστεί το όνομα και η φωτογραφία σου με τα μέλη της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή της.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Μέλος του %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Μέλος των %1$s και %2$s</string>
@@ -781,10 +781,10 @@
     <item quantity="one">%1$d μέλος (+%2$d προσκεκλημένοι)</item>
     <item quantity="other">%1$d μέλη (+%2$d προσκεκλημένοι)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d άλλο</item>
     <item quantity="other">%d άλλα</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Τα συνθηματικά δεν ταιριάζουν!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Λάθος παλιό συνθηματικό!</string>
@@ -843,8 +843,8 @@
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Εισαγωγή αλφαριθμητικού PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Εισαγωγή αριθμητικού PIN</string>
   <!--PinRestoreLockedFragment-->
-  <string name="PinRestoreLockedFragment_create_your_pin">Δημιουργία του PIN σας</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ξέμεινες από απόπειρες για το PIN σας, αλλά μπορείς ακόμα να έχεις πρόσβαση στο λογαριασμό Signal σου, δημιουργώντας ένα νέο PIN. Για την ιδιωτικότητα και την ασφάλειά σου, ο λογαριασμός σου θα επαναφερθεί χωρις καμία αποθηκευμένη πληροφορία προφίλ ή ρυθμίσεις.</string>
+  <string name="PinRestoreLockedFragment_create_your_pin">Δημιούργησε το PIN σου</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ξέμεινες από απόπειρες για το PIN σου, αλλά μπορείς ακόμα να έχεις πρόσβαση στο λογαριασμό Signal σου, δημιουργώντας ένα νέο PIN. Για την ιδιωτικότητα και την ασφάλειά σου, ο λογαριασμός σου θα επαναφερθεί χωρις καμία αποθηκευμένη πληροφορία προφίλ ή ρυθμίσεις.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Δημιουργία νέου PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Προσοχή</string>
@@ -934,7 +934,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ενεργοποίηση του Κλειδώματος εγγραφής;</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Απενεργοποίηση του Κλειδώματος εγγραφής;</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Αν ξεχάσεις το PIN του Signal σας όταν επανεγγραφτείς στο Signal, θα κλειδωθείς έξω απ\' τον λογαριασμό σου για 7 ημέρες.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Αν ξεχάσεις το PIN του Signal σου όταν επανεγγραφτείς στο Signal, θα κλειδωθείς έξω απ\' τον λογαριασμό σου για 7 ημέρες.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Ενεργοποίηση</string>
   <string name="RegistrationLockV2Dialog_turn_off">Απενεργοποίηση</string>
   <!--RevealableMessageView-->
@@ -1144,13 +1144,13 @@
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Επαφή</string>
   <string name="MessageNotifier_reacted_s_to_s">Αντέδρασε με %1$s στο \"%2$s\".</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">Αντέδρασε με %1$s στο βίντεό σας.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">Αντέδρασε με %1$s στη φωτογραφία σας.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Αντέδρασε με %1$s στο αρχείο σας.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">Αντέδρασε με %1$s στο ηχητικό σας.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Αντέδρασε με%1$s στη φωτογραφία σας μιας μόνο προβολής.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Αντέδρασε με %1$s στο βίντεό σας μιας μόνο προβολής.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Αντέδρασε με %1$s στο αυτοκόλλητό σας.</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Αντέδρασε με %1$s στο βίντεό σου.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Αντέδρασε με %1$s στη φωτογραφία σου.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Αντέδρασε με %1$s στο αρχείο σου.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Αντέδρασε με %1$s στο ηχητικό σου.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Αντέδρασε με%1$s στη φωτογραφία μιας μόνο προβολής σου.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Αντέδρασε με %1$s στο βίντεο μιας μόνο προβολής σου.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Αντέδρασε με %1$s στο αυτοκόλλητό σου.</string>
   <string name="MessageNotifier_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Προκαθορισμένο</string>
@@ -1199,7 +1199,7 @@
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Απορρίφθηκε απο συνδεμένη συσκευή.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Απασχολημένος/η από συνδεμένη συσκευή.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Ο αριθμός ασφαλείας για τη συνομιλία σου με τον/την %1$s έχει αλλάξει. Αυτό μπορεί να σημαίνει πως κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σας, ή πως απλά ο/η %2$s επανεγκατέστησε το Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Ο αριθμός ασφαλείας για τη συνομιλία σου με τον/την %1$s έχει αλλάξει. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, είτε απλά ο/η %2$s επανεγκατέστησε το Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Ίσως να θέλεις να επιβεβαιώσετε τον αριθμό ασφαλείας σου με αυτή την επαφή.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Νέος αριθμός ασφαλείας</string>
   <string name="WebRtcCallScreen_accept">Αποδοχή</string>
@@ -1371,9 +1371,9 @@
   <string name="IdentityUtil_unverified_banner_one">Ο αριθμός ασφαλείας σου με τον/την %s άλλαξε και δεν είναι πια επιβεβαιωμένος</string>
   <string name="IdentityUtil_unverified_banner_two">Οι αριθμοί ασφαλείας σου με τους/τις %1$s και %2$s δεν είναι πια επιβεβαιωμένοι</string>
   <string name="IdentityUtil_unverified_banner_many">Οι αριθμοί ασφαλείας σου με τους/τις %1$s, %2$s και %3$s δεν είναι πια επιβεβαιωμένοι</string>
-  <string name="IdentityUtil_unverified_dialog_one">Ο αριθμός ασφαλείας σου με τον/την %1$s άλλαξε και δεν είναι πια επιβεβαιωμένος. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε απλά ο/η %1$s επανεγκατέστησε το Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Οι αριθμοί ασφαλείας σου με τους/τις %1$s και %2$s δεν είναι πια επιβεβαιωμένοι. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τις συνομιλίες σας, είτε απλά επανεγκατέστησαν το Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Οι αριθμοί ασφαλείας σου με τους/τις %1$s, %2$s και %3$s δεν είναι πια επιβεβαιωμένοι. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τις συνομιλίες σας, είτε απλά επανεγκατέστησαν το Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Ο αριθμός ασφαλείας σου με τον/την %1$s άλλαξε και δεν είναι πια επιβεβαιωμένος. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, είτε απλά ο/η %1$s επανεγκατέστησε το Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Οι αριθμοί ασφαλείας σου με τους/τις %1$s και %2$s δεν είναι πια επιβεβαιωμένοι. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, είτε απλά επανεγκατέστησαν το Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Οι αριθμοί ασφαλείας σου με τους/τις %1$s, %2$s και %3$s δεν είναι πια επιβεβαιωμένοι. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, είτε απλά επανεγκατέστησαν το Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Ο αριθμός ασφαλείας σου με τον/την %s μόλις άλλαξε.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Οι αριθμοί ασφαλείας σου με τους/τις %1$s και %2$s μόλις άλλαξαν.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Οι αριθμοί ασφαλείας σου με τους/τις %1$s, %2$s και %3$s μόλις άλλαξαν.</string>
@@ -1884,7 +1884,7 @@
   <string name="AccountLockedFragment__learn_more">Μάθε περισσότερα</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Γράψε το PIN σου</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Γράψε το PIN που δημιούργησες για τον λογαριαμό σας. Αυτό είναι διαφορετικό από τον κωδικό επιβεβαίωσης που έλαβες μέσω SMS.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Γράψε το PIN που δημιούργησες για το λογαριασμό σου. Αυτό είναι διαφορετικό από τον κωδικό επιβεβαίωσης που έλαβες μέσω SMS.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Εισαγωγή αλφαριθμητικού PIN</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Εισαγωγή αριθμητικού PIN</string>
   <string name="RegistrationLockFragment__next">Επόμενο</string>
@@ -1932,7 +1932,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Το Signal χρειάζεται τα δικαιώματα SMS για την αποστολή SMS, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τα \"SMS\".</string>
   <string name="Permissions_continue">Συνέχεια</string>
   <string name="Permissions_not_now">Όχι τώρα</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Επαφών για την αναζήτηση στις επαφές σας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τις \"Επαφές\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Επαφών για την αναζήτηση στις επαφές σου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τις \"Επαφές\".</string>
   <string name="conversation_activity__enable_signal_messages">ΕΝΕΡΓΟΠΟΙΗΣΗ ΜΗΝΥΜΑΤΩΝ SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Μετεγκατάσταση της βάσης δεδομένων του Signal</string>
   <string name="PushDecryptJob_new_locked_message">Νέο κλειδωμένο μήνυμα</string>

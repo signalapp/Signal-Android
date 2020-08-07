@@ -397,7 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">आपण</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">कोणीही</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">कोणीही</string> -->
   <string name="GroupManagement_access_level_all_members">सर्व सदस्य </string>
   <string name="GroupManagement_access_level_only_admins">केवळ प्रशासक</string>
   <!--GV2 invites sent-->
@@ -409,8 +409,8 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">इतर गट सदस्यांद्वारा आमंत्रण</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">इतर गटाच्या सदस्यांद्वारे प्रलंबित आमंत्रणे नाहीत.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">इतर गट सदस्यांद्वारा आमंत्रित व्यक्तींचे तपशील दाखविलेले नाही. जर आमंत्रितांनी सामील होण्यास निवडले, तर त्यांची माहिती गटासोबत त्यावेळी सामायिक केली जाईल. ते सामील होईपर्यंत ते कुठलेही संदेश पाहू शकणार नाही.</string>
-  <string name="PendingMembersActivity_cancel_invite">आमंत्रण रद्द करा</string>
-  <string name="PendingMembersActivity_cancel_invites">आमंत्रणे रद्द करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">आमंत्रण रद्द करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">आमंत्रणे रद्द करा</string> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ठीक</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
@@ -612,7 +612,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">आपल्याला गटात निमंत्रित केले गेले होते.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">आपले गटाचे निमंत्रण रद्द केले गेले.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">आपले गटाचे निमंत्रण रद्द केले गेले.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -632,10 +632,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">%1$s चा सदस्य</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s आणि %2$s चा सदस्य</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, आणि %3$s चा सदस्य </string>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d इतर</item>
     <item quantity="other">%d इतर</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">पासफ्रेझ जुळत नाहीत!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">चुकीचे जुने पासफ्रेझ!</string>

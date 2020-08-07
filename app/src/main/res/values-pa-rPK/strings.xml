@@ -548,7 +548,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">تساں نوں گروپ اچ مدعو کیتا۔</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ اچ تساں دی دعوت منسوخ کر دتی گئی سی۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ اچ تساں دی دعوت منسوخ کر دتی گئی سی۔</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -568,10 +568,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">%1$s دا رکن</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s تے %2$s دا رکن</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s، %2$s، تے %3$s دا رکن</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d دوجا</item>
     <item quantity="other">%d دوجے</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">پاس فریزز اکو جہے نئیں!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">پرانا پاس فریز غلط اے!</string>

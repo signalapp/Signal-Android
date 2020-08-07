@@ -386,7 +386,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">ਤੁਸੀਂ</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">ਕੋਈ ਵੀ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">ਕੋਈ ਵੀ</string> -->
   <string name="GroupManagement_access_level_all_members">ਸਾਰੇ ਮੈਂਬਰ</string>
   <string name="GroupManagement_access_level_only_admins">ਸਿਰਫ਼ ਐਡਮਿਨ</string>
   <!--GV2 invites sent-->
@@ -658,7 +658,7 @@
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">ਤੁਹਾਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸੱਦਾ ਭੇਜਿਆ ਗਿਆ ਸੀ.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ਗਰੁੱਪ ਵਿੱਚ ਤੁਹਾਡੇ ਸੱਦੇ ਨੂੰ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਸੀ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ਗਰੁੱਪ ਵਿੱਚ ਤੁਹਾਡੇ ਸੱਦੇ ਨੂੰ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਸੀ.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -681,10 +681,10 @@
     <item quantity="one">%1$d ਮੈਂਬਰ</item>
     <item quantity="other">%1$d ਮੈਂਬਰ</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d ਹੋਰ</item>
     <item quantity="other">%d ਹੋਰ</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ਪਾਸਫਰੇਜ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ਗਲਤ ਪੁਰਾਣਾ ਪਾਸਫਰੇਜ!</string>

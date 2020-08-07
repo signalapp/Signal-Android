@@ -572,10 +572,10 @@
     <item quantity="one">%1$d membro</item>
     <item quantity="other">%1$d membros</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d máis</item>
     <item quantity="other">%d máis</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases de acceso non coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase de acceso antiga incorrecta!</string>

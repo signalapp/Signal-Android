@@ -564,7 +564,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">Ikaw ay inimbitahan sa grupo.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Ang iyong imbitasyon sa grupo ay binawi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Ang iyong imbitasyon sa grupo ay binawi.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -592,10 +592,10 @@
     <item quantity="one">%1$d na kasapi (+%2$d na inimbitahan)</item>
     <item quantity="other">%1$d na mga kasapi (+%2$d na inimbitahan)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d iba pa</item>
     <item quantity="other">%d pang iba</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hindi tugma ang mga passphrase!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Lumang passphrase!</string>

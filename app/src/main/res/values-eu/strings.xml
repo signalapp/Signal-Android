@@ -397,7 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Zu</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Edozein</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Edozein</string> -->
   <string name="GroupManagement_access_level_all_members">Partaide guztiak</string>
   <string name="GroupManagement_access_level_only_admins">Administratzaileak bakarrik</string>
   <!--GV2 invites sent-->
@@ -415,16 +415,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenak</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenik ez dago.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Taldeko beste partaideek gonbidatutako pertsonen xehetasunak ez dira erakusten. Gonbidatuek taldean sartzea erabakitzen badute, beraien informazioa une horretan partekatuko da taldearekin. Taldean sartu arte ez dute mezurik ikusiko.</string>
-  <string name="PendingMembersActivity_cancel_invite">Bertan behera utzi gonbidapena</string>
-  <string name="PendingMembersActivity_cancel_invites">Bertan behera utzi gonbidapenak</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Bertan behera utzi gonbidapena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Bertan behera utzi gonbidapenak</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Bertan behera utzi gonbidapena</item>
     <item quantity="other">Bertan behera utzi %1$d gonbidapen</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Errorea gonbidapena kantzelatzen</item>
     <item quantity="other">Errorea gonbidapenak bertan behera uzten</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Eginda</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
@@ -523,11 +523,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desaktibatuta</string>
   <string name="CustomNotificationsDialogFragment__default">Lehenetsia</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">%1$s erabiltzaileari bidalitako gonbidapena bertan behera utzi nahi duzu?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">%1$s erabiltzaileari bidalitako gonbidapena bertan behera utzi nahi duzu?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">%1$s erabiltzaileak bidalitako gondibapena ezeztatu nahi duzu?</item>
     <item quantity="other">%1$s erabiltzaileak bidalitako %2$d gonbidapenak bertan behera utzi nahi dituzu?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Taldearen abatarra</string>
   <string name="CropImageActivity_profile_avatar">Abatarra</string>
@@ -728,7 +728,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Norbaitek uko egin dio taldean sartzeko gonbidapen bati.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Taldean sartzeko gonbidapen bati uko egin diozu.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Taldean sartzeko zure gonbidapena ezeztatu egin da.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Taldean sartzeko zure gonbidapena ezeztatu egin da.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Taldean sartzeko gonbidapen bat ezeztatu egin da.</item>
     <item quantity="other">Taldean sartzeko %1$d gonbidapen ezeztatu egin dira.</item>
@@ -768,7 +768,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partekatzeko. Zuk onartu arte ez dute jakingo beraien mezua ikusi duzunik.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partzekatzeko. Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetan sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s taldean sartzeko gonbidatua izan zara. Talde honetako kideei zuri mezuak bidaltzen utzi nahi diezu?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s taldean sartzeko gonbidatua izan zara. Talde honetako kideei zuri mezuak bidaltzen utzi nahi diezu?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desblokeatu talde hau eta zure izena eta argazkia beraiekin partekatu? Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s taldeko kidea</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s eta %2$s taldeetako kidea</string>
@@ -781,10 +781,10 @@
     <item quantity="one">Partaide %1$d (+%2$d gonbidatu)</item>
     <item quantity="other">%1$d partaide (+ %2$d gonbidatu)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">beste %d</item>
     <item quantity="other">beste %d</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasahitzak ez datoz bat!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Pasahitz zahar ez zuzena!</string>

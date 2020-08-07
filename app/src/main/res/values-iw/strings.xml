@@ -425,7 +425,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">אתה</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">כל אחד</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">כל אחד</string> -->
   <string name="GroupManagement_access_level_all_members">כל חברי הקבוצה</string>
   <string name="GroupManagement_access_level_only_admins">רק מנהלנים</string>
   <!--GV2 invites sent-->
@@ -445,20 +445,20 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">הזמנות ע״י חברי קבוצה אחרים</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">אין הזמנות ממתינות על ידי חברי קבוצה אחרים.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">פרטים של אנשים שהוזמנו על ידי חברי קבוצה אחרים אינם נראים. אם מוזמנים בוחרים להצטרף, המידע שלהם ישותף עם הקבוצה בזמן ההצטרפות. הם לא יראו הודעות כלשהן בקבוצה עד שהם יצטרפו.</string>
-  <string name="PendingMembersActivity_cancel_invite">בטל הזמנה</string>
-  <string name="PendingMembersActivity_cancel_invites">בטל הזמנות</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">בטל הזמנה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">בטל הזמנות</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">בטל הזמנה</item>
     <item quantity="two">בטל %1$d הזמנות</item>
     <item quantity="many">בטל %1$d הזמנות</item>
     <item quantity="other">בטל %1$d הזמנות</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">שגיאה בביטול הזמנה</item>
     <item quantity="two">שגיאה בביטול הזמנות</item>
     <item quantity="many">שגיאה בביטול הזמנות</item>
     <item quantity="other">שגיאה בביטול הזמנות</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">סיים</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
@@ -567,13 +567,13 @@
   <string name="CustomNotificationsDialogFragment__disabled">מושבת</string>
   <string name="CustomNotificationsDialogFragment__default">ברירת מחדל</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">האם אתה רוצה לבטל את ההזמנה ששלחת אל %1$s?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">האם אתה רוצה לבטל את ההזמנה ששלחת אל %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">האם אתה רוצה לבטל את ההזמנה שנשלחה על ידי %1$s?</item>
     <item quantity="two">האם אתה רוצה לבטל %2$d הזמנות שנשלחו על ידי %1$s?</item>
     <item quantity="many">האם אתה רוצה לבטל %2$d הזמנות שנשלחו על ידי %1$s?</item>
     <item quantity="other">האם אתה רוצה לבטל %2$d הזמנות שנשלחו על ידי %1$s?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">יצגן קבוצה</string>
   <string name="CropImageActivity_profile_avatar">יצגן</string>
@@ -796,7 +796,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">מישהו דחה הזמנה אל הקבוצה.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">סירבת אל ההזמנה אל הקבוצה.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ההזמנה שלך אל הקבוצה נשללה.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ההזמנה שלך אל הקבוצה נשללה.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">הזמנה אל הקבוצה נשללה.</item>
     <item quantity="two">%1$d הזמנות אל הקבוצה נשללו.</item>
@@ -838,7 +838,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">לאפשר אל %1$s לשלוח אליך הודעות? הצד השני לא יידע שראית את ההודעות שלו עד שלא תסכים.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">לאפשר אל %1$s לשלוח אליך הודעות ולשתף את השם והתמונה שלך איתו/איתה? לא תקבל הודעות כלשהן עד שלא תבטל חסימה שלו/שלה.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? חברי הקבוצה לא יידעו שראית את ההודעה שלהם עד שלא תאשר.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">הוזמנת להצטרף אל הקבוצה %1$s. האם אתה רוצה לאפשר לחברי הקבוצה הזאת לשלוח לך הודעות?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">הוזמנת להצטרף אל הקבוצה %1$s. האם אתה רוצה לאפשר לחברי הקבוצה הזאת לשלוח לך הודעות?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">לבטל חסימת קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? לא תקבל הודעות כלשהן עד שלא תבטל חסימה.</string>
   <string name="MessageRequestProfileView_member_of_one_group">חבר קבוצה של %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">חבר קבוצה של %1$s ושל %2$s</string>
@@ -855,12 +855,12 @@
     <item quantity="many">%1$d חברי קבוצה (+%2$d הוזמנו)</item>
     <item quantity="other">%1$d חברי קבוצה (+%2$d הוזמנו)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">אחר %d</item>
     <item quantity="two">%d אחרים</item>
     <item quantity="many">%d אחרים</item>
     <item quantity="other">%d אחרים</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">משפטי־סיסמה אינם תואמים!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">משפט־סיסמה ישן שגוי!</string>

@@ -391,7 +391,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Jūs</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Jebkurš</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Jebkurš</string> -->
   <string name="GroupManagement_access_level_all_members">Visi lietotāji</string>
   <string name="GroupManagement_access_level_only_admins">Tikai administratori</string>
   <!--GV2 invites sent-->
@@ -403,8 +403,8 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Citu grupu lietotāju ielūgumi</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nav neapstiprināto ielūgumu no citu grupu lietotājiem.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Detaļas par ielūgtajiem no citu grupu lietotājiem netiek rādītas. Ja ielūgtie izvēlas pievienoties, grupai būs piekļuve viņu informācijai. Viņi neredzēs grupas ziņojumus, kamēr nepievienosies grupai.</string>
-  <string name="PendingMembersActivity_cancel_invite">Atcelt ielūgumu</string>
-  <string name="PendingMembersActivity_cancel_invites">Atcelt ielūgumus</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Atcelt ielūgumu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Atcelt ielūgumus</string> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gatavs</string>
   <!--AddGroupDetailsFragment-->
@@ -461,7 +461,7 @@
   <string name="CustomNotificationsDialogFragment__disabled">Atspējota</string>
   <string name="CustomNotificationsDialogFragment__default">Noklusējuma</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Vēlaties atcelt uzaicinājumu %1$s?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Vēlaties atcelt uzaicinājumu %1$s?</string> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupas ikona</string>
   <string name="CropImageActivity_profile_avatar">ikona</string>
@@ -642,7 +642,7 @@
   <!--GV2 invitation revokes-->
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kāds atcēla ielūgumu pievienoties grupai.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atcēlāt ielūgumu pievienoties grupai.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Jūsu uzaicinājums pievienoties šai grupai tika atsaukts.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Jūsu uzaicinājums pievienoties šai grupai tika atsaukts.</string> -->
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Jūs pieņēmāt ielūgumu pievienoties grupai.</string>
   <string name="MessageRecord_s_accepted_invite">%1$spieņēma uzaicinājumu pievienoties grupai.</string>
@@ -671,7 +671,7 @@
   <string name="MessageRequestBottomView_delete">Dzēst</string>
   <string name="MessageRequestBottomView_block">Bloķēt</string>
   <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs esat uzaicināts pievienoties grupai %1$s. Vai vēlāties, lai grupas dalībnieku varētu nosūtīt Jums ziņojumus?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs esat uzaicināts pievienoties grupai %1$s. Vai vēlāties, lai grupas dalībnieku varētu nosūtīt Jums ziņojumus?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atbloķēt šo grupu un dalīties ar savu vārdu un attēlu ar šiem dalībniekiem? Jūs nesaņemsiet nevienu ziņu, kamēr šo grupu neatbloķēsiet.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s dalībnieks</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s un %2$s dalībnieks</string>
@@ -681,11 +681,11 @@
     <item quantity="one">%1$d dalībnieks</item>
     <item quantity="other">%1$d dalībnieki</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="zero">%d cits</item>
     <item quantity="one">%d cits</item>
     <item quantity="other">%d citi</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Paroles nesakrīt! </string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nepareiza vecā parole!</string>

@@ -538,7 +538,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">An gayyaceka/ki zuwa rukunin.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">An soke gayyatarka/ki zuwa rukunin. </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">An soke gayyatarka/ki zuwa rukunin. </string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -558,10 +558,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">Membobin %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membobin %1$s da %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membobin %1$s, %2$s, da %3$s</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d other</item>
     <item quantity="other">%d wasu</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Kalaman sirrinnan ba daya bane dana farkon!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Tsohon kalaman sirrinnan ba daidai bane!</string>

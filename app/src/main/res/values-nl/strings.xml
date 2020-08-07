@@ -397,7 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Jij</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Iedereen</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Iedereen</string> -->
   <string name="GroupManagement_access_level_all_members">Alle groepsleden</string>
   <string name="GroupManagement_access_level_only_admins">Uitsluitend beheerders</string>
   <!--GV2 invites sent-->
@@ -415,16 +415,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Uitnodigingen door andere leden verzonden</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen wie door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam en -foto zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
-  <string name="PendingMembersActivity_cancel_invite">Uitnodiging annuleren</string>
-  <string name="PendingMembersActivity_cancel_invites">Uitnodigingen annuleren</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Uitnodiging annuleren</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Uitnodigingen annuleren</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Uitnodiging annuleren</item>
     <item quantity="other">%1$d uitnodigingen annuleren</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Fout bij het annuleren van de uitnodiging</item>
     <item quantity="other">Fout bij het annuleren van de uitnodigingen</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klaar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan oude groepen.</string>
@@ -523,11 +523,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Uitgeschakeld</string>
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Wil je de uitnodiging aan %1$s intrekken?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Wil je de uitnodiging aan %1$s intrekken?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Wil je een door %1$s verzonden uitnodiging annuleren?</item>
     <item quantity="other">Wil je %2$d door %1$s verzonden uitnodigingen annuleren?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Groepsafbeelding</string>
   <string name="CropImageActivity_profile_avatar">Profielfoto</string>
@@ -728,7 +728,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Iemand heeft een uitnodiging om lid te worden van de groep verworpen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Je hebt de uitnodiging om lid te worden van de groep verworpen.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Je uitnodiging om lid de worden van de groep is ingetrokken.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Je uitnodiging om lid de worden van de groep is ingetrokken.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Een uitnodiging om lid te worden van de groep is ingetrokken.</item>
     <item quantity="other">%1$d uitnodigingen om lid te worden van de groep zijn ingetrokken.</item>
@@ -768,7 +768,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Hij of zij zal totdat je de gespreksuitnodiging aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? De leden van deze groep zullen niet kunnen zien dat je hun berichten hebt gelezen totdat je de uitnodiging hebt aanvaard.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Je bent uitgenodigd om lid te worden van de groep “%1$s”. Wil je de leden van die groep toestaan om berichten naar jou te verzenden?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Je bent uitgenodigd om lid te worden van de groep “%1$s”. Wil je de leden van die groep toestaan om berichten naar jou te verzenden?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
@@ -781,10 +781,10 @@
     <item quantity="one">%1$d lid (+%2$d uitgenodigden)</item>
     <item quantity="other">%1$d leden (+%2$d uitgenodigden)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d ander</item>
     <item quantity="other">%d andere</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>

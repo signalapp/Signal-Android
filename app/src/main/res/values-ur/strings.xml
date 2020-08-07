@@ -546,7 +546,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">آپ کو گروپ میں مدعو کیا گیا تھا۔</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ میں آپ کی دعوت منسوخ کردی گئی تھی۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ میں آپ کی دعوت منسوخ کردی گئی تھی۔</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -566,10 +566,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">کا رکن%1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">ممبر%1$s اور%2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">کے ممبر%1$s ، %2$sاور%3$s</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%dدوسروں</item>
     <item quantity="other">%d دوسرے</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">پاسفریز میچ نہیں ہوا!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">پرانا پاسفریز غلط ہے!</string>

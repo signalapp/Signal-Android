@@ -397,7 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Você</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Todos</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Todos</string> -->
   <string name="GroupManagement_access_level_all_members">Todos os membros</string>
   <string name="GroupManagement_access_level_only_admins">Apenas administradores</string>
   <!--GV2 invites sent-->
@@ -415,16 +415,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Convites por outros membros do grupo</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Não tem convites pendentes de outros membros do grupo.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Os detalhes das pessoas convidadas por outros membros do grupo não são exibidos. Se os convidados optarem por se juntarem, as suas informações serão partilhadas com o grupo apenas a partir desse momento. Eles não irão ver nenhuma mensagem do grupo até se juntarem ao grupo.</string>
-  <string name="PendingMembersActivity_cancel_invite">Cancelar convite</string>
-  <string name="PendingMembersActivity_cancel_invites">Cancelar convites</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Cancelar convite</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Cancelar convites</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Cancelar convite</item>
     <item quantity="other">Cancelar %1$d convites</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Ocorreu um erro ao cancelar convite</item>
     <item quantity="other">Ocorreu um erro ao cancelar convites</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Concluído</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada os grupos legados.</string>
@@ -523,11 +523,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desativada</string>
   <string name="CustomNotificationsDialogFragment__default">Pré-definição</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Deseja cancelar o convite que enviou para %1$s?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Deseja cancelar o convite que enviou para %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Deseja cancelar o convite enviado por %1$s?</item>
     <item quantity="other">Deseja cancelar %2$d convites que foram enviados por %1$s?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -728,7 +728,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguém declinou um pedido para o grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Você recusou o convite para o grupo.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">O seu convite para o grupo foi revogado.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">O seu convite para o grupo foi revogado.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Foi revogado um convite para o grupo.</item>
     <item quantity="other">Foram revogados %1$d convites para o grupo.</item>
@@ -768,7 +768,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não saberão que viu a mensagem deles até que aceite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não irão receber nenhuma mensagem até que os desbloqueie.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Juntar-se a este grupo e partilhar o seu nome e fotografia com os seus membros? Eles não sabem que viu as mensagens deles até que aceite.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Foi convidado(a) para se juntar ao grupo %1$s. Deseja que os membros deste grupo lhe enviem mensagens?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Foi convidado(a) para se juntar ao grupo %1$s. Deseja que os membros deste grupo lhe enviem mensagens?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desbloquear este grupo e partilhar o seu nome e fotografia com os seus membros? Você não receberá nenhuma mensagem até as desbloquear.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s</string>
@@ -781,10 +781,10 @@
     <item quantity="one">%1$d membro (+%2$d convidado)</item>
     <item quantity="other">%1$d membros (+%2$d comvidados)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d outro</item>
     <item quantity="other">%d outros</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-passe não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-passe anterior incorreta!</string>
@@ -1428,7 +1428,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   </plurals>
   <string name="GroupUtil_group_name_is_now">O nome do grupo é agora \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Torne o seu nome e foto de perfil visíveis para este grupo?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tornar o seu nome e fotografia de perfil visíveis para este grupo?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->

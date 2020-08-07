@@ -560,7 +560,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">ನಿಮ್ಮನ್ನು ಗುಂಪಿಗೆ ಆಹ್ವಾನಿಸಲಾಗಿದೆ.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ಗುಂಪಿಗೆ ನಿಮ್ಮ ಆಹ್ವಾನವನ್ನು ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ಗುಂಪಿಗೆ ನಿಮ್ಮ ಆಹ್ವಾನವನ್ನು ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -584,10 +584,10 @@
     <item quantity="one">%1$d ಸದಸ್ಯರು</item>
     <item quantity="other">%1$d ಸದಸ್ಯರುಗಳು</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d ಇತರ</item>
     <item quantity="other">%d ಇತರರು</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ಪಾಸ್‌ಫ್ರೇಸ್‌ ಗಳು ಹೊಂದಿಕೆಯಾಗುತಿಲ್ಲ</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ಹಳೆಯ ಪಾಸ್‌ಫ್ರೇಸ್‌ ತಪ್ಪಾಗಿದೆ!</string>

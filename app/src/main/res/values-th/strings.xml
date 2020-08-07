@@ -361,7 +361,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">คุณ</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">ใครก็ได้</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">ใครก็ได้</string> -->
   <string name="GroupManagement_access_level_all_members">สมาชิกทุกคน</string>
   <string name="GroupManagement_access_level_only_admins">เฉพาะผู้ดูแล</string>
   <!--GV2 invites sent-->
@@ -373,14 +373,14 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">เชิญโดยสมาชิกกลุ่มคนอื่น</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">ไม่มีคำเชิญโดยสมาชิกคนอื่นในกลุ่มที่ค้างอยู่</string>
   <string name="PendingMembersActivity_missing_detail_explanation">รายละเอียดของบุคคลที่ถูกเชิญเข้ากลุ่มโดยสมาชิกคนอื่นจะไม่ถูกแสดง ถ้าผู้ถูกเชิญเลือกเข้าร่วมกลุ่ม ข้อมูลของบุคคลเหล่านั้นจะถูกแบ่งปันกับกลุ่ม ผู้ถูกเชิญจะมองไม่เห็นข้อความในกลุ่มจนกว่าจะเข้าร่วม</string>
-  <string name="PendingMembersActivity_cancel_invite">ยกเลิกคำเชิญ</string>
-  <string name="PendingMembersActivity_cancel_invites">ยกเลิกคำเชิญ</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">ยกเลิกคำเชิญ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">ยกเลิกคำเชิญ</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="other">ยกเลิก %1$d คำเชิญ</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="other">พบข้อผิดพลาดระหว่างยกเลิกคำเชิญ</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">เสร็จสิ้น</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -447,10 +447,10 @@
   <string name="CustomNotificationsDialogFragment__disabled">หยุดใช้</string>
   <string name="CustomNotificationsDialogFragment__default">ค่าเริ่มต้น</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite"> คุณต้องการยกเลิกคำเชิญที่คุณได้ส่งให้ %1$s หรือไม่?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite"> คุณต้องการยกเลิกคำเชิญที่คุณได้ส่งให้ %1$s หรือไม่?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="other">คุณต้องการยกเลิก %2$d คำเชิญที่ส่งโดย %1$sหรือไม่?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">อวตารกลุ่ม</string>
   <string name="CropImageActivity_profile_avatar">อวตาร</string>
@@ -627,7 +627,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ใครบางคนได้ปฏิเสธคำเชิญเข้าร่วมกลุ่ม</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">คุณได้ปฏิเสธคำเชิญเข้ากลุ่ม</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">คำเชิญคุณเข้ากลุ่มถูกเพิกถอน</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">คำเชิญคุณเข้ากลุ่มถูกเพิกถอน</string> -->
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">คุณได้ตอบรับคำเชิญเข้ากลุ่ม</string>
   <string name="MessageRecord_s_accepted_invite">%1$s ตอบรับคำเชิญเข้ากลุ่ม</string>
@@ -649,7 +649,7 @@
   <string name="MessageRequestBottomView_delete">ลบ</string>
   <string name="MessageRequestBottomView_block">ปิดกั้น</string>
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">คุณได้ถูกเชิญให้เข้ากลุ่ม %1$s คุณต้องการให้สมาชิกของกลุ่มนี้ส่งข้อความหาคุณได้หรือไม่?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">คุณได้ถูกเชิญให้เข้ากลุ่ม %1$s คุณต้องการให้สมาชิกของกลุ่มนี้ส่งข้อความหาคุณได้หรือไม่?</string> -->
   <string name="MessageRequestProfileView_member_of_one_group">สมาชิกของ %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">สมาชิกของ %1$s และ %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">สมาชิกของ %1$s%2$s และ %3$s</string>
@@ -659,9 +659,9 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="other">%1$d สมาชิก (+%2$d ถูกเชิญ)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d อื่นๆ</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">วลีรหัสผ่านไม่ถูกต้อง!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">วลีรหัสผ่านเดิมไม่ถูกต้อง!</string>

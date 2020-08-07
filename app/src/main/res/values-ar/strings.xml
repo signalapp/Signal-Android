@@ -452,7 +452,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">أنت</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">أي شخص</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">أي شخص</string> -->
   <string name="GroupManagement_access_level_all_members">جميع الأعضاء</string>
   <string name="GroupManagement_access_level_only_admins">للمشرفين فقط</string>
   <!--GV2 invites sent-->
@@ -464,24 +464,24 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">دعوات من أعضاء المجموعة الآخرين</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">لا يوجد دعوات معلقة من أعضاء المجموعة الآخرين.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">لا تظهر تفاصيل الأشخاص المدعوين من قبل أعضاء المجموعة الآخرين. إذا اختار المدعوون الانضمام ،حينها سيتم مشاركة معلوماتهم مع المجموعة. لن يروا أي رسائل في المجموعة حتى ينضموا.</string>
-  <string name="PendingMembersActivity_cancel_invite">إلغاء الدعوة</string>
-  <string name="PendingMembersActivity_cancel_invites">إلغاء الدعوات</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">إلغاء الدعوة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">إلغاء الدعوات</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="zero">إلغاء%1$d دعوة</item>
     <item quantity="one">إلغاء دعوة</item>
     <item quantity="two">إلغاء%1$d دعوتين</item>
     <item quantity="few">إلغاء %1$d دعوات</item>
     <item quantity="many">إلغاء %1$d دعوات</item>
     <item quantity="other">إلغاء %1$d دعوات</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="zero">خطأ في إلغاء الدعوة</item>
     <item quantity="one">خطأ في إلغاء الدعوة</item>
     <item quantity="two">خطأ في إلغاء الدعوات</item>
     <item quantity="few">خطأ في إلغاء الدعوات</item>
     <item quantity="many">خطأ في إلغاء الدعوات</item>
     <item quantity="other">خطأ في إلغاء الدعوات</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">تم</string>
   <!--AddGroupDetailsFragment-->
@@ -591,15 +591,15 @@
   <string name="CustomNotificationsDialogFragment__disabled">معطل</string>
   <string name="CustomNotificationsDialogFragment__default">افتراضي</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">هل تريد إلغاء الدعوة التي أرسلتها إلى %1$s؟</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">هل تريد إلغاء الدعوة التي أرسلتها إلى %1$s؟</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="zero">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
     <item quantity="one">هل تريد إلغاء الدعوة التي أرسلتها إلى %1$s؟</item>
     <item quantity="two">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
     <item quantity="few">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
     <item quantity="many">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
     <item quantity="other">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
@@ -828,7 +828,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">رفض شخص ما دعوة إلى المجموعة.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">لقد رفضت الدعوة إلى المجموعة.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">لقد أُبطلَت دعوتك إلى المجموعة.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">لقد أُبطلَت دعوتك إلى المجموعة.</string> -->
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">لقد قبلت الدعوة إلى المجموعة.</string>
   <string name="MessageRecord_s_accepted_invite">قبل %1$s  دعوة إلى المجموعة.</string>
@@ -864,7 +864,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود السماح ل%1$s بمراسلتك ،بالإضافة إلى مشاركة اسمك وصورتك معهم؟ هم لن يعرفوا أنك قرأت رسالتهم إلى أن تسمح لهم بذلك.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">هل تود السماح ل %1$s  بمراسلتك ،بالإضافة إلى مشاركة اسمك وصورتك معهم؟ لن يصلهم أية رسالة حتى تزيل الحظر عنهم.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأت رسالتهم حتى تقبل.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">لقد تمت دعوتك للانضمام إلى مجموعة %1$s. هل تريد السماح لأعضاء هذه المجموعة بمراسلتك؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">لقد تمت دعوتك للانضمام إلى مجموعة %1$s. هل تريد السماح لأعضاء هذه المجموعة بمراسلتك؟</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">إزالة الحظر عن هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تتلقى أية رسائل حتى تزيل الحظر.</string>
   <string name="MessageRequestProfileView_member_of_one_group">عضو في %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو في %1$s و%2$s</string>
@@ -885,14 +885,14 @@
     <item quantity="many">%1$dأعضاء(+%2$dمدعوون)</item>
     <item quantity="other">%1$dأعضاء(+%2$dمدعوون)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="zero">%d أخرى</item>
     <item quantity="one">%d أخرى</item>
     <item quantity="two">%d أخريان</item>
     <item quantity="few">%d أخرى</item>
     <item quantity="many">%d أخرى</item>
     <item quantity="other">%d أخرى</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>

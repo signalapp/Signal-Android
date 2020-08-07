@@ -547,7 +547,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">आपको ग्रूप से जुङने के लिये आमंत्रित किया गया था।</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">आपका ग्रूप से जुङने का आमंत्रण वापस ले लिया गया है।</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">आपका ग्रूप से जुङने का आमंत्रण वापस ले लिया गया है।</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -567,10 +567,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">%1$s का सदस्य</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s और %2$s का सदस्य</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s और %3$s का सदस्य</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d अन्य</item>
     <item quantity="other">%d अन्य</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">पासफ्रेज़ मेल नहीं खाते हैं</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">गलत पुराना पासफ्रेज</string>

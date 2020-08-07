@@ -551,7 +551,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">你被邀请加入此群</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">对你的入群邀请已失效。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">对你的入群邀请已失效。</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -577,9 +577,9 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="other">%1$d成员(+%2$d 获邀请)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d 其他群组</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">密码不匹配！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">错误的旧密码！</string>

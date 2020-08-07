@@ -397,7 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Sinä</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Kuka vain</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Kuka vain</string> -->
   <string name="GroupManagement_access_level_all_members">Kaikki jäsenet</string>
   <string name="GroupManagement_access_level_only_admins">Vain ylläpitäjät</string>
   <!--GV2 invites sent-->
@@ -413,16 +413,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Muiden ryhmän jäsenten kutsumat</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Muilla jäsenillä ei ole odottavia ryhmäkutsuja.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Tietoja muiden ryhmän jäsenten kutsumista henkilöistä ei näytetä. Heidän tiedot jaetaan ryhmälle vasta sitten kun he päättävät liittyä ryhmään. He eivät näe ryhmän viestejä ennen liittymistä.</string>
-  <string name="PendingMembersActivity_cancel_invite">Peruuta kutsu</string>
-  <string name="PendingMembersActivity_cancel_invites">Peruuta kutsut</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Peruuta kutsu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Peruuta kutsut</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Peruuta kutsu</item>
     <item quantity="other">Peruuta %1$d kutsua</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Kutsun peruminen epäonnistui</item>
     <item quantity="other">Kutsujen peruminen epäonnistui</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Valmis</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhoihin ryhmiin.</string>
@@ -521,11 +521,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Pois päältä</string>
   <string name="CustomNotificationsDialogFragment__default">Oletus</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Haluatko peruuttaa henkilölle %1$s lähettämäsi ryhmäkutsun?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Haluatko peruuttaa henkilölle %1$s lähettämäsi ryhmäkutsun?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Haluatko peruuttaa henkilön %1$s lähettämän kutsun?</item>
     <item quantity="other">Haluatko peruuttaa henkilön %1$s lähettämät %2$d kutsua?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ryhmän kuvake</string>
   <string name="CropImageActivity_profile_avatar">Kuvake</string>
@@ -725,7 +725,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Joku hylkäsi kutsun ryhmään.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hylkäsit kutsun ryhmään.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Kutsusi ryhmään peruttiin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Kutsusi ryhmään peruttiin.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Kutsu ryhmään peruttiin.</item>
     <item quantity="other">%1$d kutsua ryhmään peruttiin.</item>
@@ -763,7 +763,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Salli henkilön %1$s lähettää sinulle viestejä ja jaa nimesi ja profiilikuvasi hänelle? Hän ei tiedä että olet nähnyt hänen viestinsä ennen kuin hyväksyt.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Salli henkilön %1$s lähettää sinulle viestejä ja jaa nimesi ja profiilikuvasi hänelle? Et saa viestejä ennen kuin poistat niiden eston.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Liity tähän ryhmään ja jaa nimesi ja profiilikuvasi sen jäsenille? He eivät tiedä että olet nähnyt heidän viestinsä ennen kuin hyväksyt.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sinut kutsuttiin liittymään ryhmään %1$s. Haluatko antaa tämän ryhmän jäsenten lähettää sinulle viestejä?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sinut kutsuttiin liittymään ryhmään %1$s. Haluatko antaa tämän ryhmän jäsenten lähettää sinulle viestejä?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Poista tämän ryhmän esto ja jaa nimesi ja profiilikuvasi sen jäsenille? Et saa viestejä ennen kuin poistat niiden eston.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Jäsen ryhmässä %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Jäsen ryhmissä %1$s ja %2$s</string>
@@ -776,10 +776,10 @@
     <item quantity="one">%1$d jäsen (+%2$d kutsuttu)</item>
     <item quantity="other">%1$d jäsentä (+%2$d kutsuttu)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d muuta</item>
     <item quantity="other">%d muuta</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>

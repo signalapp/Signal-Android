@@ -398,7 +398,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Te</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Bárki</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Bárki</string> -->
   <string name="GroupManagement_access_level_all_members">Összes tag</string>
   <string name="GroupManagement_access_level_only_admins">Csak adminisztrátorok</string>
   <!--GV2 invites sent-->
@@ -416,16 +416,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Más tagok csoportmeghívói</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nincsenek a csoport más tagjaitól származó, függőben lévő meghívók.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">A csoport más tagjai által meghívott személyek részletes információi nem jelennek meg. Amint a meghívott elfogadja a felkérést, ezek az információk megosztásra kerülnek az egész csoporttal. A csatlakozás elfogadásáig a meghívottak nem tudják elolvasni az üzeneteket.</string>
-  <string name="PendingMembersActivity_cancel_invite">Meghívó törlése</string>
-  <string name="PendingMembersActivity_cancel_invites">Meghívók törlése</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Meghívó törlése</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Meghívók törlése</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Meghívó törlése</item>
     <item quantity="other">%1$d meghívó törlése</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Nem sikerült törölni a meghívót</item>
     <item quantity="other">Nem sikerült törölni a meghívókat</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Befejezés</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ez a személyt nem adható régi típusú csoporthoz.</string>
@@ -524,11 +524,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Letiltva</string>
   <string name="CustomNotificationsDialogFragment__default">Alapértelmezett</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Biztosan vissza szeretnéd vonni a %1$s részére küldött meghívót?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Biztosan vissza szeretnéd vonni a %1$s részére küldött meghívót?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Biztosan vissza szeretnéd vonni a %1$s által küldött meghívót?</item>
     <item quantity="other">Biztosan vissza szeretnéd vonni a %1$s által küldött %2$d db meghívót?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Csoport avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -729,7 +729,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Valaki visszautasított egy meghívót a csoportba.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Visszautasítottad a meghívást a csoportba.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">A csoportmeghívásod visszavonásra került.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">A csoportmeghívásod visszavonásra került.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Egy személy csoportmeghívója vissza lett vonva.</item>
     <item quantity="other">%1$d személy csoportmeghívója vissza lett vonva.</item>
@@ -769,7 +769,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Amíg ebbe bele nem egyezel, addig nem értesül arról sem, hogy elolvastad-e az üzeneteit.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Nem fogsz üzenetet kapni tőle, amíg fel nem oldod a tiltást.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz a csoportba, és megosztod velük neved és profilképedet? Amíg ebbe bele nem egyezel, addig nem értesülnek arról sem, hogy elolvastad-e üzeneteiket.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Meghívtak a %1$s csoportba. Engedélyezed, hogy a csoport tagjai üzenetet küldhessenek neked?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Meghívtak a %1$s csoportba. Engedélyezed, hogy a csoport tagjai üzenetet küldhessenek neked?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Feloldod a csoport tiltását és megosztod profilodat a tagokkal? Amíg nem oldod fel a tiltást, nem kapsz üzeneteket a csoportból.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s tagja</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s és %2$s tagja</string>
@@ -782,10 +782,10 @@
     <item quantity="one">%1$d tag (+%2$d meghívott)</item>
     <item quantity="other">%1$d tag (+%2$d meghívott)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d további</item>
     <item quantity="other">%d további</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Hibás régi jelmondat!</string>

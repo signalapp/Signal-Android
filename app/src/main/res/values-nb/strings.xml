@@ -320,6 +320,7 @@
   <string name="ConversationTitleView_verified">Verifisert</string>
   <string name="ConversationTitleView_you">Deg</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Noen kontakter kan ikke eksistere i \"legacy\" grupper.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved largring av profilbilde</string>
@@ -384,6 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lagt til \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Legg til gruppen</string>
   <string name="AddToGroupActivity_add_to_groups">Legg til gruppene</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Denne personen kan ikke legges til \"legacy\" grupper.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Velg ny administrator</string>
   <string name="ChooseNewAdminActivity_done">Ferdig</string>
@@ -395,7 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Deg</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Hvem som helst</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Hvem som helst</string> -->
   <string name="GroupManagement_access_level_all_members">Alle medlemmer</string>
   <string name="GroupManagement_access_level_only_admins">Kun administratorer</string>
   <!--GV2 invites sent-->
@@ -413,18 +415,19 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitert av andre medlemmer</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ingen ventende invitasjoner fra andre gruppemedlemmer.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Detaljer om personer invitert av andre gruppemedlemmer vises ikke. Om inviterte velger å bli med i gruppen vil dette ble delt med gruppen. De vil ikke se meldinger i gruppen, før de eventuelt blir med.</string>
-  <string name="PendingMembersActivity_cancel_invite">Avbryt invitasjonen</string>
-  <string name="PendingMembersActivity_cancel_invites">Kanseller invitasjonene</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Avbryt invitasjonen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Kanseller invitasjonene</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Kanseller invitasjon</item>
     <item quantity="other">Kanseller %1$d invitasjoner</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Feil ved kansellering av invitasjon</item>
     <item quantity="other">Feil ved kansellering av invitasjoner</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Ferdig</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne personen kan ikke legges til \"legacy\" grupper.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Legge \"%1$s\" til \"%2$s\"?</item>
     <item quantity="other">Legge %3$d medlemmer til \"%2$s\"?</item>
@@ -520,11 +523,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Deaktivert</string>
   <string name="CustomNotificationsDialogFragment__default">Forvalgt</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Ønsker du å kansellere invitasjonen du sendte til %1$s?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Ønsker du å kansellere invitasjonen du sendte til %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Ønsker du å kansellere invitasjonen sendt av %1$s?</item>
     <item quantity="other">Ønsker du å kansellere %2$d invitasjoner sendt av %1$s?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Profilbilde</string>
@@ -725,7 +728,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Noen avslo en invitasjon til gruppen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avslo invitasjonen til gruppen.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Din invitasjon til gruppen har blitt trukket tilbake.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Din invitasjon til gruppen har blitt trukket tilbake.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">En invitasjon til gruppen ble trukket tilbake.</item>
     <item quantity="other">%1$d invitasjoner ble trukket tilbake.</item>
@@ -765,7 +768,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? De vil ikke vite at du har sett meldingen deres før du godtar.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? Du vil ikke motta noen meldinger fra dem før du fjerner blokkeringen av dem.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli medlem i denne gruppen samt dele navn og bilde med medlemmene? De vil ikke vite at du har sett meldingene før du godtar.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du ble invitert til gruppen %1$s. Ønsker du å la gruppens medlemmer kunne sende deg meldinger?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du ble invitert til gruppen %1$s. Ønsker du å la gruppens medlemmer kunne sende deg meldinger?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjerne blokkering av denne gruppen samt dele navn og bilde med medlemmene? Du vil ikke motta noen meldinger før du fjerner blokkeringen av den.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>
@@ -778,10 +781,10 @@
     <item quantity="one">%1$d medlem (+%2$d inviterte)</item>
     <item quantity="other">%1$d medlemmer (+%2$d inviterte)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d annen</item>
     <item quantity="other">%d andre</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene stemmer ikke overens!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Feil gammel passord!</string>
@@ -1519,6 +1522,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
   <string name="HelpFragment__no_email_app_found">Ingen e-postapp funnet.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smilefjes og mennesker</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>

@@ -425,7 +425,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Kdorkoli</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Kdorkoli</string> -->
   <string name="GroupManagement_access_level_all_members">Vsi člani</string>
   <string name="GroupManagement_access_level_only_admins">Samo skrbniki</string>
   <!--GV2 invites sent-->
@@ -445,20 +445,20 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Povabila drugih članov skupine</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ni čakajočih povabil drugih članov skupine.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Podrobosti o uporabnikih/cah povabljenih s strani drugih članov/ic skupine so zakrite. Če bodo povabljeni/e sprejeli povabilo v skupino, bodo njihove informacije postale vidne tudi drugim članom/icam skupine. Dokler se ne pridružijo, ne bodo mogli spremljati sporočil v skupini.</string>
-  <string name="PendingMembersActivity_cancel_invite">Prekliči povabilo</string>
-  <string name="PendingMembersActivity_cancel_invites">Prekliči povabila</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Prekliči povabilo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Prekliči povabila</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Prekliči povabilo</item>
     <item quantity="two">Prekliči %1$d povabili</item>
     <item quantity="few">Prekliči %1$d povabila</item>
     <item quantity="other">Prekliči %1$d povabil</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Napaka pri preklicu povabila</item>
     <item quantity="two">Napaka pri preklicu povabil</item>
     <item quantity="few">Napaka pri preklicu povabil</item>
     <item quantity="other">Napaka pri preklicu povabil</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">OK</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Uporabnik/ca ne more biti dodan/a v staro skupino.</string>
@@ -567,13 +567,13 @@
   <string name="CustomNotificationsDialogFragment__disabled">Vklopljena</string>
   <string name="CustomNotificationsDialogFragment__default">Privzeto</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Želite preklicati povabilo, ki ste ga poslali uporabniku/ci %1$s?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Želite preklicati povabilo, ki ste ga poslali uporabniku/ci %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Želite preklicati povabilo uporabnika/ce %1$s?</item>
     <item quantity="two">Želite preklicati %2$d povabili uporabnika/ce %1$s?</item>
     <item quantity="few">Želite preklicati %2$d povabila uporabnika/ce %1$s?</item>
     <item quantity="other">Želite preklicati %2$d povabil uporabnika/ce %1$s?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar skupine</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -796,7 +796,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nekdo je zavrnil vabilo v skupino.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Zavrnili ste vabilo v skupino.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Vaše vabilo v skupino je bilo preklicano.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Vaše vabilo v skupino je bilo preklicano.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Vabilo v skupino je bilo preklicano.</item>
     <item quantity="two">%1$d vabili v skupino sta bili preklicani.</item>
@@ -838,7 +838,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite omogočiti uporabniku/ci %1$s,  da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ne sprejmete vabila, pošiljatelj/ica ne bo vedel/a, da ste prejeli njegovo/njeno sporočilo.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite omogočiti uporabniku/ci %1$s da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ga/je ne odblokirate, od njega/nje ne boste prejemali sporočil.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini in z njenimi člani/cami deliti svoje ime in fotografijo? Dokler se ne pridružite, ne bodo vedeli/e, da ste videli njihova sporočila.</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Povabljeni ste bili, da se pridružite skupini %1$s. Ali dovolite članom/icam te skupine, da vam pošiljajo sporočila?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Povabljeni ste bili, da se pridružite skupini %1$s. Ali dovolite članom/icam te skupine, da vam pošiljajo sporočila?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite omogočiti članom/icam skupine, da vam pošiljajo sporočila in z njimi deliti svoje ime in fotografijo? Dokler jih ne odblokirate, od njih ne boste prejemali sporočil.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Član/ica skupine %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Član/ica skupin %1$s in %2$s</string>
@@ -855,12 +855,12 @@
     <item quantity="few">%1$d člani/ce (+ povabljenih: %2$d)</item>
     <item quantity="other">%1$d članov/ic (+ povabljenih: %2$d)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d ostali</item>
     <item quantity="two">%d ostala</item>
     <item quantity="few">%d ostali</item>
     <item quantity="other">%d ostalih</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>

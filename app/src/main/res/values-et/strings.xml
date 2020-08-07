@@ -386,7 +386,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Sina</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Igaüks</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Igaüks</string> -->
   <string name="GroupManagement_access_level_all_members">Kõik liikmed</string>
   <string name="GroupManagement_access_level_only_admins">Ainult administraatorid</string>
   <!--GV2 invites sent-->
@@ -398,16 +398,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Kutsed teiste grupi liikmete poolt</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ootel kutseid teiste grupi liikmete poolt pole.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Teiste grupiliikmete kutsutud inimeste üksikasju ei kuvata. Kui kutsutud soovivad liituda, jagatakse nende kohta grupile teavet pärast seda. Enne liitumist ei näe nad grupis ühtegi sõnumit.</string>
-  <string name="PendingMembersActivity_cancel_invite">Loobu kutsest</string>
-  <string name="PendingMembersActivity_cancel_invites">Loobu kutsetest</string>
-  <plurals name="PendingMembersActivity_cancel_d_invites">
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Loobu kutsest</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Loobu kutsetest</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
     <item quantity="one">Loobu kutsest</item>
     <item quantity="other">Loobu %1$d kutsest</item>
-  </plurals>
-  <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
     <item quantity="one">Kutsest loobumisel tekkis tõrge</item>
     <item quantity="other">Kutsetest loobumisel tekkis tõrge</item>
-  </plurals>
+  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Tehtud</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -496,11 +496,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Keelatud</string>
   <string name="CustomNotificationsDialogFragment__default">Vaikimisi</string>
   <!--GV2 Invite cancellation confirmation-->
-  <string name="GroupManagement_cancel_own_single_invite">Kas sa soovid loobuda kutsest, mille saatsid kasutajale %1$s?</string>
-  <plurals name="GroupManagement_cancel_others_invites">
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Kas sa soovid loobuda kutsest, mille saatsid kasutajale %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
     <item quantity="one">Kas sa soovid loobuda %1$s poolt saadetud kutsest?</item>
     <item quantity="other">Kas sa soovid loobuda %2$d %1$s poolt saadetud kutsest?</item>
-  </plurals>
+  </plurals> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
   <string name="CropImageActivity_profile_avatar">Pilt</string>
@@ -693,7 +693,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Keegi keeldus grupiga liitumise kutsest.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Sa keeldusid grupiga liitumise kutsest.</string>
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Sinu grupiga liitumise kutse tühistati.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Sinu grupiga liitumise kutse tühistati.</string> -->
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Sa nõustusin grupiga liitumise kutsega.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s nõustus grupiga liitumise kutsega.</string>
@@ -722,7 +722,7 @@
   <string name="MessageRequestBottomView_delete">Kustuta</string>
   <string name="MessageRequestBottomView_block">Blokeeri</string>
   <string name="MessageRequestBottomView_unblock">Eemalda blokeering</string>
-  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sind kutsuti grupiga %1$s liituma. Kas lubad selle grupi liikmetel sulle sõnumeid saata?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Sind kutsuti grupiga %1$s liituma. Kas lubad selle grupi liikmetel sulle sõnumeid saata?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Kas eemaldada sellelt grupilt blokeering ja jagada enda nime ning fotot selle liikmetele? Sa ei saa enne ühtegi sõnumit kuni eemaldad blokeeringu.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>
@@ -735,10 +735,10 @@
     <item quantity="one">%1$d liige (+%2$d kutsutud)</item>
     <item quantity="other">%1$d liiget (+%2$d kutsutud)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d teine</item>
     <item quantity="other">%d teist </item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salasõnad ei ole samad!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Sobimatu vana salasõna!</string>

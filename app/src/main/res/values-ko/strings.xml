@@ -549,7 +549,7 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">그룹에 초대되었습니다.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">그룹 초대가 파기되었습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">그룹 초대가 파기되었습니다.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -576,9 +576,9 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="other">%1$d 멤버 (+ %2$d 초대됨)</item>
   </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
+  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">기타 %d명</item>
-  </plurals>
+  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않습니다!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못되었습니다!</string>
