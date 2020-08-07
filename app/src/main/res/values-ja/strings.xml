@@ -159,7 +159,7 @@
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">送信されませんでした、タップして詳細を表示</string>
   <string name="ConversationItem_error_partially_not_delivered">一部だけ送信しました、タップして詳細</string>
-  <string name="ConversationItem_error_network_not_delivered">送信できませんでした</string>
+  <string name="ConversationItem_error_network_not_delivered">送信に失敗しました。</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして処理する。</string>
   <string name="ConversationItem_group_action_left">%1$s がグループを抜けました。</string>
   <string name="ConversationItem_click_to_approve_unencrypted">送信失敗、タップして保護されていない通信に切り替える</string>
@@ -174,7 +174,7 @@
   <string name="ConversationItem_download_more">  更にダウンロード</string>
   <string name="ConversationItem_pending">  保留中</string>
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
-  <string name="ConversationItem_you_deleted_this_message">このメッセージはあなたが削除しました。</string>
+  <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">この会話の暗号化に問題がある場合、改善される可能性があります。メッセージは削除されません。</string>
@@ -194,7 +194,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを抜けてよろしいですか？</string>
   <string name="ConversationActivity_choose_new_admin">新しい管理者を選択</string>
   <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">グループから脱ける前に新しい管理者を最低1人選んでください。</string>
-  <string name="ConversationActivity_choose_admin">新しい管理者を選択</string>
+  <string name="ConversationActivity_choose_admin">管理者を選択</string>
   <string name="ConversationActivity_transport_insecure_sms">保護されていない SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">保護されていない MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -313,7 +313,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定中に問題が発生しました</string>
   <string name="CreateProfileActivity_profile_photo">プロフィール写真</string>
   <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィールとその更新情報はエンドツーエンドで暗号化されています。こちらから会話を開始したときや初めて相手からのメッセージを受け取ったとき、またはグループに参加したときに表示されます。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィールとその更新情報はエンドツーエンドで暗号化されています。あなたのプロフィールが相手に表示されるのは、こちらから会話を開始したときや初めて相手からのメッセージを受け取ったとき、またはグループに参加したときです。</string>
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>
@@ -368,8 +368,8 @@
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">メンバーを追加しますか?</string>
   <string name="AddToGroupActivity_add_s_to_s">「%1$s」を「%2$s」へ追加しますか?</string>
-  <string name="AddToGroupActivity_s_added_to_s">「%1$s」が「%2$s」へ追加しました。</string>
-  <string name="AddToGroupActivity_add_to_group">グループに追加</string>
+  <string name="AddToGroupActivity_s_added_to_s">「%1$s」が「%2$s」へ追加されました。</string>
+  <string name="AddToGroupActivity_add_to_group">グループへ追加</string>
   <string name="AddToGroupActivity_add_to_groups">グループへ追加</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">この相手を古いバージョンのグループに入れることはできません。</string>
   <!--ChooseNewAdminActivity-->
@@ -383,16 +383,15 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">あなた</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">誰でも</string> -->
   <string name="GroupManagement_access_level_all_members">全てのメンバー</string>
   <string name="GroupManagement_access_level_only_admins">管理者のみ</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="other">招待を%d件送信済み</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">%1$sを自動的にこのグループに追加することはできません。ユーザーは受信した招待を受け入れるまでグループメッセージを閲覧できません。</string>
+  <string name="GroupManagement_invite_single_user">%1$sを自動的にこのグループに追加することはできません。\n\n招待されたユーザーは参加を承認するまで、グループメッセージを閲覧できません。</string>
   <string name="GroupManagement_learn_more">詳しく見る</string>
-  <string name="GroupManagement_invite_multiple_users">選択したユーザーを自動的にこのグループに追加することはできません。ユーザーは受信した招待を受け入れるまでグループメッセージを閲覧できません。</string>
+  <string name="GroupManagement_invite_multiple_users">選択したユーザーを自動的にこのグループに追加することはできません。\n\n招待されたユーザーは参加を承認するまで、グループメッセージを閲覧できません。</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">保留中のグループ招待</string>
   <string name="PendingMembersActivity_people_you_invited">あなたが招待した人々</string>
@@ -400,14 +399,14 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">グループの他のメンバーからの招待</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">グループの他のメンバーからの招待はありません。</string>
   <string name="PendingMembersActivity_missing_detail_explanation">他のグループメンバーから招待されたユーザーの詳細は表示されません。招待されたユーザーの情報は、そのユーザーがグループに参加する時点でグループと共有されます。それまでの間、そのユーザーにグループのメッセージは表示されません。</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">招待をキャンセル</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">招待をキャンセル</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="other">%1$d件の招待をキャンセル</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="other">招待をキャンセルする時にエラーが発生しました</item>
-  </plurals> -->
+  <string name="PendingMembersActivity_revoke_invite">招待を無効にする</string>
+  <string name="PendingMembersActivity_revoke_invites">招待を無効にする</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="other">%1$d件の招待を無効にする</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="other">招待を無効にする過程でエラーが発生しました。</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完了</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">この相手を古いバージョンのグループに入れることはできません。</string>
@@ -428,6 +427,14 @@
   <string name="AddGroupDetailsFragment__remove">消去</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS 連絡先</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">このグループから%1$sを削除しますか?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="other">新しいバージョンのグループをサポートしないメンバーが%d人いるため、このグループは古いバージョンのグループになります。</item>
+  </plurals>
+  <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">「%1$s」が古いバージョンのSignalを使っているので、古いバージョンのグループが作成されます。ユーザー全員がSignalを最新版に更新するか、または古いバージョンのユーザーをグループから外せば、新しいバージョンのグループを作成できます。</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="other">Signalの古いバージョンを使っているメンバーが%1$d人いるため、古いバージョンのグループが作成されます。ユーザー全員がSignalを最新版に更新するか、または古いバージョンのユーザーをグループから外せば、新しいバージョンのグループを作成できます。</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">消えるメッセージ</string>
   <string name="ManageGroupActivity_pending_group_invites">保留中のグループ招待</string>
@@ -440,6 +447,7 @@
   <string name="ManageGroupActivity_leave_group">グループを抜ける</string>
   <string name="ManageGroupActivity_mute_notifications">通知をミュート</string>
   <string name="ManageGroupActivity_custom_notifications">カスタム通知</string>
+  <string name="ManageGroupActivity_mentions">メンション</string>
   <string name="ManageGroupActivity_until_s">%1$s まで</string>
   <string name="ManageGroupActivity_off">オフ</string>
   <string name="ManageGroupActivity_on">オン</string>
@@ -461,6 +469,13 @@
   <string name="ManageGroupActivity_edit_name_and_picture">名前と写真の編集</string>
   <string name="ManageGroupActivity_legacy_group">古いバージョンのグループ</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">これは古いバージョンのグループです。グループの管理機能などの新機能を利用するには、新しいグループを作ってください。</string>
+  <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ミュートした会話でメンションがあったときの通知</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">既定 (通知を受け取る)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">既定 (通知を受けない)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">常に通知を受け取る</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">通知を受けない</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">この人物は連絡先にいます</string>
@@ -494,17 +509,17 @@
   <string name="CustomNotificationsDialogFragment__messages">メッセージ</string>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">カスタム通知を使用</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">通知音</string>
-  <string name="CustomNotificationsDialogFragment__vibrate">サイレントモード</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">バイブレーション</string>
   <string name="CustomNotificationsDialogFragment__call_settings">通話設定</string>
   <string name="CustomNotificationsDialogFragment__ringtone">着信音</string>
   <string name="CustomNotificationsDialogFragment__enabled">有効</string>
   <string name="CustomNotificationsDialogFragment__disabled">無効</string>
   <string name="CustomNotificationsDialogFragment__default">既定</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">あなたが%1$sに送った招待をキャンセルしますか?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="other">%1$sから送られた%2$d件の招待をキャンセルしますか?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$sに送った招待を無効にしますか?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="other">%1$sが送った%2$d件の招待を無効にしますか?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">グループアバター</string>
   <string name="CropImageActivity_profile_avatar">アバター</string>
@@ -694,7 +709,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">誰かがこのグループの招待を断りました。</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">このグループの招待を断りました。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">あなたのグループへの招待は無効にされました。</string> -->
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$sがあなたが送ったグループへの招待を無効にしました。</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">管理者があなたが送ったグループへの招待を無効にしました。</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="other">このグループへの招待のうち%1$d件が無効になりました。</item>
   </plurals>
@@ -733,7 +749,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept"> %1$s があなたにメッセージを送れるように、名前とプロフィール画像を共有しますか? 招待を受け入れるまで、あなたがメッセージを見たことは相手にはわかりません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$sがあなたにメッセージを送れるように、名前とプロフィール画像を共有しますか? ブロックを解除するまでメッセージは届きません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、名前やプロフィール画像を共有しますか? あなたが許可するまで、あなたがメッセージを見たことは相手にはわかりません。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">あなたは%1$sというグループに招待されました。このグループのメンバーからのメッセージを受け取りますか?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前やプロフィール画像を共有することを許可しますか? ブロックを解除するまでメッセージを受け取れません。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
@@ -744,9 +759,9 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="other">%1$d人のメンバー (+ %2$d件の招待)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">他 %d 人</item>
-  </plurals> -->
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="other">他%dグループ</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスフレーズが一致しません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスフレーズが違います！</string>
@@ -1086,6 +1101,7 @@
   <string name="MessageNotifier_error_delivering_message">メッセージの配信中にエラーが発生しました。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_read">既読にする</string>
+  <string name="MessageNotifier_turn_off_these_notifications">この種類の通知をオフにする</string>
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_sticker">ステッカー</string>
   <string name="MessageNotifier_view_once_photo">消える写真</string>
@@ -1106,6 +1122,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">あなたの消えるビデオに %1$s。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$s。</string>
   <string name="MessageNotifier_this_message_was_deleted">このメッセージが削除されました。</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">連絡先がSignalを使い始めたことの通知を受け取らないようにしますか? この設定はあとでSignalの設定 &gt; 通知の画面から元に戻せます。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">既定</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -1551,7 +1568,7 @@
   <string name="preferences__cyan">シアン</string>
   <string name="preferences__magenta">マゼンタ</string>
   <string name="preferences__white">白</string>
-  <string name="preferences__none">無し</string>
+  <string name="preferences__none">なし</string>
   <string name="preferences__fast">速い</string>
   <string name="preferences__normal">普通</string>
   <string name="preferences__slow">遅い</string>
@@ -1575,8 +1592,8 @@
   <string name="preferences__trim_all_conversations_now">全会話で古いメッセージを削減</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">すべての会話をスキャンして会話の長さ制限を適用する</string>
   <string name="preferences__linked_devices">リンク済みデバイス</string>
-  <string name="preferences__light_theme">明るい</string>
-  <string name="preferences__dark_theme">暗い</string>
+  <string name="preferences__light_theme">ライト</string>
+  <string name="preferences__dark_theme">ダーク</string>
   <string name="preferences__appearance">デザイン</string>
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__disable_pin">PINを無効化</string>
@@ -1626,7 +1643,7 @@
   <string name="preferences_chats__show_invitation_prompts">招待ダイアログを表示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal を使っていない連絡先に対して招待ダイアログを表示します</string>
   <string name="preferences_chats__message_text_size">メッセージのフォントサイズ</string>
-  <string name="preferences_events__contact_joined_signal">連絡先が Signal に参加しました</string>
+  <string name="preferences_events__contact_joined_signal">連絡先が Signal を使い始めたとき</string>
   <string name="preferences_notifications__priority">優先度</string>
   <string name="preferences_communication__category_sealed_sender">送信者の秘匿化</string>
   <string name="preferences_communication__sealed_sender_display_indicators">インジケーターを表示</string>
@@ -1634,6 +1651,9 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">全員を許可する</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザーからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
   <string name="preferences_communication__sealed_sender_learn_more">詳しく見る</string>
+  <string name="preferences_notifications__mentions">メンション</string>
+  <string name="preferences_notifications__notify_me">通知を受け取る</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">ミュートした会話でメンションがあったときの通知を受け取る</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1973,7 +1993,7 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signalはロックされています</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">タップしてロック解除</string>
   <string name="RegistrationLockDialog_reminder">リマインダー:</string>
-  <string name="recipient_preferences__about">コンタクト情報</string>
+  <string name="recipient_preferences__about">連絡先情報</string>
   <string name="Recipient_unknown">不明</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ブロック</string>

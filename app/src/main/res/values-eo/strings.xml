@@ -397,7 +397,6 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Iu</string> -->
   <string name="GroupManagement_access_level_all_members">Ĉiuj grupanoj</string>
   <string name="GroupManagement_access_level_only_admins">Nur administrantoj</string>
   <!--GV2 invites sent-->
@@ -415,16 +414,6 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitoj el aliaj grupanoj</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Neniu pritraktota invito el aliaj grupanoj.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">La detaloj pri homoj invititaj de aliaj grupanoj ne montriĝas. Ĉu invititoj decidas aliĝi, iliaj informoj tiam kunhaviĝos kun la grupo. Ili ne vidos mesaĝojn antaŭ ol ili aliĝas.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Nuligi inviton</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Nuligi invitojn</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="one">Nuligi inviton</item>
-    <item quantity="other">Nuligi %1$d invitojn</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="one">Eraro dum nuligo de la invito</item>
-    <item quantity="other">Eraro dum nuligo de la invitoj</item>
-  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Farita</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tiu persono ne aldoneblas al malnovtipaj grupoj.</string>
@@ -446,6 +435,7 @@
   <string name="AddGroupDetailsFragment__remove">Forviŝi</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakto</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ĉu forigi %1$s el tiu grupo?</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="ManageGroupActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
@@ -481,6 +471,7 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Modifi nomon kaj bildon</string>
   <string name="ManageGroupActivity_legacy_group">Malnovtipaj grupoj</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Tiu estas malnovtipa grupo. Por uzi eblon kiel grupadministranton, kreu novtipan grupon.</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Aldoni al sistemaj kontaktoj</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tiu persono estas en viaj kontaktoj.</string>
@@ -522,12 +513,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ŝaltita</string>
   <string name="CustomNotificationsDialogFragment__disabled">Malŝaltita</string>
   <string name="CustomNotificationsDialogFragment__default">Defaŭlta</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Ĉu vi volas nuligi inviton senditan de vi al %1$s?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">Ĉu vi volas nuligi la inviton senditan de %1$s?</item>
-    <item quantity="other">Ĉu vi volas nuligi la %2$d invitojn senditajn de %1$s?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
   <string name="CropImageActivity_profile_avatar">Avataro</string>
@@ -728,7 +714,6 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Iu malakceptis inviton al la grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vi malakceptis la inviton al la grupo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Via invito al la grupo estis senvalidigita.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">1 invito al la grupo estis senvalidigita.</item>
     <item quantity="other">%1$d invitoj al la grupo estis senvalidigitaj.</item>
@@ -768,7 +753,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Ŝi aŭ li ne scios, ke vi vidis ŝian aŭ lian mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? La grupo ne scios, ke vi vidis ĝiajn mesaĝojn ĝis via akcepto.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Oni invitis vin aniĝi al la grupo „%1$s“. Ĉu vi volas ricevi mesaĝojn el anoj de tiu grupo?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ĉu malbloki tiun grupon kaj kunhavigi vian nomon kaj foton kun la anoj? Vi ne ricevos mesaĝojn, se vi ne malblokas ĝin.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Ano de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Ano de %1$s kaj %2$s </string>
@@ -781,10 +765,6 @@
     <item quantity="one">%1$d ano (+%2$d invititaj)</item>
     <item quantity="other">%1$d anoj (+%2$d invititaj)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d alia</item>
-    <item quantity="other">%d aliaj</item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasfrazoj ne kongruas!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Malnova pasfrazo malĝustas!</string>

@@ -425,7 +425,6 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Kdorkoli</string> -->
   <string name="GroupManagement_access_level_all_members">Vsi člani</string>
   <string name="GroupManagement_access_level_only_admins">Samo skrbniki</string>
   <!--GV2 invites sent-->
@@ -445,20 +444,20 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Povabila drugih članov skupine</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ni čakajočih povabil drugih članov skupine.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Podrobosti o uporabnikih/cah povabljenih s strani drugih članov/ic skupine so zakrite. Če bodo povabljeni/e sprejeli povabilo v skupino, bodo njihove informacije postale vidne tudi drugim članom/icam skupine. Dokler se ne pridružijo, ne bodo mogli spremljati sporočil v skupini.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Prekliči povabilo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Prekliči povabila</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="one">Prekliči povabilo</item>
-    <item quantity="two">Prekliči %1$d povabili</item>
-    <item quantity="few">Prekliči %1$d povabila</item>
-    <item quantity="other">Prekliči %1$d povabil</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="one">Napaka pri preklicu povabila</item>
-    <item quantity="two">Napaka pri preklicu povabil</item>
-    <item quantity="few">Napaka pri preklicu povabil</item>
-    <item quantity="other">Napaka pri preklicu povabil</item>
-  </plurals> -->
+  <string name="PendingMembersActivity_revoke_invite">Prekliči vabilo</string>
+  <string name="PendingMembersActivity_revoke_invites">Prekliči vabila</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Prekliči vabilo</item>
+    <item quantity="two">Prekliči %1$d vabili</item>
+    <item quantity="few">Prekliči %1$d vabila</item>
+    <item quantity="other">Prekliči %1$d vabil</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Napaka pri preklicu vabila</item>
+    <item quantity="two">Napaka pri preklicu vabil</item>
+    <item quantity="few">Napaka pri preklicu vabil</item>
+    <item quantity="other">Napaka pri preklicu vabil</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">OK</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Uporabnik/ca ne more biti dodan/a v staro skupino.</string>
@@ -482,6 +481,20 @@
   <string name="AddGroupDetailsFragment__remove">Odstrani</string>
   <string name="AddGroupDetailsFragment__sms_contact">Stik SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Želite odstraniti uporabnika/co %1$s iz skupine?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d član/ica skupine na podpira Novih skupin, zato bo to Stara skupina.</item>
+    <item quantity="two">%d člana/ici skupine na podpirata Novih skupin, zato bo to Stara skupina.</item>
+    <item quantity="few">%d člani/ce skupine na podpirajo Novih skupin, zato bo to Stara skupina.</item>
+    <item quantity="other">%d članov/ic skupine na podpira Novih skupin, zato bo to Stara skupina.</item>
+  </plurals>
+  <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Uporabnik/ca “%1$s” ima nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njegovi/njeni posodobitvi Signala, ali pa če ga/jo odstranite iz skupine.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">%1$d član skupine ima nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njegovi/njeni posodobitvi Signala, ali pa če ga/jo odstranite iz skupine.</item>
+    <item quantity="two">%1$d člana/ici skupine imata nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njuni posodobitvi Signala, ali pa če ju odstranite iz skupine.</item>
+    <item quantity="few">%1$d člani/ce skupine imajo nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njihovi posodobitvi Signala, ali pa če jih odstranite iz skupine.</item>
+    <item quantity="other">%1$d članov/ic skupine ima nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njihovi posodobitvi Signala, ali pa če jih odstranite iz skupine.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Izginjajoča sporočila</string>
   <string name="ManageGroupActivity_pending_group_invites">Čakajoča povabila v skupine</string>
@@ -494,6 +507,7 @@
   <string name="ManageGroupActivity_leave_group">Zapusti skupino</string>
   <string name="ManageGroupActivity_mute_notifications">Izklop obvestil</string>
   <string name="ManageGroupActivity_custom_notifications">Obvestila po meri</string>
+  <string name="ManageGroupActivity_mentions">Omembe</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Izklopljena</string>
   <string name="ManageGroupActivity_on">Vklopljena</string>
@@ -521,6 +535,13 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Uredi ime in sliko</string>
   <string name="ManageGroupActivity_legacy_group">Stara oblika skupine</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">To je zastarela oblika skupine. Za dostop do naprednih funkcij kot so skrbniki skupin, ustvarite Novo skupino.</string>
+  <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščajte me o omembah</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Želite prejemati obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Privzeto (obveščaj me)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Privzeto (ne obveščaj me)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Vedno me obveščaj</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Ne obveščaj me</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj k sistemskim stikom</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Uporabnik/ca je med vašimi stiki</string>
@@ -566,14 +587,14 @@
   <string name="CustomNotificationsDialogFragment__enabled">Izklopljena</string>
   <string name="CustomNotificationsDialogFragment__disabled">Vklopljena</string>
   <string name="CustomNotificationsDialogFragment__default">Privzeto</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Želite preklicati povabilo, ki ste ga poslali uporabniku/ci %1$s?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">Želite preklicati povabilo uporabnika/ce %1$s?</item>
-    <item quantity="two">Želite preklicati %2$d povabili uporabnika/ce %1$s?</item>
-    <item quantity="few">Želite preklicati %2$d povabila uporabnika/ce %1$s?</item>
-    <item quantity="other">Želite preklicati %2$d povabil uporabnika/ce %1$s?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Želite preklicati vabilo, ki ste ga poslali uporabniku/ci %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Želite preklicati vabilo uporabnika/ce %1$s?</item>
+    <item quantity="two">Želite preklicati %2$d vabili uporabnika/ce %1$s?</item>
+    <item quantity="few">Želite preklicati %2$d vabila uporabnika/ce %1$s?</item>
+    <item quantity="other">Želite preklicati %2$d vabil uporabnika/ce %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar skupine</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -796,7 +817,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nekdo je zavrnil vabilo v skupino.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Zavrnili ste vabilo v skupino.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Vaše vabilo v skupino je bilo preklicano.</string> -->
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">Uporabnik/ca %1$s je preklical/a vaše vabilo v skupino.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Skrbnik/ca je preklical/a vaše vabilo v skupino.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Vabilo v skupino je bilo preklicano.</item>
     <item quantity="two">%1$d vabili v skupino sta bili preklicani.</item>
@@ -838,7 +860,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite omogočiti uporabniku/ci %1$s,  da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ne sprejmete vabila, pošiljatelj/ica ne bo vedel/a, da ste prejeli njegovo/njeno sporočilo.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite omogočiti uporabniku/ci %1$s da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ga/je ne odblokirate, od njega/nje ne boste prejemali sporočil.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini in z njenimi člani/cami deliti svoje ime in fotografijo? Dokler se ne pridružite, ne bodo vedeli/e, da ste videli njihova sporočila.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Povabljeni ste bili, da se pridružite skupini %1$s. Ali dovolite članom/icam te skupine, da vam pošiljajo sporočila?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite omogočiti članom/icam skupine, da vam pošiljajo sporočila in z njimi deliti svoje ime in fotografijo? Dokler jih ne odblokirate, od njih ne boste prejemali sporočil.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Član/ica skupine %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Član/ica skupin %1$s in %2$s</string>
@@ -855,12 +876,12 @@
     <item quantity="few">%1$d člani/ce (+ povabljenih: %2$d)</item>
     <item quantity="other">%1$d članov/ic (+ povabljenih: %2$d)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d ostali</item>
-    <item quantity="two">%d ostala</item>
-    <item quantity="few">%d ostali</item>
-    <item quantity="other">%d ostalih</item>
-  </plurals> -->
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d dodatna skupina</item>
+    <item quantity="two">%d dodatni skupini</item>
+    <item quantity="few">%d dodatne skupine</item>
+    <item quantity="other">%d dodatnih skupin</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
@@ -1208,6 +1229,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_error_delivering_message">Napaka pri dostavi sporočila.</string>
   <string name="MessageNotifier_mark_all_as_read">Označi vse kot prebrano</string>
   <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Izklopi ta obvestila</string>
   <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
   <string name="MessageNotifier_sticker">Nalepka</string>
   <string name="MessageNotifier_view_once_photo">Slika za enkraten ogled</string>
@@ -1228,6 +1250,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s spremenjeno v vaš video za enkraten ogled.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s spremenjeno v vašo nalepko.</string>
   <string name="MessageNotifier_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Želite izklopiti obvestila o novih članih Signalove skupine? Kasneje jih lahko spet vklopite v Signal &gt; Nastavitve &gt; Obvestila.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Privzeto</string>
   <string name="NotificationChannel_calls">Klici</string>
@@ -1786,6 +1809,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Dovoli za vse pošiljatelje</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Vklop zakritega pošiljatelja za dohodna sporočila uporabnikov/ic, ki niso v imeniku in tistih, s katerimi ne delite svojega profila.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="preferences_notifications__mentions">Omembe</string>
+  <string name="preferences_notifications__notify_me">Obveščaj me</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Prejemajte obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

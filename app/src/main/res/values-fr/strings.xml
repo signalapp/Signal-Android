@@ -392,12 +392,11 @@
   <string name="ChooseNewAdminActivity_you_left">Vous avez quitté « %1$s ».</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager vos nom et photo de profil avec ce groupe ?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Souhaitez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
   <string name="GroupShareProfileView_make_visible">Rendre visible</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vous</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Tout le monde</string> -->
   <string name="GroupManagement_access_level_all_members">Tous les membres</string>
   <string name="GroupManagement_access_level_only_admins">Seulement les administrateurs</string>
   <!--GV2 invites sent-->
@@ -415,16 +414,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitations par d’autres membres du groupe</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Il n’y a aucune invitation par d’autres membres du groupe en attente.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Les détails des personnes invitées par d’autres membres du groupe ne sont pas affichés. Si les invités choisissent de se joindre au groupe, leurs renseignements seront alors communiqués au groupe. Ils ne verront aucun message dans le groupe avant de s’y être joints.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Annuler l’invitation</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Annuler les invitations</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="one">Annuler l’invitation</item>
-    <item quantity="other">Annuler %1$d invitations</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="one">Erreur d’annulation de l’invitation</item>
-    <item quantity="other">Erreur d’annulation des invitations</item>
-  </plurals> -->
+  <string name="PendingMembersActivity_revoke_invite">Révoquer l’invitation</string>
+  <string name="PendingMembersActivity_revoke_invites">Révoquer les invitations</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Révoquer l’invitation</item>
+    <item quantity="other">Révoquer %1$d invitations</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Erreur de révocation de l’invitation</item>
+    <item quantity="other">Erreur de révocation des invitations</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Terminé</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Cette personne ne peut pas être ajoutée à des groupes hérités.</string>
@@ -446,6 +445,16 @@
   <string name="AddGroupDetailsFragment__remove">Supprimer</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Supprimer %1$s de ce groupe ?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes, ce sera donc un groupe hérité</item>
+    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, ce sera donc un groupe hérité</item>
+  </plurals>
+  <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un groupe hérité sera créé, car « %1$s » utilise une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec cette personne une fois qu’elle aura mis Signal à jour, ou supprimez-la avant de créer le groupe.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Un groupe hérité sera créé, car %1$d membre utilise une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec ce membre une fois qu’il aura mis Signal à jour, ou supprimez-le avant de créer le groupe.</item>
+    <item quantity="other">Un groupe hérité sera créé, car %1$d membres utilisent une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec eux une fois qu’ils auront mis Signal à jour, ou supprimez-les avant de créer le groupe.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitations de groupe en attente</string>
@@ -458,6 +467,7 @@
   <string name="ManageGroupActivity_leave_group">Quitter le groupe</string>
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
+  <string name="ManageGroupActivity_mentions">Mentions</string>
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
   <string name="ManageGroupActivity_on">Activé</string>
@@ -481,6 +491,13 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
   <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est hérité. Afin d’accéder aux fonctions telles que les administrateur du groupe, veuillez créer un nouveau groupe.</string>
+  <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine ?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Par défaut (me prévenir)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Par défaut (ne pas me prévenir)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Toujours me prévenir</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Ne pas me prévenir</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ajouter aux contacts du système </string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Cette personne est dans vos contacts</string>
@@ -522,12 +539,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activé</string>
   <string name="CustomNotificationsDialogFragment__disabled">Désactivé</string>
   <string name="CustomNotificationsDialogFragment__default">Valeur par défaut</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Voulez-vous annuler l’invitation envoyée à %1$s ?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">Voulez-vous annuler l’invitation envoyée par %1$s ?</item>
-    <item quantity="other">Voulez-vous annuler %2$d invitations envoyées par %1$s ?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Souhaitez-vous révoquer l’invitation envoyée à %1$s ?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Souhaitez-vous révoquer l’invitation envoyée par %1$s ?</item>
+    <item quantity="other">Souhaitez-vous révoquer %2$d invitations envoyées par %1$s ?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar du groupe</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -728,7 +745,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu’un a décliné une invitation au groupe.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vous avez décliné l’invitation du groupe.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Votre invitation au groupe a été révoquée.</string> -->
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s a révoqué votre invitation au groupe.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un administrateur a révoqué votre invitation au groupe.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Une invitation au groupe a été révoquée.</item>
     <item quantity="other">%1$d invitations au groupe ont été révoquées.</item>
@@ -768,7 +786,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Vous avez été invité à vous joindre au groupe%1$s. Souhaitez-vous permettre aux membres de ce groupe de vous envoyer des messages ?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s et de %2$s</string>
@@ -781,10 +798,10 @@
     <item quantity="one">%1$d membre (+%2$d invités)</item>
     <item quantity="other">%1$d membres (+%2$d invités)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d autre</item>
-    <item quantity="other">%d autres</item>
-  </plurals> -->
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d autre groupe</item>
+    <item quantity="other">%d autres groupes</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">L’ancienne phrase de passe est erronée.</string>
@@ -1128,6 +1145,7 @@
   <string name="MessageNotifier_error_delivering_message">Erreur de remise du message.</string>
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
   <string name="MessageNotifier_mark_read">Marquer comme lu</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Désactiver ces notifications</string>
   <string name="MessageNotifier_media_message">Message multimédia</string>
   <string name="MessageNotifier_sticker">Autocollant</string>
   <string name="MessageNotifier_view_once_photo">Photo éphémère</string>
@@ -1148,6 +1166,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">A réagi %1$s à votre vidéo éphémère.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi %1$s à votre autocollant.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Désactiver les notifications pour les contacts qui se sont joints à Signal ? Vous pouvez les réactiver dans Signal &gt; Paramètres &gt; Notifications</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Valeur par défaut</string>
   <string name="NotificationChannel_calls">Appels</string>
@@ -1685,6 +1704,9 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Autoriser de n’importe qui</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activer l’option « expéditeur scellé » pour les messages entrants provenant d’expéditeurs qui ne sont pas dans vos contacts et de personnes avec qui vous n’avez pas partagé votre profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">En apprendre davantage</string>
+  <string name="preferences_notifications__mentions">Mentions</string>
+  <string name="preferences_notifications__notify_me">Me prévenir</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

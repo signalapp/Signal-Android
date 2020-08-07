@@ -366,6 +366,7 @@
   <string name="AddGroupDetailsFragment__members">اراکین</string>
   <string name="AddGroupDetailsFragment__group_name_required">گروپ ناں (مطلوب اے)</string>
   <string name="AddGroupDetailsFragment__remove">ہٹاؤ</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">غائب ہون آلے سنیہے</string>
   <string name="ManageGroupActivity_add_members">ممبر شامل کرو</string>
@@ -376,6 +377,7 @@
   <string name="ManageGroupActivity_on">آن</string>
   <string name="ManageGroupActivity_view_all_members">سارے رکناں نوں ویکھو</string>
   <string name="ManageGroupActivity_none">کوئی نئیں</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">غائب ہون آلے سنیہے</string>
   <string name="ManageRecipientActivity_block">بلاک کرو</string>
@@ -396,7 +398,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">فعال کیتا</string>
   <string name="CustomNotificationsDialogFragment__disabled">غیرفعال کیتا</string>
   <string name="CustomNotificationsDialogFragment__default">طے شدہ</string>
-  <!--GV2 Invite cancellation confirmation-->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">گروپ اوتار</string>
   <string name="CropImageActivity_profile_avatar">اوتار</string>
@@ -548,7 +550,6 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">تساں نوں گروپ اچ مدعو کیتا۔</string>
   <!--GV2 invitation revokes-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ اچ تساں دی دعوت منسوخ کر دتی گئی سی۔</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -568,10 +569,6 @@
   <string name="MessageRequestProfileView_member_of_one_group">%1$s دا رکن</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s تے %2$s دا رکن</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s، %2$s، تے %3$s دا رکن</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d دوجا</item>
-    <item quantity="other">%d دوجے</item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">پاس فریزز اکو جہے نئیں!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">پرانا پاس فریز غلط اے!</string>

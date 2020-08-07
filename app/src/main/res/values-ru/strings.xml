@@ -425,7 +425,6 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Вы</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Кто угодно</string> -->
   <string name="GroupManagement_access_level_all_members">Все участники</string>
   <string name="GroupManagement_access_level_only_admins">Только администраторы</string>
   <!--GV2 invites sent-->
@@ -445,20 +444,20 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Приглашения от других участников группы</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нет приглашений в ожидании от других участников группы.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Подробности людей, приглашённых другими участниками группы, не показываются. Информация о приглашённых станет доступна группе только если они решат присоединиться. Приглашённые не увидят сообщений в группе, пока не присоединятся.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Отменить приглашение</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Отменить приглашения</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="one">Отменить приглашение</item>
-    <item quantity="few">Отменить %1$d приглашения</item>
-    <item quantity="many">Отменить %1$d приглашений</item>
-    <item quantity="other">Отменить %1$d приглашений</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="one">Ошибка отмены приглашения</item>
-    <item quantity="few">Ошибка отмены приглашений</item>
-    <item quantity="many">Ошибка отмены приглашений</item>
-    <item quantity="other">Ошибка отмены приглашений</item>
-  </plurals> -->
+  <string name="PendingMembersActivity_revoke_invite">Отозвать приглашение</string>
+  <string name="PendingMembersActivity_revoke_invites">Отозвать приглашения</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Отозвать приглашение</item>
+    <item quantity="few">Отозвать %1$d приглашения</item>
+    <item quantity="many">Отозвать %1$d приглашений</item>
+    <item quantity="other">Отозвать %1$d приглашений</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Ошибка отзыва приглашения</item>
+    <item quantity="few">Ошибка отзыва приглашений</item>
+    <item quantity="many">Ошибка отзыва приглашений</item>
+    <item quantity="other">Ошибка отзыва приглашений</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
@@ -482,6 +481,20 @@
   <string name="AddGroupDetailsFragment__remove">Удалить</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Удалить %1$s из этой группы?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d участник не поддерживает Новые группы, так что это будет Старая группа.</item>
+    <item quantity="few">%d участника не поддерживают Новые группы, так что эта группа будет Старой группой.</item>
+    <item quantity="many">%d участников не поддерживают Новые группы, так что эта группа будет Старой группой.</item>
+    <item quantity="other">%d участников не поддерживают Новые группы, так что эта группа будет Старой группой.</item>
+  </plurals>
+  <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Будет создана Старая группа, потому что «%1$s» использует старую версию Signal. Вы можете создать группу нового типа с этим человеком после того, как он обновит Signal, или убрать его до создания группы.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Будет создана Старая группа, потому что %1$d участник использует старую версию Signal. Вы можете создать группу нового типа с этим человеком после того, как он обновит Signal, или убрать его до создания группы.</item>
+    <item quantity="few">Будет создана Старая группа, потому что %1$d участника используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
+    <item quantity="many">Будет создана Старая группа, потому что %1$d участников используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
+    <item quantity="other">Будет создана Старая группа, потому что %1$d участников используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
   <string name="ManageGroupActivity_pending_group_invites">Приглашения в группу в ожидании</string>
@@ -494,6 +507,7 @@
   <string name="ManageGroupActivity_leave_group">Покинуть группу</string>
   <string name="ManageGroupActivity_mute_notifications">Откл. звук уведомлений</string>
   <string name="ManageGroupActivity_custom_notifications">Пользовательские уведомления</string>
+  <string name="ManageGroupActivity_mentions">Упоминания</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_off">Отключено</string>
   <string name="ManageGroupActivity_on">Включено</string>
@@ -521,6 +535,13 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Редактировать имя и фото</string>
   <string name="ManageGroupActivity_legacy_group">Старая группа</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Это Старая группа. Чтобы получить доступ к таким функциям, как администраторы групп, создайте Новую группу.</string>
+  <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведомлять меня об упоминаниях</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в разговорах с отключённым звуком?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">По умолчанию (Уведомлять меня)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">По умолчанию (Не уведомлять меня)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Всегда уведомлять меня</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Не уведомлять меня</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string>
@@ -566,14 +587,14 @@
   <string name="CustomNotificationsDialogFragment__enabled">Включено</string>
   <string name="CustomNotificationsDialogFragment__disabled">Отключено</string>
   <string name="CustomNotificationsDialogFragment__default">По умолчанию</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Вы хотите отменить своё приглашение для %1$s?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">Вы хотите отменить приглашение от %1$s?</item>
-    <item quantity="few">Вы хотите отменить %2$d приглашения от %1$s?</item>
-    <item quantity="many">Вы хотите отменить %2$d приглашений от %1$s?</item>
-    <item quantity="other">Вы хотите отменить %2$d приглашений от %1$s?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Вы хотите отозвать своё приглашение для %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Вы хотите отозвать приглашение от %1$s?</item>
+    <item quantity="few">Вы хотите отозвать %2$d приглашения от %1$s?</item>
+    <item quantity="many">Вы хотите отозвать %2$d приглашений от %1$s?</item>
+    <item quantity="other">Вы хотите отозвать %2$d приглашений от %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Аватар группы</string>
   <string name="CropImageActivity_profile_avatar">Аватар</string>
@@ -796,7 +817,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Кто-то отклонил приглашение в группу.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Вы отклонили приглашение в группу.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Ваше приглашение в группу было отозвано.</string> -->
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s отозвал(-а) ваше приглашение в группу.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Администратор отозвал ваше приглашение в группу.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Одно приглашение в группу было отозвано.</item>
     <item quantity="few">%1$d приглашения в группу были отозваны.</item>
@@ -838,7 +860,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своим именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своим именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своим именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Вы были приглашены в группу %1$s. Вы хотите разрешить участникам этой группы отправлять вам сообщения?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и поделиться своим именем и фото с её участниками? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Состоит в %1$s и %2$s</string>
@@ -855,12 +876,12 @@
     <item quantity="many">%1$d участников (+%2$d приглашен(-о))</item>
     <item quantity="other">%1$d участников (+%2$d приглашен(-о))</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d другой</item>
-    <item quantity="few">%d других</item>
-    <item quantity="many">%d других</item>
-    <item quantity="other">%d других</item>
-  </plurals> -->
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">ещё %d группы</item>
+    <item quantity="few">ещё %d групп</item>
+    <item quantity="many">ещё %d групп</item>
+    <item quantity="other">ещё %d групп</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
@@ -1210,6 +1231,7 @@
   <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
   <string name="MessageNotifier_mark_all_as_read">Всё прочитано</string>
   <string name="MessageNotifier_mark_read">Прочитано</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Отключить эти уведомления</string>
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_sticker">Стикер</string>
   <string name="MessageNotifier_view_once_photo">Одноразовое фото</string>
@@ -1230,6 +1252,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Отреагировал(-а) %1$s на ваше одноразовое видео.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Отреагировал(-а) %1$s на ваш стикер.</string>
   <string name="MessageNotifier_this_message_was_deleted">Это сообщение было удалено.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Отключить уведомления «Контакт присоединился к Signal»? Вы можете заново включить их в Signal &gt; Настройки &gt; Уведомления.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">По умолчанию</string>
   <string name="NotificationChannel_calls">Звонки</string>
@@ -1788,6 +1811,9 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Разрешить от всех</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей, которых нет в ваших контактах и кому вы ещё не открывали свой профиль.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
+  <string name="preferences_notifications__mentions">Упоминания</string>
+  <string name="preferences_notifications__notify_me">Уведомлять меня</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в разговорах с отключённым звуком</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

@@ -397,7 +397,6 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Tú</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Cualquiera</string> -->
   <string name="GroupManagement_access_level_all_members">Cualquier participante</string>
   <string name="GroupManagement_access_level_only_admins">Sólo admins</string>
   <!--GV2 invites sent-->
@@ -415,16 +414,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitaciones de otros participantes</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otros participantes.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">No se pueden mostrar los detalles de personas invitadas por otr*s participantes del grupo. Sólo compartirán sus detalles con el grupo y verán los mensajes que se envíen a partir del momento en que decidan participar.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Retirar invitación</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Retirar invitaciones</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="one">Retirar invitación</item>
+  <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
+  <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Retirar 1 invitación</item>
     <item quantity="other">Retirar %1$d invitaciones</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="one">Fallo al retirar invitación</item>
     <item quantity="other">Fallo al retirar invitaciones</item>
-  </plurals> -->
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hecho</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">No se puede agregar a esta persona a grupos del sistema antiguo.</string>
@@ -446,6 +445,16 @@
   <string name="AddGroupDetailsFragment__remove">Eliminar</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">¿Expulsar a %1$s del grupo?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d participante no soporta el nuevo sistema de grupos. Este será un grupo del sistema antiguo.</item>
+    <item quantity="other">%d participantes no soportan el nuevo sistema de grupos. Este será un grupo del sistema antiguo.</item>
+  </plurals>
+  <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Se creará un grupo del sistema antiguo porque «%1$s» usa una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esa persona actualice Signal. También puedes eliminar a la persona del grupo.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Se creará un grupo del sistema antiguo porque %1$d participante usa una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esa persona actualice Signal. También puedes eliminar a esa persona del grupo.</item>
+    <item quantity="other">Se creará un grupo del sistema antiguo porque %1$d participantes usan una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esas personas actualicen Signal. También puedes eliminar a esas personas del grupo.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Desaparición de mensajes</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitaciones pendientes</string>
@@ -458,6 +467,7 @@
   <string name="ManageGroupActivity_leave_group">Abandonar grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificaciones</string>
   <string name="ManageGroupActivity_custom_notifications">Notificaciones personalizadas</string>
+  <string name="ManageGroupActivity_mentions">Menciones</string>
   <string name="ManageGroupActivity_until_s">Hasta %1$s</string>
   <string name="ManageGroupActivity_off">Inactivo</string>
   <string name="ManageGroupActivity_on">Activo</string>
@@ -481,6 +491,13 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nombre e imagen</string>
   <string name="ManageGroupActivity_legacy_group">Grupo antiguo</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Este es un grupo que usa el sistema antiguo de Signal. Para acceder a características como admins de grupo, crea un grupo nuevo.</string>
+  <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar cuando alguien me mencione</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">¿Deseas recibir notificationes si te mencionan en un chat silenciado?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Por defecto (notificar)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Por defecto (no notificar)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Notificar siempre</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">No notificar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Añadir a los contactos del sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persona está entre tus contactos</string>
@@ -522,12 +539,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activada</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desactivada</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">¿Deseas retirar tu invitación a «%1$s»?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">¿Deseas retirar la invitación enviada por %1$s?</item>
-    <item quantity="other">¿Deseas retirar %2$d invitaciones enviadas por %1$s?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">¿Desear retirar la invitación que enviaste a «%1$s»?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">¿Deseas retirar la invitación enviada por «%1$s»?</item>
+    <item quantity="other">¿Deseas retirar las %2$d invitaciones enviadas por «%1$s»?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del grupo</string>
   <string name="CropImageActivity_profile_avatar">Foto</string>
@@ -728,7 +745,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a participar en el grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a participar en el grupo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Se ha retirado tu invitación al grupo.</string> -->
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">«%1$s» retiró tu invitación para el grupo.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un* admin retiró tu invitavión para el grupo.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Se ha retirado una invitación para el grupo.</item>
     <item quantity="other">Se han retirado %1$d invitaciones para el grupo.</item>
@@ -768,7 +786,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Permitir a %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Permitir a %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No recibirás ningún mensaje de esta persona hasta que la desbloquees.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirse a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Te han invitado a participar en el grupo «%1$s». ¿Deseas que participantes de este grupo te envíen mensajes?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Participa en %1$s y %2$s</string>
@@ -781,10 +798,10 @@
     <item quantity="one">%1$d participante (+%2$d pendientes)</item>
     <item quantity="other">%1$d participantes (+%2$d pendientes)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d otro</item>
-    <item quantity="other">%d otros</item>
-  </plurals> -->
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d grupo adicional</item>
+    <item quantity="other">%d grupos adicionales</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
@@ -1137,6 +1154,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_error_delivering_message">Fallo al entregar el mensaje.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
   <string name="MessageNotifier_mark_read">Marcar como leído</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Desactivar estas notificaciones</string>
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
   <string name="MessageNotifier_sticker">Cromo</string>
   <string name="MessageNotifier_view_once_photo">Foto para ver sólo una vez</string>
@@ -1157,6 +1175,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reacción a tu video para ver solo una vez: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu cromo: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando una persona comience a usar Signal? Puedes volver a activarlas en los ajustes de Signal &gt; Notificaciones.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Por defecto</string>
   <string name="NotificationChannel_calls">Llamadas</string>
@@ -1695,6 +1714,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de cualquiera</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activar la opción permite usar la característica de «remitente confidencial» con personas que no están entre tus contactos y con las que no has compartido tu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber más</string>
+  <string name="preferences_notifications__mentions">Menciones</string>
+  <string name="preferences_notifications__notify_me">Nortificarme</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Recibe notificaciones si te mencionan en un chat silenciado</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

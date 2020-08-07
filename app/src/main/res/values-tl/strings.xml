@@ -381,6 +381,7 @@
   <string name="AddGroupDetailsFragment__members">Mga Kasapi</string>
   <string name="AddGroupDetailsFragment__group_name_required">Pangalan ng Grupo (kailangan)</string>
   <string name="AddGroupDetailsFragment__remove">Tanggalin</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mga naglalahong mensahe</string>
   <string name="ManageGroupActivity_add_members">Magdagdag ng mga kasapi</string>
@@ -391,6 +392,7 @@
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Tignan ang lahat ng mga kasapi</string>
   <string name="ManageGroupActivity_none">Wala</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Mga naglalahong mensahe</string>
   <string name="ManageRecipientActivity_block">I-block</string>
@@ -411,7 +413,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Naka-enable</string>
   <string name="CustomNotificationsDialogFragment__disabled">Naka-disable</string>
   <string name="CustomNotificationsDialogFragment__default">Default</string>
-  <!--GV2 Invite cancellation confirmation-->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar ng grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -564,7 +566,6 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">Ikaw ay inimbitahan sa grupo.</string>
   <!--GV2 invitation revokes-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Ang iyong imbitasyon sa grupo ay binawi.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -592,10 +593,6 @@
     <item quantity="one">%1$d na kasapi (+%2$d na inimbitahan)</item>
     <item quantity="other">%1$d na mga kasapi (+%2$d na inimbitahan)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d iba pa</item>
-    <item quantity="other">%d pang iba</item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hindi tugma ang mga passphrase!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Lumang passphrase!</string>

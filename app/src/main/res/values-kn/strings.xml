@@ -377,6 +377,7 @@
   <string name="AddGroupDetailsFragment__members">ಸದಸ್ಯರು</string>
   <string name="AddGroupDetailsFragment__group_name_required">ಗುಂಪಿನ ಹೆಸರು (ಅಗತ್ಯವಿದೆ)</string>
   <string name="AddGroupDetailsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
@@ -387,6 +388,7 @@
   <string name="ManageGroupActivity_on">ಆನ್</string>
   <string name="ManageGroupActivity_view_all_members">ಎಲ್ಲಾ ಸದಸ್ಯರನ್ನು ವೀಕ್ಷಿಸಿ</string>
   <string name="ManageGroupActivity_none">ಯಾವುದೂ ಇಲ್ಲ</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <string name="ManageRecipientActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
@@ -407,7 +409,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__default">ಡೀಫಾಲ್ಟ್</string>
-  <!--GV2 Invite cancellation confirmation-->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ಗುಂಪಿನ ಅವತಾರ್</string>
   <string name="CropImageActivity_profile_avatar">ಅವತಾರ್</string>
@@ -560,7 +562,6 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">ನಿಮ್ಮನ್ನು ಗುಂಪಿಗೆ ಆಹ್ವಾನಿಸಲಾಗಿದೆ.</string>
   <!--GV2 invitation revokes-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ಗುಂಪಿಗೆ ನಿಮ್ಮ ಆಹ್ವಾನವನ್ನು ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -584,10 +585,6 @@
     <item quantity="one">%1$d ಸದಸ್ಯರು</item>
     <item quantity="other">%1$d ಸದಸ್ಯರುಗಳು</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d ಇತರ</item>
-    <item quantity="other">%d ಇತರರು</item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ಪಾಸ್‌ಫ್ರೇಸ್‌ ಗಳು ಹೊಂದಿಕೆಯಾಗುತಿಲ್ಲ</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ಹಳೆಯ ಪಾಸ್‌ಫ್ರೇಸ್‌ ತಪ್ಪಾಗಿದೆ!</string>

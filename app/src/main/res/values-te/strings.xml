@@ -378,7 +378,6 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">మీరు</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">ఎవరైనా</string> -->
   <string name="GroupManagement_access_level_all_members">సభ్యులందరు</string>
   <string name="GroupManagement_access_level_only_admins">పరిపాలకులు మాత్రమే</string>
   <!--GV2 invites sent-->
@@ -390,16 +389,6 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">మిగతా సమూహ సభ్యుల ఆహ్వానములు</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">మిగతా సమూహ సభ్యుల ఆహ్వానములలో ఆమోదించవలసినవి లేవు</string>
   <string name="PendingMembersActivity_missing_detail_explanation">మిగతా సమూహ సభ్యులచే ఆహ్వానింపబడిన వ్యక్తుల వివరాలు చూపబడవు. ఆ వ్యక్తులు సమూహములో చేరినపుడు వారి వివరాలు పంచబడతాయి. వారు సమూహములో చేరనంత వరకు సమూహములోని సందేశములు చూడలేరు.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">ఆహ్వానం రద్దుచేయి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">ఆహ్వానములు రద్దుచేయి</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="one">ఆహ్వానం రద్దుచేయి</item>
-    <item quantity="other">%1$d ఆహ్వానములు రద్దుచేయి</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="one">ఆహ్వానము రద్దుచేయడం కుదరలేదు</item>
-    <item quantity="other">ఆహ్వానములు రద్దుచేయడం కుదరలేదు</item>
-  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">పూర్తి</string>
   <!--AddGroupDetailsFragment-->
@@ -408,6 +397,7 @@
   <string name="AddGroupDetailsFragment__members"> సభ్యులు</string>
   <string name="AddGroupDetailsFragment__group_name_required">సమూహం పేరు (అవసరం)</string>
   <string name="AddGroupDetailsFragment__remove">తొలగించు</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
   <string name="ManageGroupActivity_pending_group_invites">ఆమోదించవలసిన సమూహ ఆహ్వానములు</string>
@@ -419,6 +409,7 @@
   <string name="ManageGroupActivity_on">ఆన్</string>
   <string name="ManageGroupActivity_view_all_members">సభ్యులందరినీ చూడండి</string>
   <string name="ManageGroupActivity_none">ఏదీ కాదు</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
   <string name="ManageRecipientActivity_block">నిరోధించు</string>
@@ -443,12 +434,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">చేతనం అయింది</string>
   <string name="CustomNotificationsDialogFragment__disabled">అచేతనం అయింది</string>
   <string name="CustomNotificationsDialogFragment__default">అప్రమేయం</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">మీరు %1$s కి పంపిన ఆహ్వానము రద్దు చేయదలుచుకున్నారా?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">మీరు %1$s పంపిన ఆహ్వానము రద్దు చేయదలుచుకున్నారా?</item>
-    <item quantity="other">మీరు %1$s పంపిన %2$d ఆహ్వానములు రద్దు చేయదలుచుకున్నారా?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">గ్రూప్ అవతార్</string>
   <string name="CropImageActivity_profile_avatar">అవతారము</string>
@@ -631,7 +617,6 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ఎవరో సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">మీరు సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">సమూహానికి మీ ఆహ్వానం ఉపసంహరించబడింది.</string> -->
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">మీరు సమూహ ఆహ్వానాన్ని ఆమోదించారు.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s సమూహ ఆహ్వానాన్ని ఆమోదించారు.</string>
@@ -671,10 +656,6 @@
     <item quantity="one"> %1$d సభ్యుడు (%2$d ఆహ్వానింపబడినవారు)</item>
     <item quantity="other">%1$d సభ్యులు (+%2$d ఆహ్వానింపబడినవారు)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%dఇతర</item>
-    <item quantity="other">%dఇతరులు </item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">సంకేతపదములను సరిపోలడం లేదు!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">సరికాని పాత సంకేతపదము!</string>

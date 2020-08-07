@@ -397,7 +397,6 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">நீங்கள்</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">யார் வேண்டுமானாலும்</string> -->
   <string name="GroupManagement_access_level_all_members">அனைத்து உறுப்பினர்கள்</string>
   <string name="GroupManagement_access_level_only_admins">நிர்வாகிகள் மட்டுமே</string>
   <!--GV2 invites sent-->
@@ -415,16 +414,6 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">மூலம் அழைக்கிறது மற்றவை குழு உறுப்பினர்கள்</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">மற்ற குழு உறுப்பினர்களின் அழைப்புகள் நிலுவையில் இல்லை.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">விவரங்கள் அழைக்கப்பட்ட நபர்களின் மற்றவை குழு உறுப்பினர்கள் காட்டப்படவில்லை. என்றால் அழைப்பாளர்கள் தேர்வு சேர, அவர்களது தகவல்அந்த நேரத்தில் குழுவுடன் பகிரப்படும். அவர்கள் குழுவில் எந்த செய்திகளையும் அவர்கள் பார்க்க மாட்டார்கள்சேர.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">அழைப்பை ரத்துசெய்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">அழைப்புகளை ரத்துசெய்</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
-    <item quantity="one"> இன் அழைப்புகளை ரத்துசெய்</item>
-    <item quantity="other">%1$d இன் அழைப்புகளை ரத்துசெய்</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="one">அழைப்புகளை ரத்து செய்வதில் பிழை</item>
-    <item quantity="other">அழைப்புகளை ரத்து செய்வதில் பிழை</item>
-  </plurals> -->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">முடிந்தது</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
@@ -446,6 +435,7 @@
   <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
   <string name="AddGroupDetailsFragment__sms_contact">எஸ்எம்எஸ் தொடர்பு</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">இந்த குழுவிலிருந்து %1$s ஐ அகற்றவா?</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <string name="ManageGroupActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string>
@@ -481,6 +471,7 @@
   <string name="ManageGroupActivity_edit_name_and_picture">பெயர் மற்றும் படத்தைத் திருத்தவும்</string>
   <string name="ManageGroupActivity_legacy_group">பழைய மரபு குழு</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">இது ஒரு பழைய மரபு குழு. குழு நிர்வாகிகள் போன்ற புதிய அம்சங்களை அணுக, புதிய குழுவை உருவாக்கவும்.</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">தொலைபேசி தொடர்புகளில் சேர்க்கவும்</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">இந்த நபர் உங்கள் தொலைபேசி தொடர்புகளில் உள்ளார்</string>
@@ -522,12 +513,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">இயக்கப்பட்டது</string>
   <string name="CustomNotificationsDialogFragment__disabled">முடக்கப்பட்டது</string>
   <string name="CustomNotificationsDialogFragment__default">இயல்புநிலை</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">நீங்கள் %1$s அவர்களுக்கு அனுப்பிய அழைப்பை ரத்து செய்ய விரும்புகிறீர்களா ?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">நீங்கள் %1$s அவர்களுக்கு அனுப்பிய அழைப்பை ரத்து செய்ய விரும்புகிறீர்களா ?</item>
-    <item quantity="other">%1$s அனுப்பிய %2$dஅவர்களின் அழைப்புகளை ரத்து செய்ய விரும்புகிறீர்களா?</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
   <string name="CropImageActivity_profile_avatar">அவதாரம்</string>
@@ -728,7 +714,6 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">குழுவிற்கான அழைப்பை யாரோ மறுத்துவிட்டனர்.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">குழுவிற்கான அழைப்பை நீங்கள் மறுத்துவிட்டீர்கள்.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">உங்கள் குழுவிற்கு அழைப்பு இருந்தது ரத்து செய்யப்பட்டது.</string> -->
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one"> குழுவிற்கான அழைப்புகள் ரத்து செய்யப்பட்டன.</item>
     <item quantity="other">%1$d  குழுவிற்கான அழைப்புகள் ரத்து செய்யப்பட்டன.</item>
@@ -768,7 +753,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s உங்களுக்கு செய்தி அனுப்பவும், உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ளட்டும்? நீங்கள் அவர்களின் செய்தி கோரிக்கை ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்தியை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s உங்களுக்கு செய்தி அனுப்பவும், உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ளட்டும்? நீங்கள் அவற்றைத் தடைநீக்கு செய்யும் வரை எந்த செய்திகளையும் பெற மாட்டீர்கள்.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேரவா? உங்கள் பெயர் மற்றும் புகைப்படம் அதன் உறுப்பினர்களுடன் பகிரப்படும். நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளைப் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s குழுவில் சேர அழைக்கப்பட்டீர்கள். இந்த குழுவின் உறுப்பினர்கள் உங்களுக்கு செய்தி அனுப்ப அனுமதிக்க விரும்புகிறீர்களா?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">இந்த குழுவைத் தடைசெய்து, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளலாமா? நீங்கள் அவற்றைத் தடைநீக்கு செய்யும் வரை எந்த செய்திகளையும் பெற மாட்டீர்கள்.</string>
   <string name="MessageRequestProfileView_member_of_one_group">உறுப்பினர்%1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">உறுப்பினர் %1$s மற்றும் %2$s</string>
@@ -781,10 +765,6 @@
     <item quantity="one">%1$d உறுப்பினர் (+%2$d அஅழைக்கப்பட்டவர்கள்)</item>
     <item quantity="other">%1$d members (+%2$d invited)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d மற்ற</item>
-    <item quantity="other">%d மற்றவைகள்</item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">கடவுச்சொற்கள் பொருந்தவில்லை!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">தவறான பழைய கடவுச்சொல்!</string>

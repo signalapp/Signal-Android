@@ -368,6 +368,7 @@
   <string name="AddGroupDetailsFragment__members">Wanachama</string>
   <string name="AddGroupDetailsFragment__group_name_required">Jina la kundi (inahitajika)</string>
   <string name="AddGroupDetailsFragment__remove">Ondoa</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Jumbe zinazotoweka</string>
   <string name="ManageGroupActivity_add_members">Ongeza wanachama</string>
@@ -378,6 +379,7 @@
   <string name="ManageGroupActivity_on">Washwa</string>
   <string name="ManageGroupActivity_view_all_members">Tazama Wanachama wote</string>
   <string name="ManageGroupActivity_none">Hakuna</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Jumbe zinazotoweka</string>
   <string name="ManageRecipientActivity_block">Zuia</string>
@@ -398,7 +400,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Imewezeshwa</string>
   <string name="CustomNotificationsDialogFragment__disabled">Imelemazwa</string>
   <string name="CustomNotificationsDialogFragment__default">Chaguo msingi</string>
-  <!--GV2 Invite cancellation confirmation-->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Kundi la avatar</string>
   <string name="CropImageActivity_profile_avatar">Umbo</string>
@@ -550,7 +552,6 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">Umealikwa kwenye kundi.</string>
   <!--GV2 invitation revokes-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Mwaliko wako kwa kundi ulibatilishwa.</string> -->
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -570,10 +571,6 @@
   <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Mwanachama wa %1$s na %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Mwanachama wa %1$s, %2$s, na %3$s </string>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">Mwingine %d</item>
-    <item quantity="other">Wengine %d</item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Nenosiro haiwiani</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nenosiri la zamani lisilo sahihi</string>

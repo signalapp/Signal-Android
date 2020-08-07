@@ -398,7 +398,6 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Du</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">Kven som helst</string> -->
   <string name="GroupManagement_access_level_all_members">Alle medlemmar</string>
   <string name="GroupManagement_access_level_only_admins">Berre administratorar</string>
   <!--GV2 invites sent-->
@@ -420,16 +419,16 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitasjonar av andre gruppemedlem.</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ingen usvarte invitasjonar frå andre gruppemedlem.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Du kan ikkje sjå detaljar om personar som er invitert av andre gruppemedlem. Viss dei vel å bli med, vil informasjonen bli delt med gruppa på det tidspunktet. Dei ser ingen av gruppemeldingane før dei blir med.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">Trekk tilbake invitasjon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">Trekk tilbake invitasjonar</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
+  <string name="PendingMembersActivity_revoke_invite">Trekk tilbake invitasjon</string>
+  <string name="PendingMembersActivity_revoke_invites">Trekk tilbake invitasjonar</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
     <item quantity="one">Trekk tilbake invitasjon</item>
     <item quantity="other">Trekk tilbake %1$d invitasjonar</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="one">Klarte ikkje trekka tilbake invitasjon</item>
     <item quantity="other">Klarte ikkje trekka tilbake invitasjonar</item>
-  </plurals> -->
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Ferdig</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne kontakten kan ikkje vera med i eldre grupper.</string>
@@ -451,6 +450,16 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="AddGroupDetailsFragment__remove">Fjern</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Fjern %1$s frå denne gruppa?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d medlem støttar ikkje Nye grupper, så denne gruppa blir ei Eldre gruppe.</item>
+    <item quantity="other">%d medlem støttar ikkje Nye grupper, så denne gruppa blir ei Eldre gruppe.</item>
+  </plurals>
+  <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Ei Eldre gruppe vart oppretta sidan «%1$s» bruker ei eldre utgåve av Signal. Du kan laga ei Ny gruppe med dei etter at dei har oppdatert Signal, eller fjerna dei før du opprettar gruppa.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Ei Eldre gruppe blir oppretta sidan %1$d medlem bruker ei eldre utgåve av Signal. Du kan laga ei Ny gruppe med dei etter at dei har oppdatert Signal, eller fjerna dei før du opprettar gruppa.</item>
+    <item quantity="other">Ei Eldre gruppe blir oppretta sidan %1$d medlem bruker ei eldre utgåve av Signal. Du kan laga ei Ny gruppe med dei etter at dei har oppdatert Signal, eller fjerna dei før du opprettar gruppa.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnande meldingar</string>
   <string name="ManageGroupActivity_pending_group_invites">Ventande gruppeinvitasjonar</string>
@@ -463,6 +472,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_leave_group">Forlat gruppe</string>
   <string name="ManageGroupActivity_mute_notifications">Ikkje vis varsel</string>
   <string name="ManageGroupActivity_custom_notifications">Eigendefinerte varsel</string>
+  <string name="ManageGroupActivity_mentions">Omtalar</string>
   <string name="ManageGroupActivity_until_s">Fram til %1$s</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
@@ -486,6 +496,13 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Endra namn og bilde</string>
   <string name="ManageGroupActivity_legacy_group">Eldre gruppe</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dette er ei Eldre gruppe. For å få tilgang til nye funksjonar, som administratorar, må du laga ei Ny gruppe.</string>
+  <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Varsla meg ved Omtalar</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Få varsel når du blir nemnt i dempa samtalar?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Standard (gi varsel)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Standard (ikkje gi varsel)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Alltid varsla meg</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Ikkje varsla meg</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Legg til i systemkontaktar</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denne personen er i kontaktlista di</string>
@@ -527,12 +544,12 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="CustomNotificationsDialogFragment__enabled">Slått på</string>
   <string name="CustomNotificationsDialogFragment__disabled">Slått av</string>
   <string name="CustomNotificationsDialogFragment__default">Standard</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">Vil du trekka tilbake invitasjonen du sende til %1$s?</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">Vil du trekka tilbake invitasjonen sent av %1$s?</item>
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Vil du trekka tilbake invitasjonen du sende til %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Vil du trekka tilbake invitasjonen sendt av %1$s?</item>
     <item quantity="other">Vil du trekka tilbake %2$d invitasjonar sent av %1$s?</item>
-  </plurals> -->
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -733,7 +750,8 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nokon avslo ein invitasjon til gruppa.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avslo invitasjonen til gruppa.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">Invitasjonen din blei tilbakekalla.</string> -->
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s trekte tilbake din invitasjon til gruppa.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Ein administrator trekte tilbake gruppeinvitasjonen din.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Ein invitasjon til gruppa vart tilbakekalla.</item>
     <item quantity="other">%1$d invitasjonar til gruppa vart tilbakekalla.</item>
@@ -773,7 +791,6 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du la %1$s senda deg meldingar og dela namnet og bildet ditt med dei? Dei får ikkje vita at du har sett meldinga deira før du godkjenner.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vil du la %1$s senda deg meldingar og dela namnet og bildet ditt med dei? Du får inga meldingar før du avblokkerer dei.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du bli med i denne gruppa og dela namnet og bildet ditt med medlemmane? Dei får ikkje vita at du har sett meldingane deira før du godkjenner.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du er invitert til gruppa %1$s. Vil du la andre medlem i denne gruppa senda meldingar til deg?</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vil du bli avblokkera denne gruppa og dela namnet og bildet ditt med medlemmane? Du får inga meldingar før du avblokkerer dei.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>
@@ -786,10 +803,10 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="one">%1$d medlem (+ %2$d invitert)</item>
     <item quantity="other">%1$d medlem (+ %2$d inviterte)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d anna</item>
-    <item quantity="other">%d andre</item>
-  </plurals> -->
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d gruppe til</item>
+    <item quantity="other">%d grupper til</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordfrasene samsvarer ikkje.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Du skreiv inn feil gammal passordfrase.</string>
@@ -1141,6 +1158,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_error_delivering_message">Feil under levering av melding.</string>
   <string name="MessageNotifier_mark_all_as_read">Merk alle som lesne</string>
   <string name="MessageNotifier_mark_read">Merk lesen</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Skru av desse varsla</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
   <string name="MessageNotifier_view_once_photo">Éivisningsbilete</string>
@@ -1161,6 +1179,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerte med %1$s til éivisningsfilmen din.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">reagerte med %1$s til klistremerket ditt.</string>
   <string name="MessageNotifier_this_message_was_deleted">Meldinga er sletta</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsel når ein kontakt blir med i Signal? Du kan skru på igjen varselet i Signal &gt; Innstillingar &gt; Varsel.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standard</string>
   <string name="NotificationChannel_calls">Samtalar</string>
@@ -1701,6 +1720,9 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat frå alle</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tillat forsegla sendar på meldingar du får frå folk som ikkje er i kontaktlista di, og folk du ikkje har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær meir</string>
+  <string name="preferences_notifications__mentions">Omtalar</string>
+  <string name="preferences_notifications__notify_me">Varsla meg</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Få varsel når du blir nemnt i dempa samtalar</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

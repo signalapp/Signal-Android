@@ -320,6 +320,7 @@
   <string name="ConversationTitleView_verified">تأیید شده</string>
   <string name="ConversationTitleView_you">شما</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبان نمی‌توانند در گروه‌های قدیمی باشند.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم عکس پروفایل</string>
@@ -372,7 +373,7 @@
   <string name="GcmBroadcastReceiver_retrieving_a_message">در حال بازیابی یک پیام…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">خرابی دائم در ارتباط Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal قادر نبود تا با ‌Google Play Services کند. پیام‌ها و تماس‌های Signal غیرفعال شده‌اند، لطفاً از طریق تنظیمات ← پیشرفته دوباره ثبت‌نام کنید.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal قادر نبود تا با ‌Google Play Services ثبت‌نام کند. پیام‌ها و تماس‌های Signal غیرفعال شده‌اند، لطفاً از طریق تنظیمات &gt; پیشرفته دوباره ثبت‌نام کنید.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">خطا در هنگام بازیابی کامل گیف با کیفیت کامل</string>
   <!--GiphyFragmentPageAdapter-->
@@ -384,6 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">«%1$s» به «%2$s» افزوده شد.</string>
   <string name="AddToGroupActivity_add_to_group">اضافه کردن به گروه</string>
   <string name="AddToGroupActivity_add_to_groups">اضافه کردن به گروه‌ها</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">مدیر جدید را انتخاب کنید</string>
   <string name="ChooseNewAdminActivity_done">انجام شد</string>
@@ -395,7 +397,6 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">شما</string>
   <!--GV2 access levels-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_anyone">همه</string> -->
   <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
   <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
   <!--GV2 invites sent-->
@@ -413,18 +414,19 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">دعوت‌های اعضای دیگر گروه</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">هیچ دعوتی از اعضای دیگر گروه وجود ندارد</string>
   <string name="PendingMembersActivity_missing_detail_explanation">اطلاعات افرادی که از سوی سایر اعضای گروه دعوت شدند، نشان داده نمی‌شود. اطلاعات آن‌ها زمانی که تصمیم به پیوستن به گروه بگیرند به اشتراک گذاشته خواهد شد. آن‌ها تا زمانی که به گروه نپیوندند هیچ پیامی را از گروه مشاهده نخواهند کرد.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invite">لغو دعوت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMembersActivity_cancel_invites">لغو دعوت‌ها</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_cancel_d_invites">
+  <string name="PendingMembersActivity_revoke_invite">لغو دعوت</string>
+  <string name="PendingMembersActivity_revoke_invites">لغو دعوت‌ها</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
     <item quantity="one">لغو دعوت</item>
     <item quantity="other">لغو %1$d دعوت</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="PendingMembersActivity_error_canceling_invite">
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="one">اشکال در لغو دعوت</item>
     <item quantity="other">اشکال در لغو دعوت‌ها</item>
-  </plurals> -->
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">انجام شد</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">افزودن «%1$s» به «%2$s»؟</item>
     <item quantity="other">افزودن %3$d عضو به «%2$s»؟</item>
@@ -443,6 +445,16 @@
   <string name="AddGroupDetailsFragment__remove">حذف</string>
   <string name="AddGroupDetailsFragment__sms_contact">مخاطب پیامکی</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">حذف %1$s از این گروه؟</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d عضو از گروه‌های جدید پشتیبانی نمی‌کند، پس این گروه یک گروه قدیمی خواهد بود.</item>
+    <item quantity="other">%d عضو از گرو‌های جدید پشتیبانی نمی‌کنند، پس این گروه یک گروه قدیمی خواهد بود.</item>
+  </plurals>
+  <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">یک گروه قدیمی ساخته خواهد شد، چون «%1$s» از یک نسخهٔ قدیمی Signal استفاده می‌کند. شما می‌توانید با آن‌ها، بعد ازینکه Signal را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">یک گروه قدیمی ساخته خواهد شد، چون %1$d عضو از یک نسخهٔ قدیمی Signal استفاده می‌کند. شما می‌توانید با آن‌ها، بعد ازینکه Signal را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</item>
+    <item quantity="other">یک گروه قدیمی ساخته خواهد شد، چون %1$d عضو از یک نسخهٔ قدیمی Signal استفاده می‌کنند. شما می‌توانید با آن‌ها، بعد ازینکه Signal را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageGroupActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
@@ -453,8 +465,9 @@
   <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
   <string name="ManageGroupActivity_leave_group">ترک گروه</string>
-  <string name="ManageGroupActivity_mute_notifications">بی‌صدا کردن اعلان‌ها</string>
+  <string name="ManageGroupActivity_mute_notifications">صامت کردن اعلان‌ها</string>
   <string name="ManageGroupActivity_custom_notifications">اعلان‌‌های سفارشی</string>
+  <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
   <string name="ManageGroupActivity_until_s">تا %1$s</string>
   <string name="ManageGroupActivity_off">خاموش</string>
   <string name="ManageGroupActivity_on">روشن</string>
@@ -477,15 +490,23 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">به‌روزرسانی گروه به علت اشکال شبکه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ویرایش نام و عکس</string>
   <string name="ManageGroupActivity_legacy_group">گروه موروثی</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">این گروه یک گروه قدیمی است، برای دسترسی به قابلیت‌هایی مثل مدیران گروه، یک گروه جدید بسازید.</string>
+  <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">به من در مورد اشاره‌ها خبر بده</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان وقتی به شما در گفت‌گو‌های صامت شده اشاره می‌شود؟</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">پیش‌فرض (به من اطلاع بده)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">پیش‌فرض (به من اطلاع نده)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">همیشه به من اطلاع بده</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">به من اطلاع نده</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبان سیستم</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این کاربر از مخاطبان شماست</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این فرد در مخاطبان شماست</string>
   <string name="ManageRecipientActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageRecipientActivity_chat_color">رنگ گفتگو</string>
   <string name="ManageRecipientActivity_block">مسدود کردن</string>
   <string name="ManageRecipientActivity_unblock">رفع مسدودیت</string>
   <string name="ManageRecipientActivity_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
-  <string name="ManageRecipientActivity_mute_notifications">بی‌صدا کردن اعلان‌ها</string>
+  <string name="ManageRecipientActivity_mute_notifications">صامت کردن اعلان‌ها</string>
   <string name="ManageRecipientActivity_custom_notifications">اعلان‌‌های سفارشی</string>
   <string name="ManageRecipientActivity_until_s">تا %1$s</string>
   <string name="ManageRecipientActivity_off">خاموش</string>
@@ -518,12 +539,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">فعال</string>
   <string name="CustomNotificationsDialogFragment__disabled">غیرفعال</string>
   <string name="CustomNotificationsDialogFragment__default">پیش‌فرض</string>
-  <!--GV2 Invite cancellation confirmation-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_cancel_own_single_invite">آیا می‌خواهید دعوتی که به %1$s فرستادید را لغو کنید؟</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupManagement_cancel_others_invites">
-    <item quantity="one">آیا می‌خواهید دعوت ارسال‌شده از جانب %1$s را لغو کنید؟</item>
-    <item quantity="other">آیا می‌خواهید %2$d دعوت ارسال‌شده از جانب %1$s را لغو کنید؟</item>
-  </plurals> -->
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">آیا می‌خواهید دعوتی که به %1$s فرستادید را لغو کنید؟</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">آیا می‌خواهید دعوت ارسال شده از طرف %1$s را لغو کنید؟</item>
+    <item quantity="other">آیا می‌خواهید %2$d دعوت ارسال شده از طرف %1$s را لغو کنید؟</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">عکس گروه</string>
   <string name="CropImageActivity_profile_avatar">عکس</string>
@@ -724,7 +745,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">یک نفر دعوت به گروه را رد کرد.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">شما دعوت به گروه را رد کردید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_your_invitation_to_the_group_was_revoked">دعوت شما به گروه لغو شد.</string> -->
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s دعوت شما به گروه را لغو کرد.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">یک مدیر دعوت شما به گروه را لغو کرد.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">یک دعوتنامه به گروه لغو شد.</item>
     <item quantity="other">%1$d دعوت‌نامه به گروه لغو شدند.</item>
@@ -764,7 +786,6 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با آن‌ها به اشتراک می‌گذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با آن‌ها به اشتراک می‌گذارید؟ تا زمانی که مسدودیت ‌آن‌ها را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">شما برای پیوستن به گروه %1$s دعوت شده‌اید. آیا می‌خواهید به اعضای این گروه اجازه دهید که به شما پیام دهند؟</string> -->
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">مسدودیت این گروه را رفع کرده و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که مسدودیت آن‌ها را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestProfileView_member_of_one_group">عضو %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو %1$s و %2$s</string>
@@ -777,10 +798,10 @@
     <item quantity="one">%1$d عضو (+%2$d دعوت شدند)</item>
     <item quantity="other">%1$d عضو (+%2$d دعوت شدند)</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d گروه دیگر</item>
-    <item quantity="other"> %d گروه دیگر</item>
-  </plurals> -->
+    <item quantity="other">%d گروه دیگر</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">گذرواژه‌ها یکی نیستند!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">گذرواژهٔ قبلی نادرست است!</string>
@@ -1097,7 +1118,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">فراپیام بد رمزگذاری شده</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">فراپیام برای نشست ناموجود رمزنگاری شد</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">بی‌صدا کردن اعلان‌‌ها</string>
+  <string name="MuteDialog_mute_notifications">صامت کردن اعلان‌‌ها</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر اینترنتی نصب نشده است!</string>
   <!--ApplicationMigrationService-->
@@ -1130,6 +1151,7 @@
   <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
   <string name="MessageNotifier_mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
   <string name="MessageNotifier_mark_read">علامت‌گذاری به صورت خوانده شده</string>
+  <string name="MessageNotifier_turn_off_these_notifications">این اعلان‌ها را خاموش کن</string>
   <string name="MessageNotifier_media_message">پیام رسانه‌ای</string>
   <string name="MessageNotifier_sticker">استیکر</string>
   <string name="MessageNotifier_view_once_photo">عکس یکبار مصرف </string>
@@ -1150,6 +1172,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s به ویدئوی یکبار مصرف شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s به استیکر شما واکنش نشان داد.</string>
   <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به Signal را خاموش کنید؟ می‌توانید آن‌ها را دوباره در Signal &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">پیش‌فرض</string>
   <string name="NotificationChannel_calls">تماس‌ها</string>
@@ -1217,7 +1240,7 @@
   <string name="WebRtcCallControls_contact_photo_description">تصویر مخاطب</string>
   <string name="WebRtcCallControls_speaker_button_description">بلندگو</string>
   <string name="WebRtcCallControls_bluetooth_button_description">بلوتوث</string>
-  <string name="WebRtcCallControls_mute_button_description">بی‌صدا کردن</string>
+  <string name="WebRtcCallControls_mute_button_description">صامت کردن</string>
   <string name="WebRtcCallControls_your_camera_button_description">دوربین شما</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">سوئیچ به دوربین پشتی</string>
   <string name="WebRtcCallControls_answer_call_description">پاسخ به تماس</string>
@@ -1504,7 +1527,7 @@
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">شما حالا می‌توانید مکالمهٔ جدید را قبول یا رد کنید. گزینه‌های «قبول»، «حذف» و «مسدود کردن» نشان داده خواهند شد.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">راهنمایی</string>
-  <string name="HelpFragment__have_you_read_our_faq_yet">آیا قسمت پرسش‌های متداول را خوانده‌اید؟</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">آیا پرسش‌های متداول ما را خوانده‌اید؟</string>
   <string name="HelpFragment__next">بعدی</string>
   <string name="HelpFragment__contact_us">تماس با ما</string>
   <string name="HelpFragment__tell_us_whats_going_on">در مورد اشکال به ما توضیح دهید</string>
@@ -1520,6 +1543,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توضیح هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
   <string name="HelpFragment__no_email_app_found">برنامهٔ ایمیل یافت نشد.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">اخیراً استفاده شده</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">لبخندها و آدم‌ها</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">طبیعت</string>
@@ -1534,11 +1558,11 @@
   <string name="arrays__import_export">وارد کردن</string>
   <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
-  <string name="arrays__mute_for_one_hour">بی‌صدا به مدت ۱ ساعت</string>
-  <string name="arrays__mute_for_two_hours">بی‌صدا به مدت ۲ ساعت</string>
-  <string name="arrays__mute_for_one_day">بی‌صدا به مدت ۱ روز</string>
-  <string name="arrays__mute_for_seven_days">بی‌صدا به مدت ۷ روز</string>
-  <string name="arrays__mute_for_one_year">بی‌صدا به مدت ۱ سال</string>
+  <string name="arrays__mute_for_one_hour">صامت به مدت ۱ ساعت</string>
+  <string name="arrays__mute_for_two_hours">صامت به مدت ۲ ساعت</string>
+  <string name="arrays__mute_for_one_day">صامت به مدت ۱ روز</string>
+  <string name="arrays__mute_for_seven_days">صامت به مدت ۷ روز</string>
+  <string name="arrays__mute_for_one_year">صامت به مدت ۱ سال</string>
   <string name="arrays__settings_default">تنظیمات پیش‌فرض سیستم</string>
   <string name="arrays__enabled">فعال</string>
   <string name="arrays__disabled">غیرفعال</string>
@@ -1589,7 +1613,7 @@
   <string name="preferences__pref_led_blink_title">الگوی چشمک زدن LED</string>
   <string name="preferences__sound">زنگ</string>
   <string name="preferences__silent">خاموش</string>
-  <string name="preferences__repeat_alerts">تکرار هشدار ها</string>
+  <string name="preferences__repeat_alerts">تکرار هشدارها</string>
   <string name="preferences__never">هرگز</string>
   <string name="preferences__one_time">یک بار</string>
   <string name="preferences__two_times">دو بار</string>
@@ -1687,6 +1711,9 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های ورودی از غیرمخاطبان و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
+  <string name="preferences_notifications__mentions">اشاره‌ها</string>
+  <string name="preferences_notifications__notify_me">به من اطلاع بده</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان‌ها هنگامی که به شما در گفتگو‌های صامت شده اشاره می‌شود</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1741,7 +1768,7 @@
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">باز کردن صدا</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">بی‌صدا کردن اعلان‌ها</string>
+  <string name="conversation_unmuted__mute_notifications">صامت کردن اعلان‌ها</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">افزودن پیوست</string>
   <string name="conversation__menu_edit_group">ویرایش گروه</string>
@@ -2057,7 +2084,11 @@
   <string name="RecipientBottomSheet_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
   <string name="GroupRecipientListItem_admin">مدیر</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">گروه‌های قدیمی در مقابل گروه‌های جدید</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">گروه‌های قدیمی چیستند؟</string>
+  <string name="GroupsLearnMore_paragraph_1">گروه‌های قدیمی گروه‌هایی هستند که با قابلیت‌های گروه‌ جدید مثل مدیران و به‌روزرسانی‌های مشروح گروه سازگار نیستند.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">چگونه از گروه‌های جدید استفاده کنم؟</string>
+  <string name="GroupsLearnMore_paragraph_2">گروه‌های قدیمی نمی‌توانند به گروه‌های جدید تبدیل شوند، اما شما می‌توانید گروهی جدید با همان اعضا بسازید.</string>
   <string name="GroupsLearnMore_paragraph_3">برای ایجاد یک گروه جدید، همهٔ اعضا باید به آخرین نسخهٔ Signal به‌روزرسانی کنند.</string>
   <!--EOF-->
 </resources>
