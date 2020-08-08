@@ -13,17 +13,16 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.groups.GroupsV2CapabilityChecker;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
-import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -51,8 +50,18 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     LiveData<Boolean> isValidName = Transformations.map(name, name -> !TextUtils.isEmpty(name));
 
     members              = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
-    nonGv2CapableMembers = LiveDataUtil.mapAsync(members, memberList -> repository.checkCapabilities(Stream.of(memberList).map(newGroupCandidate -> newGroupCandidate.getMember().getId()).toList()));
+
     isMms                = Transformations.map(members, AddGroupDetailsViewModel::isAnyForcedSms);
+
+    LiveData<List<GroupMemberEntry.NewGroupCandidate>> membersToCheckGv2CapabilityOf = LiveDataUtil.combineLatest(isMms, members, (forcedMms, memberList) -> {
+      if (FeatureFlags.groupsV2create() && !forcedMms) {
+        return memberList;
+      } else {
+        return Collections.emptyList();
+      }
+    });
+
+    nonGv2CapableMembers = LiveDataUtil.mapAsync(membersToCheckGv2CapabilityOf, memberList -> repository.checkCapabilities(Stream.of(memberList).map(newGroupCandidate -> newGroupCandidate.getMember().getId()).toList()));
     canSubmitForm        = LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName);
 
     repository.resolveMembers(recipientIds, initialMembers::postValue);
