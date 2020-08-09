@@ -13,6 +13,7 @@
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/conversation_list_toolbar_background"
         android:theme="?attr/actionBarStyle"
+        app:titleTextAppearance="@style/TextSecure.TitleTextStyle"
         app:navigationIcon="@drawable/ic_arrow_left_24"/>
 
     <androidx.recyclerview.widget.RecyclerView
