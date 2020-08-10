@@ -72,6 +72,7 @@ public final class FeatureFlags {
       GROUPS_V2,
       GROUPS_V2_CREATE,
       GROUPS_V2_CAPACITY,
+      CDS,
       INTERNAL_USER,
       MENTIONS,
       VERIFY_V2
