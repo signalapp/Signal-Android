@@ -23,7 +23,7 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         private val messageKeys = "message_keys"
         @JvmStatic val createClosedGroupRatchetTableCommand
             = "CREATE TABLE $closedGroupRatchetTable ($closedGroupPublicKey STRING, $senderPublicKey STRING, $chainKey STRING, " +
-                "$keyIndex INTEGER DEFAULT 0, $messageKeys STRING, PRIMARY KEY ($closedGroupPublicKey, $senderPublicKey));"
+                "$keyIndex INTEGER DEFAULT 0, $messageKeys TEXT, PRIMARY KEY ($closedGroupPublicKey, $senderPublicKey));"
         // Private keys
         private val closedGroupPrivateKeyTable = "closed_group_private_key_table"
         private val closedGroupPrivateKey = "closed_group_private_key"
