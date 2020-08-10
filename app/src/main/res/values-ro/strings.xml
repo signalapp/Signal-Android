@@ -431,6 +431,16 @@
   <string name="PendingMembersActivity_missing_detail_explanation">Nu sunt afișate detalii despre persoanele invitate de alți membri ai grupului. Dacă invitații aleg să se alăture, informațiile lor vor fi partajate grupului în acel moment. Nu vor vedea niciun mesaj din grup până nu se alătură.</string>
   <string name="PendingMembersActivity_revoke_invite">Revocare invitație</string>
   <string name="PendingMembersActivity_revoke_invites">Revocare invitații</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Revocare invitație</item>
+    <item quantity="few">Revocare %1$d invitații</item>
+    <item quantity="other">Revocare %1$d invitații</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">A apărut o eroare la revocarea invitației</item>
+    <item quantity="few">A apărut o eroare la revocarea invitațiilor</item>
+    <item quantity="other">A apărut o eroare la revocarea invitațiilor</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gata</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
@@ -453,7 +463,18 @@
   <string name="AddGroupDetailsFragment__remove">Eliminați</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eliminați pe %1$s din acest grup?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d membriu nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
+    <item quantity="few"> %d membrii nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
+    <item quantity="other">%d membrii nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un Grup Vechi ca fi creat deoarece “%1$s” folosește o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Un Grup Vechi ca fi creat deoarece %1$d membriu folosește o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îl eliminați înainte de a crea grupul.</item>
+    <item quantity="few">Un Grup Vechi ca fi creat deoarece %1$d membrii folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
+    <item quantity="other">Un Grup Vechi ca fi creat deoarece %1$d membrii folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Dispariție mesaje</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitații la grup în așteptare</string>
@@ -493,6 +514,12 @@
   <string name="ManageGroupActivity_legacy_group">Grup vechi</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Pentru a accesa funcții precum administratorii de grup, creați un grup nou.</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Doriți să primiți notificări atunci când sunteți menționat în convorbiri fără sunet?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Implicit (Anunță-mă)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Implicit (Nu mă anunța)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Anunță-mă întotdeauna</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Nu mă anunța</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Adăugați la contactele de sistem</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Această persoană se află în lista dvs. de contacte</string>
@@ -537,6 +564,12 @@
   <string name="CustomNotificationsDialogFragment__disabled">Dezactivat</string>
   <string name="CustomNotificationsDialogFragment__default">Implicit</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Doriți să revocați invitația trimisă la %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Doriți să revocați invitația trimisă de %1$s?</item>
+    <item quantity="few">Doriți să revocați %2$d invitații trimise de %1$s?</item>
+    <item quantity="other">Doriți să revocați %2$d invitații trimise de %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar de grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -748,6 +781,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Cineva a refuzat o invitație la grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Ați refuzat invitația la grup.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s a revocat invitația dvs. la grup.</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un admin a revocat invitația dvs. la grup.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">O invitație la grup a fost revocată.</item>
@@ -802,6 +836,11 @@
     <item quantity="one">%1$d membru (+%2$d invitați)</item>
     <item quantity="few">%1$d membrii (+%2$d invitați)</item>
     <item quantity="other">%1$d membrii (+%2$d invitați)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d grup adițional</item>
+    <item quantity="few">%d grupuri adiționale</item>
+    <item quantity="other">%d grupuri adiționale</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
@@ -1153,6 +1192,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_error_delivering_message">A apărut o eroare la trimiterea mesajului.</string>
   <string name="MessageNotifier_mark_all_as_read">Marchează tot ca citit</string>
   <string name="MessageNotifier_mark_read">Marchează ca citit</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Dezactivați aceste notificări</string>
   <string name="MessageNotifier_media_message">Mesaj media</string>
   <string name="MessageNotifier_sticker">Autocolant</string>
   <string name="MessageNotifier_view_once_photo">Poză vizibilă o singură dată</string>
@@ -1173,6 +1213,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">A reacționat cu %1$s la videoclipul dvs. vizibil o singură dată.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">A reacționat cu %1$s la autocolantul dvs.</string>
   <string name="MessageNotifier_this_message_was_deleted">Acest mesaj a fost șters.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Dezactivați notificările pentru contact alăturat la Signal? Le puteți activa din nou în Signal &gt; Setări &gt; Notificări.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Implicit</string>
   <string name="NotificationChannel_calls">Apeluri</string>
@@ -1723,6 +1764,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activează funcția de expeditor ascuns pentru mesajele primite de la non-contacte și persoane cu care nu ai partajat profilul tău.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Aflați mai multe</string>
   <string name="preferences_notifications__mentions">Mențiuni</string>
+  <string name="preferences_notifications__notify_me">Anunță-mă</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Primire notificări atunci când sunteți menționat în convorbiri fără sunet</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

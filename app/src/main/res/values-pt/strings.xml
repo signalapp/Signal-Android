@@ -414,6 +414,16 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Convites por outros membros do grupo</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Não tem convites pendentes de outros membros do grupo.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Os detalhes das pessoas convidadas por outros membros do grupo não são exibidos. Se os convidados optarem por se juntarem, as suas informações serão partilhadas com o grupo apenas a partir desse momento. Eles não irão ver nenhuma mensagem do grupo até se juntarem ao grupo.</string>
+  <string name="PendingMembersActivity_revoke_invite">Revogar convite</string>
+  <string name="PendingMembersActivity_revoke_invites">Revogar convites</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Revogar convite</item>
+    <item quantity="other">Revogar %1$d convites</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Erro ao revogar convite</item>
+    <item quantity="other">Erro ao revogar convites</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Concluído</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada os grupos legados.</string>
@@ -435,7 +445,16 @@
   <string name="AddGroupDetailsFragment__remove">Remover</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Remover %1$s deste grupo?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d membro não suporta \'Novos grupos\', como tal, este grupo será um \'Grupo legado\'.</item>
+    <item quantity="other">%d membros não suportam \'Novos grupos\', como tal, este grupo será um \'Grupo legado\'.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um \'Grupo legado\' será criado porque \"%1$s\" está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Um \'Grupo legado\' será criado porque %1$d membro está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</item>
+    <item quantity="other">Um \'Grupo legado\' será criado porque %1$d membros estão a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com eles depois de eles atualizarem o Signal, ou removê-los antes de criar o grupo.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Destruição de mensagens</string>
   <string name="ManageGroupActivity_pending_group_invites">Convites de grupo pendentes</string>
@@ -448,6 +467,7 @@
   <string name="ManageGroupActivity_leave_group">Abandonar grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Notificações personalizadas</string>
+  <string name="ManageGroupActivity_mentions">Menções</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
@@ -472,6 +492,12 @@
   <string name="ManageGroupActivity_legacy_group">Grupo legado</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Este é um \'Grupo legado\'. Para aceder a recursos como os administradores do grupo, crie um \'Grupo novo\'.</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar-me quando for \'Mencionado\'</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receber notificações quando for mencionado em chats silenciados?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Padrão (Notificar-me)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Padrão (Não me notificar)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Notificar-me sempre</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Não me notificar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Adicionar aos contactos do sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Este utilizador encontra-se nos seus contactos</string>
@@ -514,6 +540,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desativada</string>
   <string name="CustomNotificationsDialogFragment__default">Pré-definição</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Deseja revogar o convite que enviou para %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Deseja revogar o convite que foi enviado por %1$s?</item>
+    <item quantity="other">Deseja revogar %2$d convites que foram enviados por %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -714,6 +745,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguém declinou um pedido para o grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Você recusou o convite para o grupo.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s revogou o seu convite para o grupo,</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Um administrador revogou o seu convite para o grupo,</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Foi revogado um convite para o grupo.</item>
     <item quantity="other">Foram revogados %1$d convites para o grupo.</item>
@@ -764,6 +797,10 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d membro (+%2$d convidado)</item>
     <item quantity="other">%1$d membros (+%2$d comvidados)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d grupo adicional</item>
+    <item quantity="other">%d grupos adicionais</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-passe não coincidem!</string>
@@ -1113,6 +1150,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_error_delivering_message">Erro ao entregar a mensagem.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar tudo como lido</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Desativar estas notificações</string>
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_sticker">Autocolante</string>
   <string name="MessageNotifier_view_once_photo">Fotografia de visualização única</string>
@@ -1133,6 +1171,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagiu %1$s ao seu vídeo de visualização única.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu %1$s ao seu autocolante.</string>
   <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi eliminada.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Deseja desativar as notificações quando um novo contacto se junta ao Signal? Pode ativar novamente em Signal &gt; Definições &gt; Notificações.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Predefinição</string>
   <string name="NotificationChannel_calls">Chamadas</string>
@@ -1671,6 +1710,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de todos</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ativar o emissor selado para mensagens recebidas de não-contactos e pessoas com as quais não partilhou o seu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber mais</string>
+  <string name="preferences_notifications__mentions">Menções</string>
+  <string name="preferences_notifications__notify_me">Notificar-me</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receba notificações quando for mencionado em chats silenciados</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

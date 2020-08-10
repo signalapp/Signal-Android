@@ -69,7 +69,7 @@
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">برنامه‌ای برای انتخاب رسانه پیدا نشد.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal برای پیوست کردن فایل‌های صوتی و تصویری نیاز به دسترسی به حافظه دارد، اما این اجازه داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «ذخیره‌سازی» را فعال کنید.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal برای پیوست کردن اطلاعات مخاطب نیاز به دسترسی به مخاطبان دارد، اما این دسترسی به Signal داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal برای پیوست کردن اطلاعات مخاطب نیاز به دسترسی مخاطبین دارد، اما این دسترسی به Signal داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal برای پیوست کردن موقعیت مکانی نیاز به دسترسی به موقعیت مکانی شما دارد، ولی این دسترسی داده نشده است. لطفاً لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مکان» را فعال کنید. </string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal جهت گرفتن عکس نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید. </string>
   <!--AttachmentUploadJob-->
@@ -78,7 +78,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوت!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">مخاطبان مسدود شده</string>
+  <string name="BlockedContactsActivity_blocked_contacts">مخاطبین مسدود شده</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">مسدود کردن و ترک گروه %1$s؟</string>
   <string name="BlockUnblockDialog_block_s"> مسدود کردن %1$s؟</string>
@@ -110,14 +110,14 @@
   <string name="CameraXFragment_change_camera_description">تغییر دوربین</string>
   <string name="CameraXFragment_open_gallery_description">باز کردن گالری</string>
   <!--CameraContacts-->
-  <string name="CameraContacts_recent_contacts">آخرین مخاطب‌ها</string>
-  <string name="CameraContacts_signal_contacts">مخاطب‌های Signal</string>
+  <string name="CameraContacts_recent_contacts">آخرین مخاطبین</string>
+  <string name="CameraContacts_signal_contacts">مخاطبین Signal</string>
   <string name="CameraContacts_signal_groups">گروه‌‌های Signal</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">شما حداکثر می‌توانید با %d مکالمه اشتراک‌گذاری کنید.</string>
   <string name="CameraContacts_select_signal_recipients">گیرندگان Signal را انتخاب کنید</string>
-  <string name="CameraContacts_no_signal_contacts"> هیچ مخاطب Signal یافت نشد</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">شما تنها با استفاده از دکمهٔ دوربین میتوانید برای مخاطبان Signal تصویر ارسال کنید.</string>
-  <string name="CameraContacts_cant_find_who_youre_looking_for">نمی توانید فردی را که دنبالش هستید پیدا کنید؟</string>
+  <string name="CameraContacts_no_signal_contacts"> هیچ مخاطب Signal وجود ندارد</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">شما تنها با استفاده از دکمهٔ دوربین می‌توانید برای مخاطبین Signal عکس ارسال کنید.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">نمی‌توانید فردی را که دنبالش هستید پیدا کنید؟</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">دعوت یک مخاطب برای پیوستن به Signal</string>
   <string name="CameraContacts__menu_search">جستجو</string>
   <!--ClearProfileActivity-->
@@ -140,7 +140,7 @@
   <string name="ConfirmIdentityDialog_accept">پذیرش</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">آخرین گفتگوها</string>
-  <string name="ContactsCursorLoader_contacts">مخاطب‌ها</string>
+  <string name="ContactsCursorLoader_contacts">مخاطبین</string>
   <string name="ContactsCursorLoader_groups">گروه‌ها‌</string>
   <string name="ContactsCursorLoader_phone_number_search">جستجوی شماره‌ٔ همراه</string>
   <string name="ContactsCursorLoader_username_search">جستجوی نام کاربری</string>
@@ -168,7 +168,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">ارسال ناموفق بود، برای ارتباط ناامن ضربه بزنید</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">برگشت به حالت پیامک رمزگذاری نشده؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت فراپیام رمزگذاری نشده؟</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"> این پیام رمزگذاری <b>نخواهد</b>شد چون گیرنده دیگر یک کاربر Signal نیست.\n\n پیام به صورت ناامن ارسال شود؟</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"> این پیام رمزگذاری <b>نخواهد</b> شد چون گیرنده دیگر یک کاربر Signal نیست.\n\n پیام به صورت ناامن ارسال شود؟</string>
   <string name="ConversationItem_unable_to_open_media">برنامه‌ای برای بازکردن این رسانه پیدا نشد.</string>
   <string name="ConversationItem_copied_text">%s کپی شد</string>
   <string name="ConversationItem_from_s">از %s</string>
@@ -229,7 +229,7 @@
   <string name="ConversationActivity_search_position">%1$d از %2$d</string>
   <string name="ConversationActivity_no_results">بدون نتیجه</string>
   <string name="ConversationActivity_sticker_pack_installed">بسته استیکر نصب شد</string>
-  <string name="ConversationActivity_new_say_it_with_stickers">قابلیت جدید! حرف خود را با استیکر بزنید</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">قابلیت جدید! با استیکر بگویید</string>
   <string name="ConversationActivity_cancel">لغو</string>
   <string name="ConversationActivity_delete_conversation">مکالمه حذف شود؟</string>
   <string name="ConversationActivity_delete_and_leave_group">حذف و ترک گروه؟</string>
@@ -320,14 +320,14 @@
   <string name="ConversationTitleView_verified">تأیید شده</string>
   <string name="ConversationTitleView_you">شما</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبان نمی‌توانند در گروه‌های قدیمی باشند.</string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبین نمی‌توانند در گروه‌های قدیمی باشند.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم عکس پروفایل</string>
   <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
   <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل شما رمزگذاری سرتاسری شده است. پروفایل شما و تغییرات آن، هنگامی که شما مکالمه‌های جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید، برای مخاطبان شما قابل مشاهده خواهد بود.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل شما رمزگذاری سرتاسری شده است. پروفایل شما و تغییرات آن، هنگامی که شما مکالمه‌های جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید، برای مخاطبین شما قابل مشاهده خواهد بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
@@ -499,8 +499,8 @@
   <string name="GroupMentionSettingDialog_always_notify_me">همیشه به من اطلاع بده</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">به من اطلاع نده</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبان سیستم</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این فرد در مخاطبان شماست</string>
+  <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبین سیستم</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این فرد در مخاطبین شماست</string>
   <string name="ManageRecipientActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageRecipientActivity_chat_color">رنگ گفتگو</string>
   <string name="ManageRecipientActivity_block">مسدود کردن</string>
@@ -557,8 +557,8 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن پیام صوتی ضربه زده و نگه دارید، برای ارسال رها کنید</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک‌گذاری</string>
-  <string name="InviteActivity_choose_contacts">انتخاب مخاطبان</string>
-  <string name="InviteActivity_share_with_contacts">اشتراک‌گذاری با مخاطبان</string>
+  <string name="InviteActivity_choose_contacts">انتخاب مخاطبین</string>
+  <string name="InviteActivity_share_with_contacts">اشتراک‌گذاری با مخاطبین</string>
   <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک‌گذاری</string>
   <string name="InviteActivity_cancel">لغو</string>
   <string name="InviteActivity_sending">در حال ارسال…</string>
@@ -661,8 +661,8 @@
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
   <string name="MediaSendActivity_message">پیام</string>
   <string name="MediaSendActivity_select_recipients">گیرندگان را انتخاب کنید</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">برای اینکه Signal مخاطبان شما ره نمایش دهد نیاز دارد به آنها دسترسی داشته باشد.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal برای نشان دادن مخاطبان شما نیاز به دسترسی به مخاطبان دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal به دسترسی مخاطبین برای نمایش آن‌ها نیاز دارد.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal برای نشان دادن مخاطبین شما نیاز به دسترسی مخاطبین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">شما نمی توانید بیش از %d مورد را به اشتراک بگذارید.</item>
     <item quantity="other">شما نمی توانید بیش از %d مورد را به اشتراک بگذارید.</item>
@@ -748,7 +748,7 @@
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s دعوت شما به گروه را لغو کرد.</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">یک مدیر دعوت شما به گروه را لغو کرد.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
-    <item quantity="one">یک دعوتنامه به گروه لغو شد.</item>
+    <item quantity="one">یک دعوت‌نامه به گروه لغو شد.</item>
     <item quantity="other">%1$d دعوت‌نامه به گروه لغو شدند.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
@@ -903,7 +903,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتید از تماس امن پشتیبانی نمی کند!</string>
   <string name="RedPhone_got_it">فهمیدم</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">برای فعال سازی ویدیو اینجا کلیک کنید</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">برای فعال‌سازی ویدیو اینجا کلیک کنید</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">برای تماس با%1$s، Signal به دسترسی دوربین شما نیاز دارد</string>
   <string name="WebRtcCallActivity__signal_s">%1$s Signal</string>
   <string name="WebRtcCallActivity__calling">در حال برقراری تماس…</string>
@@ -930,7 +930,7 @@
   <string name="RegistrationActivity_no_browser">عدم توانایی در باز کردن این پیوند. هیچ مرورگر اینترنتی یافت نشد.</string>
   <string name="RegistrationActivity_more_information">اطلاعات بیشتر</string>
   <string name="RegistrationActivity_less_information">اطلاعات کمتر</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">برای ارتباط با دوستان، تبادل پیام، برقراری تماس امن، Signal نیاز دارد تا به مخاطبان و رسانه شما دسترسی داشته باشد</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">برای ارتباط با دوستان، تبادل پیام و برقراری تماس امن Signal نیاز دارد تا به مخاطبین و رسانه‌های شما دسترسی داشته باشد</string>
   <string name="RegistrationActivity_rate_limited_to_service">شما تلاش‌های بسیاری برای ثبت‌نام این شماره انجام داده‌اید. لطفاً دوباره امتحان کنید.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">عدم توانایی در اتصال به سرویس. لطفاً اتصال شبکه را بررسی کرده و دوباره تلاش کنید.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">برای تأیید شماره‌ٔ همراه خود، Signal می‌تواند به صورت خودکار کد تأیید شما را شناسایی کند، در صورتی که به Signal اجازهٔ زؤیت پیامک‌ها را بدهید.</string>
@@ -967,15 +967,15 @@
   <!--Search-->
   <string name="SearchFragment_no_results">هیچ نتیجه ای برای \'%s\' یافت نشد</string>
   <string name="SearchFragment_header_conversations">مکالمه ها</string>
-  <string name="SearchFragment_header_contacts">مخاطبان</string>
+  <string name="SearchFragment_header_contacts">مخاطبین</string>
   <string name="SearchFragment_header_messages">پیام‌ها</string>
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_add_to_contacts">افزودن به مخاطبان</string>
+  <string name="SharedContactDetailsActivity_add_to_contacts">افزودن به مخاطبین</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">دعوت به Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">پیام Signal</string>
   <string name="SharedContactDetailsActivity_signal_call">تماس Signal</string>
   <!--SharedContactView-->
-  <string name="SharedContactView_add_to_contacts">افزودن به مخاطبان</string>
+  <string name="SharedContactView_add_to_contacts">افزودن به مخاطبین</string>
   <string name="SharedContactView_invite_to_signal">دعوت به Signal</string>
   <string name="SharedContactView_message">پیام Signal</string>
   <!--SignalPinReminders-->
@@ -1002,11 +1002,11 @@
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">این پیام قابل پردازش نیست چون از یک نسخه جدیدتر Signal ارسال شده است. می توانید از مخاطب خود بخواهید تا این پیام را دوباره بعد از به‌روزرسانی برای شما ارسال کند.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">خطا هنگام پردازش پیام ورودی.</string>
   <!--StickerManagementActivity-->
-  <string name="StickerManagementActivity_stickers">استیکر ها</string>
+  <string name="StickerManagementActivity_stickers">استیکرها</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">استیکرهای نصب شده</string>
-  <string name="StickerManagementAdapter_stickers_you_received">استیکر هایی که دریافت کردید</string>
-  <string name="StickerManagementAdapter_signal_artist_series">سری های هنرمند Signal</string>
+  <string name="StickerManagementAdapter_stickers_you_received">استیکرهایی که دریافت کردید</string>
+  <string name="StickerManagementAdapter_signal_artist_series">سری‌های هنرمند Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نشده است</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">استیکرهایی که از پیام‌های ورودی دریافت می‌شوند اینجا نمایش داده خواهند شد</string>
   <string name="StickerManagementAdapter_untitled">بدون نام</string>
@@ -1016,7 +1016,7 @@
   <string name="StickerPackPreviewActivity_unknown">ناشناخته</string>
   <string name="StickerPackPreviewActivity_install">نصب</string>
   <string name="StickerPackPreviewActivity_remove">حذف</string>
-  <string name="StickerPackPreviewActivity_stickers">استیکر ها</string>
+  <string name="StickerPackPreviewActivity_stickers">استیکرها</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">عدم موفقیت در بارگذاری بسته استیکر</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">ویرایش</string>
@@ -1074,7 +1074,7 @@
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">یک نسخهٔ جدید از Signal موجود است، برای به‌روزرسانی ضربه بزنید</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">%s مسدود شود؟</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">مخاطبان مسدود شده دیگر قادر به ارسال پیام یا تماس با شما نخواهند بود.</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">مخاطبین مسدود شده دیگر قادر به ارسال پیام یا تماس با شما نخواهند بود.</string>
   <string name="UnknownSenderView_block">مسدود کردن</string>
   <string name="UnknownSenderView_share_profile_with_s">اشتراک‌گذاری پروفایل با %s؟</string>
   <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">آسان‌ترین راه برای اشتراک‌گذاری اطلاعات پروفایل شما اضافه کردن فرستنده به مخاطبان است. اگر مایل به انجام این کار نیستید، همچنان می‌توانید اطلاعات پروفایل خود را به این شیوه به اشتراک بگذارید.</string>
@@ -1275,12 +1275,12 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">نمایش شماره‌ گیر</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">مخاطبی یافت نشد.</string>
-  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطب ها…</string>
+  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطبین…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">تصویر مخاطب</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal نیاز به دسترسی به مخاطبان دارد تا مخاطبان شما را نمایش دهد، اما مجوز آن به طور دائم رد شده است. لطفاً به ‌منوی تنظیمات برنامه رفته، «مجوز ها» را انتخاب کرده و «مخاطبان» را فعال کنید.</string>
-  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبان، اتصال اینترنت خود را بررسی کنید</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal برای نشان دادن مخاطبین شما نیاز به دسترسی مخاطبین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبین، اتصال اینترنت خود را بررسی کنید</string>
   <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
   <string name="ContactSelectionListFragment_okay">باشه</string>
@@ -1289,8 +1289,8 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">هیچ مخاطب مسدود شده‌ای وجود ندارد</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal نیاز به دسترسی به مخاطب های شما دارد تا بتواند آن ها را نمایش دهد.</string>
-  <string name="contact_selection_list_fragment__show_contacts">نمایش مخاطب ها</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal به دسترسی مخاطبین برای نمایش آن‌ها نیاز دارد.</string>
+  <string name="contact_selection_list_fragment__show_contacts">نمایش مخاطبین</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
     <item quantity="one">%1$d عضو</item>
@@ -1469,7 +1469,7 @@
   <string name="redphone_call_card__signal_call">تماس Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">شمارهٔ همراه</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal با کمک شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبانی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود به آسانی با شما از طریق Signal ارتباط برقرار کنند.\n\nثبت‌نام، برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal با کمک شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبینی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود به آسانی با شما از طریق Signal ارتباط برقرار کنند.\n\nثبت‌نام، برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
   <string name="registration_activity__verify_your_number">شمارهٔ خود را تأیید کنید</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفاً شمارهٔ موبایل خود را جهت دریافت کد تأیید وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <!--recipients_panel-->
@@ -1478,7 +1478,7 @@
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">فرستنده در فهرست مخاطب های شما قرار ندارد</string>
   <string name="unknown_sender_view__block">مسدود کردن</string>
-  <string name="unknown_sender_view__add_to_contacts">افزودن به مخاطبان</string>
+  <string name="unknown_sender_view__add_to_contacts">افزودن به مخاطبین</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">اضافه نکن، اما پروفایل من را قابل مشاهده قرار بده</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تأیید کنید، عدد بالا را با عدد روی دستگاه آن‌ها مقایسه کنید. در غیر این صورت، می‌توانید کد روی گوشی آن‌ها را اسکن کرده یا از آن‌ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
@@ -1501,14 +1501,14 @@
   <string name="message_details_recipient_header__sent_to">ارسال شده به</string>
   <string name="message_details_recipient_header__sent_from">ارسال شده از</string>
   <string name="message_details_recipient_header__delivered_to">تحویل داده شده به</string>
-  <string name="message_details_recipient_header__read_by">خوانده شده</string>
+  <string name="message_details_recipient_header__read_by">خوانده شد توسط</string>
   <string name="message_details_recipient_header__not_sent">ارسال نشد</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">عدم موفقیت در ارسال</string>
   <string name="message_details_recipient__new_safety_number">شمارهٔ امنیتی جدید</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">ایجاد گذرواژه</string>
-  <string name="AndroidManifest__select_contacts">انتخاب مخاطب‌ ها</string>
+  <string name="AndroidManifest__select_contacts">انتخاب مخاطبین</string>
   <string name="AndroidManifest__change_passphrase">تغییر گذرواژه</string>
   <string name="AndroidManifest__verify_safety_number">تأیید شمارهٔ امنیتی</string>
   <string name="AndroidManifest__log_submit">ارسال گزارش اشکال‌زدایی</string>
@@ -1596,7 +1596,7 @@
   <string name="preferences__send_link_previews">ارسال پیش‌نمایش‌های پیوند</string>
   <string name="preferences__previews_are_supported_for">پیش‌نمایش‌ها برای پیوند‌های Imgur ،Reddit Pinterest ،Instagram و Youtube پشتیبانی می‌شوند</string>
   <string name="preferences__choose_identity">انتخاب هویت</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">مخاطب خود را از فهرست مخاطبان انتخاب کنید.</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">مخاطب خود را از فهرست مخاطبین انتخاب کنید.</string>
   <string name="preferences__change_passphrase">تغییر گذرواژه</string>
   <string name="preferences__change_your_passphrase">گذرواژهٔ خود را تغییر دهید</string>
   <string name="preferences__enable_passphrase">فعال‌سازی گذرواژهٔ قفل صفحه</string>
@@ -1659,7 +1659,7 @@
   <string name="preferences__disable_pin">غیرفعال کردن پین</string>
   <string name="preferences__enable_pin">فعال کردن پین</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در Signal ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="preferences__system_default">پیش‌فرض سیستم</string>
   <string name="preferences__default">پیش‌فرض</string>
   <string name="preferences__language">زبان</string>
@@ -1675,7 +1675,7 @@
   <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده</string>
-  <string name="preferences_app_protection__blocked_contacts">مخاطبان مسدود شده</string>
+  <string name="preferences_app_protection__blocked_contacts">مخاطبین مسدود شده</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های موبایل</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
   <string name="preferences_chats__when_roaming">هنگام رومینگ</string>
@@ -1701,7 +1701,7 @@
   <string name="preferences_notifications__calls">تماس‌ها</string>
   <string name="preferences_notifications__ringtone">صدای زنگ</string>
   <string name="preferences_chats__show_invitation_prompts">نمایش دعوت‌نامه‌ها</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش گزینهٔ ارسال دعوت‌نامه برای مخاطبانی که عضو Signal نیستند</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش گزینهٔ ارسال دعوت‌نامه برای مخاطبینی که عضو Signal نیستند</string>
   <string name="preferences_chats__message_text_size">ابعاد قلم پیام</string>
   <string name="preferences_events__contact_joined_signal">مخاطب به Signal پیوست</string>
   <string name="preferences_notifications__priority">اولویت</string>
@@ -1709,7 +1709,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش نگارک وضعیت در حالتی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده بودند انتخاب می‌کنید.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های ورودی از غیرمخاطبان و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های ورودی از غیرمخاطبین و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
   <string name="preferences_notifications__mentions">اشاره‌ها</string>
   <string name="preferences_notifications__notify_me">به من اطلاع بده</string>
@@ -1781,7 +1781,7 @@
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">بسط پاپ آپ</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_add_to_contacts__menu_add_to_contacts">افزودن به مخاطبان</string>
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">افزودن به مخاطبین</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">فهرست گیرندگان</string>
   <string name="conversation_group_options__delivery">تحویل</string>
@@ -1841,13 +1841,13 @@
   <string name="InsightsDashboardFragment__not_enough_data">داده‌ٔ کافی وجود ندارد</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که حذف نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">شروع یک مکالمه</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و قابلیت‌های جدید را که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند با دعوت مخاطبان بیشتر به Signal فعال کنید.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و قابلیت‌های جدید را که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند با دعوت مخاطبین بیشتر به Signal فعال کنید.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما ایجاد شده‌اند و فقط شما توانایی دیدن آن‌ها را دارید. آن‌ها هیچگاه به جایی ارسال نمی‌شوند.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">پیام‌های رمزگذاری شده</string>
   <string name="InsightsDashboardFragment__cancel">لغو</string>
   <string name="InsightsDashboardFragment__send">ارسال</string>
   <string name="InsightsModalFragment__title">معرفی بینش‌‌ها</string>
-  <string name="InsightsModalFragment__description">ببینید چه تعداد از پیام‌های خروجی شما به صورت امن ارسال شده‌اند، سپس درصد Signal خود را با دعوت مخاطبان جدید تقویت کنید.</string>
+  <string name="InsightsModalFragment__description">ببینید چه تعداد از پیام‌های خروجی شما به صورت امن ارسال شده‌اند، سپس درصد Signal خود را با دعوت مخاطبین جدید تقویت کنید.</string>
   <string name="InsightsModalFragment__view_insights">دیدن بینش‌ها</string>
   <string name="FirstInviteReminder__title">دعوت به Signal</string>
   <string name="FirstInviteReminder__description">شما می‌توانید پیام‌های رمزگذاری‌ شدهٔ ارسالی‌ خود را به میزان %1$d%% افزایش دهید</string>
@@ -1872,7 +1872,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">یک پین جدید ایجاد کنید</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">تا زمانی که این دستگاه ثبت شده باشد شما می‌توانید پین خود را تغییر دهید.</string>
   <string name="CreateKbsPinFragment__create_your_pin">پین خود را ایجاد کنید</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">یک پین قوی‌تر انتخاب کنید</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
@@ -1884,7 +1884,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">تعریف پین‌ها</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزنگاری شده نگاه می‌دارند تا فقط شما به آنها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبان هنگام نصب مجدد بازگردانی می‌شوند. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده نزد Signal را رمزنگاری شده نگاه می‌دارند تا فقط شما به آنها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازگردانی می‌شوند. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
   <string name="KbsSplashFragment__learn_more">اطلاعات بیشتر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل ثبت‌نام = پین</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد، و کارهای بیشتری را انجام می‌دهد. هم‌اکنون آن را به‌روزرسانی کنید.</string>
@@ -1955,7 +1955,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک دارد اما این دسترسی به‌ داده نشده است. لطفاً به تنظیمات برنامه‌ رفته، «مجوزها» را انتخاب کنید و «پیامک» را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
   <string name="Permissions_not_now">حالا نه</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجوی مخاطبان نیاز به دسترسی دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجوی مخاطبین نیاز به دسترسی دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
   <string name="conversation_activity__enable_signal_messages">فعال‌سازی پیام‌های Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">در حال انتقال پایگاه داده Signal</string>
   <string name="PushDecryptJob_new_locked_message">پیام قفل شده جدید</string>
@@ -2011,7 +2011,7 @@
   <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
   <string name="preferences_app_protection__pin_reminders">یاد‌آورهای پین</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ Signal بازگردانی می‌شوند.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">امنیت بیشتر با افزودن درخواست پین Signal برای ثبت‌نام دوباره</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به‌خاطرسپردن پین‌ کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. در طول زمان کمتر از شما پرسیده خواهد شد.</string>
   <string name="preferences_app_protection__turn_off">خاموش</string>
@@ -2066,7 +2066,7 @@
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
-  <string name="RecipientBottomSheet_add_to_contacts">افزودن به مخاطبان</string>
+  <string name="RecipientBottomSheet_add_to_contacts">افزودن به مخاطبین</string>
   <string name="RecipientBottomSheet_add_to_a_group">اضافه کردن به گروه</string>
   <string name="RecipientBottomSheet_add_to_another_group">اضافه کردن به گروهی دیگر</string>
   <string name="RecipientBottomSheet_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>

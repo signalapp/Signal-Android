@@ -45,6 +45,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">স্ক্রিন লক %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$sথীম, %2$s ভাষা</string>
   <string name="ApplicationPreferencesActivity_pin_created">পিন তৈরি করা হয়েছে।</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">পিন নিষ্ক্রিয়।</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d মিনিট</item>
@@ -156,6 +157,7 @@
   <string name="ContactShareEditActivity_type_missing">অন্যান্য</string>
   <string name="ContactShareEditActivity_invalid_contact">নির্বাচিত পরিচিতিটি সঠিক নয়</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">পাঠানো হয়নি, বিস্তারিত জানার জন্য টিপ দাও</string>
   <string name="ConversationItem_error_network_not_delivered">পাঠাতে ব্যর্থ</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">কী বিনিময়ের বার্তা পাওয়া গেছে, প্রক্রিয়া করতে আলতো চাপুন।</string>
   <string name="ConversationItem_group_action_left">%1$s গ্রুপ ত্যাগ করেছে।</string>

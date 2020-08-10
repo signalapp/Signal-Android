@@ -1715,7 +1715,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activar la opción permite usar la característica de «remitente confidencial» con personas que no están entre tus contactos y con las que no has compartido tu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber más</string>
   <string name="preferences_notifications__mentions">Menciones</string>
-  <string name="preferences_notifications__notify_me">Nortificarme</string>
+  <string name="preferences_notifications__notify_me">Notificarme</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Recibe notificaciones si te mencionan en un chat silenciado</string>
   <!--Internal only preferences-->
   <!--****************************************-->
