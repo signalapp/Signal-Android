@@ -22,16 +22,16 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val snodePoolTable = "loki_snode_pool_cache"
         private val dummyKey = "dummy_key"
         private val snodePool = "snode_pool_key"
-        @JvmStatic val createSnodePoolTableCommand = "CREATE TABLE $snodePoolTable ($dummyKey STRING PRIMARY KEY, $snodePool STRING);"
+        @JvmStatic val createSnodePoolTableCommand = "CREATE TABLE $snodePoolTable ($dummyKey TEXT PRIMARY KEY, $snodePool TEXT);"
         // Onion request paths
         private val onionRequestPathTable = "loki_path_cache"
         private val indexPath = "index_path"
-        @JvmStatic val createOnionRequestPathTableCommand = "CREATE TABLE $onionRequestPathTable ($indexPath STRING PRIMARY KEY, $snode STRING);"
+        @JvmStatic val createOnionRequestPathTableCommand = "CREATE TABLE $onionRequestPathTable ($indexPath TEXT PRIMARY KEY, $snode TEXT);"
         // Swarms
         private val swarmTable = "loki_api_swarm_cache"
         private val swarmPublicKey = "hex_encoded_public_key"
         private val swarm = "swarm"
-        @JvmStatic val createSwarmTableCommand = "CREATE TABLE $swarmTable ($swarmPublicKey STRING PRIMARY KEY, $swarm STRING);"
+        @JvmStatic val createSwarmTableCommand = "CREATE TABLE $swarmTable ($swarmPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
         // Last message hash values
         private val lastMessageHashValueTable2 = "last_message_hash_value_table"
         private val lastMessageHashValue = "last_message_hash_value"
@@ -41,12 +41,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val receivedMessageHashValuesTable2 = "received_message_hash_values_table"
         private val receivedMessageHashValues = "received_message_hash_values"
         @JvmStatic val createReceivedMessageHashValuesTable2Command
-            = "CREATE TABLE $receivedMessageHashValuesTable2 ($snode STRING, $publicKey STRING, $receivedMessageHashValues STRING, PRIMARY KEY ($snode, $publicKey));"
+            = "CREATE TABLE $receivedMessageHashValuesTable2 ($snode STRING, $publicKey STRING, $receivedMessageHashValues TEXT, PRIMARY KEY ($snode, $publicKey));"
         // Open group auth tokens
         private val openGroupAuthTokenTable = "loki_api_group_chat_auth_token_database"
         private val server = "server"
         private val token = "token"
-        @JvmStatic val createOpenGroupAuthTokenTableCommand = "CREATE TABLE $openGroupAuthTokenTable ($server STRING PRIMARY KEY, $token STRING);"
+        @JvmStatic val createOpenGroupAuthTokenTableCommand = "CREATE TABLE $openGroupAuthTokenTable ($server TEXT PRIMARY KEY, $token TEXT);"
         // Last message server IDs
         private val lastMessageServerIDTable = "loki_api_last_message_server_id_cache"
         private val lastMessageServerIDTableIndex = "loki_api_last_message_server_id_cache_index"
