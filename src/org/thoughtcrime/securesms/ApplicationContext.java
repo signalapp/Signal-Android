@@ -108,6 +108,7 @@ import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
 import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol;
+import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysImplementation;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities;
@@ -189,6 +190,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     SharedSenderKeysDatabase sskDatabase = DatabaseFactory.getSSKDatabase(this);
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
+    SharedSenderKeysImplementation.Companion.configureIfNeeded(sskDatabase);
     if (userPublicKey != null) {
       SwarmAPI.Companion.configureIfNeeded(apiDB);
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
