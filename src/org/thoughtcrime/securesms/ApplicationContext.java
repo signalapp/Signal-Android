@@ -61,11 +61,13 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
+import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
@@ -154,6 +156,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   // Loki
   public MessageNotifier messageNotifier = null;
   public Poller poller = null;
+  public ClosedGroupPoller closedGroupPoller = null;
   public PublicChatManager publicChatManager = null;
   private PublicChatAPI publicChatAPI = null;
   public Broadcaster broadcaster = null;
@@ -507,16 +510,20 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
       return Unit.INSTANCE;
     });
+    SharedSenderKeysDatabase sskDatabase = DatabaseFactory.getSSKDatabase(this);
+    ClosedGroupPoller.Companion.configureIfNeeded(this, sskDatabase);
+    closedGroupPoller = ClosedGroupPoller.Companion.getShared();
   }
 
   public void startPollingIfNeeded() {
     setUpPollingIfNeeded();
     if (poller != null) { poller.startIfNeeded(); }
+    if (closedGroupPoller != null) { closedGroupPoller.startIfNeeded(); }
   }
 
   public void stopPolling() {
-    if (poller == null) { return; }
-    poller.stopIfNeeded();
+    if (poller != null) { poller.stopIfNeeded(); }
+    if (closedGroupPoller != null) { closedGroupPoller.stopIfNeeded(); }
   }
 
   private void resubmitProfilePictureIfNeeded() {
