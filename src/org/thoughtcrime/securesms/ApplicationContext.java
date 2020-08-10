@@ -186,6 +186,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
     LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
+    SharedSenderKeysDatabase sskDatabase = DatabaseFactory.getSSKDatabase(this);
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
     if (userPublicKey != null) {
@@ -196,7 +197,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       SyncMessagesProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
     MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
-    SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, threadDB, this);
+    SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, sskDatabase, this);
     setUpP2PAPIIfNeeded();
     PushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     if (setUpStorageAPIIfNeeded()) {

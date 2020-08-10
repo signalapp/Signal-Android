@@ -103,4 +103,9 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         }.toSet()
     }
     // endregion
+
+    override fun isSSKBasedClosedGroup(groupPublicKey: String): Boolean {
+        return getAllClosedGroupPublicKeys().contains(groupPublicKey)
+    }
+    // endregion
 }

@@ -255,7 +255,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
       SessionResetProtocol sessionResetProtocol = new SessionResetImplementation(context);
       SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, DatabaseFactory.getSSKDatabase(context), sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 

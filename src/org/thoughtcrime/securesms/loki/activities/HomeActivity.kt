@@ -154,6 +154,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
+        val sskDatabase = DatabaseFactory.getSSKDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         val sessionResetImpl = SessionResetImplementation(this)
         if (userPublicKey != null) {
@@ -162,7 +163,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.publicChatManager.startPollersIfNeeded()
         }
-        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
+        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
         MultiDeviceProtocol.configureIfNeeded(apiDB)
         IP2Country.configureIfNeeded(this)
         // Preload device links to make message sending quicker
