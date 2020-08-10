@@ -127,6 +127,7 @@ import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -369,6 +370,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Log.w(TAG, e);
     } catch (SelfSendException e) {
       Log.i(TAG, "Dropping UD message from self.");
+    } catch (IOException e) {
+      Log.i(TAG, "IOException during message decryption.");
     }
   }
 
