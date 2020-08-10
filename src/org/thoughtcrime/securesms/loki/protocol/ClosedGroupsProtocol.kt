@@ -6,7 +6,9 @@ import nl.komponents.kovenant.Promise
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.loki.utilities.recipient
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.GroupUtil
@@ -57,7 +59,9 @@ object ClosedGroupsProtocol {
         // Add the group to the user's set of public keys to poll for
         DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
         // Notify the user
-        // TODO: Implement
+        val infoMessage = OutgoingMediaMessage(Recipient.from(context, Address.fromSerialized(groupID), false), "Test", listOf(), System.currentTimeMillis(),
+            0, 0, ThreadDatabase.DistributionTypes.CONVERSATION, null, listOf(), listOf(), listOf(), listOf())
+        MessageSender.send(context, infoMessage, -1, false, null)
         // Return
         return Promise.of(Unit)
     }
@@ -349,8 +353,12 @@ object ClosedGroupsProtocol {
         if (GroupUtil.isOpenGroup(groupID)) {
             return listOf( Address.fromSerialized(groupID) )
         } else {
-            // TODO: Shared sender keys
-            return DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false).map { it.address }
+            val groupPublicKey = GroupUtil.getDecodedId(groupID).toHexString()
+            if (DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)) {
+                return listOf( Address.fromSerialized(groupPublicKey) )
+            } else {
+                return DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false).map { it.address }
+            }
             /*
             return FileServerAPI.shared.getDeviceLinks(members.map { it.address.serialize() }.toSet()).map {
                 val result = members.flatMap { member ->

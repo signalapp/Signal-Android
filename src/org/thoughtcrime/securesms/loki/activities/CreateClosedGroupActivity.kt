@@ -124,7 +124,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         if (selectedMembers.count() > 49) { // Minus one because we're going to include self later
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
-        ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey ))
     }
 
     private fun createLegacyClosedGroup() {
