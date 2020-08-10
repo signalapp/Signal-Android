@@ -2,16 +2,16 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
-import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.core.content.ContextCompat;
 
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
@@ -82,6 +82,17 @@ public class ThemeUtil {
     }
 
     return 0;
+  }
+
+  public static @ColorInt int getLightThemeNavigationBarColor(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT < 21) return context.getResources().getColor(R.color.core_white);
+
+    int[]      attrs  = {android.R.attr.navigationBarColor};
+    TypedArray values = context.obtainStyledAttributes(R.style.TextSecure_LightNoActionBar, attrs);
+    int        color  = values.getInt(0, R.color.core_white);
+
+    values.recycle();
+    return color;
   }
 
   private static String getAttribute(Context context, int attribute, String defaultValue) {
