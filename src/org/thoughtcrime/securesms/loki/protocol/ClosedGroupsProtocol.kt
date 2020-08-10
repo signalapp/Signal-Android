@@ -23,7 +23,8 @@ import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.util.*
 
 object ClosedGroupsProtocol {
-
+    val isSharedSenderKeysEnabled = true
+    
     public fun createClosedGroup(context: Context, name: String, members: Collection<String>): Promise<Unit, Exception> {
         // Prepare
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)

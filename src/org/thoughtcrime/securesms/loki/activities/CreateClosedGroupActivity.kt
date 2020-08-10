@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -101,6 +102,32 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     }
 
     private fun createClosedGroup() {
+        if (ClosedGroupsProtocol.isSharedSenderKeysEnabled) {
+            createSSKBasedClosedGroup()
+        } else {
+            createLegacyClosedGroup()
+        }
+    }
+
+    private fun createSSKBasedClosedGroup() {
+        val name = nameEditText.text.trim()
+        if (name.isEmpty()) {
+            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
+        }
+        if (name.length >= 64) {
+            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
+        }
+        val selectedMembers = this.selectedMembers
+        if (selectedMembers.count() < 2) {
+            return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
+        }
+        if (selectedMembers.count() > 49) { // Minus one because we're going to include self later
+            return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
+        }
+        ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers)
+    }
+
+    private fun createLegacyClosedGroup() {
         val name = nameEditText.text.trim()
         if (name.isEmpty()) {
             return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
