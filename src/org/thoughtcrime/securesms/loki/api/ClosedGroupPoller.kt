@@ -64,7 +64,7 @@ class ClosedGroupPoller private constructor(private val context: Context, privat
             SwarmAPI.shared.getSwarm(publicKey).bind { swarm ->
                 val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure
                 if (!isPolling) { throw PollingCanceledException() }
-                SnodeAPI.shared.getRawMessages(snode).map {SnodeAPI.shared.parseRawMessagesResponse(it, snode) }
+                SnodeAPI.shared.getRawMessages(snode, publicKey).map {SnodeAPI.shared.parseRawMessagesResponse(it, snode, publicKey) }
             }.successBackground { messages ->
                 if (messages.isNotEmpty()) {
                     Log.d("Loki", "Received ${messages.count()} new message(s) in closed group with public key: $publicKey.")
