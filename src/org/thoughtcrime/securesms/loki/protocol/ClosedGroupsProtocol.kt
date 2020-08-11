@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import android.util.Log
+import com.google.protobuf.ByteString
 import nl.komponents.kovenant.Promise
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
@@ -40,7 +41,7 @@ object ClosedGroupsProtocol {
             ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
         }
         // Create the group
-        val groupID = GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false)
+        val groupID = GroupUtil.getEncodedId(GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false).toByteArray(), false) // Signal double encodes the group ID
         val admins = setOf( userPublicKey )
         DatabaseFactory.getGroupDatabase(context).create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
             null, null, LinkedList<Address>(admins.map { Address.fromSerialized(it) }))
@@ -183,6 +184,7 @@ object ClosedGroupsProtocol {
 
     @JvmStatic
     public fun handleSharedSenderKeysUpdate(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
+        if (!isValid(closedGroupUpdate)) { return; }
         when (closedGroupUpdate.type) {
             SignalServiceProtos.ClosedGroupUpdate.Type.NEW -> handleNewClosedGroup(context, closedGroupUpdate)
             SignalServiceProtos.ClosedGroupUpdate.Type.INFO -> handleClosedGroupUpdate(context, closedGroupUpdate, senderPublicKey)
@@ -191,6 +193,22 @@ object ClosedGroupsProtocol {
             else -> {
                 // Do nothing
             }
+        }
+    }
+
+    private fun isValid(closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate): Boolean {
+        if (closedGroupUpdate.groupPublicKey.isEmpty) { return false }
+        when (closedGroupUpdate.type) {
+            SignalServiceProtos.ClosedGroupUpdate.Type.NEW -> {
+                return !closedGroupUpdate.name.isNullOrEmpty() && !(closedGroupUpdate.groupPrivateKey ?: ByteString.copyFrom(ByteArray(0))).isEmpty
+                    && closedGroupUpdate.senderKeysCount > 0 && closedGroupUpdate.membersCount > 0 && closedGroupUpdate.adminsCount > 0
+            }
+            SignalServiceProtos.ClosedGroupUpdate.Type.INFO -> {
+                return !closedGroupUpdate.name.isNullOrEmpty() && closedGroupUpdate.membersCount > 0 && closedGroupUpdate.adminsCount > 0 // senderKeys may be empty
+            }
+            SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY -> return true
+            SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY_REQUEST -> return closedGroupUpdate.senderKeysCount > 0
+            else -> return false
         }
     }
 
@@ -206,10 +224,6 @@ object ClosedGroupsProtocol {
         }
         val members = closedGroupUpdate.membersList.map { it.toByteArray().toHexString() }
         val admins = closedGroupUpdate.adminsList.map { it.toByteArray().toHexString() }
-        if (groupPublicKey.isEmpty() || name.isEmpty() || groupPrivateKey.isEmpty() || senderKeys.isEmpty() || members.isEmpty() || admins.isEmpty()) {
-            Log.d("Loki", "Ignoring invalid new closed group.")
-            return
-        }
         // Persist the ratchets
         senderKeys.forEach { senderKey ->
             if (!members.contains(senderKey.publicKey.toHexString())) { return@forEach }
