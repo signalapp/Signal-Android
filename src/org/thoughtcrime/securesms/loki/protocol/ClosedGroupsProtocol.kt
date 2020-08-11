@@ -115,6 +115,7 @@ object ClosedGroupsProtocol {
         // TODO: Implement
     }
 
+    @JvmStatic
     public fun leave(context: Context, groupPublicKey: String) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         removeMembers(context, setOf( userPublicKey ), groupPublicKey)
