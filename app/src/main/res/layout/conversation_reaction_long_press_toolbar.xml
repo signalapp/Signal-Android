@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/reactions_overlay_toolbar_background_color"
-    android:theme="?reactions_overlay_toolbar_overflow_style"
     app:contentInsetStart="0dp"
     app:contentInsetStartWithNavigation="48sp"
     app:menu="@menu/conversation_reactions_long_press_menu"
