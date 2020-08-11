@@ -36,7 +36,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastMessageHashValueTable2 = "last_message_hash_value_table"
         private val lastMessageHashValue = "last_message_hash_value"
         @JvmStatic val createLastMessageHashValueTable2Command
-            = "CREATE TABLE $lastMessageHashValueTable2 ($snode STRING, $publicKey STRING, $lastMessageHashValue STRING, PRIMARY KEY ($snode, $publicKey));"
+            = "CREATE TABLE $lastMessageHashValueTable2 ($snode STRING, $publicKey STRING, $lastMessageHashValue TEXT, PRIMARY KEY ($snode, $publicKey));"
         // Received message hash values
         private val receivedMessageHashValuesTable2 = "received_message_hash_values_table"
         private val receivedMessageHashValues = "received_message_hash_values"

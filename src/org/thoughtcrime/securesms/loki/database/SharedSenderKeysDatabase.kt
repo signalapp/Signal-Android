@@ -101,6 +101,8 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         val database = databaseHelper.readableDatabase
         return database.getAll(closedGroupPrivateKeyTable, null, null) { cursor ->
             cursor.getString(Companion.closedGroupPublicKey)
+        }.filter {
+            PublicKeyValidation.isValid(it)
         }.toSet()
     }
     // endregion

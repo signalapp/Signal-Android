@@ -206,6 +206,10 @@ object ClosedGroupsProtocol {
         }
         val members = closedGroupUpdate.membersList.map { it.toByteArray().toHexString() }
         val admins = closedGroupUpdate.adminsList.map { it.toByteArray().toHexString() }
+        if (groupPublicKey.isEmpty() || name.isEmpty() || groupPrivateKey.isEmpty() || senderKeys.isEmpty() || members.isEmpty() || admins.isEmpty()) {
+            Log.d("Loki", "Ignoring invalid new closed group.")
+            return
+        }
         // Persist the ratchets
         senderKeys.forEach { senderKey ->
             if (!members.contains(senderKey.publicKey.toHexString())) { return@forEach }
@@ -218,7 +222,7 @@ object ClosedGroupsProtocol {
             null, null, LinkedList<Address>(admins.map { Address.fromSerialized(it) }))
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
         // Add the group to the user's set of public keys to poll for
-        sskDatabase.setClosedGroupPrivateKey(groupPrivateKey.toHexString(), groupPublicKey)
+        sskDatabase.setClosedGroupPrivateKey(groupPublicKey, groupPrivateKey.toHexString())
         // Notify the user
         // TODO: Implement
         // Establish sessions if needed
