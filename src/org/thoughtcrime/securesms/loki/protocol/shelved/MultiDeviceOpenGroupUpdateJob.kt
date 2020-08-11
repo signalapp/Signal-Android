@@ -32,8 +32,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
         .setMaxAttempts(Parameters.UNLIMITED)
         .build())
 
-    override fun getFactoryKey(): String { return KEY
-    }
+    override fun getFactoryKey(): String { return KEY }
 
     override fun serialize(): Data { return Data.EMPTY }
 

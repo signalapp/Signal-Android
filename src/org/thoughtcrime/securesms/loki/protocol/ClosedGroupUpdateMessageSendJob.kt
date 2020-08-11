@@ -3,22 +3,20 @@ package org.thoughtcrime.securesms.loki.protocol
 import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
-import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.recipient
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.Hex
+import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
 import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities
 import org.whispersystems.signalservice.loki.utilities.toHexString
-import java.io.IOException
-import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -126,12 +124,12 @@ class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters
         val recipient = recipient(context, destination)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         val ttl = TTLUtilities.getTTL(TTLUtilities.MessageType.ClosedGroupUpdate)
+        val useFallbackEncryption = SignalProtocolStoreImpl(context).containsSession(SignalProtocolAddress(destination, 1))
         try {
-            // TODO: useFallbackEncryption
-            // TODO: isClosedGroup
+            // isClosedGroup can always be false as it's only used in the context of legacy closed groups
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedContentMessage, false, ttl, false,
-                    false, false, false)
+                    useFallbackEncryption, false, false)
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send closed group update message to: $destination due to error: $e.")
             throw e
