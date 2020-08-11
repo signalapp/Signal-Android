@@ -373,7 +373,7 @@ object ClosedGroupsProtocol {
         if (GroupUtil.isOpenGroup(groupID)) {
             return listOf( Address.fromSerialized(groupID) )
         } else {
-            val groupPublicKey = GroupUtil.getDecodedId(groupID).toHexString()
+            val groupPublicKey = GroupUtil.getDecodedId(GroupUtil.getDecodedStringId(groupID)).toHexString()
             if (DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)) {
                 return listOf( Address.fromSerialized(groupPublicKey) )
             } else {
