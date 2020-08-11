@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.util.Hex
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchet
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
 import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
+import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), SharedSenderKeysDatabaseProtocol {
 
@@ -105,6 +106,7 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
     // endregion
 
     override fun isSSKBasedClosedGroup(groupPublicKey: String): Boolean {
+        if (!PublicKeyValidation.isValid(groupPublicKey)) { return false }
         return getAllClosedGroupPublicKeys().contains(groupPublicKey)
     }
     // endregion

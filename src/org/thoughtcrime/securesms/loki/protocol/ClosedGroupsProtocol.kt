@@ -180,6 +180,7 @@ object ClosedGroupsProtocol {
         ApplicationContext.getInstance(context).jobManager.add(job)
     }
 
+    @JvmStatic
     public fun handleSharedSenderKeysUpdate(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
         when (closedGroupUpdate.type) {
             SignalServiceProtos.ClosedGroupUpdate.Type.NEW -> handleNewClosedGroup(context, closedGroupUpdate)

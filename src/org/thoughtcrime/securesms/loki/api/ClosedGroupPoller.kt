@@ -59,7 +59,7 @@ class ClosedGroupPoller private constructor(private val context: Context, privat
     // region Private API
     private fun poll() {
         if (!isPolling) { return }
-        val publicKeys = database.getAllClosedGroupPublicKeys()
+        val publicKeys = database.getAllClosedGroupPublicKeys().map { "05$it" }
         publicKeys.forEach { publicKey ->
             SwarmAPI.shared.getSwarm(publicKey).bind { swarm ->
                 val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure
