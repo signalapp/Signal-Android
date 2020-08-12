@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
@@ -109,6 +110,7 @@ import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysImplementation;
+import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysImplementationDelegate;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities;
@@ -141,7 +143,8 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate, SessionManagementProtocolDelegate {
+public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate,
+      SessionManagementProtocolDelegate, SharedSenderKeysImplementationDelegate {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
   private final static int OK_HTTP_CACHE_SIZE = 10 * 1024 * 1024; // 10 MB
@@ -190,7 +193,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     SharedSenderKeysDatabase sskDatabase = DatabaseFactory.getSSKDatabase(this);
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
-    SharedSenderKeysImplementation.Companion.configureIfNeeded(sskDatabase);
+    SharedSenderKeysImplementation.Companion.configureIfNeeded(sskDatabase, this);
     if (userPublicKey != null) {
       SwarmAPI.Companion.configureIfNeeded(apiDB);
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
@@ -633,6 +636,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     apiDB.setSessionRequestSentTimestamp(publicKey, timestamp);
     SessionRequestMessageSendJob job = new SessionRequestMessageSendJob(publicKey, timestamp);
     jobManager.add(job);
+  }
+
+  @Override
+  public void requestSenderKey(@NotNull String groupPublicKey, @NotNull String senderPublicKey) {
+    ClosedGroupsProtocol.requestSenderKey(this, groupPublicKey, senderPublicKey);
   }
   // endregion
 }

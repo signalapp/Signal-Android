@@ -180,6 +180,7 @@ object ClosedGroupsProtocol {
         insertInfoMessage(context, groupID, type, name, members, admins, threadID)
     }
 
+    @JvmStatic
     public fun requestSenderKey(context: Context, groupPublicKey: String, senderPublicKey: String) {
         // Establish session if needed
         ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(senderPublicKey)
