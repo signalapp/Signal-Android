@@ -1171,7 +1171,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       String groupPublicKey;
       boolean isSSKBasedClosedGroup;
       try {
-        groupPublicKey = HexEncodingKt.toHexString(GroupUtil.getDecodedId(GroupUtil.getDecodedStringId(groupRecipient.getAddress().toString())));
+        groupPublicKey = HexEncodingKt.toHexString(GroupUtil.getDecodedId(groupRecipient.getAddress().toString()));
         isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
       } catch (IOException e) {
         groupPublicKey = null;
