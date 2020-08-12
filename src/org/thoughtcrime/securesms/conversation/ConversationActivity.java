@@ -2398,10 +2398,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(this).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
-
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... param) {
@@ -2409,7 +2405,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
-        return MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+        long result = MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+
+        if (!recipient.isGroupRecipient()) {
+          ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+        }
+
+        return result;
       }
 
       @Override
@@ -2445,10 +2447,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     silentlySetComposeText("");
     final long id = fragment.stageOutgoingMessage(message);
 
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(this).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
-
     new AsyncTask<OutgoingTextMessage, Void, Long>() {
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
@@ -2456,7 +2454,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
-        return MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+        long result = MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+
+        if (!recipient.isGroupRecipient()) {
+          ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+        }
+
+        return result;
       }
 
       @Override
