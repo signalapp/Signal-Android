@@ -39,7 +39,7 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         return database.get(closedGroupRatchetTable, query, arrayOf( groupPublicKey, senderPublicKey )) { cursor ->
             val chainKey = cursor.getString(Companion.chainKey)
             val keyIndex = cursor.getInt(Companion.keyIndex)
-            val messageKeys = cursor.getString(Companion.messageKeys).split(" - ")
+            val messageKeys = cursor.getString(Companion.messageKeys).split("-")
             ClosedGroupRatchet(chainKey, keyIndex, messageKeys)
         }
     }
@@ -51,7 +51,7 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         values.put(Companion.senderPublicKey, senderPublicKey)
         values.put(Companion.chainKey, ratchet.chainKey)
         values.put(Companion.keyIndex, ratchet.keyIndex)
-        values.put(Companion.messageKeys, ratchet.messageKeys.joinToString(" - "))
+        values.put(Companion.messageKeys, ratchet.messageKeys.joinToString("-"))
         val query = "${Companion.closedGroupPublicKey} = ? AND ${Companion.senderPublicKey} = ?"
         database.insertOrUpdate(closedGroupRatchetTable, values, query, arrayOf( groupPublicKey, senderPublicKey ))
     }

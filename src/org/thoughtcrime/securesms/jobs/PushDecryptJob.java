@@ -303,7 +303,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             SessionMetaProtocol.handleProfileKeyUpdate(context, content);
           }
 
-          if (content.isNeedsReceipt()) {
+          if (content.isNeedsReceipt() && SessionMetaProtocol.shouldSendDeliveryReceipt(Address.fromSerialized(content.getSender()))) {
             handleNeedsDeliveryReceipt(content, message);
           }
         }

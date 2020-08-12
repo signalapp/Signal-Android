@@ -36,7 +36,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastMessageHashValueTable2 = "last_message_hash_value_table"
         private val lastMessageHashValue = "last_message_hash_value"
         @JvmStatic val createLastMessageHashValueTable2Command
-            = "CREATE TABLE $lastMessageHashValueTable2 ($snode STRING, $publicKey STRING, $lastMessageHashValue TEXT, PRIMARY KEY ($snode, $publicKey));"
+            = "CREATE TABLE $lastMessageHashValueTable2 ($snode TEXT, $publicKey TEXT, $lastMessageHashValue TEXT, PRIMARY KEY ($snode, $publicKey));"
         // Received message hash values
         private val receivedMessageHashValuesTable2 = "received_message_hash_values_table"
         private val receivedMessageHashValues = "received_message_hash_values"
@@ -110,7 +110,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             }
             string
         }
-        val row = wrap(mapOf(Companion.dummyKey to "dummy_key", snodePool to snodePoolAsString))
+        val row = wrap(mapOf( Companion.dummyKey to "dummy_key", snodePool to snodePoolAsString ))
         database.insertOrUpdate(snodePoolTable, row, "${Companion.dummyKey} = ?", wrap("dummy_key"))
     }
 
@@ -155,13 +155,13 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         if (path0.count() != 3 || path1.count() != 3) { return }
         Log.d("Loki", "Persisting onion request paths to database.")
         val database = databaseHelper.writableDatabase
-        fun set(indexPath: String ,snode: Snode) {
+        fun set(indexPath: String, snode: Snode) {
             var snodeAsString = "${snode.address}-${snode.port}"
             val keySet = snode.publicKeySet
             if (keySet != null) {
                 snodeAsString += "-${keySet.ed25519Key}-${keySet.x25519Key}"
             }
-            val row = wrap(mapOf(Companion.indexPath to indexPath, Companion.snode to snodeAsString))
+            val row = wrap(mapOf( Companion.indexPath to indexPath, Companion.snode to snodeAsString ))
             database.insertOrUpdate(onionRequestPathTable, row, "${Companion.indexPath} = ?", wrap(indexPath))
         }
         set("0-0", path0[0]); set("0-1", path0[1])
@@ -194,23 +194,23 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             }
             string
         }
-        val row = wrap(mapOf(Companion.swarmPublicKey to publicKey, swarm to swarmAsString))
+        val row = wrap(mapOf( Companion.swarmPublicKey to publicKey, swarm to swarmAsString ))
         database.insertOrUpdate(swarmTable, row, "${Companion.swarmPublicKey} = ?", wrap(publicKey))
     }
 
     override fun getLastMessageHashValue(snode: Snode, publicKey: String): String? {
         val database = databaseHelper.readableDatabase
         val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ?"
-        return database.get(lastMessageHashValueTable2, query, arrayOf( snode.address, publicKey )) { cursor ->
+        return database.get(lastMessageHashValueTable2, query, arrayOf( snode.toString(), publicKey )) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(lastMessageHashValue))
         }
     }
 
     override fun setLastMessageHashValue(snode: Snode, publicKey: String, newValue: String) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(Companion.snode to snode.address, Companion.publicKey to publicKey, lastMessageHashValue to newValue))
+        val row = wrap(mapOf( Companion.snode to snode.toString(), Companion.publicKey to publicKey, lastMessageHashValue to newValue ))
         val query = "${Companion.snode} = ? AND ${Companion.publicKey} = ?"
-        database.insertOrUpdate(lastMessageHashValueTable2, row, query, arrayOf( snode.address, publicKey ))
+        database.insertOrUpdate(lastMessageHashValueTable2, row, query, arrayOf( snode.toString(), publicKey ))
     }
 
     override fun getReceivedMessageHashValues(publicKey: String): Set<String>? {
@@ -218,13 +218,13 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val query = "$Companion.publicKey = ?"
         return database.get(receivedMessageHashValuesTable2, query, arrayOf( publicKey )) { cursor ->
             val receivedMessageHashValuesAsString = cursor.getString(cursor.getColumnIndexOrThrow(receivedMessageHashValues))
-            receivedMessageHashValuesAsString.split(", ").toSet()
+            receivedMessageHashValuesAsString.split("-").toSet()
         }
     }
 
     override fun setReceivedMessageHashValues(publicKey: String, newValue: Set<String>) {
         val database = databaseHelper.writableDatabase
-        val receivedMessageHashValuesAsString = newValue.joinToString(", ")
+        val receivedMessageHashValuesAsString = newValue.joinToString("-")
         val row = wrap(mapOf( Companion.publicKey to publicKey, receivedMessageHashValues to receivedMessageHashValuesAsString ))
         val query = "$Companion.publicKey = ?"
         database.insertOrUpdate(receivedMessageHashValuesTable2, row, query, arrayOf( publicKey ))
@@ -240,7 +240,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setAuthToken(server: String, newValue: String?) {
         val database = databaseHelper.writableDatabase
         if (newValue != null) {
-            val row = wrap(mapOf(Companion.server to server, token to newValue))
+            val row = wrap(mapOf( Companion.server to server, token to newValue ))
             database.insertOrUpdate(openGroupAuthTokenTable, row, "${Companion.server} = ?", wrap(server))
         } else {
             database.delete(openGroupAuthTokenTable, "${Companion.server} = ?", wrap(server))
@@ -258,7 +258,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setLastMessageServerID(group: Long, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf(lastMessageServerIDTableIndex to index, lastMessageServerID to newValue.toString()))
+        val row = wrap(mapOf( lastMessageServerIDTableIndex to index, lastMessageServerID to newValue.toString() ))
         database.insertOrUpdate(lastMessageServerIDTable, row, "$lastMessageServerIDTableIndex = ?", wrap(index))
     }
 
@@ -279,7 +279,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setLastDeletionServerID(group: Long, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf(lastDeletionServerIDTableIndex to index, lastDeletionServerID to newValue.toString()))
+        val row = wrap(mapOf( lastDeletionServerIDTableIndex to index, lastDeletionServerID to newValue.toString() ))
         database.insertOrUpdate(lastDeletionServerIDTable, row, "$lastDeletionServerIDTableIndex = ?", wrap(index))
     }
 
@@ -300,7 +300,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setUserCount(group: Long, server: String, newValue: Int) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf(publicChatID to index, Companion.userCount to newValue.toString()))
+        val row = wrap(mapOf( publicChatID to index, Companion.userCount to newValue.toString() ))
         database.insertOrUpdate(userCountTable, row, "$publicChatID = ?", wrap(index))
     }
 
@@ -313,7 +313,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun setSessionRequestSentTimestamp(publicKey: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to newValue.toString()))
+        val row = wrap(mapOf( LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to newValue.toString() ))
         database.insertOrUpdate(sessionRequestSentTimestampTable, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
     }
 
@@ -339,7 +339,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun setOpenGroupPublicKey(server: String, newValue: String) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.server to server, LokiAPIDatabase.publicKey to newValue))
+        val row = wrap(mapOf( LokiAPIDatabase.server to server, LokiAPIDatabase.publicKey to newValue ))
         database.insertOrUpdate(openGroupPublicKeyTable, row, "${LokiAPIDatabase.server} = ?", wrap(server))
     }
 
