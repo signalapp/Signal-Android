@@ -875,7 +875,7 @@ public class ThreadDatabase extends Database {
 
     if (primary != null && secondary == null) {
       Log.w(TAG, "[merge] Only had a thread for primary. Returning that.");
-      return new MergeResult(primary.getThreadId(), false);
+      return new MergeResult(primary.getThreadId(), -1, false);
     } else if (primary == null && secondary != null) {
       Log.w(TAG, "[merge] Only had a thread for secondary. Updating it to have the recipientId of the primary.");
 
@@ -883,10 +883,10 @@ public class ThreadDatabase extends Database {
       values.put(RECIPIENT_ID, primaryRecipientId.serialize());
 
       databaseHelper.getWritableDatabase().update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(secondary.getThreadId()));
-      return new MergeResult(secondary.getThreadId(), false);
+      return new MergeResult(secondary.getThreadId(), -1, false);
     } else if (primary == null && secondary == null) {
       Log.w(TAG, "[merge] No thread for either.");
-      return new MergeResult(-1, false);
+      return new MergeResult(-1, -1, false);
     } else {
       Log.w(TAG, "[merge] Had a thread for both. Deleting the secondary and merging the attributes together.");
 
@@ -918,7 +918,7 @@ public class ThreadDatabase extends Database {
 
       RemappedRecords.getInstance().addThread(context, secondary.getThreadId(), primary.getThreadId());
 
-      return new MergeResult(primary.getThreadId(), true);
+      return new MergeResult(primary.getThreadId(), secondary.getThreadId(), true);
     }
   }
 
@@ -1280,11 +1280,13 @@ public class ThreadDatabase extends Database {
 
   static final class MergeResult {
     final long    threadId;
+    final long    previousThreadId;
     final boolean neededMerge;
 
-    private MergeResult(long threadId, boolean neededMerge) {
-      this.threadId    = threadId;
-      this.neededMerge = neededMerge;
+    private MergeResult(long threadId, long previousThreadId, boolean neededMerge) {
+      this.threadId         = threadId;
+      this.previousThreadId = previousThreadId;
+      this.neededMerge      = neededMerge;
     }
   }
 }

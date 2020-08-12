@@ -2288,6 +2288,7 @@ public class RecipientDatabase extends Database {
     uuidValues.put(SYSTEM_CONTACT_URI, e164Settings.getSystemContactUri());
     uuidValues.put(PROFILE_SHARING, uuidSettings.isProfileSharing() || e164Settings.isProfileSharing());
     uuidValues.put(GROUPS_V2_CAPABILITY, uuidSettings.getGroupsV2Capability() != Recipient.Capability.UNKNOWN ? uuidSettings.getGroupsV2Capability().serialize() : e164Settings.getGroupsV2Capability().serialize());
+    uuidValues.put(MENTION_SETTING, uuidSettings.getMentionSetting() != MentionSetting.GLOBAL ? uuidSettings.getMentionSetting().getId() : e164Settings.getMentionSetting().getId());
     if (uuidSettings.getProfileKey() != null) {
       updateProfileValuesForMerge(uuidValues, uuidSettings);
     } else if (e164Settings.getProfileKey() != null) {
@@ -2349,6 +2350,16 @@ public class RecipientDatabase extends Database {
       Log.w(TAG, "Had a session for UUID, but not E164. No action necessary.");
     } else {
       Log.w(TAG, "Had no sessions. No action necessary.");
+    }
+
+    // Mentions
+    ContentValues mentionRecipientValues = new ContentValues();
+    mentionRecipientValues.put(MentionDatabase.RECIPIENT_ID, byUuid.serialize());
+    db.update(MentionDatabase.TABLE_NAME, mentionRecipientValues, MentionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+    if (threadMerge.neededMerge) {
+      ContentValues mentionThreadValues = new ContentValues();
+      mentionThreadValues.put(MentionDatabase.THREAD_ID, threadMerge.threadId);
+      db.update(MentionDatabase.TABLE_NAME, mentionThreadValues, MentionDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
     }
 
     DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false);
