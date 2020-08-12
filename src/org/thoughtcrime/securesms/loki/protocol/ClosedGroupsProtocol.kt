@@ -3,20 +3,22 @@ package org.thoughtcrime.securesms.loki.protocol
 import android.content.Context
 import android.util.Log
 import com.google.protobuf.ByteString
-import nl.komponents.kovenant.Promise
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.IncomingGroupMessage
+import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.ecc.Curve
+import org.whispersystems.libsignal.util.guava.Optional
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup.GroupType
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchet
@@ -63,7 +65,7 @@ object ClosedGroupsProtocol {
         DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
         // Notify the user
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+        insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
         // Return
         return groupID
     }
@@ -116,7 +118,7 @@ object ClosedGroupsProtocol {
         groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
         // Notify the user
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+        insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
     }
 
     @JvmStatic
@@ -177,7 +179,7 @@ object ClosedGroupsProtocol {
         // Notify the user
         val type = if (isUserLeaving) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertInfoMessage(context, groupID, type, name, members, admins, threadID)
+        insertOutgoingInfoMessage(context, groupID, type, name, members, admins, threadID)
     }
 
     @JvmStatic
@@ -247,7 +249,7 @@ object ClosedGroupsProtocol {
         sskDatabase.setClosedGroupPrivateKey(groupPublicKey, groupPrivateKey.toHexString())
         // Notify the user
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+        insertIncomingInfoMessage(context, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, threadID)
         // Establish sessions if needed
         establishSessionsWithMembersIfNeeded(context, members)
     }
@@ -306,9 +308,10 @@ object ClosedGroupsProtocol {
         groupDB.updateTitle(groupID, name)
         groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
         // Notify the user
-        val type = if (wasUserRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
+        val type0 = if (wasUserRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
+        val type1 = if (wasUserRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertInfoMessage(context, groupID, type, name, members, admins, threadID)
+        insertIncomingInfoMessage(context, groupID, type0, type1, name, members, admins, threadID)
     }
 
     public fun handleSenderKeyRequest(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
@@ -450,7 +453,23 @@ object ClosedGroupsProtocol {
         }
     }
 
-    private fun insertInfoMessage(context: Context, groupID: String, type: GroupContext.Type, name: String,
+    private fun insertIncomingInfoMessage(context: Context, groupID: String, type0: GroupContext.Type, type1: SignalServiceGroup.Type, name: String,
+        members: Collection<String>, admins: Collection<String>, threadID: Long) {
+        val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
+        val groupContextBuilder = GroupContext.newBuilder()
+            .setId(ByteString.copyFrom(GroupUtil.getDecodedId(GroupUtil.getDecodedStringId(groupID))))
+            .setType(type0)
+            .setName(name)
+            .addAllMembers(members)
+            .addAllAdmins(admins)
+        val group = SignalServiceGroup(type1, GroupUtil.getDecodedId(GroupUtil.getDecodedStringId(groupID)), GroupType.SIGNAL, name, members.toList(), null, admins.toList())
+        val m = IncomingTextMessage(Address.fromSerialized(groupID), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
+        val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
+        val smsDB = DatabaseFactory.getSmsDatabase(context)
+        smsDB.insertMessageInbox(infoMessage)
+    }
+
+    private fun insertOutgoingInfoMessage(context: Context, groupID: String, type: GroupContext.Type, name: String,
         members: Collection<String>, admins: Collection<String>, threadID: Long) {
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = GroupContext.newBuilder()
