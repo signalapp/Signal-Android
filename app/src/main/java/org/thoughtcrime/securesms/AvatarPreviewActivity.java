@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +10,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
+import android.view.DisplayCutout;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -72,14 +76,18 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
       getWindow().setSharedElementReturnTransition(inflater.inflateTransition(R.transition.full_screen_avatar_image_return_transition_set));
     }
 
-   Toolbar toolbar = findViewById(R.id.toolbar);
-
-    ImageView avatar = findViewById(R.id.avatar);
+    Toolbar   toolbar = findViewById(R.id.toolbar);
+    ImageView avatar  = findViewById(R.id.avatar);
 
     setSupportActionBar(toolbar);
 
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+    if (Build.VERSION.SDK_INT >= 28) {
+      getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+      toolbar.getViewTreeObserver().addOnGlobalLayoutListener(new DisplayCutoutAdjuster(toolbar, findViewById(R.id.toolbar_cutout_spacer)));
+    }
 
     showSystemUI();
 
@@ -179,5 +187,37 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
   public boolean onSupportNavigateUp() {
     onBackPressed();
     return true;
+  }
+
+  /**
+   * Adjust a spacer for the toolbar when a display cutout is detected. Runs within
+   * a layout listener because the activity delays view attachment due to the transitions
+   * and needs to update on device rotation.
+   */
+  @TargetApi(28)
+  private static class DisplayCutoutAdjuster implements ViewTreeObserver.OnGlobalLayoutListener {
+
+    private final View view;
+    private final View spacer;
+
+    private DisplayCutoutAdjuster(@NonNull View view, @NonNull View spacer) {
+      this.view   = view;
+      this.spacer = spacer;
+    }
+
+    @Override
+    public void onGlobalLayout() {
+      if (view.getRootWindowInsets() == null) {
+        return;
+      }
+
+      DisplayCutout cutout = view.getRootWindowInsets().getDisplayCutout();
+      if (cutout != null) {
+        ViewGroup.LayoutParams params = spacer.getLayoutParams();
+        params.height = cutout.getSafeInsetTop();
+        spacer.setLayoutParams(params);
+        spacer.setVisibility(View.VISIBLE);
+      }
+    }
   }
 }
