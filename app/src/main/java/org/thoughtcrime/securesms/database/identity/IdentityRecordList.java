@@ -56,8 +56,26 @@ public final class IdentityRecordList {
     return false;
   }
 
-  public boolean isUntrusted() {
+  public boolean isUnverified(boolean excludeFirstUse) {
     for (IdentityRecord identityRecord : identityRecords) {
+      if (excludeFirstUse && identityRecord.isFirstUse()) {
+        continue;
+      }
+
+      if (identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public boolean isUntrusted(boolean excludeFirstUse) {
+    for (IdentityRecord identityRecord : identityRecords) {
+      if (excludeFirstUse && identityRecord.isFirstUse()) {
+        continue;
+      }
+
       if (isUntrusted(identityRecord)) {
         return true;
       }

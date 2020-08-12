@@ -180,7 +180,7 @@ public class IdentityDatabase extends Database {
     boolean statusMatches = keyMatches && hasMatchingStatus(id, identityKey, verifiedStatus);
 
     if (!keyMatches || !statusMatches) {
-      saveIdentityInternal(id, identityKey, verifiedStatus, false, System.currentTimeMillis(), true);
+      saveIdentityInternal(id, identityKey, verifiedStatus, !hadEntry, System.currentTimeMillis(), true);
       Optional<IdentityRecord> record = getIdentity(id);
       if (record.isPresent()) EventBus.getDefault().post(record.get());
     }

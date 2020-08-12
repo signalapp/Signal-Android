@@ -44,6 +44,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
   public static @NonNull SafetyNumberChangeDialog create(List<IdentityDatabase.IdentityRecord> identityRecords) {
     List<String> ids = Stream.of(identityRecords)
+                             .filterNot(IdentityDatabase.IdentityRecord::isFirstUse)
                              .map(record -> record.getRecipientId().serialize())
                              .distinct()
                              .toList();

@@ -2393,7 +2393,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         handleManualMmsRequired();
-      } else if (!forceSms && (identityRecords.isUnverified() || identityRecords.isUntrusted())) {
+      } else if (!forceSms && (identityRecords.isUnverified(true) || identityRecords.isUntrusted(true))) {
         handleRecentSafetyNumberChange();
       } else if (isMediaMessage) {
         sendMediaMessage(forceSms, expiresIn, false, subscriptionId, initiating);
