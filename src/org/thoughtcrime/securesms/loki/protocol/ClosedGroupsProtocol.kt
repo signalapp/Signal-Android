@@ -160,6 +160,7 @@ object ClosedGroupsProtocol {
         // send it out to all members (minus the removed ones) using established channels.
         if (isUserLeaving) {
             sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
+            groupDB.setActive(groupID, false)
         } else {
             // Establish sessions if needed
             establishSessionsWithMembersIfNeeded(context, members)
@@ -170,16 +171,15 @@ object ClosedGroupsProtocol {
                 @Suppress("NAME_SHADOWING")
                 val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
                 @Suppress("NAME_SHADOWING")
-                val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
+                val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
                 ApplicationContext.getInstance(context).jobManager.add(job)
             }
         }
         // Update the group
         groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
         // Notify the user
-        val type = if (isUserLeaving) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertOutgoingInfoMessage(context, groupID, type, name, members, admins, threadID)
+        insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID)
     }
 
     @JvmStatic
@@ -288,18 +288,20 @@ object ClosedGroupsProtocol {
         // Delete all ratchets and either:
         // • Send out the user's new ratchet using established channels if other members of the group left or were removed
         // • Remove the group from the user's set of public keys to poll for if the current user was among the members that were removed
-        val wasUserRemoved = !members.contains(userPublicKey)
-        if (members.toSet().intersect(oldMembers) != oldMembers.toSet()) {
+        val wasCurrentUserRemoved = !members.contains(userPublicKey)
+        val wasAnyUserRemoved = members.toSet().intersect(oldMembers) != oldMembers.toSet()
+        if (wasAnyUserRemoved) {
             sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
-            if (wasUserRemoved) {
+            if (wasCurrentUserRemoved) {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
+                groupDB.setActive(groupID, false)
             } else {
                 establishSessionsWithMembersIfNeeded(context, members)
                 val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
                 val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
                 for (member in members) {
                     val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
-                    val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
+                    val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
                     ApplicationContext.getInstance(context).jobManager.add(job)
                 }
             }
@@ -308,8 +310,8 @@ object ClosedGroupsProtocol {
         groupDB.updateTitle(groupID, name)
         groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
         // Notify the user
-        val type0 = if (wasUserRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
-        val type1 = if (wasUserRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
+        val type0 = if (wasAnyUserRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
+        val type1 = if (wasAnyUserRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
         insertIncomingInfoMessage(context, groupID, type0, type1, name, members, admins, threadID)
     }
