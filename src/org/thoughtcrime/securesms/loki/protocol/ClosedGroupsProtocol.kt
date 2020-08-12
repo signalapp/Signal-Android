@@ -150,7 +150,8 @@ object ClosedGroupsProtocol {
         val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey),
             name, setOf(), membersAsData, adminsAsData)
         val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
-        ApplicationContext.getInstance(context).jobManager.add(job)
+        job.setContext(context)
+        job.onRun() // Run the job immediately
         // Delete all ratchets (it's important that this happens after sending out the update)
         sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
         // Remove the group from the user's set of public keys to poll for if the user is leaving. Otherwise generate a new ratchet and

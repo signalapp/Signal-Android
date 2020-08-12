@@ -161,7 +161,7 @@ class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters
                 }
                 "Info" -> {
                     val name = data.getString("name")
-                    val senderKeys = data.getString("senderKeys").split(" - ").map { ClosedGroupSenderKey.fromJSON(it)!! }
+                    val senderKeys = data.getStringOrDefault("senderKeys", "").split(" - ").mapNotNull { ClosedGroupSenderKey.fromJSON(it) } // Can be empty
                     val members = data.getString("members").split(" - ").map { Hex.fromStringCondensed(it) }
                     val admins = data.getString("admins").split(" - ").map { Hex.fromStringCondensed(it) }
                     kind = Kind.Info(groupPublicKey, name, senderKeys, members, admins)
