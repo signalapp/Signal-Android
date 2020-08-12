@@ -898,7 +898,7 @@ public class SmsDatabase extends MessagingDatabase {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long threadId     = getThreadIdForMessage(messageId);
     db.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
-    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false, true, true);
+    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false, true);
     notifyConversationListeners(threadId);
     return threadDeleted;
   }
