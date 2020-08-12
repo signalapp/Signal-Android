@@ -30,7 +30,7 @@ import java.util.*
 object ClosedGroupsProtocol {
     val isSharedSenderKeysEnabled = true
     
-    public fun createClosedGroup(context: Context, name: String, members: Collection<String>): Promise<Unit, Exception> {
+    public fun createClosedGroup(context: Context, name: String, members: Collection<String>): String {
         // Prepare
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         // Generate a key pair for the group
@@ -65,7 +65,7 @@ object ClosedGroupsProtocol {
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
         insertInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
         // Return
-        return Promise.of(Unit)
+        return groupID
     }
 
     public fun addMembers(context: Context, newMembers: Collection<String>, groupPublicKey: String) {

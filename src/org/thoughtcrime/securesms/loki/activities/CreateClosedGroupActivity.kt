@@ -17,6 +17,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
@@ -125,7 +126,9 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey ))
+        val groupID = ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey ))
+        val threadID = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
+        openConversation(threadID, Recipient.from(this, Address.fromSerialized(groupID), false))
     }
 
     private fun createLegacyClosedGroup() {
@@ -151,7 +154,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin )).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
     }
 
-    private fun handleOpenConversation(threadId: Long, recipient: Recipient) {
+    private fun openConversation(threadId: Long, recipient: Recipient) {
         val intent = Intent(this, ConversationActivity::class.java)
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
@@ -179,7 +182,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
             val activity = activity.get() ?: return super.onPostExecute(result)
             if (result.isPresent && result.get().threadId > -1) {
                 if (!activity.isFinishing) {
-                    activity.handleOpenConversation(result.get().threadId, result.get().groupRecipient)
+                    activity.openConversation(result.get().threadId, result.get().groupRecipient)
                 }
             } else {
                 super.onPostExecute(result)
