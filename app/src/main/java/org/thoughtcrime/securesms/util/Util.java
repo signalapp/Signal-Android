@@ -159,6 +159,10 @@ public class Util {
     return collection == null || collection.isEmpty();
   }
 
+  public static boolean isEmpty(@Nullable String value) {
+    return value == null || value.length() == 0;
+  }
+
   public static boolean hasItems(@Nullable Collection<?> collection) {
     return collection != null && !collection.isEmpty();
   }
@@ -169,7 +173,7 @@ public class Util {
 
   public static String getFirstNonEmpty(String... values) {
     for (String value : values) {
-      if (!TextUtils.isEmpty(value)) {
+      if (!Util.isEmpty(value)) {
         return value;
       }
     }

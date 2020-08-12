@@ -1,13 +1,9 @@
 package org.thoughtcrime.securesms.net;
 
 
-import android.os.AsyncTask;
-
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewDomains;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -25,10 +21,9 @@ public class ContentProxySelector extends ProxySelector {
 
   private static final String TAG = ContentProxySelector.class.getSimpleName();
 
-  private static final Set<String> WHITELISTED_DOMAINS = new HashSet<>();
+  public static final Set<String> WHITELISTED_DOMAINS = new HashSet<>();
   static {
-    WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.LINKS);
-    WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.IMAGES);
+    WHITELISTED_DOMAINS.add("giphy.com");
   }
 
   private final List<Proxy> CONTENT = new ArrayList<Proxy>(1) {{
