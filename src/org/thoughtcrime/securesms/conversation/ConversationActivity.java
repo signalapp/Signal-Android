@@ -1168,9 +1168,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
     builder.setPositiveButton(R.string.yes, (dialog, which) -> {
       Recipient groupRecipient = getRecipient();
+      String groupPublicKey;
+      boolean isSSKBasedClosedGroup;
       try {
-        String groupPublicKey = HexEncodingKt.toHexString(GroupUtil.getDecodedId(GroupUtil.getDecodedStringId(groupRecipient.getAddress().toString())));
-        boolean isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
+        groupPublicKey = HexEncodingKt.toHexString(GroupUtil.getDecodedId(GroupUtil.getDecodedStringId(groupRecipient.getAddress().toString())));
+        isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
+      } catch (IOException e) {
+        groupPublicKey = null;
+        isSSKBasedClosedGroup = false;
+      }
+      try {
         if (isSSKBasedClosedGroup) {
           ClosedGroupsProtocol.leave(this, groupPublicKey);
           initializeEnabledCheck();
@@ -2238,13 +2245,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void markThreadAsRead() {
+    Recipient recipient = this.recipient;
     new AsyncTask<Long, Void, Void>() {
       @Override
       protected Void doInBackground(Long... params) {
         Context                 context    = ConversationActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
-        MarkReadReceiver.process(context, messageIds);
+        if (!org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.shouldSendReadReceipt(recipient.getAddress())) {
+          for (MarkedMessageInfo messageInfo : messageIds) {
+            MarkReadReceiver.scheduleDeletion(context, messageInfo.getExpirationInfo());
+          }
+        } else {
+          MarkReadReceiver.process(context, messageIds);
+        }
 
         return null;
       }

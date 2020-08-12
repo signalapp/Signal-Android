@@ -105,7 +105,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     }
   }
 
-  private static void scheduleDeletion(Context context, ExpirationInfo expirationInfo) {
+  public static void scheduleDeletion(Context context, ExpirationInfo expirationInfo) {
     if (expirationInfo.getExpiresIn() > 0 && expirationInfo.getExpireStarted() <= 0) {
       ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
 
