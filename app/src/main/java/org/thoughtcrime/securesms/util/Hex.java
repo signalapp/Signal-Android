@@ -75,6 +75,14 @@ public class Hex {
     return out;
   }
 
+  public static byte[] fromStringOrThrow(String encoded) {
+    try {
+      return fromStringCondensed(encoded);
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+  }
+
   public static String dump(byte[] bytes) {
     return dump(bytes, 0, bytes.length);
   }

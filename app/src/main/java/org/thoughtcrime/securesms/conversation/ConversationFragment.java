@@ -1388,6 +1388,11 @@ public class ConversationFragment extends LoggingFragment {
     public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
       listener.onMessageWithErrorClicked(messageRecord);
     }
+
+    @Override
+    public boolean onUrlClicked(@NonNull String url) {
+      return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url);
+    }
   }
 
   @Override

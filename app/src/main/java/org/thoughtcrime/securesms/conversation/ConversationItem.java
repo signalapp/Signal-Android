@@ -110,12 +110,13 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.LongClickCopySpan;
+import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.VibrateUtil;
+import org.thoughtcrime.securesms.util.UrlClickHandler;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -194,6 +195,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private final SharedContactClickListener      sharedContactClickListener  = new SharedContactClickListener();
   private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
   private final ViewOnceMessageClickListener    revealableClickListener     = new ViewOnceMessageClickListener();
+  private final UrlClickListener                urlClickListener            = new UrlClickListener();
 
   private final Context context;
 
@@ -580,7 +582,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     return messageRecord.isMms() && ((MmsMessageRecord) messageRecord).isViewOnce();
   }
 
-  private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery) {
+  private void setBodyText(@NonNull MessageRecord messageRecord,
+                           @Nullable String searchQuery)
+  {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
@@ -916,7 +920,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     contactPhoto.setAvatar(glideRequests, recipient, false);
   }
 
-  private SpannableString linkifyMessageBody(SpannableString messageBody, boolean shouldLinkifyAllLinks) {
+  private SpannableString linkifyMessageBody(@NonNull SpannableString messageBody,
+                                             boolean shouldLinkifyAllLinks)
+  {
     int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
     boolean hasLinks    = Linkify.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
 
@@ -928,9 +934,10 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       URLSpan[] urlSpans = messageBody.getSpans(0, messageBody.length(), URLSpan.class);
 
       for (URLSpan urlSpan : urlSpans) {
-        int start = messageBody.getSpanStart(urlSpan);
-        int end = messageBody.getSpanEnd(urlSpan);
-        messageBody.setSpan(new LongClickCopySpan(urlSpan.getURL()), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        int     start = messageBody.getSpanStart(urlSpan);
+        int     end   = messageBody.getSpanEnd(urlSpan);
+        URLSpan span  = new InterceptableLongClickCopyLinkSpan(urlSpan.getURL(), urlClickListener);
+        messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
 
@@ -1470,6 +1477,14 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       } else if (messageRecord.isPendingInsecureSmsFallback()) {
         handleMessageApproval();
       }
+    }
+  }
+
+  private final class UrlClickListener implements UrlClickHandler {
+
+    @Override
+    public boolean handleOnClick(@NonNull String url) {
+      return eventListener != null && eventListener.onUrlClicked(url);
     }
   }
 

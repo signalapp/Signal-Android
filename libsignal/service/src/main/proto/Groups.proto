@@ -150,3 +150,14 @@ message GroupAttributeBlob {
     uint32 disappearingMessagesDuration = 3;
   }
 }
+
+message GroupInviteLink {
+  message GroupInviteLinkContentsV1 {
+      bytes groupMasterKey     = 1;
+      bytes inviteLinkPassword = 2;
+  }
+
+  oneof contents {
+    GroupInviteLinkContentsV1 v1Contents = 1;
+  }
+}

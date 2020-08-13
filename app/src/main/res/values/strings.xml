@@ -644,6 +644,14 @@
         <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
     </plurals>
 
+    <!-- GroupJoinBottomSheetDialogFragment -->
+    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">You are already a member</string>
+
+    <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Update Signal to use group links</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">The version of Signal you’re using does not support sharable group links. Update to the latest version to join this group via link.</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Update Signal</string>
+
     <!-- CropImageActivity -->
     <string name="CropImageActivity_group_avatar">Group avatar</string>
     <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1311,9 +1319,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Mute notifications</string>
-
-    <!-- OutdatedBuildReminder -->
-    <string name="OutdatedBuildReminder_no_web_browser_installed">No web browser installed!</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>
