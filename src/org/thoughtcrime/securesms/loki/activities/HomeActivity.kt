@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
-import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
@@ -42,6 +41,7 @@ import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegat
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
@@ -50,6 +50,7 @@ import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
+import org.whispersystems.signalservice.loki.utilities.toHexString
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
@@ -155,6 +156,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
+        val sskDatabase = DatabaseFactory.getSSKDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         val sessionResetImpl = SessionResetImplementation(this)
         if (userPublicKey != null) {
@@ -163,7 +165,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.publicChatManager.startPollersIfNeeded()
         }
-        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
+        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
         MultiDeviceProtocol.configureIfNeeded(apiDB)
         IP2Country.configureIfNeeded(this)
         // Preload device links to make message sending quicker
@@ -333,7 +335,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val isClosedGroup = recipient.address.isClosedGroup
             // Send a leave group message if this is an active closed group
             if (isClosedGroup && DatabaseFactory.getGroupDatabase(this).isActive(recipient.address.toGroupString())) {
-                if (!ClosedGroupsProtocol.leaveGroup(this, recipient)) {
+                val groupPublicKey = GroupUtil.getDecodedId(recipient.address.toString()).toHexString()
+                val isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
+                if (isSSKBasedClosedGroup) {
+                    ClosedGroupsProtocol.leave(this, groupPublicKey)
+                } else if (!ClosedGroupsProtocol.leaveLegacyGroup(this, recipient)) {
                     Toast.makeText(this, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@setPositiveButton
                 }

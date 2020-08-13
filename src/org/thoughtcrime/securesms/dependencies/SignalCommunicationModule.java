@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceOpenGroupUpdateJob;
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -153,6 +153,7 @@ public class SignalCommunicationModule {
                                                           Optional.of(new MessageSenderEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
+                                                          DatabaseFactory.getSSKDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageDatabase(context),
                                                           DatabaseFactory.getLokiPreKeyBundleDatabase(context),

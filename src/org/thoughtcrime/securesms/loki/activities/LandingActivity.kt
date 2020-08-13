@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.dialogs.LinkDeviceSlaveModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.LinkDeviceSlaveModeDialogDelegate
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
@@ -108,12 +108,13 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
+        val sskDatabase = DatabaseFactory.getSSKDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         val sessionResetImpl = SessionResetImplementation(this)
         MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
         SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
         org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
-        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
+        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
         SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
         application.setUpP2PAPIIfNeeded()
         application.setUpStorageAPIIfNeeded()

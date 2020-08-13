@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.protocol
+package org.thoughtcrime.securesms.loki.protocol.shelved
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory

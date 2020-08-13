@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol
+import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {

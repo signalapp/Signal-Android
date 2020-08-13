@@ -209,6 +209,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -227,6 +228,7 @@ import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
+import org.whispersystems.signalservice.loki.utilities.HexEncodingKt;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
 import java.io.IOException;
@@ -1165,10 +1167,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setCancelable(true);
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
     builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-      Recipient                           groupRecipient = getRecipient();
-      if (ClosedGroupsProtocol.leaveGroup(this, groupRecipient)) {
-        initializeEnabledCheck();
-      } else {
+      Recipient groupRecipient = getRecipient();
+      String groupPublicKey;
+      boolean isSSKBasedClosedGroup;
+      try {
+        groupPublicKey = HexEncodingKt.toHexString(GroupUtil.getDecodedId(groupRecipient.getAddress().toString()));
+        isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
+      } catch (IOException e) {
+        groupPublicKey = null;
+        isSSKBasedClosedGroup = false;
+      }
+      try {
+        if (isSSKBasedClosedGroup) {
+          ClosedGroupsProtocol.leave(this, groupPublicKey);
+          initializeEnabledCheck();
+        } else if (ClosedGroupsProtocol.leaveLegacyGroup(this, groupRecipient)) {
+          initializeEnabledCheck();
+        } else {
+          Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
+        }
+      } catch (Exception e) {
         Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
       }
     });
@@ -2227,13 +2245,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void markThreadAsRead() {
+    Recipient recipient = this.recipient;
     new AsyncTask<Long, Void, Void>() {
       @Override
       protected Void doInBackground(Long... params) {
         Context                 context    = ConversationActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
-        MarkReadReceiver.process(context, messageIds);
+        if (!org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.shouldSendReadReceipt(recipient.getAddress())) {
+          for (MarkedMessageInfo messageInfo : messageIds) {
+            MarkReadReceiver.scheduleDeletion(context, messageInfo.getExpirationInfo());
+          }
+        } else {
+          MarkReadReceiver.process(context, messageIds);
+        }
 
         return null;
       }
@@ -2387,10 +2412,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(this).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
-
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... param) {
@@ -2398,7 +2419,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
-        return MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+        long result = MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+
+        if (!recipient.isGroupRecipient()) {
+          ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+        }
+
+        return result;
       }
 
       @Override
@@ -2434,10 +2461,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     silentlySetComposeText("");
     final long id = fragment.stageOutgoingMessage(message);
 
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(this).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
-
     new AsyncTask<OutgoingTextMessage, Void, Long>() {
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
@@ -2445,7 +2468,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
-        return MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+        long result = MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+
+        if (!recipient.isGroupRecipient()) {
+          ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+        }
+
+        return result;
       }
 
       @Override

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.protocol
+package org.thoughtcrime.securesms.loki.protocol.shelved
 
 import android.content.Context
 import android.util.Log
@@ -28,7 +28,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInp
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
-import java.util.*
 
 object SyncMessagesProtocol {
 

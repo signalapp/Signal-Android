@@ -5,7 +5,7 @@ import net.sqlcipher.Cursor
 import net.sqlcipher.database.SQLiteDatabase
 import org.whispersystems.signalservice.internal.util.Base64
 
-fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String>, get: (Cursor) -> T): T? {
+fun <T> SQLiteDatabase.get(table: String, query: String?, arguments: Array<String>?, get: (Cursor) -> T): T? {
     var cursor: Cursor? = null
     try {
         cursor = query(table, null, query, arguments, null, null, null)
@@ -18,7 +18,7 @@ fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String
     return null
 }
 
-fun <T> SQLiteDatabase.getAll(table: String, query: String, arguments: Array<String>, get: (Cursor) -> T): List<T> {
+fun <T> SQLiteDatabase.getAll(table: String, query: String?, arguments: Array<String>?, get: (Cursor) -> T): List<T> {
     val result = mutableListOf<T>()
     var cursor: Cursor? = null
     try {
