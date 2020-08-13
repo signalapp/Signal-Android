@@ -887,7 +887,7 @@ public class ThreadDatabase extends Database {
 
   public boolean update(long threadId, boolean unarchive, boolean allowDeletion) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
-    long count                    = mmsSmsDatabase.getConversationCount(threadId);
+    long count                    = mmsSmsDatabase.getConversationCountForThreadSummary(threadId);
 
     if (count == 0) {
       if (allowDeletion) {

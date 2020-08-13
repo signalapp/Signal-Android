@@ -254,6 +254,13 @@ public class MmsSmsDatabase extends Database {
            DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId, beforeTime);
   }
 
+  public int getConversationCountForThreadSummary(long threadId) {
+    int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThreadSummary(threadId);
+    count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
+
+    return count;
+  }
+
   public int getInsecureSentCount(long threadId) {
     int count  = DatabaseFactory.getSmsDatabase(context).getInsecureMessagesSentForThread(threadId);
     count     += DatabaseFactory.getMmsDatabase(context).getInsecureMessagesSentForThread(threadId);

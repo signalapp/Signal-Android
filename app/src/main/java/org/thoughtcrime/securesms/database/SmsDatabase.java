@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -224,6 +225,26 @@ public class SmsDatabase extends MessagingDatabase {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public int getMessageCountForThreadSummary(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    String[] cols  = { "COUNT(*)" };
+    String   query = THREAD_ID + " = ? AND (NOT " + TYPE + " & ? AND TYPE != ?)";
+    long     type  = Types.END_SESSION_BIT | Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT | Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+    String[] args  = SqlUtil.buildArgs(threadId, type, Types.PROFILE_CHANGE_TYPE);
+
+    try (Cursor cursor = db.query(TABLE_NAME, cols, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        int count = cursor.getInt(0);
+        if (count > 0) {
+          return getMessageCountForThread(threadId);
+        }
+      }
+    }
+
+    return 0;
   }
 
   public int getMessageCountForThread(long threadId) {
