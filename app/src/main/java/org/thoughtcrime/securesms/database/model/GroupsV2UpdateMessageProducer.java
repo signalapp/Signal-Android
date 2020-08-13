@@ -148,13 +148,13 @@ final class GroupsV2UpdateMessageProducer {
 
       if (editorIsYou) {
         if (newMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group)));
+          updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group)));
         } else {
           updates.add(updateDescription(member.getUuid(), added -> context.getString(R.string.MessageRecord_you_added_s, added)));
         }
       } else {
         if (newMemberIsYou) {
-          updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_added_you, editor)));
+          updates.add(0, updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_added_you, editor)));
         } else {
           if (member.getUuid().equals(change.getEditor())) {
             updates.add(updateDescription(member.getUuid(), newMember -> context.getString(R.string.MessageRecord_s_joined_the_group, newMember)));
@@ -171,7 +171,7 @@ final class GroupsV2UpdateMessageProducer {
       boolean newMemberIsYou = member.getUuid().equals(selfUuidBytes);
 
       if (newMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group)));
+        updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group)));
       } else {
         updates.add(updateDescription(member.getUuid(), newMember -> context.getString(R.string.MessageRecord_s_joined_the_group, newMember)));
       }
@@ -274,7 +274,7 @@ final class GroupsV2UpdateMessageProducer {
       boolean newMemberIsYou = invitee.getUuid().equals(selfUuidBytes);
 
       if (newMemberIsYou) {
-        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_invited_you_to_the_group, editor)));
+        updates.add(0, updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_invited_you_to_the_group, editor)));
       } else {
         if (editorIsYou) {
           updates.add(updateDescription(invitee.getUuid(), newInvitee -> context.getString(R.string.MessageRecord_you_invited_s_to_the_group, newInvitee)));
@@ -300,9 +300,9 @@ final class GroupsV2UpdateMessageProducer {
         UUID uuid = UuidUtil.fromByteStringOrUnknown(invitee.getAddedByUuid());
 
         if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group)));
+          updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group)));
         } else {
-          updates.add(updateDescription(invitee.getAddedByUuid(), editor -> context.getString(R.string.MessageRecord_s_invited_you_to_the_group, editor)));
+          updates.add(0, updateDescription(invitee.getAddedByUuid(), editor -> context.getString(R.string.MessageRecord_s_invited_you_to_the_group, editor)));
         }
       } else {
         notYouInviteCount++;

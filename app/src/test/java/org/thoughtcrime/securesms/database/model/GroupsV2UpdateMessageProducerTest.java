@@ -182,6 +182,35 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(describeChange(change), is(singletonList("Bob joined the group.")));
   }
 
+  @Test
+  public void member_added_you_and_another_where_you_are_not_first() {
+    DecryptedGroupChange change = changeBy(bob)
+                                    .addMember(alice)
+                                    .addMember(you)
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList("Bob added you to the group.", "Bob added Alice.")));
+  }
+
+  @Test
+  public void unknown_member_added_you_and_another_where_you_are_not_first() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .addMember(alice)
+                                    .addMember(you)
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList("You joined the group.", "Alice joined the group.")));
+  }
+
+  @Test
+  public void you_added_you_and_another_where_you_are_not_first() {
+    DecryptedGroupChange change = changeBy(you)
+                                    .addMember(alice)
+                                    .addMember(you)
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList("You joined the group.", "You added Alice.")));
+  }
 
   // Member removals
   @Test
@@ -449,6 +478,38 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList("Bob invited you to the group.", "3 people were invited to the group.")));
+  }
+
+  @Test
+  public void member_invited_3_persons_and_you_and_added_another_where_you_were_not_first() {
+    DecryptedGroupChange change = changeBy(bob)
+                                    .addMember(alice)
+                                    .invite(you)
+                                    .invite(UUID.randomUUID())
+                                    .invite(UUID.randomUUID())
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList("Bob invited you to the group.", "Bob added Alice.", "Bob invited 2 people to the group.")));
+  }
+
+  @Test
+  public void unknown_editor_but_known_invitee_invited_you_and_added_another_where_you_were_not_first() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .addMember(bob)
+                                    .inviteBy(you, alice)
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList("Alice invited you to the group.", "Bob joined the group.")));
+  }
+
+  @Test
+  public void unknown_editor_and_unknown_inviter_invited_you_and_added_another_where_you_were_not_first() {
+    DecryptedGroupChange change = changeByUnknown()
+                                    .addMember(alice)
+                                    .invite(you)
+                                    .build();
+
+    assertThat(describeChange(change), is(Arrays.asList("You were invited to the group.", "Alice joined the group.")));
   }
 
   // Member invitation revocation
@@ -785,10 +846,12 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .addMember(bob)
                                     .membershipAccess(AccessControl.AccessRequired.MEMBER)
                                     .title("Title")
+                                    .addMember(you)
                                     .timer(300)
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList(
+      "Alice added you to the group.",
       "Alice added Bob.",
       "Alice changed the group name to \"" + isolateBidi("Title") + "\".",
       "Alice set the disappearing message timer to 5 minutes.",
