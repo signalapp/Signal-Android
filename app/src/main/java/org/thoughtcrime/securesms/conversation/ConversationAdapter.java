@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CachedInflater;
-import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Util;
@@ -96,7 +95,7 @@ public class ConversationAdapter
   private final MessageDigest             digest;
 
   private String              searchQuery;
-  private ConversationMessage recordToPulseHighlight;
+  private ConversationMessage recordToPulse;
   private View                headerView;
   private View                footerView;
 
@@ -228,10 +227,10 @@ public class ConversationAdapter
                                                   selected,
                                                   recipient,
                                                   searchQuery,
-                                                  conversationMessage == recordToPulseHighlight);
+                                                  conversationMessage == recordToPulse);
 
-        if (conversationMessage == recordToPulseHighlight) {
-          recordToPulseHighlight = null;
+        if (conversationMessage == recordToPulse) {
+          recordToPulse = null;
         }
         break;
       case MESSAGE_TYPE_HEADER:
@@ -384,13 +383,13 @@ public class ConversationAdapter
   }
 
   /**
-   * Momentarily highlights a row at the requested position.
+   * Momentarily highlights a mention at the requested position.
    */
-  void pulseHighlightItem(int position) {
+  void pulseAtPosition(int position) {
     if (position >= 0 && position < getItemCount()) {
       int correctedPosition = isHeaderPosition(position) ? position + 1 : position;
 
-      recordToPulseHighlight = getItem(correctedPosition);
+      recordToPulse = getItem(correctedPosition);
       notifyItemChanged(correctedPosition);
     }
   }

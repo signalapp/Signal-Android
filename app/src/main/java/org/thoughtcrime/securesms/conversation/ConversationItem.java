@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -119,6 +120,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -151,6 +153,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private boolean             groupThread;
   private LiveRecipient       recipient;
   private GlideRequests       glideRequests;
+  private ValueAnimator pulseOutlinerAlphaAnimator;
 
             protected ConversationItemBodyBubble bodyBubble;
             protected View                       reply;
@@ -167,8 +170,10 @@ public class ConversationItem extends LinearLayout implements BindableConversati
             private   ViewGroup                  container;
             protected ReactionsConversationView  reactionsView;
 
-  private @NonNull  Set<ConversationMessage>        batchSelected = new HashSet<>();
-  private @NonNull  Outliner                        outliner      = new Outliner();
+  private @NonNull  Set<ConversationMessage>        batchSelected   = new HashSet<>();
+  private @NonNull  Outliner                        outliner        = new Outliner();
+  private @NonNull  Outliner                        pulseOutliner   = new Outliner();
+  private @NonNull  List<Outliner>                  outliners       = new ArrayList<>(2);
   private           LiveRecipient                   conversationRecipient;
   private           Stub<ConversationItemThumbnail> mediaThumbnailStub;
   private           Stub<AudioView>                 audioViewStub;
@@ -249,7 +254,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
                    @NonNull Set<ConversationMessage> batchSelected,
                    @NonNull Recipient conversationRecipient,
                    @Nullable String searchQuery,
-                   boolean pulseHighlight)
+                   boolean pulse)
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
     if (this.conversationRecipient != null) this.conversationRecipient.removeForeverObserver(this);
@@ -271,9 +276,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread);
-    setInteractionState(conversationMessage, pulseHighlight);
     setBodyText(messageRecord, searchQuery);
     setBubbleState(messageRecord);
+    setInteractionState(conversationMessage, pulse);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient.get());
     setGroupMessageStatus(messageRecord, recipient.get());
@@ -387,6 +392,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     if (conversationRecipient != null) {
       conversationRecipient.removeForeverObserver(this);
     }
+    cancelPulseOutlinerAnimation();
   }
 
   public ConversationMessage getConversationMessage() {
@@ -411,7 +417,21 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     }
 
     outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_sent_text_secondary_color));
-    bodyBubble.setOutliner(shouldDrawBodyBubbleOutline(messageRecord) ? outliner : null);
+
+    pulseOutliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_mention_pulse_color));
+    pulseOutliner.setStrokeWidth(ViewUtil.dpToPx(4));
+
+    outliners.clear();
+    if (shouldDrawBodyBubbleOutline(messageRecord)) {
+      outliners.add(outliner);
+    }
+    outliners.add(pulseOutliner);
+
+    bodyBubble.setOutliners(outliners);
+
+    if (mediaThumbnailStub.resolved()) {
+      mediaThumbnailStub.get().setPulseOutliner(pulseOutliner);
+    }
 
     if (audioViewStub.resolved()) {
       setAudioViewTint(messageRecord);
@@ -432,14 +452,14 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     }
   }
 
-  private void setInteractionState(ConversationMessage conversationMessage, boolean pulseHighlight) {
+  private void setInteractionState(ConversationMessage conversationMessage, boolean pulseMention) {
     if (batchSelected.contains(conversationMessage)) {
       setBackgroundResource(R.drawable.conversation_item_background);
       setSelected(true);
-    } else if (pulseHighlight) {
-      setBackgroundResource(R.drawable.conversation_item_background_animated);
-      setSelected(true);
-      postDelayed(() -> setSelected(false), 500);
+    } else if (pulseMention) {
+      setBackground(null);
+      setSelected(false);
+      startPulseOutlinerAnimation();
     } else {
       setSelected(false);
     }
@@ -460,6 +480,28 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       documentViewStub.get().setFocusable(!shouldInterceptClicks(conversationMessage.getMessageRecord()) && batchSelected.isEmpty());
       documentViewStub.get().setClickable(batchSelected.isEmpty());
     }
+  }
+
+  private void startPulseOutlinerAnimation() {
+    pulseOutlinerAlphaAnimator = ValueAnimator.ofInt(0, 0x66, 0).setDuration(600);
+    pulseOutlinerAlphaAnimator.addUpdateListener(animator -> {
+      pulseOutliner.setAlpha((Integer) animator.getAnimatedValue());
+      bodyBubble.invalidate();
+
+      if (mediaThumbnailStub.resolved()) {
+        mediaThumbnailStub.get().invalidate();
+      }
+    });
+    pulseOutlinerAlphaAnimator.start();
+  }
+
+  private void cancelPulseOutlinerAnimation() {
+    if (pulseOutlinerAlphaAnimator != null) {
+      pulseOutlinerAlphaAnimator.cancel();
+      pulseOutlinerAlphaAnimator = null;
+    }
+
+    pulseOutliner.setAlpha(0);
   }
 
   private boolean shouldDrawBodyBubbleOutline(MessageRecord messageRecord) {
@@ -1097,33 +1139,41 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_alone;
         outliner.setRadius(bigRadius);
+        pulseOutliner.setRadius(bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_alone;
         outliner.setRadius(bigRadius);
+        pulseOutliner.setRadius(bigRadius);
       }
     } else if (isStartOfMessageCluster(current, previous, isGroupThread)) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_start;
         outliner.setRadii(bigRadius, bigRadius, smallRadius, bigRadius);
+        pulseOutliner.setRadii(bigRadius, bigRadius, smallRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_start;
         outliner.setRadii(bigRadius, bigRadius, bigRadius, smallRadius);
+        pulseOutliner.setRadii(bigRadius, bigRadius, bigRadius, smallRadius);
       }
     } else if (isEndOfMessageCluster(current, next, isGroupThread)) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_end;
         outliner.setRadii(bigRadius, smallRadius, bigRadius, bigRadius);
+        pulseOutliner.setRadii(bigRadius, smallRadius, bigRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_end;
         outliner.setRadii(smallRadius, bigRadius, bigRadius, bigRadius);
+        pulseOutliner.setRadii(smallRadius, bigRadius, bigRadius, bigRadius);
       }
     } else {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_middle;
         outliner.setRadii(bigRadius, smallRadius, smallRadius, bigRadius);
+        pulseOutliner.setRadii(bigRadius, smallRadius, smallRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_middle;
         outliner.setRadii(smallRadius, bigRadius, bigRadius, smallRadius);
+        pulseOutliner.setRadii(smallRadius, bigRadius, bigRadius, smallRadius);
       }
     }
 

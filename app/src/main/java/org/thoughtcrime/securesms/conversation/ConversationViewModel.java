@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -14,7 +13,6 @@ import androidx.paging.DataSource;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -38,6 +36,8 @@ class ConversationViewModel extends ViewModel {
   private final LiveData<PagedList<ConversationMessage>> messages;
   private final LiveData<ConversationData>               conversationMetadata;
   private final Invalidator                              invalidator;
+  private final MutableLiveData<Boolean>                 showScrollButtons;
+  private final MutableLiveData<Boolean>                 hasUnreadMentions;
 
   private int jumpToPosition;
 
@@ -48,6 +48,8 @@ class ConversationViewModel extends ViewModel {
     this.recentMedia            = new MutableLiveData<>();
     this.threadId               = new MutableLiveData<>();
     this.invalidator            = new Invalidator();
+    this.showScrollButtons      = new MutableLiveData<>(false);
+    this.hasUnreadMentions      = new MutableLiveData<>(false);
 
     LiveData<ConversationData> metadata = Transformations.switchMap(threadId, thread -> {
       LiveData<ConversationData> conversationData = conversationRepository.getConversationData(thread, jumpToPosition);
@@ -107,6 +109,22 @@ class ConversationViewModel extends ViewModel {
   void clearThreadId() {
     this.jumpToPosition = -1;
     this.threadId.postValue(-1L);
+  }
+
+  @NonNull LiveData<Boolean> getShowScrollToBottom() {
+    return Transformations.distinctUntilChanged(showScrollButtons);
+  }
+
+  @NonNull LiveData<Boolean> getShowMentionsButton() {
+    return Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(showScrollButtons, hasUnreadMentions, (a, b) -> a && b));
+  }
+
+  void setHasUnreadMentions(boolean hasUnreadMentions) {
+    this.hasUnreadMentions.setValue(hasUnreadMentions);
+  }
+
+  void setShowScrollButtons(boolean showScrollButtons) {
+    this.showScrollButtons.setValue(showScrollButtons);
   }
 
   @NonNull LiveData<List<Media>> getRecentMedia() {

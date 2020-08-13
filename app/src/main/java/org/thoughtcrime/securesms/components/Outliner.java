@@ -25,6 +25,14 @@ public class Outliner {
     outlinePaint.setColor(color);
   }
 
+  public void setStrokeWidth(float pixels) {
+    outlinePaint.setStrokeWidth(pixels);
+  }
+
+  public void setAlpha(int alpha) {
+    outlinePaint.setAlpha(alpha);
+  }
+
   public void draw(Canvas canvas) {
     draw(canvas, 0, canvas.getWidth(), canvas.getHeight(), 0);
   }

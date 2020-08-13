@@ -63,7 +63,7 @@
       android:background="@drawable/circle_tintable"
       android:tint="@color/grey_600"
       android:elevation="1dp"
-      android:src="@drawable/ic_scroll_down"
+      app:srcCompat="@drawable/ic_chevron_down_20"
       android:scaleY="-1"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/debug_log_warning_banner"/>
@@ -78,7 +78,7 @@
       android:background="@drawable/circle_tintable"
       android:tint="@color/grey_600"
       android:elevation="1dp"
-      android:src="@drawable/ic_scroll_down"
+      app:srcCompat="@drawable/ic_chevron_down_20"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
 

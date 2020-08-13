@@ -249,11 +249,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
 
-    if (isVisible) {
-      List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
-      MarkReadReceiver.process(context, messageIds);
-    }
-
     if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
     }

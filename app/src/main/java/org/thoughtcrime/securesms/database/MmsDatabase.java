@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -744,6 +745,36 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     return expiring;
+  }
+
+  public @Nullable Pair<RecipientId, Long> getOldestUnreadMentionDetails(long threadId) {
+    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    String[]       projection = new String[]{RECIPIENT_ID,DATE_RECEIVED};
+    String         selection  = THREAD_ID + " = ? AND " + READ + " = 0 AND " + MENTIONS_SELF + " = 1";
+    String[]       args       = SqlUtil.buildArgs(threadId);
+
+    try (Cursor cursor = database.query(TABLE_NAME, projection, selection, args, null, null, DATE_RECEIVED + " ASC", "1")) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return new Pair<>(RecipientId.from(CursorUtil.requireString(cursor, RECIPIENT_ID)), CursorUtil.requireLong(cursor, DATE_RECEIVED));
+      }
+    }
+
+    return null;
+  }
+
+  public int getUnreadMentionCount(long threadId) {
+    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    String[]       projection = new String[]{"COUNT(*)"};
+    String         selection  = THREAD_ID + " = ? AND " + READ + " = 0 AND " + MENTIONS_SELF + " = 1";
+    String[]       args       = SqlUtil.buildArgs(threadId);
+
+    try (Cursor cursor = database.query(TABLE_NAME, projection, selection, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
   }
 
   public void updateMessageBody(long messageId, String body) {

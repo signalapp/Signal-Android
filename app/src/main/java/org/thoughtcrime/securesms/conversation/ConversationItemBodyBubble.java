@@ -5,13 +5,18 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.components.Outliner;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.util.Collections;
+import java.util.List;
 
 public class ConversationItemBodyBubble extends LinearLayout {
 
-  @Nullable private Outliner              outliner;
+  @Nullable private List<Outliner>        outliners = Collections.emptyList();
   @Nullable private OnSizeChangedListener sizeChangedListener;
 
   public ConversationItemBodyBubble(Context context) {
@@ -26,8 +31,8 @@ public class ConversationItemBodyBubble extends LinearLayout {
     super(context, attrs, defStyleAttr);
   }
 
-  public void setOutliner(@Nullable Outliner outliner) {
-    this.outliner = outliner;
+  public void setOutliners(@NonNull List<Outliner> outliners) {
+    this.outliners = outliners;
   }
 
   public void setOnSizeChangedListener(@Nullable OnSizeChangedListener listener) {
@@ -38,9 +43,11 @@ public class ConversationItemBodyBubble extends LinearLayout {
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
 
-    if (outliner == null) return;
+    if (Util.isEmpty(outliners)) return;
 
-    outliner.draw(canvas, 0, getMeasuredWidth(), getMeasuredHeight(), 0);
+    for (Outliner outliner : outliners) {
+      outliner.draw(canvas, 0, getMeasuredWidth(), getMeasuredHeight(), 0);
+    }
   }
 
   @Override

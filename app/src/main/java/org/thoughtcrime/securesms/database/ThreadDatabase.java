@@ -387,6 +387,7 @@ public class ThreadDatabase extends Database {
       db.endTransaction();
     }
 
+    notifyConversationListeners(new HashSet<>(threadIds));
     notifyConversationListListeners();
     return Util.concatenatedList(smsRecords, mmsRecords);
   }

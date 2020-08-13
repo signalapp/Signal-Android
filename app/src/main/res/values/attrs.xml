@@ -152,6 +152,7 @@
     <attr name="conversation_item_image_outline_color" format="color" />
     <attr name="conversation_item_reveal_viewed_background_color" format="color" />
     <attr name="conversation_item_delete_for_everyone_text_color" format="color" />
+    <attr name="conversation_item_mention_pulse_color" format="color" />
     <attr name="conversation_scroll_to_bottom_background" format="reference" />
     <attr name="conversation_scroll_to_bottom_foreground_color" format="color" />
 
@@ -558,5 +559,9 @@
         <attr name="state_headset_selected" format="boolean" />
         <attr name="state_speaker_selected" format="boolean" />
         <attr name="state_handset_selected" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ConversationScrollToView">
+        <attr name="cstv_scroll_button_src" format="reference" />
     </declare-styleable>
 </resources>

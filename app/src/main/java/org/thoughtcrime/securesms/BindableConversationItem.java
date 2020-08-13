@@ -30,7 +30,7 @@ public interface BindableConversationItem extends Unbindable {
             @NonNull Set<ConversationMessage> batchSelected,
             @NonNull Recipient recipients,
             @Nullable String searchQuery,
-            boolean pulseHighlight);
+            boolean pulseMention);
 
   ConversationMessage getConversationMessage();
 
