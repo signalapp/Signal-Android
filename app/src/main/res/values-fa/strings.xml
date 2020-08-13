@@ -1120,7 +1120,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">صامت کردن اعلان‌‌ها</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر اینترنتی نصب نشده است!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر اینترنتی نصب نشده است!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">در حال وارد کردن</string>
   <string name="ApplicationMigrationService_importing_text_messages">در حال وارد کردن پیام‌های متنی</string>
@@ -1593,8 +1593,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای همهٔ پیام‌های چندرسانه‌ای ورودی</string>
   <string name="preferences__pref_enter_sends_title">ارسال با کلید Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال خواهند شد</string>
-  <string name="preferences__send_link_previews">ارسال پیش‌نمایش‌های پیوند</string>
-  <string name="preferences__previews_are_supported_for">پیش‌نمایش‌ها برای پیوند‌های Imgur ،Reddit Pinterest ،Instagram و Youtube پشتیبانی می‌شوند</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ارسال پیش‌نمایش‌های پیوند</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">پیش‌نمایش‌ها برای پیوند‌های Imgur ،Reddit Pinterest ،Instagram و Youtube پشتیبانی می‌شوند</string> -->
   <string name="preferences__choose_identity">انتخاب هویت</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">مخاطب خود را از فهرست مخاطبین انتخاب کنید.</string>
   <string name="preferences__change_passphrase">تغییر گذرواژه</string>

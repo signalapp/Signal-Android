@@ -591,7 +591,7 @@ a shonrú</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Balbhaigh fógraí</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Níl aon líonleitheoir suiteáilte.</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Níl aon líonleitheoir suiteáilte.</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Tabhairt isteach ar siúl</string>
   <string name="ApplicationMigrationService_importing_text_messages">Ag tabhairt teachtaireachtaí téasc isteach</string>

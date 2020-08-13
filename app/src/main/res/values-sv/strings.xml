@@ -1117,7 +1117,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tysta aviseringar</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen webbläsare installerad!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen webbläsare installerad!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerar SMS</string>
@@ -1590,8 +1590,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimediameddelanden</string>
   <string name="preferences__pref_enter_sends_title">Returtangenten skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på returtangenten skickas textmeddelanden</string>
-  <string name="preferences__send_link_previews">Skicka länkförhandsvisning</string>
-  <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Skicka länkförhandsvisning</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string> -->
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
@@ -2081,7 +2081,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupRecipientListItem_admin">Administratör</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsLearnMore_legacy_vs_new_groups">Legacy vs. Nya grupper</string>
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Äldre vs. Nya grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Vad är Äldre grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Äldre grupper är grupper som inte är kompatibla med nya gruppfunktioner som administratörer och mer beskrivande gruppuppdateringar.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Hur använder jag Nya grupper?</string>

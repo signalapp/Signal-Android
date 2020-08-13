@@ -949,7 +949,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Senyapkan pemberitahuan</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Tidak ada peramban terpasang</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Tidak ada peramban terpasang</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Proses mengimpor data sedang berjalan</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mengimpor pesan teks</string>
@@ -1385,8 +1385,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan Signal untuk semua pesan multimedia yang masuk</string>
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
-  <string name="preferences__send_link_previews">Kirim pratinjau tautan</string>
-  <string name="preferences__previews_are_supported_for">Pratinjau didukung untuk tautan Imgur, Instagram, Pinterest, Reddit, dan YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Kirim pratinjau tautan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Pratinjau didukung untuk tautan Imgur, Instagram, Pinterest, Reddit, dan YouTube</string> -->
   <string name="preferences__choose_identity">Pilih identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti frasa sandi</string>

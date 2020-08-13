@@ -74,10 +74,10 @@
   <string name="AttachmentKeyboard_give_access">Suteikti prieigą</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nerasta programėlė medijos pasirinkimui.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Norint pridėti nuotraukas, vaizdo įrašus ar garsą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Norint pridėti kontaktinę informaciją, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Norint pridėti vietą, Signal reikia vietos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Vietą\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Norint pridėti nuotraukas, vaizdo įrašus ar garsą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Saugyklą“.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Norint pridėti kontaktinę informaciją, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Adresatus“.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Norint pridėti vietą, Signal reikia vietos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Vietą“.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Nusiunčiama medija…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Glaudinamas vaizdo įrašas…</string>
@@ -220,13 +220,13 @@
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Negalite siųsti žinučių į šią grupę, nes daugiau nebesate jos narys.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Norėdami siųsti garso žinutes, leiskite Signal prieigą prie mikrofono.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Signal reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Norint skambinti %s, programai Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Signal reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Norint skambinti %s, programai Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Norėdami fotografuoti ir filmuoti vaizdo įrašus, leiskite Signal prieigą prie kameros.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Norint fotografuoti ar filmuoti, Signal reikalinga prieiga prie kameros</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Norėdami įrašinėti vaizdo įrašus su garsu, įjunkite prieigą prie mikrofono.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikia mikrofono leidimo, tačiau jis buvo uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikia mikrofono leidimo, tačiau jis buvo uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikalingas mikrofono leidimas.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal negali siųsti SMS/MMS žinučių, nes ji nėra jūsų numatytoji SMS programėlė. Ar norėtumėte tai pakeisti savo Android nustatymuose?</string>
@@ -245,7 +245,7 @@
   <string name="ConversationActivity_delete_and_leave">Ištrinti ir išeiti</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Norint skambinti %1$s, Signal reikia prieigos prie jūsų mikrofono</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų mikrofono ir kameros.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">Dabar, daugiau parinkčių \"Grupės nustatymuose\"</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Dabar, daugiau parinkčių „Grupės nustatymuose“</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -312,7 +312,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Nerasta jokių rezultatų, atitinkančių „%s“</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Ištrinti pasirinktą pokalbį?</item>
     <item quantity="few">Ištrinti pasirinktus pokalbius?</item>
@@ -377,7 +377,7 @@
   <string name="DeliveryStatus_delivered">Pristatyta</string>
   <string name="DeliveryStatus_read">Perskaityta</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_unlink_s">Atsieti \"%s\"?</string>
+  <string name="DeviceListActivity_unlink_s">Atsieti „%s“?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Atsiejus šį įrenginį, jis daugiau nebegalės siųsti ar gauti žinučių.</string>
   <string name="DeviceListActivity_network_connection_failed">Tinklo ryšys patyrė nesėkmę</string>
   <string name="DeviceListActivity_try_again">Bandykite dar kartą</string>
@@ -409,15 +409,15 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Paveiksliukai</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Pridėti narį?</string>
-  <string name="AddToGroupActivity_add_s_to_s">Pridėti naudotoją \"%1$s\" į \"%2$s\"?</string>
-  <string name="AddToGroupActivity_s_added_to_s">Naudotojas \"%1$s\" pridėtas į \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_s_to_s">Pridėti naudotoją „%1$s“ į „%2$s“?</string>
+  <string name="AddToGroupActivity_s_added_to_s">Naudotojas „%1$s“ pridėtas į „%2$s“.</string>
   <string name="AddToGroupActivity_add_to_group">Pridėti į grupę</string>
   <string name="AddToGroupActivity_add_to_groups">Pridėti į grupes</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Pasirinkti naują administratorių</string>
   <string name="ChooseNewAdminActivity_done">Atlikta</string>
-  <string name="ChooseNewAdminActivity_you_left">Jūs išėjote iš \"%1$s.\"</string>
+  <string name="ChooseNewAdminActivity_you_left">Jūs išėjote iš „%1$s“.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bendrinti jūsų profilio vardą ir nuotrauką su šia grupe?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti, kad jūsų profilio vardas ir nuotrauka būtų matomi visiems esamiems ir būsimiems šios grupės nariams?</string>
@@ -434,7 +434,7 @@
     <item quantity="many">Išsiųsta %d pakvietimų</item>
     <item quantity="other">Išsiųstas %d pakvietimas</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">Jūs negalite automatiškai pridėti naudotojo \"%1$s\" į šią grupę.\n\nJis yra pakviestas prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
+  <string name="GroupManagement_invite_single_user">Jūs negalite automatiškai pridėti naudotojo „%1$s“ į šią grupę.\n\nJis yra pakviestas prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
   <string name="GroupManagement_learn_more">Sužinoti daugiau</string>
   <string name="GroupManagement_invite_multiple_users">Jūs negalite automatiškai pridėti šių naudotojų į šią grupę.\n\nJie yra pakviesti prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
   <!--PendingMembersActivity-->
@@ -444,19 +444,27 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Kitų grupės narių pakvietimai</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nėra laukiančių kitų grupės narių pakvietimų.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Išsamesnė žmonių, kuriuos pakvietė kiti grupės nariai, informacija nėra rodoma. Jei pakviesti asmenys pasirinks prisijungti, tuomet tuo metu, jų informacija bus pradėta bendrinti su grupe. Kol jie neprisijungs, jie nematys jokių grupėje esančių žinučių.</string>
+  <string name="PendingMembersActivity_revoke_invite">Panaikinti pakvietimą</string>
+  <string name="PendingMembersActivity_revoke_invites">Panaikinti pakvietimus</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Panaikinti pakvietimą</item>
+    <item quantity="few">Panaikinti %1$d pakvietimus</item>
+    <item quantity="many">Panaikinti %1$d pakvietimų</item>
+    <item quantity="other">Panaikinti %1$d pakvietimą</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Klaida panaikinant pakvietimą</item>
+    <item quantity="few">Klaida panaikinant pakvietimus</item>
+    <item quantity="many">Klaida panaikinant pakvietimus</item>
+    <item quantity="other">Klaida panaikinant pakvietimus</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Atlikta</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
-  <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="one">Pridėti \"%1$s\" į \"%2$s\"?</item>
-    <item quantity="few">Pridėti %3$d narius į \"%2$s\"?</item>
-    <item quantity="many">Pridėti %3$d narių į \"%2$s\"?</item>
-    <item quantity="other">Pridėti %3$d narį į \"%2$s\"?</item>
-  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Suteikti šiai grupei pavadinimą</string>
   <string name="AddGroupDetailsFragment__create_group">Sukurti grupę</string>
-  <string name="AddGroupDetailsFragment__create">Kurti</string>
+  <string name="AddGroupDetailsFragment__create">Sukurti</string>
   <string name="AddGroupDetailsFragment__members">Nariai</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grupės pavadinimas (būtina)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Šis laukas yra būtinas.</string>
@@ -467,6 +475,12 @@
   <string name="AddGroupDetailsFragment__remove">Šalinti</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS adresatas</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Pašalinti %1$s iš šios grupės?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d narys nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
+    <item quantity="few">%d nariai nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
+    <item quantity="many">%d narių nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
+    <item quantity="other">%d narys nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
@@ -478,8 +492,9 @@
   <string name="ManageGroupActivity_block_group">Užblokuoti grupę</string>
   <string name="ManageGroupActivity_unblock_group">Atblokuoti grupę</string>
   <string name="ManageGroupActivity_leave_group">Išeiti iš grupės</string>
-  <string name="ManageGroupActivity_mute_notifications">Nutildyti pranešimus</string>
+  <string name="ManageGroupActivity_mute_notifications">Išjungti pranešimus</string>
   <string name="ManageGroupActivity_custom_notifications">Tinkinti pranešimai</string>
+  <string name="ManageGroupActivity_mentions">Paminėjimai</string>
   <string name="ManageGroupActivity_until_s">Iki %1$s</string>
   <string name="ManageGroupActivity_off">Išjungta</string>
   <string name="ManageGroupActivity_on">Įjungta</string>
@@ -508,6 +523,12 @@
   <string name="ManageGroupActivity_legacy_group">Pasenusi grupė</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Tai yra pasenusi grupė. Norėdami naudoti tokias ypatybes kaip grupės administratoriai, sukurkite naująją grupę.</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Pranešti apie paminėjimus</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Gauti pranešimus, kai jus pamini pokalbiuose, kuriuose pranešimai yra išjungti?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Pagal numatymą (Pranešti)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Pagal numatymą (Nepranešti)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Visada pranešti</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Nepranešti</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Pridėti į sistemos adresatus</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Šis žmogus yra jūsų adresatų sąraše</string>
@@ -516,7 +537,7 @@
   <string name="ManageRecipientActivity_block">Užblokuoti</string>
   <string name="ManageRecipientActivity_unblock">Atblokuoti</string>
   <string name="ManageRecipientActivity_view_safety_number">Rodyti saugumo numerį</string>
-  <string name="ManageRecipientActivity_mute_notifications">Nutildyti pranešimus</string>
+  <string name="ManageRecipientActivity_mute_notifications">Išjungti pranešimus</string>
   <string name="ManageRecipientActivity_custom_notifications">Tinkinti pranešimai</string>
   <string name="ManageRecipientActivity_until_s">Iki %1$s</string>
   <string name="ManageRecipientActivity_off">Išjungta</string>
@@ -554,6 +575,13 @@
   <string name="CustomNotificationsDialogFragment__disabled">Išjungta</string>
   <string name="CustomNotificationsDialogFragment__default">Numatytoji</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ar norite panaikinti pakvietimą, kurį išsiuntėte naudotojui %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Ar norite panaikinti pakvietimą, kurį išsiuntė %1$s?</item>
+    <item quantity="few">Ar norite panaikinti %2$d pakvietimus, kuriuos išsiuntė %1$s?</item>
+    <item quantity="many">Ar norite panaikinti %2$d pakvietimų, kuriuos išsiuntė %1$s?</item>
+    <item quantity="other">Ar norite panaikinti %2$d pakvietimą, kurį išsiuntė %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
   <string name="CropImageActivity_profile_avatar">Avataras</string>
@@ -683,7 +711,7 @@
   <string name="MediaSendActivity_message">Žinutė</string>
   <string name="MediaSendActivity_select_recipients">Pasirinkti gavėjus</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Norint rodyti jūsų adresatus, Signal reikia prieigos prie jų.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Adresatus“.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Jūs negalite bendrinti daugiau nei %d elementą.</item>
     <item quantity="few">Jūs negalite bendrinti daugiau nei %d elementų.</item>
@@ -776,6 +804,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kažkas atmetė pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atmetėte pakvietimą prisijungti prie grupės.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s panaikino jūsų pakvietimą prisijungti prie grupės.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administratorius panaikino jūsų pakvietimą prisijungti prie grupės.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Pakvietimas prisijungti prie grupės buvo panaikintas.</item>
     <item quantity="few">Buvo panaikinti %1$d pakvietimai prisijungti prie grupės.</item>
@@ -788,21 +818,21 @@
   <string name="MessageRecord_you_added_invited_member_s">Jūs pridėjote pakviestą narį %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s pridėjo pakviestą narį %2$s.</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">Jūs pakeitėte grupės pavadinimą į \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s pakeitė grupės pavadinimą į \"%2$s\".</string>
-  <string name="MessageRecord_the_group_name_has_changed_to_s">Grupės pavadinimas pasikeitė į \"%1$s\".</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Jūs pakeitėte grupės pavadinimą į „%1$s“.</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s pakeitė grupės pavadinimą į „%2$s“.</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Grupės pavadinimas pasikeitė į „%1$s“.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Jūs pakeitėte grupės avatarą.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s pakeitė grupės avatarą.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">Grupės avataras pakeistas.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės informaciją į \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės informaciją į \"%2$s\".</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Buvo pakeista, kad \"%1$s\" gali taisyti grupės informacija.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės informaciją į „%1$s“.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės informaciją į „%2$s“.</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Buvo pakeista, kad „%1$s“ gali taisyti grupės informacija.</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės narystes į \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės narystes į \"%2$s\".</string>
-  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Buvo pakeista, kad \"%1$s\" gali keisti grupės narystes.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės narystes į „%1$s“.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės narystes į „%2$s“.</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Buvo pakeista, kad „%1$s“ gali keisti grupės narystes.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
@@ -833,6 +863,12 @@
     <item quantity="many">%1$d narių (+ pakviesta dar %2$d)</item>
     <item quantity="other">%1$d narys (+ pakviesta dar %2$d)</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d papildoma grupė</item>
+    <item quantity="few">%d papildomos grupės</item>
+    <item quantity="many">%d papildomų grupių</item>
+    <item quantity="other">%d papildoma grupė</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Slaptafrazės nesutampa!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Neteisinga sena slaptafrazė!</string>
@@ -855,7 +891,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Atleiskite, tai nėra teisingas įrenginio nuorodos QR kodas.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Susieti Signal įrenginį?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Atrodo, kad bandote susieti Signal įrenginį, naudodami trečiųjų šalių skenerį. Jūsų saugumui, dar kartą nuskenuokite kodą, naudodami Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Išnykstančios žinutės</string>
@@ -1001,7 +1037,7 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
   <!--Search-->
-  <string name="SearchFragment_no_results">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
+  <string name="SearchFragment_no_results">Nerasta jokių rezultatų, atitinkančių „%s“</string>
   <string name="SearchFragment_header_conversations">Pokalbiai</string>
   <string name="SearchFragment_header_contacts">Adresatai</string>
   <string name="SearchFragment_header_messages">Žinutės</string>
@@ -1077,7 +1113,7 @@
   <string name="SupportEmailUtil_locale">Lokalė:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupė atnaujinta</string>
-  <string name="ThreadRecord_left_the_group">išėjo iš grupės</string>
+  <string name="ThreadRecord_left_the_group">Išeita iš grupės</string>
   <string name="ThreadRecord_secure_session_reset">Saugusis seansas atstatytas.</string>
   <string name="ThreadRecord_draft">Juodraštis:</string>
   <string name="ThreadRecord_called">Jūs skambinote</string>
@@ -1145,7 +1181,7 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">Mūsų Signal saugumo numeris:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis dalintis.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iškarpinėje palyginimui nebuvo rasta jokio saugumo numerio</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
@@ -1156,9 +1192,9 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Blogai šifruota MMS žinutė</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS žinutė užšifruota seansui, kurio nėra</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">Nutildyti pranešimus</string>
+  <string name="MuteDialog_mute_notifications">Išjungti pranešimus</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Neįdiegta jokia saityno naršyklė!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Neįdiegta jokia saityno naršyklė!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importavimas eigoje</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuojamos tekstinės žinutės</string>
@@ -1173,7 +1209,7 @@
   <string name="MediaPreviewActivity_you">Jūs</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepalaikomas medijos tipas</string>
   <string name="MediaPreviewActivity_draft">Juodraštis</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint įrašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint įrašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Saugyklą“.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nepavyksta įrašyti į išorinę saugyklą be leidimų</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ištrinti žinutę?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
@@ -1189,6 +1225,7 @@
   <string name="MessageNotifier_error_delivering_message">Klaida, pristatant žinutę.</string>
   <string name="MessageNotifier_mark_all_as_read">Žymėti visas kaip skaitytas</string>
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Išjungti šiuos pranešimus</string>
   <string name="MessageNotifier_media_message">Medijos žinutė</string>
   <string name="MessageNotifier_sticker">Lipdukas</string>
   <string name="MessageNotifier_view_once_photo">Vienkartinės peržiūros nuotrauka</string>
@@ -1200,7 +1237,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Atverkite Signal, norėdami patikrinti paskiausius pranešimus.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Adresatas</string>
-  <string name="MessageNotifier_reacted_s_to_s">Sureagavo %1$s į: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_s">Sureagavo %1$s į: „%2$s“.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Sureagavo į jūsų vaizdo įrašą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Sureagavo į jūsų paveikslą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Sureagavo į jūsų failą: %1$s.</string>
@@ -1209,6 +1246,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Sureagavo į jūsų vienkartinės peržiūros vaizdo įrašą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Sureagavo į jūsų lipduką: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Išjungti pranešimus apie tai, kad adresatai prisijungė prie Signal? Galėsite ir vėl įjungti šiuos pranešimus, perėję į Signal &gt; Nustatymai &gt; Pranešimai.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Numatytoji</string>
   <string name="NotificationChannel_calls">Skambučiai</string>
@@ -1253,7 +1291,7 @@
   <string name="VideoPlayer_error_playing_video">Klaida, atkuriant vaizdo įrašą</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Norėdami atsiliepti į skambutį nuo %s, suteikite Signal prieigą prie mikrofono.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Norint skambinti ar gauti skambučius, Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Norint skambinti ar gauti skambučius, Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atsiliepta susietame įrenginyje.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Atmesta susietame įrenginyje.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Užimta susietame įrenginyje.</string>
@@ -1317,10 +1355,10 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Adresato nuotrauka</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Adresatus“.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klaida gaunant adresatus, patikrinkite tinklo ryšį</string>
   <string name="ContactSelectionListFragment_username_not_found">Naudotojo vardas nerastas</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nėra Signal naudotojas. Patikrinkite naudotojo vardą ir bandykite dar kartą.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">„%1$s“ nėra Signal naudotojas. Patikrinkite naudotojo vardą ir bandykite dar kartą.</string>
   <string name="ContactSelectionListFragment_okay">Gerai</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Grupė pilna</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jums nereikia pridėti save į grupę</string>
@@ -1483,7 +1521,7 @@
   <string name="import_fragment__import_system_sms_database">Importuoti sistemos SMS duomenų bazę</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importuoti duomenų bazę iš numatytosios sistemos pokalbių programėlės</string>
   <string name="import_fragment__import_plaintext_backup">Importuoti grynojo teksto atsarginę kopiją</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importuoti grynojo teksto atsarginės kopijos failą. Suderinama su \"SMS atsarginės kopijos darymu ir atkūrimu.\"</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importuoti grynojo teksto atsarginės kopijos failą. Suderinama su „SMS atsarginės kopijos darymu ir atkūrimu“.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Rodyti visą pokalbį</string>
   <string name="load_more_header__loading">Įkeliama</string>
@@ -1500,14 +1538,14 @@
     <item quantity="many">%1$s prisijungė prie grupės.</item>
     <item quantity="other">%1$s prisijungė prie grupės.</item>
   </plurals>
-  <string name="GroupUtil_group_name_is_now">Dabar, grupės pavadinimas yra \"%1$s\".</string>
+  <string name="GroupUtil_group_name_is_now">Dabar, grupės pavadinimas yra „%1$s“.</string>
   <!--profile_group_share_view-->
   <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Padaryti jūsų profilio vardą ir nuotrauką matomą šiai grupei?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Atrakinti</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Tam, kad pristatytų mediją ir grupės žinutes per jūsų belaidį tiekėją, Signal reikalauja MMS nustatymų. Jūsų įrenginys nepadaro šios informacijos prieinamos, kas, dažniausiai, pasitvirtina užrakintiems įrenginiams ir ribotoms konfigūracijoms.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Norėdami siųsti mediją ir grupės žinutes, bakstelėkite \"Gerai\" ir užbaikite užklaustus nustatymus. Įprastai, jūsų tiekėjo MMS nustatymus galima rasti, ieškant \"jūsų tiekėjas APN\". Jums reikės tai atlikti tik vieną kartą.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Norėdami siųsti mediją ir grupės žinutes, bakstelėkite „Gerai“ ir užbaikite užklaustus nustatymus. Įprastai, jūsų tiekėjo MMS nustatymus galima rasti, ieškant „jūsų tiekėjas APN“. Jums reikės tai atlikti tik vieną kartą.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Vardas (būtinas)</string>
   <string name="CreateProfileActivity_last_name_optional">Pavardė (nebūtina)</string>
@@ -1561,7 +1599,7 @@
   <string name="message_details_recipient__failed_to_send">Nepavyko išsiųsti</string>
   <string name="message_details_recipient__new_safety_number">Naujas saugumo numeris</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Kurti slaptafrazę</string>
+  <string name="AndroidManifest__create_passphrase">Sukurti slaptafrazę</string>
   <string name="AndroidManifest__select_contacts">Pasirinkti adresatus</string>
   <string name="AndroidManifest__change_passphrase">Pakeisti slaptafrazę</string>
   <string name="AndroidManifest__verify_safety_number">Patvirtinti saugumo numerį</string>
@@ -1578,7 +1616,7 @@
   <string name="MessageRequestsMegaphone__add_profile_name">Pridėti profilio vardą</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Nauja: Žinučių užklausos</string>
   <string name="MessageRequestsMegaphone__add_name">Pridėti vardą</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Dabar, galite rinktis ar priimti naują pokalbį. Matysite variantus \"Priimti\", \"Ištrinti\" arba \"Užblokuoti\".</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Dabar, galite rinktis ar priimti naują pokalbį. Matysite variantus „Priimti“, „Ištrinti“ arba „Užblokuoti“.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Pagalba</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Ar jau esate skaitę DUK?</string>
@@ -1612,11 +1650,11 @@
   <string name="arrays__import_export">Importuoti</string>
   <string name="arrays__use_default">Naudoti numatytąjį</string>
   <string name="arrays__use_custom">Naudoti tinkintą</string>
-  <string name="arrays__mute_for_one_hour">Nutildyti 1 valandai</string>
-  <string name="arrays__mute_for_two_hours">Nutildyti 2 valandoms</string>
-  <string name="arrays__mute_for_one_day">Nutildyti 1 dienai</string>
-  <string name="arrays__mute_for_seven_days">Nutildyti 7 dienoms</string>
-  <string name="arrays__mute_for_one_year">Nutildyti 1 metams</string>
+  <string name="arrays__mute_for_one_hour">Išjungti 1 valandai</string>
+  <string name="arrays__mute_for_two_hours">Išjungti 2 valandoms</string>
+  <string name="arrays__mute_for_one_day">Išjungti 1 dienai</string>
+  <string name="arrays__mute_for_seven_days">Išjungti 7 dienoms</string>
+  <string name="arrays__mute_for_one_year">Išjungti 1 metams</string>
   <string name="arrays__settings_default">Pagal nustatymų numatymą</string>
   <string name="arrays__enabled">Įjungta</string>
   <string name="arrays__disabled">Išjungta</string>
@@ -1649,8 +1687,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Naudoti Signal visoms gaunamosioms multimedijos žinutėms</string>
   <string name="preferences__pref_enter_sends_title">Enter (Įvedimo) klavišas išsiunčia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
-  <string name="preferences__send_link_previews">Siųsti nuorodų peržiūras</string>
-  <string name="preferences__previews_are_supported_for">Peržiūros yra palaikomos Imgur, Instagram, Pinterest, Reddit, ir YouTube nuorodoms</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Siųsti nuorodų peržiūras</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Peržiūros yra palaikomos Imgur, Instagram, Pinterest, Reddit, ir YouTube nuorodoms</string> -->
   <string name="preferences__choose_identity">Pasirinkti tapatybę</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pasirinkite adresatą iš adresatų sąrašo.</string>
   <string name="preferences__change_passphrase">Pakeisti slaptafrazę</string>
@@ -1724,7 +1762,7 @@
   <string name="preferences__free_private_messages_and_calls">Nemokamos privačios žinutės ir skambučiai Signal naudotojams</string>
   <string name="preferences__submit_debug_log">Pateikti derinimo žurnalą</string>
   <string name="preferences__support_wifi_calling">„Wi-Fi skambučių“ suderinamumo veiksena</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite jeigu jūsų įrenginys siunčia SMS/MMS per belaidį (WiFi) tinklą (įjunkite tik tuo atveju jeigu jūsų įrenginyje yra aktyvuota \"WiFi skambučių\" funkcija)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite, jeigu jūsų įrenginys siunčia SMS/MMS per belaidį (WiFi) tinklą (įjunkite tik tuo atveju, jeigu jūsų įrenginyje yra aktyvuota „WiFi skambučių“ funkcija)</string>
   <string name="preferences__incognito_keyboard">Incognito klaviatūra</string>
   <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
@@ -1763,10 +1801,13 @@
   <string name="preferences_notifications__priority">Pirmenybė</string>
   <string name="preferences_communication__category_sealed_sender">Užantspauduotas siuntėjas</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Rodyti indikatorius</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Rodyti būsenos piktogramą, kai pasirenkate \"Išsamesnė žinutės informacija\" žinutėse, kurios buvo pristatytos, naudojant užantspauduotą siuntėją.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Rodyti būsenos piktogramą, kai pasirenkate „Išsamesnė žinutės informacija“ žinutėse, kurios buvo pristatytos, naudojant užantspauduotą siuntėją.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Leisti nuo bet ko</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Įjungti užantspauduotą siuntėją gaunamosioms žinutėms nuo asmenų, kurių nėra adresatų sąraše ir žmonių su kuriais nebendrinote savo profilį.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Sužinoti daugiau</string>
+  <string name="preferences_notifications__mentions">Paminėjimai</string>
+  <string name="preferences_notifications__notify_me">Pranešti</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Gauti pranešimus, kai jus pamini pokalbiuose, kuriuose pranešimai yra išjungti</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1821,7 +1862,7 @@
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Įjungti pranešimus</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Nutildyti pranešimus</string>
+  <string name="conversation_unmuted__mute_notifications">Išjungti pranešimus</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridėti priedą</string>
   <string name="conversation__menu_edit_group">Taisyti grupę</string>
@@ -2021,10 +2062,10 @@
   <string name="ConversationListFragment_loading">Įkeliama…</string>
   <string name="CallNotificationBuilder_connecting">Jungiamasi…</string>
   <string name="Permissions_permission_required">Reikalingas leidimas</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Norint siųsti SMS žinutes, Signal reikia SMS leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Norint siųsti SMS žinutes, Signal reikia SMS leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „SMS“.</string>
   <string name="Permissions_continue">Tęsti</string>
   <string name="Permissions_not_now">Ne dabar</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Norint atlikti paiešką tarp adresatų, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Norint atlikti paiešką tarp adresatų, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Adresatus“.</string>
   <string name="conversation_activity__enable_signal_messages">ĮJUNGTI SIGNAL ŽINUTES</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Perkeliama Signal duomenų bazė</string>
   <string name="PushDecryptJob_new_locked_message">Nauja užrakinta žinutė</string>
@@ -2061,7 +2102,7 @@
   <string name="BackupDialog_verify">Patvirtinti</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sėkmingai įvedėte savo atsarginės kopijos slaptafrazę</string>
   <string name="BackupDialog_passphrase_was_not_correct">Slaptafrazė buvo neteisinga</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Saugyklą“.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Eigoje</string>
   <string name="LocalBackupJob_creating_backup">Daroma atsarginė kopija…</string>
@@ -2148,7 +2189,7 @@
   <string name="RecipientBottomSheet_video_call_description">Vaizdo skambutis</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Pašalinti %1$s iš grupės administratorių?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s galės taisyti šią grupę ir jos narių sąrašą</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Šalinti %1$s iš \"%2$s\"?</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Šalinti %1$s iš „%2$s“?</string>
   <string name="RecipientBottomSheet_remove">Šalinti</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="GroupRecipientListItem_admin">Administratorius</string>

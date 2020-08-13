@@ -1122,7 +1122,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Heshtoji njoftimet</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">S\’ka shfletues të instaluar</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">S\’ka shfletues të instaluar</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importim në ecuri e sipër</string>
   <string name="ApplicationMigrationService_importing_text_messages">Po importohen mesazhe tekst</string>
@@ -1595,8 +1595,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Përdore Signal për krejt mesazhet multimedia ardhëse</string>
   <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
-  <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string>
-  <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Pinterest, Reddit, dhe YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Pinterest, Reddit, dhe YouTube.</string> -->
   <string name="preferences__choose_identity">Zgjidhni identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zgjidhni kontaktin tuaj nga lista e kontakteve.</string>
   <string name="preferences__change_passphrase">Ndryshoje frazëkalimin</string>

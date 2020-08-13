@@ -825,7 +825,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Bisuaken prungon</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Mboten enten browser web ingkang dipunpasang!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Mboten enten browser web ingkang dipunpasang!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Impor taksih dipuntumindakaken</string>
   <string name="ApplicationMigrationService_importing_text_messages">Taksih ngimpor pesen teks</string>
@@ -1232,8 +1232,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Ginakaken Signal kangge sedaya pesen multimedia ingkang mlebet</string>
   <string name="preferences__pref_enter_sends_title">Tombol Enter bakal ngirimaken</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menet tombol Enter bakal ngirimaken pesen</string>
-  <string name="preferences__send_link_previews">Kirimaken gambar awal tautan</string>
-  <string name="preferences__previews_are_supported_for">Gambar awal dipundukung kangge tautan Imgur, Instagram, Pinterest, Reddit, lan YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Kirimaken gambar awal tautan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Gambar awal dipundukung kangge tautan Imgur, Instagram, Pinterest, Reddit, lan YouTube</string> -->
   <string name="preferences__choose_identity">Pileh identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pileh entri kontak saking daftar kontak.</string>
   <string name="preferences__change_passphrase">Gantos tembung sandi</string>

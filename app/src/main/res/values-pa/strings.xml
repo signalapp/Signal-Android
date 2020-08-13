@@ -954,7 +954,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">ਕੋਈ ਵੈੱਬ ਬਰਾਊਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ </string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">ਕੋਈ ਵੈੱਬ ਬਰਾਊਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ </string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ਆਯਾਤ ਪ੍ਰਗਤੀ ਵਿੱਚ ਹੈ</string>
   <string name="ApplicationMigrationService_importing_text_messages">ਟੈਕਸਟ ਸੁਨੇਹੇ ਆਯਾਤ ਕਰ ਰਿਹਾ ਹੈ</string>
@@ -1354,8 +1354,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ਸਾਰੇ ਆਉਣ ਵਾਲੇ ਮਲਟੀਮੀਡੀਆ ਸੁਨੇਹਿਆਂ ਲਈ Signal ਵਰਤੋ</string>
   <string name="preferences__pref_enter_sends_title">ਕੁੰਜੀ ਭੇਜੋ ਦਰਜ ਕਰੋ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter ਕੁੰਜੀ ਦਬਾਉਣ ਨਾਲ ਟੈਕਸਟ ਸੁਨੇਹੇ ਭੇਜੇ ਜਾਣਗੇ</string>
-  <string name="preferences__send_link_previews">ਲਿੰਕ ਪੂਰਵਦਰਸ਼ਨ ਭੇਜੋ</string>
-  <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit ਅਤੇ YouTube ਲਿੰਕਾਂ ਲਈ ਪ੍ਰੀਵਿਊ ਸਮਰਥਿਤ ਹਨ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ਲਿੰਕ ਪੂਰਵਦਰਸ਼ਨ ਭੇਜੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit ਅਤੇ YouTube ਲਿੰਕਾਂ ਲਈ ਪ੍ਰੀਵਿਊ ਸਮਰਥਿਤ ਹਨ</string> -->
   <string name="preferences__choose_identity">ਪਛਾਣ ਚੁਣੋ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ਸੰਪਰਕ ਸੂਚੀ ਤੋਂ ਆਪਣੀ ਸੰਪਰਕ ਇੰਦਰਾਜ਼ ਚੁਣੋ</string>
   <string name="preferences__change_passphrase">ਪਾਸਫਰੇਜ ਬਦਲੋ</string>

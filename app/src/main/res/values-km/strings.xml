@@ -993,7 +993,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">មិនបានដំឡើងកម្មវិធីរុករក!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">មិនបានដំឡើងកម្មវិធីរុករក!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ការនាំចូលកំពុងដំណើរការ</string>
   <string name="ApplicationMigrationService_importing_text_messages">កំពុងនាំចូលសារជាអក្សរ</string>
@@ -1446,8 +1446,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ប្រើ Signalសម្រាប់សារពហុមេឌៀដែលចូលមកទាំងអស់</string>
   <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុចប៊ូតុង បញ្ចូន នឹងផ្ញើសារអក្សរ</string>
-  <string name="preferences__send_link_previews">ការមើល ការផ្ញើតំណភ្ជាប់</string>
-  <string name="preferences__previews_are_supported_for">ការមើលជាមុនបានគាំទ្រសម្រាប់ Imgur Instagram Pinterest Reddit និងតំណររបស់ YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ការមើល ការផ្ញើតំណភ្ជាប់</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">ការមើលជាមុនបានគាំទ្រសម្រាប់ Imgur Instagram Pinterest Reddit និងតំណររបស់ YouTube</string> -->
   <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងរបស់អ្នកពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>

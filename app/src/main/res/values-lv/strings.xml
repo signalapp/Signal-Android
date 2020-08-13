@@ -987,7 +987,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Noklusināt paziņojumus</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Nav instalēts tīmekļa pārlūks!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nav instalēts tīmekļa pārlūks!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Notiek importēšana</string>
   <string name="ApplicationMigrationService_importing_text_messages">Teksta ziņu importēšana</string>
@@ -1446,8 +1446,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Izmantot Signal visiām ienākošajām multimedija ziņām.</string>
   <string name="preferences__pref_enter_sends_title">Enter poga sūta</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Jaunas rindas pogas piespiešana sūtīs ziņu</string>
-  <string name="preferences__send_link_previews">Sūtīt saišu priekšskatījumus</string>
-  <string name="preferences__previews_are_supported_for">Priekšskati tiek atbalstīti saitēm no Imgur, Instagram, Pinterest, Reddit un YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Sūtīt saišu priekšskatījumus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Priekšskati tiek atbalstīti saitēm no Imgur, Instagram, Pinterest, Reddit un YouTube</string> -->
   <string name="preferences__choose_identity">Izvēlēties identitāti</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kontaktu sarakstā izvēlieties kontaktpersonas ierakstu.</string>
   <string name="preferences__change_passphrase">Nomainīt paroli</string>

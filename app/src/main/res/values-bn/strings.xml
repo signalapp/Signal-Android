@@ -997,7 +997,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">বিজ্ঞপ্তি নিঃশব্দ করুন</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">কোনও ওয়েব ব্রাউজার ইনস্টল করা হয়নি!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">কোনও ওয়েব ব্রাউজার ইনস্টল করা হয়নি!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">আমদানি চলছে</string>
   <string name="ApplicationMigrationService_importing_text_messages">পাঠ্য বার্তা আমদানি করা হচ্ছে</string>
@@ -1444,8 +1444,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">সমস্ত আগত মাল্টিমিডিয়া বার্তাগুলির জন্য Signal ব্যবহার করুন</string>
   <string name="preferences__pref_enter_sends_title">এন্টার কী পাঠাবে</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">এন্টার কী টিপলে পাঠ্য বার্তা প্রেরণ করা হবে</string>
-  <string name="preferences__send_link_previews">লিঙ্কের পূর্বরূপগুলি প্রেরণ করুন</string>
-  <string name="preferences__previews_are_supported_for">ইমগুর, ইনস্টাগ্রাম, পিন্টারেস্ট, রেডডিট এবং ইউটিউব লিঙ্কগুলির জন্য পূর্বরূপগুলি সমর্থিত</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">লিঙ্কের পূর্বরূপগুলি প্রেরণ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">ইমগুর, ইনস্টাগ্রাম, পিন্টারেস্ট, রেডডিট এবং ইউটিউব লিঙ্কগুলির জন্য পূর্বরূপগুলি সমর্থিত</string> -->
   <string name="preferences__choose_identity">পরিচয় বাছুন</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">পরিচিতি তালিকা থেকে আপনার পরিচিতি এন্টি চয়ন করুন</string>
   <string name="preferences__change_passphrase">পাসফ্রেজ পরিবর্তন করুন</string>

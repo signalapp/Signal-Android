@@ -1117,7 +1117,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silencia les notificacions</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">No teniu cap navegador web instal·lat!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">No teniu cap navegador web instal·lat!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importació en curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">S\'importen missatges de text</string>
@@ -1590,8 +1590,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Fes servir el Signal per a tots els missatges multimèdia d\'entrada</string>
   <string name="preferences__pref_enter_sends_title">S\'envia amb la tecla de Retorn</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">En prémer Retorn s\'envia el missatge de text</string>
-  <string name="preferences__send_link_previews">Envia previsualitzacions d\'enllaços</string>
-  <string name="preferences__previews_are_supported_for">Les vistes prèvies són compatibles amb els enllaços d\'Imgur, Instagram, Pinterest, Reddit i YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Envia previsualitzacions d\'enllaços</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Les vistes prèvies són compatibles amb els enllaços d\'Imgur, Instagram, Pinterest, Reddit i YouTube.</string> -->
   <string name="preferences__choose_identity">Trieu la identitat a usar</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Trieu els contactes de la llista de contactes.</string>
   <string name="preferences__change_passphrase">Canvia la contrasenya</string>

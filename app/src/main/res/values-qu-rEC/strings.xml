@@ -587,7 +587,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Chayamuk rikunakunata upallayachina</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Web panka mana churashkachu kan</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Web panka mana churashkachu kan</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Apamuna rurarikunmi.</string>
   <string name="ApplicationMigrationService_importing_text_messages">Killka chaskikunata apamukun.</string>

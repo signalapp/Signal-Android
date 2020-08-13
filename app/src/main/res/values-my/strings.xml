@@ -583,7 +583,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">အသိပေးချက်ကို ပိတ်ပါ</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">web browser မသွင်းထားပါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">web browser မသွင်းထားပါ</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေသည်</string>
   <string name="ApplicationMigrationService_importing_text_messages">စာများကို သွင်းယူနေသည်</string>

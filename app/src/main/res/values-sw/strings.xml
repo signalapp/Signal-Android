@@ -840,7 +840,7 @@ nambari yako ya simu</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Zima arifa</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Hakuna kivinjari kilichosakinishwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Hakuna kivinjari kilichosakinishwa</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Uingizaji unaendelea</string>
   <string name="ApplicationMigrationService_importing_text_messages">Inaingiza jumbe za maneno</string>
@@ -1254,8 +1254,8 @@ nambari yako ya simu</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Tumia Signal kwa ujumbe wote unaoingia wa multimedia</string>
   <string name="preferences__pref_enter_sends_title">Ingiza za kutuma zilizo muhimu</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Kubonyeza kitufe cha ingizo kutatutuma ujumbe wa maandishi</string>
-  <string name="preferences__send_link_previews">Tuma kiungo cha kuhakiki</string>
-  <string name="preferences__previews_are_supported_for">Uhahiki umetegemezwa kwenye viungo vya Imgur, Instagram, Pinterest, Reddit na YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Tuma kiungo cha kuhakiki</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Uhahiki umetegemezwa kwenye viungo vya Imgur, Instagram, Pinterest, Reddit na YouTube</string> -->
   <string name="preferences__choose_identity">Chagua utambulisho</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chagua mwasiliani kutoka kwenye orodha yako ya wawasiliani</string>
   <string name="preferences__change_passphrase">Badili Nenosiri</string>

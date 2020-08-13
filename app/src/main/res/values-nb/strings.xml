@@ -1081,7 +1081,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen nettleser installert!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen nettleser installert!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importering pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
@@ -1552,8 +1552,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediemeldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk Enter-tasten for å sende tekstmeldinger</string>
-  <string name="preferences__send_link_previews">Send linkforhåndsvisninger</string>
-  <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Pinterest, Reddit og YouTube-koblinger.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Send linkforhåndsvisninger</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Pinterest, Reddit og YouTube-koblinger.</string> -->
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>

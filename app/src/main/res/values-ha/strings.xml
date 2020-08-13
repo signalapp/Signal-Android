@@ -834,7 +834,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Yi tsit da sanarwa</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Ba\'a saka yanar gizo ba!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ba\'a saka yanar gizo ba!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Abubuwa na shigowa</string>
   <string name="ApplicationMigrationService_importing_text_messages">Shigarwa da sakwanni.</string>
@@ -1245,8 +1245,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Yi amfani da Signal domin sakonnin hoto, waka, da bidiyo masu shigowa</string>
   <string name="preferences__pref_enter_sends_title">Tura sako da Enter key</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Idan ka/kika danna Enter key, sakonnika/ki zasu turu</string>
-  <string name="preferences__send_link_previews">Tura hanyar dubawa</string>
-  <string name="preferences__previews_are_supported_for">Za\'a iya dubawa da Imgur, Instagram, Pinterest, Reddit, da kuma mahadin Youtube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Tura hanyar dubawa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Za\'a iya dubawa da Imgur, Instagram, Pinterest, Reddit, da kuma mahadin Youtube.</string> -->
   <string name="preferences__choose_identity">Zabi shaida</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zabi lambar sadarwarka/ki daga cikin jerin lambobim sadrwar.</string>
   <string name="preferences__change_passphrase">Canza kalmomin sirri</string>

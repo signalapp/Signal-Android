@@ -1118,7 +1118,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Δεν υπάρχει εγκατεστημένος φυλλομετρητής!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Δεν υπάρχει εγκατεστημένος φυλλομετρητής!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Εισαγωγή σε εξέλιξη</string>
   <string name="ApplicationMigrationService_importing_text_messages">Εισαγωγή μηνυμάτων κειμένου</string>
@@ -1591,8 +1591,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση του Signal για όλα τα εισερχόμενα μηνύματα πολυμέσων</string>
   <string name="preferences__pref_enter_sends_title">Το Enter στέλνει</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα στέλνονται με το πάτημα του Enter</string>
-  <string name="preferences__send_link_previews">Αποστολή προεπισκόπησης συνδέσμων</string>
-  <string name="preferences__previews_are_supported_for">Οι προεπισκοπήσεις υποστηρίζονται για συνδέσμους Imgur, Instagram, Pinterest, Reddit, και YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Αποστολή προεπισκόπησης συνδέσμων</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Οι προεπισκοπήσεις υποστηρίζονται για συνδέσμους Imgur, Instagram, Pinterest, Reddit, και YouTube.</string> -->
   <string name="preferences__choose_identity">Επέλεξε ταυτότητα</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Διάλεξε την επαφή σου από τη λίστα επαφών.</string>
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικού</string>

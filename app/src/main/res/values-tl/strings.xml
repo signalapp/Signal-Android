@@ -885,7 +885,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Patahimikin ang mga notipikasyon</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Walang web browser na naka-install!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Walang web browser na naka-install!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Isinasagawa ang pag-i-import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Ini-import ang mga text message</string>
@@ -1321,8 +1321,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gamitin ang Signal para sa lahat ng paparating na multimedia na mensahe</string>
   <string name="preferences__pref_enter_sends_title">Nagpapadala ang Enter key</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Magpapadala ng mga text message kapag pinindot ang Enter key</string>
-  <string name="preferences__send_link_previews">Ipadala ang mga preview ng link</string>
-  <string name="preferences__previews_are_supported_for">Ang mga preview ay suportado para sa mga link ng Imgur, Instagram, Pinterest, Reddit, at YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Ipadala ang mga preview ng link</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Ang mga preview ay suportado para sa mga link ng Imgur, Instagram, Pinterest, Reddit, at YouTube</string> -->
   <string name="preferences__choose_identity">Pumili ng pagkakakilanlan</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Piliin ang entry ng iyong kontak mula sa listahan ng mga kontak.</string>
   <string name="preferences__change_passphrase">Baguhin ang passphrase</string>

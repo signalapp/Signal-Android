@@ -1165,7 +1165,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Stišaj obavještenja</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Nije instaliran internet-preglednik!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nije instaliran internet-preglednik!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Unošenje u toku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Unosim tekstualne poruke</string>
@@ -1648,8 +1648,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Koristiti Signal za sve dolazne multimedijalne poruke</string>
   <string name="preferences__pref_enter_sends_title">Tipka Enter šalje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritiskom na tipku Enter poslat će se tekstualna poruka</string>
-  <string name="preferences__send_link_previews">Pošalji prikaze linka</string>
-  <string name="preferences__previews_are_supported_for">Prikazi su podržani za Imgur, Instagram, Pinterest, Reddit i YouTube linkove</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Pošalji prikaze linka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Prikazi su podržani za Imgur, Instagram, Pinterest, Reddit i YouTube linkove</string> -->
   <string name="preferences__choose_identity">Odaberite identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Odaberite kontakt s popisa</string>
   <string name="preferences__change_passphrase">Promijeni lozinku</string>

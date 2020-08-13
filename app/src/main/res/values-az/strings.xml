@@ -660,7 +660,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Xəbərdarlıqları səssiz et</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Veb brauzer quraşdırılmayıb!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Veb brauzer quraşdırılmayıb!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Daxil etmə baş verməkdədir</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mesaj mətnlərinin idxalı</string>
@@ -1032,7 +1032,7 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Daxil olan bütün multimedia mesajları üçün Signal-ı istifadə et</string>
   <string name="preferences__pref_enter_sends_title">Daxil et düyməsi göndərir</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Daxil et düymasını kliklədikdə mesaj göndəriləcək</string>
-  <string name="preferences__send_link_previews">Link ilkin baxışlarını göndər</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Link ilkin baxışlarını göndər</string> -->
   <string name="preferences__choose_identity">Şəxsiliyi seç</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Əlaqəni əlaqələr siyahından seç.</string>
   <string name="preferences__change_passphrase">Şifrə ifadəsini dəyiş</string>

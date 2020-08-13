@@ -485,15 +485,15 @@
     <item quantity="one">%d członek nie ma wsparcia dla Nowych grup, więc zostanie utworzona Stara grupa.</item>
     <item quantity="few">%d członków nie ma wsparcia dla Nowych grup. więc zostanie utworzona Stara grupa.</item>
     <item quantity="many">%d członków nie ma wsparcia dla Nowych grup, więc zostanie utworzona Stara grupa.</item>
-    <item quantity="other">%d członków nie ma wsparcia dla Nowych grup, więc. zostanie utworzona Stara grupa.</item>
+    <item quantity="other">%d członków nie ma wsparcia dla Nowych grup, więc zostanie utworzona Stara grupa.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Zostanie utworzona Stara grupa, gdyż “%1$s” używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal, lub usunąć go przed utworzeniem grupy.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Zostanie utworzona Stara grupa, gdyż %1$d używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal, lub usunąć go przed utworzeniem grupy.</item>
-    <item quantity="few">Zostanie utworzona Stara grupa, gdyż %1$d używają starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
-    <item quantity="many">Zostanie utworzona Stara grupa, gdyż %1$d używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
-    <item quantity="other">Zostanie utworzona Stara grupa, gdyż %1$d używają starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
+    <item quantity="one">Zostanie utworzona Stara grupa, gdyż %1$d członek używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal, lub usunąć go przed utworzeniem grupy.</item>
+    <item quantity="few">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
+    <item quantity="many">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
+    <item quantity="other">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Znikające wiadomości</string>
@@ -1040,7 +1040,7 @@
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Wyświetl zdjęcie</string>
   <string name="RevealableMessageView_view_video">Obejrzyj video</string>
-  <string name="RevealableMessageView_viewed">Wyświetlono</string>
+  <string name="RevealableMessageView_viewed">Obejrzano</string>
   <string name="RevealableMessageView_media">Multimedia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
@@ -1199,7 +1199,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Wycisz powiadomienia</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Brak zainstalowanej przeglądarki internetowej!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Brak zainstalowanej przeglądarki internetowej!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Trwa importowanie</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importowanie wiadomości tekstowych</string>
@@ -1692,8 +1692,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Używaj Signal dla wszystkich wiadomości multimedialnych</string>
   <string name="preferences__pref_enter_sends_title">Enter wysyła</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Wciśnięcie przycisku Enter spowoduje wysłanie wiadomości</string>
-  <string name="preferences__send_link_previews">Podgląd linków</string>
-  <string name="preferences__previews_are_supported_for">Podglądy linków są wspierane dla Imgur, Instagram, Pinterest, Reddit i YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Podgląd linków</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Podglądy linków są wspierane dla Imgur, Instagram, Pinterest, Reddit i YouTube.</string> -->
   <string name="preferences__choose_identity">Wybierz tożsamość</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wybierz swój kontakt z listy kontaktów.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>
@@ -2202,8 +2202,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare vs. Nowe grupy</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Czym są Stare grupy?</string>
   <string name="GroupsLearnMore_paragraph_1">Stare grupy nie obsługują takich funkcji nowych grup jak administratorzy i dokładniejsze informacje o zmianach w grupach.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak skorzystać z nowych grup?</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak skorzystać z Nowych grup?</string>
   <string name="GroupsLearnMore_paragraph_2">Starych grup nie można przekonwertować na Nowe, ale możesz stworzyć Nową grupę z tymi samymi członkami.</string>
-  <string name="GroupsLearnMore_paragraph_3">Aby utworzyć nową grupę, wszyscy członkowie muszą zaktualizować Signal do najnowszej wersji.</string>
+  <string name="GroupsLearnMore_paragraph_3">Aby utworzyć Nową grupę, wszyscy członkowie muszą zaktualizować Signal do najnowszej wersji.</string>
   <!--EOF-->
 </resources>

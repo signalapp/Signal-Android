@@ -865,7 +865,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್ ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್ ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ಇಂಪೋರ್ಟ್ ಪ್ರಗತಿಯಲ್ಲಿದೆ</string>
   <string name="ApplicationMigrationService_importing_text_messages">ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ಇಂಪೋರ್ಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
@@ -1284,8 +1284,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಮಲ್ಟಿಮೀಡಿಯಾ ಸಂದೇಶಗಳಿಗಾಗಿ Signal ಬಳಸಿ</string>
   <string name="preferences__pref_enter_sends_title">ಎಂಟರ್ ಕೀ ಕಳುಹಿಸುತ್ತದೆ </string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ಎಂಟರ್ ಕೀಯನ್ನು ಒತ್ತಿದರೆ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ</string>
-  <string name="preferences__send_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಕಳುಹಿಸಿ</string>
-  <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit, ಮತ್ತು YouTube ಲಿಂಕ್‌ಗಳಿಗಾಗಿ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಬೆಂಬಲಿಸಲಾಗಿದೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಕಳುಹಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit, ಮತ್ತು YouTube ಲಿಂಕ್‌ಗಳಿಗಾಗಿ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಬೆಂಬಲಿಸಲಾಗಿದೆ</string> -->
   <string name="preferences__choose_identity">ಗುರುತನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಿಂದ ನಿಮ್ಮ ಸಂಪರ್ಕ ನಮೂದನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ.</string>
   <string name="preferences__change_passphrase">ಪಾಸ್‌‌ಫ್ರೇಸ್ ಬದಲಾಯಿಸಿ</string>

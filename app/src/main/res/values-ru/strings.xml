@@ -537,7 +537,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Это Старая группа. Чтобы получить доступ к таким функциям, как администраторы групп, создайте Новую группу.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведомлять меня об упоминаниях</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в разговорах с отключённым звуком?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключённым звуком?</string>
   <string name="GroupMentionSettingDialog_default_notify_me">По умолчанию (Уведомлять меня)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">По умолчанию (Не уведомлять меня)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Всегда уведомлять меня</string>
@@ -546,7 +546,7 @@
   <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string>
   <string name="ManageRecipientActivity_disappearing_messages">Исчезающие сообщения</string>
-  <string name="ManageRecipientActivity_chat_color">Цвет разговора</string>
+  <string name="ManageRecipientActivity_chat_color">Цвет чата</string>
   <string name="ManageRecipientActivity_block">Заблокировать</string>
   <string name="ManageRecipientActivity_unblock">Разблокировать</string>
   <string name="ManageRecipientActivity_view_safety_number">Просмотреть код безопасности</string>
@@ -1200,7 +1200,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Откл. звук уведомлений</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Веб-браузер не установлен!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Веб-браузер не установлен!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Идет импорт</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импорт текстовых сообщений</string>
@@ -1693,8 +1693,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal для всех входящих MMS-сообщений</string>
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
-  <string name="preferences__send_link_previews">Отправлять предпросмотры ссылок</string>
-  <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок на Imgur, Instagram, Pinterest, Reddit и YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Отправлять предпросмотры ссылок</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок на Imgur, Instagram, Pinterest, Reddit и YouTube.</string> -->
   <string name="preferences__choose_identity">Выберите личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>
@@ -1813,7 +1813,7 @@
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
   <string name="preferences_notifications__mentions">Упоминания</string>
   <string name="preferences_notifications__notify_me">Уведомлять меня</string>
-  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в разговорах с отключённым звуком</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключённым звуком</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2205,6 +2205,6 @@
   <string name="GroupsLearnMore_paragraph_1">Старые группы — это группы, которые несовместимы с функциями Новых групп, например администраторами и более подробными описаниями изменений в группе.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Как я могу использовать Новые группы?</string>
   <string name="GroupsLearnMore_paragraph_2">Старые группы не могут быть преобразованы в Новые, но вы можете создать Новую группу с теми же участниками.</string>
-  <string name="GroupsLearnMore_paragraph_3">Чтобы создать Новую группу, все участники должны обновиться до новейшей версии Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Для создания Новой группы все участники должны обновиться до новейшей версии Signal.</string>
   <!--EOF-->
 </resources>

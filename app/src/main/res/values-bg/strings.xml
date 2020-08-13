@@ -696,7 +696,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Тих режим за известия</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Няма инсталиран браузър!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Няма инсталиран браузър!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Извършва се внасяне</string>
   <string name="ApplicationMigrationService_importing_text_messages">Внасяне на текстови съобщения</string>
@@ -1071,8 +1071,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Използване на Signal за всички входящи мултимедийни съобщения</string>
   <string name="preferences__pref_enter_sends_title">Клавишът Enter се използва за изпращане</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Натискане на клавиша Enter ще изпрати текстово съобщене</string>
-  <string name="preferences__send_link_previews">Изпращане на визуализации на връзката</string>
-  <string name="preferences__previews_are_supported_for">Визуализации са поддържани за линкове към Imgur, Instagram, Pinterest, Reddit, и YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Изпращане на визуализации на връзката</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Визуализации са поддържани за линкове към Imgur, Instagram, Pinterest, Reddit, и YouTube.</string> -->
   <string name="preferences__choose_identity">Избери самоличност</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт от списъка с контакти.</string>
   <string name="preferences__change_passphrase">Смени паролата</string>

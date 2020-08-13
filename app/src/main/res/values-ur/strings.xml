@@ -835,7 +835,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">خاموش اطلاع</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">کوئی ویب براؤزر نصب نہیں ہوا!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">کوئی ویب براؤزر نصب نہیں ہوا!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">درآمد بہتری میں ہے</string>
   <string name="ApplicationMigrationService_importing_text_messages">ٹیکسٹ پیغامات درآمد ہو رہے ہیں</string>
@@ -1249,8 +1249,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">تمام آنے والے ملٹی میڈیا پیغامات کیلئے  Signal استعمال کریں</string>
   <string name="preferences__pref_enter_sends_title">بھیجے گئے key داخل کریں</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">انٹر key دباتے رہیں ٹیکسٹ پیغامات بھیج دیئے جائیں گے</string>
-  <string name="preferences__send_link_previews">پیش نظر لنک بھیجیں</string>
-  <string name="preferences__previews_are_supported_for">lmgur, انسٹاگرام، پینیٹریسٹ۔ ریڈٹ، اور یوٹیوب لنکس پس منظر سپورٹ کر رہے ہیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">پیش نظر لنک بھیجیں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">lmgur, انسٹاگرام، پینیٹریسٹ۔ ریڈٹ، اور یوٹیوب لنکس پس منظر سپورٹ کر رہے ہیں</string> -->
   <string name="preferences__choose_identity">شناخت کا انتخاب کریں</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">رابطوں کی لسٹ سے اپنے رابطہ کی انٹری منتخب کریں۔</string>
   <string name="preferences__change_passphrase">پاسفریز تبدیل کریں</string>

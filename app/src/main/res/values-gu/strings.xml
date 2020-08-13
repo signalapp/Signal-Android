@@ -830,7 +830,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">સૂચનાઓ મ્યૂટ કરો</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">કોઈ વેબ બ્રાઉઝર ઇન્સ્ટોલ કરેલું નથી!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">કોઈ વેબ બ્રાઉઝર ઇન્સ્ટોલ કરેલું નથી!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ઇમ્પોર્ટ ચાલુ છે</string>
   <string name="ApplicationMigrationService_importing_text_messages">ટેક્સ્ટ મેસેજ ઇમ્પોર્ટ કરી રહ્યું છે</string>
@@ -1241,8 +1241,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">બધા આવતા મલ્ટિમીડિયા મેસેજ માટે Signal નો ઉપયોગ કરો</string>
   <string name="preferences__pref_enter_sends_title">કી મોકલો દાખલ કરો</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">એન્ટર કી દબાવવાથી ટેક્સ્ટ મેસેજ મોકલાશે</string>
-  <string name="preferences__send_link_previews">લિંક પ્રિવ્યુ મોકલો</string>
-  <string name="preferences__previews_are_supported_for">પ્રિવ્યુ નો Imgur, Instagram, Pinterest, Reddit અને YouTube લિંક્સ માટે સપોર્ટેડ છે</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">લિંક પ્રિવ્યુ મોકલો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">પ્રિવ્યુ નો Imgur, Instagram, Pinterest, Reddit અને YouTube લિંક્સ માટે સપોર્ટેડ છે</string> -->
   <string name="preferences__choose_identity">ઓળખ પસંદ કરો</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">સંપર્કોની સૂચિમાંથી તમારી સંપર્ક એન્ટ્રી પસંદ કરો.</string>
   <string name="preferences__change_passphrase">પાસફ્રેઝ બદલો</string>

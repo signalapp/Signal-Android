@@ -1198,7 +1198,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Izklop obvestil</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Spletni brskalnik ni nameščen!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Spletni brskalnik ni nameščen!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Uvoz v teku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Uvažam kratka sporočila</string>
@@ -1691,8 +1691,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj Signal za vsa dohodna večpredstavnostna sporočila</string>
   <string name="preferences__pref_enter_sends_title">Tipka \'Naprej\' pošlje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisk na tipko \'Naprej\' pošlje sporočilo</string>
-  <string name="preferences__send_link_previews">Pošiljanje povezav s predogledom</string>
-  <string name="preferences__previews_are_supported_for">Predogled je na voljo za povezave na Imgur, Instagram, Pinterest, Reddit in YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Pošiljanje povezav s predogledom</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Predogled je na voljo za povezave na Imgur, Instagram, Pinterest, Reddit in YouTube</string> -->
   <string name="preferences__choose_identity">Izberi identiteto</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>

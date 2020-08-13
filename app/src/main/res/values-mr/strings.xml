@@ -903,7 +903,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">म्यूट सूचना</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">कुठलेही वेब ब्राऊझर स्थापन केलेले नाही!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">कुठलेही वेब ब्राऊझर स्थापन केलेले नाही!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">आयात प्रगतीमध्ये</string>
   <string name="ApplicationMigrationService_importing_text_messages">मजकूर संदेश आयात करत आहे</string>
@@ -1318,8 +1318,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सर्व येणाऱ्या मल्टिमिडिया संदेशांसाठी Signal वापरा</string>
   <string name="preferences__pref_enter_sends_title">प्रविष्ट करा की पाठवते</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">प्रविष्ट करा की दाबल्याने मजकूर संदेश पाठविले जातील</string>
-  <string name="preferences__send_link_previews">दुवा पुनरावलोकन पाठवा</string>
-  <string name="preferences__previews_are_supported_for"> Imgur, Instagram, Pinterest, Reddit, आणि YouTube दुव्यांसाठी पुनरावलोकन समर्थित आहेत.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">दुवा पुनरावलोकन पाठवा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for"> Imgur, Instagram, Pinterest, Reddit, आणि YouTube दुव्यांसाठी पुनरावलोकन समर्थित आहेत.</string> -->
   <string name="preferences__choose_identity">ओळख निवडा</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">संपर्क यादी मधून आपली संपर्क प्रविष्टी निवडा.</string>
   <string name="preferences__change_passphrase">पासफ्रेझ बदला</string>

@@ -1027,7 +1027,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Bildirimleri sessize al</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">İnternet tarayıcısı yüklü değil!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">İnternet tarayıcısı yüklü değil!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">İçe aktarma sürüyor</string>
   <string name="ApplicationMigrationService_importing_text_messages">İletiler içe aktarılıyor</string>
@@ -1494,8 +1494,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm içerik iletileri için Signal kullanın</string>
   <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
-  <string name="preferences__send_link_previews">Bağlantı ön izlemelerini gönder</string>
-  <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Pinterest, Reddit, ve YouTube bağlantıları için desteklenmektedir</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Bağlantı ön izlemelerini gönder</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Pinterest, Reddit, ve YouTube bağlantıları için desteklenmektedir</string> -->
   <string name="preferences__choose_identity">Kimlik seçin</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>

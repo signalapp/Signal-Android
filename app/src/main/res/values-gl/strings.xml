@@ -44,7 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueo da pantalla %1$s, bloqueo do rexistro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueo de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs requírense para o bloqueo do rexistro. Para desactivar PINs, primeiro desactiva o bloqueo do rexistro.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN establecido.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -82,6 +84,9 @@
   <string name="BlockUnblockDialog_block_s">Bloquear a %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Non recibirás máis mensaxes ou actualizacións deste grupo, e os membros non poderán engadirte novamente ao grupo.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Os membros do grupo non poderán engadirte novamente ao grupo.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Os membros do grupo poderán engadirte de volta.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Poderás enviar mensaxes e facer chamadas e o teu nome e foto compartirase con eles.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">As persoas bloqueadas non poderán chamarte ou enviarche mensaxes.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
@@ -118,6 +123,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eliminar</string>
   <string name="ClearProfileActivity_remove_profile_photo">Eliminar a foto do perfil?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Eliminar foto do grupo?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Non se atopou ningún navegador web.</string>
   <string name="CommunicationActions_no_email_app_found">Non se atopou app para email.</string>
@@ -154,6 +160,9 @@
   <string name="ContactShareEditActivity_type_missing">Outra</string>
   <string name="ContactShareEditActivity_invalid_contact">O contacto seleccionado non foi válido</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_sent_tap_for_details">Non enviado, toca para detalles</string>
+  <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente, toca para detalles</string>
+  <string name="ConversationItem_error_network_not_delivered">Fallou o envío</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Recibida a mensaxe de intercambio de chaves; toca para continuar.</string>
   <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Erro ao enviar, toca para volver a un modo non seguro</string>
@@ -168,6 +177,7 @@
   <string name="ConversationItem_download_more">Descargar máis</string>
   <string name="ConversationItem_pending">Pendente</string>
   <string name="ConversationItem_this_message_was_deleted">Eliminouse a mensaxe.</string>
+  <string name="ConversationItem_you_deleted_this_message">Eliminaches esta mensaxe.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Restablecer sesión segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode resultar de axuda en caso de haber problemas de cifraxe nesta conversa. As mensaxes manteranse.</string>
@@ -185,6 +195,9 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo semella non admitir as accións de marcado.</string>
   <string name="ConversationActivity_leave_group">Abandonar o grupo?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tes a certeza de querer abandonar este grupo?</string>
+  <string name="ConversationActivity_choose_new_admin">Escolle novo admin</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de saír, debes escoller polo menos un novo administrador para o grupo.</string>
+  <string name="ConversationActivity_choose_admin">Escolle admin</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS insegura</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS insegura</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -198,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede o límite para o tipo de mensaxe que estás a enviar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cámara non dispoñible</string>
   <string name="ConversationActivity_unable_to_record_audio">Non é posible gravar audio!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Non lle podes enviar mensaxes ó grupo porque xa non formas parte del.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Non hai ningunha app dispoñible para tratar esta ligazón no teu dispositivo.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensaxes de audio, Signal necesita acceder ao teu micrófono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal require permiso para poder enviar mensaxes de audio, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\".</string>
@@ -225,6 +239,7 @@
   <string name="ConversationActivity_delete_and_leave">Eliminar e saír</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para chamar a %1$s, Signal necesita acceder ao teu micrófono.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar a %1$s, Signal necesita acceder ao teu micrófono e cámara.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Máis opcións nos \"Axustes do Grupo\"</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaxe sen ler</item>
@@ -361,6 +376,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Adhesivos</string>
   <!--AddToGroupActivity-->
   <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">Escolle novo admin</string>
   <string name="ChooseNewAdminActivity_done">Feito</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartir o teu nome e foto de perfil con este grupo?</string>
@@ -388,6 +404,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Erro ao crear o grupo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Volver tentar máis tarde.</string>
   <string name="AddGroupDetailsFragment__remove">Eliminar</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Desaparición das mensaxes</string>
   <string name="ManageGroupActivity_add_members">Engadir membros</string>
@@ -399,7 +416,9 @@
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
   <string name="ManageGroupActivity_none">Ningún</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Erro ao actualizar o grupo</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persoa é un dos teus contactos</string>
   <string name="ManageRecipientActivity_disappearing_messages">Desaparición das mensaxes</string>
   <string name="ManageRecipientActivity_block">Bloquear</string>
   <string name="ManageRecipientActivity_unblock">Desbloquear</string>
@@ -419,7 +438,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activado</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desactivado</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
-  <!--GV2 Invite cancellation confirmation-->
+  <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -572,10 +591,6 @@
     <item quantity="one">%1$d membro</item>
     <item quantity="other">%1$d membros</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d máis</item>
-    <item quantity="other">%d máis</item>
-  </plurals> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases de acceso non coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase de acceso antiga incorrecta!</string>
@@ -795,6 +810,7 @@
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
   <string name="ThreadRecord_sticker">Adhesivo</string>
   <string name="ThreadRecord_this_message_was_deleted">Eliminouse a mensaxe.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Eliminaches esta mensaxe.</string>
   <string name="ThreadRecord_s_is_on_signal">%s está en Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Desaparición das mensaxes desactivada</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desaparición das mensaxes establecida en%s</string>
@@ -854,7 +870,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificacións</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Ningún navegador web instalado!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ningún navegador web instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importación en marcha</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensaxes de texto</string>
@@ -1264,8 +1280,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar Signal para todas as mensaxes multimedia recibidas</string>
   <string name="preferences__pref_enter_sends_title">Tecla Intro para enviar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ao tocar na tecla Intro enviaranse as mensaxes</string>
-  <string name="preferences__send_link_previews">Enviar previsualizacións das ligazóns.</string>
-  <string name="preferences__previews_are_supported_for">Admítense previsualizacións das ligazóns para Imgur, Instagram, Pinterest, Reddit e YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar previsualizacións das ligazóns.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Admítense previsualizacións das ligazóns para Imgur, Instagram, Pinterest, Reddit e YouTube.</string> -->
   <string name="preferences__choose_identity">Elixir identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>

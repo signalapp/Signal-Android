@@ -1206,7 +1206,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Není nainstalován webový prohlížeč!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Není nainstalován webový prohlížeč!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
@@ -1699,8 +1699,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použít Signal pro všechny příchozí multimediální zprávy</string>
   <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka Enter na klávesnici odešle zprávu</string>
-  <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string>
-  <string name="preferences__previews_are_supported_for">Náhledy jsou podporovány pro odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Náhledy jsou podporovány pro odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string> -->
   <string name="preferences__choose_identity">Zvolit identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
   <string name="preferences__change_passphrase">Změnit heslo</string>

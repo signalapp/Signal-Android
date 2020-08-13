@@ -935,7 +935,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">వెబ్ బ్రౌజర్ ఇన్స్టాల్ చేయబడలేదు</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">వెబ్ బ్రౌజర్ ఇన్స్టాల్ చేయబడలేదు</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">దిగుమతి పురోగతిలో ఉంది</string>
   <string name="ApplicationMigrationService_importing_text_messages">సాధా సందేశాలు దిగుమతి అవుతున్నాయి </string>
@@ -1350,8 +1350,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">వచ్చే మల్టీమీడియా సందేశాల కోసం Signal ఉపయోగించండి</string>
   <string name="preferences__pref_enter_sends_title">ఎంటర్ కీ పంపుతుంది </string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages"> ప్రారంబించే కీ ని నొక్కడం ద్వారా సందేశాలను పంపుతోంది</string>
-  <string name="preferences__send_link_previews">లింక్ పూర్వప్రదర్శనను పంపండి</string>
-  <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit మరియు YouTube లింక్‌లకు పూర్వప్రదర్శనలు మద్దతు ఇస్తున్నాయి</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">లింక్ పూర్వప్రదర్శనను పంపండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit మరియు YouTube లింక్‌లకు పూర్వప్రదర్శనలు మద్దతు ఇస్తున్నాయి</string> -->
   <string name="preferences__choose_identity">గుర్తింపును ఎంచుకోండి</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">కాంటాక్ట్స్ జాబితా నుండి మీ పరిచయం ఎంట్రీ ఎంచుకోండి.</string>
   <string name="preferences__change_passphrase">సంకేతపదమును మార్చు</string>

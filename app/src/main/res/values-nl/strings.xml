@@ -459,6 +459,7 @@
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
   <string name="ManageGroupActivity_mute_notifications">Meldingen dempen</string>
   <string name="ManageGroupActivity_custom_notifications">Aangepaste meldingen</string>
+  <string name="ManageGroupActivity_mentions">Vermeldingen</string>
   <string name="ManageGroupActivity_until_s">Tot %1$s</string>
   <string name="ManageGroupActivity_off">Uit</string>
   <string name="ManageGroupActivity_on">Aan</string>
@@ -1099,7 +1100,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Meldingen dempen</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Geen webbrowser geïnstalleerd!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Geen webbrowser geïnstalleerd!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Bezig met importeren</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tekstberichten aan het importeren</string>
@@ -1572,8 +1573,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal gebruiken voor alle inkomende multimediaberichten</string>
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor het verzenden van tekstberichten</string>
-  <string name="preferences__send_link_previews">Voorbeeldweergaven verzenden</string>
-  <string name="preferences__previews_are_supported_for">Verzend ook een voorbeeldafbeelding bij een bericht waarin een koppeling naar Imgur, Instagram, Pinterest, Reddit of YouTube in staat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Voorbeeldweergaven verzenden</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Verzend ook een voorbeeldafbeelding bij een bericht waarin een koppeling naar Imgur, Instagram, Pinterest, Reddit of YouTube in staat.</string> -->
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -1690,6 +1691,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Sta toe dat je berichten met een verzegelde afzender ontvangt welke afkomstig zijn van niet-contactpersonen voor wie je ook je profiel niet zichtbaar hebt gemaakt. Dit verhoogt de kans dat je ongewenste berichten ontvangt.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Meer leren hierover</string>
+  <string name="preferences_notifications__mentions">Vermeldingen</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

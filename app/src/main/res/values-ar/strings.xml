@@ -377,6 +377,7 @@
   <string name="ConversationTitleView_verified"> تم التحقق </string>
   <string name="ConversationTitleView_you">أنت</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعض جهات الاتصال لا يمكنها التواجد في المجموعات من الطراز القديم.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">الملف الشخصي</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الملف الشخصي</string>
@@ -441,6 +442,7 @@
   <string name="AddToGroupActivity_s_added_to_s">%1$s أضاف إلى %2$s</string>
   <string name="AddToGroupActivity_add_to_group">أضف إلى مجموعة</string>
   <string name="AddToGroupActivity_add_to_groups">أضف إلى مجموعات</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">اختر مشرفا جديدا</string>
   <string name="ChooseNewAdminActivity_done">تم</string>
@@ -455,7 +457,17 @@
   <string name="GroupManagement_access_level_all_members">جميع الأعضاء</string>
   <string name="GroupManagement_access_level_only_admins">للمشرفين فقط</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="zero">تم إرسال %d دعوة</item>
+    <item quantity="one">تم إرسال الدعوة</item>
+    <item quantity="two">تم إرسال%dدعوة</item>
+    <item quantity="few">تم إرسال%dدعوات</item>
+    <item quantity="many">تم إرسال %dدعوات</item>
+    <item quantity="other">تم إرسال %dدعوات</item>
+  </plurals>
+  <string name="GroupManagement_invite_single_user">لا يمكن إضافة \"%1$s\" تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
   <string name="GroupManagement_learn_more">لمعرفة المزيد</string>
+  <string name="GroupManagement_invite_multiple_users">لا يمكن إضافة هؤلاء المستخدمين تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">دعوات معلّقة</string>
   <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
@@ -463,8 +475,35 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">دعوات من أعضاء المجموعة الآخرين</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">لا يوجد دعوات معلقة من أعضاء المجموعة الآخرين.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">لا تظهر تفاصيل الأشخاص المدعوين من قبل أعضاء المجموعة الآخرين. إذا اختار المدعوون الانضمام ،حينها سيتم مشاركة معلوماتهم مع المجموعة. لن يروا أي رسائل في المجموعة حتى ينضموا.</string>
+  <string name="PendingMembersActivity_revoke_invite">سحب الدعوة</string>
+  <string name="PendingMembersActivity_revoke_invites">سحب الدعوات</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="zero">سحب%1$dدعوة</item>
+    <item quantity="one">سحب الدعوة</item>
+    <item quantity="two">سحب%1$dدعوة</item>
+    <item quantity="few">سحب%1$dدعوة</item>
+    <item quantity="many">سحب %1$dدعوة</item>
+    <item quantity="other">سحب %1$dدعوة</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="zero">حدث خطأ أثناء سحب الدعوات</item>
+    <item quantity="one">حدث خطأ أثناء سحب الدعوة</item>
+    <item quantity="two">حدث خطأ أثناء سحب الدعوات</item>
+    <item quantity="few">حدث خطأ أثناء سحب الدعوات</item>
+    <item quantity="many">حدث خطأ أثناء سحب الدعوات</item>
+    <item quantity="other">حدث خطأ أثناء سحب الدعوات</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">تم</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="zero">إضافة %3$dأعضاء إلى \"%2$s\"؟</item>
+    <item quantity="one">إضافة \"%1$s\" إلى \"%2$s\"؟</item>
+    <item quantity="two">إضافة %3$dأعضاء إلى \"%2$s\"؟</item>
+    <item quantity="few">إضافة %3$dأعضاء إلى \"%2$s\"؟</item>
+    <item quantity="many">إضافة %3$d أعضاء إلى \"%2$s\"؟</item>
+    <item quantity="other">إضافة  %3$d أعضاء إلى \"%2$s\"؟</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">سمّ هذه المجموعة</string>
   <string name="AddGroupDetailsFragment__create_group">إنشاء مجموعة</string>
@@ -479,7 +518,24 @@
   <string name="AddGroupDetailsFragment__remove">إزالة</string>
   <string name="AddGroupDetailsFragment__sms_contact">جهة اتصال عبر الرسائل القصيرة (SMS)</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">إزالة %1$s من هذه المجموعة؟</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="zero">%dأعضاء لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
+    <item quantity="one">%dعضو لا يدعم المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
+    <item quantity="two">%dأعضاء لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
+    <item quantity="few">%dأعضاء لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
+    <item quantity="many">%dأعضاء لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
+    <item quantity="other">%dأعضاء لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$s\" يستخدم نسخة قديمة من Signal، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقومون بتحديث Signal، أو قم بإزالتهم قبل إنشاء المجموعة.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="zero">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" أعضاء يستخدمون نسخة قديمة من Signal، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقومون بتحديث Signal، أو قم بإزالتهم قبل إنشاء المجموعة.</item>
+    <item quantity="one">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" عضو يستخدم نسخة قديمة من Signal، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقومون بتحديث Signal، أو قم بإزالتهم قبل إنشاء المجموعة.</item>
+    <item quantity="two">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" أعضاء يستخدمون نسخة قديمة من Signal، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقومون بتحديث Signal، أو قم بإزالتهم قبل إنشاء المجموعة.</item>
+    <item quantity="few">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" أعضاء يستخدمون نسخة قديمة من Signal، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقومون بتحديث Signal، أو قم بإزالتهم قبل إنشاء المجموعة.</item>
+    <item quantity="many">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" أعضاء يستخدمون نسخة قديمة من Signal، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقومون بتحديث Signal، أو قم بإزالتهم قبل إنشاء المجموعة.</item>
+    <item quantity="other">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" أعضاء يستخدمون نسخة قديمة من Signal، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقومون بتحديث Signal، أو قم بإزالتهم قبل إنشاء المجموعة.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">الرسائل المُختفية</string>
   <string name="ManageGroupActivity_pending_group_invites">دعوات معلّقة</string>
@@ -492,6 +548,7 @@
   <string name="ManageGroupActivity_leave_group">ترك المجموعة</string>
   <string name="ManageGroupActivity_mute_notifications">كتم الإشعارات</string>
   <string name="ManageGroupActivity_custom_notifications">إشعارات مخصّصة</string>
+  <string name="ManageGroupActivity_mentions">الرسائل التي ذكر فيها اسمك</string>
   <string name="ManageGroupActivity_until_s">حتى %1$s</string>
   <string name="ManageGroupActivity_off">غير مفعّل</string>
   <string name="ManageGroupActivity_on">مفعّل</string>
@@ -524,6 +581,12 @@
   <string name="ManageGroupActivity_legacy_group">مجموعة من الطراز القديم</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">هذه مجموعة من الطراز القديم. للوصول إلى ميزات مثل خاصية المشرفين، قم بإنشاء مجموعة من الطراز الحديث</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">تلقي الإشعارات عندما يذكر اسمك في المحادثات المصمتة؟</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">افتراضي(نبّهني)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">افتراضي(لا تنبّهني)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">نبّهني دوماً</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">إضافة إلى جهات اتصال النظام</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">هذا الشخص محفوظ في جهات اتصالك</string>
@@ -574,6 +637,15 @@
   <string name="CustomNotificationsDialogFragment__disabled">معطل</string>
   <string name="CustomNotificationsDialogFragment__default">افتراضي</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">هل تريد سحب الدعوة التي أرسلتها إلى %1$s؟</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="zero">هل تريد سحب %2$d دعوات تم إرسالها من قبل %1$s؟</item>
+    <item quantity="one">هل تريد سحب الدعوة التي تم إرسالها من قبل %1$s؟</item>
+    <item quantity="two">هل تريد سحب %2$d دعوات تم إرسالها من قبل %1$s؟</item>
+    <item quantity="few">هل تريد سحب %2$d دعوات تم إرسالها من قبل %1$s؟</item>
+    <item quantity="many">هل تريد سحب %2$d دعوات تم إرسالها من قبل %1$s؟</item>
+    <item quantity="other">هل تريد سحب %2$d دعوات تم إرسالها من قبل %1$s؟</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
@@ -791,6 +863,14 @@
     <item quantity="other">دعا %1$s%2$dأشخاص للمجموعة.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">لقد دُعيت إلى المجموعة.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="zero">تمت دعوة %1$d أشخاص إلى المجموعة.</item>
+    <item quantity="one">تمت دعوة شخص واحد إلى المجموعة.</item>
+    <item quantity="two">تمت دعوة %1$d أشخاص إلى المجموعة.</item>
+    <item quantity="few">تمت دعوة %1$d أشخاص إلى المجموعة.</item>
+    <item quantity="many">تمت دعوة %1$d أشخاص إلى المجموعة.</item>
+    <item quantity="other">تمت دعوة %1$d أشخاص إلى المجموعة.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="zero">لقد أبطلت %1$d دعوات للمجموعة.</item>
@@ -800,8 +880,26 @@
     <item quantity="many">لقد أبطلت %1$dدعوات للمجموعة.</item>
     <item quantity="other">لقد أبطلت %1$dدعوات للمجموعة.</item>
   </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="zero">سحب %1$s%2$dدعوات إلى المجموعة.</item>
+    <item quantity="one">سحب %1$sدعوة إلى المجموعة.</item>
+    <item quantity="two">سحب %1$s%2$dدعوات إلى المجموعة.</item>
+    <item quantity="few">سحب%1$s%2$dدعوات إلى المجموعة.</item>
+    <item quantity="many">سحب %1$s%2$dدعوات إلى المجموعة.</item>
+    <item quantity="other">سحب %1$s%2$dدعوات إلى المجموعة.</item>
+  </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">رفض شخص ما دعوة إلى المجموعة.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">لقد رفضت الدعوة إلى المجموعة.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">سحب %1$sدعوتك للمجموعة.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">سحب مشرف دعوتك للمجموعة.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="zero">تم سحب %1$d دعوات للمجموعة.</item>
+    <item quantity="one">تمت سحب الدعوة للمجموعة.</item>
+    <item quantity="two">تم سحب %1$d دعوات للمجموعة.</item>
+    <item quantity="few">تم سحب %1$dدعوات للمجموعة.</item>
+    <item quantity="many">تم سحب %1$d دعوات للمجموعة.</item>
+    <item quantity="other">تم سحب %1$d دعوات للمجموعة.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">لقد قبلت الدعوة إلى المجموعة.</string>
   <string name="MessageRecord_s_accepted_invite">قبل %1$s  دعوة إلى المجموعة.</string>
@@ -857,6 +955,14 @@
     <item quantity="many">%1$dأعضاء(+%2$dمدعوون)</item>
     <item quantity="other">%1$dأعضاء(+%2$dمدعوون)</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="zero">%dمجموعات إضافية</item>
+    <item quantity="one">%dمجموعة إضافية</item>
+    <item quantity="two">%dمجموعات إضافية</item>
+    <item quantity="few">%dمجموعات إضافية</item>
+    <item quantity="many">%dمجموعات إضافية</item>
+    <item quantity="other">%dمجموعات إضافية</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
@@ -901,11 +1007,20 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">تجاوز إدخال الرمز الشخصي؟</string>
   <string name="PinRestoreEntryFragment_need_help">بحاجة الى مساعدة؟</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">رمزك التعريفي الشخصي هو رمز مكون من %1$dأو أكثر من الأرقام أو الأحرف والأرقام.\n\nإذا نسيت رقمك التعريفي الشخصي، تستطيع إنشاء رمزاً جديداً.  والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">إذا كنت لا تتذكر رقمك التعريفي الشخصي، يمكنك إنشاء واحد جديد. يمكنك التسجيل واستخدام حسابك لكن سوف تفقد بعض الإعدادات المحفوظة، مثل معلومات حسابك.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">إنشاء رمز شخصي جديد</string>
   <string name="PinRestoreEntryFragment_contact_support">اتصل بالدعم</string>
   <string name="PinRestoreEntryFragment_cancel">إلغاء</string>
   <string name="PinRestoreEntryFragment_skip">تخطّي</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="zero">لديك %1$d محاولات متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+    <item quantity="one">لديك %1$d محاولة متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+    <item quantity="two">لديك %1$d محاولات متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+    <item quantity="few">لديك %1$d محاولات متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+    <item quantity="many">لديك %1$d محاولات متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+    <item quantity="other">لديك %1$d محاولات متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
+  </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">تسجيل Signal - تحتاج مساعدة بالرقم التعريفي الشخصي لنظام تشغيل Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">أدخل الرقم التعريفي الشخصي بالأحرف والأرقام</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">أدخل الرقم التعريفي الشخصي بالأرقام</string>
@@ -916,6 +1031,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">إنشاء رقم تعريف شخصي جديد</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">تحذير</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرمز التعريفي الشخصي، ستفقد جميع البيانات عندما تقوم بإعادة التسجيل إلى Signal إلّا إذا قمت باسترجاع بالنسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرمز التعريفي الشخصي.</string>
   <string name="PinOptOutDialog_disable_pin">إلغاء الرقم التعريفي الشخصي</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
@@ -978,6 +1094,7 @@
   <string name="RegistrationActivity_more_information">المزيد من المعلومات</string>
   <string name="RegistrationActivity_less_information">معلومات أقل</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات الاتصال والوسائط من أجل التواصل مع الأصدقا، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">للتحقق من رقم هاتفك بسهولة، يمكن ل Signal استقراء رمز التحقق الخاص بك تلقائيًا عند منح Signal إذن مشاهدة رسائل SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1171,7 +1288,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">لم يتم العثور على أي متصفح ويب مثبّت!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">لم يتم العثور على أي متصفح ويب مثبّت!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد…</string>
   <string name="ApplicationMigrationService_importing_text_messages">استيراد رسائل نصية</string>
@@ -1202,6 +1319,7 @@
   <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
   <string name="MessageNotifier_mark_all_as_read">اعتبر جميع الرسائل مقروءة</string>
   <string name="MessageNotifier_mark_read">اعتبرها مقروءة</string>
+  <string name="MessageNotifier_turn_off_these_notifications">تعطيل هذه الإشعاراتذ</string>
   <string name="MessageNotifier_media_message">رسالة وسائط متعددة</string>
   <string name="MessageNotifier_sticker">ملصق</string>
   <string name="MessageNotifier_view_once_photo">صورة لمشاهدة-واحدة</string>
@@ -1222,6 +1340,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">تفاعل %1$s مع فيديو المشاهدة-لمرة واحدة الخاص بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع الملصق الخاص بك.</string>
   <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">تعطيل إشعارات انضمام شخص إلى Signal؟ تستطيع تفعيلهم مجدداً في Signal &gt; إعدادات &gt; إشعارات.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">افتراضي</string>
   <string name="NotificationChannel_calls">المُكالمات</string>
@@ -1630,6 +1749,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">يُرجى أن تكون وصفيًا قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
   <string name="HelpFragment__no_email_app_found">لم يعثر على أي تطبيق للبريد الإلكتروني.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ابتسامات وأشخاص</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">طبيعة</string>
@@ -1683,8 +1803,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم Signal لجميع رسائل الوسائط المتعددة الواردة</string>
   <string name="preferences__pref_enter_sends_title">مفتاح الدخول يقوم بالإرسال</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">الضغط على مفتاح الدخول سيقوم بإرسال الرسالة</string>
-  <string name="preferences__send_link_previews">إرسال لمحة عن الرابط</string>
-  <string name="preferences__previews_are_supported_for">لمحات الرّوابط متوفرة للروابط من مواقع  Imgur و Instagram و Reddit و YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">إرسال لمحة عن الرابط</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">لمحات الرّوابط متوفرة للروابط من مواقع  Imgur و Instagram و Reddit و YouTube.</string> -->
   <string name="preferences__choose_identity">اختيار الهوية</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
@@ -1748,6 +1868,8 @@
   <string name="preferences__theme">المظهر</string>
   <string name="preferences__disable_pin">إلغاء الرقم التعريفي الشخصي</string>
   <string name="preferences__enable_pin">فعّل الرقم التعريفي الشخصي</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرمز التعريفي الشخصي، ستفقد جميع البيانات عندما تقوم بإعادة التسجيل إلى Signal إلّا إذا قمت باسترجاع بالنسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرمز التعريفي الشخصي.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">الرموز التعريفي الشخصية تبقي المعلومات المحفوظة في Signal مشفرة حتى لا يستطيع أحدٌ غيرك الوصول إليها. سيتم استرجاع صفحة حسابك الشخصي، إعداداتك، وجهات اتصالك عندما تعيد تثبيت التطبيق. لن تحتاج إلى الرمز التعريفي الشخصي لفتح التطبيق.</string>
   <string name="preferences__system_default">افتراضيات النظام</string>
   <string name="preferences__default">افتراضي</string>
   <string name="preferences__language">اللغة</string>
@@ -1799,6 +1921,9 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">السماح من أي شخص</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل استقبال الرّسائل من جهة غير معروفة أي ليست من ضمن جهات اتصالك أو لم تشاركها ملفّك الشخصي.</string>
   <string name="preferences_communication__sealed_sender_learn_more">لمعرفة المزيد</string>
+  <string name="preferences_notifications__mentions">الرسائل التي ذكر فيها اسمك</string>
+  <string name="preferences_notifications__notify_me">نبّهني</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">تلقي الإشعارات عندما يذكر اسمك في المحادثات المصمتة</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1950,6 +2075,22 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">إنشاء الرقم التعريفي الشخصي بالأحرف والأرقام </string>
   <string name="BaseKbsPinFragment__create_numeric_pin">إنشاء الرقم التعريفي الشخصي بالأرقام</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="zero">يجب أن يكون الرمز التعريفي الشخصي %1$d حروف على الأقل</item>
+    <item quantity="one">يجب أن يكون الرمز التعريفي الشخصي %1$d حرف على الأقل</item>
+    <item quantity="two">يجب أن يكون الرمز التعريفي الشخصي %1$d حروف على الأقل</item>
+    <item quantity="few">يجب أن يكون الرمز التعريفي الشخصي %1$d حروف على الأقل</item>
+    <item quantity="many">يجب أن يكون الرمز التعريفي الشخصي %1$d حروف على الأقل</item>
+    <item quantity="other">يجب أن يكون الرمز التعريفي الشخصي %1$d حروف على الأقل</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="zero">يجب أن يكون الرمز التعريفي الشخصي %1$d أرقام على الأقل</item>
+    <item quantity="one">يجب أن يكون الرمز التعريفي الشخصي %1$d رقم على الأقل</item>
+    <item quantity="two">يجب أن يكون الرمز التعريفي الشخصي  أرقام %1$d على الأقل</item>
+    <item quantity="few">يجب أن يكون الرمز التعريفي الشخصي %1$d أرقام على الأقل</item>
+    <item quantity="many">يجب أن يكون الرمز التعريفي الشخصي %1$d أرقام على الأقل</item>
+    <item quantity="other">يجب أن يكون الرمز التعريفي الشخصي %1$d أرقام على الأقل</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">إنشاء رقم تعريفي شخصي جديد</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">يمكنك تغيير الرقم التعريفي الشخصي في أي وقت طالما بقي هذا الجهاز مسجلا.</string>
   <string name="CreateKbsPinFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
@@ -1997,6 +2138,14 @@
   <string name="RegistrationLockFragment__incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
   <string name="RegistrationLockFragment__forgot_your_pin">هل نسيت الرقم التعريفي الشخصي؟</string>
   <string name="RegistrationLockFragment__not_many_tries_left">لم يتبق الكثير من المحاولات!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="zero">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع الرقم التعريفي الشخصي الخاص بك. إن لم تستطع تذكر رمزك، يمكنك إعادة التسجيل باستخدام SMS بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
+    <item quantity="one">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع الرقم التعريفي الشخصي الخاص بك. إن لم تستطع تذكر رمزك، يمكنك إعادة التسجيل باستخدام SMS بعد %1$d يوم من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
+    <item quantity="two">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع الرقم التعريفي الشخصي الخاص بك. إن لم تستطع تذكر رمزك، يمكنك إعادة التسجيل باستخدام SMS بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
+    <item quantity="few">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع الرقم التعريفي الشخصي الخاص بك. إن لم تستطع تذكر رمزك، يمكنك إعادة التسجيل باستخدام SMS بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
+    <item quantity="many">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع الرقم التعريفي الشخصي الخاص بك. إن لم تستطع تذكر رمزك، يمكنك إعادة التسجيل باستخدام SMS بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
+    <item quantity="other">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع الرقم التعريفي الشخصي الخاص بك. إن لم تستطع تذكر رمزك، يمكنك إعادة التسجيل باستخدام SMS بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
+  </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="zero">رمز خاطئ. %1$d محاولات متبقية.</item>
     <item quantity="one">رمز خاطئ.%1$d محاولة متبقية.</item>
@@ -2004,6 +2153,14 @@
     <item quantity="few">رمز خاطئ.%1$d  محاولات متبقية.</item>
     <item quantity="many">رمز خاطئ.%1$d  محاولات متبقية.</item>
     <item quantity="other">رمز خاطئ. %1$d محاولات متبقية.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="zero">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+    <item quantity="one">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+    <item quantity="two">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+    <item quantity="few">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+    <item quantity="many">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+    <item quantity="other">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="zero">لديك %1$d محاولة متبقية.</item>

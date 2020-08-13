@@ -83,8 +83,8 @@
   <string name="BlockUnblockDialog_block_and_leave_s">¿Bloquear y abandonar «%1$s»?</string>
   <string name="BlockUnblockDialog_block_s">¿Bloquear a %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">No podrás enviar ni recibir más mensajes en este grupo y sus participantes no podrán agregarte de nuevo al grupo.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">L*s participantes no podrán agregarte de nuevo a este grupo.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">L*s participantes podrán agregarte de nuevo a este grupo.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Participantes del grupo no podrán agregarte de nuevo.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Participantes del grupo podrán agregarte de nuevo.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente. Tu nombre y foto de perfil se compartirá con esta persona.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas bloqueadas no podrán llamarte o enviarte mensajes.</string>
   <string name="BlockUnblockDialog_unblock_s">¿Desbloquear a %1$s?</string>
@@ -206,7 +206,7 @@
   <string name="ConversationActivity_unblock_this_contact_question">¿Desbloquear a esta persona?</string>
   <string name="ConversationActivity_unblock_this_group_question">¿Desbloquear este grupo?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podrás volver a recibir mensajes y llamadas de esta persona.</string>
-  <string name="ConversationActivity_unblock_this_group_description">L*s participantes podrán agregarte de nuevo al grupo.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Participantes del grupo podrán agregarte de nuevo.</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">El adjunto excede los límites de tamaño para el mensaje.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cámara no disponible</string>
@@ -280,7 +280,7 @@
   <string name="ConversationFragment_deleting_messages">Eliminando mensajes …</string>
   <string name="ConversationFragment_delete_for_me">Eliminar para mi</string>
   <string name="ConversationFragment_delete_for_everyone">Eliminar para tod*s</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Este mensaje se eliminará para tod*s l*s participantes del chat. En el chat se mostrará que lo has eliminado. </string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Este mensaje se eliminará para tod*s sus participantes. En el chat se mostrará que lo has eliminado. </string>
   <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original </string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Fallo al abrir mensaje</string>
@@ -411,8 +411,8 @@
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitaciones pendientes</string>
   <string name="PendingMembersActivity_people_you_invited">Personas que has invitado</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">No tienes invitaciones pendientes.</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Invitaciones de otros participantes</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otros participantes.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Invitaciones de otr*s participantes</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otr*s participantes.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">No se pueden mostrar los detalles de personas invitadas por otr*s participantes del grupo. Sólo compartirán sus detalles con el grupo y verán los mensajes que se envíen a partir del momento en que decidan participar.</string>
   <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
   <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
@@ -1123,7 +1123,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">¡No hay navegador web instalado!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">¡No hay navegador web instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensajes de texto</string>
@@ -1596,8 +1596,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usar Signal para todos los mensajes multimedia entrantes</string>
   <string name="preferences__pref_enter_sends_title">Enviar al tocar «Intro»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Los mensajes se enviarán al pulsar la tecla Intro.</string>
-  <string name="preferences__send_link_previews">Enviar vista previa</string>
-  <string name="preferences__previews_are_supported_for">La vista previa está disponible para enlaces hacia Imgur, Instagram, Pinterest, Reddit y YouTube.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar vista previa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">La vista previa está disponible para enlaces hacia Imgur, Instagram, Pinterest, Reddit y YouTube.</string> -->
   <string name="preferences__choose_identity">Seleccionar identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selecciona tu propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
@@ -1676,7 +1676,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__read_receipts">Notificaciones de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otros participantes están tecleando. </string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otr*s participantes están tecleando. </string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar al teclado desactivar el aprendizaje personalizado</string>
   <string name="preferences_app_protection__blocked_contacts">Personas bloqueadas</string>
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>

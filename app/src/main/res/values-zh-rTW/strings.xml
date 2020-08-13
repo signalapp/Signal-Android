@@ -1078,7 +1078,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">靜音通知</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">沒有已安裝的瀏覽器</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">沒有已安裝的瀏覽器</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">匯入中</string>
   <string name="ApplicationMigrationService_importing_text_messages">匯入文字簡訊</string>
@@ -1541,8 +1541,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收所有多媒體訊息</string>
   <string name="preferences__pref_enter_sends_title">按下輸入鍵發送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下輸入鍵將會發送訊息</string>
-  <string name="preferences__send_link_previews">傳送連結預覽</string>
-  <string name="preferences__previews_are_supported_for">預覽功能支援 Imgur、 Instagram、 Pinterest、 Reddit 及 YouTube的連結。</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">傳送連結預覽</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">預覽功能支援 Imgur、 Instagram、 Pinterest、 Reddit 及 YouTube的連結。</string> -->
   <string name="preferences__choose_identity">選擇身分</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
   <string name="preferences__change_passphrase">變更自訂密碼</string>
@@ -1657,7 +1657,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">顯示指標</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">在使用密封發件人傳遞的訊息上選擇“訊息細節”時顯示狀態圖示。</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">允許任何人</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">啟用密封發件人對來自非聯絡人及其他人傳來的訊息，將不會對其分享你的個人資訊。</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">啟用密封發件人對來自非聯絡人及其他你未分享過個人資料的人傳來的訊息。</string>
   <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
   <string name="preferences_notifications__mentions">提及</string>
   <string name="preferences_notifications__notify_me">通知我</string>

@@ -949,7 +949,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">ปิดเสียงการแจ้งเตือน</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">ไม่มีเว็บเบราว์เซอร์ติดตั้งอยู่</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">ไม่มีเว็บเบราว์เซอร์ติดตั้งอยู่</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">อยู่ระหว่างการนำเข้า</string>
   <string name="ApplicationMigrationService_importing_text_messages">กำลังนำเข้าข้อความ</string>
@@ -1387,8 +1387,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ใช้ Signal รับข้อความมัลติมีเดียขาเข้าทั้งหมด</string>
   <string name="preferences__pref_enter_sends_title">ใส่คีย์เพื่อส่ง</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">การกดปุ่ม Enter จะเป็นการส่งข้อความตัวอักษร</string>
-  <string name="preferences__send_link_previews">ส่งการแสดงผลลิงก์</string>
-  <string name="preferences__previews_are_supported_for">สนับสนุนการแสดงตัวอย่างสำหรับลิงก์จาก Imgur, Instagram, Pinterest, Reddit และ YouTube </string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ส่งการแสดงผลลิงก์</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">สนับสนุนการแสดงตัวอย่างสำหรับลิงก์จาก Imgur, Instagram, Pinterest, Reddit และ YouTube </string> -->
   <string name="preferences__choose_identity">เลือกตัวตน</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">เลือกชื่อคนที่คุณติดต่อด้วยจากรายชื่อผู้ติดต่อ</string>
   <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>

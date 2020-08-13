@@ -321,6 +321,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema ao definir perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil é encriptado de ponta-a-ponta. O seu perfil e mudanças à ele serão visíveis aos seus contatos, quando você iniciar ou aceitar uma conversa nova, e quando você entrar em grupos.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
@@ -427,6 +428,7 @@
   <string name="ManageGroupActivity_leave_group">Sair do grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificações</string>
+  <string name="ManageGroupActivity_mentions">Menções</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_off">Desligado</string>
   <string name="ManageGroupActivity_on">Ligado</string>
@@ -445,6 +447,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar grupo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é membro do grupo</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e foto</string>
+  <string name="ManageGroupActivity_legacy_group">Grupo Legado</string>
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Mensagens efêmeras</string>
@@ -751,6 +754,7 @@
   <string name="PinRestoreLockedFragment_create_your_pin">Criar seu PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Cuidado</string>
+  <string name="PinOptOutDialog_disable_pin">Desabilitar PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avaliar este aplicativo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se você gosta de usar este aplicativo, por favor tire uns segundos para nos ajudar com sua avaliação.</string>
@@ -993,7 +997,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Nenhum navegador instalado!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nenhum navegador instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em andamento</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensagens de texto</string>
@@ -1436,8 +1440,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use o Signal para receber todas as mensagens multimídia</string>
   <string name="preferences__pref_enter_sends_title">Tecla Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
-  <string name="preferences__send_link_previews">Enviar pré-visualizações de links</string>
-  <string name="preferences__previews_are_supported_for">Visualizações são suportadas para links do Imgur, Instagram, Pinterest, Reddit e YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar pré-visualizações de links</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Visualizações são suportadas para links do Imgur, Instagram, Pinterest, Reddit e YouTube</string> -->
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contato da lista de contatos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
@@ -1499,6 +1503,9 @@
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aparência</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__disable_pin">Desabilitar PIN</string>
+  <string name="preferences__enable_pin">Habilitar PIN</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs mantém as informações salvas no Signal encriptadas para que apenas você as acesse. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do PIN para abrir o app.</string>
   <string name="preferences__system_default">Sistema padrão</string>
   <string name="preferences__default">Padrão</string>
   <string name="preferences__language">Idioma</string>
@@ -1549,6 +1556,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de qualquer um</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Habilitar remetente oculto para mensagens recebidas de não contatos e pessoas com quem você não compartilhou seu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saiba mais</string>
+  <string name="preferences_notifications__mentions">Menções</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1722,6 +1730,7 @@
   <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Criar seu PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Saiba mais sobre PINs</string>
+  <string name="KbsSplashFragment__disable_pin">Desabilitar PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Digitar seu PIN do Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para ajudar você a memorizar seu PIN, pediremos que você o insira periodicamente. Esses pedidos diminuirão com o passar do tempo.</string>
@@ -1894,5 +1903,10 @@
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Legado vs Novos Grupos</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">O que são Grupos Legados?</string>
+  <string name="GroupsLearnMore_paragraph_1">Grupos Legados são grupos que não são compatíveis com recursos  dos Novos grupos como admins e atualizações de grupo mais descritivas.</string>
+  <string name="GroupsLearnMore_paragraph_2">Grupos Legados não podem ser convertidos em Novos Grupos, mas você pode criar um Novo Grupo com os mesmos membros.</string>
+  <string name="GroupsLearnMore_paragraph_3">Para criar um Novo Grupo, todos os membros devem atualizar para a versão do Signal mais recente.</string>
   <!--EOF-->
 </resources>

@@ -1119,7 +1119,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Não existe um navegador web instalado!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Não existe um navegador web instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
   <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
@@ -1592,8 +1592,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar o Signal para receber todas as mensagens de multimédia </string>
   <string name="preferences__pref_enter_sends_title">Tecla de Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter envia as mensagens de texto</string>
-  <string name="preferences__send_link_previews">Enviar pré-visualização de hiperligações</string>
-  <string name="preferences__previews_are_supported_for">As pré-visualizações são suportadas em hiperligações do Imgur, Instagram, Pinterest, Reddit e YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar pré-visualização de hiperligações</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">As pré-visualizações são suportadas em hiperligações do Imgur, Instagram, Pinterest, Reddit e YouTube</string> -->
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha a sua entrada de contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-passe</string>

@@ -350,6 +350,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationTitleView_verified">Gwiriwyd</string>
   <string name="ConversationTitleView_you">Chi</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nid oes modd i rai cysylltiadau fod mewn hen grwpiau.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Proffil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gwall gosod llun proffil</string>
@@ -414,6 +415,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" wedi\'i ychwanegu i \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Ychwanegu i grŵp</string>
   <string name="AddToGroupActivity_add_to_groups">Ychwanegu i grwpiau</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Nid oes modd ychwanegu\'r person hwn at hen grwpiau..</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Dewiswch gweinyddwr newydd</string>
   <string name="ChooseNewAdminActivity_done">Wedi Gorffen</string>
@@ -444,8 +446,23 @@ Send neges heb ei ddiogelu?</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Gwahoddiadau gan aelodau eraill y grŵp</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Dim gwahoddiadau yn yr arfaeth gan aelodau eraill y grŵp.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Nid yw manylion y bobl a wahoddwyd gan aelodau eraill y grŵp yn cael ei ddangos. Os bydd gwahoddwyr yn dewis ymuno, bydd eu manylion yn cael ei rhannu gyda\'r grŵp bryd hynny. Fyddan nhw ddim yn gweld unrhyw negeseuon yn y grŵp nes iddyn nhw ymuno.</string>
+  <string name="PendingMembersActivity_revoke_invite">Dirymu gwahoddiad</string>
+  <string name="PendingMembersActivity_revoke_invites">Dirymu gwahoddiadau</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Dirymu gwahoddiad</item>
+    <item quantity="two">Dirymu %1$d gwahoddiad</item>
+    <item quantity="many">Dirymu %1$d gwahoddiad</item>
+    <item quantity="other">Dirymu %1$d gwahoddiad</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Gwall wrth ddirymu gwahoddiad</item>
+    <item quantity="two">Gwall wrth ddirymu gwahoddiad</item>
+    <item quantity="many">Gwall wrth ddirymu gwahoddiadau</item>
+    <item quantity="other">Gwall wrth ddirymu gwahoddiadau</item>
+  </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Wedi Gorffen</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Nid oes modd ychwanegu\'r person hwn at hen grwpiau..</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Ychwanegu \"%1$s\" i \"%2$s\"?</item>
     <item quantity="two">Ychwanegu%3$d aelod i \"%2$s\"?</item>
@@ -466,7 +483,20 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddGroupDetailsFragment__remove">Tynnu</string>
   <string name="AddGroupDetailsFragment__sms_contact">Cyswllt SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Tynnu %1$s o\'r grŵp hwn?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
+    <item quantity="two">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
+    <item quantity="many">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
+    <item quantity="other">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bydd Hen Grŵp yn cael ei greu oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
+    <item quantity="two">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
+    <item quantity="many">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
+    <item quantity="other">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Negeseuon yn diflannu</string>
   <string name="ManageGroupActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
@@ -479,6 +509,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_leave_group">Gadael y grŵp</string>
   <string name="ManageGroupActivity_mute_notifications">Tewi hysbysiadau</string>
   <string name="ManageGroupActivity_custom_notifications">Hysbysiadau cyfaddas</string>
+  <string name="ManageGroupActivity_mentions">Crybwylliadau</string>
   <string name="ManageGroupActivity_until_s">Tan %1$s</string>
   <string name="ManageGroupActivity_off">I ffwrdd</string>
   <string name="ManageGroupActivity_on">Ymlaen</string>
@@ -507,6 +538,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_legacy_group">Hen Grŵp</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Mae hwn yn Hen Grŵp. I gael nodweddion fel gweinyddwr grŵp, crëwch Grŵp Newydd.</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Rhowch wybod i mi am Grybwylliadau</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Derbyn hysbysiadau pan soniwyd amdanoch mewn sgyrsiau tawel?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Rhagosodiad (Rhoi gwybod i mi)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Rhagosodiad (Peidio â rhoi gwybod i mi)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Rhoi gwybod i mi bob tro</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Peidio rhoi gwybod</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string>
@@ -553,6 +590,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="CustomNotificationsDialogFragment__disabled">Analluogwyd</string>
   <string name="CustomNotificationsDialogFragment__default">Rhagosodedig</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ydych chi am ddirymu\'r gwahoddiad a anfonwyd gennych at %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Ydych chi am ddirymu\'r gwahoddiad a anfonwyd gan %1$s?</item>
+    <item quantity="two">Ydych chi am ddirymu %2$d gwahoddiad a anfonwyd gan %1$s?</item>
+    <item quantity="many">Ydych chi am ddirymu %2$d gwahoddiad a anfonwyd gan %1$s?</item>
+    <item quantity="other">Ydych chi am ddirymu %2$d gwahoddiad a anfonwyd gan %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Rhithffurf y grŵp</string>
   <string name="CropImageActivity_profile_avatar">Rhithffurf</string>
@@ -775,6 +819,8 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Fe wnaeth rhywun wrthod gwahoddiad i\'r grŵp.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Fe wnaethoch chi wrthod gwahoddiad i\'r grŵp.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">Dirymodd %1$s eich gwahoddiad i\'r grŵp.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Dirymodd gweinyddwr eich gwahoddiad i\'r grŵp.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Di-rymwyd gwahoddiad i\'r grŵp.</item>
     <item quantity="two">Di-rymwyd %1$d gwahoddiadau i\'r grŵp.</item>
@@ -831,6 +877,12 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="two">%1$daelod (+ %2$d wedi eu gwahodd)</item>
     <item quantity="many">%1$d aelod (+ %2$dwedi eu gwahodd)</item>
     <item quantity="other">%1$d aelod (+ %2$d wedi eu gwahodd)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d grŵp ychwanegol</item>
+    <item quantity="two">%d grŵp ychwanegol</item>
+    <item quantity="many">%d grŵp ychwanegol</item>
+    <item quantity="other">%d grŵp ychwanegol</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Nid yw cyfrinymadrodd yn cydweddu!</string>
@@ -1157,7 +1209,7 @@ Send neges heb ei ddiogelu?</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tewi hysbysiadau</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Dim porwr gwe wedi ei osod!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Dim porwr gwe wedi ei osod!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Wrthi\'n mewnforio</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mewnforio negeseuon testun</string>
@@ -1188,6 +1240,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_error_delivering_message">Gwall wrth drosglwyddo neges.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcio popeth wedi\'i ddarllen</string>
   <string name="MessageNotifier_mark_read">Marcio wedi\'i ddarllen</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Diffodd yr hysbysiadau hyn</string>
   <string name="MessageNotifier_media_message">Neges cyfryngau</string>
   <string name="MessageNotifier_sticker">Sticer</string>
   <string name="MessageNotifier_view_once_photo">Llun gweld unwaith</string>
@@ -1208,6 +1261,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ymatebodd %1$s i\'ch fideo golwg unwaith.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ymatebodd %1$s i\'ch sticer.</string>
   <string name="MessageNotifier_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Diffodd hysbysiadau cysylltiadau Signal? Gallwch eu galluogi eto yn Signal Hysbysiadau &gt; Gosodiadau &gt;.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Rhagosodiad</string>
   <string name="NotificationChannel_calls">Galwadau</string>
@@ -1596,6 +1650,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
   <string name="HelpFragment__no_email_app_found">Heb ganfod ap e-bost.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Defnyddiwyd yn ddiweddar</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Gwennogluniau a Phobl</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
@@ -1647,8 +1702,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Defnyddio Signal ar gyfer yr holl negeseuon amlgyfrwng sy\'n cael eu derbyn</string>
   <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
-  <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string>
-  <string name="preferences__previews_are_supported_for">Cefnogir rhagweld cynnwys trwy ddolenni Imgur, Instagram, Pinterest, Reddit a YouTube</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Cefnogir rhagweld cynnwys trwy ddolenni Imgur, Instagram, Pinterest, Reddit a YouTube</string> -->
   <string name="preferences__choose_identity">Dewis hunaniaeth</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Dewiswch eich cofnod cyswllt o\'r rhestr cysylltiadau.</string>
   <string name="preferences__change_passphrase">Newid cyfrinair</string>
@@ -1765,6 +1820,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Caniatáu gan bawb</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Galluogwch anfon dan sêl ar gyfer negeseuon i mewn gan y sawl sydd ddim yn gysylltiad a phobl nad ydych wedi rhannu eich proffil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dysgu rhagor</string>
+  <string name="preferences_notifications__mentions">Crybwylliadau</string>
+  <string name="preferences_notifications__notify_me">Rhoi gwybod i mi</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Derbyn hysbysiadau pan soniwyd amdanoch mewn sgyrsiau tawel</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

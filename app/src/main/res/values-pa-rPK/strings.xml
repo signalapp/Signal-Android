@@ -840,7 +840,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">اطلاعواں خموش کرو</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">کوئی ویب براؤزر انسٹال نئیں اے!</string>
+  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">کوئی ویب براؤزر انسٹال نئیں اے!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">درآمد جاری اے</string>
   <string name="ApplicationMigrationService_importing_text_messages">متن سنیہے درآمد کرنا</string>
@@ -1252,8 +1252,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages"> آن والے سارے ملٹی میڈیا سنیہیاں لئی Signal ورتو</string>
   <string name="preferences__pref_enter_sends_title">کلیدی گھلنا درج کرو</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">درج کلید دبان نال متن سنیہے گھلے جان گے</string>
-  <string name="preferences__send_link_previews">لنک پیش نظارہ گھلو </string>
-  <string name="preferences__previews_are_supported_for">پیش نظارے Imgur،Instagram، Pinterest، Reddit، تے YouTube لنکس لئی تعاون یافتہ نیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">لنک پیش نظارہ گھلو </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">پیش نظارے Imgur،Instagram، Pinterest، Reddit، تے YouTube لنکس لئی تعاون یافتہ نیں</string> -->
   <string name="preferences__choose_identity">شناخت چنو </string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">رابطے دی فہرست وچوں اپناں رابطہ اندراج چنو ۔</string>
   <string name="preferences__change_passphrase">پاس فریز بدلو</string>
