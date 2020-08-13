@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapter;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -47,9 +48,15 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, Conversatio
   private final Set<Long>                   typingSet = new HashSet<>();
   private       int                         archived;
 
-  protected ConversationListAdapter(@NonNull GlideRequests glideRequests, @NonNull OnConversationClickListener onConversationClickListener) {
+  private final RecyclerViewConcatenateAdapter parent;
+
+  protected ConversationListAdapter(@NonNull RecyclerViewConcatenateAdapter parent,
+                                    @NonNull GlideRequests glideRequests,
+                                    @NonNull OnConversationClickListener onConversationClickListener)
+  {
     super(new ConversationDiffCallback());
 
+    this.parent                      = parent;
     this.glideRequests               = glideRequests;
     this.onConversationClickListener = onConversationClickListener;
   }
@@ -61,9 +68,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, Conversatio
                                                                                 .inflate(R.layout.conversation_list_item_action, parent, false), viewType);
 
       holder.itemView.setOnClickListener(v -> {
-        int position = holder.getLocalAdapterPosition();
-
-        if (position != RecyclerView.NO_POSITION) {
+        if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
           onConversationClickListener.onShowArchiveClick();
         }
       });
@@ -74,7 +79,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, Conversatio
                                                                                 .inflate(R.layout.conversation_list_item_view, parent, false), viewType);
 
       holder.itemView.setOnClickListener(v -> {
-        int position = holder.getLocalAdapterPosition();
+        int position = this.parent.getLocalPosition(holder.getAdapterPosition()).getLocalPosition();
 
         if (position != RecyclerView.NO_POSITION) {
           onConversationClickListener.onConversationClick(getItem(position));
@@ -82,7 +87,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, Conversatio
       });
 
       holder.itemView.setOnLongClickListener(v -> {
-        int position = holder.getLocalAdapterPosition();
+        int position = this.parent.getLocalPosition(holder.getAdapterPosition()).getLocalPosition();
 
         if (position != RecyclerView.NO_POSITION) {
           return onConversationClickListener.onConversationLongClick(getItem(position));
@@ -121,7 +126,6 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, Conversatio
 
   @Override
   public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-    holder.setLocalAdapterPosition(position);
     if (holder.getLocalViewType() == TYPE_ACTION) {
       ConversationViewHolder casted = (ConversationViewHolder) holder;
 
@@ -238,7 +242,6 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, Conversatio
   static class BaseViewHolder extends RecyclerView.ViewHolder {
 
     private final int viewType;
-    private       int adapterPosition = RecyclerView.NO_POSITION;
 
     public BaseViewHolder(@NonNull View itemView, int viewType) {
       super(itemView);
@@ -247,14 +250,6 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, Conversatio
 
     public int getLocalViewType() {
       return viewType;
-    }
-
-    public int getLocalAdapterPosition() {
-      return getAdapterPosition() == RecyclerView.NO_POSITION ? RecyclerView.NO_POSITION : adapterPosition;
-    }
-
-    public void setLocalAdapterPosition(int adapterPosition) {
-      this.adapterPosition = adapterPosition;
     }
   }
 

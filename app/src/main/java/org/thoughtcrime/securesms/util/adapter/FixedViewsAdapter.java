@@ -61,7 +61,12 @@ public final class FixedViewsAdapter extends RecyclerView.Adapter<RecyclerView.V
   private void setHidden(boolean hidden) {
     if (this.hidden != hidden) {
       this.hidden = hidden;
-      notifyDataSetChanged();
+
+      if (hidden) {
+        notifyItemRangeRemoved(0, viewList.size());
+      } else {
+        notifyItemRangeInserted(0, viewList.size());
+      }
     }
   }
 }

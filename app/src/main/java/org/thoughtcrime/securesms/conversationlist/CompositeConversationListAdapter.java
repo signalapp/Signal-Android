@@ -4,13 +4,11 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapter;
@@ -38,9 +36,9 @@ class CompositeConversationListAdapter extends RecyclerViewConcatenateAdapter {
     unpinned.setText(rv.getContext().getString(R.string.conversation_list__chats));
 
     this.pinnedHeaderAdapter   = new FixedViewsAdapter(pinned);
-    this.pinnedAdapter         = new ConversationListAdapter(glideRequests, onConversationClickListener);
+    this.pinnedAdapter         = new ConversationListAdapter(this, glideRequests, onConversationClickListener);
     this.unpinnedHeaderAdapter = new FixedViewsAdapter(unpinned);
-    this.unpinnedAdapter       = new ConversationListAdapter(glideRequests, onConversationClickListener);
+    this.unpinnedAdapter       = new ConversationListAdapter(this, glideRequests, onConversationClickListener);
 
     pinnedHeaderAdapter.hide();
     unpinnedHeaderAdapter.hide();

@@ -143,7 +143,7 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
     }
   }
 
-  static class ChildAdapterPositionPair {
+  public static class ChildAdapterPositionPair {
 
     final ChildAdapter childAdapter;
     final int          localPosition;
@@ -155,6 +155,10 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
 
     RecyclerView.Adapter<? extends RecyclerView.ViewHolder> getAdapter() {
       return childAdapter.adapter;
+    }
+
+    public int getLocalPosition() {
+      return localPosition;
     }
   }
 
@@ -195,7 +199,7 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
    * position in that adapter that corresponds to the given global position.
    */
   @NonNull
-  ChildAdapterPositionPair getLocalPosition(final int globalPosition) {
+  public ChildAdapterPositionPair getLocalPosition(final int globalPosition) {
     int count = 0;
 
     for (ChildAdapter childAdapter : adapters) {
