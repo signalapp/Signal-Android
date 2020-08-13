@@ -84,18 +84,31 @@
         <com.pnikosis.materialishprogress.ProgressWheel
             android:id="@+id/linkpreview_progress_wheel"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp"
             android:indeterminate="true"
             android:padding="8dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
+            app:layout_constraintBottom_toBottomOf="@+id/linkpreview_no_preview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/linkpreview_no_preview"
             app:matProg_barColor="@color/core_ultramarine"
-            app:matProg_progressIndeterminate="true" />
+            app:matProg_progressIndeterminate="true"
+            app:matProg_barWidth="3dp"/>
+
+        <TextView
+            android:id="@+id/linkpreview_no_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="@string/LinkPreviewView_no_link_preview_available"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/linkpreview_divider"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

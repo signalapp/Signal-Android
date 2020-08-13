@@ -91,6 +91,7 @@ public final class Megaphones {
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
       put(Event.MESSAGE_REQUESTS, shouldShowMessageRequestsMegaphone() ? ALWAYS : NEVER);
       put(Event.MENTIONS, shouldShowMentionsMegaphone() ? ALWAYS : NEVER);
+      put(Event.LINK_PREVIEWS, SignalStore.settings().isLinkPreviewsEnabled() ? NEVER : ALWAYS);
     }};
   }
 
@@ -106,6 +107,8 @@ public final class Megaphones {
         return buildMessageRequestsMegaphone(context);
       case MENTIONS:
         return buildMentionsMegaphone();
+      case LINK_PREVIEWS:
+        return buildLinkPreviewsMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -196,6 +199,12 @@ public final class Megaphones {
                         .build();
   }
 
+  private static @NonNull Megaphone buildLinkPreviewsMegaphone() {
+    return new Megaphone.Builder(Event.LINK_PREVIEWS, Megaphone.Style.LINK_PREVIEWS)
+                        .setMandatory(true)
+                        .build();
+  }
+
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
@@ -209,7 +218,8 @@ public final class Megaphones {
     PINS_FOR_ALL("pins_for_all"),
     PIN_REMINDER("pin_reminder"),
     MESSAGE_REQUESTS("message_requests"),
-    MENTIONS("mentions");
+    MENTIONS("mentions"),
+    LINK_PREVIEWS("link_previews");
 
     private final String key;
 

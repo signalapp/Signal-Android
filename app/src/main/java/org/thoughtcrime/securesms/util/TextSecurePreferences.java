@@ -419,10 +419,6 @@ public class TextSecurePreferences {
     setBooleanPreference(context, TYPING_INDICATORS, enabled);
   }
 
-  public static boolean isLinkPreviewsEnabled(Context context) {
-    return getBooleanPreference(context, LINK_PREVIEWS, true);
-  }
-
   public static void setLinkPreviewsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, LINK_PREVIEWS, enabled);
   }

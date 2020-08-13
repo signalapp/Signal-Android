@@ -40,7 +40,7 @@ public final class LinkPreviewUtil {
   /**
    * @return All whitelisted URLs in the source text.
    */
-  public static @NonNull List<Link> findWhitelistedUrls(@NonNull String text) {
+  public static @NonNull List<Link> findValidPreviewUrls(@NonNull String text) {
     SpannableString spannable = new SpannableString(text);
     boolean         found     = Linkify.addLinks(spannable, Linkify.WEB_URLS);
 

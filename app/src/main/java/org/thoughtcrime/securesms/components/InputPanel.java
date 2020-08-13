@@ -236,6 +236,11 @@ public class InputPanel extends LinearLayout
     this.linkPreview.setLoading();
   }
 
+  public void setLinkPreviewNoPreview() {
+    this.linkPreview.setVisibility(View.VISIBLE);
+    this.linkPreview.setNoPreview();
+  }
+
   public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull Optional<LinkPreview> preview) {
     if (preview.isPresent()) {
       this.linkPreview.setVisibility(View.VISIBLE);

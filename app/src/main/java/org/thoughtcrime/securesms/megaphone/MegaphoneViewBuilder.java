@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewsMegaphoneView;
 import org.thoughtcrime.securesms.reactions.ReactionsMegaphoneView;
 
 public class MegaphoneViewBuilder {
@@ -21,6 +22,8 @@ public class MegaphoneViewBuilder {
         return null;
       case REACTIONS:
         return buildReactionsMegaphone(context, megaphone, listener);
+      case LINK_PREVIEWS:
+        return buildLinkPreviewsMegaphone(context, megaphone, listener);
       case POPUP:
         return buildPopupMegaphone(context, megaphone, listener);
       default:
@@ -42,6 +45,15 @@ public class MegaphoneViewBuilder {
                                                        @NonNull MegaphoneActionController listener)
   {
     ReactionsMegaphoneView view = new ReactionsMegaphoneView(context);
+    view.present(megaphone, listener);
+    return view;
+  }
+
+  private static @NonNull View buildLinkPreviewsMegaphone(@NonNull Context context,
+                                                          @NonNull Megaphone megaphone,
+                                                          @NonNull MegaphoneActionController listener)
+  {
+    LinkPreviewsMegaphoneView view = new LinkPreviewsMegaphoneView(context);
     view.present(megaphone, listener);
     return view;
   }

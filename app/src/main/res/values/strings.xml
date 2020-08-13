@@ -484,6 +484,14 @@
     <string name="GroupManagement_learn_more">Learn more</string>
     <string name="GroupManagement_invite_multiple_users">These users can’t be automatically added to this group by you.\n\nThey’ve been invited to join the group, and won’t see any group messages until they accept.</string>
 
+    <!-- LinkPreviewsMegaphone -->
+    <string name="LinkPreviewsMegaphone_disable">Disable</string>
+    <string name="LinkPreviewsMegaphone_preview_any_link">Preview any link</string>
+    <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">You can now retrieve link previews directly from any website for messages you send.</string>
+
+    <!-- LinkPreviewView -->
+    <string name="LinkPreviewView_no_link_preview_available">No link preview available</string>
+
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
     <string name="PendingMembersActivity_people_you_invited">People you invited</string>
@@ -1889,8 +1897,8 @@
     <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use Signal for all incoming multimedia messages</string>
     <string name="preferences__pref_enter_sends_title">Enter key sends</string>
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the Enter key will send text messages</string>
-    <string name="preferences__send_link_previews">Send link previews</string>
-    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Pinterest, Reddit, and YouTube links</string>
+    <string name="preferences__generate_link_previews">Generate link previews</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
     <string name="preferences__choose_identity">Choose identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>

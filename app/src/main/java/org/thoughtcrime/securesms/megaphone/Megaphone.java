@@ -172,6 +172,9 @@ public class Megaphone {
     /** Specialized style for announcing reactions. */
     REACTIONS,
 
+    /** Specialized style for announcing link previews. */
+    LINK_PREVIEWS,
+
     /** Basic bottom of the screen megaphone with optional snooze and action buttons. */
     BASIC,
 

@@ -38,12 +38,15 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.PinValues;
+import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.lock.v2.RegistrationLockUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
+import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.pin.RegistrationLockV2Dialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -90,12 +93,17 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setOnPreferenceClickListener(new PassphraseIntervalClickListener());
     this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF).setOnPreferenceChangeListener(new ReadReceiptToggleListener());
     this.findPreference(TextSecurePreferences.TYPING_INDICATORS).setOnPreferenceChangeListener(new TypingIndicatorsToggleListener());
-    this.findPreference(TextSecurePreferences.LINK_PREVIEWS).setOnPreferenceChangeListener(new LinkPreviewToggleListener());
     this.findPreference(PREFERENCE_CATEGORY_BLOCKED).setOnPreferenceClickListener(new BlockedContactsClickListener());
     this.findPreference(TextSecurePreferences.SHOW_UNIDENTIFIED_DELIVERY_INDICATORS).setOnPreferenceChangeListener(new ShowUnidentifiedDeliveryIndicatorsChangedListener());
     this.findPreference(TextSecurePreferences.UNIVERSAL_UNIDENTIFIED_ACCESS).setOnPreferenceChangeListener(new UniversalUnidentifiedAccessChangedListener());
     this.findPreference(PREFERENCE_UNIDENTIFIED_LEARN_MORE).setOnPreferenceClickListener(new UnidentifiedLearnMoreClickListener());
     disablePassphrase.setOnPreferenceChangeListener(new DisablePassphraseClickListener());
+
+
+    SwitchPreferenceCompat linkPreviewPref = (SwitchPreferenceCompat) this.findPreference(SettingsValues.LINK_PREVIEWS);
+    linkPreviewPref.setChecked(SignalStore.settings().isLinkPreviewsEnabled());
+    linkPreviewPref.setPreferenceDataStore(SignalStore.getPreferenceDataStore());
+    linkPreviewPref.setOnPreferenceChangeListener(new LinkPreviewToggleListener());
 
     initializeVisibility();
   }
@@ -241,7 +249,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         ApplicationDependencies.getJobManager().add(new MultiDeviceConfigurationUpdateJob(enabled,
                                                                                           TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
                                                                                           TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                                          TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+                                                                                          SignalStore.settings().isLinkPreviewsEnabled()));
 
       });
       return true;
@@ -258,7 +266,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         ApplicationDependencies.getJobManager().add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
                                                                                           enabled,
                                                                                           TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                                          TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+                                                                                          SignalStore.settings().isLinkPreviewsEnabled()));
 
         if (!enabled) {
           ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().clear();
@@ -279,6 +287,9 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
                                                                                           TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
                                                                                           TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
                                                                                           enabled));
+        if (enabled) {
+          ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.LINK_PREVIEWS);
+        }
       });
       return true;
     }
@@ -383,7 +394,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         ApplicationDependencies.getJobManager().add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(getContext()),
                                                                                           TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
                                                                                           enabled,
-                                                                                          TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+                                                                                          SignalStore.settings().isLinkPreviewsEnabled()));
       });
 
       return true;

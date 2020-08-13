@@ -394,7 +394,7 @@ public final class StorageSyncHelper {
                                                          .setTypingIndicatorsEnabled(TextSecurePreferences.isTypingIndicatorsEnabled(context))
                                                          .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
                                                          .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
-                                                         .setLinkPreviewsEnabled(TextSecurePreferences.isLinkPreviewsEnabled(context))
+                                                         .setLinkPreviewsEnabled(SignalStore.settings().isLinkPreviewsEnabled())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -414,7 +414,7 @@ public final class StorageSyncHelper {
     TextSecurePreferences.setReadReceiptsEnabled(context, update.isReadReceiptsEnabled());
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.isTypingIndicatorsEnabled());
     TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.isSealedSenderIndicatorsEnabled());
-    TextSecurePreferences.setLinkPreviewsEnabled(context, update.isLinkPreviewsEnabled());
+    SignalStore.settings().setLinkPreviewsEnabled(update.isLinkPreviewsEnabled());
 
     if (fetchProfile && update.getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), update.getAvatarUrlPath().get()));

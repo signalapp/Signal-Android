@@ -21,6 +21,9 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import okhttp3.HttpUrl;
 
+/**
+ * The view shown in the compose box that represents the state of the link preview.
+ */
 public class LinkPreviewView extends FrameLayout {
 
   private static final int TYPE_CONVERSATION = 0;
@@ -33,6 +36,7 @@ public class LinkPreviewView extends FrameLayout {
   private View                  divider;
   private View                  closeButton;
   private View                  spinner;
+  private View                  noPreview;
 
   private int                  type;
   private int                  defaultRadius;
@@ -60,6 +64,7 @@ public class LinkPreviewView extends FrameLayout {
     divider       = findViewById(R.id.linkpreview_divider);
     spinner       = findViewById(R.id.linkpreview_progress_wheel);
     closeButton   = findViewById(R.id.linkpreview_close);
+    noPreview     = findViewById(R.id.linkpreview_no_preview);
     defaultRadius = getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius);
     cornerMask    = new CornerMask(this);
     outliner      = new Outliner();
@@ -102,6 +107,15 @@ public class LinkPreviewView extends FrameLayout {
     site.setVisibility(GONE);
     thumbnail.setVisibility(GONE);
     spinner.setVisibility(VISIBLE);
+    noPreview.setVisibility(INVISIBLE);
+  }
+
+  public void setNoPreview() {
+    title.setVisibility(GONE);
+    site.setVisibility(GONE);
+    thumbnail.setVisibility(GONE);
+    spinner.setVisibility(GONE);
+    noPreview.setVisibility(VISIBLE);
   }
 
   public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull LinkPreview linkPreview, boolean showThumbnail) {
@@ -109,6 +123,7 @@ public class LinkPreviewView extends FrameLayout {
     site.setVisibility(VISIBLE);
     thumbnail.setVisibility(VISIBLE);
     spinner.setVisibility(GONE);
+    noPreview.setVisibility(GONE);
 
     title.setText(linkPreview.getTitle());
 

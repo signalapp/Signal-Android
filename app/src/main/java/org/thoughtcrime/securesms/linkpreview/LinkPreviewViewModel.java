@@ -41,6 +41,10 @@ public class LinkPreviewViewModel extends ViewModel {
     return linkPreviewState.getValue() != null && linkPreviewState.getValue().getLinkPreview().isPresent();
   }
 
+  public boolean hasLinkPreviewUi() {
+    return linkPreviewState.getValue() != null && linkPreviewState.getValue().hasContent();
+  }
+
   public @NonNull List<LinkPreview> getActiveLinkPreviews() {
     final LinkPreviewState state = linkPreviewState.getValue();
 
@@ -61,7 +65,7 @@ public class LinkPreviewViewModel extends ViewModel {
         return;
       }
 
-      List<Link>     links = LinkPreviewUtil.findWhitelistedUrls(text);
+      List<Link>     links = LinkPreviewUtil.findValidPreviewUrls(text);
       Optional<Link> link  = links.isEmpty() ? Optional.absent() : Optional.of(links.get(0));
 
       if (link.isPresent() && link.get().getUrl().equals(activeUrl)) {
@@ -75,7 +79,7 @@ public class LinkPreviewViewModel extends ViewModel {
 
       if (!link.isPresent() || !isCursorPositionValid(text, link.get(), cursorStart, cursorEnd)) {
         activeUrl = null;
-        linkPreviewState.setValue(LinkPreviewState.forEmpty());
+        linkPreviewState.setValue(LinkPreviewState.forNoLinks());
         return;
       }
 
@@ -85,7 +89,11 @@ public class LinkPreviewViewModel extends ViewModel {
       activeRequest = repository.getLinkPreview(context, link.get().getUrl(), lp -> {
         Util.runOnMain(() -> {
           if (!userCanceled) {
-            linkPreviewState.setValue(LinkPreviewState.forPreview(lp));
+            if (lp.isPresent()) {
+              linkPreviewState.setValue(LinkPreviewState.forPreview(lp.get()));
+            } else {
+              linkPreviewState.setValue(LinkPreviewState.forLinksWithNoPreview());
+            }
           }
           activeRequest = null;
         });
@@ -103,7 +111,7 @@ public class LinkPreviewViewModel extends ViewModel {
     activeUrl    = null;
 
     debouncer.clear();
-    linkPreviewState.setValue(LinkPreviewState.forEmpty());
+    linkPreviewState.setValue(LinkPreviewState.forNoLinks());
   }
 
   public void onEnabled() {
@@ -133,31 +141,45 @@ public class LinkPreviewViewModel extends ViewModel {
 
   public static class LinkPreviewState {
     private final boolean               isLoading;
+    private final boolean               hasLinks;
     private final Optional<LinkPreview> linkPreview;
 
-    private LinkPreviewState(boolean isLoading, Optional<LinkPreview> linkPreview) {
+    private LinkPreviewState(boolean isLoading, boolean hasLinks, Optional<LinkPreview> linkPreview) {
       this.isLoading   = isLoading;
+      this.hasLinks    = hasLinks;
       this.linkPreview = linkPreview;
     }
 
     private static LinkPreviewState forLoading() {
-      return new LinkPreviewState(true, Optional.absent());
+      return new LinkPreviewState(true, false, Optional.absent());
     }
 
-    private static LinkPreviewState forPreview(@NonNull Optional<LinkPreview> linkPreview) {
-      return new LinkPreviewState(false, linkPreview);
+    private static LinkPreviewState forPreview(@NonNull LinkPreview linkPreview) {
+      return new LinkPreviewState(false, true, Optional.of(linkPreview));
     }
 
-    private static LinkPreviewState forEmpty() {
-      return new LinkPreviewState(false, Optional.absent());
+    private static LinkPreviewState forLinksWithNoPreview() {
+      return new LinkPreviewState(false, true, Optional.absent());
+    }
+
+    private static LinkPreviewState forNoLinks() {
+      return new LinkPreviewState(false, false, Optional.absent());
     }
 
     public boolean isLoading() {
       return isLoading;
     }
 
+    public boolean hasLinks() {
+      return hasLinks;
+    }
+
     public Optional<LinkPreview> getLinkPreview() {
       return linkPreview;
+    }
+
+    boolean hasContent() {
+      return isLoading || hasLinks;
     }
   }
 

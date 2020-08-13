@@ -1820,7 +1820,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void initializeLinkPreviewObserver() {
     linkPreviewViewModel = ViewModelProviders.of(this, new LinkPreviewViewModel.Factory(new LinkPreviewRepository())).get(LinkPreviewViewModel.class);
 
-    if (!TextSecurePreferences.isLinkPreviewsEnabled(this)) {
+    if (!SignalStore.settings().isLinkPreviewsEnabled()) {
       linkPreviewViewModel.onUserCancel();
       return;
     }
@@ -1831,6 +1831,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
       if (previewState.isLoading()) {
         Log.d(TAG, "Loading link preview.");
         inputPanel.setLinkPreviewLoading();
+      } else if (previewState.hasLinks() && !previewState.getLinkPreview().isPresent()) {
+        Log.d(TAG, "No preview found.");
+        inputPanel.setLinkPreviewNoPreview();
       } else {
         Log.d(TAG, "Setting link preview: " + previewState.getLinkPreview().isPresent());
         inputPanel.setLinkPreview(glideRequests, previewState.getLinkPreview());
@@ -2591,7 +2594,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
 
-      if (!attachmentManager.isAttachmentPresent() && !linkPreviewViewModel.hasLinkPreview()) {
+      if (!attachmentManager.isAttachmentPresent() && !linkPreviewViewModel.hasLinkPreviewUi()) {
         inlineAttachmentToggle.show();
       } else {
         inlineAttachmentToggle.hide();
@@ -2600,7 +2603,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void updateLinkPreviewState() {
-    if (TextSecurePreferences.isLinkPreviewsEnabled(this) && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
+    if (SignalStore.settings().isLinkPreviewsEnabled() && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
       linkPreviewViewModel.onEnabled();
       linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed().toString(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
