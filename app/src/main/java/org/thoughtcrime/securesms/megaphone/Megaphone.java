@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.megaphone;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.DrawableRes;
@@ -113,6 +113,9 @@ public class Megaphone {
       this.style          = style;
     }
 
+    /**
+     * Prioritizes this megaphone over others that do not set this flag.
+     */
     public @NonNull Builder setMandatory(boolean mandatory) {
       this.mandatory = mandatory;
       return this;
@@ -141,8 +144,7 @@ public class Megaphone {
     }
 
     public @NonNull Builder setImage(@DrawableRes int imageRes) {
-      setImageRequest(GlideApp.with(ApplicationDependencies.getApplication()).load(imageRes));
-      return this;
+      return setImageRequest(GlideApp.with(ApplicationDependencies.getApplication()).load(imageRes));
     }
 
     public @NonNull Builder setImageRequest(@Nullable GlideRequest<Drawable> imageRequest) {
@@ -167,7 +169,24 @@ public class Megaphone {
   }
 
   enum Style {
-    REACTIONS, BASIC, FULLSCREEN, POPUP
+    /** Specialized style for announcing reactions. */
+    REACTIONS,
+
+    /** Basic bottom of the screen megaphone with optional snooze and action buttons. */
+    BASIC,
+
+    /**
+     * Indicates megaphone does not have a view but will call {@link MegaphoneActionController#onMegaphoneNavigationRequested(Intent)}
+     * or {@link MegaphoneActionController#onMegaphoneNavigationRequested(Intent, int)} on the controller passed in
+     * via the {@link #onVisibleListener}.
+     */
+    FULLSCREEN,
+
+    /**
+     * Similar to {@link Style#BASIC} but only provides a close button that will call {@link #buttonListener} if set,
+     * otherwise, the event will be marked finished (it will not be shown again).
+     */
+    POPUP
   }
 
   public interface EventListener {

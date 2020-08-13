@@ -2324,6 +2324,10 @@
     <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">We\'ll remind you later. Creating a PIN will become mandatory in %1$d days.</string>
     <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">We\'ll remind you later. Confirming your PIN will become mandatory in %1$d days.</string>
 
+    <!-- Mention Megaphone -->
+    <string name="MentionsMegaphone__introducing_mentions">Introducing @Mentions</string>
+    <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Get someone\'s attention in a \"New Group\" by typing @</string>
+
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
     <string name="ConversationListFragment_loading">Loading…</string>

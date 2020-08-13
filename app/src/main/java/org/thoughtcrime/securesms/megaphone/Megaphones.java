@@ -21,16 +21,13 @@ import org.thoughtcrime.securesms.lock.v2.KbsMigrationActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestMegaphoneActivity;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Creating a new megaphone:
@@ -49,10 +46,8 @@ public final class Megaphones {
 
   private static final String TAG = Log.tag(Megaphones.class);
 
-  private static final MegaphoneSchedule ALWAYS         = new ForeverSchedule(true);
-  private static final MegaphoneSchedule NEVER          = new ForeverSchedule(false);
-
-  static final MegaphoneSchedule EVERY_TWO_DAYS = new RecurringSchedule(TimeUnit.DAYS.toMillis(2));
+  private static final MegaphoneSchedule ALWAYS = new ForeverSchedule(true);
+  private static final MegaphoneSchedule NEVER  = new ForeverSchedule(false);
 
   private Megaphones() {}
 
@@ -95,6 +90,7 @@ public final class Megaphones {
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
       put(Event.MESSAGE_REQUESTS, shouldShowMessageRequestsMegaphone() ? ALWAYS : NEVER);
+      put(Event.MENTIONS, shouldShowMentionsMegaphone() ? ALWAYS : NEVER);
     }};
   }
 
@@ -108,6 +104,8 @@ public final class Megaphones {
         return buildPinReminderMegaphone(context);
       case MESSAGE_REQUESTS:
         return buildMessageRequestsMegaphone(context);
+      case MENTIONS:
+        return buildMentionsMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -145,6 +143,7 @@ public final class Megaphones {
     }
   }
 
+  @SuppressWarnings("CodeBlock2Expr")
   private static @NonNull Megaphone buildPinReminderMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.PIN_REMINDER, Megaphone.Style.BASIC)
                         .setTitle(R.string.Megaphones_verify_your_signal_pin)
@@ -177,6 +176,7 @@ public final class Megaphones {
                         .build();
   }
 
+  @SuppressWarnings("CodeBlock2Expr")
   private static @NonNull Megaphone buildMessageRequestsMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.MESSAGE_REQUESTS, Megaphone.Style.FULLSCREEN)
                         .disableSnooze()
@@ -188,15 +188,28 @@ public final class Megaphones {
                         .build();
   }
 
+  private static Megaphone buildMentionsMegaphone() {
+    return new Megaphone.Builder(Event.MENTIONS, Megaphone.Style.POPUP)
+                        .setTitle(R.string.MentionsMegaphone__introducing_mentions)
+                        .setBody(R.string.MentionsMegaphone__get_someones_attention_in_a_group_by_typing)
+                        .setImage(R.drawable.mention_megaphone)
+                        .build();
+  }
+
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
+  }
+
+  private static boolean shouldShowMentionsMegaphone() {
+    return FeatureFlags.mentions() && FeatureFlags.groupsV2();
   }
 
   public enum Event {
     REACTIONS("reactions"),
     PINS_FOR_ALL("pins_for_all"),
     PIN_REMINDER("pin_reminder"),
-    MESSAGE_REQUESTS("message_requests");
+    MESSAGE_REQUESTS("message_requests"),
+    MENTIONS("mentions");
 
     private final String key;
 
