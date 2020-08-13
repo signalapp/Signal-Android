@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
@@ -32,7 +31,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.SnodeAPI;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 
 import java.io.IOException;
@@ -48,50 +47,34 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   private static final String KEY_TEMPLATE_MESSAGE_ID = "template_message_id";
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_DESTINATION = "destination";
-  private static final String KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE = "is_friend_request";
-  private static final String KEY_CUSTOM_FR_MESSAGE = "custom_friend_request_message";
 
   @Inject SignalServiceMessageSender messageSender;
 
-  private long messageId; // The message ID
-  private long templateMessageId; // The message ID of the message to template this send job from
-
-  // Loki - Multi device
-  private Address destination; // Used to check whether this is another device we're sending to
-  private boolean isLokiPreKeyBundleMessage; // Whether this is a friend request / session request / device link message
-  private String customFriendRequestMessage; // If this isn't set then we use the message body
+  private long messageId;
+  private long templateMessageId;
+  private Address destination;
 
   public PushTextSendJob(long messageId, Address destination) {
     this(messageId, messageId, destination);
   }
 
   public PushTextSendJob(long templateMessageId, long messageId, Address destination) {
-    this(templateMessageId, messageId, destination, false, null);
+    this(constructParameters(destination), templateMessageId, messageId, destination);
   }
 
-  public PushTextSendJob(long templateMessageId, long messageId, Address destination, boolean isLokiPreKeyBundleMessage, String customFriendRequestMessage) {
-    this(constructParameters(destination), templateMessageId, messageId, destination, isLokiPreKeyBundleMessage, customFriendRequestMessage);
-  }
-
-  private PushTextSendJob(@NonNull Job.Parameters parameters, long templateMessageId, long messageId, Address destination, boolean isLokiPreKeyBundleMessage, String customFriendRequestMessage) {
+  private PushTextSendJob(@NonNull Job.Parameters parameters, long templateMessageId, long messageId, Address destination) {
     super(parameters);
     this.templateMessageId = templateMessageId;
     this.messageId = messageId;
     this.destination = destination;
-    this.isLokiPreKeyBundleMessage = isLokiPreKeyBundleMessage;
-    this.customFriendRequestMessage = customFriendRequestMessage;
   }
 
   @Override
   public @NonNull Data serialize() {
-    Data.Builder builder = new Data.Builder()
-                                   .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
-                                   .putLong(KEY_MESSAGE_ID, messageId)
-                                   .putString(KEY_DESTINATION, destination.serialize())
-                                   .putBoolean(KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE, isLokiPreKeyBundleMessage);
-
-    if (customFriendRequestMessage != null) { builder.putString(KEY_CUSTOM_FR_MESSAGE, customFriendRequestMessage); }
-    return builder.build();
+    return new Data.Builder()
+                   .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
+                   .putLong(KEY_MESSAGE_ID, messageId)
+                   .putString(KEY_DESTINATION, destination.serialize()).build();
   }
 
   @Override
@@ -164,7 +147,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       warn(TAG, "Couldn't send message due to error: ", e);
       if (messageId >= 0) {
         database.markAsPendingInsecureSmsFallback(record.getId());
-        MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+        ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
       }
     } catch (UntrustedIdentityException e) {
       warn(TAG, "Couldn't send message due to error: ", e);
@@ -173,7 +156,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         database.markAsSentFailed(record.getId());
         database.markAsPush(record.getId());
       }
-    } catch (LokiAPI.Error e) {
+    } catch (SnodeAPI.Error e) {
       Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
       if (messageId >= 0) {
         LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
@@ -198,13 +181,13 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
       if (threadId != -1 && recipient != null) {
-        MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+        ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
       }
     }
   }
 
   private boolean deliver(SmsMessageRecord message)
-      throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException, LokiAPI.Error
+      throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException, SnodeAPI.Error
   {
     try {
       Recipient                        recipient          = Recipient.from(context, destination, false);
@@ -214,23 +197,18 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
       log(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
 
-      // Loki - Include a pre key bundle if needed
-      PreKeyBundle preKeyBundle;
-      if (isLokiPreKeyBundleMessage || message.isEndSession()) {
-        preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber());
-      } else {
-        preKeyBundle = null;
+      PreKeyBundle preKeyBundle = null;
+      if (message.isEndSession()) {
+        preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(destination.serialize());
       }
 
-      String body = (isLokiPreKeyBundleMessage && customFriendRequestMessage != null) ? customFriendRequestMessage : message.getBody();
       SignalServiceDataMessage textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getDateSent())
-                                                                           .withBody(body)
+                                                                           .withBody(message.getBody())
                                                                            .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                            .withProfileKey(profileKey.orNull())
-                                                                           .asEndSessionMessage(message.isEndSession())
-                                                                           .asFriendRequest(isLokiPreKeyBundleMessage)
                                                                            .withPreKeyBundle(preKeyBundle)
+                                                                           .asEndSessionMessage(message.isEndSession())
                                                                            .build();
 
       if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
@@ -263,9 +241,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
       Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
-      boolean isLokiPreKeyBundleMessage = data.getBoolean(KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE);
-      String customFRMessage = data.hasString(KEY_CUSTOM_FR_MESSAGE) ? data.getString(KEY_CUSTOM_FR_MESSAGE) : null;
-      return new PushTextSendJob(parameters, templateMessageID, messageID, destination, isLokiPreKeyBundleMessage, customFRMessage);
+      return new PushTextSendJob(parameters, templateMessageID, messageID, destination);
     }
   }
 }

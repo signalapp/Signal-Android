@@ -8,11 +8,11 @@
         android:id="@+id/quick_audio_toggle"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="2dp"
+        android:layout_gravity="center"
         android:background="@null"
         android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
         android:scaleType="centerInside"
+        android:layout_marginEnd="4dp"
         android:tint="@color/text"
         app:srcCompat="@drawable/ic_microphone" />
 

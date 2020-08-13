@@ -86,10 +86,7 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
-import org.thoughtcrime.securesms.loki.views.FriendRequestView;
-import org.thoughtcrime.securesms.loki.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -112,8 +109,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -158,7 +155,6 @@ public class ConversationItem extends LinearLayout
   private   ViewGroup              contactPhotoHolder;
   private   AlertView              alertView;
   private   ViewGroup              container;
-  private   FriendRequestView      friendRequestView;
 
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
   private           Recipient                       conversationRecipient;
@@ -181,8 +177,6 @@ public class ConversationItem extends LinearLayout
   private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
 
   private final Context context;
-
-  public FriendRequestViewDelegate friendRequestViewDelegate; // Loki
 
   public ConversationItem(Context context) {
     this(context, null);
@@ -223,7 +217,6 @@ public class ConversationItem extends LinearLayout
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
     this.container               =            findViewById(R.id.container);
-    this.friendRequestView       =            findViewById(R.id.friend_request_view);
 
     setOnClickListener(new ClickListener(null));
 
@@ -269,7 +262,6 @@ public class ConversationItem extends LinearLayout
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread);
-    setFriendRequestView(messageRecord);
     adjustMarginsIfNeeded(messageRecord);
   }
 
@@ -801,13 +793,14 @@ public class ConversationItem extends LinearLayout
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
     int groupThreadMargin = (int)((12 * getResources().getDisplayMetrics().density) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;
-    String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId()).getName();
+    Recipient r = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId());
+    String threadName = r != null ? r.getName() : "";
     boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Session Updates"));
     layoutParams.setMarginStart((groupThread && !isRSSFeed) ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
     if (profilePictureView == null) return;
-    profilePictureView.setHexEncodedPublicKey(recipient.getAddress().toString());
-    profilePictureView.setAdditionalHexEncodedPublicKey(null);
+    profilePictureView.setPublicKey(recipient.getAddress().toString());
+    profilePictureView.setAdditionalPublicKey(null);
     profilePictureView.setRSSFeed(false);
     profilePictureView.setGlide(glideRequests);
     profilePictureView.update();
@@ -919,11 +912,6 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setFriendRequestView(@NonNull MessageRecord record) {
-    friendRequestView.setDelegate(friendRequestViewDelegate);
-    friendRequestView.update(record);
-  }
-
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
     if (hasSticker(messageRecord)) {
       return stickerFooter;
@@ -1000,9 +988,9 @@ public class ConversationItem extends LinearLayout
         profilePictureView.setVisibility(VISIBLE);
         int visibility = View.GONE;
 
-        LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
+        PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
         if (publicChat != null) {
-          boolean isModerator = LokiPublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
+          boolean isModerator = PublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
         }
 
@@ -1064,14 +1052,6 @@ public class ConversationItem extends LinearLayout
   private void setMessageSpacing(@NonNull Context context, @NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     int spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
     int spacingBottom = spacingTop;
-
-    boolean isOutgoingStack = current.isOutgoing() && previous.orNull() != null && previous.get().isOutgoing();
-    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-    boolean isPreviousMessageFriendRequest = previous.orNull() != null && lokiMessageDatabase.isFriendRequest(previous.get().id);
-
-    if (isOutgoingStack && isPreviousMessageFriendRequest) {
-      spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
-    }
 
     if (isStartOfMessageCluster(current, previous, isGroupThread)) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);

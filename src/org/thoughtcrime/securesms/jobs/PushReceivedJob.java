@@ -36,7 +36,7 @@ public abstract class PushReceivedJob extends BaseJob {
 
         if (envelope.isReceipt()) {
           handleReceipt(envelope);
-        } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender() || envelope.isFriendRequest()) {
+        } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender() || envelope.isFallbackMessage()) {
           handleMessage(envelope, isPushNotification);
         } else {
           Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());

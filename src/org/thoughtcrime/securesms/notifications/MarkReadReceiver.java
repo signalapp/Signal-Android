@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -61,7 +61,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
           process(context, messageIdsCollection);
 
-          MessageNotifier.updateNotification(context);
+          ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
 
           return null;
         }
@@ -93,7 +93,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     for (Address address : addressMap.keySet()) {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
       // Loki - Check whether we want to send a read receipt to this user
-      if (!SessionMetaProtocol.shouldSendReadReceipt(address, context)) { continue; }
+      if (!SessionMetaProtocol.shouldSendReadReceipt(address)) { continue; }
       // Loki - Take into account multi device
       Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(address.serialize());
       for (String device : linkedDevices) {

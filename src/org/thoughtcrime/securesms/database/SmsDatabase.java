@@ -885,7 +885,7 @@ public class SmsDatabase extends MessagingDatabase {
                                   0, message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
                                   threadId, 0, new LinkedList<IdentityKeyMismatch>(),
                                   message.getSubscriptionId(), message.getExpiresIn(),
-                                  System.currentTimeMillis(), 0, false, message.isFriendRequest);
+                                  System.currentTimeMillis(), 0, false);
     }
   }
 
@@ -934,15 +934,12 @@ public class SmsDatabase extends MessagingDatabase {
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
       Recipient                 recipient  = Recipient.from(context, address, true);
 
-      // Loki - Check to see if this message was a friend request
-      boolean isFriendRequest = DatabaseFactory.getLokiMessageDatabase(context).isFriendRequest(messageId);
-
       return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,
                                   addressDeviceId,
                                   dateSent, dateReceived, deliveryReceiptCount, type,
                                   threadId, status, mismatches, subscriptionId,
-                                  expiresIn, expireStarted, readReceiptCount, unidentified, isFriendRequest);
+                                  expiresIn, expireStarted, readReceiptCount, unidentified);
     }
 
     private List<IdentityKeyMismatch> getMismatches(String document) {

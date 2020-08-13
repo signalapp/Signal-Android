@@ -12,6 +12,7 @@ import android.text.TextUtils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
@@ -423,7 +424,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
     db.endTransaction();
 
 //    DecryptingQueue.schedulePendingDecrypts(context, masterSecret);
-    MessageNotifier.updateNotification(context);
+    ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
   }
 
   @Override

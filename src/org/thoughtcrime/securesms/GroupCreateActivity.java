@@ -322,7 +322,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(GroupCreateActivity.this, PushContactSelectionActivity.class);
-      intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_FRIENDS);
+      intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_CONTACTS);
       startActivityForResult(intent, PICK_CONTACT);
     }
   }

@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,8 +84,9 @@ public class TypingStatusSender {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
     // Loki - Check whether we want to send a typing indicator to this user
-    if (!SessionMetaProtocol.shouldSendTypingIndicator(recipient, context)) { return; }
+    if (recipient != null && !SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
     // Loki - Take into account multi device
+    if (recipient == null) { return; }
     Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.getAddress().serialize());
     for (String device : linkedDevices) {
       Recipient deviceAsRecipient = Recipient.from(context, Address.fromSerialized(device), false);

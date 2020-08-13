@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.util.StreamDetails
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.security.SecureRandom
@@ -73,7 +73,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         showQRCodeButton.setOnClickListener { showQRCode() }
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
-        profilePictureView.hexEncodedPublicKey = hexEncodedPublicKey
+        profilePictureView.publicKey = hexEncodedPublicKey
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
@@ -83,16 +83,16 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
+        linkedDevicesButtonTopSeparator.visibility = View.GONE
+        linkedDevicesButton.visibility = View.GONE
         if (!isMasterDevice) {
-            linkedDevicesButtonTopSeparator.visibility = View.GONE
-            linkedDevicesButton.visibility = View.GONE
             seedButtonTopSeparator.visibility = View.GONE
             seedButton.visibility = View.GONE
         }
         privacyButton.setOnClickListener { showPrivacySettings() }
         notificationsButton.setOnClickListener { showNotificationSettings() }
         chatsButton.setOnClickListener { showChatSettings() }
-        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
+//        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
         versionTextView.text = String.format(getString(R.string.version_s), BuildConfig.VERSION_NAME)
@@ -151,7 +151,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val promises = mutableListOf<Promise<*, Exception>>()
         val displayName = displayNameToBeUploaded
         if (displayName != null) {
-            val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
+            val publicChatAPI = ApplicationContext.getInstance(this).publicChatAPI
             if (publicChatAPI != null) {
                 val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
                 promises.addAll(servers.map { publicChatAPI.setDisplayName(displayName, it) })
@@ -162,7 +162,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this)
         val profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey)
         if (isUpdatingProfilePicture && profilePicture != null) {
-            val storageAPI = LokiFileServerAPI.shared
+            val storageAPI = FileServerAPI.shared
             val deferred = deferred<Unit, Exception>()
             AsyncTask.execute {
                 val stream = StreamDetails(ByteArrayInputStream(profilePicture), "image/jpeg", profilePicture.size.toLong())
@@ -201,9 +201,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val displayName = displayNameEditText.text.toString().trim()
         if (displayName.isEmpty()) {
             return Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
-        }
-        if (!displayName.matches(Regex("[a-zA-Z0-9_]+"))) {
-            return Toast.makeText(this, R.string.activity_settings_invalid_display_name_error, Toast.LENGTH_SHORT).show()
         }
         if (displayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
             return Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()

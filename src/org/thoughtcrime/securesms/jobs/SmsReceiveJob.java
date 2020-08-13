@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.SmsMessage;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
@@ -79,7 +80,7 @@ public class SmsReceiveJob extends BaseJob {
       Optional<InsertResult> insertResult = storeMessage(message.get());
 
       if (insertResult.isPresent()) {
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        ApplicationContext.getInstance(context).messageNotifier.updateNotification(context, insertResult.get().getThreadId());
       }
     } else if (message.isPresent()) {
       Log.w(TAG, "*** Received blocked SMS, ignoring...");

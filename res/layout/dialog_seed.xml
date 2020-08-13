@@ -17,6 +17,7 @@
         android:text="@string/dialog_seed_title"
         android:textColor="@color/text"
         android:textStyle="bold"
+        android:textAlignment="center"
         android:textSize="@dimen/medium_font_size" />
 
     <TextView
@@ -59,7 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/medium_spacing"
+            android:layout_marginStart="@dimen/medium_spacing"
             android:text="@string/copy" />
 
     </LinearLayout>

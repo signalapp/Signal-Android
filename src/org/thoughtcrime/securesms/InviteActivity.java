@@ -53,7 +53,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
-    getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_FRIENDS);
+    getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_CONTACTS);
     getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
 

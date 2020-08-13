@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -33,7 +32,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -131,10 +130,12 @@ public class GroupMessageProcessor {
     String        id       = GroupUtil.getEncodedId(group);
 
     String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    if (userMasterDevice == null) { userMasterDevice = TextSecurePreferences.getLocalNumber(context); }
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
       // Loki - Only update the group if the group admin sent the message
       String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+      if (masterDevice == null) { masterDevice = content.getSender(); }
       if (!groupRecord.getAdmins().contains(Address.fromSerialized(masterDevice))) {
         Log.d("Loki", "Received a group update message from a non-admin user for: " + id +"; ignoring.");
         return null;
@@ -212,6 +213,7 @@ public class GroupMessageProcessor {
                                              @NonNull GroupRecord record)
   {
     String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+    if (masterDevice == null) { masterDevice = content.getSender(); }
     if (record.getMembers().contains(Address.fromSerialized(masterDevice))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
@@ -234,6 +236,7 @@ public class GroupMessageProcessor {
     builder.setType(GroupContext.Type.QUIT);
 
     String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+    if (masterDevice == null) { masterDevice = content.getSender(); }
     if (members.contains(Address.fromExternal(context, masterDevice))) {
       database.remove(id, Address.fromExternal(context, masterDevice));
       if (outgoing) database.setActive(id, false);
@@ -259,7 +262,7 @@ public class GroupMessageProcessor {
     try {
       if (outgoing) {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        Address                   address          = Address.fromExternal(context, GroupUtil.getEncodedId(group));
+        Address                   address         = Address.fromExternal(context, GroupUtil.getEncodedId(group));
         Recipient                 recipient       = Recipient.from(context, address, false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
@@ -277,7 +280,7 @@ public class GroupMessageProcessor {
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
         if (insertResult.isPresent()) {
-          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+          ApplicationContext.getInstance(context).messageNotifier.updateNotification(context, insertResult.get().getThreadId());
           return insertResult.get().getThreadId();
         } else {
           return null;

@@ -4,12 +4,10 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 
 data class Contact(
     val recipient: Recipient,
-    val isFriend: Boolean,
     val isSlave: Boolean,
     val isOurDevice: Boolean
 ) {
@@ -31,10 +29,9 @@ object ContactUtilities {
     @JvmStatic
     fun getAllContacts(context: Context): Set<Contact> {
         val threadDatabase = DatabaseFactory.getThreadDatabase(context)
-        val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
-        val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userHexEncodedPublicKey)
+        val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
         val cursor = threadDatabase.conversationList
         val result = mutableSetOf<Contact>()
         threadDatabase.readerFor(cursor).use { reader ->
@@ -43,13 +40,12 @@ object ContactUtilities {
             val recipient = thread.recipient
             val publicKey = recipient.address.serialize()
             val isUserDevice = userDevices.contains(publicKey)
-            val isFriend = lokiThreadDatabase.getFriendRequestStatus(thread.threadId) == LokiThreadFriendRequestStatus.FRIENDS
             var isSlave = false
             if (!recipient.isGroupRecipient) {
                 val deviceLinks = lokiAPIDatabase.getDeviceLinks(publicKey)
-                isSlave = deviceLinks.find { it.slaveHexEncodedPublicKey == publicKey } != null
+                isSlave = deviceLinks.find { it.slavePublicKey == publicKey } != null
             }
-            result.add(Contact(recipient, isFriend, isSlave, isUserDevice))
+            result.add(Contact(recipient, isSlave, isUserDevice))
         }
     }
     return result

@@ -15,10 +15,10 @@ sealed class ContactSelectionListItem {
 class ContactSelectionListLoader(context: Context, val mode: Int, val filter: String?) : AsyncLoader<List<ContactSelectionListItem>>(context) {
 
     object DisplayMode {
-        const val FLAG_FRIENDS = 1
+        const val FLAG_CONTACTS = 1
         const val FLAG_CLOSED_GROUPS = 1 shl 1
         const val FLAG_OPEN_GROUPS = 1 shl 2
-        const val FLAG_ALL = FLAG_FRIENDS or FLAG_CLOSED_GROUPS or FLAG_OPEN_GROUPS
+        const val FLAG_ALL = FLAG_CONTACTS or FLAG_CLOSED_GROUPS or FLAG_OPEN_GROUPS
     }
 
     private fun isFlagSet(flag: Int): Boolean {
@@ -39,15 +39,15 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
         if (isFlagSet(DisplayMode.FLAG_OPEN_GROUPS)) {
             list.addAll(getOpenGroups(contacts))
         }
-        if (isFlagSet(DisplayMode.FLAG_FRIENDS)) {
-            list.addAll(getFriends(contacts))
+        if (isFlagSet(DisplayMode.FLAG_CONTACTS)) {
+            list.addAll(getContacts(contacts))
         }
         return list
     }
 
-    private fun getFriends(contacts: List<Contact>): List<ContactSelectionListItem> {
+    private fun getContacts(contacts: List<Contact>): List<ContactSelectionListItem> {
         return getItems(contacts, context.getString(R.string.fragment_contact_selection_contacts_title)) {
-            !it.recipient.isGroupRecipient && it.isFriend && !it.isOurDevice && !it.isSlave
+            !it.recipient.isGroupRecipient && !it.isOurDevice && !it.isSlave
         }
     }
 

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populat
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import java.util.*
 
@@ -46,22 +47,34 @@ class ConversationView : LinearLayout {
     // region Updating
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
-        populateUserPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a terrible place to do this
-        unreadMessagesIndicatorView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
+        populateUserPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a bad place to do this
+        if (thread.recipient.isBlocked) {
+            accentView.setBackgroundResource(R.color.destructive)
+            accentView.visibility = View.VISIBLE
+        } else {
+            accentView.setBackgroundResource(R.color.accent)
+            accentView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
+        }
         if (thread.recipient.isGroupRecipient) {
             if ("Session Public Chat" == thread.recipient.name) {
-                profilePictureView.hexEncodedPublicKey = ""
+                profilePictureView.publicKey = ""
+                profilePictureView.additionalPublicKey = null
                 profilePictureView.isRSSFeed = true
             } else {
-                val users = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toList() ?: listOf()
+                val users = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toMutableList() ?: mutableListOf()
+                users.remove(TextSecurePreferences.getLocalNumber(context))
+                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+                if (masterPublicKey != null) {
+                    users.remove(masterPublicKey)
+                }
                 val randomUsers = users.sorted() // Sort to provide a level of stability
-                profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
+                profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
                 profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
             }
         } else {
-            profilePictureView.hexEncodedPublicKey = thread.recipient.address.toString()
-            profilePictureView.additionalHexEncodedPublicKey = null
+            profilePictureView.publicKey = thread.recipient.address.toString()
+            profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
         profilePictureView.glide = glide

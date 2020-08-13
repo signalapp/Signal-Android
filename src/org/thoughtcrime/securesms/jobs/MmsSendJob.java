@@ -19,6 +19,7 @@ import com.google.android.mms.pdu_alt.SendReq;
 import com.google.android.mms.smil.SmilHelper;
 import com.klinker.android.send_message.Utils;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -304,7 +305,7 @@ public class MmsSendJob extends SendJob {
     Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
     if (recipient != null) {
-      MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+      ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
     }
   }
 

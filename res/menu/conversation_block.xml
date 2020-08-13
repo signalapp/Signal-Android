@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/recipient_preferences__block"
+          android:id="@+id/menu_block"
+          android:icon="@drawable/ic_block_white_24dp" />
+
+</menu>

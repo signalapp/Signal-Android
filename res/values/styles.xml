@@ -139,6 +139,7 @@
         <item name="android:textSize">@dimen/large_font_size</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:fontFamily">@font/space_mono_regular</item>
+        <item name="android:textAlignment">viewStart</item>
     </style>
 
     <style name="SessionEditText">
@@ -150,6 +151,7 @@
         <item name="android:textSize">@dimen/small_font_size</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:textAlignment">viewStart</item>
         <item name="android:maxLines">1</item>
     </style>
 
@@ -162,6 +164,7 @@
         <item name="android:textSize">@dimen/small_font_size</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:textAlignment">viewStart</item>
         <item name="android:maxLines">1</item>
     </style>
 

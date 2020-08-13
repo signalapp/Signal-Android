@@ -10,6 +10,7 @@ import com.google.android.mms.pdu_alt.PduBody;
 import com.google.android.mms.pdu_alt.PduPart;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.Address;
@@ -57,6 +58,7 @@ public class MmsDownloadJob extends BaseJob {
   private long    messageId;
   private long    threadId;
   private boolean automatic;
+  private MessageNotifier messageNotifier;
 
   public MmsDownloadJob(long messageId, long threadId, boolean automatic) {
     this(new Job.Parameters.Builder()
@@ -75,6 +77,7 @@ public class MmsDownloadJob extends BaseJob {
     this.messageId = messageId;
     this.threadId  = threadId;
     this.automatic = automatic;
+    this.messageNotifier = ApplicationContext.getInstance(context).messageNotifier;
   }
 
   @Override
@@ -94,7 +97,7 @@ public class MmsDownloadJob extends BaseJob {
   public void onAdded() {
     if (automatic && KeyCachingService.isLocked(context)) {
       DatabaseFactory.getMmsDatabase(context).markIncomingNotificationReceived(threadId);
-      MessageNotifier.updateNotification(context);
+      messageNotifier.updateNotification(context);
     }
   }
 
@@ -177,7 +180,7 @@ public class MmsDownloadJob extends BaseJob {
 
     if (automatic) {
       database.markIncomingNotificationReceived(threadId);
-      MessageNotifier.updateNotification(context, threadId);
+      messageNotifier.updateNotification(context, threadId);
     }
   }
 
@@ -252,7 +255,7 @@ public class MmsDownloadJob extends BaseJob {
 
     if (insertResult.isPresent()) {
       database.delete(messageId);
-      MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+      messageNotifier.updateNotification(context, insertResult.get().getThreadId());
     }
   }
 
@@ -264,7 +267,7 @@ public class MmsDownloadJob extends BaseJob {
 
     if (automatic) {
       db.markIncomingNotificationReceived(threadId);
-      MessageNotifier.updateNotification(context, threadId);
+      messageNotifier.updateNotification(context, threadId);
     }
   }
 

@@ -25,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.RemoteInput;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
@@ -59,7 +60,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
     final Address      address      = intent.getParcelableExtra(ADDRESS_EXTRA);
     final ReplyMethod  replyMethod  = (ReplyMethod) intent.getSerializableExtra(REPLY_METHOD);
-    final CharSequence responseText = remoteInput.getCharSequence(MessageNotifier.EXTRA_REMOTE_REPLY);
+    final CharSequence responseText = remoteInput.getCharSequence(DefaultMessageNotifier.EXTRA_REMOTE_REPLY);
 
     if (address     == null) throw new AssertionError("No address specified");
     if (replyMethod == null) throw new AssertionError("No reply method specified");
@@ -91,7 +92,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
 
-          MessageNotifier.updateNotification(context);
+          ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
           MarkReadReceiver.process(context, messageIds);
 
           return null;

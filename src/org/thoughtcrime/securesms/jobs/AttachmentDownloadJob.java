@@ -5,6 +5,7 @@ import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -107,7 +108,7 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException {
     doWork();
-    MessageNotifier.updateNotification(context, 0);
+    ApplicationContext.getInstance(context).messageNotifier.updateNotification(context, 0);
   }
 
   public void doWork() throws IOException {

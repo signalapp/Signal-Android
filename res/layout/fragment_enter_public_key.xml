@@ -12,10 +12,16 @@
         style="@style/SmallSessionEditText"
         android:id="@+id/publicKeyEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:gravity="center_vertical"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:imeOptions="actionDone"
         android:hint="@string/fragment_enter_public_key_edit_text_hint" />
 
     <TextView
@@ -24,7 +30,7 @@
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/large_spacing"
-        android:textSize="@dimen/small_font_size"
+        android:textSize="@dimen/very_small_font_size"
         android:textColor="@color/text"
         android:alpha="0.6"
         android:textAlignment="center"
@@ -73,7 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/medium_button_height"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/medium_spacing"
+            android:layout_marginStart="@dimen/medium_spacing"
             android:text="@string/share" />
 
     </LinearLayout>

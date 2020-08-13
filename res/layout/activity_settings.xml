@@ -150,7 +150,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/medium_button_height"
                     android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/medium_spacing"
+                    android:layout_marginStart="@dimen/medium_spacing"
                     android:text="@string/share" />
 
             </LinearLayout>

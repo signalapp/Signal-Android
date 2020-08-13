@@ -1,114 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/default_session_background"
-        android:orientation="vertical">
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/large_font_size"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Message Notifications" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:text="There are two ways Session can notify you of new messages." />
+
+    <LinearLayout
+        android:id="@+id/fcmOptionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:background="@drawable/pn_option_background">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/very_large_spacing"
-            android:layout_marginTop="@dimen/very_large_spacing"
-            android:layout_marginRight="@dimen/very_large_spacing"
-            android:textSize="@dimen/large_font_size"
+            android:textSize="@dimen/medium_font_size"
+            android:textColor="@color/text"
             android:textStyle="bold"
-            android:textColor="@color/text"
-            android:text="@string/activity_pn_mode_title" />
+            android:text="Fast Mode" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/very_large_spacing"
-            android:layout_marginTop="@dimen/small_spacing"
-            android:layout_marginRight="@dimen/very_large_spacing"
-            android:textSize="@dimen/small_font_size"
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/very_small_font_size"
             android:textColor="@color/text"
-            android:text="@string/activity_pn_mode_explanation" />
+            android:text="You’ll be notified of new messages reliably and immediately using Google’s notification servers. The contents of your messages, and who you’re messaging, are never exposed to Google." />
 
-        <LinearLayout
-            android:id="@+id/fcmOptionView"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/very_large_spacing"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="@dimen/very_large_spacing"
-            android:padding="12dp"
-            android:orientation="vertical"
-            android:background="@drawable/pn_option_background">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/medium_spacing"
-                android:textColor="@color/text"
-                android:textStyle="bold"
-                android:text="@string/activity_pn_mode_fcm_option_title" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="@dimen/very_small_font_size"
-                android:textColor="@color/text"
-                android:text="@string/activity_pn_mode_fcm_option_explanation" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="@dimen/very_small_font_size"
-                android:textColor="@color/accent"
-                android:textStyle="bold"
-                android:text="@string/activity_pn_mode_recommended_option_tag" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/backgroundPollingOptionView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/very_large_spacing"
-            android:layout_marginTop="@dimen/small_spacing"
-            android:layout_marginRight="@dimen/very_large_spacing"
-            android:padding="12dp"
-            android:orientation="vertical"
-            android:background="@drawable/pn_option_background">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/medium_spacing"
-                android:textColor="@color/text"
-                android:textStyle="bold"
-                android:text="@string/activity_pn_mode_background_polling_option_title" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="@dimen/very_small_font_size"
-                android:textColor="@color/text"
-                android:text="@string/activity_pn_mode_background_polling_option_explanation" />
-
-        </LinearLayout>
-
-        <Button
-            style="@style/MediumProminentFilledButton"
-            android:id="@+id/registerButton"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/medium_button_height"
-            android:layout_marginLeft="@dimen/massive_spacing"
-            android:layout_marginTop="@dimen/medium_spacing"
-            android:layout_marginRight="@dimen/massive_spacing"
-            android:layout_marginBottom="@dimen/medium_spacing"
-            android:text="@string/continue_2" />
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/accent"
+            android:textStyle="bold"
+            android:text="@string/activity_pn_mode_recommended_option_tag" />
 
     </LinearLayout>
 
-</ScrollView>
+    <LinearLayout
+        android:id="@+id/backgroundPollingOptionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="@dimen/small_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:background="@drawable/pn_option_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/medium_font_size"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:text="Slow Mode" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/very_small_font_size"
+            android:textColor="@color/text"
+            android:text="Session will occasionally check for new messages in the background. Full metadata protection is guaranteed, but message notifications will be unreliable." />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        style="@style/MediumProminentFilledButton"
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginLeft="@dimen/massive_spacing"
+        android:layout_marginRight="@dimen/massive_spacing"
+        android:layout_marginBottom="@dimen/onboarding_button_bottom_offset"
+        android:text="@string/continue_2" />
+
+</LinearLayout>

@@ -48,22 +48,22 @@ class UserView : LinearLayout {
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
-                profilePictureView.hexEncodedPublicKey = ""
-                profilePictureView.additionalHexEncodedPublicKey = null
+                profilePictureView.publicKey = ""
+                profilePictureView.additionalPublicKey = null
                 profilePictureView.isRSSFeed = true
             } else {
                 val threadID = GroupManager.getThreadIDFromGroupID(address, context)
                 val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList()
                         ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
-                profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
+                profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
                 profilePictureView.isRSSFeed = false
 
             }
         } else {
-            profilePictureView.hexEncodedPublicKey = address
-            profilePictureView.additionalHexEncodedPublicKey = null
+            profilePictureView.publicKey = address
+            profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
         tickImageView.setImageResource(R.drawable.ic_edit_white_24dp)

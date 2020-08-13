@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
@@ -36,8 +36,10 @@
         android:id="@+id/mnemonicEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="28dp"
+        android:paddingBottom="28dp"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginTop="12dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:hint="@string/activity_restore_seed_edit_text_hint" />
 

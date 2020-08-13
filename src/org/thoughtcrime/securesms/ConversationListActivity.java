@@ -298,7 +298,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         Context                 context    = ConversationListActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setAllThreadsRead();
 
-        MessageNotifier.updateNotification(context);
+        ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
         return null;

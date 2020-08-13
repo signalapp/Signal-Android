@@ -79,7 +79,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -101,8 +100,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -151,7 +150,6 @@ public class ConversationFragment extends Fragment
   private View                        composeDivider;
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
-  public FriendRequestViewDelegate    friendRequestViewDelegate; // Loki
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -375,9 +373,7 @@ public class ConversationFragment extends Fragment
     }
 
     if (messageRecords.size() > 1) {
-//      menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_reply).setVisible(false);
-//      menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
     } else {
@@ -390,32 +386,29 @@ public class ConversationFragment extends Fragment
                                                                   ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                                                   ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
 
-      /*
-      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact);
-      menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-       */
       menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
                                                         !messageRecord.isPending() &&
                                                         !messageRecord.isFailed()  &&
                                                         messageRecord.isSecure());
     }
+
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
 
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
-      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
-      boolean isPublicChat = publicChat != null;
+      PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+      boolean isPublicChat = (publicChat != null);
       int selectedMessageCount = messageRecords.size();
       boolean areAllSentByUser = true;
       for (MessageRecord message : messageRecords) {
         if (!message.isOutgoing()) { areAllSentByUser = false; }
       }
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !areAllSentByUser);
-      menu.findItem(R.id.menu_context_reply).setVisible(isPublicChat && selectedMessageCount == 1);
+      menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = isPublicChat && LokiPublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
-      boolean isDeleteOptionVisible = isPublicChat && (areAllSentByUser || userCanModerate);
+      boolean userCanModerate = isPublicChat && PublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
+      boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(false);
@@ -433,9 +426,7 @@ public class ConversationFragment extends Fragment
 
   private MessageRecord getSelectedMessageRecord() {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
-
-    if (messageRecords.size() == 1) return messageRecords.iterator().next();
-    else                            throw new AssertionError();
+    return messageRecords.iterator().next();
   }
 
   public void reload(Recipient recipient, long threadId) {
@@ -509,7 +500,7 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
@@ -525,7 +516,7 @@ public class ConversationFragment extends Fragment
               ArrayList<Long> ignoredMessages = new ArrayList<>();
               ArrayList<Long> failedMessages = new ArrayList<>();
               boolean isSentByUser = true;
-              LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
+              PublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getPublicChatAPI();
               for (MessageRecord messageRecord : messageRecords) {
                 isSentByUser = isSentByUser && messageRecord.isOutgoing();
                 Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
@@ -713,7 +704,6 @@ public class ConversationFragment extends Fragment
     if (adapter == null) {
       return;
     }
-    adapter.friendRequestViewDelegate = this.friendRequestViewDelegate;
 
     if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && loader.hasLimit()) {
       adapter.setFooterView(topLoadMoreView);

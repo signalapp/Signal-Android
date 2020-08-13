@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationManagerCompat;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.whispersystems.libsignal.logging.Log;
@@ -66,7 +67,7 @@ public class AndroidAutoHeardReceiver extends BroadcastReceiver {
             messageIdsCollection.addAll(messageIds);
           }
 
-          MessageNotifier.updateNotification(context);
+          ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
           MarkReadReceiver.process(context, messageIdsCollection);
 
           return null;

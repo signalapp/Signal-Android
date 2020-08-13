@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class ProfilePictureView : RelativeLayout {
     lateinit var glide: GlideRequests
-    var hexEncodedPublicKey: String? = null
-    var additionalHexEncodedPublicKey: String? = null
+    var publicKey: String? = null
+    var additionalPublicKey: String? = null
     var isRSSFeed = false
     var isLarge = false
 
@@ -52,11 +52,11 @@ class ProfilePictureView : RelativeLayout {
 
     // region Updating
     fun update() {
-        val hexEncodedPublicKey = hexEncodedPublicKey ?: return
-        val additionalHexEncodedPublicKey = additionalHexEncodedPublicKey
-        doubleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey != null && !isRSSFeed) View.VISIBLE else View.INVISIBLE
-        singleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey == null && !isRSSFeed && !isLarge) View.VISIBLE else View.INVISIBLE
-        largeSingleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey == null && !isRSSFeed && isLarge) View.VISIBLE else View.INVISIBLE
+        val publicKey = publicKey ?: return
+        val additionalPublicKey = additionalPublicKey
+        doubleModeImageViewContainer.visibility = if (additionalPublicKey != null && !isRSSFeed) View.VISIBLE else View.INVISIBLE
+        singleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && !isLarge) View.VISIBLE else View.INVISIBLE
+        largeSingleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && isLarge) View.VISIBLE else View.INVISIBLE
         rssImageView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
         fun setProfilePictureIfNeeded(imageView: ImageView, hexEncodedPublicKey: String, @DimenRes sizeID: Int) {
             glide.clear(imageView)
@@ -76,10 +76,10 @@ class ProfilePictureView : RelativeLayout {
                 imageView.setImageDrawable(null)
             }
         }
-        setProfilePictureIfNeeded(doubleModeImageView1, hexEncodedPublicKey, R.dimen.small_profile_picture_size)
-        setProfilePictureIfNeeded(doubleModeImageView2, additionalHexEncodedPublicKey ?: "", R.dimen.small_profile_picture_size)
-        setProfilePictureIfNeeded(singleModeImageView, hexEncodedPublicKey, R.dimen.medium_profile_picture_size)
-        setProfilePictureIfNeeded(largeSingleModeImageView, hexEncodedPublicKey, R.dimen.large_profile_picture_size)
+        setProfilePictureIfNeeded(doubleModeImageView1, publicKey, R.dimen.small_profile_picture_size)
+        setProfilePictureIfNeeded(doubleModeImageView2, additionalPublicKey ?: "", R.dimen.small_profile_picture_size)
+        setProfilePictureIfNeeded(singleModeImageView, publicKey, R.dimen.medium_profile_picture_size)
+        setProfilePictureIfNeeded(largeSingleModeImageView, publicKey, R.dimen.large_profile_picture_size)
     }
     // endregion
 }

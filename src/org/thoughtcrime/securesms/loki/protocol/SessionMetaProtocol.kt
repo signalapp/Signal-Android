@@ -10,13 +10,17 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.security.MessageDigest
 
 object SessionMetaProtocol {
 
     private val timestamps = mutableSetOf<Long>()
+
+    @JvmStatic
+    fun dropFromTimestampCacheIfNeeded(timestamp: Long) {
+        timestamps.remove(timestamp)
+    }
 
     @JvmStatic
     fun shouldIgnoreMessage(content: SignalServiceContent): Boolean {
@@ -48,9 +52,8 @@ object SessionMetaProtocol {
         }
     }
 
-    // FIXME: Basically a duplicate of PushDecryptJob's handleProfileKey
     @JvmStatic
-    fun duplicate_handleProfileKey(context: Context, content: SignalServiceContent) {
+    fun handleProfileKeyUpdate(context: Context, content: SignalServiceContent) {
         val message = content.dataMessage.get()
         if (!message.profileKey.isPresent) { return }
         val database = DatabaseFactory.getRecipientDatabase(context)
@@ -60,46 +63,34 @@ object SessionMetaProtocol {
             database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN)
             val url = content.senderProfilePictureURL.or("")
             ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, url))
-            handleProfileKeyUpdateIfNeeded(context, content)
+            val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+            if (userMasterPublicKey == content.sender) {
+                ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
+            }
         }
     }
 
+    /**
+     * Should be invoked for the recipient's master device.
+     */
     @JvmStatic
-    fun handleProfileKeyUpdateIfNeeded(context: Context, content: SignalServiceContent) {
-        val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-        if (userMasterPublicKey != content.sender) { return }
-        ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
+    fun canUserReplyToNotification(recipient: Recipient): Boolean {
+        return !recipient.address.isRSSFeed
     }
 
     /**
      * Should be invoked for the recipient's master device.
      */
     @JvmStatic
-    fun canUserReplyToNotification(recipient: Recipient, context: Context): Boolean {
-        val isGroup = recipient.isGroupRecipient
-        if (isGroup) { return !recipient.address.isRSSFeed }
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
-        return DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS
+    fun shouldSendReadReceipt(address: Address): Boolean {
+        return !address.isGroup
     }
 
     /**
      * Should be invoked for the recipient's master device.
      */
     @JvmStatic
-    fun shouldSendReadReceipt(address: Address, context: Context): Boolean {
-        if (address.isGroup) { return false }
-        val recipient = Recipient.from(context, address,false)
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
-        return DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS
-    }
-
-    /**
-     * Should be invoked for the recipient's master device.
-     */
-    @JvmStatic
-    fun shouldSendTypingIndicator(recipient: Recipient, context: Context): Boolean {
-        if (recipient.isGroupRecipient) { return false }
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
-        return DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS
+    fun shouldSendTypingIndicator(address: Address): Boolean {
+        return !address.isGroup
     }
 }

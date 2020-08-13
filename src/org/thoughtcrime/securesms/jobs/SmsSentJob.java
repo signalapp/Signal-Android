@@ -108,7 +108,7 @@ public class SmsSentJob extends BaseJob {
           break;
         default:
           database.markAsSentFailed(messageId);
-          MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+          ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
       }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, e);

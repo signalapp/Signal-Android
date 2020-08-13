@@ -45,7 +45,7 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
+import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
@@ -152,12 +152,11 @@ public class SignalCommunicationModule {
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           Optional.of(new MessageSenderEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
-                                                          TextSecurePreferences.getMasterHexEncodedPublicKey(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageDatabase(context),
                                                           DatabaseFactory.getLokiPreKeyBundleDatabase(context),
-                                                          new LokiSessionResetImplementation(context),
+                                                          new SessionResetImplementation(context),
                                                           DatabaseFactory.getLokiUserDatabase(context),
                                                           ((ApplicationContext)context.getApplicationContext()).broadcaster);
     } else {

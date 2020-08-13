@@ -36,10 +36,10 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
+import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
+import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -76,12 +76,7 @@ public class MessageSender {
 
     long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
-    // Loki - Set the message's friend request status as soon as it hits the database
-    if (FriendRequestProtocol.shouldUpdateFriendRequestStatusFromOutgoingTextMessage(context, message)) {
-      FriendRequestProtocol.setFriendRequestStatusToSendingIfNeeded(context, messageId, allocatedThreadId);
-    }
-
-    sendTextMessage(context, recipient, forceSms, keyExchange, messageId, message.isEndSession());
+    sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
 
     return allocatedThreadId;
   }
@@ -107,11 +102,6 @@ public class MessageSender {
       Recipient recipient = message.getRecipient();
       long      messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
 
-      // Loki - Set the message's friend request status as soon as it hits the database
-      if (FriendRequestProtocol.shouldUpdateFriendRequestStatusFromOutgoingMediaMessage(context, message)) {
-        FriendRequestProtocol.setFriendRequestStatusToSendingIfNeeded(context, messageId, allocatedThreadId);
-      }
-
       sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -135,7 +125,7 @@ public class MessageSender {
     if (messageRecord.isMms()) {
       sendMediaMessage(context, recipient, forceSms, messageId, expiresIn);
     } else {
-      sendTextMessage(context, recipient, forceSms, keyExchange, messageId, messageRecord.isEndSession());
+      sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     }
   }
 
@@ -152,21 +142,25 @@ public class MessageSender {
 
   private static void sendTextMessage(Context context, Recipient recipient,
                                       boolean forceSms, boolean keyExchange,
-                                      long messageId, boolean isEndSession)
+                                      long messageId)
   {
     if (isLocalSelfSend(context, recipient, forceSms)) {
       sendLocalTextSelf(context, messageId);
     } else {
-      sendTextPush(context, recipient, messageId, isEndSession);
+      sendTextPush(context, recipient, messageId);
     }
   }
 
-  private static void sendTextPush(Context context, Recipient recipient, long messageId, boolean isEndSession) {
-    MultiDeviceProtocol.sendTextPush(context, recipient, messageId, isEndSession);
+  private static void sendTextPush(Context context, Recipient recipient, long messageId) {
+    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
+    jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
+//    MultiDeviceProtocol.sendTextPush(context, recipient, messageId);
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
-    MultiDeviceProtocol.sendMediaPush(context, recipient, messageId);
+    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
+    PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
+//    MultiDeviceProtocol.sendMediaPush(context, recipient, messageId);
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {

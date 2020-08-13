@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -107,8 +106,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   private MessageRecord recordToPulseHighlight;
   private String        searchQuery;
-
-  public FriendRequestViewDelegate friendRequestViewDelegate; // Loki
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -202,11 +199,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     MessageRecord previousRecord  = adapterPosition < getItemCount() - 1 && !isFooterPosition(adapterPosition + 1) ? getRecordForPositionOrThrow(adapterPosition + 1) : null;
     MessageRecord nextRecord      = adapterPosition > 0 && !isHeaderPosition(adapterPosition - 1) ? getRecordForPositionOrThrow(adapterPosition - 1) : null;
 
-    BindableConversationItem conversationItem = viewHolder.getView();
-    if (conversationItem instanceof ConversationItem) {
-      ((ConversationItem)conversationItem).friendRequestViewDelegate = this.friendRequestViewDelegate;
-    }
-    conversationItem.bind(messageRecord,
+    viewHolder.getView().bind(messageRecord,
                           Optional.fromNullable(previousRecord),
                           Optional.fromNullable(nextRecord),
                           glideRequests,

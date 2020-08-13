@@ -45,7 +45,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
 
 import java.io.File;
 
@@ -83,8 +83,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV7                           = 28;
   private static final int lokiV8                           = 29;
   private static final int lokiV9                           = 30;
+  private static final int lokiV10                          = 31;
+  private static final int lokiV11                          = 32;
 
-  private static final int    DATABASE_VERSION = lokiV9; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV11; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -143,12 +145,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateDeviceLinkCacheCommand());
     db.execSQL(LokiAPIDatabase.getCreateUserCountCacheCommand());
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSessionRequestSentTimestampCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSessionRequestProcessedTimestampCacheCommand());
+    db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyDBCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
-    db.execSQL(LokiMessageDatabase.getCreateMessageFriendRequestTableCommand());
+    db.execSQL(LokiMessageDatabase.getCreateMessageIDTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
-    db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
     db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
@@ -545,7 +549,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         try (Cursor lokiPublicChatCursor = db.rawQuery("SELECT public_chat FROM loki_public_chat_database", null)) {
           while (lokiPublicChatCursor != null && lokiPublicChatCursor.moveToNext()) {
             String chatString = lokiPublicChatCursor.getString(0);
-            LokiPublicChat publicChat = LokiPublicChat.fromJSON(chatString);
+            PublicChat publicChat = PublicChat.fromJSON(chatString);
             if (publicChat != null) {
               byte[] groupId = publicChat.getId().getBytes();
               String oldId = GroupUtil.getEncodedId(groupId, false);
@@ -588,6 +592,15 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV9) {
         db.execSQL(LokiAPIDatabase.getCreateSnodePoolCacheCommand());
         db.execSQL(LokiAPIDatabase.getCreateOnionRequestPathCacheCommand());
+      }
+
+      if (oldVersion < lokiV10) {
+        db.execSQL(LokiAPIDatabase.getCreateSessionRequestSentTimestampCacheCommand());
+        db.execSQL(LokiAPIDatabase.getCreateSessionRequestProcessedTimestampCacheCommand());
+      }
+
+      if (oldVersion < lokiV11) {
+        db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyDBCommand());
       }
 
       db.setTransactionSuccessful();

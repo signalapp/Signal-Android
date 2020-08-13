@@ -21,12 +21,12 @@ import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.LokiAPI
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.SnodeAPI
+import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSessionListener
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSession
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
 
 class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
@@ -52,7 +52,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
     }
 
     override fun requestUserAuthorization(deviceLink: DeviceLink) {
-        if (deviceLink.type != DeviceLink.Type.REQUEST || deviceLink.masterHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
+        if (deviceLink.type != DeviceLink.Type.REQUEST || deviceLink.masterPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
         Util.runOnMain {
             this.deviceLink = deviceLink
             contentView.qrCodeImageView.visibility = View.GONE
@@ -62,7 +62,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             contentView.titleTextView.text = resources.getString(R.string.dialog_link_device_master_mode_title_2)
             contentView.explanationTextView.text = resources.getString(R.string.dialog_link_device_master_mode_explanation_2)
             contentView.mnemonicTextView.visibility = View.VISIBLE
-            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), deviceLink.slaveHexEncodedPublicKey)
+            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), deviceLink.slavePublicKey)
             contentView.authorizeButton.visibility = View.VISIBLE
         }
     }
@@ -84,7 +84,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             contentView.cancelButton.visibility = View.GONE
             contentView.authorizeButton.visibility = View.GONE
         }
-        LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(LokiAPI.sharedContext) {
+        FileServerAPI.shared.addDeviceLink(deviceLink).bind(SnodeAPI.sharedContext) {
             MultiDeviceProtocol.signAndSendDeviceLinkMessage(context!!, deviceLink)
         }.success {
             TextSecurePreferences.setMultiDevice(context!!, true)
@@ -92,8 +92,8 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             delegate?.onDeviceLinkRequestAuthorized()
             dismiss()
         }.fail {
-            LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
-            DatabaseFactory.getLokiPreKeyBundleDatabase(context!!).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
+            FileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context!!).removePreKeyBundle(deviceLink.slavePublicKey)
         }.failUi {
             delegate?.onDeviceLinkAuthorizationFailed()
             dismiss()
@@ -104,7 +104,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
         DeviceLinkingSession.shared.stopListeningForLinkingRequests()
         DeviceLinkingSession.shared.removeListener(this)
         if (deviceLink != null) {
-            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(deviceLink!!.slaveHexEncodedPublicKey)
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(deviceLink!!.slavePublicKey)
         }
         dismiss()
         delegate?.onDeviceLinkCanceled()
