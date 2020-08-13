@@ -141,8 +141,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int BORDERLESS                       = 66;
   private static final int REMAPPED_RECORDS                 = 67;
   private static final int MENTIONS                         = 68;
+  private static final int PINNED_CONVERSATIONS             = 69;
 
-  private static final int    DATABASE_VERSION = 68;
+  private static final int    DATABASE_VERSION = 69;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -989,6 +990,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("ALTER TABLE mms ADD COLUMN mentions_self INTEGER DEFAULT 0");
 
         db.execSQL("ALTER TABLE recipient ADD COLUMN mention_setting INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < PINNED_CONVERSATIONS) {
+        db.execSQL("ALTER TABLE thread ADD COLUMN pinned INTEGER DEFAULT 0");
+        db.execSQL("CREATE INDEX IF NOT EXISTS thread_pinned_index ON thread (pinned)");
       }
 
       db.setTransactionSuccessful();

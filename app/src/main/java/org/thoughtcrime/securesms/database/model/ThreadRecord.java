@@ -55,6 +55,7 @@ public final class ThreadRecord {
   private final boolean   archived;
   private final long      expiresIn;
   private final long      lastSeen;
+  private final boolean   isPinned;
 
   private ThreadRecord(@NonNull Builder builder) {
     this.threadId             = builder.threadId;
@@ -75,6 +76,7 @@ public final class ThreadRecord {
     this.archived             = builder.archived;
     this.expiresIn            = builder.expiresIn;
     this.lastSeen             = builder.lastSeen;
+    this.isPinned             = builder.isPinned;
   }
 
   public long getThreadId() {
@@ -187,6 +189,10 @@ public final class ThreadRecord {
     else               return true;
   }
 
+  public boolean isPinned() {
+    return isPinned;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -205,6 +211,7 @@ public final class ThreadRecord {
            archived == that.archived                         &&
            expiresIn == that.expiresIn                       &&
            lastSeen == that.lastSeen                         &&
+           isPinned == that.isPinned                         &&
            body.equals(that.body)                            &&
            recipient.equals(that.recipient)                  &&
            Objects.equals(snippetUri, that.snippetUri)       &&
@@ -231,7 +238,8 @@ public final class ThreadRecord {
                         distributionType,
                         archived,
                         expiresIn,
-                        lastSeen);
+                        lastSeen,
+                        isPinned);
   }
 
   public static class Builder {
@@ -253,6 +261,7 @@ public final class ThreadRecord {
     private boolean   archived;
     private long      expiresIn;
     private long      lastSeen;
+    private boolean   isPinned;
 
     public Builder(long threadId) {
       this.threadId = threadId;
@@ -345,6 +354,11 @@ public final class ThreadRecord {
 
     public Builder setLastSeen(long lastSeen) {
       this.lastSeen = lastSeen;
+      return this;
+    }
+
+    public Builder setPinned(boolean isPinned) {
+      this.isPinned = isPinned;
       return this;
     }
 

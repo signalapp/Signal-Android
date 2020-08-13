@@ -35,15 +35,16 @@ class ConversationListViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ConversationListViewModel.class);
 
-  private final Application                   application;
-  private final MutableLiveData<Megaphone>    megaphone;
-  private final MutableLiveData<SearchResult> searchResult;
-  private final LiveData<ConversationList>    conversationList;
-  private final SearchRepository              searchRepository;
-  private final MegaphoneRepository           megaphoneRepository;
-  private final Debouncer                     debouncer;
-  private final ContentObserver               observer;
-  private final Invalidator                   invalidator;
+  private final Application                       application;
+  private final MutableLiveData<Megaphone>        megaphone;
+  private final MutableLiveData<SearchResult>     searchResult;
+  private final LiveData<PagedList<Conversation>> pinnedList;
+  private final LiveData<ConversationList>        conversationList;
+  private final SearchRepository                  searchRepository;
+  private final MegaphoneRepository               megaphoneRepository;
+  private final Debouncer                         debouncer;
+  private final ContentObserver                   observer;
+  private final Invalidator                       invalidator;
 
   private String lastQuery;
 
@@ -64,7 +65,7 @@ class ConversationListViewModel extends ViewModel {
       }
     };
 
-    DataSource.Factory<Integer, Conversation> factory = new ConversationListDataSource.Factory(application, invalidator, isArchived);
+    DataSource.Factory<Integer, Conversation> factory = new ConversationListDataSource.Factory(application, invalidator, false, isArchived);
     PagedList.Config                          config  = new PagedList.Config.Builder()
                                                                             .setPageSize(15)
                                                                             .setInitialLoadSizeHint(30)
@@ -96,6 +97,26 @@ class ConversationListViewModel extends ViewModel {
 
       return updated;
     });
+
+    if (!isArchived) {
+      DataSource.Factory<Integer, Conversation> pinnedFactory = new ConversationListDataSource.Factory(application, invalidator, true, false);
+
+      this.pinnedList = new LivePagedListBuilder<>(pinnedFactory, config).setFetchExecutor(ConversationListDataSource.EXECUTOR)
+                                                                         .setInitialLoadKey(0)
+                                                                         .build();
+    } else {
+      this.pinnedList = new MutableLiveData<>();
+    }
+  }
+
+  public LiveData<Boolean> hasNoConversations() {
+    return LiveDataUtil.combineLatest(getPinnedConversations(),
+                                      getConversationList(),
+                                      (pinned, unpinned) -> pinned.isEmpty() && unpinned.isEmpty());
+  }
+
+  @NonNull LiveData<PagedList<Conversation>> getPinnedConversations() {
+    return pinnedList;
   }
 
   @NonNull LiveData<SearchResult> getSearchResult() {

@@ -2076,6 +2076,8 @@
 
     <!-- conversation_list_batch -->
     <string name="conversation_list_batch__menu_delete_selected">Delete selected</string>
+    <string name="conversation_list_batch__menu_pin_selected">Pin selected</string>
+    <string name="conversation_list_batch__menu_unpin_selected">Unpin selected</string>
     <string name="conversation_list_batch__menu_select_all">Select all</string>
     <string name="conversation_list_batch_archive__menu_archive_selected">Archive selected</string>
     <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Unarchive selected</string>
@@ -2086,6 +2088,9 @@
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Settings shortcut</string>
     <string name="conversation_list_search_description">Search</string>
+    <string name="conversation_list__pinned">Pinned</string>
+    <string name="conversation_list__chats">Chats</string>
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">You can only pin up to %1$d chats</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>

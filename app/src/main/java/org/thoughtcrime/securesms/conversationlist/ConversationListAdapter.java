@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerView.ViewHolder> {
+class ConversationListAdapter extends PagedListAdapter<Conversation, ConversationListAdapter.BaseViewHolder> {
 
   private static final int TYPE_THREAD      = 1;
   private static final int TYPE_ACTION      = 2;
@@ -55,13 +55,13 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
   }
 
   @Override
-  public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public @NonNull BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     if (viewType == TYPE_ACTION) {
       ConversationViewHolder holder =  new ConversationViewHolder(LayoutInflater.from(parent.getContext())
-                                                                                .inflate(R.layout.conversation_list_item_action, parent, false));
+                                                                                .inflate(R.layout.conversation_list_item_action, parent, false), viewType);
 
       holder.itemView.setOnClickListener(v -> {
-        int position = holder.getAdapterPosition();
+        int position = holder.getLocalAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
           onConversationClickListener.onShowArchiveClick();
@@ -71,10 +71,10 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
       return holder;
     } else if (viewType == TYPE_THREAD) {
       ConversationViewHolder holder =  new ConversationViewHolder(CachedInflater.from(parent.getContext())
-                                                                                .inflate(R.layout.conversation_list_item_view, parent, false));
+                                                                                .inflate(R.layout.conversation_list_item_view, parent, false), viewType);
 
       holder.itemView.setOnClickListener(v -> {
-        int position = holder.getAdapterPosition();
+        int position = holder.getLocalAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
           onConversationClickListener.onConversationClick(getItem(position));
@@ -82,7 +82,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
       });
 
       holder.itemView.setOnLongClickListener(v -> {
-        int position = holder.getAdapterPosition();
+        int position = holder.getLocalAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
           return onConversationClickListener.onConversationLongClick(getItem(position));
@@ -101,7 +101,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
   }
 
   @Override
-  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+  public void onBindViewHolder(@NonNull BaseViewHolder holder, int position, @NonNull List<Object> payloads) {
     if (payloads.isEmpty()) {
       onBindViewHolder(holder, position);
     } else {
@@ -120,8 +120,9 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
   }
 
   @Override
-  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-    if (holder.getItemViewType() == TYPE_ACTION) {
+  public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+    holder.setLocalAdapterPosition(position);
+    if (holder.getLocalViewType() == TYPE_ACTION) {
       ConversationViewHolder casted = (ConversationViewHolder) holder;
 
       casted.getConversationListItem().bind(new ThreadRecord.Builder(100)
@@ -135,7 +136,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
                                             typingSet,
                                             getBatchSelectionIds(),
                                             batchMode);
-    } else if (holder.getItemViewType() == TYPE_THREAD) {
+    } else if (holder.getLocalViewType() == TYPE_THREAD) {
       ConversationViewHolder casted       = (ConversationViewHolder) holder;
       Conversation           conversation = Objects.requireNonNull(getItem(position));
 
@@ -149,7 +150,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
   }
 
   @Override
-  public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+  public void onViewRecycled(@NonNull BaseViewHolder holder) {
     if (holder instanceof ConversationViewHolder) {
       ((ConversationViewHolder) holder).getConversationListItem().unbind();
     }
@@ -234,12 +235,35 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
     notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
   }
 
-  static final class ConversationViewHolder extends RecyclerView.ViewHolder {
+  static class BaseViewHolder extends RecyclerView.ViewHolder {
+
+    private final int viewType;
+    private       int adapterPosition = RecyclerView.NO_POSITION;
+
+    public BaseViewHolder(@NonNull View itemView, int viewType) {
+      super(itemView);
+      this.viewType = viewType;
+    }
+
+    public int getLocalViewType() {
+      return viewType;
+    }
+
+    public int getLocalAdapterPosition() {
+      return getAdapterPosition() == RecyclerView.NO_POSITION ? RecyclerView.NO_POSITION : adapterPosition;
+    }
+
+    public void setLocalAdapterPosition(int adapterPosition) {
+      this.adapterPosition = adapterPosition;
+    }
+  }
+
+  static final class ConversationViewHolder extends BaseViewHolder {
 
     private final BindableConversationListItem conversationListItem;
 
-    ConversationViewHolder(@NonNull View itemView) {
-      super(itemView);
+    ConversationViewHolder(@NonNull View itemView, int viewType) {
+      super(itemView, viewType);
 
       conversationListItem = (BindableConversationListItem) itemView;
     }
@@ -262,9 +286,9 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
     }
   }
 
-  private static class PlaceholderViewHolder extends RecyclerView.ViewHolder {
+  private static class PlaceholderViewHolder extends BaseViewHolder {
     PlaceholderViewHolder(@NonNull View itemView) {
-      super(itemView);
+      super(itemView, TYPE_PLACEHOLDER);
     }
   }
 

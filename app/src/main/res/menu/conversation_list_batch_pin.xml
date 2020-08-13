@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_pin_selected"
+        android:icon="?menu_pin_icon"
+        android:title="@string/conversation_list_batch__menu_unpin_selected"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_unpin_selected"
+        android:icon="?menu_unpin_icon"
+        android:title="@string/conversation_list_batch__menu_unpin_selected"
+        app:showAsAction="always" />
+</menu>

@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.thoughtcrime.securesms.util.paging.SizeFixResult;
@@ -58,9 +57,10 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     context.getContentResolver().registerContentObserver(DatabaseContentProviders.ConversationList.CONTENT_URI,  true, contentObserver);
   }
 
-  private static ConversationListDataSource create(@NonNull Context context, @NonNull Invalidator invalidator, boolean isArchived) {
-    if (!isArchived) return new UnarchivedConversationListDataSource(context, invalidator);
-    else             return new ArchivedConversationListDataSource(context, invalidator);
+  private static ConversationListDataSource create(@NonNull Context context, @NonNull Invalidator invalidator, boolean isPinned, boolean isArchived) {
+    if (isPinned)         return new PinnedConversationListDataSource(context, invalidator);
+    else if (!isArchived) return new UnarchivedConversationListDataSource(context, invalidator);
+    else                  return new ArchivedConversationListDataSource(context, invalidator);
   }
 
   @Override
@@ -142,12 +142,29 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
 
     @Override
     protected int getTotalCount() {
-      return threadDatabase.getUnarchivedConversationListCount();
+      return threadDatabase.getUnpinnedConversationListCount();
     }
 
     @Override
     protected Cursor getCursor(long offset, long limit) {
-      return threadDatabase.getConversationList(offset, limit);
+      return threadDatabase.getUnpinnedConversationList(offset, limit);
+    }
+  }
+
+  private static class PinnedConversationListDataSource extends ConversationListDataSource {
+
+    protected PinnedConversationListDataSource(@NonNull Context context, @NonNull Invalidator invalidator) {
+      super(context, invalidator);
+    }
+
+    @Override
+    protected int getTotalCount() {
+      return threadDatabase.getPinnedConversationListCount();
+    }
+
+    @Override
+    protected Cursor getCursor(long offset, long limit) {
+      return threadDatabase.getPinnedConversationList(offset, limit);
     }
   }
 
@@ -155,17 +172,19 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
 
     private final Context     context;
     private final Invalidator invalidator;
+    private final boolean     isPinned;
     private final boolean     isArchived;
 
-    public Factory(@NonNull Context context, @NonNull Invalidator invalidator, boolean isArchived) {
+    public Factory(@NonNull Context context, @NonNull Invalidator invalidator, boolean isPinned, boolean isArchived) {
       this.context     = context;
       this.invalidator = invalidator;
+      this.isPinned    = isPinned;
       this.isArchived  = isArchived;
     }
 
     @Override
     public @NonNull DataSource<Integer, Conversation> create() {
-      return ConversationListDataSource.create(context, invalidator, isArchived);
+      return ConversationListDataSource.create(context, invalidator, isPinned, isArchived);
     }
   }
 }

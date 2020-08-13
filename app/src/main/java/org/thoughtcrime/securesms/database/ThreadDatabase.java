@@ -31,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.jsoup.helper.StringUtil;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
@@ -96,6 +97,7 @@ public class ThreadDatabase extends Database {
   public  static final String LAST_SEEN              = "last_seen";
   public  static final String HAS_SENT               = "has_sent";
   private static final String LAST_SCROLLED          = "last_scrolled";
+  private static final String PINNED                 = "pinned";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY, " +
                                                                                   DATE                   + " INTEGER DEFAULT 0, " +
@@ -118,16 +120,18 @@ public class ThreadDatabase extends Database {
                                                                                   HAS_SENT               + " INTEGER DEFAULT 0, " +
                                                                                   READ_RECEIPT_COUNT     + " INTEGER DEFAULT 0, " +
                                                                                   UNREAD_COUNT           + " INTEGER DEFAULT 0, " +
-                                                                                  LAST_SCROLLED          + " INTEGER DEFAULT 0);";
+                                                                                  LAST_SCROLLED          + " INTEGER DEFAULT 0, " +
+                                                                                  PINNED                 + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
     "CREATE INDEX IF NOT EXISTS archived_count_index ON " + TABLE_NAME + " (" + ARCHIVED + ", " + MESSAGE_COUNT + ");",
+    "CREATE INDEX IF NOT EXISTS thread_pinned_index ON " + TABLE_NAME + " (" + PINNED + ");",
   };
 
   private static final String[] THREAD_PROJECTION = {
       ID, DATE, MESSAGE_COUNT, RECIPIENT_ID, SNIPPET, SNIPPET_CHARSET, READ, UNREAD_COUNT, TYPE, ERROR, SNIPPET_TYPE,
-      SNIPPET_URI, SNIPPET_CONTENT_TYPE, SNIPPET_EXTRAS, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT, LAST_SCROLLED
+      SNIPPET_URI, SNIPPET_CONTENT_TYPE, SNIPPET_EXTRAS, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT, LAST_SCROLLED, PINNED
   };
 
   private static final List<String> TYPED_THREAD_PROJECTION = Stream.of(THREAD_PROJECTION)
@@ -579,8 +583,12 @@ public class ThreadDatabase extends Database {
     return positions;
   }
 
-  public Cursor getConversationList(long offset, long limit) {
-    return getConversationList("0", offset, limit);
+  public Cursor getPinnedConversationList(long offset, long limit) {
+    return getUnarchivedConversationList("1", offset, limit);
+  }
+
+  public Cursor getUnpinnedConversationList(long offset, long limit) {
+    return getUnarchivedConversationList("0", offset, limit);
   }
 
   public Cursor getArchivedConversationList(long offset, long limit) {
@@ -589,6 +597,16 @@ public class ThreadDatabase extends Database {
 
   private Cursor getConversationList(String archived) {
     return getConversationList(archived, 0, 0);
+  }
+
+  private Cursor getUnarchivedConversationList(@NonNull String pinned, long offset, long limit) {
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    String         query  = createQuery(ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + PINNED + " = ?", offset, limit);
+    Cursor         cursor = db.rawQuery(query, new String[]{pinned});
+
+    setNotifyConversationListListeners(cursor);
+
+    return cursor;
   }
 
   private Cursor getConversationList(@NonNull String archived, long offset, long limit) {
@@ -601,19 +619,19 @@ public class ThreadDatabase extends Database {
     return cursor;
   }
 
-  public int getUnarchivedConversationListCount() {
-    return getConversationListCount(false);
+  public int getPinnedConversationListCount() {
+    return getUnarchivedConversationListCount(true);
+  }
+
+  public int getUnpinnedConversationListCount() {
+    return getUnarchivedConversationListCount(false);
   }
 
   public int getArchivedConversationListCount() {
-    return getConversationListCount(true);
-  }
-
-  private int getConversationListCount(boolean archived) {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     String[]       columns = new String[] { "COUNT(*)" };
     String         query   = ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0";
-    String[]       args    = new String[] { archived ? "1" : "0" };
+    String[]       args    = new String[] {"1"};
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -622,6 +640,46 @@ public class ThreadDatabase extends Database {
     }
 
     return 0;
+  }
+
+  private int getUnarchivedConversationListCount(boolean pinned) {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    String[]       columns = new String[] { "COUNT(*)" };
+    String         query   = ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + PINNED + " = ?";
+    String[]       args    = new String[] { pinned ? "1" : "0" };
+
+    try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
+  }
+
+  public void pinConversations(@NonNull Set<Long> threadIds) {
+    SQLiteDatabase db            = databaseHelper.getWritableDatabase();
+    ContentValues  contentValues = new ContentValues(1);
+    String         placeholders  = StringUtil.join(Stream.of(threadIds).map(unused -> "?").toList(), ",");
+    String         selection     = ID + " IN (" + placeholders + ")";
+
+    contentValues.put(PINNED, 1);
+
+    db.update(TABLE_NAME, contentValues, selection, SqlUtil.buildArgs(Stream.of(threadIds).toArray()));
+
+    notifyConversationListListeners();
+  }
+
+  public void unpinConversations(@NonNull Set<Long> threadIds) {
+    SQLiteDatabase db            = databaseHelper.getWritableDatabase();
+    ContentValues  contentValues = new ContentValues(1);
+    String         placeholders  = StringUtil.join(Stream.of(threadIds).map(unused -> "?").toList(), ",");
+    String         selection     = ID + " IN (" + placeholders + ")";
+
+    contentValues.put(PINNED, 0);
+
+    db.update(TABLE_NAME, contentValues, selection, SqlUtil.buildArgs(Stream.of(threadIds).toArray()));
+    notifyConversationListListeners();
   }
 
   public void archiveConversation(long threadId) {
@@ -1122,6 +1180,7 @@ public class ThreadDatabase extends Database {
                              .setCount(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT)))
                              .setUnreadCount(cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.UNREAD_COUNT)))
                              .setForcedUnread(cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.READ)) == ReadStatus.FORCED_UNREAD.serialize())
+                             .setPinned(CursorUtil.requireBoolean(cursor, ThreadDatabase.PINNED))
                              .setExtra(extra)
                              .build();
     }

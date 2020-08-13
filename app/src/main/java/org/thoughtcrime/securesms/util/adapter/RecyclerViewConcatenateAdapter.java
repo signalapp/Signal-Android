@@ -46,10 +46,10 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
   /** Observes a single sub adapter and maps the positions on the events to global positions. */
   private static class AdapterDataObserver extends RecyclerView.AdapterDataObserver {
 
-    private final RecyclerViewConcatenateAdapter                mergeAdapter;
-    private final RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
+    private final RecyclerViewConcatenateAdapter                          mergeAdapter;
+    private final RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter;
 
-    AdapterDataObserver(RecyclerViewConcatenateAdapter mergeAdapter, RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
+    AdapterDataObserver(RecyclerViewConcatenateAdapter mergeAdapter, RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter) {
       this.mergeAdapter = mergeAdapter;
       this.adapter      = adapter;
     }
@@ -83,7 +83,7 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
 
   private static class ChildAdapter {
 
-    final RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
+    final RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter;
 
     /** Map of global view types to local view types */
     private final SparseIntArray globalViewTypesMap = new SparseIntArray();
@@ -96,7 +96,7 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
     /** Map of local ids to global ids. */
     private final LongSparseArray<Long> localItemIdMap = new LongSparseArray<>();
 
-    ChildAdapter(@NonNull RecyclerView.Adapter<RecyclerView.ViewHolder> adapter, @NonNull AdapterDataObserver adapterDataObserver) {
+    ChildAdapter(@NonNull RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter, @NonNull AdapterDataObserver adapterDataObserver) {
       this.adapter             = adapter;
       this.adapterDataObserver = adapterDataObserver;
 
@@ -153,7 +153,7 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
       localPosition = position;
     }
 
-    RecyclerView.Adapter<RecyclerView.ViewHolder> getAdapter() {
+    RecyclerView.Adapter<? extends RecyclerView.ViewHolder> getAdapter() {
       return childAdapter.adapter;
     }
   }
@@ -161,7 +161,7 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
   /**
    * @param adapter Append an adapter to the list of adapters.
    */
-  public void addAdapter(@NonNull RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
+  public void addAdapter(@NonNull RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter) {
     addAdapter(adapters.size(), adapter);
   }
 
@@ -169,7 +169,7 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
    * @param index   The index at which to add an adapter to the list of adapters.
    * @param adapter The adapter to add.
    */
-  public void addAdapter(int index, @NonNull RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
+  public void addAdapter(int index, @NonNull RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter) {
     AdapterDataObserver adapterDataObserver = new AdapterDataObserver(this, adapter);
     adapters.add(index, new ChildAdapter(adapter, adapterDataObserver));
     notifyDataSetChanged();
