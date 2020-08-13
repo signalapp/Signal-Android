@@ -30,7 +30,7 @@ import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.util.*
 
 object ClosedGroupsProtocol {
-    val isSharedSenderKeysEnabled = true
+    val isSharedSenderKeysEnabled = false
     
     public fun createClosedGroup(context: Context, name: String, members: Collection<String>): String {
         // Prepare
