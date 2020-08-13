@@ -27,13 +27,6 @@
             android:clickable="true"
             android:background="@color/transparent_black_40">
 
-            <ViewStub
-                android:id="@+id/mediasend_mention_suggestions_stub"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout="@layout/conversation_mention_suggestions_stub"/>
-
             <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                 android:id="@+id/mediasend_caption"
                 android:layout_width="match_parent"
@@ -191,5 +184,18 @@
         </LinearLayout>
 
     </org.thoughtcrime.securesms.components.InputAwareLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ViewStub
+            android:id="@+id/mediasend_mention_suggestions_stub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout="@layout/conversation_mention_suggestions_stub"/>
+
+    </FrameLayout>
 
 </FrameLayout>

@@ -1,13 +1,11 @@
 package org.thoughtcrime.securesms.longmessage;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
@@ -16,8 +14,11 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Stream;
 
@@ -25,6 +26,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -35,6 +37,8 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
+
+import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
 
 public class LongMessageActivity extends PassphraseRequiredActivity {
 
@@ -144,7 +148,7 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
         bubble.getBackground().setColorFilter(message.get().getMessageRecord().getRecipient().getColor().toConversationColor(this), PorterDuff.Mode.MULTIPLY);
       }
 
-      TextView               text   = bubble.findViewById(R.id.longmessage_text);
+      EmojiTextView          text   = bubble.findViewById(R.id.longmessage_text);
       ConversationItemFooter footer = bubble.findViewById(R.id.longmessage_footer);
 
       CharSequence    trimmedBody = getTrimmedBody(message.get().getFullBody(this));
@@ -154,6 +158,11 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
       text.setText(styledBody);
       text.setMovementMethod(LinkMovementMethod.getInstance());
       text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
+      if (message.get().getMessageRecord().isOutgoing()) {
+        text.setMentionBackgroundTint(ContextCompat.getColor(this, isDarkTheme(this) ? R.color.core_grey_60 : R.color.core_grey_20));
+      } else {
+        text.setMentionBackgroundTint(ContextCompat.getColor(this, R.color.transparent_black_40));
+      }
       footer.setMessageRecord(message.get().getMessageRecord(), dynamicLanguage.getCurrentLocale());
     });
   }

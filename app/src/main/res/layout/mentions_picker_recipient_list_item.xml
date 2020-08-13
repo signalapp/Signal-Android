@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
     android:gravity="center_vertical"
     android:paddingStart="12dp"
-    android:paddingTop="10dp"
+    android:paddingTop="8dp"
     android:paddingEnd="8dp"
-    android:paddingBottom="10dp">
+    android:paddingBottom="8dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/mention_recipient_avatar"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:fallbackImageSize="small"
         tools:src="@tools:sample/avatars" />
 
     <TextView

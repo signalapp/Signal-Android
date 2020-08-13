@@ -46,6 +46,6 @@ public class MentionViewHolder extends MappingViewHolder<MentionViewState> {
   }
 
   public static MappingAdapter.Factory<MentionViewState> createFactory(@Nullable MentionEventsListener mentionEventsListener) {
-    return new MappingAdapter.LayoutFactory<>(view -> new MentionViewHolder(view, mentionEventsListener), R.layout.mentions_recipient_list_item);
+    return new MappingAdapter.LayoutFactory<>(view -> new MentionViewHolder(view, mentionEventsListener), R.layout.mentions_picker_recipient_list_item);
   }
 }

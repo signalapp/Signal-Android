@@ -16,21 +16,6 @@
         android:text="@string/GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats" />
 
     <CheckedTextView
-        android:id="@+id/group_mention_setting_default"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:drawableStart="?android:attr/listChoiceIndicatorSingle"
-        android:drawablePadding="20dp"
-        android:gravity="center_vertical"
-        android:minHeight="?attr/listPreferredItemHeightSmall"
-        android:paddingStart="20dp"
-        android:paddingEnd="?attr/dialogPreferredPadding"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?attr/textColorAlertDialogListItem"
-        tools:text="@string/GroupMentionSettingDialog_default_notify_me" />
-
-    <CheckedTextView
         android:id="@+id/group_mention_setting_always_notify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

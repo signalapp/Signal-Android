@@ -4,12 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.TextViewCompat;
-import androidx.appcompat.widget.AppCompatTextView;
-
 import android.text.Annotation;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -17,12 +11,18 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.TextViewCompat;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -241,5 +241,11 @@ public class EmojiTextView extends AppCompatTextView {
   public void setTextSize(int unit, float size) {
     this.originalFontSize = TypedValue.applyDimension(unit, size, getResources().getDisplayMetrics());
     super.setTextSize(unit, size);
+  }
+
+  public void setMentionBackgroundTint(@ColorInt int mentionBackgroundTint) {
+    if (renderMentions) {
+      mentionRendererDelegate.setTint(mentionBackgroundTint);
+    }
   }
 }

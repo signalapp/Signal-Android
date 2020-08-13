@@ -164,7 +164,7 @@ public class RecipientDetails {
     this.storageId              = null;
     this.identityKey            = null;
     this.identityStatus         = VerifiedStatus.DEFAULT;
-    this.mentionSetting         = MentionSetting.GLOBAL;
+    this.mentionSetting         = MentionSetting.ALWAYS_NOTIFY;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {

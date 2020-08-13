@@ -279,7 +279,7 @@ public class RecipientDatabase extends Database {
   }
 
   public enum MentionSetting {
-    GLOBAL(0), ALWAYS_NOTIFY(1), DO_NOT_NOTIFY(2);
+    ALWAYS_NOTIFY(0), DO_NOT_NOTIFY(1);
 
     private final int id;
 
@@ -336,7 +336,7 @@ public class RecipientDatabase extends Database {
                                             GROUPS_V2_CAPABILITY     + " INTEGER DEFAULT " + Recipient.Capability.UNKNOWN.serialize() + ", " +
                                             STORAGE_SERVICE_ID       + " TEXT UNIQUE DEFAULT NULL, " +
                                             DIRTY                    + " INTEGER DEFAULT " + DirtyState.CLEAN.getId() + ", " +
-                                            MENTION_SETTING          + " INTEGER DEFAULT " + MentionSetting.GLOBAL.getId() + ");";
+                                            MENTION_SETTING          + " INTEGER DEFAULT " + MentionSetting.ALWAYS_NOTIFY.getId() + ");";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -1160,7 +1160,7 @@ public class RecipientDatabase extends Database {
     }
 
     byte[] storageKey  = storageKeyRaw != null ? Base64.decodeOrThrow(storageKeyRaw) : null;
-    byte[] identityKey = identityKeyRaw.transform(Base64::decodeOrThrow).orNull();;
+    byte[] identityKey = identityKeyRaw.transform(Base64::decodeOrThrow).orNull();
 
     IdentityDatabase.VerifiedStatus identityStatus = identityStatusRaw.transform(IdentityDatabase.VerifiedStatus::forState).or(IdentityDatabase.VerifiedStatus.DEFAULT);
 
@@ -2288,7 +2288,7 @@ public class RecipientDatabase extends Database {
     uuidValues.put(SYSTEM_CONTACT_URI, e164Settings.getSystemContactUri());
     uuidValues.put(PROFILE_SHARING, uuidSettings.isProfileSharing() || e164Settings.isProfileSharing());
     uuidValues.put(GROUPS_V2_CAPABILITY, uuidSettings.getGroupsV2Capability() != Recipient.Capability.UNKNOWN ? uuidSettings.getGroupsV2Capability().serialize() : e164Settings.getGroupsV2Capability().serialize());
-    uuidValues.put(MENTION_SETTING, uuidSettings.getMentionSetting() != MentionSetting.GLOBAL ? uuidSettings.getMentionSetting().getId() : e164Settings.getMentionSetting().getId());
+    uuidValues.put(MENTION_SETTING, uuidSettings.getMentionSetting() != MentionSetting.ALWAYS_NOTIFY ? uuidSettings.getMentionSetting().getId() : e164Settings.getMentionSetting().getId());
     if (uuidSettings.getProfileKey() != null) {
       updateProfileValuesForMerge(uuidValues, uuidSettings);
     } else if (e164Settings.getProfileKey() != null) {

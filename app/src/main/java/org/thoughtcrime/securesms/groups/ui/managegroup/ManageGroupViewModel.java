@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MentionUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
@@ -261,7 +260,7 @@ public class ManageGroupViewModel extends ViewModel {
   }
 
   void handleMentionNotificationSelection() {
-    manageGroupRepository.getRecipient(r -> GroupMentionSettingDialog.show(context, r.getMentionSetting(), mentionSetting -> manageGroupRepository.setMentionSetting(mentionSetting)));
+    manageGroupRepository.getRecipient(r -> GroupMentionSettingDialog.show(context, r.getMentionSetting(), manageGroupRepository::setMentionSetting));
   }
 
   private void onBlockAndLeaveConfirmed() {

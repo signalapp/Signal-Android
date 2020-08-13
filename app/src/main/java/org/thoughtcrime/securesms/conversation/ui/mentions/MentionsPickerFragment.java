@@ -17,25 +17,30 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MappingModel;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.VibrateUtil;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MentionsPickerFragment extends LoggingFragment {
 
   private MentionsPickerAdapter     adapter;
   private RecyclerView              list;
+  private View                      topDivider;
+  private View                      bottomDivider;
   private BottomSheetBehavior<View> behavior;
   private MentionsPickerViewModel   viewModel;
-  private int                       defaultPeekHeight;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.mentions_picker_fragment, container, false);
 
-    list              = view.findViewById(R.id.mentions_picker_list);
-    behavior          = BottomSheetBehavior.from(view.findViewById(R.id.mentions_picker_bottom_sheet));
-    defaultPeekHeight = view.getContext().getResources().getDimensionPixelSize(R.dimen.mentions_picker_peek_height);
+    list          = view.findViewById(R.id.mentions_picker_list);
+    topDivider    = view.findViewById(R.id.mentions_picker_top_divider);
+    bottomDivider = view.findViewById(R.id.mentions_picker_bottom_divider);
+    behavior      = BottomSheetBehavior.from(view.findViewById(R.id.mentions_picker_bottom_sheet));
+
+    initializeBehavior();
 
     return view;
   }
@@ -43,24 +48,43 @@ public class MentionsPickerFragment extends LoggingFragment {
   @Override
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
+    viewModel = ViewModelProviders.of(requireActivity()).get(MentionsPickerViewModel.class);
+
     initializeList();
 
-    viewModel = ViewModelProviders.of(requireActivity()).get(MentionsPickerViewModel.class);
     viewModel.getMentionList().observe(getViewLifecycleOwner(), this::updateList);
+
+    viewModel.isShowing().observe(getViewLifecycleOwner(), isShowing -> {
+      if (isShowing) {
+        VibrateUtil.vibrateTick(requireContext());
+      }
+    });
+  }
+
+  private void initializeBehavior() {
+    behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+    behavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+      @Override
+      public void onStateChanged(@NonNull View bottomSheet, int newState) {
+        if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+          adapter.submitList(Collections.emptyList());
+        } else {
+          showDividers(true);
+        }
+      }
+
+      @Override
+      public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+        showDividers(Float.isNaN(slideOffset) || slideOffset > -0.8f);
+      }
+    });
   }
 
   private void initializeList() {
-    adapter = new MentionsPickerAdapter(this::handleMentionClicked);
+    adapter = new MentionsPickerAdapter(this::handleMentionClicked, () -> updateBottomSheetBehavior(adapter.getItemCount()));
 
-    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext()) {
-      @Override
-      public void onLayoutCompleted(RecyclerView.State state) {
-        super.onLayoutCompleted(state);
-        updateBottomSheetBehavior(adapter.getItemCount());
-      }
-    };
-
-    list.setLayoutManager(layoutManager);
+    list.setLayoutManager(new LinearLayoutManager(requireContext()));
     list.setAdapter(adapter);
     list.setItemAnimator(null);
   }
@@ -70,24 +94,31 @@ public class MentionsPickerFragment extends LoggingFragment {
   }
 
   private void updateList(@NonNull List<MappingModel<?>> mappingModels) {
-    adapter.submitList(mappingModels);
-    if (mappingModels.isEmpty()) {
+    if (adapter.getItemCount() > 0 && mappingModels.isEmpty()) {
       updateBottomSheetBehavior(0);
+    } else {
+      adapter.submitList(mappingModels);
     }
-    list.scrollToPosition(0);
   }
 
   private void updateBottomSheetBehavior(int count) {
-    if (count > 0) {
-      if (behavior.getPeekHeight() == 0) {
-        behavior.setPeekHeight(defaultPeekHeight, true);
-        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-      } else {
-        list.scrollToPosition(0);
-      }
-    } else {
+    boolean isShowing = count > 0;
+
+    viewModel.setIsShowing(isShowing);
+
+    if (isShowing) {
+      list.scrollToPosition(0);
       behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-      behavior.setPeekHeight(0);
+      list.post(() -> behavior.setHideable(false));
+      showDividers(true);
+    } else {
+      behavior.setHideable(true);
+      behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
+  }
+
+  private void showDividers(boolean showDividers) {
+    topDivider.setVisibility(showDividers ? View.VISIBLE : View.GONE);
+    bottomDivider.setVisibility(showDividers ? View.VISIBLE : View.GONE);
   }
 }

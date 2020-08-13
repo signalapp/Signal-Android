@@ -9,10 +9,10 @@ import android.text.Spanned;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
-import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -27,25 +27,28 @@ public class MentionRendererDelegate {
   private final MentionRenderer single;
   private final MentionRenderer multi;
   private final int             horizontalPadding;
+  private final Drawable        drawable;
+  private final Drawable        drawableLeft;
+  private final Drawable        drawableMid;
+  private final Drawable        drawableEnd;
 
   public MentionRendererDelegate(@NonNull Context context, @ColorInt int tint) {
     this.horizontalPadding = ViewUtil.dpToPx(2);
 
-    Drawable drawable     = ContextCompat.getDrawable(context, R.drawable.mention_text_bg);
-    Drawable drawableLeft = ContextCompat.getDrawable(context, R.drawable.mention_text_bg_left);
-    Drawable drawableMid  = ContextCompat.getDrawable(context, R.drawable.mention_text_bg_mid);
-    Drawable drawableEnd  = ContextCompat.getDrawable(context, R.drawable.mention_text_bg_right);
+    drawable     = DrawableUtil.tint(ContextUtil.requireDrawable(context, R.drawable.mention_text_bg), tint);
+    drawableLeft = DrawableUtil.tint(ContextUtil.requireDrawable(context, R.drawable.mention_text_bg_left), tint);
+    drawableMid  = DrawableUtil.tint(ContextUtil.requireDrawable(context, R.drawable.mention_text_bg_mid), tint);
+    drawableEnd  = DrawableUtil.tint(ContextUtil.requireDrawable(context, R.drawable.mention_text_bg_right), tint);
 
-    //noinspection ConstantConditions
     single = new MentionRenderer.SingleLineMentionRenderer(horizontalPadding,
                                                            0,
-                                                           DrawableUtil.tint(drawable, tint));
-    //noinspection ConstantConditions
+                                                           drawable);
+
     multi = new MentionRenderer.MultiLineMentionRenderer(horizontalPadding,
                                                          0,
-                                                         DrawableUtil.tint(drawableLeft, tint),
-                                                         DrawableUtil.tint(drawableMid, tint),
-                                                         DrawableUtil.tint(drawableEnd, tint));
+                                                         drawableLeft,
+                                                         drawableMid,
+                                                         drawableEnd);
   }
 
   public void draw(@NonNull Canvas canvas, @NonNull Spanned text, @NonNull Layout layout) {
@@ -64,5 +67,12 @@ public class MentionRendererDelegate {
         renderer.draw(canvas, layout, startLine, endLine, startOffset, endOffset);
       }
     }
+  }
+
+  public void setTint(@ColorInt int tint) {
+    DrawableCompat.setTint(drawable, tint);
+    DrawableCompat.setTint(drawableLeft, tint);
+    DrawableCompat.setTint(drawableMid, tint);
+    DrawableCompat.setTint(drawableEnd, tint);
   }
 }

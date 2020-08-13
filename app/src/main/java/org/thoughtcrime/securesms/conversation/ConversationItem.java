@@ -52,6 +52,7 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -63,6 +64,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.BorderlessImageView;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -70,7 +72,6 @@ import org.thoughtcrime.securesms.components.LinkPreviewView;
 import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;
-import org.thoughtcrime.securesms.components.BorderlessImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -113,6 +114,7 @@ import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.VibrateUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -122,6 +124,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -562,6 +566,12 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         bodyText.setOverflowText(getLongMessageSpan(messageRecord));
       } else {
         bodyText.setOverflowText(null);
+      }
+
+      if (messageRecord.isOutgoing()) {
+        bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, isDarkTheme(context) ? R.color.core_grey_60 : R.color.core_grey_20));
+      } else {
+        bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_40));
       }
 
       bodyText.setText(styledText);
@@ -1423,6 +1433,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     @Override
     public void onClick(@NonNull View widget) {
       if (eventListener != null && !Recipient.resolved(mentionedRecipientId).isLocalNumber()) {
+        VibrateUtil.vibrateTick(context);
         eventListener.onGroupMemberClicked(mentionedRecipientId, conversationRecipient.get().requireGroupId());
       }
     }

@@ -263,7 +263,8 @@
         <item name="conversation_title_color">@color/white</item>
         <item name="conversation_subtitle_color">@color/transparent_white_90</item>
         <item name="conversation_mention_background_color">@color/core_grey_20</item>
-        <item name="conversation_mention_divider_color">@color/core_grey_05</item>
+
+        <item name="mention_picker_background_color">@color/core_white</item>
 
         <item name="safety_number_change_dialog_button_background">@color/core_grey_05</item>
         <item name="safety_number_change_dialog_button_text_color">@color/core_ultramarine</item>
@@ -624,10 +625,11 @@
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="conversation_title_color">@color/transparent_white_90</item>
         <item name="conversation_subtitle_color">@color/transparent_white_80</item>
-        <item name="conversation_mention_background_color">@color/core_grey_75</item>
-        <item name="conversation_mention_divider_color">@color/core_grey_25</item>
+        <item name="conversation_mention_background_color">@color/core_grey_60</item>
         <item name="conversation_scroll_to_bottom_background">@drawable/scroll_to_bottom_background_dark</item>
         <item name="conversation_scroll_to_bottom_foreground_color">@color/core_white</item>
+
+        <item name="mention_picker_background_color">@color/core_grey_90</item>
 
         <item name="reactions_overlay_toolbar_icon_tint">@color/core_white</item>
         <item name="reactions_overlay_toolbar_overflow_style">@style/Signal.Toolbar.Overflow</item>

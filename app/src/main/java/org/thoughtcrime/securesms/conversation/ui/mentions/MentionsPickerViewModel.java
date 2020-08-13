@@ -29,11 +29,13 @@ public class MentionsPickerViewModel extends ViewModel {
   private final LiveData<List<MappingModel<?>>> mentionList;
   private final MutableLiveData<LiveGroup>      group;
   private final MutableLiveData<Query>          liveQuery;
+  private final MutableLiveData<Boolean>        isShowing;
 
   MentionsPickerViewModel(@NonNull MentionsPickerRepository mentionsPickerRepository) {
     group             = new MutableLiveData<>();
     liveQuery         = new MutableLiveData<>(Query.NONE);
     selectedRecipient = new SingleLiveEvent<>();
+    isShowing         = new MutableLiveData<>(false);
 
     LiveData<List<FullMember>> fullMembers  = Transformations.distinctUntilChanged(Transformations.switchMap(group, LiveGroup::getFullMembers));
     LiveData<Query>            query        = Transformations.distinctUntilChanged(liveQuery);
@@ -50,8 +52,19 @@ public class MentionsPickerViewModel extends ViewModel {
     selectedRecipient.setValue(recipient);
   }
 
+  void setIsShowing(boolean isShowing) {
+    if (Objects.equals(this.isShowing.getValue(), isShowing)) {
+      return;
+    }
+    this.isShowing.setValue(isShowing);
+  }
+
   public @NonNull LiveData<Recipient> getSelectedRecipient() {
     return selectedRecipient;
+  }
+
+  public @NonNull LiveData<Boolean> isShowing() {
+    return isShowing;
   }
 
   public void onQueryChange(@Nullable String query) {

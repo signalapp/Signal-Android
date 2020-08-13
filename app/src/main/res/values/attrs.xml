@@ -90,7 +90,8 @@
     <attr name="conversation_title_color" format="reference" />
     <attr name="conversation_subtitle_color" format="reference" />
     <attr name="conversation_mention_background_color" format="reference" />
-    <attr name="conversation_mention_divider_color" format="reference" />
+
+    <attr name="mention_picker_background_color" format="reference" />
 
     <attr name="emoji_tab_strip_background" format="color" />
     <attr name="emoji_tab_indicator" format="color" />

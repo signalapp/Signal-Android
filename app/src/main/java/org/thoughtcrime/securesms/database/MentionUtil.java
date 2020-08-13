@@ -56,7 +56,7 @@ public final class MentionUtil {
 
   @WorkerThread
   public static @NonNull UpdatedBodyAndMentions updateBodyAndMentionsWithDisplayNames(@NonNull Context context, @NonNull CharSequence body, @NonNull List<Mention> mentions) {
-    return update(body, mentions, m -> MENTION_STARTER + Recipient.resolved(m.getRecipientId()).getDisplayName(context));
+    return update(body, mentions, m -> MENTION_STARTER + Recipient.resolved(m.getRecipientId()).getMentionDisplayName(context));
   }
 
   public static @NonNull UpdatedBodyAndMentions updateBodyAndMentionsWithPlaceholders(@Nullable CharSequence body, @NonNull List<Mention> mentions) {
@@ -131,9 +131,6 @@ public final class MentionUtil {
 
   public static @NonNull String getMentionSettingDisplayValue(@NonNull Context context, @NonNull MentionSetting mentionSetting) {
     switch (mentionSetting) {
-      case GLOBAL:
-        return context.getString(SignalStore.notificationSettings().isMentionNotifiesMeEnabled() ? R.string.GroupMentionSettingDialog_default_notify_me
-                                                                                                 : R.string.GroupMentionSettingDialog_default_dont_notify_me);
       case ALWAYS_NOTIFY:
         return context.getString(R.string.GroupMentionSettingDialog_always_notify_me);
       case DO_NOT_NOTIFY:

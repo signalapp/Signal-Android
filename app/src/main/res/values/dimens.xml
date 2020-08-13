@@ -159,6 +159,4 @@
     <dimen name="group_manage_fragment_row_horizontal_padding">16dp</dimen>
 
     <dimen name="wave_form_bar_width">2dp</dimen>
-
-    <dimen name="mentions_picker_peek_height">216dp</dimen>
 </resources>
