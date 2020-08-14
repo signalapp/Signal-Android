@@ -6,13 +6,23 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 
 public class Conversation {
   private final ThreadRecord threadRecord;
+  private final Type         type;
 
   public Conversation(@NonNull ThreadRecord threadRecord) {
     this.threadRecord = threadRecord;
+    if (this.threadRecord.getThreadId() < 0) {
+      type = Type.valueOf(this.threadRecord.getBody());
+    } else {
+      type = Type.THREAD;
+    }
   }
 
   public @NonNull ThreadRecord getThreadRecord() {
     return threadRecord;
+  }
+
+  public @NonNull Type getType() {
+    return type;
   }
 
   @Override
@@ -26,5 +36,12 @@ public class Conversation {
   @Override
   public int hashCode() {
     return threadRecord.hashCode();
+  }
+
+  public enum Type {
+    THREAD,
+    PINNED_HEADER,
+    UNPINNED_HEADER,
+    ARCHIVED_FOOTER
   }
 }

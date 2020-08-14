@@ -168,7 +168,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private View                              toolbarShadow;
   private ConversationListViewModel         viewModel;
   private RecyclerView.Adapter              activeAdapter;
-  private CompositeConversationListAdapter  defaultAdapter;
+  private ConversationListAdapter           defaultAdapter;
   private ConversationListSearchAdapter     searchAdapter;
   private StickyHeaderDecoration            searchAdapterDecoration;
   private ViewGroup                         megaphoneContainer;
@@ -213,7 +213,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     reminderView.setOnDismissListener(this::updateReminders);
 
-    list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
     list.addOnScrollListener(new ScrollListener());
@@ -458,7 +457,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeListAdapters() {
-    defaultAdapter          = new CompositeConversationListAdapter(list, GlideApp.with(this), this);
+    defaultAdapter          = new ConversationListAdapter(GlideApp.with(this), this);
     searchAdapter           = new ConversationListSearchAdapter(GlideApp.with(this), this, Locale.getDefault());
     searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false);
 
@@ -503,8 +502,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     viewModel.getSearchResult().observe(getViewLifecycleOwner(), this::onSearchResultChanged);
     viewModel.getMegaphone().observe(getViewLifecycleOwner(), this::onMegaphoneChanged);
-    viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onSubmitUnpinnedList);
-    viewModel.getPinnedConversations().observe(getViewLifecycleOwner(), this::onSubmitPinnedList);
+    viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onSubmitList);
     viewModel.hasNoConversations().observe(getViewLifecycleOwner(), this::updateEmptyState);
 
     ProcessLifecycleOwner.get().getLifecycle().addObserver(new DefaultLifecycleObserver() {
@@ -749,7 +747,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                 .map(conversation -> conversation.getThreadRecord().getThreadId())
                                                 .toList());
 
-    if (toPin.size() + defaultAdapter.getPinnedItemCount() > MAXIMUM_PINNED_CONVERSATIONS) {
+    if (toPin.size() + viewModel.getPinnedCount() > MAXIMUM_PINNED_CONVERSATIONS) {
       Snackbar.make(fab,
                     getString(R.string.conversation_list__you_can_only_pin_up_to_d_chats, MAXIMUM_PINNED_CONVERSATIONS),
                     Snackbar.LENGTH_LONG)
@@ -789,13 +787,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
 
-  private void onSubmitPinnedList(@NonNull PagedList<Conversation> pinnedConversations) {
-    defaultAdapter.submitPinnedList(pinnedConversations);
-  }
-
-  private void onSubmitUnpinnedList(@NonNull ConversationListViewModel.ConversationList conversationList) {
-    defaultAdapter.submitUnpinnedList(conversationList.getConversations());
-    defaultAdapter.updateArchived(conversationList.getArchivedCount());
+  private void onSubmitList(@NonNull ConversationListViewModel.ConversationList conversationList) {
+    defaultAdapter.submitList(conversationList.getConversations());
 
     onPostSubmitList();
   }
@@ -926,7 +919,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void setCorrectMenuVisibility(@NonNull Menu menu) {
     boolean hasUnread   = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
     boolean hasUnpinned = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
-    boolean canPin      = defaultAdapter.getPinnedItemCount() < MAXIMUM_PINNED_CONVERSATIONS;
+    boolean canPin      = viewModel.getPinnedCount() < MAXIMUM_PINNED_CONVERSATIONS;
 
     if (hasUnread) {
       menu.findItem(R.id.menu_mark_as_unread).setVisible(false);

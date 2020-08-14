@@ -3,12 +3,16 @@ package org.thoughtcrime.securesms.conversationlist;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.MergeCursor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.paging.DataSource;
 import androidx.paging.PositionalDataSource;
 
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -57,10 +61,9 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     context.getContentResolver().registerContentObserver(DatabaseContentProviders.ConversationList.CONTENT_URI,  true, contentObserver);
   }
 
-  private static ConversationListDataSource create(@NonNull Context context, @NonNull Invalidator invalidator, boolean isPinned, boolean isArchived) {
-    if (isPinned)         return new PinnedConversationListDataSource(context, invalidator);
-    else if (!isArchived) return new UnarchivedConversationListDataSource(context, invalidator);
-    else                  return new ArchivedConversationListDataSource(context, invalidator);
+  private static ConversationListDataSource create(@NonNull Context context, @NonNull Invalidator invalidator, boolean isArchived) {
+    if (!isArchived) return new UnarchivedConversationListDataSource(context, invalidator);
+    else             return new ArchivedConversationListDataSource(context, invalidator);
   }
 
   @Override
@@ -72,7 +75,7 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     int                effectiveCount = params.requestedStartPosition;
     List<Recipient>    recipients     = new LinkedList<>();
 
-    try (ThreadDatabase.Reader reader = threadDatabase.readerFor(getCursor(params.requestedStartPosition, params.requestedLoadSize))) {
+    try (ConversationReader reader = new ConversationReader(getCursor(params.requestedStartPosition, params.requestedLoadSize))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null && effectiveCount < totalCount && !isInvalid()) {
         conversations.add(new Conversation(record));
@@ -99,7 +102,7 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     List<Conversation> conversations = new ArrayList<>(params.loadSize);
     List<Recipient>    recipients    = new LinkedList<>();
 
-    try (ThreadDatabase.Reader reader = threadDatabase.readerFor(getCursor(params.startPosition, params.loadSize))) {
+    try (ConversationReader reader = new ConversationReader(getCursor(params.startPosition, params.loadSize))) {
       ThreadRecord record;
       while ((record = reader.getNext()) != null && !isInvalid()) {
         conversations.add(new Conversation(record));
@@ -134,7 +137,13 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
     }
   }
 
-  private static class UnarchivedConversationListDataSource extends ConversationListDataSource {
+  @VisibleForTesting
+  static class UnarchivedConversationListDataSource extends ConversationListDataSource {
+
+    private int totalCount;
+    private int pinnedCount;
+    private int archivedCount;
+    private int unpinnedCount;
 
     UnarchivedConversationListDataSource(@NonNull Context context, @NonNull Invalidator invalidator) {
       super(context, invalidator);
@@ -142,29 +151,69 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
 
     @Override
     protected int getTotalCount() {
-      return threadDatabase.getUnpinnedConversationListCount();
+      int unarchivedCount = threadDatabase.getUnarchivedConversationListCount();
+
+      pinnedCount   = threadDatabase.getPinnedConversationListCount();
+      archivedCount = threadDatabase.getArchivedConversationListCount();
+      unpinnedCount = unarchivedCount - pinnedCount;
+      totalCount    = unarchivedCount + (archivedCount != 0 ? 1 : 0) + (pinnedCount != 0 ? (unpinnedCount != 0 ? 2 : 1) : 0);
+
+      return totalCount;
     }
 
     @Override
     protected Cursor getCursor(long offset, long limit) {
-      return threadDatabase.getUnpinnedConversationList(offset, limit);
+      List<Cursor> cursors = new ArrayList<>(5);
+
+      if (offset == 0 && hasPinnedHeader()) {
+        MatrixCursor pinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
+        pinnedHeaderCursor.addRow(ConversationReader.PINNED_HEADER);
+        cursors.add(pinnedHeaderCursor);
+        limit--;
+      }
+
+      Cursor pinnedCursor = threadDatabase.getUnarchivedConversationList(true, offset, limit);
+      cursors.add(pinnedCursor);
+      limit -= pinnedCursor.getCount();
+
+      if (offset == 0 && hasUnpinnedHeader()) {
+        MatrixCursor unpinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
+        unpinnedHeaderCursor.addRow(ConversationReader.UNPINNED_HEADER);
+        cursors.add(unpinnedHeaderCursor);
+        limit--;
+      }
+
+      long   unpinnedOffset = Math.max(0, offset - pinnedCount - getHeaderOffset());
+      Cursor unpinnedCursor = threadDatabase.getUnarchivedConversationList(false, unpinnedOffset, limit);
+      cursors.add(unpinnedCursor);
+
+      if (offset + limit >= totalCount && hasArchivedFooter()) {
+        MatrixCursor archivedFooterCursor = new MatrixCursor(ConversationReader.ARCHIVED_COLUMNS);
+        archivedFooterCursor.addRow(ConversationReader.createArchivedFooterRow(archivedCount));
+        cursors.add(archivedFooterCursor);
+      }
+
+      return new MergeCursor(cursors.toArray(new Cursor[]{}));
     }
-  }
 
-  private static class PinnedConversationListDataSource extends ConversationListDataSource {
-
-    protected PinnedConversationListDataSource(@NonNull Context context, @NonNull Invalidator invalidator) {
-      super(context, invalidator);
+    @VisibleForTesting
+    int getHeaderOffset() {
+      return (hasPinnedHeader() ? 1 : 0) + (hasUnpinnedHeader() ? 1 : 0);
     }
 
-    @Override
-    protected int getTotalCount() {
-      return threadDatabase.getPinnedConversationListCount();
+    @VisibleForTesting
+    boolean hasPinnedHeader() {
+      return pinnedCount != 0;
     }
 
-    @Override
-    protected Cursor getCursor(long offset, long limit) {
-      return threadDatabase.getPinnedConversationList(offset, limit);
+    @VisibleForTesting
+    boolean hasUnpinnedHeader() {
+      return hasPinnedHeader() && unpinnedCount != 0;
+    }
+
+    @VisibleForTesting
+    boolean hasArchivedFooter() {
+      return archivedCount != 0;
     }
   }
 
@@ -172,19 +221,17 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
 
     private final Context     context;
     private final Invalidator invalidator;
-    private final boolean     isPinned;
     private final boolean     isArchived;
 
-    public Factory(@NonNull Context context, @NonNull Invalidator invalidator, boolean isPinned, boolean isArchived) {
+    public Factory(@NonNull Context context, @NonNull Invalidator invalidator, boolean isArchived) {
       this.context     = context;
       this.invalidator = invalidator;
-      this.isPinned    = isPinned;
       this.isArchived  = isArchived;
     }
 
     @Override
     public @NonNull DataSource<Integer, Conversation> create() {
-      return ConversationListDataSource.create(context, invalidator, isPinned, isArchived);
+      return ConversationListDataSource.create(context, invalidator, isArchived);
     }
   }
 }

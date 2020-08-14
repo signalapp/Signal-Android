@@ -606,7 +606,7 @@ public final class GroupDatabase extends Database {
     }
 
     public @Nullable GroupRecord getCurrent() {
-      if (cursor == null || cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)) == null) {
+      if (cursor == null || cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)) == null || cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)) == 0) {
         return null;
       }
 
