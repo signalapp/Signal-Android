@@ -153,6 +153,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
+import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivityKt;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
@@ -1181,7 +1182,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleEditPushGroup() {
     Intent intent = new Intent(this, EditClosedGroupActivity.class);
     String groupID = this.recipient.getAddress().toGroupString();
-    intent.putExtra(EditClosedGroupActivity.GROUP_ID, groupID);
+    intent.putExtra(EditClosedGroupActivityKt.EXTRA_GROUP_ID, groupID);
     startActivity(intent);
   }
 

@@ -30,7 +30,7 @@ class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr:
     }
 
     private fun update() {
-        displayNameTextView.text = mentionCandidate.displayName
+        txvGroupNameDisplay.text = mentionCandidate.displayName
         profilePictureView.publicKey = mentionCandidate.publicKey
         profilePictureView.additionalPublicKey = null
         profilePictureView.isRSSFeed = false

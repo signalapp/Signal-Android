@@ -30,9 +30,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         set(value) { field = value; createClosedGroupAdapter.members = value }
 
     private val createClosedGroupAdapter by lazy {
-        val result = SelectContactsAdapter(this)
-        result.glide = GlideApp.with(this)
-        result.memberClickListener = this
+        val glide = GlideApp.with(this)
+        val result = SelectContactsAdapter(this, glide, this)
         result
     }
 

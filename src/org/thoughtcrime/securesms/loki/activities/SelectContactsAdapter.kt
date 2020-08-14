@@ -8,12 +8,16 @@ import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
-class SelectContactsAdapter(private val context: Context) : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
-    lateinit var glide: GlideRequests
+class SelectContactsAdapter(
+        private val context: Context,
+        private val glide: GlideRequests,
+        private val memberClickListener: MemberClickListener? = null)
+    : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
+
     val selectedMembers = mutableSetOf<String>()
+
     var members = listOf<String>()
         set(value) { field = value; notifyDataSetChanged() }
-    var memberClickListener: MemberClickListener? = null
 
     class ViewHolder(val view: UserView) : RecyclerView.ViewHolder(view)
 

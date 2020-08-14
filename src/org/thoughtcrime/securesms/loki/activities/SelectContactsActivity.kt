@@ -15,14 +15,15 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 
+const val EXTRA_SELECTED_CONTACTS = "SELECTED_CONTACTS_RESULT"
+
 class SelectContactsActivity : PassphraseRequiredActionBarActivity(), MemberClickListener, LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
 
     private val selectContactsAdapter by lazy {
-        val result = SelectContactsAdapter(this)
-        result.glide = GlideApp.with(this)
-        result.memberClickListener = this
+        val glide = GlideApp.with(this)
+        val result = SelectContactsAdapter(this, glide, this)
         result
     }
 
@@ -94,7 +95,7 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), MemberClic
         val selectedMembers = this.selectedMembers
         val selectedContacts = selectedMembers.toTypedArray()
         val data = Intent()
-        data.putExtra("Selected Contacts Result", selectedContacts)
+        data.putExtra(EXTRA_SELECTED_CONTACTS, selectedContacts)
         setResult(Activity.RESULT_OK, data)
         finish()
     }
