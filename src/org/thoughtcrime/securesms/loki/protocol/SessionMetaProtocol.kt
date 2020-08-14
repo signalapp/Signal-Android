@@ -78,6 +78,11 @@ object SessionMetaProtocol {
         return !recipient.address.isRSSFeed
     }
 
+    @JvmStatic
+    fun shouldSendDeliveryReceipt(address: Address): Boolean {
+        return !address.isGroup
+    }
+
     /**
      * Should be invoked for the recipient's master device.
      */

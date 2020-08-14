@@ -66,11 +66,11 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
-import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
+import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -127,6 +127,7 @@ import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -255,7 +256,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
       SessionResetProtocol sessionResetProtocol = new SessionResetImplementation(context);
       SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, DatabaseFactory.getSSKDatabase(context), sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -278,6 +279,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
         } else {
 
+          if (message.getClosedGroupUpdate().isPresent()) {
+            ClosedGroupsProtocol.handleSharedSenderKeysUpdate(context, message.getClosedGroupUpdate().get(), content.getSender());
+          }
+
           if (message.isEndSession()) {
             handleEndSessionMessage(content, smsMessageId);
           } else if (message.isGroupUpdate()) {
@@ -298,7 +303,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             SessionMetaProtocol.handleProfileKeyUpdate(context, content);
           }
 
-          if (content.isNeedsReceipt()) {
+          if (content.isNeedsReceipt() && SessionMetaProtocol.shouldSendDeliveryReceipt(Address.fromSerialized(content.getSender()))) {
             handleNeedsDeliveryReceipt(content, message);
           }
         }
@@ -369,6 +374,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Log.w(TAG, e);
     } catch (SelfSendException e) {
       Log.i(TAG, "Dropping UD message from self.");
+    } catch (IOException e) {
+      Log.i(TAG, "IOException during message decryption.");
     }
   }
 
@@ -1454,7 +1461,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
         boolean isLeaveMessage   = message.getGroupInfo().isPresent() && message.getGroupInfo().get().getType() == SignalServiceGroup.Type.QUIT;
 
-        boolean shouldIgnoreContentMessage = ClosedGroupsProtocol.shouldIgnoreContentMessage(context, conversation, groupId.orNull(), content);
+        boolean shouldIgnoreContentMessage = ClosedGroupsProtocol.shouldIgnoreContentMessage(context, conversation.getAddress(), groupId.orNull(), content.getSender());
         return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage) || (isContentMessage && shouldIgnoreContentMessage);
       } else {
         return sender.isBlocked();

@@ -19,7 +19,7 @@ class SessionResetImplementation(private val context: Context) : SessionResetPro
 
     override fun onNewSessionAdopted(publicKey: String, oldSessionResetStatus: SessionResetStatus) {
         if (oldSessionResetStatus == SessionResetStatus.IN_PROGRESS) {
-            val job = PushNullMessageSendJob(publicKey)
+            val job = NullMessageSendJob(publicKey)
             ApplicationContext.getInstance(context).jobManager.add(job)
         }
         // TODO: Show session reset succeed message

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.protocol
+package org.thoughtcrime.securesms.loki.protocol.shelved
 
 import android.content.Context
 import android.util.Log
@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob
 import org.thoughtcrime.securesms.jobs.PushSendJob
 import org.thoughtcrime.securesms.jobs.PushTextSendJob
+import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -19,7 +20,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
-import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSession
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol

@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {
@@ -73,6 +74,7 @@ public class DatabaseFactory {
   private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
+  private final SharedSenderKeysDatabase sskDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -187,6 +189,10 @@ public class DatabaseFactory {
   public static LokiUserDatabase getLokiUserDatabase(Context context) {
     return getInstance(context).lokiUserDatabase;
   }
+
+  public static SharedSenderKeysDatabase getSSKDatabase(Context context) {
+    return getInstance(context).sskDatabase;
+  }
   // endregion
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){
@@ -200,32 +206,33 @@ public class DatabaseFactory {
     DatabaseSecret      databaseSecret   = new DatabaseSecretProvider(context).getOrCreateDatabaseSecret();
     AttachmentSecret    attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
-    this.databaseHelper       = new SQLCipherOpenHelper(context, databaseSecret);
-    this.sms                  = new SmsDatabase(context, databaseHelper);
-    this.mms                  = new MmsDatabase(context, databaseHelper);
-    this.attachments          = new AttachmentDatabase(context, databaseHelper, attachmentSecret);
-    this.media                = new MediaDatabase(context, databaseHelper);
-    this.thread               = new ThreadDatabase(context, databaseHelper);
-    this.mmsSmsDatabase       = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase     = new IdentityDatabase(context, databaseHelper);
-    this.draftDatabase        = new DraftDatabase(context, databaseHelper);
-    this.pushDatabase         = new PushDatabase(context, databaseHelper);
-    this.groupDatabase        = new GroupDatabase(context, databaseHelper);
-    this.recipientDatabase    = new RecipientDatabase(context, databaseHelper);
-    this.groupReceiptDatabase = new GroupReceiptDatabase(context, databaseHelper);
-    this.contactsDatabase     = new ContactsDatabase(context);
-    this.preKeyDatabase       = new OneTimePreKeyDatabase(context, databaseHelper);
-    this.signedPreKeyDatabase = new SignedPreKeyDatabase(context, databaseHelper);
-    this.sessionDatabase      = new SessionDatabase(context, databaseHelper);
-    this.searchDatabase       = new SearchDatabase(context, databaseHelper);
-    this.jobDatabase          = new JobDatabase(context, databaseHelper);
-    this.stickerDatabase      = new StickerDatabase(context, databaseHelper, attachmentSecret);
-    this.lokiAPIDatabase = new LokiAPIDatabase(context, databaseHelper);
+    this.databaseHelper            = new SQLCipherOpenHelper(context, databaseSecret);
+    this.sms                       = new SmsDatabase(context, databaseHelper);
+    this.mms                       = new MmsDatabase(context, databaseHelper);
+    this.attachments               = new AttachmentDatabase(context, databaseHelper, attachmentSecret);
+    this.media                     = new MediaDatabase(context, databaseHelper);
+    this.thread                    = new ThreadDatabase(context, databaseHelper);
+    this.mmsSmsDatabase            = new MmsSmsDatabase(context, databaseHelper);
+    this.identityDatabase          = new IdentityDatabase(context, databaseHelper);
+    this.draftDatabase             = new DraftDatabase(context, databaseHelper);
+    this.pushDatabase              = new PushDatabase(context, databaseHelper);
+    this.groupDatabase             = new GroupDatabase(context, databaseHelper);
+    this.recipientDatabase         = new RecipientDatabase(context, databaseHelper);
+    this.groupReceiptDatabase      = new GroupReceiptDatabase(context, databaseHelper);
+    this.contactsDatabase          = new ContactsDatabase(context);
+    this.preKeyDatabase            = new OneTimePreKeyDatabase(context, databaseHelper);
+    this.signedPreKeyDatabase      = new SignedPreKeyDatabase(context, databaseHelper);
+    this.sessionDatabase           = new SessionDatabase(context, databaseHelper);
+    this.searchDatabase            = new SearchDatabase(context, databaseHelper);
+    this.jobDatabase               = new JobDatabase(context, databaseHelper);
+    this.stickerDatabase           = new StickerDatabase(context, databaseHelper, attachmentSecret);
+    this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
     this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
-    this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
-    this.lokiMessageDatabase = new LokiMessageDatabase(context, databaseHelper);
-    this.lokiThreadDatabase = new LokiThreadDatabase(context, databaseHelper);
-    this.lokiUserDatabase = new LokiUserDatabase(context, databaseHelper);
+    this.lokiPreKeyBundleDatabase  = new LokiPreKeyBundleDatabase(context, databaseHelper);
+    this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
+    this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
+    this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
+    this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

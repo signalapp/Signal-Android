@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
+import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
@@ -105,7 +105,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     }
   }
 
-  private static void scheduleDeletion(Context context, ExpirationInfo expirationInfo) {
+  public static void scheduleDeletion(Context context, ExpirationInfo expirationInfo) {
     if (expirationInfo.getExpiresIn() > 0 && expirationInfo.getExpireStarted() <= 0) {
       ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
 

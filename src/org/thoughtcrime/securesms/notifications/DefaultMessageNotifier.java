@@ -213,7 +213,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void updateNotification(@NonNull  Context context, long threadId, boolean signal)
+  public void updateNotification(@NonNull Context context, long threadId, boolean signal)
   {
     boolean    isVisible  = visibleThread == threadId;
 
@@ -221,7 +221,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
     Recipient      recipients = DatabaseFactory.getThreadDatabase(context)
                                                .getRecipientForThreadId(threadId);
 
-    if (isVisible) {
+    if (isVisible && recipients != null && SessionMetaProtocol.shouldSendReadReceipt(recipients.getAddress())) {
       List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
       MarkReadReceiver.process(context, messageIds);
     }

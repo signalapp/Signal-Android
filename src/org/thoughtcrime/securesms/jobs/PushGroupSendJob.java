@@ -154,7 +154,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       if      (filterAddress != null)              targets = Collections.singletonList(Address.fromSerialized(filterAddress));
       else if (!existingNetworkFailures.isEmpty()) targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getAddress).toList();
-      else                                         targets = ClosedGroupsProtocol.getDestinations(message.getRecipient().getAddress().toGroupString(), context).get();
+      else                                         targets = ClosedGroupsProtocol.getMessageDestinations(context, message.getRecipient().getAddress().toGroupString());
 
       List<SendMessageResult>   results                  = deliver(message, targets);
       List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.fromSerialized(result.getAddress().getNumber()))).toList();

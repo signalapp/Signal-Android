@@ -18,8 +18,10 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -93,6 +95,35 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     }
 
     private fun createClosedGroup() {
+        if (ClosedGroupsProtocol.isSharedSenderKeysEnabled) {
+            createSSKBasedClosedGroup()
+        } else {
+            createLegacyClosedGroup()
+        }
+    }
+
+    private fun createSSKBasedClosedGroup() {
+        val name = nameEditText.text.trim()
+        if (name.isEmpty()) {
+            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
+        }
+        if (name.length >= 64) {
+            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
+        }
+        val selectedMembers = this.selectContactsAdapter.selectedMembers
+        if (selectedMembers.count() < 2) {
+            return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
+        }
+        if (selectedMembers.count() > 49) { // Minus one because we're going to include self later
+            return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
+        }
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val groupID = ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey ))
+        val threadID = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
+        openConversationActivity(this, threadID, Recipient.from(this, Address.fromSerialized(groupID), false))
+    }
+
+    private fun createLegacyClosedGroup() {
         val name = nameEditText.text.trim()
         if (name.isEmpty()) {
             return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()

@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -82,6 +83,8 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.DELIVERY,
                                                                                  Collections.singletonList(messageId),
                                                                                  timestamp);
+
+    if (!SessionMetaProtocol.shouldSendDeliveryReceipt(Address.fromSerialized(address))) { return; }
 
     messageSender.sendReceipt(remoteAddress,
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),

@@ -76,7 +76,7 @@ object SessionManagementProtocol {
         val preKeyBundle = preKeyBundleMessage.getPreKeyBundle(registrationID)
         lokiPreKeyBundleDatabase.setPreKeyBundle(publicKey, preKeyBundle)
         DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestProcessedTimestamp(publicKey, Date().time)
-        val job = PushNullMessageSendJob(publicKey)
+        val job = NullMessageSendJob(publicKey)
         ApplicationContext.getInstance(context).jobManager.add(job)
     }
 
@@ -89,7 +89,7 @@ object SessionManagementProtocol {
         sessionStore.archiveAllSessions(content.sender)
         lokiThreadDB.setSessionResetStatus(content.sender, SessionResetStatus.REQUEST_RECEIVED)
         Log.d("Loki", "Sending an ephemeral message back to: ${content.sender}.")
-        val job = PushNullMessageSendJob(content.sender)
+        val job = NullMessageSendJob(content.sender)
         ApplicationContext.getInstance(context).jobManager.add(job)
         SecurityEvent.broadcastSecurityUpdateEvent(context)
     }

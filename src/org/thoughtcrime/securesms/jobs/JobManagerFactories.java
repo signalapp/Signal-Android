@@ -13,9 +13,10 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceOpenGroupUpdateJob;
-import org.thoughtcrime.securesms.loki.protocol.PushNullMessageSendJob;
-import org.thoughtcrime.securesms.loki.protocol.PushSessionRequestMessageSendJob;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceOpenGroupUpdateJob;
+import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
+import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -51,7 +52,8 @@ public final class JobManagerFactories {
       put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
       put(PushNotificationReceiveJob.KEY,            new PushNotificationReceiveJob.Factory());
       put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
-      put(PushNullMessageSendJob.KEY,                new PushNullMessageSendJob.Factory());
+      put(NullMessageSendJob.KEY,                    new NullMessageSendJob.Factory());
+      put(ClosedGroupUpdateMessageSendJob.KEY,       new ClosedGroupUpdateMessageSendJob.Factory());
       put(RefreshAttributesJob.KEY,                  new RefreshAttributesJob.Factory());
       put(RefreshPreKeysJob.KEY,                     new RefreshPreKeysJob.Factory());
       put(RefreshUnidentifiedDeliveryAbilityJob.KEY, new RefreshUnidentifiedDeliveryAbilityJob.Factory());
@@ -72,7 +74,7 @@ public final class JobManagerFactories {
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
-      put(PushSessionRequestMessageSendJob.KEY,      new PushSessionRequestMessageSendJob.Factory());
+      put(SessionRequestMessageSendJob.KEY,      new SessionRequestMessageSendJob.Factory());
       put(MultiDeviceOpenGroupUpdateJob.KEY,         new MultiDeviceOpenGroupUpdateJob.Factory());
     }};
   }

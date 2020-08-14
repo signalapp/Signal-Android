@@ -36,7 +36,7 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
                     val applicationContext = context.applicationContext as ApplicationContext
                     val broadcaster = applicationContext.broadcaster
                     SnodeAPI.configureIfNeeded(userPublicKey, lokiAPIDatabase, broadcaster)
-                    SnodeAPI.shared.getMessages().map { messages ->
+                    SnodeAPI.shared.getMessages(userPublicKey).map { messages ->
                         messages.forEach {
                             PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
                         }

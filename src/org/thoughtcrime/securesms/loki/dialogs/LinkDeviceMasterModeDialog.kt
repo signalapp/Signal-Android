@@ -15,7 +15,7 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
