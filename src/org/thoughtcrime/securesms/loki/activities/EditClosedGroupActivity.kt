@@ -80,7 +80,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
             override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
                 // We no longer need any subsequent loading events
-                // (they will occur on every activity resume)
+                // (they will occur on every activity resume).
                 LoaderManager.getInstance(this@EditClosedGroupActivity).destroyLoader(LOADER_ID_MEMBERS)
 
                 originalMembers.clear()

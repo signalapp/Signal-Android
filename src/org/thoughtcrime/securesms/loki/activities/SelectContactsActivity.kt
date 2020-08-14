@@ -17,13 +17,13 @@ import org.thoughtcrime.securesms.mms.GlideApp
 
 const val EXTRA_SELECTED_CONTACTS = "SELECTED_CONTACTS_RESULT"
 
-class SelectContactsActivity : PassphraseRequiredActionBarActivity(), MemberClickListener, LoaderManager.LoaderCallbacks<List<String>> {
+class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
 
     private val selectContactsAdapter by lazy {
         val glide = GlideApp.with(this)
-        val result = SelectContactsAdapter(this, glide, this)
+        val result = SelectContactsAdapter(this, glide)
         result
     }
 
@@ -41,7 +41,7 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), MemberClic
         supportActionBar!!.title = resources.getString(R.string.activity_select_contacts_title)
         recyclerView.adapter = selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+        btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
@@ -85,10 +85,6 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), MemberClic
     private fun createNewPrivateChat() {
         setResult(createNewPrivateChatResultCode)
         finish()
-    }
-
-    override fun onMemberClick(member: String) {
-        selectContactsAdapter.onMemberClick(member)
     }
 
     private fun returnContacts() {

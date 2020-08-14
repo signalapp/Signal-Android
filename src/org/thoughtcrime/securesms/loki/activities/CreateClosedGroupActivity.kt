@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.AsyncTask
@@ -25,31 +26,29 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
 import java.lang.ref.WeakReference
 
-class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberClickListener, LoaderManager.LoaderCallbacks<List<String>> {
+const val RESULT_CODE_CREATE_CLOSED_GROUP = 100
+
+class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
+
+    private lateinit var selectContactsAdapter: SelectContactsAdapter
+
     private var members = listOf<String>()
-        set(value) { field = value; createClosedGroupAdapter.members = value }
-
-    private val createClosedGroupAdapter by lazy {
-        val glide = GlideApp.with(this)
-        val result = SelectContactsAdapter(this, glide, this)
-        result
-    }
-
-    private val selectedMembers: Set<String>
-        get() { return createClosedGroupAdapter.selectedMembers }
-
-    companion object {
-        public val createNewPrivateChatResultCode = 100
-    }
+        set(value) {
+            field = value
+            selectContactsAdapter.members = value
+        }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_create_closed_group)
         supportActionBar!!.title = resources.getString(R.string.activity_create_closed_group_title)
-        recyclerView.adapter = createClosedGroupAdapter
+
+        this.selectContactsAdapter = SelectContactsAdapter(this, GlideApp.with(this))
+        recyclerView.adapter = this.selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+
+        btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
@@ -82,21 +81,15 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when(id) {
+        when(item.itemId) {
             R.id.doneButton -> createClosedGroup()
-            else -> { /* Do nothing */ }
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun createNewPrivateChat() {
-        setResult(createNewPrivateChatResultCode)
+        setResult(RESULT_CODE_CREATE_CLOSED_GROUP)
         finish()
-    }
-
-    override fun onMemberClick(member: String) {
-        createClosedGroupAdapter.onMemberClick(member)
     }
 
     private fun createClosedGroup() {
@@ -107,7 +100,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         if (name.length >= 64) {
             return Toast.makeText(this, R.string.activity_create_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
         }
-        val selectedMembers = this.selectedMembers
+        val selectedMembers = this.selectContactsAdapter.selectedMembers
         if (selectedMembers.count() < 2) {
             return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
@@ -119,16 +112,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         }.toSet()
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)
         val admin = Recipient.from(this, Address.fromSerialized(masterHexEncodedPublicKey), false)
-        CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin )).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
-    }
-
-    private fun handleOpenConversation(threadId: Long, recipient: Recipient) {
-        val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
-        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
-        startActivity(intent)
-        finish()
+        CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin ))
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
     }
     // endregion
 
@@ -150,7 +135,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
             val activity = activity.get() ?: return super.onPostExecute(result)
             if (result.isPresent && result.get().threadId > -1) {
                 if (!activity.isFinishing) {
-                    activity.handleOpenConversation(result.get().threadId, result.get().groupRecipient)
+                    openConversationActivity(activity, result.get().threadId, result.get().groupRecipient)
+                    activity.finish()
                 }
             } else {
                 super.onPostExecute(result)
@@ -159,4 +145,12 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         }
     }
     // endregion
+}
+
+private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
+    val intent = Intent(context, ConversationActivity::class.java)
+    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
+    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
+    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+    context.startActivity(intent)
 }

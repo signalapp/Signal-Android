@@ -10,8 +10,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 
 class SelectContactsAdapter(
         private val context: Context,
-        private val glide: GlideRequests,
-        private val memberClickListener: MemberClickListener? = null)
+        private val glide: GlideRequests)
     : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
 
     val selectedMembers = mutableSetOf<String>()
@@ -32,12 +31,12 @@ class SelectContactsAdapter(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val member = members[position]
-        viewHolder.view.setOnClickListener { memberClickListener?.onMemberClick(member) }
+        viewHolder.view.setOnClickListener { onMemberClick(member) }
         val isSelected = selectedMembers.contains(member)
         viewHolder.view.bind(Recipient.from(context, Address.fromSerialized(member), false), isSelected, glide, false)
     }
 
-    fun onMemberClick(member: String) {
+    private fun onMemberClick(member: String) {
         if (selectedMembers.contains(member)) {
             selectedMembers.remove(member)
         } else {

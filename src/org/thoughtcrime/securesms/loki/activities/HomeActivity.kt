@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
-import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
@@ -120,7 +119,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         recyclerView.adapter = homeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Set up empty state view
-        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+        btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -221,7 +220,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == CreateClosedGroupActivity.createNewPrivateChatResultCode) {
+        if (resultCode == RESULT_CODE_CREATE_CLOSED_GROUP) {
             createNewPrivateChat()
         }
     }
