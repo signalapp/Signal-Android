@@ -97,7 +97,7 @@
                     android:hint="@string/activity_settings_display_name_edit_text_hint" />
 
                 <TextView
-                    android:id="@+id/txvGroupNameDisplay"
+                    android:id="@+id/btnGroupNameDisplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

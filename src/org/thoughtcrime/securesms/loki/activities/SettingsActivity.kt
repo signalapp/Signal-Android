@@ -78,7 +78,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
         ctnGroupNameSection.setOnClickListener { showEditDisplayNameUI() }
-        txvGroupNameDisplay.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+        btnGroupNameDisplay.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
@@ -132,7 +132,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         cancelButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
         showQRCodeButton.visibility = if (isEditingDisplayName) View.GONE else View.VISIBLE
         saveButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
-        txvGroupNameDisplay.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
+        btnGroupNameDisplay.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
         displayNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LinearLayout.LayoutParams
         titleTextViewLayoutParams.leftMargin = if (isEditingDisplayName) toPx(16, resources) else 0
@@ -176,7 +176,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         }
         all(promises).alwaysUi {
             if (displayName != null) {
-                txvGroupNameDisplay.text = displayName
+                btnGroupNameDisplay.text = displayName
             }
             displayNameToBeUploaded = null
             if (isUpdatingProfilePicture && profilePicture != null) {

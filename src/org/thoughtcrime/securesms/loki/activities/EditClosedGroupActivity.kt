@@ -9,13 +9,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
 import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
 import kotlinx.android.synthetic.main.activity_edit_closed_group.*
-import kotlinx.android.synthetic.main.activity_edit_closed_group.ctnGroupNameSection
-import kotlinx.android.synthetic.main.activity_edit_closed_group.txvGroupNameDisplay
 import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -45,7 +44,11 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private var nameHasChanged = false
 
     private var isEditingGroupName = false
-        set(value) { field = value; handleIsEditingDisplayNameChanged() }
+        set(value) {
+            if (field == value) return
+            field = value
+            handleIsEditingDisplayNameChanged()
+        }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
@@ -54,13 +57,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
         this.groupID = intent.getStringExtra(EXTRA_GROUP_ID)
         this.originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
+        this.newGroupDisplayName = this.originalName
 
         supportActionBar!!.title = resources.getString(R.string.activity_edit_closed_group_title)
-
-        txvGroupNameDisplay.text = originalName
-        ctnGroupNameSection.setOnClickListener { showEditDisplayNameUI() }
-        btnCancelGroupNameEdit.setOnClickListener { cancelEditingDisplayName() }
-        btnSaveGroupName.setOnClickListener { saveDisplayName() }
 
         addMembersClosedGroupButton.setOnClickListener { onAddMembersClick() }
 
@@ -71,6 +70,21 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         )
         recyclerView.adapter = this.memberListAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        lblGroupNameDisplay.text = this.originalName
+        cntGroupNameDisplay.setOnClickListener { isEditingGroupName = true }
+        btnCancelGroupNameEdit.setOnClickListener { isEditingGroupName = false }
+        btnSaveGroupNameEdit.setOnClickListener { saveDisplayName() }
+        edtGroupName.setImeActionLabel(getString(R.string.save), EditorInfo.IME_ACTION_DONE)
+        edtGroupName.setOnEditorActionListener { _, actionId, _ ->
+            when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    saveDisplayName()
+                    return@setOnEditorActionListener true
+                }
+                else -> return@setOnEditorActionListener false
+            }
+        }
 
         // Setup member list loader.
         LoaderManager.getInstance(this).initLoader(LOADER_ID_MEMBERS, null, object : LoaderManager.LoaderCallbacks<List<String>> {
@@ -101,8 +115,6 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     // endregion
 
     // region Updating
-
-
     private fun updateMembers(members: Set<String>) {
         this.members.clear()
         this.members.addAll(members)
@@ -119,13 +131,6 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             R.id.applyButton -> commitClosedGroupChanges()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun showEditDisplayNameUI() {
-        isEditingGroupName = true
-    }
-    private fun cancelEditingDisplayName() {
-        isEditingGroupName = false
     }
 
     private fun onMemberClick(member: String) {
@@ -161,12 +166,12 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun handleIsEditingDisplayNameChanged() {
-        btnCancelGroupNameEdit.visibility = if (isEditingGroupName) View.VISIBLE else View.GONE
-        btnSaveGroupName.visibility = if (isEditingGroupName) View.VISIBLE else View.GONE
-        txvGroupNameDisplay.visibility = if (isEditingGroupName) View.INVISIBLE else View.VISIBLE
-        edtGroupName.visibility = if (isEditingGroupName) View.VISIBLE else View.INVISIBLE
+        cntGroupNameEdit.visibility = if (isEditingGroupName) View.VISIBLE else View.INVISIBLE
+        cntGroupNameDisplay.visibility = if (isEditingGroupName) View.INVISIBLE else View.VISIBLE
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (isEditingGroupName) {
+            edtGroupName.setText(newGroupDisplayName)
+            edtGroupName.selectAll()
             edtGroupName.requestFocus()
             inputMethodManager.showSoftInput(edtGroupName, 0)
         } else {
@@ -186,7 +191,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
         }
         newGroupDisplayName = groupDisplayName
-        txvGroupNameDisplay.text = groupDisplayName
+        lblGroupNameDisplay.text = groupDisplayName
         nameHasChanged = true
         isEditingGroupName = false
     }
