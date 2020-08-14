@@ -116,7 +116,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.applyButton -> modifyClosedGroup()
+            R.id.applyButton -> commitClosedGroupChanges()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -191,7 +191,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         isEditingGroupName = false
     }
 
-    private fun modifyClosedGroup() {
+    private fun commitClosedGroupChanges() {
         val membersHaveChanged = members.size != originalMembers.size || !members.containsAll(originalMembers)
 
         if (!nameHasChanged && !membersHaveChanged) {
@@ -199,18 +199,28 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return
         }
 
-        var groupDisplayName = originalName
-        if (nameHasChanged) {
-            groupDisplayName = newGroupDisplayName
-        }
+        val groupDisplayName = if (nameHasChanged) newGroupDisplayName else originalName
 
         val finalGroupMembers = members.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
+
 //        val finalGroupAdmins = adminMembers.map {
 //            Recipient.from(this, Address.fromSerialized(it), false)
 //        }.toSet()
-        val finalGroupAdmins = finalGroupMembers.toSet() //TODO For now, consider all the group's users are admins.
+        val finalGroupAdmins = finalGroupMembers.toSet() //TODO For now, consider all the users are admins.
+
+
+        if (groupDisplayName.length >= 64) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
+        }
+        if (finalGroupMembers.size < 2) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
+        }
+        if (finalGroupMembers.size > 10) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
+        }
+
         GroupManager.updateGroup(this, groupID, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
         finish()
     }
