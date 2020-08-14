@@ -15,33 +15,27 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 
-const val EXTRA_SELECTED_CONTACTS = "SELECTED_CONTACTS_RESULT"
+const val EXTRA_RESULT_SELECTED_CONTACTS = "RESULT_SELECTED_CONTACTS"
+//const val RESULT_CREATE_PRIVATE_CHAT = 100;
 
 class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
 
-    private val selectContactsAdapter by lazy {
-        val glide = GlideApp.with(this)
-        val result = SelectContactsAdapter(this, glide)
-        result
-    }
-
-    private val selectedMembers: Set<String>
-        get() { return selectContactsAdapter.selectedMembers }
-
-    companion object {
-        public val createNewPrivateChatResultCode = 100
-    }
+    private lateinit var selectContactsAdapter: SelectContactsAdapter
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_select_contacts)
         supportActionBar!!.title = resources.getString(R.string.activity_select_contacts_title)
+
+        this.selectContactsAdapter = SelectContactsAdapter(this, GlideApp.with(this))
         recyclerView.adapter = selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
+
+//        btnCreateNewPrivateChat.setOnClickListener { closeAndCreatePrivateChat() }
+
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
@@ -74,25 +68,24 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when(id) {
-            R.id.doneButton -> returnContacts()
-            else -> { /* Do nothing */ }
+        when(item.itemId) {
+            R.id.doneButton -> closeAndReturnSelected()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun createNewPrivateChat() {
-        setResult(createNewPrivateChatResultCode)
-        finish()
-    }
+//    private fun closeAndCreatePrivateChat() {
+//        setResult(RESULT_CREATE_PRIVATE_CHAT)
+//        finish()
+//    }
 
-    private fun returnContacts() {
-        val selectedMembers = this.selectedMembers
+    private fun closeAndReturnSelected() {
+        val selectedMembers = this.selectContactsAdapter.selectedMembers
         val selectedContacts = selectedMembers.toTypedArray()
-        val data = Intent()
-        data.putExtra(EXTRA_SELECTED_CONTACTS, selectedContacts)
-        setResult(Activity.RESULT_OK, data)
+        val intent = Intent()
+        intent.putExtra(EXTRA_RESULT_SELECTED_CONTACTS, selectedContacts)
+        setResult(Activity.RESULT_OK, intent)
         finish()
     }
+    // endregion
 }

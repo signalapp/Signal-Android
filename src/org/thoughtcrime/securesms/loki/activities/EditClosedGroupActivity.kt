@@ -151,9 +151,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         when (requestCode) {
             REQ_CODE_ADD_USERS -> {
                 if (resultCode != RESULT_OK) return
-                if (data == null || data.extras == null || !data.hasExtra(EXTRA_SELECTED_CONTACTS)) return
+                if (data == null || data.extras == null || !data.hasExtra(EXTRA_RESULT_SELECTED_CONTACTS)) return
 
-                val selectedContacts = data.extras!!.getStringArray(EXTRA_SELECTED_CONTACTS)!!.toSet()
+                val selectedContacts = data.extras!!.getStringArray(EXTRA_RESULT_SELECTED_CONTACTS)!!.toSet()
                 val changedMembers = members + selectedContacts
                 updateMembers(changedMembers)
             }
