@@ -184,15 +184,23 @@ object ClosedGroupsProtocol {
         insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID)
     }
 
-    //TODO AC: This is a reflection of GroupManager's update API.
-    // It needs a valid implementation and probably the signature should be refactored a bit.
-    public fun updateGroup(context: Context,
-                           groupPublicKey: String,
-                           members: Collection<Recipient>,
-                           avatar: Bitmap?,
-                           name: String,
-                           admins: Collection<Recipient>) {
-        // STUB
+    public fun update(context: Context, groupPublicKey: String, members: Collection<String>, name: String, admins: Collection<String>) {
+        val groupDB = DatabaseFactory.getGroupDatabase(context)
+        val groupID = doubleEncodeGroupID(groupPublicKey)
+        if (groupDB.getGroup(groupID).orNull() == null) {
+            Log.d("Loki", "Can't update nonexistent closed group.")
+            return
+        }
+        // Send the update to the group
+        val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey),
+            name, setOf(), members.map { Hex.fromStringCondensed(it) }, admins.map { Hex.fromStringCondensed(it) })
+        val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
+        ApplicationContext.getInstance(context).jobManager.add(job)
+        // Update the group
+        groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        // Notify the user
+        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+        insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
     }
 
     @JvmStatic

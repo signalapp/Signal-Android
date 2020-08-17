@@ -247,7 +247,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
         if (isSSKBasedClosedGroup) {
             //TODO AC: Should it use "groupPublicKey" or "groupID"?
-            ClosedGroupsProtocol.updateGroup(this, groupPublicKey!!, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
+            ClosedGroupsProtocol.update(this, groupPublicKey!!, finalGroupMembers.map { it.address.serialize() },
+                groupDisplayName, finalGroupAdmins.map { it.address.serialize() })
         } else {
             GroupManager.updateGroup(this, groupID, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
         }
