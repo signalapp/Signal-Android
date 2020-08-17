@@ -51,6 +51,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
+
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 

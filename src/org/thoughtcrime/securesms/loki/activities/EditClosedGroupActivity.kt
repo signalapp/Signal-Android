@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.GroupUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.io.IOException
 
@@ -95,7 +96,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         // Setup member list loader.
         LoaderManager.getInstance(this).initLoader(LOADER_ID_MEMBERS, null, object : LoaderManager.LoaderCallbacks<List<String>> {
             override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
-                return EditClosedGroupLoader(groupID, this@EditClosedGroupActivity)
+                return EditClosedGroupLoader(this@EditClosedGroupActivity, groupID)
             }
 
             override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
@@ -124,7 +125,11 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private fun updateMembers(members: Set<String>) {
         this.members.clear()
         this.members.addAll(members)
-        this.memberListAdapter.setItems(members)
+        this.memberListAdapter.setMembers(members)
+
+        val localUserPublicKey = TextSecurePreferences.getLocalNumber(this)
+        this.memberListAdapter.setLockedMembers(arrayListOf(localUserPublicKey))
+
         mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
         invalidateOptionsMenu()

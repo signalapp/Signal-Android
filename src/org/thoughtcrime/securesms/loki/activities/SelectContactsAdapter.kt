@@ -33,7 +33,12 @@ class SelectContactsAdapter(
         val member = members[position]
         viewHolder.view.setOnClickListener { onMemberClick(member) }
         val isSelected = selectedMembers.contains(member)
-        viewHolder.view.bind(Recipient.from(context, Address.fromSerialized(member), false), isSelected, glide, false)
+        viewHolder.view.bind(Recipient.from(
+                context,
+                Address.fromSerialized(member), false),
+                glide,
+                UserView.ActionIndicator.CHECK_BOX,
+                isSelected)
     }
 
     private fun onMemberClick(member: String) {

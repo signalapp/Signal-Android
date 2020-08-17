@@ -40,11 +40,13 @@ class UserView : LinearLayout {
     // endregion
 
     // region Updating
-    fun setCheckBoxVisible(visible: Boolean) {
-        tickImageView.visibility = if (visible) View.VISIBLE else View.GONE
+    enum class ActionIndicator {
+        NONE,
+        MENU,
+        CHECK_BOX,
     }
 
-    fun bind(user: Recipient, isSelected: Boolean, glide: GlideRequests, isEditingGroup: Boolean) {
+    fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
@@ -70,10 +72,19 @@ class UserView : LinearLayout {
         profilePictureView.glide = glide
         profilePictureView.update()
         nameTextView.text = user.name ?: "Unknown Contact"
-        if (isEditingGroup) {
-            tickImageView.setImageResource(R.drawable.ic_more_horiz_white)
-        } else {
-            tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+
+        when (actionIndicator) {
+            ActionIndicator.NONE -> {
+                tickImageView.visibility = View.GONE
+            }
+            ActionIndicator.MENU -> {
+                tickImageView.visibility = View.VISIBLE
+                tickImageView.setImageResource(R.drawable.ic_more_horiz_white)
+            }
+            ActionIndicator.CHECK_BOX -> {
+                tickImageView.visibility = View.VISIBLE
+                tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+            }
         }
     }
     // endregion
