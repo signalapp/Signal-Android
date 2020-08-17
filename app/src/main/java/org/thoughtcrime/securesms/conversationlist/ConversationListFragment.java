@@ -763,7 +763,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       db.pinConversations(toPin);
 
       return null;
-    }, unused -> actionMode.finish());
+    }, unused -> {
+      if (actionMode != null) {
+        actionMode.finish();
+      }
+    });
   }
 
   private void handleUnpinAllSelected() {
@@ -775,7 +779,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       db.unpinConversations(toPin);
 
       return null;
-    }, unused -> actionMode.finish());
+    }, unused -> {
+      if (actionMode != null) {
+        actionMode.finish();
+      }
+    });
   }
 
   private void handleSelectAllThreads() {
