@@ -382,6 +382,9 @@
   <string name="GroupManagement_access_level_only_admins">పరిపాలకులు మాత్రమే</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">ఇంకా నేర్చుకో</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">అచేతనించు</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ఆమోదించవలసిన సమూహ ఆహ్వానములు</string>
   <string name="PendingMembersActivity_people_you_invited">మీరు ఆహ్వానించినవారు</string>
@@ -435,6 +438,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">అచేతనం అయింది</string>
   <string name="CustomNotificationsDialogFragment__default">అప్రమేయం</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal ను నవీకరించండి</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">గ్రూప్ అవతార్</string>
   <string name="CropImageActivity_profile_avatar">అవతారము</string>
@@ -934,8 +940,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ఎంఎంఎస్ సందేశాన్ని మనుగడలో కాని సెషన్ కోసం గుప్తీకరించబడింది</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">వెబ్ బ్రౌజర్ ఇన్స్టాల్ చేయబడలేదు</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">దిగుమతి పురోగతిలో ఉంది</string>
   <string name="ApplicationMigrationService_importing_text_messages">సాధా సందేశాలు దిగుమతి అవుతున్నాయి </string>
@@ -1350,8 +1354,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">వచ్చే మల్టీమీడియా సందేశాల కోసం Signal ఉపయోగించండి</string>
   <string name="preferences__pref_enter_sends_title">ఎంటర్ కీ పంపుతుంది </string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages"> ప్రారంబించే కీ ని నొక్కడం ద్వారా సందేశాలను పంపుతోంది</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">లింక్ పూర్వప్రదర్శనను పంపండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit మరియు YouTube లింక్‌లకు పూర్వప్రదర్శనలు మద్దతు ఇస్తున్నాయి</string> -->
   <string name="preferences__choose_identity">గుర్తింపును ఎంచుకోండి</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">కాంటాక్ట్స్ జాబితా నుండి మీ పరిచయం ఎంట్రీ ఎంచుకోండి.</string>
   <string name="preferences__change_passphrase">సంకేతపదమును మార్చు</string>
@@ -1499,6 +1501,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">సెట్టింగుల సత్వరమార్గం</string>
   <string name="conversation_list_search_description">వెతకండి</string>
+  <string name="conversation_list__chats">మాటామంతి</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">పరిచయ ఫొటొ చిత్రం</string>
   <string name="conversation_list_item_view__archived">భద్రపరచబడినది</string>
@@ -1651,6 +1654,7 @@
   <string name="KbsMegaphone__create_pin">పిన్ సృష్టించండి</string>
   <string name="KbsMegaphone__introducing_pins">పిన్‌లను పరిచయం చేస్తోంది</string>
   <string name="KbsMegaphone__update_pin">పిన్‌ను నవీకరించండి</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
   <string name="ConversationListFragment_loading">లోడ్…</string>

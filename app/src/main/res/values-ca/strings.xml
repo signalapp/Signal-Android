@@ -407,6 +407,9 @@
   <string name="GroupManagement_invite_single_user">No podeu afegir automàticament %1$s a aquest grup. \n\nHan estat convidats a afegir-s\'hi i no veuran cap missatge del grup fins que no ho acceptin.</string>
   <string name="GroupManagement_learn_more">Més informació</string>
   <string name="GroupManagement_invite_multiple_users">No podeu afegir aquests usuaris automàticament a aquest grup.\n\nHan estat convidats a afegir-s\'hi i no veuran cap missatge del grup fins que ho acceptin.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Desactiva</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitacions de grup pendents</string>
   <string name="PendingMembersActivity_people_you_invited">Persones que heu convidat</string>
@@ -545,6 +548,9 @@
     <item quantity="one">Voleu rebutjar la invitació enviada per %1$s?</item>
     <item quantity="other">Voleu rebutjar %2$d invitacions enviades per %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualitza el Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1116,8 +1122,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Missatge MMS encriptat per a una sessió que no existeix</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silencia les notificacions</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">No teniu cap navegador web instal·lat!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importació en curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">S\'importen missatges de text</string>
@@ -1590,8 +1594,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Fes servir el Signal per a tots els missatges multimèdia d\'entrada</string>
   <string name="preferences__pref_enter_sends_title">S\'envia amb la tecla de Retorn</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">En prémer Retorn s\'envia el missatge de text</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Envia previsualitzacions d\'enllaços</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Les vistes prèvies són compatibles amb els enllaços d\'Imgur, Instagram, Pinterest, Reddit i YouTube.</string> -->
   <string name="preferences__choose_identity">Trieu la identitat a usar</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Trieu els contactes de la llista de contactes.</string>
   <string name="preferences__change_passphrase">Canvia la contrasenya</string>
@@ -1751,6 +1753,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Drecera de configuració</string>
   <string name="conversation_list_search_description">Cerca</string>
+  <string name="conversation_list__chats">Xats</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacte</string>
   <string name="conversation_list_item_view__archived">Arxivat</string>
@@ -1944,6 +1947,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsMegaphone__update_pin">Actualitza el PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Us ho recordarem més tard. Crear un PIN serà obligatori d\'aquí a %1$d dies.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Us ho recordarem més tard. Confirmar el PIN serà obligatori d\'aquí a %1$d dies.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>

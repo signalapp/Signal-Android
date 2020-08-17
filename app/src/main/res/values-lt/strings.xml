@@ -437,6 +437,9 @@
   <string name="GroupManagement_invite_single_user">Jūs negalite automatiškai pridėti naudotojo „%1$s“ į šią grupę.\n\nJis yra pakviestas prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
   <string name="GroupManagement_learn_more">Sužinoti daugiau</string>
   <string name="GroupManagement_invite_multiple_users">Jūs negalite automatiškai pridėti šių naudotojų į šią grupę.\n\nJie yra pakviesti prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Išjungti</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
@@ -582,6 +585,9 @@
     <item quantity="many">Ar norite panaikinti %2$d pakvietimų, kuriuos išsiuntė %1$s?</item>
     <item quantity="other">Ar norite panaikinti %2$d pakvietimą, kurį išsiuntė %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atnaujinti Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
   <string name="CropImageActivity_profile_avatar">Avataras</string>
@@ -1193,8 +1199,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS žinutė užšifruota seansui, kurio nėra</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Išjungti pranešimus</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Neįdiegta jokia saityno naršyklė!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importavimas eigoje</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuojamos tekstinės žinutės</string>
@@ -1687,8 +1691,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Naudoti Signal visoms gaunamosioms multimedijos žinutėms</string>
   <string name="preferences__pref_enter_sends_title">Enter (Įvedimo) klavišas išsiunčia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Siųsti nuorodų peržiūras</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Peržiūros yra palaikomos Imgur, Instagram, Pinterest, Reddit, ir YouTube nuorodoms</string> -->
   <string name="preferences__choose_identity">Pasirinkti tapatybę</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pasirinkite adresatą iš adresatų sąrašo.</string>
   <string name="preferences__change_passphrase">Pakeisti slaptafrazę</string>
@@ -1848,6 +1850,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Nustatymų šaukinys</string>
   <string name="conversation_list_search_description">Ieškoti</string>
+  <string name="conversation_list__chats">Pokalbiai</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Adresato nuotraukos paveikslas</string>
   <string name="conversation_list_item_view__archived">Archyvuota</string>
@@ -2057,6 +2060,7 @@
   <string name="KbsMegaphone__update_pin">Atnaujinti PIN kodą</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>

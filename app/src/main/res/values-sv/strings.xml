@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" kan inte läggas till automatiskt till denna grupp av dig.\n\nDe har blivit inbjudna att gå med och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
   <string name="GroupManagement_learn_more">Läs mer</string>
   <string name="GroupManagement_invite_multiple_users">Dessa användare kan inte automatiskt läggas till i denna grupp.\n\nDe har blivit inbjudna att gå med i gruppen och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Inaktivera</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Förhandsgranska vilken länk som helst</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan nu hämta länkförhandsvisningar direkt från valfri webbplats för meddelanden du skickar.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Ingen länkförhandsvisning tillgänglig</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du bjudit in</string>
@@ -545,6 +551,12 @@
     <item quantity="one">Vill du återkalla inbjudan skickad av %1$s?</item>
     <item quantity="other">Vill du återkalla %2$d inbjudningar skickade av %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du är redan medlem</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uppdatera Signal för att använda grupplänkar</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte delbara grupplänkar. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1116,8 +1128,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS som krypterats för obefintlig session</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tysta aviseringar</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen webbläsare installerad!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerar SMS</string>
@@ -1214,7 +1224,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal åtkomst till din mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har nekats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
-  <string name="WebRtcCallActivity__declined_on_a_linked_device">Avvisades på en länkad enhet.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Avböjde på en länkad enhet.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Upptagen på en länkad enhet.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Säkerhetsnumret för din konversation med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation eller att %2$s helt enkelt har installerat om Signal.</string>
@@ -1590,8 +1600,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimediameddelanden</string>
   <string name="preferences__pref_enter_sends_title">Returtangenten skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på returtangenten skickas textmeddelanden</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Skicka länkförhandsvisning</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string> -->
+  <string name="preferences__generate_link_previews">Generera länkförhandsvisningar</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hämta länkförhandsvisningar direkt från webbplatser för meddelanden du skickar.</string>
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
@@ -1751,6 +1761,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
+  <string name="conversation_list__chats">Konversationer</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkiverad</string>
@@ -1944,6 +1955,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsMegaphone__update_pin">Uppdatera PIN-kod</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi påminner dig senare. Att skapa en PIN-kod blir obligatorisk om %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi påminner dig senare. Bekräfta din PIN-kod blir obligatorisk om %1$d dagar.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Introducerar @Omnämnanden</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få någons uppmärksamhet i en \"Ny grupp\" genom att skriva @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>

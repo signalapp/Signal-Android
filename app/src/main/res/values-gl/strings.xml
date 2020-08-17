@@ -389,6 +389,9 @@
   <string name="GroupManagement_access_level_only_admins">Só administradores</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Saber máis</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Desactivar</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Persoas que convidaches</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Non tes convites pendentes.</string>
@@ -439,6 +442,8 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desactivado</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -869,8 +874,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaxe MMS cifrada para unha sesión que non existe</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificacións</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ningún navegador web instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importación en marcha</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensaxes de texto</string>
@@ -1280,8 +1283,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar Signal para todas as mensaxes multimedia recibidas</string>
   <string name="preferences__pref_enter_sends_title">Tecla Intro para enviar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ao tocar na tecla Intro enviaranse as mensaxes</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar previsualizacións das ligazóns.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Admítense previsualizacións das ligazóns para Imgur, Instagram, Pinterest, Reddit e YouTube.</string> -->
   <string name="preferences__choose_identity">Elixir identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>
@@ -1428,6 +1429,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Axustes do atallo</string>
   <string name="conversation_list_search_description">Buscar</string>
+  <string name="conversation_list__chats">Conversas</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto do contacto</string>
   <string name="conversation_list_item_view__archived">No arquivo</string>
@@ -1602,6 +1604,7 @@
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Lembrarémoscho máis tarde. Será obrigatorio crear un PIN tras %1$d días.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Lembrarémoscho máis tarde. Confirmar o PIN será obrigatorio en %1$d días.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>

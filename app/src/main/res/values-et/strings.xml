@@ -407,6 +407,9 @@
   <string name="GroupManagement_invite_single_user">“%1$s” ei saa sinu poolt automaatselt gruppi lisada.\n\nNad on kutsutud grupiga ühinema ja ei näe grupi sõnumeid enne kui on ühinemisega nõustunud.</string>
   <string name="GroupManagement_learn_more">Rohkem infot</string>
   <string name="GroupManagement_invite_multiple_users">Neid kasutajaid ei saa sinu poolt automaatselt gruppi lisada.\n\nNad on kutsutud grupiga ühinema ja ei näe grupi sõnumeid enne kui on ühinemisega nõustunud.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Keela</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ootel grupikutsed</string>
   <string name="PendingMembersActivity_people_you_invited">Sinu kutsutud inimesed</string>
@@ -545,6 +548,9 @@
     <item quantity="one">Kas sa soovid tühistada %1$s poolt saadetud kutse?</item>
     <item quantity="other">Kas sa soovid tühistada %2$d %1$s poolt saadetud kutset?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uuenda Signal-it</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
   <string name="CropImageActivity_profile_avatar">Pilt</string>
@@ -1122,8 +1128,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Vaigista märguanded</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Veebibrauser ei ole paigaldatud!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importimine käib</string>
   <string name="ApplicationMigrationService_importing_text_messages">Impordin tekstsõnumeid</string>
@@ -1596,8 +1600,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Kasuta Signalit kõigi sissetulevate multimeediasõnumite jaoks</string>
   <string name="preferences__pref_enter_sends_title">Sisestusklahv saadab</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Sisestusklahvi vajutamine saadab tekstsõnumeid</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Saada linkide eelvaateid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Eelvaated on toetatud Imgur, Instagram, Pinterest, Reddit ja YouTube linkide puhul</string> -->
   <string name="preferences__choose_identity">Vali identiteet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
   <string name="preferences__change_passphrase">Muuda salasõna</string>
@@ -1757,6 +1759,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Seadete otsetee</string>
   <string name="conversation_list_search_description">Otsi</string>
+  <string name="conversation_list__chats">Vestlused</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakti foto pilt</string>
   <string name="conversation_list_item_view__archived">Arhiveeritud</string>
@@ -1950,6 +1953,7 @@
   <string name="KbsMegaphone__update_pin">Uuenda PIN-koodi</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tuletame sulle hiljem meelde. PIN-koodi loomine muutub %1$d päeva pärast kohustuslikuks.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Tuletame sulle hiljem meelde. PIN-koodi kinnitamine muutub %1$d päeva pärast kohustuslikuks.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>

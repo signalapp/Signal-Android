@@ -376,6 +376,9 @@
   <string name="GroupManagement_access_level_only_admins">តែអ្នកគ្រប់គ្រង</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">សិក្សាបន្ថែម</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">បិទ</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
   <string name="PendingMembersActivity_people_you_invited">មនុស្សដែលអ្នកបានអញ្ជើញ</string>
@@ -468,6 +471,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">បានបិទ</string>
   <string name="CustomNotificationsDialogFragment__default">លំនាំដើម</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">ដំឡើង Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
   <string name="CropImageActivity_profile_avatar">រូបតំណាង</string>
@@ -992,8 +998,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">សារMMS ត្រូវបានកាណាល់កូដសម្ងាត់សម្រាប់កំឡុងពេលមិនប្រើប្រាស់</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">មិនបានដំឡើងកម្មវិធីរុករក!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ការនាំចូលកំពុងដំណើរការ</string>
   <string name="ApplicationMigrationService_importing_text_messages">កំពុងនាំចូលសារជាអក្សរ</string>
@@ -1446,8 +1450,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ប្រើ Signalសម្រាប់សារពហុមេឌៀដែលចូលមកទាំងអស់</string>
   <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុចប៊ូតុង បញ្ចូន នឹងផ្ញើសារអក្សរ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ការមើល ការផ្ញើតំណភ្ជាប់</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">ការមើលជាមុនបានគាំទ្រសម្រាប់ Imgur Instagram Pinterest Reddit និងតំណររបស់ YouTube</string> -->
   <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងរបស់អ្នកពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
@@ -1599,6 +1601,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ផ្លូវកាត់ ការកំណត់</string>
   <string name="conversation_list_search_description">ស្វែងរក</string>
+  <string name="conversation_list__chats">ការជជែក</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">រូបថតទំនាក់ទំនង</string>
   <string name="conversation_list_item_view__archived">បានដាក់ទុកបណ្ណសារ   </string>
@@ -1781,6 +1784,7 @@
   <string name="KbsMegaphone__update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបង្កើតលេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបញ្ជាក់លេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>

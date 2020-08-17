@@ -407,6 +407,9 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" erabiltzailea ezin duzu talde honetan modu automatikoan sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
   <string name="GroupManagement_learn_more">Gehiago jakin</string>
   <string name="GroupManagement_invite_multiple_users">Ezin duzu erabiltzaile hauek modu automatikoan taldean sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Desgaitu</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
   <string name="PendingMembersActivity_people_you_invited">Gondibatu duzun jendea</string>
@@ -514,6 +517,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desaktibatuta</string>
   <string name="CustomNotificationsDialogFragment__default">Lehenetsia</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Eguneratu Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Taldearen abatarra</string>
   <string name="CropImageActivity_profile_avatar">Abatarra</string>
@@ -1085,8 +1091,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS mezua enkriptatuta esistitzen ez den saio baterako</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Desaktibatu jakinarazpenak</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ez dago nabigatzailerik instalatuta!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Inportaketa indarrean</string>
   <string name="ApplicationMigrationService_importing_text_messages">Testu mezuak inportatzen</string>
@@ -1557,8 +1561,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Erabili Signal etorriko diren multimedia mezu guztiak jasotzeko</string>
   <string name="preferences__pref_enter_sends_title">Enter tekla sakatutakoan</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tekla sakatzeak testu mezuak bidaliko ditu</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Loturen aurrebistak bidali</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Aurrebistak honako zerbitzuekin funtzionatzen du: Imgur, Instagram, Reddit eta YouTube</string> -->
   <string name="preferences__choose_identity">Aukeratu nortasuna</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Aldatu pasahitza</string>
@@ -1715,6 +1717,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ezarpenen lasterbidea</string>
   <string name="conversation_list_search_description">Bilatu</string>
+  <string name="conversation_list__chats">Txatak</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktuaren argazkia</string>
   <string name="conversation_list_item_view__archived">Artxibatuta</string>
@@ -1908,6 +1911,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsMegaphone__update_pin">Eguneratu PINa</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Beranduago gogoraraziko dizugu. PIN bat sortzea beharrezkoa izango da %1$d eguneta.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Beranduago gogoraraziko dizugu. Zure PINa baieztatzea derrigorrezkoa izango da %1$d egunetan.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>

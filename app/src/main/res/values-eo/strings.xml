@@ -407,6 +407,9 @@
   <string name="GroupManagement_invite_single_user">Vi ne povas aŭtomate aldoni „%1$s“ al tiu grupo.\n\nŜi aŭ li estis invitita kaj ne vidos iujn grupmesaĝojn, antaŭ ol ŝi aŭ li akceptas la inviton.</string>
   <string name="GroupManagement_learn_more">Scii pli</string>
   <string name="GroupManagement_invite_multiple_users">Vi ne povas aŭtomate aldoni tiujn uzantoj al tiu grupo.\n\nIli estis invititaj kaj ne vidos iujn grupmesaĝojn, antaŭ ol ili akceptas la inviton.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Malŝalti</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
@@ -545,6 +548,9 @@
     <item quantity="one">Ĉu vi volas senvalidigi la invitojn senditajn de %1$s?</item>
     <item quantity="other">Ĉu vi volas senvalidigi %2$d invitojn senditajn de %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ĝisdatigi Signal-on</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
   <string name="CropImageActivity_profile_avatar">Avataro</string>
@@ -1121,8 +1127,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-mesaĝo ĉifrita por neekzistanta seanco</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silentigi sciigojn</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Neniu retumilo instalita!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importado</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importado de tekstaj mesaĝoj</string>
@@ -1595,8 +1599,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uzi Signal-on por ĉiuj envenaj aŭdvidaj mesaĝoj</string>
   <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premado de la Eniga klavo sendos mesaĝojn</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Sendi autaŭrigardojn de ligilo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube.</string> -->
   <string name="preferences__choose_identity">Elekti identecon</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elektu vian propran kontakton el la kontaktlisto.</string>
   <string name="preferences__change_passphrase">Ŝanĝi pasfrazon</string>
@@ -1756,6 +1758,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ŝparvojo al agordoj</string>
   <string name="conversation_list_search_description">Serĉi</string>
+  <string name="conversation_list__chats">Interparoloj</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakta bildo</string>
   <string name="conversation_list_item_view__archived">Enarĥivigitaj</string>
@@ -1949,6 +1952,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KbsMegaphone__update_pin">Ĝisdatigi PIN-on</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Ni memorigos vin poste. Kreado de PIN nepros post %1$d tagoj.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Ni memorigos vin poste. Konfirmado de PIN nepros post %1$d tagoj.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>

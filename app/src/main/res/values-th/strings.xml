@@ -365,6 +365,9 @@
   <string name="GroupManagement_access_level_only_admins">เฉพาะผู้ดูแล</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">เรียนรู้เพิ่มเติม</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">หยุดใช้</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">คำเชิญเข้ากลุ่มที่รอตอบกลับ</string>
   <string name="PendingMembersActivity_people_you_invited">ผู้คนที่คุณได้เชิญ</string>
@@ -440,6 +443,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">หยุดใช้</string>
   <string name="CustomNotificationsDialogFragment__default">ค่าเริ่มต้น</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">ปรับปรุง Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">อวตารกลุ่ม</string>
   <string name="CropImageActivity_profile_avatar">อวตาร</string>
@@ -948,8 +954,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ข้อความ MMS ถูกเข้ารหัสสำหรับเซสชันที่ไม่มีอยู่</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">ปิดเสียงการแจ้งเตือน</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">ไม่มีเว็บเบราว์เซอร์ติดตั้งอยู่</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">อยู่ระหว่างการนำเข้า</string>
   <string name="ApplicationMigrationService_importing_text_messages">กำลังนำเข้าข้อความ</string>
@@ -1387,8 +1391,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ใช้ Signal รับข้อความมัลติมีเดียขาเข้าทั้งหมด</string>
   <string name="preferences__pref_enter_sends_title">ใส่คีย์เพื่อส่ง</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">การกดปุ่ม Enter จะเป็นการส่งข้อความตัวอักษร</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ส่งการแสดงผลลิงก์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">สนับสนุนการแสดงตัวอย่างสำหรับลิงก์จาก Imgur, Instagram, Pinterest, Reddit และ YouTube </string> -->
   <string name="preferences__choose_identity">เลือกตัวตน</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">เลือกชื่อคนที่คุณติดต่อด้วยจากรายชื่อผู้ติดต่อ</string>
   <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
@@ -1540,6 +1542,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ตั้งค่าปุ่มลัด</string>
   <string name="conversation_list_search_description">ค้นหา</string>
+  <string name="conversation_list__chats">การพูดคุย</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">รูปภาพของผู้ติดต่อ</string>
   <string name="conversation_list_item_view__archived">ถูกเก็บเข้าที่เก็บถาวรแล้ว</string>
@@ -1720,6 +1723,7 @@
   <string name="KbsMegaphone__update_pin">ปรับปรุงรหัส PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">เราจะเตือนคุณในภายหลัง การสร้างรหัส PIN จะถูกบังคับให้ทำภายใน %1$d วัน</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">เราจะเตือนคุณในภายหลัง การยืนยันรหัส PIN ของคุณจะถูกบังคับให้ทำภายใน %1$d วัน</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
   <string name="ConversationListFragment_loading">กำลังโหลด…</string>

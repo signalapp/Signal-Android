@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">No se puede agregar automáticamente a %1$s al grupo. Ha recibido una invitación y no podrá ver ningún mensaje hasta que la acepte.</string>
   <string name="GroupManagement_learn_more">Saber más</string>
   <string name="GroupManagement_invite_multiple_users">No se puede agregar automáticamente a estas personas al grupo. Han recibido una invitación y no podrán ver ningún mensaje hasta que la acepten.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Desactivar</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Previsualización de cualquier enlace</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Ahora se puede adjuntar una imagen de previsualización de enlace en los mensajes que envíes, trasmitida directamente desde su página web.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Previsualización no disponible</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitaciones pendientes</string>
   <string name="PendingMembersActivity_people_you_invited">Personas que has invitado</string>
@@ -450,10 +456,10 @@
     <item quantity="other">%d participantes no soportan el nuevo sistema de grupos. Este será un grupo del sistema antiguo.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Se creará un grupo del sistema antiguo porque «%1$s» usa una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esa persona actualice Signal. También puedes eliminar a la persona del grupo.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Se creará un grupo del sistema antiguo porque «%1$s» usa una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esa persona actualice Signal. También puedes no agregar a esa persona al grupo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Se creará un grupo del sistema antiguo porque %1$d participante usa una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esa persona actualice Signal. También puedes eliminar a esa persona del grupo.</item>
-    <item quantity="other">Se creará un grupo del sistema antiguo porque %1$d participantes usan una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esas personas actualicen Signal. También puedes eliminar a esas personas del grupo.</item>
+    <item quantity="other">Se creará un grupo del sistema antiguo porque %1$d participantes usan una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esas personas actualicen Signal. También puedes no agregar a esas personas al grupo.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Desaparición de mensajes</string>
@@ -540,11 +546,17 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desactivada</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--GV2 Invite Revoke confirmation dialog-->
-  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">¿Desear retirar la invitación que enviaste a «%1$s»?</string>
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">¿Deseas retirar la invitación enviada a %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
     <item quantity="one">¿Deseas retirar la invitación enviada por «%1$s»?</item>
-    <item quantity="other">¿Deseas retirar las %2$d invitaciones enviadas por «%1$s»?</item>
+    <item quantity="other">¿Deseas retirar las %2$d invitaciones enviadas por %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ya participas</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces de chats de grupo</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta enlaces para compartir chats de grupo. Actualiza a la versión más actual para unirte a este grupo vía enlace.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualiza Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del grupo</string>
   <string name="CropImageActivity_profile_avatar">Foto</string>
@@ -745,8 +757,8 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a participar en el grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a participar en el grupo.</string>
-  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">«%1$s» retiró tu invitación para el grupo.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un* admin retiró tu invitavión para el grupo.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s retiró tu invitación del chat de grupo.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un* admin retiró tu invitavión del chat de grupo.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Se ha retirado una invitación para el grupo.</item>
     <item quantity="other">Se han retirado %1$d invitaciones para el grupo.</item>
@@ -783,8 +795,8 @@
   <string name="MessageRequestBottomView_delete">Eliminar</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Permitir a %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Permitir a %1$s enviarte mensajes y compartir tu nombre y foto de perfil con esta persona? No recibirás ningún mensaje de esta persona hasta que la desbloquees.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirse a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
@@ -1122,8 +1134,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">El mensaje MMS ha sido cifrado para una sesión inexistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">¡No hay navegador web instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensajes de texto</string>
@@ -1596,8 +1606,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usar Signal para todos los mensajes multimedia entrantes</string>
   <string name="preferences__pref_enter_sends_title">Enviar al tocar «Intro»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Los mensajes se enviarán al pulsar la tecla Intro.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar vista previa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">La vista previa está disponible para enlaces hacia Imgur, Instagram, Pinterest, Reddit y YouTube.</string> -->
+  <string name="preferences__generate_link_previews">Generar previsualización de enlaces</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Descargar imágenes para la previsualización de enlace directamente desde su página web.</string>
   <string name="preferences__choose_identity">Seleccionar identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selecciona tu propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
@@ -1748,6 +1758,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_insecure__invite">Invitar</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Eliminar seleccionado</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fijar chat(s)</string>
+  <string name="conversation_list_batch__menu_unpin_selected">No fijar chat(s)</string>
   <string name="conversation_list_batch__menu_select_all">Seleccionar todo</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archivo seleccionado</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Archivo deseleccionado</string>
@@ -1757,6 +1769,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atajo a ajustes</string>
   <string name="conversation_list_search_description">Buscar</string>
+  <string name="conversation_list__pinned">Fijado</string>
+  <string name="conversation_list__chats">Chats</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Puedes fijar hasta %1$d chats destacados</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto de contacto</string>
   <string name="conversation_list_item_view__archived">Archivado</string>
@@ -1951,6 +1966,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo volveremos a recordar. Crear tu PIN será obligatorio en %1$d días.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo volveremos a recordar. Confirmar tu PIN será obligatorio en %1$d días.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">¡Ya puedes @mencionar en grupos de chat!</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Llama la atención de alguien en un chat de grupo del nuevo sistema al escribir @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>

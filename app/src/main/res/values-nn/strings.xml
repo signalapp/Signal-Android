@@ -412,6 +412,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="GroupManagement_invite_multiple_users">Du kan ikkje automatisk legga til desse brukarane i gruppa.
 
 Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Slå av</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Usvarte gruppeinvitasjonar</string>
   <string name="PendingMembersActivity_people_you_invited">Folk du har invitert</string>
@@ -550,6 +553,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="one">Vil du trekka tilbake invitasjonen sendt av %1$s?</item>
     <item quantity="other">Vil du trekka tilbake %2$d invitasjonar sent av %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1126,8 +1132,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for ei økt som ikkje finst</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ikkje vis varsel</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen nettlesar installert!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importering i gang</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldingar</string>
@@ -1602,8 +1606,6 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle inngåande multimediemeldingar </string>
   <string name="preferences__pref_enter_sends_title">Send med linjeskift</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk linjeskift for å senda tekstmeldingar</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Send lenkjesniktitt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Me kan visa sniktittar for lenkjer til Imgur, Instagram, Pinterest, Reddit og Youtube.</string> -->
   <string name="preferences__choose_identity">Vel identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vel kontakt frå kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>
@@ -1763,6 +1765,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snarveg til innstillingar</string>
   <string name="conversation_list_search_description">Søk</string>
+  <string name="conversation_list__chats">Samtalar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkivert</string>
@@ -1957,6 +1960,7 @@ Du er à jour!</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Me minner deg på det seinare. Du må oppretta ein PIN-kode innan %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Me minner deg på det seinare. Du må stadfesta PIN-koden innan %1$d dagar.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>

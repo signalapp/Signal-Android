@@ -407,6 +407,9 @@
   <string name="GroupManagement_invite_single_user">“%1$s” kan ikke bli automatisk lagt til denne gruppen av deg.\n\nPersonen har blitt invitert, men vil ikke se noen meldinger til gruppen før invitasjonen godtas.</string>
   <string name="GroupManagement_learn_more">Lær mer</string>
   <string name="GroupManagement_invite_multiple_users">Disse brukerne kan ikke automatisk legges til av deg.\n\nDe er blitt invitert, men vil ikke se noen meldinger til gruppen før invitasjonen godtas.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Deaktiver</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ventende gruppeinvitasjoner</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du har invitert</string>
@@ -514,6 +517,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Deaktivert</string>
   <string name="CustomNotificationsDialogFragment__default">Forvalgt</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Profilbilde</string>
@@ -1080,8 +1086,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for ikke-eksisterende økt</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen nettleser installert!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importering pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
@@ -1552,8 +1556,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediemeldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk Enter-tasten for å sende tekstmeldinger</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Send linkforhåndsvisninger</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Pinterest, Reddit og YouTube-koblinger.</string> -->
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>
@@ -1710,6 +1712,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Innstillinger snarvei</string>
   <string name="conversation_list_search_description">Søk</string>
+  <string name="conversation_list__chats">Samtaler</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfotobilde</string>
   <string name="conversation_list_item_view__archived">Arkivert</string>
@@ -1903,6 +1906,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi vil minne deg på det senere. Å lage en PIN-kode blir obligatorisk om %1$d dager.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi vil minne deg på det senere. Bekreftelse av PIN-koden blir obligatorisk om %1$d dager.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>

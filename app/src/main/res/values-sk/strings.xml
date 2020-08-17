@@ -410,6 +410,9 @@
   <string name="GroupManagement_access_level_only_admins">Iba správcovia</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Dozvedieť sa viac</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Zrušiť</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Nevybavené pozvánky do skupín</string>
   <string name="PendingMembersActivity_people_you_invited">Ľudia, ktorých ste pozvali vy</string>
@@ -433,11 +436,14 @@
   <string name="ManageGroupActivity_leave_group">Opustiť skupinu</string>
   <string name="ManageGroupActivity_mute_notifications">Stlmiť upozornenia</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastné upozornenia</string>
+  <string name="ManageGroupActivity_mentions">Spomenutia</string>
   <string name="ManageGroupActivity_off">Vypnuté</string>
   <string name="ManageGroupActivity_on">Zapnuté</string>
   <string name="ManageGroupActivity_view_all_members">Zobraziť všetkých členov</string>
   <string name="ManageGroupActivity_none">Žiadny</string>
+  <string name="ManageGroupActivity_legacy_group">Zastaraná skupina</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Prijímať oznámenia, keď vás spomenú v stlmených konverzáciách?</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Miznúce správy</string>
   <string name="ManageRecipientActivity_block">Blokovať</string>
@@ -465,6 +471,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Zakázané</string>
   <string name="CustomNotificationsDialogFragment__default">Predvolená</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovať Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Obrázok skupiny</string>
   <string name="CropImageActivity_profile_avatar">Fotka</string>
@@ -1024,8 +1033,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa šifrovaná pre neexistujúcu reláciu</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Stlmiť upozornenia</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nie je nainštalovaný žiadny webový prehliadač!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Prebieha import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nahrávanie textových správ</string>
@@ -1482,8 +1489,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použiť Signal pre všetky prichádzajúce multimediálne správy</string>
   <string name="preferences__pref_enter_sends_title">Odoslať stlačením klávesy Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stlačením klávesy Enter sa správa odošle</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Posielať náhľady stránok</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Ukážky sú podporované pre odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string> -->
   <string name="preferences__choose_identity">Vyberať identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeniť heslo</string>
@@ -1598,6 +1603,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Povoliť od každého</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zapnúť zapečateného odosielateľa pre prichádzajúce správy od ľudí, ktorých nemáte v kontaktoch a s ktorými ste nezdieľali svoj profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dozvedieť sa viac</string>
+  <string name="preferences_notifications__mentions">Spomenutia</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1636,6 +1642,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Skratka pre Nastavenia</string>
   <string name="conversation_list_search_description">Hľadať</string>
+  <string name="conversation_list__chats">Chat</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotka kontaktu</string>
   <string name="conversation_list_item_view__archived">Archivované</string>
@@ -1841,6 +1848,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="KbsMegaphone__update_pin">Aktualizovať PIN kód</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Pripomenieme vám to neskôr. Povinnosť vytvoriť si PIN kód budete mať o %1$d dní.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Pripomenieme vám to neskôr. Povinnosť potvrdiť svoj PIN kód budete mať o %1$d dní.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Predstavujeme @spomenutia</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
   <string name="ConversationListFragment_loading">Načítava sa…</string>
@@ -1962,5 +1971,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RecipientBottomSheet_copied_to_clipboard">Skopírované do schránky</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Zastarané vs. nové skupiny</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Čo sú zastarané skupiny?</string>
+  <string name="GroupsLearnMore_paragraph_1">Zastarané skupiny sú skupiny, ktoré nie sú kompatibilné s novými funkciami skupín, ako napríklad administrátori či viac hovoriace aktualizácie.</string>
+  <string name="GroupsLearnMore_paragraph_2">Zastarané skupiny nie je možné prerobiť na nové skupiny, môžete však vytvoriť novú skupinu s tými istými členmi.</string>
+  <string name="GroupsLearnMore_paragraph_3">Na vytvorenie novej skupiny by všetci členovia mali prejsť na najnovšiu verziu aplikácie Signal.</string>
   <!--EOF-->
 </resources>

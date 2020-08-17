@@ -439,6 +439,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupManagement_invite_single_user">Nid oes modd i chi ychwanegu “%1$s” yn awtomatig at y grŵp hwn.\n\nRydych wedi eich gwahodd i ymuno, a fyddwch chi ddim yn gweld unrhyw negeseuon grŵp nes eich bod yn derbyn.</string>
   <string name="GroupManagement_learn_more">Dysgu rhagor</string>
   <string name="GroupManagement_invite_multiple_users">Nid oes modd i chi ychwanegu\'r defnyddwyr hyn yn awtomatig at y grŵp hwn.\n\nRydych wedi eich gwahodd i ymuno, a fyddwch chi ddim yn gweld unrhyw negeseuon grŵp nes eich bod yn derbyn.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Analluogi</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Rhagolwg o unrhyw ddolen</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Gallwch nawr estyn rhagolygon dolenni yn syth o unrhyw wefan ar gyfer negeseuon rydych yn eu hanfon.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Dim rhagolygon dolenni ar gael</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
   <string name="PendingMembersActivity_people_you_invited">Pobl rydych wedi eu gwahodd</string>
@@ -597,6 +603,12 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Ydych chi am ddirymu %2$d gwahoddiad a anfonwyd gan %1$s?</item>
     <item quantity="other">Ydych chi am ddirymu %2$d gwahoddiad a anfonwyd gan %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Rydych eisoes yn aelod</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Diweddarwch Signal i ddefnyddio dolenni grŵp</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Nid yw\'r fersiwn o Signal rydych yn ei ddefnyddio\'n cynnal dolenni grwpiau. Diweddarwch i\'r fersiwn diweddaraf i ymuno â\'r grŵp drwy ddolen.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Rhithffurf y grŵp</string>
   <string name="CropImageActivity_profile_avatar">Rhithffurf</string>
@@ -1208,8 +1220,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Neges MMS wedi\'i hamgryptio ar gyfer sesiwn nad yw\'n bodoli</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Tewi hysbysiadau</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Dim porwr gwe wedi ei osod!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Wrthi\'n mewnforio</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mewnforio negeseuon testun</string>
@@ -1702,8 +1712,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Defnyddio Signal ar gyfer yr holl negeseuon amlgyfrwng sy\'n cael eu derbyn</string>
   <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Cefnogir rhagweld cynnwys trwy ddolenni Imgur, Instagram, Pinterest, Reddit a YouTube</string> -->
+  <string name="preferences__generate_link_previews">Cynhyrchu rhagolygon dolenni</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Estyn rhagolygon dolenni yn syth o unrhyw wefan ar gyfer negeseuon rydych yn eu hanfon.</string>
   <string name="preferences__choose_identity">Dewis hunaniaeth</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Dewiswch eich cofnod cyswllt o\'r rhestr cysylltiadau.</string>
   <string name="preferences__change_passphrase">Newid cyfrinair</string>
@@ -1854,6 +1864,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_insecure__invite">Gwahodd</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Dileu hwn</string>
+  <string name="conversation_list_batch__menu_pin_selected">Pin wedi\'i ddewis</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Dadbinio\'r dewis</string>
   <string name="conversation_list_batch__menu_select_all">Dewis popeth</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archif wedi\'i ddewis</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Wedi dewis dadarchifio</string>
@@ -1863,6 +1875,9 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Llwybr byr gosodiadau</string>
   <string name="conversation_list_search_description">Chwilio</string>
+  <string name="conversation_list__pinned">Wedi\'i binio</string>
+  <string name="conversation_list__chats">Sgyrsiau</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Gallwch binio hyd at %1$dsgwrs</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Cysylltu a\'r Llun Cyswllt</string>
   <string name="conversation_list_item_view__archived">Archifwyd</string>
@@ -2072,6 +2087,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsMegaphone__update_pin">Diweddaru PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Yn cyflwyno @Mentions</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Tynnwch sylw rhywun yn y\"Grŵp Newydd\" drwy deipio @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>

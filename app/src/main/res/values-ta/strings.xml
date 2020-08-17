@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">“%1$s” ஐ தானாக இந்த குழுவில் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர். எந்தவொரு குழு செய்திகளையும் அவர்கள் ஏற்றுக்கொள்ளும் வரை பார்க்க மாட்டார்கள்.</string>
   <string name="GroupManagement_learn_more">மேலும் அறிக</string>
   <string name="GroupManagement_invite_multiple_users">இந்த பயனர்களை இந்த குழுவில் தானாக உங்களால் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர், அவர்கள் ஏற்றுக்கொள்ளும் வரை எந்த குழு செய்திகளையும் பார்க்க மாட்டார்கள்.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">முடக்கு</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">எந்த இணைப்பையும் முன்னோட்டமிடுங்கள்</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">நீங்கள் அனுப்பும் செய்திகளுக்கு எந்தவொரு வலைத்தளத்திலிருந்தும் இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கலாம்.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">இணைப்பு முன்னோட்டம் எதுவும் கிடைக்கவில்லை</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string>
   <string name="PendingMembersActivity_people_you_invited">மக்கள் நீங்கள் அழைக்கப்பட்டார்</string>
@@ -545,6 +551,12 @@
     <item quantity="one">%1$s</item>
     <item quantity="other">%1$s அனுப்பிய %2$d அழைப்புகளை நீங்கள் திரும்பப் பெற விரும்புகிறீர்களா?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">நீங்கள் ஏற்கனவே உறுப்பினராக உள்ளீர்கள்</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">குழு இணைப்புகளைப் பயன்படுத்த சிக்னலைப் புதுப்பிக்கவும்</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">நீங்கள் பயன்படுத்தும் சிக்னலின் பதிப்பு மாற்றத்தக்க குழு இணைப்புகளை ஆதரிக்காது. இணைப்பு வழியாக இந்த குழுவில் சேர சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
   <string name="CropImageActivity_profile_avatar">அவதாரம்</string>
@@ -1119,8 +1131,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு எம்எம்எஸ் செய்தி குறியாக்கம் செய்யப்பட்டது</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">வலை உலாவி எதுவும் நிறுவப்படவில்லை!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">இறக்குமதி முன்னேறுகிறது </string>
   <string name="ApplicationMigrationService_importing_text_messages">குறுஞ்செய்திகளை இறக்குமதி செய்யப்படுகிறது.</string>
@@ -1594,8 +1604,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">உள்வரும் அனைத்து மல்டிமீடியா செய்திகளுக்கும் Signal பயன்படுத்தவும்</string>
   <string name="preferences__pref_enter_sends_title">பதிவு விசை அனுப்பும்</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">உள்ளீட்டு விசையை அழுத்துவது செய்தியை அனுப்பும் </string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">இணைப்பு மாதிரிக்காட்சிகளை அனுப்பவும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">முன்னோட்டங்கள் இம்குர், இன்ஸ்டாகிராம், Pinterest, ரெடிட் மற்றும் யூடியூப் இணைப்புகளுக்கு துணைபுரிகின்றன</string> -->
+  <string name="preferences__generate_link_previews">இணைப்பு மாதிரிக்காட்சிகளை உருவாக்கவும்</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">நீங்கள் அனுப்பும் செய்திகளுக்கு வலைத்தளங்களிலிருந்து இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கவும்.</string>
   <string name="preferences__choose_identity">அடையாள தேர்வு.
  </string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">தொடர்பு பட்டியலில் இருந்து உங்கள் தொடர்பை  தேர்வுசெய்க.</string>
@@ -1747,6 +1757,8 @@
   <string name="conversation_insecure__invite">அழை</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">தேர்ந்தெடுக்கப்பட்டதை நீக்க</string>
+  <string name="conversation_list_batch__menu_pin_selected">மேலே பொருத்தப்படுவதற்கு செய்தி தேர்ந்தெடுக்கப்பட்டது</string>
+  <string name="conversation_list_batch__menu_unpin_selected">மேலே தேர்வு செய்யப்படாத செய்தி தேர்ந்தெடுக்கப்பட்டது</string>
   <string name="conversation_list_batch__menu_select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">காப்பகம் தேர்ந்தெடுக்கப்பட்டது</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">தேர்ந்தெடுக்கப்பட்டவையை வெளிக்கொணர்</string>
@@ -1756,6 +1768,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">அமைப்புகள் குறுக்குவழி</string>
   <string name="conversation_list_search_description">தேடல்</string>
+  <string name="conversation_list__pinned">மேலே பொருத்தப்பட்ட செய்திகள்</string>
+  <string name="conversation_list__chats">அரட்டைகள்</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">நீங்கள் %1$d அரட்டைகளை மட்டுமே பின் செய்ய முடியும்</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">தொடர்பின் புகைப்படம்</string>
   <string name="conversation_list_item_view__archived">பெட்டகப்படுத்தப்பட்டது</string>
@@ -1949,6 +1964,9 @@
   <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம். PIN ஐ உருவாக்குவது %1$dநாட்களில் கட்டாயமாகிவிடும்.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம்.%1$dநாட்களில் உங்கள் பின்னை உறுதிப்படுத்துவது கட்டாயமாகிவிடும்.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">அறிமுகம் @ குறிப்புகள்</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">@ தட்டச்சு செய்வதன் மூலம் \"புதிய குழுவில்\" ஒருவரின் கவனத்தைப் பெறுங்கள்</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>

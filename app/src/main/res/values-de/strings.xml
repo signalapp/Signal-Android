@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDer Benutzer wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
   <string name="GroupManagement_learn_more">Mehr erfahren</string>
   <string name="GroupManagement_invite_multiple_users">Diese Benutzer können von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nSie wurden eingeladen, der Gruppe beizutreten, werden aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen haben.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Deaktivieren</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Vorschau für jeden Link</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Für zu versendende Nachrichten kannst du jetzt Link-Vorschauen direkt von jeder Webseite abrufen.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Keine Link-Vorschau verfügbar</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
   <string name="PendingMembersActivity_people_you_invited">Von dir eingeladene Personen</string>
@@ -545,6 +551,12 @@
     <item quantity="one">Möchtest du die von %1$s versendete Einladung widerrufen?</item>
     <item quantity="other">Möchtest du %2$d von %1$s versendete Einladungen widerrufen?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du bist bereits Mitglied</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualisiere Signal zum Verwenden von Gruppen-Links</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Die von dir verwendete Signal-Version unterstützt keine Gruppen-Links. Aktualisiere auf die neueste Version, um dieser Gruppe über einen Link beizutreten.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal aktualisieren</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppenavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1111,8 +1123,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS wurde für eine nicht bestehende sichere Sitzung verschlüsselt</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Benachrichtigungen stummschalten</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Kein Webbrowser installiert!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Daten werden importiert</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nachrichten werden importiert</string>
@@ -1585,8 +1595,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal für alle eingehenden MMS verwenden</string>
   <string name="preferences__pref_enter_sends_title">Eingabetaste sendet</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Antippen der Eingabetaste versendet Nachrichten sofort</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Link-Vorschauen senden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Vorschauen werden unterstützt für Links von Imgur, Instagram, Pinterest, Reddit und YouTube</string> -->
+  <string name="preferences__generate_link_previews">Link-Vorschau erzeugen</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Rufe für zu versendende Nachrichten Link-Vorschauen direkt von Webseiten ab.</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wähle deinen Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passphrase ändern</string>
@@ -1737,6 +1747,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_insecure__invite">Einladen</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ausgewählte löschen</string>
+  <string name="conversation_list_batch__menu_pin_selected">Ausgewählte anheften</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Ausgewählte lösen</string>
   <string name="conversation_list_batch__menu_select_all">Alle auswählen</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Ausgewählte archivieren</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ausgewählte in Eingang verschieben</string>
@@ -1746,6 +1758,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Einstellungsverknüpfung</string>
   <string name="conversation_list_search_description">Suchen</string>
+  <string name="conversation_list__pinned">Angeheftet</string>
+  <string name="conversation_list__chats">Unterhaltungen</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kannst nur bis zu %1$d Unterhaltungen anheften</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbild</string>
   <string name="conversation_list_item_view__archived">Archiviert</string>
@@ -1939,6 +1954,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsMegaphone__update_pin">PIN aktualisieren</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Wir erinnern dich später. Das Erstellen einer PIN wird in %1$d Tagen zwingend erforderlich.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Wir erinnern dich später. Das Bestätigen deiner PIN wird in %1$d Tagen zwingend erforderlich.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Einführung von @Erwähnungen</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Tippe @ in einer »Neu-Gruppe«, um jemandes Aufmerksamkeit zu erhalten</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
   <string name="ConversationListFragment_loading">Wird geladen …</string>

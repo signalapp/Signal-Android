@@ -395,6 +395,9 @@
   <string name="GroupManagement_access_level_only_admins">Tikai administratori</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Lasīt vairāk</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Atspējot</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsu ielūgumi</string>
@@ -460,6 +463,8 @@
   <string name="CustomNotificationsDialogFragment__disabled">Atspējota</string>
   <string name="CustomNotificationsDialogFragment__default">Noklusējuma</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupas ikona</string>
   <string name="CropImageActivity_profile_avatar">ikona</string>
@@ -986,8 +991,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS ziņa šifrēta neeksistējošai sesijai</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Noklusināt paziņojumus</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nav instalēts tīmekļa pārlūks!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Notiek importēšana</string>
   <string name="ApplicationMigrationService_importing_text_messages">Teksta ziņu importēšana</string>
@@ -1446,8 +1449,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Izmantot Signal visiām ienākošajām multimedija ziņām.</string>
   <string name="preferences__pref_enter_sends_title">Enter poga sūta</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Jaunas rindas pogas piespiešana sūtīs ziņu</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Sūtīt saišu priekšskatījumus</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Priekšskati tiek atbalstīti saitēm no Imgur, Instagram, Pinterest, Reddit un YouTube</string> -->
   <string name="preferences__choose_identity">Izvēlēties identitāti</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kontaktu sarakstā izvēlieties kontaktpersonas ierakstu.</string>
   <string name="preferences__change_passphrase">Nomainīt paroli</string>
@@ -1596,6 +1597,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Iestatījumu saīsne</string>
   <string name="conversation_list_search_description">Meklēt</string>
+  <string name="conversation_list__chats">Sarunas</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktpersonas foto</string>
   <string name="conversation_list_item_view__archived">Arhivēts</string>
@@ -1783,6 +1785,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KbsMegaphone__update_pin">Aktualizēt PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tas tiks atgādināts vēlāk. PIN izveide kļūs obligāta pēc %1$d dienām.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Jums tiks atgādināts vēlāk. PIN apstiprināšana kļūs obligāta pēc %1$d dienām.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
   <string name="ConversationListFragment_loading">Notiek ielāde…</string>

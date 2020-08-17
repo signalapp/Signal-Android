@@ -408,6 +408,12 @@
   <string name="GroupManagement_invite_single_user">%1$s kan ikke automatisk tilføjes gruppen af dig. \n\nDe er blevet inviteret til at deltage, og kan ikke se nogen gruppebeskeder, før de accepterer</string>
   <string name="GroupManagement_learn_more">Læs mere</string>
   <string name="GroupManagement_invite_multiple_users">Disse brugere kan ikke automatisk tilføjes gruppen af dig. De er blevet inviteret til at deltage, og kan ikke se gruppebeskeder før de accepterer</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Déaktiver</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Eksempelvisning af hvilket som helst link</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan nu hente linkeksempelvisninger direkte fra ethvert websted til beskeder, som du sender.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Ingen linkeksempelvisning tilgængelig</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Afventende gruppeinvitationer</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du har inviteret</string>
@@ -546,6 +552,12 @@
     <item quantity="one">Vil du tilbagetrække invitationen,  sendt af %1$s?</item>
     <item quantity="other">Vil du tilbagetrække %2$d invitationer,  sendt af %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du er allerede et medlem</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Opdater Signal for at bruge gruppelinks</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-versionen som du bruger, understøtter ikke delbare gruppelinks. Opdater til den nyeste version for at deltage i denne gruppe via linket.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Opdatér Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1122,8 +1134,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS besked krypteret til en session der ikke findes</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Udsæt notifikationer</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Ingen Webbrowser installeret!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importerer…</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstbeskeder</string>
@@ -1596,8 +1606,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Brug Signal til alle indgående MMS\'er</string>
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Send link eksempelvisning</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Eksempelvisning er understøttet for Imgur, Instagram, Pinterest, Reddit og YouTube links</string> -->
+  <string name="preferences__generate_link_previews">Generer linkeksempelvisning</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent linkeksempelvisninger direkte fra websteder til beskeder, som du sender.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten</string>
   <string name="preferences__change_passphrase">Skift kodeord</string>
@@ -1748,6 +1758,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="conversation_insecure__invite">Invitér kontakt</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slet markerede</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fastgør valgte</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Frigør valgte</string>
   <string name="conversation_list_batch__menu_select_all">Markér alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkivér valgte</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Flyt fra arkiv til oversigt</string>
@@ -1757,6 +1769,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvej til Indstillinger</string>
   <string name="conversation_list_search_description">Søg</string>
+  <string name="conversation_list__pinned">Fastgjort</string>
+  <string name="conversation_list__chats">Chats</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan kun fastgøre op til %1$d chats</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbillede</string>
   <string name="conversation_list_item_view__archived">Arkiveret</string>
@@ -1950,6 +1965,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="KbsMegaphone__update_pin">Opdatér PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Du vil blive påmindet senere. Oprettelse af PIN vil blive krævet om %1$d dage</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Du vil blive påmindet senere. Bekræftelse af din PIN vil blive krævet om %1$d dage</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Introducerer @Omtaler</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få nogens opmærksomhed i en \"Ny gruppe\" ved at skrive @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport ikon</string>
   <string name="ConversationListFragment_loading">Henter…</string>

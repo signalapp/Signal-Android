@@ -44,7 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de Tela %1$s, Desbloqueio de Cadastro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueio de tela %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Os PINs são necessários para impedir o novo registro. Para desativar os PINs, por favor, primeiro desative o bloqueio de registro.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -194,6 +196,8 @@
   <string name="ConversationActivity_leave_group">Sair do grupo?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <string name="ConversationActivity_choose_new_admin">Escolha novo admin</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de sair, você deve escolher pelo menos um novo administrador para este grupo.</string>
+  <string name="ConversationActivity_choose_admin">Escolha administrador </string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -207,6 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede os limites de tamanho para o tipo de mensagem sendo enviada.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Câmera indisponível</string>
   <string name="ConversationActivity_unable_to_record_audio">Não foi possível gravar o áudio!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Você não pode enviar mensagens para este grupo porque não é mais um membro.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não há nenhum aplicativo disponível no seu dispositivo para abrir este link.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens de áudio, permita ao Signal acesso ao seu microfone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Signal precisa da permissão Microfone para enviar mensagens de áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\".</string>
@@ -315,6 +320,7 @@
   <string name="ConversationTitleView_verified">Verificado</string>
   <string name="ConversationTitleView_you">Você</string>
   <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contatos não podem estar em grupos legado.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir foto do perfil</string>
@@ -379,9 +385,11 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" foi adicionado/a a \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Adicional ao grupo</string>
   <string name="AddToGroupActivity_add_to_groups">Adicionar aos grupos</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legado.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Escolha novo admin</string>
   <string name="ChooseNewAdminActivity_done">Pronto</string>
+  <string name="ChooseNewAdminActivity_you_left">Você deixou \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Você quer tornar seu nome e foto do perfil visíveis para todos os membros atuais e futuros deste grupo?</string>
@@ -393,6 +401,9 @@
   <string name="GroupManagement_access_level_only_admins">Somente admins</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Saiba mais</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Desabilitar</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Convites de grupo pendentes</string>
   <string name="PendingMembersActivity_people_you_invited">Pessoas que você convidou</string>
@@ -402,6 +413,7 @@
   <string name="PendingMembersActivity_missing_detail_explanation">Os detalhes das pessoas convidadas por outros membros do grupo não vão aparecer. Se elas optarem por entrar, suas informações serão compartilhadas com o grupo naquele momento. Elas não verão nenhuma mensagem no grupo antes de entrarem.</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Pronto</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legado.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Adicionar \"%1$s\" a \"%2$s\"?</item>
     <item quantity="other">Adicionar os membros de %3$d a \"%2$s\"?</item>
@@ -488,6 +500,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desabilitada</string>
   <string name="CustomNotificationsDialogFragment__default">Padrão</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -996,8 +1011,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem de MMS criptografada para sessão inexistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nenhum navegador instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em andamento</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensagens de texto</string>
@@ -1440,8 +1453,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use o Signal para receber todas as mensagens multimídia</string>
   <string name="preferences__pref_enter_sends_title">Tecla Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar pré-visualizações de links</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Visualizações são suportadas para links do Imgur, Instagram, Pinterest, Reddit e YouTube</string> -->
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contato da lista de contatos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
@@ -1596,6 +1607,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atalho de configurações</string>
   <string name="conversation_list_search_description">Buscar</string>
+  <string name="conversation_list__chats">Chats</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Imagem do contato</string>
   <string name="conversation_list_item_view__archived">Arquivado</string>
@@ -1783,6 +1795,7 @@
   <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nós vamos te lembrar depois. Criar um PIN será obrigatório em %1$d dias.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nós vamos te lembrar depois.  A confirmação do seu PIN será obrigatória em %1$d dias.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="ConversationListFragment_loading">Carregando…</string>

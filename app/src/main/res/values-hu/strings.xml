@@ -408,6 +408,12 @@
   <string name="GroupManagement_invite_single_user">Nem lehet \"%1$s\" nevű kontaktodat automatikusan a csoporthoz adni.\n\nBár már meg lett hívva, addig mégsem láthatja az csoportüzeneteket, míg el nem fogadja a meghívást.</string>
   <string name="GroupManagement_learn_more">További információ</string>
   <string name="GroupManagement_invite_multiple_users">Ezeket a felhasználókat nem lehet automatikusan a csoporthoz adni.\n\nBár már meg lettek hívva, addig mégsem láthatják a csoportüzeneteket, míg el nem fogadják a meghívást.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Kikapcsolás</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Előnézet bármely weboldalhoz</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Mostantól bármely weboldalra vezető linkhez lekérheted annak előnézeti képét, mielőtt elküldenéd üzenetben.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Nem érhető el előnézeti kép</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
   <string name="PendingMembersActivity_people_you_invited">Általad meghívott személyek</string>
@@ -546,6 +552,12 @@
     <item quantity="one">Biztosan vissza szeretnéd vonni a %1$s által küldött meghívót?</item>
     <item quantity="other">Biztosan vissza szeretnéd vonni a %1$s által küldött %2$d db meghívót?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Már tag vagy</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Frissítsd a Signalt a csoporthivatkozások használatához</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Az általad használt verziójú Signal nem támogatja a megosztható csoporthivatkozásokat. Frissíts a legújabb verzióra, hogy a hivatkozás használatával csatlakozhass ehhez a csoporthoz!</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal frissítése</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Csoport avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1124,8 +1136,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Az MMS üzenet nem létező munkamenethez lett titkosítva</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Értesítések némítása</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nincs telepítve webböngésző!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importálás folyamatban</string>
   <string name="ApplicationMigrationService_importing_text_messages">Szöveges üzenetek importálása</string>
@@ -1599,8 +1609,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal használata minden bejövő multimédia üzenethez</string>
   <string name="preferences__pref_enter_sends_title">Küldés az Enter lenyomásával</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Az Enter billentyű megnyomása elküldi a szöveges üzeneteket</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Előnézeti képek küldése</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Az előnézeti képek az Imgur, az Instagram, a Pinterest, a Reddit és a YouTube szolgáltatásokhoz érhetőek el.</string> -->
+  <string name="preferences__generate_link_previews">Hivatkozások előnézeti képének generálása</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Előnézeti képek lekérése közvetlenül a weboldalról az elküldendő üzenetekhez.</string>
   <string name="preferences__choose_identity">Azonosító választása</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Válaszd ki saját névjegyed a névjegyzékből.</string>
   <string name="preferences__change_passphrase">Jelmondat megváltoztatása</string>
@@ -1751,6 +1761,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_insecure__invite">Meghívás</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Kiválasztottak törlése</string>
+  <string name="conversation_list_batch__menu_pin_selected">Kiválasztottak rögzítése</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Kiválasztottak rögzítésének feloldása</string>
   <string name="conversation_list_batch__menu_select_all">Összes kiválasztása</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Kiválasztottak archiválása</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Kiválasztottak kivétele archívumból</string>
@@ -1760,6 +1772,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Beállítások parancsikon</string>
   <string name="conversation_list_search_description">Keresés</string>
+  <string name="conversation_list__pinned">Rögzítve</string>
+  <string name="conversation_list__chats">Csevegések</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Maximum %1$d beszélgetést rögzíthetsz</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakt fotó kép</string>
   <string name="conversation_list_item_view__archived">Archív</string>
@@ -1953,6 +1968,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KbsMegaphone__update_pin">PIN kód frissítése</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Később emlékeztetni fogunk. A PIN létrehozása %1$d nap múlva kötelező lesz.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Később emlékeztetni fogunk. A PIN megerősítése %1$d nap múlva kötelező lesz.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Bemutatkozik az @Említések</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Hívd fel valaki figyelmét egy új típusú csoportban a @ használatával</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <string name="ConversationListFragment_loading">Betöltés…</string>

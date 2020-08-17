@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">“%1$s” non può essere aggiunto automaticamente a questo gruppo da te.\n\nÈ stato invitato a unirsi al gruppo e non vedrà alcun messaggio del gruppo fino a quando non accetterà.</string>
   <string name="GroupManagement_learn_more">Scopri di più</string>
   <string name="GroupManagement_invite_multiple_users">Questi utenti non possono essere aggiunti automaticamente a questo gruppo da te.\n\nSono stati invitati a unirsi al gruppo e non vedranno alcun messaggio del gruppo fino a quando non accetteranno.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Disabilita</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Visualizza l\'anteprima di qualsiasi link</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">È ora possibile recuperare le anteprime dei link direttamente da qualsiasi sito web per i messaggi che invii.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Nessuna anteprima del link disponibile</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Inviti al gruppo in attesa</string>
   <string name="PendingMembersActivity_people_you_invited">Persone che hai invitato</string>
@@ -545,6 +551,12 @@
     <item quantity="one">Vuoi revocare l\'invito inviato da %1$s?</item>
     <item quantity="other">Vuoi revocare %2$d inviti inviati da %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sei già un membro.</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aggiorna Signal per utilizzare i link dei gruppi</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versione di Signal che stai utilizzando non supporta i link dei gruppi condivisibili. Aggiorna alla versione più recente per unirti a questo gruppo tramite link.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aggiorna Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del gruppo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1122,8 +1134,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS criptato per una sessione non esistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenzia notifiche</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nessun browser web installato!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importazione in corso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando i messaggi</string>
@@ -1596,8 +1606,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usa Signal per tutti i messaggi multimediali in arrivo</string>
   <string name="preferences__pref_enter_sends_title">Spedisci premendo Invio</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Il tasto Invio manderà il messaggio</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Invia anteprime dei link</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Le anteprime sono supportate per link di Imgur, Instagram, Pinterest, Reddit e YouTube.</string> -->
+  <string name="preferences__generate_link_previews">Genera anteprime dei link</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupera le anteprime dei link direttamente dai siti web per i messaggi che invii.</string>
   <string name="preferences__choose_identity">Scegli identità</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia password</string>
@@ -1748,6 +1758,8 @@
   <string name="conversation_insecure__invite">Invita</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Elimina selezionati</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fissa selezionati</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Non fissare selezionati</string>
   <string name="conversation_list_batch__menu_select_all">Seleziona tutto</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archivia</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Estrai dall\'archivio</string>
@@ -1757,6 +1769,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Scorciatoia impostazioni</string>
   <string name="conversation_list_search_description">Cerca</string>
+  <string name="conversation_list__pinned">Fissate</string>
+  <string name="conversation_list__chats">Conversazioni</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Puoi fissare solo fino a %1$d chat</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contatto</string>
   <string name="conversation_list_item_view__archived">Archiviate</string>
@@ -1950,6 +1965,9 @@
   <string name="KbsMegaphone__update_pin">Aggiorna PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo ricorderemo più tardi. Creare un PIN diventerà obbligatorio tra %1$d giorni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo ricorderemo più tardi. Confermare il tuo PIN diventerà obbligatorio tra %1$d giorni.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Ti presentiamo le @menzioni</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Attira l\'attenzione di qualcuno in un \"Nuovo Gruppo\" scrivendo @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento…</string>

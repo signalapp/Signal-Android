@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">“%1$s” s’mund të shtohet automatikisht te ky grup nga ju.\n\nËshtë ftuar të marrë pjesë, dhe s’do të shohë ndonjë mesazh grupi, para se të pranojnë ftesën.</string>
   <string name="GroupManagement_learn_more">Mësoni më tepër</string>
   <string name="GroupManagement_invite_multiple_users">Këta përdorues s’mund të shtohen automatikisht te ky grup nga ju.\n\n Janë ftuar të marrin pjesë te grupi, dhe s’do të shohin ndonjë mesazh grupi, përpara se të pranojnë ftesat.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Çaktivizoje</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Bëni paraparje të çfarëdo lidhjeje</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Tanimë, për mesazhet që dërgoni, mund të bëni paraparje lidhjesh drejt e nga çfarëdo sajti.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">S’ka lidhje për paraparje</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
@@ -548,6 +554,12 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="one">Doni të shfuqizohet ftesa dërguar nga %1$s?</item>
     <item quantity="other">Doni të shfuqizohen %2$d ftesa dërguar nga %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jeni tashmë anëtar</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Që të përdorni lidhje grupi, përditësoni Signal-in</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupi që mund të ndahen me të tjerë. Që të bëheni pjesë e këtij grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grupi</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1121,8 +1133,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesazh MMS i fshehtëzuar për sesion që s\’ekziston</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Heshtoji njoftimet</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">S\’ka shfletues të instaluar</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importim në ecuri e sipër</string>
   <string name="ApplicationMigrationService_importing_text_messages">Po importohen mesazhe tekst</string>
@@ -1595,8 +1605,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Përdore Signal për krejt mesazhet multimedia ardhëse</string>
   <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Pinterest, Reddit, dhe YouTube.</string> -->
+  <string name="preferences__generate_link_previews">Prodho lidhje për paraparje</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Merrni, për mesazhet që dërgoni, paraparje lidhjesh drejt e nga sajtet.</string>
   <string name="preferences__choose_identity">Zgjidhni identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zgjidhni kontaktin tuaj nga lista e kontakteve.</string>
   <string name="preferences__change_passphrase">Ndryshoje frazëkalimin</string>
@@ -1749,6 +1759,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_insecure__invite">Fto</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Fshi të përzgjedhurit</string>
+  <string name="conversation_list_batch__menu_pin_selected">U përzgjodh fiksim</string>
+  <string name="conversation_list_batch__menu_unpin_selected">U përzgjodh shfiksim</string>
   <string name="conversation_list_batch__menu_select_all">Përzgjidhi krejt</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkivo të përzgjedhurit</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Çarkivo të përzgjedhurit</string>
@@ -1758,6 +1770,9 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Shkurtore rregullimesh</string>
   <string name="conversation_list_search_description">Kërko</string>
+  <string name="conversation_list__pinned">E fiksuar</string>
+  <string name="conversation_list__chats">Biseda</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Mund të fiksoni deri në %1$d fjalosje</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto Kontakti</string>
   <string name="conversation_list_item_view__archived">Të arkivuar</string>
@@ -1953,6 +1968,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="KbsMegaphone__update_pin">Përditësoni PIN-in</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Do t’jua kujtojmë më vonë. Krijimi i një PIN-i do të jetë i detyrueshëm pas %1$d ditësh.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Do t’jua kujtojmë më vonë. Ripohimi i PIN-it tuaj do të jetë i detyrueshëm pas %1$d ditësh.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Ju paraqesim @Përmendjet</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Tërhiqini vëmendjen dikujt në një “Grup të Ri” duke shtypur @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>

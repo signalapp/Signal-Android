@@ -107,7 +107,7 @@
   <string name="BucketedThreadMedia_Medium">Średni</string>
   <string name="BucketedThreadMedia_Small">Mały</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
+  <string name="CallScreen_Incoming_call">Połączenie przychodzące</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Błąd przy zapisie obrazu.</string>
   <!--CameraXFragment-->
@@ -437,6 +437,12 @@
   <string name="GroupManagement_invite_single_user">Nie możesz automatycznie dodać \"%1$s\" do tej grupy.\n\nUżytkownik został zaproszony i nie zobaczy żadnych wiadomości grupowych, dopóki nie przyjmie zaproszenia.</string>
   <string name="GroupManagement_learn_more">Dowiedz się więcej</string>
   <string name="GroupManagement_invite_multiple_users">Nie możesz automatycznie dodać tych użytkowników do tej grupy.\n\nUżytkownicy zostali zaproszeni i nie zobaczą żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Wyłączone</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Podgląd każdego linku</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Teraz możesz pobierać podglądy linków w wysyłanych wiadomościach bezpośrednio z dowolnej strony internetowej.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Brak dostępnych podglądów linków</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string>
   <string name="PendingMembersActivity_people_you_invited">Ludzie, których zaprosiłeś(aś)</string>
@@ -595,6 +601,12 @@
     <item quantity="many">Czy chcesz cofnąć %2$d zaproszeń wysłanych przez %1$s?</item>
     <item quantity="other">Czy chcesz cofnąć %2$d zaproszenia wysłane przez %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jesteś już członkiem</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uaktualnij Signal, aby korzystać z linków do grup</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Używana przez Ciebie wersja Signal nie obsługuje udostępniania linków do grup. Zaktualizuj do najnowszej wersji, aby dołączyć do tej grupy przez link.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Zaktualizuj Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grupy</string>
   <string name="CropImageActivity_profile_avatar">Awatar</string>
@@ -889,7 +901,7 @@
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Połączyć z tym urządzeniem?</string>
   <string name="DeviceProvisioningActivity_continue">KONTYNUUJ</string>
-  <string name="DeviceProvisioningActivity_content_intro">Będzie w stanie:</string>
+  <string name="DeviceProvisioningActivity_content_intro">Będzie ono w stanie:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 • Czytać wszystkie Twoje wiadomości
 \n• Wysyłać wiadomości w Twoim imieniu</string>
@@ -1198,8 +1210,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Wiadomość MMS zaszyfrowana dla nieistniejącej sesji</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Wycisz powiadomienia</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Brak zainstalowanej przeglądarki internetowej!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Trwa importowanie</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importowanie wiadomości tekstowych</string>
@@ -1692,8 +1702,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Używaj Signal dla wszystkich wiadomości multimedialnych</string>
   <string name="preferences__pref_enter_sends_title">Enter wysyła</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Wciśnięcie przycisku Enter spowoduje wysłanie wiadomości</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Podgląd linków</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Podglądy linków są wspierane dla Imgur, Instagram, Pinterest, Reddit i YouTube.</string> -->
+  <string name="preferences__generate_link_previews">Twórz podglądy linków</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pobieraj podglądy linków we wiadomościach bezpośrednio ze stron internetowych.</string>
   <string name="preferences__choose_identity">Wybierz tożsamość</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wybierz swój kontakt z listy kontaktów.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>
@@ -1844,6 +1854,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_insecure__invite">Zaproś</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Usuń zaznaczone</string>
+  <string name="conversation_list_batch__menu_pin_selected">Przypnij wybrane</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Odepnij wybrane</string>
   <string name="conversation_list_batch__menu_select_all">Zaznacz wszystko</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Wybrane archiwum</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Przywróć z archiwum</string>
@@ -1853,6 +1865,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Skrót do ustawień</string>
   <string name="conversation_list_search_description">Szukaj</string>
+  <string name="conversation_list__pinned">Przypięte</string>
+  <string name="conversation_list__chats">Rozmowy</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Możesz przypiąć maksymalnie %1$d rozmów(y)</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Zdjęcie kontaktu</string>
   <string name="conversation_list_item_view__archived">Archiwum</string>
@@ -2062,6 +2077,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsMegaphone__update_pin">Uaktualnij PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Przypomnimy Ci o tym później. Utworzenie PINu stanie się obowiązkowe za %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Przypomnimy Ci o tym później. Potwierdzenie Twojego PINu stanie się obowiązkowe za %1$d dni.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Przedstawiamy @wzmianki</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Przyciągnij czyjąś uwagę w \"Nowej grupie\", wpisując @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <string name="ConversationListFragment_loading">Wczytywanie…</string>

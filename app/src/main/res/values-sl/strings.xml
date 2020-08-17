@@ -437,6 +437,12 @@
   <string name="GroupManagement_invite_single_user">Uporabnika/ce “%1$s” ne morete avtomatično dodati k skupini.\n\nPoslano mu/ji je bilo vabilo in dokler ga ne potrdi, ne bo videl/a sporočil skupine.</string>
   <string name="GroupManagement_learn_more">Več o funkciji zakriti pošiljatelj</string>
   <string name="GroupManagement_invite_multiple_users">Teh uporabnikov/ic ne morete avtomatično dodati v skupino.\n\nPoslano jim je bilo vabilo in dokler ga ne potrdijo, ne bodo videli/e sporočil skupine.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Izklopi</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Predogled za vse spletne strani</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Odslej lahko neposredno v sporočilu ustvarite predogled za vsako spletno stran, ki jo delite.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Predogled ni na voljo</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Čakajoča povabila v skupine</string>
   <string name="PendingMembersActivity_people_you_invited">Ljudje, ki ste jih povabili</string>
@@ -595,6 +601,12 @@
     <item quantity="few">Želite preklicati %2$d vabila uporabnika/ce %1$s?</item>
     <item quantity="other">Želite preklicati %2$d vabil uporabnika/ce %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ste že član/ica</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Za povezave do skupine nadgradite Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Različica aplikacije Signal, ki jo uporabljate, ne podpira deljenja povezav do skupine. Za priključitev k skupini preko povezav jo morate nadgraditi.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Posodobite aplikacijo Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar skupine</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1197,8 +1209,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Sporočilo MMS je bilo šifrirano za neobstoječo sejo</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Izklop obvestil</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Spletni brskalnik ni nameščen!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Uvoz v teku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Uvažam kratka sporočila</string>
@@ -1691,8 +1701,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj Signal za vsa dohodna večpredstavnostna sporočila</string>
   <string name="preferences__pref_enter_sends_title">Tipka \'Naprej\' pošlje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisk na tipko \'Naprej\' pošlje sporočilo</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Pošiljanje povezav s predogledom</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Predogled je na voljo za povezave na Imgur, Instagram, Pinterest, Reddit in YouTube</string> -->
+  <string name="preferences__generate_link_previews">Ustvari predoglede</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Za vse spletne strani, ki jih delite, bodo v sporočilu ustvarjene predogledne sličice.</string>
   <string name="preferences__choose_identity">Izberi identiteto</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>
@@ -1843,6 +1853,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_insecure__invite">Povabi</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
+  <string name="conversation_list_batch__menu_pin_selected">Pripni izbrane</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Odpni izbrane</string>
   <string name="conversation_list_batch__menu_select_all">Označi vse</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Premakni izbrano v arhiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
@@ -1852,6 +1864,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Bližnjica k nastavitvam</string>
   <string name="conversation_list_search_description">Iskanje</string>
+  <string name="conversation_list__pinned">Pripeti</string>
+  <string name="conversation_list__chats">Pogovori</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Pripnete lahko do %1$d pogovore</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika stika</string>
   <string name="conversation_list_item_view__archived">Arhivirano</string>
@@ -2061,6 +2076,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsMegaphone__update_pin">Posodobite PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba PINa postala obvezna čez %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev PINa bo obvezna čez %1$d dni.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Predstavljamo @Omembe</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Pridobite si pozornost posameznikov/ic v \"Novih skupinah\" s predpono @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>

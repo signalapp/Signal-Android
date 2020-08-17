@@ -401,6 +401,9 @@
   <string name="GroupManagement_access_level_only_admins">केवळ प्रशासक</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">अधिक जाणा</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">अक्षम करा</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">प्रलंबित गट आमंत्रणे</string>
   <string name="PendingMembersActivity_people_you_invited">आपण आमंत्रित केलेल्या व्यक्ती</string>
@@ -461,6 +464,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">अक्षम केले</string>
   <string name="CustomNotificationsDialogFragment__default">पूर्वनिर्धारित</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal अद्यतनित करा</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">गट अवतार</string>
   <string name="CropImageActivity_profile_avatar">अवतार</string>
@@ -902,8 +908,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">अस्तित्वात नसलेल्या सत्रा करिता MMS संदेश एन्क्रिप्टेड आहे</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">म्यूट सूचना</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">कुठलेही वेब ब्राऊझर स्थापन केलेले नाही!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">आयात प्रगतीमध्ये</string>
   <string name="ApplicationMigrationService_importing_text_messages">मजकूर संदेश आयात करत आहे</string>
@@ -1318,8 +1322,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सर्व येणाऱ्या मल्टिमिडिया संदेशांसाठी Signal वापरा</string>
   <string name="preferences__pref_enter_sends_title">प्रविष्ट करा की पाठवते</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">प्रविष्ट करा की दाबल्याने मजकूर संदेश पाठविले जातील</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">दुवा पुनरावलोकन पाठवा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for"> Imgur, Instagram, Pinterest, Reddit, आणि YouTube दुव्यांसाठी पुनरावलोकन समर्थित आहेत.</string> -->
   <string name="preferences__choose_identity">ओळख निवडा</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">संपर्क यादी मधून आपली संपर्क प्रविष्टी निवडा.</string>
   <string name="preferences__change_passphrase">पासफ्रेझ बदला</string>
@@ -1468,6 +1470,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">सेटिंग शॉर्टकट</string>
   <string name="conversation_list_search_description">शोध</string>
+  <string name="conversation_list__chats">चॅट</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">संपर्क फोटो चित्र</string>
   <string name="conversation_list_item_view__archived">आर्काईव्ह केले</string>
@@ -1620,6 +1623,7 @@
   <string name="KbsMegaphone__create_pin">PIN तयार करा</string>
   <string name="KbsMegaphone__introducing_pins">PIN ची ओळख करून देत आहे</string>
   <string name="KbsMegaphone__update_pin">PIN अद्यतनित करा</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>

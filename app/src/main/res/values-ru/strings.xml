@@ -437,6 +437,12 @@
   <string name="GroupManagement_invite_single_user">«%1$s» не может быть автоматически добавлен(-а) вами в эту группу.\n\nОн(-а) был(-а) приглашен(-а) присоединиться и не увидит никакие сообщения группы до того, как примет приглашение.</string>
   <string name="GroupManagement_learn_more">Узнать больше</string>
   <string name="GroupManagement_invite_multiple_users">Эти пользователи не могут быть автоматически добавлены вами в эту группу.\n\nОни были приглашены присоединиться к группе и не увидят никакие сообщения группы до того, как примут приглашение.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Отключить</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Предпросмотр любой ссылки</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь вы можете получать предпросмотры ссылок напрямую от любого сайта для сообщений, которые вы отправляете.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Приглашения в группу в ожидании</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
@@ -595,6 +601,12 @@
     <item quantity="many">Вы хотите отозвать %2$d приглашений от %1$s?</item>
     <item quantity="other">Вы хотите отозвать %2$d приглашений от %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Вы уже являетесь участником</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Обновите Signal, чтобы использовать ссылки на группы</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает ссылки на группы. Обновитесь до новейшей версии, чтобы присоединиться к этой группе по ссылке.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Аватар группы</string>
   <string name="CropImageActivity_profile_avatar">Аватар</string>
@@ -1199,8 +1211,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-сообщение зашифровано для несуществующей сессии</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Откл. звук уведомлений</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Веб-браузер не установлен!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Идет импорт</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импорт текстовых сообщений</string>
@@ -1693,8 +1703,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal для всех входящих MMS-сообщений</string>
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Отправлять предпросмотры ссылок</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок на Imgur, Instagram, Pinterest, Reddit и YouTube.</string> -->
+  <string name="preferences__generate_link_previews">Создавать предпросмотры ссылок</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Получать предпросмотры ссылок напрямую от сайтов для сообщений, которые вы отправляете.</string>
   <string name="preferences__choose_identity">Выберите личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>
@@ -1845,6 +1855,8 @@
   <string name="conversation_insecure__invite">Пригласить</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Удалить выбранное</string>
+  <string name="conversation_list_batch__menu_pin_selected">Прикрепить выбранные</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Открепить выбранные</string>
   <string name="conversation_list_batch__menu_select_all">Выбрать все</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Архивировать выбранное</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Разархивировать выбранное</string>
@@ -1854,6 +1866,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ярлык настроек</string>
   <string name="conversation_list_search_description">Поиск</string>
+  <string name="conversation_list__pinned">Прикреплённые</string>
+  <string name="conversation_list__chats">Чаты</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Вы можете прикрепить только до %1$d чатов</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фотография контакта</string>
   <string name="conversation_list_item_view__archived">В архиве</string>
@@ -2063,6 +2078,9 @@
   <string name="KbsMegaphone__update_pin">Обновить PIN-код</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Мы напомним вам позже. Создание PIN-кода станет обязательным через %1$d дней.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Мы напомним вам позже. Проверка вашего PIN-кода станет обязательной через %1$d дней.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Представляем @упоминания</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Привлеките чьё-нибудь внимание в «Новой группе», набрав @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
   <string name="ConversationListFragment_loading">Загружаем…</string>

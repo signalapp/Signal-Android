@@ -422,6 +422,12 @@
   <string name="GroupManagement_invite_single_user">“%1$s” ne može preko Vas biti automatski uvršten/a u grupu.\n\nPozvan/a je da se pridruži i neće vidjeti grupne poruke sve dok ne prihvati pozivnicu.</string>
   <string name="GroupManagement_learn_more">Saznajte više</string>
   <string name="GroupManagement_invite_multiple_users">Ove osobe ne mogu se preko Vas automatski uvrstiti u grupu.\n\nPozvane su da se pridruže grupi i neće vidjeti grupne poruke sve dok ne prihvate pozivnicu.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Onemogući</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Pregledaj link</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sada možete pregledati linkove do svake internet-stranice u porukama koje šaljete.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Pregled linka nije dostupan</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
   <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
@@ -570,6 +576,12 @@
     <item quantity="few">Želite li povući %2$d pozivnice koje je poslao/la %1$s?</item>
     <item quantity="other">Želite li povući %2$d pozivnica koje je poslao/la %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Već ste član</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste mogli koristiti grupne linkove</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju koristite ne podržava dijeljenje grupnih linkova. Instalirajte zadnju verziju da biste se mogli priključiti ovoj grupi putem linka.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažurirajte Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Slika grupe</string>
   <string name="CropImageActivity_profile_avatar">Slika profila</string>
@@ -1164,8 +1176,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS poruka šifrirana je za nepostojeću sesiju</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Stišaj obavještenja</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nije instaliran internet-preglednik!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Unošenje u toku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Unosim tekstualne poruke</string>
@@ -1648,8 +1658,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Koristiti Signal za sve dolazne multimedijalne poruke</string>
   <string name="preferences__pref_enter_sends_title">Tipka Enter šalje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritiskom na tipku Enter poslat će se tekstualna poruka</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Pošalji prikaze linka</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Prikazi su podržani za Imgur, Instagram, Pinterest, Reddit i YouTube linkove</string> -->
+  <string name="preferences__generate_link_previews">Kreiraj pregled linkova</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Preuzmi pregled linkova do internet-stranica u porukama koje šaljete.</string>
   <string name="preferences__choose_identity">Odaberite identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Odaberite kontakt s popisa</string>
   <string name="preferences__change_passphrase">Promijeni lozinku</string>
@@ -1800,6 +1810,8 @@
   <string name="conversation_insecure__invite">Pozovi</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Izbriši odabrano</string>
+  <string name="conversation_list_batch__menu_pin_selected">Istakni označeno</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Prestani isticati označeno</string>
   <string name="conversation_list_batch__menu_select_all">Odaberi sve</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arhiviraj odabrano</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dearhiviraj odabrano</string>
@@ -1809,6 +1821,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Kratica za podešavanja</string>
   <string name="conversation_list_search_description">Traži</string>
+  <string name="conversation_list__pinned">Istaknuto</string>
+  <string name="conversation_list__chats">Razgovori</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Možete istaknuti maksimalno %1$d konverzacija</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika kontakta</string>
   <string name="conversation_list_item_view__archived">Arhivirano</string>
@@ -2010,6 +2025,9 @@
   <string name="KbsMegaphone__update_pin">Ažurirajte PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Podsjetit ćemo Vas kasnije. Kreiranje PIN-a postat će obavezno za %1$d dana.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Podsjetit ćemo Vas kasnije. Potvrda Vašeg PIN-a postat će obavezna za %1$d dana.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Novo: @spomen</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Skrenite nečiju pažnju u novoj grupi kucajući @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

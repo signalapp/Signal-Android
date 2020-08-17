@@ -398,6 +398,9 @@
   <string name="GroupManagement_access_level_only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">കൂടുതൽ അറിയുക</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
@@ -500,6 +503,8 @@
   <string name="CustomNotificationsDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ഗ്രൂപ്പ് അവതാർ</string>
   <string name="CropImageActivity_profile_avatar">അവതാർ</string>
@@ -1046,8 +1051,6 @@ grūpp ap‌ḍē</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">നിലവിലില്ലാത്ത സെഷനായി MMS സന്ദേശം എൻ‌ക്രിപ്റ്റ് ചെയ്തു</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">വെബ് ബ്രൌസർ സറൊന്നും ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ഇറക്കുമതി പുരോഗതിയിലാണ്</string>
   <string name="ApplicationMigrationService_importing_text_messages">സന്ദേശങ്ങൾ ഇമ്പോർട്ടുചെയ്യുന്നു</string>
@@ -1515,8 +1518,6 @@ grūpp ap‌ḍē</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">എല്ലാ ഇൻകമിംഗ് മൾട്ടിമീഡിയ സന്ദേശങ്ങൾക്കും സിഗ്നൽ ഉപയോഗിക്കുക</string>
   <string name="preferences__pref_enter_sends_title">എന്റർ കീ അയയ്‌ക്കൽ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">എന്റർ കീ അമർത്തുന്നത് വാചക സന്ദേശങ്ങൾ അയയ്‌ക്കും</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ലിങ്ക് പ്രിവ്യൂകൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit, YouTube ലിങ്കുകൾക്കായി പ്രിവ്യൂകൾ പിന്തുണയ്ക്കുന്നു</string> -->
   <string name="preferences__choose_identity">ഐഡന്റിറ്റി തിരഞ്ഞെടുക്കുക</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">കോൺ‌ടാക്റ്റ് പട്ടികയിൽ‌ നിന്നും നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് എൻ‌ട്രി തിരഞ്ഞെടുക്കുക.</string>
   <string name="preferences__change_passphrase">പാസ്‌ഫ്രെയ്‌സ് മാറ്റുക</string>
@@ -1672,6 +1673,7 @@ grūpp ap‌ḍē</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ഷോർറ്റ്കറ്റ് ക്രമീകരിക്കുന്നു</string>
   <string name="conversation_list_search_description">തിരയൽ</string>
+  <string name="conversation_list__chats">ചാറ്റുകൾ</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">കോൺ‌ടാക്റ്റിന്റെ ഫോട്ടോ</string>
   <string name="conversation_list_item_view__archived">തിരഞ്ഞെടുത്തത് അനാർക്കൈവ് ചെയ്യുക</string>
@@ -1864,6 +1866,7 @@ grūpp ap‌ḍē</string>
   <string name="KbsMegaphone__update_pin">പിൻ അപ്‌ഡേറ്റുചെയ്യുക</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">ഞങ്ങൾ നിങ്ങളെ പിന്നീട് ഓർമ്മപ്പെടുത്തും. ഒരു PIN സൃഷ്‌ടിക്കുന്നത് %1$d ദിവസങ്ങളിൽ നിർബന്ധമാകും.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">ഞങ്ങൾ നിങ്ങളെ പിന്നീട് ഓർമ്മപ്പെടുത്തും. നിങ്ങളുടെ പിൻ സ്ഥിരീകരിക്കുന്നത് %1$d ദിവസങ്ങളിൽ നിർബന്ധമാകും.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">റ്റ്റാൻസ്പോർറ്റ് ഐക്കൺ</string>
   <string name="ConversationListFragment_loading">ലോഡിംഗ്…</string>

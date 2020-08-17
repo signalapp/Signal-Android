@@ -373,6 +373,9 @@
   <string name="GroupManagement_access_level_only_admins">Khusus para admin</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Pelajari lebih lanjut</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Nonaktifkan</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Undangan grup yang tertunda</string>
   <string name="PendingMembersActivity_people_you_invited">Orang yang Anda undang</string>
@@ -442,6 +445,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Ternonaktifkan</string>
   <string name="CustomNotificationsDialogFragment__default">Standar</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Perbarui Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -948,8 +954,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Pesan MMS dienkripsi untuk sesi yang tidak ada</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Senyapkan pemberitahuan</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Tidak ada peramban terpasang</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Proses mengimpor data sedang berjalan</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mengimpor pesan teks</string>
@@ -1385,8 +1389,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan Signal untuk semua pesan multimedia yang masuk</string>
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Kirim pratinjau tautan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Pratinjau didukung untuk tautan Imgur, Instagram, Pinterest, Reddit, dan YouTube</string> -->
   <string name="preferences__choose_identity">Pilih identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti frasa sandi</string>
@@ -1536,6 +1538,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Pintasan pengaturan</string>
   <string name="conversation_list_search_description">Pencarian</string>
+  <string name="conversation_list__chats">Obrolan</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Gambar Foto Kontak</string>
   <string name="conversation_list_item_view__archived">Diarsipkan</string>
@@ -1714,6 +1717,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KbsMegaphone__update_pin">Perbarui PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Kami akan mengingatkan Anda nanti. Membuat PIN akan menjadi kewajiban dalam %1$d hari.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Kami akan mengingatkan Anda nanti. Mengonfirmasi PIN akan menjadi kewajiban dalam %1$d hari.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindahkan ikon</string>
   <string name="ConversationListFragment_loading">Memuat…</string>

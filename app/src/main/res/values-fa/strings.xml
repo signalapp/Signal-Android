@@ -211,7 +211,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل پیوست شده بیش از اندازۀ مجاز برای این نوع پیام است.</string>
   <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، زیرا دیگر عضو نیستید.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، چون دیگر عضو نیستید.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال پیام‌ های صوتی، به Signal اجازه دهید تا به میکروفون شما دسترسی داشته باشد.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal به منظور ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">«%1$s» نمی‌تواند به صورت خودکار توسط شما به این گروه اضافه شود.\n\nآن‌ها برای پیوستن دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را نپذیرند، نخواهند دید.</string>
   <string name="GroupManagement_learn_more">بیشتر یاد بگیرید</string>
   <string name="GroupManagement_invite_multiple_users">این کاربران نمی‌توانند به صورت خودکار توسط شما به این گروه اضافه شوند.\n\nآن ها برای پیوستن به گروه دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را نپذیرند، نخواهند دید.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">غیرفعال کردن</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">پیش‌نمایش هر پیوند</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">شما حالا می‌توانید پیش‌نمایش‌ پیوندها را به صورت مستقیم از هر وب‌سایتی برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">هیچ پیش‌نمایش پیوندی در دسترس نیست</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
   <string name="PendingMembersActivity_people_you_invited">افرادی که شما دعوت کردید</string>
@@ -545,6 +551,12 @@
     <item quantity="one">آیا می‌خواهید دعوت ارسال شده از طرف %1$s را لغو کنید؟</item>
     <item quantity="other">آیا می‌خواهید %2$d دعوت ارسال شده از طرف %1$s را لغو کنید؟</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">شما از پیش عضو هستید</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">برای استفاده از پیوند‌های گروه Signal را به‌روزرسانی کنید</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">نسخهٔ Signal که استفاده می‌کنید از پیوند‌های با قابلیت اشتراک‌گذاری پشتیبانی نمی‌کند. برای پیوستن به این گروه از طریق پیوند به آخرین نسخه به‌روزرسانی کنید.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">عکس گروه</string>
   <string name="CropImageActivity_profile_avatar">عکس</string>
@@ -1119,8 +1131,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">فراپیام برای نشست ناموجود رمزنگاری شد</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">صامت کردن اعلان‌‌ها</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر اینترنتی نصب نشده است!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">در حال وارد کردن</string>
   <string name="ApplicationMigrationService_importing_text_messages">در حال وارد کردن پیام‌های متنی</string>
@@ -1283,7 +1293,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبین، اتصال اینترنت خود را بررسی کنید</string>
   <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
-  <string name="ContactSelectionListFragment_okay">باشه</string>
+  <string name="ContactSelectionListFragment_okay">خوب</string>
   <string name="ContactSelectionListFragment_the_group_is_full">گروه پر است</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
   <!--blocked_contacts_fragment-->
@@ -1512,7 +1522,7 @@
   <string name="AndroidManifest__change_passphrase">تغییر گذرواژه</string>
   <string name="AndroidManifest__verify_safety_number">تأیید شمارهٔ امنیتی</string>
   <string name="AndroidManifest__log_submit">ارسال گزارش اشکال‌زدایی</string>
-  <string name="AndroidManifest__media_preview">پیش نمایش رسانه</string>
+  <string name="AndroidManifest__media_preview">پیش‌نمایش رسانه‌</string>
   <string name="AndroidManifest__message_details">جزئیات پیام</string>
   <string name="AndroidManifest__linked_devices">دستگاه‌های پیوند داده شده</string>
   <string name="AndroidManifest__invite_friends">دعوت دوستان</string>
@@ -1593,8 +1603,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای همهٔ پیام‌های چندرسانه‌ای ورودی</string>
   <string name="preferences__pref_enter_sends_title">ارسال با کلید Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال خواهند شد</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">ارسال پیش‌نمایش‌های پیوند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">پیش‌نمایش‌ها برای پیوند‌های Imgur ،Reddit Pinterest ،Instagram و Youtube پشتیبانی می‌شوند</string> -->
+  <string name="preferences__generate_link_previews">ایجاد پیش‌نمایش‌‌های پیوند</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">پیش‌نمایش پیوند‌ها را به صورت مستقیم از وب‌سایت‌ها برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
   <string name="preferences__choose_identity">انتخاب هویت</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">مخاطب خود را از فهرست مخاطبین انتخاب کنید.</string>
   <string name="preferences__change_passphrase">تغییر گذرواژه</string>
@@ -1745,6 +1755,8 @@
   <string name="conversation_insecure__invite">دعوت</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">حذف انتخاب شده(ها)</string>
+  <string name="conversation_list_batch__menu_pin_selected">سنجاق انتخاب شد</string>
+  <string name="conversation_list_batch__menu_unpin_selected">جدا کردن سنجاق انتخاب شد</string>
   <string name="conversation_list_batch__menu_select_all">انتخاب همه</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی موارد انتخاب شده</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خارج کردن موارد انتخاب شده از بایگانی</string>
@@ -1754,6 +1766,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">میانبر تنظیمات</string>
   <string name="conversation_list_search_description">جستجو</string>
+  <string name="conversation_list__pinned">سنجاق شده</string>
+  <string name="conversation_list__chats">گفتگوها</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">فقط تا %1$d مکالمه را می‌توانید سنجاق کنید</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">تصویر مخاطب</string>
   <string name="conversation_list_item_view__archived">بایگانی شده</string>
@@ -1824,7 +1839,7 @@
   <string name="media_preview__forward_title">ارسال</string>
   <string name="media_preview__all_media_title">همهٔ رسانه‌ها</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">پیش‌نمایش رسانه</string>
+  <string name="media_preview_activity__media_content_description">پیش‌نمایش رسانه‌</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">تازه‌سازی</string>
   <!--redphone_audio_popup_menu-->
@@ -1937,7 +1952,7 @@
     <item quantity="other">%1$d تلاش باقی مانده است.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">باشه</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">خوب</string>
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s از شما یک درخواست پیام دریافت خواهد کرد. زمانی که درخواست شما پذیرفته شد می‌توانید تماس بگیرید.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">یک پین جدید ایجاد کنید</string>
@@ -1947,6 +1962,9 @@
   <string name="KbsMegaphone__update_pin">به‌روزرسانی پین</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">معرفی @اشاره‌ها</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">توجه یک نفر را در یک «گروه جدید» با نوشتن @ جلب کنید</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>

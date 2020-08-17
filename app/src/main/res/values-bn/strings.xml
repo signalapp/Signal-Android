@@ -384,6 +384,9 @@
   <string name="GroupManagement_access_level_only_admins">শুধুমাত্র এডমিন</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">আরও জানুন</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">অক্ষম</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
   <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
@@ -471,6 +474,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">নিষ্ক্রিয়</string>
   <string name="CustomNotificationsDialogFragment__default">সচারচর</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal আপডেট করুন</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string>
   <string name="CropImageActivity_profile_avatar">প্রোফাইলের ছবি</string>
@@ -996,8 +1002,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">অ-বিদ্যমান সেশনের জন্য এমএমএস বার্তা এনক্রিপ্ট করা</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">বিজ্ঞপ্তি নিঃশব্দ করুন</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">কোনও ওয়েব ব্রাউজার ইনস্টল করা হয়নি!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">আমদানি চলছে</string>
   <string name="ApplicationMigrationService_importing_text_messages">পাঠ্য বার্তা আমদানি করা হচ্ছে</string>
@@ -1444,8 +1448,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">সমস্ত আগত মাল্টিমিডিয়া বার্তাগুলির জন্য Signal ব্যবহার করুন</string>
   <string name="preferences__pref_enter_sends_title">এন্টার কী পাঠাবে</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">এন্টার কী টিপলে পাঠ্য বার্তা প্রেরণ করা হবে</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">লিঙ্কের পূর্বরূপগুলি প্রেরণ করুন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">ইমগুর, ইনস্টাগ্রাম, পিন্টারেস্ট, রেডডিট এবং ইউটিউব লিঙ্কগুলির জন্য পূর্বরূপগুলি সমর্থিত</string> -->
   <string name="preferences__choose_identity">পরিচয় বাছুন</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">পরিচিতি তালিকা থেকে আপনার পরিচিতি এন্টি চয়ন করুন</string>
   <string name="preferences__change_passphrase">পাসফ্রেজ পরিবর্তন করুন</string>
@@ -1597,6 +1599,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">সেটিংস শর্টকাট</string>
   <string name="conversation_list_search_description">অনুসন্ধান</string>
+  <string name="conversation_list__chats">আলাপসমূহ</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">পরিচিতির ফটো ইমেজ</string>
   <string name="conversation_list_item_view__archived">আর্কাইভ করা</string>
@@ -1774,6 +1777,7 @@
   <string name="KbsMegaphone__create_pin">পিন তৈরি করুন</string>
   <string name="KbsMegaphone__introducing_pins">পিনের সাথে পরিচিত হন</string>
   <string name="KbsMegaphone__update_pin">পিন আপডেট করুন</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
   <string name="ConversationListFragment_loading">লোড হচ্ছে…</string>

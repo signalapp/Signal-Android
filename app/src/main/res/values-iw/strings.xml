@@ -437,6 +437,12 @@
   <string name="GroupManagement_invite_single_user">“%1$s” אינו יכול להתווסף באופן אוטומטי אל קבוצה זו על ידך.\n\nהוא הוזמן להצטרף, ולא יראה הודעות קבוצה כלשהן עד שהוא יסכים.</string>
   <string name="GroupManagement_learn_more">למד עוד</string>
   <string name="GroupManagement_invite_multiple_users">משתמשים אלו אינם יכולים להתווסף באופן אוטומטי אל קבוצה זו על ידך.\n\nהם הוזמנו להצטרף אל הקבוצה, ולא יראו הודעות קבוצה כלשהן עד שהם יסכימו.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">השבת</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">הצג מראש כל קישור שהוא</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">אתה יכול כעת לאחזר תצוגות מקדימות של קישורים ישירות מכל אתר עבור הודעות שאתה שולח.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">תצוגה מקדימה של קישור אינה זמינה</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
   <string name="PendingMembersActivity_people_you_invited">אנשים שהזמנת</string>
@@ -595,6 +601,12 @@
     <item quantity="many">האם אתה רוצה לשלול את %2$d ההזמנות שנשלחו על ידי %1$s?</item>
     <item quantity="other">האם אתה רוצה לשלול את %2$d ההזמנות שנשלחו על ידי %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">את/ה כבר חבר/ת קבוצה</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">עדכן את Signal כדי להשתמש בקישורי קבוצה</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">הגרסה של Signal שאתה משתמש בה אינה תומכת בקישורי קבוצה שניתנים לשיתוף. עדכן אל הגרסה האחרונה כדי להצטרף אל קבוצה זו באמצעות קישור.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">יצגן קבוצה</string>
   <string name="CropImageActivity_profile_avatar">יצגן</string>
@@ -1206,8 +1218,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">הודעת MMS הוצפנה עבור שיח בלתי־קיים</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">השתק התראות</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">אין דפדפן רשת מותקן!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">יבוא בתהליך</string>
   <string name="ApplicationMigrationService_importing_text_messages">מייבא הודעות טקסט</string>
@@ -1700,8 +1710,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב־Signal עבור כל הודעות המולטימדיה הנכנסות</string>
   <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">שלח קדם־תצוגות של קישורים</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Pinterest, Reddit ו־YouTube</string> -->
+  <string name="preferences__generate_link_previews">חולל תצוגות מקדימות של קישורים</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">אחזר תצוגות מקדימות של קישורים ישירות מאתרים עבור הודעות שאתה שולח.</string>
   <string name="preferences__choose_identity">בחר זהות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את כניסת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה משפט־סיסמה</string>
@@ -1852,6 +1862,8 @@
   <string name="conversation_insecure__invite">הזמן</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">מחק נבחרים</string>
+  <string name="conversation_list_batch__menu_pin_selected">הצמד נבחרים</string>
+  <string name="conversation_list_batch__menu_unpin_selected">בטל הצמדת נבחרים</string>
   <string name="conversation_list_batch__menu_select_all">בחר הכל</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">אחסן בארכיון נבחרים</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">הוצא מארכיון נבחרים</string>
@@ -1861,6 +1873,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">קיצור דרך להגדרות</string>
   <string name="conversation_list_search_description">חפש</string>
+  <string name="conversation_list__pinned">מוצמד</string>
+  <string name="conversation_list__chats">התכתבויות</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">אתה יכול להצמיד רק עד %1$d התכתבויות</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">תמונת איש קשר</string>
   <string name="conversation_list_item_view__archived">בארכיון</string>
@@ -2070,6 +2085,9 @@
   <string name="KbsMegaphone__update_pin">עדכן PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">היכרות עם @אזכורים</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">תפוס תשומת לב של מישהו ב\"קבוצה חדשה\" על ידי הקלדת @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>

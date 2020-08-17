@@ -392,6 +392,9 @@
   <string name="GroupManagement_access_level_only_admins">Yalnızca yöneticiler</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Dahasını öğrenin</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Devre dışı bırak</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Beklemedeki grup davetleri</string>
   <string name="PendingMembersActivity_people_you_invited">Davet ettiğiniz kişiler</string>
@@ -489,6 +492,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Devre dışı</string>
   <string name="CustomNotificationsDialogFragment__default">Varsayılan</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal\'i Güncelle</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
   <string name="CropImageActivity_profile_avatar">Resim</string>
@@ -1026,8 +1032,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS iletisi var olmayan bir oturum için şifrelenmiş</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Bildirimleri sessize al</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">İnternet tarayıcısı yüklü değil!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">İçe aktarma sürüyor</string>
   <string name="ApplicationMigrationService_importing_text_messages">İletiler içe aktarılıyor</string>
@@ -1494,8 +1498,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm içerik iletileri için Signal kullanın</string>
   <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Bağlantı ön izlemelerini gönder</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Pinterest, Reddit, ve YouTube bağlantıları için desteklenmektedir</string> -->
   <string name="preferences__choose_identity">Kimlik seçin</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>
@@ -1647,6 +1649,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ayarlar kısayolu</string>
   <string name="conversation_list_search_description">Sohbette Ara</string>
+  <string name="conversation_list__chats">Sohbetler</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kişi Fotoğrafı</string>
   <string name="conversation_list_item_view__archived">Arşivlendi</string>
@@ -1837,6 +1840,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="KbsMegaphone__update_pin">PIN\'i güncelle</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN oluşturmanız zorunlu olacaktır.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN\'inizi onaylamanız zorunlu olacaktır.</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>

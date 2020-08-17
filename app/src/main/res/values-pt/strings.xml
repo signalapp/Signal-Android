@@ -407,6 +407,12 @@
   <string name="GroupManagement_invite_single_user">“%1$s” não pode ser adicionado(a) automaticamente para este grupo por si.\n\nEle(a) foi convidado(a) a juntar-se, mas não irá ver nenhuma mensagem do grupo até que ele(a) aceite.</string>
   <string name="GroupManagement_learn_more">Saber mais</string>
   <string name="GroupManagement_invite_multiple_users">Estes utilizadores não podem ser adicionados automaticamente a este grupo por si.\n\nEles foram convidados a juntarem-se, mas não irão ver nenhuma mensagem do grupo até que aceite</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Desativar</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Pré-visualizar todas as hiperligações</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Agora pode recuperar pré-visualizações de hiperligações diretamente a partir de qualquer website para as mensagens que enviar.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Pré-visualização de hiperligação indisponível</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Convites de grupo pendentes</string>
   <string name="PendingMembersActivity_people_you_invited">Pessoas que convidou</string>
@@ -450,10 +456,10 @@
     <item quantity="other">%d membros não suportam \'Novos grupos\', como tal, este grupo será um \'Grupo legado\'.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um \'Grupo legado\' será criado porque \"%1$s\" está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Será criado um \'Grupo legado\' porque \"%1$s\" está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Um \'Grupo legado\' será criado porque %1$d membro está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</item>
-    <item quantity="other">Um \'Grupo legado\' será criado porque %1$d membros estão a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com eles depois de eles atualizarem o Signal, ou removê-los antes de criar o grupo.</item>
+    <item quantity="one">Será criado um \'Grupo legado\' porque %1$d membro está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</item>
+    <item quantity="other">Será criado um \'Grupo legado\' porque %1$d membros estão a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com eles depois de eles atualizarem o Signal, ou removê-los antes de criar o grupo.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Destruição de mensagens</string>
@@ -545,6 +551,12 @@
     <item quantity="one">Deseja revogar o convite que foi enviado por %1$s?</item>
     <item quantity="other">Deseja revogar %2$d convites que foram enviados por %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Você já é um membro</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para utilizar hiperligações de grupo</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que está a utilizar não suporta hiperligações de grupo partilháveis. Atualize para a última versão para juntar este grupo via hiperligação.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1118,8 +1130,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem MMS encriptada para sessão inexistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Não existe um navegador web instalado!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
   <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
@@ -1592,8 +1602,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar o Signal para receber todas as mensagens de multimédia </string>
   <string name="preferences__pref_enter_sends_title">Tecla de Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter envia as mensagens de texto</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Enviar pré-visualização de hiperligações</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">As pré-visualizações são suportadas em hiperligações do Imgur, Instagram, Pinterest, Reddit e YouTube</string> -->
+  <string name="preferences__generate_link_previews">Gerar pré-visualizações de hiperligações</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupere ligações de pré-visualizações diretamente a partir de websites para as mensagens que enviar.</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha a sua entrada de contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-passe</string>
@@ -1744,6 +1754,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_insecure__invite">Convidar</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Apagar selecionado(s)</string>
+  <string name="conversation_list_batch__menu_pin_selected">Afixar selecionada(s)</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Desafixar selecionada(s)</string>
   <string name="conversation_list_batch__menu_select_all">Selecionar tudo</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arquivar selecionado(s)</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desarquivar selecionado(s)</string>
@@ -1753,6 +1765,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atalho para definições</string>
   <string name="conversation_list_search_description">Pesquisar</string>
+  <string name="conversation_list__pinned">Afixada</string>
+  <string name="conversation_list__chats">Conversas</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Apenas pode afixar até %1$d conversas</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto de contacto</string>
   <string name="conversation_list_item_view__archived">Arquivado</string>
@@ -1946,6 +1961,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Iremos lembrá-lo(a) mais tarde. Criar um PIN será obrigatório dentro de %1$d dias.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Iremos lembrá-lo(a) mais tarde. Confirmar o seu PIN será obrigatório dentro de %1$d dias.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Introdução às @Menções</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Obtenha a atenção de alguém num \"Grupo novo\" escrevendo @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>

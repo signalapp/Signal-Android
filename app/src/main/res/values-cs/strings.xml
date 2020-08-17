@@ -437,6 +437,12 @@
   <string name="GroupManagement_invite_single_user">“%1$s” nemůže být přidán do skupiny automaticky.\n\nByl pozván, ale neuvidí žádné zprávy, dokud pozvání nepřijme.</string>
   <string name="GroupManagement_learn_more">Zjistit více</string>
   <string name="GroupManagement_invite_multiple_users">Tyto uživatele nemůžete přidat do skupiny automaticky.\n\nByli pozváni, ale neuvidí žádné zprávy dokud pozvání nepřijmou.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Deaktivovat</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Náhled každého odkazu</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Nyní můžete u zpráv, které odesíláte, získat náhledy odkazů přímo z jakéhokoli webu.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Není dostupný žádný náhled odkazu</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string>
   <string name="PendingMembersActivity_people_you_invited">Osoby, které jste pozvali</string>
@@ -595,6 +601,12 @@
     <item quantity="many">Chcete zrušit %2$d pozvání zaslaných od %1$s?</item>
     <item quantity="other">Chcete zrušit %2$d pozvání zaslaných od %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Už jste členem</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualizujte Signal pro používání skupinových odkazů</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verze Signalu, kterou používáte, nepodporuje sdílené skupinové odkazy. Aktualizujte na nejnovější verzi, abyste se mohli připojit k této skupině pomocí odkazu.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovat Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Skupinový avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1205,8 +1217,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS zpráva byla zašifrována pro neexistující konverzaci</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Není nainstalován webový prohlížeč!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
@@ -1699,8 +1709,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použít Signal pro všechny příchozí multimediální zprávy</string>
   <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka Enter na klávesnici odešle zprávu</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Náhledy jsou podporovány pro odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string> -->
+  <string name="preferences__generate_link_previews">Vygenerovat náhledy odkazů</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pro zprávy, které odesíláte, získat náhledy odkazů přímo z webů.</string>
   <string name="preferences__choose_identity">Zvolit identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
   <string name="preferences__change_passphrase">Změnit heslo</string>
@@ -1851,6 +1861,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="conversation_insecure__invite">Pozvánka</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Smazat označené</string>
+  <string name="conversation_list_batch__menu_pin_selected">Připnutí vybráno</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Odepnutí vybráno</string>
   <string name="conversation_list_batch__menu_select_all">Označit vše</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archivovat vybrané</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnovit vybrané z archivu</string>
@@ -1860,6 +1872,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Zkratka nastavení</string>
   <string name="conversation_list_search_description">Hledat</string>
+  <string name="conversation_list__pinned">Připnuto</string>
+  <string name="conversation_list__chats">Konverzace</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Můžete připnout nanejvýš %1$d konverzací</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotografie kontaktu</string>
   <string name="conversation_list_item_view__archived">Archivováno</string>
@@ -2069,6 +2084,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KbsMegaphone__update_pin">Aktualizovat PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Připomeneme se vám později. Vytvoření PIN bude povinné během %1$d dnů.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Připomeneme se vám později. Potvrzení vašeho PIN bude povinné během %1$d  dnů.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Představujeme @Zmínky</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Pozornost někoho v \"Nové skupině\" získáte napsáním @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="ConversationListFragment_loading">Načítání…</string>

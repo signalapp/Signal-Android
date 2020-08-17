@@ -468,6 +468,12 @@
   <string name="GroupManagement_invite_single_user">لا يمكن إضافة \"%1$s\" تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
   <string name="GroupManagement_learn_more">لمعرفة المزيد</string>
   <string name="GroupManagement_invite_multiple_users">لا يمكن إضافة هؤلاء المستخدمين تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">تعطيل</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">استعراض أيّة رابط</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">تستطيع الآن جلب استعراض للروابط للرسائل التي ترسلها من  أيّة موقع مباشرةً.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">لا يتوفر استعراض للرابط</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">دعوات معلّقة</string>
   <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
@@ -646,6 +652,12 @@
     <item quantity="many">هل تريد سحب %2$d دعوات تم إرسالها من قبل %1$s؟</item>
     <item quantity="other">هل تريد سحب %2$d دعوات تم إرسالها من قبل %1$s؟</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">أنت عضو بالفعل</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">قم بتحديث Signal لاستخدام روابط المجموعة</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">إنّ نسخة Signal التي تستعملها لا تدعم روابط المجموعة القابلة للمشاركة. قم بالتحديث لأحدث نسخة لتستطيع الإنضمام إلى هذه المجموعة باستخدام رابط. </string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">قم بتحديث Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
@@ -1287,8 +1299,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">تم تشفير الرسالة متعدّدة الوسائط لجلسة غير موجودة…</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">لم يتم العثور على أي متصفح ويب مثبّت!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد…</string>
   <string name="ApplicationMigrationService_importing_text_messages">استيراد رسائل نصية</string>
@@ -1803,8 +1813,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم Signal لجميع رسائل الوسائط المتعددة الواردة</string>
   <string name="preferences__pref_enter_sends_title">مفتاح الدخول يقوم بالإرسال</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">الضغط على مفتاح الدخول سيقوم بإرسال الرسالة</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">إرسال لمحة عن الرابط</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">لمحات الرّوابط متوفرة للروابط من مواقع  Imgur و Instagram و Reddit و YouTube.</string> -->
+  <string name="preferences__generate_link_previews">إنشاء استعراض للروابط</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">جلب استعراض للروابط للرسائل التي ترسلها من المواقع مباشرةً.</string>
   <string name="preferences__choose_identity">اختيار الهوية</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
@@ -1955,6 +1965,8 @@
   <string name="conversation_insecure__invite">دعوة</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">احذف المختار</string>
+  <string name="conversation_list_batch__menu_pin_selected">تثبيت المحدد</string>
+  <string name="conversation_list_batch__menu_unpin_selected">إزالة تثبيت المحدد</string>
   <string name="conversation_list_batch__menu_select_all">اختر الكل</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">تم اختيار الأرشيف</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">فك أرشفة ما تمّ اختياره</string>
@@ -1964,6 +1976,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">مختصر للإعدادات</string>
   <string name="conversation_list_search_description">بحث</string>
+  <string name="conversation_list__pinned">مثبّت</string>
+  <string name="conversation_list__chats">دردشة</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">يمكنك تثبيت ما يصل إلى %1$d محادثات فقط</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
   <string name="conversation_list_item_view__archived">الأرشيف</string>
@@ -2189,6 +2204,9 @@
   <string name="KbsMegaphone__update_pin">تحديث الرقم التعريفي الشخصي</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">سنذّكرك لاحقاً. اختيار كلمة مرور رقمية سيكون إجبارياً في %1$dأيام.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">سنذكّرك لاحقاً ، إدخال كلمة السر الرقمية ستكون إجبارية بعد %1$d أيام.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">نقدم لكم ميزة معرفة عندما يذكر اسمك</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">احصل على انتباه أحدهم في المجموعات من الطراز الجديد بكتابة @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
   <string name="ConversationListFragment_loading">قيد التحميل…</string>

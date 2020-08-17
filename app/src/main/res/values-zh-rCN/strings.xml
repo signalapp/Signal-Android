@@ -355,6 +355,9 @@
   <!--GV2 access levels-->
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">了解更多</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">关闭</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">你邀请的人</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">其他群组成员的邀请</string>
@@ -404,6 +407,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">已禁用</string>
   <string name="CustomNotificationsDialogFragment__default">默认</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">升级 Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">群组头像</string>
   <string name="CropImageActivity_profile_avatar">头像</string>
@@ -871,8 +877,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">加密彩信的对话不存在</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">静音通知</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">未安装网络浏览器！</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">正在导入数据</string>
   <string name="ApplicationMigrationService_importing_text_messages">正在导入文本信息</string>
@@ -1296,8 +1300,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收全部彩信。</string>
   <string name="preferences__pref_enter_sends_title">按回车发送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按回车键发送短信</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">发送链接预览</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">预览支持来自 Instagram、Pinterest、Reddit 和 YouTube 的链接</string> -->
   <string name="preferences__choose_identity">选择联系人</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择联系人条目。</string>
   <string name="preferences__change_passphrase">修改密码</string>
@@ -1452,6 +1454,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">设置快捷方式</string>
   <string name="conversation_list_search_description">搜索</string>
+  <string name="conversation_list__chats">聊天</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">联系人图片</string>
   <string name="conversation_list_item_view__archived">已存档</string>
@@ -1631,6 +1634,7 @@
   <string name="KbsMegaphone__update_pin">更新 PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">稍后您会被提示。在%1$d天内会强制要求创建PIN码。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">稍后您会被提示。在%1$d天内会强制要求确认你的PIN码。</string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>

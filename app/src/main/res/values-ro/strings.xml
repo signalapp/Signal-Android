@@ -422,6 +422,12 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" nu poate fi adăugat automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
   <string name="GroupManagement_learn_more">Aflați mai multe</string>
   <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">Dezactivați</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Previzualizare orice link</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Acum puteți prelua previzualizările link-urilor direct de pe orice site web pentru mesajele pe care le trimiteți.</string>
+  <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Previzualizarea link-ului nu este disponibilă</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitații la grup în așteptare</string>
   <string name="PendingMembersActivity_people_you_invited">Persoane pe care le-ați invitat</string>
@@ -570,6 +576,12 @@
     <item quantity="few">Doriți să revocați %2$d invitații trimise de %1$s?</item>
     <item quantity="other">Doriți să revocați %2$d invitații trimise de %1$s?</item>
   </plurals>
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ești deja membru</string>
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi link-uri la grupuri</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versiune de Signal pe care o folosiți nu suportă link-uri partajabile către grup. Actualizați la ultima versine pentru a te alătura acestui grup printr-un link.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar de grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1160,8 +1172,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesaj MMS criptat pentru o sesiune inexistentă</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Notificări fără sunet</string>
-  <!--OutdatedBuildReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="OutdatedBuildReminder_no_web_browser_installed">Nu aveți nici un navigator web instalat!</string> -->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import în curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">Se importă mesajele text</string>
@@ -1644,8 +1654,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizează Signal pentru toate mesajele multimedia de intrare</string>
   <string name="preferences__pref_enter_sends_title">Trimitere cu Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apăsarea tastei Enter va trimite mesajele text</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__send_link_previews">Trimite previzualizarea link-urilor</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__previews_are_supported_for">Previzualizarea este suportată pentru link-uri Imgur, Instagram, Pinterest, Reddit și YouTube</string> -->
+  <string name="preferences__generate_link_previews">Generați previzualizări ale linkurilor</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obțineți previzualizările link-urilor direct de pe site-urile web pentru mesajele pe care le trimiteți.</string>
   <string name="preferences__choose_identity">Selectează identitatea</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selectează persoana din lista de contacte.</string>
   <string name="preferences__change_passphrase">Schimbă parola</string>
@@ -1797,6 +1807,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_insecure__invite">Invită</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Şterge ce este selectat</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fixați selecția</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Anulați fixarea pentru selecție</string>
   <string name="conversation_list_batch__menu_select_all">Selectează tot</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arhivă selectată</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dezarhivare selectată</string>
@@ -1806,6 +1818,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Scurtătură Setări</string>
   <string name="conversation_list_search_description">Căutați</string>
+  <string name="conversation_list__pinned">Fixată</string>
+  <string name="conversation_list__chats">Conversații</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Puteți fixa până la %1$d conversații</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Poză contact</string>
   <string name="conversation_list_item_view__archived">Arhivat</string>
@@ -2007,6 +2022,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsMegaphone__update_pin">Actualizați PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vă amintim mai târziu. Creearea unui PIN o să devină obligatorie în %1$d zile.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vă amintim mai târziu. Confirmarea PIN-ului dvs. o să devină obligatorie în %1$d zile.</string>
+  <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Vă prezentăm @Mențiuni</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Obțineți atenția cuiva într-un \"Grup Nou\", tastând @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
