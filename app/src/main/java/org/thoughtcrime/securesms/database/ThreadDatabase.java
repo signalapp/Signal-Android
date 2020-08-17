@@ -490,7 +490,7 @@ public class ThreadDatabase extends Database {
       query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.GROUP_ID + " NOT NULL";
     }
 
-    return db.rawQuery(createQuery(query, limit), null);
+    return db.rawQuery(createQuery(query, 0, limit, true), null);
   }
 
   public Cursor getRecentPushConversationList(int limit, boolean includeInactiveGroups) {
@@ -505,7 +505,7 @@ public class ThreadDatabase extends Database {
                                           activeGroupQuery +
                                         ")" +
                                       ")";
-    String         query = createQuery(where, limit);
+    String         query = createQuery(where, 0, limit, true);
 
     return db.rawQuery(query, null);
   }
@@ -601,7 +601,7 @@ public class ThreadDatabase extends Database {
 
   public Cursor getUnarchivedConversationList(boolean pinned, long offset, long limit) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + PINNED + " = ?", offset, limit);
+    String         query  = createQuery(ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + PINNED + " = ?", offset, limit, false);
     Cursor         cursor = db.rawQuery(query, new String[]{pinned ? "1" : "0"});
 
     setNotifyConversationListListeners(cursor);
@@ -611,7 +611,7 @@ public class ThreadDatabase extends Database {
 
   private Cursor getConversationList(@NonNull String archived, long offset, long limit) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", offset, limit);
+    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", offset, limit, false);
     Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
     setNotifyConversationListListeners(cursor);
@@ -1074,11 +1074,13 @@ public class ThreadDatabase extends Database {
   }
 
   private @NonNull String createQuery(@NonNull String where, long limit) {
-    return createQuery(where, 0, limit);
+    return createQuery(where, 0, limit, false);
   }
 
-  private @NonNull String createQuery(@NonNull String where, long offset, long limit) {
+  private @NonNull String createQuery(@NonNull String where, long offset, long limit, boolean preferPinned) {
+    String orderBy    = (preferPinned ? TABLE_NAME + "." + PINNED + " DESC, " : "") + TABLE_NAME + "." + DATE + " DESC";
     String projection = Util.join(COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION, ",");
+
     String query =
     "SELECT " + projection + " FROM " + TABLE_NAME +
            " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
@@ -1086,7 +1088,7 @@ public class ThreadDatabase extends Database {
            " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
            " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.RECIPIENT_ID +
            " WHERE " + where +
-           " ORDER BY " + TABLE_NAME + "." + DATE + " DESC";
+           " ORDER BY " + orderBy;
 
     if (limit >  0) {
       query += " LIMIT " + limit;
