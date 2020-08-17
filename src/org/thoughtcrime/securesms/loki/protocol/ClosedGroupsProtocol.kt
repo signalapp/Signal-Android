@@ -31,7 +31,7 @@ import java.io.IOException
 import java.util.*
 
 object ClosedGroupsProtocol {
-    val isSharedSenderKeysEnabled = true
+    val isSharedSenderKeysEnabled = false
     
     public fun createClosedGroup(context: Context, name: String, members: Collection<String>): String {
         // Prepare
