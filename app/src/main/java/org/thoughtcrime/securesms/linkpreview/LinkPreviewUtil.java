@@ -11,6 +11,7 @@ import android.text.style.URLSpan;
 import android.text.util.Linkify;
 
 import com.annimon.stream.Stream;
+import com.google.android.collect.Sets;
 
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.Util;
@@ -21,6 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,6 +38,8 @@ public final class LinkPreviewUtil {
   private static final Pattern TITLE_PATTERN              = Pattern.compile("<\\s*title[^>]*>(.*)<\\s*/title[^>]*>");
   private static final Pattern FAVICON_PATTERN            = Pattern.compile("<\\s*link[^>]*rel\\s*=\\s*\".*icon.*\"[^>]*>");
   private static final Pattern FAVICON_HREF_PATTERN       = Pattern.compile("href\\s*=\\s*\"([^\"]*)\"");
+
+  private static final Set<String> INVALID_TOP_LEVEL_DOMAINS = Sets.newHashSet("onion");
 
   /**
    * @return All whitelisted URLs in the source text.
@@ -72,11 +76,16 @@ public final class LinkPreviewUtil {
     Matcher matcher = DOMAIN_PATTERN.matcher(url);
 
     if (matcher.matches()) {
-      String domain        = matcher.group(2);
-      String cleanedDomain = domain.replaceAll("\\.", "");
+      String domain         = matcher.group(2);
+      String cleanedDomain  = domain.replaceAll("\\.", "");
+      String topLevelDomain = parseTopLevelDomain(domain);
 
-      return ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() ||
-             ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches();
+      boolean validCharacters = ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() ||
+                                ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches();
+
+      boolean validTopLevelDomain = !INVALID_TOP_LEVEL_DOMAINS.contains(topLevelDomain);
+
+      return validCharacters &&  validTopLevelDomain;
     } else {
       return false;
     }
@@ -126,6 +135,17 @@ public final class LinkPreviewUtil {
 
     return new OpenGraph(openGraphTags, htmlTitle, faviconUrl);
   }
+
+  private static @Nullable String parseTopLevelDomain(@NonNull String domain) {
+    int periodIndex = domain.lastIndexOf(".");
+
+    if (periodIndex >= 0 && periodIndex < domain.length() - 1) {
+      return domain.substring(periodIndex + 1);
+    } else {
+      return null;
+    }
+  }
+
 
   public static final class OpenGraph {
 

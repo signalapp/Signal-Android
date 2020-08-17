@@ -28,6 +28,7 @@ public class LinkPreviewUtilTest_isLegal {
         { "кц.com",                                false },
         { "http://asĸ.com",                        false },
         { "http://foo.кц.рф",                      false },
+        { "https://abcdefg.onion",                 false },
         { "",                                      false }
     });
   }
