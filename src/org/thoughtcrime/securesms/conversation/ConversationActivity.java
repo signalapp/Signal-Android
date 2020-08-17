@@ -209,7 +209,6 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -1171,7 +1170,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       String groupPublicKey;
       boolean isSSKBasedClosedGroup;
       try {
-        groupPublicKey = HexEncodingKt.toHexString(GroupUtil.getDecodedId(groupRecipient.getAddress().toString()));
+        groupPublicKey = HexEncodingKt.toHexString(ClosedGroupsProtocol.doubleDecodeGroupID(groupRecipient.getAddress().toString()));
         isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
       } catch (IOException e) {
         groupPublicKey = null;
