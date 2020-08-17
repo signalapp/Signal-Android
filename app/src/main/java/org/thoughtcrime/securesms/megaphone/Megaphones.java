@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestMegaphoneActivit
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -54,7 +55,7 @@ public final class Megaphones {
   static @Nullable Megaphone getNextMegaphone(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
     long currentTime = System.currentTimeMillis();
 
-    List<Megaphone> megaphones = Stream.of(buildDisplayOrder())
+    List<Megaphone> megaphones = Stream.of(buildDisplayOrder(context))
                                        .filter(e -> {
                                          MegaphoneRecord   record = Objects.requireNonNull(records.get(e.getKey()));
                                          MegaphoneSchedule schedule = e.getValue();
@@ -84,14 +85,14 @@ public final class Megaphones {
    * This is when you would hide certain megaphones based on {@link FeatureFlags}. You could
    * conditionally set a {@link ForeverSchedule} set to false for disabled features.
    */
-  private static Map<Event, MegaphoneSchedule> buildDisplayOrder() {
+  private static Map<Event, MegaphoneSchedule> buildDisplayOrder(@NonNull Context context) {
     return new LinkedHashMap<Event, MegaphoneSchedule>() {{
       put(Event.REACTIONS, ALWAYS);
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
       put(Event.MESSAGE_REQUESTS, shouldShowMessageRequestsMegaphone() ? ALWAYS : NEVER);
       put(Event.MENTIONS, shouldShowMentionsMegaphone() ? ALWAYS : NEVER);
-      put(Event.LINK_PREVIEWS, SignalStore.settings().isLinkPreviewsEnabled() ? NEVER : ALWAYS);
+      put(Event.LINK_PREVIEWS, shouldShowLinkPreviewsMegaphone(context) ? ALWAYS : NEVER);
     }};
   }
 
@@ -211,6 +212,10 @@ public final class Megaphones {
 
   private static boolean shouldShowMentionsMegaphone() {
     return FeatureFlags.mentions() && FeatureFlags.groupsV2();
+  }
+
+  private static boolean shouldShowLinkPreviewsMegaphone(@NonNull Context context) {
+    return TextSecurePreferences.wereLinkPreviewsEnabled(context) && !SignalStore.settings().isLinkPreviewsEnabled();
   }
 
   public enum Event {
