@@ -256,7 +256,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
     }
   }
 
-  private static class HeaderViewHolder extends RecyclerView.ViewHolder {
+  static class HeaderViewHolder extends RecyclerView.ViewHolder {
     private TextView headerText;
 
     public HeaderViewHolder(@NonNull View itemView) {
