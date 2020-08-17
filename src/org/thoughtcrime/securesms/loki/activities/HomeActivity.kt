@@ -335,7 +335,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val isClosedGroup = recipient.address.isClosedGroup
             // Send a leave group message if this is an active closed group
             if (isClosedGroup && DatabaseFactory.getGroupDatabase(this).isActive(recipient.address.toGroupString())) {
-                val groupPublicKey = GroupUtil.getDecodedId(recipient.address.toString()).toHexString()
+                val groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(recipient.address.toString()).toHexString()
                 val isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
                 if (isSSKBasedClosedGroup) {
                     ClosedGroupsProtocol.leave(this, groupPublicKey)
