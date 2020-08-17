@@ -22,9 +22,13 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.GroupEditingOptionsBottomSheet
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.GroupUtil
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
+import org.whispersystems.signalservice.loki.utilities.toHexString
+import java.io.IOException
 
 const val EXTRA_GROUP_ID = "GROUP_ID"
 const val REQ_CODE_ADD_USERS = 124
@@ -226,7 +230,22 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
 
-        GroupManager.updateGroup(this, groupID, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
+        var isSSKBasedClosedGroup: Boolean
+        var groupPublicKey: String?
+        try {
+            groupPublicKey = GroupUtil.getDecodedId(groupID).toHexString()
+            isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
+        } catch (e: IOException) {
+            groupPublicKey = null
+            isSSKBasedClosedGroup = false
+        }
+
+        if (isSSKBasedClosedGroup) {
+            //TODO AC: Should it use "groupPublicKey" or "groupID"?
+            ClosedGroupsProtocol.updateGroup(this, groupPublicKey!!, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
+        } else {
+            GroupManager.updateGroup(this, groupID, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
+        }
         finish()
     }
 }

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.util.Log
 import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.ApplicationContext
@@ -180,6 +181,17 @@ object ClosedGroupsProtocol {
         // Notify the user
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
         insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID)
+    }
+
+    //TODO AC: This is a reflection of GroupManager's update API.
+    // It needs a valid implementation and probably the signature should be refactored a bit.
+    public fun updateGroup(context: Context,
+                           groupPublicKey: String,
+                           members: Collection<Recipient>,
+                           avatar: Bitmap?,
+                           name: String,
+                           admins: Collection<Recipient>) {
+        // STUB
     }
 
     @JvmStatic
