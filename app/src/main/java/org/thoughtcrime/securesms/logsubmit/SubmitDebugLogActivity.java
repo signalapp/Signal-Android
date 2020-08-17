@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.logsubmit;
 
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +25,9 @@ import com.dd.CircularProgressButton;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.LongClickCopySpan;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -234,19 +237,28 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
                                                                             .startChooser();
                                                  });
 
-    TextView textView = new TextView(builder.getContext());
-    textView.setText(getResources().getString(R.string.SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue, url));
-    textView.setMovementMethod(LinkMovementMethod.getInstance());
-    textView.setOnLongClickListener(v -> {
-      Util.copyToClipboard(this, url);
-      Toast.makeText(this, R.string.SubmitDebugLogActivity_copied_to_clipboard, Toast.LENGTH_SHORT).show();
-      return true;
-    });
+    String            dialogText          = getResources().getString(R.string.SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue, url);
+    SpannableString   spannableDialogText = new SpannableString(dialogText);
+    TextView          dialogView          = new TextView(builder.getContext());
+    LongClickCopySpan longClickUrl        = new LongClickCopySpan(url);
 
-    LinkifyCompat.addLinks(textView, Linkify.WEB_URLS);
-    ViewUtil.setPadding(textView, (int) ThemeUtil.getThemedDimen(this, R.attr.dialogPreferredPadding));
 
-    builder.setView(textView);
+    LinkifyCompat.addLinks(spannableDialogText, Linkify.WEB_URLS);
+
+    URLSpan[] spans = spannableDialogText.getSpans(0, spannableDialogText.length(), URLSpan.class);
+    for (URLSpan span : spans) {
+      int start = spannableDialogText.getSpanStart(span);
+      int end   = spannableDialogText.getSpanEnd(span);
+
+      spannableDialogText.setSpan(longClickUrl, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+
+    dialogView.setText(spannableDialogText);
+    dialogView.setMovementMethod(LongClickMovementMethod.getInstance(this));
+
+    ViewUtil.setPadding(dialogView, (int) ThemeUtil.getThemedDimen(this, R.attr.dialogPreferredPadding));
+
+    builder.setView(dialogView);
     builder.show();
   }
 
