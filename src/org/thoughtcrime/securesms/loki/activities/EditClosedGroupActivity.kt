@@ -26,13 +26,15 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.GroupUtil
-import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.io.IOException
 
 const val EXTRA_GROUP_ID = "GROUP_ID"
 const val REQ_CODE_ADD_USERS = 124
 const val LOADER_ID_MEMBERS = 0
+
+const val MAX_GROUP_MEMBERS_LEGACY = 10
+const val MAX_GROUP_MEMBERS_SSK = 50
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
@@ -186,14 +188,15 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private fun saveDisplayName() {
         val groupDisplayName = edtGroupName.text.toString().trim()
         if (groupDisplayName.isEmpty()) {
-            return Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_missing_error, Toast.LENGTH_SHORT).show()
         }
-        if (!groupDisplayName.matches(Regex("[a-zA-Z0-9_]+"))) {
-            return Toast.makeText(this, R.string.activity_settings_invalid_display_name_error, Toast.LENGTH_SHORT).show()
+//        if (groupDisplayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
+        if (groupDisplayName.length >= 64) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_too_long_error, Toast.LENGTH_SHORT).show()
         }
-        if (groupDisplayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
-            return Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
-        }
+//        if (!groupDisplayName.matches(Regex("[a-zA-Z0-9_]+"))) {
+//            return Toast.makeText(this, R.string.activity_settings_invalid_display_name_error, Toast.LENGTH_SHORT).show()
+//        }
         newGroupDisplayName = groupDisplayName
         lblGroupNameDisplay.text = groupDisplayName
         nameHasChanged = true
@@ -219,17 +222,6 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 //        }.toSet()
         val finalGroupAdmins = finalGroupMembers.toSet() //TODO For now, consider all the users are admins.
 
-
-        if (groupDisplayName.length >= 64) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
-        }
-        if (finalGroupMembers.size < 2) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
-        }
-        if (finalGroupMembers.size > 10) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
-        }
-
         var isSSKBasedClosedGroup: Boolean
         var groupPublicKey: String?
         try {
@@ -238,6 +230,14 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         } catch (e: IOException) {
             groupPublicKey = null
             isSSKBasedClosedGroup = false
+        }
+
+        if (finalGroupMembers.size < 2) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
+        }
+        val maxGroupMembers = if (isSSKBasedClosedGroup) MAX_GROUP_MEMBERS_SSK else MAX_GROUP_MEMBERS_LEGACY
+        if (finalGroupMembers.size > maxGroupMembers) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
 
         if (isSSKBasedClosedGroup) {
