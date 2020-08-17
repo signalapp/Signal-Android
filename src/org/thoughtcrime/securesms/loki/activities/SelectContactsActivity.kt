@@ -15,26 +15,27 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 
-const val EXTRA_RESULT_SELECTED_CONTACTS = "RESULT_SELECTED_CONTACTS"
-//const val RESULT_CREATE_PRIVATE_CHAT = 100;
-
 class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
 
-    private lateinit var selectContactsAdapter: SelectContactsAdapter
+    private val selectContactsAdapter by lazy {
+        SelectContactsAdapter(this, GlideApp.with(this))
+    }
+
+    companion object {
+        val selectedContactsKey = "selectedContactsKey"
+    }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+
         setContentView(R.layout.activity_select_contacts)
         supportActionBar!!.title = resources.getString(R.string.activity_select_contacts_title)
 
-        this.selectContactsAdapter = SelectContactsAdapter(this, GlideApp.with(this))
         recyclerView.adapter = selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-//        btnCreateNewPrivateChat.setOnClickListener { closeAndCreatePrivateChat() }
 
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
@@ -74,16 +75,11 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
         return super.onOptionsItemSelected(item)
     }
 
-//    private fun closeAndCreatePrivateChat() {
-//        setResult(RESULT_CREATE_PRIVATE_CHAT)
-//        finish()
-//    }
-
     private fun closeAndReturnSelected() {
-        val selectedMembers = this.selectContactsAdapter.selectedMembers
+        val selectedMembers = selectContactsAdapter.selectedMembers
         val selectedContacts = selectedMembers.toTypedArray()
         val intent = Intent()
-        intent.putExtra(EXTRA_RESULT_SELECTED_CONTACTS, selectedContacts)
+        intent.putExtra(selectedContactsKey, selectedContacts)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }

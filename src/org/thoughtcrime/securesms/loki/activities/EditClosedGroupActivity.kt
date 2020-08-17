@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.loki.dialogs.GroupEditingOptionsBottomSheet
+import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -30,71 +30,66 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.io.IOException
 
-const val EXTRA_GROUP_ID = "GROUP_ID"
-const val REQ_CODE_ADD_USERS = 124
-const val LOADER_ID_MEMBERS = 0
-
-const val MAX_GROUP_MEMBERS_LEGACY = 10
-const val MAX_GROUP_MEMBERS_SSK = 50
-
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
-
-    private lateinit var memberListAdapter: EditClosedGroupMembersAdapter
     private val originalMembers = HashSet<String>()
     private val members = HashSet<String>()
-//    private var adminMembers = HashSet<String>()
+    private var hasNameChanged = false
 
     private lateinit var groupID: String
     private lateinit var originalName: String
-    private lateinit var newGroupDisplayName: String
+    private lateinit var name: String
 
-    private var nameHasChanged = false
-
-    private var isEditingGroupName = false
+    private var isEditingName = false
         set(value) {
             if (field == value) return
             field = value
-            handleIsEditingDisplayNameChanged()
+            handleIsEditingNameChanged()
         }
+
+    private val memberListAdapter by lazy {
+        EditClosedGroupMembersAdapter(this, GlideApp.with(this), this::onMemberClick)
+    }
+
+    companion object {
+        @JvmStatic val groupIDKey = "groupIDKey"
+        private val loaderID = 0
+        val addUsersRequestCode = 124
+        val legacyGroupSizeLimit = 10
+    }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+
         setContentView(R.layout.activity_edit_closed_group)
-
-        this.groupID = intent.getStringExtra(EXTRA_GROUP_ID)
-        this.originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
-        this.newGroupDisplayName = this.originalName
-
         supportActionBar!!.title = resources.getString(R.string.activity_edit_closed_group_title)
+
+        groupID = intent.getStringExtra(Companion.groupIDKey)
+        originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
+        name = originalName
 
         addMembersClosedGroupButton.setOnClickListener { onAddMembersClick() }
 
-        this.memberListAdapter = EditClosedGroupMembersAdapter(
-                this,
-                GlideApp.with(this),
-                this::onMemberClick
-        )
-        recyclerView.adapter = this.memberListAdapter
+        recyclerView.adapter = memberListAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        lblGroupNameDisplay.text = this.originalName
-        cntGroupNameDisplay.setOnClickListener { isEditingGroupName = true }
-        btnCancelGroupNameEdit.setOnClickListener { isEditingGroupName = false }
-        btnSaveGroupNameEdit.setOnClickListener { saveDisplayName() }
+        lblGroupNameDisplay.text = originalName
+        cntGroupNameDisplay.setOnClickListener { isEditingName = true }
+        btnCancelGroupNameEdit.setOnClickListener { isEditingName = false }
+        btnSaveGroupNameEdit.setOnClickListener { saveName() }
         edtGroupName.setImeActionLabel(getString(R.string.save), EditorInfo.IME_ACTION_DONE)
         edtGroupName.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
-                    saveDisplayName()
+                    saveName()
                     return@setOnEditorActionListener true
                 }
                 else -> return@setOnEditorActionListener false
             }
         }
 
-        // Setup member list loader.
-        LoaderManager.getInstance(this).initLoader(LOADER_ID_MEMBERS, null, object : LoaderManager.LoaderCallbacks<List<String>> {
+        LoaderManager.getInstance(this).initLoader(Companion.loaderID, null, object : LoaderManager.LoaderCallbacks<List<String>> {
+
             override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
                 return EditClosedGroupLoader(this@EditClosedGroupActivity, groupID)
             }
@@ -102,7 +97,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
                 // We no longer need any subsequent loading events
                 // (they will occur on every activity resume).
-                LoaderManager.getInstance(this@EditClosedGroupActivity).destroyLoader(LOADER_ID_MEMBERS)
+                LoaderManager.getInstance(this@EditClosedGroupActivity).destroyLoader(Companion.loaderID)
 
                 originalMembers.clear()
                 originalMembers.addAll(members.toHashSet())
@@ -122,66 +117,26 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     // endregion
 
     // region Updating
-    private fun updateMembers(members: Set<String>) {
-        this.members.clear()
-        this.members.addAll(members)
-        this.memberListAdapter.setMembers(members)
-
-        val localUserPublicKey = TextSecurePreferences.getLocalNumber(this)
-        this.memberListAdapter.setLockedMembers(arrayListOf(localUserPublicKey))
-
-        mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
-        emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
-        invalidateOptionsMenu()
-    }
-    // endregion
-
-    // region Interaction
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.applyButton -> commitClosedGroupChanges()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun onMemberClick(member: String) {
-        val bottomSheet = GroupEditingOptionsBottomSheet()
-        bottomSheet.onRemoveTapped = {
-            val changedMembers = members - member
-            updateMembers(changedMembers)
-            bottomSheet.dismiss()
-        }
- //       bottomSheet.onAdminTapped = {
- //           bottomSheet.dismiss()
- //       }
-        bottomSheet.show(supportFragmentManager, "MEMBER_BOTTOM_SHEET")
-    }
-
-    private fun onAddMembersClick() {
-        val intent = Intent(this@EditClosedGroupActivity, SelectContactsActivity::class.java)
-        startActivityForResult(intent, REQ_CODE_ADD_USERS)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            REQ_CODE_ADD_USERS -> {
+            Companion.addUsersRequestCode -> {
                 if (resultCode != RESULT_OK) return
-                if (data == null || data.extras == null || !data.hasExtra(EXTRA_RESULT_SELECTED_CONTACTS)) return
+                if (data == null || data.extras == null || !data.hasExtra(SelectContactsActivity.selectedContactsKey)) return
 
-                val selectedContacts = data.extras!!.getStringArray(EXTRA_RESULT_SELECTED_CONTACTS)!!.toSet()
+                val selectedContacts = data.extras!!.getStringArray(SelectContactsActivity.selectedContactsKey)!!.toSet()
                 val changedMembers = members + selectedContacts
                 updateMembers(changedMembers)
             }
         }
     }
 
-    private fun handleIsEditingDisplayNameChanged() {
-        cntGroupNameEdit.visibility = if (isEditingGroupName) View.VISIBLE else View.INVISIBLE
-        cntGroupNameDisplay.visibility = if (isEditingGroupName) View.INVISIBLE else View.VISIBLE
+    private fun handleIsEditingNameChanged() {
+        cntGroupNameEdit.visibility = if (isEditingName) View.VISIBLE else View.INVISIBLE
+        cntGroupNameDisplay.visibility = if (isEditingName) View.INVISIBLE else View.VISIBLE
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        if (isEditingGroupName) {
-            edtGroupName.setText(newGroupDisplayName)
+        if (isEditingName) {
+            edtGroupName.setText(name)
             edtGroupName.selectAll()
             edtGroupName.requestFocus()
             inputMethodManager.showSoftInput(edtGroupName, 0)
@@ -190,67 +145,98 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
     }
 
-    private fun saveDisplayName() {
-        val groupDisplayName = edtGroupName.text.toString().trim()
-        if (groupDisplayName.isEmpty()) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_missing_error, Toast.LENGTH_SHORT).show()
+    private fun updateMembers(members: Set<String>) {
+        this.members.clear()
+        this.members.addAll(members)
+        memberListAdapter.setMembers(members)
+
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        memberListAdapter.setLockedMembers(arrayListOf(userPublicKey))
+
+        mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
+        emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
+
+        invalidateOptionsMenu()
+    }
+    // endregion
+
+    // region Interaction
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.applyButton -> commitChanges()
         }
-//        if (groupDisplayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
-        if (groupDisplayName.length >= 64) {
-            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_too_long_error, Toast.LENGTH_SHORT).show()
-        }
-//        if (!groupDisplayName.matches(Regex("[a-zA-Z0-9_]+"))) {
-//            return Toast.makeText(this, R.string.activity_settings_invalid_display_name_error, Toast.LENGTH_SHORT).show()
-//        }
-        newGroupDisplayName = groupDisplayName
-        lblGroupNameDisplay.text = groupDisplayName
-        nameHasChanged = true
-        isEditingGroupName = false
+        return super.onOptionsItemSelected(item)
     }
 
-    private fun commitClosedGroupChanges() {
-        val membersHaveChanged = members.size != originalMembers.size || !members.containsAll(originalMembers)
+    private fun onMemberClick(member: String) {
+        val bottomSheet = ClosedGroupEditingOptionsBottomSheet()
+        bottomSheet.onRemoveTapped = {
+            val changedMembers = members - member
+            updateMembers(changedMembers)
+            bottomSheet.dismiss()
+        }
+        bottomSheet.show(supportFragmentManager, "GroupEditingOptionsBottomSheet")
+    }
 
-        if (!nameHasChanged && !membersHaveChanged) {
-            finish()
-            return
+    private fun onAddMembersClick() {
+        val intent = Intent(this@EditClosedGroupActivity, SelectContactsActivity::class.java)
+        startActivityForResult(intent, Companion.addUsersRequestCode)
+    }
+
+    private fun saveName() {
+        val name = edtGroupName.text.toString().trim()
+        if (name.isEmpty()) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_missing_error, Toast.LENGTH_SHORT).show()
+        }
+        if (name.length >= 64) {
+            return Toast.makeText(this, R.string.activity_edit_closed_group_group_name_too_long_error, Toast.LENGTH_SHORT).show()
+        }
+        this.name = name
+        lblGroupNameDisplay.text = name
+        hasNameChanged = true
+        isEditingName = false
+    }
+
+    private fun commitChanges() {
+        val hasMemberListChanges = members != originalMembers
+
+        if (!hasNameChanged && !hasMemberListChanges) {
+            return finish()
         }
 
-        val groupDisplayName = if (nameHasChanged) newGroupDisplayName else originalName
+        val name = if (hasNameChanged) this.name else originalName
 
-        val finalGroupMembers = members.map {
+        val members = this.members.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
 
-//        val finalGroupAdmins = adminMembers.map {
-//            Recipient.from(this, Address.fromSerialized(it), false)
-//        }.toSet()
-        val finalGroupAdmins = finalGroupMembers.toSet() //TODO For now, consider all the users are admins.
+        val admins = members.toSet() //TODO For now, consider all the users to be admins.
 
         var isSSKBasedClosedGroup: Boolean
         var groupPublicKey: String?
         try {
-            groupPublicKey = GroupUtil.getDecodedId(groupID).toHexString()
+            groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(groupID).toHexString()
             isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
         } catch (e: IOException) {
             groupPublicKey = null
             isSSKBasedClosedGroup = false
         }
 
-        if (finalGroupMembers.size < 2) {
+        if (members.size < 2) {
             return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
-        val maxGroupMembers = if (isSSKBasedClosedGroup) MAX_GROUP_MEMBERS_SSK else MAX_GROUP_MEMBERS_LEGACY
-        if (finalGroupMembers.size > maxGroupMembers) {
+
+        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocol.groupSizeLimit else Companion.legacyGroupSizeLimit
+        if (members.size > maxGroupMembers) {
+            // TODO: Update copy for SSK based closed groups
             return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
 
         if (isSSKBasedClosedGroup) {
-            //TODO AC: Should it use "groupPublicKey" or "groupID"?
-            ClosedGroupsProtocol.update(this, groupPublicKey!!, finalGroupMembers.map { it.address.serialize() },
-                groupDisplayName, finalGroupAdmins.map { it.address.serialize() })
+            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() },
+                name, admins.map { it.address.serialize() })
         } else {
-            GroupManager.updateGroup(this, groupID, finalGroupMembers, null, groupDisplayName, finalGroupAdmins)
+            GroupManager.updateGroup(this, groupID, members, null, name, admins)
         }
         finish()
     }

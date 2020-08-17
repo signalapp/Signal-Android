@@ -8,13 +8,8 @@ import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
-class SelectContactsAdapter(
-        private val context: Context,
-        private val glide: GlideRequests)
-    : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
-
+class SelectContactsAdapter(private val context: Context, private val glide: GlideRequests) : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
     val selectedMembers = mutableSetOf<String>()
-
     var members = listOf<String>()
         set(value) { field = value; notifyDataSetChanged() }
 
@@ -34,11 +29,11 @@ class SelectContactsAdapter(
         viewHolder.view.setOnClickListener { onMemberClick(member) }
         val isSelected = selectedMembers.contains(member)
         viewHolder.view.bind(Recipient.from(
-                context,
-                Address.fromSerialized(member), false),
-                glide,
-                UserView.ActionIndicator.Tick,
-                isSelected)
+            context,
+            Address.fromSerialized(member), false),
+            glide,
+            UserView.ActionIndicator.Tick,
+            isSelected)
     }
 
     private fun onMemberClick(member: String) {

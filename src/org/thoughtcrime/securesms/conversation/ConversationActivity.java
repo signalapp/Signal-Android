@@ -1199,7 +1199,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleEditPushGroup() {
     Intent intent = new Intent(this, EditClosedGroupActivity.class);
     String groupID = this.recipient.getAddress().toGroupString();
-    intent.putExtra(EditClosedGroupActivityKt.EXTRA_GROUP_ID, groupID);
+    intent.putExtra(EditClosedGroupActivity.Companion.getGroupIDKey(), groupID);
     startActivity(intent);
   }
 

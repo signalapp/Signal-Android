@@ -9,11 +9,10 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class EditClosedGroupMembersAdapter(
-        private val context: Context,
-        private val glide: GlideRequests,
-        private val memberClickListener: ((String) -> Unit)? = null
+    private val context: Context,
+    private val glide: GlideRequests,
+    private val memberClickListener: ((String) -> Unit)? = null
 ) : RecyclerView.Adapter<EditClosedGroupMembersAdapter.ViewHolder>() {
-
     private val members = ArrayList<String>()
     private val lockedMembers = HashSet<String>()
 
@@ -42,10 +41,10 @@ class EditClosedGroupMembersAdapter(
         val lockedMember = lockedMembers.contains(member)
 
         viewHolder.view.bind(Recipient.from(
-                context,
-                Address.fromSerialized(member), false),
-                glide,
-                (if (lockedMember) UserView.ActionIndicator.None else UserView.ActionIndicator.Menu))
+            context,
+            Address.fromSerialized(member), false),
+            glide,
+            if (lockedMember) UserView.ActionIndicator.None else UserView.ActionIndicator.Menu)
 
         if (!lockedMember) {
             viewHolder.view.setOnClickListener { this.memberClickListener?.invoke(member) }

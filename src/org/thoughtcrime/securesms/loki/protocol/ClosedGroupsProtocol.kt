@@ -33,6 +33,7 @@ import java.util.*
 
 object ClosedGroupsProtocol {
     val isSharedSenderKeysEnabled = false
+    val groupSizeLimit = 10
     
     public fun createClosedGroup(context: Context, name: String, members: Collection<String>): String {
         // Prepare
