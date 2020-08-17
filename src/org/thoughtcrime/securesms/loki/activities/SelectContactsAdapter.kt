@@ -37,7 +37,7 @@ class SelectContactsAdapter(
                 context,
                 Address.fromSerialized(member), false),
                 glide,
-                UserView.ActionIndicator.CHECK_BOX,
+                UserView.ActionIndicator.Tick,
                 isSelected)
     }
 

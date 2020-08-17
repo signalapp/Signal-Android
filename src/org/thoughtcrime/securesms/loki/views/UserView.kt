@@ -15,6 +15,12 @@ import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 
 class UserView : LinearLayout {
 
+    enum class ActionIndicator {
+        None,
+        Menu,
+        Tick
+    }
+
     // region Lifecycle
     constructor(context: Context) : super(context) {
         setUpViewHierarchy()
@@ -40,12 +46,6 @@ class UserView : LinearLayout {
     // endregion
 
     // region Updating
-    enum class ActionIndicator {
-        NONE,
-        MENU,
-        CHECK_BOX,
-    }
-
     fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
@@ -55,35 +55,32 @@ class UserView : LinearLayout {
                 profilePictureView.isRSSFeed = true
             } else {
                 val threadID = GroupManager.getThreadIDFromGroupID(address, context)
-                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList()
-                        ?: listOf()
+                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
                 profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
                 profilePictureView.isRSSFeed = false
-
             }
         } else {
             profilePictureView.publicKey = address
             profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
-        tickImageView.setImageResource(R.drawable.ic_edit_white_24dp)
+        actionIndicatorImageView.setImageResource(R.drawable.ic_edit_white_24dp)
         profilePictureView.glide = glide
         profilePictureView.update()
         nameTextView.text = user.name ?: "Unknown Contact"
-
         when (actionIndicator) {
-            ActionIndicator.NONE -> {
-                tickImageView.visibility = View.GONE
+            ActionIndicator.None -> {
+                actionIndicatorImageView.visibility = View.GONE
             }
-            ActionIndicator.MENU -> {
-                tickImageView.visibility = View.VISIBLE
-                tickImageView.setImageResource(R.drawable.ic_more_horiz_white)
+            ActionIndicator.Menu -> {
+                actionIndicatorImageView.visibility = View.VISIBLE
+                actionIndicatorImageView.setImageResource(R.drawable.ic_more_horiz_white)
             }
-            ActionIndicator.CHECK_BOX -> {
-                tickImageView.visibility = View.VISIBLE
-                tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+            ActionIndicator.Tick -> {
+                actionIndicatorImageView.visibility = View.VISIBLE
+                actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
             }
         }
     }

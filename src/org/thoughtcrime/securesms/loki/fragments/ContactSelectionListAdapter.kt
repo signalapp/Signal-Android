@@ -55,7 +55,7 @@ class ContactSelectionListAdapter(private val context: Context, private val mult
             viewHolder.view.bind(
                     item.recipient,
                     glide,
-                    if (multiSelect) UserView.ActionIndicator.CHECK_BOX else UserView.ActionIndicator.NONE,
+                    if (multiSelect) UserView.ActionIndicator.Tick else UserView.ActionIndicator.None,
                     isSelected)
         } else if (viewHolder is DividerViewHolder) {
             item as ContactSelectionListItem.Header

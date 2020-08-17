@@ -45,7 +45,7 @@ class EditClosedGroupMembersAdapter(
                 context,
                 Address.fromSerialized(member), false),
                 glide,
-                (if (lockedMember) UserView.ActionIndicator.NONE else UserView.ActionIndicator.MENU))
+                (if (lockedMember) UserView.ActionIndicator.None else UserView.ActionIndicator.Menu))
 
         if (!lockedMember) {
             viewHolder.view.setOnClickListener { this.memberClickListener?.invoke(member) }

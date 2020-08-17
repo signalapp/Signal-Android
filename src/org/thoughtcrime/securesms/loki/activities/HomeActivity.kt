@@ -223,7 +223,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_CODE_CREATE_CLOSED_GROUP) {
+        if (resultCode == CreateClosedGroupActivity.closedGroupCreatedResultCode) {
             createNewPrivateChat()
         }
     }

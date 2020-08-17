@@ -17,12 +17,4 @@
         android:textColor="@color/text"
         android:text="@string/fragment_edit_group_bottom_sheet_remove"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/makeAdministrator"-->
-<!--        style="@style/ActionItem"-->
-<!--        android:drawableStart="@drawable/ic_edit_white_24dp"-->
-<!--        android:textSize="@dimen/medium_font_size"-->
-<!--        android:textColor="@color/text"-->
-<!--        android:text="@string/fragment_edit_group_bottom_sheet_admin" />-->
-
 </LinearLayout>

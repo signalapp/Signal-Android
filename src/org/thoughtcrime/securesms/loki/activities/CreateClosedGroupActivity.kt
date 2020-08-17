@@ -28,25 +28,28 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
 import java.lang.ref.WeakReference
 
-const val RESULT_CODE_CREATE_CLOSED_GROUP = 100
-
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
-
-    private lateinit var selectContactsAdapter: SelectContactsAdapter
-
     private var members = listOf<String>()
         set(value) {
             field = value
             selectContactsAdapter.members = value
         }
 
+    private val selectContactsAdapter by lazy {
+        SelectContactsAdapter(this, GlideApp.with(this))
+    }
+
+    companion object {
+        val closedGroupCreatedResultCode = 100
+    }
+
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+
         setContentView(R.layout.activity_create_closed_group)
         supportActionBar!!.title = resources.getString(R.string.activity_create_closed_group_title)
 
-        this.selectContactsAdapter = SelectContactsAdapter(this, GlideApp.with(this))
         recyclerView.adapter = this.selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -91,7 +94,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     }
 
     private fun createNewPrivateChat() {
-        setResult(RESULT_CODE_CREATE_CLOSED_GROUP)
+        setResult(Companion.closedGroupCreatedResultCode)
         finish()
     }
 
@@ -145,17 +148,17 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)
         val admin = Recipient.from(this, Address.fromSerialized(masterHexEncodedPublicKey), false)
         CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin ))
-                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+            .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
     }
     // endregion
 
-    // region Tasks
+    // region Group Creation Task (Legacy)
     internal class CreateClosedGroupTask(
-            private val activity: WeakReference<CreateClosedGroupActivity>,
-            private val profilePicture: Bitmap?,
-            private val name: String?,
-            private val members: Set<Recipient>,
-            private val admins: Set<Recipient>
+        private val activity: WeakReference<CreateClosedGroupActivity>,
+        private val profilePicture: Bitmap?,
+        private val name: String?,
+        private val members: Set<Recipient>,
+        private val admins: Set<Recipient>
     ) : AsyncTask<Void, Void, Optional<GroupManager.GroupActionResult>>() {
 
         override fun doInBackground(vararg params: Void?): Optional<GroupManager.GroupActionResult> {
@@ -176,9 +179,10 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
             }
         }
     }
-    // endregion
 }
+// endregion
 
+// region Convenience
 private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
     val intent = Intent(context, ConversationActivity::class.java)
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
@@ -186,3 +190,4 @@ private fun openConversationActivity(context: Context, threadId: Long, recipient
     intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
     context.startActivity(intent)
 }
+// endregion

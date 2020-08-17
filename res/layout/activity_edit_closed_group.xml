@@ -89,19 +89,6 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/large_spacing"
-            android:layout_marginTop="@dimen/medium_spacing"
-            android:layout_marginRight="@dimen/large_spacing"
-            android:layout_marginBottom="@dimen/medium_spacing"
-            android:textSize="@dimen/small_font_size"
-            android:textColor="@color/text"
-            android:alpha="0.6"
-            android:textAlignment="center"
-            android:text="@string/activity_edit_closed_group_explanation" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
