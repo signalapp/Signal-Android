@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_pin_selected"
         android:icon="?menu_pin_icon"
-        android:title="@string/conversation_list_batch__menu_unpin_selected"
+        android:title="@string/conversation_list_batch__menu_pin_selected"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_unpin_selected"
