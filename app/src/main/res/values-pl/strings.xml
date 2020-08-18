@@ -442,7 +442,7 @@
   <string name="LinkPreviewsMegaphone_preview_any_link">Podgląd każdego linku</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Teraz możesz pobierać podglądy linków w wysyłanych wiadomościach bezpośrednio z dowolnej strony internetowej.</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">Brak dostępnych podglądów linków</string>
+  <string name="LinkPreviewView_no_link_preview_available">Brak dostępnego podglądu linku</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string>
   <string name="PendingMembersActivity_people_you_invited">Ludzie, których zaprosiłeś(aś)</string>

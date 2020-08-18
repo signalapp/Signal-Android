@@ -1864,7 +1864,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Bližnjica k nastavitvam</string>
   <string name="conversation_list_search_description">Iskanje</string>
-  <string name="conversation_list__pinned">Pripeti</string>
+  <string name="conversation_list__pinned">Pripeto</string>
   <string name="conversation_list__chats">Pogovori</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Pripnete lahko do %1$d pogovore</string>
   <!--conversation_list_item_view-->

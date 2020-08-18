@@ -409,6 +409,7 @@
   <string name="GroupManagement_invite_multiple_users">Neid kasutajaid ei saa sinu poolt automaatselt gruppi lisada.\n\nNad on kutsutud grupiga ühinema ja ei näe grupi sõnumeid enne kui on ühinemisega nõustunud.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Keela</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Iga lingi eelvaade</string>
   <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ootel grupikutsed</string>
@@ -549,7 +550,9 @@
     <item quantity="other">Kas sa soovid tühistada %2$d %1$s poolt saadetud kutset?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sa oled juba liige</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uuenda Signal-it grupilinkide kasutamiseks</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uuenda Signal-it</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
