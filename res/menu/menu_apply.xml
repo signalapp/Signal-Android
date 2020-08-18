@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Done"
-        android:id="@+id/createClosedGroupButton"
+        android:title="@string/menu_apply_button"
+        android:id="@+id/applyButton"
+        android:icon="?menu_accept_icon"
         app:showAsAction="always" />
 
 </menu>

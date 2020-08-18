@@ -52,8 +52,11 @@ class ContactSelectionListAdapter(private val context: Context, private val mult
             item as ContactSelectionListItem.Contact
             viewHolder.view.setOnClickListener { contactClickListener?.onContactClick(item.recipient) }
             val isSelected = selectedContacts.contains(item.recipient)
-            viewHolder.view.bind(item.recipient, isSelected, glide)
-            viewHolder.view.setCheckBoxVisible(multiSelect)
+            viewHolder.view.bind(
+                    item.recipient,
+                    glide,
+                    if (multiSelect) UserView.ActionIndicator.Tick else UserView.ActionIndicator.None,
+                    isSelected)
         } else if (viewHolder is DividerViewHolder) {
             item as ContactSelectionListItem.Header
             viewHolder.view.label.text = item.name

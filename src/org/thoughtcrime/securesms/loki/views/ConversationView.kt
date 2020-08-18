@@ -80,7 +80,7 @@ class ConversationView : LinearLayout {
         profilePictureView.glide = glide
         profilePictureView.update()
         val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else if (!thread.recipient.name.isNullOrEmpty()) thread.recipient.name else thread.recipient.address.toString()
-        displayNameTextView.text = senderDisplayName
+        btnGroupNameDisplay.text = senderDisplayName
         timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)
         muteIndicatorImageView.visibility = if (thread.recipient.isMuted) VISIBLE else GONE
         val rawSnippet = thread.getDisplayBody(context)

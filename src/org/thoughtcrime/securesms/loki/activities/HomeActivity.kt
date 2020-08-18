@@ -121,7 +121,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         recyclerView.adapter = homeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Set up empty state view
-        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+        btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -223,7 +223,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == CreateClosedGroupActivity.createNewPrivateChatResultCode) {
+        if (resultCode == CreateClosedGroupActivity.closedGroupCreatedResultCode) {
             createNewPrivateChat()
         }
     }

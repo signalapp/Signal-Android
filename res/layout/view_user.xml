@@ -37,7 +37,7 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:id="@+id/tickImageView"
+            android:id="@+id/actionIndicatorImageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="@dimen/medium_spacing"

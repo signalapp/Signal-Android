@@ -152,6 +152,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
@@ -760,7 +761,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         inflater.inflate(R.menu.conversation_block, menu);
       }
     } else if (isGroupConversation() && !isOpenGroupOrRSSFeed) {
-      inflater.inflate(R.menu.conversation_group_options, menu);
+//      inflater.inflate(R.menu.conversation_group_options, menu);
 
       if (!isPushGroupConversation()) {
         inflater.inflate(R.menu.conversation_mms_group_options, menu);
@@ -1195,10 +1196,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleEditPushGroup() {
-    AlertDialog.Builder alert = new AlertDialog.Builder(this);
-    alert.setMessage("The ability to add members to a closed group is coming soon.");
-    alert.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-    alert.create().show();
+    Intent intent = new Intent(this, EditClosedGroupActivity.class);
+    String groupID = this.recipient.getAddress().toGroupString();
+    intent.putExtra(EditClosedGroupActivity.Companion.getGroupIDKey(), groupID);
+    startActivity(intent);
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
