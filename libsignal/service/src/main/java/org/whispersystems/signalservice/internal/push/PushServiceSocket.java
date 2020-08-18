@@ -15,6 +15,7 @@ import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.GroupChanges;
+import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
@@ -72,6 +73,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResp
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
+import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
@@ -93,6 +95,7 @@ import org.whispersystems.signalservice.internal.util.concurrent.FutureTransform
 import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.util.Base64;
+import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -102,7 +105,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -194,8 +196,10 @@ public class PushServiceSocket {
 
   private static final String GROUPSV2_CREDENTIAL       = "/v1/certificate/group/%d/%d";
   private static final String GROUPSV2_GROUP            = "/v1/groups/";
+  private static final String GROUPSV2_GROUP_PASSWORD   = "/v1/groups/?inviteLinkPassword=%s";
   private static final String GROUPSV2_GROUP_CHANGES    = "/v1/groups/logs/%s";
   private static final String GROUPSV2_AVATAR_REQUEST   = "/v1/groups/avatar/form";
+  private static final String GROUPSV2_GROUP_JOIN       = "/v1/groups/join/%s";
 
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
@@ -1910,6 +1914,9 @@ public class PushServiceSocket {
   private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = responseCode -> {
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();
   };
+  private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = responseCode -> {
+    if (responseCode == 403) throw new ForbiddenException();
+  };
 
   public void putNewGroupsV2Group(Group group, GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException
@@ -1967,6 +1974,18 @@ public class PushServiceSocket {
                                                GROUPS_V2_GET_LOGS_HANDLER);
 
     return GroupChanges.parseFrom(readBodyBytes(response));
+  }
+
+  public GroupJoinInfo getGroupJoinInfo(byte[] groupLinkPassword, GroupsV2AuthorizationString authorization)
+      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
+  {
+    ResponseBody response = makeStorageRequest(authorization.toString(),
+                                               String.format(GROUPSV2_GROUP_JOIN, Base64UrlSafe.encodeBytesWithoutPadding(groupLinkPassword)),
+                                               "GET",
+                                               null,
+                                               GROUPS_V2_GET_JOIN_INFO_HANDLER);
+
+    return GroupJoinInfo.parseFrom(readBodyBytes(response));
   }
 
   private final class ResumeInfo {

@@ -1,8 +1,9 @@
-package org.thoughtcrime.securesms.util;
+package org.whispersystems.util;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.whispersystems.signalservice.internal.util.Hex;
 
 import java.io.IOException;
 import java.util.Arrays;

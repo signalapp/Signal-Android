@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.signal.storageservice.protos.groups.GroupInviteLink;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.thoughtcrime.securesms.util.Base64UrlSafe;
+import org.whispersystems.util.Base64UrlSafe;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;

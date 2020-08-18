@@ -27,45 +27,63 @@ message DecryptedPendingMember {
   bytes       uuidCipherText = 5;
 }
 
+message DecryptedRequestingMember {
+  bytes  uuid       = 1;
+  bytes  profileKey = 2;
+  uint64 timestamp  = 4;
+}
+
 message DecryptedPendingMemberRemoval {
-  bytes       uuid           = 1;
-  bytes       uuidCipherText = 2;
+  bytes uuid           = 1;
+  bytes uuidCipherText = 2;
+}
+
+message DecryptedApproveMember {
+  bytes       uuid = 1;
+  Member.Role role = 2;
 }
 
 message DecryptedModifyMemberRole {
-  bytes       uuid           = 1;
-  Member.Role role           = 2;
+  bytes       uuid = 1;
+  Member.Role role = 2;
 }
 
 // Decrypted version of message Group
 // Keep field numbers in step
 message DecryptedGroup {
-           string                 title                     = 2;
-           string                 avatar                    = 3;
-           DecryptedTimer         disappearingMessagesTimer = 4;
-           AccessControl          accessControl             = 5;
-           uint32                 revision                  = 6;
-  repeated DecryptedMember        members                   = 7;
-  repeated DecryptedPendingMember pendingMembers            = 8;
+           string                    title                     = 2;
+           string                    avatar                    = 3;
+           DecryptedTimer            disappearingMessagesTimer = 4;
+           AccessControl             accessControl             = 5;
+           uint32                    revision                  = 6;
+  repeated DecryptedMember           members                   = 7;
+  repeated DecryptedPendingMember    pendingMembers            = 8;
+  repeated DecryptedRequestingMember requestingMembers         = 9;
+           bytes                     inviteLinkPassword        = 10;
 }
 
 // Decrypted version of message GroupChange.Actions
 // Keep field numbers in step
 message DecryptedGroupChange {
-           bytes                         editor                = 1;
-           uint32                        revision              = 2;
-  repeated DecryptedMember               newMembers            = 3;
-  repeated bytes                         deleteMembers         = 4;
-  repeated DecryptedModifyMemberRole     modifyMemberRoles     = 5;
-  repeated DecryptedMember               modifiedProfileKeys   = 6;
-  repeated DecryptedPendingMember        newPendingMembers     = 7;
-  repeated DecryptedPendingMemberRemoval deletePendingMembers  = 8;
-  repeated DecryptedMember               promotePendingMembers = 9;
-           DecryptedString               newTitle              = 10;
-           DecryptedString               newAvatar             = 11;
-           DecryptedTimer                newTimer              = 12;
-           AccessControl.AccessRequired  newAttributeAccess    = 13;
-           AccessControl.AccessRequired  newMemberAccess       = 14;
+           bytes                         editor                   = 1;
+           uint32                        revision                 = 2;
+  repeated DecryptedMember               newMembers               = 3;
+  repeated bytes                         deleteMembers            = 4;
+  repeated DecryptedModifyMemberRole     modifyMemberRoles        = 5;
+  repeated DecryptedMember               modifiedProfileKeys      = 6;
+  repeated DecryptedPendingMember        newPendingMembers        = 7;
+  repeated DecryptedPendingMemberRemoval deletePendingMembers     = 8;
+  repeated DecryptedMember               promotePendingMembers    = 9;
+           DecryptedString               newTitle                 = 10;
+           DecryptedString               newAvatar                = 11;
+           DecryptedTimer                newTimer                 = 12;
+           AccessControl.AccessRequired  newAttributeAccess       = 13;
+           AccessControl.AccessRequired  newMemberAccess          = 14;
+           AccessControl.AccessRequired  newInviteLinkAccess      = 15;
+  repeated DecryptedRequestingMember     newRequestingMembers     = 16;
+  repeated bytes                         deleteRequestingMembers  = 17;
+  repeated DecryptedApproveMember        promoteRequestingMembers = 18;
+           bytes                         newInviteLinkPassword    = 19;
 }
 
 message DecryptedString {
@@ -74,4 +92,12 @@ message DecryptedString {
 
 message DecryptedTimer {
   uint32 duration = 1;
+}
+
+message DecryptedGroupJoinInfo {
+  string                       title             = 2;
+  string                       avatar            = 3;
+  uint32                       memberCount       = 4;
+  AccessControl.AccessRequired addFromInviteLink = 5;
+  uint32                       revision          = 6;
 }

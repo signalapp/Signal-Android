@@ -1,8 +1,4 @@
-package org.thoughtcrime.securesms.util;
-
-import androidx.annotation.NonNull;
-
-import org.whispersystems.util.Base64;
+package org.whispersystems.util;
 
 import java.io.IOException;
 
@@ -11,11 +7,11 @@ public final class Base64UrlSafe {
   private Base64UrlSafe() {
   }
 
-  public static @NonNull byte[] decode(@NonNull String s) throws IOException {
+  public static byte[] decode(String s) throws IOException {
     return Base64.decode(s, Base64.URL_SAFE);
   }
 
-  public static @NonNull byte[] decodePaddingAgnostic(@NonNull String s) throws IOException {
+  public static byte[] decodePaddingAgnostic(String s) throws IOException {
     switch (s.length() % 4) {
       case 1:
       case 3: s = s + "="; break;
@@ -24,7 +20,7 @@ public final class Base64UrlSafe {
     return decode(s);
   }
 
-  public static @NonNull String encodeBytes(@NonNull byte[] source) {
+  public static String encodeBytes(byte[] source) {
     try {
       return Base64.encodeBytes(source, Base64.URL_SAFE);
     } catch (IOException e) {
@@ -32,7 +28,7 @@ public final class Base64UrlSafe {
     }
   }
 
-  public static @NonNull String encodeBytesWithoutPadding(@NonNull byte[] source) {
+  public static String encodeBytesWithoutPadding(byte[] source) {
     return encodeBytes(source).replace("=", "");
   }
 }

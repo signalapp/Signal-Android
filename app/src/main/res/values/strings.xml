@@ -463,6 +463,7 @@
     <string name="GroupMembersDialog_you">You</string>
 
     <!-- GV2 access levels -->
+    <string name="GroupManagement_access_level_anyone">Anyone</string>
     <string name="GroupManagement_access_level_all_members">All members</string>
     <string name="GroupManagement_access_level_only_admins">Only admins</string>
     <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
@@ -913,6 +914,41 @@
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">You changed who can edit group membership to \"%1$s\".</string>
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s changed who can edit group membership to \"%2$s\".</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Who can edit group membership has been changed to \"%1$s\".</string>
+
+    <!-- GV2 group link invite access level change -->
+    <string name="MessageRecord_you_turned_on_the_sharable_group_link">You turned on the sharable group link.</string>
+    <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">You turned on the sharable group link with admin approval.</string>
+    <string name="MessageRecord_you_turned_off_the_sharable_group_link">You turned off the sharable group link.</string>
+    <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s turned on the sharable group link.</string>
+    <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s turned on the sharable group link with admin approval.</string>
+    <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s turned off the sharable group link.</string>
+    <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">The sharable group link has been turned on.</string>
+    <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">The sharable group link has been turned on with admin approval.</string>
+    <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">The sharable group link has been turned off.</string>
+
+    <!-- GV2 group link reset -->
+    <string name="MessageRecord_you_reset_the_sharable_group_link">You reset the sharable group link.</string>
+    <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s reset the sharable group link.</string>
+    <string name="MessageRecord_the_sharable_group_link_has_been_reset">The sharable group link has been reset.</string>
+
+    <!-- GV2 group link joins -->
+    <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">You joined the group via the sharable group link.</string>
+    <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s joined the group via the sharable group link.</string>
+
+    <!-- GV2 group link requests -->
+    <string name="MessageRecord_you_sent_a_request_to_join_the_group">You sent a request to join the group.</string>
+    <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s requested to join via the sharable group link.</string>
+
+    <!-- GV2 group link approvals -->
+    <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s approved your request to join the group.</string>
+    <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s approved a request to join the group from %2$s.</string>
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Your request to join the group has been approved.</string>
+    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">A request to join the group from %1$s has been approved.</string>
+
+    <!-- GV2 group link deny -->
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Your request to join the group has been denied by an admin.</string>
+    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s denied a request to join the group from %2$s.</string>
+    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">A request to join the group from %1$s has been denied.</string>
 
     <!-- End of GV2 specific update messages -->
 

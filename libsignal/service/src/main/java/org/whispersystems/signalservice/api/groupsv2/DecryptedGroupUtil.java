@@ -4,12 +4,14 @@ import com.google.protobuf.ByteString;
 
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
+import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -25,8 +27,6 @@ import java.util.UUID;
 public final class DecryptedGroupUtil {
 
   private static final String TAG = DecryptedGroupUtil.class.getSimpleName();
-
-  static final int MAX_CHANGE_FIELD = 14;
 
   public static ArrayList<UUID> toUuidList(Collection<DecryptedMember> membersList) {
     ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
@@ -256,6 +256,16 @@ public final class DecryptedGroupUtil {
 
     applyModifyMembersAccessControlAction(builder, change);
 
+    applyModifyAddFromInviteLinkAccessControlAction(builder, change);
+
+    applyAddRequestingMembers(builder, change.getNewRequestingMembersList());
+
+    applyDeleteRequestingMembers(builder, change.getDeleteRequestingMembersList());
+
+    applyPromoteRequestingMemberActions(builder, change.getPromoteRequestingMembersList());
+
+    applyInviteLinkPassword(builder, change);
+
     return builder.build();
   }
 
@@ -286,11 +296,12 @@ public final class DecryptedGroupUtil {
         throw new NotAbleToApplyGroupV2ChangeException();
       }
 
-      if (modifyMemberRole.getRole() != Member.Role.ADMINISTRATOR && modifyMemberRole.getRole() != Member.Role.DEFAULT) {
-        throw new NotAbleToApplyGroupV2ChangeException();
-      }
+      Member.Role role = modifyMemberRole.getRole();
 
-      builder.setMembers(index, DecryptedMember.newBuilder(builder.getMembers(index)).setRole(modifyMemberRole.getRole()).build());
+      ensureKnownRole(role);
+
+      builder.setMembers(index, DecryptedMember.newBuilder(builder.getMembers(index))
+                                               .setRole(role));
     }
   }
 
@@ -366,18 +377,74 @@ public final class DecryptedGroupUtil {
   }
 
   protected static void applyModifyAttributesAccessControlAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
-    if (change.getNewAttributeAccess() != AccessControl.AccessRequired.UNKNOWN) {
+    AccessControl.AccessRequired newAccessLevel = change.getNewAttributeAccess();
+
+    if (newAccessLevel != AccessControl.AccessRequired.UNKNOWN) {
       builder.setAccessControl(AccessControl.newBuilder(builder.getAccessControl())
-             .setAttributesValue(change.getNewAttributeAccessValue())
-             .build());
+                                            .setAttributesValue(change.getNewAttributeAccessValue()));
     }
   }
 
   protected static void applyModifyMembersAccessControlAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
-    if (change.getNewMemberAccess() != AccessControl.AccessRequired.UNKNOWN) {
+    AccessControl.AccessRequired newAccessLevel = change.getNewMemberAccess();
+
+    if (newAccessLevel != AccessControl.AccessRequired.UNKNOWN) {
       builder.setAccessControl(AccessControl.newBuilder(builder.getAccessControl())
-                                 .setMembersValue(change.getNewMemberAccessValue())
-                                 .build());
+                                            .setMembersValue(change.getNewMemberAccessValue()));
+    }
+  }
+
+  protected static void applyModifyAddFromInviteLinkAccessControlAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    AccessControl.AccessRequired newAccessLevel = change.getNewInviteLinkAccess();
+
+    if (newAccessLevel != AccessControl.AccessRequired.UNKNOWN) {
+      builder.setAccessControl(AccessControl.newBuilder(builder.getAccessControl())
+                                            .setAddFromInviteLink(newAccessLevel));
+    }
+  }
+
+  private static void applyAddRequestingMembers(DecryptedGroup.Builder builder, List<DecryptedRequestingMember> newRequestingMembers) {
+    builder.addAllRequestingMembers(newRequestingMembers);
+  }
+
+  private static void applyDeleteRequestingMembers(DecryptedGroup.Builder builder, List<ByteString> deleteRequestingMembersList) {
+    for (ByteString removedMember : deleteRequestingMembersList) {
+      int index = indexOfUuidInRequestingList(builder.getRequestingMembersList(), removedMember);
+
+      if (index == -1) {
+        Log.w(TAG, "Deleted member on change not found in group");
+        continue;
+      }
+
+      builder.removeRequestingMembers(index);
+    }
+  }
+
+  private static void applyPromoteRequestingMemberActions(DecryptedGroup.Builder builder, List<DecryptedApproveMember> promoteRequestingMembers) throws NotAbleToApplyGroupV2ChangeException {
+    for (DecryptedApproveMember approvedMember : promoteRequestingMembers) {
+      int index = indexOfUuidInRequestingList(builder.getRequestingMembersList(), approvedMember.getUuid());
+
+      if (index == -1) {
+        Log.w(TAG, "Deleted member on change not found in group");
+        continue;
+      }
+
+      DecryptedRequestingMember requestingMember = builder.getRequestingMembers(index);
+      Member.Role               role             = approvedMember.getRole();
+
+      ensureKnownRole(role);
+
+      builder.removeRequestingMembers(index)
+             .addMembers(DecryptedMember.newBuilder()
+                                        .setUuid(approvedMember.getUuid())
+                                        .setProfileKey(requestingMember.getProfileKey())
+                                        .setRole(role));
+    }
+  }
+
+  private static void applyInviteLinkPassword(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    if (!change.getNewInviteLinkPassword().isEmpty()) {
+      builder.setInviteLinkPassword(change.getNewInviteLinkPassword());
     }
   }
 
@@ -418,9 +485,22 @@ public final class DecryptedGroupUtil {
     }
   }
 
+  private static void ensureKnownRole(Member.Role role) throws NotAbleToApplyGroupV2ChangeException {
+    if (role != Member.Role.ADMINISTRATOR && role != Member.Role.DEFAULT) {
+      throw new NotAbleToApplyGroupV2ChangeException();
+    }
+  }
+
   private static int indexOfUuid(List<DecryptedMember> memberList, ByteString uuid) {
     for (int i = 0; i < memberList.size(); i++) {
-      if(uuid.equals(memberList.get(i).getUuid())) return i;
+      if (uuid.equals(memberList.get(i).getUuid())) return i;
+    }
+    return -1;
+  }
+
+  private static int indexOfUuidInRequestingList(List<DecryptedRequestingMember> memberList, ByteString uuid) {
+    for (int i = 0; i < memberList.size(); i++) {
+      if (uuid.equals(memberList.get(i).getUuid())) return i;
     }
     return -1;
   }
@@ -437,17 +517,22 @@ public final class DecryptedGroupUtil {
   }
 
   public static boolean changeIsEmptyExceptForProfileKeyChanges(DecryptedGroupChange change) {
-    return change.getNewMembersCount()            == 0 && // field 3
-           change.getDeleteMembersCount()         == 0 && // field 4
-           change.getModifyMemberRolesCount()     == 0 && // field 5
-           change.getNewPendingMembersCount()     == 0 && // field 7
-           change.getDeletePendingMembersCount()  == 0 && // field 8
-           change.getPromotePendingMembersCount() == 0 && // field 9
-           !change.hasNewTitle()                       && // field 10
-           !change.hasNewAvatar()                      && // field 11
-           !change.hasNewTimer()                       && // field 12
-           isSet(change.getNewAttributeAccess())       && // field 13
-           isSet(change.getNewMemberAccess());            // field 14
+    return change.getNewMembersCount()               == 0 && // field 3
+           change.getDeleteMembersCount()            == 0 && // field 4
+           change.getModifyMemberRolesCount()        == 0 && // field 5
+           change.getNewPendingMembersCount()        == 0 && // field 7
+           change.getDeletePendingMembersCount()     == 0 && // field 8
+           change.getPromotePendingMembersCount()    == 0 && // field 9
+           !change.hasNewTitle()                          && // field 10
+           !change.hasNewAvatar()                         && // field 11
+           !change.hasNewTimer()                          && // field 12
+           isSet(change.getNewAttributeAccess())          && // field 13
+           isSet(change.getNewMemberAccess())             && // field 14
+           isSet(change.getNewInviteLinkAccess())         && // field 15
+           change.getNewRequestingMembersCount()     == 0 && // field 16
+           change.getDeleteRequestingMembersCount()  == 0 && // field 17
+           change.getPromoteRequestingMembersCount() == 0 && // field 18
+           change.getNewInviteLinkPassword().size()  == 0;   // field 19
   }
 
   static boolean isSet(AccessControl.AccessRequired newAttributeAccess) {

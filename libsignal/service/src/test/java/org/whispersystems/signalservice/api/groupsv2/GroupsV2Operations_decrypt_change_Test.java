@@ -8,11 +8,13 @@ import org.junit.Test;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
+import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.zkgroup.InvalidInputException;
@@ -83,6 +85,23 @@ public final class GroupsV2Operations_decrypt_change_Test {
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
     assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), self)
+                                    .setRevision(10),
+                     DecryptedGroupChange.newBuilder()
+                                         .setRevision(10)
+                                         .addNewMembers(DecryptedMember.newBuilder()
+                                                                       .setRole(Member.Role.DEFAULT)
+                                                                       .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
+                                                                       .setJoinedAtRevision(10)
+                                                                       .setUuid(UuidUtil.toByteString(newMember))));
+  }
+
+  @Test
+  public void can_decrypt_member_direct_join_field3() {
+    UUID           newMember      = UUID.randomUUID();
+    ProfileKey     profileKey     = newProfileKey();
+    GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
+
+    assertDecryption(groupOperations.createGroupJoinDirect(groupCandidate.getProfileKeyCredential().get())
                                     .setRevision(10),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
@@ -266,20 +285,80 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   @Test
   public void can_pass_through_new_attribute_access_rights_field_13() {
-    assertDecryption(GroupChange.Actions.newBuilder()
-                                        .setModifyAttributesAccess(GroupChange.Actions.ModifyAttributesAccessControlAction.newBuilder()
-                                                                              .setAttributesAccess(AccessControl.AccessRequired.MEMBER)),
-                      DecryptedGroupChange.newBuilder()
-                                          .setNewAttributeAccess(AccessControl.AccessRequired.MEMBER));
+    assertDecryption(groupOperations.createChangeAttributesRights(AccessControl.AccessRequired.MEMBER),
+                     DecryptedGroupChange.newBuilder()
+                                         .setNewAttributeAccess(AccessControl.AccessRequired.MEMBER));
   }
 
   @Test
   public void can_pass_through_new_membership_rights_field_14() {
+    assertDecryption(groupOperations.createChangeMembershipRights(AccessControl.AccessRequired.ADMINISTRATOR),
+                     DecryptedGroupChange.newBuilder()
+                                         .setNewMemberAccess(AccessControl.AccessRequired.ADMINISTRATOR));
+  }
+
+  @Test
+  public void can_pass_through_new_add_by_invite_link_rights_field_15() {
+    assertDecryption(groupOperations.createChangeJoinByLinkRights(AccessControl.AccessRequired.ADMINISTRATOR),
+                     DecryptedGroupChange.newBuilder()
+                                         .setNewInviteLinkAccess(AccessControl.AccessRequired.ADMINISTRATOR));
+  }
+
+  @Test
+  public void can_pass_through_new_add_by_invite_link_rights_field_15_unsatisfiable() {
+    assertDecryption(groupOperations.createChangeJoinByLinkRights(AccessControl.AccessRequired.UNSATISFIABLE),
+                     DecryptedGroupChange.newBuilder()
+                                         .setNewInviteLinkAccess(AccessControl.AccessRequired.UNSATISFIABLE));
+  }
+
+  @Test
+  public void can_decrypt_member_requests_field16() {
+    UUID           newRequestingMember = UUID.randomUUID();
+    ProfileKey     profileKey          = newProfileKey();
+    GroupCandidate groupCandidate      = groupCandidate(newRequestingMember, profileKey);
+
+    assertDecryption(groupOperations.createGroupJoinRequest(groupCandidate.getProfileKeyCredential().get())
+                                    .setRevision(10),
+                     DecryptedGroupChange.newBuilder()
+                                         .setRevision(10)
+                                         .addNewRequestingMembers(DecryptedRequestingMember.newBuilder()
+                                                                                           .setUuid(UuidUtil.toByteString(newRequestingMember))
+                                                                                           .setProfileKey(ByteString.copyFrom(profileKey.serialize()))));
+  }
+
+  @Test
+  public void can_decrypt_member_requests_refusals_field17() {
+    UUID newRequestingMember = UUID.randomUUID();
+
+    assertDecryption(groupOperations.createRefuseGroupJoinRequest(Collections.singleton(newRequestingMember))
+                                    .setRevision(10),
+                     DecryptedGroupChange.newBuilder()
+                                         .setRevision(10)
+                                         .addDeleteRequestingMembers(UuidUtil.toByteString(newRequestingMember)));
+  }
+
+  @Test
+  public void can_decrypt_promote_requesting_members_field18() {
+    UUID newRequestingMember = UUID.randomUUID();
+
+    assertDecryption(groupOperations.createApproveGroupJoinRequest(Collections.singleton(newRequestingMember))
+                                    .setRevision(15),
+                     DecryptedGroupChange.newBuilder()
+                                         .setRevision(15)
+                                         .addPromoteRequestingMembers(DecryptedApproveMember.newBuilder()
+                                                                                            .setRole(Member.Role.DEFAULT)
+                                                                                            .setUuid(UuidUtil.toByteString(newRequestingMember))));
+  }
+
+  @Test
+  public void can_pass_through_new_invite_link_password_field19() {
+    byte[] newPassword = Util.getSecretBytes(16);
+
     assertDecryption(GroupChange.Actions.newBuilder()
-                                        .setModifyMemberAccess(GroupChange.Actions.ModifyMembersAccessControlAction.newBuilder()
-                                                                          .setMembersAccess(AccessControl.AccessRequired.ADMINISTRATOR)),
+                                        .setModifyInviteLinkPassword(GroupChange.Actions.ModifyInviteLinkPasswordAction.newBuilder()
+                                                                                        .setInviteLinkPassword(ByteString.copyFrom(newPassword))),
                       DecryptedGroupChange.newBuilder()
-                                          .setNewMemberAccess(AccessControl.AccessRequired.ADMINISTRATOR));
+                                          .setNewInviteLinkPassword(ByteString.copyFrom(newPassword)));
   }
 
   private static ProfileKey newProfileKey() {

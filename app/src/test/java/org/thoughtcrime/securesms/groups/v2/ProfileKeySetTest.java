@@ -6,13 +6,11 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
 
-import java.util.Collection;
 import java.util.UUID;
 
 import edu.emory.mathcs.backport.java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeBy;
@@ -178,5 +176,30 @@ public final class ProfileKeySetTest {
     assertTrue(profileKeySet.getProfileKeys().isEmpty());
     assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
     assertThat(logRecorder.getWarnings(), hasMessages("Bad profile key in group"));
+  }
+
+  @Test
+  public void new_requesting_member_if_editor_is_authoritative() {
+    UUID          editor        = UUID.randomUUID();
+    ProfileKey    profileKey    = ProfileKeyUtil.createNew();
+    ProfileKeySet profileKeySet = new ProfileKeySet();
+
+    profileKeySet.addKeysFromGroupChange(changeBy(editor).requestJoin(profileKey).build());
+
+    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(editor, profileKey)));
+    assertTrue(profileKeySet.getProfileKeys().isEmpty());
+  }
+
+  @Test
+  public void new_requesting_member_if_not_editor_is_not_authoritative() {
+    UUID          editor        = UUID.randomUUID();
+    UUID          requesting    = UUID.randomUUID();
+    ProfileKey    profileKey    = ProfileKeyUtil.createNew();
+    ProfileKeySet profileKeySet = new ProfileKeySet();
+
+    profileKeySet.addKeysFromGroupChange(changeBy(editor).requestJoin(requesting, profileKey).build());
+
+    assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
+    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(requesting, profileKey)));
   }
 }

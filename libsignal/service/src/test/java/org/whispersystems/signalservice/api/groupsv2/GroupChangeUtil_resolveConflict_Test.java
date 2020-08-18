@@ -13,23 +13,68 @@ import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.admin;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.approveMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.demoteAdmin;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.encrypt;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.encryptedMember;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.encryptedRequestingMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.member;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingMemberRemoval;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.presentation;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.promoteAdmin;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.randomProfileKey;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.requestingMember;
+import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
 public final class GroupChangeUtil_resolveConflict_Test {
+
+  /**
+   * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
+   * <p>
+   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict}.
+   */
+  @Test
+  public void ensure_resolveConflict_knows_about_all_fields_of_DecryptedGroupChange() {
+    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
+
+    assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
+                 19, maxFieldFound);
+  }
+
+  /**
+   * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
+   * <p>
+   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict}.
+   */
+  @Test
+  public void ensure_resolveConflict_knows_about_all_fields_of_GroupChange() {
+    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
+
+    assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + GroupChange.class.getName(),
+                 19, maxFieldFound);
+  }
+
+    /**
+   * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
+   * <p>
+   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict}.
+   */
+  @Test
+  public void ensure_resolveConflict_knows_about_all_fields_of_DecryptedGroup() {
+    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
+
+    assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
+                 10, maxFieldFound);
+  }
+
 
   @Test
   public void empty_actions() {
@@ -470,5 +515,161 @@ public final class GroupChangeUtil_resolveConflict_Test {
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     assertTrue(GroupChangeUtil.changeIsEmpty(resolvedActions));
+  }
+
+  @Test
+  public void field_15__no_membership_access_change_is_removed() {
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setAccessControl(AccessControl.newBuilder().setAddFromInviteLink(AccessControl.AccessRequired.ADMINISTRATOR))
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewInviteLinkAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyAddFromInviteLinkAccess(GroupChange.Actions.ModifyAddFromInviteLinkAccessControlAction.newBuilder().setAddFromInviteLinkAccess(AccessControl.AccessRequired.ADMINISTRATOR))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    assertTrue(GroupChangeUtil.changeIsEmpty(resolvedActions));
+  }
+
+  @Test
+  public void field_16__changes_to_add_requesting_members_when_full_members_are_removed() {
+    UUID                 member1         = UUID.randomUUID();
+    UUID                 member2         = UUID.randomUUID();
+    UUID                 member3         = UUID.randomUUID();
+    ProfileKey           profileKey2     = randomProfileKey();
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .addMembers(member(member1))
+                                                         .addMembers(member(member3))
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .addNewRequestingMembers(requestingMember(member1))
+                                                               .addNewRequestingMembers(requestingMember(member2))
+                                                               .addNewRequestingMembers(requestingMember(member3))
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member1, randomProfileKey())))
+                                                              .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member2, profileKey2)))
+                                                              .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member3, randomProfileKey())))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    GroupChange.Actions expected = GroupChange.Actions.newBuilder()
+                                                      .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member2, profileKey2)))
+                                                      .build();
+    assertEquals(expected, resolvedActions);
+  }
+
+  @Test
+  public void field_16__changes_to_add_requesting_members_when_pending_are_promoted() {
+    UUID                 member1         = UUID.randomUUID();
+    UUID                 member2         = UUID.randomUUID();
+    UUID                 member3         = UUID.randomUUID();
+    ProfileKey           profileKey1     = randomProfileKey();
+    ProfileKey           profileKey2     = randomProfileKey();
+    ProfileKey           profileKey3     = randomProfileKey();
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .addPendingMembers(pendingMember(member1))
+                                                         .addPendingMembers(pendingMember(member3))
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .addNewRequestingMembers(requestingMember(member1, profileKey1))
+                                                               .addNewRequestingMembers(requestingMember(member2, profileKey2))
+                                                               .addNewRequestingMembers(requestingMember(member3, profileKey3))
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member1, profileKey1)))
+                                                              .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member2, profileKey2)))
+                                                              .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member3, profileKey3)))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    GroupChange.Actions expected = GroupChange.Actions.newBuilder()
+                                                      .addPromotePendingMembers(GroupChange.Actions.PromotePendingMemberAction.newBuilder().setPresentation(presentation(member1, profileKey1)))
+                                                      .addAddRequestingMembers(GroupChange.Actions.AddRequestingMemberAction.newBuilder().setAdded(encryptedRequestingMember(member2, profileKey2)))
+                                                      .addPromotePendingMembers(GroupChange.Actions.PromotePendingMemberAction.newBuilder().setPresentation(presentation(member3, profileKey3)))
+                                                      .build();
+    assertEquals(expected, resolvedActions);
+  }
+
+  @Test
+  public void field_17__changes_to_remove_missing_requesting_members_are_excluded() {
+    UUID                 member1         = UUID.randomUUID();
+    UUID                 member2         = UUID.randomUUID();
+    UUID                 member3         = UUID.randomUUID();
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .addRequestingMembers(requestingMember(member2))
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .addDeleteRequestingMembers(UuidUtil.toByteString(member1))
+                                                               .addDeleteRequestingMembers(UuidUtil.toByteString(member2))
+                                                               .addDeleteRequestingMembers(UuidUtil.toByteString(member3))
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .addDeleteRequestingMembers(GroupChange.Actions.DeleteRequestingMemberAction.newBuilder().setDeletedUserId(encrypt(member1)))
+                                                              .addDeleteRequestingMembers(GroupChange.Actions.DeleteRequestingMemberAction.newBuilder().setDeletedUserId(encrypt(member2)))
+                                                              .addDeleteRequestingMembers(GroupChange.Actions.DeleteRequestingMemberAction.newBuilder().setDeletedUserId(encrypt(member3)))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    GroupChange.Actions expected = GroupChange.Actions.newBuilder()
+                                                      .addDeleteRequestingMembers(GroupChange.Actions.DeleteRequestingMemberAction.newBuilder().setDeletedUserId(encrypt(member2)))
+                                                      .build();
+    assertEquals(expected, resolvedActions);
+  }
+
+  @Test
+  public void field_18__promote_requesting_members() {
+    UUID                 member1         = UUID.randomUUID();
+    UUID                 member2         = UUID.randomUUID();
+    UUID                 member3         = UUID.randomUUID();
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .addMembers(member(member1))
+                                                         .addRequestingMembers(requestingMember(member2))
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .addPromoteRequestingMembers(approveMember(member1))
+                                                               .addPromoteRequestingMembers(approveMember(member2))
+                                                               .addPromoteRequestingMembers(approveMember(member3))
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .addPromoteRequestingMembers(GroupChange.Actions.PromoteRequestingMemberAction.newBuilder().setRole(Member.Role.DEFAULT).setUserId(UuidUtil.toByteString(member1)))
+                                                              .addPromoteRequestingMembers(GroupChange.Actions.PromoteRequestingMemberAction.newBuilder().setRole(Member.Role.DEFAULT).setUserId(UuidUtil.toByteString(member2)))
+                                                              .addPromoteRequestingMembers(GroupChange.Actions.PromoteRequestingMemberAction.newBuilder().setRole(Member.Role.DEFAULT).setUserId(UuidUtil.toByteString(member3)))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    GroupChange.Actions expected = GroupChange.Actions.newBuilder()
+                                                      .addPromoteRequestingMembers(GroupChange.Actions.PromoteRequestingMemberAction.newBuilder().setRole(Member.Role.DEFAULT).setUserId(UuidUtil.toByteString(member2)))
+                                                      .build();
+    assertEquals(expected, resolvedActions);
+  }
+
+  @Test
+  public void field_19__password_change_is_kept() {
+    ByteString           password1       = ByteString.copyFrom(Util.getSecretBytes(16));
+    ByteString           password2       = ByteString.copyFrom(Util.getSecretBytes(16));
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setInviteLinkPassword(password1)
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewInviteLinkPassword(password2)
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyInviteLinkPassword(GroupChange.Actions.ModifyInviteLinkPasswordAction.newBuilder().setInviteLinkPassword(password2))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    GroupChange.Actions expected = GroupChange.Actions.newBuilder()
+                                                      .setModifyInviteLinkPassword(GroupChange.Actions.ModifyInviteLinkPasswordAction.newBuilder().setInviteLinkPassword(password2))
+                                                      .build();
+    assertEquals(expected, resolvedActions);
   }
 }

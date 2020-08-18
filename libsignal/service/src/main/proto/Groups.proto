@@ -38,26 +38,38 @@ message PendingMember {
   uint64 timestamp     = 3;
 }
 
+message RequestingMember {
+    bytes  userId       = 1;
+    bytes  profileKey   = 2;
+    bytes  presentation = 3;
+    uint64 timestamp    = 4;
+}
+
 message AccessControl {
   enum AccessRequired {
     UNKNOWN       = 0;
+    ANY           = 1;
     MEMBER        = 2;
     ADMINISTRATOR = 3;
+    UNSATISFIABLE = 4;
   }
 
-  AccessRequired attributes = 1;
-  AccessRequired members    = 2;
+  AccessRequired attributes        = 1;
+  AccessRequired members           = 2;
+  AccessRequired addFromInviteLink = 3;
 }
 
 message Group {
-           bytes         publicKey                 = 1;
-           bytes         title                     = 2;
-           string        avatar                    = 3;
-           bytes         disappearingMessagesTimer = 4;
-           AccessControl accessControl             = 5;
-           uint32        revision                  = 6;
-  repeated Member        members                   = 7;
-  repeated PendingMember pendingMembers            = 8;
+           bytes            publicKey                 = 1;
+           bytes            title                     = 2;
+           string           avatar                    = 3;
+           bytes            disappearingMessagesTimer = 4;
+           AccessControl    accessControl             = 5;
+           uint32           revision                  = 6;
+  repeated Member           members                   = 7;
+  repeated PendingMember    pendingMembers            = 8;
+  repeated RequestingMember requestingMembers         = 9;
+           bytes            inviteLinkPassword        = 10;
 }
 
 message GroupChange {
@@ -65,7 +77,8 @@ message GroupChange {
   message Actions {
 
     message AddMemberAction {
-      Member added = 1;
+      Member added              = 1;
+      bool   joinFromInviteLink = 2;
     }
 
     message DeleteMemberAction {
@@ -93,6 +106,19 @@ message GroupChange {
       bytes presentation = 1;
     }
 
+    message AddRequestingMemberAction {
+      RequestingMember added = 1;
+    }
+
+    message DeleteRequestingMemberAction {
+      bytes deletedUserId = 1;
+    }
+
+    message PromoteRequestingMemberAction {
+      bytes       userId = 1;
+      Member.Role role   = 2;
+    }
+
     message ModifyTitleAction {
       bytes title = 1;
     }
@@ -113,20 +139,33 @@ message GroupChange {
       AccessControl.AccessRequired membersAccess = 1;
     }
 
-             bytes                                 sourceUuid                      = 1;
-             uint32                                revision                        = 2;
-    repeated AddMemberAction                       addMembers                      = 3;
-    repeated DeleteMemberAction                    deleteMembers                   = 4;
-    repeated ModifyMemberRoleAction                modifyMemberRoles               = 5;
-    repeated ModifyMemberProfileKeyAction          modifyMemberProfileKeys         = 6;
-    repeated AddPendingMemberAction                addPendingMembers               = 7;
-    repeated DeletePendingMemberAction             deletePendingMembers            = 8;
-    repeated PromotePendingMemberAction            promotePendingMembers           = 9;
-             ModifyTitleAction                     modifyTitle                     = 10;
-             ModifyAvatarAction                    modifyAvatar                    = 11;
-             ModifyDisappearingMessagesTimerAction modifyDisappearingMessagesTimer = 12;
-             ModifyAttributesAccessControlAction   modifyAttributesAccess          = 13;
-             ModifyMembersAccessControlAction      modifyMemberAccess              = 14;
+    message ModifyAddFromInviteLinkAccessControlAction {
+        AccessControl.AccessRequired addFromInviteLinkAccess = 1;
+    }
+
+    message ModifyInviteLinkPasswordAction {
+        bytes inviteLinkPassword = 1;
+    }
+
+             bytes                                      sourceUuid                      = 1;
+             uint32                                     revision                        = 2;
+    repeated AddMemberAction                            addMembers                      = 3;
+    repeated DeleteMemberAction                         deleteMembers                   = 4;
+    repeated ModifyMemberRoleAction                     modifyMemberRoles               = 5;
+    repeated ModifyMemberProfileKeyAction               modifyMemberProfileKeys         = 6;
+    repeated AddPendingMemberAction                     addPendingMembers               = 7;
+    repeated DeletePendingMemberAction                  deletePendingMembers            = 8;
+    repeated PromotePendingMemberAction                 promotePendingMembers           = 9;
+             ModifyTitleAction                          modifyTitle                     = 10;
+             ModifyAvatarAction                         modifyAvatar                    = 11;
+             ModifyDisappearingMessagesTimerAction      modifyDisappearingMessagesTimer = 12;
+             ModifyAttributesAccessControlAction        modifyAttributesAccess          = 13;
+             ModifyMembersAccessControlAction           modifyMemberAccess              = 14;
+             ModifyAddFromInviteLinkAccessControlAction modifyAddFromInviteLinkAccess   = 15;
+    repeated AddRequestingMemberAction                  addRequestingMembers            = 16;
+    repeated DeleteRequestingMemberAction               deleteRequestingMembers         = 17;
+    repeated PromoteRequestingMemberAction              promoteRequestingMembers        = 18;
+             ModifyInviteLinkPasswordAction             modifyInviteLinkPassword        = 19;
   }
 
   bytes  actions         = 1;
@@ -160,4 +199,13 @@ message GroupInviteLink {
   oneof contents {
     GroupInviteLinkContentsV1 v1Contents = 1;
   }
+}
+
+message GroupJoinInfo {
+  bytes                        publicKey         = 1;
+  bytes                        title             = 2;
+  string                       avatar            = 3;
+  uint32                       memberCount       = 4;
+  AccessControl.AccessRequired addFromInviteLink = 5;
+  uint32                       revision          = 6;
 }

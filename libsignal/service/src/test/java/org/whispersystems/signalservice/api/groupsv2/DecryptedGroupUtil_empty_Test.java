@@ -1,8 +1,12 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
+import com.google.protobuf.ByteString;
+
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.AccessControl;
+import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -31,7 +35,7 @@ public final class DecryptedGroupUtil_empty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 DecryptedGroupUtil.MAX_CHANGE_FIELD, maxFieldFound);
+                 19, maxFieldFound);
   }
 
   @Test
@@ -153,6 +157,56 @@ public final class DecryptedGroupUtil_empty_Test {
   public void not_empty_with_modify_member_access_field_14() {
     DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
                                                       .setNewMemberAccess(AccessControl.AccessRequired.MEMBER)
+                                                      .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+  @Test
+  public void not_empty_with_modify_add_from_invite_link_access_field_15() {
+    DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
+                                                      .setNewInviteLinkAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+                                                      .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+  @Test
+  public void not_empty_with_an_add_requesting_member_field_16() {
+    DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
+                                                      .addNewRequestingMembers(DecryptedRequestingMember.getDefaultInstance())
+                                                      .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+  @Test
+  public void not_empty_with_a_delete_requesting_member_field_17() {
+    DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
+                                                      .addDeleteRequestingMembers(ByteString.copyFrom(new byte[16]))
+                                                      .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+  @Test
+  public void not_empty_with_a_promote_requesting_member_field_18() {
+    DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
+                                                      .addPromoteRequestingMembers(DecryptedApproveMember.getDefaultInstance())
+                                                      .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+    @Test
+  public void not_empty_with_a_new_invite_link_password_19() {
+    DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
+                                                      .setNewInviteLinkPassword(ByteString.copyFrom(new byte[16]))
                                                       .build();
 
     assertFalse(DecryptedGroupUtil.changeIsEmpty(change));

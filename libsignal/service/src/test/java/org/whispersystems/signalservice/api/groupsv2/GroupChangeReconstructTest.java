@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
+import com.google.protobuf.ByteString;
+
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -8,20 +10,39 @@ import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.admin;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.approveAdmin;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.approveMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.demoteAdmin;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.member;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.newProfileKey;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingMemberRemoval;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.promoteAdmin;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.randomProfileKey;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.requestingMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.withProfileKey;
+import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
 public final class GroupChangeReconstructTest {
+
+  /**
+   * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
+   * <p>
+   * If we didn't, newly added fields would not be detected by {@link GroupChangeReconstruct#reconstructGroupChange}.
+   */
+  @Test
+  public void ensure_GroupChangeReconstruct_knows_about_all_fields_of_DecryptedGroup() {
+    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
+
+    assertEquals("GroupChangeReconstruct and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
+                 10, maxFieldFound);
+  }
 
   @Test
   public void empty_to_empty() {
@@ -218,5 +239,123 @@ public final class GroupChangeReconstructTest {
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
     assertEquals(DecryptedGroupChange.newBuilder().addModifiedProfileKeys(withProfileKey(admin(uuid),profileKey2)).build(), decryptedGroupChange);
+  }
+
+  @Test
+  public void new_invite_access() {
+    DecryptedGroup from = DecryptedGroup.newBuilder()
+                                        .setAccessControl(AccessControl.newBuilder()
+                                                                       .setAddFromInviteLink(AccessControl.AccessRequired.ADMINISTRATOR))
+                                        .build();
+    DecryptedGroup to   = DecryptedGroup.newBuilder()
+                                        .setAccessControl(AccessControl.newBuilder()
+                                                                       .setAddFromInviteLink(AccessControl.AccessRequired.UNSATISFIABLE))
+                                        .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder()
+                                     .setNewInviteLinkAccess(AccessControl.AccessRequired.UNSATISFIABLE)
+                                     .build(),
+                 decryptedGroupChange);
+  }
+
+  @Test
+  public void new_requesting_members() {
+    UUID           member1     = UUID.randomUUID();
+    ProfileKey     profileKey1 = newProfileKey();
+    DecryptedGroup from        = DecryptedGroup.newBuilder()
+                                               .build();
+    DecryptedGroup to          = DecryptedGroup.newBuilder()
+                                               .addRequestingMembers(requestingMember(member1, profileKey1))
+                                               .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder()
+                                     .addNewRequestingMembers(requestingMember(member1, profileKey1))
+                                     .build(),
+                 decryptedGroupChange);
+  }
+
+  @Test
+  public void new_requesting_members_ignores_existing_by_uuid() {
+    UUID           member1     = UUID.randomUUID();
+    UUID           member2     = UUID.randomUUID();
+    ProfileKey     profileKey2 = newProfileKey();
+    DecryptedGroup from        = DecryptedGroup.newBuilder()
+                                               .addRequestingMembers(requestingMember(member1, newProfileKey()))
+                                               .build();
+    DecryptedGroup to          = DecryptedGroup.newBuilder()
+                                               .addRequestingMembers(requestingMember(member1, newProfileKey()))
+                                               .addRequestingMembers(requestingMember(member2, profileKey2))
+                                               .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder()
+                                     .addNewRequestingMembers(requestingMember(member2, profileKey2))
+                                     .build(),
+                 decryptedGroupChange);
+  }
+
+  @Test
+  public void removed_requesting_members() {
+    UUID           member1 = UUID.randomUUID();
+    DecryptedGroup from    = DecryptedGroup.newBuilder()
+                                           .addRequestingMembers(requestingMember(member1, newProfileKey()))
+                                           .build();
+    DecryptedGroup to      = DecryptedGroup.newBuilder()
+                                           .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder()
+                                     .addDeleteRequestingMembers(UuidUtil.toByteString(member1))
+                                     .build(),
+                 decryptedGroupChange);
+  }
+
+  @Test
+  public void promote_requesting_members() {
+    UUID           member1     = UUID.randomUUID();
+    ProfileKey     profileKey1 = newProfileKey();
+    UUID           member2     = UUID.randomUUID();
+    ProfileKey     profileKey2 = newProfileKey();
+    DecryptedGroup from        = DecryptedGroup.newBuilder()
+                                               .addRequestingMembers(requestingMember(member1, profileKey1))
+                                               .addRequestingMembers(requestingMember(member2, profileKey2))
+                                               .build();
+    DecryptedGroup to          = DecryptedGroup.newBuilder()
+                                               .addMembers(member(member1, profileKey1))
+                                               .addMembers(admin(member2, profileKey2))
+                                               .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder()
+                                     .addPromoteRequestingMembers(approveMember(member1))
+                                     .addPromoteRequestingMembers(approveAdmin(member2))
+                                     .build(),
+                 decryptedGroupChange);
+  }
+
+  @Test
+  public void new_invite_link_password() {
+    ByteString     password1 = ByteString.copyFrom(Util.getSecretBytes(16));
+    ByteString     password2 = ByteString.copyFrom(Util.getSecretBytes(16));
+    DecryptedGroup from      = DecryptedGroup.newBuilder()
+                                             .setInviteLinkPassword(password1)
+                                             .build();
+    DecryptedGroup to        = DecryptedGroup.newBuilder()
+                                             .setInviteLinkPassword(password2)
+                                             .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder()
+                                     .setNewInviteLinkPassword(password2)
+                                     .build(),
+                 decryptedGroupChange);
   }
 }

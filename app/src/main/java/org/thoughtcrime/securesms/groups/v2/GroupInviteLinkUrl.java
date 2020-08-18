@@ -8,7 +8,7 @@ import com.google.protobuf.ByteString;
 import org.signal.storageservice.protos.groups.GroupInviteLink;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.thoughtcrime.securesms.util.Base64UrlSafe;
+import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

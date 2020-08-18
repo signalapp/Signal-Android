@@ -3,12 +3,14 @@ package org.whispersystems.signalservice.api.groupsv2;
 import com.google.protobuf.ByteString;
 
 import org.signal.storageservice.protos.groups.GroupChange;
+import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,26 +21,26 @@ public final class GroupChangeUtil {
   }
 
   /**
-   * The maximum field we know about here.
-   */
-  static final int CHANGE_ACTION_MAX_FIELD = 14;
-
-  /**
    * True iff there are no change actions.
    */
   public static boolean changeIsEmpty(GroupChange.Actions change) {
-    return change.getAddMembersCount()              == 0 && // field 3
-           change.getDeleteMembersCount()           == 0 && // field 4
-           change.getModifyMemberRolesCount()       == 0 && // field 5
-           change.getModifyMemberProfileKeysCount() == 0 && // field 6
-           change.getAddPendingMembersCount()       == 0 && // field 7
-           change.getDeletePendingMembersCount()    == 0 && // field 8
-           change.getPromotePendingMembersCount()   == 0 && // field 9
-           !change.hasModifyTitle()                      && // field 10
-           !change.hasModifyAvatar()                     && // field 11
-           !change.hasModifyDisappearingMessagesTimer()  && // field 12
-           !change.hasModifyAttributesAccess()           && // field 13
-           !change.hasModifyMemberAccess();                 // field 14
+    return change.getAddMembersCount()               == 0 && // field 3
+           change.getDeleteMembersCount()            == 0 && // field 4
+           change.getModifyMemberRolesCount()        == 0 && // field 5
+           change.getModifyMemberProfileKeysCount()  == 0 && // field 6
+           change.getAddPendingMembersCount()        == 0 && // field 7
+           change.getDeletePendingMembersCount()     == 0 && // field 8
+           change.getPromotePendingMembersCount()    == 0 && // field 9
+           !change.hasModifyTitle()                       && // field 10
+           !change.hasModifyAvatar()                      && // field 11
+           !change.hasModifyDisappearingMessagesTimer()   && // field 12
+           !change.hasModifyAttributesAccess()            && // field 13
+           !change.hasModifyMemberAccess()                && // field 14
+           !change.hasModifyAddFromInviteLinkAccess()     && // field 15
+           change.getAddRequestingMembersCount()     == 0 && // field 16
+           change.getDeleteRequestingMembersCount()  == 0 && // field 17
+           change.getPromoteRequestingMembersCount() == 0 && // field 18
+           !change.hasModifyInviteLinkPassword();            // field 19
   }
 
   /**
@@ -62,9 +64,10 @@ public final class GroupChangeUtil {
                                                             DecryptedGroupChange conflictingChange,
                                                             GroupChange.Actions encryptedChange)
   {
-    GroupChange.Actions.Builder                 result               = GroupChange.Actions.newBuilder(encryptedChange);
-    HashMap<ByteString, DecryptedMember>        fullMembersByUuid    = new HashMap<>(groupState.getMembersCount());
-    HashMap<ByteString, DecryptedPendingMember> pendingMembersByUuid = new HashMap<>(groupState.getPendingMembersCount());
+    GroupChange.Actions.Builder                    result                  = GroupChange.Actions.newBuilder(encryptedChange);
+    HashMap<ByteString, DecryptedMember>           fullMembersByUuid       = new HashMap<>(groupState.getMembersCount());
+    HashMap<ByteString, DecryptedPendingMember>    pendingMembersByUuid    = new HashMap<>(groupState.getPendingMembersCount());
+    HashMap<ByteString, DecryptedRequestingMember> requestingMembersByUuid = new HashMap<>(groupState.getMembersCount());
 
     for (DecryptedMember member : groupState.getMembersList()) {
       fullMembersByUuid.put(member.getUuid(), member);
@@ -72,6 +75,10 @@ public final class GroupChangeUtil {
 
     for (DecryptedPendingMember member : groupState.getPendingMembersList()) {
       pendingMembersByUuid.put(member.getUuid(), member);
+    }
+
+    for (DecryptedRequestingMember member : groupState.getRequestingMembersList()) {
+      requestingMembersByUuid.put(member.getUuid(), member);
     }
 
     resolveField3AddMembers                      (conflictingChange, result, fullMembersByUuid, pendingMembersByUuid);
@@ -86,6 +93,10 @@ public final class GroupChangeUtil {
     resolveField12modifyDisappearingMessagesTimer(groupState, conflictingChange, result);
     resolveField13modifyAttributesAccess         (groupState, conflictingChange, result);
     resolveField14modifyAttributesAccess         (groupState, conflictingChange, result);
+    resolveField15modifyAddFromInviteLinkAccess  (groupState, conflictingChange, result);
+    resolveField16AddRequestingMembers           (conflictingChange, result, fullMembersByUuid, pendingMembersByUuid);
+    resolveField17DeleteMembers                  (conflictingChange, result, requestingMembersByUuid);
+    resolveField18PromoteRequestingMembers       (conflictingChange, result, requestingMembersByUuid);
     
     return result;
   }
@@ -207,6 +218,58 @@ public final class GroupChangeUtil {
   private static void resolveField14modifyAttributesAccess(DecryptedGroup groupState, DecryptedGroupChange conflictingChange, GroupChange.Actions.Builder result) {
     if (conflictingChange.getNewMemberAccess() == groupState.getAccessControl().getMembers()) {
       result.clearModifyMemberAccess();
+    }
+  }
+
+  private static void resolveField15modifyAddFromInviteLinkAccess(DecryptedGroup groupState, DecryptedGroupChange conflictingChange, GroupChange.Actions.Builder result) {
+    if (conflictingChange.getNewInviteLinkAccess() == groupState.getAccessControl().getAddFromInviteLink()) {
+      result.clearModifyAddFromInviteLinkAccess();
+    }
+  }
+
+  private static void resolveField16AddRequestingMembers(DecryptedGroupChange conflictingChange, GroupChange.Actions.Builder result, HashMap<ByteString, DecryptedMember> fullMembersByUuid, HashMap<ByteString, DecryptedPendingMember> pendingMembersByUuid) {
+    List<DecryptedRequestingMember> newMembersList = conflictingChange.getNewRequestingMembersList();
+
+    for (int i = newMembersList.size() - 1; i >= 0; i--) {
+      DecryptedRequestingMember member = newMembersList.get(i);
+
+      if (fullMembersByUuid.containsKey(member.getUuid())) {
+        result.removeAddRequestingMembers(i);
+      } else if (pendingMembersByUuid.containsKey(member.getUuid())) {
+        GroupChange.Actions.AddRequestingMemberAction addMemberAction = result.getAddRequestingMembersList().get(i);
+        result.removeAddRequestingMembers(i);
+        result.addPromotePendingMembers(0, GroupChange.Actions.PromotePendingMemberAction.newBuilder().setPresentation(addMemberAction.getAdded().getPresentation()));
+      }
+    }
+  }
+
+  private static void resolveField17DeleteMembers(DecryptedGroupChange conflictingChange,
+                                                  GroupChange.Actions.Builder result,
+                                                  HashMap<ByteString, DecryptedRequestingMember> requestingMembers)
+  {
+    List<ByteString> deletedMembersList = conflictingChange.getDeleteRequestingMembersList();
+
+    for (int i = deletedMembersList.size() - 1; i >= 0; i--) {
+      ByteString member = deletedMembersList.get(i);
+
+      if (!requestingMembers.containsKey(member)) {
+        result.removeDeleteRequestingMembers(i);
+      }
+    }
+  }
+
+  private static void resolveField18PromoteRequestingMembers(DecryptedGroupChange conflictingChange,
+                                                             GroupChange.Actions.Builder result,
+                                                             HashMap<ByteString, DecryptedRequestingMember> requestingMembersByUuid)
+  {
+    List<DecryptedApproveMember> promoteRequestingMembersList = conflictingChange.getPromoteRequestingMembersList();
+
+    for (int i = promoteRequestingMembersList.size() - 1; i >= 0; i--) {
+      DecryptedApproveMember member = promoteRequestingMembersList.get(i);
+
+      if (!requestingMembersByUuid.containsKey(member.getUuid())) {
+        result.removePromoteRequestingMembers(i);
+      }
     }
   }
 }

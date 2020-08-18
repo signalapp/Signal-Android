@@ -3,13 +3,17 @@ package org.whispersystems.signalservice.api.groupsv2;
 import com.google.protobuf.ByteString;
 
 import org.signal.storageservice.protos.groups.Member;
+import org.signal.storageservice.protos.groups.RequestingMember;
+import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.util.Util;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -70,6 +74,12 @@ final class ProtoTestUtils {
                  .build();
   }
 
+  static RequestingMember encryptedRequestingMember(UUID uuid, ProfileKey profileKey) {
+    return RequestingMember.newBuilder()
+                           .setPresentation(presentation(uuid, profileKey))
+                           .build();
+  }
+
   static DecryptedMember member(UUID uuid) {
     return DecryptedMember.newBuilder()
                           .setUuid(UuidUtil.toByteString(uuid))
@@ -98,6 +108,32 @@ final class ProtoTestUtils {
                                  .setUuid(UuidUtil.toByteString(uuid))
                                  .setUuidCipherText(encrypt(uuid))
                                  .setRole(Member.Role.DEFAULT)
+                                 .build();
+  }
+
+  static DecryptedRequestingMember requestingMember(UUID uuid) {
+    return requestingMember(uuid, newProfileKey());
+  }
+
+  static DecryptedRequestingMember requestingMember(UUID uuid, ProfileKey profileKey) {
+    return DecryptedRequestingMember.newBuilder()
+                                    .setUuid(UuidUtil.toByteString(uuid))
+                                    .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
+                                    .build();
+  }
+
+  static DecryptedApproveMember approveMember(UUID uuid) {
+    return approve(uuid, Member.Role.DEFAULT);
+  }
+
+  static DecryptedApproveMember approveAdmin(UUID uuid) {
+    return approve(uuid, Member.Role.ADMINISTRATOR);
+  }
+
+  private static DecryptedApproveMember approve(UUID uuid, Member.Role role) {
+    return DecryptedApproveMember.newBuilder()
+                                 .setUuid(UuidUtil.toByteString(uuid))
+                                 .setRole(role)
                                  .build();
   }
 
@@ -134,5 +170,13 @@ final class ProtoTestUtils {
                           .setUuid(member.getUuid())
                           .setRole(Member.Role.DEFAULT)
                           .build();
+  }
+
+  public static ProfileKey newProfileKey() {
+    try {
+      return new ProfileKey(Util.getSecretBytes(32));
+    } catch (InvalidInputException e) {
+      throw new AssertionError(e);
+    }
   }
 }
