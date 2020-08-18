@@ -761,7 +761,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         inflater.inflate(R.menu.conversation_block, menu);
       }
     } else if (isGroupConversation() && !isOpenGroupOrRSSFeed) {
-      inflater.inflate(R.menu.conversation_group_options, menu);
+//      inflater.inflate(R.menu.conversation_group_options, menu);
 
       if (!isPushGroupConversation()) {
         inflater.inflate(R.menu.conversation_mms_group_options, menu);
