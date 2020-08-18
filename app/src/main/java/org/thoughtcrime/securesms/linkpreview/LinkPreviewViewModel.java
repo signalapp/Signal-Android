@@ -90,7 +90,11 @@ public class LinkPreviewViewModel extends ViewModel {
         Util.runOnMain(() -> {
           if (!userCanceled) {
             if (lp.isPresent()) {
-              linkPreviewState.setValue(LinkPreviewState.forPreview(lp.get()));
+              if (activeUrl != null && activeUrl.equals(lp.get().getUrl())) {
+                linkPreviewState.setValue(LinkPreviewState.forPreview(lp.get()));
+              } else {
+                linkPreviewState.setValue(LinkPreviewState.forNoLinks());
+              }
             } else {
               linkPreviewState.setValue(LinkPreviewState.forLinksWithNoPreview());
             }
@@ -108,6 +112,19 @@ public class LinkPreviewViewModel extends ViewModel {
     }
 
     userCanceled = true;
+    activeUrl    = null;
+
+    debouncer.clear();
+    linkPreviewState.setValue(LinkPreviewState.forNoLinks());
+  }
+
+  public void onSend() {
+    if (activeRequest != null) {
+      activeRequest.cancel();
+      activeRequest = null;
+    }
+
+    userCanceled = false;
     activeUrl    = null;
 
     debouncer.clear();

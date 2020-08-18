@@ -2366,6 +2366,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     attachmentManager.cleanup();
 
     updateLinkPreviewState();
+    linkPreviewViewModel.onSend();
   }
 
   private void sendMessage() {
