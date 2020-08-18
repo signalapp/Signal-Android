@@ -7,6 +7,7 @@ import androidx.annotation.StringRes;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a swipeable page in the ReactWithAnyEmoji dialog fragment, encapsulating any
@@ -40,5 +41,18 @@ class ReactWithAnyEmojiPage {
 
   public @AttrRes int getIconAttr() {
     return pageBlocks.get(0).getPageModel().getIconAttr();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ReactWithAnyEmojiPage that = (ReactWithAnyEmojiPage) o;
+    return pageBlocks.equals(that.pageBlocks);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(pageBlocks);
   }
 }

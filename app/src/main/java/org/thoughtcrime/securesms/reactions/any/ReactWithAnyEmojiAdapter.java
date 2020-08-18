@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,7 @@ final class ReactWithAnyEmojiAdapter extends ListAdapter<ReactWithAnyEmojiPage, 
                            @NonNull EmojiPageViewGridAdapter.VariationSelectorListener variationSelectorListener,
                            @NonNull Callbacks callbacks)
   {
-    super(new AlwaysChangedDiffUtil<>());
+    super(new PageChangedCallback());
 
     this.emojiEventListener        = emojiEventListener;
     this.variationSelectorListener = variationSelectorListener;
@@ -168,5 +169,18 @@ final class ReactWithAnyEmojiAdapter extends ListAdapter<ReactWithAnyEmojiPage, 
 
   interface ScrollableChild {
     void setNestedScrollingEnabled(boolean isEnabled);
+  }
+
+  private static class PageChangedCallback extends DiffUtil.ItemCallback<ReactWithAnyEmojiPage> {
+
+    @Override
+    public boolean areItemsTheSame(@NonNull ReactWithAnyEmojiPage oldItem, @NonNull ReactWithAnyEmojiPage newItem) {
+      return oldItem.getLabel() == newItem.getLabel();
+    }
+
+    @Override
+    public boolean areContentsTheSame(@NonNull ReactWithAnyEmojiPage oldItem, @NonNull ReactWithAnyEmojiPage newItem) {
+      return oldItem.equals(newItem);
+    }
   }
 }
