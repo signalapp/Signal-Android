@@ -21,11 +21,11 @@
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/medium_spacing"
+            android:layout_marginStart="@dimen/medium_spacing"
             android:maxLines="1"
-            android:gravity="left"
+            android:textAlignment="viewStart"
             android:ellipsize="end"
             android:textSize="@dimen/medium_font_size"
             android:textStyle="bold"
@@ -37,7 +37,7 @@
             android:id="@+id/actionIndicatorImageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginLeft="@dimen/medium_spacing"
+            android:layout_marginStart="@dimen/medium_spacing"
             android:src="@drawable/ic_circle" />
 
     </LinearLayout>

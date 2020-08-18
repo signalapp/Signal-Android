@@ -36,19 +36,16 @@
 
             <TextView
                 android:id="@+id/btnGroupNameDisplay"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:maxLines="1"
                 android:ellipsize="end"
+                android:textAlignment="viewStart"
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:textColor="@color/text"
-                android:text="Spiderman" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:text="I'm a very long display name. What are you going to do about it?" />
 
             <TextView
                 android:id="@+id/timestampTextView"
