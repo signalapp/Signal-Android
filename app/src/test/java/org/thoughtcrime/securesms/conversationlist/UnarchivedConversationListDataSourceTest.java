@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.conversationlist;
 
 import android.app.Application;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.database.Cursor;
+
+import androidx.test.core.app.ApplicationProvider;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -33,8 +33,8 @@ import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
-@PowerMockIgnore({ "org.powermock.*", "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*" })
-@PrepareForTest({ApplicationDependencies.class, DatabaseFactory.class, ThreadDatabase.class})
+@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*" })
+@PrepareForTest({ ApplicationDependencies.class, DatabaseFactory.class })
 public class UnarchivedConversationListDataSourceTest {
 
   @Rule
@@ -42,21 +42,18 @@ public class UnarchivedConversationListDataSourceTest {
 
   private ConversationListDataSource.UnarchivedConversationListDataSource testSubject;
 
-  private ThreadDatabase  threadDatabase;
+  private ThreadDatabase threadDatabase;
 
   @Before
   public void setUp() {
     mockStatic(ApplicationDependencies.class);
     mockStatic(DatabaseFactory.class);
 
-    final Context context = mock(Context.class);
-    final ContentResolver contentResolver = mock(ContentResolver.class);
-    threadDatabase  = mock(ThreadDatabase.class);
+    threadDatabase = mock(ThreadDatabase.class);
 
     when(DatabaseFactory.getThreadDatabase(any())).thenReturn(threadDatabase);
-    when(context.getContentResolver()).thenReturn(contentResolver);
 
-    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(context, mock(Invalidator.class));
+    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ApplicationProvider.getApplicationContext(), mock(Invalidator.class));
   }
 
   @Test

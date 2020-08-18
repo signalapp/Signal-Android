@@ -358,11 +358,11 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.11.1'
-    testImplementation 'org.mockito:mockito-core:1.9.5'
-    testImplementation 'org.powermock:powermock-api-mockito:1.6.5'
-    testImplementation 'org.powermock:powermock-module-junit4:1.6.5'
-    testImplementation 'org.powermock:powermock-module-junit4-rule:1.6.5'
-    testImplementation 'org.powermock:powermock-classloading-xstream:1.6.5'
+    testImplementation 'org.mockito:mockito-core:2.8.9'
+    testImplementation 'org.powermock:powermock-api-mockito2:1.7.4'
+    testImplementation 'org.powermock:powermock-module-junit4:1.7.4'
+    testImplementation 'org.powermock:powermock-module-junit4-rule:1.7.4'
+    testImplementation 'org.powermock:powermock-classloading-xstream:1.7.4'
 
     testImplementation 'androidx.test:core:1.2.0'
     testImplementation ('org.robolectric:robolectric:4.2') {
@@ -453,5 +453,15 @@ def getLastCommitTimestamp() {
         }
 
         return os.toString() + "000"
+    }
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+        showCauses true
+        showExceptions true
+        showStackTraces true
     }
 }
