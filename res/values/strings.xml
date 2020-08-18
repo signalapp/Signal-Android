@@ -1835,9 +1835,9 @@
 
     <!-- Next round of translation -->
 
-    <string name="activity_edit_closed_group_title">Edit Closed Group</string>
+    <string name="activity_edit_closed_group_title">Edit Group</string>
     <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
-    <string name="activity_edit_closed_group_edit_members">Edit members</string>
+    <string name="activity_edit_closed_group_edit_members">Members</string>
     <string name="activity_edit_closed_group_add_members">Add members</string>
     <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
     <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>

@@ -153,7 +153,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
-import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivityKt;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
