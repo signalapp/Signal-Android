@@ -58,10 +58,11 @@ import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBann
 
 public class Recipient {
 
+  private static final String TAG = Log.tag(Recipient.class);
+
   public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails(), true);
 
-  private static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
-  private static final String                TAG = Log.tag(Recipient.class);
+  public static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
 
   private final RecipientId            id;
   private final boolean                resolving;

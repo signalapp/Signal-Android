@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -236,9 +237,9 @@ public class InputPanel extends LinearLayout
     this.linkPreview.setLoading();
   }
 
-  public void setLinkPreviewNoPreview() {
+  public void setLinkPreviewNoPreview(@Nullable LinkPreviewRepository.Error customError) {
     this.linkPreview.setVisibility(View.VISIBLE);
-    this.linkPreview.setNoPreview();
+    this.linkPreview.setNoPreview(customError);
   }
 
   public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull Optional<LinkPreview> preview) {

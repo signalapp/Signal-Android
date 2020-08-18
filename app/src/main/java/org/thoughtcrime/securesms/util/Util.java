@@ -30,14 +30,15 @@ import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Telephony;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
@@ -337,6 +338,10 @@ public class Util {
   public static Optional<String> getSimCountryIso(Context context) {
     String simCountryIso = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso();
     return Optional.fromNullable(simCountryIso != null ? simCountryIso.toUpperCase() : null);
+  }
+
+  public static @NonNull <T> T firstNonNull(@Nullable T optional, @NonNull T fallback) {
+    return optional != null ? optional : fallback;
   }
 
   @SafeVarargs

@@ -6,16 +6,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -252,6 +256,20 @@ public final class GroupManager {
       recipientIds.addAll(newMembers);
       return GroupManagerV1.updateGroup(context, groupId, recipientIds, avatar, groupRecord.getTitle(), recipientIds.size() - originalSize);
     }
+  }
+
+  /**
+   * Use to get a group's details direct from server bypassing the database.
+   * <p>
+   * Useful when you don't yet have the group in the database locally.
+   */
+  @WorkerThread
+  public static @NonNull DecryptedGroupJoinInfo getGroupJoinInfoFromServer(@NonNull Context context,
+                                                                           @NonNull GroupMasterKey groupMasterKey,
+                                                                           @NonNull GroupLinkPassword groupLinkPassword)
+      throws IOException, VerificationFailedException, GroupLinkNotActiveException
+  {
+    return new GroupManagerV2(context).getGroupJoinInfoFromServer(groupMasterKey, groupLinkPassword);
   }
 
   public static class GroupActionResult {

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
@@ -67,13 +68,22 @@ public final class AvatarUtil {
   public static void loadIconIntoImageView(@NonNull Recipient recipient, @NonNull ImageView target) {
     Context  context  = target.getContext();
 
-    request(GlideApp.with(context).asDrawable(), context, recipient).into(target);
+    requestCircle(GlideApp.with(context).asDrawable(), context, recipient).into(target);
+  }
+
+  public static Bitmap loadIconBitmapSquare(@NonNull Context context,
+                                            @NonNull Recipient recipient,
+                                            int width,
+                                            int height)
+      throws ExecutionException, InterruptedException
+  {
+    return requestSquare(GlideApp.with(context).asBitmap(), context, recipient).submit(width, height).get();
   }
 
   @WorkerThread
   public static IconCompat getIconForNotification(@NonNull Context context, @NonNull Recipient recipient) {
     try {
-      return IconCompat.createWithBitmap(request(GlideApp.with(context).asBitmap(), context, recipient).submit().get());
+      return IconCompat.createWithBitmap(requestCircle(GlideApp.with(context).asBitmap(), context, recipient).submit().get());
     } catch (ExecutionException | InterruptedException e) {
       return null;
     }
@@ -88,10 +98,17 @@ public final class AvatarUtil {
                    .diskCacheStrategy(DiskCacheStrategy.ALL);
   }
 
+  private static <T> GlideRequest<T> requestCircle(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
+    return request(glideRequest, context, recipient).circleCrop();
+  }
+
+  private static <T> GlideRequest<T> requestSquare(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
+    return request(glideRequest, context, recipient).centerCrop();
+  }
+
   private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
     return glideRequest.load(new ProfileContactPhoto(recipient, recipient.getProfileAvatar()))
                        .error(getFallback(context, recipient))
-                       .circleCrop()
                        .diskCacheStrategy(DiskCacheStrategy.ALL);
   }
 

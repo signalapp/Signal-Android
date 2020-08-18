@@ -14,6 +14,7 @@ import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.InvalidInputException;
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
+import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -41,6 +43,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupCandidate;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeUtil;
+import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
@@ -84,6 +87,14 @@ final class GroupManagerV2 {
     this.groupsV2StateProcessor = ApplicationDependencies.getGroupsV2StateProcessor();
     this.selfUuid               = Recipient.self().getUuid().get();
     this.groupCandidateHelper   = new GroupCandidateHelper(context);
+  }
+
+  @NonNull DecryptedGroupJoinInfo getGroupJoinInfoFromServer(@NonNull GroupMasterKey groupMasterKey, @NonNull GroupLinkPassword password)
+      throws IOException, VerificationFailedException, GroupLinkNotActiveException
+  {
+    GroupSecretParams groupSecretParams = GroupSecretParams.deriveFromMasterKey(groupMasterKey);
+
+    return groupsV2Api.getGroupJoinInfo(groupSecretParams, password.serialize(), authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
   }
 
   @WorkerThread

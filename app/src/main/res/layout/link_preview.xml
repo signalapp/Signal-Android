@@ -102,13 +102,13 @@
             android:id="@+id/linkpreview_no_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            android:text="@string/LinkPreviewView_no_link_preview_available"
-            android:gravity="center"
             android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/linkpreview_divider"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/linkpreview_divider"/>
+            tools:text="@string/LinkPreviewView_no_link_preview_available" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,16 +4,19 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
@@ -36,7 +39,7 @@ public class LinkPreviewView extends FrameLayout {
   private View                  divider;
   private View                  closeButton;
   private View                  spinner;
-  private View                  noPreview;
+  private TextView              noPreview;
 
   private int                  type;
   private int                  defaultRadius;
@@ -110,12 +113,13 @@ public class LinkPreviewView extends FrameLayout {
     noPreview.setVisibility(INVISIBLE);
   }
 
-  public void setNoPreview() {
+  public void setNoPreview(@Nullable LinkPreviewRepository.Error customError) {
     title.setVisibility(GONE);
     site.setVisibility(GONE);
     thumbnail.setVisibility(GONE);
     spinner.setVisibility(GONE);
     noPreview.setVisibility(VISIBLE);
+    noPreview.setText(getLinkPreviewErrorString(customError));
   }
 
   public void setLinkPreview(@NonNull GlideRequests glideRequests, @NonNull LinkPreview linkPreview, boolean showThumbnail) {
@@ -154,6 +158,11 @@ public class LinkPreviewView extends FrameLayout {
 
   public void setDownloadClickedListener(SlidesClickedListener listener) {
     thumbnail.setDownloadClickListener(listener);
+  }
+
+  private  @StringRes static int getLinkPreviewErrorString(@Nullable LinkPreviewRepository.Error customError) {
+    return customError == LinkPreviewRepository.Error.GROUP_LINK_INACTIVE ? R.string.LinkPreviewView_this_group_link_is_not_active
+                                                                          : R.string.LinkPreviewView_no_link_preview_available;
   }
 
   public interface CloseClickedListener {

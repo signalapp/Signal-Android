@@ -492,6 +492,7 @@
 
     <!-- LinkPreviewView -->
     <string name="LinkPreviewView_no_link_preview_available">No link preview available</string>
+    <string name="LinkPreviewView_this_group_link_is_not_active">This group link is not active</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
@@ -647,6 +648,16 @@
 
     <!-- GroupJoinBottomSheetDialogFragment -->
     <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">You are already a member</string>
+    <string name="GroupJoinBottomSheetDialogFragment_join">Join</string>
+    <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Request to join</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">This group link is not active</string>
+    <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Unable to get group information, please try again later</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Do you want to join this group and share your name and photo with its members?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">An admin of this group must approve your request before you can join this group. When you request to join, your name and photo will be shared with its members.</string>
+    <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+        <item quantity="one">Group · %1$d member</item>
+        <item quantity="other">Group · %1$d members</item>
+    </plurals>
 
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Update Signal to use group links</string>

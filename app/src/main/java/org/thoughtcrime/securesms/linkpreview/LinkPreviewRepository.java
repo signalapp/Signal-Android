@@ -7,13 +7,23 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.util.Consumer;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+import org.signal.zkgroup.VerificationFailedException;
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
+import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -21,9 +31,12 @@ import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.net.UserAgentInterceptor;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -33,6 +46,7 @@ import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest.StickerInfo;
 
@@ -65,12 +79,15 @@ public class LinkPreviewRepository {
                                   .build();
   }
 
-  RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {
+  @Nullable RequestController getLinkPreview(@NonNull Context context,
+                                             @NonNull String url,
+                                             @NonNull Callback callback)
+  {
     CompositeRequestController compositeController = new CompositeRequestController();
 
     if (!LinkPreviewUtil.isValidPreviewUrl(url)) {
       Log.w(TAG, "Tried to get a link preview for a non-whitelisted domain.");
-      callback.onComplete(Optional.absent());
+      callback.onError(Error.PREVIEW_NOT_AVAILABLE);
       return compositeController;
     }
 
@@ -78,23 +95,25 @@ public class LinkPreviewRepository {
 
     if (StickerUrl.isValidShareLink(url)) {
       metadataController = fetchStickerPackLinkPreview(context, url, callback);
+    } else if (GroupInviteLinkUrl.isGroupLink(url)) {
+      metadataController = fetchGroupLinkPreview(context, url, callback);
     } else {
       metadataController = fetchMetadata(url, metadata -> {
         if (metadata.isEmpty()) {
-          callback.onComplete(Optional.absent());
+          callback.onError(Error.PREVIEW_NOT_AVAILABLE);
           return;
         }
 
         if (!metadata.getImageUrl().isPresent()) {
-          callback.onComplete(Optional.of(new LinkPreview(url, metadata.getTitle().get(), Optional.absent())));
+          callback.onSuccess(new LinkPreview(url, metadata.getTitle().get(), Optional.absent()));
           return;
         }
 
         RequestController imageController = fetchThumbnail(metadata.getImageUrl().get(), attachment -> {
           if (!metadata.getTitle().isPresent() && !attachment.isPresent()) {
-            callback.onComplete(Optional.absent());
+            callback.onError(Error.PREVIEW_NOT_AVAILABLE);
           } else {
-            callback.onComplete(Optional.of(new LinkPreview(url, metadata.getTitle().or(""), attachment)));
+            callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), attachment));
           }
         });
 
@@ -106,25 +125,25 @@ public class LinkPreviewRepository {
     return compositeController;
   }
 
-  private @NonNull RequestController fetchMetadata(@NonNull String url, Callback<Metadata> callback) {
+  private @NonNull RequestController fetchMetadata(@NonNull String url, Consumer<Metadata> callback) {
     Call call = client.newCall(new Request.Builder().url(url).cacheControl(NO_CACHE).build());
 
     call.enqueue(new okhttp3.Callback() {
       @Override
       public void onFailure(@NonNull Call call, @NonNull IOException e) {
         Log.w(TAG, "Request failed.", e);
-        callback.onComplete(Metadata.empty());
+        callback.accept(Metadata.empty());
       }
 
       @Override
       public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
         if (!response.isSuccessful()) {
           Log.w(TAG, "Non-successful response. Code: " + response.code());
-          callback.onComplete(Metadata.empty());
+          callback.accept(Metadata.empty());
           return;
         } else if (response.body() == null) {
           Log.w(TAG, "No response body.");
-          callback.onComplete(Metadata.empty());
+          callback.accept(Metadata.empty());
           return;
         }
 
@@ -138,14 +157,14 @@ public class LinkPreviewRepository {
           imageUrl = Optional.absent();
         }
 
-        callback.onComplete(new Metadata(title, imageUrl));
+        callback.accept(new Metadata(title, imageUrl));
       }
     });
 
     return new CallRequestController(call);
   }
 
-  private @NonNull RequestController fetchThumbnail(@NonNull String imageUrl, @NonNull Callback<Optional<Attachment>> callback) {
+  private @NonNull RequestController fetchThumbnail(@NonNull String imageUrl, @NonNull Consumer<Optional<Attachment>> callback) {
     Call                  call       = client.newCall(new Request.Builder().url(imageUrl).build());
     CallRequestController controller = new CallRequestController(call);
 
@@ -163,11 +182,13 @@ public class LinkPreviewRepository {
         Bitmap               bitmap    = BitmapFactory.decodeByteArray(data, 0, data.length);
         Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.JPEG, MediaUtil.IMAGE_JPEG);
 
-        callback.onComplete(thumbnail);
+        if (bitmap != null) bitmap.recycle();
+
+        callback.accept(thumbnail);
       } catch (IOException e) {
         Log.w(TAG, "Exception during link preview image retrieval.", e);
         controller.cancel();
-        callback.onComplete(Optional.absent());
+        callback.accept(Optional.absent());
       }
     });
 
@@ -176,7 +197,7 @@ public class LinkPreviewRepository {
 
   private static RequestController fetchStickerPackLinkPreview(@NonNull Context context,
                                                                @NonNull String packUrl,
-                                                               @NonNull Callback<Optional<LinkPreview>> callback)
+                                                               @NonNull Callback callback)
   {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
@@ -204,17 +225,84 @@ public class LinkPreviewRepository {
 
           Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
 
-          callback.onComplete(Optional.of(new LinkPreview(packUrl, title, thumbnail)));
+          if (bitmap != null) bitmap.recycle();
+
+          callback.onSuccess(new LinkPreview(packUrl, title, thumbnail));
         } else {
-          callback.onComplete(Optional.absent());
+          callback.onError(Error.PREVIEW_NOT_AVAILABLE);
         }
       } catch (IOException | InvalidMessageException | ExecutionException | InterruptedException e) {
         Log.w(TAG, "Failed to fetch sticker pack link preview.");
-        callback.onComplete(Optional.absent());
+        callback.onError(Error.PREVIEW_NOT_AVAILABLE);
       }
     });
 
     return () -> Log.i(TAG, "Cancelled sticker pack link preview fetch -- no effect.");
+  }
+
+  private static RequestController fetchGroupLinkPreview(@NonNull Context context,
+                                                         @NonNull String groupUrl,
+                                                         @NonNull Callback callback)
+  {
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      try {
+        GroupInviteLinkUrl groupInviteLinkUrl = GroupInviteLinkUrl.fromUrl(groupUrl);
+        if (groupInviteLinkUrl == null) {
+          throw new AssertionError();
+        }
+
+        GroupMasterKey                      groupMasterKey = groupInviteLinkUrl.getGroupMasterKey();
+        GroupId.V2                          groupId        = GroupId.v2(groupMasterKey);
+        Optional<GroupDatabase.GroupRecord> group          = DatabaseFactory.getGroupDatabase(context)
+                                                                            .getGroup(groupId);
+
+        if (group.isPresent()) {
+          Log.i(TAG, "Creating preview for locally available group");
+
+          GroupDatabase.GroupRecord groupRecord = group.get();
+          String                    title       = groupRecord.getTitle();
+          Optional<Attachment>      thumbnail   = Optional.absent();
+
+          if (AvatarHelper.hasAvatar(context, groupRecord.getRecipientId())) {
+            Recipient recipient = Recipient.resolved(groupRecord.getRecipientId());
+            Bitmap    bitmap    = AvatarUtil.loadIconBitmapSquare(context, recipient, 512, 512);
+
+            thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
+
+            if (bitmap != null) bitmap.recycle();
+          }
+
+          callback.onSuccess(new LinkPreview(groupUrl, title, thumbnail));
+        } else {
+          Log.i(TAG, "Group is not locally available for preview generation, fetching from server");
+
+          DecryptedGroupJoinInfo joinInfo    = GroupManager.getGroupJoinInfoFromServer(context, groupMasterKey, groupInviteLinkUrl.getPassword());
+          Optional<Attachment>   thumbnail   = Optional.absent();
+          byte[]                 avatarBytes = AvatarGroupsV2DownloadJob.downloadGroupAvatarBytes(context, groupMasterKey, joinInfo.getAvatar());
+
+          if (avatarBytes != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
+
+            thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
+
+            if (bitmap != null) bitmap.recycle();
+          }
+
+          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), thumbnail));
+        }
+      } catch (ExecutionException | InterruptedException | IOException | VerificationFailedException e) {
+        Log.w(TAG, "Failed to fetch group link preview.", e);
+        callback.onError(Error.PREVIEW_NOT_AVAILABLE);
+      } catch (GroupInviteLinkUrl.InvalidGroupLinkException | GroupInviteLinkUrl.UnknownGroupLinkVersionException e) {
+        Log.w(TAG, "Bad group link.", e);
+        callback.onError(Error.PREVIEW_NOT_AVAILABLE);
+      } catch (GroupLinkNotActiveException e) {
+        Log.w(TAG, "Group link not active.", e);
+        callback.onError(Error.GROUP_LINK_INACTIVE);
+      }
+    });
+
+    return () -> Log.i(TAG, "Cancelled group link preview fetch -- no effect.");
   }
 
   private static Optional<Attachment> bitmapToAttachment(@Nullable Bitmap bitmap,
@@ -277,7 +365,14 @@ public class LinkPreviewRepository {
     }
   }
 
-  interface Callback<T> {
-    void onComplete(@NonNull T result);
+  interface Callback {
+    void onSuccess(@NonNull LinkPreview linkPreview);
+
+    void onError(@NonNull Error error);
+  }
+  
+  public enum Error {
+    PREVIEW_NOT_AVAILABLE,
+    GROUP_LINK_INACTIVE
   }
 }

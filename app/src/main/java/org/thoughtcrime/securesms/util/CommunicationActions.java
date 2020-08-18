@@ -24,7 +24,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinUpdateRequiredBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.logging.Log;
@@ -194,19 +196,22 @@ public class CommunicationActions {
   {
     GroupId.V2 groupId = GroupId.v2(groupInviteLinkUrl.getGroupMasterKey());
 
-    SimpleTask.run(SignalExecutors.BOUNDED, () ->
-      DatabaseFactory.getGroupDatabase(activity)
-                     .getGroup(groupId)
-                     .transform(groupRecord -> Recipient.resolved(groupRecord.getRecipientId()))
-                     .orNull(),
-      recipient -> {
-        if (recipient != null) {
-          CommunicationActions.startConversation(activity, recipient, null);
-          Toast.makeText(activity, R.string.GroupJoinBottomSheetDialogFragment_you_are_already_a_member, Toast.LENGTH_SHORT).show();
-        } else {
-          GroupJoinUpdateRequiredBottomSheetDialogFragment.show(activity.getSupportFragmentManager());
-        }
-      });
+    SimpleTask.run(SignalExecutors.BOUNDED, () -> {
+      GroupDatabase.GroupRecord group = DatabaseFactory.getGroupDatabase(activity)
+                                                       .getGroup(groupId)
+                                                       .orNull();
+
+      return group != null && group.isActive() ? Recipient.resolved(group.getRecipientId())
+                                               : null;
+    },
+    recipient -> {
+      if (recipient != null) {
+        CommunicationActions.startConversation(activity, recipient, null);
+        Toast.makeText(activity, R.string.GroupJoinBottomSheetDialogFragment_you_are_already_a_member, Toast.LENGTH_SHORT).show();
+      } else {
+        GroupJoinBottomSheetDialogFragment.show(activity.getSupportFragmentManager(), groupInviteLinkUrl);
+      }
+    });
   }
 
   private static void startInsecureCallInternal(@NonNull Activity activity, @NonNull Recipient recipient) {
