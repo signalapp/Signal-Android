@@ -66,7 +66,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
 
     // region Updating
     override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
-        return SelectContactsLoader(this)
+        return SelectContactsLoader(this, setOf())
     }
 
     override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {

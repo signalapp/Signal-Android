@@ -18,12 +18,14 @@ import org.thoughtcrime.securesms.mms.GlideApp
 class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
+    private lateinit var usersToExclude: Set<String>
 
     private val selectContactsAdapter by lazy {
         SelectContactsAdapter(this, GlideApp.with(this))
     }
 
     companion object {
+        val usersToExcludeKey = "usersToExcludeKey"
         val selectedContactsKey = "selectedContactsKey"
     }
 
@@ -33,6 +35,8 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
 
         setContentView(R.layout.activity_select_contacts)
         supportActionBar!!.title = resources.getString(R.string.activity_select_contacts_title)
+
+        usersToExclude = intent.getStringArrayExtra(Companion.usersToExcludeKey)?.toSet() ?: setOf()
 
         recyclerView.adapter = selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -48,7 +52,7 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
 
     // region Updating
     override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
-        return SelectContactsLoader(this)
+        return SelectContactsLoader(this, usersToExclude)
     }
 
     override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
