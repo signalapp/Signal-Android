@@ -233,7 +233,7 @@ public final class FeatureFlags {
 
   /** Whether or not we allow mentions send support in groups. */
   public static boolean mentions() {
-    return getBoolean(MENTIONS, false);
+    return groupsV2() && getBoolean(MENTIONS, false);
   }
 
   /** Whether or not to use the UUID in verification codes. */

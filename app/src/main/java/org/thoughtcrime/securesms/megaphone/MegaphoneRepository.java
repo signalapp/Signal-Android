@@ -101,6 +101,11 @@ public class MegaphoneRepository {
   @AnyThread
   public void markFinished(@NonNull Event event) {
     executor.execute(() -> {
+      MegaphoneRecord record = databaseCache.get(event);
+      if (record != null && record.isFinished()) {
+        return;
+      }
+
       database.markFinished(event);
       resetDatabaseCache();
     });

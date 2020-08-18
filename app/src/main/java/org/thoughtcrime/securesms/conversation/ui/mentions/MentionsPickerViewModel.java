@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry.FullMember;
+import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
+import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MappingModel;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
@@ -30,8 +32,11 @@ public class MentionsPickerViewModel extends ViewModel {
   private final MutableLiveData<LiveGroup>      group;
   private final MutableLiveData<Query>          liveQuery;
   private final MutableLiveData<Boolean>        isShowing;
+  private final MegaphoneRepository             megaphoneRepository;
 
-  MentionsPickerViewModel(@NonNull MentionsPickerRepository mentionsPickerRepository) {
+  MentionsPickerViewModel(@NonNull MentionsPickerRepository mentionsPickerRepository, @NonNull MegaphoneRepository megaphoneRepository) {
+    this.megaphoneRepository = megaphoneRepository;
+
     group             = new MutableLiveData<>();
     liveQuery         = new MutableLiveData<>(Query.NONE);
     selectedRecipient = new SingleLiveEvent<>();
@@ -50,6 +55,7 @@ public class MentionsPickerViewModel extends ViewModel {
 
   void onSelectionChange(@NonNull Recipient recipient) {
     selectedRecipient.setValue(recipient);
+    megaphoneRepository.markFinished(Megaphones.Event.MENTIONS);
   }
 
   void setIsShowing(boolean isShowing) {
@@ -116,7 +122,8 @@ public class MentionsPickerViewModel extends ViewModel {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new MentionsPickerViewModel(new MentionsPickerRepository(ApplicationDependencies.getApplication())));
+      return modelClass.cast(new MentionsPickerViewModel(new MentionsPickerRepository(ApplicationDependencies.getApplication()),
+                                                         ApplicationDependencies.getMegaphoneRepository()));
     }
   }
 }

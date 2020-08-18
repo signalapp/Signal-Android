@@ -1902,7 +1902,12 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void initializeMentionsViewModel() {
     MentionsPickerViewModel mentionsViewModel = ViewModelProviders.of(this, new MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel.class);
 
-    recipient.observe(this, mentionsViewModel::onRecipientChange);
+    recipient.observe(this, r -> {
+      if (r.isPushV2Group() && !mentionsSuggestions.resolved()) {
+        mentionsSuggestions.get();
+      }
+      mentionsViewModel.onRecipientChange(r);
+    });
 
     composeText.setMentionQueryChangedListener(query -> {
       if (getRecipient().isPushV2Group()) {

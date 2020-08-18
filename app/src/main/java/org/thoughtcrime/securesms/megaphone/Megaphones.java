@@ -211,7 +211,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowMentionsMegaphone() {
-    return FeatureFlags.mentions() && FeatureFlags.groupsV2();
+    return FeatureFlags.mentions();
   }
 
   private static boolean shouldShowLinkPreviewsMegaphone(@NonNull Context context) {
