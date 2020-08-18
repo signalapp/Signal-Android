@@ -34,6 +34,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -245,19 +246,31 @@ public class DefaultMessageNotifier implements MessageNotifier {
                                  long threadId,
                                  boolean signal)
   {
-    boolean isVisible = visibleThread == threadId;
+    boolean   isVisible = visibleThread == threadId;
+    Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
-    ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
+    if (shouldNotify(context, recipient, threadId)) {
+      if (isVisible) {
+        sendInThreadNotification(context, recipient);
+      } else {
+        updateNotification(context, threadId, signal, 0);
+      }
+    }
+  }
 
+  private boolean shouldNotify(@NonNull Context context, @Nullable Recipient recipient, long threadId) {
     if (!TextSecurePreferences.isNotificationsEnabled(context)) {
-      return;
+      return false;
     }
 
-    if (isVisible) {
-      sendInThreadNotification(context, threads.getRecipientForThreadId(threadId));
-    } else {
-      updateNotification(context, threadId, signal, 0);
+    if (recipient == null || !recipient.isMuted()) {
+      return true;
     }
+
+    return FeatureFlags.mentions()                                                         &&
+           recipient.isPushV2Group()                                                       &&
+           recipient.getMentionSetting() == RecipientDatabase.MentionSetting.ALWAYS_NOTIFY &&
+           DatabaseFactory.getMmsDatabase(context).getUnreadMentionCount(threadId) > 0;
   }
 
   @Override
