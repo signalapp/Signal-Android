@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
+import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -60,6 +61,7 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
+import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 
 import java.util.HashSet;
 import java.util.List;
@@ -311,7 +313,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
     builder.setPrimaryMessageBody(recipient, notifications.get(0).getIndividualRecipient(),
-                                  notifications.get(0).getText(), notifications.get(0).getSlideDeck());
+                                  MentionUtilities.highlightMentions(notifications.get(0).getText(), notifications.get(0).getThreadId(), context),
+                                  notifications.get(0).getSlideDeck());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setDeleteIntent(notificationState.getDeleteIntent(context));
     builder.setOnlyAlertOnce(!signal);
@@ -390,13 +393,14 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     while(iterator.hasPrevious()) {
       NotificationItem item = iterator.previous();
-      builder.addMessageBody(item.getIndividualRecipient(), item.getRecipient(), item.getText());
+      builder.addMessageBody(item.getIndividualRecipient(), item.getRecipient(),
+                             MentionUtilities.highlightMentions(item.getText(), item.getThreadId(), context));
     }
 
     if (signal) {
       builder.setAlarms(notificationState.getRingtone(context), notificationState.getVibrate());
       builder.setTicker(notifications.get(0).getIndividualRecipient(),
-                        notifications.get(0).getText());
+                        MentionUtilities.highlightMentions(notifications.get(0).getText(), notifications.get(0).getThreadId(), context));
     }
 
     Notification notification = builder.build();
