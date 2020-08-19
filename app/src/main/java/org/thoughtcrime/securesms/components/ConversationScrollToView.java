@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -36,9 +35,9 @@ public final class ConversationScrollToView extends FrameLayout {
 
     if (attrs != null) {
       TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ConversationScrollToView);
-      Drawable   src   = array.getDrawable(R.styleable.ConversationScrollToView_cstv_scroll_button_src);
+      int        srcId = array.getResourceId(R.styleable.ConversationScrollToView_cstv_scroll_button_src, 0);
 
-      scrollButton.setImageDrawable(src);
+      scrollButton.setImageResource(srcId);
 
       array.recycle();
     }
