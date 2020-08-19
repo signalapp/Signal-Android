@@ -1,16 +1,13 @@
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-
-import java.util.List;
 
 public class SessionUtil {
 

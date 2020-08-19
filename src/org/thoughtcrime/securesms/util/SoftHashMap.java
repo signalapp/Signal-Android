@@ -19,7 +19,7 @@
 
 package org.thoughtcrime.securesms.util;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;

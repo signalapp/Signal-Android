@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/default_session_background"
+    tools:context="org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity">
+
+    <LinearLayout
+        android:id="@+id/mainContentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ctnGroupNameSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/large_spacing"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/cntGroupNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/btnCancelGroupNameEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_close_white_24dp"/>
+
+                <EditText
+                    style="@style/SessionEditText"
+                    android:id="@+id/edtGroupName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/small_spacing"
+                    android:layout_marginEnd="@dimen/small_spacing"
+                    android:textAlignment="center"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:hint="@string/activity_edit_closed_group_edit_text_hint" />
+
+                <ImageView
+                    android:id="@+id/btnSaveGroupNameEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_check_white_24dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cntGroupNameDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="visible"
+                tools:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/lblGroupNameDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/very_large_font_size"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="0dp"
+                    android:drawableEnd="@drawable/ic_edit_white_24dp"
+                    android:drawablePadding="@dimen/small_spacing"
+                    tools:text="SomeGroupName"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/separator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_spacing"
+                android:layout_marginTop="@dimen/small_spacing"
+                android:layout_marginEnd="@dimen/small_spacing"
+                android:layout_marginBottom="@dimen/small_spacing"
+                android:layout_weight="1"
+                android:text="@string/activity_edit_closed_group_edit_members"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size" />
+
+            <Button
+                android:id="@+id/addMembersClosedGroupButton"
+                style="@style/MediumProminentOutlineButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_marginTop="@dimen/small_spacing"
+                android:layout_marginEnd="@dimen/medium_spacing"
+                android:layout_marginStart="@dimen/small_spacing"
+                android:layout_marginBottom="@dimen/small_spacing"
+                android:paddingStart="@dimen/medium_spacing"
+                android:paddingEnd="@dimen/medium_spacing"
+                android:text="@string/activity_edit_closed_group_add_members" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/separator" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/emptyStateContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+    </LinearLayout>
+
+</RelativeLayout>

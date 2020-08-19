@@ -1,19 +1,17 @@
 package org.thoughtcrime.securesms.loki.activities
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
-class CreateClosedGroupAdapter(private val context: Context) : RecyclerView.Adapter<CreateClosedGroupAdapter.ViewHolder>() {
-    lateinit var glide: GlideRequests
+class SelectContactsAdapter(private val context: Context, private val glide: GlideRequests) : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
     val selectedMembers = mutableSetOf<String>()
     var members = listOf<String>()
         set(value) { field = value; notifyDataSetChanged() }
-    var memberClickListener: MemberClickListener? = null
 
     class ViewHolder(val view: UserView) : RecyclerView.ViewHolder(view)
 
@@ -28,12 +26,17 @@ class CreateClosedGroupAdapter(private val context: Context) : RecyclerView.Adap
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val member = members[position]
-        viewHolder.view.setOnClickListener { memberClickListener?.onMemberClick(member) }
+        viewHolder.view.setOnClickListener { onMemberClick(member) }
         val isSelected = selectedMembers.contains(member)
-        viewHolder.view.bind(Recipient.from(context, Address.fromSerialized(member), false), isSelected, glide)
+        viewHolder.view.bind(Recipient.from(
+            context,
+            Address.fromSerialized(member), false),
+            glide,
+            UserView.ActionIndicator.Tick,
+            isSelected)
     }
 
-    fun onMemberClick(member: String) {
+    private fun onMemberClick(member: String) {
         if (selectedMembers.contains(member)) {
             selectedMembers.remove(member)
         } else {
@@ -42,9 +45,4 @@ class CreateClosedGroupAdapter(private val context: Context) : RecyclerView.Adap
         val index = members.indexOf(member)
         notifyItemChanged(index)
     }
-}
-
-interface MemberClickListener {
-
-    fun onMemberClick(member: String)
 }

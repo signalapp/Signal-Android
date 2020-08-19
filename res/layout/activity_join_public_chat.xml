@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             style="@style/Session.DarkTabLayout"
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tab_bar_height" />
 
-    </android.support.v4.view.ViewPager>
+    </androidx.viewpager.widget.ViewPager>
 
     <RelativeLayout
         android:id="@+id/loader"

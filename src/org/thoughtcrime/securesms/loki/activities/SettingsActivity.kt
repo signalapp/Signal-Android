@@ -84,8 +84,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
-        displayNameContainer.setOnClickListener { showEditDisplayNameUI() }
-        displayNameTextView.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+        ctnGroupNameSection.setOnClickListener { showEditDisplayNameUI() }
+        btnGroupNameDisplay.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
@@ -154,7 +154,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         cancelButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
         showQRCodeButton.visibility = if (isEditingDisplayName) View.GONE else View.VISIBLE
         saveButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
-        displayNameTextView.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
+        btnGroupNameDisplay.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
         displayNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LinearLayout.LayoutParams
         titleTextViewLayoutParams.leftMargin = if (isEditingDisplayName) toPx(16, resources) else 0
@@ -198,7 +198,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         }
         all(promises).alwaysUi {
             if (displayName != null) {
-                displayNameTextView.text = displayName
+                btnGroupNameDisplay.text = displayName
             }
             displayNameToBeUploaded = null
             if (isUpdatingProfilePicture && profilePicture != null) {
@@ -248,7 +248,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun copyPublicKey() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", hexEncodedPublicKey)
-        clipboard.primaryClip = clip
+        clipboard.setPrimaryClip(clip)
         Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
 

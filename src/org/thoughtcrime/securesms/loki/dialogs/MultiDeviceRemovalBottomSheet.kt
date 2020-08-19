@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.dialogs
 
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod

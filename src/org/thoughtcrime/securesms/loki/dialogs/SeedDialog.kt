@@ -7,8 +7,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v7.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.widget.Toast
 import kotlinx.android.synthetic.main.dialog_seed.view.*
@@ -44,7 +44,7 @@ class SeedDialog : DialogFragment() {
     private fun copySeed() {
         val clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Seed", seed)
-        clipboard.primaryClip = clip
+        clipboard.setPrimaryClip(clip)
         Toast.makeText(context!!, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
         dismiss()
     }

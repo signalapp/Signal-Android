@@ -14,6 +14,6 @@ public interface MessageNotifier {
   void updateNotification(@NonNull Context context);
   void updateNotification(@NonNull Context context, long threadId);
   void updateNotification(@NonNull Context context, long threadId, boolean signal);
-  void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount);
+  void updateNotification(@androidx.annotation.NonNull Context context, boolean signal, int reminderCount);
   void clearReminder(@NonNull Context context);
 }

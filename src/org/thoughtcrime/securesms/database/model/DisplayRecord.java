@@ -17,7 +17,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;

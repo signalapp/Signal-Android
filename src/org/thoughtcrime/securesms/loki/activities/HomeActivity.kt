@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.loki.activities
 
 import android.app.AlertDialog
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,10 +11,10 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
-import android.support.v4.content.LocalBroadcastManager
-import android.support.v7.widget.LinearLayoutManager
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -121,7 +121,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         recyclerView.adapter = homeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Set up empty state view
-        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+        btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -223,7 +223,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == CreateClosedGroupActivity.createNewPrivateChatResultCode) {
+        if (resultCode == CreateClosedGroupActivity.closedGroupCreatedResultCode) {
             createNewPrivateChat()
         }
     }

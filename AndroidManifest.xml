@@ -133,11 +133,17 @@
             android:name="org.thoughtcrime.securesms.loki.activities.CreateClosedGroupActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="org.thoughtcrime.securesms.loki.activities.JoinPublicChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.SeedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.activities.SelectContactsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.PrivacySettingsActivity"
@@ -583,7 +589,7 @@
             android:exported="false"
             android:grantUriPermissions="true" />
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="network.loki.securesms.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">

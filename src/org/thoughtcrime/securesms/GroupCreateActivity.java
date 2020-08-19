@@ -23,8 +23,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -209,7 +209,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    inflater.inflate(R.menu.group_create, menu);
+    inflater.inflate(R.menu.menu_apply, menu);
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -221,7 +221,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       case android.R.id.home:
         finish();
         return true;
-      case R.id.menu_create_group:
+      case R.id.applyButton:
         if (groupToUpdate.isPresent()) handleGroupUpdate();
         else                           handleGroupCreate();
         return true;
@@ -389,7 +389,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     protected void onPreExecute() {
       activity.findViewById(R.id.group_details_layout).setVisibility(View.GONE);
       activity.findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
-      activity.findViewById(R.id.menu_create_group).setVisibility(View.GONE);
+      activity.findViewById(R.id.applyButton).setVisibility(View.GONE);
         final int titleResId = activity.groupToUpdate.isPresent()
                              ? R.string.GroupCreateActivity_updating_group
                              : R.string.GroupCreateActivity_creating_group;
@@ -401,7 +401,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       if (activity.isFinishing()) return;
       activity.findViewById(R.id.group_details_layout).setVisibility(View.VISIBLE);
       activity.findViewById(R.id.creating_group_layout).setVisibility(View.GONE);
-      activity.findViewById(R.id.menu_create_group).setVisibility(View.VISIBLE);
+      activity.findViewById(R.id.applyButton).setVisibility(View.VISIBLE);
     }
   }
 

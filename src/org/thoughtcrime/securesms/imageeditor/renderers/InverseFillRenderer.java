@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.imageeditor.renderers;
 
 import android.graphics.Path;
 import android.os.Parcel;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.Renderer;

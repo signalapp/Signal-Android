@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
 import org.thoughtcrime.securesms.logging.Log;

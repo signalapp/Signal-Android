@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/incall_screen"
@@ -212,7 +212,7 @@
             android:layout_height="match_parent"
             tools:visibility="invisible"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/hangup_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -233,4 +233,4 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -15,6 +15,12 @@ import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 
 class UserView : LinearLayout {
 
+    enum class ActionIndicator {
+        None,
+        Menu,
+        Tick
+    }
+
     // region Lifecycle
     constructor(context: Context) : super(context) {
         setUpViewHierarchy()
@@ -40,11 +46,7 @@ class UserView : LinearLayout {
     // endregion
 
     // region Updating
-    fun setCheckBoxVisible(visible: Boolean) {
-        tickImageView.visibility = if (visible) View.VISIBLE else View.GONE
-    }
-
-    fun bind(user: Recipient, isSelected: Boolean, glide: GlideRequests) {
+    fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
@@ -64,10 +66,23 @@ class UserView : LinearLayout {
             profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
+        actionIndicatorImageView.setImageResource(R.drawable.ic_edit_white_24dp)
         profilePictureView.glide = glide
         profilePictureView.update()
         nameTextView.text = user.name ?: "Unknown Contact"
-        tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+        when (actionIndicator) {
+            ActionIndicator.None -> {
+                actionIndicatorImageView.visibility = View.GONE
+            }
+            ActionIndicator.Menu -> {
+                actionIndicatorImageView.visibility = View.VISIBLE
+                actionIndicatorImageView.setImageResource(R.drawable.ic_more_horiz_white)
+            }
+            ActionIndicator.Tick -> {
+                actionIndicatorImageView.visibility = View.VISIBLE
+                actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+            }
+        }
     }
     // endregion
 }

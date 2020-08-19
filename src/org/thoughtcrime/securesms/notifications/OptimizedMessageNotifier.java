@@ -99,7 +99,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void updateNotification(@android.support.annotation.NonNull Context context, boolean signal, int reminderCount) {
+  public void updateNotification(@androidx.annotation.NonNull Context context, boolean signal, int reminderCount) {
     Poller lokiPoller = ApplicationContext.getInstance(context).poller;
     PublicChatManager publicChatManager = ApplicationContext.getInstance(context).publicChatManager;
     boolean isCaughtUp = true;

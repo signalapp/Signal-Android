@@ -1,14 +1,16 @@
 package org.thoughtcrime.securesms.util;
 
-import android.support.annotation.MainThread;
-import android.support.annotation.NonNull;
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Useful for generate ID's to be used with
- * {@link android.support.v7.widget.RecyclerView.Adapter#getItemId(int)} when you otherwise don't
+ * {@link RecyclerView.Adapter#getItemId(int)} when you otherwise don't
  * have a good way to generate an ID.
  */
 public class StableIdGenerator<E> {

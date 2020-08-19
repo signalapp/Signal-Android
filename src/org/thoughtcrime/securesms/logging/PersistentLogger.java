@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.logging;
 
 import android.content.Context;
-import android.support.annotation.AnyThread;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.AnyThread;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;

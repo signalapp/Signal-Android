@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.content.Context
 import android.database.Cursor
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory

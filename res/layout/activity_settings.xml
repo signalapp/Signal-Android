@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -68,7 +68,7 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
             <org.thoughtcrime.securesms.loki.views.ProfilePictureView
                 android:id="@+id/profilePictureView"
@@ -77,7 +77,7 @@
                 android:layout_marginTop="@dimen/medium_spacing" />
 
             <RelativeLayout
-                android:id="@+id/displayNameContainer"
+                android:id="@+id/ctnGroupNameSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/large_spacing"
@@ -97,7 +97,7 @@
                     android:hint="@string/activity_settings_display_name_edit_text_hint" />
 
                 <TextView
-                    android:id="@+id/displayNameTextView"
+                    android:id="@+id/btnGroupNameDisplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

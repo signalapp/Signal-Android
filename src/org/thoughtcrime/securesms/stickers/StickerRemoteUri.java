@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.stickers;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.load.Key;
 

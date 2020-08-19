@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.loki.activities
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.loki.views.DeviceView

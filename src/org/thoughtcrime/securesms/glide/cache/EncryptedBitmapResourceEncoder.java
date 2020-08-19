@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.glide.cache;
 
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.bumptech.glide.load.EncodeStrategy;

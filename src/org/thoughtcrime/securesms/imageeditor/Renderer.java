@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor;
 
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Responsible for rendering a single {@link org.thoughtcrime.securesms.imageeditor.model.EditorElement} to the canvas.

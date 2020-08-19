@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.imageeditor.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Flags for an {@link EditorElement}.
