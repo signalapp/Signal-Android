@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -70,6 +72,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 
 import java.io.IOException;
@@ -77,6 +80,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MessageSender {
@@ -469,12 +473,27 @@ public class MessageSender {
       MmsSmsDatabase         mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
       OutgoingMediaMessage   message            = mmsDatabase.getOutgoingMessage(messageId);
       SyncMessageId          syncId             = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());
+      List<Attachment>       attachments        = new LinkedList<>();
 
-      List<AttachmentCompressionJob> compressionJobs = Stream.of(message.getAttachments())
+
+      attachments.addAll(message.getAttachments());
+
+      attachments.addAll(Stream.of(message.getLinkPreviews())
+                               .map(LinkPreview::getThumbnail)
+                               .filter(Optional::isPresent)
+                               .map(Optional::get)
+                               .toList());
+
+      attachments.addAll(Stream.of(message.getSharedContacts())
+                               .map(Contact::getAvatar).withoutNulls()
+                               .map(Contact.Avatar::getAttachment).withoutNulls()
+                               .toList());
+
+      List<AttachmentCompressionJob> compressionJobs = Stream.of(attachments)
                                                              .map(a -> AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
                                                              .toList();
 
-      List<AttachmentMarkUploadedJob> fakeUploadJobs = Stream.of(message.getAttachments())
+      List<AttachmentMarkUploadedJob> fakeUploadJobs = Stream.of(attachments)
                                                              .map(a -> new AttachmentMarkUploadedJob(messageId, ((DatabaseAttachment) a).getAttachmentId()))
                                                              .toList();
 
