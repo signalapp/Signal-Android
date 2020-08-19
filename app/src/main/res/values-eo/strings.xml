@@ -409,7 +409,10 @@
   <string name="GroupManagement_invite_multiple_users">Vi ne povas aŭtomate aldoni tiujn uzantoj al tiu grupo.\n\nIli estis invititaj kaj ne vidos iujn grupmesaĝojn, antaŭ ol ili akceptas la inviton.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Malŝalti</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Antaŭrigardi ajnan ligilon</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vi nun povas rekte antaŭrigardi ligilojn de iu retejo por mesaĝoj, kiujn vi sendas.</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Neniu antaŭrigardo de ligilo disponeblas</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
@@ -549,7 +552,10 @@
     <item quantity="other">Ĉu vi volas senvalidigi %2$d invitojn senditajn de %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Vi jam estas ano</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ĝisdatigu Signal-on por uzi grupligilojn</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versio de Signal, kiun vi uzas ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu al lasta versio por anigi tiun grupon per ligilo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ĝisdatigi Signal-on</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
@@ -1599,6 +1605,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uzi Signal-on por ĉiuj envenaj aŭdvidaj mesaĝoj</string>
   <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premado de la Eniga klavo sendos mesaĝojn</string>
+  <string name="preferences__generate_link_previews">Krei antaŭrigardojn de ligilo</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Havi antaŭrigardojn de ligilo rekte de la retejoj por mesaĝoj, kiujn vi sendas.</string>
   <string name="preferences__choose_identity">Elekti identecon</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elektu vian propran kontakton el la kontaktlisto.</string>
   <string name="preferences__change_passphrase">Ŝanĝi pasfrazon</string>
@@ -1749,6 +1757,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_insecure__invite">Inviti</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Forviŝi elektitajn</string>
+  <string name="conversation_list_batch__menu_pin_selected">Alpingli elektitajn</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Depingli elektitajn</string>
   <string name="conversation_list_batch__menu_select_all">Elekti ĉiujn</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Enarĥivigi elektitajn</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Elarĥivigi elektitajn</string>
@@ -1758,7 +1768,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ŝparvojo al agordoj</string>
   <string name="conversation_list_search_description">Serĉi</string>
+  <string name="conversation_list__pinned">Alpinglitaj</string>
   <string name="conversation_list__chats">Interparoloj</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Vi povas alpingli nur ĝis %1$d interparolojn</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakta bildo</string>
   <string name="conversation_list_item_view__archived">Enarĥivigitaj</string>
@@ -1953,6 +1965,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Ni memorigos vin poste. Kreado de PIN nepros post %1$d tagoj.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Ni memorigos vin poste. Konfirmado de PIN nepros post %1$d tagoj.</string>
   <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Jen la @mencioj</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Kaptu ies atenton en novtipa grupo per tajpado de @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>

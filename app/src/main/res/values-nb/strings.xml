@@ -451,6 +451,7 @@
   <string name="ManageGroupActivity_leave_group">Forlat gruppe</string>
   <string name="ManageGroupActivity_mute_notifications">Skru av varsler</string>
   <string name="ManageGroupActivity_custom_notifications">Egendefinerte varsler</string>
+  <string name="ManageGroupActivity_mentions">Mentions</string>
   <string name="ManageGroupActivity_until_s">Frem til %1$s</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
@@ -475,6 +476,7 @@
   <string name="ManageGroupActivity_legacy_group">Legacy grupper</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dette er en \"legacy\" gruppe. For å få tilgang til de nye funksjonene som gruppeadministrator, lag en ny gruppe.</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Motta varsler når du blir nevnt i mutede samtaler?</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Legg til systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denne personen er i kontaktlisten din</string>
@@ -1672,6 +1674,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat fra hvem som helst</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver forseglet avsender for innkommende meldinger fra avsendere og personer som du ikke har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær mer</string>
+  <string name="preferences_notifications__mentions">Mentions</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1907,6 +1910,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi vil minne deg på det senere. Å lage en PIN-kode blir obligatorisk om %1$d dager.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi vil minne deg på det senere. Bekreftelse av PIN-koden blir obligatorisk om %1$d dager.</string>
   <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Introduserer \"@mentions\"</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>

@@ -1640,7 +1640,7 @@
   <string name="preferences_storage__review_storage">ストレージを確認</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字を無効にします</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバで中継して、相手にIPアドレスを知られることを防ぎます。ただし、通話の品質は下がります。</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバで中継して、相手にIPアドレスを知られることを防ぎます。ただし通話の品質は下がります。</string>
   <string name="preferences_advanced__always_relay_calls">通話を常に中継する</string>
   <string name="preferences_app_protection__app_access">アプリのアクセス</string>
   <string name="preferences_app_protection__communication">通信</string>

@@ -409,7 +409,10 @@
   <string name="GroupManagement_invite_multiple_users">No podeu afegir aquests usuaris automàticament a aquest grup.\n\nHan estat convidats a afegir-s\'hi i no veuran cap missatge del grup fins que ho acceptin.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desactiva</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Previsualitza qualsevol enllaç</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Ara podeu recuperar les previsualitzacions d’enllaços directament des de qualsevol lloc web per als missatges que envieu.</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">No hi ha previsualització d\'enllaç disponible.</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitacions de grup pendents</string>
   <string name="PendingMembersActivity_people_you_invited">Persones que heu convidat</string>
@@ -549,7 +552,10 @@
     <item quantity="other">Voleu rebutjar %2$d invitacions enviades per %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ja en sou membre.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualitzeu el Signal per usar els enllaços de grup</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versió del Signal que useu no admet enllaços de grup compartibles. Actualitzeu a la versió més recent per afegir-vos a aquest grup per l\'enllaç.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualitza el Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del grup</string>
@@ -1594,6 +1600,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Fes servir el Signal per a tots els missatges multimèdia d\'entrada</string>
   <string name="preferences__pref_enter_sends_title">S\'envia amb la tecla de Retorn</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">En prémer Retorn s\'envia el missatge de text</string>
+  <string name="preferences__generate_link_previews">Genera previsualitzacions d\'enllaç</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupereu les previsualitzacions d’enllaços directament des de qualsevol lloc web per als missatges que envieu.</string>
   <string name="preferences__choose_identity">Trieu la identitat a usar</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Trieu els contactes de la llista de contactes.</string>
   <string name="preferences__change_passphrase">Canvia la contrasenya</string>
@@ -1744,6 +1752,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_insecure__invite">Convida</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Suprimeix la selecció</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fixa la selecció</string>
+  <string name="conversation_list_batch__menu_unpin_selected">No fixis la selecció</string>
   <string name="conversation_list_batch__menu_select_all">Selecciona-ho tot</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arxiva la selecció</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">No arxivis la selecció</string>
@@ -1753,7 +1763,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Drecera de configuració</string>
   <string name="conversation_list_search_description">Cerca</string>
+  <string name="conversation_list__pinned">Fixat</string>
   <string name="conversation_list__chats">Xats</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Només podeu fixar fins a %1$d xats.</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacte</string>
   <string name="conversation_list_item_view__archived">Arxivat</string>
@@ -1948,6 +1960,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Us ho recordarem més tard. Crear un PIN serà obligatori d\'aquí a %1$d dies.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Us ho recordarem més tard. Confirmar el PIN serà obligatori d\'aquí a %1$d dies.</string>
   <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">S\'introdueixen les @Mencions</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Capteu l\'atenció d\'algú en un grup nou escrivint @.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>

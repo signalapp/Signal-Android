@@ -410,7 +410,9 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Keela</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Iga lingi eelvaade</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sa saad nüüd hankida lingieelvaated otse mistahes saidilt, mida sõnumina saadad.</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Lingieelvaade puudub</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ootel grupikutsed</string>
   <string name="PendingMembersActivity_people_you_invited">Sinu kutsutud inimesed</string>
@@ -553,6 +555,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sa oled juba liige</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uuenda Signal-it grupilinkide kasutamiseks</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">See Signali versioon, mida kasutad, ei toeta jagatavaid grupilinke.
+Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uuenda Signal-it</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
@@ -1603,6 +1607,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Kasuta Signalit kõigi sissetulevate multimeediasõnumite jaoks</string>
   <string name="preferences__pref_enter_sends_title">Sisestusklahv saadab</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Sisestusklahvi vajutamine saadab tekstsõnumeid</string>
+  <string name="preferences__generate_link_previews">Genereeri lingieelvaateid</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hangib lingieelvaated otse saitidelt, mida sõnumina saadad.</string>
   <string name="preferences__choose_identity">Vali identiteet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
   <string name="preferences__change_passphrase">Muuda salasõna</string>
@@ -1753,6 +1759,8 @@
   <string name="conversation_insecure__invite">Kutsu</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Kustuta valitud</string>
+  <string name="conversation_list_batch__menu_pin_selected">Kinnita valitud</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Eemalda kinnitus valitutelt</string>
   <string name="conversation_list_batch__menu_select_all">Vali kõik</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arhiveeri valitud</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Võta valitud arhiivist välja</string>
@@ -1762,7 +1770,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Seadete otsetee</string>
   <string name="conversation_list_search_description">Otsi</string>
+  <string name="conversation_list__pinned">Kinnitatud</string>
   <string name="conversation_list__chats">Vestlused</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Sa saad kinnitada kuni %1$d vestlust</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakti foto pilt</string>
   <string name="conversation_list_item_view__archived">Arhiveeritud</string>
@@ -1957,6 +1967,8 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tuletame sulle hiljem meelde. PIN-koodi loomine muutub %1$d päeva pärast kohustuslikuks.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Tuletame sulle hiljem meelde. PIN-koodi kinnitamine muutub %1$d päeva pärast kohustuslikuks.</string>
   <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Tutvustame @mainimisi</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Võida \"uues grupis\" kellegi tähelepanu, kirjutades @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>

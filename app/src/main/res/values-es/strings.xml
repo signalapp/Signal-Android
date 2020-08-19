@@ -101,7 +101,7 @@
   <string name="BucketedThreadMedia_Medium">Mediana</string>
   <string name="BucketedThreadMedia_Small">Pequeña</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Llamada entrante</string>
+  <string name="CallScreen_Incoming_call">Recibiendo llamada</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fallo al guardar la imagen.</string>
   <!--CameraXFragment-->
@@ -652,7 +652,7 @@
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
   <string name="NotificationBarManager__establishing_signal_call">Estableciendo llamada de Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Llamada de Signal entrante</string>
+  <string name="NotificationBarManager__incoming_signal_call">Recibiendo llamada de Signal</string>
   <string name="NotificationBarManager__deny_call">Denegar llamada</string>
   <string name="NotificationBarManager__answer_call">Atender llamada</string>
   <string name="NotificationBarManager__end_call">Finalizar llamada</string>
@@ -917,7 +917,7 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toca aquí para activar tu cámara</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal necesita acceder a tu cámara para llamar a %1$s.</string>
-  <string name="WebRtcCallActivity__signal_s">%1$s de Signal</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Llamando …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Llamada de Signal …</string>
@@ -1602,8 +1602,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__sms_mms">SMS y MMS</string>
   <string name="preferences__pref_all_sms_title">Recibir todos los SMS</string>
   <string name="preferences__pref_all_mms_title">Recibir todos los MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Usar Signal para todos los mensajes de texto entrantes</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usar Signal para todos los mensajes multimedia entrantes</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Usar Signal para recibir todos los mensajes de texto</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usar Signal para recibir todos los mensajes multimedia</string>
   <string name="preferences__pref_enter_sends_title">Enviar al tocar «Intro»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Los mensajes se enviarán al pulsar la tecla Intro.</string>
   <string name="preferences__generate_link_previews">Generar previsualización de enlaces</string>

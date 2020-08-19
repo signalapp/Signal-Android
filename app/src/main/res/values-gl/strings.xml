@@ -391,7 +391,10 @@
   <string name="GroupManagement_learn_more">Saber máis</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desactivar</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Vista previa de ligazóns</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Podes obter directamente vistas previas das ligazóns a sitios web para as mensaxes que envías.</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Vista previa non dispoñible</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Persoas que convidaches</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Non tes convites pendentes.</string>
@@ -1283,6 +1286,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar Signal para todas as mensaxes multimedia recibidas</string>
   <string name="preferences__pref_enter_sends_title">Tecla Intro para enviar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ao tocar na tecla Intro enviaranse as mensaxes</string>
+  <string name="preferences__generate_link_previews">Crear vista previa de ligazóns</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obter vistas previas das ligazóns directamente desde os sitios web para as mensaxes que envías.</string>
   <string name="preferences__choose_identity">Elixir identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>
