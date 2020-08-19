@@ -1409,7 +1409,7 @@
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
-    <string name="text_secure_normal__invite_friends">Invite friends</string>
+    <string name="text_secure_normal__invite_friends">Invite Contacts</string>
     <string name="text_secure_normal__help">Help</string>
 
     <!-- verify_display_fragment -->
@@ -1714,7 +1714,7 @@
 
     <string name="activity_seed_title">Your Recovery Phrase</string>
     <string name="activity_seed_title_2">Meet your recovery phrase</string>
-    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\’t give it to anyone.</string>
+    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\'t give it to anyone.</string>
     <string name="activity_seed_reveal_button_title">Hold to reveal</string>
 
     <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
@@ -1732,7 +1732,7 @@
     <string name="activity_create_private_chat_title">New Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
-    <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\’s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\'s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
 
     <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
     <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping "Share Session ID", or by sharing their QR code.</string>
