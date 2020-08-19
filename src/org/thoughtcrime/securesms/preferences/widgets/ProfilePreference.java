@@ -7,9 +7,6 @@ import android.content.Context;
 import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceViewHolder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -18,14 +15,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceViewHolder;
+
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 
 import network.loki.messenger.R;
 
@@ -124,8 +123,7 @@ public class ProfilePreference extends Preference {
     profileTagView.setVisibility(userMasterPublicKey == null ? View.GONE : View.VISIBLE);
 
     if (userMasterPublicKey != null && shortDeviceMnemonic == null) {
-      MnemonicCodec codec = new MnemonicCodec(MnemonicUtilities.getLanguageFileDirectory(context));
-      shortDeviceMnemonic = MnemonicUtilities.getFirst3Words(codec, userPublicKey);
+      shortDeviceMnemonic = "";
     }
 
     String tag = context.getResources().getString(R.string.activity_settings_linked_device_tag);

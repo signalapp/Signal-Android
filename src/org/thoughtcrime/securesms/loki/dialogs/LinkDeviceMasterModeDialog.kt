@@ -29,16 +29,15 @@ import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.Device
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
 
 class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListener {
-    private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
     private lateinit var contentView: View
     private var deviceLink: DeviceLink? = null
     var delegate: LinkDeviceMasterModeDialogDelegate? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val builder = AlertDialog.Builder(context!!)
-        contentView = LayoutInflater.from(context!!).inflate(R.layout.dialog_link_device_master_mode, null)
+        val builder = AlertDialog.Builder(requireContext())
+        contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_link_device_master_mode, null)
         val size = toPx(128, resources)
-        val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context!!)
+        val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())
         val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false, false)
         contentView.qrCodeImageView.setImageBitmap(qrCode)
         contentView.cancelButton.setOnClickListener { onDeviceLinkCanceled() }
@@ -52,7 +51,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
     }
 
     override fun requestUserAuthorization(deviceLink: DeviceLink) {
-        if (deviceLink.type != DeviceLink.Type.REQUEST || deviceLink.masterPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
+        if (deviceLink.type != DeviceLink.Type.REQUEST || deviceLink.masterPublicKey != TextSecurePreferences.getLocalNumber(requireContext()) || this.deviceLink != null) { return }
         Util.runOnMain {
             this.deviceLink = deviceLink
             contentView.qrCodeImageView.visibility = View.GONE
@@ -62,7 +61,10 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             contentView.titleTextView.text = resources.getString(R.string.dialog_link_device_master_mode_title_2)
             contentView.explanationTextView.text = resources.getString(R.string.dialog_link_device_master_mode_explanation_2)
             contentView.mnemonicTextView.visibility = View.VISIBLE
-            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), deviceLink.slavePublicKey)
+            val loadFileContents: (String) -> String = { fileName ->
+                MnemonicUtilities.loadFileContents(requireContext(), fileName)
+            }
+            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(loadFileContents), deviceLink.slavePublicKey)
             contentView.authorizeButton.visibility = View.VISIBLE
         }
     }
@@ -85,15 +87,15 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             contentView.authorizeButton.visibility = View.GONE
         }
         FileServerAPI.shared.addDeviceLink(deviceLink).bind(SnodeAPI.sharedContext) {
-            MultiDeviceProtocol.signAndSendDeviceLinkMessage(context!!, deviceLink)
+            MultiDeviceProtocol.signAndSendDeviceLinkMessage(requireContext(), deviceLink)
         }.success {
-            TextSecurePreferences.setMultiDevice(context!!, true)
+            TextSecurePreferences.setMultiDevice(requireContext(), true)
         }.successUi {
             delegate?.onDeviceLinkRequestAuthorized()
             dismiss()
         }.fail {
             FileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
-            DatabaseFactory.getLokiPreKeyBundleDatabase(context!!).removePreKeyBundle(deviceLink.slavePublicKey)
+            DatabaseFactory.getLokiPreKeyBundleDatabase(requireContext()).removePreKeyBundle(deviceLink.slavePublicKey)
         }.failUi {
             delegate?.onDeviceLinkAuthorizationFailed()
             dismiss()

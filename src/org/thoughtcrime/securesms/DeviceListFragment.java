@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.ListFragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +14,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.ListFragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -26,12 +27,10 @@ import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.loki.dialogs.DeviceEditingOptionsBottomSheet;
-import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Function;
 
-import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,7 +47,6 @@ public class DeviceListFragment extends ListFragment
 
   private static final String TAG = DeviceListFragment.class.getSimpleName();
 
-  private File                   languageFileDirectory;
   private Locale                 locale;
   private View                   empty;
   private View                   progressContainer;
@@ -85,7 +83,6 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
-    this.languageFileDirectory = MnemonicUtilities.getLanguageFileDirectory(getContext());
     getLoaderManager().initLoader(0, null, this);
     getListView().setOnItemClickListener(this);
   }
@@ -107,7 +104,7 @@ public class DeviceListFragment extends ListFragment
     empty.setVisibility(View.GONE);
     progressContainer.setVisibility(View.VISIBLE);
 
-    return new DeviceListLoader(getActivity(), languageFileDirectory);
+    return new DeviceListLoader(getActivity());
   }
 
   @Override

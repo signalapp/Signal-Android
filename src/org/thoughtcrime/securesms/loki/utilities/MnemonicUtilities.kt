@@ -8,30 +8,17 @@ import java.io.FileOutputStream
 
 object MnemonicUtilities {
 
-  @JvmStatic
-  public fun getLanguageFileDirectory(context: Context): File {
-    val languages = listOf( "english", "japanese", "portuguese", "spanish" )
-    val directory = File(context.applicationInfo.dataDir)
-    for (language in languages) {
-      val fileName = "$language.txt"
-      if (directory.list().contains(fileName)) { continue }
-      val inputStream = context.assets.open("mnemonic/$fileName")
-      val file = File(directory, fileName)
-      val outputStream = FileOutputStream(file)
-      val buffer = ByteArray(1024)
-      while (true) {
-        val count = inputStream.read(buffer)
-        if (count < 0) { break }
-        outputStream.write(buffer, 0, count)
-      }
+  public fun loadFileContents(context: Context, fileName: String): String {
+      val inputStream = context.assets.open("mnemonic/$fileName.txt")
+      val size = inputStream.available()
+      val buffer = ByteArray(size)
+      inputStream.read(buffer)
       inputStream.close()
-      outputStream.close()
-    }
-    return directory
+      return String(buffer)
   }
 
   @JvmStatic
   public fun getFirst3Words(codec: MnemonicCodec, hexEncodedPublicKey: String): String {
-    return codec.encode(hexEncodedPublicKey.removing05PrefixIfNeeded()).split(" ").slice(0 until 3).joinToString(" ")
+      return codec.encode(hexEncodedPublicKey.removing05PrefixIfNeeded()).split(" ").slice(0 until 3).joinToString(" ")
   }
 }

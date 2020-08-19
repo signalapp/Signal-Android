@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_seed.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
@@ -22,12 +24,14 @@ import java.io.File
 class SeedActivity : BaseActionBarActivity() {
 
     private val seed by lazy {
-        val languageFileDirectory = File(applicationInfo.dataDir)
         var hexEncodedSeed = IdentityKeyUtil.retrieve(this, IdentityKeyUtil.lokiSeedKey)
         if (hexEncodedSeed == null) {
             hexEncodedSeed = IdentityKeyUtil.getIdentityKeyPair(this).hexEncodedPrivateKey // Legacy account
         }
-        MnemonicCodec(languageFileDirectory).encode(hexEncodedSeed!!, MnemonicCodec.Language.Configuration.english)
+        val loadFileContents: (String) -> String = { fileName ->
+            MnemonicUtilities.loadFileContents(this, fileName)
+        }
+        MnemonicCodec(loadFileContents).encode(hexEncodedSeed!!, MnemonicCodec.Language.Configuration.english)
     }
 
     // region Lifecycle

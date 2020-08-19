@@ -25,10 +25,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.Uri;
-import androidx.annotation.DimenRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -49,6 +45,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.DimenRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 
@@ -975,7 +976,11 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(current.getThreadId()).getName();
+    Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(current.getThreadId());
+    String threadName = null;
+    if (recipient != null) {
+      threadName = recipient.getName();
+    }
     boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Session Updates"));
     if (isGroupThread && !isRSSFeed && !current.isOutgoing()) {
       contactPhotoHolder.setVisibility(VISIBLE);

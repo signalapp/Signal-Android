@@ -44,7 +44,6 @@ class RegisterActivity : BaseActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        setUpLanguageFileDirectory()
         setUpActionBarSessionLogo()
         registerButton.setOnClickListener { register() }
         copyButton.setOnClickListener { copyPublicKey() }
@@ -66,28 +65,6 @@ class RegisterActivity : BaseActionBarActivity() {
         termsTextView.movementMethod = LinkMovementMethod.getInstance()
         termsTextView.text = termsExplanation
         updateKeyPair()
-    }
-    // endregion
-
-    // region General
-    private fun setUpLanguageFileDirectory() {
-        val languages = listOf( "english", "japanese", "portuguese", "spanish" )
-        val directory = File(applicationInfo.dataDir)
-        for (language in languages) {
-            val fileName = "$language.txt"
-            if (directory.list().contains(fileName)) { continue }
-            val inputStream = assets.open("mnemonic/$fileName")
-            val file = File(directory, fileName)
-            val outputStream = FileOutputStream(file)
-            val buffer = ByteArray(1024)
-            while (true) {
-                val count = inputStream.read(buffer)
-                if (count < 0) { break }
-                outputStream.write(buffer, 0, count)
-            }
-            inputStream.close()
-            outputStream.close()
-        }
     }
     // endregion
 
