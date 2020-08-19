@@ -17,8 +17,6 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-
 import org.greenrobot.eventbus.EventBus;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
@@ -44,7 +42,6 @@ import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -76,7 +73,6 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -410,7 +406,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       return;
     }
 
-    if (remotePeer.getRecipient() == null || !RecipientUtil.isMessageRequestAccepted(getApplicationContext(), remotePeer.getRecipient())) {
+    if (remotePeer.getRecipient() == null || !RecipientUtil.isCallRequestAccepted(getApplicationContext(), remotePeer.getRecipient())) {
       Log.i(TAG, "handleReceivedOffer(): Caller is untrusted.");
       intent.putExtra(EXTRA_BROADCAST, true);
       intent.putExtra(EXTRA_HANGUP_TYPE, HangupMessage.Type.NEED_PERMISSION.getCode());
