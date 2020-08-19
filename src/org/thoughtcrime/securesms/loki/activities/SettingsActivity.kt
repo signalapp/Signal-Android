@@ -11,11 +11,11 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v7.app.AppCompatDelegate
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
@@ -115,9 +115,10 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         return themeFlag == Configuration.UI_MODE_NIGHT_YES;
     }
 
+    //TODO Remove it.
     private fun setDarkTheme(darkTheme: Boolean) {
 //        AppCompatDelegate.setDefaultNightMode(if (darkTheme) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO )
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
