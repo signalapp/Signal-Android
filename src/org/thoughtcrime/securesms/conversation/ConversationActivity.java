@@ -1857,9 +1857,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
+    /*
     ApplicationContext.getInstance(this)
                       .getJobManager()
                       .add(new RetrieveProfileJob(recipient));
+     */
   }
 
   @Override
