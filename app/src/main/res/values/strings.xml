@@ -1102,10 +1102,10 @@
     <string name="RecipientProvider_unnamed_group">Unnamed group</string>
 
     <!-- RedPhone -->
-    <string name="RedPhone_answering">Answering</string>
-    <string name="RedPhone_ending_call">Ending call</string>
-    <string name="RedPhone_dialing">Dialing</string>
-    <string name="RedPhone_ringing">Ringing</string>
+    <string name="RedPhone_answering">Answering…</string>
+    <string name="RedPhone_ending_call">Ending call…</string>
+    <string name="RedPhone_dialing">Dialing…</string>
+    <string name="RedPhone_ringing">Ringing…</string>
     <string name="RedPhone_busy">Busy</string>
     <string name="RedPhone_connected">Connected</string>
     <string name="RedPhone_recipient_unavailable">Recipient unavailable</string>
