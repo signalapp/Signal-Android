@@ -730,6 +730,7 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você revogou privilégios de admin de %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revogou seus privilégios de administrador.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revogou os privilégios de admin de %2$s.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s agora é um administrador</string>
   <string name="MessageRecord_you_are_now_an_admin">Agora você é um/a admin</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s é agora um administrador.</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">Você não é mais um administrador.</string>
@@ -778,6 +779,7 @@
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Você mudou quem pode editar as informações do grupo. Agora é \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s mudou quem pode editar as informações do grupo. Agora é \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Quem pode editar as informações do grupo foi alterado para \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Você mudou quem pode editar os membros do grupo. Agora é \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s mudou quem pode editar os membros do grupo. Agora é \"%2$s\".</string>
@@ -914,6 +916,7 @@
   <string name="RedPhone_got_it">Entendi</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toque para ligar seu vídeo</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para chamar %1$s, Signal precisa ter acesso à sua câmera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Chamando…</string>
   <!--WebRtcCallView-->
