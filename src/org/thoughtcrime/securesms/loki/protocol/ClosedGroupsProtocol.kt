@@ -411,8 +411,13 @@ object ClosedGroupsProtocol {
         if (GroupUtil.isOpenGroup(groupID)) {
             return listOf( Address.fromSerialized(groupID) )
         } else {
-            val groupPublicKey = doubleDecodeGroupID(groupID).toHexString()
-            if (DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)) {
+            var groupPublicKey: String? = null
+            try {
+                groupPublicKey = doubleDecodeGroupID(groupID).toHexString()
+            } catch (exception: Exception) {
+                // Do nothing
+            }
+            if (groupPublicKey != null && DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)) {
                 return listOf( Address.fromSerialized(groupPublicKey) )
             } else {
                 return DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false).map { it.address }
