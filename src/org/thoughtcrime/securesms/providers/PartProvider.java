@@ -26,7 +26,7 @@ import android.net.Uri;
 import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;

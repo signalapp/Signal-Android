@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 

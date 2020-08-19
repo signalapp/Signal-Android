@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;

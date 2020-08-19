@@ -8,7 +8,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/default_session_background">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
 
         </RelativeLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <fragment android:id="@+id/contact_selection_list_fragment"

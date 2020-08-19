@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
 import android.database.ContentObserver;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.Closeable;
 

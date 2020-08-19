@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.util.task;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
 public abstract class SnackbarAsyncTask<Params>

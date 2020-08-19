@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mms;
 
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.Address;

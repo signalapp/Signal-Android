@@ -21,11 +21,11 @@ import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.AttrRes;
-import android.support.annotation.DimenRes;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.AttrRes;
+import androidx.annotation.DimenRes;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import android.util.TypedValue;
 
 public class ResUtil {

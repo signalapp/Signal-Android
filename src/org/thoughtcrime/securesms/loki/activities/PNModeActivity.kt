@@ -5,7 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.TransitionDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View

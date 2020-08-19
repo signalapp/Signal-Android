@@ -83,7 +83,7 @@
             android:textIsSelectable="false"
             android:textSize="@dimen/onboarding_subtitle_size" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/experience_yes_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
             android:textColor="@color/core_blue"
             app:backgroundTint="@color/core_white" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/experience_no_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

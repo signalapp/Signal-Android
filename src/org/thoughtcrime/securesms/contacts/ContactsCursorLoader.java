@@ -16,14 +16,13 @@
  */
 package org.thoughtcrime.securesms.contacts;
 
-import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.v4.content.CursorLoader;
+import androidx.annotation.NonNull;
+import androidx.loader.content.CursorLoader;
 import android.text.TextUtils;
 
 import network.loki.messenger.R;
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.NumberUtil;
 

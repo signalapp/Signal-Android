@@ -5,8 +5,8 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
@@ -136,7 +136,7 @@ class EnterPublicKeyFragment : Fragment() {
     private fun copyPublicKey() {
         val clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", hexEncodedPublicKey)
-        clipboard.primaryClip = clip
+        clipboard.setPrimaryClip(clip)
         Toast.makeText(context!!, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
 

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
-import android.support.annotation.ColorRes
+import androidx.annotation.ColorRes
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import kotlin.math.roundToInt
 

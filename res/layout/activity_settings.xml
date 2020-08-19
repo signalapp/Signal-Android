@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -68,7 +68,7 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
             <org.thoughtcrime.securesms.loki.views.ProfilePictureView
                 android:id="@+id/profilePictureView"

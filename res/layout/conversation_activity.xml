@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/default_session_background">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -74,7 +74,7 @@
 
         </LinearLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <org.thoughtcrime.securesms.components.InputAwareLayout
         android:id="@+id/layout_container"

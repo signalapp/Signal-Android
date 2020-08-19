@@ -1,9 +1,8 @@
 package org.thoughtcrime.securesms.database.model;
 
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;

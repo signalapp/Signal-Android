@@ -17,7 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
