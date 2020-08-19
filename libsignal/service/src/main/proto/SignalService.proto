@@ -353,8 +353,9 @@ message SyncMessage {
     optional bool   readReceipts                   = 1;
     optional bool   unidentifiedDeliveryIndicators = 2;
     optional bool   typingIndicators               = 3;
-    optional bool   linkPreviews                   = 4;
+    // 4 is reserved (old link preview setting)
     optional uint32 provisioningVersion            = 5;
+    optional bool   linkPreviews                   = 6;
   }
 
   message StickerPackOperation {

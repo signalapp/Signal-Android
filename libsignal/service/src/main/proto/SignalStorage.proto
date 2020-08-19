@@ -105,5 +105,7 @@ message AccountRecord {
   bool   readReceipts           = 6;
   bool   sealedSenderIndicators = 7;
   bool   typingIndicators       = 8;
-  bool   linkPreviews           = 9;
+  bool   proxiedLinkPreviews    = 9;
+  // 10 is reserved for unread
+  bool   linkPreviews           = 11;
 }
