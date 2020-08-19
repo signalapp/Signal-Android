@@ -296,13 +296,12 @@
         <item name="android:textColor">#BFffffff</item>
     </style>
 
-    <style name="NotificationText">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
+    <style name="NotificationText" parent="android:TextAppearance.StatusBar.EventContent">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
-
-    <style name="NotificationTitle">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-      <item name="android:textStyle">bold</item>
+    <style name="NotificationTitle" parent="android:TextAppearance.StatusBar.EventContent.Title">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Registration.Description" parent="@android:style/TextAppearance">
@@ -350,7 +349,7 @@
 
     <!-- For Holo Light Dialog Activity Styling Emulation -->
 
-    <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
+    <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
     </style>
 
     <style name="MaterialButton">

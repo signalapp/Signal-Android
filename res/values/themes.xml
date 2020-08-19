@@ -3,43 +3,23 @@
 <resources>
 
     <!-- Session -->
-    <style name="Session.DarkTheme" parent="@style/Theme.AppCompat">
-        <item name="actionBarStyle">@style/Session.DarkActionBar</item>
+    <style name="Session.DarkTheme" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="actionBarStyle">@style/Session.DarkActionBar</item>
         <item name="alertDialogTheme">@style/Session.AlertDialog</item>
+        <item name="android:navigationBarColor">@color/compose_view_background</item>
         <item name="android:windowBackground">@drawable/default_session_background</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
-        <item name="colorAccent">@color/accent</item>
         <item name="actionModeBackground">@color/compose_view_background</item>
         <item name="windowActionModeOverlay">true</item>
     </style>
 
-    <style name="Session.DarkTheme.NoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
-        <item name="actionBarStyle">@style/Session.DarkActionBar</item>
-        <item name="colorPrimary">@color/action_bar_background</item>
-        <item name="colorPrimaryDark">@color/action_bar_background</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
-        <item name="alertDialogTheme">@style/Session.AlertDialog</item>
-        <item name="android:windowBackground">@drawable/default_session_background</item>
-        <item name="preferenceTheme">@style/Session.SettingsTheme</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="actionModeBackground">@color/compose_view_background</item>
-        <item name="windowActionModeOverlay">true</item>
-    </style>
+    <style name="Session.DarkTheme.NoActionBar" parent="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
-    <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Theme.AppCompat">
+    <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
         <item name="actionBarStyle">@style/Session.DarkSubtitleActionBar</item>
-        <item name="colorPrimary">@color/action_bar_background</item>
-        <item name="colorPrimaryDark">@color/action_bar_background</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
-        <item name="alertDialogTheme">@style/Session.AlertDialog</item>
-        <item name="android:windowBackground">@drawable/default_session_background</item>
-        <item name="preferenceTheme">@style/Session.SettingsTheme</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="actionModeBackground">@color/compose_view_background</item>
-        <item name="windowActionModeOverlay">true</item>
     </style>
     <!-- Session -->
 
@@ -68,7 +48,8 @@
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
-        <!-- leave empty to allow overriding -->
+        <item name="android:navigationBarColor">@color/compose_view_background</item>
+        <item name="android:colorControlActivated">@color/signal_primary_dark</item>
     </style>
 
     <style name="TextSecure.BaseDarkNoActionBar" parent="@style/TextSecure.BaseDarkTheme">
@@ -535,6 +516,8 @@
     </style>
 
     <style name="TextSecure.ScribbleTheme" parent="TextSecure.DarkNoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">

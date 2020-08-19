@@ -5,11 +5,13 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.support.v7.app.AppCompatDelegate
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
@@ -66,6 +68,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+//        setTheme(if (isDarkTheme())
+//            R.style.Session_DarkTheme_NoActionBar
+//        else
+//            R.style.Session_LightTheme_NoActionBar)
+
         setContentView(R.layout.activity_settings)
         setSupportActionBar(toolbar)
         cancelButton.setOnClickListener { cancelEditingDisplayName() }
@@ -96,6 +103,21 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
         versionTextView.text = String.format(getString(R.string.version_s), BuildConfig.VERSION_NAME)
+
+        themeSwitchButton.setOnClickListener {
+            setDarkTheme(!isDarkTheme())
+            recreate()
+        }
+    }
+
+    private fun isDarkTheme(): Boolean {
+        val themeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return themeFlag == Configuration.UI_MODE_NIGHT_YES;
+    }
+
+    private fun setDarkTheme(darkTheme: Boolean) {
+//        AppCompatDelegate.setDefaultNightMode(if (darkTheme) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO )
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

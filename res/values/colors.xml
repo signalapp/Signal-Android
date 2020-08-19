@@ -82,7 +82,7 @@
     <color name="conversation_compose_divider">#32000000</color>
 
     <color name="action_mode_status_bar">@color/gray65</color>
-    <color name="touch_highlight">#400099cc</color>
+    <color name="touch_highlight">#22000000</color>
 
     <color name="device_link_item_background_light">#ffffffff</color>
     <color name="device_link_item_background_dark">#ff333333</color>
@@ -106,5 +106,8 @@
     <color name="logsubmit_confirmation_background">#44ff2d00</color>
 
     <color name="avatar_background">@color/transparent_black_90</color>
+
+    <color name="default_background_start">#121212</color>
+    <color name="default_background_end">#171717</color>
 
 </resources>

@@ -162,6 +162,22 @@
                 android:background="@color/separator" />
 
             <TextView
+                android:id="@+id/themeSwitchButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@color/accent"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Switch Theme" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/separator" />
+
+            <TextView
                 android:id="@+id/privacyButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/setting_button_height"
