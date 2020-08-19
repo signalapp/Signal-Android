@@ -14,6 +14,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.dialog_seed.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
 import java.io.File
@@ -21,17 +22,19 @@ import java.io.File
 class SeedDialog : DialogFragment() {
 
     private val seed by lazy {
-        val languageFileDirectory = File(context!!.applicationInfo.dataDir)
-        var hexEncodedSeed = IdentityKeyUtil.retrieve(context!!, IdentityKeyUtil.lokiSeedKey)
+        var hexEncodedSeed = IdentityKeyUtil.retrieve(requireContext(), IdentityKeyUtil.lokiSeedKey)
         if (hexEncodedSeed == null) {
-            hexEncodedSeed = IdentityKeyUtil.getIdentityKeyPair(context!!).hexEncodedPrivateKey // Legacy account
+            hexEncodedSeed = IdentityKeyUtil.getIdentityKeyPair(requireContext()).hexEncodedPrivateKey // Legacy account
         }
-        MnemonicCodec(languageFileDirectory).encode(hexEncodedSeed!!, MnemonicCodec.Language.Configuration.english)
+        val loadFileContents: (String) -> String = { fileName ->
+            MnemonicUtilities.loadFileContents(requireContext(), fileName)
+        }
+        MnemonicCodec(loadFileContents).encode(hexEncodedSeed!!, MnemonicCodec.Language.Configuration.english)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val builder = AlertDialog.Builder(context!!)
-        val contentView = LayoutInflater.from(context!!).inflate(R.layout.dialog_seed, null)
+        val builder = AlertDialog.Builder(requireContext())
+        val contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_seed, null)
         contentView.seedTextView.text = seed
         contentView.cancelButton.setOnClickListener { dismiss() }
         contentView.copyButton.setOnClickListener { copySeed() }
@@ -42,10 +45,10 @@ class SeedDialog : DialogFragment() {
     }
 
     private fun copySeed() {
-        val clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboard = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Seed", seed)
         clipboard.setPrimaryClip(clip)
-        Toast.makeText(context!!, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
         dismiss()
     }
 }

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.util.Base64
@@ -31,12 +32,10 @@ import java.io.File
 import java.io.FileOutputStream
 
 class RestoreActivity : BaseActionBarActivity() {
-    private lateinit var languageFileDirectory: File
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setUpLanguageFileDirectory()
         setUpActionBarSessionLogo()
         setContentView(R.layout.activity_restore)
         mnemonicEditText.imeOptions = mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
@@ -61,34 +60,14 @@ class RestoreActivity : BaseActionBarActivity() {
     }
     // endregion
 
-    // region General
-    private fun setUpLanguageFileDirectory() {
-        val languages = listOf( "english", "japanese", "portuguese", "spanish" )
-        val directory = File(applicationInfo.dataDir)
-        for (language in languages) {
-            val fileName = "$language.txt"
-            if (directory.list().contains(fileName)) { continue }
-            val inputStream = assets.open("mnemonic/$fileName")
-            val file = File(directory, fileName)
-            val outputStream = FileOutputStream(file)
-            val buffer = ByteArray(1024)
-            while (true) {
-                val count = inputStream.read(buffer)
-                if (count < 0) { break }
-                outputStream.write(buffer, 0, count)
-            }
-            inputStream.close()
-            outputStream.close()
-        }
-        languageFileDirectory = directory
-    }
-    // endregion
-
     // region Interaction
     private fun restore() {
         val mnemonic = mnemonicEditText.text.toString()
         try {
-            val hexEncodedSeed = MnemonicCodec(languageFileDirectory).decode(mnemonic)
+            val loadFileContents: (String) -> String = { fileName ->
+                MnemonicUtilities.loadFileContents(this, fileName)
+            }
+            val hexEncodedSeed = MnemonicCodec(loadFileContents).decode(mnemonic)
             var seed = Hex.fromStringCondensed(hexEncodedSeed)
             IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
             if (seed.size == 16) { seed = seed + seed }
