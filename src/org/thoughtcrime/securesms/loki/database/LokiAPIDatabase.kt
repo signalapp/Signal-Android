@@ -215,9 +215,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun getReceivedMessageHashValues(publicKey: String): Set<String>? {
         val database = databaseHelper.readableDatabase
-        val query = "$Companion.publicKey = ?"
+        val query = "${Companion.publicKey} = ?"
         return database.get(receivedMessageHashValuesTable2, query, arrayOf( publicKey )) { cursor ->
-            val receivedMessageHashValuesAsString = cursor.getString(cursor.getColumnIndexOrThrow(receivedMessageHashValues))
+            val receivedMessageHashValuesAsString = cursor.getString(cursor.getColumnIndexOrThrow(Companion.receivedMessageHashValues))
             receivedMessageHashValuesAsString.split("-").toSet()
         }
     }
@@ -225,8 +225,8 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setReceivedMessageHashValues(publicKey: String, newValue: Set<String>) {
         val database = databaseHelper.writableDatabase
         val receivedMessageHashValuesAsString = newValue.joinToString("-")
-        val row = wrap(mapOf( Companion.publicKey to publicKey, receivedMessageHashValues to receivedMessageHashValuesAsString ))
-        val query = "$Companion.publicKey = ?"
+        val row = wrap(mapOf( Companion.publicKey to publicKey, Companion.receivedMessageHashValues to receivedMessageHashValuesAsString ))
+        val query = "${Companion.publicKey} = ?"
         database.insertOrUpdate(receivedMessageHashValuesTable2, row, query, arrayOf( publicKey ))
     }
 
