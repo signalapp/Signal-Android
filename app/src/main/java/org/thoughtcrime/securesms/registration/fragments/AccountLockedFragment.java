@@ -29,7 +29,7 @@ public class AccountLockedFragment extends BaseRegistrationFragment {
 
     TextView description = view.findViewById(R.id.account_locked_description);
 
-    getModel().getTimeRemaining().observe(getViewLifecycleOwner(),
+    getModel().getLockedTimeRemaining().observe(getViewLifecycleOwner(),
       t -> description.setText(getString(R.string.AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy, durationToDays(t)))
     );
 

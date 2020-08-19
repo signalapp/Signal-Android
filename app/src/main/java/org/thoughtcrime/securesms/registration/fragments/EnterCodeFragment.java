@@ -85,12 +85,15 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
 
     noCodeReceivedHelp.setOnClickListener(v -> sendEmailToSupport());
 
-    getModel().getSuccessfulCodeRequestAttempts().observe(this, (attempts) -> {
+    RegistrationViewModel model = getModel();
+    model.getSuccessfulCodeRequestAttempts().observe(this, (attempts) -> {
       if (attempts >= 3) {
         noCodeReceivedHelp.setVisibility(View.VISIBLE);
         scrollView.postDelayed(() -> scrollView.smoothScrollTo(0, noCodeReceivedHelp.getBottom()), 15000);
       }
     });
+
+    model.onStartEnterCode();
   }
 
   private void setOnCodeFullyEnteredListener(VerificationCodeView verificationCodeView) {
@@ -119,7 +122,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
 
           @Override
           public void onV1RegistrationLockPinRequiredOrIncorrect(long timeRemaining) {
-            model.setTimeRemaining(timeRemaining);
+            model.setLockedTimeRemaining(timeRemaining);
             keyboard.displayLocked().addListener(new AssertedSuccessListener<Boolean>() {
               @Override
               public void onSuccess(Boolean r) {
@@ -131,7 +134,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
 
           @Override
           public void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull TokenResponse tokenResponse, @NonNull String kbsStorageCredentials) {
-            model.setTimeRemaining(timeRemaining);
+            model.setLockedTimeRemaining(timeRemaining);
             model.setStorageCredentials(kbsStorageCredentials);
             model.setKeyBackupCurrentToken(tokenResponse);
             keyboard.displayLocked().addListener(new AssertedSuccessListener<Boolean>() {
@@ -170,7 +173,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
           @Override
           public void onKbsAccountLocked(@Nullable Long timeRemaining) {
             if (timeRemaining != null) {
-              model.setTimeRemaining(timeRemaining);
+              model.setLockedTimeRemaining(timeRemaining);
             }
             Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionAccountLocked());
           }
@@ -249,11 +252,11 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
   }
 
   private void handlePhoneCallRequest() {
-    callMeCountDown.startCountDown(RegistrationConstants.SUBSEQUENT_CALL_AVAILABLE_AFTER);
-
     RegistrationViewModel model   = getModel();
     String                captcha = model.getCaptchaToken();
     model.clearCaptchaResponse();
+
+    model.onCallRequested();
 
     NavController navController = Navigation.findNavController(callMeCountDown);
 
@@ -301,9 +304,10 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
   public void onResume() {
     super.onResume();
 
-    getModel().getLiveNumber().observe(this, (s) -> header.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, s.getFullFormattedNumber())));
+    RegistrationViewModel model = getModel();
+    model.getLiveNumber().observe(this, (s) -> header.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, s.getFullFormattedNumber())));
 
-    callMeCountDown.startCountDown(RegistrationConstants.FIRST_CALL_AVAILABLE_AFTER);
+    model.getCanCallAtTime().observe(this, callAtTime -> callMeCountDown.startCountDownTo(callAtTime));
   }
 
   private void sendEmailToSupport() {

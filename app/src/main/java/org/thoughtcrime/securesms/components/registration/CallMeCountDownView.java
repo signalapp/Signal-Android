@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 
+import java.util.concurrent.TimeUnit;
+
 public class CallMeCountDownView extends androidx.appcompat.widget.AppCompatButton {
 
-  private int countDown;
+  private long countDownToTime;
   @Nullable
   private Listener listener;
 
@@ -26,9 +28,14 @@ public class CallMeCountDownView extends androidx.appcompat.widget.AppCompatButt
     super(context, attrs, defStyleAttr);
   }
 
-  public void startCountDown(int countDown) {
-    this.countDown = countDown;
-    updateCountDown();
+  /**
+   * Starts a count down to the specified {@param time}.
+   */
+  public void startCountDownTo(long time) {
+    if (time > 0) {
+      this.countDownToTime = time;
+      updateCountDown();
+    }
   }
 
   public void setCallEnabled() {
@@ -38,23 +45,24 @@ public class CallMeCountDownView extends androidx.appcompat.widget.AppCompatButt
   }
 
   private void updateCountDown() {
-    if (countDown > 0) {
+    final long remainingMillis = countDownToTime - System.currentTimeMillis();
+
+    if (remainingMillis > 0) {
       setEnabled(false);
       setAlpha(0.5f);
 
-      countDown--;
-
-      int minutesRemaining = countDown / 60;
-      int secondsRemaining = countDown % 60;
+      int totalRemainingSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(remainingMillis);
+      int minutesRemaining      = totalRemainingSeconds / 60;
+      int secondsRemaining      = totalRemainingSeconds % 60;
 
       setText(getResources().getString(R.string.RegistrationActivity_call_me_instead_available_in, minutesRemaining, secondsRemaining));
 
       if (listener != null) {
-        listener.onRemaining(this, countDown);
+        listener.onRemaining(this, totalRemainingSeconds);
       }
 
-      postDelayed(this::updateCountDown, 1000);
-    } else if (countDown == 0) {
+      postDelayed(this::updateCountDown, 250);
+    } else {
       setCallEnabled();
     }
   }
@@ -64,6 +72,6 @@ public class CallMeCountDownView extends androidx.appcompat.widget.AppCompatButt
   }
 
   public interface Listener {
-    void onRemaining(@NonNull CallMeCountDownView view, int remaining);
+    void onRemaining(@NonNull CallMeCountDownView view, int secondsRemaining);
   }
 }

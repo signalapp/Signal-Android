@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
@@ -104,7 +103,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     PinKeyboardType keyboardType = getPinEntryKeyboardType().getOther();
     keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
 
-    getModel().getTimeRemaining()
+    getModel().getLockedTimeRemaining()
               .observe(getViewLifecycleOwner(), t -> timeRemaining = t);
 
     TokenResponse keyBackupCurrentToken = getModel().getKeyBackupCurrentToken();
@@ -180,7 +179,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
         @Override
         public void onV1RegistrationLockPinRequiredOrIncorrect(long timeRemaining) {
-          getModel().setTimeRemaining(timeRemaining);
+          getModel().setLockedTimeRemaining(timeRemaining);
 
           cancelSpinning(pinButton);
           pinEntry.getText().clear();
@@ -243,7 +242,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
         @Override
         public void onKbsAccountLocked(@Nullable Long timeRemaining) {
           if (timeRemaining != null) {
-            model.setTimeRemaining(timeRemaining);
+            model.setLockedTimeRemaining(timeRemaining);
           }
 
           onAccountLocked();
