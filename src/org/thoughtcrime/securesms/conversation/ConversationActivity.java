@@ -1533,9 +1533,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void onSecurityUpdated() {
-    Log.i(TAG, "onSecurityUpdated()");
-    updateReminders(recipient.hasSeenInviteReminder());
-    updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
+    if (recipient != null) {
+      updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
+    }
   }
 
   protected void updateReminders(boolean seenInvite) {
