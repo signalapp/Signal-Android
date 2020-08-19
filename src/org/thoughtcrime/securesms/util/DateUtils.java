@@ -17,7 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.format.DateFormat;
 
 import java.text.SimpleDateFormat;

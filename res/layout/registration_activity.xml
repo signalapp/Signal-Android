@@ -187,7 +187,7 @@
 
         </LinearLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/verification_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -239,7 +239,7 @@
                 android:layout_alignParentBottom="true"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <LinearLayout
@@ -281,14 +281,14 @@
             </LinearLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:paddingStart="100dp"
                 android:paddingEnd="100dp">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -296,7 +296,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="numberPassword" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.dd.CircularProgressButton
                 android:id="@+id/pinButton"

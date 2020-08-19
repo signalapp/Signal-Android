@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.imageeditor;
 
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 /**
  * A renderer that can have its color changed.

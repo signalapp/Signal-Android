@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;

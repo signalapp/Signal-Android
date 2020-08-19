@@ -2,21 +2,11 @@ package org.thoughtcrime.securesms.components.registration;
 
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import network.loki.messenger.R;
 
-public class CallMeCountDownView extends android.support.v7.widget.AppCompatButton {
+public class CallMeCountDownView extends androidx.appcompat.widget.AppCompatButton {
 
   private int countDown;
 

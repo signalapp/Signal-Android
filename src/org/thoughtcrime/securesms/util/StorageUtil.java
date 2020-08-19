@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.os.Environment;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 

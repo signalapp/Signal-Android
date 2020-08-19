@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.todo
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v7.content.res.AppCompatResources
+import androidx.appcompat.content.res.AppCompatResources
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 

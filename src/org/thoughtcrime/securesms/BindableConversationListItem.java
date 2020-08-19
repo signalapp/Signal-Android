@@ -1,8 +1,7 @@
 package org.thoughtcrime.securesms;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 

@@ -5,8 +5,8 @@ import android.app.job.JobInfo;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 

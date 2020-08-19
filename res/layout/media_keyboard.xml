@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="org.thoughtcrime.securesms.components.emoji.MediaKeyboard">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?emoji_drawer_background">
@@ -66,7 +66,7 @@
             app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
             app:layout_constraintTop_toTopOf="@+id/media_keyboard_tabs" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/media_keyboard_tabs"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -104,6 +104,6 @@
             app:layout_constraintEnd_toStartOf="@id/media_keyboard_backspace_backup"
             tools:visibility="visible"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </merge>

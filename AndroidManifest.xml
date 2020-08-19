@@ -589,7 +589,7 @@
             android:exported="false"
             android:grantUriPermissions="true" />
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="network.loki.securesms.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">

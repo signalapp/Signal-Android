@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobmanager;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;

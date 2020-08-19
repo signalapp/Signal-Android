@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.attachments;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

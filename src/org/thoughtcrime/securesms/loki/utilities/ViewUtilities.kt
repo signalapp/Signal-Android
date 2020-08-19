@@ -6,7 +6,7 @@ import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
 import android.graphics.PointF
 import android.graphics.Rect
-import android.support.annotation.DimenRes
+import androidx.annotation.DimenRes
 import android.view.View
 
 fun View.contains(point: PointF): Boolean {

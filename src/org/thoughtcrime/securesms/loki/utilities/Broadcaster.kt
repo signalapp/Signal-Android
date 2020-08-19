@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.LocalBroadcastManager
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class Broadcaster(private val context: Context) : org.whispersystems.signalservice.loki.utilities.Broadcaster {
 

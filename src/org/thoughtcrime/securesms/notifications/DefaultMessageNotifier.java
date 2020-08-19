@@ -33,9 +33,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -61,7 +61,6 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 
 import java.util.HashSet;
 import java.util.List;

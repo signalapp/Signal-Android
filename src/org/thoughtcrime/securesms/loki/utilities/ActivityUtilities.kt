@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Intent
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
 import android.widget.ImageView
 import android.widget.RelativeLayout

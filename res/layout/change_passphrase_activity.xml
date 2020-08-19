@@ -18,7 +18,7 @@
                       android:visibility="visible"
                       android:orientation="vertical">
                 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -30,9 +30,9 @@
                           android:hint="@string/change_passphrase_activity__old_passphrase"
                           android:singleLine="true"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -43,9 +43,9 @@
                           android:hint="@string/change_passphrase_activity__new_passphrase"
                           android:singleLine="true"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -56,7 +56,7 @@
                           android:hint="@string/change_passphrase_activity__repeat_new_passphrase"
                           android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout android:orientation="horizontal"
                           android:layout_width="fill_parent"

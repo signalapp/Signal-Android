@@ -226,7 +226,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun copyPublicKey() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", hexEncodedPublicKey)
-        clipboard.primaryClip = clip
+        clipboard.setPrimaryClip(clip)
         Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
 
