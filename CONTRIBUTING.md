@@ -83,7 +83,7 @@ There are several other ways to get involved:
 * Try to reproduce issues and help with troubleshooting.
 * Discover solutions to open issues and post any relevant findings.
 * Test other people's pull requests.
-* Contribute to Signal via the [Freedom of the Press Foundation's donation page](https://freedom.press/crowdfunding/signal/).
+* [Donate to Signal.](https://signal.org/donate/)
 * Share Signal with your friends and family.
 
 Signal is made for you. Thank you for your feedback and support.
