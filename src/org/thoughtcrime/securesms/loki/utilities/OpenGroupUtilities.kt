@@ -23,15 +23,15 @@ object OpenGroupUtilities {
     val displayName = TextSecurePreferences.getProfileName(context)
     val lokiPublicChatAPI = application.publicChatAPI ?: throw Error("LokiPublicChatAPI is not initialized.")
     return application.publicChatManager.addChat(url, channel).then { group ->
-      DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(channel, url)
-      DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(channel, url)
-      lokiPublicChatAPI.getMessages(channel, url)
-      lokiPublicChatAPI.setDisplayName(displayName, url)
-      lokiPublicChatAPI.join(channel, url)
-      val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(context)
-      val profileUrl: String? = TextSecurePreferences.getProfilePictureURL(context)
-      lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
-      group
+        DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(channel, url)
+        DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(channel, url)
+        lokiPublicChatAPI.getMessages(channel, url)
+        lokiPublicChatAPI.setDisplayName(displayName, url)
+        lokiPublicChatAPI.join(channel, url)
+        val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(context)
+        val profileUrl: String? = TextSecurePreferences.getProfilePictureURL(context)
+        lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
+        group
     }
   }
 }

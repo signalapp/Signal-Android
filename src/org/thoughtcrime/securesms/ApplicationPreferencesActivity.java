@@ -29,16 +29,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
-import android.util.Log;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
@@ -51,10 +52,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 import org.whispersystems.signalservice.loki.utilities.HexEncodingKt;
-
-import java.io.File;
 
 import network.loki.messenger.R;
 
@@ -337,13 +335,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         case PREFERENCE_CATEGORY_QR_CODE: break;
         case PREFERENCE_CATEGORY_LINKED_DEVICES: break;
         case PREFERENCE_CATEGORY_SEED:
-          File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);
           try {
             String hexEncodedSeed = IdentityKeyUtil.retrieve(getContext(), IdentityKeyUtil.lokiSeedKey);
             if (hexEncodedSeed == null) {
               hexEncodedSeed = HexEncodingKt.getHexEncodedPrivateKey(IdentityKeyUtil.getIdentityKeyPair(getContext())); // Legacy account
             }
-            String seed = new MnemonicCodec(languageFileDirectory).encode(hexEncodedSeed, MnemonicCodec.Language.Configuration.Companion.getEnglish());
+            String seed = "";
             new AlertDialog.Builder(getContext())
                            .setTitle(R.string.activity_settings_seed_dialog_title)
                            .setMessage(seed)

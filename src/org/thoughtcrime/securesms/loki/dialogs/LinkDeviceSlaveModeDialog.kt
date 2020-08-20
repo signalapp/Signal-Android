@@ -21,16 +21,18 @@ import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.Device
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
 
 class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener {
-    private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
     private lateinit var contentView: View
     private var deviceLink: DeviceLink? = null
     var delegate: LinkDeviceSlaveModeDialogDelegate? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val builder = AlertDialog.Builder(context!!)
-        contentView = LayoutInflater.from(context!!).inflate(R.layout.dialog_link_device_slave_mode, null)
+        val builder = AlertDialog.Builder(requireContext())
+        contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_link_device_slave_mode, null)
         val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-        contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), hexEncodedPublicKey)
+        val loadFileContents: (String) -> String = { fileName ->
+            MnemonicUtilities.loadFileContents(requireContext(), fileName)
+        }
+        contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(loadFileContents), hexEncodedPublicKey)
         contentView.cancelButton.setOnClickListener { onDeviceLinkCanceled() }
         builder.setView(contentView)
         DeviceLinkingSession.shared.startListeningForLinkingRequests()
@@ -41,7 +43,7 @@ class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener
     }
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
-        if (deviceLink.type != DeviceLink.Type.AUTHORIZATION || deviceLink.slavePublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
+        if (deviceLink.type != DeviceLink.Type.AUTHORIZATION || deviceLink.slavePublicKey != TextSecurePreferences.getLocalNumber(requireContext()) || this.deviceLink != null) { return }
         Util.runOnMain {
             this.deviceLink = deviceLink
             DeviceLinkingSession.shared.stopListeningForLinkingRequests()

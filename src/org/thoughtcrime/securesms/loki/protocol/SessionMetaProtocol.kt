@@ -79,8 +79,12 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
-    fun shouldSendDeliveryReceipt(address: Address): Boolean {
-        return !address.isGroup
+    fun shouldSendDeliveryReceipt(message: SignalServiceDataMessage, address: Address): Boolean {
+        if (address.isGroup) { return false }
+        val hasBody = message.body.isPresent && message.body.get().isNotEmpty()
+        val hasAttachment = message.attachments.isPresent && message.attachments.get().isNotEmpty()
+        val hasLinkPreview = message.previews.isPresent && message.previews.get().isNotEmpty()
+        return hasBody || hasAttachment || hasLinkPreview
     }
 
     /**

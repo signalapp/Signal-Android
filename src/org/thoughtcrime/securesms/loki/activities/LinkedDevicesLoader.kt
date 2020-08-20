@@ -13,8 +13,10 @@ import java.io.File
 class LinkedDevicesLoader(context: Context) : AsyncLoader<List<Device>>(context) {
 
     private val mnemonicCodec by lazy {
-        val languageFileDirectory = File(context.applicationInfo.dataDir)
-        MnemonicCodec(languageFileDirectory)
+        val loadFileContents: (String) -> String = { fileName ->
+            MnemonicUtilities.loadFileContents(context, fileName)
+        }
+        MnemonicCodec(loadFileContents)
     }
 
     override fun loadInBackground(): List<Device>? {

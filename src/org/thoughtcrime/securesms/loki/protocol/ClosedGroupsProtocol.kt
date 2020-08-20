@@ -218,7 +218,7 @@ object ClosedGroupsProtocol {
     public fun handleSharedSenderKeysUpdate(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
         if (!isValid(closedGroupUpdate)) { return; }
         when (closedGroupUpdate.type) {
-            SignalServiceProtos.ClosedGroupUpdate.Type.NEW -> handleNewClosedGroup(context, closedGroupUpdate)
+            SignalServiceProtos.ClosedGroupUpdate.Type.NEW -> handleNewClosedGroup(context, closedGroupUpdate, senderPublicKey)
             SignalServiceProtos.ClosedGroupUpdate.Type.INFO -> handleClosedGroupUpdate(context, closedGroupUpdate, senderPublicKey)
             SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY_REQUEST -> handleSenderKeyRequest(context, closedGroupUpdate, senderPublicKey)
             SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY -> handleSenderKey(context, closedGroupUpdate, senderPublicKey)
@@ -244,7 +244,7 @@ object ClosedGroupsProtocol {
         }
     }
 
-    public fun handleNewClosedGroup(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate) {
+    public fun handleNewClosedGroup(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
         // Prepare
         val sskDatabase = DatabaseFactory.getSSKDatabase(context)
         // Unwrap the message
@@ -270,7 +270,7 @@ object ClosedGroupsProtocol {
         // Add the group to the user's set of public keys to poll for
         sskDatabase.setClosedGroupPrivateKey(groupPublicKey, groupPrivateKey.toHexString())
         // Notify the user
-        insertIncomingInfoMessage(context, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
         // Establish sessions if needed
         establishSessionsWithMembersIfNeeded(context, members)
     }
@@ -311,6 +311,7 @@ object ClosedGroupsProtocol {
         // • Remove the group from the user's set of public keys to poll for if the current user was among the members that were removed
         val wasCurrentUserRemoved = !members.contains(userPublicKey)
         val wasAnyUserRemoved = members.toSet().intersect(oldMembers) != oldMembers.toSet()
+        val wasSenderRemoved = !members.contains(senderPublicKey)
         if (wasAnyUserRemoved) {
             sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
             if (wasCurrentUserRemoved) {
@@ -331,9 +332,9 @@ object ClosedGroupsProtocol {
         groupDB.updateTitle(groupID, name)
         groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
         // Notify the user
-        val type0 = if (wasAnyUserRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
-        val type1 = if (wasAnyUserRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
-        insertIncomingInfoMessage(context, groupID, type0, type1, name, members, admins)
+        val type0 = if (wasSenderRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
+        val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
+        insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, admins)
     }
 
     public fun handleSenderKeyRequest(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
@@ -410,8 +411,13 @@ object ClosedGroupsProtocol {
         if (GroupUtil.isOpenGroup(groupID)) {
             return listOf( Address.fromSerialized(groupID) )
         } else {
-            val groupPublicKey = doubleDecodeGroupID(groupID).toHexString()
-            if (DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)) {
+            var groupPublicKey: String? = null
+            try {
+                groupPublicKey = doubleDecodeGroupID(groupID).toHexString()
+            } catch (exception: Exception) {
+                // Do nothing
+            }
+            if (groupPublicKey != null && DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)) {
                 return listOf( Address.fromSerialized(groupPublicKey) )
             } else {
                 return DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false).map { it.address }
@@ -475,8 +481,8 @@ object ClosedGroupsProtocol {
         }
     }
 
-    private fun insertIncomingInfoMessage(context: Context, groupID: String, type0: GroupContext.Type, type1: SignalServiceGroup.Type, name: String,
-        members: Collection<String>, admins: Collection<String>) {
+    private fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: GroupContext.Type, type1: SignalServiceGroup.Type,
+        name: String, members: Collection<String>, admins: Collection<String>) {
         val groupContextBuilder = GroupContext.newBuilder()
             .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupID)))
             .setType(type0)
@@ -484,7 +490,7 @@ object ClosedGroupsProtocol {
             .addAllMembers(members)
             .addAllAdmins(admins)
         val group = SignalServiceGroup(type1, GroupUtil.getDecodedId(groupID), GroupType.SIGNAL, name, members.toList(), null, admins.toList())
-        val m = IncomingTextMessage(Address.fromSerialized(groupID), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
+        val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
         val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)

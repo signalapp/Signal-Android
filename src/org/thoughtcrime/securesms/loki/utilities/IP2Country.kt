@@ -29,8 +29,10 @@ class IP2Country private constructor(private val context: Context) {
 
         public lateinit var shared: IP2Country
 
+        public val isInitialized: Boolean get() = ::shared.isInitialized
+
         public fun configureIfNeeded(context: Context) {
-            if (::shared.isInitialized) { return; }
+            if (isInitialized) { return; }
             shared = IP2Country(context)
         }
     }

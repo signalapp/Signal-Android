@@ -19,7 +19,3 @@ fun toPx(dp: Int, resources: Resources): Int {
     val scale = resources.displayMetrics.density
     return (dp * scale).roundToInt()
 }
-
-fun isPublicChat(context: Context, recipient: String): Boolean {
-    return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().values.map { it.server }.contains(recipient)
-}
