@@ -92,20 +92,6 @@ public final class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
                       .hasCauseExactlyInstanceOf(InvalidInputException.class);
   }
 
-  @Test
-  public void bad_password_length() throws InvalidInputException {
-    GroupMasterKey groupMasterKey = new GroupMasterKey(Util.getSecretBytes(32));
-    byte[]         passwordBytes  = Util.getSecretBytes(15);
-
-    String encoding = createEncodedProtobuf(groupMasterKey.serialize(), passwordBytes);
-
-    String url = "https://signal.group/#" + encoding;
-
-    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl(url))
-                      .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
-                      .hasCauseExactlyInstanceOf(GroupLinkPassword.InvalidLengthException.class);
-  }
-
   private static String createEncodedProtobuf(@NonNull byte[] groupMasterKey,
                                               @NonNull byte[] passwordBytes)
   {

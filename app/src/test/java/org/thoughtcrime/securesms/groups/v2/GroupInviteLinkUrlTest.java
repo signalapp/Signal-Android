@@ -33,7 +33,11 @@ public final class GroupInviteLinkUrlTest {
 
       givenGroup().withMasterKey("00f7e0c2a71ab064cc3ced4c04f08d7b7ef4b84b2c2206f69833be6cfe34df80")
                   .andPassword("9bc324eec437cfda6ae5b8aefbf47ee8")
-                  .expectUrl("https://signal.group/#CjQKIAD34MKnGrBkzDztTATwjXt-9LhLLCIG9pgzvmz-NN-AEhCbwyTuxDfP2mrluK779H7o")
+                  .expectUrl("https://signal.group/#CjQKIAD34MKnGrBkzDztTATwjXt-9LhLLCIG9pgzvmz-NN-AEhCbwyTuxDfP2mrluK779H7o"),
+
+      givenGroup().withMasterKey("00f7e0c2a71ab064cc3ced4c04f08d7b7ef4b84b2c2206f69833be6cfe34df80")
+                  .andPassword("9b")
+                  .expectUrl("https://signal.group/#CiUKIAD34MKnGrBkzDztTATwjXt-9LhLLCIG9pgzvmz-NN-AEgGb")
     );
   }
 
@@ -91,11 +95,7 @@ public final class GroupInviteLinkUrlTest {
     }
 
     public Object[] expectUrl(String url) {
-      try {
-        return new Object[]{ groupMasterKey, GroupLinkPassword.fromBytes(passwordBytes), url };
-      } catch (GroupLinkPassword.InvalidLengthException e) {
-        throw new AssertionError(e);
-      }
+      return new Object[]{ groupMasterKey, GroupLinkPassword.fromBytes(passwordBytes), url };
     }
   }
 }

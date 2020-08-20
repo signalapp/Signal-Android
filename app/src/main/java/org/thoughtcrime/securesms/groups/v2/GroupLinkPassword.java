@@ -16,11 +16,7 @@ public final class GroupLinkPassword {
     return new GroupLinkPassword(Util.getSecretBytes(SIZE));
   }
 
-  public static @NonNull GroupLinkPassword fromBytes(@NonNull byte[] bytes) throws InvalidLengthException {
-    if (bytes.length != SIZE) {
-      throw new InvalidLengthException();
-    }
-
+  public static @NonNull GroupLinkPassword fromBytes(@NonNull byte[] bytes) {
     return new GroupLinkPassword(bytes);
   }
 
@@ -44,8 +40,5 @@ public final class GroupLinkPassword {
   @Override
   public int hashCode() {
     return Arrays.hashCode(bytes);
-  }
-
-  public static class InvalidLengthException extends Exception {
   }
 }

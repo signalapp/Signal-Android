@@ -26,7 +26,6 @@ public final class GroupInviteLinkUrl {
 
   public static GroupInviteLinkUrl forGroup(@NonNull GroupMasterKey groupMasterKey,
                                             @NonNull DecryptedGroup group)
-      throws GroupLinkPassword.InvalidLengthException
   {
     return new GroupInviteLinkUrl(groupMasterKey, GroupLinkPassword.fromBytes(group.getInviteLinkPassword().toByteArray()));
   }
@@ -73,7 +72,7 @@ public final class GroupInviteLinkUrl {
         }
         default: throw new UnknownGroupLinkVersionException("Url contains no known group link content");
       }
-    } catch (GroupLinkPassword.InvalidLengthException | InvalidInputException | IOException e){
+    } catch (InvalidInputException | IOException e) {
       throw new InvalidGroupLinkException(e);
     }
   }
