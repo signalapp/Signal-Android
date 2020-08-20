@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="@string/menu_apply_button"
-        android:id="@+id/applyButton"
-        android:icon="?menu_accept_icon"
+        android:id="@+id/action_qr_code"
+        android:title=""
+        android:icon="@drawable/ic_qr_code"
         app:showAsAction="always" />
 
 </menu>

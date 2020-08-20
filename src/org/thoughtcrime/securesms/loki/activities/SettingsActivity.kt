@@ -11,9 +11,11 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.ActionMode
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -34,7 +36,6 @@ import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.push
-import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.profiles.AvatarHelper
@@ -51,9 +52,11 @@ import java.security.SecureRandom
 import java.util.*
 
 class SettingsActivity : PassphraseRequiredActionBarActivity() {
+
+    private var displayNameEditActionMode: ActionMode? = null
+        set(value) { field = value; handleDisplayNameEditActionModeChanged() }
+
     private lateinit var glide: GlideRequests
-    private var isEditingDisplayName = false
-        set(value) { field = value; handleIsEditingDisplayNameChanged() }
     private var displayNameToBeUploaded: String? = null
     private var profilePictureToBeUploaded: ByteArray? = null
     private var tempFile: File? = null
@@ -68,23 +71,16 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-//        setTheme(if (isDarkTheme())
-//            R.style.Session_DarkTheme_NoActionBar
-//        else
-//            R.style.Session_LightTheme_NoActionBar)
 
         setContentView(R.layout.activity_settings)
-        setSupportActionBar(toolbar)
-        cancelButton.setOnClickListener { cancelEditingDisplayName() }
-        saveButton.setOnClickListener { saveDisplayName() }
-        showQRCodeButton.setOnClickListener { showQRCode() }
+
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
         profilePictureView.publicKey = hexEncodedPublicKey
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
-        ctnGroupNameSection.setOnClickListener { showEditDisplayNameUI() }
+        ctnGroupNameSection.setOnClickListener { startActionMode(DisplayNameEditActionModeCallback()) }
         btnGroupNameDisplay.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
@@ -110,18 +106,22 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         }
     }
 
-    private fun isDarkTheme(): Boolean {
-        val themeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return themeFlag == Configuration.UI_MODE_NIGHT_YES;
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.settings_general, menu)
+        return true
     }
 
-    //TODO Remove it.
-    private fun setDarkTheme(darkTheme: Boolean) {
-//        AppCompatDelegate.setDefaultNightMode(if (darkTheme) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO )
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_qr_code -> {
+                showQRCode()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             AvatarSelection.REQUEST_CODE_AVATAR -> {
@@ -151,17 +151,16 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // endregion
 
     // region Updating
-    private fun handleIsEditingDisplayNameChanged() {
-        cancelButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
-        showQRCodeButton.visibility = if (isEditingDisplayName) View.GONE else View.VISIBLE
-        saveButton.visibility = if (isEditingDisplayName) View.VISIBLE else View.GONE
+    private fun handleDisplayNameEditActionModeChanged() {
+        val isEditingDisplayName = this.displayNameEditActionMode !== null
+
         btnGroupNameDisplay.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
         displayNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
-        val titleTextViewLayoutParams = titleTextView.layoutParams as LinearLayout.LayoutParams
-        titleTextViewLayoutParams.leftMargin = if (isEditingDisplayName) toPx(16, resources) else 0
-        titleTextView.layoutParams = titleTextViewLayoutParams
+
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (isEditingDisplayName) {
+            displayNameEditText.setText(btnGroupNameDisplay.text)
+            displayNameEditText.selectAll()
             displayNameEditText.requestFocus()
             inputMethodManager.showSoftInput(displayNameEditText, 0)
         } else {
@@ -216,21 +215,24 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // endregion
 
     // region Interaction
-    private fun cancelEditingDisplayName() {
-        isEditingDisplayName = false
-    }
 
-    private fun saveDisplayName() {
+    /**
+     * @return true if the update was successful.
+     */
+    private fun saveDisplayName(): Boolean {
         val displayName = displayNameEditText.text.toString().trim()
         if (displayName.isEmpty()) {
-            return Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
+            return false
         }
         if (displayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
-            return Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
+            return false
         }
-        isEditingDisplayName = false
+//        isEditingDisplayName = false
         displayNameToBeUploaded = displayName
         updateProfile(false)
+        return true
     }
 
     private fun showQRCode() {
@@ -240,10 +242,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     private fun showEditProfilePictureUI() {
         tempFile = AvatarSelection.startAvatarSelection(this, false, true)
-    }
-
-    private fun showEditDisplayNameUI() {
-        isEditingDisplayName = true
     }
 
     private fun copyPublicKey() {
@@ -289,4 +287,46 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         ClearAllDataDialog().show(supportFragmentManager, "Clear All Data Dialog")
     }
     // endregion
+
+    //TODO Remove it.
+    private fun isDarkTheme(): Boolean {
+        val themeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return themeFlag == Configuration.UI_MODE_NIGHT_YES;
+    }
+
+    //TODO Remove it.
+    private fun setDarkTheme(darkTheme: Boolean) {
+//        AppCompatDelegate.setDefaultNightMode(if (darkTheme) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO )
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+    }
+
+    private inner class DisplayNameEditActionModeCallback: ActionMode.Callback {
+
+        override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+            mode.title = getString(R.string.activity_settings_display_name_edit_text_hint)
+            mode.menuInflater.inflate(R.menu.menu_apply, menu)
+            this@SettingsActivity.displayNameEditActionMode = mode
+            return true
+        }
+
+        override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+            return false
+        }
+
+        override fun onDestroyActionMode(mode: ActionMode) {
+            this@SettingsActivity.displayNameEditActionMode = null
+        }
+
+        override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.applyButton -> {
+                    if (this@SettingsActivity.saveDisplayName()) {
+                        mode.finish()
+                    }
+                    return true
+                }
+            }
+            return false;
+        }
+    }
 }

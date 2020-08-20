@@ -119,7 +119,7 @@
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Session.DarkTheme.NoActionBar" />
+            android:label="@string/activity_settings_title"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.PathActivity"
             android:screenOrientation="portrait" />

@@ -20,59 +20,6 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
-                app:contentInsetLeft="20dp"
-                app:contentInsetRight="20dp"
-                android:theme="?attr/actionBarStyle">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cancelButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_close_white_24dp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/titleTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_settings_title"
-                        android:textColor="@color/text"
-                        android:textSize="@dimen/very_large_font_size"
-                        android:fontFamily="sans-serif-medium" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/saveButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_check_white_24dp"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/showQRCodeButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_qr_code" />
-
-                </LinearLayout>
-
-            </androidx.appcompat.widget.Toolbar>
-
             <org.thoughtcrime.securesms.loki.views.ProfilePictureView
                 android:id="@+id/profilePictureView"
                 android:layout_width="@dimen/large_profile_picture_size"
