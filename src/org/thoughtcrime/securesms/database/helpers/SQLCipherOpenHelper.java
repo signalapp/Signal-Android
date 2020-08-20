@@ -6,8 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.SystemClock;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
@@ -87,8 +88,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV10                          = 31;
   private static final int lokiV11                          = 32;
   private static final int lokiV12                          = 33;
+  private static final int lokiV13                          = 34;
 
-  private static final int    DATABASE_VERSION = lokiV12; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV13; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -140,7 +142,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateOnionRequestPathTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateSwarmTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTable2Command());
-    db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTable2Command());
+    db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTable3Command());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupAuthTokenTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
@@ -609,9 +611,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV12) {
         db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTable2Command());
-        db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTable2Command());
         db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupRatchetTableCommand());
         db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeyTableCommand());
+      }
+
+      if (oldVersion < lokiV13) {
+        db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTable3Command());
       }
 
       db.setTransactionSuccessful();
