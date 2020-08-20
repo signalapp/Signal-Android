@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/default_session_background"
+    tools:context="org.thoughtcrime.securesms.loki.activities.SettingsActivity"
     tools:theme="@style/Session.DarkTheme.NoActionBar"
-    tools:context="org.thoughtcrime.securesms.loki.activities.SettingsActivity">
+    tools:menu="@menu/settings_general">
 
     <ScrollView
         android:layout_width="match_parent"
