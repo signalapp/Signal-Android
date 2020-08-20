@@ -9,6 +9,7 @@ import org.signal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -33,12 +34,13 @@ class GroupV2ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGr
 
   @Override
   public @NonNull SignalGroupV2Record merge(@NonNull SignalGroupV2Record remote, @NonNull SignalGroupV2Record local, @NonNull StorageSyncHelper.KeyGenerator keyGenerator) {
+    byte[]  unknownFields  = remote.serializeUnknownFields();
     boolean blocked        = remote.isBlocked();
     boolean profileSharing = remote.isProfileSharingEnabled() || local.isProfileSharingEnabled();
     boolean archived       = remote.isArchived();
 
-    boolean matchesRemote = blocked == remote.isBlocked() && profileSharing == remote.isProfileSharingEnabled() && archived == remote.isArchived();
-    boolean matchesLocal  = blocked == local.isBlocked()  && profileSharing == local.isProfileSharingEnabled()  && archived == local.isArchived();
+    boolean matchesRemote = Arrays.equals(unknownFields, remote.serializeUnknownFields()) && blocked == remote.isBlocked() && profileSharing == remote.isProfileSharingEnabled() && archived == remote.isArchived();
+    boolean matchesLocal  = Arrays.equals(unknownFields, local.serializeUnknownFields())  && blocked == local.isBlocked()  && profileSharing == local.isProfileSharingEnabled()  && archived == local.isArchived();
 
     if (matchesRemote) {
       return remote;
@@ -46,6 +48,7 @@ class GroupV2ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGr
       return local;
     } else {
       return new SignalGroupV2Record.Builder(keyGenerator.generate(), remote.getMasterKey())
+                                    .setUnknownFields(unknownFields)
                                     .setBlocked(blocked)
                                     .setProfileSharingEnabled(blocked)
                                     .build();

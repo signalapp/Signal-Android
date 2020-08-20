@@ -4,6 +4,7 @@ import com.google.protobuf.ByteString;
 
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.util.Objects;
@@ -12,6 +13,7 @@ public final class SignalAccountRecord implements SignalRecord {
 
   private final StorageId     id;
   private final AccountRecord proto;
+  private final boolean       hasUnknownFields;
 
   private final Optional<String> givenName;
   private final Optional<String> familyName;
@@ -19,8 +21,9 @@ public final class SignalAccountRecord implements SignalRecord {
   private final Optional<byte[]> profileKey;
 
   public SignalAccountRecord(StorageId id, AccountRecord proto) {
-    this.id    = id;
-    this.proto = proto;
+    this.id               = id;
+    this.proto            = proto;
+    this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
 
     this.givenName     = OptionalUtil.absentIfEmpty(proto.getGivenName());
     this.familyName    = OptionalUtil.absentIfEmpty(proto.getFamilyName());
@@ -31,6 +34,14 @@ public final class SignalAccountRecord implements SignalRecord {
   @Override
   public StorageId getId() {
     return id;
+  }
+
+  public boolean hasUnknownFields() {
+    return hasUnknownFields;
+  }
+
+  public byte[] serializeUnknownFields() {
+    return hasUnknownFields ? proto.toByteArray() : null;
   }
 
   public Optional<String> getGivenName() {
@@ -91,9 +102,16 @@ public final class SignalAccountRecord implements SignalRecord {
     private final StorageId             id;
     private final AccountRecord.Builder builder;
 
+    private byte[] unknownFields;
+
     public Builder(byte[] rawId) {
       this.id      = StorageId.forAccount(rawId);
       this.builder = AccountRecord.newBuilder();
+    }
+
+    public Builder setUnknownFields(byte[] serializedUnknowns) {
+      this.unknownFields = serializedUnknowns;
+      return this;
     }
 
     public Builder setGivenName(String givenName) {
@@ -142,7 +160,13 @@ public final class SignalAccountRecord implements SignalRecord {
     }
 
     public SignalAccountRecord build() {
-      return new SignalAccountRecord(id, builder.build());
+      AccountRecord proto = builder.build();
+
+      if (unknownFields != null) {
+        proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+      }
+
+      return new SignalAccountRecord(id, proto);
     }
   }
 }

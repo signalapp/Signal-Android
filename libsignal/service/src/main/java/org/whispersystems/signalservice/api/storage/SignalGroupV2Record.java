@@ -4,7 +4,7 @@ import com.google.protobuf.ByteString;
 
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
+import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
 import java.util.Objects;
@@ -14,10 +14,12 @@ public final class SignalGroupV2Record implements SignalRecord {
   private final StorageId      id;
   private final GroupV2Record  proto;
   private final GroupMasterKey masterKey;
+  private final boolean        hasUnknownFields;
 
   public SignalGroupV2Record(StorageId id, GroupV2Record proto) {
-    this.id        = id;
-    this.proto     = proto;
+    this.id               = id;
+    this.proto            = proto;
+    this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
     try {
       this.masterKey = new GroupMasterKey(proto.getMasterKey().toByteArray());
     } catch (InvalidInputException e) {
@@ -28,6 +30,14 @@ public final class SignalGroupV2Record implements SignalRecord {
   @Override
   public StorageId getId() {
     return id;
+  }
+
+  public boolean hasUnknownFields() {
+    return hasUnknownFields;
+  }
+
+  public byte[] serializeUnknownFields() {
+    return hasUnknownFields ? proto.toByteArray() : null;
   }
 
   public GroupMasterKey getMasterKey() {
@@ -68,11 +78,18 @@ public final class SignalGroupV2Record implements SignalRecord {
     private final StorageId             id;
     private final GroupV2Record.Builder builder;
 
+    private byte[] unknownFields;
+
     public Builder(byte[] rawId, GroupMasterKey masterKey) {
       this.id      = StorageId.forGroupV2(rawId);
       this.builder = GroupV2Record.newBuilder();
 
       builder.setMasterKey(ByteString.copyFrom(masterKey.serialize()));
+    }
+
+    public Builder setUnknownFields(byte[] serializedUnknowns) {
+      this.unknownFields = serializedUnknowns;
+      return this;
     }
 
     public Builder setBlocked(boolean blocked) {
@@ -91,7 +108,13 @@ public final class SignalGroupV2Record implements SignalRecord {
     }
 
     public SignalGroupV2Record build() {
-      return new SignalGroupV2Record(id, builder.build());
+      GroupV2Record proto = builder.build();
+
+      if (unknownFields != null) {
+        proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+      }
+
+      return new SignalGroupV2Record(id, proto);
     }
   }
 }

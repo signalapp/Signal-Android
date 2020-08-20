@@ -5,6 +5,7 @@ import com.google.protobuf.ByteString;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
@@ -15,6 +16,7 @@ public final class SignalContactRecord implements SignalRecord {
 
   private final StorageId     id;
   private final ContactRecord proto;
+  private final boolean       hasUnknownFields;
 
   private final SignalServiceAddress address;
   private final Optional<String>     givenName;
@@ -24,8 +26,9 @@ public final class SignalContactRecord implements SignalRecord {
   private final Optional<byte[]>     identityKey;
 
   public SignalContactRecord(StorageId id, ContactRecord proto) {
-    this.id    = id;
-    this.proto = proto;
+    this.id               = id;
+    this.proto            = proto;
+    this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
 
     this.address     = new SignalServiceAddress(UuidUtil.parseOrNull(proto.getServiceUuid()), proto.getServiceE164());
     this.givenName   = OptionalUtil.absentIfEmpty(proto.getGivenName());
@@ -38,6 +41,14 @@ public final class SignalContactRecord implements SignalRecord {
   @Override
   public StorageId getId() {
     return id;
+  }
+
+  public boolean hasUnknownFields() {
+    return hasUnknownFields;
+  }
+
+  public byte[] serializeUnknownFields() {
+    return hasUnknownFields ? proto.toByteArray() : null;
   }
 
   public SignalServiceAddress getAddress() {
@@ -102,12 +113,19 @@ public final class SignalContactRecord implements SignalRecord {
     private final StorageId             id;
     private final ContactRecord.Builder builder;
 
+    private byte[] unknownFields;
+
     public Builder(byte[] rawId, SignalServiceAddress address) {
       this.id      = StorageId.forContact(rawId);
       this.builder = ContactRecord.newBuilder();
 
       builder.setServiceUuid(address.getUuid().isPresent() ? address.getUuid().get().toString() : "");
       builder.setServiceE164(address.getNumber().or(""));
+    }
+
+    public Builder setUnknownFields(byte[] serializedUnknowns) {
+      this.unknownFields = serializedUnknowns;
+      return this;
     }
 
     public Builder setGivenName(String givenName) {
@@ -156,7 +174,13 @@ public final class SignalContactRecord implements SignalRecord {
     }
 
     public SignalContactRecord build() {
-      return new SignalContactRecord(id, builder.build());
+      ContactRecord proto = builder.build();
+
+      if (unknownFields != null) {
+        proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+      }
+
+      return new SignalContactRecord(id, proto);
     }
   }
 }

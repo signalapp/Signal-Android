@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package signal;
+
+option java_package        = "org.thoughtcrime.securesms.util.testprotos";
+option java_multiple_files = true;
+
+message TestPerson {
+    string name = 1;
+    int32  age  = 2;
+}
+
+message TestPersonWithNewString {
+    string name = 1;
+    int32  age  = 2;
+    string job  = 3;
+}
+
+message TestPersonWithNewRepeatedString {
+             string name = 1;
+             int32  age  = 2;
+    repeated string jobs = 3;
+}
+
+message TestPersonWithNewStringAndInt {
+    string name   = 1;
+    int32  age    = 2;
+    string job    = 3;
+    int32  salary = 4;
+}
+
+message TestPersonWithNewMessage {
+    message Job {
+        string title  = 1;
+        uint32 salary = 2;
+    }
+
+    string name = 1;
+    int32  age  = 2;
+    Job    job  = 3;
+}
+
+message TestPersonWithNewFieldOnMessage {
+    message Job {
+        string title     = 1;
+        uint32 salary    = 2;
+        uint64 startDate = 3;
+    }
+
+    string name = 1;
+    int32  age  = 2;
+    Job    job  = 3;
+}
+
+message TestInnerMessage {
+    message Inner {
+        string a = 1;
+    }
+
+    Inner inner = 1;
+}
+
+message TestInnerMessageWithNewString {
+    message Inner {
+        string a = 1;
+        string b = 2;
+    }
+
+    Inner inner = 1;
+}

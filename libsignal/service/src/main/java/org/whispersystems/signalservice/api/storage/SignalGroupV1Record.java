@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.api.storage;
 
 import com.google.protobuf.ByteString;
 
+import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
 
 import java.util.Objects;
@@ -11,16 +12,26 @@ public final class SignalGroupV1Record implements SignalRecord {
   private final StorageId     id;
   private final GroupV1Record proto;
   private final byte[]        groupId;
+  private final boolean       hasUnknownFields;
 
   public SignalGroupV1Record(StorageId id, GroupV1Record proto) {
-    this.id      = id;
-    this.proto   = proto;
-    this.groupId = proto.getId().toByteArray();
+    this.id               = id;
+    this.proto            = proto;
+    this.groupId          = proto.getId().toByteArray();
+    this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
   }
 
   @Override
   public StorageId getId() {
     return id;
+  }
+
+  public boolean hasUnknownFields() {
+    return hasUnknownFields;
+  }
+
+  public byte[] serializeUnknownFields() {
+    return hasUnknownFields ? proto.toByteArray() : null;
   }
 
   public byte[] getGroupId() {
@@ -61,11 +72,18 @@ public final class SignalGroupV1Record implements SignalRecord {
     private final StorageId             id;
     private final GroupV1Record.Builder builder;
 
+    private byte[] unknownFields;
+
     public Builder(byte[] rawId, byte[] groupId) {
       this.id      = StorageId.forGroupV1(rawId);
       this.builder = GroupV1Record.newBuilder();
 
       builder.setId(ByteString.copyFrom(groupId));
+    }
+
+    public Builder setUnknownFields(byte[] serializedUnknowns) {
+      this.unknownFields = serializedUnknowns;
+      return this;
     }
 
     public Builder setBlocked(boolean blocked) {
@@ -84,7 +102,13 @@ public final class SignalGroupV1Record implements SignalRecord {
     }
 
     public SignalGroupV1Record build() {
-      return new SignalGroupV1Record(id, builder.build());
+      GroupV1Record proto = builder.build();
+
+      if (unknownFields != null) {
+        proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+      }
+
+      return new SignalGroupV1Record(id, proto);
     }
   }
 }

@@ -75,6 +75,7 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
       familyName = local.getFamilyName().or("");
     }
 
+    byte[]               unknownFields  = remote.serializeUnknownFields();
     UUID                 uuid           = remote.getAddress().getUuid().or(local.getAddress().getUuid()).orNull();
     String               e164           = remote.getAddress().getNumber().or(local.getAddress().getNumber()).orNull();
     SignalServiceAddress address        = new SignalServiceAddress(uuid, e164);
@@ -85,8 +86,8 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
     boolean              blocked        = remote.isBlocked();
     boolean              profileSharing = remote.isProfileSharingEnabled() || local.isProfileSharingEnabled();
     boolean              archived       = remote.isArchived();
-    boolean              matchesRemote  = doParamsMatch(remote, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived);
-    boolean              matchesLocal   = doParamsMatch(local, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived);
+    boolean              matchesRemote  = doParamsMatch(remote, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived);
+    boolean              matchesLocal   = doParamsMatch(local, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived);
 
     if (matchesRemote) {
       return remote;
@@ -94,6 +95,7 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
       return local;
     } else {
       return new SignalContactRecord.Builder(keyGenerator.generate(), address)
+                                    .setUnknownFields(unknownFields)
                                     .setGivenName(givenName)
                                     .setFamilyName(familyName)
                                     .setProfileKey(profileKey)
@@ -107,6 +109,7 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
   }
 
   private static boolean doParamsMatch(@NonNull SignalContactRecord contact,
+                                       @Nullable byte[] unknownFields,
                                        @NonNull SignalServiceAddress address,
                                        @NonNull String givenName,
                                        @NonNull String familyName,
@@ -118,15 +121,16 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
                                        boolean profileSharing,
                                        boolean archived)
   {
-    return Objects.equals(contact.getAddress(), address)                 &&
-           Objects.equals(contact.getGivenName().or(""), givenName)      &&
-           Objects.equals(contact.getFamilyName().or(""), familyName)    &&
-           Arrays.equals(contact.getProfileKey().orNull(), profileKey)   &&
-           Objects.equals(contact.getUsername().or(""), username)        &&
-           Objects.equals(contact.getIdentityState(), identityState)     &&
-           Arrays.equals(contact.getIdentityKey().orNull(), identityKey) &&
-           contact.isBlocked() == blocked                                &&
-           contact.isProfileSharingEnabled() == profileSharing           &&
+    return Arrays.equals(contact.serializeUnknownFields(), unknownFields) &&
+           Objects.equals(contact.getAddress(), address)                  &&
+           Objects.equals(contact.getGivenName().or(""), givenName)       &&
+           Objects.equals(contact.getFamilyName().or(""), familyName)     &&
+           Arrays.equals(contact.getProfileKey().orNull(), profileKey)    &&
+           Objects.equals(contact.getUsername().or(""), username)         &&
+           Objects.equals(contact.getIdentityState(), identityState)      &&
+           Arrays.equals(contact.getIdentityKey().orNull(), identityKey)  &&
+           contact.isBlocked() == blocked                                 &&
+           contact.isProfileSharingEnabled() == profileSharing            &&
            contact.isArchived() == archived;
   }
 }
