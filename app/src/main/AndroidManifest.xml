@@ -228,7 +228,7 @@
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https"
-                  android:host="group.signal.org"/>
+                  android:host="signal.group"/>
         </intent-filter>
 
         <meta-data android:name="com.sec.minimode.icon.portrait.normal"

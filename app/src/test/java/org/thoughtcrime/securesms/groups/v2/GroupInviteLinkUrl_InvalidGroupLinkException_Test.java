@@ -36,42 +36,42 @@ public final class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
 
   @Test
   public void has_path() {
-    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://group.signal.org/not_expected/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6OHTOReXZUEHdsBIgSEPCLfiL7k4wCXmwVi31USVY"))
+    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://signal.group/not_expected/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6OHTOReXZUEHdsBIgSEPCLfiL7k4wCXmwVi31USVY"))
                       .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
                       .hasMessage("No path was expected in url");
   }
 
   @Test
   public void missing_ref() {
-    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://group.signal.org/"))
+    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://signal.group/"))
                        .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
                        .hasMessage("No reference was in the url");
   }
 
   @Test
   public void empty_ref() {
-    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://group.signal.org/#"))
+    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://signal.group/#"))
                       .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
                       .hasMessage("No reference was in the url");
   }
 
   @Test
   public void bad_base64() {
-    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://group.signal.org/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6HTOReXZUEHdsBIgSEPCLfiL7k4wCX;mwVi31USVY"))
+    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://signal.group/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6HTOReXZUEHdsBIgSEPCLfiL7k4wCX;mwVi31USVY"))
                       .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
                       .hasCauseExactlyInstanceOf(IOException.class);
   }
 
   @Test
   public void bad_protobuf() {
-    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://group.signal.org/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6HTOReXZUEHdsBIgSEPCLfiL7k4wCXmwVi31USVY"))
+    assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl("https://signal.group/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6HTOReXZUEHdsBIgSEPCLfiL7k4wCXmwVi31USVY"))
                       .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
                       .hasCauseExactlyInstanceOf(InvalidProtocolBufferException.class);
   }
 
   @Test
   public void version_999_url() {
-    String url = "https://group.signal.org/#uj4zCiDMSxlNUvF4bQ3z3fYzGyZTFbJ1xEqWbPE3uZSD8bjOrxIP8NxV-0GUz3jpxMLR1rN3";
+    String url = "https://signal.group/#uj4zCiDMSxlNUvF4bQ3z3fYzGyZTFbJ1xEqWbPE3uZSD8bjOrxIP8NxV-0GUz3jpxMLR1rN3";
 
     assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl(url))
                       .isInstanceOf(GroupInviteLinkUrl.UnknownGroupLinkVersionException.class)
@@ -85,7 +85,7 @@ public final class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
 
     String encoding = createEncodedProtobuf(masterKeyBytes, password.serialize());
 
-    String url = "https://group.signal.org/#" + encoding;
+    String url = "https://signal.group/#" + encoding;
 
     assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl(url))
                       .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
@@ -99,7 +99,7 @@ public final class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
 
     String encoding = createEncodedProtobuf(groupMasterKey.serialize(), passwordBytes);
 
-    String url = "https://group.signal.org/#" + encoding;
+    String url = "https://signal.group/#" + encoding;
 
     assertThatThrownBy(() -> GroupInviteLinkUrl.fromUrl(url))
                       .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)

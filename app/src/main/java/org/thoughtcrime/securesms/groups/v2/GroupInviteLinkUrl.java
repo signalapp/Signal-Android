@@ -17,7 +17,7 @@ import java.net.URL;
 
 public final class GroupInviteLinkUrl {
 
-  private static final String GROUP_URL_HOST   = "group.signal.org";
+  private static final String GROUP_URL_HOST   = "signal.group";
   private static final String GROUP_URL_PREFIX = "https://" + GROUP_URL_HOST + "/#";
 
   private final GroupMasterKey    groupMasterKey;

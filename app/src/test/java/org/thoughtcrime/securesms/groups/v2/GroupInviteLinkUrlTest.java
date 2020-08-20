@@ -25,15 +25,15 @@ public final class GroupInviteLinkUrlTest {
 
       givenGroup().withMasterKey("a501335111fa04e3756c24b6eb87264e2dfb622e8e1d339179765410776c0488")
                   .andPassword("f08b7e22fb938c025e6c158b7d544956")
-                  .expectUrl("https://group.signal.org/#CjQKIKUBM1ER-gTjdWwktuuHJk4t-2Iujh0zkXl2VBB3bASIEhDwi34i-5OMAl5sFYt9VElW"),
+                  .expectUrl("https://signal.group/#CjQKIKUBM1ER-gTjdWwktuuHJk4t-2Iujh0zkXl2VBB3bASIEhDwi34i-5OMAl5sFYt9VElW"),
 
       givenGroup().withMasterKey("2ca23c04d7cf60fe04039ae76d1912202c2a463d345d9cd48cf27f260dd37f6f")
                   .andPassword("2734457c02ce51da71ad0b62f3c222f7")
-                  .expectUrl("https://group.signal.org/#CjQKICyiPATXz2D-BAOa520ZEiAsKkY9NF2c1IzyfyYN039vEhAnNEV8As5R2nGtC2LzwiL3"),
+                  .expectUrl("https://signal.group/#CjQKICyiPATXz2D-BAOa520ZEiAsKkY9NF2c1IzyfyYN039vEhAnNEV8As5R2nGtC2LzwiL3"),
 
       givenGroup().withMasterKey("00f7e0c2a71ab064cc3ced4c04f08d7b7ef4b84b2c2206f69833be6cfe34df80")
                   .andPassword("9bc324eec437cfda6ae5b8aefbf47ee8")
-                  .expectUrl("https://group.signal.org/#CjQKIAD34MKnGrBkzDztTATwjXt-9LhLLCIG9pgzvmz-NN-AEhCbwyTuxDfP2mrluK779H7o")
+                  .expectUrl("https://signal.group/#CjQKIAD34MKnGrBkzDztTATwjXt-9LhLLCIG9pgzvmz-NN-AEhCbwyTuxDfP2mrluK779H7o")
     );
   }
 
