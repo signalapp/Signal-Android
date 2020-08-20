@@ -1,23 +1,30 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.TransportOptionsPopup;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
+
+import network.loki.messenger.R;
 
 public class SendButton extends AppCompatImageButton
     implements TransportOptions.OnTransportChangedListener,
                TransportOptionsPopup.SelectedListener,
-               View.OnLongClickListener
-{
+               View.OnLongClickListener {
 
   private final TransportOptions transportOptions;
 
@@ -102,7 +109,19 @@ public class SendButton extends AppCompatImageButton
 
   @Override
   public void onChange(TransportOption newTransport, boolean isManualSelection) {
-    setImageResource(newTransport.getDrawable());
+    // Map send icon drawable resource from a transport type.
+    //TODO These values should come from XML layout as view's attributes and not be resolved in code like this.
+    @DrawableRes final int sendDrawable;
+    switch (newTransport.getType()) {
+      case SMS:
+      case TEXTSECURE:
+      default: {
+        sendDrawable = ThemeUtil.getDrawableResWithAttribute(
+                getContext(), R.attr.conversation_transport_sms_indicator);
+      }
+    }
+
+    setImageResource(sendDrawable);
     setContentDescription(newTransport.getDescription());
   }
 

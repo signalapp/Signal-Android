@@ -4,15 +4,19 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.view.ContextThemeWrapper;
+
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 
 import network.loki.messenger.R;
 
 public class ThemeUtil {
+  private static final String TAG = ThemeUtil.class.getSimpleName();
 
   public static boolean isDarkTheme(@NonNull Context context) {
     return getAttribute(context, R.attr.theme_type, "light").equals("dark");
@@ -44,5 +48,16 @@ public class ThemeUtil {
     }
 
     return defaultValue;
+  }
+
+  @DrawableRes
+  public static int getDrawableResWithAttribute(Context context, @AttrRes int attributeId) {
+    TypedValue resolvedValue = new TypedValue();
+    context.getTheme().resolveAttribute(attributeId, resolvedValue, true);
+    if (resolvedValue.type != TypedValue.TYPE_STRING) {
+      Log.e(TAG, "Cannot resolve a drawable resource from an attribute ID: " + attributeId);
+      return 0;
+    }
+    return resolvedValue.resourceId;
   }
 }
