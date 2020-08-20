@@ -4,22 +4,18 @@
     <!-- Session -->
     <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/action_bar_background</item>
-        <item name="android:background">@color/action_bar_background</item>
+        <item name="android:textColor">@color/text</item>
         <item name="titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
-        <item name="android:titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
         <item name="elevation">0dp</item>
-        <item name="android:elevation">0dp</item>
+        <item name="minHeight">?attr/actionBarSize</item>
+        <item name="popupTheme">@style/Session.DarkActionBar</item>
     </style>
 
     <style name="Session.DarkSubtitleActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/action_bar_background</item>
-        <item name="android:background">@color/action_bar_background</item>
         <item name="titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
-        <item name="android:titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
-        <item name="android:subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
         <item name="elevation">0dp</item>
-        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">

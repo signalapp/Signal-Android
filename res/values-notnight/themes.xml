@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Session.DarkTheme" parent="Session.BaseDarkTheme">
+        <item name="android:navigationBarColor">@color/gray65</item>
+        <item name="android:statusBarColor">@color/accent</item>
+        <item name="titleTextColor">@color/text</item>
+    </style>
+
+    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
+
+        <item name="android:navigationBarColor">@color/gray78</item>
+
+        <item name="conversation_item_sent_text_primary_color">@color/core_grey_95</item>
+        <item name="conversation_item_sent_text_secondary_color">@color/core_grey_85</item>
+    </style>
+
+</resources>

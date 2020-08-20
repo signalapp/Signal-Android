@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/action_bar_background</item>
+
+        <item name="titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
+        <item name="actionMenuTextColor">@color/text</item>
+    </style>
+
+</resources>

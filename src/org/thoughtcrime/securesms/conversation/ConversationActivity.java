@@ -346,7 +346,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int        keyboardHeight          = 0;
 
   private final IdentityRecordList      identityRecords = new IdentityRecordList();
-  private final DynamicNoActionBarTheme dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage         dynamicLanguage = new DynamicLanguage();
 
   // Message status bar
@@ -365,7 +364,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onPreCreate() {
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
   }
 
@@ -528,7 +526,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
     EventBus.getDefault().register(this);
@@ -1733,7 +1730,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   protected void initializeActionBar() {
     Toolbar toolbar = findViewById(R.id.toolbar);
-    toolbar.getOverflowIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
     setSupportActionBar(toolbar);
 
     ActionBar supportActionBar = getSupportActionBar();
@@ -2078,10 +2074,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setActionBarColor(MaterialColor color) {
-    ActionBar supportActionBar = getSupportActionBar();
-    if (supportActionBar == null) throw new AssertionError();
-    supportActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.action_bar_background)));
-    setStatusBarColor(getResources().getColor(R.color.action_bar_background));
+    //TODO AC: As we're trying to theme everything properly this method seems a bit broken
+    // and it's not used anyway so it's a subject to be deleted.
+//    ActionBar supportActionBar = getSupportActionBar();
+//    if (supportActionBar == null) throw new AssertionError();
+//    supportActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.action_bar_background)));
+//    setStatusBarColor(getResources().getColor(R.color.action_bar_background));
   }
 
   // FIXME: This name is confusing because we also have updateInputPanel and setInputPanelEnabled

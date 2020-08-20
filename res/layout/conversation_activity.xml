@@ -9,14 +9,11 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/Session.DarkActionBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="24dp"
-        app:contentInsetRight="20dp"
-        android:background="@color/action_bar_background"
-        android:theme="@style/Session.DarkActionBar"
-        app:popupTheme="@style/Session.DarkActionBar">
+        app:contentInsetRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -27,13 +27,13 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="invisible"
-                tools:visibility="visible">
+                tools:visibility="invisible">
 
                 <ImageView
                     android:id="@+id/btnCancelGroupNameEdit"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_close_white_24dp"/>
+                    android:src="@drawable/ic_baseline_clear_24"/>
 
                 <EditText
                     style="@style/SessionEditText"
@@ -56,7 +56,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_check_white_24dp"/>
+                    android:src="@drawable/ic_baseline_done_24"/>
 
             </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:visibility="visible"
-                tools:visibility="invisible">
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/lblGroupNameDisplay"
@@ -79,7 +79,7 @@
                     android:textAlignment="center"
                     android:paddingStart="24dp"
                     android:paddingEnd="0dp"
-                    android:drawableEnd="@drawable/ic_edit_white_24dp"
+                    android:drawableEnd="@drawable/ic_baseline_edit_24"
                     android:drawablePadding="@dimen/small_spacing"
                     tools:text="SomeGroupName"/>
 
