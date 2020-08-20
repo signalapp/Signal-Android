@@ -16,6 +16,9 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="48dp"
       android:hint="@string/CreateProfileActivity__create_a_username"
+      android:imeOptions="actionDone"
+      android:inputType="text"
+      android:maxLines="1"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />

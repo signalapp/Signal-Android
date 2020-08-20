@@ -37,8 +37,6 @@ class EditProfileViewModel extends ViewModel {
     this.repository = repository;
     this.groupId    = groupId;
 
-    repository.getCurrentUsername(internalUsername::postValue);
-
     if (!hasInstanceState) {
       if (groupId != null) {
         repository.getCurrentDisplayName(originalDisplayName::setValue);
@@ -108,6 +106,10 @@ class EditProfileViewModel extends ViewModel {
 
   public void setAvatar(byte[] avatar) {
     internalAvatar.setValue(avatar);
+  }
+
+  public void refreshUsername() {
+    repository.getCurrentUsername(internalUsername::postValue);
   }
 
   public void submitProfile(Consumer<EditProfileRepository.UploadResult> uploadResultConsumer) {

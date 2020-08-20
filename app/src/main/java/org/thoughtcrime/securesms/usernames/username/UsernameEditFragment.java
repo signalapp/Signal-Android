@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.usernames.username;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +66,13 @@ public class UsernameEditFragment extends LoggingFragment {
       public void onTextChanged(String text) {
         viewModel.onUsernameUpdated(text);
       }
+    });
+    usernameInput.setOnEditorActionListener((v, actionId, event) -> {
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        viewModel.onUsernameSubmitted(usernameInput.getText().toString());
+        return true;
+      }
+      return false;
     });
   }
 

@@ -133,6 +133,12 @@ public class EditProfileFragment extends LoggingFragment {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    viewModel.refreshUsername();
+  }
+
+  @Override
   public void onSaveInstanceState(@NonNull Bundle outState) {
     outState.putByteArray(AVATAR_STATE, viewModel.getAvatarSnapshot());
   }
