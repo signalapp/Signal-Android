@@ -4,6 +4,8 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 import android.telephony.SmsManager;
 
+import org.thoughtcrime.securesms.database.Database;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -86,13 +88,13 @@ public class SmsSentJob extends BaseJob {
   }
 
   private void handleDeliveredResult(long messageId, int result) {
-    DatabaseFactory.getSmsDatabase(context).markStatus(messageId, result);
+    DatabaseFactory.getSmsDatabase(context).markSmsStatus(messageId, result);
   }
 
   private void handleSentResult(long messageId, int result) {
     try {
-      SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
-      SmsMessageRecord record   = database.getMessageRecord(messageId);
+      MessageDatabase  database = DatabaseFactory.getSmsDatabase(context);
+      SmsMessageRecord record   = database.getSmsMessage(messageId);
 
       switch (result) {
         case Activity.RESULT_OK:

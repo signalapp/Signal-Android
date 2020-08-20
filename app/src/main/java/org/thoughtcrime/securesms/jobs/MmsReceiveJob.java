@@ -6,19 +6,18 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 
 import androidx.annotation.NonNull;
-import android.util.Pair;
 
 import com.google.android.mms.pdu_alt.GenericPdu;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.io.IOException;
 
@@ -79,8 +78,8 @@ public class MmsReceiveJob extends BaseJob {
 
       Log.i(TAG, "Inserted received MMS notification...");
 
-      ApplicationDependencies.getJobManager().add(new MmsDownloadJob(messageAndThreadId.first,
-                                                                     messageAndThreadId.second,
+      ApplicationDependencies.getJobManager().add(new MmsDownloadJob(messageAndThreadId.first(),
+                                                                     messageAndThreadId.second(),
                                                                      true));
     } else if (isNotification(pdu)) {
       Log.w(TAG, "*** Received blocked MMS, ignoring...");

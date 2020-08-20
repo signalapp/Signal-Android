@@ -39,7 +39,7 @@ public class MessageDetailsLoader extends AbstractCursorLoader {
       case MmsSmsDatabase.SMS_TRANSPORT:
         return DatabaseFactory.getSmsDatabase(context).getVerboseMessageCursor(messageId);
       case MmsSmsDatabase.MMS_TRANSPORT:
-        return DatabaseFactory.getMmsDatabase(context).getVerboseMessage(messageId);
+        return DatabaseFactory.getMmsDatabase(context).getVerboseMessageCursor(messageId);
       default:
         throw new AssertionError("no valid message type specified");
     }

@@ -78,6 +78,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -1522,21 +1523,18 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     if (message > -1) builder.setMessage(message);
 
     builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
-      if (messageRecord.isMms()) {
-        MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-        database.markAsInsecure(messageRecord.getId());
-        database.markAsOutbox(messageRecord.getId());
-        database.markAsForcedSms(messageRecord.getId());
+      MessageDatabase db = messageRecord.isMms() ? DatabaseFactory.getMmsDatabase(context)
+                                                 : DatabaseFactory.getSmsDatabase(context);
 
+      db.markAsInsecure(messageRecord.getId());
+      db.markAsOutbox(messageRecord.getId());
+      db.markAsForcedSms(messageRecord.getId());
+
+      if (messageRecord.isMms()) {
         MmsSendJob.enqueue(context,
                            ApplicationDependencies.getJobManager(),
                            messageRecord.getId());
       } else {
-        SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-        database.markAsInsecure(messageRecord.getId());
-        database.markAsOutbox(messageRecord.getId());
-        database.markAsForcedSms(messageRecord.getId());
-
         ApplicationDependencies.getJobManager().add(new SmsSendJob(messageRecord.getId(),
                                                                    messageRecord.getIndividualRecipient()));
       }

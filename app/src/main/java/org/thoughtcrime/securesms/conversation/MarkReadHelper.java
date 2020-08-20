@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
@@ -42,8 +42,8 @@ class MarkReadHelper {
 
     debouncer.publish(() -> {
       EXECUTOR.execute(() -> {
-        ThreadDatabase                            threadDatabase = DatabaseFactory.getThreadDatabase(context);
-        List<MessagingDatabase.MarkedMessageInfo> infos          = threadDatabase.setReadSince(threadId, false, timestamp);
+        ThreadDatabase                          threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        List<MessageDatabase.MarkedMessageInfo> infos          = threadDatabase.setReadSince(threadId, false, timestamp);
 
         Log.d(TAG, "Marking " + infos.size() + " messages as read.");
 

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import androidx.annotation.NonNull;
@@ -67,7 +66,7 @@ public class AttachmentUtil {
         .size();
 
     if (attachmentCount <= 1) {
-      DatabaseFactory.getMmsDatabase(context).delete(mmsId);
+      DatabaseFactory.getMmsDatabase(context).deleteMessage(mmsId);
     } else {
       DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(attachmentId);
     }

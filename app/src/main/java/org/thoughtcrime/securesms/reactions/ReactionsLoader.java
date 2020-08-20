@@ -15,6 +15,8 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
@@ -49,8 +51,8 @@ public class ReactionsLoader implements ReactionsViewModel.Repository, LoaderMan
     SignalExecutors.BOUNDED.execute(() -> {
       data.moveToPosition(-1);
 
-      MessageRecord record = isMms ? DatabaseFactory.getMmsDatabase(appContext).readerFor(data).getNext()
-                                   : DatabaseFactory.getSmsDatabase(appContext).readerFor(data).getNext();
+      MessageRecord record = isMms ? MmsDatabase.readerFor(data).getNext()
+                                   : SmsDatabase.readerFor(data).getNext();
 
       if (record == null) {
         internalLiveData.postValue(Collections.emptyList());
@@ -86,7 +88,7 @@ public class ReactionsLoader implements ReactionsViewModel.Repository, LoaderMan
 
     @Override
     public Cursor getCursor() {
-      return DatabaseFactory.getMmsDatabase(context).getMessage(messageId);
+      return DatabaseFactory.getMmsDatabase(context).getMessageCursor(messageId);
     }
   }
 

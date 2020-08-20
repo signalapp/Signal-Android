@@ -12,7 +12,6 @@ import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,6 +57,7 @@ import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.EglBase;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -461,7 +461,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
   private void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(remotePeer.getId());
-    ApplicationDependencies.getMessageNotifier().updateNotification(this, messageAndThreadId.second, signal);
+    ApplicationDependencies.getMessageNotifier().updateNotification(this, messageAndThreadId.second(), signal);
   }
 
   private void handleDenyCall(Intent intent) {

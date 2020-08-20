@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 
+import org.thoughtcrime.securesms.database.Database;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -77,8 +79,8 @@ public class SmsSendJob extends SendJob {
       throw new TooManyRetriesException();
     }
 
-    SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
-    SmsMessageRecord record   = database.getMessageRecord(messageId);
+    MessageDatabase  database = DatabaseFactory.getSmsDatabase(context);
+    SmsMessageRecord record   = database.getSmsMessage(messageId);
 
     if (!record.isPending() && !record.isFailed()) {
       warn(TAG, "Message " + messageId + " was already sent. Ignoring.");

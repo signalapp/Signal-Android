@@ -77,9 +77,10 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickList
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -686,7 +687,7 @@ public class ConversationFragment extends LoggingFragment {
             boolean threadDeleted;
 
             if (messageRecord.isMms()) {
-              threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+              threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
             } else {
               threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
             }
@@ -727,7 +728,7 @@ public class ConversationFragment extends LoggingFragment {
             boolean threadDeleted;
 
             if (messageRecord.isMms()) {
-              threadDeleted = DatabaseFactory.getMmsDatabase(context).delete(messageRecord.getId());
+              threadDeleted = DatabaseFactory.getMmsDatabase(context).deleteMessage(messageRecord.getId());
             } else {
               threadDeleted = DatabaseFactory.getSmsDatabase(context).deleteMessage(messageRecord.getId());
             }
@@ -917,7 +918,7 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   public long stageOutgoingMessage(OutgoingTextMessage message) {
-    MessageRecord messageRecord = DatabaseFactory.getSmsDatabase(getContext()).readerFor(message, threadId).getCurrent();
+    MessageRecord messageRecord = SmsDatabase.readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());
@@ -1084,7 +1085,7 @@ public class ConversationFragment extends LoggingFragment {
       return mmsDatabase.getOldestUnreadMentionDetails(threadId);
     }, (pair) -> {
       if (pair != null) {
-        jumpToMessage(pair.first, pair.second, () -> {});
+        jumpToMessage(pair.first(), pair.second(), () -> {});
       }
     });
   }
@@ -1309,7 +1310,7 @@ public class ConversationFragment extends LoggingFragment {
                             .getViewOnceMessageManager()
                             .scheduleIfNecessary();
 
-          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessagingDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
+          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
 
           return tempUri;
         } catch (IOException e) {

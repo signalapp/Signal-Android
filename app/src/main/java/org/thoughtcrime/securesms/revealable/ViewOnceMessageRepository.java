@@ -23,7 +23,7 @@ class ViewOnceMessageRepository {
 
   void getMessage(long messageId, @NonNull Callback<Optional<MmsMessageRecord>> callback) {
     SignalExecutors.BOUNDED.execute(() -> {
-      try (MmsDatabase.Reader reader = mmsDatabase.readerFor(mmsDatabase.getMessage(messageId))) {
+      try (MmsDatabase.Reader reader = MmsDatabase.readerFor(mmsDatabase.getMessageCursor(messageId))) {
         MmsMessageRecord record = (MmsMessageRecord) reader.getNext();
         callback.onComplete(Optional.fromNullable(record));
       }

@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteQueryBuilder;
 
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -118,10 +118,10 @@ public class MmsSmsDatabase extends Database {
   }
 
   private @NonNull Pair<RecipientId, Long> getGroupAddedBy(long threadId, long lastQuitChecked) {
-    MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    long        latestQuit  = mmsDatabase.getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
-    RecipientId id          = smsDatabase.getOldestGroupUpdateSender(threadId, latestQuit);
+    MmsDatabase     mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
+    long            latestQuit  = mmsDatabase.getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
+    RecipientId     id          = smsDatabase.getOldestGroupUpdateSender(threadId, latestQuit);
 
     return new Pair<>(id, latestQuit);
   }
@@ -209,14 +209,11 @@ public class MmsSmsDatabase extends Database {
   }
 
   public boolean checkMessageExists(@NonNull MessageRecord messageRecord) {
-    if (messageRecord.isMms()) {
-      try (Cursor mms = DatabaseFactory.getMmsDatabase(context).getMessage(messageRecord.getId())) {
-        return mms != null && mms.getCount() > 0;
-      }
-    } else {
-      try (Cursor sms = DatabaseFactory.getSmsDatabase(context).getMessageCursor(messageRecord.getId())) {
-        return sms != null && sms.getCount() > 0;
-      }
+    MessageDatabase db = messageRecord.isMms() ? DatabaseFactory.getMmsDatabase(context)
+                                               : DatabaseFactory.getSmsDatabase(context);
+
+    try (Cursor cursor = db.getMessageCursor(messageRecord.getId())) {
+      return cursor != null && cursor.getCount() > 0;
     }
   }
 
@@ -256,7 +253,7 @@ public class MmsSmsDatabase extends Database {
 
   public int getConversationCountForThreadSummary(long threadId) {
     int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThreadSummary(threadId);
-    count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
+    count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThreadSummary(threadId);
 
     return count;
   }
@@ -290,14 +287,14 @@ public class MmsSmsDatabase extends Database {
   }
 
   public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, true);
+    DatabaseFactory.getSmsDatabase(context).incrementSmsReceiptCount(syncMessageId, true);
     DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true);
   }
 
   public boolean incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
     boolean handled  = false;
 
-    handled |= DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, false);
+    handled |= DatabaseFactory.getSmsDatabase(context).incrementSmsReceiptCount(syncMessageId, false);
     handled |= DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false);
 
     return handled;
@@ -576,7 +573,7 @@ public class MmsSmsDatabase extends Database {
 
     private SmsDatabase.Reader getSmsReader() {
       if (smsReader == null) {
-        smsReader = DatabaseFactory.getSmsDatabase(context).readerFor(cursor);
+        smsReader = SmsDatabase.readerFor(cursor);
       }
 
       return smsReader;

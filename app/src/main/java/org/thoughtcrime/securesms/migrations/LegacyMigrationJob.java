@@ -272,7 +272,7 @@ public class LegacyMigrationJob extends MigrationJob {
 
     Log.i(TAG, pendingAttachments.size() + " pending parts.");
     for (DatabaseAttachment attachment : pendingAttachments) {
-      final Reader        reader = mmsDb.readerFor(mmsDb.getMessage(attachment.getMmsId()));
+      final Reader        reader = MmsDatabase.readerFor(mmsDb.getMessageCursor(attachment.getMmsId()));
       final MessageRecord record = reader.getNext();
 
       if (attachment.hasData()) {

@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteStatement;
 
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -22,9 +24,13 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -34,12 +40,13 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
-public abstract class MessagingDatabase extends Database implements MmsSmsColumns {
+public abstract class MessageDatabase extends Database implements MmsSmsColumns {
 
-  private static final String TAG = MessagingDatabase.class.getSimpleName();
+  private static final String TAG = MessageDatabase.class.getSimpleName();
 
-  public MessagingDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public MessageDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -48,17 +55,76 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   protected abstract String getDateSentColumnName();
   protected abstract String getDateReceivedColumnName();
 
+  public abstract @Nullable RecipientId getOldestGroupUpdateSender(long threadId, long minimumDateReceived);
+  public abstract long getThreadIdForMessage(long id);
+  public abstract int getMessageCountForThread(long threadId);
+  public abstract int getMessageCountForThread(long threadId, long beforeTime);
+  abstract int getMessageCountForThreadSummary(long threadId);
+
+  public abstract Cursor getExpirationStartedMessages();
+  public abstract SmsMessageRecord getSmsMessage(long messageId) throws NoSuchMessageException;
+  public abstract Cursor getMessageCursor(long messageId);
+  public abstract MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException;
+  public abstract Cursor getVerboseMessageCursor(long messageId);
+  public abstract boolean hasReceivedAnyCallsSince(long threadId, long timestamp);
+
   public abstract void markExpireStarted(long messageId);
   public abstract void markExpireStarted(long messageId, long startTime);
   public abstract void markExpireStarted(Collection<Long> messageId, long startTime);
 
+  public abstract void markAsEndSession(long id);
+  public abstract void markAsPreKeyBundle(long id);
+  public abstract void markAsInvalidVersionKeyExchange(long id);
+  public abstract void markAsSecure(long id);
+  public abstract void markAsInsecure(long id);
+  public abstract void markAsPush(long id);
+  public abstract void markAsForcedSms(long id);
+  public abstract void markAsDecryptFailed(long id);
+  public abstract void markAsDecryptDuplicate(long id);
+  public abstract void markAsNoSession(long id);
+  public abstract void markAsUnsupportedProtocolVersion(long id);
+  public abstract void markAsInvalidMessage(long id);
+  public abstract void markAsLegacyVersion(long id);
+  public abstract void markAsOutbox(long id);
+  public abstract void markAsPendingInsecureSmsFallback(long id);
   public abstract void markAsSent(long messageId, boolean secure);
+  public abstract void markAsSentFailed(long id);
   public abstract void markUnidentified(long messageId, boolean unidentified);
-
   public abstract void markAsSending(long messageId);
   public abstract void markAsRemoteDelete(long messageId);
+  public abstract void markAsMissedCall(long id);
+  public abstract void markAsNotified(long id);
+  public abstract void markSmsStatus(long id, int status);
 
-  public abstract MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException;
+  public abstract boolean incrementSmsReceiptCount(SyncMessageId messageId, boolean deliveryReceipt);
+  public abstract List<Pair<Long, Long>> setTimestampRead(SyncMessageId messageId, long proposedExpireStarted);
+  public abstract List<MarkedMessageInfo> setEntireThreadRead(long threadId);
+  public abstract List<MarkedMessageInfo> setMessagesReadSince(long threadId, long timestamp);
+  public abstract List<MarkedMessageInfo> setAllMessagesRead();
+  public abstract Pair<Long, Long> updateBundleMessageBody(long messageId, String body);
+
+
+  public abstract @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address);
+  public abstract @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address);
+  public abstract @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address);
+
+  public abstract Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type);
+  public abstract Optional<InsertResult> insertMessageInbox(IncomingTextMessage message);
+  public abstract long insertMessageOutbox(long threadId, OutgoingTextMessage message, boolean forceSms, long date, InsertListener insertListener);
+  public abstract void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName);
+
+  public abstract boolean deleteMessage(long messageId);
+  abstract void deleteThread(long threadId);
+  abstract void deleteMessagesInThreadBeforeDate(long threadId, long date);
+  abstract void deleteThreads(@NonNull Set<Long> threadIds);
+  abstract void deleteAllThreads();
+
+  abstract SQLiteDatabase beginTransaction();
+  abstract void endTransaction(SQLiteDatabase database);
+  abstract SQLiteStatement createInsertStatement(SQLiteDatabase database);
+
+  public abstract void ensureMigration();
+
 
   final int getInsecureMessagesSentForThread(long threadId) {
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
@@ -256,7 +322,7 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     }
   }
 
-  protected List<ReactionRecord> parseReactions(@NonNull Cursor cursor) {
+  protected static List<ReactionRecord> parseReactions(@NonNull Cursor cursor) {
     byte[] raw = cursor.getBlob(cursor.getColumnIndexOrThrow(REACTIONS));
 
     if (raw != null) {
@@ -526,5 +592,9 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     public long getThreadId() {
       return threadId;
     }
+  }
+
+  public interface InsertListener {
+    void onComplete();
   }
 }

@@ -9,11 +9,10 @@ import com.annimon.stream.Stream;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -61,12 +60,12 @@ public class MarkReadReceiverTest {
     List<Long>        threads    = Stream.range(4L, 7L).toList();
     int               expected   = recipients.size() * threads.size() + 1;
 
-    List<MessagingDatabase.MarkedMessageInfo> infoList = Stream.of(threads)
-                                                               .flatMap(threadId -> Stream.of(recipients)
+    List<MessageDatabase.MarkedMessageInfo> infoList = Stream.of(threads)
+                                                             .flatMap(threadId -> Stream.of(recipients)
                                                                                           .map(recipientId -> createMarkedMessageInfo(threadId, recipientId)))
-                                                               .toList();
+                                                             .toList();
 
-    List<MessagingDatabase.MarkedMessageInfo> duplicatedList = Util.concatenatedList(infoList, infoList);
+    List<MessageDatabase.MarkedMessageInfo> duplicatedList = Util.concatenatedList(infoList, infoList);
 
     // WHEN
     MarkReadReceiver.process(mockContext, duplicatedList);
@@ -93,9 +92,9 @@ public class MarkReadReceiverTest {
     assertEquals("Should have 9 total combinations.", 9, threadRecipientPairs.size());
   }
 
-  private MessagingDatabase.MarkedMessageInfo createMarkedMessageInfo(long threadId, @NonNull RecipientId recipientId) {
-    return new MessagingDatabase.MarkedMessageInfo(threadId,
-                                                   new MessagingDatabase.SyncMessageId(recipientId, 0),
-                                                   new MessagingDatabase.ExpirationInfo(0, 0, 0, false));
+  private MessageDatabase.MarkedMessageInfo createMarkedMessageInfo(long threadId, @NonNull RecipientId recipientId) {
+    return new MessageDatabase.MarkedMessageInfo(threadId,
+                                                   new MessageDatabase.SyncMessageId(recipientId, 0),
+                                                   new MessageDatabase.ExpirationInfo(0, 0, 0, false));
   }
 }

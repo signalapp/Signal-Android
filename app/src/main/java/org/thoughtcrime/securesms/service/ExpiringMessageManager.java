@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
+
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -20,9 +22,9 @@ public class ExpiringMessageManager {
   private final TreeSet<ExpiringMessageReference> expiringMessageReferences = new TreeSet<>(new ExpiringMessageComparator());
   private final Executor                          executor                  = Executors.newSingleThreadExecutor();
 
-  private final SmsDatabase smsDatabase;
-  private final MmsDatabase mmsDatabase;
-  private final Context     context;
+  private final MessageDatabase smsDatabase;
+  private final MessageDatabase mmsDatabase;
+  private final Context         context;
 
   public ExpiringMessageManager(Context context) {
     this.context     = context.getApplicationContext();
@@ -54,8 +56,8 @@ public class ExpiringMessageManager {
 
   private class LoadTask implements Runnable {
     public void run() {
-      SmsDatabase.Reader smsReader = smsDatabase.readerFor(smsDatabase.getExpirationStartedMessages());
-      MmsDatabase.Reader mmsReader = mmsDatabase.getExpireStartedMessages();
+      SmsDatabase.Reader smsReader = SmsDatabase.readerFor(smsDatabase.getExpirationStartedMessages());
+      MmsDatabase.Reader mmsReader = MmsDatabase.readerFor(mmsDatabase.getExpirationStartedMessages());
 
       MessageRecord messageRecord;
 
@@ -103,7 +105,7 @@ public class ExpiringMessageManager {
         }
 
         if (expiredMessage != null) {
-          if (expiredMessage.mms) mmsDatabase.delete(expiredMessage.id);
+          if (expiredMessage.mms) mmsDatabase.deleteMessage(expiredMessage.id);
           else                    smsDatabase.deleteMessage(expiredMessage.id);
         }
       }

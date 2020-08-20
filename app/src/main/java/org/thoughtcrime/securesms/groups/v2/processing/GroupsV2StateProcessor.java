@@ -16,6 +16,7 @@ import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -407,7 +408,7 @@ public final class GroupsV2StateProcessor {
           Log.w(TAG, e);
         }
       } else {
-        SmsDatabase                smsDatabase  = DatabaseFactory.getSmsDatabase(context);
+        MessageDatabase            smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         RecipientId                sender       = RecipientId.from(editor.get(), null);
         IncomingTextMessage        incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, "", Optional.of(groupId), 0, false);
         IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);

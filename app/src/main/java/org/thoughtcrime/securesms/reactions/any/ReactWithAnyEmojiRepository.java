@@ -9,11 +9,10 @@ import androidx.annotation.StringRes;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
@@ -72,7 +71,7 @@ final class ReactWithAnyEmojiRepository {
   void addEmojiToMessage(@NonNull String emoji, long messageId, boolean isMms) {
     SignalExecutors.BOUNDED.execute(() -> {
       try {
-        MessagingDatabase db            = isMms ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+        MessageDatabase db              = isMms ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
         MessageRecord     messageRecord = db.getMessageRecord(messageId);
         ReactionRecord    oldRecord     = Stream.of(messageRecord.getReactions())
                                                 .filter(record -> record.getAuthor().equals(Recipient.self().getId()))

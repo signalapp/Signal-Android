@@ -14,7 +14,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
-import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
@@ -66,9 +67,9 @@ public class IdentityUtil {
 
   public static void markIdentityVerified(Context context, Recipient recipient, boolean verified, boolean remote)
   {
-    long          time          = System.currentTimeMillis();
-    SmsDatabase   smsDatabase   = DatabaseFactory.getSmsDatabase(context);
-    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    long            time          = System.currentTimeMillis();
+    MessageDatabase smsDatabase   = DatabaseFactory.getSmsDatabase(context);
+    GroupDatabase   groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
     try (GroupDatabase.Reader reader = groupDatabase.getGroups()) {
 
@@ -120,9 +121,9 @@ public class IdentityUtil {
   }
 
   public static void markIdentityUpdate(@NonNull Context context, @NonNull RecipientId recipientId) {
-    long                 time          = System.currentTimeMillis();
-    SmsDatabase          smsDatabase   = DatabaseFactory.getSmsDatabase(context);
-    GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    long            time          = System.currentTimeMillis();
+    MessageDatabase smsDatabase   = DatabaseFactory.getSmsDatabase(context);
+    GroupDatabase   groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
     try (GroupDatabase.Reader reader = groupDatabase.getGroups()) {
       GroupDatabase.GroupRecord groupRecord;

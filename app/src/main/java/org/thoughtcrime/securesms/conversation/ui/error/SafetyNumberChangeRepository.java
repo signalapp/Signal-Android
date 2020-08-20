@@ -11,9 +11,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -133,8 +135,8 @@ final class SafetyNumberChangeRepository {
 
   @WorkerThread
   private void processOutgoingMessageRecord(@NonNull List<ChangedRecipient> changedRecipients, @NonNull MessageRecord messageRecord) {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
+    MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
 
     for (ChangedRecipient changedRecipient : changedRecipients) {
       RecipientId id          = changedRecipient.getRecipient().getId();

@@ -9,7 +9,7 @@ import androidx.core.util.Consumer;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -118,8 +118,8 @@ final class MessageRequestRepository {
 
         MessageSender.sendProfileKey(context, threadId);
 
-        List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
-                                                                              .setEntireThreadRead(threadId);
+        List<MessageDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
+                                                                            .setEntireThreadRead(threadId);
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
@@ -219,8 +219,8 @@ final class MessageRequestRepository {
       recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
       liveRecipient.refresh();
 
-      List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
-                                                                            .setEntireThreadRead(threadId);
+      List<MessageDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
+                                                                          .setEntireThreadRead(threadId);
       ApplicationDependencies.getMessageNotifier().updateNotification(context);
       MarkReadReceiver.process(context, messageIds);
 
