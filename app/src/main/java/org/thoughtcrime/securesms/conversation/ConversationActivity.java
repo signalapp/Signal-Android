@@ -301,6 +301,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   public static final String SAFETY_NUMBER_DIALOG = "SAFETY_NUMBER";
 
+  private static final String STATE_REACT_WITH_ANY_PAGE = "STATE_REACT_WITH_ANY_PAGE";
+
   public static final String RECIPIENT_EXTRA                   = "recipient_id";
   public static final String THREAD_ID_EXTRA                   = "thread_id";
   public static final String TEXT_EXTRA                        = "draft_text";
@@ -366,6 +368,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private LiveRecipient recipient;
   private long          threadId;
   private int           distributionType;
+  private int           reactWithAnyEmojiStartPage;
   private boolean       isSecureText;
   private boolean       isDefaultSms                  = true;
   private boolean       isMmsEnabled                  = true;
@@ -469,6 +472,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
+    reactWithAnyEmojiStartPage = 0;
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent() || inputPanel.getQuote().isPresent()) {
       saveDraft();
       attachmentManager.clear(glideRequests, false);
@@ -699,6 +703,20 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       break;
     }
+  }
+
+  @Override
+  protected void onSaveInstanceState(@NonNull Bundle outState) {
+    super.onSaveInstanceState(outState);
+
+    outState.putInt(STATE_REACT_WITH_ANY_PAGE, reactWithAnyEmojiStartPage);
+  }
+
+  @Override
+  protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    super.onRestoreInstanceState(savedInstanceState);
+
+    reactWithAnyEmojiStartPage = savedInstanceState.getInt(STATE_REACT_WITH_ANY_PAGE, 0);
   }
 
   private void handleImageFromDeviceCameraApp() {
@@ -1995,7 +2013,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     } else {
       reactionOverlay.hideAllButMask();
 
-      ReactWithAnyEmojiBottomSheetDialogFragment.createForMessageRecord(messageRecord)
+      ReactWithAnyEmojiBottomSheetDialogFragment.createForMessageRecord(messageRecord, reactWithAnyEmojiStartPage)
                                                 .show(getSupportFragmentManager(), "BOTTOM");
     }
   }
@@ -2003,6 +2021,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onReactWithAnyEmojiDialogDismissed() {
     reactionOverlay.hideMask();
+  }
+
+  @Override
+  public void onReactWithAnyEmojiPageChanged(int page) {
+    reactWithAnyEmojiStartPage = page;
   }
 
   @Override

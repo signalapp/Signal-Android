@@ -49,6 +49,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
   private static final String ARG_MESSAGE_ID = "arg_message_id";
   private static final String ARG_IS_MMS     = "arg_is_mms";
+  private static final String ARG_START_PAGE = "arg_start_page";
 
   private ReactWithAnyEmojiViewModel                            viewModel;
   private TextSwitcher                                          categoryLabel;
@@ -59,12 +60,13 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   private Callback                                              callback;
   private ReactionsLoader                                       reactionsLoader;
 
-  public static DialogFragment createForMessageRecord(@NonNull MessageRecord messageRecord) {
+  public static DialogFragment createForMessageRecord(@NonNull MessageRecord messageRecord, int startingPage) {
     DialogFragment fragment = new ReactWithAnyEmojiBottomSheetDialogFragment();
     Bundle         args     = new Bundle();
 
     args.putLong(ARG_MESSAGE_ID, messageRecord.getId());
     args.putBoolean(ARG_IS_MMS, messageRecord.isMms());
+    args.putInt(ARG_START_PAGE, startingPage);
     fragment.setArguments(args);
 
     return fragment;
@@ -150,7 +152,8 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
     categoryPager.registerOnPageChangeCallback(onPageChanged);
 
     viewModel.getEmojiPageModels().observe(getViewLifecycleOwner(), pages -> {
-      int pageToSet = adapter.getItemCount() == 0 ? (pages.get(0).hasEmoji() ? 0 : 1) : -1;
+      int pageToSet = adapter.getItemCount() == 0 ? getStartingPage((pages.get(0).hasEmoji()))
+                                                  : -1;
 
       adapter.submitList(pages);
 
@@ -237,14 +240,20 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
     categoryLabel.setText(getString(adapter.getItem(position).getLabel()));
   }
 
+  private int getStartingPage(boolean firstPageHasContent) {
+    return requireArguments().getInt(ARG_START_PAGE, firstPageHasContent ? 0 : 1);
+  }
+
   private class OnPageChanged extends ViewPager2.OnPageChangeCallback {
     @Override
     public void onPageSelected(int position) {
       updateFocusedRecycler(position);
+      callback.onReactWithAnyEmojiPageChanged(position);
     }
   }
 
   public interface Callback {
     void onReactWithAnyEmojiDialogDismissed();
+    void onReactWithAnyEmojiPageChanged(int page);
   }
 }
