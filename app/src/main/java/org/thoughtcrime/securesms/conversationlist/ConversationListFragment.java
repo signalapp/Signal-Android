@@ -838,6 +838,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public boolean onConversationLongClick(Conversation conversation) {
+    if (actionMode != null) {
+      onConversationClick(conversation);
+      return true;
+    }
+
     defaultAdapter.initializeBatchMode(true);
     defaultAdapter.toggleConversationInBatchSet(conversation);
 
