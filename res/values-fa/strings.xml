@@ -1220,7 +1220,6 @@
 
 
   <!-- Session -->
-  <!--
   <string name="continue_2">ادامه </string>
   <string name="copy">رونویسی کردن</string>
   <string name="invalid_url">URL نامعتبر است</string>
@@ -1425,6 +1424,5 @@
   <string name="fragment_contact_selection_contacts_title">مخاطبین</string>
   <string name="fragment_contact_selection_closed_groups_title">گروه های بسته</string>
   <string name="fragment_contact_selection_open_groups_title">باز کردن گروه ها</string>
-  -->
 
 </resources>
