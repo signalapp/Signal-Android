@@ -67,12 +67,10 @@
         <item name="tabBackground">@color/action_bar_background</item>
         <item name="tabRippleColor">@color/cell_selected</item>
         <item name="tabTextAppearance">@style/Session.DarkTabLayout.TextAppearance</item>
-        <item name="tabSelectedTextColor">@color/text</item>
     </style>
 
     <style name="Session.DarkTabLayout.TextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textColor">@color/unimportant</item>"
         <item name="textAllCaps">false</item>
     </style>
 

@@ -2,13 +2,10 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 
-import androidx.annotation.AttrRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 
 import org.thoughtcrime.securesms.TransportOption;
@@ -116,7 +113,7 @@ public class SendButton extends AppCompatImageButton
       case SMS:
       case TEXTSECURE:
       default: {
-        sendDrawable = ThemeUtil.getDrawableResWithAttribute(
+        sendDrawable = ThemeUtil.getThemedDrawableResId(
                 getContext(), R.attr.conversation_transport_sms_indicator);
       }
     }
