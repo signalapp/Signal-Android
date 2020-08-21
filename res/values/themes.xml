@@ -7,11 +7,14 @@
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@drawable/default_session_background</item>
+        <item name="android:colorBackground">@color/default_background_start</item>
+        <item name="android:navigationBarColor">@color/compose_view_background</item>
+        <!-- TODO Separate action bar theme/style -->
 <!--        <item name="actionBarStyle">@style/Session.DarkActionBar</item>-->
         <item name="actionBarTheme">@style/Session.DarkActionBar</item>
         <item name="alertDialogTheme">@style/Session.AlertDialog</item>
-        <item name="android:navigationBarColor">@color/compose_view_background</item>
-        <item name="android:windowBackground">@drawable/default_session_background</item>
+        <item name="bottomSheetDialogTheme">@style/SessionBottomSheetDialogTheme</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="actionModeBackground">@color/compose_view_background</item>
         <item name="statusBarBackground">@color/accent</item>
@@ -26,7 +29,14 @@
         <item name="actionModeCloseDrawable">@drawable/ic_baseline_clear_24</item>
 
         <!-- App specific attributes -->
+        <item name="dialog_background_color">@color/dialog_background</item>
+
+        <item name="home_gradient_start">#00000000</item>
+        <item name="home_gradient_end">#FF000000</item>
+
         <item name="menu_accept_icon">@drawable/ic_baseline_done_24</item>
+        <item name="menu_trash_icon">@drawable/ic_baseline_delete_24</item>
+        <item name="menu_block_icon">@drawable/ic_baseline_block_24</item>
     </style>
 
     <style name="Session.DarkTheme" parent="Session.BaseDarkTheme">
@@ -166,7 +176,6 @@
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="theme_type">light</item>
-        <item name="actionBarStyle">@style/Session.DarkActionBar</item>
         <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="actionModeBackground">@color/compose_view_background</item>
@@ -276,7 +285,7 @@
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_light</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_light</item>
-        <item name="dialog_background_color">@color/background_material_light</item>
+<!--        <item name="dialog_background_color">@color/background_material_light</item>-->
 
         <item name="device_link_item_card_background">@color/device_link_item_background_light</item>
 
@@ -366,9 +375,8 @@
         <item name="colorControlActivated">@color/accent</item>
         <item name="colorControlNormal">@color/text</item>
         <item name="colorControlHighlight">@color/accent</item>
-        <item name="android:windowBackground">@color/loki_darkest_gray</item>
-        <item name="alertDialogTheme">@style/Session.AlertDialog</item>
-        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.BottomSheetDialog</item>
+<!--        <item name="alertDialogTheme">@style/Session.AlertDialog</item>-->
+<!--        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.BottomSheetDialog</item>-->
         <item name="android:navigationBarColor">@color/compose_view_background</item>
 
         <item name="attachment_type_selector_background">@color/gray95</item>
@@ -414,7 +422,7 @@
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
-        <item name="dialog_background_color">@color/background_material_dark</item>
+<!--        <item name="dialog_background_color">@color/background_material_dark</item>-->
 
         <item name="device_link_item_card_background">@color/device_link_item_background_dark</item>
 
@@ -487,7 +495,6 @@
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
         <item name="menu_accept_icon">@drawable/ic_check_white_24dp</item>

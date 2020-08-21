@@ -6,6 +6,9 @@
         <item name="android:statusBarColor">@color/accent</item>
         <item name="titleTextColor">@color/text</item>
         <item name="android:textColorHint">@color/gray50</item>
+
+        <item name="home_gradient_start">#00FFFFFF</item>
+        <item name="home_gradient_end">#FFFFFFFF</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
@@ -20,7 +23,6 @@
         <item name="colorControlActivated">@color/accent</item>
         <item name="colorControlNormal">@color/text</item>
         <item name="colorControlHighlight">@color/accent</item>
-        <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.Light.BottomSheetDialog</item>
@@ -140,7 +142,6 @@
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
         <item name="menu_accept_icon">@drawable/ic_check_white_24dp</item>

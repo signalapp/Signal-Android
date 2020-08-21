@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/dialog_background" />
+    <solid android:color="?attr/dialog_background_color" />
 
     <corners android:topLeftRadius="24dp" android:topRightRadius="24dp" />
 

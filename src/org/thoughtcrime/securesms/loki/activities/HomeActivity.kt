@@ -259,12 +259,16 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val thread = view.thread ?: return
         val bottomSheet = ConversationOptionsBottomSheet()
         bottomSheet.recipient = thread.recipient
-        bottomSheet.onBlockOrUnblockTapped = {
+        bottomSheet.onBlockTapped = {
+            bottomSheet.dismiss()
+            if (!thread.recipient.isBlocked) {
+                blockConversation(thread)
+            }
+        }
+        bottomSheet.onUnblockTapped = {
             bottomSheet.dismiss()
             if (thread.recipient.isBlocked) {
                 unblockConversation(thread)
-            } else {
-                blockConversation(thread)
             }
         }
         bottomSheet.onDeleteTapped = {

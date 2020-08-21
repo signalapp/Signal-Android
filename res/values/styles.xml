@@ -45,12 +45,12 @@
         <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>
     </style>
 
-    <style name="SessionBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+    <style name="SessionBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/SessionBottomSheetStyle</item>
     </style>
 
     <style name="SessionBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">@drawable/default_bottom_sheet_background</item>
     </style>
 
     <style name="Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
@@ -435,11 +435,11 @@
         <item name="colorControlActivated">@color/white</item>
     </style>
 
-    <style name="ActionItem">
-        <item name="android:textSize">@dimen/text_size</item>
-        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+    <style name="BottomSheetActionItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/action_item_height</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
         <item name="android:padding">@dimen/normal_padding</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:selectable">true</item>

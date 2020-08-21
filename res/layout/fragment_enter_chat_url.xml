@@ -4,7 +4,6 @@
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 

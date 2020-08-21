@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/default_session_background">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mediapicker_toolbar"
@@ -16,7 +15,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mediapicker_folder_list"
-        android:background="@drawable/default_session_background"
+        android:background="?android:windowBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="2dp"

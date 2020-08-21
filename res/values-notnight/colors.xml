@@ -19,7 +19,7 @@
 <color name="fake_chat_bubble_background">#F5F5F5</color>
 
 
-<color name="default_background_start">#fcfcfd</color>
+<color name="default_background_start">#ffffff</color>
 <color name="default_background_end">#fcfcfd</color>
 <color name="action_bar_background">#fcfcfd</color>
 

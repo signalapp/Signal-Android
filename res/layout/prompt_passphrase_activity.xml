@@ -6,7 +6,6 @@
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/default_session_background"
                 android:orientation="vertical">
 
     <View android:id="@+id/shim"

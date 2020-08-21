@@ -11,8 +11,7 @@
     android:paddingRight="@dimen/very_large_spacing"
     android:paddingBottom="@dimen/very_large_spacing"
     app:behavior_hideable="true"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:background="@drawable/default_bottom_sheet_background_inset">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TextView
         android:layout_width="wrap_content"

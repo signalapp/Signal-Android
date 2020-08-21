@@ -144,12 +144,16 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
     <attr name="menu_reply_icon" format="reference" />
+    <attr name="menu_block_icon" format="reference" />
 
     <attr name="pref_icon_tint" format="color"/>
 
     <attr name="pref_divider" format="reference" />
 
     <attr name="quote_missing_icon_color" format="color" />
+
+    <attr name="home_gradient_start" format="color|reference" />
+    <attr name="home_gradient_end" format="color|reference" />
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>
