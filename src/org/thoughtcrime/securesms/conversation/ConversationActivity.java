@@ -446,7 +446,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
 
     sessionRestoreBannerView.setOnRestore(() -> {
-      SessionManagementProtocol.startSessionReset(this, recipient, threadId);
+      SessionManagementProtocol.startSessionReset(this, recipient.getAddress().serialize());
       updateSessionRestoreBanner();
       return Unit.INSTANCE;
     });

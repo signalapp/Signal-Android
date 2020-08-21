@@ -1387,7 +1387,7 @@
   <string name="fragment_view_my_qr_code_explanation">این کد QR شماست. سایر کاربران می‌توانند برای شروع Session با شما آن را اسکن کنند.</string>
   <string name="fragment_view_my_qr_code_share_title">کد QR را به اشتراک بگذارید</string>
 
-  <string name="session_reset_banner_message">آیا می‌خواهید Session خود را با آن بازیابی کنید s% ؟</string>
+  <string name="session_reset_banner_message">آیا می‌خواهید Session خود را با آن بازیابی کنید %s ؟</string>
   <string name="session_reset_banner_dismiss_button_title">رد</string>
   <string name="session_reset_banner_restore_button_title">بازیابی</string>
 

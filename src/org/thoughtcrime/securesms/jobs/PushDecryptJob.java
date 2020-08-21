@@ -98,6 +98,7 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.loki.SessionResetProtocol;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -354,14 +355,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } catch (ProtocolInvalidMessageException e) {
       Log.w(TAG, e);
       if (!isPushNotification) { // This can be triggered if a PN encrypted with an old session comes in after the user performed a session reset
-        handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
+        handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
       }
     } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
       Log.w(TAG, e);
-      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
+      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
     } catch (StorageFailedException e) {
       Log.w(TAG, e);
-      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
+      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
     } catch (ProtocolNoSessionException e) {
       Log.w(TAG, e);
       handleNoSessionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
@@ -1069,7 +1070,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void handleCorruptMessage(@NonNull String sender, int senderDevice, long timestamp,
-                                    @NonNull Optional<Long> smsMessageId)
+                                    @NonNull Optional<Long> smsMessageId, @NonNull Throwable e)
   {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
     if (SessionMetaProtocol.shouldErrorMessageShow(context, timestamp)) {
@@ -1084,6 +1085,22 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         smsDatabase.markAsDecryptFailed(smsMessageId.get());
       }
     }
+
+    // FIXME: This is a temporary patch for bad mac issues. At least with this people will be able to message again. We have to figure out the root cause of the issue though.
+    if (e.getCause() != null) {
+      Throwable e2 = e.getCause();
+      if (e2.getCause() != null) {
+        Throwable e3 = e2.getCause();
+        if (e3 instanceof InvalidMessageException) {
+          String message = e3.getMessage();
+          if (message != null && message.startsWith("Bad Mac!")) {
+            SessionManagementProtocol.startSessionReset(context, sender);
+            return; // Don't trigger the session restoration UI
+          }
+        }
+      }
+    }
+
     SessionManagementProtocol.triggerSessionRestorationUI(context, sender, timestamp);
   }
 
