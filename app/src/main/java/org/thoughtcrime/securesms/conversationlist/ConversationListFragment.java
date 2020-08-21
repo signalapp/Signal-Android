@@ -796,6 +796,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void onSubmitList(@NonNull ConversationListViewModel.ConversationList conversationList) {
+    if (conversationList.getConversations().isDetached()) {
+      return;
+    }
+
     defaultAdapter.submitList(conversationList.getConversations());
 
     onPostSubmitList();
