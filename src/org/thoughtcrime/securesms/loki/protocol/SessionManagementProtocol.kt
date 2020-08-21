@@ -58,7 +58,8 @@ object SessionManagementProtocol {
         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         val sentTimestamp = apiDB.getSessionRequestSentTimestamp(publicKey) ?: 0
         val processedTimestamp = apiDB.getSessionRequestProcessedTimestamp(publicKey) ?: 0
-        return timestamp > sentTimestamp && timestamp > processedTimestamp
+        val restorationTimestamp = TextSecurePreferences.getRestorationTime(context)
+        return timestamp > sentTimestamp && timestamp > processedTimestamp && timestamp > restorationTimestamp
     }
 
     @JvmStatic
@@ -95,10 +96,13 @@ object SessionManagementProtocol {
     }
 
     @JvmStatic
-    fun triggerSessionRestorationUI(context: Context, publicKey: String) {
+    fun triggerSessionRestorationUI(context: Context, publicKey: String, errorTimestamp: Long) {
         val masterDevicePublicKey = MultiDeviceProtocol.shared.getMasterDevice(publicKey) ?: publicKey
         val masterDeviceAsRecipient = recipient(context, masterDevicePublicKey)
         if (masterDeviceAsRecipient.isGroupRecipient) { return }
+        if (TextSecurePreferences.getRestorationTime(context) > errorTimestamp) {
+            return ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(publicKey)
+        }
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(masterDeviceAsRecipient)
         DatabaseFactory.getLokiThreadDatabase(context).addSessionRestoreDevice(threadID, publicKey)
     }
