@@ -71,13 +71,17 @@ public final class AvatarUtil {
     requestCircle(GlideApp.with(context).asDrawable(), context, recipient).into(target);
   }
 
-  public static Bitmap loadIconBitmapSquare(@NonNull Context context,
-                                            @NonNull Recipient recipient,
-                                            int width,
-                                            int height)
+  public static Bitmap loadIconBitmapSquareNoCache(@NonNull Context context,
+                                                   @NonNull Recipient recipient,
+                                                   int width,
+                                                   int height)
       throws ExecutionException, InterruptedException
   {
-    return requestSquare(GlideApp.with(context).asBitmap(), context, recipient).submit(width, height).get();
+    return requestSquare(GlideApp.with(context).asBitmap(), context, recipient)
+                                 .skipMemoryCache(true)
+                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                 .submit(width, height)
+                                 .get();
   }
 
   @WorkerThread

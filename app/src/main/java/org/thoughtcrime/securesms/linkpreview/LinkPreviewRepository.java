@@ -225,8 +225,6 @@ public class LinkPreviewRepository {
 
           Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
 
-          if (bitmap != null) bitmap.recycle();
-
           callback.onSuccess(new LinkPreview(packUrl, title, thumbnail));
         } else {
           callback.onError(Error.PREVIEW_NOT_AVAILABLE);
@@ -265,11 +263,9 @@ public class LinkPreviewRepository {
 
           if (AvatarHelper.hasAvatar(context, groupRecord.getRecipientId())) {
             Recipient recipient = Recipient.resolved(groupRecord.getRecipientId());
-            Bitmap    bitmap    = AvatarUtil.loadIconBitmapSquare(context, recipient, 512, 512);
+            Bitmap    bitmap    = AvatarUtil.loadIconBitmapSquareNoCache(context, recipient, 512, 512);
 
             thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
-
-            if (bitmap != null) bitmap.recycle();
           }
 
           callback.onSuccess(new LinkPreview(groupUrl, title, thumbnail));
