@@ -1128,12 +1128,17 @@ public class PushServiceSocket {
     Request.Builder request = new Request.Builder().url(urlBuilder.build())
                                                    .post(RequestBody.create(null, ""));
     for (Map.Entry<String, String> header : headers.entrySet()) {
-      request.header(header.getKey(), header.getValue());
+      if (!header.getKey().equalsIgnoreCase("host")) {
+        request.header(header.getKey(), header.getValue());
+      }
     }
 
     if (connectionHolder.getHostHeader().isPresent()) {
       request.header("host", connectionHolder.getHostHeader().get());
     }
+
+    request.addHeader("Content-Length", "0");
+    request.addHeader("Content-Type", "application/octet-stream");
 
     Call call = okHttpClient.newCall(request.build());
 
