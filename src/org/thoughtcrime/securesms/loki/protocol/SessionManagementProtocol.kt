@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import android.os.AsyncTask
 import android.util.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -23,15 +24,18 @@ import java.util.*
 object SessionManagementProtocol {
 
     @JvmStatic
-    fun startSessionReset(context: Context, recipient: Recipient, threadID: Long) {
+    fun startSessionReset(context: Context, publicKey: String) {
+        val recipient = recipient(context, publicKey)
         if (recipient.isGroupRecipient) { return }
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
-        val smsDB = DatabaseFactory.getSmsDatabase(context)
+        if (lokiThreadDB.getSessionResetStatus(publicKey) != SessionResetStatus.NONE) { return }
+        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
         val devices = lokiThreadDB.getSessionRestoreDevices(threadID)
         for (device in devices) {
             val endSessionMessage = OutgoingEndSessionMessage(OutgoingTextMessage(recipient, "TERMINATE", 0, -1))
             MessageSender.send(context, endSessionMessage, threadID, false, null)
         }
+        val smsDB = DatabaseFactory.getSmsDatabase(context)
         val infoMessage = OutgoingTextMessage(recipient, "", 0, 0)
         val infoMessageID = smsDB.insertMessageOutbox(threadID, infoMessage, false, System.currentTimeMillis(), null)
         if (infoMessageID > -1) {
