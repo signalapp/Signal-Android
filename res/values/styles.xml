@@ -376,7 +376,7 @@
     </style>
 
     <style name="AttachmentTypeLabel">
-        <item name="android:textColor">#99FFFFFF</item>
+        <item name="android:textColor">?android:textColorTertiary</item>
         <item name="android:textSize">@dimen/small_font_size</item>
     </style>
 
