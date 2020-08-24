@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.contact_selection_list_fragment.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
+import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 
@@ -55,6 +56,11 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
         super.onStart()
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
+    
+    override fun onStop() {
+        super.onStop()
+        LoaderManager.getInstance(this).destroyLoader(0)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.contact_selection_list_fragment, container, false)
@@ -92,8 +98,13 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
         update(listOf())
     }
 
-    private fun update(items: List<ContactSelectionListItem>) {
-        if (activity?.isDestroyed == true) { return }
+    private fun update(items: List<ContactSelectionListItem>) {        
+        if (activity?.isDestroyed == true) {
+            Log.e(ContactSelectionListFragment::class.java.name,
+                    "Received a loader callback after the fragment was detached from an activity.",
+                    IllegalStateException())
+            return
+        }
         listAdapter.items = items
         mainContentContainer.visibility = if (items.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
