@@ -43,6 +43,10 @@
         <item name="menu_accept_icon">@drawable/ic_baseline_done_24</item>
         <item name="menu_trash_icon">@drawable/ic_baseline_delete_24</item>
         <item name="menu_block_icon">@drawable/ic_baseline_block_24</item>
+        <item name="menu_forward_icon">@drawable/ic_baseline_forward_24</item>
+        <item name="menu_save_icon">@drawable/ic_baseline_save_24</item>
+        <item name="menu_photo_library_icon">@drawable/ic_baseline_photo_library_24</item>
+        <item name="menu_delete_icon">@drawable/ic_baseline_delete_24</item>
     </style>
 
     <style name="Session.DarkTheme" parent="Session.BaseDarkTheme">
@@ -54,7 +58,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Session.DarkTheme.NoActionBar">
+    <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Session.DarkTheme">
         <item name="actionBarStyle">@style/Session.DarkSubtitleActionBar</item>
     </style>
     <!-- Session -->
@@ -323,8 +327,6 @@
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
         <item name="menu_copy_icon">@drawable/ic_content_copy_white_24dp</item>
         <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-        <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
-        <item name="menu_save_icon">@drawable/ic_save_white_24dp</item>
         <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
@@ -507,8 +509,6 @@
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
         <item name="menu_copy_icon">@drawable/ic_content_copy_white_24dp</item>
         <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-        <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
-        <item name="menu_save_icon">@drawable/ic_save_white_24dp</item>
         <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>

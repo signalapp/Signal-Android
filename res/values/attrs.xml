@@ -145,6 +145,8 @@
     <attr name="menu_save_icon" format="reference" />
     <attr name="menu_reply_icon" format="reference" />
     <attr name="menu_block_icon" format="reference" />
+    <attr name="menu_photo_library_icon" format="reference" />
+    <attr name="menu_delete_icon" format="reference" />
 
     <attr name="pref_icon_tint" format="color"/>
 
