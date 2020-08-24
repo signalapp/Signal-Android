@@ -737,6 +737,7 @@
     <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
     <string name="MessageRecord_session_restore_sent">You have sent a session restoration request to %s</string>
+    <string name="MessageRecord_session_restore_done">Secure session reset done</string>
 
     <!-- MmsMessageRecord -->
     <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message</string>

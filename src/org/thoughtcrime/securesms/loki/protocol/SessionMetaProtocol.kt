@@ -31,6 +31,12 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
+    fun shouldErrorMessageShow(context: Context, timestamp: Long): Boolean {
+        val restorationTimestamp = TextSecurePreferences.getRestorationTime(context)
+        return timestamp > restorationTimestamp
+    }
+
+    @JvmStatic
     fun handleProfileUpdateIfNeeded(context: Context, content: SignalServiceContent) {
         val rawDisplayName = content.senderDisplayName.orNull() ?: return
         if (rawDisplayName.isBlank()) { return }

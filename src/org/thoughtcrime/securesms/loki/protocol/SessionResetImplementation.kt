@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.whispersystems.libsignal.loki.SessionResetProtocol
 import org.whispersystems.libsignal.loki.SessionResetStatus
 import org.whispersystems.libsignal.protocol.PreKeySignalMessage
@@ -22,7 +25,14 @@ class SessionResetImplementation(private val context: Context) : SessionResetPro
             val job = NullMessageSendJob(publicKey)
             ApplicationContext.getInstance(context).jobManager.add(job)
         }
-        // TODO: Show session reset succeed message
+        val smsDB = DatabaseFactory.getSmsDatabase(context)
+        val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
+        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
+        val infoMessage = OutgoingTextMessage(recipient, "", 0, 0)
+        val infoMessageID = smsDB.insertMessageOutbox(threadID, infoMessage, false, System.currentTimeMillis(), null)
+        if (infoMessageID > -1) {
+            smsDB.markAsLokiSessionRestorationDone(infoMessageID)
+        }
     }
 
     override fun validatePreKeySignalMessage(publicKey: String, message: PreKeySignalMessage) {

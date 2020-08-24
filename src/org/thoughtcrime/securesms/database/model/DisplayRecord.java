@@ -107,6 +107,8 @@ public abstract class DisplayRecord {
 
   public boolean isLokiSessionRestoreSent() { return SmsDatabase.Types.isLokiSessionRestoreSentType(type); }
 
+  public boolean isLokiSessionRestoreDone() { return SmsDatabase.Types.isLokiSessionRestoreDoneType(type); }
+
   public boolean isGroupUpdate() {
     return SmsDatabase.Types.isGroupUpdate(type);
   }

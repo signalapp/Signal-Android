@@ -307,7 +307,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun getSessionRequestSentTimestamp(publicKey: String): Long? {
         val database = databaseHelper.readableDatabase
         return database.get(sessionRequestSentTimestampTable, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey)) { cursor ->
-            cursor.getInt(LokiAPIDatabase.timestamp)
+            cursor.getLong(LokiAPIDatabase.timestamp)
         }?.toLong()
     }
 

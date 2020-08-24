@@ -358,7 +358,7 @@ public class ConversationFragment extends Fragment
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
           messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
           messageRecord.isEndSession() || messageRecord.isIdentityUpdate() ||
-          messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault() || messageRecord.isLokiSessionRestoreSent())
+          messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault() || messageRecord.isLokiSessionRestoreSent() || messageRecord.isLokiSessionRestoreDone())
       {
         actionMessage = true;
       }
