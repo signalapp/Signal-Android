@@ -397,6 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vós</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Qualsevol</string>
   <string name="GroupManagement_access_level_all_members">Tots els membres</string>
   <string name="GroupManagement_access_level_only_admins">Només els administradors</string>
   <!--GV2 invites sent-->
@@ -784,6 +785,12 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Heu canviat qui pot editar els membres del grup a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha canviat qui pot editar els membres del grup a \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">S\'ha canviat qui pot editar els membres del grup a \"%1$s\".</string>
+  <!--GV2 group link invite access level change-->
+  <!--GV2 group link reset-->
+  <!--GV2 group link joins-->
+  <!--GV2 group link requests-->
+  <!--GV2 group link approvals-->
+  <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Heu verificat el número de seguretat amb %s</string>
@@ -902,10 +909,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grup sense nom</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Resposta</string>
-  <string name="RedPhone_ending_call">S\'acaba la trucada</string>
-  <string name="RedPhone_dialing">Es marca el número</string>
-  <string name="RedPhone_ringing">Sona</string>
+  <string name="RedPhone_ringing">Sona…</string>
   <string name="RedPhone_busy">Ocupat</string>
   <string name="RedPhone_connected">Connectat</string>
   <string name="RedPhone_recipient_unavailable">Destinatari no disponible</string>

@@ -397,6 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Tú</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Cualquiera</string>
   <string name="GroupManagement_access_level_all_members">Cualquier participante</string>
   <string name="GroupManagement_access_level_only_admins">Sólo admins</string>
   <!--GV2 invites sent-->
@@ -410,9 +411,10 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desactivar</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Previsualización de cualquier enlace</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Ahora se puede adjuntar una imagen de previsualización de enlace en los mensajes que envíes, trasmitida directamente desde su página web.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Ahora se puede adjuntar una imagen de previsualización de enlace en los mensajes que envíes, trasmitida directamente desde la propia página web.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Previsualización no disponible</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Este enlace de grupo no está disponible</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitaciones pendientes</string>
   <string name="PendingMembersActivity_people_you_invited">Personas que has invitado</string>
@@ -553,6 +555,16 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ya participas</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Unirse</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Solicitar unirse</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace de grupo no está disponible</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un* admin del grupo debe aprobar tu solicitud antes de poder unirte. Al solicitar unirte, tu nombre y foto de perfil se compartirán con sus participantes.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Grupo · %1$d participante</item>
+    <item quantity="other">Grupo · %1$d participantes</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces de chats de grupo</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta enlaces para compartir chats de grupo. Actualiza a la versión más actual para unirte a este grupo vía enlace.</string>
@@ -784,6 +796,21 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Has actualizado quién puede editar la lista de participantes del grupo a «%1$s».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha actualizado quién puede editar la lista de participantes del grupo a «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ahora, «%1$s» pueden editar la lista de participantes del grupo.</string>
+  <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Has activado la opción de compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Has activado la opción de compartir el grupo vía enlace si un* admin lo aprueba.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Has desactivado la opción de compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha activado la opción de compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha activado la opción de compartir el grupo vía enlace si un* admin lo aprueba.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha desactivado la opción de compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Se ha activado la opción de compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Se ha activado la opción de compartir el grupo vía enlace si un* admin lo aprueba.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Se ha desactivado la opción de compartir el grupo vía enlace.</string>
+  <!--GV2 group link reset-->
+  <!--GV2 group link joins-->
+  <!--GV2 group link requests-->
+  <!--GV2 group link approvals-->
+  <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tus cifras de seguridad con %s han cambiado.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Has marcado tus cifras de seguridad con %s como verificadas.</string>
@@ -903,10 +930,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grupo sin nombre</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Respondiendo</string>
-  <string name="RedPhone_ending_call">Finalizando llamada</string>
-  <string name="RedPhone_dialing">Marcando</string>
-  <string name="RedPhone_ringing">Llamando</string>
+  <string name="RedPhone_ringing">Sonando …</string>
   <string name="RedPhone_busy">Ocupado</string>
   <string name="RedPhone_connected">Conectado</string>
   <string name="RedPhone_recipient_unavailable">Persona no disponible</string>
@@ -1607,7 +1631,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__pref_enter_sends_title">Enviar al tocar «Intro»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Los mensajes se enviarán al pulsar la tecla Intro.</string>
   <string name="preferences__generate_link_previews">Generar previsualización de enlaces</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Descargar imágenes para la previsualización de enlace directamente desde su página web.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Descargar imágenes para la previsualización de enlaces directamente desde la propia página web.</string>
   <string name="preferences__choose_identity">Seleccionar identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selecciona tu propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>

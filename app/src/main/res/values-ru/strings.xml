@@ -425,6 +425,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Вы</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Кто угодно</string>
   <string name="GroupManagement_access_level_all_members">Все участники</string>
   <string name="GroupManagement_access_level_only_admins">Только администраторы</string>
   <!--GV2 invites sent-->
@@ -443,6 +444,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь вы можете получать предпросмотры ссылок напрямую от любого сайта для сообщений, которые вы отправляете.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Приглашения в группу в ожидании</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
@@ -603,6 +605,18 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Вы уже являетесь участником</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Присоединиться</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Запросить присоединиться</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не удалось получить информацию группы. Пожалуйста, попробуйте ещё раз позже</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Вы хотите присоединиться к этой группе и поделиться своими именем и фото с её участниками?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администратор этой группы должен принять ваш запрос, прежде чем вы сможете присоединиться к ней. Когда вы запросите присоединиться, ваши имя и фото станут доступны участникам этой группы.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Группа · %1$d участник</item>
+    <item quantity="few">Группа · %1$d участника</item>
+    <item quantity="many">Группа · %1$d участников</item>
+    <item quantity="other">Группа · %1$d участников</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Обновите Signal, чтобы использовать ссылки на группы</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает ссылки на группы. Обновитесь до новейшей версии, чтобы присоединиться к этой группе по ссылке.</string>
@@ -858,6 +872,35 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Вы изменили, кто может редактировать членство в группе, на «%1$s».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s изменил(-а), кто может редактировать членство в группе, на «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кто может редактировать членство в группе было изменено на «%1$s».</string>
+  <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Вы включили общедоступную ссылку на группу.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Вы включили общедоступную ссылку на группу с одобрением администратора.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Вы отключили общедоступную ссылку на группу.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s включил(-а) общедоступную ссылку на группу.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s включил(-а) общедоступную ссылку на группу с одобрением администратора.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s отключил(-а) общедоступную ссылку на группу.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Общедоступная ссылка на группу была включена.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Общедоступная ссылка на группу с одобрением администратора была включена.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Общедоступная ссылка на группу была отключена.</string>
+  <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Вы сбросили общедоступную ссылку на группу.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s сбросил(-а) общедоступную ссылку на группу.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Общедоступная ссылка на группу была сброшена.</string>
+  <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Вы присоединились к группе по общедоступной ссылке на группу.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s присоединился(-лась) к группе по общедоступной ссылке на группу.</string>
+  <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Вы отправили запрос на присоединение к группе.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s запросил(-а) присоединиться по общедоступной ссылке на группу.</string>
+  <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s принял(-а) ваш запрос на присоединение к группе.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s принял(-а) запрос на присоединение к группе от %2$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Ваш запрос на присоединение к группе был принят.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Запрос на присоединение к группе от %1$s был принят.</string>
+  <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Ваш запрос на присоединение к группе был отклонён администратором.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s отклонил(-а) запрос на присоединение к группе от %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Запрос на присоединение к группе от %1$s был отклонён.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш код безопасности с %s изменился.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как подтверждённый</string>
@@ -869,10 +912,10 @@
   <string name="MessageRequestBottomView_delete">Удалить</string>
   <string name="MessageRequestBottomView_block">Заблокировать</string>
   <string name="MessageRequestBottomView_unblock">Разблокировать</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своим именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своим именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своим именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и поделиться своим именем и фото с её участниками? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своими именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и поделиться своими именем и фото с её участниками? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Состоит в %1$s и %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Состоит в %1$s, %2$s и %3$s</string>
@@ -984,10 +1027,10 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Безымянная группа</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Отвечаем</string>
-  <string name="RedPhone_ending_call">Завершаем звонок</string>
-  <string name="RedPhone_dialing">Набираем номер</string>
-  <string name="RedPhone_ringing">Звоним</string>
+  <string name="RedPhone_answering">Отвечаем…</string>
+  <string name="RedPhone_ending_call">Завершаем звонок…</string>
+  <string name="RedPhone_dialing">Набираем номер…</string>
+  <string name="RedPhone_ringing">Звоним…</string>
   <string name="RedPhone_busy">Занято</string>
   <string name="RedPhone_connected">Соединено</string>
   <string name="RedPhone_recipient_unavailable">Собеседник недоступен</string>

@@ -378,6 +378,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">మీరు</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">ఎవరైనా</string>
   <string name="GroupManagement_access_level_all_members">సభ్యులందరు</string>
   <string name="GroupManagement_access_level_only_admins">పరిపాలకులు మాత్రమే</string>
   <!--GV2 invites sent-->
@@ -640,6 +641,12 @@
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">మీరు సమూహ సభ్యత్వాన్ని మార్చగలిగినవారు ని \"%1$s\"కు మార్చారు. </string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s సమూహ సభ్యత్వాన్ని మార్చగలిగినవారు ని \"%2$s\"కు మార్చారు. </string>
+  <!--GV2 group link invite access level change-->
+  <!--GV2 group link reset-->
+  <!--GV2 group link joins-->
+  <!--GV2 group link requests-->
+  <!--GV2 group link approvals-->
+  <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s తో మీ భద్రత సంఖ్య మార్చబడింది.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">మీరు మీ భద్రతా నంబర్ను%s ధృవీకరించినట్లు గుర్తు పెట్టారు</string>
@@ -745,10 +752,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">పేరులేని సమూహం</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">స్పందిస్తున్న </string>
-  <string name="RedPhone_ending_call"> కాల్ ముగుస్తుంది</string>
-  <string name="RedPhone_dialing">డయలింగ్</string>
-  <string name="RedPhone_ringing">మోగుతున్నది</string>
+  <string name="RedPhone_ringing">మోగుతున్నది…</string>
   <string name="RedPhone_busy">పనిలో ఉన్నారు </string>
   <string name="RedPhone_connected">కలిసింది</string>
   <string name="RedPhone_recipient_unavailable">గ్రహీత అందుబాటులోలేరు</string>

@@ -397,6 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Du</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Jeder</string>
   <string name="GroupManagement_access_level_all_members">Alle Mitglieder</string>
   <string name="GroupManagement_access_level_only_admins">Nur Admins</string>
   <!--GV2 invites sent-->
@@ -413,6 +414,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Für zu versendende Nachrichten kannst du jetzt Link-Vorschauen direkt von jeder Webseite abrufen.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Keine Link-Vorschau verfügbar</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
   <string name="PendingMembersActivity_people_you_invited">Von dir eingeladene Personen</string>
@@ -553,6 +555,16 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du bist bereits Mitglied</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Beitreten</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Beitrittsanfrage</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Gruppeninformationen können nicht abgerufen werden. Bitte versuche es später erneut.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Möchtest du der Gruppe beitreten und deinen Profilnamen und  Foto mit den Mitgliedern teilen?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ein Admin dieser Gruppe muss deine Anfrage genehmigen bevor du der Gruppe beitreten kannst. Wenn du eine Anfrage stellst, wird dein Profilname und Foto mit den Mitgliedern geteilt.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Group · %1$d  Mitglied</item>
+    <item quantity="other">Gruppe · %1$d Mitglieder</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualisiere Signal zum Verwenden von Gruppen-Links</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Die von dir verwendete Signal-Version unterstützt keine Gruppen-Links. Aktualisiere auf die neueste Version, um dieser Gruppe über einen Link beizutreten.</string>
@@ -784,6 +796,35 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du hast die Bearbeitungsberechtigten für die Gruppenmitgliedschaft zu »%1$s« geändert.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s hat die Bearbeitungsberechtigten für die Gruppenmitgliedschaft zu »%2$s« geändert.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Die Bearbeitungsberechtigten für die Gruppenmitgliedschaft wurden zu »%1$s« geändert.</string>
+  <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du hast den teilbaren Gruppen-Link aktiviert.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du hast den teilbaren Gruppen-Link mit Admin Genehmigung aktiviert.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du hast den teilbaren Gruppen-Link deaktiviert.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s hat den teilbaren Gruppen-Link aktiviert.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s hat den teilbaren Gruppen-Link mit Admin Genehmigung aktiviert.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s hat den teilbaren Gruppen-Link deaktiviert.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Der teilbare Gruppen-Link wurde aktiviert.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Der teilbare Gruppen-Link wurde mit Admin Genehmigung aktiviert.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Der teilbare Gruppen-Link wurde deaktiviert.</string>
+  <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Du hast den teilbaren Gruppen-Link zurückgesetzt.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s hat den teilbaren Gruppen-Link zurückgesetzt.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Der teilbare Gruppen-Link wurde zurückgesetzt.</string>
+  <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du bist der Gruppe per teilbaren Gruppen-Link beigetreten.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s ist der Gruppe per teilbaren Gruppen-Link beigetreten.</string>
+  <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du hast eine Beitrittsanfrage für die Gruppe gesendet.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s hat eine Beitrittsanfrage per teilbaren Gruppen-Link gestellt.</string>
+  <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s genehmigte deine Beitrittsanfrage zur Gruppe.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s genehmigte eine Beitrittsanfrage zur Gruppe von %2$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Deine Beitrittsanfrage zur Gruppe wurde genehmigt.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Eine Beitrittsanfrage zur Gruppe von %1$s wurde genehmigt.</string>
+  <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Deine Beitrittsanfrage zur Gruppe wurde durch einen Admin abgelehnt.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s hat die Beitrittsanfrage zur Gruppe von %2$s abgelehnt.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Eine Beitrittsanfrage zur Gruppe von %1$s wurde abgelehnt.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du hast deine Sicherheitsnummer mit %s als verifiziert markiert.</string>
@@ -901,10 +942,10 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Unbenannte Gruppe</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Anruf wird angenommen</string>
-  <string name="RedPhone_ending_call">Anruf wird beendet</string>
-  <string name="RedPhone_dialing">Verbindung wird hergestellt</string>
-  <string name="RedPhone_ringing">Klingelt</string>
+  <string name="RedPhone_answering">Anruf wird angenommen …</string>
+  <string name="RedPhone_ending_call">Anruf wird beendet …</string>
+  <string name="RedPhone_dialing">Verbindung wird hergestellt …</string>
+  <string name="RedPhone_ringing">Klingeln …</string>
   <string name="RedPhone_busy">Besetzt</string>
   <string name="RedPhone_connected">Verbunden</string>
   <string name="RedPhone_recipient_unavailable">Empfänger nicht erreichbar</string>

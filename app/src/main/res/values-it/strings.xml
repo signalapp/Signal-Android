@@ -397,6 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Tu</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Chiunque</string>
   <string name="GroupManagement_access_level_all_members">Tutti i membri</string>
   <string name="GroupManagement_access_level_only_admins">Solo gli amministratori</string>
   <!--GV2 invites sent-->
@@ -413,6 +414,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">È ora possibile recuperare le anteprime dei link direttamente da qualsiasi sito web per i messaggi che invii.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nessuna anteprima del link disponibile</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Questo link del gruppo non è attivo</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Inviti al gruppo in attesa</string>
   <string name="PendingMembersActivity_people_you_invited">Persone che hai invitato</string>
@@ -553,6 +555,16 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sei già un membro.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Unisciti</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Richiedi di unirti</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Questo link del gruppo non è attivo</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Impossibile ottenere le informazioni sul gruppo, riprova più tardi</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vuoi unirti a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un amministratore di questo gruppo deve approvare la tua richiesta prima che tu possa unirti a questo gruppo. Quando richiedi di unirti, il tuo nome e la tua foto verranno condivisi con i suoi membri.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Gruppo · %1$d membro</item>
+    <item quantity="other">Gruppo · %1$d membri</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aggiorna Signal per utilizzare i link dei gruppi</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versione di Signal che stai utilizzando non supporta i link dei gruppi condivisibili. Aggiorna alla versione più recente per unirti a questo gruppo tramite link.</string>
@@ -784,6 +796,35 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Hai cambiato chi può modificare l\'appartenenza al gruppo in \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha cambiato chi può modificare l\'appartenenza al gruppo in \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Chi può modificare l\'appartenenza al gruppo è stato cambiato in \"%1$s\".</string>
+  <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Hai attivato il link del gruppo condivisibile.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Hai attivato il link del gruppo condivisibile con l\'approvazione degli amministratori.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Hai disattivato il link del gruppo condivisibile.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha attivato il link del gruppo condivisibile.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha attivato il link del gruppo condivisibile con l\'approvazione degli amministratori.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha disattivato il link del gruppo condivisibile.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Il link del gruppo condivisibile è stato attivato.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Il link del gruppo condivisibile è stato attivato con l\'approvazione degli amministratori.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Il link del gruppo condivisibile è stato disattivato.</string>
+  <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Hai reimpostato il link del gruppo condivisibile.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha reimpostato il link del gruppo condivisibile..</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Il link del gruppo condivisibile è stato reimpostato.</string>
+  <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Ti sei unito al gruppo tramite il link del gruppo condivisibile.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s si è unito al gruppo tramite il link del gruppo condivisibile.</string>
+  <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Hai inviato una richiesta a unirsi al gruppo.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ha richiesto di unirsi tramite il link del gruppo condivisibile.</string>
+  <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ha approvato la tua richiesta di unirti al gruppo.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ha approvato una richiesta di unirsi al gruppo da %2$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">La tua richiesta di unirti al gruppo è stata approvata.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Una richiesta di unirsi al gruppo da %1$s è stata approvata.</string>
+  <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">La tua richiesta di unirti al gruppo è stata rifiutata da un amministratore.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha rifiutato una richiesta di unirsi al gruppo da %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Una richiesta di unirsi al gruppo da %1$s è stata rifiutata.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Il tuo codice di sicurezza con %s è cambiato.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Hai segnato il codice di sicurezza con %s come verificato</string>
@@ -903,10 +944,10 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Gruppo senza nome</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">In risposta</string>
-  <string name="RedPhone_ending_call">Chiamata in chiusura</string>
-  <string name="RedPhone_dialing">Composizione numero</string>
-  <string name="RedPhone_ringing">Sta squillando</string>
+  <string name="RedPhone_answering">In risposta…</string>
+  <string name="RedPhone_ending_call">Chiamata in chiusura…</string>
+  <string name="RedPhone_dialing">Composizione…</string>
+  <string name="RedPhone_ringing">Squilla…</string>
   <string name="RedPhone_busy">Occupato</string>
   <string name="RedPhone_connected">Connesso</string>
   <string name="RedPhone_recipient_unavailable">Destinatario non disponibile</string>

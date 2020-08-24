@@ -383,6 +383,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">您</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">任何人</string>
   <string name="GroupManagement_access_level_all_members">所有的成員</string>
   <string name="GroupManagement_access_level_only_admins">只有管理者</string>
   <!--GV2 invites sent-->
@@ -398,6 +399,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">你現在可以直接從任何網站上檢索傳送的訊息的連結預覽。</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">沒有可用的連結預覽</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">此群組連結無效</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">待處理的群組邀請</string>
   <string name="PendingMembersActivity_people_you_invited">你所邀請的成員們</string>
@@ -528,6 +530,15 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">你已經是成員</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">加入</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">要求加入</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">此群組連結無效</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">無法獲取群組資訊，請稍後再試</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">你是否想加入該群組並與其成員分享你的名字和照片嗎？</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">該群組的管理員必須批准你的請求，然後才能加入該群組。 當你要求加入時，你的姓名和照片將與其成員分享。</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="other">群組 · %1$d成員</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新Signal 以使用群組連結</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">你使用的Signal版本不支援可共享的群組連結。透過連結更新到最新版本以加入該群組。</string>
@@ -747,6 +758,35 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">你變更了誰可以編輯群組成員資格為\"%1$s\"。</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s變更了誰可以編輯群駔成員資格為\"%2$s\"。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">誰可以編輯群成員已變更為\"%1$s\"。</string>
+  <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">你開啟了可分享的群組連結。</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">你已通過管理員批准開啟了可共享的群組連結。</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">你關閉了可共享的群組連結。</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s開啟了共享群組連結。</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s在獲得管理員批准的情況下開啟了可共享的群組連結。</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s關閉了可共享的群組連結。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">可共享的群組連結已開啟。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">共享群組連結已在管理員批准下開啟。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">共享群組連結已關閉。</string>
+  <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">你重置可共享的群組連結。</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s重置可共享的群組連結。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">可共享的群組連結已重置。</string>
+  <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">你透過共享群組連結加入了該群組。</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s透過共享群組連結加入了該群組。</string>
+  <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">你傳送了加入該群組的請求。</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s透過共享群組連結請求加入。</string>
+  <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s批准了你加入群組的請求。</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s從%2$s批准了加入的請求。</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">你加入群組的請求已被批准。</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">加入的請求已獲得 %1$s 的批准。</string>
+  <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">你加入群組的請求已被管理員拒絕。</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s拒絕了來自%2$s的加入群組的請求。</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">來自%1$s的加入群組的請求已被拒絕。</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">你標記與 %s 的安全碼為已驗證</string>
@@ -861,10 +901,10 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">未命名群組</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">正在接聽</string>
-  <string name="RedPhone_ending_call">掛斷通話</string>
-  <string name="RedPhone_dialing">撥號中</string>
-  <string name="RedPhone_ringing">響鈴中</string>
+  <string name="RedPhone_answering">接聽中…</string>
+  <string name="RedPhone_ending_call">結束通話…</string>
+  <string name="RedPhone_dialing">撥號中…</string>
+  <string name="RedPhone_ringing">響鈴中…</string>
   <string name="RedPhone_busy">忙碌</string>
   <string name="RedPhone_connected">已連線</string>
   <string name="RedPhone_recipient_unavailable">無此接收人</string>

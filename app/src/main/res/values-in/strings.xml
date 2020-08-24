@@ -369,6 +369,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Anda</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Siapapun</string>
   <string name="GroupManagement_access_level_all_members">Semua anggota</string>
   <string name="GroupManagement_access_level_only_admins">Khusus para admin</string>
   <!--GV2 invites sent-->
@@ -630,6 +631,12 @@
   <!--GV2 avatar change-->
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
+  <!--GV2 group link invite access level change-->
+  <!--GV2 group link reset-->
+  <!--GV2 group link joins-->
+  <!--GV2 group link requests-->
+  <!--GV2 group link approvals-->
+  <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Nomor keamanan Anda dengan %s telah berubah.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Anda menandai nomor keamanan anda dengan %s terverifikasi</string>
@@ -728,10 +735,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grup tanpa nama</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Menjawab</string>
-  <string name="RedPhone_ending_call">Mengakhiri panggilan</string>
-  <string name="RedPhone_dialing">Memanggil</string>
-  <string name="RedPhone_ringing">Berdering</string>
+  <string name="RedPhone_ringing">Berbunyi…</string>
   <string name="RedPhone_busy">Sibuk</string>
   <string name="RedPhone_connected">Tersambung</string>
   <string name="RedPhone_recipient_unavailable">Penerima tidak tersedia</string>

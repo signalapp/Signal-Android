@@ -397,6 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">شما</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">همه</string>
   <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
   <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
   <!--GV2 invites sent-->
@@ -784,6 +785,12 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">شما قابلیت ویرایش اعضای گروه را به «%1$s» انتقال دادید.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s قابلیت ویرایش اعضای گروه را به «%2$s» انتقال داد.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">قابلیت ویرایش اعضای گروه به «%1$s» انتقال یافت.</string>
+  <!--GV2 group link invite access level change-->
+  <!--GV2 group link reset-->
+  <!--GV2 group link joins-->
+  <!--GV2 group link requests-->
+  <!--GV2 group link approvals-->
+  <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">شما شمارهٔ امنیتی خود با %s  را به عنوان تأیید شده علامت زدید</string>
@@ -903,10 +910,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">گروه بدون نام</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">در حال پاسخ دادن</string>
-  <string name="RedPhone_ending_call">پایان‌‌دهی به تماس</string>
-  <string name="RedPhone_dialing">شماره‌گیری</string>
-  <string name="RedPhone_ringing">در حال زنگ خوردن</string>
+  <string name="RedPhone_ringing">در حال زنگ خوردن…</string>
   <string name="RedPhone_busy">مشغول</string>
   <string name="RedPhone_connected">متصل</string>
   <string name="RedPhone_recipient_unavailable">گیرنده در دسترس نیست</string>

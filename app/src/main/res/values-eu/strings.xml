@@ -397,6 +397,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Zu</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Edozein</string>
   <string name="GroupManagement_access_level_all_members">Partaide guztiak</string>
   <string name="GroupManagement_access_level_only_admins">Administratzaileak bakarrik</string>
   <!--GV2 invites sent-->
@@ -745,6 +746,12 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Aldatu duzu taldearen kidetza aldatu dezakeen pertsona. Orain \"%1$s\" da.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s erabiltzaileak aldatu du taldearen kidetza aldatu dezakeen pertsona. Orain \"%2$s\" da.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Taldearen kidetza aldatu dezakeena aldatu da. Orain \"%1$s\" da.</string>
+  <!--GV2 group link invite access level change-->
+  <!--GV2 group link reset-->
+  <!--GV2 group link joins-->
+  <!--GV2 group link requests-->
+  <!--GV2 group link approvals-->
+  <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Zure segurtasun zenbakia %s aldatu da.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s erabiltzailearekin duzun segurtasun zenbakia egiaztatu da</string>
@@ -860,10 +867,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Izenik gabeko taldea</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Deia erantzuten</string>
-  <string name="RedPhone_ending_call">Deia amaitzen</string>
-  <string name="RedPhone_dialing">Markatzen</string>
-  <string name="RedPhone_ringing">Jotzen</string>
+  <string name="RedPhone_ringing">Deitzen…</string>
   <string name="RedPhone_busy">Lanpetuta</string>
   <string name="RedPhone_connected">Konektatuta</string>
   <string name="RedPhone_recipient_unavailable">Hartzaile eskuraezina</string>

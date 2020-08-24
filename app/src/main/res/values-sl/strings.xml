@@ -425,6 +425,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Kdorkoli</string>
   <string name="GroupManagement_access_level_all_members">Vsi člani</string>
   <string name="GroupManagement_access_level_only_admins">Samo skrbniki</string>
   <!--GV2 invites sent-->
@@ -443,6 +444,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Odslej lahko neposredno v sporočilu ustvarite predogled za vsako spletno stran, ki jo delite.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Predogled ni na voljo</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Povezava do skupine ni aktivna</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Čakajoča povabila v skupine</string>
   <string name="PendingMembersActivity_people_you_invited">Ljudje, ki ste jih povabili</string>
@@ -603,6 +605,18 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ste že član/ica</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Pridruži se</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Prošnja za priključitev</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Povezava do skupine ni aktivna</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Podatkov o skupini ni bilo mogoče pridobiti. Poskusite znova kasneje.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Se želite pridružiti skupini in z njenimi člani/cami deliti svoje ime in fotografijo?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Preden se lahko pridružite, mora vašo prošnjo potrditi skrbnik/ca skupine. Ko pošljete prošnjo za pridružitev, s člani skupine delite svoje ime in fotografijo.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Skupina · %1$d član</item>
+    <item quantity="two">Skupina · %1$d člana</item>
+    <item quantity="few">Skupina · %1$d člani</item>
+    <item quantity="other">Skupina · %1$d članov</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Za povezave do skupine nadgradite Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Različica aplikacije Signal, ki jo uporabljate, ne podpira deljenja povezav do skupine. Za priključitev k skupini preko povezav jo morate nadgraditi.</string>
@@ -858,6 +872,35 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Spremenili ste, kdo lahko ureja članstvo v skupini: \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Oseba %1$s je spremenila, kdo lahko ureja članstvo v skupini: \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Sprememba: članstvo v skupini lahko odslej ureja uporabnik/ca \"%1$s\".</string>
+  <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Vklopili ste povezavo do skupine.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Vklopili ste povezavo do skupine s skrbniškim privoljenjem.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Izklopili ste povezavo do skupine.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">Uporabnika/ca %1$s je vklopil/a povezavo so skupine.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">Uporabnik/ca %1$s je vklopil/a povezavo do skupine s skrbniškim privoljenjem.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">Uporabnika/ca %1$s je izklopil/a povezavo do skupine.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Povezava do skupine je bila vklopljena.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Povezava do skupine je bila vklopljena s privoljenjem skrbnika.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Povezava do skupine je bila izklopljena.</string>
+  <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Ponastavili ste povezavo do skupine.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">Uporabnik/ca %1$s je ponastavil/a povezavo do skupine.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Povezava do skupine je bila ponastavljena.</string>
+  <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Preko deljene povezave ste se pridružili skupini.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">Uporabnik/ca %1$s se je pridružil/a skupini preko deljene povezave.</string>
+  <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste prošnjo za pridružitev skupini.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">Uporabnik/ca %1$s je preko deljene povezave zaprosil/a za pridružitev skupini.</string>
+  <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">Uporabnik/ca %1$s je odobril/a vašo prošnjo za pridružitev skupini.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">Član/ica %1$s je odobril/a prošnjo uporabnika/ce %2$sza pridružitev skupini.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Vaša prošnja za pridružitev skupini je bila odobrena.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Prošnja uporabnika/ce %1$s za pridružitev skupini je bila odobrena.</string>
+  <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Vaša prošnja za pridružitev skupini je bila zavrnjena s strani skrbnika.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">Član/ica %1$sje zavrnil/a prošnjo uporabnika/ce  %2$sza pridružitev skupini.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Prošnja uporabnika/ce %1$s za pridružitev skupini je bila zavrnjena.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom/co %s je bilo spremenjeno.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Potrdili ste varnostno število z uporabnikom/co %s</string>
@@ -984,10 +1027,10 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Nepoimenovana skupina</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Odgovarjam</string>
-  <string name="RedPhone_ending_call">Končujem klic</string>
-  <string name="RedPhone_dialing">Kličem</string>
-  <string name="RedPhone_ringing">Zvonjenje</string>
+  <string name="RedPhone_answering">Sprejemanje …</string>
+  <string name="RedPhone_ending_call">Zaključevanje klica …</string>
+  <string name="RedPhone_dialing">Klicanje …</string>
+  <string name="RedPhone_ringing">Zvoni…</string>
   <string name="RedPhone_busy">Zasedeno</string>
   <string name="RedPhone_connected">Povezano</string>
   <string name="RedPhone_recipient_unavailable">Prejemnik ni na voljo</string>

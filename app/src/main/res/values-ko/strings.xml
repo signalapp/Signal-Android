@@ -561,6 +561,12 @@
   <!--GV2 avatar change-->
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
+  <!--GV2 group link invite access level change-->
+  <!--GV2 group link reset-->
+  <!--GV2 group link joins-->
+  <!--GV2 group link requests-->
+  <!--GV2 group link approvals-->
+  <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s 님과의 안전 번호가 변경되었습니다.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s 님과의 안전 번호를 인증됨 상태로 표시했습니다.</string>
@@ -658,10 +664,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">이름 없는 그룹</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">응답 중</string>
-  <string name="RedPhone_ending_call">전화 종료 중</string>
-  <string name="RedPhone_dialing">전화 거는 중</string>
-  <string name="RedPhone_ringing">대기 중</string>
+  <string name="RedPhone_ringing">발신 중…</string>
   <string name="RedPhone_busy">전화 중</string>
   <string name="RedPhone_connected">연결됨</string>
   <string name="RedPhone_recipient_unavailable">응답 없음</string>
