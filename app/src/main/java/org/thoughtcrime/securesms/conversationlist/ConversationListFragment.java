@@ -678,16 +678,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
       @Override
       protected void executeAction(@Nullable Void parameter) {
-        for (long threadId : selectedConversations) {
-          archiveThread(threadId);
-        }
+        archiveThreads(selectedConversations);
       }
 
       @Override
       protected void reverseAction(@Nullable Void parameter) {
-        for (long threadId : selectedConversations) {
-          reverseArchiveThread(threadId);
-        }
+        reverseArchiveThreads(selectedConversations);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
@@ -975,13 +971,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   @WorkerThread
-  protected void archiveThread(long threadId) {
-    DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+  protected void archiveThreads(Set<Long> threadIds) {
+    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, true);
   }
 
   @WorkerThread
-  protected void reverseArchiveThread(long threadId) {
-    DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+  protected void reverseArchiveThreads(Set<Long> threadIds) {
+    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, false);
   }
 
   @SuppressLint("StaticFieldLeak")

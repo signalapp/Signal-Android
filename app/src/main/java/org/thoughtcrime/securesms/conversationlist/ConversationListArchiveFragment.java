@@ -39,6 +39,8 @@ import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionB
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 
+import java.util.Set;
+
 
 public class ConversationListArchiveFragment extends ConversationListFragment implements ActionMode.Callback
 {
@@ -107,13 +109,15 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   }
 
   @Override
-  protected void archiveThread(long threadId) {
-    DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+  @WorkerThread
+  protected void archiveThreads(Set<Long> threadIds) {
+    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, true);
   }
 
+  @Override
   @WorkerThread
-  protected void reverseArchiveThread(long threadId) {
-    DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+  protected void reverseArchiveThreads(Set<Long> threadIds) {
+    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, false);
   }
 
   @SuppressLint("StaticFieldLeak")

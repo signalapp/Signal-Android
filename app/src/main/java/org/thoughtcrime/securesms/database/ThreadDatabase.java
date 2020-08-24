@@ -544,7 +544,7 @@ public class ThreadDatabase extends Database {
       String query = RECIPIENT_ID + " = ?";
 
       for (Map.Entry<RecipientId, Boolean> entry : status.entrySet()) {
-        ContentValues values   = new ContentValues(1);
+        ContentValues values   = new ContentValues(2);
 
         if (entry.getValue()) {
           values.put(PINNED, "0");
@@ -552,6 +552,29 @@ public class ThreadDatabase extends Database {
 
         values.put(ARCHIVED, entry.getValue() ? "1" : "0");
         db.update(TABLE_NAME, values, query, new String[] { entry.getKey().serialize() });
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+      notifyConversationListListeners();
+    }
+  }
+
+  public void setArchived(Set<Long> threadIds, boolean archive) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    db.beginTransaction();
+    try {
+      for (long threadId : threadIds) {
+        ContentValues values = new ContentValues(2);
+
+        if (archive) {
+          values.put(PINNED, "0");
+        }
+
+        values.put(ARCHIVED, archive ? "1" : "0");
+        db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(threadId));
       }
 
       db.setTransactionSuccessful();
