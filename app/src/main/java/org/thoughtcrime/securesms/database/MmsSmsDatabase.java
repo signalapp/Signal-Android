@@ -118,7 +118,7 @@ public class MmsSmsDatabase extends Database {
   }
 
   private @NonNull Pair<RecipientId, Long> getGroupAddedBy(long threadId, long lastQuitChecked) {
-    MmsDatabase     mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
     MessageDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
     long            latestQuit  = mmsDatabase.getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
     RecipientId     id          = smsDatabase.getOldestGroupUpdateSender(threadId, latestQuit);
@@ -287,14 +287,14 @@ public class MmsSmsDatabase extends Database {
   }
 
   public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    DatabaseFactory.getSmsDatabase(context).incrementSmsReceiptCount(syncMessageId, true);
+    DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true);
     DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true);
   }
 
   public boolean incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
     boolean handled  = false;
 
-    handled |= DatabaseFactory.getSmsDatabase(context).incrementSmsReceiptCount(syncMessageId, false);
+    handled |= DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false);
     handled |= DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false);
 
     return handled;
@@ -581,7 +581,7 @@ public class MmsSmsDatabase extends Database {
 
     private MmsDatabase.Reader getMmsReader() {
       if (mmsReader == null) {
-        mmsReader = DatabaseFactory.getMmsDatabase(context).readerFor(cursor);
+        mmsReader = MmsDatabase.readerFor(cursor);
       }
 
       return mmsReader;

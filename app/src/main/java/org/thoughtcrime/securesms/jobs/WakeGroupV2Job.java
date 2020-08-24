@@ -6,6 +6,7 @@ import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -97,7 +98,7 @@ public final class WakeGroupV2Job extends BaseJob {
       long                            threadId                = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
       GroupDatabase.V2GroupProperties v2GroupProperties       = group.get().requireV2GroupProperties();
       DecryptedGroupV2Context         decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(v2GroupProperties.getGroupMasterKey(), v2GroupProperties.getDecryptedGroup(), null, null);
-      MmsDatabase                     mmsDatabase             = DatabaseFactory.getMmsDatabase(context);
+      MessageDatabase                 mmsDatabase             = DatabaseFactory.getMmsDatabase(context);
       OutgoingGroupUpdateMessage      outgoingMessage         = new OutgoingGroupUpdateMessage(groupRecipient, decryptedGroupV2Context, null, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
 
       long messageId = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);

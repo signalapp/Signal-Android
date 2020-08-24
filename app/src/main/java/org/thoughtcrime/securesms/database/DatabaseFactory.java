@@ -86,7 +86,7 @@ public class DatabaseFactory {
     return getInstance(context).sms;
   }
 
-  public static MmsDatabase getMmsDatabase(Context context) {
+  public static MessageDatabase getMmsDatabase(Context context) {
     return getInstance(context).mms;
   }
 

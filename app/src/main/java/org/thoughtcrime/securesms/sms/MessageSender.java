@@ -122,8 +122,8 @@ public class MessageSender {
                           final SmsDatabase.InsertListener insertListener)
   {
     try {
-      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-      MmsDatabase    database       = DatabaseFactory.getMmsDatabase(context);
+      ThreadDatabase  threadDatabase = DatabaseFactory.getThreadDatabase(context);
+      MessageDatabase database       = DatabaseFactory.getMmsDatabase(context);
 
       long      allocatedThreadId = threadDatabase.getOrCreateValidThreadId(message.getRecipient(), threadId, message.getDistributionType());
       Recipient recipient         = message.getRecipient();
@@ -150,7 +150,7 @@ public class MessageSender {
 
     try {
       ThreadDatabase     threadDatabase     = DatabaseFactory.getThreadDatabase(context);
-      MmsDatabase        mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
+      MessageDatabase    mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
       AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
 
       long allocatedThreadId;
@@ -185,7 +185,7 @@ public class MessageSender {
 
     JobManager                 jobManager             = ApplicationDependencies.getJobManager();
     AttachmentDatabase         attachmentDatabase     = DatabaseFactory.getAttachmentDatabase(context);
-    MmsDatabase                mmsDatabase            = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase            mmsDatabase            = DatabaseFactory.getMmsDatabase(context);
     ThreadDatabase             threadDatabase         = DatabaseFactory.getThreadDatabase(context);
     List<AttachmentId>         preUploadAttachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
     List<String>               preUploadJobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
@@ -470,7 +470,7 @@ public class MessageSender {
   private static void sendLocalMediaSelf(Context context, long messageId) {
     try {
       ExpiringMessageManager expirationManager  = ApplicationContext.getInstance(context).getExpiringMessageManager();
-      MmsDatabase            mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
+      MessageDatabase        mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
       MmsSmsDatabase         mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
       OutgoingMediaMessage   message            = mmsDatabase.getOutgoingMessage(messageId);
       SyncMessageId          syncId             = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());

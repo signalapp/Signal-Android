@@ -905,7 +905,7 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   public long stageOutgoingMessage(OutgoingMediaMessage message) {
-    MessageRecord messageRecord = DatabaseFactory.getMmsDatabase(getContext()).readerFor(message, threadId).getCurrent();
+    MessageRecord messageRecord = MmsDatabase.readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());
@@ -1081,7 +1081,7 @@ public class ConversationFragment extends LoggingFragment {
 
   private void scrollToNextMention() {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(ApplicationDependencies.getApplication());
+      MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(ApplicationDependencies.getApplication());
       return mmsDatabase.getOldestUnreadMentionDetails(threadId);
     }, (pair) -> {
       if (pair != null) {

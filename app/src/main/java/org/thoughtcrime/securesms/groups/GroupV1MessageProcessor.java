@@ -239,7 +239,7 @@ public final class GroupV1MessageProcessor {
 
     try {
       if (outgoing) {
-        MmsDatabase                mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
+        MessageDatabase            mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
         RecipientId                recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
         Recipient                  recipient       = Recipient.resolved(recipientId);
         OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());

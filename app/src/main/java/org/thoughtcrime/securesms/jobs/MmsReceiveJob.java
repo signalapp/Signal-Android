@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -73,7 +74,7 @@ public class MmsReceiveJob extends BaseJob {
     }
 
     if (isNotification(pdu) && !isBlocked(pdu)) {
-      MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
+      MessageDatabase  database           = DatabaseFactory.getMmsDatabase(context);
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu, subscriptionId);
 
       Log.i(TAG, "Inserted received MMS notification...");

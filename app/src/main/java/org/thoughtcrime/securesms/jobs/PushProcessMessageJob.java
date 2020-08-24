@@ -716,14 +716,14 @@ public final class PushProcessMessageJob extends BaseJob {
     }
 
     try {
-      MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
+      MessageDatabase      database     = DatabaseFactory.getMmsDatabase(context);
       Recipient            sender       = Recipient.externalHighTrustPush(context, content.getSender());
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(sender.getId(),
                                                                    content.getTimestamp(),
                                                                    content.getServerReceivedTimestamp(),
                                                                    -1,
                                                                    expiresInSeconds * 1000L,
-                                                                    true,
+                                                                   true,
                                                                    false,
                                                                    content.isNeedsReceipt(),
                                                                    Optional.absent(),
@@ -1026,7 +1026,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
     Optional<InsertResult> insertResult;
 
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
 
     try {
@@ -1089,8 +1089,8 @@ public final class PushProcessMessageJob extends BaseJob {
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message)
       throws MmsException, BadGroupIdException
   {
-    MmsDatabase database   = DatabaseFactory.getMmsDatabase(context);
-    Recipient   recipient  = getSyncMessageDestination(message);
+    MessageDatabase database   = DatabaseFactory.getMmsDatabase(context);
+    Recipient       recipient  = getSyncMessageDestination(message);
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
                                                                                                   message.getTimestamp(),
@@ -1109,7 +1109,7 @@ public final class PushProcessMessageJob extends BaseJob {
   private long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
       throws MmsException, BadGroupIdException
   {
-    MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase             database        = DatabaseFactory.getMmsDatabase(context);
     Recipient                   recipients      = getSyncMessageDestination(message);
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
     Optional<Attachment>        sticker         = getStickerAttachment(message.getMessage().getSticker());

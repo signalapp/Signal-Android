@@ -237,9 +237,9 @@ public final class GroupsV2StateProcessor {
                                                                                           Collections.emptyList());
 
       try {
-        MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-        long        threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-        long        id          = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
+        MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+        long            threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+        long            id          = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
         mmsDatabase.markAsSent(id, true);
       } catch (MmsException e) {
         Log.w(TAG, "Failed to insert leave message.", e);
@@ -396,7 +396,7 @@ public final class GroupsV2StateProcessor {
 
       if (outgoing) {
         try {
-          MmsDatabase                mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
+          MessageDatabase            mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
           RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
           Recipient                  recipient       = Recipient.resolved(recipientId);
           OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());

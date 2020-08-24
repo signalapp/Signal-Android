@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -104,7 +105,7 @@ public class MmsDownloadJob extends BaseJob {
       throw new NotReadyException();
     }
 
-    MmsDatabase                               database     = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase                           database     = DatabaseFactory.getMmsDatabase(context);
     Optional<MmsDatabase.MmsNotificationInfo> notification = database.getNotification(messageId);
 
     if (!notification.isPresent()) {
@@ -164,7 +165,7 @@ public class MmsDownloadJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE);
 
     if (automatic) {
@@ -183,7 +184,7 @@ public class MmsDownloadJob extends BaseJob {
                                  int subscriptionId, @Nullable RecipientId notificationFrom)
       throws MmsException
   {
-    MmsDatabase       database    = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase   database    = DatabaseFactory.getMmsDatabase(context);
     Optional<GroupId> group       = Optional.absent();
     Set<RecipientId>  members     = new HashSet<>();
     String            body        = null;
@@ -250,7 +251,7 @@ public class MmsDownloadJob extends BaseJob {
 
   private void handleDownloadError(long messageId, long threadId, int downloadStatus, boolean automatic)
   {
-    MmsDatabase db = DatabaseFactory.getMmsDatabase(context);
+    MessageDatabase db = DatabaseFactory.getMmsDatabase(context);
 
     db.markDownloadState(messageId, downloadStatus);
 

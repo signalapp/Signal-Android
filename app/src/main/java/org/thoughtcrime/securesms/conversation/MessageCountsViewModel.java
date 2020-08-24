@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -78,10 +79,10 @@ public class MessageCountsViewModel extends ViewModel {
   }
 
   private Pair<Integer, Integer> getCounts(@NonNull Context context, long threadId) {
-    MmsSmsDatabase mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
-    MmsDatabase    mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
-    int            unreadCount        = mmsSmsDatabase.getUnreadCount(threadId);
-    int            unreadMentionCount = mmsDatabase.getUnreadMentionCount(threadId);
+    MmsSmsDatabase  mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
+    MessageDatabase mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
+    int             unreadCount        = mmsSmsDatabase.getUnreadCount(threadId);
+    int             unreadMentionCount = mmsDatabase.getUnreadMentionCount(threadId);
 
     return new Pair<>(unreadCount, unreadMentionCount);
   }

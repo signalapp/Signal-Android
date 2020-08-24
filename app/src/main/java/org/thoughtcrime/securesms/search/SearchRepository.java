@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MentionDatabase;
 import org.thoughtcrime.securesms.database.MentionUtil;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -82,7 +83,7 @@ public class SearchRepository {
   private final ExecutorService   parallelExecutor;
   private final RecipientDatabase recipientDatabase;
   private final MentionDatabase   mentionDatabase;
-  private final MmsDatabase       mmsDatabase;
+  private final MessageDatabase   mmsDatabase;
 
   public SearchRepository() {
     this.context           = ApplicationDependencies.getApplication().getApplicationContext();
@@ -262,7 +263,7 @@ public class SearchRepository {
 
     List<MessageResult> results = new ArrayList<>();
 
-    try (MmsDatabase.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
+    try (MessageDatabase.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
       MessageRecord record;
       while ((record = reader.getNext()) != null) {
         List<Mention> mentions = mentionQueryResults.get(record.getId());
@@ -296,7 +297,7 @@ public class SearchRepository {
 
     List<MessageResult> results = new ArrayList<>();
 
-    try (MmsDatabase.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
+    try (MessageDatabase.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
       MessageRecord record;
       while ((record = reader.getNext()) != null) {
         //noinspection ConstantConditions
