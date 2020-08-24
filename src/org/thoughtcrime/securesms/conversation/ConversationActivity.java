@@ -849,16 +849,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-    case R.id.menu_call_secure:               handleDial(getRecipient(), true);         return true;
-    case R.id.menu_call_insecure:             handleDial(getRecipient(), false);        return true;
+//    case R.id.menu_call_secure:               handleDial(getRecipient(), true);         return true;
+//    case R.id.menu_call_insecure:             handleDial(getRecipient(), false);        return true;
     case R.id.menu_unblock:                   handleUnblock();                                   return true;
     case R.id.menu_block:                     handleBlock();                                     return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
-    case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
+//    case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
-    case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
+//    case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
