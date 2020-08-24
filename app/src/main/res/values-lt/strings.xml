@@ -439,7 +439,10 @@
   <string name="GroupManagement_invite_multiple_users">Jūs negalite automatiškai pridėti šių naudotojų į šią grupę.\n\nJie yra pakviesti prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Išjungti</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Peržiūrėkite bet kurią nuorodą</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Nuo šiol savo siunčiamoms žinutėms galite gauti nuorodų peržiūras tiesiogiai iš bet kurios internetinės svetainės.</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Nuorodos peržiūra neprieinama</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
@@ -464,6 +467,12 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Atlikta</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Pridėti „%1$s“ į „%2$s“?</item>
+    <item quantity="few">Pridėti %3$d narius į „%2$s“?</item>
+    <item quantity="many">Pridėti %3$d narių į „%2$s“?</item>
+    <item quantity="other">Pridėti %3$d narį į „%2$s“?</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Suteikti šiai grupei pavadinimą</string>
   <string name="AddGroupDetailsFragment__create_group">Sukurti grupę</string>
@@ -485,10 +494,17 @@
     <item quantity="other">%d narys nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kadangi „%1$s“ naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiam žmogui atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šį žmogų.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">Kadangi %1$d narys naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiam žmogui atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šį žmogų.</item>
+    <item quantity="few">Kadangi %1$d nariai naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šiuos žmones.</item>
+    <item quantity="many">Kadangi %1$d narių naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šiuos žmones.</item>
+    <item quantity="other">Kadangi %1$d narys naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šiuos žmones.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageGroupActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
-  <string name="ManageGroupActivity_add_members">Pridėti narius</string>
+  <string name="ManageGroupActivity_add_members">Pridėti narių</string>
   <string name="ManageGroupActivity_edit_group_info">Taisyti grupės informaciją</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Pasirinkite, kas gali taisyti grupės pavadinimą, avatarą bei išnykstančias žinutes.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius.</string>
@@ -586,7 +602,10 @@
     <item quantity="other">Ar norite panaikinti %2$d pakvietimą, kurį išsiuntė %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jūs jau esate narys</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atnaujinkite Signal norėdami naudoti grupių nuorodas</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Jūsų naudojama Signal versija nepalaiko bendrinamų grupės nuorodų. Norėdami prisijungti prie šios grupės per nuorodą, atnaujinkite Signal iki naujausios versijos.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atnaujinti Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
@@ -850,7 +869,7 @@
   <string name="MessageRequestBottomView_delete">Ištrinti</string>
   <string name="MessageRequestBottomView_block">Užblokuoti</string>
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nepriimsite pakvietimo.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Jūs negausite jokių žinučių tol, kol neatblokuosite šio naudotojo.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jie nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atblokuoti šią grupę ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs negausite jokių žinučių tol, kol jų neatblokuosite.</string>
@@ -1570,7 +1589,7 @@
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Norėdami gauti patvirtinimo kodą, įveskite savo mobiliojo telefono numerį. Gali būti taikomi mobiliojo ryšio paslaugos teikėjo mokesčiai.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Įveskite vardą ar numerį</small></string>
-  <string name="recipients_panel__add_members">Pridėti narius</string>
+  <string name="recipients_panel__add_members">Pridėti narių</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Siuntėjo jūsų adresatų sąraše nėra</string>
   <string name="unknown_sender_view__block">UŽBLOKUOTI</string>
@@ -1691,6 +1710,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Naudoti Signal visoms gaunamosioms multimedijos žinutėms</string>
   <string name="preferences__pref_enter_sends_title">Enter (Įvedimo) klavišas išsiunčia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
+  <string name="preferences__generate_link_previews">Generuoti nuorodų peržiūras</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Gauti savo siunčiamoms žinutėms nuorodų peržiūras tiesiogiai iš internetinių svetainių.</string>
   <string name="preferences__choose_identity">Pasirinkti tapatybę</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pasirinkite adresatą iš adresatų sąrašo.</string>
   <string name="preferences__change_passphrase">Pakeisti slaptafrazę</string>
@@ -1841,6 +1862,8 @@
   <string name="conversation_insecure__invite">Pakviesti</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ištrinti pasirinktus</string>
+  <string name="conversation_list_batch__menu_pin_selected">Prisegti pažymėtus</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Atsegti pažymėtus</string>
   <string name="conversation_list_batch__menu_select_all">Pasirinkti viską</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archyvas pasirinktas</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Išarchyvuoti pasirinktus</string>
@@ -1850,7 +1873,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Nustatymų šaukinys</string>
   <string name="conversation_list_search_description">Ieškoti</string>
+  <string name="conversation_list__pinned">Prisegti pokalbiai</string>
   <string name="conversation_list__chats">Pokalbiai</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Galite prisegti daugiausiai %1$d pokalbių</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Adresato nuotraukos paveikslas</string>
   <string name="conversation_list_item_view__archived">Archyvuota</string>
@@ -2061,6 +2086,8 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
   <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Pristatome @paminėjimus</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Atkreipkite kažkieno dėmesį „Naujoje grupėję“, parašydami @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>

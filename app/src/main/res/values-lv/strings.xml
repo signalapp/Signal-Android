@@ -438,6 +438,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Grupas atjaunināšanā notikusi kļūda</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs neesat grupas dalībnieks</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Labot vārdu un attēlu</string>
+  <string name="ManageGroupActivity_legacy_group">Mantotā grupa</string>
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Gaistošās ziņas</string>
@@ -742,6 +743,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Izveidot jaunu PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Brīdinājums</string>
+  <string name="PinOptOutDialog_disable_pin">Atspējot PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Novērtējiet šo lietotni</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ja ar gandarījumu lietojat šo lietotni, lūdzu atbalstiet mūs, veltot brīdi, lai to novērtētu.</string>
@@ -1198,6 +1200,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Ritināt līdz apakšai </string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">Drošības numura izmaiņas</string>
   <string name="safety_number_change_dialog__view">Skatīt</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ielādē valstis…</string>
@@ -1510,6 +1513,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__dark_theme">Tumšs</string>
   <string name="preferences__appearance">Izskats</string>
   <string name="preferences__theme">Motīvs</string>
+  <string name="preferences__disable_pin">Atspējot PIN</string>
+  <string name="preferences__enable_pin">Iespējot PIN</string>
   <string name="preferences__system_default">Sistēmas noklusējums</string>
   <string name="preferences__default">Noklusējuma</string>
   <string name="preferences__language">Valoda</string>
@@ -1736,6 +1741,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KbsSplashFragment__update_pin">Aktualizēt PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Izveido savu PIN </string>
   <string name="KbsSplashFragment__learn_more_about_pins">Uzzināt vairāk par PIN kodiem</string>
+  <string name="KbsSplashFragment__disable_pin">Atspējot PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Ievadiet jūsu Signāla PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Lai palīdzētu jums iegaumēt PIN, mēs Jums lūgsim to ievadīt periodiski. Sākumā biežāk, bet ar laiku - retāk.</string>
@@ -1913,5 +1919,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="GroupRecipientListItem_admin">Administrators</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Mantoto grupu salīdzinājums ar jaunajām</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Kas ir mantotās grupas?</string>
   <!--EOF-->
 </resources>

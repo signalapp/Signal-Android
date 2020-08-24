@@ -173,7 +173,7 @@
   <string name="ConversationItem_copied_text">%s kopiert</string>
   <string name="ConversationItem_from_s">von %s</string>
   <string name="ConversationItem_to_s">an %s</string>
-  <string name="ConversationItem_read_more">  Mehr lesen</string>
+  <string name="ConversationItem_read_more">  Weiterlesen</string>
   <string name="ConversationItem_download_more">  Mehr herunterladen</string>
   <string name="ConversationItem_pending">  Ausstehend</string>
   <string name="ConversationItem_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>

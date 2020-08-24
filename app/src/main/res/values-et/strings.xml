@@ -320,7 +320,7 @@
   <string name="ConversationTitleView_verified">Kontrollitud</string>
   <string name="ConversationTitleView_you">Sina</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Mõned kontod ei saa vanades gruppides olla.</string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Mõned kontod ei saa vana tüüpi gruppides olla.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>
@@ -385,7 +385,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lisatud gruppi \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Lisa gruppi</string>
   <string name="AddToGroupActivity_add_to_groups">Lisa gruppidesse</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Seda isikut pole võimalik vanadesse gruppidesse lisada.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Seda isikut pole võimalik vana tüüpi gruppidesse lisada.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vali uus administraator</string>
   <string name="ChooseNewAdminActivity_done">Tehtud</string>
@@ -432,7 +432,7 @@
   </plurals>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Tehtud</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Seda isikut pole võimalik vanadesse gruppidesse lisada.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Seda isikut pole võimalik vana tüüpi gruppidesse lisada.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Kas lisada \"%1$s\" liige gruppi \"%2$s\"?</item>
     <item quantity="other">Kas lisada %3$d liiget gruppi \"%2$s\"?</item>
@@ -452,14 +452,14 @@
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Kas eemaldada %1$s sellest grupist?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d liige ei toeta uusi gruppe, seega see grupp jääb vanaks grupiks.</item>
-    <item quantity="other">%d liiget ei toeta uusi gruppe, seega see grupp jääb vanaks grupiks.</item>
+    <item quantity="one">%d liige ei toeta uut tüüpi gruppe, seega see grupp jääb vana tüüpi grupiks.</item>
+    <item quantity="other">%d liiget ei toeta uut tüüpi gruppe, seega see grupp jääb vana tüüpi grupiks.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Luuakse vana grupp, sest “%1$s” kasutab Signal-i vana versiooni. Nende kasutajatega on võimalik luua uus grupp pärast seda, kui nad on Signal-it uuendanud või eemalda nad enne uue grupi loomist.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Luuakse vana tüüpi grupp, sest “%1$s” kasutab Signal-i vana versiooni. Selle kasutajaga on võimalik luua uut tüüpi grupp pärast seda, kui ta on Signal-it uuendanud või oled ta enne uue grupi loomist eemaldanud.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Luuakse vana grupp, sest %1$d liige kasutab Signal-i vana versiooni. Nende kasutajatega on võimalik luua uus grupp pärast seda, kui nad on Signal-it uuendanud või eemalda nad enne uue grupi loomist.</item>
-    <item quantity="other">Luuakse vana grupp, sest %1$d liiget kasutavad Signal-i vana versiooni. Nende kasutajatega on võimalik luua uus grupp pärast seda, kui nad on Signal-it uuendanud või eemalda nad enne uue grupi loomist.</item>
+    <item quantity="one">Luuakse vana tüüpi grupp, sest %1$d liige kasutab Signal-i vana versiooni. Selle kasutajaga on võimalik luua uut tüüpi grupp pärast seda, kui ta on Signal-it uuendanud või oled ta enne uut tüüpi grupi loomist eemaldanud.</item>
+    <item quantity="other">Luuakse vana tüüpi grupp, sest %1$d liiget kasutavad Signal-i vana versiooni. Nende kasutajatega on võimalik luua uut tüüpi grupp pärast seda, kui nad on Signal-it uuendanud või oled nad enne uut tüüpi grupi loomist eemaldanud.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaduvad sõnumid</string>
@@ -495,8 +495,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Grupi uuendamine ei õnnestunud, palun proovi hiljem uuesti</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Grupi uuendamine ei õnnestunud võrgutõrke tõttu, palun proovi hiljem uuesti</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Muuda nime ja pilti</string>
-  <string name="ManageGroupActivity_legacy_group">Vana grupp</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">See on vana grupp. Uue funktsionaalsuse, nt grupi administraatorid kasutuselevõtuks loo uus grupp.</string>
+  <string name="ManageGroupActivity_legacy_group">Vana tüüpi grupp</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">See on vana tüüpi grupp. Uue funktsionaalsuse, nt grupi administraatorid kasutuselevõtuks loo uut tüüpi grupp.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Teavita mind mainimise korral</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Kas saada teavitusi, kui sind mainitakse vaigistatud vestlustes?</string>
@@ -2107,10 +2107,10 @@ Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="GroupRecipientListItem_admin">Administraator</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Vanad vs uued grupid</string>
-  <string name="GroupsLearnMore_what_are_legacy_groups">Mis on vanad grupid?</string>
-  <string name="GroupsLearnMore_paragraph_1">Vanad grupid on need grupid, mis pole ühilduvad uute gruppide funktsionaalsustega nagu administraatorid ja rohkem kirjeldavad grupi muudatused.</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Mis on vana tüüpi grupid?</string>
+  <string name="GroupsLearnMore_paragraph_1">Vana tüüpi grupid on need grupid, mis pole ühilduvad uut tüüpi gruppide funktsionaalsustega nagu administraatorid ja rohkem kirjeldavad grupi muudatused.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuidas ma saan uusi gruppe kasutada?</string>
-  <string name="GroupsLearnMore_paragraph_2">Vanu gruppe ei saa uuteks gruppideks teisendada, aga sa saad luua samade liikmetega uue grupi.</string>
+  <string name="GroupsLearnMore_paragraph_2">Vana tüüpi gruppe ei saa uut tüüpi gruppideks teisendada, aga sa saad luua samade liikmetega uut tüüpi grupi.</string>
   <string name="GroupsLearnMore_paragraph_3">Uue grupi loomiseks peavad kõik liikmed uuendama enda Signal-i uusimale versioonile.</string>
   <!--EOF-->
 </resources>

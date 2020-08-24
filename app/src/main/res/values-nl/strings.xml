@@ -500,8 +500,8 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten te kunnen gebruiken zoals beheerders moet je een nieuwe groep aanmaken.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Geef een melding bij mentions</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je meldingen ontvangen wanneer iemand je mentioned in een gedempt gesprek?</string>
-  <string name="GroupMentionSettingDialog_default_notify_me">Standaard (geef me een bericht)</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je meldingen ontvangen wanneer iemand je in een gedempt gesprek vermeld?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Standaard (geef me een notificatie)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">Standaard (geef me geen bericht)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Geef me altijd een bericht</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Geef me nooit een bericht</string>
@@ -553,10 +553,10 @@
     <item quantity="other">Wil je %2$d uitnodigingen intrekken die door %1$s verzonden zijn?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Je bent al lid</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Je bent al lid van deze groep</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Signal bijwerken om groep links te gebruiken</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteund geen deelbare groeplinks. Werk Signal bij naar de laatste versie om lid van een groep te kunnen worden via een link.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepskoppelingen te kunnen gebruiken</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt geen deelbare groepskoppelingen. Werk Signal bij naar de meest recente versie om via een koppeling lid te kunen worden van een groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Groepsafbeelding</string>
@@ -1612,7 +1612,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor het verzenden van tekstberichten</string>
   <string name="preferences__generate_link_previews">Voorbeeldafbeeldingen genereren</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Voor elke koppeling naar een website die je verzend ook een voorbeeldafbeelding genereren en bijvoegen. Als je dit inschakelt zouden websites kunnen zien dat je ze vermeld.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Signal toe om voor elke koppeling naar een website die je verzendt een voorbeeldafbeelding genereren en bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je ze in je bericht vermeld.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>

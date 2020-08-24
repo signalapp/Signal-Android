@@ -646,7 +646,7 @@
   <string name="Megaphones_introducing_reactions">Apresentando as Reações</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Toque e segure qualquer mensagem para compartilhar rapidamente sua reação ou como você se sente.</string>
   <string name="Megaphones_remind_me_later">Me lembre mais tarde</string>
-  <string name="Megaphones_verify_your_signal_pin">Verifique seu PIN do Signal</string>
+  <string name="Megaphones_verify_your_signal_pin">Confirme seu PIN do Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocasionalmente, solicitaremos que você confirme seu PIN, isso te ajuda a não esquecê-lo.</string>
   <string name="Megaphones_verify_pin">Verifique o PIN</string>
   <!--NotificationBarManager-->
@@ -867,14 +867,14 @@
   <string name="PinRestoreEntryFragment_skip">Pular</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">Você tem %1$d tentativas restantes. Se você não acertar, você pode criar um novo PIN. Você pode se registrar e usar sua conta, mas perderá algumas configurações salvas como as informações de seu perfil.</item>
-    <item quantity="other">Você tem %1$d tentativas restantes. Se você não acertar, você pode criar um novo PIN. Você pode se registrar e usar sua conta, mas perderá algumas configurações salvas como as informações de seu perfil.</item>
+    <item quantity="other">Você tem %1$d tentativas restantes. Se não acertar, pode criar um novo PIN. Você pode se registrar e usar sua conta, mas perderá algumas configurações salvas como as informações de seu perfil.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registro de Signal - Precisa de ajuda com o PIN para Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Digite o PIN alfanumérico</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Digite o PIN numérico</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Criar seu PIN</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Você esgotou todas as tentativas de PIN, mas ainda pode acessar sua conta de Sinal criando um novo PIN. Para sua privacidade e segurança, sua conta será restaurada sem nenhuma informação de perfil ou configurações salvas.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Você esgotou todas as tentativas de PIN, mas ainda pode acessar sua conta de Signal criando um novo PIN. Para sua privacidade e segurança, sua conta será restaurada sem nenhuma informação de perfil ou configurações salvas.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Criar novo PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Cuidado</string>
@@ -967,7 +967,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ativar o Bloqueio de Registro?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desativar o Bloqueio de Registro?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN SIGNAL ao se registrar novamente no Signal, ficará sem acesso à sua conta por sete dias.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN ao se registrar novamente no Signal, ficará sem acesso à sua conta por sete dias.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Ativar</string>
   <string name="RegistrationLockV2Dialog_turn_off">Desativar</string>
   <!--RevealableMessageView-->
@@ -1671,7 +1671,7 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Desabilitar PIN</string>
   <string name="preferences__enable_pin">Habilitar PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, você perderá todos os dados ao se registrar de novo com o Signal, a menos que você faça backup manualmente e restaure. Você não pode ativar o Bloqueio de Registro enquanto o PIN estiver desativado.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, perderá todos os dados ao se registrar de novo com o Signal, a menos que você faça backup manualmente e os restaure. Você não pode ativar o Bloqueio de Registro enquanto o PIN estiver desativado.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs mantém as informações salvas no Signal encriptadas para que apenas você as acesse. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do PIN para abrir o app.</string>
   <string name="preferences__system_default">Sistema padrão</string>
   <string name="preferences__default">Padrão</string>
@@ -1890,7 +1890,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Você pode modificar seu PIN enquanto este aparelho estiver registrado.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Criar seu PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Os PINs mantêm as informações armazenadas no Sinal criptografado para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará de seu PIN para abrir o aplicativo.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Os PINs mantêm as informações armazenadas no Signal criptografadas para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar o App. Você não precisará de seu PIN para abrir o aplicativo.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Escolha um PIN mais forte</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não correspondem. Tente outra vez.</string>
@@ -1902,10 +1902,10 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Criando PIN</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Apresentando os PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Os PINs mantêm as informações armazenadas no Sinal criptografado para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará de seu PIN para abrir o aplicativo.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Os PINs mantêm as informações armazenadas no Signal criptografadas para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará de seu PIN para abrir o aplicativo.</string>
   <string name="KbsSplashFragment__learn_more">Saiba Mais</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Desbloqueio de Cadastro = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin"> Seu Desbloqueio de Cadastro agora será chamado de PIN, e faz mais que bloquear. Atualizar ele agora.</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Seu Desbloqueio de Cadastro é agora chamado de PIN, e ele faz mais. Atualize-o agora.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Leia mais sobre PINs.</string>
   <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Criar seu PIN</string>
@@ -1959,7 +1959,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s receberá um pedido de mensagem da sua parte. Você pode ligar assim que sua solicitação for aceita.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crie um PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Os PINs guardam informações que são armazenadas no Sinal criptografado.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Os PINs guardam informações que são armazenadas no Signal criptografadas.</string>
   <string name="KbsMegaphone__create_pin">Crie um PIN</string>
   <string name="KbsMegaphone__introducing_pins">Apresentando os PINs</string>
   <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
@@ -2032,7 +2032,7 @@
   <string name="preferences_app_protection__create_a_pin">Crie um PIN</string>
   <string name="preferences_app_protection__change_your_pin">Troque o seu PIN</string>
   <string name="preferences_app_protection__pin_reminders">Lembretes do PIN</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Os PINs mantêm as informações armazenadas no Sinal criptografado para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar o Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Os PINs mantêm as informações armazenadas no Signal criptografadas para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar o Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione segurança extra exigindo seu PIN do Signal para registrar seu número de telefone com ele novamente.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Os lembretes ajudam você a memorizar seu PIN, já que não pode ser recuperado. Você será solicitado com menos freqüência ao longo do tempo.</string>
   <string name="preferences_app_protection__turn_off">Desativar</string>

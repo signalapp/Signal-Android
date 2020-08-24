@@ -415,6 +415,7 @@
   <string name="ManageGroupActivity_leave_group">ចាកចេញពីក្រុម</string>
   <string name="ManageGroupActivity_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
   <string name="ManageGroupActivity_custom_notifications">សារជូនដំណឹងផ្សេង</string>
+  <string name="ManageGroupActivity_mentions">ការនិយាយ</string>
   <string name="ManageGroupActivity_until_s">រហូតដល់ %1$s</string>
   <string name="ManageGroupActivity_off">បិទ</string>
   <string name="ManageGroupActivity_on">បើក</string>
@@ -433,6 +434,7 @@
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">អ្នកមិនមែនជាសមាជិកនៃក្រុម</string>
   <string name="ManageGroupActivity_edit_name_and_picture">កែប្រែឈ្មោះ និងរូបភាព</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ទទួលបានការជូនដំណឹងនៅពេលដែលអ្នកត្រូវបានគេហៅនៅក្នុងការសន្ទនាស្ងាត់ ៗ ?</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
   <string name="ManageRecipientActivity_chat_color">ពណ៌ការជជែក</string>
@@ -1561,6 +1563,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">អនុញ្ញាតពីនរណាម្នាក់</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">បើក ត្រាអ្នកផ្ញើសម្រាប់សារទទួលបានពីអ្នកក្រៅបញ្ជីទំនាក់ទំនង និងមនុស្សដែលអ្នកមិនបានចែករំលែកទម្រង់របស់អ្នក។</string>
   <string name="preferences_communication__sealed_sender_learn_more">សិក្សាបន្ថែម</string>
+  <string name="preferences_notifications__mentions">ការនិយាយ</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

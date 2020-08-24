@@ -1752,6 +1752,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_insecure__invite">Bjud in</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ta bort valda</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fäst valda</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Lossa valda</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiv valt</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Avarkivera markerade</string>
@@ -1761,7 +1763,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
+  <string name="conversation_list__pinned">Fäst</string>
   <string name="conversation_list__chats">Konversationer</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara fästa %1$d konversationer</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkiverad</string>

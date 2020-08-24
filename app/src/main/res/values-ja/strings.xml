@@ -553,7 +553,7 @@
   <string name="InviteActivity_invitations_sent">招待状を送りました！</string>
   <string name="InviteActivity_invite_to_signal">Signalに招待する</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">SMSを友達%d人に送ります</item>
+    <item quantity="other">SMSを友達%d人に送る</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">SMS招待状%d件を送信しますか？</item>
@@ -676,7 +676,7 @@
   <string name="MessageRecord_changed_their_profile">%1$s がプロフィールを更新しました。</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">グループを作成しました。</string>
-  <string name="MessageRecord_group_updated">グループがアップデートされました。</string>
+  <string name="MessageRecord_group_updated">グループが更新されました。</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">%1$s を追加しました。</string>
   <string name="MessageRecord_s_added_s">%1$s が %2$s を追加しました。</string>
@@ -817,7 +817,7 @@
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PINが違います</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">PINの入力を省略しますか？</string>
-  <string name="PinRestoreEntryFragment_need_help">ヘルプが必要ですか？</string>
+  <string name="PinRestoreEntryFragment_need_help">お困りですか？</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">あなたのPINは%1$d桁以上のコードで、数字または英数字のいずれかです。\n\nもしPINを忘れてしまっても、新しく作成できます。アカウントを登録して使用することもできますが、プロフィールなどの保存されている設定情報は失われます。</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">もしPINを忘れてしまっても、新しく作成できます。アカウントを登録して使用することもできますが、プロフィールなどの保存されている設定情報は失われます。</string>
   <string name="PinRestoreEntryFragment_create_new_pin">新しいPINを作成</string>
