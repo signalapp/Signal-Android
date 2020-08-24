@@ -18,8 +18,9 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.SpannableString;
+
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -84,7 +85,7 @@ public class SmsMessageRecord extends MessageRecord {
     } else if (isLokiSessionRestoreSent()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else if (isLokiSessionRestoreDone()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_session_restore_done));
+      return emphasisAdded(context.getString(R.string.view_reset_secure_session_done_message));
     } else if (isEndSession() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else if (isEndSession()) {

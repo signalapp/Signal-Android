@@ -737,7 +737,6 @@
     <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
     <string name="MessageRecord_session_restore_sent">You have sent a session restoration request to %s</string>
-    <string name="MessageRecord_session_restore_done">Secure session reset done</string>
 
     <!-- MmsMessageRecord -->
     <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message</string>
@@ -1853,5 +1852,7 @@
     <string name="activity_select_contacts_title">Select Contacts</string>
 
     <string name="dialog_seed_disclaimer">*Please note that it is not possible to use the same Session ID on multiple devices simultaneously</string>
+
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
 
 </resources>
