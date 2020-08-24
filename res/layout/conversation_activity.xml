@@ -44,10 +44,10 @@
 
                     <ImageView
                         android:id="@+id/muteIndicatorImageView"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_mute"
+                        android:src="@drawable/ic_outline_notifications_off_24"
                         android:layout_marginRight="6dp"
                         android:visibility="gone"
                         tools:visibility="visible"/>

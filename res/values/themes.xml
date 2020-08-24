@@ -429,7 +429,7 @@
         <item name="conversation_item_date_line_color">@color/core_grey_45</item>
         <item name="conversation_item_quote_text_color">@color/core_grey_05</item>
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_dark</item>
-        <item name="conversation_item_sticky_date_text_color">@color/core_grey_25</item>
+        <item name="conversation_item_sticky_date_text_color">@color/core_grey_45</item>
         <item name="conversation_item_image_outline_color">@color/transparent_white_30</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>

@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="#99FFFFFF"
+        android:textColor="?conversation_item_sticky_date_text_color"
         android:textSize="@dimen/small_font_size"
         tools:text="March 1, 2015" />
 
