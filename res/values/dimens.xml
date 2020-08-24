@@ -30,7 +30,7 @@
     <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
     <dimen name="fake_chat_view_height">234dp</dimen>
     <dimen name="setting_button_height">56dp</dimen>
-    <dimen name="dialog_corner_radius">8dp</dimen>
+    <dimen name="dialog_corner_radius">12dp</dimen>
     <dimen name="dialog_button_corner_radius">4dp</dimen>
     <dimen name="pn_option_corner_radius">8dp</dimen>
     <dimen name="path_status_view_size">8dp</dimen>

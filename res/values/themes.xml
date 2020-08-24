@@ -7,6 +7,9 @@
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="colorControlActivated">?colorAccent</item>
+        <item name="colorControlHighlight">?colorAccent</item>
         <item name="android:textColorPrimary">@color/text</item>
         <item name="android:textColorSecondary">?android:textColorPrimary</item>
         <item name="android:textColorTertiary">@color/unimportant</item>
@@ -24,8 +27,8 @@
         <item name="statusBarBackground">@color/accent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="titleTextColor">?android:textColorPrimary</item>
-        <item name="colorControlNormal">?android:textColorPrimary</item>
         <item name="appBarLayoutStyle">@style/Widget.Design.AppBarLayout</item>
+
 
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeCloseDrawable">@drawable/ic_baseline_clear_24</item>
@@ -106,7 +109,7 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
-        <item name="colorAccent">@color/signal_primary_dark</item>
+<!--        <item name="colorAccent">@color/signal_primary_dark</item>-->
         <item name="android:navigationBarColor">@color/compose_view_background</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
@@ -382,12 +385,12 @@
 <!--        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>-->
 <!--        <item name="actionModeBackground">@color/compose_view_background</item>-->
 <!--        <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>-->
-        <item name="android:textColor">@color/text_color_dark_theme</item>
-        <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorControlActivated">@color/accent</item>
-        <item name="colorControlNormal">@color/text</item>
-        <item name="colorControlHighlight">@color/accent</item>
+<!--        <item name="android:textColor">@color/text_color_dark_theme</item>-->
+<!--        <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>-->
+<!--        <item name="colorAccent">@color/accent</item>-->
+<!--        <item name="colorControlActivated">@color/accent</item>-->
+<!--        <item name="colorControlNormal">@color/text</item>-->
+<!--        <item name="colorControlHighlight">@color/accent</item>-->
 <!--        <item name="alertDialogTheme">@style/Session.AlertDialog</item>-->
 <!--        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.BottomSheetDialog</item>-->
         <item name="android:navigationBarColor">@color/compose_view_background</item>
@@ -544,12 +547,14 @@
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
     
-    <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
+    <style name="RationaleDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+<!--        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>-->
+        <item name="android:windowBackground">@drawable/default_dialog_background</item>
     </style>
 
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
-        <item name="android:background">@color/dialog_background</item>
+<!--        <item name="android:background">@color/dialog_background</item>-->
+        <item name="android:background">@drawable/default_dialog_background</item>
         <item name="android:windowNoTitle">true</item>
     </style>
 

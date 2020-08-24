@@ -5,7 +5,9 @@
 
     <solid android:color="?attr/dialog_background_color" />
 
-    <corners android:topLeftRadius="24dp" android:topRightRadius="24dp" />
+    <corners
+        android:topLeftRadius="@dimen/dialog_corner_radius"
+        android:topRightRadius="@dimen/dialog_corner_radius" />
 
-    <stroke android:width="@dimen/border_thickness" android:color="@color/dialog_border" />
+<!--    <stroke android:width="@dimen/border_thickness" android:color="@color/dialog_border" />-->
 </shape>

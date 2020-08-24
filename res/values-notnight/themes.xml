@@ -15,13 +15,14 @@
         <item name="android:navigationBarColor">@color/gray78</item>
 
         <item name="theme_type">light</item>
-        <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
-        <item name="colorPrimary">@color/action_bar_background</item>
-        <item name="colorPrimaryDark">@color/action_bar_background</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorControlActivated">@color/accent</item>
-        <item name="colorControlNormal">@color/text</item>
-        <item name="colorControlHighlight">@color/accent</item>
+<!--        <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>-->
+<!--        <item name="colorPrimary">@color/action_bar_background</item>-->
+
+<!--        <item name="colorPrimaryDark">@color/action_bar_background</item>-->
+<!--        <item name="colorAccent">@color/accent</item>-->
+<!--        <item name="colorControlActivated">@color/accent</item>-->
+<!--        <item name="colorControlNormal">@color/text</item>-->
+<!--        <item name="colorControlHighlight">@color/accent</item>-->
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.Light.BottomSheetDialog</item>
