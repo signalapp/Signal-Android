@@ -110,7 +110,7 @@
 
             <Button
                 android:id="@+id/addMembersClosedGroupButton"
-                style="@style/MediumProminentOutlineButton"
+                style="@style/Widget.Session.Button.Common.ProminentOutline"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/small_button_height"
                 android:layout_marginTop="@dimen/small_spacing"
@@ -131,7 +131,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/view_user"/>
 
     </LinearLayout>
 

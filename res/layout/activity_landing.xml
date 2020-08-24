@@ -32,7 +32,7 @@
         android:layout_weight="1" />
 
     <Button
-        style="@style/MediumProminentFilledButton"
+        style="@style/Widget.Session.Button.Common.ProminentFilled"
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
@@ -41,7 +41,7 @@
         android:text="@string/activity_landing_register_button_title" />
 
     <Button
-        style="@style/MediumProminentOutlineButton"
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
         android:id="@+id/restoreButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"

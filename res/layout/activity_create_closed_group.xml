@@ -49,7 +49,7 @@
             android:text="@string/activity_create_closed_group_empty_state_message" />
 
         <Button
-            style="@style/MediumProminentOutlineButton"
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
             android:id="@+id/btnCreateNewPrivateChat"
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"

@@ -10,6 +10,7 @@
 <color name="navigation_bar_background">#FCFCFC</color>
 <color name="separator">#B0B0B0</color>
 <color name="unimportant_button_background">@color/transparent</color>
+<color name="unimportant_dialog_button_background">@color/dialog_background</color>
 <color name="dialog_background">#FCFCFC</color>
 <color name="dialog_border">#212121</color>
 <color name="compose_view_background">#FCFCFC</color>
@@ -26,7 +27,6 @@
 <color name="action_bar_background">#fcfcfd</color>
 
 
-<color name="unimportant_dialog_button_background">#1B1B1B</color>
 <color name="app_icon_background">#333132</color>
 <color name="progress_bar_background">#0AFFFFFF</color>
 <color name="quote_not_found_background">#99FFFFFF</color>

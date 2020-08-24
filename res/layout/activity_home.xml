@@ -74,7 +74,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="172dp"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            tools:listitem="@layout/view_conversation"/>
 
         <View
             android:id="@+id/gradientView"
@@ -106,7 +107,7 @@
                 android:text="@string/activity_home_empty_state_message" />
 
             <Button
-                style="@style/MediumProminentOutlineButton"
+                style="@style/Widget.Session.Button.Common.ProminentOutline"
                 android:id="@+id/btnCreateNewPrivateChat"
                 android:layout_width="196dp"
                 android:layout_height="@dimen/medium_button_height"

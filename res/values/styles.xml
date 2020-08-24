@@ -73,57 +73,49 @@
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="MediumProminentFilledButton">
-        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+    <!--  TODO These button styles require proper background selectors for up/down visual state.  -->
+    <style name="Widget.Session.Button.Common" parent="">
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
     </style>
 
-    <style name="MediumProminentOutlineButton">
+    <style name="Widget.Session.Button.Common.ProminentFilled">
+        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+        <item name="android:textColor">?colorPrimary</item>
+    </style>
+
+    <style name="Widget.Session.Button.Common.ProminentOutline">
         <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="MediumUnimportantFilledButton">
+    <style name="Widget.Session.Button.Common.UnimportantFilled">
         <item name="android:background">@drawable/unimportant_filled_button_medium_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?colorPrimary</item>
     </style>
 
-    <style name="MediumUnimportantOutlineButton">
+    <style name="Widget.Session.Button.Common.UnimportantOutline">
         <item name="android:background">@drawable/unimportant_outline_button_medium_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?colorPrimary</item>
     </style>
 
-    <style name="UnimportantDialogButton">
+    <style name="Widget.Session.Button.Dialog" parent="">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Widget.Session.Button.Dialog.Unimportant">
         <item name="android:background">@drawable/unimportant_dialog_button_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textColor">@color/text</item>
     </style>
 
-    <style name="ProminentDialogButton">
+    <style name="Widget.Session.Button.Dialog.Prominent">
         <item name="android:background">@drawable/prominent_dialog_button_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textColor">@color/text</item>
     </style>
 
-    <style name="DestructiveDialogButton">
+    <style name="Widget.Session.Button.Dialog.Destructive">
         <item name="android:background">@drawable/destructive_dialog_button_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textColor">@color/text</item>
     </style>
 
     <style name="SessionIDTextView">

@@ -30,7 +30,6 @@
             android:textSize="@dimen/medium_font_size"
             android:textStyle="bold"
             android:layout_weight="1"
-            android:textColor="?android:textColorPrimary"
             tools:text="Spiderman" />
 
         <ImageView
@@ -38,8 +37,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/medium_spacing"
-            android:src="@drawable/ic_circle"
-            android:tint="?android:textColorPrimary"/>
+            android:src="@drawable/ic_circle"/>
 
     </LinearLayout>
 

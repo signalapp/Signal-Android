@@ -22,7 +22,7 @@
             android:text="@string/fragment_scan_qr_code_camera_access_explanation" />
 
         <Button
-            style="@style/MediumProminentOutlineButton"
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
             android:id="@+id/grantCameraAccessButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/medium_button_height"

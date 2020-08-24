@@ -49,7 +49,7 @@
         android:layout_weight="1"/>
 
     <Button
-        style="@style/MediumProminentFilledButton"
+        style="@style/Widget.Session.Button.Common.ProminentFilled"
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"

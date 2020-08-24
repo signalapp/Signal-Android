@@ -31,7 +31,7 @@
         android:textSize="@dimen/small_font_size" />
 
     <Button
-        style="@style/MediumProminentOutlineButton"
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
         android:id="@+id/okButton"
         android:layout_width="240dp"
         android:layout_height="@dimen/medium_button_height"

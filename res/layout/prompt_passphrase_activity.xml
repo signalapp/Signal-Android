@@ -69,7 +69,7 @@
             tools:visibility="visible"/>
 
         <Button
-            style="@style/MediumProminentOutlineButton"
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
             android:id="@+id/lock_screen_auth_container"
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"

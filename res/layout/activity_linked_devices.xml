@@ -25,7 +25,7 @@
             android:text="@string/activity_linked_devices_empty_state_message" />
 
         <Button
-            style="@style/MediumProminentOutlineButton"
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
             android:id="@+id/linkDeviceButton"
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"

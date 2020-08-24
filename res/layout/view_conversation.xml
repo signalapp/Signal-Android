@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/conversation_view_background"
-    android:orientation="horizontal"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <View
         android:id="@+id/accentView"
         android:layout_width="@dimen/accent_line_thickness"
         android:layout_height="match_parent"
         android:background="@color/accent" />
-    
+
     <org.thoughtcrime.securesms.loki.views.ProfilePictureView
         android:id="@+id/profilePictureView"
         android:layout_width="@dimen/medium_profile_picture_size"
@@ -21,97 +21,111 @@
         android:layout_marginStart="@dimen/medium_spacing"
         android:layout_marginBottom="@dimen/medium_spacing" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/medium_spacing"
-        android:layout_marginEnd="@dimen/medium_spacing"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_marginStart="@dimen/medium_spacing"
+            android:layout_marginEnd="@dimen/medium_spacing"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/btnGroupNameDisplay"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textAlignment="viewStart"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:textColor="@color/text"
-                android:text="I'm a very long display name. What are you going to do about it?" />
-
-            <TextView
-                android:id="@+id/timestampTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/medium_spacing"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textSize="@dimen/small_font_size"
-                android:textColor="@color/text"
-                android:alpha="0.4"
-                android:text="9:41 AM" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:id="@+id/muteIndicatorImageView"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_outline_notifications_off_24"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="6dp" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
                 <TextView
-                    android:id="@+id/snippetTextView"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btnGroupNameDisplay"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:textAlignment="viewStart"
                     android:textSize="@dimen/medium_font_size"
+                    android:textStyle="bold"
                     android:textColor="@color/text"
-                    android:text="Sorry, gotta go fight crime again" />
+                    android:text="I'm a very long display name. What are you going to do about it?" />
 
-                <org.thoughtcrime.securesms.components.TypingIndicatorView
-                    android:id="@+id/typingIndicatorView"
+                <TextView
+                    android:id="@+id/timestampTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:typingIndicator_tint="@color/text" />
+                    android:layout_marginStart="@dimen/medium_spacing"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/small_font_size"
+                    android:textColor="@color/text"
+                    android:alpha="0.4"
+                    android:text="9:41 AM" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <ImageView
-                android:id="@+id/statusIndicatorImageView"
-                android:layout_width="@dimen/conversation_view_status_indicator_size"
-                android:layout_height="@dimen/conversation_view_status_indicator_size"
-                android:layout_marginStart="@dimen/medium_spacing" />
+                <ImageView
+                    android:id="@+id/muteIndicatorImageView"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_outline_notifications_off_24"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="6dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/snippetTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/medium_font_size"
+                        android:textColor="@color/text"
+                        android:text="Sorry, gotta go fight crime again" />
+
+                    <org.thoughtcrime.securesms.components.TypingIndicatorView
+                        android:id="@+id/typingIndicatorView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:typingIndicator_tint="@color/text" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/statusIndicatorImageView"
+                    android:layout_width="@dimen/conversation_view_status_indicator_size"
+                    android:layout_height="@dimen/conversation_view_status_indicator_size"
+                    android:layout_marginStart="@dimen/medium_spacing" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/medium_spacing"
+            android:background="?android:dividerHorizontal" />
+
+    </FrameLayout>
 
 </LinearLayout>
