@@ -56,14 +56,14 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
         super.onStart()
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
-    
-    override fun onStop() {
-        super.onStop()
-        LoaderManager.getInstance(this).destroyLoader(0)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.contact_selection_list_fragment, container, false)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        LoaderManager.getInstance(this).destroyLoader(0)
     }
 
     fun setQueryFilter(filter: String?) {
@@ -101,7 +101,7 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
     private fun update(items: List<ContactSelectionListItem>) {        
         if (activity?.isDestroyed == true) {
             Log.e(ContactSelectionListFragment::class.java.name,
-                    "Received a loader callback after the fragment was detached from an activity.",
+                    "Received a loader callback after the fragment was detached from the activity.",
                     IllegalStateException())
             return
         }
