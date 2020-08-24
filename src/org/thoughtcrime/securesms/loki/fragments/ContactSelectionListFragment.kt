@@ -23,11 +23,11 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
         get() = listAdapter.selectedContacts.map { it.address.serialize() }
 
     private val multiSelect: Boolean by lazy {
-        activity!!.intent.getBooleanExtra(MULTI_SELECT, false)
+        requireActivity().intent.getBooleanExtra(MULTI_SELECT, false)
     }
 
     private val listAdapter by lazy {
-        val result = ContactSelectionListAdapter(activity!!, multiSelect)
+        val result = ContactSelectionListAdapter(requireActivity(), multiSelect)
         result.glide = GlideApp.with(this)
         result.contactClickListener = this
         result
@@ -48,7 +48,7 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
         super.onActivityCreated(savedInstanceState)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = listAdapter
-        swipeRefreshLayout.isEnabled = activity!!.intent.getBooleanExtra(REFRESHABLE, true)
+        swipeRefreshLayout.isEnabled = requireActivity().intent.getBooleanExtra(REFRESHABLE, true)
     }
 
     override fun onStart() {
@@ -79,8 +79,8 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<List<ContactSelectionListItem>> {
-        return ContactSelectionListLoader(activity!!,
-            activity!!.intent.getIntExtra(DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_ALL),
+        return ContactSelectionListLoader(requireActivity(),
+            requireActivity().intent.getIntExtra(DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_ALL),
             cursorFilter)
     }
 
@@ -93,6 +93,7 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
     }
 
     private fun update(items: List<ContactSelectionListItem>) {
+        if (activity?.isDestroyed == true) { return }
         listAdapter.items = items
         mainContentContainer.visibility = if (items.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
