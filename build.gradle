@@ -185,8 +185,8 @@ dependencies {
     implementation "com.opencsv:opencsv:4.6"
 }
 
-def canonicalVersionCode = 70
-def canonicalVersionName = "1.4.3"
+def canonicalVersionCode = 71
+def canonicalVersionName = "1.4.4"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
