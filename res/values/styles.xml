@@ -92,12 +92,12 @@
 
     <style name="Widget.Session.Button.Common.UnimportantFilled">
         <item name="android:background">@drawable/unimportant_filled_button_medium_background</item>
-        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
     <style name="Widget.Session.Button.Common.UnimportantOutline">
         <item name="android:background">@drawable/unimportant_outline_button_medium_background</item>
-        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
     <style name="Widget.Session.Button.Dialog" parent="">
