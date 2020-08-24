@@ -255,6 +255,10 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_LOKI_SESSION_RESTORE_SENT_BIT);
   }
 
+  public void markAsLokiSessionRestorationDone(long id) {
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_LOKI_SESSION_RESTORE_DONE_BIT);
+  }
+
   public void markAsLegacyVersion(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
   }

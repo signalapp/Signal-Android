@@ -84,6 +84,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else if (isLokiSessionRestoreSent()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
+    } else if (isLokiSessionRestoreDone()) {
+      return emphasisAdded(context.getString(R.string.MessageRecord_session_restore_done));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_secure_session_reset));
     } else if (MmsSmsColumns.Types.isLegacyType(type)) {
