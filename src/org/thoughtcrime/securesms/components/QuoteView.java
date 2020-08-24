@@ -210,7 +210,8 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(R.color.accent);
-    mainView.setBackgroundColor(getResources().getColor(outgoing ? R.color.received_message_background : R.color.sent_message_background));
+    mainView.setBackgroundColor(ThemeUtil.getThemedColor(getContext(),
+            outgoing ? R.attr.message_received_background_color : R.attr.message_sent_background_color));
   }
 
   private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {

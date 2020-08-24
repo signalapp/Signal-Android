@@ -43,6 +43,9 @@
         <item name="home_gradient_start">#00000000</item>
         <item name="home_gradient_end">#FF000000</item>
 
+        <item name="message_received_background_color">#222325</item>
+        <item name="message_sent_background_color">#3F4146</item>
+
         <item name="menu_accept_icon">@drawable/ic_baseline_done_24</item>
         <item name="menu_trash_icon">@drawable/ic_baseline_delete_24</item>
         <item name="menu_block_icon">@drawable/ic_baseline_block_24</item>
@@ -279,7 +282,7 @@
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
-        <item name="conversation_item_bubble_background">@color/sent_message_background</item>
+        <item name="conversation_item_bubble_background">?message_sent_background_color</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
         <item name="conversation_item_sent_text_secondary_color">@color/core_grey_60</item>
         <item name="conversation_item_sent_icon_color">@color/core_grey_60</item>
@@ -414,7 +417,7 @@
 
         <item name="conversation_group_member_name">#99ffffff</item>
 
-        <item name="conversation_item_bubble_background">@color/sent_message_background</item>
+        <item name="conversation_item_bubble_background">?message_sent_background_color</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_secondary_color">@color/core_grey_25</item>
         <item name="conversation_item_sent_icon_color">@color/core_grey_25</item>

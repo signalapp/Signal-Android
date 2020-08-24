@@ -157,6 +157,9 @@
     <attr name="home_gradient_start" format="color|reference" />
     <attr name="home_gradient_end" format="color|reference" />
 
+    <attr name="message_received_background_color" format="color|reference" />
+    <attr name="message_sent_background_color" format="color|reference" />
+
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>
     </declare-styleable>
