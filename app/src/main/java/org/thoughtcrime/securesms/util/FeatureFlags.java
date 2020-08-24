@@ -56,7 +56,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2                  = "android.groupsv2.3";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.3";
   private static final String GROUPS_V2_CAPACITY         = "global.groupsv2.maxGroupSize";
-  private static final String CDS                        = "android.cds.3";
+  private static final String CDS                        = "android.cds.4";
   private static final String INTERNAL_USER              = "android.internalUser";
   private static final String MENTIONS                   = "android.mentions";
   private static final String VERIFY_V2                  = "android.verifyV2";
@@ -98,7 +98,8 @@ public final class FeatureFlags {
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       ATTACHMENTS_V3,
       GROUPS_V2_CREATE,
-      VERIFY_V2
+      VERIFY_V2,
+      CDS
   );
 
   /**
