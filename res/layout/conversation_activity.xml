@@ -159,14 +159,14 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/separator" />
+                        android:background="?android:dividerHorizontal" />
 
                     <include layout="@layout/view_mention_candidate_selection" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/separator" />
+                        android:background="?android:dividerHorizontal" />
 
                 </LinearLayout>
 

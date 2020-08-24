@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/conversation_view_background"
@@ -29,22 +29,23 @@
             android:ellipsize="end"
             android:textSize="@dimen/medium_font_size"
             android:textStyle="bold"
-            android:textColor="@color/text"
-            android:text="Spiderman"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="?android:textColorPrimary"
+            tools:text="Spiderman" />
 
         <ImageView
             android:id="@+id/actionIndicatorImageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/medium_spacing"
-            android:src="@drawable/ic_circle" />
+            android:src="@drawable/ic_circle"
+            android:tint="?android:textColorPrimary"/>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/separator" />
+        android:background="?android:dividerHorizontal" />
 
 </LinearLayout>

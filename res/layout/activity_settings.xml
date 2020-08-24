@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginTop="@dimen/large_spacing"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/themeSwitchButton"
@@ -125,7 +125,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/privacyButton"
@@ -141,7 +141,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/notificationsButton"
@@ -157,7 +157,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/chatsButton"
@@ -174,7 +174,7 @@
                 android:id="@+id/linkedDevicesButtonTopSeparator"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/linkedDevicesButton"
@@ -191,7 +191,7 @@
                 android:id="@+id/seedButtonTopSeparator"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/seedButton"
@@ -207,7 +207,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/clearAllDataButton"
@@ -224,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="@dimen/medium_spacing"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/versionTextView"

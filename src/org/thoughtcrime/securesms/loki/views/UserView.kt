@@ -66,7 +66,7 @@ class UserView : LinearLayout {
             profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
-        actionIndicatorImageView.setImageResource(R.drawable.ic_edit_white_24dp)
+        actionIndicatorImageView.setImageResource(R.drawable.ic_baseline_edit_24)
         profilePictureView.glide = glide
         profilePictureView.update()
         nameTextView.text = user.name ?: "Unknown Contact"
