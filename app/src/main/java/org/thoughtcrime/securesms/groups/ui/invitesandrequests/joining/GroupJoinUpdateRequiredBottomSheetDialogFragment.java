@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,10 +16,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public final class GroupJoinUpdateRequiredBottomSheetDialogFragment extends BottomSheetDialogFragment {
+
+  private TextView groupJoinTitle;
+  private TextView groupJoinExplain;
+  private Button   groupJoinButton;
 
   public static void show(@NonNull FragmentManager manager) {
     new GroupJoinUpdateRequiredBottomSheetDialogFragment().show(manager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
@@ -34,18 +41,37 @@ public final class GroupJoinUpdateRequiredBottomSheetDialogFragment extends Bott
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.group_join_update_needed_bottom_sheet, container, false);
+    View view = inflater.inflate(R.layout.group_join_update_needed_bottom_sheet, container, false);
+
+    groupJoinTitle   = view.findViewById(R.id.group_join_update_title);
+    groupJoinButton  = view.findViewById(R.id.group_join_update_button);
+    groupJoinExplain = view.findViewById(R.id.group_join_update_explain);
+
+    return view;
   }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    view.findViewById(R.id.group_join_update_button)
-        .setOnClickListener(v -> {
+    switch (FeatureFlags.clientLocalGroupJoinStatus()) {
+      case COMING_SOON:
+        groupJoinTitle.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon);
+        groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon);
+        groupJoinButton.setText(android.R.string.ok);
+        groupJoinButton.setOnClickListener(v -> dismiss());
+        break;
+      case UPDATE_TO_JOIN:
+      case LOCAL_CAN_JOIN:
+        groupJoinTitle.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links);
+        groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message);
+        groupJoinButton.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal);
+        groupJoinButton.setOnClickListener(v -> {
           PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
           dismiss();
         });
+        break;
+    }
   }
 
   @Override

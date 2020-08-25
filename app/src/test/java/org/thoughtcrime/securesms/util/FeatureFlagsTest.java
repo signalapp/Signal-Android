@@ -65,6 +65,20 @@ public class FeatureFlagsTest extends BaseUnitTest {
   }
 
   @Test
+  public void updateInternal_newValue_hotSwap_integer() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 1),
+                                                      mapOf(),
+                                                      mapOf(),
+                                                      setOf(A),
+                                                      setOf(A),
+                                                      setOf());
+
+    assertEquals(mapOf(A, 1), result.getMemory());
+    assertEquals(mapOf(A, 1), result.getDisk());
+    assertEquals(Change.CHANGED, result.getMemoryChanges().get(A));
+  }
+
+  @Test
   public void updateInternal_newValue_sticky() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
                                                       mapOf(),
@@ -107,6 +121,20 @@ public class FeatureFlagsTest extends BaseUnitTest {
   }
 
   @Test
+  public void updateInternal_replaceValue_integer() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 2),
+                                                      mapOf(A, 1),
+                                                      mapOf(A, 1),
+                                                      setOf(A),
+                                                      setOf(),
+                                                      setOf());
+
+    assertEquals(mapOf(A, 1), result.getMemory());
+    assertEquals(mapOf(A, 2), result.getDisk());
+    assertTrue(result.getMemoryChanges().isEmpty());
+  }
+
+  @Test
   public void updateInternal_replaceValue_hotSwap() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
                                                       mapOf(A, false),
@@ -118,6 +146,20 @@ public class FeatureFlagsTest extends BaseUnitTest {
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
     assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
+  }
+
+  @Test
+  public void updateInternal_replaceValue_hotSwa_integer() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, 2),
+                                                      mapOf(A, 1),
+                                                      mapOf(A, 1),
+                                                      setOf(A),
+                                                      setOf(A),
+                                                      setOf());
+
+    assertEquals(mapOf(A, 2), result.getMemory());
+    assertEquals(mapOf(A, 2), result.getDisk());
+    assertEquals(Change.CHANGED, result.getMemoryChanges().get(A));
   }
 
   @Test

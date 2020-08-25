@@ -184,8 +184,12 @@ public class CommunicationActions {
 
       handleGroupLinkUrl(activity, groupInviteLinkUrl);
       return true;
-    } catch (GroupInviteLinkUrl.InvalidGroupLinkException | GroupInviteLinkUrl.UnknownGroupLinkVersionException e) {
+    } catch (GroupInviteLinkUrl.InvalidGroupLinkException e) {
       Log.w(TAG, "Could not parse group URL", e);
+      Toast.makeText(activity, R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid, Toast.LENGTH_SHORT).show();
+      return true;
+    } catch (GroupInviteLinkUrl.UnknownGroupLinkVersionException e) {
+      Log.w(TAG, "Group link is for an advanced version", e);
       GroupJoinUpdateRequiredBottomSheetDialogFragment.show(activity.getSupportFragmentManager());
       return true;
     }

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -91,15 +92,27 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel.getGroupDetails().observe(getViewLifecycleOwner(), details -> {
       groupName.setText(details.getGroupName());
       groupDetails.setText(requireContext().getResources().getQuantityString(R.plurals.GroupJoinBottomSheetDialogFragment_group_dot_d_members, details.getGroupMembershipCount(), details.getGroupMembershipCount()));
-      groupJoinButton.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal);
-      groupJoinButton.setOnClickListener(v -> {
-        PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
-        dismiss();
-      });
-      groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message);
+
+      switch (FeatureFlags.clientLocalGroupJoinStatus()) {
+        case COMING_SOON:
+          groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon);
+          groupCancelButton.setText(android.R.string.ok);
+          groupJoinButton.setVisibility(View.GONE);
+          break;
+        case UPDATE_TO_JOIN:
+        case LOCAL_CAN_JOIN:
+          groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message);
+          groupJoinButton.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal);
+          groupJoinButton.setOnClickListener(v -> {
+            PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+            dismiss();
+          });
+          groupJoinButton.setVisibility(View.VISIBLE);
+          break;
+      }
+
       avatar.setImageBytesForGroup(details.getAvatarBytes(), new FallbackPhotoProvider(), MaterialColor.STEEL);
 
-      groupJoinButton.setVisibility(View.VISIBLE);
       groupCancelButton.setVisibility(View.VISIBLE);
     });
 

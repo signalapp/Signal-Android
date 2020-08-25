@@ -10,6 +10,7 @@ import com.google.android.collect.Sets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
@@ -55,6 +56,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2_OLD_2            = "android.groupsv2.2";
   private static final String GROUPS_V2                  = "android.groupsv2.3";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.3";
+  private static final String GROUPS_V2_JOIN_VERSION     = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_CAPACITY         = "global.groupsv2.maxGroupSize";
   private static final String CDS                        = "android.cds.4";
   private static final String INTERNAL_USER              = "android.internalUser";
@@ -98,6 +100,7 @@ public final class FeatureFlags {
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       ATTACHMENTS_V3,
       GROUPS_V2_CREATE,
+      GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
       CDS
   );
@@ -220,6 +223,30 @@ public final class FeatureFlags {
    */
   public static int gv2GroupCapacity() {
     return getInteger(GROUPS_V2_CAPACITY, 151);
+  }
+
+  /**
+   * Ability of local client to join a GV2 group.
+   * <p>
+   * You must still check GV2 capabilities to respect linked devices.
+   */
+  public static GroupJoinStatus clientLocalGroupJoinStatus() {
+    int groupJoinVersion = getInteger(GROUPS_V2_JOIN_VERSION, 0);
+
+    if      (groupJoinVersion == 0)                                 return GroupJoinStatus.COMING_SOON;
+    else if (groupJoinVersion > BuildConfig.CANONICAL_VERSION_CODE) return GroupJoinStatus.UPDATE_TO_JOIN;
+    else                                                            return GroupJoinStatus.LOCAL_CAN_JOIN;
+  }
+
+  public enum GroupJoinStatus {
+    /** No version of the client that can join V2 groups by link is in production. */
+    COMING_SOON,
+
+    /** A newer version of the client is in production that will allow joining via GV2 group links. */
+    UPDATE_TO_JOIN,
+
+    /** This version of the client allows joining via GV2 group links. */
+    LOCAL_CAN_JOIN
   }
 
   /** Internal testing extensions. */
