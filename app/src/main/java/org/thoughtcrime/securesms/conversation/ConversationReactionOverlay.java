@@ -336,7 +336,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         selected = getSelectedIndexViaDownEvent(motionEvent);
 
         if (selected == -1) {
-          if (motionEvent.getRawY() < toolbar.getHeight() + statusBarHeight) {
+          if (motionEvent.getY() < toolbar.getHeight() + statusBarHeight) {
             isToolbarTouch = true;
             return false;
           }
