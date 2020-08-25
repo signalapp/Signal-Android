@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.ClearProfileAvatarActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.ArrayList;
@@ -68,7 +71,7 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
     super.onCreate(savedInstanceState);
 
     if (getOptionsCount() == 1) {
-      launchOptionAndDismiss(getOptionsFromArguments().get(0));
+      askForPermissionIfNeededAndLaunch(getOptionsFromArguments().get(0));
     }
   }
 
@@ -80,7 +83,12 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     RecyclerView recyclerView = view.findViewById(R.id.avatar_selection_bottom_sheet_dialog_fragment_recycler);
-    recyclerView.setAdapter(new SelectionOptionAdapter(getOptionsFromArguments(), this::launchOptionAndDismiss));
+    recyclerView.setAdapter(new SelectionOptionAdapter(getOptionsFromArguments(), this::askForPermissionIfNeededAndLaunch));
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
   @SuppressWarnings("ConstantConditions")
@@ -93,6 +101,20 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
     String[] optionCodes = requireArguments().getStringArray(ARG_OPTIONS);
 
     return Stream.of(optionCodes).map(SelectionOption::fromCode).toList();
+  }
+
+  private void askForPermissionIfNeededAndLaunch(@NonNull SelectionOption option) {
+    if (option == SelectionOption.CAPTURE) {
+      Permissions.with(this)
+                 .request(Manifest.permission.CAMERA)
+                 .ifNecessary()
+                 .onAllGranted(() -> launchOptionAndDismiss(option))
+                 .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission, Toast.LENGTH_SHORT)
+                                         .show())
+                 .execute();
+    } else {
+      launchOptionAndDismiss(option);
+    }
   }
 
   private void launchOptionAndDismiss(@NonNull SelectionOption option) {

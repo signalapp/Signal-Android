@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.profiles.edit;
 
-import android.Manifest;
 import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +37,6 @@ import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
@@ -153,11 +151,6 @@ public class EditProfileFragment extends LoggingFragment {
   }
 
   @Override
-  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-  }
-
-  @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
@@ -232,11 +225,7 @@ public class EditProfileFragment extends LoggingFragment {
       usernameLabel.setVisibility(View.VISIBLE);
     }
 
-    this.avatar.setOnClickListener(v -> Permissions.with(this)
-               .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .ifNecessary()
-               .onAnyResult(this::startAvatarSelection)
-               .execute());
+    this.avatar.setOnClickListener(v -> startAvatarSelection());
 
     this.givenName .addTextChangedListener(new AfterTextChanged(s -> {
                                                                        trimInPlace(s, isEditingGroup);

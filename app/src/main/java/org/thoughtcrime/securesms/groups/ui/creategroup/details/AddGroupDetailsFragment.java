@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.groups.ui.creategroup.details;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +36,6 @@ import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFrag
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -253,12 +251,8 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   private void showAvatarSelectionBottomSheet() {
-    Permissions.with(this)
-               .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .ifNecessary()
-               .onAnyResult(() -> AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_AVATAR, true)
-                                                                          .show(getChildFragmentManager(), "BOTTOM"))
-               .execute();
+    AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_AVATAR, true)
+                                            .show(getChildFragmentManager(), "BOTTOM");
   }
 
   public interface Callback {
