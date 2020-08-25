@@ -59,9 +59,6 @@
         <item name="conversation_input_background">@drawable/compose_background_light</item>
         <item name="conversation_input_inline_attach_icon_tint">@color/core_grey_60</item>
         <item name="conversation_transport_popup_background">@color/white</item>
-        <item name="conversation_emoji_toggle">@drawable/ic_emoji_outline_keyboard</item>
-        <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_light</item>
-        <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_grey600_24dp</item>
         <item name="conversation_attach_camera">@drawable/ic_photo_camera_light</item>
         <item name="conversation_attach_image">@drawable/ic_image_light</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_light</item>

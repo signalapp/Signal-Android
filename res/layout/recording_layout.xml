@@ -34,7 +34,7 @@
         android:layout_marginStart="4dp"
         android:ellipsize="none"
         android:singleLine="true"
-        android:textColor="#99FFFFFF"
+        android:textColor="?android:textColorTertiary"
         android:visibility="gone"
         android:textSize="@dimen/small_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +85,7 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="1dp"
                 android:src="@drawable/ic_keyboard_arrow_left_grey600_24dp"
-                android:tint="#99FFFFFF"
+                android:tint="?android:textColorTertiary"
                 android:scaleType="centerInside" />
 
             <TextView
@@ -95,7 +95,7 @@
                 android:textSize="@dimen/small_font_size"
                 android:ellipsize="none"
                 android:text="@string/conversation_input_panel__slide_to_cancel"
-                android:textColor="#99FFFFFF" />
+                android:textColor="?android:textColorTertiary" />
 
         </LinearLayout>
 

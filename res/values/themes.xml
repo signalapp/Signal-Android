@@ -58,6 +58,10 @@
         <item name="menu_selectall_icon">@drawable/ic_baseline_select_all_24</item>
         <item name="menu_split_icon">@drawable/ic_baseline_call_split_24</item>
         <item name="menu_popup_expand">@drawable/ic_baseline_launch_24</item>
+
+        <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_24</item>
+        <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_24</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_baseline_keyboard_24</item>
     </style>
 
     <style name="Session.DarkTheme" parent="Session.BaseDarkTheme">
@@ -71,6 +75,21 @@
 
     <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Session.DarkTheme">
         <item name="actionBarStyle">@style/Session.DarkSubtitleActionBar</item>
+    </style>
+
+    <!-- TODO Refactor this -->
+    <style name="Theme.Session.ForceDark" parent="Session.BaseDarkTheme">
+        <!-- TODO Use a color resource -->
+        <item name="colorPrimary">@color/action_bar_background</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="android:colorBackground">#121212</item>
+        <item name="android:windowBackground">?android:colorBackground</item>
+        <item name="android:navigationBarColor">?android:colorBackground</item>
+    </style>
+    <style name="Theme.Session.ForceDark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <!-- Session -->
 
@@ -462,9 +481,9 @@
         <item name="conversation_transport_sms_indicator">@drawable/ic_arrow_up_circle_24</item>
         <item name="conversation_transport_push_indicator">@drawable/ic_arrow_up_circle_24</item>
         <item name="conversation_transport_popup_background">@color/black</item>
-        <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_dark</item>
-        <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_dark</item>
-        <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_white_24dp</item>
+<!--        <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_dark</item>-->
+<!--        <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_dark</item>-->
+<!--        <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_white_24dp</item>-->
         <item name="conversation_attach_camera">@drawable/ic_photo_camera_dark</item>
         <item name="conversation_attach_image">@drawable/ic_image_dark</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_dark</item>

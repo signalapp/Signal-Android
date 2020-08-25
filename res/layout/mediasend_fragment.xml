@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/core_black">
+    android:background="@color/core_black"
+    tools:context="org.thoughtcrime.securesms.mediasend.MediaSendActivity">
 
     <org.thoughtcrime.securesms.components.ControllableViewPager
         android:id="@+id/mediasend_pager"
@@ -56,6 +57,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
+                tools:listitem="@layout/mediarail_media_item"
                 tools:layout_height="64dp"/>
 
             <LinearLayout
