@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/core_black"
+    android:theme="@style/Theme.Session.ForceDark"
     tools:context="org.thoughtcrime.securesms.mediasend.MediaSendActivity">
 
     <org.thoughtcrime.securesms.components.ControllableViewPager
@@ -121,9 +122,9 @@
 
                     <org.thoughtcrime.securesms.components.SendButton
                         android:id="@+id/mediasend_send_button"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitXY"
                         android:contentDescription="@string/conversation_activity__send"
                         android:src="?conversation_transport_sms_indicator"
                         android:background="@drawable/circle_touch_highlight_background" />

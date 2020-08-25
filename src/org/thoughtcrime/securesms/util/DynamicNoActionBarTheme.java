@@ -7,6 +7,6 @@ import network.loki.messenger.R;
 public class DynamicNoActionBarTheme extends DynamicTheme {
   @Override
   protected int getSelectedTheme(Activity activity) {
-    return R.style.TextSecure_DarkNoActionBar;
+    return R.style.Theme_TextSecure_DayNight_NoActionBar;
   }
 }

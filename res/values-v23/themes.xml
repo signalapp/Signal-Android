@@ -5,7 +5,7 @@
         <item name="android:statusBarColor">@color/core_grey_02</item>
     </style>
 
-    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
+    <style name="TextSecure.DarkRegistrationTheme" parent="Theme.TextSecure.DayNight.NoActionBar">
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/core_black</item>
     </style>

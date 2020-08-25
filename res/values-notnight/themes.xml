@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Session.DarkTheme" parent="Session.BaseDarkTheme">
+    <!--  TODO: AC These values should not be hardcoded here or use any "notnight" color resources.
+            The light theme should be defined in the main "themes.xml" file. -->
+    <style name="Theme.Session.DayNight">
         <item name="android:navigationBarColor">@color/gray65</item>
         <item name="android:statusBarColor">@color/accent</item>
         <item name="android:textColorHint">@color/gray50</item>
@@ -13,7 +15,7 @@
         <item name="message_sent_background_color">?colorAccent</item>
     </style>
 
-    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
+    <style name="Theme.TextSecure.DayNight">
 
         <item name="android:navigationBarColor">@color/gray78</item>
 

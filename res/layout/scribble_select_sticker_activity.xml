@@ -9,7 +9,7 @@
             android:id="@+id/camera_sticker_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabBackground="@color/core_grey_90"
+            app:tabBackground="?android:colorPrimary"
             app:tabMode="fixed"/>
 
     <androidx.viewpager.widget.ViewPager

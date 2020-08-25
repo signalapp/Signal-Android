@@ -32,7 +32,6 @@ import java.util.Date;
 
 import network.loki.messenger.R;
 
-
 public abstract class BaseActionBarActivity extends AppCompatActivity {
   private static final String TAG = BaseActionBarActivity.class.getSimpleName();
   private BroadcastReceiver broadcastReceiver;

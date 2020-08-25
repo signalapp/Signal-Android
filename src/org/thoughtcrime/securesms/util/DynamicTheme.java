@@ -28,7 +28,8 @@ public class DynamicTheme {
   }
 
   protected int getSelectedTheme(Activity activity) {
-    return R.style.TextSecure_DarkTheme;
+    // For all legacy (Signal) activities we lock on to the Signal dedicated theme.
+    return R.style.Theme_TextSecure_DayNight;
   }
 
   private static final class OverridePendingTransition {

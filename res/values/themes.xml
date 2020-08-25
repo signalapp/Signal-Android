@@ -3,7 +3,7 @@
 <resources>
 
     <!-- Session -->
-    <style name="Session.BaseDarkTheme" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.Session" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="colorAccent">@color/accent</item>
@@ -64,33 +64,37 @@
         <item name="conversation_keyboard_toggle">@drawable/ic_baseline_keyboard_24</item>
     </style>
 
-    <style name="Session.DarkTheme" parent="Session.BaseDarkTheme">
+    <!-- This should be the default theme for the application. -->
+    <style name="Theme.Session.DayNight">
         <!-- leave empty to allow overriding -->
     </style>
-
-    <style name="Session.DarkTheme.NoActionBar" parent="@style/Session.DarkTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="Theme.Session.DayNight.NoActionBar">
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Session.DarkTheme">
-        <item name="actionBarStyle">@style/Session.DarkSubtitleActionBar</item>
-    </style>
+<!--    <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Theme.Session.DayNight">-->
+<!--        <item name="actionBarStyle">@style/Session.DarkSubtitleActionBar</item>-->
+<!--    </style>-->
 
-    <!-- TODO Refactor this -->
-    <style name="Theme.Session.ForceDark" parent="Session.BaseDarkTheme">
+    <!-- TODO Refactor this use color resources -->
+    <style name="Theme.Session.ForceDark" parent="Theme.Session.DayNight">
         <!-- TODO Use a color resource -->
-        <item name="colorPrimary">@color/action_bar_background</item>
+        <item name="colorPrimary">#171717</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#DFFFFFFF</item>
+        <item name="android:textColorTertiary">#90FFFFFF</item>
         <item name="colorControlNormal">?android:textColorPrimary</item>
         <item name="android:colorBackground">#121212</item>
         <item name="android:windowBackground">?android:colorBackground</item>
         <item name="android:navigationBarColor">?android:colorBackground</item>
+        <item name="android:statusBarColor">?android:colorBackground</item>
     </style>
     <style name="Theme.Session.ForceDark.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <!-- Session -->
 
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.LightTheme">
@@ -114,36 +118,6 @@
         <item name="media_overview_toolbar_foreground">@color/gray70</item>
         <item name="media_overview_header_foreground">@color/text</item>
         <item name="media_overview_document_primary">@color/core_grey_90</item>
-        <item name="media_overview_document_secondary">#99FFFFFF</item>
-    </style>
-
-    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
-<!--        <item name="android:navigationBarColor">@color/compose_view_background</item>-->
-        <item name="android:colorControlActivated">@color/signal_primary_dark</item>
-    </style>
-
-    <style name="TextSecure.BaseDarkNoActionBar" parent="@style/TextSecure.BaseDarkTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionModeOverlay">true</item>
-
-        <item name="theme_type">dark</item>
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="colorPrimary">@color/action_bar_background</item>
-        <item name="colorPrimaryDark">@color/action_bar_background</item>
-<!--        <item name="colorAccent">@color/signal_primary_dark</item>-->
-        <item name="android:navigationBarColor">@color/compose_view_background</item>
-
-        <item name="recipient_preference_blocked">#d00000</item>
-        <item name="contact_selection_label_text">#66eeeeee</item>
-        <item name="contact_selection_push_user">#ffeeeeee</item>
-        <item name="contact_selection_lay_user">#afeeeeee</item>
-        <item name="contact_selection_header_text">#66eeeeee</item>
-
-        <item name="media_overview_toolbar_background">@color/transparent</item>
-        <item name="media_overview_toolbar_foreground">@color/white</item>
-        <item name="media_overview_header_foreground">@color/text</item>
-        <item name="media_overview_document_primary">@color/core_grey_05</item>
         <item name="media_overview_document_secondary">#99FFFFFF</item>
     </style>
 
@@ -394,11 +368,26 @@
         <item name="android:statusBarColor">@color/action_bar_background</item>
     </style>
 
-    <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
-        <!-- leave empty to allow overriding -->
-    </style>
+    <!--  Original Signal dark theme  -->
+    <style name="Theme.TextSecure" parent="@style/Theme.Session.DayNight">
 
-    <style name="TextSecure.BaseDarkTheme" parent="@style/Session.DarkTheme">
+        <item name="windowActionModeOverlay">true</item>
+
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="colorPrimary">@color/action_bar_background</item>
+        <item name="colorPrimaryDark">@color/action_bar_background</item>
+
+        <item name="recipient_preference_blocked">#d00000</item>
+        <item name="contact_selection_label_text">#66eeeeee</item>
+        <item name="contact_selection_push_user">#ffeeeeee</item>
+        <item name="contact_selection_lay_user">#afeeeeee</item>
+        <item name="contact_selection_header_text">#66eeeeee</item>
+
+        <item name="media_overview_toolbar_background">@color/transparent</item>
+        <item name="media_overview_toolbar_foreground">@color/white</item>
+        <item name="media_overview_header_foreground">@color/text</item>
+        <item name="media_overview_document_primary">@color/core_grey_05</item>
+        <item name="media_overview_document_secondary">#99FFFFFF</item>
 
         <item name="theme_type">dark</item>
         <item name="actionBarTheme">@style/Session.DarkActionBar</item>
@@ -568,6 +557,44 @@
         <item name="shared_contact_details_titlebar">@color/grey_900</item>
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
+
+
+    <style name="Theme.TextSecure.DayNight">
+        <!-- leave empty to allow overriding -->
+    </style>
+
+    <!--    <style name="Theme.TextSecure.DarkNoActionBar" parent="@style/Theme.TextSecure.BaseDarkNoActionBar">-->
+    <!--&lt;!&ndash;        <item name="android:navigationBarColor">@color/compose_view_background</item>&ndash;&gt;-->
+    <!--        <item name="android:colorControlActivated">@color/signal_primary_dark</item>-->
+    <!--    </style>-->
+
+    <style name="Theme.TextSecure.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
+        <!-- TODO Should be moved elsewhere -->
+        <item name="android:colorControlActivated">@color/signal_primary_dark</item>
+
+        <!--        <item name="theme_type">dark</item>-->
+        <!--        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>-->
+        <!--        <item name="colorPrimary">@color/action_bar_background</item>-->
+        <!--        <item name="colorPrimaryDark">@color/action_bar_background</item>-->
+        <!--&lt;!&ndash;        <item name="colorAccent">@color/signal_primary_dark</item>&ndash;&gt;-->
+        <!--        <item name="android:navigationBarColor">@color/compose_view_background</item>-->
+
+        <!--        <item name="recipient_preference_blocked">#d00000</item>-->
+        <!--        <item name="contact_selection_label_text">#66eeeeee</item>-->
+        <!--        <item name="contact_selection_push_user">#ffeeeeee</item>-->
+        <!--        <item name="contact_selection_lay_user">#afeeeeee</item>-->
+        <!--        <item name="contact_selection_header_text">#66eeeeee</item>-->
+
+        <!--        <item name="media_overview_toolbar_background">@color/transparent</item>-->
+        <!--        <item name="media_overview_toolbar_foreground">@color/white</item>-->
+        <!--        <item name="media_overview_header_foreground">@color/text</item>-->
+        <!--        <item name="media_overview_document_primary">@color/core_grey_05</item>-->
+        <!--        <item name="media_overview_document_secondary">#99FFFFFF</item>-->
+    </style>
     
     <style name="RationaleDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
 <!--        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>-->
@@ -583,7 +610,7 @@
     <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
     </style>
 
-    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
+    <style name="TextSecure.DarkRegistrationTheme" parent="Theme.TextSecure.DayNight.NoActionBar">
     </style>
 
 </resources>
