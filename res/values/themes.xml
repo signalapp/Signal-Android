@@ -18,15 +18,19 @@
         <item name="android:windowBackground">@drawable/default_session_background</item>
         <item name="android:colorBackground">@color/default_background_start</item>
         <item name="android:navigationBarColor">@color/compose_view_background</item>
-        <!-- TODO Separate action bar theme/style -->
-<!--        <item name="actionBarStyle">@style/Session.DarkActionBar</item>-->
-        <item name="actionBarTheme">@style/Session.DarkActionBar</item>
+<!--        <item name="actionBarStyle">@style/Widget.Session.ActionBar</item>-->
+<!--        <item name="actionBarTheme">@style/Widget.Session.ActionBar</item>-->
+
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="actionBarWidgetTheme">@null</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
+        <item name="actionBarStyle">@style/Widget.Session.ActionBar</item>
+
         <item name="alertDialogTheme">@style/Session.AlertDialog</item>
         <item name="bottomSheetDialogTheme">@style/SessionBottomSheetDialogTheme</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="statusBarBackground">@color/accent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="titleTextColor">?android:textColorPrimary</item>
         <item name="appBarLayoutStyle">@style/Widget.Design.AppBarLayout</item>
 
 
@@ -373,7 +377,7 @@
 
         <item name="windowActionModeOverlay">true</item>
 
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+<!--        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>-->
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
 
@@ -390,7 +394,7 @@
         <item name="media_overview_document_secondary">#99FFFFFF</item>
 
         <item name="theme_type">dark</item>
-        <item name="actionBarTheme">@style/Session.DarkActionBar</item>
+<!--        <item name="actionBarTheme">@style/Widget.Session.ActionBar</item>-->
         <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
 <!--        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>-->

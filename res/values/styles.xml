@@ -2,37 +2,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Session -->
-    <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@color/action_bar_background</item>
-        <item name="android:textColor">@color/text</item>
-        <item name="titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
-        <item name="elevation">0dp</item>
+    <style name="Widget.Session.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:elevation">1dp</item>
+        <item name="elevation">1dp</item>
+        <item name="titleTextStyle">@style/TextAppearance.Session.DarkActionBar.TitleTextStyle</item>
         <item name="minHeight">?attr/actionBarSize</item>
-        <item name="popupTheme">@style/Session.DarkActionBar</item>
+        <item name="popupTheme">@style/Widget.Session.ActionBar</item>
     </style>
 
-    <style name="Session.DarkSubtitleActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
-        <item name="subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
+    <style name="Widget.Session.ActionBar.Flat">
+        <item name="android:elevation">0dp</item>
         <item name="elevation">0dp</item>
     </style>
 
-    <style name="Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-<!--        <item name="android:textColor">@color/text</item>-->
+    <style name="TextAppearance.Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:textSize">@dimen/very_large_font_size</item>
-    </style>
-
-    <style name="Session.DarkSubtitleActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-<!--        <item name="android:textColor">@color/text</item>-->
-        <item name="android:textSize">@dimen/large_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="Session.DarkSubtitleActionBar.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-<!--        <item name="android:textColor">@color/text</item>-->
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="TextSecure.BaseDarkTheme.SearchView" parent="@style/Widget.AppCompat.SearchView">
@@ -227,7 +212,7 @@
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/core_grey_90</item>
         <item name="android:popupTheme" tools:ignore="NewApi">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="elevation">4dp</item>
+        <item name="elevation">1dp</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
@@ -237,7 +222,7 @@
     <style name="TextSecure.LightActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/textsecure_primary</item>
-        <item name="elevation">4dp</item>
+        <item name="elevation">1dp</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>

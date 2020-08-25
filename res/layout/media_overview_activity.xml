@@ -14,7 +14,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                style="@style/Session.DarkActionBar"
+                style="@style/Widget.Session.ActionBar"
                 app:layout_scrollFlags="scroll|enterAlways"/>
 
         <org.thoughtcrime.securesms.components.ControllableTabLayout

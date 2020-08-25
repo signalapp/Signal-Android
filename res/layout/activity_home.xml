@@ -12,58 +12,66 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:minHeight="?attr/actionBarSize"
-        app:contentInsetLeft="20dp"
-        app:contentInsetRight="20dp">
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:elevation="1dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
-                android:id="@+id/profileButton"
-                android:layout_width="@dimen/small_profile_picture_size"
-                android:layout_height="@dimen/small_profile_picture_size"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="9dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Session"
-                android:textColor="@color/text"
-                android:textSize="@dimen/very_large_font_size" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/pathStatusViewContainer"
-                android:layout_width="@dimen/small_profile_picture_size"
-                android:layout_height="@dimen/small_profile_picture_size"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true">
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
-                <org.thoughtcrime.securesms.loki.views.PathStatusView
-                    android:layout_width="@dimen/path_status_view_size"
-                    android:layout_height="@dimen/path_status_view_size"
-                    android:layout_alignParentRight="true"
+                <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+                    android:id="@+id/profileButton"
+                    android:layout_width="@dimen/small_profile_picture_size"
+                    android:layout_height="@dimen/small_profile_picture_size"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp" />
+                    android:layout_marginLeft="9dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="64dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Session"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/very_large_font_size" />
+
+                <RelativeLayout
+                    android:id="@+id/pathStatusViewContainer"
+                    android:layout_width="@dimen/small_profile_picture_size"
+                    android:layout_height="@dimen/small_profile_picture_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true">
+
+                    <org.thoughtcrime.securesms.loki.views.PathStatusView
+                        android:layout_width="@dimen/path_status_view_size"
+                        android:layout_height="@dimen/path_status_view_size"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
-        </RelativeLayout>
+            <org.thoughtcrime.securesms.loki.views.SeedReminderView
+                android:id="@+id/seedReminderView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
-
-    <org.thoughtcrime.securesms.loki.views.SeedReminderView
-        android:id="@+id/seedReminderView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"

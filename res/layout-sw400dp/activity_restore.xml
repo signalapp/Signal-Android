@@ -63,9 +63,9 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
         android:gravity="center"
-        android:textColorLink="@color/text"
+        android:textColor="?android:textColorTertiary"
+        android:textColorLink="?colorAccent"
         android:textSize="@dimen/very_small_font_size"
-        android:textColor="@color/text"
         android:text="By using this service, you agree to our Terms of Service and Privacy Policy" /> <!-- Intentionally not yet translated -->
 
 </LinearLayout>

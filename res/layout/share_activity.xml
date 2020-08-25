@@ -15,7 +15,7 @@
             android:minHeight="?attr/actionBarSize"
             android:background="?colorPrimary"
             android:elevation="0dp"
-            android:theme="@style/Session.DarkActionBar">
+            android:theme="@style/Widget.Session.ActionBar">
 
         <RelativeLayout
                 android:layout_width="match_parent"
