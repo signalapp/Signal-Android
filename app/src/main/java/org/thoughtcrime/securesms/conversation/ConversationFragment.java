@@ -1096,6 +1096,10 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     int position = getListLayoutManager().findFirstVisibleItemPosition();
+    if (position == getListAdapter().getItemCount() - 1) {
+      return;
+    }
+
     if (position >= (isTypingIndicatorShowing() ? 1 : 0)) {
       ConversationMessage item = getListAdapter().getItem(position);
       if (item != null) {
