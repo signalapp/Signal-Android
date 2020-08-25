@@ -550,7 +550,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-      Recipient            recipient    = getMessageMasterDestination(content.getSender());
+      Recipient            recipient    = getMessageDestination(content, message);
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(getMessageMasterDestination(content.getSender()).getAddress(),
                                                                    message.getTimestamp(), -1,
                                                                    message.getExpiresInSeconds() * 1000L, true,
