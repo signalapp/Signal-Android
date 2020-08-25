@@ -19,7 +19,7 @@
         android:layout_height="@dimen/media_bubble_sticker_dimens"
         app:thumbnail_radius="0dp"
         app:thumbnail_fit="fit_center"
-        app:minWidth="@dimen/media_bubble_min_width"
+        app:minWidth="@dimen/media_bubble_min_width_solo"
         app:maxWidth="@dimen/media_bubble_max_width"
         app:minHeight="@dimen/media_bubble_min_height"
         app:maxHeight="@dimen/media_bubble_max_height" />

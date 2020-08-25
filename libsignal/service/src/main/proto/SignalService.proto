@@ -203,9 +203,10 @@ message DataMessage {
   }
 
   message Preview {
-    optional string            url   = 1;
-    optional string            title = 2;
-    optional AttachmentPointer image = 3;
+    optional string            url         = 1;
+    optional string            title       = 2;
+    optional AttachmentPointer image       = 3;
+    optional string            description = 4;
   }
 
   message Sticker {

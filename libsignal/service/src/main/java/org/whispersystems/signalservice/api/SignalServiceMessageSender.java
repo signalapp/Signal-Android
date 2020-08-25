@@ -628,6 +628,7 @@ public class SignalServiceMessageSender {
       for (SignalServiceDataMessage.Preview preview : message.getPreviews().get()) {
         DataMessage.Preview.Builder previewBuilder = DataMessage.Preview.newBuilder();
         previewBuilder.setTitle(preview.getTitle());
+        previewBuilder.setDescription(preview.getDescription());
         previewBuilder.setUrl(preview.getUrl());
 
         if (preview.getImage().isPresent()) {

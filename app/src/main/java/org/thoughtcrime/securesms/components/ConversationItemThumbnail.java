@@ -119,6 +119,10 @@ public class ConversationItemThumbnail extends FrameLayout {
     outliner.setRadii(topLeft, topRight, bottomRight, bottomLeft);
   }
 
+  public void setMinimumThumbnailWidth(int width) {
+    thumbnail.setMinimumThumbnailWidth(width);
+  }
+
   public void setBorderless(boolean borderless) {
     this.borderless = borderless;
   }

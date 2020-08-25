@@ -412,12 +412,14 @@ public class SignalServiceDataMessage {
   public static class Preview {
     private final String                            url;
     private final String                            title;
+    private final String                            description;
     private final Optional<SignalServiceAttachment> image;
 
-    public Preview(String url, String title, Optional<SignalServiceAttachment> image) {
-      this.url   = url;
-      this.title = title;
-      this.image = image;
+    public Preview(String url, String title, String description, Optional<SignalServiceAttachment> image) {
+      this.url         = url;
+      this.title       = title;
+      this.description = description;
+      this.image       = image;
     }
 
     public String getUrl() {
@@ -426,6 +428,10 @@ public class SignalServiceDataMessage {
 
     public String getTitle() {
       return title;
+    }
+
+    public String getDescription() {
+      return description;
     }
 
     public Optional<SignalServiceAttachment> getImage() {

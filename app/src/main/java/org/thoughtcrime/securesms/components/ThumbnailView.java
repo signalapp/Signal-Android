@@ -141,6 +141,11 @@ public class ThumbnailView extends FrameLayout {
     captionIcon.setScaleY(captionIconScale);
   }
 
+  public void setMinimumThumbnailWidth(int width) {
+    bounds[MIN_WIDTH] = width;
+    invalidate();
+  }
+
   @SuppressWarnings("SuspiciousNameCombination")
   private void fillTargetDimensions(int[] targetDimens, int[] dimens, int[] bounds) {
     int     dimensFilledCount = getNonZeroCount(dimens);

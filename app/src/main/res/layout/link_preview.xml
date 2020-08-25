@@ -15,6 +15,7 @@
             android:id="@+id/linkpreview_thumbnail"
             android:layout_width="72dp"
             android:layout_height="0dp"
+            android:maxHeight="72dp"
             android:scaleType="centerCrop"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
@@ -26,11 +27,11 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/linkpreview_title"
-            style="@style/Signal.Text.Body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            style="@style/Signal.Text.Preview"
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:maxLines="2"
@@ -39,7 +40,23 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Wall Crawler Strikes Again!" />
+            tools:text="J. Jonah Jameson on Twitter" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/linkpreview_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            style="@style/Signal.Text.Preview"
+            android:textSize="13sp"
+            android:ellipsize="end"
+            android:maxLines="15"
+            app:layout_constraintEnd_toStartOf="@+id/linkpreview_close"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/linkpreview_title"
+            tools:text="Wall crawler strikes again!" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/linkpreview_site"
@@ -50,7 +67,7 @@
             android:layout_marginTop="2dp"
             android:textColor="?linkpreview_secondary_text_color"
             app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
-            app:layout_constraintTop_toBottomOf="@+id/linkpreview_title"
+            app:layout_constraintTop_toBottomOf="@+id/linkpreview_description"
             tools:text="dailybugle.com" />
 
         <View

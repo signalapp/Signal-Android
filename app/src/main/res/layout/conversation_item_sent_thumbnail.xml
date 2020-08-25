@@ -13,7 +13,7 @@
         android:contentDescription="@string/conversation_item__mms_image_description"
         android:visibility="gone"
         android:elevation="8dp"
-        app:conversationThumbnail_minWidth="@dimen/media_bubble_min_width"
+        app:conversationThumbnail_minWidth="@dimen/media_bubble_min_width_solo"
         app:conversationThumbnail_maxWidth="@dimen/media_bubble_max_width"
         app:conversationThumbnail_minHeight="@dimen/media_bubble_min_height"
         app:conversationThumbnail_maxHeight="@dimen/media_bubble_max_height"

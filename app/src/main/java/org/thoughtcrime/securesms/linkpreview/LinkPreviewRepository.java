@@ -105,7 +105,7 @@ public class LinkPreviewRepository {
         }
 
         if (!metadata.getImageUrl().isPresent()) {
-          callback.onSuccess(new LinkPreview(url, metadata.getTitle().get(), Optional.absent()));
+          callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), metadata.getDescription().or(""), Optional.absent()));
           return;
         }
 
@@ -113,7 +113,7 @@ public class LinkPreviewRepository {
           if (!metadata.getTitle().isPresent() && !attachment.isPresent()) {
             callback.onError(Error.PREVIEW_NOT_AVAILABLE);
           } else {
-            callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), attachment));
+            callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), metadata.getDescription().or(""), attachment));
           }
         });
 
@@ -147,17 +147,18 @@ public class LinkPreviewRepository {
           return;
         }
 
-        String           body      = OkHttpUtil.readAsString(response.body(), FAILSAFE_MAX_TEXT_SIZE);
-        OpenGraph        openGraph = LinkPreviewUtil.parseOpenGraphFields(body);
-        Optional<String> title     = openGraph.getTitle();
-        Optional<String> imageUrl  = openGraph.getImageUrl();
+        String           body        = OkHttpUtil.readAsString(response.body(), FAILSAFE_MAX_TEXT_SIZE);
+        OpenGraph        openGraph   = LinkPreviewUtil.parseOpenGraphFields(body);
+        Optional<String> title       = openGraph.getTitle();
+        Optional<String> description = openGraph.getDescription();
+        Optional<String> imageUrl    = openGraph.getImageUrl();
 
         if (imageUrl.isPresent() && !LinkPreviewUtil.isValidPreviewUrl(imageUrl.get())) {
           Log.i(TAG, "Image URL was invalid or for a non-whitelisted domain. Skipping.");
           imageUrl = Optional.absent();
         }
 
-        callback.accept(new Metadata(title, imageUrl));
+        callback.accept(new Metadata(title, description, imageUrl));
       }
     });
 
@@ -225,7 +226,7 @@ public class LinkPreviewRepository {
 
           Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
 
-          callback.onSuccess(new LinkPreview(packUrl, title, thumbnail));
+          callback.onSuccess(new LinkPreview(packUrl, title, "", thumbnail));
         } else {
           callback.onError(Error.PREVIEW_NOT_AVAILABLE);
         }
@@ -268,7 +269,7 @@ public class LinkPreviewRepository {
             thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
           }
 
-          callback.onSuccess(new LinkPreview(groupUrl, title, thumbnail));
+          callback.onSuccess(new LinkPreview(groupUrl, title, "", thumbnail));
         } else {
           Log.i(TAG, "Group is not locally available for preview generation, fetching from server");
 
@@ -284,7 +285,7 @@ public class LinkPreviewRepository {
             if (bitmap != null) bitmap.recycle();
           }
 
-          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), thumbnail));
+          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), "", thumbnail));
         }
       } catch (ExecutionException | InterruptedException | IOException | VerificationFailedException e) {
         Log.w(TAG, "Failed to fetch group link preview.", e);
@@ -337,19 +338,25 @@ public class LinkPreviewRepository {
 
   private static class Metadata {
     private final Optional<String> title;
+    private final Optional<String> description;
     private final Optional<String> imageUrl;
 
-    Metadata(Optional<String> title, Optional<String> imageUrl) {
-      this.title    = title;
-      this.imageUrl = imageUrl;
+    Metadata(Optional<String> title, Optional<String> description, Optional<String> imageUrl) {
+      this.title       = title;
+      this.description = description;
+      this.imageUrl    = imageUrl;
     }
 
     static Metadata empty() {
-      return new Metadata(Optional.absent(), Optional.absent());
+      return new Metadata(Optional.absent(), Optional.absent(), Optional.absent());
     }
 
     Optional<String> getTitle() {
       return title;
+    }
+
+    Optional<String> getDescription() {
+      return description;
     }
 
     Optional<String> getImageUrl() {

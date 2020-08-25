@@ -1693,15 +1693,16 @@ public final class PushProcessMessageJob extends BaseJob {
       Optional<Attachment> thumbnail     = PointerAttachment.forPointer(preview.getImage());
       Optional<String>     url           = Optional.fromNullable(preview.getUrl());
       Optional<String>     title         = Optional.fromNullable(preview.getTitle());
-      boolean              hasContent    = !TextUtils.isEmpty(title.or("")) || thumbnail.isPresent();
+      Optional<String>     description   = Optional.fromNullable(preview.getDescription());
+      boolean              hasTitle      = !TextUtils.isEmpty(title.or(""));
       boolean              presentInBody = url.isPresent() && Stream.of(LinkPreviewUtil.findValidPreviewUrls(message)).map(Link::getUrl).collect(Collectors.toSet()).contains(url.get());
       boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isValidPreviewUrl(url.get());
 
-      if (hasContent && presentInBody && validDomain) {
-        LinkPreview linkPreview = new LinkPreview(url.get(), title.or(""), thumbnail);
+      if (hasTitle && presentInBody && validDomain) {
+        LinkPreview linkPreview = new LinkPreview(url.get(), title.or(""), description.or(""), thumbnail);
         linkPreviews.add(linkPreview);
       } else {
-        Log.w(TAG, String.format("Discarding an invalid link preview. hasContent: %b presentInBody: %b validDomain: %b", hasContent, presentInBody, validDomain));
+        Log.w(TAG, String.format("Discarding an invalid link preview. hasTitle: %b presentInBody: %b validDomain: %b", hasTitle, presentInBody, validDomain));
       }
     }
 

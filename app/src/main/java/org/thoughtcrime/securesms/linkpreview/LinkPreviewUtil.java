@@ -154,8 +154,9 @@ public final class LinkPreviewUtil {
     private final @Nullable String htmlTitle;
     private final @Nullable String faviconUrl;
 
-    private static final String KEY_TITLE     = "title";
-    private static final String KEY_IMAGE_URL = "image";
+    private static final String KEY_TITLE           = "title";
+    private static final String KEY_DESCRIPTION_URL = "description";
+    private static final String KEY_IMAGE_URL       = "image";
 
     public OpenGraph(@NonNull Map<String, String> values, @Nullable String htmlTitle, @Nullable String faviconUrl) {
       this.values     = values;
@@ -169,6 +170,10 @@ public final class LinkPreviewUtil {
 
     public @NonNull Optional<String> getImageUrl() {
       return OptionalUtil.absentIfEmpty(Util.getFirstNonEmpty(values.get(KEY_IMAGE_URL), faviconUrl));
+    }
+
+    public @NonNull Optional<String> getDescription() {
+      return OptionalUtil.absentIfEmpty(values.get(KEY_DESCRIPTION_URL));
     }
   }
 
