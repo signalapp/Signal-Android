@@ -84,6 +84,7 @@ public interface MmsSmsColumns {
 
     // Loki
     protected static final long ENCRYPTION_LOKI_SESSION_RESTORE_SENT_BIT = 0x01000000;
+    protected static final long ENCRYPTION_LOKI_SESSION_RESTORE_DONE_BIT = 0x00100000;
 
     public static boolean isDraftMessageType(long type) {
       return (type & BASE_TYPE_MASK) == BASE_DRAFT_TYPE;
@@ -235,6 +236,10 @@ public interface MmsSmsColumns {
 
     public static boolean isLokiSessionRestoreSentType(long type) {
       return (type & ENCRYPTION_LOKI_SESSION_RESTORE_SENT_BIT) != 0;
+    }
+
+    public static boolean isLokiSessionRestoreDoneType(long type) {
+      return (type & ENCRYPTION_LOKI_SESSION_RESTORE_DONE_BIT) != 0;
     }
 
     public static boolean isLegacyType(long type) {

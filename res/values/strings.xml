@@ -1853,4 +1853,6 @@
 
     <string name="dialog_seed_disclaimer">*Please note that it is not possible to use the same Session ID on multiple devices simultaneously</string>
 
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+
 </resources>
