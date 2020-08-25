@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-import android.text.TextUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -39,7 +40,7 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
 
   public static final String KEY = "AttachmentDownloadJob";
 
-  private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
+  private static final int    MAX_ATTACHMENT_SIZE  = 10 * 1024  * 1024;
   private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
 
   private static final String KEY_MESSAGE_ID    = "message_id";
@@ -58,7 +59,7 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
     this(new Job.Parameters.Builder()
                            .setQueue("AttachmentDownloadJob" + attachmentId.getRowId() + "-" + attachmentId.getUniqueId())
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(25)
+                           .setMaxAttempts(5)
                            .build(),
          messageId,
          attachmentId,
@@ -183,19 +184,19 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
   SignalServiceAttachmentPointer createAttachmentPointer(Attachment attachment)
       throws InvalidPartException
   {
-    boolean isPublicAttachment = TextUtils.isEmpty(attachment.getKey()) && attachment.getDigest() == null;
+    boolean isOpenGroupContext = TextUtils.isEmpty(attachment.getKey()) && attachment.getDigest() == null;
 
     if (TextUtils.isEmpty(attachment.getLocation())) {
       throw new InvalidPartException("empty content id");
     }
 
-    if (TextUtils.isEmpty(attachment.getKey()) && !isPublicAttachment) {
+    if (TextUtils.isEmpty(attachment.getKey()) && !isOpenGroupContext) {
       throw new InvalidPartException("empty encrypted key");
     }
 
     try {
-      long   id    = Long.parseLong(attachment.getLocation());
-      if (isPublicAttachment) {
+      long id = Long.parseLong(attachment.getLocation());
+      if (isOpenGroupContext) {
         return new SignalServiceAttachmentPointer(id,
                                                   null,
                                                   new byte[0],
@@ -210,11 +211,6 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
       }
 
       byte[] key   = Base64.decode(attachment.getKey());
-      String relay = null;
-
-      if (TextUtils.isEmpty(attachment.getRelay())) {
-        relay = attachment.getRelay();
-      }
 
       if (attachment.getDigest() != null) {
         Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.getDigest()));
