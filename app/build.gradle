@@ -124,6 +124,7 @@ android {
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "CDS_MRENCLAVE", "\"bd123560b01c8fa92935bc5ae15cd2064e5c45215f23f0bd40364d521329d2ad\""
         buildConfigField "String", "KBS_ENCLAVE_NAME", "\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\""
+        buildConfigField "String", "KBS_SERVICE_ID", "\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\""
         buildConfigField "String", "KBS_MRENCLAVE", "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\""
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
         buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X0=\""
@@ -199,6 +200,7 @@ android {
             buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api-staging.backup.signal.org\""
             buildConfigField "String", "CDS_MRENCLAVE", "\"bd123560b01c8fa92935bc5ae15cd2064e5c45215f23f0bd40364d521329d2ad\""
             buildConfigField "String", "KBS_ENCLAVE_NAME", "\"823a3b2c037ff0cbe305cc48928cfcc97c9ed4a8ca6d49af6f7d6981fb60a4e9\""
+            buildConfigField "String", "KBS_SERVICE_ID", "\"038c40bbbacdc873caa81ac793bb75afde6dfe436a99ab1f15e3f0cbb7434ced\""
             buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BbqY1DzohE4NUZoVF+L18oUPrK3kILllLEJh2UnPSsEx\""
             buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdls=\""
         }

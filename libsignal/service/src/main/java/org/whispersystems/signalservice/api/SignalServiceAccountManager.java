@@ -169,10 +169,11 @@ public class SignalServiceAccountManager {
 
   public KeyBackupService getKeyBackupService(KeyStore iasKeyStore,
                                               String enclaveName,
+                                              byte[] serviceId,
                                               String mrenclave,
                                               int tries)
   {
-    return new KeyBackupService(iasKeyStore, enclaveName, mrenclave, pushServiceSocket, tries);
+    return new KeyBackupService(iasKeyStore, enclaveName, serviceId, mrenclave, pushServiceSocket, tries);
   }
 
   /**

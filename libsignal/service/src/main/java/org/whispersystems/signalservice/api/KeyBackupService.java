@@ -17,7 +17,6 @@ import org.whispersystems.signalservice.internal.keybackup.protos.BackupResponse
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
-import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
@@ -32,18 +31,21 @@ public final class KeyBackupService {
 
   private final KeyStore          iasKeyStore;
   private final String            enclaveName;
+  private final byte[]            serviceId;
   private final String            mrenclave;
   private final PushServiceSocket pushServiceSocket;
   private final int               maxTries;
 
   KeyBackupService(KeyStore iasKeyStore,
                    String enclaveName,
+                   byte[] serviceId,
                    String mrenclave,
                    PushServiceSocket pushServiceSocket,
                    int maxTries)
   {
     this.iasKeyStore       = iasKeyStore;
     this.enclaveName       = enclaveName;
+    this.serviceId         = serviceId;
     this.mrenclave         = mrenclave;
     this.pushServiceSocket = pushServiceSocket;
     this.maxTries          = maxTries;
@@ -158,7 +160,7 @@ public final class KeyBackupService {
       try {
         final int               remainingTries    = token.getTries();
         final RemoteAttestation remoteAttestation = getAndVerifyRemoteAttestation();
-        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.getKbsAccessKey(), token, remoteAttestation, Hex.fromStringCondensed(enclaveName));
+        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.getKbsAccessKey(), token, remoteAttestation, serviceId);
         final KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         final RestoreResponse   status            = KeyBackupCipher.getKeyRestoreResponse(response, remoteAttestation);
 
@@ -228,7 +230,7 @@ public final class KeyBackupService {
     {
       try {
         RemoteAttestation     remoteAttestation = getAndVerifyRemoteAttestation();
-        KeyBackupRequest      request           = KeyBackupCipher.createKeyBackupRequest(kbsAccessKey, kbsData, token, remoteAttestation, Hex.fromStringCondensed(enclaveName), maxTries);
+        KeyBackupRequest      request           = KeyBackupCipher.createKeyBackupRequest(kbsAccessKey, kbsData, token, remoteAttestation, serviceId, maxTries);
         KeyBackupResponse     response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         BackupResponse        backupResponse    = KeyBackupCipher.getKeyBackupResponse(response, remoteAttestation);
         BackupResponse.Status status            = backupResponse.getStatus();
