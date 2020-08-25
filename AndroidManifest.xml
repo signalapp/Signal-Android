@@ -205,7 +205,7 @@
             android:screenOrientation="portrait"
             android:noHistory="true"
             android:taskAffinity=""
-            android:theme="@style/TextSecure.LightNoActionBar"
+            android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

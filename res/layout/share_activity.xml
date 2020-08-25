@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:minHeight="?attr/actionBarSize"
-            android:background="@color/action_bar_background"
+            android:background="?colorPrimary"
             android:elevation="0dp"
             android:theme="@style/Session.DarkActionBar">
 
@@ -24,7 +24,6 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Share"
-                      android:textColor="@color/white"
                       android:fontFamily="sans-serif-medium"
                       android:textSize="@dimen/very_large_font_size"
                       android:layout_alignParentStart="true"
@@ -34,7 +33,7 @@
             <ImageView android:id="@+id/search_action"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:src="@drawable/ic_search_white_24dp"
+                       android:src="@drawable/ic_baseline_search_24"
                        android:visibility="gone"
                        android:layout_alignParentEnd="true"
                        android:layout_centerVertical="true"/>
