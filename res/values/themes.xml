@@ -88,7 +88,7 @@
         <item name="android:colorBackground">#121212</item>
         <item name="android:windowBackground">?android:colorBackground</item>
         <item name="android:navigationBarColor">?android:colorBackground</item>
-        <item name="android:statusBarColor">?android:colorBackground</item>
+        <item name="android:statusBarColor">?colorPrimary</item>
     </style>
     <style name="Theme.Session.ForceDark.NoActionBar">
         <item name="windowActionBar">false</item>

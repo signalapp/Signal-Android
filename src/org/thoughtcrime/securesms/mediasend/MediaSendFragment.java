@@ -129,8 +129,6 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//    return ThemeUtil.getThemedInflater(requireActivity(), inflater, R.style.TextSecure_DarkTheme)
-//                    .inflate(R.layout.mediasend_fragment, container, false);
     return inflater.inflate(R.layout.mediasend_fragment, container, false);
   }
 
