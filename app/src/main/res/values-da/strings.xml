@@ -560,8 +560,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Anmoder om at deltage</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dette gruppelink er ikke aktivt</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det lykkedes ikke at få gruppeinformation, prøv igen senere</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du deltage denne gruppe og dele dit navn og foto med dens medlemmer?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator af denne gruppe skal godkende din anmodning, inden du kan deltage i denne gruppe. Når du anmoder om at deltage, vil dit navn og foto blive delt med dens medlemmer.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du deltage i gruppen, og dele dit navn og foto med dens medlemmer?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator af gruppen skal godkende din anmodning, inden du kan deltage. Når du anmoder om at deltage, vil dit navn og foto blive delt med dens medlemmer</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Gruppe · %1$d medlem</item>
     <item quantity="other">Gruppe · %1$d medlemmer</item>
@@ -798,34 +798,34 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ændrede, hvem som kan redigere medlemskab af gruppen til \"%2$s\"</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Hvem som kan redigere medlemskaber af gruppen er blevet ændret til \"%1$s\"</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du aktiverede det delbare gruppelink.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du aktiverede det delbare gruppelink med administratorgodkendelse.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du deaktiverede det delbare gruppelink.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktiverede det delbare gruppelink.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktiverede det delbare gruppelink med administratorgodkendelse.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s deaktiverede det delbare gruppelink.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Det delbare gruppelink blev aktiveret.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Det delbare gruppelink blev aktiveret med administratorgodkendelse.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Det delbare gruppelink blev deaktiveret.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du aktiverede det delbare gruppelink</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du aktiverede det delbare gruppelink med administratorgodkendelse</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du déaktiverede det delbare gruppelink</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktiverede det delbare gruppelink</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktiverede det delbare gruppelink med administratorgodkendelse</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s déaktiverede det delbare gruppelink</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Det delbare gruppelink blev aktiveret</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Det delbare gruppelink blev aktiveret med administratorgodkendelse</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Det delbare gruppelink blev déaktiveret</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Du nulstiller det delbare gruppelink.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s nulstiller det delbare gruppelink.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Det delbare gruppelink blev nulstillet.</string>
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Du nulstiller det delbare gruppelink</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s nulstiller det delbare gruppelink</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Det delbare gruppelink blev nulstillet</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du deltog gruppen via det delbare gruppelink.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s deltog gruppen via det delbare gruppelink.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du deltager i gruppen via det delbare gruppelink</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s deltager i gruppen via det delbare gruppelink</string>
   <!--GV2 group link requests-->
-  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du sendte en anmodning om at deltage i gruppen.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s anmodede om at deltage via det delbare gruppelink.</string>
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du sendte en anmodning om at deltage i gruppen</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s anmodede om at deltage via det delbare gruppelink</string>
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkendte din anmodning om at deltage i gruppen.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkendte en anmodning fra %2$s om at deltage i gruppen.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Din anmodning om at deltage i gruppen blev godkendt.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En anmodning fra %1$s om at deltage i gruppen blev godkendt.</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkendte din anmodning om at deltage i gruppen</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkendte en anmodning fra %2$s om at deltage i gruppen</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Din anmodning om at deltage i gruppen blev godkendt</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En anmodning fra %1$s om at deltage i gruppen blev godkendt</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Din anmodning om at deltage i gruppen blev afvist af en administrator.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s afviste en anmodning fra %2$s om at deltage i gruppen.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En anmodning fra %1$s om at deltage i gruppen blev afvist.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Din anmodning om at deltage i gruppen, blev afvist af en administrator</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s afviste en anmodning fra %2$s om at deltage i gruppen</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En anmodning fra %1$s om at deltage i gruppen blev afvist</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du har markeret dit sikkerhedsnummer med %s som verificeret</string>

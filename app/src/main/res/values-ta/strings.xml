@@ -910,6 +910,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">பெயரிடப்படாத குழு</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">அழைப்புக்கு பதிலளிக்கிறார்…</string>
+  <string name="RedPhone_ending_call">அழைப்பு முடிவடைகிறது…</string>
+  <string name="RedPhone_dialing">அழைப்பை இணைக்கிறது…</string>
   <string name="RedPhone_ringing">மணி அடிக்கிறது …</string>
   <string name="RedPhone_busy">மும்முரமாக</string>
   <string name="RedPhone_connected">இணைக்கப்பட்டது</string>

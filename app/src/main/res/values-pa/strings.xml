@@ -193,6 +193,7 @@
   <string name="ConversationActivity_leave_group">ਗਰੁੱਪ ਛੱਡੋ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਤ ਰੂਪ ਤੋਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
   <string name="ConversationActivity_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string>
+  <string name="ConversationActivity_choose_admin">ਐਡਮਿਨ ਚੁਣੋ</string>
   <string name="ConversationActivity_transport_insecure_sms">ਅਸੁਰੱਖਿਅਤ ਐਸਐਮਐਸ</string>
   <string name="ConversationActivity_transport_insecure_mms">ਅਸੁਰੱਖਿਅਤ ਐਮਐਮਐਸ</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

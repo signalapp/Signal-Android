@@ -415,6 +415,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Mostantól bármely weboldalra vezető linkhez lekérheted annak előnézeti képét, mielőtt elküldenéd üzenetben.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nem érhető el előnézeti kép</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
   <string name="PendingMembersActivity_people_you_invited">Általad meghívott személyek</string>
@@ -555,6 +556,10 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Már tag vagy</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Csatlakozás</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nem sikerült a csoport információ lekérése. Kérlek próbáld újra később!</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Szeretnél csatlakozni a csoporthoz? Ezzel profilod láthatóvá is válik.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Frissítsd a Signalt a csoporthivatkozások használatához</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Az általad használt verziójú Signal nem támogatja a megosztható csoporthivatkozásokat. Frissíts a legújabb verzióra, hogy a hivatkozás használatával csatlakozhass ehhez a csoporthoz!</string>
@@ -787,6 +792,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s megváltoztatta a csoport tagjainak szerkeszthetőségét erre: \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">A csoporttagságot szerkeszthetők köre megváltozott erre: \"%1$s\"</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Bekapcsoltad a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Kikapcsoltad a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s bekapcsolta a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s kikapcsolta a megosztható csoporthivatkozást.</string>
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
@@ -912,6 +921,9 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Névnélküli csoport</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Válaszolás…</string>
+  <string name="RedPhone_ending_call">Hívás befejezése…</string>
+  <string name="RedPhone_dialing">Tárcsázás…</string>
   <string name="RedPhone_ringing">Kicseng…</string>
   <string name="RedPhone_busy">Foglalt</string>
   <string name="RedPhone_connected">Kapcsolódva</string>

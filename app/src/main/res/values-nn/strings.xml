@@ -212,7 +212,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengeleg</string>
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikkje senda meldingar til denne gruppa sidan du ikkje lenger er medlem.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenkja.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenka.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">La Signal få tilgang til mikrofonen for å senda lydmeldingar.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal treng tilgang til mikrofonen for å senda lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon».</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal treng tilgang til mikrofonen og kameraet for å ringa %s, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon» og «Kamera»</string>
@@ -415,7 +415,11 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
 Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Slå av</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Førehandsvis alle lenker</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan no henta lenkesniktittar direkte frå nettstader for meldingar du sender.</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Inga lenkesniktitt tilgjengeleg</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Denne gruppelenka er ikkje aktiv</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Usvarte gruppeinvitasjonar</string>
   <string name="PendingMembersActivity_people_you_invited">Folk du har invitert</string>
@@ -555,7 +559,20 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="other">Vil du trekka tilbake %2$d invitasjonar sent av %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du er allereie medlem</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Bli med</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Spør om å få bli med</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denne gruppelenka er ikkje aktiv</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Klarte ikkje henta gruppeinformasjon, prøv igjen seinare</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du bli med i denne gruppa og dela namn og bilde med medlemma?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ein gruppeadministrator må godkjenna førespurnaden din før du kan bli med i denne gruppa. Når du spør om å bli med, blir namnet og bildet ditt delt med medlemma.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Group · %1$d medlem</item>
+    <item quantity="other">Group · %1$d medlem</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Oppdater Signal for å bruka gruppelenker</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-utgåva di støttar ikkje delbare gruppelenker. Oppdater til siste utgåve for å bli med denne gruppa via ei lenke.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
@@ -785,11 +802,34 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endra kven som kan redigera gruppemedlemskap til «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Kven som kan endra gruppemedlemskap er endra til «%1$s».</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du aktiverte den delbare gruppelenka.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du aktiverte den delbare gruppelenka med admin-godkjenning.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du deaktiverte den delbare gruppelenka.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktiverte den delbare gruppelenka.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktiverte den delbare gruppelenka med admin-godkjenning.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s deaktiverte den delbare gruppelenka.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Den delbare gruppelenka er aktivert.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Den delbare gruppelenka er aktivert med admin-godkjenning.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Den delbare gruppelenka er deaktivert.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Du nullstilte den delbare gruppelenka.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s nullstilte den delbare gruppelenka.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Den delbare gruppelenka er nullstilt.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du blei med i gruppa via den delbare gruppelenka.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s blei med i gruppa via den delbare gruppelenka.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du spurde om å bli med i gruppa.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s spurde om å bli med via den delbare gruppelenka.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkjende førespurnaden din om å bli med i gruppa.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkjende førespurnaden frå %2$s om å bli med i gruppa.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Førespurnaden din om å bli med i gruppa er godkjend.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Førespurnaden frå %1$s om å bli med i gruppa er godkjend.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Førespurnaden din om å bli med i gruppa er avslått av ein administrator.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s avslo ein førespurnad frå %2$s om å bli med i gruppa.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Ein førespurnad frå %1$s om å bli med i gruppa er avslått.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte at tryggleiksnummeret ditt med %s er stadfesta.</string>
@@ -837,7 +877,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Fann inga eining.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Orsak, du har for mange einingar lenkja allereie, prøv å fjerna nokre</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Orsak, du har for mange einingar lenka allereie, prøv å fjerna nokre</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dette er ikkje ein gyldig QR-kode for einingstilkopling.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vil du kopla til ei Signal-eining?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som at du prøver å kopla ei eining til Signal ved hjelp av ein tredjepartsskannar. For din eigen tryggleik må du skanna koden på nytt via Signal.</string>
@@ -910,6 +950,10 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Gruppe utan namn</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Svarer …</string>
+  <string name="RedPhone_ending_call">Avsluttar samtale …</string>
+  <string name="RedPhone_dialing">Slår nummeret …</string>
+  <string name="RedPhone_ringing">Ringer …</string>
   <string name="RedPhone_busy">Oppteken</string>
   <string name="RedPhone_connected">Tilkopla</string>
   <string name="RedPhone_recipient_unavailable">Mottakar utilgjengeleg</string>
@@ -942,7 +986,7 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_play_services_error">Feil med Play-tenester</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tenester oppdaterer seg eller er mellombels utilgjengeleg. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_terms_and_privacy">Vilkår &amp; personvernreglar</string>
-  <string name="RegistrationActivity_no_browser">Klarte ikkje opna denne lenkja. Fann ingen nettlesar.</string>
+  <string name="RegistrationActivity_no_browser">Klarte ikkje opna denne lenka. Fann ingen nettlesar.</string>
   <string name="RegistrationActivity_more_information">Meir informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine og media for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
@@ -1367,7 +1411,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Kopla til eining</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Ingen lenkja einingar</string>
+  <string name="device_list_fragment__no_devices_linked">Ingen lenka einingar</string>
   <string name="device_list_fragment__link_new_device">Kopla til ny eining</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">hald fram</string>
@@ -1609,6 +1653,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle inngåande multimediemeldingar </string>
   <string name="preferences__pref_enter_sends_title">Send med linjeskift</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk linjeskift for å senda tekstmeldingar</string>
+  <string name="preferences__generate_link_previews">Lag lenkesniktitt</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent lenkesniktittar direkte frå nettstader for meldingane du sender.</string>
   <string name="preferences__choose_identity">Vel identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vel kontakt frå kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>
@@ -1759,6 +1805,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_insecure__invite">Inviter</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slett utval</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fest valde</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Slepp valde</string>
   <string name="conversation_list_batch__menu_select_all">Vel alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver utval</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Angra arkivering av utval</string>
@@ -1768,7 +1816,9 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snarveg til innstillingar</string>
   <string name="conversation_list_search_description">Søk</string>
+  <string name="conversation_list__pinned">Festa</string>
   <string name="conversation_list__chats">Samtalar</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan berre festa opptil %1$d samtalar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkivert</string>
@@ -1964,6 +2014,8 @@ Du er à jour!</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Me minner deg på det seinare. Du må oppretta ein PIN-kode innan %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Me minner deg på det seinare. Du må stadfesta PIN-koden innan %1$d dagar.</string>
   <!--Mention Megaphone-->
+  <string name="MentionsMegaphone__introducing_mentions">Her kjem @Nemningar</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få merksemda til nokon i ei «Ny gruppe» ved å skriva @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>

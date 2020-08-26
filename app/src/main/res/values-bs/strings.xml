@@ -429,6 +429,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sada možete pregledati linkove do svake internet-stranice u porukama koje šaljete.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Pregled linka nije dostupan</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Ovaj link za grupu nije aktivan</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
   <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
@@ -579,6 +580,17 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Već ste član</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Pristupi</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Zatraži dozvolu za pristup</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ovaj link za grupu nije aktivan</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nije moguće preuzeti informacije o grupi, molimo pokušajte kasnije</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Želite li pristupiti ovoj grupi i dopustiti njenim članovima da vide Vaše ime i sliku?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Administrator ove grupe mora odobriti Vaš zahtjev prije nego što budete mogli pristupiti grupi. Kad podnesete zahtjev, Vaše ime i slika bit će dostupni članovima grupe.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Grupa · %1$d čan</item>
+    <item quantity="few">Grupa · %1$d člana</item>
+    <item quantity="other">Grupa · %1$d članova</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste mogli koristiti grupne linkove</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju koristite ne podržava dijeljenje grupnih linkova. Instalirajte zadnju verziju da biste se mogli priključiti ovoj grupi putem linka.</string>
@@ -823,11 +835,34 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s je promijenio/la ovlasti za upravljanje članstvom u grupi na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ko može upravljati članstvom u grupi promijenjeno je u \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Aktivirali ste mogućnost dijeljenja linka za grupu.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Aktivirali ste mogućnost dijeljenja linka za grupu uz administratorovo odobrenje.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Isključili ste mogućnost dijeljenja linka za grupu.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s je aktivirao/la mogućnost dijeljenja linka za grupu.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s je aktivirao/la mogućnost dijeljenja linka za grupu uz administratorovo odobrenje.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s je isključio/la mogućnost dijeljenja linka za grupu.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Mogućnost dijeljenja linka za grupu aktivirana je.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Mogućnost dijeljenja linka za grupu aktivirana je uz administratorovo odobrenje.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Mogućnost dijeljenja linka za grupu isključena je.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Kreirali ste iznova link za grupu.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s je iznova kreirao/la link za grupu.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Link za grupu kreiran je iznova.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Pristupili ste grupi putem dobijenog linka za grupu.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s pristupio/la je grupi putem dobijenog linka za grupu.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste zahtjev za pristupanje grupi.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s traži odobrenje da pristupi grupi putem dobijenog linka za grupu.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s odobrio/la je Vaš zahtjev za pristupanje grupi.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s odobrio/la je zahtjev za pristupanje grupi koji je uputio/la %2$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Odobren je Vaš zahtjev za pristupanje grupi.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Odobren je zahtjev za pristupanje grupi koji je uputio/la %1$s.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Administrator je odbio Vaš zahtjev za pristupanje grupi.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s odbio/la je zahtjev za pristupanje grupi koji je uputio/la %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Odbijen je zahtjev za pristupanje grupi koji je uputio/la %1$s.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaš je sigurnosni broj sa %s promijenjen.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili ste svoj sigurnosni broj sa %s kao potvrđen</string>
@@ -951,6 +986,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Neimenovana grupa</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Odgovaram…</string>
+  <string name="RedPhone_ending_call">Završavam razgovor…</string>
+  <string name="RedPhone_dialing">Pozivam…</string>
   <string name="RedPhone_ringing">Zvoni…</string>
   <string name="RedPhone_busy">Zauzeto</string>
   <string name="RedPhone_connected">Povezan</string>

@@ -414,6 +414,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vanaf nu kun je voor elke website een voorbeeldafbeelding bijvoegen, maar wanneer je dat doet zou die website kunnen zien dat je ze vermeld.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Geen voorbeeldafbeelding beschikbaar.</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepslink is niet actief</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
   <string name="PendingMembersActivity_people_you_invited">Personen wie door jou zijn uitgenodigd</string>
@@ -555,6 +556,16 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Je bent al lid van deze groep</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Lid worden</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Verzoek om lid te worden</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepslink is niet actief</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je naam en foto gedeeld worden met de groepsleden.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Groep · %1$d lid</item>
+    <item quantity="other">Groep · %1$d leden</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepskoppelingen te kunnen gebruiken</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt geen deelbare groepskoppelingen. Werk Signal bij naar de meest recente versie om via een koppeling lid te kunen worden van een groep.</string>
@@ -787,11 +798,31 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Je hebt de deelbare groepslink ingeschakeld.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Je hebt de deelbare groepslink met beheerderstoestemming ingeschakeld.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Je hebt de deelbare groepslink uitgeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s heeft de deelbare groepslink ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s heeft de deelbare groepslink met beheerderstoestemming ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s heeft de deelbare groepslink uitgeschakeld.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">De deelbare groepslink is ingeschakeld.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">De deelbare groepslink met beheerderstoestemming is ingeschakeld.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">De deelbare groepslink is uitgeschakeld.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Je hebt de deelbare groepslink vernieuwd.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s heeft de deelbare groepslink vernieuwd.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">De deelbare groepslink is vernieuwd.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Je bent via de deelbare groepslink lid geworden van de groep.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s is lid geworden van de groep via de deelbare groepslink.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Je hebt een verzoek verstuurd om lid te worden van de groep.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Je verzoek om lid te worden van de groep is door een beheerder goedgekeurd.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Een verzoek van %1$s om lid te worden van de groep is goedgekeurd.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Je verzoek om lid te worden van de groep is door een beheerder afgewezen.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s heeft een verzoek van %2$s om lid te worden van de groep afgewezen.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Een verzoek van %1$s om lid te worden van de groep is afgewezen..</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’</string>
@@ -911,6 +942,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Onbekende groep</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Antwoorden…</string>
+  <string name="RedPhone_ending_call">Oproep beëindigen</string>
+  <string name="RedPhone_dialing">Oproep…</string>
   <string name="RedPhone_ringing">Bellen …</string>
   <string name="RedPhone_busy">Bezet</string>
   <string name="RedPhone_connected">Verbonden</string>

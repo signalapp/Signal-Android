@@ -444,6 +444,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Nuo šiol savo siunčiamoms žinutėms galite gauti nuorodų peržiūras tiesiogiai iš bet kurios internetinės svetainės.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nuorodos peržiūra neprieinama</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Šios grupės nuoroda nėra aktyvi</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
@@ -604,6 +605,18 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jūs jau esate narys</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Prisijungti</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Prašyti prisijungti</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Šios grupės nuoroda nėra aktyvi</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nepavyko gauti grupės informacijos, bandykite dar kartą</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ar norite prisijungti prie šios grupės ir bendrinti su jos nariais savo vardą ir nuotrauką?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Prieš tai, kai galėsite prisijungti prie šios grupės, jos administratorius privalo patvirtinti jūsų prašymą. Kai paprašysite prisijungti prie grupės, jūsų vardas ir nuotrauka bus bendrinami su jos nariais.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Grupė · %1$d narys</item>
+    <item quantity="few">Grupė · %1$d nariai</item>
+    <item quantity="many">Grupė · %1$d narių</item>
+    <item quantity="other">Grupė · %1$d narys</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atnaujinkite Signal norėdami naudoti grupių nuorodas</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Jūsų naudojama Signal versija nepalaiko bendrinamų grupės nuorodų. Norėdami prisijungti prie šios grupės per nuorodą, atnaujinkite Signal iki naujausios versijos.</string>
@@ -863,8 +876,12 @@
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Jūs išsiuntėte prašymą prisijungti prie grupės.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s patvirtino jūsų prašymą prisijungti prie grupės.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Jūsų prašymas prisijungti prie grupės buvo patvirtintas.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Administratorius atmetė jūsų prašymą prisijungti prie grupės.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
@@ -992,6 +1009,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grupė be pavadinimo</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Atsiliepiama…</string>
+  <string name="RedPhone_ending_call">Užbaigiamas skambutis…</string>
+  <string name="RedPhone_dialing">Renkamas numeris…</string>
   <string name="RedPhone_ringing">Skambinama…</string>
   <string name="RedPhone_busy">Užimta</string>
   <string name="RedPhone_connected">Sujungta</string>
@@ -1764,7 +1784,7 @@
   <string name="preferences__mmsc_username">MMSC naudotojo vardas</string>
   <string name="preferences__mmsc_password">MMSC slaptažodis</string>
   <string name="preferences__sms_delivery_reports">SMS pristatymo ataskaitos</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Reikalauti pristatymo ataskaitos kiekvienai jūsų siunčiamai SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Reikalauti pristatymo ataskaitos kiekvienai jūsų siunčiamai SMS žinutei</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatiškai ištrinti senesnes žinutes, kai pokalbis viršija nurodytą ilgį</string>
   <string name="preferences__delete_old_messages">Ištrinti senas žinutes</string>
   <string name="preferences__chats">Pokalbiai ir medija</string>

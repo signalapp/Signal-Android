@@ -414,6 +414,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Tanimë, për mesazhet që dërgoni, mund të bëni paraparje lidhjesh drejt e nga çfarëdo sajti.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">S’ka lidhje për paraparje</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Kjo lidhje grupi s’është aktive</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
@@ -557,6 +558,16 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jeni tashmë anëtar</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Merrni pjesë</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Kërkoni të bëheni pjesë</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Kjo lidhje grupi s’është aktive</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">S’arrihet të merren të dhëna grupi, ju lutemi, riprovoni më vonë</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Doni të bëheni pjesë e këtij grupi dhe të ndani me anëtarët e tij emrin dhe foton tuaj?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Përpara se të bëheni pjesë e këtij grupi, kërkesën tuaj duhet ta miratojë një përgjegjës i grupit. Kur kërkoni të bëheni pjesë, emri dhe fotoja juaj do të ndahet me anëtarët e tij.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Grup · %1$d anëtar</item>
+    <item quantity="other">Grup · %1$d anëtarë</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Që të përdorni lidhje grupi, përditësoni Signal-in</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupi që mund të ndahen me të tjerë. Që të bëheni pjesë e këtij grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
@@ -789,11 +800,34 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ndryshoi se cilët mund të përpunojnë anëtarësi grupi te \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Te \"%1$s\" është ndryshuas se kush mund të përpunojë anëtarësi te grupi.</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Aktivizuat lidhjen e grupit të ndashme me të tjerë.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Aktivizuat lidhjen e grupit të ndashme me të tjerë, me miratim përgjegjësi.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Çaktivizuat lidhjen e grupit të ndashme me të tjerë.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktivizoi lidhjen e grupit të ndashme me të tjerë.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktivizoi lidhjen e grupit të ndashme me të tjerët, me miratim përgjegjësi.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s çaktivizoi lidhjen e grupit të ndashme me të tjerë.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Lidhja e ndashme e grupit është aktivizuar.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Lidhja e ndashme e grupit është aktivizuar me miratim përgjegjësi.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Lidhja e grupit e ndashme me të tjerët është çaktivizuar.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Kthyet te parazgjedhjet lidhjen e ndashme të grupit.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ktheu te parazgjedhjet lidhjen e ndashme të grupit.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Lidhja e ndashme e grupit është kthyer te parazgjedhjet.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">U bëtë pjesë e grupit përmes lidhjes së ndashme të grupit</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s u bë pjesë e grupit përmes lidhjes së ndashme të grupit.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Dërguat një kërkesë të bëheni pjesë e grupit.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s kërkoi të bëhet pjesë e grupit përmes një lidhjes së ndashme të grupit.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s miratoi kërkesën tuaj për t’u bërë pjesë e grupit.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s miratoi një kërkesë për t’u bërë pjesë e grupit nga %2$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Kërkesa jua për t’u bërë pjesë e grupit u miratua.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">U miratua një kërkesë për t’u bërë pjesë e grupit nga %1$s.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Kërkesa juaj për t’u bërë pjesë e grupit është hedhur poshtë nga një përgjegjës.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s hodhi poshtë një kërkesë për t’u bërë pjesë e grupit nga %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">U hodh poshtë një kërkesë për t’u bërë pjesë e grupit nga %1$s.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">E shënuat numrin tuaj të sigurisë me %s si të verifikuar</string>
@@ -912,6 +946,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grup i paemër</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Po përgjigjeni…</string>
+  <string name="RedPhone_ending_call">Po përfundohet thirrja…</string>
+  <string name="RedPhone_dialing">Po i bihet numrit…</string>
   <string name="RedPhone_ringing">Po i bihet ziles…</string>
   <string name="RedPhone_busy">I zënë</string>
   <string name="RedPhone_connected">U lidh</string>

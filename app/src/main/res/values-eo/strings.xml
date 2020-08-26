@@ -414,6 +414,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vi nun povas rekte antaŭrigardi ligilojn de iu retejo por mesaĝoj, kiujn vi sendas.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Neniu antaŭrigardo de ligilo disponeblas</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
@@ -554,6 +555,11 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Vi jam estas ano</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Aniĝi</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Peto por aniĝi</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Malsukceso havi la grupinformon. Reprovu poste.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ĉu vi volas aniĝi al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ĝisdatigu Signal-on por uzi grupligilojn</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versio de Signal, kiun vi uzas ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu al lasta versio por anigi tiun grupon per ligilo.</string>

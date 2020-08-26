@@ -475,6 +475,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">تستطيع الآن جلب استعراض للروابط للرسائل التي ترسلها من  أيّة موقع مباشرةً.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">لا يتوفر استعراض للرابط</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">رابط هذه المجموعة غير مفعّل</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">دعوات معلّقة</string>
   <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
@@ -655,6 +656,20 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">أنت عضو بالفعل</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">انضم</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">أرسل طلب للانضمام</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">رابط هذه المجموعة غير مفعّل</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">فشل الحصول على معلومات المجموعة ، يرجى المحاولة مرة أخرى لاحقاً</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">هل تريد الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">لتستطيع الإنضمام إلى هذه المجموعة يجب أن يوافق مشرف من هذه المجموعة على طلب انضمامك. عندما ترسل طلب انضمام، سيتم مشاركة اسمك وصورتك مع أعضاء المجموعة.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="zero">مجموعة · %1$d أعضاء</item>
+    <item quantity="one">مجموعة · %1$d عضو</item>
+    <item quantity="two">مجموعة · %1$d أعضاء</item>
+    <item quantity="few">مجموعة · %1$d أعضاء</item>
+    <item quantity="many">مجموعة · %1$d أعضاء</item>
+    <item quantity="other">مجموعة · %1$dأعضاء</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">قم بتحديث Signal لاستخدام روابط المجموعة</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">إنّ نسخة Signal التي تستعملها لا تدعم روابط المجموعة القابلة للمشاركة. قم بالتحديث لأحدث نسخة لتستطيع الإنضمام إلى هذه المجموعة باستخدام رابط. </string>
@@ -935,11 +950,34 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">غير %1$s الأشخاص الذين يستطيعون تعديل عضوية المجموعة إلى \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">تم تغيير من يمكنهم تعديل عضوية المجموعة ليصبح : \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">لقد فعلت رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">لقد فعلت رابط المجموعة القابل للمشاركة بعد موافقة أحد المشرفين.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">لقد عطلت رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">قام %1$s بتفعيل رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">قام %1$sبتفعيل رابط المجموعة القابل للمشاركة بعد موافقة أحد المشرفين.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">قام %1$s بتعطيل رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">تمّ تفعيل رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">تمّ تفعيل رابط المجموعة القابل للمشاركة بعد موافقة أحد المشرفين.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">تمّ تعطيل رابط المجموعة القابل للمشاركة.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">لقد قمت بإعادة تعيين رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">قام %1$s بإعادة تعيين رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">تمت إعادة تعيين رابط المجموعة القابل للمشاركة.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">لقد قمت بالانضمام للمجموعة من خلال رابط المجموعة القابل للمشاركة.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">قام %1$s بالانضمام للمجموعة من خلال رابط المجموعة القابل للمشاركة.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">لقد أرسلت طلب للانضمام للمجموعة.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">أرسل %1$sطلباً للانضمام من خلال رابط المجموعة القابل للمشاركة.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">قبل %1$sطلبك للانضمام للمجموعة.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">قبل %1$s طلب %2$s انضمام للمجموعة.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">تمت الموافقة على طلبك للانضمام للمجموعة.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">تمت الموافقة على طلب %1$s للانضمام للمجموعة.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">تمّ رفض طلبك للانضمام للمجموعة من قبل مشرف.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">رفض %1$sطلب %2$s للانضمام للمجموعة.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">تمّ رفض طلب %1$sللانضمام للمجموعة.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم السلامة الخاص بينك وبين %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">لقد قمت بالتحقق من رقم السلامة مع %s</string>
@@ -1075,6 +1113,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">مجموعة بلا اسم</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">جار الرد…</string>
+  <string name="RedPhone_ending_call">جارٍ إنهاء المكالمة…</string>
+  <string name="RedPhone_dialing">جارٍ الاتصال…</string>
   <string name="RedPhone_ringing">رنين…</string>
   <string name="RedPhone_busy">مشغول</string>
   <string name="RedPhone_connected">متصل</string>

@@ -313,15 +313,15 @@
   <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定中に問題が発生しました</string>
   <string name="CreateProfileActivity_profile_photo">プロフィール画像</string>
   <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィールはエンドツーエンドで暗号化されています。あなたのプロフィールやその更新は、あなたが新しい会話を開始したり受け入れた際や、新しいグループに参加した際に連絡先で表示されます。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィール情報はエンドツーエンドで暗号化され、あなたが新しい会話を開始したり受け入れた際や、新しいグループに参加した際に相手先で表示されます。</string>
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>
   <string name="CustomDefaultPreference_using_default">既定を使用: %s</string>
   <string name="CustomDefaultPreference_none">なし</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
-  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">写真を選択</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">写真を撮る</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">画像を選択してください</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">写真を撮影</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">ギャラリーから選択</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">画像を消去</string>
   <!--DateUtils-->
@@ -384,7 +384,7 @@
   <string name="GroupMembersDialog_you">あなた</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">誰でも</string>
-  <string name="GroupManagement_access_level_all_members">全てのメンバー</string>
+  <string name="GroupManagement_access_level_all_members">すべてのメンバー</string>
   <string name="GroupManagement_access_level_only_admins">管理者のみ</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
@@ -399,7 +399,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">送信メッセージにて、どのウェヴサイトからでも直接リンクプレビューを取得できるようになりました。</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">リンクプレビューは使用できません</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">このグループは有効ではありません</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">このグループリンクは無効です</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">保留中のグループ招待</string>
   <string name="PendingMembersActivity_people_you_invited">あなたが招待した人々</string>
@@ -459,7 +459,7 @@
   <string name="ManageGroupActivity_until_s">%1$s まで</string>
   <string name="ManageGroupActivity_off">オフ</string>
   <string name="ManageGroupActivity_on">オン</string>
-  <string name="ManageGroupActivity_view_all_members">全てのメンバーを表示</string>
+  <string name="ManageGroupActivity_view_all_members">すべてのメンバーを表示</string>
   <string name="ManageGroupActivity_see_all">すべて表示</string>
   <string name="ManageGroupActivity_none">なし</string>
   <plurals name="ManageGroupActivity_invited">
@@ -532,14 +532,16 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">あなたはすでにメンバーです</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">参加する</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">参加を申し込む</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">このグループは有効ではありません</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">このグループリンクは無効です</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">グループ情報を取得できません。あとで再度試してください。</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">このグループに参加して、あなたの名前と画像をそのメンバーと共有しますか？</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">このグループに参加するには、管理者の承認が必要です。参加を申し込むと、あなたの名前と画像がそのメンバーと共有されます。</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
-    <item quantity="other">グループ · %1$dメンバー</item>
+    <item quantity="other">グループ · メンバー %1$d人</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">グループリンクを使用するためSignalをアップデート</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">このバージョンのSignalは、共有可能なグループリンクをサポートしていません。リンク経由でこのグループに参加するには、最新バージョンにアップデートしてください。</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">このバージョンのSignalは、共有グループリンクをサポートしていません。リンク経由でこのグループに参加するには、最新バージョンにアップデートしてください。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signalをアップデート</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">グループアバター</string>
@@ -757,20 +759,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s がグループ情報を編集できるユーザを「%2$s」に変更しました。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">グループ情報を編集できるユーザーが「%1$s」に変更されました。</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">共有可能なグループリンクを有効にしました。</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s が共有可能なグループリンクを有効にしました。</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s が管理者の承認を得て、共有可能なグループリンクを有効にしました。</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s が共有可能なグループリンクを無効にしました。</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">共有可能なグループリンクが有効になりました。</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">管理者の承認のもと、共有可能なグループリンクが有効になりました。</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">共有可能なグループリンクが無効になりました。</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">共有グループリンクを有効にしました。</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">管理者の承認を得て、共有グループリンクを有効にしました。</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">共有グループリンクを無効にしました。</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s が共有グループリンクを有効にしました。</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s が管理者の承認を得て、共有グループリンクを有効にしました。</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s が共有グループリンクを無効にしました。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">共有グループリンクが有効になりました。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">管理者の承認のもと、共有グループリンクが有効になりました。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">共有グループリンクが無効になりました。</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">共有可能なグループリンクをリセットしました。</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s が 共有可能なグループリンクをリセットしました。</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">共有可能なグループリンクがリセットされました。</string>
+  <string name="MessageRecord_you_reset_the_sharable_group_link">共有グループリンクをリセットしました。</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s が共有グループリンクをリセットしました。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">共有グループリンクがリセットされました。</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">共有グループリンクからグループに参加しました。</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s が共有グループリンクからグループに参加しました。</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">グループ参加を申し込みました。</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s が共有グループリンクから参加を申し込みました。</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s がグループ参加申し込みを承認しました。</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s が %2$s からのグループ参加申し込みを承認しました。</string>
@@ -799,10 +806,10 @@
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s および %3$s のメンバー</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="other">%1$d人のメンバー</item>
+    <item quantity="other">メンバー %1$d人</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">%1$d人のメンバー (+%2$d件の招待)</item>
+    <item quantity="other">メンバー %1$d人 (+%2$d件の招待)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">ほか%dグループ</item>
@@ -1286,7 +1293,7 @@
   <string name="contact_selection_list_fragment__show_contacts">連絡先を表示</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
-    <item quantity="other">%1$d人のメンバー</item>
+    <item quantity="other">メンバー %1$d人</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signalメッセージ</string>
@@ -2062,7 +2069,7 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">安全ではない音声電話</string>
   <string name="RecipientBottomSheet_video_call_description">ビデオ通話</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">グループ管理者から %1$s を削除しますか？</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$sがこのグループの設定やメンバーを編集できるようになります</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s がこのグループの設定やメンバーを編集できるようになります</string>
   <string name="RecipientBottomSheet_remove_s_from_s">%2$s から %1$s を削除しますか？</string>
   <string name="RecipientBottomSheet_remove">削除</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">クリップボードにコピーしました</string>

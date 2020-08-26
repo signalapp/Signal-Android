@@ -808,7 +808,7 @@
   <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Il link del gruppo condivisibile è stato disattivato.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_sharable_group_link">Hai reimpostato il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha reimpostato il link del gruppo condivisibile..</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha reimpostato il link del gruppo condivisibile.</string>
   <string name="MessageRecord_the_sharable_group_link_has_been_reset">Il link del gruppo condivisibile è stato reimpostato.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Ti sei unito al gruppo tramite il link del gruppo condivisibile.</string>
@@ -947,7 +947,7 @@
   <string name="RedPhone_answering">In risposta…</string>
   <string name="RedPhone_ending_call">Chiamata in chiusura…</string>
   <string name="RedPhone_dialing">Composizione…</string>
-  <string name="RedPhone_ringing">Squilla…</string>
+  <string name="RedPhone_ringing">Sta squillando…</string>
   <string name="RedPhone_busy">Occupato</string>
   <string name="RedPhone_connected">Connesso</string>
   <string name="RedPhone_recipient_unavailable">Destinatario non disponibile</string>
