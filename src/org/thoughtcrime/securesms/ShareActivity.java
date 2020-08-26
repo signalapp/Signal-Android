@@ -340,12 +340,13 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
     private InputStream openFileUri(Uri uri) throws IOException {
       FileInputStream fin   = new FileInputStream(uri.getPath());
-      int             owner = FileUtils.getFileDescriptorOwner(fin.getFD());
-      
-      if (owner == -1 || owner == Process.myUid()) {
-        fin.close();
-        throw new IOException("File owned by application");
-      }
+      //TODO Remove the commented code if there are no issues with reading shared files on October 2020
+//      int             owner = FileUtils.getFileDescriptorOwner(fin.getFD());
+
+//      if (owner == -1 || owner == Process.myUid()) {
+//        fin.close();
+//        throw new IOException("File owned by application");
+//      }
 
       return fin;
     }
