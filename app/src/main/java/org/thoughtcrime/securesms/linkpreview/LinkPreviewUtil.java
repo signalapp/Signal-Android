@@ -39,7 +39,7 @@ public final class LinkPreviewUtil {
   private static final Pattern FAVICON_PATTERN            = Pattern.compile("<\\s*link[^>]*rel\\s*=\\s*\".*icon.*\"[^>]*>");
   private static final Pattern FAVICON_HREF_PATTERN       = Pattern.compile("href\\s*=\\s*\"([^\"]*)\"");
 
-  private static final Set<String> INVALID_TOP_LEVEL_DOMAINS = Sets.newHashSet("onion");
+  private static final Set<String> INVALID_TOP_LEVEL_DOMAINS = Sets.newHashSet("onion", "i2p");
 
   /**
    * @return All whitelisted URLs in the source text.
@@ -176,3 +176,4 @@ public final class LinkPreviewUtil {
     @NonNull String fromEncoded(@NonNull String html);
   }
 }
+
