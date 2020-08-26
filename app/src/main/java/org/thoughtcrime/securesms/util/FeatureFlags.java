@@ -75,6 +75,8 @@ public final class FeatureFlags {
       GROUPS_V2,
       GROUPS_V2_CREATE,
       GROUPS_V2_CAPACITY,
+      GROUPS_V2_JOIN_VERSION,
+      GROUPS_V2_LINKS_VERSION,
       CDS,
       INTERNAL_USER,
       MENTIONS,
