@@ -1393,7 +1393,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="activity_create_closed_group_empty_state_button_title">Démarrer une session</string>
   <string name="activity_create_closed_group_group_name_missing_error">Veuillez saisir un nom de groupe</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Veuillez saisir un nom de groupe plus court</string>
-  <string name="activity_create_closed_group_not_enough_group_members_error">Veuillez sélectionner au moins 2 membres</string>
   <string name="activity_create_closed_group_too_many_group_members_error">Un groupe privé ne peut pas avoir plus de 10 membres</string>
   <string name="activity_create_closed_group_invalid_session_id_error">Un des membres de votre groupe a un Session ID non valide</string>
 

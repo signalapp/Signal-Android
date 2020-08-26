@@ -1386,7 +1386,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="activity_create_closed_group_empty_state_button_title">Session starten</string>
   <string name="activity_create_closed_group_group_name_missing_error">Bitte geben Sie einen Gruppennamen ein.</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Bitte geben Sie einen kürzeren Gruppennamen ein.</string>
-  <string name="activity_create_closed_group_not_enough_group_members_error">Bitte wählen Sie mindestens zwei Gruppenmitglieder aus.</string>
   <string name="activity_create_closed_group_too_many_group_members_error">Eine geschlossene Gruppe kann maximal zehn Mitglieder haben.</string>
   <string name="activity_create_closed_group_invalid_session_id_error">Ein Mitglied Ihrer Gruppe hat eine ungültige Session ID.</string>
 

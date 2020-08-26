@@ -1451,7 +1451,6 @@
   <string name="activity_create_closed_group_empty_state_button_title">Начать Сессию</string>
   <string name="activity_create_closed_group_group_name_missing_error">Пожалуйста, введите название группы</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Пожалуйста, введите более короткое имя группы</string>
-  <string name="activity_create_closed_group_not_enough_group_members_error">Пожалуйста, выберите как минимум 2 участников группы</string>
   <string name="activity_create_closed_group_too_many_group_members_error">В закрытой группе не может быть больше 10 участников</string>
   <string name="activity_create_closed_group_invalid_session_id_error">Один из участников вашей группы имеет недопустимый Session ID</string>
 
