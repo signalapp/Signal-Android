@@ -7,10 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
-import android.os.AsyncTask
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -99,15 +96,15 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
         versionTextView.text = String.format(getString(R.string.version_s), BuildConfig.VERSION_NAME)
-
-        themeSwitchButton.setOnClickListener {
-            setDarkTheme(!isDarkTheme())
-            recreate()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.settings_general, menu)
+
+        // Day/night themes are only available since Android 10
+        menu.findItem(R.id.action_change_theme)
+                .setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+
         return true
     }
 
@@ -115,7 +112,19 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         return when (item.itemId) {
             R.id.action_qr_code -> {
                 showQRCode()
-                return true
+                true
+            }
+            R.id.action_change_theme -> {
+                // A temporary demo code that manually switches between day/night themes.
+                // The effect is reset after the app restart.
+                val currentUiMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                val nightMode: Int = when(currentUiMode) {
+                    Configuration.UI_MODE_NIGHT_YES -> AppCompatDelegate.MODE_NIGHT_NO
+                    else -> AppCompatDelegate.MODE_NIGHT_YES
+                }
+                AppCompatDelegate.setDefaultNightMode(nightMode)
+                recreate()
+                true
             }
             else -> super.onOptionsItemSelected(item)
         }
@@ -287,18 +296,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         ClearAllDataDialog().show(supportFragmentManager, "Clear All Data Dialog")
     }
     // endregion
-
-    //TODO Remove it.
-    private fun isDarkTheme(): Boolean {
-        val themeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return themeFlag == Configuration.UI_MODE_NIGHT_YES;
-    }
-
-    //TODO Remove it.
-    private fun setDarkTheme(darkTheme: Boolean) {
-//        AppCompatDelegate.setDefaultNightMode(if (darkTheme) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO )
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-    }
 
     private inner class DisplayNameEditActionModeCallback: ActionMode.Callback {
 
