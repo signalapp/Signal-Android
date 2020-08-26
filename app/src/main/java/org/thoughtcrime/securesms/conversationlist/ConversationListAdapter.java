@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -42,7 +42,7 @@ class ConversationListAdapter extends PagedListAdapter<Conversation, RecyclerVie
 
   private final GlideRequests               glideRequests;
   private final OnConversationClickListener onConversationClickListener;
-  private final Map<Long, Conversation>     batchSet  = Collections.synchronizedMap(new HashMap<>());
+  private final Map<Long, Conversation>     batchSet  = Collections.synchronizedMap(new LinkedHashMap<>());
   private       boolean                     batchMode = false;
   private final Set<Long>                   typingSet = new HashSet<>();
 

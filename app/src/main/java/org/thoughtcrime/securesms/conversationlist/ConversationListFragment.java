@@ -129,6 +129,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -738,10 +739,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void handlePinAllSelected() {
-    final Set<Long> toPin = new HashSet<>(Stream.of(defaultAdapter.getBatchSelection())
-                                                .filterNot(conversation -> conversation.getThreadRecord().isPinned())
-                                                .map(conversation -> conversation.getThreadRecord().getThreadId())
-                                                .toList());
+    final Set<Long> toPin = new LinkedHashSet<>(Stream.of(defaultAdapter.getBatchSelection())
+                                                      .filterNot(conversation -> conversation.getThreadRecord().isPinned())
+                                                      .map(conversation -> conversation.getThreadRecord().getThreadId())
+                                                      .toList());
 
     if (toPin.size() + viewModel.getPinnedCount() > MAXIMUM_PINNED_CONVERSATIONS) {
       Snackbar.make(fab,
