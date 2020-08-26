@@ -151,12 +151,10 @@
 
     <style name="FakeChatViewMessageBubble.Incoming">
         <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
-<!--        <item name="android:textColor">@color/fake_chat_bubble_text</item>-->
     </style>
 
     <style name="FakeChatViewMessageBubble.Outgoing">
         <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
-<!--        <item name="android:textColor">@color/text</item>-->
     </style>
 
     <style name="Session.SettingsTheme" parent="PreferenceThemeOverlay.v14.Material" >
