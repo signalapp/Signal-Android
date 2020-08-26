@@ -348,7 +348,7 @@
         <activity
             android:name="org.thoughtcrime.securesms.giph.ui.GiphyActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightNoActionBar"
+            android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
