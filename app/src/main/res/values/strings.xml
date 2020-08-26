@@ -495,6 +495,12 @@
     <string name="LinkPreviewView_no_link_preview_available">No link preview available</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">This group link is not active</string>
 
+    <!-- LinkPreviewRepository -->
+    <plurals name="LinkPreviewRepository_d_members">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
+
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
     <string name="PendingMembersActivity_people_you_invited">People you invited</string>

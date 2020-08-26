@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -260,6 +261,8 @@ public class LinkPreviewRepository {
 
           GroupDatabase.GroupRecord groupRecord = group.get();
           String                    title       = groupRecord.getTitle();
+          int                       memberCount = groupRecord.getMembers().size();
+          String                    description = getMemberCountDescription(context, memberCount);
           Optional<Attachment>      thumbnail   = Optional.absent();
 
           if (AvatarHelper.hasAvatar(context, groupRecord.getRecipientId())) {
@@ -269,11 +272,12 @@ public class LinkPreviewRepository {
             thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
           }
 
-          callback.onSuccess(new LinkPreview(groupUrl, title, "", thumbnail));
+          callback.onSuccess(new LinkPreview(groupUrl, title, description, thumbnail));
         } else {
           Log.i(TAG, "Group is not locally available for preview generation, fetching from server");
 
           DecryptedGroupJoinInfo joinInfo    = GroupManager.getGroupJoinInfoFromServer(context, groupMasterKey, groupInviteLinkUrl.getPassword());
+          String                 description = getMemberCountDescription(context, joinInfo.getMemberCount());
           Optional<Attachment>   thumbnail   = Optional.absent();
           byte[]                 avatarBytes = AvatarGroupsV2DownloadJob.downloadGroupAvatarBytes(context, groupMasterKey, joinInfo.getAvatar());
 
@@ -285,7 +289,7 @@ public class LinkPreviewRepository {
             if (bitmap != null) bitmap.recycle();
           }
 
-          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), "", thumbnail));
+          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), description, thumbnail));
         }
       } catch (ExecutionException | InterruptedException | IOException | VerificationFailedException e) {
         Log.w(TAG, "Failed to fetch group link preview.", e);
@@ -300,6 +304,13 @@ public class LinkPreviewRepository {
     });
 
     return () -> Log.i(TAG, "Cancelled group link preview fetch -- no effect.");
+  }
+
+  private static @NonNull String getMemberCountDescription(@NonNull Context context, int memberCount) {
+    return context.getResources()
+                  .getQuantityString(R.plurals.LinkPreviewRepository_d_members,
+                                     memberCount,
+                                     memberCount);
   }
 
   private static Optional<Attachment> bitmapToAttachment(@Nullable Bitmap bitmap,
