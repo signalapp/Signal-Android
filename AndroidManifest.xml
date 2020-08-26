@@ -482,7 +482,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Session.DayNight" />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name="org.thoughtcrime.securesms.CreateProfileActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
