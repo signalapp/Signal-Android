@@ -27,6 +27,25 @@
         <item name="colorAccent">@color/accent</item>
         <item name="actionModeBackground">@color/compose_view_background</item>
         <item name="windowActionModeOverlay">true</item>
+
+        <item name="emoji_tab_strip_background">@color/compose_view_background</item>
+        <item name="emoji_tab_indicator">@color/accent</item>
+        <item name="emoji_tab_underline">@color/gray78</item>
+        <item name="emoji_tab_seperator">@color/gray70</item>
+        <item name="emoji_drawer_background">@color/compose_text_view_background</item>
+        <item name="emoji_text_color">@color/white</item>
+
+        <item name="emoji_category_recent">@drawable/ic_recent_dark_20</item>
+        <item name="emoji_category_people">@drawable/ic_emoji_people_dark_20</item>
+        <item name="emoji_category_nature">@drawable/ic_emoji_animal_dark_20</item>
+        <item name="emoji_category_foods">@drawable/ic_emoji_food_dark_20</item>
+        <item name="emoji_category_activity">@drawable/ic_emoji_activity_dark_20</item>
+        <item name="emoji_category_places">@drawable/ic_emoji_travel_dark_20</item>
+        <item name="emoji_category_objects">@drawable/ic_emoji_object_dark_20</item>
+        <item name="emoji_category_symbol">@drawable/ic_emoji_symbol_dark_20</item>
+        <item name="emoji_category_flags">@drawable/ic_emoji_flag_dark_20</item>
+        <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_dark_20</item>
+        <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_dark</item>
     </style>
 
     <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Theme.AppCompat">

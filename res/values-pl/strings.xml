@@ -1467,7 +1467,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="activity_create_closed_group_empty_state_button_title">Rozpocznij sesję</string>
   <string name="activity_create_closed_group_group_name_missing_error">Wpisz nazwę grupy</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Wprowadź krótszą nazwę grupy</string>
-  <string name="activity_create_closed_group_not_enough_group_members_error">Wybierz przynajmniej 2 członków grupy</string>
   <string name="activity_create_closed_group_too_many_group_members_error">Grupa zamknięta nie może mieć więcej niż 10 członków</string>
   <string name="activity_create_closed_group_invalid_session_id_error">Jeden z członków Twojej grupy ma nieprawidłowy identyfikator Session</string>
 
