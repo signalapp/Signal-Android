@@ -1,17 +1,18 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import android.os.Build;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
 
 import java.util.List;
+
+import network.loki.messenger.R;
 
 public class EmojiVariationSelectorPopup extends PopupWindow {
 
@@ -29,10 +30,6 @@ public class EmojiVariationSelectorPopup extends PopupWindow {
 
     setBackgroundDrawable(null);
     setOutsideTouchable(true);
-
-    if (Build.VERSION.SDK_INT >= 21) {
-      setElevation(20);
-    }
   }
 
   public void setVariations(List<String> variations) {
