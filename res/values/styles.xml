@@ -138,28 +138,25 @@
         <item name="android:maxLines">1</item>
     </style>
 
-    <style name="FakeChatViewIncomingMessageBubble">
-        <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+    <style name="FakeChatViewMessageBubble">
         <item name="android:paddingLeft">@dimen/medium_spacing</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingRight">@dimen/medium_spacing</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/fake_chat_bubble_text</item>
-        <item name="android:elevation">20dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
-    <style name="FakeChatViewOutgoingMessageBubble">
+    <style name="FakeChatViewMessageBubble.Incoming">
+        <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+<!--        <item name="android:textColor">@color/fake_chat_bubble_text</item>-->
+    </style>
+
+    <style name="FakeChatViewMessageBubble.Outgoing">
         <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
-        <item name="android:paddingLeft">@dimen/medium_spacing</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingRight">@dimen/medium_spacing</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
-        <item name="android:elevation">20dp</item>
+<!--        <item name="android:textColor">@color/text</item>-->
     </style>
 
     <style name="Session.SettingsTheme" parent="PreferenceThemeOverlay.v14.Material" >
