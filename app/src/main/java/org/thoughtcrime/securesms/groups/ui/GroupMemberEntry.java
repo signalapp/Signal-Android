@@ -222,4 +222,45 @@ public abstract class GroupMemberEntry {
       return hash + (cancellable ? 1 : 0);
     }
   }
+
+  public final static class RequestingMember extends GroupMemberEntry {
+    private final Recipient requester;
+    private final boolean   approvableDeniable;
+
+    public RequestingMember(@NonNull Recipient requester, boolean approvableDeniable) {
+      this.requester          = requester;
+      this.approvableDeniable = approvableDeniable;
+    }
+
+    public Recipient getRequester() {
+      return requester;
+    }
+
+    public boolean isApprovableDeniable() {
+      return approvableDeniable;
+    }
+
+    @Override
+    boolean sameId(@NonNull GroupMemberEntry newItem) {
+      if (getClass() != newItem.getClass()) return false;
+
+      return requester.getId().equals(((GroupMemberEntry.PendingMember) newItem).invitee.getId());
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+      if (!(obj instanceof RequestingMember)) return false;
+
+      RequestingMember other = (RequestingMember) obj;
+      return other.requester.equals(requester) &&
+             other.approvableDeniable == approvableDeniable;
+    }
+
+    @Override
+    public int hashCode() {
+      int hash = requester.hashCode();
+      hash *= 31;
+      return hash + (approvableDeniable ? 1 : 0);
+    }
+  }
 }

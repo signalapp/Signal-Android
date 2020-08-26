@@ -293,6 +293,17 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
+    @NonNull GroupManager.GroupActionResult approveRequests(@NonNull Collection<RecipientId> recipientIds)
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      Set<UUID> uuids = Stream.of(recipientIds)
+                              .map(r -> Recipient.resolved(r).getUuid().get())
+                              .collect(Collectors.toSet());
+
+      return commitChangeWithConflictResolution(groupOperations.createApproveGroupJoinRequest(uuids));
+    }
+
+    @WorkerThread
     @NonNull GroupManager.GroupActionResult denyRequests(@NonNull Collection<RecipientId> recipientIds)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
@@ -402,6 +413,40 @@ final class GroupManagerV2 {
       return commitChangeWithConflictResolution(groupOperations.createAcceptInviteChange(groupCandidate.getProfileKeyCredential().get()));
     }
 
+    @WorkerThread
+    public GroupManager.GroupActionResult cycleGroupLinkPassword()
+        throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
+    {
+      return commitChangeWithConflictResolution(groupOperations.createModifyGroupLinkPasswordChange(GroupLinkPassword.createNew().serialize()));
+    }
+
+    @WorkerThread
+    public GroupManager.GroupActionResult setJoinByGroupLinkState(@NonNull GroupManager.GroupLinkState state)
+        throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
+    {
+      AccessControl.AccessRequired access;
+
+      switch (state) {
+        case DISABLED             : access = AccessControl.AccessRequired.UNSATISFIABLE; break;
+        case ENABLED              : access = AccessControl.AccessRequired.ANY;           break;
+        case ENABLED_WITH_APPROVAL: access = AccessControl.AccessRequired.ADMINISTRATOR; break;
+        default:                    throw new AssertionError();
+      }
+
+      GroupChange.Actions.Builder  change = groupOperations.createChangeJoinByLinkRights(access);
+
+      if (state != GroupManager.GroupLinkState.DISABLED) {
+        DecryptedGroup group = groupDatabase.requireGroup(groupId).requireV2GroupProperties().getDecryptedGroup();
+
+        if (group.getInviteLinkPassword().isEmpty()) {
+          Log.d(TAG, "First time enabling group links for group and password empty, generating");
+          change = groupOperations.createModifyGroupLinkPasswordAndRightsChange(GroupLinkPassword.createNew().serialize(), access);
+        }
+      }
+
+      return commitChangeWithConflictResolution(change);
+    }
+
     private @NonNull GroupManager.GroupActionResult commitChangeWithConflictResolution(@NonNull GroupChange.Actions.Builder change)
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
@@ -480,7 +525,7 @@ final class GroupManagerV2 {
       return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient, recipientAndThread.threadId, newMembersCount, newPendingMembers);
     }
 
-    private GroupChange commitToServer(GroupChange.Actions change)
+    private @NonNull GroupChange commitToServer(@NonNull GroupChange.Actions change)
         throws GroupNotAMemberException, GroupChangeFailedException, IOException, GroupInsufficientRightsException
     {
       try {
@@ -948,6 +993,8 @@ final class GroupManagerV2 {
         return AccessControl.AccessRequired.MEMBER;
       case ONLY_ADMINS:
         return AccessControl.AccessRequired.ADMINISTRATOR;
+      case NO_ONE:
+        return AccessControl.AccessRequired.UNSATISFIABLE;
       default:
       throw new AssertionError();
     }

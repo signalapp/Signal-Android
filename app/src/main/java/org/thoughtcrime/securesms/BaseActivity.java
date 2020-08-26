@@ -8,6 +8,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,8 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageActivityHelper;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+
+import java.util.Objects;
 
 /**
  * Base class for all activities. The vast majority of activities shouldn't extend this directly.
@@ -72,9 +75,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     ActivityCompat.startActivity(this, intent, bundle);
   }
 
-  @TargetApi(VERSION_CODES.LOLLIPOP)
+  @TargetApi(21)
   protected void setStatusBarColor(int color) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (Build.VERSION.SDK_INT >= 21) {
       getWindow().setStatusBarColor(color);
     }
   }
@@ -86,5 +89,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   private void logEvent(@NonNull String event) {
     Log.d(TAG, "[" + Log.tag(getClass()) + "] " + event);
+  }
+
+  protected final @NonNull ActionBar requireSupportActionBar() {
+    return Objects.requireNonNull(getSupportActionBar());
   }
 }

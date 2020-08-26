@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.pendingmemberinvites;
+package org.thoughtcrime.securesms.groups.ui.invitesandrequests.invited;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -23,12 +23,12 @@ import java.util.List;
 public class PendingMemberInvitesViewModel extends ViewModel {
 
   private final Context                                                                context;
-  private final PendingMemberRepository                                                pendingMemberRepository;
+  private final PendingMemberInvitesRepository pendingMemberRepository;
   private final DefaultValueLiveData<List<GroupMemberEntry.PendingMember>>             whoYouInvited           = new DefaultValueLiveData<>(Collections.emptyList());
   private final DefaultValueLiveData<List<GroupMemberEntry.UnknownPendingMemberCount>> whoOthersInvited        = new DefaultValueLiveData<>(Collections.emptyList());
 
   private PendingMemberInvitesViewModel(@NonNull Context context,
-                                        @NonNull PendingMemberRepository pendingMemberRepository)
+                                        @NonNull PendingMemberInvitesRepository pendingMemberRepository)
   {
     this.context                 = context;
     this.pendingMemberRepository = pendingMemberRepository;
@@ -49,17 +49,17 @@ public class PendingMemberInvitesViewModel extends ViewModel {
     whoOthersInvited.postValue(byOthers);
   }
 
-  private void setMembers(PendingMemberRepository.InviteeResult inviteeResult) {
+  private void setMembers(PendingMemberInvitesRepository.InviteeResult inviteeResult) {
     List<GroupMemberEntry.PendingMember>             byMe     = new ArrayList<>(inviteeResult.getByMe().size());
     List<GroupMemberEntry.UnknownPendingMemberCount> byOthers = new ArrayList<>(inviteeResult.getByOthers().size());
 
-    for (PendingMemberRepository.SinglePendingMemberInvitedByYou pendingMember : inviteeResult.getByMe()) {
+    for (PendingMemberInvitesRepository.SinglePendingMemberInvitedByYou pendingMember : inviteeResult.getByMe()) {
       byMe.add(new GroupMemberEntry.PendingMember(pendingMember.getInvitee(),
                                                   pendingMember.getInviteeCipherText(),
                                                   inviteeResult.isCanRevokeInvites()));
     }
 
-    for (PendingMemberRepository.MultiplePendingMembersInvitedByAnother pendingMembers : inviteeResult.getByOthers()) {
+    for (PendingMemberInvitesRepository.MultiplePendingMembersInvitedByAnother pendingMembers : inviteeResult.getByOthers()) {
       byOthers.add(new GroupMemberEntry.UnknownPendingMemberCount(pendingMembers.getInviter(),
                                                                   pendingMembers.getUuidCipherTexts(),
                                                                   inviteeResult.isCanRevokeInvites()));
@@ -148,7 +148,7 @@ public class PendingMemberInvitesViewModel extends ViewModel {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection unchecked
-      return (T) new PendingMemberInvitesViewModel(context, new PendingMemberRepository(context.getApplicationContext(), groupId));
+      return (T) new PendingMemberInvitesViewModel(context, new PendingMemberInvitesRepository(context.getApplicationContext(), groupId));
     }
   }
 }

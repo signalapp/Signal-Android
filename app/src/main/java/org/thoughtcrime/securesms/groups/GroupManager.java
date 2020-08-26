@@ -248,6 +248,49 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void cycleGroupLinkPassword(@NonNull Context context,
+                                            @NonNull GroupId.V2 groupId)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.cycleGroupLinkPassword();
+    }
+  }
+
+  @WorkerThread
+  public static void setGroupLinkEnabledState(@NonNull Context context,
+                                              @NonNull GroupId.V2 groupId,
+                                              @NonNull GroupLinkState state)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.setJoinByGroupLinkState(state);
+    }
+  }
+
+  @WorkerThread
+  public static void approveRequests(@NonNull Context context,
+                                     @NonNull GroupId.V2 groupId,
+                                     @NonNull Collection<RecipientId> recipientIds)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.approveRequests(recipientIds);
+    }
+  }
+
+  @WorkerThread
+  public static void denyRequests(@NonNull Context context,
+                                  @NonNull GroupId.V2 groupId,
+                                  @NonNull Collection<RecipientId> recipientIds)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.denyRequests(recipientIds);
+    }
+  }
+
+  @WorkerThread
   public static @NonNull GroupActionResult addMembers(@NonNull Context context,
                                                       @NonNull GroupId.Push groupId,
                                                       @NonNull Collection<RecipientId> newMembers)
@@ -338,5 +381,11 @@ public final class GroupManager {
     public @NonNull List<RecipientId> getInvitedMembers() {
       return invitedMembers;
     }
+  }
+
+  public enum GroupLinkState {
+    DISABLED,
+    ENABLED,
+    ENABLED_WITH_APPROVAL
   }
 }

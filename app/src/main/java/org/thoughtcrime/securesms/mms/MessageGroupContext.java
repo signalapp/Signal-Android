@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
@@ -163,12 +165,16 @@ public final class MessageGroupContext {
     }
 
     public @NonNull List<UUID> getAllActivePendingAndRemovedMembers() {
-      LinkedList<UUID> memberUuids = new LinkedList<>();
+      LinkedList<UUID>     memberUuids = new LinkedList<>();
+      DecryptedGroup       groupState  = decryptedGroupV2Context.getGroupState();
+      DecryptedGroupChange groupChange = decryptedGroupV2Context.getChange();
 
-      memberUuids.addAll(DecryptedGroupUtil.membersToUuidList(decryptedGroupV2Context.getGroupState().getMembersList()));
-      memberUuids.addAll(DecryptedGroupUtil.pendingToUuidList(decryptedGroupV2Context.getGroupState().getPendingMembersList()));
-      memberUuids.addAll(DecryptedGroupUtil.removedMembersUuidList(decryptedGroupV2Context.getChange()));
-      memberUuids.addAll(DecryptedGroupUtil.removedPendingMembersUuidList(decryptedGroupV2Context.getChange()));
+      memberUuids.addAll(DecryptedGroupUtil.membersToUuidList(groupState.getMembersList()));
+      memberUuids.addAll(DecryptedGroupUtil.pendingToUuidList(groupState.getPendingMembersList()));
+
+      memberUuids.addAll(DecryptedGroupUtil.removedMembersUuidList(groupChange));
+      memberUuids.addAll(DecryptedGroupUtil.removedPendingMembersUuidList(groupChange));
+      memberUuids.addAll(DecryptedGroupUtil.removedRequestingMembersUuidList(groupChange));
 
       return UuidUtil.filterKnown(memberUuids);
     }

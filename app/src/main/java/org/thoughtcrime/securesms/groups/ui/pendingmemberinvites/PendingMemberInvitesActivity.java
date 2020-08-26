@@ -10,9 +10,16 @@ import androidx.appcompat.widget.Toolbar;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity;
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invited.PendingMemberInvitesFragment;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
+/**
+ * @deprecated With group links FF, this activity is replaced with {@link ManagePendingAndRequestingMembersActivity}.
+ */
+@Deprecated
 public class PendingMemberInvitesActivity extends PassphraseRequiredActivity {
 
   private static final String GROUP_ID = "GROUP_ID";
@@ -33,6 +40,11 @@ public class PendingMemberInvitesActivity extends PassphraseRequiredActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     super.onCreate(savedInstanceState, ready);
+
+    if (FeatureFlags.groupsV2manageGroupLinks()) {
+      throw new AssertionError();
+    }
+
     setContentView(R.layout.group_pending_member_invites_activity);
 
     if (savedInstanceState == null) {

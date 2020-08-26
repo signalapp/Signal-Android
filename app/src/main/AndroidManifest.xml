@@ -268,6 +268,10 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
 
+    <activity android:name=".groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
+
     <activity android:name=".groups.ui.managegroup.ManageGroupActivity"
               android:windowSoftInputMode="stateAlwaysHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"/>

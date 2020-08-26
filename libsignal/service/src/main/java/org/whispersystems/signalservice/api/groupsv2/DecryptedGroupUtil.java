@@ -111,6 +111,24 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
+  /**
+   * Will not return any non-decryptable member UUIDs.
+   */
+  public static ArrayList<UUID> removedRequestingMembersUuidList(DecryptedGroupChange groupChange) {
+    List<ByteString> deleteRequestingMembers = groupChange.getDeleteRequestingMembersList();
+    ArrayList<UUID>  uuidList                = new ArrayList<>(deleteRequestingMembers.size());
+
+    for (ByteString member : deleteRequestingMembers) {
+      UUID uuid = toUuid(member);
+
+      if(!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+        uuidList.add(uuid);
+      }
+    }
+
+    return uuidList;
+  }
+
   public static UUID toUuid(DecryptedMember member) {
     return toUuid(member.getUuid());
   }

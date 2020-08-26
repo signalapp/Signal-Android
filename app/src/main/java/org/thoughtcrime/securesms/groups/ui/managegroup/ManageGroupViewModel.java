@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.addmembers.AddMembersActivity;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupMentionSettingDialog;
+import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -63,6 +64,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final LiveData<Boolean>                           canAddMembers;
   private final LiveData<List<GroupMemberEntry.FullMember>> members;
   private final LiveData<Integer>                           pendingMemberCount;
+  private final LiveData<Integer>                           pendingAndRequestingCount;
   private final LiveData<String>                            disappearingMessageTimer;
   private final LiveData<String>                            memberCountSummary;
   private final LiveData<String>                            fullMemberCountSummary;
@@ -78,6 +80,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final LiveData<Boolean>                           canBlockGroup;
   private final LiveData<Boolean>                           showLegacyIndicator;
   private final LiveData<String>                            mentionSetting;
+  private final LiveData<Boolean>                           groupLinkOn;
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -99,6 +102,7 @@ public class ManageGroupViewModel extends ViewModel {
                                                                 memberListCollapseState,
                                                                 ManageGroupViewModel::filterMemberList);
     this.pendingMemberCount        = liveGroup.getPendingMemberCount();
+    this.pendingAndRequestingCount = liveGroup.getPendingAndRequestingMemberCount();
     this.showLegacyIndicator       = new MutableLiveData<>(groupId.isV1() && FeatureFlags.groupsV2create());
     this.memberCountSummary        = LiveDataUtil.combineLatest(liveGroup.getMembershipCountDescription(context.getResources()),
                                                                 this.showLegacyIndicator,
@@ -119,6 +123,7 @@ public class ManageGroupViewModel extends ViewModel {
     this.canBlockGroup             = Transformations.map(this.groupRecipient, recipient -> !recipient.isBlocked());
     this.mentionSetting            = Transformations.distinctUntilChanged(Transformations.map(this.groupRecipient,
                                                                                               recipient -> MentionUtil.getMentionSettingDisplayValue(context, recipient.getMentionSetting())));
+    this.groupLinkOn               = Transformations.map(liveGroup.getGroupLink(), GroupLinkUrlAndStatus::isEnabled);
   }
 
   @WorkerThread
@@ -134,6 +139,10 @@ public class ManageGroupViewModel extends ViewModel {
 
   LiveData<Integer> getPendingMemberCount() {
     return pendingMemberCount;
+  }
+
+  LiveData<Integer> getPendingAndRequestingCount() {
+    return pendingAndRequestingCount;
   }
 
   LiveData<String> getMemberCountSummary() {
@@ -214,6 +223,10 @@ public class ManageGroupViewModel extends ViewModel {
 
   LiveData<String> getMentionSetting() {
     return mentionSetting;
+  }
+
+  LiveData<Boolean> getGroupLinkOn() {
+    return groupLinkOn;
   }
 
   void handleExpirationSelection() {

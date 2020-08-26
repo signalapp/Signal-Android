@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.pendingmemberinvites;
+package org.thoughtcrime.securesms.groups.ui.invitesandrequests.invited;
 
 import android.content.Context;
 

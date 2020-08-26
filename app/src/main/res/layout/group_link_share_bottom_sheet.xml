@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/group_link_bottom_sheet_share_via_signal_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/GroupLinkBottomSheet_share_via_signal"
+            app:drawableStartCompat="?message_icon" />
+
+        <Button
+            android:id="@+id/group_link_bottom_sheet_copy_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/GroupLinkBottomSheet_copy"
+            app:drawableStartCompat="?copy_icon" />
+
+        <Button
+            android:id="@+id/group_link_bottom_sheet_qr_code_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/GroupLinkBottomSheet_qr_code"
+            app:drawableStartCompat="?qr_icon" />
+
+        <Button
+            android:id="@+id/group_link_bottom_sheet_share_via_system_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/GroupLinkBottomSheet_share"
+            app:drawableStartCompat="?share_icon" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

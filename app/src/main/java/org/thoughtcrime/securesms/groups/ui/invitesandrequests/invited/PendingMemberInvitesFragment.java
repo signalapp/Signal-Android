@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.pendingmemberinvites;
+package org.thoughtcrime.securesms.groups.ui.invitesandrequests.invited;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.AdminActionsListener;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.util.BottomSheetUtil;
 
 import java.util.Objects;
 
@@ -47,6 +49,10 @@ public class PendingMemberInvitesFragment extends Fragment {
     youInvitedEmptyState    = view.findViewById(R.id.no_pending_from_you);
     othersInvitedEmptyState = view.findViewById(R.id.no_pending_from_others);
 
+    youInvited.setRecipientClickListener(recipient ->
+      RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
+                                        .show(requireActivity().getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG));
+
     youInvited.setAdminActionsListener(new AdminActionsListener() {
 
       @Override
@@ -56,7 +62,17 @@ public class PendingMemberInvitesFragment extends Fragment {
 
       @Override
       public void onRevokeAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
-        throw new AssertionError();
+        throw new UnsupportedOperationException();
+      }
+
+      @Override
+      public void onApproveRequest(@NonNull GroupMemberEntry.RequestingMember requestingMember) {
+        throw new UnsupportedOperationException();
+      }
+
+      @Override
+      public void onDenyRequest(@NonNull GroupMemberEntry.RequestingMember requestingMember) {
+        throw new UnsupportedOperationException();
       }
     });
 
@@ -64,12 +80,22 @@ public class PendingMemberInvitesFragment extends Fragment {
 
       @Override
       public void onRevokeInvite(@NonNull GroupMemberEntry.PendingMember pendingMember) {
-        throw new AssertionError();
+        throw new UnsupportedOperationException();
       }
 
       @Override
       public void onRevokeAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
         viewModel.revokeInvitesFor(pendingMembers);
+      }
+
+      @Override
+      public void onApproveRequest(@NonNull GroupMemberEntry.RequestingMember requestingMember) {
+        throw new UnsupportedOperationException();
+      }
+
+      @Override
+      public void onDenyRequest(@NonNull GroupMemberEntry.RequestingMember requestingMember) {
+        throw new UnsupportedOperationException();
       }
     });
 

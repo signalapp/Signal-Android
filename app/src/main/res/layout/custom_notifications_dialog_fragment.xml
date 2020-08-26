@@ -22,9 +22,8 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:text="@string/CustomNotificationsDialogFragment__messages"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
         android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_toolbar" />
@@ -39,7 +38,6 @@
         android:orientation="horizontal"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_section_header">
 
@@ -77,7 +75,6 @@
         android:orientation="horizontal"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_row">
 
@@ -116,7 +113,6 @@
         android:orientation="horizontal"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_sound_row">
 
@@ -159,9 +155,8 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="@string/CustomNotificationsDialogFragment__call_settings"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
         android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +173,6 @@
         android:orientation="horizontal"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_call_settings_section_header"
@@ -215,7 +209,6 @@
         android:orientation="horizontal"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_ringtone_row"

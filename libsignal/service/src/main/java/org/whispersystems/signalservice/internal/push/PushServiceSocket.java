@@ -1632,7 +1632,6 @@ public class PushServiceSocket {
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .build();
 
-//    Log.d(TAG, "Opening URL: " + String.format("%s%s", connectionHolder.getUrl(), path));
     Log.d(TAG, "Opening URL: <REDACTED>");
 
     Request.Builder request = new Request.Builder().url(connectionHolder.getUrl() + path);
@@ -1960,8 +1959,13 @@ public class PushServiceSocket {
   public GroupChange patchGroupsV2Group(GroupChange.Actions groupChange, String authorization, Optional<byte[]> groupLinkPassword)
       throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
-    String path = groupLinkPassword.transform(p -> String.format(GROUPSV2_GROUP_PASSWORD, Base64UrlSafe.encodeBytesWithoutPadding(p)))
-                                   .or(GROUPSV2_GROUP);
+    String path;
+
+    if (groupLinkPassword.isPresent()) {
+      path = String.format(GROUPSV2_GROUP_PASSWORD, Base64UrlSafe.encodeBytesWithoutPadding(groupLinkPassword.get()));
+    } else {
+      path = GROUPSV2_GROUP;
+    }
 
     ResponseBody response = makeStorageRequest(authorization,
                                                path,

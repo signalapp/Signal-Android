@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups.ui.pendingmemberinvites;
+package org.thoughtcrime.securesms.groups.ui.invitesandrequests.invited;
 
 import android.content.Context;
 
@@ -33,15 +33,15 @@ import java.util.concurrent.Executor;
 /**
  * Repository for modifying the pending members on a single group.
  */
-final class PendingMemberRepository {
+final class PendingMemberInvitesRepository {
 
-  private static final String TAG = Log.tag(PendingMemberRepository.class);
+  private static final String TAG = Log.tag(PendingMemberInvitesRepository.class);
 
   private final Context    context;
   private final GroupId.V2 groupId;
   private final Executor   executor;
 
-  PendingMemberRepository(@NonNull Context context, @NonNull GroupId.V2 groupId) {
+  PendingMemberInvitesRepository(@NonNull Context context, @NonNull GroupId.V2 groupId) {
     this.context  = context.getApplicationContext();
     this.executor = SignalExecutors.BOUNDED;
     this.groupId  = groupId;

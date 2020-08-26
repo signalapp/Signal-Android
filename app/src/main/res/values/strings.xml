@@ -469,6 +469,7 @@
     <string name="GroupManagement_access_level_anyone">Anyone</string>
     <string name="GroupManagement_access_level_all_members">All members</string>
     <string name="GroupManagement_access_level_only_admins">Only admins</string>
+    <string name="GroupManagement_access_level_no_one">No one</string>
     <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
@@ -505,6 +506,8 @@
 
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
+    <string name="PendingMembersActivity_requests">Requests</string>
+    <string name="PendingMembersActivity_invites">Invites</string>
     <string name="PendingMembersActivity_people_you_invited">People you invited</string>
     <string name="PendingMembersActivity_you_have_no_pending_invites">You have no pending invites.</string>
     <string name="PendingMembersActivity_invites_by_other_group_members">Invites by other group members</string>
@@ -521,6 +524,13 @@
         <item quantity="one">Error revoking invite</item>
         <item quantity="other">Error revoking invites</item>
     </plurals>
+    
+    <!-- RequestingMembersFragment -->
+    <string name="RequestingMembersFragment_pending_member_requests">Pending member requests</string>
+    <string name="RequestingMembersFragment_no_member_requests_to_show">No member requests to show.</string>
+    <string name="RequestingMembersFragment_explanation">People on this list are attempting to join this group via the sharable group link.</string>
+    <string name="RequestingMembersFragment_added_s">Added "%1$s"</string>
+    <string name="RequestingMembersFragment_denied_s">Denied "%1$s"</string>
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Done</string>
@@ -559,10 +569,12 @@
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_disappearing_messages">Disappearing messages</string>
     <string name="ManageGroupActivity_pending_group_invites">Pending group invites</string>
+    <string name="ManageGroupActivity_member_requests_and_invites">Member requests &amp; invites</string>
     <string name="ManageGroupActivity_add_members">Add members</string>
     <string name="ManageGroupActivity_edit_group_info">Edit group info</string>
     <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Choose who can edit the group name, avatar, and disappearing messages.</string>
     <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Choose who can add or invite new members.</string>
+    <string name="ManageGroupActivity_sharable_group_link">Sharable group link</string>
     <string name="ManageGroupActivity_block_group">Block group</string>
     <string name="ManageGroupActivity_unblock_group">Unblock group</string>
     <string name="ManageGroupActivity_leave_group">Leave group</string>
@@ -647,6 +659,24 @@
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
     <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
     <string name="CustomNotificationsDialogFragment__default">Default</string>
+    
+    <!-- ShareableGroupLinkDialogFragment -->
+    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable group link</string>
+    <string name="ShareableGroupLinkDialogFragment__manage_and_share">Manage &amp; share</string>
+    <string name="ShareableGroupLinkDialogFragment__group_link">Group link</string>
+    <string name="ShareableGroupLinkDialogFragment__share">Share</string>
+    <string name="ShareableGroupLinkDialogFragment__reset_link">Reset link</string>
+    <string name="ShareableGroupLinkDialogFragment__member_requests">Member requests</string>
+    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Approve new members</string>
+    <string name="ShareableGroupLinkDialogFragment__enabled">Enabled</string>
+    <string name="ShareableGroupLinkDialogFragment__disabled">Disabled</string>
+    <string name="ShareableGroupLinkDialogFragment__default">Default</string>
+    <string name="ShareableGroupLinkDialogFragment__group_link_reset">Group link reset</string>
+
+    <!-- GroupLinkShareQrDialogFragment -->
+    <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">People who scan this code will be able to join your group. Admins will still need to approve new members if you have that setting turned on.</string>
+    <string name="GroupLinkShareQrDialogFragment__share_code">Share code</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Do you want to revoke the invite you sent to %1$s?</string>
@@ -678,6 +708,12 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">The version of Signal you’re using does not support sharable group links. Update to the latest version to join this group via link.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Update Signal</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Group link is not valid</string>
+
+    <!-- GV2 Request confirmation dialog -->
+    <string name="RequestConfirmationDialog_add_s_to_the_group">Add “%1$s” to the group?</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s">Deny request from “%1$s”?</string>
+    <string name="RequestConfirmationDialog_add">Add</string>
+    <string name="RequestConfirmationDialog_deny">Deny</string>
 
     <!-- CropImageActivity -->
     <string name="CropImageActivity_group_avatar">Group avatar</string>
@@ -2546,6 +2582,8 @@
     <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
 
     <string name="GroupRecipientListItem_admin">Admin</string>
+    <string name="GroupRecipientListItem_approve_description">Approve</string>
+    <string name="GroupRecipientListItem_deny_description">Deny</string>
 
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
@@ -2555,6 +2593,15 @@
     <string name="GroupsLearnMore_how_do_i_use_new_groups">How do I use New Groups?</string>
     <string name="GroupsLearnMore_paragraph_2">Legacy Groups can’t be converted into New Groups, but you can create a New Group with the same members.</string>
     <string name="GroupsLearnMore_paragraph_3">To create a New Group, all members should update to the latest version of Signal.</string>
+
+
+    <!-- GroupLinkBottomSheetDialogFragment -->
+    <string name="GroupLinkBottomSheet_share_via_signal">Share via Signal</string>
+    <string name="GroupLinkBottomSheet_copy">Copy</string>
+    <string name="GroupLinkBottomSheet_qr_code">QR Code</string>
+    <string name="GroupLinkBottomSheet_share">Share</string>
+    <string name="GroupLinkBottomSheet_copied_to_clipboard">Copied to clipboard</string>
+    <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">The link is not currently active</string>
 
     <!-- EOF -->
 

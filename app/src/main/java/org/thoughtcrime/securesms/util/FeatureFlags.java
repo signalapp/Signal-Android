@@ -57,6 +57,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2                  = "android.groupsv2.3";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.3";
   private static final String GROUPS_V2_JOIN_VERSION     = "android.groupsv2.joinVersion";
+  private static final String GROUPS_V2_LINKS_VERSION    = "android.groupsv2.manageGroupLinksVersion";
   private static final String GROUPS_V2_CAPACITY         = "global.groupsv2.maxGroupSize";
   private static final String CDS                        = "android.cds.4";
   private static final String INTERNAL_USER              = "android.internalUser";
@@ -208,6 +209,11 @@ public final class FeatureFlags {
            !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
   }
 
+  /** Allow creation and managing of group links. */
+  public static boolean groupsV2manageGroupLinks() {
+    return groupsV2() && getVersionFlag(GROUPS_V2_LINKS_VERSION) == VersionFlag.ON;
+  }
+
   private static boolean groupsV2LatestFlag() {
     return getBoolean(GROUPS_V2, false);
   }
@@ -231,11 +237,12 @@ public final class FeatureFlags {
    * You must still check GV2 capabilities to respect linked devices.
    */
   public static GroupJoinStatus clientLocalGroupJoinStatus() {
-    int groupJoinVersion = getInteger(GROUPS_V2_JOIN_VERSION, 0);
-
-    if      (groupJoinVersion == 0)                                 return GroupJoinStatus.COMING_SOON;
-    else if (groupJoinVersion > BuildConfig.CANONICAL_VERSION_CODE) return GroupJoinStatus.UPDATE_TO_JOIN;
-    else                                                            return GroupJoinStatus.LOCAL_CAN_JOIN;
+    switch (getVersionFlag(GROUPS_V2_JOIN_VERSION)) {
+      case ON_IN_FUTURE_VERSION: return GroupJoinStatus.UPDATE_TO_JOIN;
+      case ON                  : return GroupJoinStatus.LOCAL_CAN_JOIN;
+      case OFF                 :
+      default                  : return GroupJoinStatus.COMING_SOON;
+    }
   }
 
   public enum GroupJoinStatus {
@@ -383,6 +390,31 @@ public final class FeatureFlags {
     }
 
     return changes;
+  }
+
+  private static @NonNull VersionFlag getVersionFlag(@NonNull String key) {
+    int versionFromKey = getInteger(key, 0);
+
+    if (versionFromKey == 0) {
+      return VersionFlag.OFF;
+    }
+
+    if (BuildConfig.CANONICAL_VERSION_CODE >= versionFromKey) {
+      return VersionFlag.ON;
+    } else {
+      return VersionFlag.ON_IN_FUTURE_VERSION;
+    }
+  }
+
+  private enum VersionFlag {
+    /** The flag is no set */
+    OFF,
+
+    /** The flag is set on for a version higher than the current client version */
+    ON_IN_FUTURE_VERSION,
+
+    /** The flag is set on for this version or earlier */
+    ON
   }
 
   private static boolean getBoolean(@NonNull String key, boolean defaultValue) {
