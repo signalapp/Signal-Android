@@ -63,6 +63,9 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:fontFamily">sans-serif-medium</item>
+        <!-- Helps to get rid of nasty elevation. We want a flat style here. -->
+        <!-- https://stackoverflow.com/a/31003693/3802890 -->
+        <item name ="android:stateListAnimator">@null</item>
     </style>
 
     <style name="Widget.Session.Button.Common.ProminentFilled">
