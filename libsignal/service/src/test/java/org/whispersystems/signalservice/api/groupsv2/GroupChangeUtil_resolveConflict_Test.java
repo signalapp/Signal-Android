@@ -39,7 +39,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
   /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
-   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict}.
+   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict(DecryptedGroup, DecryptedGroupChange, GroupChange.Actions)}.
    */
   @Test
   public void ensure_resolveConflict_knows_about_all_fields_of_DecryptedGroupChange() {
@@ -52,7 +52,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
   /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
-   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict}.
+   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict(DecryptedGroup, DecryptedGroupChange, GroupChange.Actions)}.
    */
   @Test
   public void ensure_resolveConflict_knows_about_all_fields_of_GroupChange() {
@@ -65,7 +65,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     /**
    * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
    * <p>
-   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict}.
+   * If we didn't, newly added fields would not be resolved by {@link GroupChangeUtil#resolveConflict(DecryptedGroup, DecryptedGroupChange, GroupChange.Actions)}.
    */
   @Test
   public void ensure_resolveConflict_knows_about_all_fields_of_DecryptedGroup() {

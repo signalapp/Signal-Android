@@ -129,6 +129,15 @@ public final class GroupDatabase extends Database {
     }
   }
 
+  public boolean findGroup(@NonNull GroupId groupId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
+                                                                    new String[] {groupId.toString()},
+                                                                    null, null, null))
+    {
+      return cursor.moveToNext();
+    }
+  }
+
   Optional<GroupRecord> getGroup(Cursor cursor) {
     Reader reader = new Reader(cursor);
     return Optional.fromNullable(reader.getCurrent());
@@ -364,7 +373,13 @@ public final class GroupDatabase extends Database {
 
     contentValues.put(AVATAR_RELAY, relay);
     contentValues.put(TIMESTAMP, System.currentTimeMillis());
-    contentValues.put(ACTIVE, 1);
+
+    if (groupId.isV2()) {
+      contentValues.put(ACTIVE, groupState != null && gv2GroupActive(groupState) ? 1 : 0);
+    } else {
+      contentValues.put(ACTIVE, 1);
+    }
+
     contentValues.put(MMS, groupId.isMms());
 
     if (groupMasterKey != null) {
@@ -428,14 +443,12 @@ public final class GroupDatabase extends Database {
     RecipientId       groupRecipientId  = recipientDatabase.getOrInsertFromGroupId(groupId);
     String            title             = decryptedGroup.getTitle();
     ContentValues     contentValues     = new ContentValues();
-    UUID              uuid              = Recipient.self().getUuid().get();
 
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getRevision());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
     contentValues.put(MEMBERS, serializeV2GroupMembers(decryptedGroup));
-    contentValues.put(ACTIVE, DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid).isPresent() ||
-                              DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid).isPresent() ? 1 : 0);
+    contentValues.put(ACTIVE, gv2GroupActive(decryptedGroup) ? 1 : 0);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
@@ -500,6 +513,13 @@ public final class GroupDatabase extends Database {
 
     RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
     Recipient.live(groupRecipient).refresh();
+  }
+
+  private static boolean gv2GroupActive(@NonNull DecryptedGroup decryptedGroup) {
+    UUID uuid = Recipient.self().getUuid().get();
+
+    return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid).isPresent() ||
+           DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid).isPresent();
   }
 
   private List<RecipientId> getCurrentMembers(@NonNull GroupId groupId) {
@@ -843,8 +863,10 @@ public final class GroupDatabase extends Database {
                                                     ? MemberLevel.ADMINISTRATOR
                                                     : MemberLevel.FULL_MEMBER)
                                .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), recipient.getUuid().get())
-                                                           .isPresent() ? MemberLevel.PENDING_MEMBER
-                                                                        : MemberLevel.NOT_A_MEMBER);
+                                                           .transform(m -> MemberLevel.PENDING_MEMBER)
+                                                           .or(() -> DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), recipient.getUuid().get())
+                                                                                       .transform(m -> MemberLevel.REQUESTING_MEMBER)
+                                                                                       .or(MemberLevel.NOT_A_MEMBER)));
     }
 
     public List<Recipient> getMemberRecipients(@NonNull MemberSet memberSet) {
@@ -902,6 +924,7 @@ public final class GroupDatabase extends Database {
   public enum MemberLevel {
     NOT_A_MEMBER(false),
     PENDING_MEMBER(false),
+    REQUESTING_MEMBER(false),
     FULL_MEMBER(true),
     ADMINISTRATOR(true);
 

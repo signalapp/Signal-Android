@@ -95,9 +95,10 @@ message DecryptedTimer {
 }
 
 message DecryptedGroupJoinInfo {
-  string                       title             = 2;
-  string                       avatar            = 3;
-  uint32                       memberCount       = 4;
-  AccessControl.AccessRequired addFromInviteLink = 5;
-  uint32                       revision          = 6;
+  string                       title                = 2;
+  string                       avatar               = 3;
+  uint32                       memberCount          = 4;
+  AccessControl.AccessRequired addFromInviteLink    = 5;
+  uint32                       revision             = 6;
+  bool                         pendingAdminApproval = 7;
 }

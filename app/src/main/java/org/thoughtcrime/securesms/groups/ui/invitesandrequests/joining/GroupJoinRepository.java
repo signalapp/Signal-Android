@@ -5,15 +5,17 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import androidx.core.util.Consumer;
 
-import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.signal.zkgroup.VerificationFailedException;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 
@@ -31,7 +33,7 @@ final class GroupJoinRepository {
     this.groupInviteLinkUrl = groupInviteLinkUrl;
   }
 
-  void getGroupDetails(@NonNull GetGroupDetailsCallback callback) {
+  void getGroupDetails(@NonNull AsynchronousCallback.WorkerThread<GroupDetails, FetchGroupDetailsError> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         callback.onComplete(getGroupDetails());
@@ -39,6 +41,30 @@ final class GroupJoinRepository {
         callback.onError(FetchGroupDetailsError.NetworkError);
       } catch (VerificationFailedException | GroupLinkNotActiveException e) {
         callback.onError(FetchGroupDetailsError.GroupLinkNotActive);
+      }
+    });
+  }
+
+  void joinGroup(@NonNull GroupDetails groupDetails,
+                 @NonNull AsynchronousCallback.WorkerThread<JoinGroupSuccess, JoinGroupError> callback)
+  {
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      try {
+        GroupManager.GroupActionResult groupActionResult = GroupManager.joinGroup(context,
+                                                                                  groupInviteLinkUrl.getGroupMasterKey(),
+                                                                                  groupInviteLinkUrl.getPassword(),
+                                                                                  groupDetails.getJoinInfo(),
+                                                                                  groupDetails.getAvatarBytes());
+
+        callback.onComplete(new JoinGroupSuccess(groupActionResult.getGroupRecipient(), groupActionResult.getThreadId()));
+      } catch (IOException e) {
+        callback.onError(JoinGroupError.NETWORK_ERROR);
+      } catch (GroupChangeBusyException e) {
+        callback.onError(JoinGroupError.BUSY);
+      } catch (GroupLinkNotActiveException e) {
+        callback.onError(JoinGroupError.GROUP_LINK_NOT_ACTIVE);
+      } catch (GroupChangeFailedException | MembershipNotSuitableForV2Exception e) {
+        callback.onError(JoinGroupError.FAILED);
       }
     });
   }
@@ -51,14 +77,9 @@ final class GroupJoinRepository {
                                                                               groupInviteLinkUrl.getGroupMasterKey(),
                                                                               groupInviteLinkUrl.getPassword());
 
-    byte[]  avatarBytes           = tryGetAvatarBytes(joinInfo);
-    boolean requiresAdminApproval = joinInfo.getAddFromInviteLink() == AccessControl.AccessRequired.ADMINISTRATOR;
+    byte[] avatarBytes = tryGetAvatarBytes(joinInfo);
 
-    return new GroupDetails(joinInfo.getTitle(),
-                            avatarBytes,
-                            joinInfo.getMemberCount(),
-                            requiresAdminApproval,
-                            joinInfo.getRevision());
+    return new GroupDetails(joinInfo, avatarBytes);
   }
 
   private @Nullable byte[] tryGetAvatarBytes(@NonNull DecryptedGroupJoinInfo joinInfo) {
@@ -68,10 +89,5 @@ final class GroupJoinRepository {
       Log.w(TAG, "Failed to get group avatar", e);
       return null;
     }
-  }
-
-  interface GetGroupDetailsCallback {
-    void onComplete(@NonNull GroupDetails groupDetails);
-    void onError(@NonNull FetchGroupDetailsError error);
   }
 }

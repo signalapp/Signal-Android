@@ -1,25 +1,28 @@
 package org.thoughtcrime.securesms.groups.v2.processing;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
+import org.whispersystems.signalservice.api.groupsv2.GroupChangeUtil;
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Objects;
+import java.util.List;
 
 final class GroupStateMapper {
 
   private static final String TAG = Log.tag(GroupStateMapper.class);
 
-  static final int LATEST = Integer.MAX_VALUE;
+  static final int LATEST               = Integer.MAX_VALUE;
+  static final int PLACEHOLDER_REVISION = -1;
 
   private static final Comparator<ServerGroupLogEntry> BY_REVISION = (o1, o2) -> Integer.compare(o1.getRevision(), o2.getRevision());
 
@@ -36,10 +39,18 @@ final class GroupStateMapper {
   static @NonNull AdvanceGroupStateResult partiallyAdvanceGroupState(@NonNull GlobalGroupState inputState,
                                                                      int maximumRevisionToApply)
   {
-    ArrayList<LocalGroupLogEntry>         appliedChanges     = new ArrayList<>(inputState.getServerHistory().size());
-    HashMap<Integer, ServerGroupLogEntry> statesToApplyNow   = new HashMap<>(inputState.getServerHistory().size());
-    ArrayList<ServerGroupLogEntry>        statesToApplyLater = new ArrayList<>(inputState.getServerHistory().size());
-    DecryptedGroup                        current            = inputState.getLocalState();
+    AdvanceGroupStateResult groupStateResult = processChanges(inputState, maximumRevisionToApply);
+
+    return cleanDuplicatedChanges(groupStateResult, inputState.getLocalState());
+  }
+
+  private static @NonNull AdvanceGroupStateResult processChanges(@NonNull GlobalGroupState inputState,
+                                                                 int maximumRevisionToApply)
+  {
+    HashMap<Integer, ServerGroupLogEntry>            statesToApplyNow   = new HashMap<>(inputState.getServerHistory().size());
+    ArrayList<ServerGroupLogEntry>                   statesToApplyLater = new ArrayList<>(inputState.getServerHistory().size());
+    DecryptedGroup                                   current            = inputState.getLocalState();
+    StateChain<DecryptedGroup, DecryptedGroupChange> stateChain         = createNewMapper();
 
     if (inputState.getServerHistory().isEmpty()) {
       return new AdvanceGroupStateResult(Collections.emptyList(), new GlobalGroupState(current, Collections.emptyList()));
@@ -55,8 +66,14 @@ final class GroupStateMapper {
 
     Collections.sort(statesToApplyLater, BY_REVISION);
 
-    final int from = inputState.getEarliestRevisionNumber();
+    final int from = Math.max(0, inputState.getEarliestRevisionNumber());
     final int to   = Math.min(inputState.getLatestRevisionNumber(), maximumRevisionToApply);
+
+    if (current != null && current.getRevision() == PLACEHOLDER_REVISION) {
+      Log.i(TAG, "Ignoring place holder group state");
+    } else {
+      stateChain.push(current, null);
+    }
 
     for (int revision = from; revision >= 0 && revision <= to; revision++) {
       ServerGroupLogEntry entry = statesToApplyNow.get(revision);
@@ -65,59 +82,64 @@ final class GroupStateMapper {
         continue;
       }
 
-      DecryptedGroup       groupAtRevision  = entry.getGroup();
-      DecryptedGroupChange changeAtRevision = entry.getChange();
+      if (stateChain.getLatestState() == null && entry.getGroup() != null && current != null && current.getRevision() == PLACEHOLDER_REVISION) {
+        DecryptedGroup previousState = DecryptedGroup.newBuilder(entry.getGroup())
+                                                     .setTitle(current.getTitle())
+                                                     .setAvatar(current.getAvatar())
+                                                     .build();
 
-      if (current == null) {
-        Log.w(TAG, "No local state, accepting server state for V" + revision);
-        current = groupAtRevision;
-        if (groupAtRevision != null) {
-          appliedChanges.add(new LocalGroupLogEntry(groupAtRevision, changeAtRevision));
-        }
-        continue;
+        stateChain.push(previousState, null);
       }
 
-      if (current.getRevision() + 1 != revision) {
-        Log.w(TAG, "Detected gap V" + revision);
-      }
-
-      if (changeAtRevision == null) {
-        Log.w(TAG, "Reconstructing change for V" + revision);
-        changeAtRevision = GroupChangeReconstruct.reconstructGroupChange(current, Objects.requireNonNull(groupAtRevision));
-      }
-
-      DecryptedGroup groupWithChangeApplied;
-      try {
-        groupWithChangeApplied = DecryptedGroupUtil.applyWithoutRevisionCheck(current, changeAtRevision);
-      } catch (NotAbleToApplyGroupV2ChangeException e) {
-        Log.w(TAG, "Unable to apply V" + revision, e);
-        continue;
-      }
-
-      if (groupAtRevision == null) {
-        Log.w(TAG, "Reconstructing state for V" + revision);
-        groupAtRevision = groupWithChangeApplied;
-      }
-
-      if (current.getRevision() != groupAtRevision.getRevision()) {
-        appliedChanges.add(new LocalGroupLogEntry(groupAtRevision, changeAtRevision));
-      } else {
-        DecryptedGroupChange sameRevisionDelta = GroupChangeReconstruct.reconstructGroupChange(current, groupAtRevision);
-        if (!DecryptedGroupUtil.changeIsEmpty(sameRevisionDelta)) {
-          appliedChanges.add(new LocalGroupLogEntry(groupAtRevision, sameRevisionDelta));
-          Log.w(TAG, "Inserted repair change for mismatch V" + revision);
-        }
-      }
-
-      DecryptedGroupChange missingChanges = GroupChangeReconstruct.reconstructGroupChange(groupWithChangeApplied, groupAtRevision);
-      if (!DecryptedGroupUtil.changeIsEmpty(missingChanges)) {
-        appliedChanges.add(new LocalGroupLogEntry(groupAtRevision, missingChanges));
-        Log.w(TAG, "Inserted repair change for gap V" + revision);
-      }
-
-      current = groupAtRevision;
+      stateChain.push(entry.getGroup(), entry.getChange());
     }
 
-    return new AdvanceGroupStateResult(appliedChanges, new GlobalGroupState(current, statesToApplyLater));
+    List<StateChain.Pair<DecryptedGroup, DecryptedGroupChange>> mapperList     = stateChain.getList();
+    List<LocalGroupLogEntry>                                    appliedChanges = new ArrayList<>(mapperList.size());
+
+    for (StateChain.Pair<DecryptedGroup, DecryptedGroupChange> entry : mapperList) {
+      if (current == null || entry.getDelta() != null) {
+        appliedChanges.add(new LocalGroupLogEntry(entry.getState(), entry.getDelta()));
+      }
+    }
+
+    return new AdvanceGroupStateResult(appliedChanges, new GlobalGroupState(stateChain.getLatestState(), statesToApplyLater));
+  }
+
+  private static AdvanceGroupStateResult cleanDuplicatedChanges(@NonNull AdvanceGroupStateResult groupStateResult,
+                                                                @Nullable DecryptedGroup previousGroupState)
+  {
+    if (previousGroupState == null) return groupStateResult;
+
+    ArrayList<LocalGroupLogEntry> appliedChanges = new ArrayList<>(groupStateResult.getProcessedLogEntries().size());
+
+    for (LocalGroupLogEntry entry : groupStateResult.getProcessedLogEntries()) {
+      DecryptedGroupChange change = entry.getChange();
+
+      if (change != null) {
+        change = GroupChangeUtil.resolveConflict(previousGroupState, change).build();
+      }
+
+      appliedChanges.add(new LocalGroupLogEntry(entry.getGroup(), change));
+
+      previousGroupState = entry.getGroup();
+    }
+
+    return new AdvanceGroupStateResult(appliedChanges, groupStateResult.getNewGlobalGroupState());
+  }
+
+  private static StateChain<DecryptedGroup, DecryptedGroupChange> createNewMapper() {
+    return new StateChain<>(
+      (group, change) -> {
+        try {
+          return DecryptedGroupUtil.applyWithoutRevisionCheck(group, change);
+        } catch (NotAbleToApplyGroupV2ChangeException e) {
+          Log.w(TAG, "Unable to apply V" + change.getRevision(), e);
+          return null;
+        }
+      },
+      (groupB, groupA) -> GroupChangeReconstruct.reconstructGroupChange(groupA, groupB),
+      (groupA, groupB) -> DecryptedGroupUtil.changeIsEmpty(GroupChangeReconstruct.reconstructGroupChange(groupA, groupB))
+    );
   }
 }

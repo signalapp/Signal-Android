@@ -1,42 +1,39 @@
 package org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.signal.storageservice.protos.groups.AccessControl;
+import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
+
 public final class GroupDetails {
-  private final String  groupName;
-  private final byte[]  avatarBytes;
-  private final int     groupMembershipCount;
-  private final boolean requiresAdminApproval;
-  private final int     groupRevision;
+  private final DecryptedGroupJoinInfo joinInfo;
+  private final byte[]                 avatarBytes;
 
-  public GroupDetails(String groupName,
-                      byte[] avatarBytes,
-                      int groupMembershipCount,
-                      boolean requiresAdminApproval,
-                      int groupRevision)
+  public GroupDetails(@NonNull DecryptedGroupJoinInfo joinInfo,
+                      @Nullable byte[] avatarBytes)
   {
-    this.groupName             = groupName;
-    this.avatarBytes           = avatarBytes;
-    this.groupMembershipCount  = groupMembershipCount;
-    this.requiresAdminApproval = requiresAdminApproval;
-    this.groupRevision         = groupRevision;
+    this.joinInfo    = joinInfo;
+    this.avatarBytes = avatarBytes;
   }
 
-  public String getGroupName() {
-    return groupName;
+  public @NonNull String getGroupName() {
+    return joinInfo.getTitle();
   }
 
-  public byte[] getAvatarBytes() {
+  public @Nullable byte[] getAvatarBytes() {
     return avatarBytes;
   }
 
+  public @NonNull DecryptedGroupJoinInfo getJoinInfo() {
+    return joinInfo;
+  }
+
   public int getGroupMembershipCount() {
-    return groupMembershipCount;
+    return joinInfo.getMemberCount();
   }
 
   public boolean joinRequiresAdminApproval() {
-    return requiresAdminApproval;
-  }
-
-  public int getGroupRevision() {
-    return groupRevision;
+    return joinInfo.getAddFromInviteLink() == AccessControl.AccessRequired.ADMINISTRATOR;
   }
 }

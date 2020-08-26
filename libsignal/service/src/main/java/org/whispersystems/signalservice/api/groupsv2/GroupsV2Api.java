@@ -114,7 +114,7 @@ public final class GroupsV2Api {
   }
 
   public DecryptedGroupJoinInfo getGroupJoinInfo(GroupSecretParams groupSecretParams,
-                                                 byte[] password,
+                                                 Optional<byte[]> password,
                                                  GroupsV2AuthorizationString authorization)
       throws IOException, GroupLinkNotActiveException
   {
@@ -148,10 +148,11 @@ public final class GroupsV2Api {
   }
 
   public GroupChange patchGroup(GroupChange.Actions groupChange,
-                                GroupsV2AuthorizationString authorization)
+                                GroupsV2AuthorizationString authorization,
+                                Optional<byte[]> groupLinkPassword)
       throws IOException
   {
-    return socket.patchGroupsV2Group(groupChange, authorization.toString());
+    return socket.patchGroupsV2Group(groupChange, authorization.toString(), groupLinkPassword);
   }
 
   private static HashMap<Integer, AuthCredentialResponse> parseCredentialResponse(CredentialResponse credentialResponse)

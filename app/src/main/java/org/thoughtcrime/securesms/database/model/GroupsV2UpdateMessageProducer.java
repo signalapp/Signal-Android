@@ -584,7 +584,13 @@ final class GroupsV2UpdateMessageProducer {
       if (requestingMemberIsYou) {
         updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_approved_your_request_to_join_the_group, editor)));
       } else {
-        updates.add(updateDescription(change.getEditor(), requestingMember.getUuid(), (editor, requesting) -> context.getString(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, editor, requesting)));
+      boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+
+        if (editorIsYou) {
+          updates.add(updateDescription(requestingMember.getUuid(), requesting -> context.getString(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, requesting)));
+        } else {
+          updates.add(updateDescription(change.getEditor(), requestingMember.getUuid(), (editor, requesting) -> context.getString(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, editor, requesting)));
+        }
       }
     }
   }
@@ -602,13 +608,25 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeRequestingMembersDeletes(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+
     for (ByteString requestingMember : change.getDeleteRequestingMembersList()) {
       boolean requestingMemberIsYou = requestingMember.equals(selfUuidBytes);
 
       if (requestingMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin)));
+        if (editorIsYou) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group)));
+        } else {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin)));
+        }
       } else {
-        updates.add(updateDescription(change.getEditor(), requestingMember, (editor, requesting) -> context.getString(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, editor, requesting)));
+        boolean editorIsCanceledMember = change.getEditor().equals(requestingMember);
+
+        if (editorIsCanceledMember) {
+          updates.add(updateDescription(requestingMember, editorRequesting -> context.getString(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, editorRequesting)));
+        } else {
+          updates.add(updateDescription(change.getEditor(), requestingMember, (editor, requesting) -> context.getString(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, editor, requesting)));
+        }
       }
     }
   }

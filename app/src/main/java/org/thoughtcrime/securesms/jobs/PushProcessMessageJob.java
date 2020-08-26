@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -36,10 +35,8 @@ import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -350,16 +347,16 @@ public final class PushProcessMessageJob extends BaseJob {
 
         if (isGv2Message) {
           GroupMasterKey groupMasterKey = message.getGroupContext().get().getGroupV2().get().getMasterKey();
+          GroupId.V2     groupIdV2      = groupId.get().requireV2();
 
           if (!groupV2PreProcessMessage(content, groupMasterKey, message.getGroupContext().get().getGroupV2().get())) {
-            Log.i(TAG, "Ignoring GV2 message for group we are not currently in " + groupId);
+            Log.i(TAG, "Ignoring GV2 message for group we are not currently in " + groupIdV2);
             return;
           }
 
-          GroupId.V2 groupIdV2 = groupId.get().requireV2();
-          Recipient  sender    = Recipient.externalPush(context, content.getSender());
+          Recipient sender = Recipient.externalPush(context, content.getSender());
           if (!groupDatabase.isCurrentMember(groupIdV2, sender.getId())) {
-            Log.i(TAG, "Ignoring GV2 message from member not in group " + groupId);
+            Log.i(TAG, "Ignoring GV2 message from member not in group " + groupIdV2);
             return;
           }
         }

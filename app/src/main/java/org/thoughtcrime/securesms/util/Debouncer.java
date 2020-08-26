@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.os.Handler;
+import android.os.Looper;
 
 /**
  * A class that will throttle the number of runnables executed to be at most once every specified
@@ -21,7 +22,7 @@ public class Debouncer {
    *                  {@code threshold} milliseconds.
    */
   public Debouncer(long threshold) {
-    this.handler   = new Handler();
+    this.handler   = new Handler(Looper.getMainLooper());
     this.threshold = threshold;
   }
 

@@ -12,6 +12,8 @@ import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.ZkGroupLibraryUtil;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
 public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
@@ -39,7 +41,7 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(GroupJoinInfo.class);
 
     assertEquals("GroupOperations and its tests need updating to account for new fields on " + GroupJoinInfo.class.getName(),
-                 6, maxFieldFound);
+                 7, maxFieldFound);
   }
   
   @Test
@@ -106,5 +108,27 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
     assertEquals(11, decryptedGroupJoinInfo.getRevision());
+  }
+
+  @Test
+  public void pending_approval_passed_though_7_true() {
+    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
+                                               .setPendingAdminApproval(true)
+                                               .build();
+
+    DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
+
+    assertTrue(decryptedGroupJoinInfo.getPendingAdminApproval());
+  }
+
+  @Test
+  public void pending_approval_passed_though_7_false() {
+    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
+                                               .setPendingAdminApproval(false)
+                                               .build();
+
+    DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
+
+    assertFalse(decryptedGroupJoinInfo.getPendingAdminApproval());
   }
 }

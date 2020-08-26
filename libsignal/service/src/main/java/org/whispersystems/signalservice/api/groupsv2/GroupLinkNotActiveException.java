@@ -7,6 +7,10 @@ package org.whispersystems.signalservice.api.groupsv2;
  * - the master key does not match a group on the server
  */
 public final class GroupLinkNotActiveException extends Exception {
-  GroupLinkNotActiveException() {
+  public GroupLinkNotActiveException() {
+  }
+
+  public GroupLinkNotActiveException(Throwable t) {
+    super(t);
   }
 }

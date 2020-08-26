@@ -1036,6 +1036,15 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   @Test
+  public void you_approved_another_join_request() {
+    DecryptedGroupChange change = changeBy(you)
+                                    .approveRequest(alice)
+                                    .build();
+
+    assertThat(describeChange(change), is(singletonList("You approved a request to join the group from Alice.")));
+  }
+
+  @Test
   public void unknown_approved_your_join_request() {
     DecryptedGroupChange change = changeByUnknown()
                                     .approveRequest(you)
@@ -1069,6 +1078,24 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .build();
 
     assertThat(describeChange(change), is(singletonList("Your request to join the group has been denied by an admin.")));
+  }
+
+  @Test
+  public void you_cancelled_your_join_request() {
+    DecryptedGroupChange change = changeBy(you)
+                                    .denyRequest(you)
+                                    .build();
+
+    assertThat(describeChange(change), is(singletonList("You canceled your request to join the group.")));
+  }
+
+  @Test
+  public void member_cancelled_their_join_request() {
+    DecryptedGroupChange change = changeBy(alice)
+                                    .denyRequest(alice)
+                                    .build();
+
+    assertThat(describeChange(change), is(singletonList("Alice canceled their request to join the group.")));
   }
 
   @Test

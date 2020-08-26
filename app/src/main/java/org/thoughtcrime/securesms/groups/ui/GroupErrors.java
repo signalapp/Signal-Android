@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.groups.ui;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
@@ -9,7 +9,11 @@ public final class GroupErrors {
   private GroupErrors() {
   }
 
-  public static @StringRes int getUserDisplayMessage(@NonNull GroupChangeFailureReason failureReason) {
+  public static @StringRes int getUserDisplayMessage(@Nullable GroupChangeFailureReason failureReason) {
+    if (failureReason == null) {
+      return R.string.ManageGroupActivity_failed_to_update_the_group;
+    }
+
     switch (failureReason) {
       case NO_RIGHTS   : return R.string.ManageGroupActivity_you_dont_have_the_rights_to_do_this;
       case NOT_CAPABLE : return R.string.ManageGroupActivity_not_capable;

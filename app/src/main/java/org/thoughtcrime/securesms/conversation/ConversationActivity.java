@@ -227,6 +227,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
+import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
@@ -356,6 +357,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   InputPanel               inputPanel;
   private   View                     panelParent;
   private   View                     noLongerMemberBanner;
+  private   View                     requestingMemberBanner;
+  private   View                     cancelJoinRequest;
   private   Stub<View>               mentionsSuggestions;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
@@ -384,11 +387,20 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                             int distributionType,
                                             int startingPosition)
   {
+    Intent intent = buildIntent(context, recipientId, threadId);
+    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
+    intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, startingPosition);
+
+    return intent;
+  }
+
+  public static @NonNull Intent buildIntent(@NonNull Context context,
+                                            @NonNull RecipientId recipientId,
+                                            long threadId)
+  {
     Intent intent = new Intent(context, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
-    intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, startingPosition);
 
     return intent;
   }
@@ -1452,14 +1464,64 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void initializeEnabledCheck() {
-    groupViewModel.getGroupActiveState().observe(this, state -> {
-      boolean inactivePushGroup = state != null && isPushGroupConversation() && !state.isActiveGroup();
-      boolean enabled = !inactivePushGroup;
-      noLongerMemberBanner.setVisibility(enabled ? View.GONE : View.VISIBLE);
-      inputPanel.setVisibility(enabled ? View.VISIBLE : View.GONE);
-      inputPanel.setEnabled(enabled);
-      sendButton.setEnabled(enabled);
-      attachButton.setEnabled(enabled);
+    groupViewModel.getSelfMemberLevel().observe(this, selfMemberShip -> {
+      boolean canSendMessages;
+      boolean leftGroup;
+      boolean canCancelRequest;
+
+      if (selfMemberShip == null) {
+        leftGroup        = false;
+        canSendMessages  = true;
+        canCancelRequest = false;
+      } else {
+        switch (selfMemberShip) {
+          case NOT_A_MEMBER:
+            leftGroup        = true;
+            canSendMessages  = false;
+            canCancelRequest = false;
+            break;
+          case PENDING_MEMBER:
+            leftGroup        = false;
+            canSendMessages  = false;
+            canCancelRequest = false;
+            break;
+          case REQUESTING_MEMBER:
+            leftGroup        = false;
+            canSendMessages  = false;
+            canCancelRequest = true;
+            break;
+          case FULL_MEMBER:
+          case ADMINISTRATOR:
+            leftGroup        = false;
+            canSendMessages  = true;
+            canCancelRequest = false;
+            break;
+          default:
+            throw new AssertionError();
+        }
+      }
+
+      noLongerMemberBanner.setVisibility(leftGroup ? View.VISIBLE : View.GONE);
+      requestingMemberBanner.setVisibility(canCancelRequest ? View.VISIBLE : View.GONE);
+      if (canCancelRequest) {
+        cancelJoinRequest.setOnClickListener(v -> ConversationGroupViewModel.onCancelJoinRequest(getRecipient(), new AsynchronousCallback.MainThread<Void, GroupChangeFailureReason>() {
+          @Override
+          public void onComplete(@Nullable Void result) {
+            Log.d(TAG, "Cancel request complete");
+          }
+
+          @Override
+          public void onError(@Nullable GroupChangeFailureReason error) {
+            Log.d(TAG, "Cancel join request failed " + error);
+            Toast.makeText(ConversationActivity.this, GroupErrors.getUserDisplayMessage(error), Toast.LENGTH_SHORT).show();
+          }
+        }.toWorkerCallback()));
+      }
+
+      inputPanel.setVisibility(canSendMessages ? View.VISIBLE : View.GONE);
+      inputPanel.setEnabled(canSendMessages);
+      sendButton.setEnabled(canSendMessages);
+      attachButton.setEnabled(canSendMessages);
     });
   }
 
@@ -1754,7 +1816,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
 
-    noLongerMemberBanner = findViewById(R.id.conversation_no_longer_member_banner);
+    noLongerMemberBanner   = findViewById(R.id.conversation_no_longer_member_banner);
+    requestingMemberBanner = findViewById(R.id.conversation_requesting_banner);
+    cancelJoinRequest      = findViewById(R.id.conversation_cancel_request);
 
     container.addOnKeyboardShownListener(this);
     inputPanel.setListener(this);

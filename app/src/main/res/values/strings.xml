@@ -245,6 +245,8 @@
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">You can\'t send messages to this group because you\'re no longer a member.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
+    <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Your request to join has been sent to the group admin. You\'ll be notified when they take action.</string>
+    <string name="ConversationActivity_cancel_request">Cancel Request</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">To send audio messages, allow Signal access to your microphone.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal requires the Microphone permission in order to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
@@ -657,7 +659,10 @@
     <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">You are already a member</string>
     <string name="GroupJoinBottomSheetDialogFragment_join">Join</string>
     <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Request to join</string>
+    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Unable to join group. Please try again later</string>
+    <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Encountered a network error.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">This group link is not active</string>
+
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Unable to get group information, please try again later</string>
     <string name="GroupJoinBottomSheetDialogFragment_direct_join">Do you want to join this group and share your name and photo with its members?</string>
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">An admin of this group must approve your request before you can join this group. When you request to join, your name and photo will be shared with its members.</string>
@@ -963,6 +968,7 @@
     <!-- GV2 group link approvals -->
     <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s approved your request to join the group.</string>
     <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s approved a request to join the group from %2$s.</string>
+    <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">You approved a request to join the group from %1$s.</string>
     <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Your request to join the group has been approved.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">A request to join the group from %1$s has been approved.</string>
 
@@ -970,6 +976,8 @@
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Your request to join the group has been denied by an admin.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s denied a request to join the group from %2$s.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">A request to join the group from %1$s has been denied.</string>
+    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">You canceled your request to join the group.</string>
+    <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s canceled their request to join the group.</string>
 
     <!-- End of GV2 specific update messages -->
 

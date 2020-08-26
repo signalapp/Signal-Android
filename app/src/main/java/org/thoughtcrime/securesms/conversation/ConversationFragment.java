@@ -77,8 +77,8 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickList
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -402,9 +402,11 @@ public class ConversationFragment extends LoggingFragment {
           conversationBanner.setSubtitle(context.getResources()
                                                 .getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, memberCount,
                                                                    memberCount, pendingMemberCount));
-        } else {
+        } else if (memberCount > 0) {
           conversationBanner.setSubtitle(context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_members, memberCount,
                                                                                   memberCount));
+        } else {
+          conversationBanner.setSubtitle(null);
         }
       } else if (isSelf) {
         conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation));

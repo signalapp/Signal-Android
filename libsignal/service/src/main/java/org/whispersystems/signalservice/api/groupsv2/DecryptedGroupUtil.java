@@ -186,6 +186,23 @@ public final class DecryptedGroupUtil {
     return -1;
   }
 
+  public static Optional<DecryptedRequestingMember> findRequestingByUuid(Collection<DecryptedRequestingMember> members, UUID uuid) {
+    ByteString uuidBytes = UuidUtil.toByteString(uuid);
+
+    for (DecryptedRequestingMember member : members) {
+      if (uuidBytes.equals(member.getUuid())) {
+        return Optional.of(member);
+      }
+    }
+
+    return Optional.absent();
+  }
+
+  public static boolean isPendingOrRequesting(DecryptedGroup group, UUID uuid) {
+    return findPendingByUuid(group.getPendingMembersList(), uuid).isPresent() ||
+           findRequestingByUuid(group.getRequestingMembersList(), uuid).isPresent();
+  }
+
   /**
    * Removes the uuid from the full members of a group.
    * <p>

@@ -202,10 +202,11 @@ message GroupInviteLink {
 }
 
 message GroupJoinInfo {
-  bytes                        publicKey         = 1;
-  bytes                        title             = 2;
-  string                       avatar            = 3;
-  uint32                       memberCount       = 4;
-  AccessControl.AccessRequired addFromInviteLink = 5;
-  uint32                       revision          = 6;
+  bytes                        publicKey            = 1;
+  bytes                        title                = 2;
+  string                       avatar               = 3;
+  uint32                       memberCount          = 4;
+  AccessControl.AccessRequired addFromInviteLink    = 5;
+  uint32                       revision             = 6;
+  bool                         pendingAdminApproval = 7;
 }

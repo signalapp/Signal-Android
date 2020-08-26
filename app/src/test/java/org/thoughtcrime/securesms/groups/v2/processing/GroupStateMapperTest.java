@@ -197,6 +197,10 @@ public final class GroupStateMapperTest {
   public void known_group_three_states_to_update_update_latest_handle_gap_with_changes() {
     DecryptedGroup      currentState = state(0);
     ServerGroupLogEntry log1         = serverLogEntry(1);
+    DecryptedGroup      state3a      = DecryptedGroup.newBuilder()
+                                                     .setRevision(3)
+                                                     .setTitle("Group Revision " + 3)
+                                                     .build();
     DecryptedGroup      state3       = DecryptedGroup.newBuilder()
                                                      .setRevision(3)
                                                      .setTitle("Group Revision " + 3)
@@ -213,11 +217,11 @@ public final class GroupStateMapperTest {
     AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(new GlobalGroupState(currentState, asList(log1, log3, log4)), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1),
-                                                                           asLocal(log3),
+                                                                           new LocalGroupLogEntry(state3a, log3.getChange()),
                                                                            new LocalGroupLogEntry(state3, DecryptedGroupChange.newBuilder()
-                                                                                                                                  .setRevision(3)
-                                                                                                                                  .setNewAvatar(DecryptedString.newBuilder().setValue("Lost Avatar Update"))
-                                                                                                                                  .build()),
+                                                                                                                              .setRevision(3)
+                                                                                                                              .setNewAvatar(DecryptedString.newBuilder().setValue("Lost Avatar Update"))
+                                                                                                                              .build()),
                                                                            asLocal(log4))));
 
     assertNewState(new GlobalGroupState(log4.getGroup(), emptyList()), advanceGroupStateResult.getNewGlobalGroupState());
@@ -259,11 +263,16 @@ public final class GroupStateMapperTest {
     DecryptedMember     newMember    = DecryptedMember.newBuilder()
                                                       .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
                                                       .build();
-    ServerGroupLogEntry log8         = new ServerGroupLogEntry(DecryptedGroup.newBuilder()
-                                                                             .setRevision(8)
-                                                                             .addMembers(newMember)
-                                                                             .setTitle("Group Revision " + 8)
-                                                                             .build(),
+    DecryptedGroup      state7b      = DecryptedGroup.newBuilder()
+                                                     .setRevision(8)
+                                                     .setTitle("Group Revision " + 8)
+                                                     .build();
+    DecryptedGroup      state8       = DecryptedGroup.newBuilder()
+                                                     .setRevision(8)
+                                                     .setTitle("Group Revision " + 8)
+                                                     .addMembers(newMember)
+                                                     .build();
+    ServerGroupLogEntry log8         = new ServerGroupLogEntry(state8,
                                                                change(8)                                                                                                                                                                                                                                                                                                                                                                                );
     ServerGroupLogEntry log9         = new ServerGroupLogEntry(DecryptedGroup.newBuilder()
                                                                              .setRevision(9)
@@ -275,11 +284,11 @@ public final class GroupStateMapperTest {
     AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(new GlobalGroupState(currentState, asList(log7, log8, log9)), LATEST);
 
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log7),
-                                                                           asLocal(log8),
-                                                                           asLocal(new ServerGroupLogEntry(log8.getGroup(), DecryptedGroupChange.newBuilder()
-                                                                                                                                            .setRevision(8)
-                                                                                                                                            .addNewMembers(newMember)
-                                                                                                                                            .build())),
+                                                                           new LocalGroupLogEntry(state7b, log8.getChange()),
+                                                                           new LocalGroupLogEntry(state8, DecryptedGroupChange.newBuilder()
+                                                                                                                              .setRevision(8)
+                                                                                                                              .addNewMembers(newMember)
+                                                                                                                              .build()),
                                                                            asLocal(log9))));
     assertNewState(new GlobalGroupState(log9.getGroup(), emptyList()), advanceGroupStateResult.getNewGlobalGroupState());
     assertEquals(log9.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
@@ -298,18 +307,136 @@ public final class GroupStateMapperTest {
   }
 
   @Test
-  public void local_on_same_revision_but_incorrect_repair_necessary() {
+  public void no_repair_change_is_posted_if_the_local_state_is_a_placeholder() {
     DecryptedGroup      currentState = DecryptedGroup.newBuilder()
-                                                     .setRevision(6)
+                                                     .setRevision(GroupStateMapper.PLACEHOLDER_REVISION)
                                                      .setTitle("Incorrect group title, Revision " + 6)
                                                      .build();
-    ServerGroupLogEntry log6         = serverLogEntryWholeStateOnly(6);
+    ServerGroupLogEntry log6         = serverLogEntry(6);
 
     AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(new GlobalGroupState(currentState, singletonList(log6)), LATEST);
 
-    assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(localLogEntryNoEditor(6))));
-    assertNewState(new GlobalGroupState(state(6), emptyList()), advanceGroupStateResult.getNewGlobalGroupState());
-    assertEquals(state(6), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
+    assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(asLocal(log6))));
+    assertTrue(advanceGroupStateResult.getNewGlobalGroupState().getServerHistory().isEmpty());
+    assertEquals(log6.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
+  }
+
+  @Test
+  public void clears_changes_duplicated_in_the_placeholder() {
+    UUID                newMemberUuid  = UUID.randomUUID();
+    DecryptedMember     newMember      = DecryptedMember.newBuilder()
+                                                        .setUuid(UuidUtil.toByteString(newMemberUuid))
+                                                        .build();
+    DecryptedMember     existingMember = DecryptedMember.newBuilder()
+                                                        .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
+                                                        .build();
+    DecryptedGroup      currentState   = DecryptedGroup.newBuilder()
+                                                       .setRevision(GroupStateMapper.PLACEHOLDER_REVISION)
+                                                       .setTitle("Group Revision " + 8)
+                                                       .addMembers(newMember)
+                                                       .build();
+    ServerGroupLogEntry log8           = new ServerGroupLogEntry(DecryptedGroup.newBuilder()
+                                                                               .setRevision(8)
+                                                                               .addMembers(newMember)
+                                                                               .addMembers(existingMember)
+                                                                               .setTitle("Group Revision " + 8)
+                                                                               .build(),
+                                                                 DecryptedGroupChange.newBuilder()
+                                                                                     .setRevision(8)
+                                                                                     .setEditor(UuidUtil.toByteString(newMemberUuid))
+                                                                                     .addNewMembers(newMember)
+                                                                                     .build());
+
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(new GlobalGroupState(currentState, singletonList(log8)), LATEST);
+
+    assertNotNull(log8.getGroup());
+    assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(emptyList()));
+    assertNewState(new GlobalGroupState(log8.getGroup(), emptyList()), advanceGroupStateResult.getNewGlobalGroupState());
+    assertEquals(log8.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
+  }
+
+  @Test
+  public void clears_changes_duplicated_in_a_non_placeholder() {
+    UUID                editorUuid     = UUID.randomUUID();
+    UUID                newMemberUuid  = UUID.randomUUID();
+    DecryptedMember     newMember      = DecryptedMember.newBuilder()
+                                                        .setUuid(UuidUtil.toByteString(newMemberUuid))
+                                                        .build();
+    DecryptedMember     existingMember = DecryptedMember.newBuilder()
+                                                        .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
+                                                        .build();
+    DecryptedGroup      currentState   = DecryptedGroup.newBuilder()
+                                                       .setRevision(8)
+                                                       .setTitle("Group Revision " + 8)
+                                                       .addMembers(existingMember)
+                                                       .build();
+    ServerGroupLogEntry log8           = new ServerGroupLogEntry(DecryptedGroup.newBuilder()
+                                                                               .setRevision(8)
+                                                                               .addMembers(existingMember)
+                                                                               .addMembers(newMember)
+                                                                               .setTitle("Group Revision " + 8)
+                                                                               .build(),
+                                                                 DecryptedGroupChange.newBuilder()
+                                                                                     .setRevision(8)
+                                                                                     .setEditor(UuidUtil.toByteString(editorUuid))
+                                                                                     .addNewMembers(existingMember)
+                                                                                     .addNewMembers(newMember)
+                                                                                     .build());
+
+    DecryptedGroupChange expectedChange = DecryptedGroupChange.newBuilder()
+                                                              .setRevision(8)
+                                                              .setEditor(UuidUtil.toByteString(editorUuid))
+                                                              .addNewMembers(newMember)
+                                                              .build();
+
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(new GlobalGroupState(currentState, singletonList(log8)), LATEST);
+
+    assertNotNull(log8.getGroup());
+    assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(new LocalGroupLogEntry(log8.getGroup(), expectedChange))));
+    assertNewState(new GlobalGroupState(log8.getGroup(), emptyList()), advanceGroupStateResult.getNewGlobalGroupState());
+    assertEquals(log8.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
+  }
+
+  @Test
+  public void notices_changes_in_avatar_and_title_but_not_members_in_placeholder() {
+    UUID                newMemberUuid  = UUID.randomUUID();
+    DecryptedMember     newMember      = DecryptedMember.newBuilder()
+                                                        .setUuid(UuidUtil.toByteString(newMemberUuid))
+                                                        .build();
+    DecryptedMember     existingMember = DecryptedMember.newBuilder()
+                                                        .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
+                                                        .build();
+    DecryptedGroup      currentState   = DecryptedGroup.newBuilder()
+                                                       .setRevision(GroupStateMapper.PLACEHOLDER_REVISION)
+                                                       .setTitle("Incorrect group title")
+                                                       .setAvatar("Incorrect group avatar")
+                                                       .addMembers(newMember)
+                                                       .build();
+    ServerGroupLogEntry log8           = new ServerGroupLogEntry(DecryptedGroup.newBuilder()
+                                                                               .setRevision(8)
+                                                                               .addMembers(newMember)
+                                                                               .addMembers(existingMember)
+                                                                               .setTitle("Group Revision " + 8)
+                                                                               .setAvatar("Group Avatar " + 8)
+                                                                               .build(),
+                                                                 DecryptedGroupChange.newBuilder()
+                                                                                     .setRevision(8)
+                                                                                     .setEditor(UuidUtil.toByteString(newMemberUuid))
+                                                                                     .addNewMembers(newMember)
+                                                                                     .build());
+
+    DecryptedGroupChange expectedChange = DecryptedGroupChange.newBuilder()
+                                                              .setRevision(8)
+                                                              .setNewTitle(DecryptedString.newBuilder().setValue("Group Revision " + 8))
+                                                              .setNewAvatar(DecryptedString.newBuilder().setValue("Group Avatar " + 8))
+                                                              .build();
+
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(new GlobalGroupState(currentState, singletonList(log8)), LATEST);
+
+    assertNotNull(log8.getGroup());
+    assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(singletonList(new LocalGroupLogEntry(log8.getGroup(), expectedChange))));
+    assertNewState(new GlobalGroupState(log8.getGroup(), emptyList()), advanceGroupStateResult.getNewGlobalGroupState());
+    assertEquals(log8.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
   }
 
   private static void assertNewState(GlobalGroupState expected, GlobalGroupState actual) {

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -54,6 +55,7 @@ public class ConversationBannerView extends ConstraintLayout {
 
   public void setSubtitle(@Nullable CharSequence subtitle) {
     contactSubtitle.setText(subtitle);
+    contactSubtitle.setVisibility(TextUtils.isEmpty(subtitle) ? GONE : VISIBLE);
   }
 
   public void setDescription(@Nullable CharSequence description) {

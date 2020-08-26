@@ -188,8 +188,7 @@ public final class GroupsV2Operations {
 
       actions.addAddMembers(GroupChange.Actions.AddMemberAction
                                                .newBuilder()
-                                               .setAdded(groupOperations.member(profileKeyCredential, Member.Role.DEFAULT))
-                                               .setJoinFromInviteLink(true));
+                                               .setAdded(groupOperations.member(profileKeyCredential, Member.Role.DEFAULT)));
 
       return actions;
     }
@@ -574,6 +573,7 @@ public final class GroupsV2Operations {
                                    .setMemberCount(joinInfo.getMemberCount())
                                    .setAddFromInviteLink(joinInfo.getAddFromInviteLink())
                                    .setRevision(joinInfo.getRevision())
+                                   .setPendingAdminApproval(joinInfo.getPendingAdminApproval())
                                    .build();
     }
 

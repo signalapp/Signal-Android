@@ -1957,11 +1957,14 @@ public class PushServiceSocket {
     return AvatarUploadAttributes.parseFrom(readBodyBytes(response));
   }
 
-  public GroupChange patchGroupsV2Group(GroupChange.Actions groupChange, String authorization)
+  public GroupChange patchGroupsV2Group(GroupChange.Actions groupChange, String authorization, Optional<byte[]> groupLinkPassword)
       throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
+    String path = groupLinkPassword.transform(p -> String.format(GROUPSV2_GROUP_PASSWORD, Base64UrlSafe.encodeBytesWithoutPadding(p)))
+                                   .or(GROUPSV2_GROUP);
+
     ResponseBody response = makeStorageRequest(authorization,
-                                               GROUPSV2_GROUP,
+                                               path,
                                                "PATCH",
                                                protobufRequestBody(groupChange),
                                                GROUPS_V2_PATCH_RESPONSE_HANDLER);
@@ -1981,14 +1984,15 @@ public class PushServiceSocket {
     return GroupChanges.parseFrom(readBodyBytes(response));
   }
 
-  public GroupJoinInfo getGroupJoinInfo(byte[] groupLinkPassword, GroupsV2AuthorizationString authorization)
+  public GroupJoinInfo getGroupJoinInfo(Optional<byte[]> groupLinkPassword, GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
-    ResponseBody response = makeStorageRequest(authorization.toString(),
-                                               String.format(GROUPSV2_GROUP_JOIN, Base64UrlSafe.encodeBytesWithoutPadding(groupLinkPassword)),
-                                               "GET",
-                                               null,
-                                               GROUPS_V2_GET_JOIN_INFO_HANDLER);
+    String       passwordParam = groupLinkPassword.transform(Base64UrlSafe::encodeBytesWithoutPadding).or("");
+    ResponseBody response      = makeStorageRequest(authorization.toString(),
+                                                    String.format(GROUPSV2_GROUP_JOIN, passwordParam),
+                                                    "GET",
+                                                    null,
+                                                    GROUPS_V2_GET_JOIN_INFO_HANDLER);
 
     return GroupJoinInfo.parseFrom(readBodyBytes(response));
   }
