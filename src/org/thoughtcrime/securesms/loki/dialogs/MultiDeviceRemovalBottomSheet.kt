@@ -37,7 +37,7 @@ class MultiDeviceRemovalBottomSheet : BottomSheetDialogFragment() {
     }
 
     private val explanation by lazy {
-        if (TextSecurePreferences.getMasterHexEncodedPublicKey(context!!) != null) {
+        if (TextSecurePreferences.getMasterHexEncodedPublicKey(requireContext()) != null) {
             "You’re seeing this because this is a secondary device in a multi-device setup. To improve reliability and stability, we’ve decided to temporarily disable Session’s multi-device functionality. Device linking has been disabled, and existing secondary clients will be erased on $removalDateDescription.\n\nTo read more about this change, visit the Session FAQ at getsession.org/faq."
         } else {
             "You’re seeing this because you have a secondary device linked to your Session ID. To improve reliability and stability, we’ve decided to temporarily disable Session’s multi-device functionality. Device linking has been disabled, and existing secondary clients will be erased on $removalDateDescription.\n\nTo read more about this change, visit the Session FAQ at getsession.org/faq"
@@ -49,7 +49,7 @@ class MultiDeviceRemovalBottomSheet : BottomSheetDialogFragment() {
         val removalDateStartIndex = explanation.indexOf(removalDateDescription)
         val removalDateEndIndex = removalDateStartIndex + removalDateDescription.count()
         result.setSpan(StyleSpan(Typeface.BOLD), removalDateStartIndex, removalDateEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        result.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, context!!.theme)), removalDateStartIndex, removalDateEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        result.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, requireContext().theme)), removalDateStartIndex, removalDateEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val link = "getsession.org/faq"
         val linkStartIndex = explanation.indexOf(link)
         val linkEndIndex = linkStartIndex + link.count()
@@ -59,18 +59,13 @@ class MultiDeviceRemovalBottomSheet : BottomSheetDialogFragment() {
                 try {
                     onLinkTapped?.invoke()
                 } catch (e: Exception) {
-                    Toast.makeText(context!!, R.string.invalid_url, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.invalid_url, Toast.LENGTH_SHORT).show()
                 }
             }
         }, linkStartIndex, linkEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         result.setSpan(StyleSpan(Typeface.BOLD), linkStartIndex, linkEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        result.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, context!!.theme)), linkStartIndex, linkEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        result.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, requireContext().theme)), linkStartIndex, linkEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         result
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.SessionBottomSheetDialogTheme)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

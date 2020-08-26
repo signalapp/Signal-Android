@@ -27,7 +27,7 @@
         <item name="actionBarStyle">@style/Widget.Session.ActionBar</item>
 
         <item name="alertDialogTheme">@style/Session.AlertDialog</item>
-        <item name="bottomSheetDialogTheme">@style/SessionBottomSheetDialogTheme</item>
+        <item name="bottomSheetStyle">@style/Widget.Session.BottomSheetDialog</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="statusBarBackground">@color/accent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

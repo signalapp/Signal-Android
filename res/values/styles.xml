@@ -29,11 +29,7 @@
         <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>
     </style>
 
-    <style name="SessionBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/SessionBottomSheetStyle</item>
-    </style>
-
-    <style name="SessionBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+    <style name="Widget.Session.BottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/default_bottom_sheet_background</item>
     </style>
 

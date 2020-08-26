@@ -25,11 +25,7 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
     var onDeleteTapped: (() -> Unit)? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //FIXME AC: For some reason this fragment (created from HomeActivity)
-        // is not using the activity's theme. So we have to enforce it.
-        return LayoutInflater.from(ContextThemeWrapper(requireContext(), R.style.Theme_Session_DayNight))
-                .inflate(R.layout.fragment_conversation_bottom_sheet, container, false)
-//        return inflater.inflate(R.layout.fragment_conversation_bottom_sheet, container, false)
+        return inflater.inflate(R.layout.fragment_conversation_bottom_sheet, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

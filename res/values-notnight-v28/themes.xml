@@ -30,7 +30,7 @@
 <!--        <item name="colorControlHighlight">@color/accent</item>-->
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
-        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.Light.BottomSheetDialog</item>
+<!--        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.Light.BottomSheetDialog</item>-->
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
 
         <item name="attachment_type_selector_background">@color/white</item>
