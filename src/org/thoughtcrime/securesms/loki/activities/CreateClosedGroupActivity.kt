@@ -115,7 +115,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
             return Toast.makeText(this, R.string.activity_create_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
         }
         val selectedMembers = this.selectContactsAdapter.selectedMembers
-        if (selectedMembers.count() < 2) {
+        if (selectedMembers.count() < 1) {
             return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
         if (selectedMembers.count() > ClosedGroupsProtocol.groupSizeLimit) { // Minus one because we're going to include self later
@@ -136,7 +136,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
             return Toast.makeText(this, R.string.activity_create_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
         }
         val selectedMembers = this.selectContactsAdapter.selectedMembers
-        if (selectedMembers.count() < 2) {
+        if (selectedMembers.count() < 1) {
             return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
         if (selectedMembers.count() > 10) {
