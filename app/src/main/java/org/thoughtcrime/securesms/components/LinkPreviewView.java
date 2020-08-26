@@ -23,6 +23,10 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import okhttp3.HttpUrl;
 
 /**
@@ -146,14 +150,24 @@ public class LinkPreviewView extends FrameLayout {
       description.setVisibility(GONE);
     }
 
+    String domain = null;
+
     if (!Util.isEmpty(linkPreview.getUrl())) {
       HttpUrl url = HttpUrl.parse(linkPreview.getUrl());
       if (url != null) {
-        site.setText(url.topPrivateDomain());
-        site.setVisibility(VISIBLE);
-      } else {
-        site.setVisibility(GONE);
+        domain = url.topPrivateDomain();
       }
+    }
+
+    if (domain != null && linkPreview.getDate() > 0) {
+      site.setText(getContext().getString(R.string.LinkPreviewView_domain_date, domain, formatDate(linkPreview.getDate())));
+      site.setVisibility(VISIBLE);
+    } else if (domain != null) {
+      site.setText(domain);
+      site.setVisibility(VISIBLE);
+    } else if (linkPreview.getDate() > 0) {
+      site.setText(formatDate(linkPreview.getDate()));
+      site.setVisibility(VISIBLE);
     } else {
       site.setVisibility(GONE);
     }
@@ -185,6 +199,11 @@ public class LinkPreviewView extends FrameLayout {
   private  @StringRes static int getLinkPreviewErrorString(@Nullable LinkPreviewRepository.Error customError) {
     return customError == LinkPreviewRepository.Error.GROUP_LINK_INACTIVE ? R.string.LinkPreviewView_this_group_link_is_not_active
                                                                           : R.string.LinkPreviewView_no_link_preview_available;
+  }
+
+  private static String formatDate(long date) {
+    DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+    return dateFormat.format(date);
   }
 
   public interface CloseClickedListener {

@@ -1118,7 +1118,7 @@ public class MmsDatabase extends MessageDatabase {
         if (preview.getAttachmentId() != null) {
           DatabaseAttachment attachment = attachmentIdMap.get(preview.getAttachmentId());
           if (attachment != null) {
-            previews.add(new LinkPreview(preview.getUrl(), preview.getTitle(), preview.getDescription(), attachment));
+            previews.add(new LinkPreview(preview.getUrl(), preview.getTitle(), preview.getDescription(), preview.getDate(), attachment));
           }
         } else {
           previews.add(preview);
@@ -1526,7 +1526,7 @@ public class MmsDatabase extends MessageDatabase {
           attachmentId = insertedAttachmentIds.get(preview.getThumbnail().get());
         }
 
-        LinkPreview updatedPreview = new LinkPreview(preview.getUrl(), preview.getTitle(), preview.getDescription(), attachmentId);
+        LinkPreview updatedPreview = new LinkPreview(preview.getUrl(), preview.getTitle(), preview.getDescription(), preview.getDate(), attachmentId);
         linkPreviewJson.put(new JSONObject(updatedPreview.serialize()));
       } catch (JSONException | IOException e) {
         Log.w(TAG, "Failed to serialize shared contact. Skipping it.", e);

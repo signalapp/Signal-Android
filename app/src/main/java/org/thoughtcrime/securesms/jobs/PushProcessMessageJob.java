@@ -1696,7 +1696,7 @@ public final class PushProcessMessageJob extends BaseJob {
       boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isValidPreviewUrl(url.get());
 
       if (hasTitle && presentInBody && validDomain) {
-        LinkPreview linkPreview = new LinkPreview(url.get(), title.or(""), description.or(""), thumbnail);
+        LinkPreview linkPreview = new LinkPreview(url.get(), title.or(""), description.or(""), preview.getDate(), thumbnail);
         linkPreviews.add(linkPreview);
       } else {
         Log.w(TAG, String.format("Discarding an invalid link preview. hasTitle: %b presentInBody: %b validDomain: %b", hasTitle, presentInBody, validDomain));

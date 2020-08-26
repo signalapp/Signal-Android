@@ -106,7 +106,7 @@ public class LinkPreviewRepository {
         }
 
         if (!metadata.getImageUrl().isPresent()) {
-          callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), metadata.getDescription().or(""), Optional.absent()));
+          callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), metadata.getDescription().or(""), metadata.getDate(), Optional.absent()));
           return;
         }
 
@@ -114,7 +114,7 @@ public class LinkPreviewRepository {
           if (!metadata.getTitle().isPresent() && !attachment.isPresent()) {
             callback.onError(Error.PREVIEW_NOT_AVAILABLE);
           } else {
-            callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), metadata.getDescription().or(""), attachment));
+            callback.onSuccess(new LinkPreview(url, metadata.getTitle().or(""), metadata.getDescription().or(""), metadata.getDate(), attachment));
           }
         });
 
@@ -153,13 +153,14 @@ public class LinkPreviewRepository {
         Optional<String> title       = openGraph.getTitle();
         Optional<String> description = openGraph.getDescription();
         Optional<String> imageUrl    = openGraph.getImageUrl();
+        long             date        = openGraph.getDate();
 
         if (imageUrl.isPresent() && !LinkPreviewUtil.isValidPreviewUrl(imageUrl.get())) {
           Log.i(TAG, "Image URL was invalid or for a non-whitelisted domain. Skipping.");
           imageUrl = Optional.absent();
         }
 
-        callback.accept(new Metadata(title, description, imageUrl));
+        callback.accept(new Metadata(title, description, date, imageUrl));
       }
     });
 
@@ -227,7 +228,7 @@ public class LinkPreviewRepository {
 
           Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
 
-          callback.onSuccess(new LinkPreview(packUrl, title, "", thumbnail));
+          callback.onSuccess(new LinkPreview(packUrl, title, "", 0, thumbnail));
         } else {
           callback.onError(Error.PREVIEW_NOT_AVAILABLE);
         }
@@ -272,7 +273,7 @@ public class LinkPreviewRepository {
             thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
           }
 
-          callback.onSuccess(new LinkPreview(groupUrl, title, description, thumbnail));
+          callback.onSuccess(new LinkPreview(groupUrl, title, description, 0, thumbnail));
         } else {
           Log.i(TAG, "Group is not locally available for preview generation, fetching from server");
 
@@ -289,7 +290,7 @@ public class LinkPreviewRepository {
             if (bitmap != null) bitmap.recycle();
           }
 
-          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), description, thumbnail));
+          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), description, 0, thumbnail));
         }
       } catch (ExecutionException | InterruptedException | IOException | VerificationFailedException e) {
         Log.w(TAG, "Failed to fetch group link preview.", e);
@@ -350,16 +351,18 @@ public class LinkPreviewRepository {
   private static class Metadata {
     private final Optional<String> title;
     private final Optional<String> description;
+    private final long             date;
     private final Optional<String> imageUrl;
 
-    Metadata(Optional<String> title, Optional<String> description, Optional<String> imageUrl) {
+    Metadata(Optional<String> title, Optional<String> description, long date, Optional<String> imageUrl) {
       this.title       = title;
       this.description = description;
+      this.date        = date;
       this.imageUrl    = imageUrl;
     }
 
     static Metadata empty() {
-      return new Metadata(Optional.absent(), Optional.absent(), Optional.absent());
+      return new Metadata(Optional.absent(), Optional.absent(), 0, Optional.absent());
     }
 
     Optional<String> getTitle() {
@@ -368,6 +371,10 @@ public class LinkPreviewRepository {
 
     Optional<String> getDescription() {
       return description;
+    }
+
+    long getDate() {
+      return date;
     }
 
     Optional<String> getImageUrl() {

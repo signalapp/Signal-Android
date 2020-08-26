@@ -413,12 +413,14 @@ public class SignalServiceDataMessage {
     private final String                            url;
     private final String                            title;
     private final String                            description;
+    private final long                              date;
     private final Optional<SignalServiceAttachment> image;
 
-    public Preview(String url, String title, String description, Optional<SignalServiceAttachment> image) {
+    public Preview(String url, String title, String description, long date, Optional<SignalServiceAttachment> image) {
       this.url         = url;
       this.title       = title;
       this.description = description;
+      this.date        = date;
       this.image       = image;
     }
 
@@ -432,6 +434,10 @@ public class SignalServiceDataMessage {
 
     public String getDescription() {
       return description;
+    }
+
+    public long getDate() {
+      return date;
     }
 
     public Optional<SignalServiceAttachment> getImage() {

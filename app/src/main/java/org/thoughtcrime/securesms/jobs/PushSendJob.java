@@ -315,7 +315,7 @@ public abstract class PushSendJob extends SendJob {
   List<Preview> getPreviewsFor(OutgoingMediaMessage mediaMessage) {
     return Stream.of(mediaMessage.getLinkPreviews()).map(lp -> {
       SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
-      return new Preview(lp.getUrl(), lp.getTitle(), lp.getDescription(), Optional.fromNullable(attachment));
+      return new Preview(lp.getUrl(), lp.getTitle(), lp.getDescription(), lp.getDate(), Optional.fromNullable(attachment));
     }).toList();
   }
 

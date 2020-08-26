@@ -207,6 +207,7 @@ message DataMessage {
     optional string            title       = 2;
     optional AttachmentPointer image       = 3;
     optional string            description = 4;
+    optional uint64            date        = 5;
   }
 
   message Sticker {

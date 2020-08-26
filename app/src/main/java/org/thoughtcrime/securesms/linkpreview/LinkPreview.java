@@ -26,23 +26,28 @@ public class LinkPreview {
   private final String       description;
 
   @JsonProperty
+  private final long         date;
+
+  @JsonProperty
   private final AttachmentId attachmentId;
 
   @JsonIgnore
   private final Optional<Attachment> thumbnail;
 
-  public LinkPreview(@NonNull String url, @NonNull String title, @NonNull String description, @NonNull DatabaseAttachment thumbnail) {
+  public LinkPreview(@NonNull String url, @NonNull String title, @NonNull String description, long date, @NonNull DatabaseAttachment thumbnail) {
     this.url          = url;
     this.title        = title;
     this.description  = description;
+    this.date         = date;
     this.thumbnail    = Optional.of(thumbnail);
     this.attachmentId = thumbnail.getAttachmentId();
   }
 
-  public LinkPreview(@NonNull String url, @NonNull String title, @NonNull String description, @NonNull Optional<Attachment> thumbnail) {
+  public LinkPreview(@NonNull String url, @NonNull String title, @NonNull String description, long date, @NonNull Optional<Attachment> thumbnail) {
     this.url          = url;
     this.title        = title;
     this.description  = description;
+    this.date         = date;
     this.thumbnail    = thumbnail;
     this.attachmentId = null;
   }
@@ -50,11 +55,13 @@ public class LinkPreview {
   public LinkPreview(@JsonProperty("url")          @NonNull  String url,
                      @JsonProperty("title")        @NonNull  String title,
                      @JsonProperty("description")  @Nullable String description,
+                     @JsonProperty("date")                   long date,
                      @JsonProperty("attachmentId") @Nullable AttachmentId attachmentId)
   {
     this.url          = url;
     this.title        = title;
     this.description  = Optional.fromNullable(description).or("");
+    this.date         = date;
     this.attachmentId = attachmentId;
     this.thumbnail    = Optional.absent();
   }
@@ -69,6 +76,10 @@ public class LinkPreview {
 
   public @NonNull String getDescription() {
     return description;
+  }
+
+  public long getDate() {
+    return date;
   }
 
   public @NonNull Optional<Attachment> getThumbnail() {

@@ -66,6 +66,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:textColor="?linkpreview_secondary_text_color"
+            android:maxLines="2"
             app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/linkpreview_description"
             tools:text="dailybugle.com" />
