@@ -2,18 +2,17 @@ package org.thoughtcrime.securesms.util;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.Collections;
@@ -106,11 +105,6 @@ public class AttachmentUtil {
 
   @WorkerThread
   private static boolean isFromUnknownContact(@NonNull Context context, @NonNull DatabaseAttachment attachment) {
-    MessageRecord message;
-    try (Cursor messageCursor = DatabaseFactory.getMmsDatabase(context).getMessage(attachment.getMmsId())) {
-      message = DatabaseFactory.getMmsDatabase(context).readerFor(messageCursor).getNext();
-    }
-    if (message == null) { return true; }
     // We don't allow attachments to be sent unless we're friends with someone or the attachment is sent
     // in a group context. Auto-downloading attachments is therefore fine.
     return false;
