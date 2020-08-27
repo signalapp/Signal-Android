@@ -139,6 +139,9 @@ public abstract class MessageRecord extends DisplayRecord {
     if (isPush() && getDateSent() < getDateReceived()) {
       return getDateSent();
     }
+    if (getRecipient().getAddress().isOpenGroup()) {
+      return getDateSent();
+    }
     return getDateReceived();
   }
 

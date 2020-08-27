@@ -22,13 +22,14 @@ import android.content.res.Resources;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
+
 import androidx.annotation.ArrayRes;
 import androidx.annotation.AttrRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import android.util.TypedValue;
 
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -57,7 +58,7 @@ public class ResUtil {
     int drawableRes = getDrawableRes(c, attr);
     if (drawableRes == 0) {
       Log.e(TAG, "Cannot find a drawable resource associated with the attribute: " + attr,
-              new Resources.NotFoundException());
+          new Resources.NotFoundException());
       return null;
     }
     return ContextCompat.getDrawable(c, drawableRes);

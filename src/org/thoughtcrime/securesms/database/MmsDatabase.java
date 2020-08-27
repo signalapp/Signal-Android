@@ -20,10 +20,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -816,7 +817,8 @@ public class MmsDatabase extends MessagingDatabase {
 
   private Optional<InsertResult> insertMessageInbox(IncomingMediaMessage retrieved,
                                                     String contentLocation,
-                                                    long threadId, long mailbox)
+                                                    long threadId, long mailbox,
+                                                    long serverTimestamp)
       throws MmsException
   {
     if (threadId == -1 || retrieved.isGroupMessage()) {
@@ -839,7 +841,10 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(CONTENT_LOCATION, contentLocation);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
-    contentValues.put(DATE_RECEIVED, retrieved.getSentTimeMillis()); // Loki - This is important due to how we handle GIFs
+    // In open groups messages should be sorted by their server timestamp
+    long receivedTimestamp = serverTimestamp;
+    if (serverTimestamp == 0) { receivedTimestamp = retrieved.getSentTimeMillis(); }
+    contentValues.put(DATE_RECEIVED, receivedTimestamp); // Loki - This is important due to how we handle GIFs
     contentValues.put(PART_COUNT, retrieved.getAttachments().size());
     contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
@@ -893,11 +898,11 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
-    return insertMessageInbox(retrieved, contentLocation, threadId, type);
+    return insertMessageInbox(retrieved, contentLocation, threadId, type, 0);
   }
 
-  public Optional<InsertResult> insertSecureDecryptedMessageInbox(IncomingMediaMessage retrieved, long threadId)
-      throws MmsException
+  public Optional<InsertResult> insertSecureDecryptedMessageInbox(IncomingMediaMessage retrieved, long threadId, long serverTimestamp)
+          throws MmsException
   {
     long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT;
 
@@ -909,7 +914,13 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
-    return insertMessageInbox(retrieved, "", threadId, type);
+    return insertMessageInbox(retrieved, "", threadId, type, 0);
+  }
+
+  public Optional<InsertResult> insertSecureDecryptedMessageInbox(IncomingMediaMessage retrieved, long threadId)
+          throws MmsException
+  {
+    return insertSecureDecryptedMessageInbox(retrieved, threadId, 0);
   }
 
   public Pair<Long, Long> insertMessageInbox(@NonNull NotificationInd notification, int subscriptionId) {

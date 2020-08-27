@@ -20,9 +20,10 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
@@ -580,7 +581,7 @@ public class SmsDatabase extends MessagingDatabase {
     return new Pair<>(messageId, threadId);
   }
 
-  protected Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type) {
+  protected Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type, long serverTimestamp) {
     if (message.isJoined()) {
       type = (type & (Types.TOTAL_MASK - Types.BASE_TYPE_MASK)) | Types.JOINED_TYPE;
     } else if (message.isPreKeyBundle()) {
@@ -625,7 +626,10 @@ public class SmsDatabase extends MessagingDatabase {
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
-    values.put(DATE_RECEIVED, message.getSentTimestampMillis()); // Loki - This is important due to how we handle GIFs
+    // In open groups messages should be sorted by their server timestamp
+    long receivedTimestamp = serverTimestamp;
+    if (serverTimestamp == 0) { receivedTimestamp = message.getSentTimestampMillis(); }
+    values.put(DATE_RECEIVED, receivedTimestamp); // Loki - This is important due to how we handle GIFs
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());
     values.put(READ, unread ? 0 : 1);
@@ -672,7 +676,11 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
-    return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
+    return insertMessageInbox(message, Types.BASE_INBOX_TYPE, 0);
+  }
+
+  public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long serverTimestamp) {
+    return insertMessageInbox(message, Types.BASE_INBOX_TYPE, serverTimestamp);
   }
 
   public long insertMessageOutbox(long threadId, OutgoingTextMessage message,

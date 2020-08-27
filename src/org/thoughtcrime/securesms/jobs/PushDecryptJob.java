@@ -755,7 +755,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Optional<InsertResult> insertResult;
 
     try {
-      insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      if (message.isGroupMessage()) {
+        insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1, content.getTimestamp());
+      } else {
+        insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      }
 
       if (insertResult.isPresent()) {
         List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
@@ -952,7 +956,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (textMessage.getMessageBody().length() == 0) { return; }
 
       // Insert the message into the database
-      Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
+      Optional<InsertResult> insertResult;
+      if (message.isGroupMessage()) {
+        insertResult = database.insertMessageInbox(textMessage, content.getTimestamp());
+      } else {
+        insertResult = database.insertMessageInbox(textMessage);
+      }
 
       if (insertResult.isPresent()) {
         threadId = insertResult.get().getThreadId();
