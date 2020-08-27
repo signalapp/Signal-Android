@@ -629,7 +629,7 @@ public class SmsDatabase extends MessagingDatabase {
     // we use current time like a sortId of iOS as the receive time.
     // Since the messages has been sorted by server timestamp before they are processed,
     // the order here by actual receiving time should be correct.
-    long receiveTimestamp = System.currentTimeMillis();
+    long receiveTimestamp = serverTimestamp;
     if (serverTimestamp == 0) { receiveTimestamp = message.getSentTimestampMillis(); }
     values.put(DATE_RECEIVED, receiveTimestamp); // Loki - This is important due to how we handle GIFs
     values.put(DATE_SENT, message.getSentTimestampMillis());

@@ -426,7 +426,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
     MessageRecord messageRecord = getRecordForPositionOrThrow(position);
-    viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, messageRecord.getDateReceived()));
+    long timestamp = messageRecord.getDateReceived();
+    if (recipient.getAddress().isOpenGroup()) { timestamp = messageRecord.getTimestamp(); }
+    viewHolder.setText(DateUtils.getRelativeDate(getContext(), locale, timestamp));
   }
 
   public void onBindLastSeenViewHolder(HeaderViewHolder viewHolder, int position) {
