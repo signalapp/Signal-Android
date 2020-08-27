@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -37,7 +38,7 @@ public final class SimpleProgressDialog {
 
   @AnyThread
   public static @NonNull DismissibleDialog showDelayed(@NonNull Context context) {
-    return showDelayed(context, 300);
+    return showDelayed(context, 300, 1000);
   }
 
   /**
@@ -47,13 +48,21 @@ public final class SimpleProgressDialog {
    * the delay has elapsed, the dialog will not show at all.
    * <p>
    * Dismiss can be called on any thread.
+   *
+   * @param minimumShowTimeMs If the dialog does display, then it will be visible for at least this duration.
+   *                          This is to prevent flicker.
    */
   @AnyThread
-  public static @NonNull DismissibleDialog showDelayed(@NonNull Context context, int delayMs) {
+  public static @NonNull DismissibleDialog showDelayed(@NonNull Context context,
+                                                       int delayMs,
+                                                       int minimumShowTimeMs)
+  {
     AtomicReference<AlertDialog> dialogAtomicReference = new AtomicReference<>();
+    AtomicLong                   shownAt               = new AtomicLong();
 
     Runnable showRunnable = () -> {
       Log.i(TAG, "Taking some time. Showing a progress dialog.");
+      shownAt.set(System.currentTimeMillis());
       dialogAtomicReference.set(show(context));
     };
 
@@ -64,7 +73,14 @@ public final class SimpleProgressDialog {
       Util.runOnMain(() -> {
         AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
         if (alertDialog != null) {
-          alertDialog.dismiss();
+          long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
+          long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
+
+          if (remainingTimeMs > 0) {
+            Util.runOnMainDelayed(alertDialog::dismiss, remainingTimeMs);
+          } else {
+            alertDialog.dismiss();
+          }
         }
       });
     };
