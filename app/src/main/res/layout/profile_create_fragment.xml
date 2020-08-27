@@ -106,6 +106,7 @@
                     android:cropToPadding="false"
                     android:elevation="4dp"
                     android:padding="14dp"
+                    app:backgroundTint="?attr/camera_icon_background_tint"
                     app:layout_constraintStart_toStartOf="@+id/avatar_background"
                     app:layout_constraintTop_toTopOf="@+id/avatar_background"
                     app:srcCompat="?conversation_attach_camera" />

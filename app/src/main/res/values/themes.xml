@@ -228,6 +228,8 @@
         <item name="conversation_list_compose_icon_tint">@color/core_white</item>
         <item name="conversation_list_camera_button_background">@color/core_white</item>
 
+        <item name="camera_icon_background_tint">@color/core_grey_02</item>
+
         <item name="fab_color">@color/core_ultramarine</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
@@ -559,6 +561,8 @@
         <item name="conversation_list_camera_icon_tint">@color/core_white</item>
         <item name="conversation_list_compose_icon_tint">@color/core_white</item>
         <item name="conversation_list_camera_button_background">@color/core_grey_85</item>
+
+        <item name="camera_icon_background_tint">@color/core_grey_75</item>
 
         <item name="conversation_group_member_name">#99ffffff</item>
 
