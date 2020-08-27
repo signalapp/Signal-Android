@@ -200,7 +200,7 @@ public final class LinkPreviewUtil {
     }
 
     public long getDate() {
-      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault());
 
       return Stream.of(values.get(KEY_PUBLISHED_TIME_1),
                        values.get(KEY_PUBLISHED_TIME_2),
