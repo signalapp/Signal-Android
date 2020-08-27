@@ -27,9 +27,6 @@ import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.util.Rational;
 import android.view.Window;
 import android.view.WindowManager;
@@ -37,7 +34,6 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -48,7 +44,7 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestActivity;
@@ -57,17 +53,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.VerifySpan;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
-
-public class WebRtcCallActivity extends AppCompatActivity {
+public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumberChangeDialog.Callback {
 
 
   private static final String TAG = WebRtcCallActivity.class.getSimpleName();
@@ -470,37 +461,24 @@ public class WebRtcCallActivity extends AppCompatActivity {
       handleTerminate(recipient, HangupMessage.Type.NORMAL);
     }
 
-    String          name            = recipient.getDisplayName(this);
-    String          introduction    = getString(R.string.WebRtcCallScreen_new_safety_numbers, name, name);
-    SpannableString spannableString = new SpannableString(introduction + " " + getString(R.string.WebRtcCallScreen_you_may_wish_to_verify_this_contact));
+    SafetyNumberChangeDialog.showForCall(getSupportFragmentManager(), recipient.getId());
+  }
 
-    spannableString.setSpan(new VerifySpan(this, recipient.getId(), theirKey), introduction.length() + 1, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+  @Override
+  public void onSendAnywayAfterSafetyNumberChange() {
+    Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
+    intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(viewModel.getRecipient().getId()));
 
-    AppCompatTextView untrustedIdentityExplanation = new AppCompatTextView(this);
-    untrustedIdentityExplanation.setText(spannableString);
-    untrustedIdentityExplanation.setMovementMethod(LinkMovementMethod.getInstance());
+    startService(intent);
+  }
 
-    new AlertDialog.Builder(this)
-                   .setView(untrustedIdentityExplanation)
-                   .setPositiveButton(R.string.WebRtcCallScreen_accept, (d, w) -> {
-                     synchronized (SESSION_LOCK) {
-                       TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(WebRtcCallActivity.this);
-                       identityKeyStore.saveIdentity(new SignalProtocolAddress(recipient.requireServiceId(), 1), theirKey, true);
-                     }
+  @Override
+  public void onMessageResentAfterSafetyNumberChange() { }
 
-                     d.dismiss();
-
-                     Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
-                     intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
-                           .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(recipient.getId()));
-
-                     startService(intent);
-                   })
-                   .setNegativeButton(R.string.WebRtcCallScreen_end_call, (d, w) -> {
-                     d.dismiss();
-                     handleTerminate(recipient, HangupMessage.Type.NORMAL);
-                   })
-                   .show();
+  @Override
+  public void onCanceled() {
+    handleTerminate(viewModel.getRecipient().get(), HangupMessage.Type.NORMAL);
   }
 
   private boolean isSystemPipEnabledAndAvailable() {

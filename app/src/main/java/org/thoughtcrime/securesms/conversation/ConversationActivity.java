@@ -300,8 +300,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
-  public static final String SAFETY_NUMBER_DIALOG = "SAFETY_NUMBER";
-
   private static final String STATE_REACT_WITH_ANY_PAGE = "STATE_REACT_WITH_ANY_PAGE";
 
   public static final String RECIPIENT_EXTRA                   = "recipient_id";
@@ -1362,7 +1360,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void handleRecentSafetyNumberChange() {
     List<IdentityRecord> records = identityRecords.getUnverifiedRecords();
     records.addAll(identityRecords.getUntrustedRecords());
-    SafetyNumberChangeDialog.create(records).show(getSupportFragmentManager(), SAFETY_NUMBER_DIALOG);
+    SafetyNumberChangeDialog.show(getSupportFragmentManager(), records);
   }
 
   @Override
@@ -1382,6 +1380,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
       public void onSuccess(Boolean result) { }
     });
   }
+
+  @Override
+  public void onCanceled() { }
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
     Log.i(TAG, "handleSecurityChange(" + isSecureText + ", " + isDefaultSms + ")");
@@ -3095,7 +3096,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                      .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> MessageSender.resend(this, messageRecord))
                      .show();
     } else if (messageRecord.isIdentityMismatchFailure()) {
-      SafetyNumberChangeDialog.create(this, messageRecord).show(getSupportFragmentManager(), SAFETY_NUMBER_DIALOG);
+      SafetyNumberChangeDialog.show(this, messageRecord);
     } else {
       startActivity(MessageDetailsActivity.getIntentForMessageDetails(this, messageRecord, messageRecord.getRecipient().getId(), messageRecord.getThreadId()));
     }

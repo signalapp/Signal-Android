@@ -1687,6 +1687,7 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Safety Number Changes</string>
     <string name="safety_number_change_dialog__send_anyway">Send anyway</string>
+    <string name="safety_number_change_dialog__call_anyway">Call anyway</string>
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">The following people may have reinstalled or changed devices. Verify your safety number with them to ensure privacy.</string>
     <string name="safety_number_change_dialog__view">View</string>
     <string name="safety_number_change_dialog__previous_verified">Previous verified</string>
