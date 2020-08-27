@@ -1,17 +1,15 @@
 package org.thoughtcrime.securesms.loki.activities
 
-import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.tbruyelle.rxpermissions2.RxPermissions
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
 import kotlinx.android.synthetic.main.activity_qr_code.*
 import kotlinx.android.synthetic.main.fragment_view_my_qr_code.*
 import network.loki.messenger.R
@@ -106,8 +104,8 @@ class ViewMyQRCodeFragment : Fragment() {
 
     private val hexEncodedPublicKey: String
         get() {
-            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context!!)
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context!!)
+            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(requireContext())
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())
             return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
         }
 
@@ -127,33 +125,22 @@ class ViewMyQRCodeFragment : Fragment() {
     }
 
     private fun shareQRCode() {
-        fun proceed() {
-            val directory = File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_PICTURES)
-            val fileName = "$hexEncodedPublicKey.png"
-            val file = File(directory, fileName)
-            file.createNewFile()
-            val fos = FileOutputStream(file)
-            val size = toPx(280, resources)
-            val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false, false)
-            qrCode.compress(Bitmap.CompressFormat.PNG, 100, fos)
-            fos.flush()
-            fos.close()
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.putExtra(Intent.EXTRA_STREAM, FileProviderUtil.getUriFor(activity!!, file))
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            intent.type = "image/png"
-            startActivity(Intent.createChooser(intent, resources.getString(R.string.fragment_view_my_qr_code_share_title)))
-        }
-        if (RxPermissions(this).isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            proceed()
-        } else {
-            @SuppressWarnings("unused")
-            val unused = RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe { isGranted ->
-                if (isGranted) {
-                    proceed()
-                }
-            }
-        }
+        val directory = requireContext().externalCacheDir
+        val fileName = "$hexEncodedPublicKey.png"
+        val file = File(directory, fileName)
+        file.createNewFile()
+        val fos = FileOutputStream(file)
+        val size = toPx(280, resources)
+        val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false, false)
+        qrCode.compress(Bitmap.CompressFormat.PNG, 100, fos)
+        fos.flush()
+        fos.close()
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.putExtra(Intent.EXTRA_STREAM, FileProviderUtil.getUriFor(requireActivity(), file))
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.type = "image/png"
+        startActivity(Intent.createChooser(intent, resources.getString(R.string.fragment_view_my_qr_code_share_title)))
     }
 }
 // endregion
