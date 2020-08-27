@@ -20,9 +20,10 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
@@ -625,13 +626,10 @@ public class SmsDatabase extends MessagingDatabase {
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
-    // If the messages are from open groups, there will be a serverTimestamp,
-    // we use current time like a sortId of iOS as the receive time.
-    // Since the messages has been sorted by server timestamp before they are processed,
-    // the order here by actual receiving time should be correct.
-    long receiveTimestamp = serverTimestamp;
-    if (serverTimestamp == 0) { receiveTimestamp = message.getSentTimestampMillis(); }
-    values.put(DATE_RECEIVED, receiveTimestamp); // Loki - This is important due to how we handle GIFs
+    // In open groups messages should be sorted by their server timestamp
+    long receivedTimestamp = serverTimestamp;
+    if (serverTimestamp == 0) { receivedTimestamp = message.getSentTimestampMillis(); }
+    values.put(DATE_RECEIVED, receivedTimestamp); // Loki - This is important due to how we handle GIFs
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());
     values.put(READ, unread ? 0 : 1);

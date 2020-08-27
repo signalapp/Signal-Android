@@ -20,10 +20,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -840,13 +841,10 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(CONTENT_LOCATION, contentLocation);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
-    // If the messages are from open groups, there will be a serverTimestamp,
-    // we use current time like a sortId of iOS as the receive time.
-    // Since the messages has been sorted by server timestamp before they are processed,
-    // the order here by actual receiving time should be correct.
-    long receiveTimestamp = serverTimestamp;
-    if (serverTimestamp == 0) { receiveTimestamp = retrieved.getSentTimeMillis(); }
-    contentValues.put(DATE_RECEIVED, receiveTimestamp); // Loki - This is important due to how we handle GIFs
+    // In open groups messages should be sorted by their server timestamp
+    long receivedTimestamp = serverTimestamp;
+    if (serverTimestamp == 0) { receivedTimestamp = retrieved.getSentTimeMillis(); }
+    contentValues.put(DATE_RECEIVED, receivedTimestamp); // Loki - This is important due to how we handle GIFs
     contentValues.put(PART_COUNT, retrieved.getAttachments().size());
     contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
