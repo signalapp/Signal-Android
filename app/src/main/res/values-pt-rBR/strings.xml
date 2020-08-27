@@ -415,6 +415,7 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Não há pré-visualização de link disponível</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Este link de grupo não está ativo</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Convites de grupo pendentes</string>
   <string name="PendingMembersActivity_people_you_invited">Pessoas que você convidou</string>
@@ -432,6 +433,7 @@
     <item quantity="one">Erro ao anular convite</item>
     <item quantity="other">Erro ao anular convites</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Pronto</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legado.</string>
@@ -547,6 +549,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Habilitada</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desabilitada</string>
   <string name="CustomNotificationsDialogFragment__default">Padrão</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Compartilhar</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Habilitada</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Desabilitada</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Padrão</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Você deseja anular o convite que você enviou para %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -557,6 +565,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Você já é um membro</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Conecte-se</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Pedido de participação</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Foi encontrado um erro de rede.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este link de grupo não está ativo</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Não foi possível obter informação de grupo, por favor tente novamente mais tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Você quer participar neste grupo e compartilhar seu nome e foto com seus membros?</string>
@@ -569,6 +578,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para usar links do grupo</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que você está usando não suporta links do grupo compartilháveis. Atualize para a versão mais recente para se unir a este grupo via link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Adicionar</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1143,7 +1154,7 @@
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nome de usuário</string>
-  <string name="UsernameEditFragment_submit">Enviar</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Enviar</string> -->
   <string name="UsernameEditFragment_delete">Excluir</string>
   <string name="UsernameEditFragment_successfully_set_username">Usuário definido com sucesso.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Usuário removido com sucesso</string>
@@ -1154,7 +1165,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nomes de usuários não podem começar com um número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nome de usuário inválido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nomes de usuário devem conter no mínimo %1$d e no máximo %2$d caracteres.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Outros usuários do Signal podem enviar solicitações de mensagem para seu nome de usuário exclusivo sem saber o seu número de telefone. Escolher um nome de usuário é opcional.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Outros usuários do Signal podem enviar solicitações de mensagem para seu nome de usuário exclusivo sem saber o seu número de telefone. Escolher um nome de usuário é opcional.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Signal com um formato de código QR incompatível. Por favor, atualize para poder comparar.</string>
@@ -2152,5 +2163,10 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizar Novos Grupos?</string>
   <string name="GroupsLearnMore_paragraph_2">Grupos Legados não podem ser convertidos em Novos Grupos, mas você pode criar um Novo Grupo com os mesmos membros.</string>
   <string name="GroupsLearnMore_paragraph_3">Para criar um Novo Grupo, todos os membros devem atualizar para a versão do Signal mais recente.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Copiar</string>
+  <string name="GroupLinkBottomSheet_qr_code">Código QR</string>
+  <string name="GroupLinkBottomSheet_share">Compartilhar</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <!--EOF-->
 </resources>

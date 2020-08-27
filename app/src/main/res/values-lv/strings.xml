@@ -399,6 +399,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Atspējot</string>
   <!--LinkPreviewView-->
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsu ielūgumi</string>
@@ -406,6 +407,7 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Citu grupu lietotāju ielūgumi</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nav neapstiprināto ielūgumu no citu grupu lietotājiem.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Detaļas par ielūgtajiem no citu grupu lietotājiem netiek rādītas. Ja ielūgtie izvēlas pievienoties, grupai būs piekļuve viņu informācijai. Viņi neredzēs grupas ziņojumus, kamēr nepievienosies grupai.</string>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gatavs</string>
   <!--AddGroupDetailsFragment-->
@@ -464,9 +466,17 @@
   <string name="CustomNotificationsDialogFragment__enabled">Iespējota</string>
   <string name="CustomNotificationsDialogFragment__disabled">Atspējota</string>
   <string name="CustomNotificationsDialogFragment__default">Noklusējuma</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Kopīgot</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Iespējota</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Atspējota</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Noklusējuma</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Tīkla kļūda.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <!--GV2 Request confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupas ikona</string>
   <string name="CropImageActivity_profile_avatar">ikona</string>
@@ -966,7 +976,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UnverifiedSendDialog_send">Sūtīt</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Lietotājvārds</string>
-  <string name="UsernameEditFragment_submit">Iesniegt</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Iesniegt</string> -->
   <string name="UsernameEditFragment_delete">Dzēst</string>
   <string name="UsernameEditFragment_successfully_set_username">Lietotājvārds ir sekmīgi iestatīts.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Lietotājvārds ir sekmīgi noņemts.</string>
@@ -976,7 +986,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Lietotājvārdi nevar sākties ar skaitli.</string>
   <string name="UsernameEditFragment_username_is_invalid">Lietotājvārds nav derīgs.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Lietotājvārdiem jābūt starp %1$d un %2$d rakstzīmēm.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Citi Signal lietotāji var nosūtīt ziņu pieprasījumus Jūsu unikālajam lietotājvārdam, nezinot Jūsu tālruņa numuru. Lietotājvārda izvēle nav obligāta.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Citi Signal lietotāji var nosūtīt ziņu pieprasījumus Jūsu unikālajam lietotājvārdam, nezinot Jūsu tālruņa numuru. Lietotājvārda izvēle nav obligāta.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsu kontaktpersona izmanto novecojušu Signal versiju. Pirms apstipriniet drošības kodu,  palūdziet, lai to aktualizē.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsu kontaktpersona izmanto jaunāku Signal versiju, ar nesaderīgu QR koda formātu. Lūdzu atjaunojiet Signal lietotni savā ierīcē, lai turpinātu.</string>
@@ -1925,5 +1935,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Mantoto grupu salīdzinājums ar jaunajām</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kas ir mantotās grupas?</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Kopēt</string>
+  <string name="GroupLinkBottomSheet_share">Kopīgot</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
   <!--EOF-->
 </resources>

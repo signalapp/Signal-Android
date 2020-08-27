@@ -859,7 +859,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="UnverifiedSendDialog_send">Pošalji</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Korisničko ime</string>
-  <string name="UsernameEditFragment_submit">Pošalji</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Pošalji</string> -->
   <string name="UsernameEditFragment_delete">Obriši</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt koristi stariju Signal inačicu. Zamolite ih da ažuriraju Signal prije provjere sigurnosnog broja.</string>

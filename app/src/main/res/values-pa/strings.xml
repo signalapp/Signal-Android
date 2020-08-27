@@ -938,7 +938,7 @@
   <string name="UnverifiedSendDialog_send">ਭੇਜੋ</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">ਯੂਜ਼ਰਨੇਮ</string>
-  <string name="UsernameEditFragment_submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">ਜਮ੍ਹਾਂ ਕਰੋ</string> -->
   <string name="UsernameEditFragment_delete">ਮਿਟਾਓ </string>
   <string name="UsernameEditFragment_successfully_set_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਕਾਮਯਾਬੀ ਨਾਲ ਸੈੱਟ ਕੀਤਾ।</string>
   <string name="UsernameEditFragment_successfully_removed_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਕਾਮਯਾਬੀ ਨਾਲ ਹਟਾਇਆ।</string>

@@ -639,7 +639,7 @@
   <string name="UnverifiedSendDialog_send_message">Надіслати повідомлення?</string>
   <string name="UnverifiedSendDialog_send">Надіслати</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_submit">Надіслати</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Надіслати</string> -->
   <string name="UsernameEditFragment_delete">Видалити</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт працює на давнішій версії Signal. Будь ласка, попросіть його/її оновитися перед перевіркою вашого номера безпеки.</string>

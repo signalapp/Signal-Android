@@ -213,6 +213,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Äänen nauhoitus ei onnistunut!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Et voi lähettää viestejä tälle ryhmälle, koska et enää ole sen jäsen.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Laitteessasi ei ole sovellusta, joka osaa avata tämän linkin.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Liittymispyyntösi on lähetetty ryhmän ylläpitäjälle. Saat ilmoituksen, kun he tekevät päätöksen.</string>
+  <string name="ConversationActivity_cancel_request">Peruuta pyyntö</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Jotta voit lähettää ääniviestejä, Signal tarvitsee lupaa käyttää mikrofonia.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee lupaa käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal tarvitsee lupaa käyttää laitteesi mikrofonia ja kameraa yhteystiedolle %s soittamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
@@ -338,6 +340,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ota kuva</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Valitse galleriasta</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Poista kuva</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Valokuvan ottaminen vaatii kameran käyttöoikeuden.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nyt</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -400,6 +403,7 @@
   <string name="GroupManagement_access_level_anyone">Kuka vain</string>
   <string name="GroupManagement_access_level_all_members">Kaikki jäsenet</string>
   <string name="GroupManagement_access_level_only_admins">Vain ylläpitäjät</string>
+  <string name="GroupManagement_access_level_no_one">Ei kukaan</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Kutsu lähetetty</item>
@@ -415,8 +419,16 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Linkin esikatselu ei ole saatavilla</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+  <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d jäsen</item>
+    <item quantity="other">%1$d jäsentä</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
+  <string name="PendingMembersActivity_requests">Pyynnöt</string>
+  <string name="PendingMembersActivity_invites">Kutsut</string>
   <string name="PendingMembersActivity_people_you_invited">Kutsumasi henkilöt</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Sinulla ei ole odottavia ryhmäkutsuja.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Muiden ryhmän jäsenten kutsumat</string>
@@ -432,6 +444,12 @@
     <item quantity="one">Virhe kutsun peruuttamisessa</item>
     <item quantity="other">Virhe kutsujen peruuttamisessa</item>
   </plurals>
+  <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Odottavat jäsenpyynnöt</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Ei odottavia jäsenpyyntöjä.</string>
+  <string name="RequestingMembersFragment_explanation">Tässä luettelossa olevat henkilöt yrittävät liittyä ryhmään jaettavan ryhmälinkin kautta.</string>
+  <string name="RequestingMembersFragment_added_s">Lisäsi \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">Hylkäsi \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Valmis</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhan tyylin ryhmiin.</string>
@@ -466,10 +484,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Katoavat viestit</string>
   <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Jäsenpyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Valitse ketkä voivat muokata ryhmän nimeä, kuvaketta ja katoavien viestien ajastinta.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Valitse ketkä voivat lisätä tai kutsua uusia jäseniä.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Jaettava ryhmälinkki</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
   <string name="ManageGroupActivity_leave_group">Poistu ryhmästä</string>
@@ -547,6 +567,22 @@
   <string name="CustomNotificationsDialogFragment__enabled">Päällä</string>
   <string name="CustomNotificationsDialogFragment__disabled">Pois päältä</string>
   <string name="CustomNotificationsDialogFragment__default">Oletus</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Jaettava ryhmälinkki</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Hallinnoi &amp; jaa</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Ryhmälinkki</string>
+  <string name="ShareableGroupLinkDialogFragment__share">Jaa</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Uudelleenaseta linkki</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Jäsenpyynnöt</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Hyväksy uusia jäseniä</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Päällä</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Pois päältä</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Oletus</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ryhmälinkin uudelleenasetus</string>
+  <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR-koodi</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Tämän koodin skannaavat ihmiset voivat liittyä teidän ryhmään. Ylläpitäjien on edelleen hyväksyttävä uudet jäsenet, jos kyseinen asetus on käytössä.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Jaa koodi</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Haluatko peruuttaa henkilölle %1$s lähettämäsi ryhmäkutsun?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -557,6 +593,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sinä olet jo jäsen</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Liity</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Pyydä lupaa liittyä</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Ryhmään liittyminen ei onnistunut. Yritä myöhemmin uudelleen.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Verkkovirhe.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ryhmätietoja ei saatu. Yritä myöhemmin uudelleen.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Haluatko liittyä tähän ryhmään ja jakaa nimesi ja profiilikuvasi sen jäsenille?</string>
@@ -566,9 +604,17 @@
     <item quantity="other">Ryhmä · %1$d jäsentä</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Ryhmälinkit tulossa pian</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Päivitä Signal käyttääksesi ryhmälinkkejä</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal ei vielä tue ryhmään liittymistä linkin kautta. Tämä ominaisuus julkaistaan tulevassa päivityksessä.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Käyttämäsi versio Signalista ei tue jaettavia ryhmälinkkejä. Päivitä uusimpaan versioon liittyäksesi tähän ryhmään linkin kautta.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Päivitä Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ryhmälinkki ei ole kelvollinen</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Lisää \"%1$s\" ryhmään?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Hylkää pyyntö käyttäjältä \"%1$s\"?</string>
+  <string name="RequestConfirmationDialog_add">Lisää</string>
+  <string name="RequestConfirmationDialog_deny">Hylkää</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ryhmän kuvake</string>
   <string name="CropImageActivity_profile_avatar">Kuvake</string>
@@ -818,12 +864,15 @@
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s hyväksyi pyyntösi liittyä ryhmään.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s hyväksyi henkilön %2$s pyynnön liittyä ryhmään.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Hyväksyit pyynnön liittyä ryhmään käyttäjältä %1$s.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Pyyntösi liittyä ryhmään on hyväksytty.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Henkilön %1$s pyyntö liittyä ryhmään on hyväksytty.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Ylläpitäjä on hylännyt pyyntösi liittyä ryhmään.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s hylkäsi henkilön %2$s pyynnön liittyä ryhmään.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Henkilön %1$s pyyntö liittyä ryhmään on hylätty.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Peruutit pyyntösi liittyä ryhmään.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s peruutti pyyntönsä liittyä ryhmään.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Merkitsit turvanumerosi yhteystiedon %s kanssa varmennetuksi.</string>
@@ -1136,7 +1185,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UnverifiedSendDialog_send">Lähetä</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Käyttäjätunnus</string>
-  <string name="UsernameEditFragment_submit">Lähetä</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Lähetä</string> -->
   <string name="UsernameEditFragment_delete">Poista</string>
   <string name="UsernameEditFragment_successfully_set_username">Käyttäjätunnuksen asetus onnistui.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Käyttäjätunnuksen poisto onnistui.</string>
@@ -1147,7 +1196,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjätunnukset eivät voi alkaa numerolla.</string>
   <string name="UsernameEditFragment_username_is_invalid">Käyttäjätunnus on virheellinen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjätunnusten on oltava %1$d–%2$d merkkiä.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Muut Signalin käyttäjät voivat lähettää viestipyyntöjä yksilölliselle käyttäjätunnuksellesi tietämättään puhelinnumeroasi. Käyttäjätunnuksen valitseminen on vapaaehtoista.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Muut Signalin käyttäjät voivat lähettää viestipyyntöjä yksilölliselle käyttäjätunnuksellesi tietämättään puhelinnumeroasi. Käyttäjätunnuksen valitseminen on vapaaehtoista.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista, jonka QR-koodi ei toimi oman versiosi kanssa. Päivitä Signalisi uusimpaan versioon.</string>
@@ -2138,6 +2187,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_remove">Poista</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="GroupRecipientListItem_admin">Ylläpitäjä</string>
+  <string name="GroupRecipientListItem_approve_description">Hyväksy</string>
+  <string name="GroupRecipientListItem_deny_description">Hylkää</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Vanhan tyyliset vs. uudet ryhmät</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Mitä ovat vanhan tyylin ryhmät?</string>
@@ -2145,5 +2196,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuinka voin käyttää uusia ryhmiä?</string>
   <string name="GroupsLearnMore_paragraph_2">Vanhan tyylin ryhmiä ei voida muuttaa uusiksi ryhmiksi, mutta voit luoda uuden ryhmän samoilla jäsenillä.</string>
   <string name="GroupsLearnMore_paragraph_3">Uuden ryhmän luomiseksi kaikkien jäsenten tulee päivittää Signalin uusimpaan versioon.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Jaa Signalin kautta</string>
+  <string name="GroupLinkBottomSheet_copy">Kopioi</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR-koodi</string>
+  <string name="GroupLinkBottomSheet_share">Jaa</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Linkki ei ole tällä hetkellä aktiivinen</string>
   <!--EOF-->
 </resources>

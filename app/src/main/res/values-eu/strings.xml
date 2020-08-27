@@ -411,6 +411,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desgaitu</string>
   <!--LinkPreviewView-->
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
   <string name="PendingMembersActivity_people_you_invited">Gondibatu duzun jendea</string>
@@ -418,6 +419,7 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenak</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenik ez dago.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Taldeko beste partaideek gonbidatutako pertsonen xehetasunak ez dira erakusten. Gonbidatuek taldean sartzea erabakitzen badute, beraien informazioa une horretan partekatuko da taldearekin. Taldean sartu arte ez dute mezurik ikusiko.</string>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Eginda</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
@@ -517,10 +519,19 @@
   <string name="CustomNotificationsDialogFragment__enabled">Aktibatuta</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desaktibatuta</string>
   <string name="CustomNotificationsDialogFragment__default">Lehenetsia</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Elkarbanatu</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Aktibatuta</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Desaktibatuta</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Lehenetsia</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Sare errore bat izan da.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Eguneratu Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Gehitu</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Taldearen abatarra</string>
   <string name="CropImageActivity_profile_avatar">Abatarra</string>
@@ -1063,7 +1074,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UnverifiedSendDialog_send">Bidali</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Erabiltzailearen izena</string>
-  <string name="UsernameEditFragment_submit">Bidali</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Bidali</string> -->
   <string name="UsernameEditFragment_delete">Ezabatu</string>
   <string name="UsernameEditFragment_successfully_set_username">Erabiltzaile izena ondo ezarri da.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Erabiltzaile izena ondo ezabatu da.</string>
@@ -1074,7 +1085,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Erabiltzaile izenak ezin dira zenbaki batez hasi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile izena baliogabea da.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Beste Signal erabiltzaile batzuek mezu eskaerak bidali ditzakete zure erabiltzaile izen bakarrari zure telefono zenbakia jakin beharrik izan gabe.  Erabiltzaile izen bat hautatzea aukerakoa da.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Beste Signal erabiltzaile batzuek mezu eskaerak bidali ditzakete zure erabiltzaile izen bakarrari zure telefono zenbakia jakin beharrik izan gabe.  Erabiltzaile izen bat hautatzea aukerakoa da.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Zure kontaktua Signal-en bertsio zahar bat erabiltzen ari da. Mesedez, eskatu iezaiozu eguneratzeko zure segurtasun zenbaki berria egiaztatu baino lehenago.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>
@@ -2059,5 +2070,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Nola erabili dezaket Talde Berriak?</string>
   <string name="GroupsLearnMore_paragraph_2">Jarauntsitako Taldeak ezin dira Talde Berri bihurtu, baina kide berak dituen Talde Berri bat sortu dezakezu.</string>
   <string name="GroupsLearnMore_paragraph_3">Talde Berri bat sortzeko, kide guztiek Signal-en azkenengo bertsioa izan behar dute.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Kopiatu</string>
+  <string name="GroupLinkBottomSheet_share">Elkarbanatu</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <!--EOF-->
 </resources>

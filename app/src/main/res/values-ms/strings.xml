@@ -696,7 +696,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="UnverifiedSendDialog_send">Hantar</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nama Pengguna</string>
-  <string name="UsernameEditFragment_submit">Hantar</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Hantar</string> -->
   <string name="UsernameEditFragment_delete">Padam</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kenalan anda sedang menjalankan versi Signal yang lama. Sila minta mereka kemas kini sebelum mengesahkan nombor keselamatan anda.</string>

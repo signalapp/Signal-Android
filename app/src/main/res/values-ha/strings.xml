@@ -802,7 +802,7 @@
   <string name="UnverifiedSendDialog_send">Tura</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Sunan mai amfani</string>
-  <string name="UsernameEditFragment_submit">Aika</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Aika</string> -->
   <string name="UsernameEditFragment_delete">Goge</string>
   <string name="UsernameEditFragment_successfully_set_username">Saitin sunan mai amfani yayi nasara.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Anyi nasarar ciren sunan mai amfani.</string>
@@ -812,7 +812,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Bazaka/ki iya fara sunan mai amfani da lamba ba.</string>
   <string name="UsernameEditFragment_username_is_invalid">Sunan mai amfani ba na kwarai bane.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Sunan mai amfani dole ya zama tsakanin %1$d da %2$d haruffa.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Sauran msau amfani da Signal zasu iya tura neman izinin hira zuwa sunan amfaninka/ki mai musamman ba tareda sunada lambar wayarka/ki bà. Zabin sunane mai amfani ba tilas bane.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Sauran msau amfani da Signal zasu iya tura neman izinin hira zuwa sunan amfaninka/ki mai musamman ba tareda sunada lambar wayarka/ki bà. Zabin sunane mai amfani ba tilas bane.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Wannan lambar na amfani da tsohon Signal, gaya masa/mata cewar ya/ta sabunta Signal dinsa/ta kafin ka/ki tabbatar da lambar tsarinka/ki.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mai wannan lambar na amfani da sabon Signal mai lambar sirrin QR da baizauna daidai ba.</string>

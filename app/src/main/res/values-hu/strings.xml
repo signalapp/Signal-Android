@@ -416,6 +416,7 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nem érhető el előnézeti kép</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
   <string name="PendingMembersActivity_people_you_invited">Általad meghívott személyek</string>
@@ -433,6 +434,7 @@
     <item quantity="one">Nem sikerült visszavonni a meghívót</item>
     <item quantity="other">Nem sikerült visszavonni a meghívókat</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Befejezés</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ez a személyt nem adható régi típusú csoporthoz.</string>
@@ -548,6 +550,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Engedélyezve</string>
   <string name="CustomNotificationsDialogFragment__disabled">Letiltva</string>
   <string name="CustomNotificationsDialogFragment__default">Alapértelmezett</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Megosztás</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Engedélyezve</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Letiltva</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Alapértelmezett</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Biztosan vissza szeretnéd vonni a %1$s részére küldött meghívót?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -557,6 +565,7 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Már tag vagy</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Csatlakozás</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Hálózati hiba történt.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nem sikerült a csoport információ lekérése. Kérlek próbáld újra később!</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Szeretnél csatlakozni a csoporthoz? Ezzel profilod láthatóvá is válik.</string>
@@ -564,6 +573,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Frissítsd a Signalt a csoporthivatkozások használatához</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Az általad használt verziójú Signal nem támogatja a megosztható csoporthivatkozásokat. Frissíts a legújabb verzióra, hogy a hivatkozás használatával csatlakozhass ehhez a csoporthoz!</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal frissítése</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Hozzáadás</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Csoport avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1120,7 +1131,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UnverifiedSendDialog_send">Küldés</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Felhasználónév</string>
-  <string name="UsernameEditFragment_submit">Küldés</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Küldés</string> -->
   <string name="UsernameEditFragment_delete">Törlés</string>
   <string name="UsernameEditFragment_successfully_set_username">A felhasználónév beállítása sikeres volt.</string>
   <string name="UsernameEditFragment_successfully_removed_username">A felhasználónév eltávolítása sikeres volt.</string>
@@ -1131,7 +1142,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">A felhasználónevek nem kezdődhetnek számmal.</string>
   <string name="UsernameEditFragment_username_is_invalid">A felhasználónév érvénytelen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">A felhasználóneveknek %1$d és %2$d db karakter közé kell esniük.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Más Signal felhasználók a telefonszámod ismerete nélkül, mindössze a felhasználóneved alapján is küldhetnek számodra üzenetkérést. A felhasználónév kiválasztása nem kötelező.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Más Signal felhasználók a telefonszámod ismerete nélkül, mindössze a felhasználóneved alapján is küldhetnek számodra üzenetkérést. A felhasználónév kiválasztása nem kötelező.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítse azt biztonsági számotok ellenőrzése előtt!</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja, amelynek QR kód formátuma nem kompatibilis a te verzióddal. Kérlek frissíts az összehasonlításhoz!</string>
@@ -2130,5 +2141,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Hogyan használhatóm az új típusú csoportokat?</string>
   <string name="GroupsLearnMore_paragraph_2">A régi típusú csoportokat nem lehet új típusúvá alakítani, viszont lehetőséged van egy új típusú csoport létrehozására a régivel megegyező csoporttagsággal.</string>
   <string name="GroupsLearnMore_paragraph_3">Az új típusú csoport létrehozásához az összes tagnak frissítenie kell a Signal legújabb verziójára.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Másolás</string>
+  <string name="GroupLinkBottomSheet_share">Megosztás</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Vágólapra másolva</string>
   <!--EOF-->
 </resources>

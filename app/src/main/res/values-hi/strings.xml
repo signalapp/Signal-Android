@@ -806,7 +806,7 @@
   <string name="UnverifiedSendDialog_send">भेजें</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">उपयोगकर्ता नाम</string>
-  <string name="UsernameEditFragment_submit">सबमिट</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">सबमिट</string> -->
   <string name="UsernameEditFragment_delete">हटाए </string>
   <string name="UsernameEditFragment_successfully_set_username">उपयोगकर्ता नाम सफलतापूर्वक सेट करें।</string>
   <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक उपयोगकर्ता नाम हटा दिया गया।</string>
@@ -816,7 +816,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">उपयोगकर्ता नाम एक संख्या से शुरू नहीं हो सकते हैं।</string>
   <string name="UsernameEditFragment_username_is_invalid">उपयोगकर्ता का नाम अमान्य है।</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">उपयोगकर्ता नाम %1$d और %2$d वर्णों के बीच होना चाहिए।</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">अन्य Signal उपयोगकर्ता आपके फ़ोन नंबर को जाने बिना आपके अनन्य उपयोगकर्ता नाम पर मेसेज अनुरोध भेज सकते हैं। उपयोगकर्ता नाम चुनना वैकल्पिक है।</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">अन्य Signal उपयोगकर्ता आपके फ़ोन नंबर को जाने बिना आपके अनन्य उपयोगकर्ता नाम पर मेसेज अनुरोध भेज सकते हैं। उपयोगकर्ता नाम चुनना वैकल्पिक है।</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">आपका संपर्क Signal का पुराना वर्ज़न चला रहा है। कृपया अपनी सुरक्षा संख्या सत्यापित करने से पहले उन्हें अपडेट करने के लिए कहें।</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">आपका संपर्क एक असंगत क्यूआर कोड ड्राफ्ट के साथ Signal का एक नया वर्ज़न चला रहा है। तुलना करने के लिए कृपया अपडेट करें।</string>

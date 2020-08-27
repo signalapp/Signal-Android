@@ -808,7 +808,7 @@
   <string name="UnverifiedSendDialog_send">گھلو</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">صارف ناں</string>
-  <string name="UsernameEditFragment_submit">جمع کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">جمع کرو</string> -->
   <string name="UsernameEditFragment_delete">مٹا دیو</string>
   <string name="UsernameEditFragment_successfully_set_username">صارف ناں کامیابی نال سیٹ ہو گیا اے ۔</string>
   <string name="UsernameEditFragment_successfully_removed_username">صارف ناں کامیابی نال ہٹایا گیا اے۔</string>
@@ -818,7 +818,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">صارف ناں کسے نمبر نال شروع نئیں ہوسکدے۔</string>
   <string name="UsernameEditFragment_username_is_invalid">صارف ناں ناقابل قبول اے۔</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">صارف ناں %1$d تے %2$d حروف دے درمیان لازمی ہونا چائیدا اے۔</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دوجےSignal صارفین تہاڈا فون نمبر جانے بغیر تہاڈے منفرد صارف ناں تے سنیہے دی درخواستاں گھل سکدے نیں۔ صارف ناں چننا اختیاری اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دوجےSignal صارفین تہاڈا فون نمبر جانے بغیر تہاڈے منفرد صارف ناں تے سنیہے دی درخواستاں گھل سکدے نیں۔ صارف ناں چننا اختیاری اے۔</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">تہاڈا رابطہ Signal دا اک پرانا ورژن چلا رئیا اے۔&lt; مہربانی کر کے اپنے سیفٹی نمبر دی تصدیق کرن توں پہلاں اوہناں نوں اپ ڈیٹ کرن دا آکھو۔</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">تہاڈا رابطہ اک غیر ہم آہنگ QR کوڈ فارمیٹ نال Signal دا اک نواں ورژن چلا رئیا اے۔ موازنہ کرن لئی اپ ڈیٹ کرو۔</string>

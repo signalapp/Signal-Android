@@ -196,7 +196,7 @@
   <string name="ConversationActivity_leave_group">Gruppe verlassen?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Möchtest du wirklich diese Gruppe verlassen?</string>
   <string name="ConversationActivity_choose_new_admin">Neuen Admin wählen</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Wähle vor Verlassen der Gruppe mindestens einen neuen Gruppenadmin.</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Wähle vor Verlassen der Gruppe mindestens einen neuen Gruppen-Admin.</string>
   <string name="ConversationActivity_choose_admin">Admin wählen</string>
   <string name="ConversationActivity_transport_insecure_sms">Unverschlüsselte SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Unverschlüsselte MMS</string>
@@ -213,6 +213,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kannst keine Nachrichten an diese Gruppe versenden, da du kein Gruppenmitglied mehr bist.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Auf deinem Gerät ist derzeit keine App installiert, die mit diesem Link umgehen kann.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Deine Beitrittsanfrage wurde an den Gruppen-Admin gesendet. Du wirst benachrichtigt, sobald er über sie entschieden hat.</string>
+  <string name="ConversationActivity_cancel_request">Anfrage abbrechen</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Zum Versenden von Sprachnachrichten benötigt Signal Zugriff auf dein Mikrofon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal benötigt die Berechtigung »Mikrofon« für das Senden von Sprachnachrichten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon«.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal benötigt die Berechtigungen »Mikrofon« und »Kamera«, um %s anzurufen, diese wurden jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
@@ -338,6 +340,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Foto aufnehmen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Aus Galerie auswählen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Foto entfernen</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Für das Aufnehmen eines Fotos ist die Kamera-Berechtigung erforderlich.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Jetzt</string>
   <string name="DateUtils_minutes_ago">%dmin</string>
@@ -400,6 +403,7 @@
   <string name="GroupManagement_access_level_anyone">Jeder</string>
   <string name="GroupManagement_access_level_all_members">Alle Mitglieder</string>
   <string name="GroupManagement_access_level_only_admins">Nur Admins</string>
+  <string name="GroupManagement_access_level_no_one">Niemand</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Einladung versendet</item>
@@ -415,8 +419,16 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Keine Link-Vorschau verfügbar</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+  <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d Mitglied</item>
+    <item quantity="other">%1$d Mitglieder</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
+  <string name="PendingMembersActivity_requests">Anfragen</string>
+  <string name="PendingMembersActivity_invites">Einladungen</string>
   <string name="PendingMembersActivity_people_you_invited">Von dir eingeladene Personen</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Du hast keine ausstehenden Einladungen.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Einladungen anderer Gruppenmitglieder</string>
@@ -432,6 +444,12 @@
     <item quantity="one">Fehler beim Widerrufen der Einladung</item>
     <item quantity="other">Fehler beim Widerrufen der Einladungen</item>
   </plurals>
+  <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Ausstehende Beitrittsanfragen</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Keine Beitrittsanfragen verfügbar.</string>
+  <string name="RequestingMembersFragment_explanation">Personen auf dieser Liste versuchen der Gruppe über den teilbaren Gruppen-Link beizutreten.</string>
+  <string name="RequestingMembersFragment_added_s">»%1$s« hinzugefügt</string>
+  <string name="RequestingMembersFragment_denied_s">»%1$s« abgelehnt</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Fertig</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Diese Person kann nicht zu Alt-Gruppen hinzugefügt werden.</string>
@@ -466,10 +484,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verschwindende Nachrichten</string>
   <string name="ManageGroupActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Beitrittsanfragen &amp; Einladungen</string>
   <string name="ManageGroupActivity_add_members">Mitglieder hinzufügen</string>
   <string name="ManageGroupActivity_edit_group_info">Gruppendetails bearbeiten</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Wähle aus, wer Gruppenname, Avatar und verschwindende Nachrichten bearbeiten kann.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Wähle aus, wer neue Mitglieder hinzufügen oder einladen kann.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Teilbarer Gruppen-Link</string>
   <string name="ManageGroupActivity_block_group">Gruppe blockieren</string>
   <string name="ManageGroupActivity_unblock_group">Gruppe freigeben</string>
   <string name="ManageGroupActivity_leave_group">Gruppe verlassen</string>
@@ -498,7 +518,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gruppe konnte aufgrund eines Netzfehlers nicht aktualisiert werden, bitte versuche es später erneut</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Name und Bild bearbeiten</string>
   <string name="ManageGroupActivity_legacy_group">Alt-Gruppe</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Dies ist eine Alt-Gruppe. Bitte erstelle für neue Funktionen wie Gruppenadmins eine Neu-Gruppe.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Dies ist eine Alt-Gruppe. Bitte erstelle für neue Funktionen wie Gruppen-Admins eine Neu-Gruppe.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich über Erwähnungen benachrichtigen</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Benachrichtigungen erhalten, wenn du in stummgeschalteten Unterhaltungen erwähnt wirst?</string>
@@ -547,6 +567,22 @@
   <string name="CustomNotificationsDialogFragment__enabled">Aktiviert</string>
   <string name="CustomNotificationsDialogFragment__disabled">Deaktiviert</string>
   <string name="CustomNotificationsDialogFragment__default">Standard</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Teilbarer Gruppen-Link</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Verwalten &amp; teilen</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Gruppen-Link</string>
+  <string name="ShareableGroupLinkDialogFragment__share">Teilen</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Link zurücksetzen</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Beitrittsanfragen</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Neue Mitglieder bestätigen</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Aktiviert</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Deaktiviert</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Standard</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Gruppen-Link zurücksetzen</string>
+  <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR-Code</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen, die diesen Code einscannen, können deiner Gruppe beitreten. Neue Mitglieder müssen jedoch von einem Admin bestätigt werden, falls du diese Einstellung eingeschaltet hast.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Code teilen</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Möchtest du deine an %1$s versendete Einladung widerrufen?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -557,6 +593,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du bist bereits Mitglied</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Beitreten</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Beitrittsanfrage</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Beitritt zur Gruppe nicht möglich. Bitte versuche es später erneut.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Gruppeninformationen können nicht abgerufen werden. Bitte versuche es später erneut.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
@@ -566,9 +604,17 @@
     <item quantity="other">Gruppe · %1$d Mitglieder</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppen-Links kommen bald</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualisiere Signal zum Verwenden von Gruppen-Links</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Der Gruppenbeitritt über einen Link wird derzeit noch nicht von Signal unterstützt. Diese Funktion wird in einer kommenden Aktualisierung veröffentlicht.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Die von dir verwendete Signal-Version unterstützt keine Gruppen-Links. Aktualisiere auf die neueste Version, um dieser Gruppe über einen Link beizutreten.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal aktualisieren</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppen-Link ist ungültig</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">»%1$s« zur Gruppe hinzufügen?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Anfrage von »%1$s« ablehnen?</string>
+  <string name="RequestConfirmationDialog_add">Hinzufügen</string>
+  <string name="RequestConfirmationDialog_deny">Ablehnen</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppenavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -814,17 +860,20 @@
   <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du bist der Gruppe über den teilbaren Gruppen-Link beigetreten.</string>
   <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s ist der Gruppe über den teilbaren Gruppen-Link beigetreten.</string>
   <!--GV2 group link requests-->
-  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du hast eine Anfrage zum Gruppenbeitritt versendet.</string>
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du hast eine Gruppenbeitrittsanfrage versendet.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s hat eine Beitrittsanfrage über den teilbaren Gruppen-Link gestellt.</string>
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s hat deine Anfrage zum Gruppenbeitritt bestätigt.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s hat eine Anfrage von %2$s zum Gruppenbeitritt bestätigt.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Deine Anfrage zum Gruppenbeitritt wurde bestätigt.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Eine Anfrage von %1$s zum Gruppenbeitritt wurde bestätigt.</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s hat deine Gruppenbeitrittsanfrage bestätigt.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s hat eine Gruppenbeitrittsanfrage von %2$s bestätigt.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Du hast eine Gruppenbeitrittsanfrage von %1$s bestätigt.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Deine Gruppenbeitrittsanfrage wurde bestätigt.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Eine Gruppenbeitrittsanfrage von %1$s wurde bestätigt.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Deine Anfrage zum Gruppenbeitritt wurde von einem Admin abgelehnt.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s hat eine Anfrage von %2$s zum Gruppenbeitritt abgelehnt.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Eine Anfrage von %1$s zum Gruppenbeitritt wurde abgelehnt.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Deine Gruppenbeitrittsanfrage wurde von einem Admin abgelehnt.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s hat eine Gruppenbeitrittsanfrage von %2$s abgelehnt.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Eine Gruppenbeitrittsanfrage von %1$s wurde abgelehnt.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du hast deine Gruppenbeitrittsanfrage abgebrochen.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s hat die Gruppenbeitrittsanfrage abgebrochen.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du hast deine Sicherheitsnummer mit %s als verifiziert markiert.</string>
@@ -1132,7 +1181,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnverifiedSendDialog_send">Senden</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Benutzername</string>
-  <string name="UsernameEditFragment_submit">Übermitteln</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Übermitteln</string> -->
   <string name="UsernameEditFragment_delete">Löschen</string>
   <string name="UsernameEditFragment_successfully_set_username">Benutzername erfolgreich festgelegt.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Benutzername erfolgreich entfernt.</string>
@@ -1143,7 +1192,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Benutzernamen dürfen nicht mit einer Ziffer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Benutzername ist ungültig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Benutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andere Signal-Nutzer können Unterhaltungsanfragen an deinen eindeutigen Benutzernamen senden, ohne deine Rufnummer zu kennen. Die Wahl eines Benutzernamens ist optional.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andere Signal-Nutzer können Unterhaltungsanfragen an deinen eindeutigen Benutzernamen senden, ohne deine Rufnummer zu kennen. Die Wahl eines Benutzernamens ist optional.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Signal-Version. Bitte ihn, Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Signal-Version mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -2121,19 +2170,21 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RecipientBottomSheet_add_to_a_group">Zu einer Gruppe hinzufügen</string>
   <string name="RecipientBottomSheet_add_to_another_group">Zu einer weiteren Gruppe hinzufügen</string>
   <string name="RecipientBottomSheet_view_safety_number">Sicherheitsnummer anzeigen</string>
-  <string name="RecipientBottomSheet_make_group_admin">Zum Gruppenadmin machen</string>
+  <string name="RecipientBottomSheet_make_group_admin">Zum Gruppen-Admin machen</string>
   <string name="RecipientBottomSheet_remove_as_admin">Als Admin entfernen</string>
   <string name="RecipientBottomSheet_remove_from_group">Aus Gruppe entfernen</string>
   <string name="RecipientBottomSheet_message_description">Nachricht</string>
   <string name="RecipientBottomSheet_voice_call_description">Sprachanruf</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Unverschlüsselter Sprachanruf</string>
   <string name="RecipientBottomSheet_video_call_description">Videoanruf</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s als Gruppenadmin entfernen?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s als Gruppen-Admin entfernen?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s wird diese Gruppe und deren Mitglieder bearbeiten können</string>
   <string name="RecipientBottomSheet_remove_s_from_s">%1$s aus »%2$s« entfernen?</string>
   <string name="RecipientBottomSheet_remove">Entfernen</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <string name="GroupRecipientListItem_approve_description">Bestätigen</string>
+  <string name="GroupRecipientListItem_deny_description">Ablehnen</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Alt- vs. Neu-Gruppen</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Was sind Alt-Gruppen?</string>
@@ -2141,5 +2192,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Wie verwende ich Neu-Gruppen?</string>
   <string name="GroupsLearnMore_paragraph_2">Alt-Gruppen können nicht in Neu-Gruppen umgewandelt werden, aber du kannst eine Neu-Gruppe mit denselben Mitgliedern erstellen.</string>
   <string name="GroupsLearnMore_paragraph_3">Zum Erstellen einer Neu-Gruppe sollten alle Mitglieder Signal auf die neueste Version aktualisieren.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Über Signal teilen</string>
+  <string name="GroupLinkBottomSheet_copy">Kopieren</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR-Code</string>
+  <string name="GroupLinkBottomSheet_share">Teilen</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">In Zwischenablage kopiert</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Der Link ist derzeit nicht aktiv</string>
   <!--EOF-->
 </resources>

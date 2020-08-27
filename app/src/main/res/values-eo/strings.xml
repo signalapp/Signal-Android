@@ -415,6 +415,7 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Neniu antaŭrigardo de ligilo disponeblas</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
@@ -432,6 +433,7 @@
     <item quantity="one">Eraro dum senvalidigo de la invito</item>
     <item quantity="other">Eraro dum senvalidigo de la invitoj</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Farita</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tiu persono ne aldoneblas al malnovtipaj grupoj.</string>
@@ -547,6 +549,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ŝaltita</string>
   <string name="CustomNotificationsDialogFragment__disabled">Malŝaltita</string>
   <string name="CustomNotificationsDialogFragment__default">Defaŭlta</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Kunhavigi</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Ŝaltita</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Malŝaltita</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Defaŭlta</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ĉu vi volas senvalidigi la inviton senditan de vi al %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -557,6 +565,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Vi jam estas ano</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Aniĝi</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Peto por aniĝi</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Okazis reta eraro.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Malsukceso havi la grupinformon. Reprovu poste.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ĉu vi volas aniĝi al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
@@ -564,6 +573,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ĝisdatigu Signal-on por uzi grupligilojn</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versio de Signal, kiun vi uzas ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu al lasta versio por anigi tiun grupon per ligilo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ĝisdatigi Signal-on</string>
+  <!--GV2 Request confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
   <string name="CropImageActivity_profile_avatar">Avataro</string>
@@ -1110,7 +1120,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UnverifiedSendDialog_send">Sendi</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Uzantnomo</string>
-  <string name="UsernameEditFragment_submit">Sendi</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Sendi</string> -->
   <string name="UsernameEditFragment_delete">Forigi</string>
   <string name="UsernameEditFragment_successfully_set_username">Uzantnomo sukcese difinita.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Uzantnomo sukcese forigita.</string>
@@ -1121,7 +1131,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero</string>
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Aliaj Signal-uzantoj povas sendi mesaĝopetojn al via unika uzantnomo sen scio de via telefonnumero. Elekto de uzantnomo estas nedeviga.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Aliaj Signal-uzantoj povas sendi mesaĝopetojn al via unika uzantnomo sen scio de via telefonnumero. Elekto de uzantnomo estas nedeviga.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Via kontakto uzas malnovan Signal-an version. Bonvolu peti la sendinton ĝisdatigi, antaŭ ol kontroli vian sekurigan numeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Via kontakto uzas pli novan Signal-an version, kiu uzas nekongruan rapidrespondan (QR) kodon. Bonvolu ĝisdatigi por kompari ilin.</string>
@@ -2119,5 +2129,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Kiel uzi Novtipajn grupojn?</string>
   <string name="GroupsLearnMore_paragraph_2">Malnovtipaj grupoj ne konverteblas al Novtipaj grupoj, sed vi povas krei novtipan grupon kun la samaj anoj.</string>
   <string name="GroupsLearnMore_paragraph_3">Por krei novtipan grupon, ĉiuj anoj devas ĝisdatigi ilian Signal-version al la lasta.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Kopii</string>
+  <string name="GroupLinkBottomSheet_share">Kunhavigi</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiita al tondujo</string>
   <!--EOF-->
 </resources>

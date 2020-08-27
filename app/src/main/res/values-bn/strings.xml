@@ -388,6 +388,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">অক্ষম</string>
   <!--LinkPreviewView-->
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
   <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
@@ -395,6 +396,7 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">গ্রুপের অন্যান্য সদস্যদের আমন্ত্রণ</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">গ্রুপের অন্যান্য সদস্যবৃন্দ কর্তৃক কোন অনিষ্পাদিত আমন্ত্রণ নেই।</string>
   <string name="PendingMembersActivity_missing_detail_explanation">গ্রুপের অন্যান্য সদস্যদের দ্বারা আমন্ত্রিত লোকদের বিবরণ দেখানো হয় না। আমন্ত্রিতরা যদি যোগদান করেন, তখন তাদের তথ্য গ্রুপের সাথে শেয়ার করা হবে। যোগদান না করা পর্যন্ত তারা গ্রুপের কোনও বার্তা দেখতে পাবেন না।</string>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">শেষ</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -474,10 +476,18 @@
   <string name="CustomNotificationsDialogFragment__enabled">সক্রিয়</string>
   <string name="CustomNotificationsDialogFragment__disabled">নিষ্ক্রিয়</string>
   <string name="CustomNotificationsDialogFragment__default">সচারচর</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">শেয়ার করুন</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">সক্রিয়</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">নিষ্ক্রিয়</string>
+  <string name="ShareableGroupLinkDialogFragment__default">সচারচর</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal আপডেট করুন</string>
+  <!--GV2 Request confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string>
   <string name="CropImageActivity_profile_avatar">প্রোফাইলের ছবি</string>
@@ -975,7 +985,7 @@
   <string name="UnverifiedSendDialog_send">পাঠান</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">ব্যবহারকারীর নাম</string>
-  <string name="UsernameEditFragment_submit">সাবমিট</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">সাবমিট</string> -->
   <string name="UsernameEditFragment_delete">মুছে দিন</string>
   <string name="UsernameEditFragment_successfully_set_username">সফলভাবে ব্যবহারকারীর নাম সেট করা হয়েছে।</string>
   <string name="UsernameEditFragment_successfully_removed_username">সফলভাবে ব্যবহারকারীর নাম মুছে ফেলা হয়েছে।</string>
@@ -985,7 +995,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ব্যবহারকারীর নাম সংখ্যা দিয়ে শুরু করতে পারে না।</string>
   <string name="UsernameEditFragment_username_is_invalid">ব্যবহারকারীর নাম অবৈধ|</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ব্যবহারকারীর নামগুলি অবশ্যই %1$d এবং %2$d অক্ষরের মধ্যে থাকতে হবে।</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">অন্যান্য Signal ব্যবহারকারীরা আপনার ফোন নম্বরটি না জেনে আপনার অনন্য ব্যবহারকারী নামের মাধ্যমে আপনার কাছে বার্তা অনুরোধ পাঠাতে পারে। ব্যবহারকারীর নাম নির্বাচন করা ঐচ্ছিক।</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">অন্যান্য Signal ব্যবহারকারীরা আপনার ফোন নম্বরটি না জেনে আপনার অনন্য ব্যবহারকারী নামের মাধ্যমে আপনার কাছে বার্তা অনুরোধ পাঠাতে পারে। ব্যবহারকারীর নাম নির্বাচন করা ঐচ্ছিক।</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">আপনার পরিচিতি Signal এর একটি পুরানো সংস্করণ চলাচ্ছেন। আপনার নিরাপত্তা নাম্বার যাচাই করার আগে দয়া করে তাকে আপডেট করতে বলুন।</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">আপনার পরিচিতি একটি অসঙ্গত QR কোড ফর্ম্যাট সহ সিগন্যালের একটি নতুন সংস্করণ চলাচ্ছেন। তুলনা করার জন্য আপডেট করুন।</string>
@@ -1911,5 +1921,9 @@
   <string name="RecipientBottomSheet_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
   <string name="GroupRecipientListItem_admin">প্রশাসক</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">অনুলিপি</string>
+  <string name="GroupLinkBottomSheet_share">শেয়ার করুন</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
   <!--EOF-->
 </resources>

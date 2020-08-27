@@ -861,7 +861,7 @@
   <string name="UnverifiedSendDialog_send">Ipadala</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Username</string>
-  <string name="UsernameEditFragment_submit">Isumite</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Isumite</string> -->
   <string name="UsernameEditFragment_delete">Burahin</string>
   <string name="UsernameEditFragment_successfully_set_username">Matagumpay na naitakda ang username.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Matagumpay na natanggal ang username.</string>
@@ -871,7 +871,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ang mga username ay hindi puwedeng magsimula sa numero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Ang username ay hindi valid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ang mga username ay kailangang nasa pagitan ng %1$d at %2$d ang bilang ng mga character.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Makakapagpadala ng kahilingang magmensahe ang ibang mga gumagamit ng Signal sa iyong natatanging username nang hindi nalalaman ang numero ng iyong telepono. Ang pagpili ng username ay opsyonal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Makakapagpadala ng kahilingang magmensahe ang ibang mga gumagamit ng Signal sa iyong natatanging username nang hindi nalalaman ang numero ng iyong telepono. Ang pagpili ng username ay opsyonal.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Gumagamit ng lumang bersyon ng Signal ang iyong kontak. Pakisabi sa kaniyang mag-update bago iberipika ang iyong numerong pangkaligtasan.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ang iyong kontak ay gumagamit ng mas bagong bersyon ng Signal na may hindi katugma na format ng QR code. Mag-update para tumugma.</string>

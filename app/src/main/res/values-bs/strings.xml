@@ -216,6 +216,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Nije moguće snimiti zvuk!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ne možete slati poruke ovoj grupi jer više niste njen član.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na Vašem uređaju nema aplikacije koja bi mogla otvoriti ovaj link.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Vaš zahtjev za pristupanje poslan je administratoru grupe. Bit ćete obaviješteni kad ga on/a razmotri.</string>
+  <string name="ConversationActivity_cancel_request">Poništi zahtjev</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Da biste mogli slati zvučne poruke, dozvolite Signalu pristup Vašem mikrofonu.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signalu je potrebno dopuštenje da pristupi mikrofonu kako bi mogao slati zvučne poruke, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Mikrofon\". </string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signalu je potrebno dopuštenje da pristupi mikrofonu i kameri kako bi mogao nazvati %s, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavke \"Mikrofon\" i \"Kamera\". </string>
@@ -352,6 +354,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Uslikaj</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Izaberi iz galerije</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ukloni fotografiju</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Slikanje zahtijeva dopuštenje za pristup kameri.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sad</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -414,6 +417,7 @@
   <string name="GroupManagement_access_level_anyone">Svako</string>
   <string name="GroupManagement_access_level_all_members">Svi članovi</string>
   <string name="GroupManagement_access_level_only_admins">Samo administratori</string>
+  <string name="GroupManagement_access_level_no_one">Niko</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Pozivnica poslana</item>
@@ -430,8 +434,17 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Pregled linka nije dostupan</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Ovaj link za grupu nije aktivan</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+  <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d član</item>
+    <item quantity="few">%1$d člana</item>
+    <item quantity="other">%1$d članova</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
+  <string name="PendingMembersActivity_requests">Zahtjevi</string>
+  <string name="PendingMembersActivity_invites">Pozivnice</string>
   <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Nemate aktivnih pozivnica.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Pozivnice drugih članova grupe</string>
@@ -449,6 +462,12 @@
     <item quantity="few">Greška prilikom povlačenja pozivnica</item>
     <item quantity="other">Greška prilikom povlačenja pozivnica</item>
   </plurals>
+  <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Zahtjevi za članstvo na čekanju</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Nema zahtjeva za članstvo.</string>
+  <string name="RequestingMembersFragment_explanation">Osobe s ovog popisa pokušavaju pristupiti grupi putem dobijenog linka za grupu.</string>
+  <string name="RequestingMembersFragment_added_s">Uvršten/a \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">Odbijen/a \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Uredu</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ovu osobu nije moguće uvrstiti u stare grupe.</string>
@@ -486,10 +505,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Nestajuće poruke</string>
   <string name="ManageGroupActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članstvo i pozivnice</string>
   <string name="ManageGroupActivity_add_members">Dodajte članove</string>
   <string name="ManageGroupActivity_edit_group_info">Izmijeni informacije o grupi</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Odredite ko može promijeniti naziv i sliku grupe, te vrijeme za nestajanje poruka.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Odredite ko može uvrstiti ili pozvati nove članove.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Link grupe: za dijeljenje</string>
   <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
   <string name="ManageGroupActivity_unblock_group">Prestani s blokiranjem grupe</string>
   <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
@@ -571,6 +592,22 @@
   <string name="CustomNotificationsDialogFragment__enabled">Omogućeno</string>
   <string name="CustomNotificationsDialogFragment__disabled">Onemogućeno</string>
   <string name="CustomNotificationsDialogFragment__default">Standardno</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link grupe: za dijeljenje</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Upravljaj i dijeli</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Link grupe</string>
+  <string name="ShareableGroupLinkDialogFragment__share">Dijeli</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Ponovo kreiraj link</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Zahtjevi za članstvo</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Prihvati nove članove</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Omogućeno</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Onemogućeno</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Standardno</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ponovno kreiranje linka za grupu</string>
+  <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR kōd</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Osobe koje skeniraju ovaj kod moći će pristupiti Vašoj grupi. Administratori će i dalje trebati dati odobrenje za pristup novim članovima ako ste aktivirali tu opciju.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Podijeli kōd</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Želite li povući pozivnicu koju ste poslali za %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -582,6 +619,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Već ste član</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Pristupi</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Zatraži dozvolu za pristup</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nije moguće pristupiti grupi. Molimo pokušajte kasnije</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Došlo je do greške u mreži.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ovaj link za grupu nije aktivan</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nije moguće preuzeti informacije o grupi, molimo pokušajte kasnije</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Želite li pristupiti ovoj grupi i dopustiti njenim članovima da vide Vaše ime i sliku?</string>
@@ -592,9 +631,17 @@
     <item quantity="other">Grupa · %1$d članova</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Uskoro: linkovi za grupe</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste mogli koristiti grupne linkove</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Pristupanje grupi putem linka nije još podržano u Signalu. To će biti moguće u jednoj od narednih verzija.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju koristite ne podržava dijeljenje grupnih linkova. Instalirajte zadnju verziju da biste se mogli priključiti ovoj grupi putem linka.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažurirajte Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link za grupu nije ispravan</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Uvrstiti “%1$s” u grupu?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Odbiti zahtjev “%1$s”?</string>
+  <string name="RequestConfirmationDialog_add">Dodaj</string>
+  <string name="RequestConfirmationDialog_deny">Odbij</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Slika grupe</string>
   <string name="CropImageActivity_profile_avatar">Slika profila</string>
@@ -857,12 +904,15 @@
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s odobrio/la je Vaš zahtjev za pristupanje grupi.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s odobrio/la je zahtjev za pristupanje grupi koji je uputio/la %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Odobrili ste zahtjev za pristupanje grupi koji je podnio/la %1$s.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Odobren je Vaš zahtjev za pristupanje grupi.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Odobren je zahtjev za pristupanje grupi koji je uputio/la %1$s.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Administrator je odbio Vaš zahtjev za pristupanje grupi.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s odbio/la je zahtjev za pristupanje grupi koji je uputio/la %2$s.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Odbijen je zahtjev za pristupanje grupi koji je uputio/la %1$s.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Poništili ste vlastiti zahtjev za pristupanje grupi.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s je poništio/la svoj zahtjev za pristupanje grupi.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaš je sigurnosni broj sa %s promijenjen.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili ste svoj sigurnosni broj sa %s kao potvrđen</string>
@@ -1186,7 +1236,7 @@
   <string name="UnverifiedSendDialog_send">Šalji</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Korisničko ime</string>
-  <string name="UsernameEditFragment_submit">Šalji</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Šalji</string> -->
   <string name="UsernameEditFragment_delete">Izbriši</string>
   <string name="UsernameEditFragment_successfully_set_username">Uspješno je kreirano korisničko ime.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Uspješno je uklonjeno korisničko ime.</string>
@@ -1197,7 +1247,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisničko ime ne može početi brojem.</string>
   <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije valjano.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisničko ime mora sadržavati najmanje %1$d, a najviše %2$d znakova.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Korisnici Signala mogu poslati zahtjev za uspostavljanje kontakta putem Vašeg korisničkog imena, a bez znanja Vašeg telefonskog broja. No, upotreba korisničkog imena nije obavezna.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Korisnici Signala mogu poslati zahtjev za uspostavljanje kontakta putem Vašeg korisničkog imena, a bez znanja Vašeg telefonskog broja. No, upotreba korisničkog imena nije obavezna.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ova osoba koristi stariju verziju Signala. Molimo tražite da instalira novu verziju prije verifikacije sigurnosnog broja.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ova osoba koristi noviju verziju Signala, sa nekompatibilnim QR kōdom. Molimo nadogradite Signal da uporedite.</string>
@@ -2206,6 +2256,8 @@
   <string name="RecipientBottomSheet_remove">Ukloni</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
+  <string name="GroupRecipientListItem_approve_description">Odobri</string>
+  <string name="GroupRecipientListItem_deny_description">Odbij</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare spram novih grupa</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Šta su stare gurpe?</string>
@@ -2213,5 +2265,12 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Kako ću koristiti nove grupe?</string>
   <string name="GroupsLearnMore_paragraph_2">Stare grupe ne mogu se preinačiti u nove, ali možete kreirati novu grupu sa istim članovima.</string>
   <string name="GroupsLearnMore_paragraph_3">Da biste mogli kreirati novu grupu, svi članovi moraju koristiti zadnju objavljenu verziju Signala.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Podijeli preko Signala</string>
+  <string name="GroupLinkBottomSheet_copy">Kopiraj</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR kōd</string>
+  <string name="GroupLinkBottomSheet_share">Dijeli</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Link trenutno nije aktivan</string>
   <!--EOF-->
 </resources>

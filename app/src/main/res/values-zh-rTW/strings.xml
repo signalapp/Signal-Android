@@ -210,6 +210,8 @@
   <string name="ConversationActivity_unable_to_record_audio">無法錄製音訊！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">你不再是該成員，因此無法向該群組傳送訊息。</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的裝置上沒有應用程式可以處理這個連結</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">你的加入要求已傳送到群組管理員。 他們採取行動時會通知你。</string>
+  <string name="ConversationActivity_cancel_request">取消要求</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">若要傳送語音訊息，請允許 Signal 使用您的麥克風</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需要麥克風的權限來傳送語音訊息，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用「麥克風」的權限。</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 需要麥克風和相機的權限來打電話給 %s，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用麥克風和相機的權限。</string>
@@ -324,6 +326,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">拍照</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">從圖片庫中選擇</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">移除頭像照片</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">拍照需要相機權限。</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">現在</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -386,6 +389,7 @@
   <string name="GroupManagement_access_level_anyone">任何人</string>
   <string name="GroupManagement_access_level_all_members">所有的成員</string>
   <string name="GroupManagement_access_level_only_admins">只有管理者</string>
+  <string name="GroupManagement_access_level_no_one">沒有人</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="other">%d邀情已送出</item>
@@ -400,8 +404,15 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">沒有可用的連結預覽</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">此群組連結無效</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+  <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="other">%1$d 成員</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">待處理的群組邀請</string>
+  <string name="PendingMembersActivity_requests">要求</string>
+  <string name="PendingMembersActivity_invites">邀請</string>
   <string name="PendingMembersActivity_people_you_invited">你所邀請的成員們</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">你沒有待處理的邀請</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">被其他群組成員邀請</string>
@@ -415,6 +426,12 @@
   <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="other">撤消邀請時發生錯誤</item>
   </plurals>
+  <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">待處理的成員要求</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">沒有成員要求顯示。</string>
+  <string name="RequestingMembersFragment_explanation">此清單中的人員正在嘗試透過可分享的群組連結加入該群組。</string>
+  <string name="RequestingMembersFragment_added_s">已新增\"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">已拒絕 \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完成</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">無法將此人新增到舊群組中。</string>
@@ -446,10 +463,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">自動銷毀訊息</string>
   <string name="ManageGroupActivity_pending_group_invites">待處理的群組邀請</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">成員要求 &amp; 邀請</string>
   <string name="ManageGroupActivity_add_members">新增成員</string>
   <string name="ManageGroupActivity_edit_group_info">編輯群組資訊</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">選擇誰可以編輯群組名稱，頭像和自動銷毀訊息。</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">選擇誰可以新增或邀請新成員。</string>
+  <string name="ManageGroupActivity_sharable_group_link">可分享的群組連結</string>
   <string name="ManageGroupActivity_block_group">封鎖群組</string>
   <string name="ManageGroupActivity_unblock_group">解封鎖群組</string>
   <string name="ManageGroupActivity_leave_group">離開對話群組</string>
@@ -523,6 +542,22 @@
   <string name="CustomNotificationsDialogFragment__enabled">啟動</string>
   <string name="CustomNotificationsDialogFragment__disabled">關閉</string>
   <string name="CustomNotificationsDialogFragment__default">預設</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">可分享的群組連結</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理 &amp; 分享</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">群組連結</string>
+  <string name="ShareableGroupLinkDialogFragment__share">分享</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">重置連結</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">成員要求</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">批准新成員</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">啟動</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">關閉</string>
+  <string name="ShareableGroupLinkDialogFragment__default">預設</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">群組連結重置</string>
+  <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">掃描此代碼的人將可以加入你的群組。 如果你啟用了該裝置，則管理員仍需要批准新成員。</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">分享代碼</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">你要撤消傳送給%1$s的邀請嗎？</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -532,6 +567,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">你已經是成員</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">加入</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">要求加入</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">無法加入群組。 請稍後再試</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">網路連接錯誤。</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">此群組連結無效</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">無法獲取群組資訊，請稍後再試</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">你是否想加入該群組並與其成員分享你的名字和照片嗎？</string>
@@ -540,9 +577,17 @@
     <item quantity="other">群組 · %1$d成員</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">群組連結即將推出</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新Signal 以使用群組連結</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal尚不支援透過連結加入群組。 此功能將在即將進行的更新中發佈。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">你使用的Signal版本不支援可共享的群組連結。透過連結更新到最新版本以加入該群組。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">更新 Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">群組連結無效</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">要新增 \"%1$s\" 到群組中嗎?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">拒絕來自 \"%1$s\"的要求嗎?</string>
+  <string name="RequestConfirmationDialog_add">新增</string>
+  <string name="RequestConfirmationDialog_deny">拒絕</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">群組的大頭照</string>
   <string name="CropImageActivity_profile_avatar">頭像</string>
@@ -781,12 +826,15 @@
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s批准了你加入群組的請求。</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s從%2$s批准了加入的請求。</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">您已批准%1$s加入的要求。</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">你加入群組的請求已被批准。</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">加入的請求已獲得 %1$s 的批准。</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">你加入群組的請求已被管理員拒絕。</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s拒絕了來自%2$s的加入群組的請求。</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">來自%1$s的加入群組的請求已被拒絕。</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">你已取消加入該群組的要求。</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s 取消了他們加入群組的要求。</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您與 %s 的安全碼已改變。</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">你標記與 %s 的安全碼為已驗證</string>
@@ -1096,7 +1144,7 @@
   <string name="UnverifiedSendDialog_send">傳送</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">使用者名稱</string>
-  <string name="UsernameEditFragment_submit">上傳</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">上傳</string> -->
   <string name="UsernameEditFragment_delete">刪除</string>
   <string name="UsernameEditFragment_successfully_set_username">成功設定使用者名稱。</string>
   <string name="UsernameEditFragment_successfully_removed_username">成功移除使用者名稱。</string>
@@ -1107,7 +1155,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不可以以數字開頭。</string>
   <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱必須是藉在%1$d及%2$d之間的字母。</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">其他Signal 使用者可以將訊息要求傳送到你的唯一使用者名稱，而無需知道你的電話號碼。 選擇一個使用者名稱是可自選的。</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">其他Signal 使用者可以將訊息要求傳送到你的唯一使用者名稱，而無需知道你的電話號碼。 選擇一個使用者名稱是可自選的。</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
@@ -2081,6 +2129,8 @@
   <string name="RecipientBottomSheet_remove">移除</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">已複製到剪貼簿</string>
   <string name="GroupRecipientListItem_admin">管理員</string>
+  <string name="GroupRecipientListItem_approve_description">批准</string>
+  <string name="GroupRecipientListItem_deny_description">拒絕</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">舊版 vs. 新群組</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">什麼是舊版的群組?</string>
@@ -2088,5 +2138,12 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">我該如何使用新群組?</string>
   <string name="GroupsLearnMore_paragraph_2">舊版群組無法轉換為新群組，但是你可以建立具有相同成員的新群組。</string>
   <string name="GroupsLearnMore_paragraph_3">要建立新群組，所有成員都應更新到Signal的最新版本。</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">透過 Signal 分享</string>
+  <string name="GroupLinkBottomSheet_copy">複製</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR Code</string>
+  <string name="GroupLinkBottomSheet_share">分享</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">已複製到剪貼簿</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">連結目前無效</string>
   <!--EOF-->
 </resources>

@@ -674,7 +674,7 @@
   <string name="UnverifiedSendDialog_send_message">Изпращане на съобщение?</string>
   <string name="UnverifiedSendDialog_send">Изпращане</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_submit">Изпрати</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Изпрати</string> -->
   <string name="UsernameEditFragment_delete">Изтрий</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal. Помолете го да я обнови, преди да сравните числата за сигурност.</string>

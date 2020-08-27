@@ -565,7 +565,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="UnverifiedSendDialog_send_message">Chaskita kachanayanchu</string>
   <string name="UnverifiedSendDialog_send">Kachana</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_submit">Kachana</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Kachana</string> -->
   <string name="UsernameEditFragment_delete">Pichana</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kikinpa yupaymashi manara mushukyachin Signalta, Utiyashpa mushukyachichun mañapay manara kikinta pakalla yupayta mañakpillata.</string>

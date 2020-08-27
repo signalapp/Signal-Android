@@ -219,6 +219,8 @@
   <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">אינך יכול לשלוח הודעות אל קבוצה זו מאחר שאינך חבר קבוצה יותר.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין יישום זמין לטיפול בקישור זה במכשיר שלך.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">בקשתך להצטרף נשלחה אל מנהלן הקבוצה. תיודע כאשר הוא מחליט.</string>
+  <string name="ConversationActivity_cancel_request">בטל הזמנה</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">כדי לשלוח הודעות שמע, התר אל Signal לקבל גישה אל המיקרופון שלך.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal דורש את הרשאת המיקרופון על מנת לשלוח הודעות שמע, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal צריך את ההרשאות של המיקרופון והמצלמה על מנת לחייג אל %s, אבל הן נדחו לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\" ואת \"מצלמה\".</string>
@@ -366,6 +368,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">צלם</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">בחר מהגלריה</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">הסר תמונה</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">צילום תצלום דורש את הרשאת המצלמה.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">עכשיו</string>
   <string name="DateUtils_minutes_ago">%d ד\'</string>
@@ -428,6 +431,7 @@
   <string name="GroupManagement_access_level_anyone">כל אחד</string>
   <string name="GroupManagement_access_level_all_members">כל חברי הקבוצה</string>
   <string name="GroupManagement_access_level_only_admins">רק מנהלנים</string>
+  <string name="GroupManagement_access_level_no_one">אף אחד</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">הזמנה נשלחה</item>
@@ -444,8 +448,19 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">אתה יכול כעת לאחזר תצוגות מקדימות של קישורים ישירות מכל אתר עבור הודעות שאתה שולח.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">תצוגה מקדימה של קישור אינה זמינה</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">קישור קבוצה זה אינו פעיל</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+  <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">חבר קבוצה %1$d</item>
+    <item quantity="two">%1$d חברי קבוצה</item>
+    <item quantity="many">%1$d חברי קבוצה</item>
+    <item quantity="other">%1$d חברי קבוצה</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
+  <string name="PendingMembersActivity_requests">בקשות</string>
+  <string name="PendingMembersActivity_invites">הזמנות</string>
   <string name="PendingMembersActivity_people_you_invited">אנשים שהזמנת</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">אין לך הזמנות ממתינות.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">הזמנות ע״י חברי קבוצה אחרים</string>
@@ -465,6 +480,12 @@
     <item quantity="many">שגיאה בשלילת הזמנות</item>
     <item quantity="other">שגיאה בשלילת הזמנות</item>
   </plurals>
+  <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">בקשות ממתינות של חברי קבוצה</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">אין חברי קבוצה להראות.</string>
+  <string name="RequestingMembersFragment_explanation">אנשים ברשימה זו מנסים להצטרף אל קבוצה זו באמצעות קישור הקבוצה בר־השיתוף.</string>
+  <string name="RequestingMembersFragment_added_s">\"%1$s\" התווסף/ה</string>
+  <string name="RequestingMembersFragment_denied_s">\"%1$s\" נדחה/נדחתה</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">סיים</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
@@ -505,10 +526,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">הודעות נעלמות</string>
   <string name="ManageGroupActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_edit_group_info">ערוך מידע קבוצה</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">בחר מי יכול לערוך את השם, היצגן וההודעות הנעלמות של הקבוצה.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">בחר מי יכול להוסיף או להזמין חברי קבוצה חדשים.</string>
+  <string name="ManageGroupActivity_sharable_group_link">קישור קבוצה בר־שיתוף</string>
   <string name="ManageGroupActivity_block_group">חסום קבוצה</string>
   <string name="ManageGroupActivity_unblock_group">בטל חסימת קבוצה</string>
   <string name="ManageGroupActivity_leave_group">עזוב קבוצה</string>
@@ -594,6 +617,22 @@
   <string name="CustomNotificationsDialogFragment__enabled">מאופשר</string>
   <string name="CustomNotificationsDialogFragment__disabled">מושבת</string>
   <string name="CustomNotificationsDialogFragment__default">ברירת מחדל</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">קישור קבוצה בר־שיתוף</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">נהל ושתף</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">קישור קבוצה</string>
+  <string name="ShareableGroupLinkDialogFragment__share">שתף</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">קישור איפוס</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">בקשות חברי קבוצה</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">אשר חברי קבוצה חדשים</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">מאופשר</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">מושבת</string>
+  <string name="ShareableGroupLinkDialogFragment__default">ברירת מחדל</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">איפוס קישור קבוצה</string>
+  <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">קוד QR</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">אנשים שיסרקו קוד זה יוכלו להצטרף אל הקבוצה שלך. מנהלנים עדין יצטרכו לאשר חברי קבוצה חדשים אם הגדרה זו מופעלת.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">שתף קוד</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">האם אתה רוצה לשלול את ההזמנה ששלחת אל %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -604,10 +643,32 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">את/ה כבר חבר/ת קבוצה</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">הצטרף</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">בקש להצטרף</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">לא היה ניתן להצטרף אל הקבוצה. אנא נסה שוב מאוחר יותר</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">קישור קבוצה זה אינו פעיל</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">לא היה ניתן לקבל את מידע הקבוצה. אנא נסה שוב מאוחר יותר</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">האם אתה רוצה להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חבריה?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">מנהלן של קבוצה זו חייב לאשר את בקשתך לפני שתוכל להצטרף אל קבוצה זו. כאשר אתה מבקש להצטרף, השם והתמונה שלך ישותפו עם חברי הקבוצה.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">קבוצה · %1$d חבר קבוצה</item>
+    <item quantity="two">קבוצה · %1$d חברי קבוצה</item>
+    <item quantity="many">קבוצה · %1$d חברי קבוצה</item>
+    <item quantity="other">קבוצה · %1$d חברי קבוצה</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">קישורי קבוצה מגיעים בקרוב</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">עדכן את Signal כדי להשתמש בקישורי קבוצה</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">הצטרפות אל קבוצה באמצעות קישור אינה נתמכת עדין על ידי Signal. מאפיין זה ישוחרר בעדכון עתידי.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">הגרסה של Signal שאתה משתמש בה אינה תומכת בקישורי קבוצה שניתנים לשיתוף. עדכן אל הגרסה האחרונה כדי להצטרף אל קבוצה זו באמצעות קישור.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">קישור הקבוצה בלתי תקף</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">להוסיף את ”%1$s“ אל הקבוצה?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">לדחות בקשה מאת ”%1$s“?</string>
+  <string name="RequestConfirmationDialog_add">הוסף</string>
+  <string name="RequestConfirmationDialog_deny">דחה</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">יצגן קבוצה</string>
   <string name="CropImageActivity_profile_avatar">יצגן</string>
@@ -860,11 +921,37 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה אל \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">הפעלת את קישור הקבוצה בר־השיתוף.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">הפעלת את קישור הקבוצה בר־השיתוף עם אישור מנהלן.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">כיבית את קישור הקבוצה בר־השיתוף.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s הפעיל/ה את קישור הקבוצה בר־השיתוף.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s הפעיל/ה את קישור הקבוצה בר־השיתוף עם אישור מנהלן.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s כיבה/כיבתה את קישור הקבוצה בר־השיתוף.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">קישור הקבוצה בר־השיתוף הופעל.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">קישור הקבוצה בר־השיתוף הופעל עם אישור מנהלן.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">קישור הקבוצה בר־השיתוף כובה.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">איפסת את קישור הקבוצה בר־השיתוף.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s איפס/ה את קישור הקבוצה בר־השיתוף.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">קישור הקבוצה בר־השיתוף אופס.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">הצטרפת אל הקבוצה באמצעות קישור הקבוצה בר־השיתוף.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s הצטרפ/ה אל הקבוצה באמצעות קישור הקבוצה בר־השיתוף.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">שלחת בקשה להצטרף אל הקבוצה.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ביקש/ה להצטרף באמצעות קישור הקבוצה בר־השיתוף.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s אישר/ה את בקשתך להצטרף אל הקבוצה.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s אישר/ה בקשה להצטרף אל הקבוצה מאת %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">אישרת בקשה להצטרף אל הקבוצה מאת %1$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">בקשתך להצטרף אל הקבוצה אושרה.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">בקשה להצטרף אל הקבוצה מאת %1$s אושרה.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">בקשתך להצטרף אל הקבוצה נדחתה על ידי מנהלן.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s דחה/דחתה בקשה להצטרף אל קבוצה מאת %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">בקשה להצטרף אל הקבוצה מאת %1$s נדחתה.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">ביטלת את בקשתך להצטרף אל הקבוצה.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ביטל/ה את בקשתו/בקשתה להצטרף אל הקבוצה.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %s השתנה.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">סימנת את מספר הביטחון שלך עם %s כמוודא</string>
@@ -992,6 +1079,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">קבוצה ללא שם</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">עונה…</string>
+  <string name="RedPhone_ending_call">מסיים שיחה…</string>
+  <string name="RedPhone_dialing">מחייג…</string>
   <string name="RedPhone_ringing">מצלצל…</string>
   <string name="RedPhone_busy">תפוס</string>
   <string name="RedPhone_connected">מחובר</string>
@@ -1190,7 +1280,7 @@
   <string name="UnverifiedSendDialog_send">שלח</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">שם משתמש</string>
-  <string name="UsernameEditFragment_submit">הגש</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">הגש</string> -->
   <string name="UsernameEditFragment_delete">מחק</string>
   <string name="UsernameEditFragment_successfully_set_username">שם משתמש נקבע בהצלחה.</string>
   <string name="UsernameEditFragment_successfully_removed_username">שם משתמש הוסר בהצלחה.</string>
@@ -1201,7 +1291,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
   <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">משתמשי Signal אחרים יכולים לשלוח בקשות התכתבות אל שם המשתמש הייחודי שלך בלי לדעת את מספר הטלפון שלך. בחירת שם משתמש היא רשותית.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">משתמשי Signal אחרים יכולים לשלוח בקשות התכתבות אל שם המשתמש הייחודי שלך בלי לדעת את מספר הטלפון שלך. בחירת שם משתמש היא רשותית.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של Signal. אנא בקש ממנו לעדכן לפני וידוא מספר הביטחון שלך.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של Signal עם תסדיר בלתי־תואם של קוד QR. אנא עדכן כדי להשוות.</string>
@@ -2228,6 +2318,8 @@
   <string name="RecipientBottomSheet_remove">הסר</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupRecipientListItem_admin">מנהלן</string>
+  <string name="GroupRecipientListItem_approve_description">אשר</string>
+  <string name="GroupRecipientListItem_deny_description">דחה</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">קבוצות מיושנות לעומת חדשות</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">מהן קבוצות מיושנות?</string>
@@ -2235,5 +2327,12 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">איך אני משתמש בקבוצות חדשות?</string>
   <string name="GroupsLearnMore_paragraph_2">קבוצות מיושנות אינן ניתנות להמרה אל קבוצות חדשות, אבל אתה יכול ליצור קבוצה חדשה עם אותם חברי קבוצה.</string>
   <string name="GroupsLearnMore_paragraph_3">כדי ליצור קבוצה חדשה, כל חברי הקבוצה צריכים לעדכן אל הגרסה האחרונה של Signal.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">שתף באמצעות Signal</string>
+  <string name="GroupLinkBottomSheet_copy">העתק</string>
+  <string name="GroupLinkBottomSheet_qr_code">קוד QR:</string>
+  <string name="GroupLinkBottomSheet_share">שתף</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">הועתק ללוח</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">הקישור אינו פעיל כרגע</string>
   <!--EOF-->
 </resources>

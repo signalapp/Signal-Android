@@ -561,7 +561,7 @@
   <string name="UnverifiedSendDialog_send_message">စာပို့မလား?</string>
   <string name="UnverifiedSendDialog_send">ပို့ပါ</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_submit">တင်မည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">တင်မည်</string> -->
   <string name="UsernameEditFragment_delete">ဖျက်မည်</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">သင့်မိတ်ဆွေသည် signal ဗားရှင်းအဟောင်းအသုံးပြုထားပါသည်။ လုံခြုံရေးနံပါတ်များ အတည်မပြုခင် Signal ဗားရှင်းအား မြှင့်တင်ခိုင်းလိုက်ပါ။</string>

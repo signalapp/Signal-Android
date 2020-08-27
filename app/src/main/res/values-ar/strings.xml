@@ -476,6 +476,7 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">لا يتوفر استعراض للرابط</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">رابط هذه المجموعة غير مفعّل</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">دعوات معلّقة</string>
   <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
@@ -501,6 +502,7 @@
     <item quantity="many">حدث خطأ أثناء سحب الدعوات</item>
     <item quantity="other">حدث خطأ أثناء سحب الدعوات</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">تم</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
@@ -644,6 +646,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">مفعل</string>
   <string name="CustomNotificationsDialogFragment__disabled">معطل</string>
   <string name="CustomNotificationsDialogFragment__default">افتراضي</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">شارك</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">مفعل</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">معطل</string>
+  <string name="ShareableGroupLinkDialogFragment__default">افتراضي</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">هل تريد سحب الدعوة التي أرسلتها إلى %1$s؟</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -658,6 +666,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">أنت عضو بالفعل</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">انضم</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">أرسل طلب للانضمام</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">رابط هذه المجموعة غير مفعّل</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">فشل الحصول على معلومات المجموعة ، يرجى المحاولة مرة أخرى لاحقاً</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">هل تريد الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟</string>
@@ -674,6 +683,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">قم بتحديث Signal لاستخدام روابط المجموعة</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">إنّ نسخة Signal التي تستعملها لا تدعم روابط المجموعة القابلة للمشاركة. قم بالتحديث لأحدث نسخة لتستطيع الإنضمام إلى هذه المجموعة باستخدام رابط. </string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">قم بتحديث Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">إضافة</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
@@ -1312,7 +1323,7 @@
   <string name="UnverifiedSendDialog_send">أرسل</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">اسم المستخدم</string>
-  <string name="UsernameEditFragment_submit">قدَم</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">قدَم</string> -->
   <string name="UsernameEditFragment_delete">إحذف  </string>
   <string name="UsernameEditFragment_successfully_set_username">تم ضبط اسم المستخدم بنجاح.</string>
   <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المستخدم بنجاح.</string>
@@ -1323,7 +1334,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المستخدم لا يمكن أن يبدأ برقم.</string>
   <string name="UsernameEditFragment_username_is_invalid">اسم المستخدم غير صالح</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">يمكن لمستخدمي Signal الآخرين إرسال طلبات رسائل لإسم المستخدم الفريد والخاص بك دون أن يعرفوا رقم هاتفك. إختيار اسم المستخدم أمر إختياري.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">يمكن لمستخدمي Signal الآخرين إرسال طلبات رسائل لإسم المستخدم الفريد والخاص بك دون أن يعرفوا رقم هاتفك. إختيار اسم المستخدم أمر إختياري.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">جهة الاتصال هذه تستخدم إصدار قديم من Signal. اطلب منه تحديث التطبيق قبل التحقق من رقم السلامة.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق Signal وصيغة رمز الاستجابة السريع أو QR فيها لا تتوافق مع نسختك. يرجى تحديث النسخة للمقارنة.</string>
@@ -2396,5 +2407,10 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">كيف استعمل المجموعات من الطراز الجديد؟</string>
   <string name="GroupsLearnMore_paragraph_2">المجموعات من الطراز القديم لا يمكن تحويلها إلى الطراز الجديد، ولكن يمكنك أن تنشأ مجموعة جديدة بنفس الأعضاء ولكن من الطراز الجديد.</string>
   <string name="GroupsLearnMore_paragraph_3">عندما تنشئ مجموعة من الطراز الجديد، جميع الأعضاء يتوجب عليهم تحديث Signal لأحدث نسخة.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">نسخ</string>
+  <string name="GroupLinkBottomSheet_qr_code">كود QR</string>
+  <string name="GroupLinkBottomSheet_share">شارك</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
   <!--EOF-->
 </resources>

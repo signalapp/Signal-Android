@@ -415,6 +415,7 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ingen länkförhandsvisning tillgänglig</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du bjudit in</string>
@@ -432,6 +433,7 @@
     <item quantity="one">Fel vid återkallelse av inbjudan</item>
     <item quantity="other">Fel vid återkallelse av inbjudningar</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Den här personen kan inte läggas till i äldre grupper.</string>
@@ -547,6 +549,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Aktiverad</string>
   <string name="CustomNotificationsDialogFragment__disabled">Inaktiverad</string>
   <string name="CustomNotificationsDialogFragment__default">Standard</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Dela</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Aktiverad</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Inaktiverad</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Standard</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Vill du återkalla inbjudan du skickade till %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -557,6 +565,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du är redan medlem</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Gå med</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Begär att gå med</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det går inte att få gruppinformation, försök igen senare</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vill du gå med i denna grupp och dela ditt namn och foto med dess medlemmar?</string>
@@ -569,6 +578,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uppdatera Signal för att använda grupplänkar</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte delbara grupplänkar. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Lägg till</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1137,7 +1148,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UnverifiedSendDialog_send">Skicka</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Användarnamn</string>
-  <string name="UsernameEditFragment_submit">Skicka</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Skicka</string> -->
   <string name="UsernameEditFragment_delete">Ta bort</string>
   <string name="UsernameEditFragment_successfully_set_username">Användarnamn angivet.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Användarnamn borttaget.</string>
@@ -1148,7 +1159,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med ett nummer.</string>
   <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andra Signal-användare kan skicka meddelandeförfrågningar till ditt unika användarnamn utan att veta ditt telefonnummer. Att välja ett användarnamn är valfritt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andra Signal-användare kan skicka meddelandeförfrågningar till ditt unika användarnamn utan att veta ditt telefonnummer. Att välja ett användarnamn är valfritt.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be dem uppdatera innan de verifierar ditt säkerhetsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Vänligen uppdatera för att jämföra dem.</string>
@@ -2146,5 +2157,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Hur använder jag Nya grupper?</string>
   <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan inte konverteras till nya grupper, men du kan skapa en ny grupp med samma medlemmar.</string>
   <string name="GroupsLearnMore_paragraph_3">För att skapa en Ny grupp, bör alla medlemmar uppdatera till den senaste versionen av Signal.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Kopiera</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR Kod</string>
+  <string name="GroupLinkBottomSheet_share">Dela</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <!--EOF-->
 </resources>

@@ -415,6 +415,7 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Geen voorbeeldafbeelding beschikbaar.</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepslink is niet actief</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
   <string name="PendingMembersActivity_people_you_invited">Personen wie door jou zijn uitgenodigd</string>
@@ -433,6 +434,7 @@
 </item>
     <item quantity="other">Fout bij het intrekken van uitnodigingen</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klaar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan oude groepen.</string>
@@ -548,6 +550,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ingeschakeld</string>
   <string name="CustomNotificationsDialogFragment__disabled">Uitgeschakeld</string>
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Doorsturen via andere app</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Ingeschakeld</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Systeemstandaard</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Wil je de uitnodiging die je naar %1$s hebt gestuurd intrekken?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -558,6 +566,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Je bent al lid van deze groep</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Lid worden</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Verzoek om lid te worden</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepslink is niet actief</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
@@ -570,6 +579,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepskoppelingen te kunnen gebruiken</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt geen deelbare groepskoppelingen. Werk Signal bij naar de meest recente versie om via een koppeling lid te kunen worden van een groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Toevoegen</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Groepsafbeelding</string>
   <string name="CropImageActivity_profile_avatar">Profielfoto</string>
@@ -813,10 +824,13 @@
   <string name="MessageRecord_the_sharable_group_link_has_been_reset">De deelbare groepslink is vernieuwd.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Je bent via de deelbare groepslink lid geworden van de groep.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s is lid geworden van de groep via de deelbare groepslink.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s is lid geworden via de deelbare groepslink.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Je hebt een verzoek verstuurd om lid te worden van de groep.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s heeft verzocht om via de deelbare groepslink lid te worden.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s heeft je verzoek om lid te worden van de groep toegestaan.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s heeft het verzoek van %2$s om lid te worden van de groep toegestaan.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Je verzoek om lid te worden van de groep is door een beheerder goedgekeurd.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Een verzoek van %1$s om lid te worden van de groep is goedgekeurd.</string>
   <!--GV2 group link deny-->
@@ -1143,7 +1157,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UnverifiedSendDialog_send">Verzenden</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Gebruikersnaam</string>
-  <string name="UsernameEditFragment_submit">Aanvragen</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Aanvragen</string> -->
   <string name="UsernameEditFragment_delete">Wissen</string>
   <string name="UsernameEditFragment_successfully_set_username">Gebruikersnaam succesvol ingesteld.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam succesvol verwijderd.</string>
@@ -1154,7 +1168,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Via je unieke gebruikersnaam kunnen andere Signal-gebruikers je een verzoek sturen om berichten aan je te mogen zenden zonder je telefoonnummer te weten. Een gebruikersnaam instellen is optioneel.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Via je unieke gebruikersnaam kunnen andere Signal-gebruikers je een verzoek sturen om berichten aan je te mogen zenden zonder je telefoonnummer te weten. Een gebruikersnaam instellen is optioneel.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Deze contactpersoon gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
@@ -2154,5 +2168,10 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Hoe kan ik de nieuwe groepen gebruiken?</string>
   <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden.</string>
   <string name="GroupsLearnMore_paragraph_3">Om een nieuwe groep aan te maken moeten alle leden hun Signal app bijwerken naar de meest recente versie.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR Code</string>
+  <string name="GroupLinkBottomSheet_share">Doorsturen via andere app</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <!--EOF-->
 </resources>

@@ -213,6 +213,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikkje senda meldingar til denne gruppa sidan du ikkje lenger er medlem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenka.</string>
+  <string name="ConversationActivity_cancel_request">Avslå førespurnad</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">La Signal få tilgang til mikrofonen for å senda lydmeldingar.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal treng tilgang til mikrofonen for å senda lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon».</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal treng tilgang til mikrofonen og kameraet for å ringa %s, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon» og «Kamera»</string>
@@ -401,6 +402,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="GroupManagement_access_level_anyone">Kven som helst</string>
   <string name="GroupManagement_access_level_all_members">Alle medlemmar</string>
   <string name="GroupManagement_access_level_only_admins">Berre administratorar</string>
+  <string name="GroupManagement_access_level_no_one">Ingen</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Invitasjon sendt</item>
@@ -420,8 +422,16 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Inga lenkesniktitt tilgjengeleg</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Denne gruppelenka er ikkje aktiv</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+  <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlem</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Usvarte gruppeinvitasjonar</string>
+  <string name="PendingMembersActivity_requests">Førespurnader</string>
+  <string name="PendingMembersActivity_invites">Invitasjonar</string>
   <string name="PendingMembersActivity_people_you_invited">Folk du har invitert</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Du har ingen usvarte invitasjonar.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitasjonar av andre gruppemedlem.</string>
@@ -437,6 +447,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="one">Klarte ikkje trekka tilbake invitasjon</item>
     <item quantity="other">Klarte ikkje trekka tilbake invitasjonar</item>
   </plurals>
+  <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_added_s">La til «%1$s»</string>
+  <string name="RequestingMembersFragment_denied_s">Avslo «%1$s»</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Ferdig</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne kontakten kan ikkje vera med i eldre grupper.</string>
@@ -475,6 +488,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_edit_group_info">Endra gruppeinfo</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vel kven som kan endra gruppenamnet, -bildet og forsvinnande meldingar.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vel kven som kan legga til eller invitera nye medlemmar.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Delbar gruppelenke</string>
   <string name="ManageGroupActivity_block_group">Blokker gruppa</string>
   <string name="ManageGroupActivity_unblock_group">Ikkje blokker gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlat gruppe</string>
@@ -552,6 +566,16 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="CustomNotificationsDialogFragment__enabled">Slått på</string>
   <string name="CustomNotificationsDialogFragment__disabled">Slått av</string>
   <string name="CustomNotificationsDialogFragment__default">Standard</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Delbar gruppelenke</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Gruppelenke</string>
+  <string name="ShareableGroupLinkDialogFragment__share">Del</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Tilbakestill lenke</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Slått på</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Slått av</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Standard</string>
+  <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR-kode</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Vil du trekka tilbake invitasjonen du sende til %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -562,6 +586,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du er allereie medlem</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Bli med</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Spør om å få bli med</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Fekk ein nettverksfeil.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denne gruppelenka er ikkje aktiv</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Klarte ikkje henta gruppeinformasjon, prøv igjen seinare</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du bli med i denne gruppa og dela namn og bilde med medlemma?</string>
@@ -574,6 +599,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Oppdater Signal for å bruka gruppelenker</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-utgåva di støttar ikkje delbare gruppelenker. Oppdater til siste utgåve for å bli med denne gruppa via ei lenke.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Legg til</string>
+  <string name="RequestConfirmationDialog_deny">Avslå</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1147,7 +1175,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UnverifiedSendDialog_send">Send</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Brukarnamn</string>
-  <string name="UsernameEditFragment_submit">Send</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Send</string> -->
   <string name="UsernameEditFragment_delete">Slett</string>
   <string name="UsernameEditFragment_successfully_set_username">Lagra brukarnamnet.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Fjerna brukarnamnet.</string>
@@ -1158,7 +1186,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukarnamn kan ikkje begynna med siffer.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukarnamnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukarnamn må vera mellom %1$d og %2$d teikn lange.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andre Signal-brukarar kan spørja om å senda meldingar til ditt unike brukarnamn utan å kjenna til telefonnummeret ditt. Du vel sjølv om du vil laga eit brukarnamn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andre Signal-brukarar kan spørja om å senda meldingar til ditt unike brukarnamn utan å kjenna til telefonnummeret ditt. Du vel sjølv om du vil laga eit brukarnamn.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten din køyrer ein gammal versjon av Signal. Ver venleg og be dei om å oppdatera før du stadfestar tryggleiksnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten din køyrer ein nyare versjon av Signal med eit inkompatibelt QR-kodeformat. Ver venleg og oppdater for å samanlikna.</string>
@@ -2153,6 +2181,8 @@ Du er à jour!</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
+  <string name="GroupRecipientListItem_approve_description">Godkjenn</string>
+  <string name="GroupRecipientListItem_deny_description">Avslå</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Eldre vs. Nye grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kva er Eldre grupper?</string>
@@ -2160,5 +2190,11 @@ Du er à jour!</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Korleis bruker eg Nye grupper?</string>
   <string name="GroupsLearnMore_paragraph_2">Eldre grupper kan ikkje konverterast til Nye grupper, men du kan oppretta ei Ny gruppe med same medlem.</string>
   <string name="GroupsLearnMore_paragraph_3">For å laga ei Ny gruppe bør alle medlem oppdatera til nyaste utgåve av Signal.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Del med Signal</string>
+  <string name="GroupLinkBottomSheet_copy">Kopier</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR-kode</string>
+  <string name="GroupLinkBottomSheet_share">Del</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
   <!--EOF-->
 </resources>

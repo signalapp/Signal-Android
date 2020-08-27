@@ -808,7 +808,7 @@ nambari yako ya simu</string>
   <string name="UnverifiedSendDialog_send">Tuma</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Jina la mtumiaji</string>
-  <string name="UsernameEditFragment_submit">Tuma</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Tuma</string> -->
   <string name="UsernameEditFragment_delete">Futa</string>
   <string name="UsernameEditFragment_successfully_set_username">Jina la mtumiaji limefanikiwa kuwekwa.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Jina la mtumiaji limefanikiwa kuondolewa.</string>
@@ -818,7 +818,7 @@ nambari yako ya simu</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Majina ya watumiaji hayawezi kuanza kwa nambari.</string>
   <string name="UsernameEditFragment_username_is_invalid">Jina la mtumiaji si halali.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Majina ya watumiaji lazima yawe kati ya vibambo  %1$dna %2$d.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Watumiaji wengine wa Signal wanaweza kutuma maombi ya ujumbe kwa jina lako la kipekee la mtumiaji bila kujua nambari yako ya simu. Kuchagua jina la mtumiaji ni kwa hiari.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Watumiaji wengine wa Signal wanaweza kutuma maombi ya ujumbe kwa jina lako la kipekee la mtumiaji bila kujua nambari yako ya simu. Kuchagua jina la mtumiaji ni kwa hiari.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mawasiliano yako yanaendesha toleo la zamani la Signal. Tafadhali waombe wasasishe kabla ya kuthibitisha nambari yako ya usalama.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mawasiliano yako yanaendesha toleo jipya la Signal na muundo wa msimbo wa QR usiopatanisha. Tafadhali sasisha ili upatanishe</string>

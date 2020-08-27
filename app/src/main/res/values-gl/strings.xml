@@ -851,7 +851,7 @@
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nome de usuario</string>
-  <string name="UsernameEditFragment_submit">Enviar</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Enviar</string> -->
   <string name="UsernameEditFragment_delete">Eliminar</string>
   <string name="UsernameEditFragment_this_username_is_available">Este nome de usuario está dispoñible.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de usuario non poden comezar por un número.</string>

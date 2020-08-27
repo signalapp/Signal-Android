@@ -798,7 +798,7 @@
   <string name="UnverifiedSendDialog_send">મોકલો</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">વપરાશકર્તા નામ</string>
-  <string name="UsernameEditFragment_submit">સબમિટ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">સબમિટ કરો</string> -->
   <string name="UsernameEditFragment_delete">કાઢી નાખો </string>
   <string name="UsernameEditFragment_successfully_set_username">સફળતાપૂર્વક વપરાશકર્તા નામ સેટ કરો.</string>
   <string name="UsernameEditFragment_successfully_removed_username">સફળતાપૂર્વક વપરાશકર્તા નામ દૂર કર્યું.</string>
@@ -808,7 +808,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">વપરાશકર્તાનામ સંખ્યા સાથે શરૂ થઈ શકતા નથી.</string>
   <string name="UsernameEditFragment_username_is_invalid">વપરાશકર્તા નામ અમાન્ય છે.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">વપરાશકર્તાનામો %1$d અને %2$d અક્ષરોની વચ્ચે હોવા જોઈએ.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">અન્ય Signal વપરાશકર્તાઓ તમારા ફોન નંબરને જાણ્યા વિના તમારા અનન્ય વપરાશકર્તા નામ પર મેસેજ વિનંતીઓ મોકલી શકે છે. વપરાશકર્તા નામ પસંદ કરવું એ વૈકલ્પિક છે.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">અન્ય Signal વપરાશકર્તાઓ તમારા ફોન નંબરને જાણ્યા વિના તમારા અનન્ય વપરાશકર્તા નામ પર મેસેજ વિનંતીઓ મોકલી શકે છે. વપરાશકર્તા નામ પસંદ કરવું એ વૈકલ્પિક છે.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">તમારો સંપર્ક Signal નું જૂનું વર્ઝન ચલાવી રહ્યું છે. કૃપા કરીને તમારો સલામતી નંબર ચકાસતા પહેલા અપડેટ કરવા માટે કહો.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">તમારો સંપર્ક અસંગત QR કોડ ફોર્મેટ સાથે Signalનું નવું વર્ઝન ચલાવી રહ્યું છે. કૃપા કરીને તુલના કરવા માટે અપડેટ કરો.</string>

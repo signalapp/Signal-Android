@@ -399,6 +399,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Từ giờ bạn có thể thêm xem trước liên kết từ bất cứ trang web nào vào trong tin nhắn bạn gửi.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Xem trước liên kết không khả dụng</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
   <string name="PendingMembersActivity_people_you_invited">Người dùng bạn đã mời</string>
@@ -414,6 +415,7 @@
   <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="other">Lỗi khi thu hồi lời mời</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Xong</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Người này không thể được thêm vào nhóm cũ.</string>
@@ -522,6 +524,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Đã bật</string>
   <string name="CustomNotificationsDialogFragment__disabled">Tắt</string>
   <string name="CustomNotificationsDialogFragment__default">Mặc định</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Chia sẻ</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Đã bật</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Tắt</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Mặc định</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Bạn có muốn thu hồi lời mời đã gửi đến %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -529,10 +537,13 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Bạn đã là thành viên</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Cập nhật Signal để dùng liên kết nhóm</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Phiên bản Signal bạn đang dùng không hỗ trợ liên kết nhóm. Vui lòng cập nhật để có thể tham gia nhóm qua liên kết.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Cập nhật Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Thêm</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ảnh đại diện của nhóm</string>
   <string name="CropImageActivity_profile_avatar">Ảnh đại diện</string>
@@ -1058,7 +1069,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="UnverifiedSendDialog_send">Gửi</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Tên người dùng</string>
-  <string name="UsernameEditFragment_submit">Gửi</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Gửi</string> -->
   <string name="UsernameEditFragment_delete">Xóa</string>
   <string name="UsernameEditFragment_successfully_set_username">Đặt tên người dùng thành công</string>
   <string name="UsernameEditFragment_successfully_removed_username">Xóa tên người dùng thành công.</string>
@@ -1069,7 +1080,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Tên người dùng không thể bắt đầu bằng một số.</string>
   <string name="UsernameEditFragment_username_is_invalid">Tên người dùng không hợp lệ.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Tên người dùng phải nằm trong khoảng từ %1$d đến %2$d kí tự.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Người dùng Signal có thể gửi yêu cầu nhắn tin đến tên người dùng của bạn mà không cần biết số điện thoại. Đặt tên người dùng là không bắt buộc.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Người dùng Signal có thể gửi yêu cầu nhắn tin đến tên người dùng của bạn mà không cần biết số điện thoại. Đặt tên người dùng là không bắt buộc.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Đối tác của bạn đang sử dụng phiên bản Signal cũ. Hãy nhắc họ cập nhật trước khi xác minh mã số an toàn.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Đối tác của bạn đang sử dụng phiên bản Signal mới hơn với định dạng mã QR khác. Hãy cập nhật Signal để so sánh.</string>
@@ -2049,5 +2060,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Làm thế nào tôi có thể sử dụng Nhóm Mới?</string>
   <string name="GroupsLearnMore_paragraph_2">Nhóm Cũ không thể được chuyển đổi thành Nhóm Mới, nhưng bạn có thể tạo một Nhóm Mới với những thành viên cũ.</string>
   <string name="GroupsLearnMore_paragraph_3">Để tạo Nhóm Mới, tất cả thành viên cần phải cập nhật lên phiên bản Signal mới nhất.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Sao chép</string>
+  <string name="GroupLinkBottomSheet_share">Chia sẻ</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <!--EOF-->
 </resources>

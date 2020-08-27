@@ -219,6 +219,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Не удалось записать аудио!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что вы уже не являетесь её участником.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве нет приложения для открытия этой ссылки.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запрос на присоединение был отправлен администратору группы. Вы будете уведомлены, когда он примет решение.</string>
+  <string name="ConversationActivity_cancel_request">Отменить запрос</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Для отправки аудиосообщений разрешите Signal доступ к микрофону.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal требуется разрешение на доступ к микрофону для отправки аудиосообщений, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Микрофон».</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal требуются разрешения на доступ к микрофону и камере, чтобы позвонить %s, но они были вами отклонены. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Микрофон» и «Камера».</string>
@@ -366,6 +368,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Сделать фото</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Выбрать из галереи</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Удалить фото</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Для того, чтобы сделать фото, необходимо разрешение на доступ к камере.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Только что</string>
   <string name="DateUtils_minutes_ago">%dм</string>
@@ -428,6 +431,7 @@
   <string name="GroupManagement_access_level_anyone">Кто угодно</string>
   <string name="GroupManagement_access_level_all_members">Все участники</string>
   <string name="GroupManagement_access_level_only_admins">Только администраторы</string>
+  <string name="GroupManagement_access_level_no_one">Никто</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Приглашение отправлено</item>
@@ -445,8 +449,18 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+  <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d участник</item>
+    <item quantity="few">%1$d участника</item>
+    <item quantity="many">%1$d участников</item>
+    <item quantity="other">%1$d участников</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Приглашения в группу в ожидании</string>
+  <string name="PendingMembersActivity_requests">Запросы</string>
+  <string name="PendingMembersActivity_invites">Приглашения</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">У вас нет приглашений в ожидании.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Приглашения от других участников группы</string>
@@ -466,6 +480,12 @@
     <item quantity="many">Ошибка отзыва приглашений</item>
     <item quantity="other">Ошибка отзыва приглашений</item>
   </plurals>
+  <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Ожидающие запросы на участие</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Нет запросов на участие.</string>
+  <string name="RequestingMembersFragment_explanation">Люди в этом списке пытаются присоединиться к этой группе по общедоступной ссылке на группу.</string>
+  <string name="RequestingMembersFragment_added_s">Добавлен(-а) «%1$s»</string>
+  <string name="RequestingMembersFragment_denied_s">Отклонен(-а) «%1$s»</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
@@ -506,10 +526,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
   <string name="ManageGroupActivity_pending_group_invites">Приглашения в группу в ожидании</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Запросы на участие и приглашения</string>
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
   <string name="ManageGroupActivity_edit_group_info">Редактировать информацию группы</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Выберите, кто может редактировать имя, аватар и время исчезновения сообщений группы.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Выберите, кто может добавлять или приглашать новых участников.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Общедоступная ссылка на группу</string>
   <string name="ManageGroupActivity_block_group">Заблокировать группу</string>
   <string name="ManageGroupActivity_unblock_group">Разблокировать группу</string>
   <string name="ManageGroupActivity_leave_group">Покинуть группу</string>
@@ -595,6 +617,22 @@
   <string name="CustomNotificationsDialogFragment__enabled">Включено</string>
   <string name="CustomNotificationsDialogFragment__disabled">Отключено</string>
   <string name="CustomNotificationsDialogFragment__default">По умолчанию</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Общедоступная ссылка на группу</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управлять и поделиться</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Ссылка на группу</string>
+  <string name="ShareableGroupLinkDialogFragment__share">Поделиться</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Сбросить ссылку</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Запросы на участие</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Принять новых участников</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Включена</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Отключена</string>
+  <string name="ShareableGroupLinkDialogFragment__default">По умолчанию</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ссылка на группа была сброшена</string>
+  <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR-код</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Люди, которые сканируют этот код, смогут присоединиться к вашей группе. Администраторам всё равно будет необходимо принять новых участников, если у вас включена та настройка.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Поделиться кодом</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Вы хотите отозвать своё приглашение для %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -607,6 +645,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Вы уже являетесь участником</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Присоединиться</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Запросить присоединиться</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Не удалось присоединиться к группе. Пожалуйста, попробуйте ещё раз позже</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Произошла ошибка сети.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не удалось получить информацию группы. Пожалуйста, попробуйте ещё раз позже</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Вы хотите присоединиться к этой группе и поделиться своими именем и фото с её участниками?</string>
@@ -618,9 +658,17 @@
     <item quantity="other">Группа · %1$d участников</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Ссылки на группы будут скоро доступны</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Обновите Signal, чтобы использовать ссылки на группы</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Присоединение к группе по ссылке ещё не поддерживается в Signal. Эта функция станет доступна в предстоящем обновлении.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает ссылки на группы. Обновитесь до новейшей версии, чтобы присоединиться к этой группе по ссылке.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ссылка на группу недействительна</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Добавить «%1$s» в группу?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Отклонить запрос от «%1$s»?</string>
+  <string name="RequestConfirmationDialog_add">Добавить</string>
+  <string name="RequestConfirmationDialog_deny">Отклонить</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Аватар группы</string>
   <string name="CropImageActivity_profile_avatar">Аватар</string>
@@ -895,12 +943,15 @@
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s принял(-а) ваш запрос на присоединение к группе.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s принял(-а) запрос на присоединение к группе от %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Вы приняли запрос на присоединение к группе от %1$s.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Ваш запрос на присоединение к группе был принят.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Запрос на присоединение к группе от %1$s был принят.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Ваш запрос на присоединение к группе был отклонён администратором.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s отклонил(-а) запрос на присоединение к группе от %2$s.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Запрос на присоединение к группе от %1$s был отклонён.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Вы отменили свой запрос на присоединение к группе.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s отменил(-а) свой запрос на присоединение к группе.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш код безопасности с %s изменился.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как подтверждённый</string>
@@ -1222,7 +1273,7 @@
   <string name="UnverifiedSendDialog_send">Отправить</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Имя пользователя</string>
-  <string name="UsernameEditFragment_submit">Отправить</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Отправить</string> -->
   <string name="UsernameEditFragment_delete">Удалить</string>
   <string name="UsernameEditFragment_successfully_set_username">Имя пользователя успешно установлено.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Имя пользователя успешно удалено.</string>
@@ -1233,7 +1284,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Имена пользователей не могут начинаться с цифр.</string>
   <string name="UsernameEditFragment_username_is_invalid">Имя пользователя недействительно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Имена пользователей должны содержать от %1$d до %2$d символов.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Другие пользователи Signal могут отправлять запросы на общение вашему уникальному имени пользователя, не зная вашего номера телефона. Выбор имени пользователя необязателен.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Другие пользователи Signal могут отправлять запросы на общение вашему уникальному имени пользователя, не зная вашего номера телефона. Выбор имени пользователя необязателен.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Пожалуйста, попросите его обновиться, чтобы подтвердить код безопасности.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версия Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
@@ -2260,6 +2311,8 @@
   <string name="RecipientBottomSheet_remove">Удалить</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="GroupRecipientListItem_admin">Администратор</string>
+  <string name="GroupRecipientListItem_approve_description">Принять</string>
+  <string name="GroupRecipientListItem_deny_description">Отклонить</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Сравнение Старых и Новых групп</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Что такое Старые группы?</string>
@@ -2267,5 +2320,12 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Как я могу использовать Новые группы?</string>
   <string name="GroupsLearnMore_paragraph_2">Старые группы не могут быть преобразованы в Новые, но вы можете создать Новую группу с теми же участниками.</string>
   <string name="GroupsLearnMore_paragraph_3">Для создания Новой группы все участники должны обновиться до новейшей версии Signal.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Поделиться через Signal</string>
+  <string name="GroupLinkBottomSheet_copy">Копировать</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR-код</string>
+  <string name="GroupLinkBottomSheet_share">Поделиться</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Скопировано в буфер обмена</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Эта ссылка в данный момент неактивна</string>
   <!--EOF-->
 </resources>

@@ -638,7 +638,7 @@
   <string name="UnverifiedSendDialog_send_message">Mesaj göndərirsən?</string>
   <string name="UnverifiedSendDialog_send">Göndər</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_submit">Təqdim et</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Təqdim et</string> -->
   <string name="UsernameEditFragment_delete">Sil</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sənin əlaqən Signal-ın köhnə versiyasını istifadə edir. Sənin təhlükəsizlik rəqəmini təsdiq etməmişdən əvvəl proqramı yeniləməsini xahiş et.</string>

@@ -803,7 +803,7 @@
   <string name="UnverifiedSendDialog_send">بھیجیں</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">صارف کا نام</string>
-  <string name="UsernameEditFragment_submit">جمع کرائیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">جمع کرائیں</string> -->
   <string name="UsernameEditFragment_delete">حذف کریں</string>
   <string name="UsernameEditFragment_successfully_set_username">کامیابی کے ساتھ صارف نام سیٹ کریں۔</string>
   <string name="UsernameEditFragment_successfully_removed_username">کامیابی کے ساتھ صارف نام ہٹا دیا گیا۔</string>
@@ -813,7 +813,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">صارف نام کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>
   <string name="UsernameEditFragment_username_is_invalid">صارف کا نام غلط ہے.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">صارف نام %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دوسرے Signal استعمال کنندہ آپ کے فون نمبر کو جانے بغیر آپ کے انوکھے صارف نام پر پیغام کی درخواستیں بھیج سکتے ہیں۔ صارف نام کا انتخاب اختیاری ہے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دوسرے Signal استعمال کنندہ آپ کے فون نمبر کو جانے بغیر آپ کے انوکھے صارف نام پر پیغام کی درخواستیں بھیج سکتے ہیں۔ صارف نام کا انتخاب اختیاری ہے۔</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">آپ کا رابطہ Signal کے ایک پرانے ورژن پر چل رہا ہے۔ براہ کرم اپنا حفاظتی نمبر تصدیق کرنے سے پہلے تجدید کا پوچھ لیں۔</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">آپ کا رابطہ غیر متوازن QR کوڈ وضع کے ساتھ Signal کا ایک نیا ورژن چل رہا ہے۔ براہ کرم موازنہ کرنے کے لئے اپ ڈیٹ کریں.</string>

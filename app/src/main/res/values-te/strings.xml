@@ -913,7 +913,7 @@
   <string name="UnverifiedSendDialog_send">పంపుము</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">వినియోగదారుడు </string>
-  <string name="UsernameEditFragment_submit">సమర్పించండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">సమర్పించండి</string> -->
   <string name="UsernameEditFragment_delete">తొలగించండి</string>
   <string name="UsernameEditFragment_successfully_set_username">వినియోగదారు పేరును విజయవంతంగా సెట్ చేయండి.</string>
   <string name="UsernameEditFragment_successfully_removed_username">వినియోగదారు పేరు విజయవంతంగా తొలగించబడింది.</string>
@@ -923,7 +923,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">వినియోగదారు పేర్లు సంఖ్యతో ప్రారంభం కావు.</string>
   <string name="UsernameEditFragment_username_is_invalid">మీ యూసర్ నేమ్ సరైనది కాదు.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">వినియోగదారు పేర్లు %1$dమరియు %2$dఅక్షరాల మధ్య ఉండాలి.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">ఇతర Signal వినియోగదారులు మీ ఫోన్ నంబర్ తెలియకుండానే మీ ప్రత్యేక వినియోగదారు పేరుకు సందేశ అభ్యర్థనలను పంపవచ్చు. వినియోగదారు పేరును ఎంచుకోవడం ఐచ్ఛికం.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">ఇతర Signal వినియోగదారులు మీ ఫోన్ నంబర్ తెలియకుండానే మీ ప్రత్యేక వినియోగదారు పేరుకు సందేశ అభ్యర్థనలను పంపవచ్చు. వినియోగదారు పేరును ఎంచుకోవడం ఐచ్ఛికం.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">మీ పరిచయం Signal యొక్క ఒక పాత వెర్షన్ను పై నడుస్థుంది. మీ భద్రత సంఖ్య ధ్రువీకరించే ముందుగా అప్డేట్ కోరండి.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">మీ పరిచయం అననుకూల QR కోడ్ ఫార్మాట్ Signal యొక్క కొత్త సంస్కరణను అమలు చేస్తోంది. దయచేసి పోల్చడానికి అప్డేట్ చెయండీ.</string>

@@ -739,7 +739,7 @@
   <string name="UnverifiedSendDialog_send">Пошаљи</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Корисничко име</string>
-  <string name="UsernameEditFragment_submit">Пошаљи</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Пошаљи</string> -->
   <string name="UsernameEditFragment_delete">Обриши</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт има старије издање Signal-a. Замолите их да ажурирају пре потврде ваших безбедносних бројева.</string>

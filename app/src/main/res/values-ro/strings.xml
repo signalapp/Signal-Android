@@ -429,6 +429,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Acum puteți prelua previzualizările link-urilor direct de pe orice site web pentru mesajele pe care le trimiteți.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Previzualizarea link-ului nu este disponibilă</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitații la grup în așteptare</string>
   <string name="PendingMembersActivity_people_you_invited">Persoane pe care le-ați invitat</string>
@@ -448,6 +449,7 @@
     <item quantity="few">A apărut o eroare la revocarea invitațiilor</item>
     <item quantity="other">A apărut o eroare la revocarea invitațiilor</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gata</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
@@ -570,6 +572,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Activat</string>
   <string name="CustomNotificationsDialogFragment__disabled">Dezactivat</string>
   <string name="CustomNotificationsDialogFragment__default">Implicit</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Partajați</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Activat</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Dezactivat</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Implicit</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Doriți să revocați invitația trimisă la %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -579,10 +587,13 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ești deja membru</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi link-uri la grupuri</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versiune de Signal pe care o folosiți nu suportă link-uri partajabile către grup. Actualizați la ultima versine pentru a te alătura acestui grup printr-un link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Adaugă</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar de grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1144,7 +1155,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnverifiedSendDialog_send">Trimiteți</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nume utilizator</string>
-  <string name="UsernameEditFragment_submit">Trimite</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Trimite</string> -->
   <string name="UsernameEditFragment_delete">Șterge</string>
   <string name="UsernameEditFragment_successfully_set_username">Numele de utilizator a fost setat cu succes.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Numele de utilizator a fost eliminat cu succes.</string>
@@ -1155,7 +1166,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Numele de utilizator nu pot începe cu un număr.</string>
   <string name="UsernameEditFragment_username_is_invalid">Numele de utilizator este invalid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Numele de utilizator trebuie să aibă între %1$d și %2$d caractere.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Alți utilizatori de Signal pot trimite solicitări de mesaje către numele dvs. de utilizator unic, fără să știe numărul dvs. de telefon. Alegerea unui nume de utilizator este opțională.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Alți utilizatori de Signal pot trimite solicitări de mesaje către numele dvs. de utilizator unic, fără să știe numărul dvs. de telefon. Alegerea unui nume de utilizator este opțională.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
@@ -2172,5 +2183,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Cum folosesc noile grupuri?</string>
   <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi convertite la Noul grup, dar puteți creea un nou grup cu aceeași membrii.</string>
   <string name="GroupsLearnMore_paragraph_3">Pentru a creea un grup nou, toți membrii ar trebui să se actualizeze la cea mai recentă versiune a Signal.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Copy</string>
+  <string name="GroupLinkBottomSheet_share">Partajați</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <!--EOF-->
 </resources>

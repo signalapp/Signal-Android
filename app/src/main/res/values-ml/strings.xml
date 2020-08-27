@@ -402,6 +402,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
   <!--LinkPreviewView-->
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
@@ -411,6 +412,7 @@
   <string name="PendingMembersActivity_missing_detail_explanation">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങൾ ക്ഷണിച്ച ആളുകളുടെ വിശദാംശങ്ങൾ കാണിക്കില്ല. ക്ഷണിതാക്കൾ ചേരാൻ തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ, അവരുടെ വിവരങ്ങൾ ആ സമയത്ത് ഗ്രൂപ്പുമായി പങ്കിടും. ചേരുന്നതുവരെ അവർ ഗ്രൂപ്പിൽ സന്ദേശങ്ങളൊന്നും കാണില്ല.</string>
   <string name="PendingMembersActivity_revoke_invite">ക്ഷണം അസാധുവാക്കുക</string>
   <string name="PendingMembersActivity_revoke_invites">ക്ഷണങ്ങൾ അസാധുവാക്കുക</string>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ചെയ്‌തു</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -503,9 +505,17 @@
   <string name="CustomNotificationsDialogFragment__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">പങ്കിടുക</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
+  <string name="ShareableGroupLinkDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <!--GV2 Request confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ഗ്രൂപ്പ് അവതാർ</string>
   <string name="CropImageActivity_profile_avatar">അവതാർ</string>
@@ -1023,7 +1033,7 @@ grūpp ap‌ḍē</string>
   <string name="UnverifiedSendDialog_send">അയയ്‌ക്കുക</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">യൂസേർനേമ്</string>
-  <string name="UsernameEditFragment_submit">സമർപ്പിക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">സമർപ്പിക്കുക</string> -->
   <string name="UsernameEditFragment_delete">ഇല്ലാതാക്കുക </string>
   <string name="UsernameEditFragment_successfully_set_username">യൂസേർനേമ് വിജയകരമായി സജ്ജമാക്കി.</string>
   <string name="UsernameEditFragment_successfully_removed_username">യൂസേർനേമ് വിജയകരമായി നീക്കംചെയ്തു.</string>
@@ -1034,7 +1044,7 @@ grūpp ap‌ḍē</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">യൂസേർനേമ് ഒരു നമ്പറിൽ ആരംഭിക്കാൻ കഴിയില്ല.</string>
   <string name="UsernameEditFragment_username_is_invalid">യൂസേർനേമ് അസാധുവാണ്.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">യൂസേർനേമ്കൾ %1$d മുതൽ %2$d വരെ പ്രതീകങ്ങൾ ആയിരിക്കണം.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">മറ്റ് Signal ഉപയോക്താക്കൾക്ക് നിങ്ങളുടെ ഫോൺ നമ്പർ അറിയാതെ തന്നെ നിങ്ങളുടെ അദ്വിതീയ യൂസേർനേമ്ലേക്ക് സന്ദേശ അഭ്യർത്ഥനകൾ അയയ്ക്കാൻ കഴിയും. ഒരു ഉപയോക്തൃനാമം തിരഞ്ഞെടുക്കുന്നത് ഓപ്ഷണലാണ്.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">മറ്റ് Signal ഉപയോക്താക്കൾക്ക് നിങ്ങളുടെ ഫോൺ നമ്പർ അറിയാതെ തന്നെ നിങ്ങളുടെ അദ്വിതീയ യൂസേർനേമ്ലേക്ക് സന്ദേശ അഭ്യർത്ഥനകൾ അയയ്ക്കാൻ കഴിയും. ഒരു ഉപയോക്തൃനാമം തിരഞ്ഞെടുക്കുന്നത് ഓപ്ഷണലാണ്.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ പഴയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. നിങ്ങളുടെ സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിനുമുമ്പ് അപ്‌ഡേറ്റ് ചെയ്യാൻ അവരോട് ആവശ്യപ്പെടുക.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു ഇത് പൊരുത്തപ്പെടാത്ത QR കോഡ് ഫോർ‌മാറ്റാണ്. താരതമ്യം ചെയ്യാൻ അപ്‌ഡേറ്റുചെയ്യുക.</string>
@@ -2014,5 +2024,9 @@ grūpp ap‌ḍē</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എങ്ങനെ ഉപയോഗിക്കാം?</string>
   <string name="GroupsLearnMore_paragraph_2">ലെഗസി ഗ്രൂപ്പുകളെ പുതിയ ഗ്രൂപ്പുകളായി പരിവർത്തനം ചെയ്യാൻ കഴിയില്ല, എന്നാൽ സമാന അംഗങ്ങളുമായി നിങ്ങൾക്ക് ഒരു പുതിയ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയും.</string>
   <string name="GroupsLearnMore_paragraph_3">ഒരു പുതിയ ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന്, എല്ലാ അംഗങ്ങൾക്കും Signalന്റെ ഏറ്റവും പുതിയ വേർഷൻ ഉണ്ടായിരിക്കണം</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">കോപ്പി ചെയ്യുക</string>
+  <string name="GroupLinkBottomSheet_share">പങ്കിടുക</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <!--EOF-->
 </resources>

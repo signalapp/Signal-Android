@@ -213,6 +213,8 @@
   <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، چون دیگر عضو نیستید.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">درخواست شما برای پیوستن به مدیر گروه ارسال شد. هنگامی که به درخواست‌ شما پاسخ دهند، مطلع خواهید شد.</string>
+  <string name="ConversationActivity_cancel_request">لغو درخواست</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال پیام‌ های صوتی، به Signal اجازه دهید تا به میکروفون شما دسترسی داشته باشد.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal به منظور ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal نیاز به دسترسی به دوربین و میکروفون دارد تا بتواند با %s تماس بگیرد، اما دسترسی به آن ها داده نشده است. لطفاً به قسمت تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» و «میکروفون» را فعال کنید.</string>
@@ -338,6 +340,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">گرفتن عکس</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">انتخاب از گالری</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">حذف عکس</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">گرفتن عکس به مجوز دوربین نیاز دارد.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">حالا</string>
   <string name="DateUtils_minutes_ago">%d دقیقه</string>
@@ -400,6 +403,7 @@
   <string name="GroupManagement_access_level_anyone">همه</string>
   <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
   <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
+  <string name="GroupManagement_access_level_no_one">هیچکس</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">دعوت‌نامه ارسال شد</item>
@@ -414,6 +418,8 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">شما حالا می‌توانید پیش‌نمایش‌ پیوندها را به صورت مستقیم از هر وب‌سایتی برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">هیچ پیش‌نمایش پیوندی در دسترس نیست</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
   <string name="PendingMembersActivity_people_you_invited">افرادی که شما دعوت کردید</string>
@@ -431,6 +437,7 @@
     <item quantity="one">اشکال در لغو دعوت</item>
     <item quantity="other">اشکال در لغو دعوت‌ها</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">انجام شد</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
@@ -546,6 +553,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">فعال</string>
   <string name="CustomNotificationsDialogFragment__disabled">غیرفعال</string>
   <string name="CustomNotificationsDialogFragment__default">پیش‌فرض</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">اشتراک‌گذاری</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">فعال</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">غیرفعال</string>
+  <string name="ShareableGroupLinkDialogFragment__default">پیش‌فرض</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">آیا می‌خواهید دعوتی که به %1$s فرستادید را لغو کنید؟</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -554,10 +567,14 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">شما از پیش عضو هستید</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">برای استفاده از پیوند‌های گروه Signal را به‌روزرسانی کنید</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">نسخهٔ Signal که استفاده می‌کنید از پیوند‌های با قابلیت اشتراک‌گذاری پشتیبانی نمی‌کند. برای پیوستن به این گروه از طریق پیوند به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">افزودن</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">عکس گروه</string>
   <string name="CropImageActivity_profile_avatar">عکس</string>
@@ -789,6 +806,7 @@
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">شما یک درخواست برای پیوستن به گروه ارسال کردید</string>
   <!--GV2 group link approvals-->
   <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
@@ -1104,7 +1122,7 @@
   <string name="UnverifiedSendDialog_send">ارسال</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">نام کاربری</string>
-  <string name="UsernameEditFragment_submit">ارسال</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">ارسال</string> -->
   <string name="UsernameEditFragment_delete">حذف</string>
   <string name="UsernameEditFragment_successfully_set_username">نام کاربری با موفقیت تنظیم شد.</string>
   <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
@@ -1115,7 +1133,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d کاراکتر باشند.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دیگر کاربران Signal می‌توانند بدون نیاز به دانستن شمارهٔ همراه شما به نام کاربری شما درخواستِ پیام ارسال کنند. انتخاب نام کاربری اختیاری است.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دیگر کاربران Signal می‌توانند بدون نیاز به دانستن شمارهٔ همراه شما به نام کاربری شما درخواستِ پیام ارسال کنند. انتخاب نام کاربری اختیاری است.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی Signal است. لطفاً پیش از تأیید شمارهٔ امنیتی شما از او بخواهید به‌روزرسانی کند.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای نسخهٔ جدیدتر Signal با یک کد QR ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>
@@ -1515,7 +1533,7 @@
   <string name="message_details_recipient_header__pending_send">در انتظار…</string>
   <string name="message_details_recipient_header__sent_to">ارسال شده به</string>
   <string name="message_details_recipient_header__sent_from">ارسال شده از</string>
-  <string name="message_details_recipient_header__delivered_to">تحویل داده شده به</string>
+  <string name="message_details_recipient_header__delivered_to">تحویل داده شد به</string>
   <string name="message_details_recipient_header__read_by">خوانده شد توسط</string>
   <string name="message_details_recipient_header__not_sent">ارسال نشد</string>
   <!--message_Details_recipient-->
@@ -2113,5 +2131,9 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">چگونه از گروه‌های جدید استفاده کنم؟</string>
   <string name="GroupsLearnMore_paragraph_2">گروه‌های قدیمی نمی‌توانند به گروه‌های جدید تبدیل شوند، اما شما می‌توانید گروهی جدید با همان اعضا بسازید.</string>
   <string name="GroupsLearnMore_paragraph_3">برای ایجاد یک گروه جدید، همهٔ اعضا باید به آخرین نسخهٔ Signal به‌روزرسانی کنند.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">کپی</string>
+  <string name="GroupLinkBottomSheet_share">اشتراک‌گذاری</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
   <!--EOF-->
 </resources>

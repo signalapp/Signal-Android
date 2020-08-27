@@ -415,6 +415,7 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">S’ka lidhje për paraparje</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Kjo lidhje grupi s’është aktive</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
@@ -432,6 +433,7 @@
     <item quantity="one">Gabim gjatë shfuqizimit të ftesës</item>
     <item quantity="other">Gabim gjatë shfuqizimit të ftesave</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">U bë</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ky përdorues s’mund të shtohet te grupe të dikurshëm.</string>
@@ -550,6 +552,12 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CustomNotificationsDialogFragment__enabled">E aktivizuar</string>
   <string name="CustomNotificationsDialogFragment__disabled">E çaktivizuar</string>
   <string name="CustomNotificationsDialogFragment__default">Parazgjedhje</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Ndajeni Me të Tjerë</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">E aktivizuar</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">E çaktivizuar</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Parazgjedhje</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Doni të shfuqizohet ftesa që u dërgua te %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -560,6 +568,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jeni tashmë anëtar</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Merrni pjesë</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Kërkoni të bëheni pjesë</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">U has një gabim rrjeti.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Kjo lidhje grupi s’është aktive</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">S’arrihet të merren të dhëna grupi, ju lutemi, riprovoni më vonë</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Doni të bëheni pjesë e këtij grupi dhe të ndani me anëtarët e tij emrin dhe foton tuaj?</string>
@@ -572,6 +581,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Që të përdorni lidhje grupi, përditësoni Signal-in</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupi që mund të ndahen me të tjerë. Që të bëheni pjesë e këtij grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Shtoje</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grupi</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1142,7 +1153,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UnverifiedSendDialog_send">Dërgoje</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Emër përdoruesi</string>
-  <string name="UsernameEditFragment_submit">Parashtroje</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Parashtroje</string> -->
   <string name="UsernameEditFragment_delete">Fshije</string>
   <string name="UsernameEditFragment_successfully_set_username">Emri i përdoruesit u caktua me sukses.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Emri i përdoruesit u hoq me sukses.</string>
@@ -1153,7 +1164,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Emrat e përdoruesve s’mund të fillojnë me një numër.</string>
   <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Përdorues të tjerë të Signal-it mund të dërgojnë kërkesa mesazhi te emri juaj unik i përdoruesit, pa ditur numrin tuaj të telefonit. Zgjedhja e një emri përdoruesi është në dëshirën tuaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Përdorues të tjerë të Signal-it mund të dërgojnë kërkesa mesazhi te emri juaj unik i përdoruesit, pa ditur numrin tuaj të telefonit. Zgjedhja e një emri përdoruesi është në dëshirën tuaj.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Signal-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
@@ -2155,5 +2166,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Si t’i përdor Grupet e Rinj?</string>
   <string name="GroupsLearnMore_paragraph_2">Grupet e Dikurshëm s’mund të shndërrohen në Grupe të Rinj, por mund të krijoni një Grup të ri me të njëjtët anëtarë.</string>
   <string name="GroupsLearnMore_paragraph_3">Që të krijoni një Grup të Ri, krejt anëtarët duhet ta përditësojnë Signal-in me versionin më të ri.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Kopjoje</string>
+  <string name="GroupLinkBottomSheet_share">Ndajeni Me të Tjerë</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">U kopjua në të papastër!</string>
   <!--EOF-->
 </resources>

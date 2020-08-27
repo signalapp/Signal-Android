@@ -414,6 +414,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sa saad nüüd hankida lingieelvaated otse mistahes saidilt, mida sõnumina saadad.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Lingieelvaade puudub</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ootel grupikutsed</string>
   <string name="PendingMembersActivity_people_you_invited">Sinu kutsutud inimesed</string>
@@ -431,6 +432,7 @@
     <item quantity="one">Kutse tühistamisel tekkis tõrge</item>
     <item quantity="other">Kutsete tühistamisel tekkis tõrge</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Tehtud</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Seda isikut pole võimalik vana tüüpi gruppidesse lisada.</string>
@@ -546,6 +548,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">Lubatud</string>
   <string name="CustomNotificationsDialogFragment__disabled">Keelatud</string>
   <string name="CustomNotificationsDialogFragment__default">Vaikimisi</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Jaga</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Lubatud</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Keelatud</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Vaikimisi</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Kas sa soovid tühistada kutse, mille saatsid kasutajale %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -554,11 +562,14 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sa oled juba liige</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Esines võrgu viga.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uuenda Signal-it grupilinkide kasutamiseks</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">See Signali versioon, mida kasutad, ei toeta jagatavaid grupilinke.
 Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uuenda Signal-it</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Lisa</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
   <string name="CropImageActivity_profile_avatar">Pilt</string>
@@ -1107,7 +1118,7 @@ Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="UnverifiedSendDialog_send">Saada</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Kasutajanimi</string>
-  <string name="UsernameEditFragment_submit">Postita</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Postita</string> -->
   <string name="UsernameEditFragment_delete">Kustuta</string>
   <string name="UsernameEditFragment_successfully_set_username">Kasutajanimi edukalt määratud.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Kasutajanimi edukalt eemaldatud.</string>
@@ -1118,7 +1129,7 @@ Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kasutajanimed ei tohi alata numbriga.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Teised Signali kasutajad saavad saata vestluskutseid sinu unikaalsele kasutajanimele, ilma et teavad sinu telefoninumbrit. Kasutajanime valimine on valikuline.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Teised Signali kasutajad saavad saata vestluskutseid sinu unikaalsele kasutajanimele, ilma et teavad sinu telefoninumbrit. Kasutajanime valimine on valikuline.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>
@@ -2116,5 +2127,9 @@ Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuidas ma saan uusi gruppe kasutada?</string>
   <string name="GroupsLearnMore_paragraph_2">Vana tüüpi gruppe ei saa uut tüüpi gruppideks teisendada, aga sa saad luua samade liikmetega uut tüüpi grupi.</string>
   <string name="GroupsLearnMore_paragraph_3">Uue grupi loomiseks peavad kõik liikmed uuendama enda Signal-i uusimale versioonile.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Kopeeri</string>
+  <string name="GroupLinkBottomSheet_share">Jaga</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Lõikelauale kopeeritud</string>
   <!--EOF-->
 </resources>

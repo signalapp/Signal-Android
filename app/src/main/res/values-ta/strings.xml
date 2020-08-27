@@ -414,6 +414,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">நீங்கள் அனுப்பும் செய்திகளுக்கு எந்தவொரு வலைத்தளத்திலிருந்தும் இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கலாம்.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">இணைப்பு முன்னோட்டம் எதுவும் கிடைக்கவில்லை</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string>
   <string name="PendingMembersActivity_people_you_invited">மக்கள் நீங்கள் அழைக்கப்பட்டார்</string>
@@ -431,6 +432,7 @@
     <item quantity="one">அழைப்புகளைத் திரும்பப் பெறுவதில் பிழை</item>
     <item quantity="other">அழைப்புகளைத் திரும்பப் பெறுவதில் பிழை</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">முடிந்தது</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
@@ -546,6 +548,12 @@
   <string name="CustomNotificationsDialogFragment__enabled">இயக்கப்பட்டது</string>
   <string name="CustomNotificationsDialogFragment__disabled">முடக்கப்பட்டது</string>
   <string name="CustomNotificationsDialogFragment__default">இயல்புநிலை</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">பகிர்</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">இயக்கப்பட்டது</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">முடக்கப்பட்டது</string>
+  <string name="ShareableGroupLinkDialogFragment__default">இயல்புநிலை</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">நீங்கள் %1$s அவர்களுக்கு அனுப்பிய அழைப்பை ரத்து செய்ய விரும்புகிறீர்களா?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -554,10 +562,12 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">நீங்கள் ஏற்கனவே உறுப்பினராக உள்ளீர்கள்</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">குழு இணைப்புகளைப் பயன்படுத்த சிக்னலைப் புதுப்பிக்கவும்</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">நீங்கள் பயன்படுத்தும் சிக்னலின் பதிப்பு மாற்றத்தக்க குழு இணைப்புகளை ஆதரிக்காது. இணைப்பு வழியாக இந்த குழுவில் சேர சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
+  <!--GV2 Request confirmation dialog-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
   <string name="CropImageActivity_profile_avatar">அவதாரம்</string>
@@ -1106,7 +1116,7 @@
   <string name="UnverifiedSendDialog_send">அனுப்புக</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
-  <string name="UsernameEditFragment_submit">சமர்ப்பி</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">சமர்ப்பி</string> -->
   <string name="UsernameEditFragment_delete">அழி</string>
   <string name="UsernameEditFragment_successfully_set_username">பயனர்பெயர் வெற்றிகரமாக அமைக்கப்பட்டது.</string>
   <string name="UsernameEditFragment_successfully_removed_username">பயனர்பெயரை வெற்றிகரமாக நீக்கியது.</string>
@@ -1117,7 +1127,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர்பெயர்கள் எண்ணுடன் தொடங்க முடியாது.</string>
   <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d  எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">பிற Signal பயனர்கள் உங்கள் தொலைபேசி எண்ணை அறியாமல் உங்கள் தனிப்பட்ட பயனர்பெயருக்கு செய்தி கோரிக்கைகளை அனுப்பலாம். பயனர்பெயரைத் தேர்ந்தெடுப்பது விருப்பமானது.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">பிற Signal பயனர்கள் உங்கள் தொலைபேசி எண்ணை அறியாமல் உங்கள் தனிப்பட்ட பயனர்பெயருக்கு செய்தி கோரிக்கைகளை அனுப்பலாம். பயனர்பெயரைத் தேர்ந்தெடுப்பது விருப்பமானது.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறார். உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய  புதுப்பிக்கவும்.</string>
@@ -2117,5 +2127,9 @@
   <string name="GroupsLearnMore_how_do_i_use_new_groups">புதிய குழுக்களை எவ்வாறு பயன்படுத்துவது?</string>
   <string name="GroupsLearnMore_paragraph_2">மரபு குழுக்களை புதிய குழுக்களாக மாற்ற முடியாது, ஆனால் அதே உறுப்பினர்களுடன் புதிய குழுவை உருவாக்கலாம்.</string>
   <string name="GroupsLearnMore_paragraph_3">புதிய குழுவை உருவாக்க, அனைத்து உறுப்பினர்களும் சிக்னலின் சமீபத்திய பதிப்பிற்கு புதுப்பிக்க Signal Update வேண்டும்.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">நகல்</string>
+  <string name="GroupLinkBottomSheet_share">பகிர்</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <!--EOF-->
 </resources>

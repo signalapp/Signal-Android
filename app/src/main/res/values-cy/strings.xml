@@ -446,6 +446,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Gallwch nawr estyn rhagolygon dolenni yn syth o unrhyw wefan ar gyfer negeseuon rydych yn eu hanfon.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Dim rhagolygon dolenni ar gael</string>
+  <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
   <string name="PendingMembersActivity_people_you_invited">Pobl rydych wedi eu gwahodd</string>
@@ -467,6 +468,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Gwall wrth ddirymu gwahoddiadau</item>
     <item quantity="other">Gwall wrth ddirymu gwahoddiadau</item>
   </plurals>
+  <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Wedi Gorffen</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Nid oes modd ychwanegu\'r person hwn at hen grwpiau..</string>
@@ -596,6 +598,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="CustomNotificationsDialogFragment__enabled">Galluogwyd</string>
   <string name="CustomNotificationsDialogFragment__disabled">Analluogwyd</string>
   <string name="CustomNotificationsDialogFragment__default">Rhagosodedig</string>
+  <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__share">Rhannu</string>
+  <string name="ShareableGroupLinkDialogFragment__enabled">Galluogwyd</string>
+  <string name="ShareableGroupLinkDialogFragment__disabled">Analluogwyd</string>
+  <string name="ShareableGroupLinkDialogFragment__default">Rhagosodedig</string>
+  <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ydych chi am ddirymu\'r gwahoddiad a anfonwyd gennych at %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -606,10 +614,13 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Rydych eisoes yn aelod</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Profwyd gwall rhwydwaith.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Diweddarwch Signal i ddefnyddio dolenni grŵp</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Nid yw\'r fersiwn o Signal rydych yn ei ddefnyddio\'n cynnal dolenni grwpiau. Diweddarwch i\'r fersiwn diweddaraf i ymuno â\'r grŵp drwy ddolen.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
+  <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">Ychwanegu</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Rhithffurf y grŵp</string>
   <string name="CropImageActivity_profile_avatar">Rhithffurf</string>
@@ -1192,7 +1203,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="UnverifiedSendDialog_send">Anfon</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Enw defnyddiwr</string>
-  <string name="UsernameEditFragment_submit">Cyflwyno</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Cyflwyno</string> -->
   <string name="UsernameEditFragment_delete">Dileu</string>
   <string name="UsernameEditFragment_successfully_set_username">Wedi gosod enw defnyddiwr yn llwyddiannus.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Wedi tynnu enw defnyddiwr yn llwyddiannus.</string>
@@ -1203,7 +1214,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nid yw enw defnyddiwr yn gallu cychwyn gyda rhif.</string>
   <string name="UsernameEditFragment_username_is_invalid">Mae\'r enw defnyddiwr yn annilys.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Rhaid i enwau defnyddwyr fod rhwng %1$d a %2$d nod.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Gall defnyddwyr eraill Signal anfon cais am neges i\'ch enw defnyddiwr unigryw heb wybod beth yw eich rhif ffôn. Mae dewis enw defnyddiwr yn ddewisol.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Gall defnyddwyr eraill Signal anfon cais am neges i\'ch enw defnyddiwr unigryw heb wybod beth yw eich rhif ffôn. Mae dewis enw defnyddiwr yn ddewisol.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mae eich cyswllt yn rhedeg hen fersiwn o Signal. Gofynnwch iddynt ddiweddaru cyn gwirio eich rhif diogelwch.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mae eich cyswllt yn rhedeg fersiwn newydd o Signal gyda fformat cod QR anghydnaws. Diweddarwch i gymharu.</string>
@@ -2237,5 +2248,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsLearnMore_how_do_i_use_new_groups">Sut mae defnyddio Grwpiau Newydd?</string>
   <string name="GroupsLearnMore_paragraph_2">Nid oes modd trosi Hen Grwpiau yn Grwpiau Newydd, ond gallwch greu Grŵp Newydd gyda\'r un aelodau.</string>
   <string name="GroupsLearnMore_paragraph_3">I greu Grŵp Newydd, dylai\'r holl aelodau ddiweddaru i\'r fersiwn ddiweddaraf o Signal.</string>
+  <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_copy">Copïo</string>
+  <string name="GroupLinkBottomSheet_share">Rhannu</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <!--EOF-->
 </resources>

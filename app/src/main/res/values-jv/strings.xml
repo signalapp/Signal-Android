@@ -793,7 +793,7 @@
   <string name="UnverifiedSendDialog_send">Kirimaken</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nami panggina</string>
-  <string name="UsernameEditFragment_submit">Ajengaken</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Ajengaken</string> -->
   <string name="UsernameEditFragment_delete">Brusak</string>
   <string name="UsernameEditFragment_successfully_set_username">Kedadosan netapaken nami panggina.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Kedadosan mbrusak nami panggina.</string>
@@ -803,7 +803,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nami panggina mboten saged diawiti nomer.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nami panggina mboten valid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Panjangipun nami panggina wajib antawis %1$d lan %2$d karakter.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Panggina Signal bentenipun saged ngirimaken panedha pesen dhateng nami pengguna unik sampeyan tanpa betah nyumerepi nomer telepon sampeyan. Ngginaken nami panggina ngrupikaken prakawis ingkang mboten wajib.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Panggina Signal bentenipun saged ngirimaken panedha pesen dhateng nami pengguna unik sampeyan tanpa betah nyumerepi nomer telepon sampeyan. Ngginaken nami panggina ngrupikaken prakawis ingkang mboten wajib.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak sampeyan ngginakaken versi dangunipun Signal. Tedhakaken supados ngenggalaken saderengipun ngeverifikasi nomer keamanan.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak sampeyan ngginakaken versi enggalipun Signal kaliyan format kode QR ingkang mboten gathuk. Cobi enggalaken supados gathuk.</string>

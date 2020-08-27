@@ -585,7 +585,7 @@
   <string name="UnverifiedSendDialog_send_message">Peyam bişîne?</string>
   <string name="UnverifiedSendDialog_send">Bişîne</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_submit">Bişîne</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Bişîne</string> -->
   <string name="UsernameEditFragment_delete">Jê bibe</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Têkilîdêrên te guhertoya Signalê ya kevn bi kar dihênin. Ji wan re bibêje, berê rastandina hejmara ewlehiyê, bila Signalê hildemînin,</string>

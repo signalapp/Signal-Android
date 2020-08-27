@@ -839,7 +839,7 @@
   <string name="UnverifiedSendDialog_send">보내기</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">사용자 이름</string>
-  <string name="UsernameEditFragment_submit">제출</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">제출</string> -->
   <string name="UsernameEditFragment_delete">삭제</string>
   <string name="UsernameEditFragment_successfully_set_username">사용자 이름이 성공적으로 설정되었습니다.</string>
   <string name="UsernameEditFragment_successfully_removed_username">사용자 이름이 성공적으로 삭제되었습니다.</string>
@@ -849,7 +849,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">사용자 이름은 숫자로 시작할 수 없습니다.</string>
   <string name="UsernameEditFragment_username_is_invalid">잘못된 사용자 이름입니다.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">사용자 이름은 %1$d~%2$d자여야 합니다. </string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">내 전화번호를 몰라도 다른 Signal 사용자들은 나만의 사용자 이름으로 메시지 요청을 보낼 수 있습니다. 사용자 이름은 옵션으로 선택할 수 있습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">내 전화번호를 몰라도 다른 Signal 사용자들은 나만의 사용자 이름으로 메시지 요청을 보낼 수 있습니다. 사용자 이름은 옵션으로 선택할 수 있습니다.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">연락처는 오래된 버전의 Signal을 쓰고 있습니다. 안전 번호를 인증하기 전에 먼저 업데이트를 요청하세요.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">연락처는 호환되지 않는 QR 코드 형식의 상위 버전 Signal을 사용하고 있습니다. 앱을 업데이트하세요.</string>
