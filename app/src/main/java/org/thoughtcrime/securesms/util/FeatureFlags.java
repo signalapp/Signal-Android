@@ -79,6 +79,7 @@ public final class FeatureFlags {
       GROUPS_V2_LINKS_VERSION,
       CDS,
       INTERNAL_USER,
+      USERNAMES,
       MENTIONS,
       VERIFY_V2
   );

@@ -42,9 +42,6 @@ public class SignalServiceProfile {
   private Capabilities capabilities;
 
   @JsonProperty
-  private String username;
-
-  @JsonProperty
   @JsonSerialize(using = JsonUtil.UuidSerializer.class)
   @JsonDeserialize(using = JsonUtil.UuidDeserializer.class)
   private UUID uuid;
@@ -79,10 +76,6 @@ public class SignalServiceProfile {
 
   public Capabilities getCapabilities() {
     return capabilities;
-  }
-
-  public String getUsername() {
-    return username;
   }
 
   public UUID getUuid() {

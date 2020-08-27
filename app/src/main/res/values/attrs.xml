@@ -253,6 +253,8 @@
 
     <attr name="pref_divider" format="reference" />
 
+    <attr name="preference_username_background" format="reference" />
+
     <attr name="quote_missing_icon_color" format="color" />
     <attr name="quote_dismiss_button_tint" format="color" />
 

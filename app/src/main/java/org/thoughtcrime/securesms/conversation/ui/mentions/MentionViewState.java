@@ -27,10 +27,6 @@ public final class MentionViewState implements MappingModel<MentionViewState> {
     return recipient;
   }
 
-  @NonNull String getUsername() {
-    return Util.emptyIfNull(recipient.getDisplayUsername());
-  }
-
   @Override
   public boolean areItemsTheSame(@NonNull MentionViewState newItem) {
     return recipient.getId().equals(newItem.recipient.getId());

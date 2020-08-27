@@ -56,6 +56,8 @@
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs are required for registration lock. To disable PINs, please first disable registration lock.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN created.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabled.</string>
+    <string name="ApplicationPreferencesActivity_hide">Hide</string>
+    <string name="ApplicationPreferencesActivity_hide_reminder">Hide reminder?</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -1381,7 +1383,6 @@
 
     <!-- UsernameEditFragment -->
     <string name="UsernameEditFragment_username">Username</string>
-    <string name="UsernameEditFragment_submit">Submit</string>
     <string name="UsernameEditFragment_delete">Delete</string>
     <string name="UsernameEditFragment_successfully_set_username">Successfully set username.</string>
     <string name="UsernameEditFragment_successfully_removed_username">Successfully removed username.</string>
@@ -1392,7 +1393,7 @@
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
     <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
-    <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Other Signal users can send message requests to your unique username without knowing your phone number. Choosing a username is optional.</string>
+    <string name="UsernameEditFragment_usernames_on_signal_are_optional">Usernames on Signal are optional. If you choose to create a username, other Signal users will be able to find you by this username and contact you without knowing your phone number.</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal. Please ask them to update before verifying your safety number.</string>
@@ -2125,6 +2126,7 @@
     <string name="preferences_notifications__mentions">Mentions</string>
     <string name="preferences_notifications__notify_me">Notify me</string>
     <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receive notifications when you’re mentioned in muted chats</string>
+    <string name="preferences_setup_a_username">Setup a username</string>
 
     <!-- Internal only preferences -->
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
@@ -2594,7 +2596,6 @@
     <string name="GroupsLearnMore_how_do_i_use_new_groups">How do I use New Groups?</string>
     <string name="GroupsLearnMore_paragraph_2">Legacy Groups can’t be converted into New Groups, but you can create a New Group with the same members.</string>
     <string name="GroupsLearnMore_paragraph_3">To create a New Group, all members should update to the latest version of Signal.</string>
-
 
     <!-- GroupLinkBottomSheetDialogFragment -->
     <string name="GroupLinkBottomSheet_share_via_signal">Share via Signal</string>

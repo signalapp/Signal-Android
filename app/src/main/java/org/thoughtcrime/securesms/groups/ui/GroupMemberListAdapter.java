@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.LifecycleRecyclerAdapter;
 import org.thoughtcrime.securesms.util.LifecycleViewHolder;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -333,7 +334,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
 
       GroupMemberEntry.PendingMember pendingMember = (GroupMemberEntry.PendingMember) memberEntry;
 
-      bindRecipient(pendingMember.getInvitee());
+      bindImageAndText(pendingMember.getInvitee(), pendingMember.getInvitee().getDisplayNameOrUsername(context));
       bindRecipientClick(pendingMember.getInvitee());
 
       if (pendingMember.isCancellable() && adminActionsListener != null) {

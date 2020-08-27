@@ -2015,11 +2015,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     });
 
     mentionsViewModel.getSelectedRecipient().observe(this, recipient -> {
-      String replacementDisplayName = recipient.getDisplayName(this);
-      if (replacementDisplayName.equals(recipient.getDisplayUsername())) {
-        replacementDisplayName = recipient.getUsername().or(replacementDisplayName);
-      }
-      composeText.replaceTextWithMention(replacementDisplayName, recipient.getId());
+      composeText.replaceTextWithMention(recipient.getDisplayName(this), recipient.getId());
     });
   }
 

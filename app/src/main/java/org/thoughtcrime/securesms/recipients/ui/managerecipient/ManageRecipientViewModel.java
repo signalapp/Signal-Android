@@ -124,8 +124,7 @@ public final class ManageRecipientViewModel extends ViewModel {
 
   private static @NonNull String getDisplaySubtitle(@NonNull Recipient recipient, @NonNull Context context) {
     if (!recipient.isLocalNumber() && recipient.hasAUserSetDisplayName(context)) {
-      return String.format("%s %s", recipient.getUsername().or(""), recipient.getSmsAddress().or(""))
-                   .trim();
+      return recipient.getSmsAddress().or("").trim();
     } else {
       return "";
     }

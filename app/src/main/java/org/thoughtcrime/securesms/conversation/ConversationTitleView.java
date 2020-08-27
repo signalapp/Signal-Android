@@ -159,7 +159,7 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   private void setIndividualRecipientTitle(Recipient recipient) {
-    final String displayName = recipient.getDisplayName(getContext());
+    final String displayName = recipient.getDisplayNameOrUsername(getContext());
     this.title.setText(displayName);
     this.subtitle.setText(null);
     updateVerifiedSubtitleVisibility();

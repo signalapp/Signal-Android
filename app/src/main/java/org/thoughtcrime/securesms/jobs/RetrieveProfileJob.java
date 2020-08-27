@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
@@ -55,7 +54,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -292,7 +290,7 @@ public class RetrieveProfileJob extends BaseJob {
 
     setProfileName(recipient, profile.getName());
     setProfileAvatar(recipient, profile.getAvatar());
-    if (FeatureFlags.usernames()) setUsername(recipient, profile.getUsername());
+    clearUsername(recipient);
     setProfileCapabilities(recipient, profile.getCapabilities());
     setIdentityKey(recipient, profile.getIdentityKey());
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
@@ -425,8 +423,8 @@ public class RetrieveProfileJob extends BaseJob {
     }
   }
 
-  private void setUsername(Recipient recipient, @Nullable String username) {
-    DatabaseFactory.getRecipientDatabase(context).setUsername(recipient.getId(), username);
+  private void clearUsername(Recipient recipient) {
+    DatabaseFactory.getRecipientDatabase(context).setUsername(recipient.getId(), null);
   }
 
   private void setProfileCapabilities(@NonNull Recipient recipient, @Nullable SignalServiceProfile.Capabilities capabilities) {

@@ -694,14 +694,6 @@ public class TextSecurePreferences {
     setStringPreference(context, LOCAL_UUID_PREF, uuid.toString());
   }
 
-  public static String getLocalUsername(Context context) {
-    return getStringPreference(context, LOCAL_USERNAME_PREF, null);
-  }
-
-  public static void setLocalUsername(Context context, String username) {
-    setStringPreference(context, LOCAL_USERNAME_PREF, username);
-  }
-
   public static String getPushServerPassword(Context context) {
     return getStringPreference(context, GCM_PASSWORD_PREF, null);
   }

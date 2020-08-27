@@ -394,7 +394,7 @@ public class ConversationFragment extends LoggingFragment {
     if (recipient != null) {
       conversationBanner.setAvatar(GlideApp.with(context), recipient);
 
-      String title = isSelf ? context.getString(R.string.note_to_self) : recipient.getDisplayName(context);
+      String title = isSelf ? context.getString(R.string.note_to_self) : recipient.getDisplayNameOrUsername(context);
       conversationBanner.setTitle(title);
 
       if (recipient.isGroup()) {
@@ -411,7 +411,7 @@ public class ConversationFragment extends LoggingFragment {
       } else if (isSelf) {
         conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation));
       } else {
-        String subtitle = recipient.getUsername().or(recipient.getE164()).orNull();
+        String subtitle = recipient.getE164().orNull();
 
         if (subtitle == null || subtitle.equals(title)) {
           conversationBanner.hideSubtitle();

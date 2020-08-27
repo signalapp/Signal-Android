@@ -30,15 +30,4 @@
         android:textAppearance="@style/Signal.Text.Preview"
         tools:text="@tools:sample/full_names" />
 
-    <TextView
-        android:id="@+id/mention_recipient_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/Signal.Text.Preview"
-        android:textColor="@color/core_grey_60"
-        tools:text="@tools:sample/last_names" />
-
 </LinearLayout>

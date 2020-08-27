@@ -12,16 +12,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
-import java.util.UUID;
 import java.util.concurrent.Executor;
 
 class UsernameEditRepository {
@@ -50,7 +45,6 @@ class UsernameEditRepository {
   private @NonNull UsernameSetResult setUsernameInternal(@NonNull String username) {
     try {
       accountManager.setUsername(username);
-      TextSecurePreferences.setLocalUsername(application, username);
       DatabaseFactory.getRecipientDatabase(application).setUsername(Recipient.self().getId(), username);
       Log.i(TAG, "[setUsername] Successfully set username.");
       return UsernameSetResult.SUCCESS;
@@ -70,7 +64,6 @@ class UsernameEditRepository {
   private @NonNull UsernameDeleteResult deleteUsernameInternal() {
     try {
       accountManager.deleteUsername();
-      TextSecurePreferences.setLocalUsername(application, null);
       DatabaseFactory.getRecipientDatabase(application).setUsername(Recipient.self().getId(), null);
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.");
       return UsernameDeleteResult.SUCCESS;
