@@ -3,18 +3,18 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 
 /**
  * Day/night UI mode related utilities.
  * @see <a href="https://developer.android.com/guide/topics/ui/look-and-feel/darktheme">Official Documentation</a>
  */
 object UiModeUtilities {
-    private const val PREF_FILE_NAME = "UiModeUtilities"
     private const val PREF_KEY_SELECTED_UI_MODE = "SELECTED_UI_MODE"
 
     @JvmStatic
     public fun setUserSelectedUiMode(context: Context, uiMode: UiMode) {
-        val prefs = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         prefs.edit()
                 .putString(PREF_KEY_SELECTED_UI_MODE, uiMode.name)
                 .apply()
@@ -23,7 +23,7 @@ object UiModeUtilities {
 
     @JvmStatic
     public fun getUserSelectedUiMode(context: Context): UiMode {
-        val prefs = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         val selectedUiModeName = prefs.getString(PREF_KEY_SELECTED_UI_MODE, UiMode.SYSTEM_DEFAULT.name)!!
         var selectedUiMode: UiMode
         try {

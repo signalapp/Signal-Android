@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 class ChangeUiModeDialog : DialogFragment() {
 
     companion object {
-        public const val TAG = "ChangeUiModeDialog"
+        const val TAG = "ChangeUiModeDialog"
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
