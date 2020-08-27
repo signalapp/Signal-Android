@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.avatar.AvatarSelection
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.dialogs.ChangeUiModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.ClearAllDataDialog
 import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
@@ -100,11 +101,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.settings_general, menu)
-
-//        // Day/night themes are only available since Android 10
-//        menu.findItem(R.id.action_change_theme)
-//                .setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-
         return true
     }
 
@@ -115,15 +111,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 true
             }
             R.id.action_change_theme -> {
-                // A temporary demo code that manually switches between day/night themes.
-                // The effect is reset after the app restart.
-                val currentUiMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-                val nightMode: Int = when(currentUiMode) {
-                    Configuration.UI_MODE_NIGHT_YES -> AppCompatDelegate.MODE_NIGHT_NO
-                    else -> AppCompatDelegate.MODE_NIGHT_YES
-                }
-                AppCompatDelegate.setDefaultNightMode(nightMode)
-                recreate()
+                ChangeUiModeDialog().show(supportFragmentManager, ChangeUiModeDialog.TAG)
                 true
             }
             else -> super.onOptionsItemSelected(item)
