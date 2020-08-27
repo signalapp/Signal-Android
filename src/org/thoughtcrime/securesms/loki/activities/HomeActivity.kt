@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
+import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
@@ -200,8 +201,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         if (hasViewedSeed || !isMasterDevice) {
             seedReminderView.visibility = View.GONE
         }
-        val hasSeenMultiDeviceRemovalSheet = TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)
-        if (!hasSeenMultiDeviceRemovalSheet) {
+
+        // Multiple device removal notification
+        if (!TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)) {
             TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
             val userPublicKey = TextSecurePreferences.getLocalNumber(this)
             val deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey)
@@ -217,7 +219,17 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     startActivity(intent)
                 }
                 bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                return
             }
+        }
+
+        // Light theme introduction
+        if (!TextSecurePreferences.hasSeenLightThemeIntroSheet(this) &&
+                UiModeUtilities.isDayUiMode(this)) {
+            TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
+            val bottomSheet = LightThemeFeatureIntroBottomSheet()
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+            return
         }
     }
 

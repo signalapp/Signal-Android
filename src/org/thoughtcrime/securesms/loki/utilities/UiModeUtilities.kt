@@ -13,7 +13,7 @@ object UiModeUtilities {
     private const val PREF_KEY_SELECTED_UI_MODE = "SELECTED_UI_MODE"
 
     @JvmStatic
-    public fun setUserSelectedUiMode(context: Context, uiMode: UiMode) {
+    fun setUserSelectedUiMode(context: Context, uiMode: UiMode) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         prefs.edit()
                 .putString(PREF_KEY_SELECTED_UI_MODE, uiMode.name)
@@ -22,7 +22,7 @@ object UiModeUtilities {
     }
 
     @JvmStatic
-    public fun getUserSelectedUiMode(context: Context): UiMode {
+    fun getUserSelectedUiMode(context: Context): UiMode {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         val selectedUiModeName = prefs.getString(PREF_KEY_SELECTED_UI_MODE, UiMode.SYSTEM_DEFAULT.name)!!
         var selectedUiMode: UiMode
@@ -36,27 +36,28 @@ object UiModeUtilities {
     }
 
     @JvmStatic
-    public fun setupUiModeToUserSelected(context: Context) {
+    fun setupUiModeToUserSelected(context: Context) {
         val selectedUiMode = getUserSelectedUiMode(context)
         setUserSelectedUiMode(context, selectedUiMode)
+    }
+
+    /**
+     * Whether the application UI is in the light mode
+     * (do not confuse with the user selected UiMode).
+     */
+    @JvmStatic
+    fun isDayUiMode(context: Context): Boolean {
+        val uiModeNightBit = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return uiModeNightBit == Configuration.UI_MODE_NIGHT_NO
     }
 }
 
 //TODO Use localized string resources.
 enum class UiMode(
         val displayName: String,
-        val uiModeNightFlag: Int,
         val nightModeValue: Int) {
 
-    DAY ("Day",
-            Configuration.UI_MODE_NIGHT_NO,
-            AppCompatDelegate.MODE_NIGHT_NO),
-
-    NIGHT ("Night",
-            Configuration.UI_MODE_NIGHT_YES,
-            AppCompatDelegate.MODE_NIGHT_YES),
-
-    SYSTEM_DEFAULT ("System default",
-            Configuration.UI_MODE_NIGHT_UNDEFINED,
-            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+    DAY("Day", AppCompatDelegate.MODE_NIGHT_NO),
+    NIGHT("Night", AppCompatDelegate.MODE_NIGHT_YES),
+    SYSTEM_DEFAULT("System default", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 }

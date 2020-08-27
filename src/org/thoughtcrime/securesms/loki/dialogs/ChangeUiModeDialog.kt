@@ -30,6 +30,5 @@ class ChangeUiModeDialog : DialogFragment() {
                 .setTitle("Application theme")
                 .setNegativeButton("Cancel") { _, _ -> dismiss() }
                 .create()
-
     }
 }

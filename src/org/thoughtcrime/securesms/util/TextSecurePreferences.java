@@ -1316,5 +1316,13 @@ public class TextSecurePreferences {
   public static void setHasSeenMultiDeviceRemovalSheet(Context context) {
     setBooleanPreference(context, "has_seen_multi_device_removal_sheet", true);
   }
+
+  public static boolean hasSeenLightThemeIntroSheet(Context context) {
+    return getBooleanPreference(context, "has_seen_light_theme_intro_sheet", false);
+  }
+
+  public static void setHasSeenLightThemeIntroSheet(Context context) {
+    setBooleanPreference(context, "has_seen_light_theme_intro_sheet", true);
+  }
   // endregion
 }

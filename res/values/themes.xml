@@ -27,7 +27,7 @@
         <item name="actionBarStyle">@style/Widget.Session.ActionBar</item>
 
         <item name="alertDialogTheme">@style/Session.AlertDialog</item>
-        <item name="bottomSheetStyle">@style/Widget.Session.BottomSheetDialog</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.Session.BottomSheet</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="statusBarBackground">@color/accent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -97,6 +97,12 @@
     <style name="Theme.Session.ForceDark.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Session.BottomSheet" parent="@style/Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MaterialComponents.BottomSheetDialog</item>
+        <item name="bottomSheetStyle">@style/Widget.Session.BottomSheetDialog</item>
     </style>
 
     <!-- Session -->
