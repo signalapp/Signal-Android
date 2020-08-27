@@ -223,7 +223,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             isSSKBasedClosedGroup = false
         }
 
-        if (members.size < 2) {
+        if (members.size < 1) {
             return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
 

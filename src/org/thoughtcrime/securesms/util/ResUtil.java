@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -25,10 +26,14 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.AttrRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import android.util.TypedValue;
 
+import org.thoughtcrime.securesms.logging.Log;
+
 public class ResUtil {
+  private static final String TAG = ResUtil.class.getSimpleName();
 
   public static int getColor(Context context, @AttrRes int attr) {
     final TypedArray styledAttributes = context.obtainStyledAttributes(new int[]{attr});
@@ -47,8 +52,15 @@ public class ResUtil {
     return out.resourceId;
   }
 
+  @Nullable
   public static Drawable getDrawable(Context c, @AttrRes int attr) {
-    return ContextCompat.getDrawable(c, getDrawableRes(c, attr));
+    int drawableRes = getDrawableRes(c, attr);
+    if (drawableRes == 0) {
+      Log.e(TAG, "Cannot find a drawable resource associated with the attribute: " + attr,
+              new Resources.NotFoundException());
+      return null;
+    }
+    return ContextCompat.getDrawable(c, drawableRes);
   }
 
   public static int[] getResourceIds(Context c, @ArrayRes int array) {

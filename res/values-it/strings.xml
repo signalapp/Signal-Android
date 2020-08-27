@@ -1394,7 +1394,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="activity_create_closed_group_empty_state_button_title">Inizia una sessione</string>
   <string name="activity_create_closed_group_group_name_missing_error">Inserisci un nome per il gruppo</string>
   <string name="activity_create_closed_group_group_name_too_long_error">Inserisci un nome gruppo più breve</string>
-  <string name="activity_create_closed_group_not_enough_group_members_error">Scegli almeno 2 membri del gruppo</string>
   <string name="activity_create_closed_group_too_many_group_members_error">Un gruppo chiuso non può avere più di 10 membri</string>
   <string name="activity_create_closed_group_invalid_session_id_error">Uno dei membri del tuo gruppo ha una Sessione ID non valido</string>
 

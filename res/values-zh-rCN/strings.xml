@@ -1364,7 +1364,6 @@
   <string name="activity_create_closed_group_empty_state_button_title">开始对话</string>
   <string name="activity_create_closed_group_group_name_missing_error">请输入群组名称</string>
   <string name="activity_create_closed_group_group_name_too_long_error">请输入较短的群组名称</string>
-  <string name="activity_create_closed_group_not_enough_group_members_error">请选择至少2位群组成员</string>
   <string name="activity_create_closed_group_too_many_group_members_error">私密群组成员不得超过10个</string>
   <string name="activity_create_closed_group_invalid_session_id_error">您群组中的一位成员的Session ID无效</string>
 
