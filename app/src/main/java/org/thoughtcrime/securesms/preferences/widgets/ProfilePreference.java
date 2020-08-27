@@ -79,6 +79,6 @@ public class ProfilePreference extends Preference {
       profileNameView.setText(profileName);
     }
 
-    profileSubtextView.setText(self.getUsername().or(self.getE164()).orNull());
+    profileSubtextView.setText(self.getUsername().transform(username -> "@" + username).or(self.getE164()).orNull());
   }
 }
