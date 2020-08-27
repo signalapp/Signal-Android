@@ -762,6 +762,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Katoavien viestien ajaksi asetettiin %1$s.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s muutti profiilinimekseen %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s muutti profiilinimensä %2$s nimeksi %3$s.</string>
   <string name="MessageRecord_changed_their_profile">%1$s muutti profiiliaan.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Sinä loit ryhmän.</string>
