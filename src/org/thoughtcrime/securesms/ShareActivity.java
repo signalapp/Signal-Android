@@ -25,14 +25,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Process;
 import android.provider.OpenableColumns;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -340,7 +339,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
     private InputStream openFileUri(Uri uri) throws IOException {
       FileInputStream fin   = new FileInputStream(uri.getPath());
-      //TODO Remove the commented code if there are no issues with reading shared files on October 2020
+      // TODO: Remove the commented code if there are no issues with reading shared files by October 2020
 //      int             owner = FileUtils.getFileDescriptorOwner(fin.getFD());
 
 //      if (owner == -1 || owner == Process.myUid()) {
