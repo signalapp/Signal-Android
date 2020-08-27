@@ -81,7 +81,7 @@
 <!--        <item name="actionBarStyle">@style/Session.DarkSubtitleActionBar</item>-->
 <!--    </style>-->
 
-    <!-- TODO Refactor this use color resources -->
+    <!-- TODO Refactor this to use color resources -->
     <style name="Theme.Session.ForceDark" parent="Theme.Session.DayNight">
         <!-- TODO Use a color resource -->
         <item name="colorPrimary">#171717</item>

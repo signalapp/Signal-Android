@@ -192,6 +192,8 @@
             android:layout_gravity="center"
             android:background="@drawable/circle_touch_highlight_background"
             android:src="@drawable/ic_circle_plus"
+            android:scaleType="fitXY"
+            android:padding="4dp"
             android:contentDescription="@string/ConversationActivity_add_attachment"
             android:nextFocusLeft="@+id/embedded_text_editor" />
 

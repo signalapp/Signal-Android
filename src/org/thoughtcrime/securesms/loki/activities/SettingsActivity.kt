@@ -101,9 +101,9 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.settings_general, menu)
 
-        // Day/night themes are only available since Android 10
-        menu.findItem(R.id.action_change_theme)
-                .setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+//        // Day/night themes are only available since Android 10
+//        menu.findItem(R.id.action_change_theme)
+//                .setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
 
         return true
     }
