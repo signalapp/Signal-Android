@@ -7,9 +7,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Util;
@@ -23,32 +25,36 @@ public class LinkPreviewViewModel extends ViewModel {
 
   private final LinkPreviewRepository             repository;
   private final MutableLiveData<LinkPreviewState> linkPreviewState;
+  private final LiveData<LinkPreviewState>        linkPreviewSafeState;
 
   private String            activeUrl;
   private RequestController activeRequest;
   private boolean           userCanceled;
   private Debouncer         debouncer;
+  private boolean           enabled;
 
   private LinkPreviewViewModel(@NonNull LinkPreviewRepository repository) {
-    this.repository       = repository;
-    this.linkPreviewState = new MutableLiveData<>();
-    this.debouncer        = new Debouncer(250);
+    this.repository           = repository;
+    this.linkPreviewState     = new MutableLiveData<>();
+    this.debouncer            = new Debouncer(250);
+    this.enabled              = SignalStore.settings().isLinkPreviewsEnabled();
+    this.linkPreviewSafeState = Transformations.map(linkPreviewState, state -> enabled ? state : LinkPreviewState.forNoLinks());
   }
 
   public LiveData<LinkPreviewState> getLinkPreviewState() {
-    return linkPreviewState;
+    return linkPreviewSafeState;
   }
 
   public boolean hasLinkPreview() {
-    return linkPreviewState.getValue() != null && linkPreviewState.getValue().getLinkPreview().isPresent();
+    return linkPreviewSafeState.getValue() != null && linkPreviewSafeState.getValue().getLinkPreview().isPresent();
   }
 
   public boolean hasLinkPreviewUi() {
-    return linkPreviewState.getValue() != null && linkPreviewState.getValue().hasContent();
+    return linkPreviewSafeState.getValue() != null && linkPreviewSafeState.getValue().hasContent();
   }
 
   public @NonNull List<LinkPreview> getActiveLinkPreviews() {
-    final LinkPreviewState state = linkPreviewState.getValue();
+    final LinkPreviewState state = linkPreviewSafeState.getValue();
 
     if (state == null || !state.getLinkPreview().isPresent()) {
       return Collections.emptyList();
@@ -58,6 +64,8 @@ public class LinkPreviewViewModel extends ViewModel {
   }
 
   public void onTextChanged(@NonNull Context context, @NonNull String text, int cursorStart, int cursorEnd) {
+    if (!enabled) return;
+
     debouncer.publish(() -> {
       if (TextUtils.isEmpty(text)) {
         userCanceled = false;
@@ -129,6 +137,14 @@ public class LinkPreviewViewModel extends ViewModel {
     linkPreviewState.setValue(LinkPreviewState.forNoLinks());
   }
 
+  public void onTransportChanged(boolean isSms) {
+    enabled = !isSms;
+
+    if (isSms) {
+      onUserCancel();
+    }
+  }
+
   public void onSend() {
     if (activeRequest != null) {
       activeRequest.cancel();
@@ -143,7 +159,12 @@ public class LinkPreviewViewModel extends ViewModel {
   }
 
   public void onEnabled() {
+    if (!SignalStore.settings().isLinkPreviewsEnabled()) {
+      throw new AssertionError();
+    }
+
     userCanceled = false;
+    enabled      = true;
   }
 
   @Override

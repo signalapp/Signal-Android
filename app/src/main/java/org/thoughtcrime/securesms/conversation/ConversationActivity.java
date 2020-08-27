@@ -1840,6 +1840,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
       calculateCharactersRemaining();
       updateLinkPreviewState();
+      linkPreviewViewModel.onTransportChanged(newTransport.isSms());
       composeText.setTransport(newTransport);
 
       buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
@@ -2692,7 +2693,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void updateLinkPreviewState() {
-    if (SignalStore.settings().isLinkPreviewsEnabled() && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
+    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
       linkPreviewViewModel.onEnabled();
       linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed().toString(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
