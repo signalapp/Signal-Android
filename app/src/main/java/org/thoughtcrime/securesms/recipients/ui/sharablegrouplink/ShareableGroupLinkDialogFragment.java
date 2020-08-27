@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.recipients.ui.sharablegrouplink;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,14 +86,19 @@ public final class ShareableGroupLinkDialogFragment extends DialogFragment {
     viewModel.getGroupLink().observe(getViewLifecycleOwner(), groupLink -> {
       shareableGroupLinkSwitch.setChecked(groupLink.isEnabled());
       approveNewMembersSwitch.setChecked(groupLink.isRequiresApproval());
-      shareableGroupLinkDisplay.setText(groupLink.getUrl());
+      shareableGroupLinkDisplay.setText(formatForFullWidthWrapping(groupLink.getUrl()));
     });
 
     shareRow.setOnClickListener(v -> GroupLinkBottomSheetDialogFragment.show(requireFragmentManager(), groupId));
 
     shareableGroupLinkRow.setOnClickListener(v -> viewModel.onToggleGroupLink(requireContext()));
     approveNewMembersRow.setOnClickListener(v -> viewModel.onToggleApproveMembers(requireContext()));
-    resetLinkRow.setOnClickListener(v -> viewModel.onResetLink(requireContext()));
+    resetLinkRow.setOnClickListener(v ->
+      new AlertDialog.Builder(requireContext())
+                     .setMessage(R.string.ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link)
+                     .setPositiveButton(R.string.ShareableGroupLinkDialogFragment__reset_link, (dialog, which) -> viewModel.onResetLink(requireContext()))
+                     .setNegativeButton(android.R.string.cancel, null)
+                     .show());
 
     viewModel.getToasts().observe(getViewLifecycleOwner(), t -> Toast.makeText(requireContext(), t, Toast.LENGTH_SHORT).show());
 
@@ -108,5 +114,20 @@ public final class ShareableGroupLinkDialogFragment extends DialogFragment {
         }
       }
     });
+  }
+
+  /**
+   * Inserts zero width space characters between each character in the original ensuring it takes
+   * the full width of the TextView.
+   */
+  private static CharSequence formatForFullWidthWrapping(@NonNull String url) {
+    char[] chars = new char[url.length() * 2];
+
+    for (int i = 0; i < url.length(); i++) {
+      chars[i * 2]     = url.charAt(i);
+      chars[i * 2 + 1] = '\u200B';
+    }
+
+    return new String(chars);
   }
 }
