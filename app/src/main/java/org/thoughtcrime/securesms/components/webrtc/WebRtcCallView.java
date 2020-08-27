@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.constraintlayout.widget.Guideline;
 import androidx.core.util.Consumer;
 import androidx.transition.AutoTransition;
 import androidx.transition.Transition;
@@ -117,12 +118,13 @@ public class WebRtcCallView extends FrameLayout {
     answerWithAudioLabel      = findViewById(R.id.call_screen_answer_with_audio_label);
     ongoingFooterGradient     = findViewById(R.id.call_screen_ongoing_footer_gradient);
 
-    View topGradient            = findViewById(R.id.call_screen_header_gradient);
-    View downCaret              = findViewById(R.id.call_screen_down_arrow);
-    View decline                = findViewById(R.id.call_screen_decline_call);
-    View answerLabel            = findViewById(R.id.call_screen_answer_call_label);
-    View declineLabel           = findViewById(R.id.call_screen_decline_call_label);
-    View incomingFooterGradient = findViewById(R.id.call_screen_incoming_footer_gradient);
+    View      topGradient            = findViewById(R.id.call_screen_header_gradient);
+    View      downCaret              = findViewById(R.id.call_screen_down_arrow);
+    View      decline                = findViewById(R.id.call_screen_decline_call);
+    View      answerLabel            = findViewById(R.id.call_screen_answer_call_label);
+    View      declineLabel           = findViewById(R.id.call_screen_decline_call_label);
+    View      incomingFooterGradient = findViewById(R.id.call_screen_incoming_footer_gradient);
+    Guideline statusBarGuideline     = findViewById(R.id.call_screen_status_bar_guideline);
 
     topViews.add(status);
     topViews.add(topGradient);
@@ -166,11 +168,8 @@ public class WebRtcCallView extends FrameLayout {
 
     pictureInPictureGestureHelper = PictureInPictureGestureHelper.applyTo(localRenderPipFrame);
 
-    int                statusBarHeight = ViewUtil.getStatusBarHeight(this);
-    MarginLayoutParams params          = (MarginLayoutParams) parent.getLayoutParams();
-
-    params.topMargin = statusBarHeight;
-    parent.setLayoutParams(params);
+    int statusBarHeight = ViewUtil.getStatusBarHeight(this);
+    statusBarGuideline.setGuidelineBegin(statusBarHeight);
   }
 
   @Override
