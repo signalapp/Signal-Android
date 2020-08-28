@@ -51,6 +51,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kodai yra reikalingi registracijos užraktui. Norėdami išjungti PIN kodus, iš pradžių, išjunkite registracijos užraktą.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN kodas sukurtas.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN kodas išjungtas.</string>
+  <string name="ApplicationPreferencesActivity_hide">Slėpti</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutė</item>
@@ -1239,7 +1240,6 @@
   <string name="UnverifiedSendDialog_send">Siųsti</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Naudotojo vardas</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Pateikti</string> -->
   <string name="UsernameEditFragment_delete">Ištrinti</string>
   <string name="UsernameEditFragment_successfully_set_username">Naudotojo vardas sėkmingai nustatytas.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Naudotojo vardas sėkmingai pašalintas.</string>
@@ -1250,7 +1250,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Kiti Signal naudotojai gali siųsti žinučių užklausas į jūsų unikalų naudotojo vardą nežinodami jūsų telefono numerio. Naudotojo vardo pasirinkimas nėra būtinas.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų adresatas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų adresatas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norėdami palyginti, atsinaujinkite programėlę.</string>

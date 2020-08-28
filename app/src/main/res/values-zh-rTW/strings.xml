@@ -45,6 +45,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN碼是註冊鎖定所必需的。 要停用PIN碼，請先關閉註冊鎖功能。</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN碼已建立。</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN碼功能已停用</string>
+  <string name="ApplicationPreferencesActivity_hide">隱藏</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">隱藏提醒?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分鐘</item>
@@ -554,6 +556,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">關閉</string>
   <string name="ShareableGroupLinkDialogFragment__default">預設</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">群組連結重置</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">需要管理員批准通過群組連結加入新成員。</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">你確定要重置群組連結嗎？ 人們將無法再使用當前連結加入該群組。</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">掃描此代碼的人將可以加入你的群組。 如果你啟用了該裝置，則管理員仍需要批准新成員。</string>
@@ -1144,7 +1148,6 @@
   <string name="UnverifiedSendDialog_send">傳送</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">使用者名稱</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">上傳</string> -->
   <string name="UsernameEditFragment_delete">刪除</string>
   <string name="UsernameEditFragment_successfully_set_username">成功設定使用者名稱。</string>
   <string name="UsernameEditFragment_successfully_removed_username">成功移除使用者名稱。</string>
@@ -1155,7 +1158,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不可以以數字開頭。</string>
   <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱必須是藉在%1$d及%2$d之間的字母。</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">其他Signal 使用者可以將訊息要求傳送到你的唯一使用者名稱，而無需知道你的電話號碼。 選擇一個使用者名稱是可自選的。</string> -->
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal上的使用者名稱是可選的。 如果你選擇建立使用者名稱，則其他Signal使用者可以透過該用使用者名找到你，並在不知道你的電話號碼的情況下與你聯絡。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
@@ -1760,6 +1763,7 @@
   <string name="preferences_notifications__mentions">提及</string>
   <string name="preferences_notifications__notify_me">通知我</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">在靜音聊天中提及你時接收通知</string>
+  <string name="preferences_setup_a_username">設定使用者名稱</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

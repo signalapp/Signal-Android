@@ -45,6 +45,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">登録ロックを使うにはPINが必要です。PINを無効にするには、まず登録ロックを無効にしてください。</string>
   <string name="ApplicationPreferencesActivity_pin_created">PINを作成しました。</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PINを無効にしました。</string>
+  <string name="ApplicationPreferencesActivity_hide">最小化</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d分</item>
@@ -1134,7 +1135,6 @@
   <string name="UnverifiedSendDialog_send">送信する</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">ユーザ名</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">送信する</string> -->
   <string name="UsernameEditFragment_delete">削除する</string>
   <string name="UsernameEditFragment_successfully_set_username">ユーザ名を設定しました。</string>
   <string name="UsernameEditFragment_successfully_removed_username">ユーザ名を削除しました。</string>
@@ -1145,7 +1145,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザ名の先頭に数字は使用できません。</string>
   <string name="UsernameEditFragment_username_is_invalid">無効なユーザ名です。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザ名は%1$dから%2$d文字にしてください。</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">他のSignalユーザは、あなたの電話番号を知らなくても、あなたのユーザ名にメッセージ申請を送信することができます。ユーザ名の選択は任意です。</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Signalをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">連絡先の相手は互換性のないQRコード形式を使った新しいバージョンのSignalを使っています。Signalをアップデートしてから比較してください。</string>

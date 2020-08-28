@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">பதிவு பூட்டுக்கு கடவுஎண்கள் பின்ஸ் தேவை. பின்ஸை முடக்க, முதலில் பதிவு பூட்டை முடக்கவும்.</string>
   <string name="ApplicationPreferencesActivity_pin_created">பின் உருவாக்கப்பட்டது.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">கடவுஎண்கள் முடக்கப்பட்டது</string>
+  <string name="ApplicationPreferencesActivity_hide">மறை</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d நிமிடம்</item>
@@ -1116,7 +1117,6 @@
   <string name="UnverifiedSendDialog_send">அனுப்புக</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">சமர்ப்பி</string> -->
   <string name="UsernameEditFragment_delete">அழி</string>
   <string name="UsernameEditFragment_successfully_set_username">பயனர்பெயர் வெற்றிகரமாக அமைக்கப்பட்டது.</string>
   <string name="UsernameEditFragment_successfully_removed_username">பயனர்பெயரை வெற்றிகரமாக நீக்கியது.</string>
@@ -1127,7 +1127,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர்பெயர்கள் எண்ணுடன் தொடங்க முடியாது.</string>
   <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d  எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">பிற Signal பயனர்கள் உங்கள் தொலைபேசி எண்ணை அறியாமல் உங்கள் தனிப்பட்ட பயனர்பெயருக்கு செய்தி கோரிக்கைகளை அனுப்பலாம். பயனர்பெயரைத் தேர்ந்தெடுப்பது விருப்பமானது.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறார். உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய  புதுப்பிக்கவும்.</string>

@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Je pincode wordt gebruikt voor registratievergrendeling. Om je pincode uit te schakelen moet je eerst de registratievergrendeling uitzetten.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Pincode uitgeschakeld.</string>
+  <string name="ApplicationPreferencesActivity_hide">Verbergen</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuut</item>
@@ -429,7 +430,7 @@
   <string name="PendingMemberInvitesActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
   <string name="PendingMembersActivity_requests">Verzoeken</string>
   <string name="PendingMembersActivity_invites">Uitnodigingen</string>
-  <string name="PendingMembersActivity_people_you_invited">Personen wie door jou zijn uitgenodigd</string>
+  <string name="PendingMembersActivity_people_you_invited">Personen die jij hebt uitgenodigd</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen uitnodiging in afwachting van je reactie.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Uitnodigingen door andere leden verzonden</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
@@ -448,6 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Groepsuitnodigingen in afwachting</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Er zijn geen groeps uitnodigingen om weer te geven.</string>
+  <string name="RequestingMembersFragment_explanation">Personen in deze lijst proberen lid te worden van deze groep via een deelbare groepslink.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" toegevoegd</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" afgewezen</string>
   <!--AddMembersActivity-->
@@ -484,6 +486,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zelfwissende berichten</string>
   <string name="ManageGroupActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschaps verzoeken &amp; uitnodigingen</string>
   <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Kies wie de naam van de groep, de groepsafbeelding en de timer voor zelfwissende berichten mag aanpassen.</string>
@@ -568,9 +571,11 @@
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepslink</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheer &amp; delen</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Groepslink</string>
   <string name="ShareableGroupLinkDialogFragment__share">Doorsturen via andere app</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Link vernieuwen</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschaps verzoeken</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Nieuwe groepsleden goedkeuren</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Ingeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
@@ -578,6 +583,7 @@
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Groepslink vernieuwd</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Beheerders moeten deze personen nog steeds goedkeuren als deze instelling aan staat.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Deel code</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Wil je de uitnodiging die je naar %1$s hebt gestuurd intrekken?</string>
@@ -602,9 +608,13 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Groepslinks komen binnenkort</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepskoppelingen te kunnen gebruiken</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Lid worden van een groep is nog niet ondersteund in Signal. Deze functie zal in een komende versie uitgeleverd worden.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt geen deelbare groepskoppelingen. Werk Signal bij naar de meest recente versie om via een koppeling lid te kunen worden van een groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepslink</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van “%1$s” afwijzen?</string>
   <string name="RequestConfirmationDialog_add">Toevoegen</string>
   <string name="RequestConfirmationDialog_deny">Afwijzen</string>
   <!--CropImageActivity-->
@@ -857,12 +867,15 @@
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s heeft je verzoek om lid te worden van de groep toegestaan.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s heeft het verzoek van %2$s om lid te worden van de groep toegestaan.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Je hebt een verzoek van %1$s om lid te worden van de groep goedgekeurd.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Je verzoek om lid te worden van de groep is door een beheerder goedgekeurd.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Een verzoek van %1$s om lid te worden van de groep is goedgekeurd.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Je verzoek om lid te worden van de groep is door een beheerder afgewezen.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s heeft een verzoek van %2$s om lid te worden van de groep afgewezen.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Een verzoek van %1$s om lid te worden van de groep is afgewezen..</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Je hebt je verzoek om lid te worden van de groep ingetrokken.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s heeft het verzoek om lid te worden van de groep ingetrokken.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’</string>
@@ -1183,7 +1196,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UnverifiedSendDialog_send">Verzenden</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Gebruikersnaam</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Aanvragen</string> -->
   <string name="UsernameEditFragment_delete">Wissen</string>
   <string name="UsernameEditFragment_successfully_set_username">Gebruikersnaam succesvol ingesteld.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam succesvol verwijderd.</string>
@@ -1194,7 +1206,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Via je unieke gebruikersnaam kunnen andere Signal-gebruikers je een verzoek sturen om berichten aan je te mogen zenden zonder je telefoonnummer te weten. Een gebruikersnaam instellen is optioneel.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Deze contactpersoon gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>

@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">ចាក់សោអេក្រង់ %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ប្រធានបទ %1$s, ភាសា %2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN ត្រូវបានបង្កើត។</string>
+  <string name="ApplicationPreferencesActivity_hide">លាក់</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d នាទី</item>
@@ -984,7 +985,6 @@
   <string name="UnverifiedSendDialog_send">ផ្ញើ</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">បញ្ជូន</string> -->
   <string name="UsernameEditFragment_delete">លុប</string>
   <string name="UsernameEditFragment_successfully_set_username">កំណត់ឈ្មោះអ្នកប្រើប្រាស់បានជោគជ័យ។</string>
   <string name="UsernameEditFragment_successfully_removed_username">លុបឈ្មោះអ្នកប្រើប្រាស់បានជោគជ័យ។</string>
@@ -994,7 +994,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើប្រាស់មិនអាចចាប់ផ្តើមពីលេខ។</string>
   <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើប្រាស់មិនត្រឹមត្រូវ។</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើប្រាស់ត្រូវនៅចន្លោះតួអក្សរ%1$d និង%2$d ។</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">អ្នកប្រើប្រាស់ Signal ផ្សេងអាចផ្ញើសារស្នើសុំមកកាន់ឈ្មោះអ្នកប្រើប្រាស់តែមួយគត់របស់អ្នក ដោយមិនចាំបាច់ដឹងលេខទូរស័ព្ទរបស់អ្នកទេ។ ការជ្រើសរើសឈ្មោះអ្នកប្រើប្រាស់មួយ គឺជាជម្រើស។ </string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់នៅលើSignal ជំនាន់ចាស់។ សូមប្រាប់គេឲ្យធ្វើបច្ចុប្បន្នភាពកម្មវិធី មុនពេលផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព។ </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់ Signalកំណែថ្មីជាង ជាមួយទម្រង់QRកូដ ដែលមិនត្រូវគ្នា។ សូមធ្វើបច្ចុប្បន្នភាព ដើម្បីប្រៀបធៀប។ </string>

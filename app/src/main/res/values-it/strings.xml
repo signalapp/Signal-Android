@@ -47,6 +47,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">I PIN sono richiesti per il blocco registrazione. Per disabilitare i PIN, disabilita prima il blocco registrazione.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN creato.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabilitato.</string>
+  <string name="ApplicationPreferencesActivity_hide">Nascondi</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Nascondere il promemoria?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -1192,7 +1194,6 @@
   <string name="UnverifiedSendDialog_send">Invia</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nome utente</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Invia</string> -->
   <string name="UsernameEditFragment_delete">Elimina</string>
   <string name="UsernameEditFragment_successfully_set_username">Nome utente impostato con successo.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Nome utente rimosso con successo.</string>
@@ -1203,7 +1204,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Gli altri utenti Signal possono inviare richieste di messaggio al tuo nome utente univoco senza conoscere il tuo numero di telefono. Scegliere un nome utente è facoltativo.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>

@@ -51,6 +51,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Blokada rejestracji wymaga kodów PIN. Aby wyłączyć PIN, wyłącz najpierw blokadę rejestracji.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Utworzono PIN.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Wyłączono PIN</string>
+  <string name="ApplicationPreferencesActivity_hide">Ukryj</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Ukryć przypomnienie?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -629,6 +631,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Wyłączone</string>
   <string name="ShareableGroupLinkDialogFragment__default">Domyślny</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Zresetuj link do grupy</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Wymagaj akceptacji nowych członków, dołączających do grupy przez link, przez administratora.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Na pewno chcesz zresetować link do grupy? Ludzie nie będą mogli dołączyć do grupy, używając obecnego linku.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Kod QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Osoby, które zeskanują ten kod, będą mogły dołączyć do Twojej grupy. Administratorzy wciąż będą musieli zaakceptować nowych członków, jeśli masz włączoną tę opcję.</string>
@@ -1272,7 +1276,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UnverifiedSendDialog_send">Wyślij</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nazwa użytkownika</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Wyślij</string> -->
   <string name="UsernameEditFragment_delete">Usuń</string>
   <string name="UsernameEditFragment_successfully_set_username">Pomyślnie ustawiono nazwę użytkownika.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Pomyślnie usunięto nazwę użytkownika.</string>
@@ -1283,7 +1286,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nazwy użytkowników nie mogą zaczynać się od cyfry.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nazwa użytkownika jest niepoprawna.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć od %1$d do %2$d znaków.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Inni użytkownicy Signal mogą wysyłać prośby o kontakt na Twoją unikalną nazwę użytkownika bez znajomości numeru telefonu. Wybór nazwy użytkownika jest opcjonalny.</string> -->
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nazwy użytkowników w Signal są opcjonalne. Jeśli postanowisz dodać nazwę użytkownika, inni użytkownicy Signal będą mogli Cię po niej znaleźć i skontaktować się z Tobą, nie znając Twojego numeru.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal. Poproś go o aktualizację przed weryfikacją twojego bezpiecznego numeru.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Twój kontakt używa nowszej wersji Signal z niekompatybilnym formatem kodu QR. Zaktualizuj, by porównać.</string>
@@ -1917,6 +1920,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_notifications__mentions">Wzmianki</string>
   <string name="preferences_notifications__notify_me">Powiadamiaj</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Otrzymuj powiadomienia, gdy zostaniesz wspomniany(a) w wyciszonych rozmowach</string>
+  <string name="preferences_setup_a_username">Ustaw nazwę użytkownika</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

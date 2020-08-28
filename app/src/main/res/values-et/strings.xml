@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koode on registreerimisluku jaoks vaja. PIN-koodide keelamiseks keela kõigepealt registreerimislukk.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-kood loodud.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kood keelatud.</string>
+  <string name="ApplicationPreferencesActivity_hide">Peida</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -1118,7 +1119,6 @@ Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="UnverifiedSendDialog_send">Saada</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Kasutajanimi</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Postita</string> -->
   <string name="UsernameEditFragment_delete">Kustuta</string>
   <string name="UsernameEditFragment_successfully_set_username">Kasutajanimi edukalt määratud.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Kasutajanimi edukalt eemaldatud.</string>
@@ -1129,7 +1129,6 @@ Uuenda viimasele versioonile, et selle grupiga lingi abil liituda.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kasutajanimed ei tohi alata numbriga.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Teised Signali kasutajad saavad saata vestluskutseid sinu unikaalsele kasutajanimele, ilma et teavad sinu telefoninumbrit. Kasutajanime valimine on valikuline.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>

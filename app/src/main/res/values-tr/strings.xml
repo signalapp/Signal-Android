@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kayıt kilidi için PIN gereklidir. PIN\'leri devre dışı bırakmak için, lütfen ilk önce kayıt kilidini devre dışı bırakın.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN oluşturuldu.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN devre dışı.</string>
+  <string name="ApplicationPreferencesActivity_hide">Gizle</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d dakika</item>
@@ -1031,7 +1032,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="UnverifiedSendDialog_send">Gönder</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Kullanıcı adı</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Gönder</string> -->
   <string name="UsernameEditFragment_delete">Sil</string>
   <string name="UsernameEditFragment_successfully_set_username">Kullanıcı adı başarıyla ayarlandı.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Kullanıcı adı başarıyla kaldırıldı.</string>
@@ -1042,7 +1042,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kullanıcı adları rakam ile başlayamaz.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kullanıcı adı geçersiz.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kullanıcı adları %1$d ve %2$d karakter aralığında olmalıdır.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Diğer Signal kullanıcıları telefon numaranızı bilmeden eşsiz kullanıcı adınıza iletiler gönderebilirler. Kullanıcı adı seçimi isteğe bağlıdır.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişiniz Signal\'in eski bir sürümünü kullanmakta. Güvenlik numaranızı doğrulamadan önce uygulamayı güncellemelerini rica edin.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişiniz Signal\'in uyumsuz karekod formatına sahip yeni bir sürümünü kullanıyor. Karşılaştırmak için lütfen güncelleyin.</string>

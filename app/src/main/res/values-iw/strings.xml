@@ -51,6 +51,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">קודי PIN נדרשים עבור נעילת הרשמה. כדי להשבית קודי PIN, אנא השבת תחילה נעילת הרשמה.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN נוצר.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN הושבת.</string>
+  <string name="ApplicationPreferencesActivity_hide">הסתר</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">דקה %d</item>
@@ -1280,7 +1281,6 @@
   <string name="UnverifiedSendDialog_send">שלח</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">שם משתמש</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">הגש</string> -->
   <string name="UsernameEditFragment_delete">מחק</string>
   <string name="UsernameEditFragment_successfully_set_username">שם משתמש נקבע בהצלחה.</string>
   <string name="UsernameEditFragment_successfully_removed_username">שם משתמש הוסר בהצלחה.</string>
@@ -1291,7 +1291,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
   <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">משתמשי Signal אחרים יכולים לשלוח בקשות התכתבות אל שם המשתמש הייחודי שלך בלי לדעת את מספר הטלפון שלך. בחירת שם משתמש היא רשותית.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של Signal. אנא בקש ממנו לעדכן לפני וידוא מספר הביטחון שלך.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של Signal עם תסדיר בלתי־תואם של קוד QR. אנא עדכן כדי להשוות.</string>

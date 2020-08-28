@@ -47,6 +47,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs sind für die Registrierungssperre erforderlich. Zum Deaktivieren deiner PIN musst du daher zuerst auch die Registrierungssperre deaktivieren.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN erstellt.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktiviert.</string>
+  <string name="ApplicationPreferencesActivity_hide">Ausblenden</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Erinnerung ausblenden?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d Minute</item>
@@ -579,6 +581,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Deaktiviert</string>
   <string name="ShareableGroupLinkDialogFragment__default">Standard</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Gruppen-Link zurücksetzen</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Für Beitrittsanfragen über den Gruppen-Link einen Admin zum Bestätigen erforderlich machen.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Möchtest du den Gruppen-Link wirklich zurücksetzen? Über den derzeitigen Link wird der Gruppe dann niemand mehr beitreten können.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-Code</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen, die diesen Code einscannen, können deiner Gruppe beitreten. Neue Mitglieder müssen jedoch von einem Admin bestätigt werden, falls du diese Einstellung eingeschaltet hast.</string>
@@ -1181,7 +1185,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnverifiedSendDialog_send">Senden</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Benutzername</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Übermitteln</string> -->
   <string name="UsernameEditFragment_delete">Löschen</string>
   <string name="UsernameEditFragment_successfully_set_username">Benutzername erfolgreich festgelegt.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Benutzername erfolgreich entfernt.</string>
@@ -1192,7 +1195,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Benutzernamen dürfen nicht mit einer Ziffer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Benutzername ist ungültig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Benutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andere Signal-Nutzer können Unterhaltungsanfragen an deinen eindeutigen Benutzernamen senden, ohne deine Rufnummer zu kennen. Die Wahl eines Benutzernamens ist optional.</string> -->
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Benutzernamen sind bei Signal optional. Falls du dich dafür entscheidest, einen Benutzernamen zu erstellen, werden andere Nutzer dich über diesen finden und kontaktieren können, ohne deine Rufnummer zu kennen.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Signal-Version. Bitte ihn, Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Signal-Version mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -1806,6 +1809,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_notifications__mentions">Erwähnungen</string>
   <string name="preferences_notifications__notify_me">Mich benachrichtigen</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Benachrichtigungen erhalten, wenn du in stummgeschalteten Unterhaltungen erwähnt wirst</string>
+  <string name="preferences_setup_a_username">Benutzername einrichten</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

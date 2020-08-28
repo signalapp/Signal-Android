@@ -44,6 +44,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN dibuat.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN Ternonaktifkan.</string>
+  <string name="ApplicationPreferencesActivity_hide">Sembunyikan</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%dmenit</item>
@@ -938,7 +939,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="UnverifiedSendDialog_send">Kirim</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nama Pengguna</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Kirimkan</string> -->
   <string name="UsernameEditFragment_delete">Hapus</string>
   <string name="UsernameEditFragment_successfully_set_username">Nama pengguna berhasil diterapkan.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Nama pengguna berhasil dihapus.</string>
@@ -948,7 +948,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nama pengguna tidak boleh dimulai dengan angka.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nama pengguna tidak valid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nama pengguna harus terdiri antara %1$d dan %2$d karakter.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Pengguna Signal lain dapat mengirim undangan pesan ke nama pengguna Anda tanpa mengetahui nomor telepon Anda. Nama pengguna bersifat opsional.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak Anda menjalankan versi lama Signal. Mintalah mereka untuk memperbarui sebelum memverifikasi nomor keamanan Anda.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak Anda menjalankan versi Signal yang lebih baru dengan format kode QR yang tidak kompatibel. Silahkan perbarui untuk membandingkan.</string>

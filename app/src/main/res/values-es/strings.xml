@@ -47,6 +47,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">El bloqueo de registro necesita el PIN. Desactiva primero el bloqueo de registro y después el PIN.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN creado.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
+  <string name="ApplicationPreferencesActivity_hide">Ocultar</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">¿Ocultar recordatorio?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -579,9 +581,11 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Desactivada</string>
   <string name="ShareableGroupLinkDialogFragment__default">Por defecto</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Restablecer enlace del grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un* admin debe aprobar l*s nuev*s participantes que se unan vía enlace.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para copartir el grupo? Si lo restableces, nadie podrá unirse al grupo usando el enlace actual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escanéen este código podrán unirse al grupo. L*s admins deberán aprobar nuev*s participantes si han activado esa opción.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escanéen este código podrán unirse al grupo. L*s admins deberán aprobar nuev*s participantes si se ha activado esa opción.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Compartir código</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">¿Deseas retirar la invitación enviada a %1$s?</string>
@@ -613,7 +617,7 @@
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">¿Agregar a %1$s al grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">¿Denegar la solicitud de %1$s?</string>
-  <string name="RequestConfirmationDialog_add">Añadir</string>
+  <string name="RequestConfirmationDialog_add">Agregar</string>
   <string name="RequestConfirmationDialog_deny">Denegar</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del grupo</string>
@@ -1192,7 +1196,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Alias (nombre de usuari*)</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Solicitar</string> -->
   <string name="UsernameEditFragment_delete">Eliminar</string>
   <string name="UsernameEditFragment_successfully_set_username">Alias establecido con éxito.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Alias eliminado con éxito.</string>
@@ -1203,7 +1206,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">El alias no puede comenzar por un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Alias no válido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">El alias debe contener entre %1$d y %2$d caracteres.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Otras personas en Signal pueden enviarte solicitudes de chat a tu alias único sin conocer tu número de teléfono. Configurar un alias es opcional.</string> -->
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Los alias de Signal (o nombre de usuari*) son opcionales. Si decides crear un alias, otras personas podrán encontrarte en Signal por ese nombre y ponerse en contacto contigo sin conocer tu número de teléfono.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Esta persona usa una versión antigua de Signal. Por favor, pídele que actualice antes de verificar tus cifras de seguridad.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Esta persona usa una versión de Signal con un formato de código QR incompatible. Por favor, pídele que actualice para verificar.</string>
@@ -1817,6 +1820,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_notifications__mentions">Menciones</string>
   <string name="preferences_notifications__notify_me">Notificarme</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Recibe notificaciones si te mencionan en un chat silenciado</string>
+  <string name="preferences_setup_a_username">Selecciona un alias</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2210,6 +2214,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupLinkBottomSheet_qr_code">Código QR</string>
   <string name="GroupLinkBottomSheet_share">Compartir</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado al portapapeles</string>
-  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">La función de compartir por enlace está inactiva</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Actualmente, el enlace no está activo</string>
   <!--EOF-->
 </resources>

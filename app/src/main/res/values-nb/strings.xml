@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder er påkrevet for registreringslås. For å deaktivere PIN-koder, vær vennlig å deaktivere registreringslås.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN laget.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kode deaktivert.</string>
+  <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -1071,7 +1072,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UnverifiedSendDialog_send">Send</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Brukernavn</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Send inn</string> -->
   <string name="UsernameEditFragment_delete">Slett</string>
   <string name="UsernameEditFragment_successfully_set_username">Lagret brukernavnet.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Brukernavnet er fjernet.</string>
@@ -1082,7 +1082,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andre Signal-brukere kan sende meldingsforespørsler til ditt unike brukernavn uten å vite telefonnummeret ditt. Å velge et brukernavn er valgfritt.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>

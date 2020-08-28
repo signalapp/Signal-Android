@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN estas bezonata por la bloko de registriĝo. Por malŝalti la uzon de PIN, unue vi devas malŝati vian blokon de registriĝo.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN kreiĝis.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN malŝaltita.</string>
+  <string name="ApplicationPreferencesActivity_hide">Kaŝi</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -1120,7 +1121,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UnverifiedSendDialog_send">Sendi</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Uzantnomo</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Sendi</string> -->
   <string name="UsernameEditFragment_delete">Forigi</string>
   <string name="UsernameEditFragment_successfully_set_username">Uzantnomo sukcese difinita.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Uzantnomo sukcese forigita.</string>
@@ -1131,7 +1131,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero</string>
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Aliaj Signal-uzantoj povas sendi mesaĝopetojn al via unika uzantnomo sen scio de via telefonnumero. Elekto de uzantnomo estas nedeviga.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Via kontakto uzas malnovan Signal-an version. Bonvolu peti la sendinton ĝisdatigi, antaŭ ol kontroli vian sekurigan numeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Via kontakto uzas pli novan Signal-an version, kiu uzas nekongruan rapidrespondan (QR) kodon. Bonvolu ĝisdatigi por kompari ilin.</string>

@@ -47,6 +47,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-et janë të domosdoshëm për kyçje regjistrimi. Për të çaktivizuar PIN-e, ju lutemi, së pari çaktivizoni kyçjeje regjistrimi.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-i u krijua.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
+  <string name="ApplicationPreferencesActivity_hide">Fshihe</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Të fshihet kujtuesi?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutë</item>
@@ -213,6 +215,8 @@
   <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">S’mund të dërgoni mesazhe te ky grup, ngaqë s’jeni më anëtar.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Kërkesa juaj për t’u bërë pjesë e grupit i është dërguar përgjegjësit të grupit. Kur të veprohet prej tij, do të njoftoheni.</string>
+  <string name="ConversationActivity_cancel_request">Anuloje Kërkesën</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Signal-in të përdorë mikrofonin tuaj.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Signal-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Që të bëjë thirrje me %s, Signal-i lyp leje përdorimi të Mikrofonit dhe Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
@@ -338,6 +342,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Bëni foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Zgjidhni prej galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Hiqe foton</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Bërja e një fotografie lyp leje mbi kamerën.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Tani</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -400,6 +405,7 @@
   <string name="GroupManagement_access_level_anyone">Këdo</string>
   <string name="GroupManagement_access_level_all_members">Krejt anëtarët</string>
   <string name="GroupManagement_access_level_only_admins">Vetëm përgjegjësit</string>
+  <string name="GroupManagement_access_level_no_one">Asnjë</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Ftesa u dërgua</item>
@@ -415,9 +421,16 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">S’ka lidhje për paraparje</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Kjo lidhje grupi s’është aktive</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d anëtar</item>
+    <item quantity="other">%1$d anëtarë</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string>
+  <string name="PendingMembersActivity_requests">Kërkesa</string>
+  <string name="PendingMembersActivity_invites">Ftesa</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">S’keni ftesa pezull.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Ftesa nga anëtarë të tjerë të grupit</string>
@@ -434,6 +447,11 @@
     <item quantity="other">Gabim gjatë shfuqizimit të ftesave</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Kërkesa anëtarësie pezull</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">S’ka kërkesa anëtarësie për t’u shfaqur.</string>
+  <string name="RequestingMembersFragment_explanation">Persona në këtë listë po rreken të bëhen pjesë e këtij grupi përmes lidhjes së ndashme të grupit.</string>
+  <string name="RequestingMembersFragment_added_s">U shtua \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">U hodh poshtë \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">U bë</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ky përdorues s’mund të shtohet te grupe të dikurshëm.</string>
@@ -471,10 +489,12 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zhdukje mesazhesh</string>
   <string name="ManageGroupActivity_pending_group_invites">Ftesa për në grupe pezull</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Kërkesa &amp; ftesa anëtarësie</string>
   <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
   <string name="ManageGroupActivity_edit_group_info">Përpunoni të dhëna grupi</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Zgjidhni kush mund të përpunojë emër grupi, avatar dhe mesazhe që zhduken.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Zgjidhni kush mund të shtojë ose ftojë anëtarë të rinj.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Lidhje grupi e ndashme</string>
   <string name="ManageGroupActivity_block_group">Blloko grup</string>
   <string name="ManageGroupActivity_unblock_group">Zhbllokoje grupin</string>
   <string name="ManageGroupActivity_leave_group">Braktise grupin</string>
@@ -553,11 +573,17 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CustomNotificationsDialogFragment__disabled">E çaktivizuar</string>
   <string name="CustomNotificationsDialogFragment__default">Parazgjedhje</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Lidhje grupi e ndashme</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administroni &amp; ndani me të tjerë</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Lidhje grupi</string>
   <string name="ShareableGroupLinkDialogFragment__share">Ndajeni Me të Tjerë</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Kërkesa anëtarësie</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Miratoni anëtarë të rinj</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">E aktivizuar</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">E çaktivizuar</string>
   <string name="ShareableGroupLinkDialogFragment__default">Parazgjedhje</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">Kod QR</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Doni të shfuqizohet ftesa që u dërgua te %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -582,7 +608,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupi që mund të ndahen me të tjerë. Që të bëheni pjesë e këtij grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Të shtohet “%1$s” te grupi?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Të hidhet poshtë kërkesa prej “%1$s”?</string>
   <string name="RequestConfirmationDialog_add">Shtoje</string>
+  <string name="RequestConfirmationDialog_deny">Hidhe poshtë</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grupi</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -1153,7 +1182,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UnverifiedSendDialog_send">Dërgoje</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Emër përdoruesi</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Parashtroje</string> -->
   <string name="UsernameEditFragment_delete">Fshije</string>
   <string name="UsernameEditFragment_successfully_set_username">Emri i përdoruesit u caktua me sukses.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Emri i përdoruesit u hoq me sukses.</string>
@@ -1164,7 +1192,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Emrat e përdoruesve s’mund të fillojnë me një numër.</string>
   <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Përdorues të tjerë të Signal-it mund të dërgojnë kërkesa mesazhi te emri juaj unik i përdoruesit, pa ditur numrin tuaj të telefonit. Zgjedhja e një emri përdoruesi është në dëshirën tuaj.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Signal-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
@@ -2159,6 +2186,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_remove">Hiqe</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">U kopjua në të papastër!</string>
   <string name="GroupRecipientListItem_admin">Përgjegjës</string>
+  <string name="GroupRecipientListItem_deny_description">Hidhe poshtë</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupe të Dikurshëm vs. Grupesh të Rinj</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Ç’janë Grupet e Dikurshëm?</string>

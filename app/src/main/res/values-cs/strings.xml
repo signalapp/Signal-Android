@@ -51,6 +51,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je vyžadován pro zámek registrace. Nejprve prosím zakažte zámek registrace, aby bylo možné PIN deaktivovat.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN vytvořen.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN zakázán</string>
+  <string name="ApplicationPreferencesActivity_hide">Skrýt</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Schovat upomínku?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -219,6 +221,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Nemohu nahrávat audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Do této skupiny nemůžete zasílat zprávy, jelikož už nejste jejím členem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Není zde žádná aplikace, která by dokázala zpracovat tento odkaz.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Váš požadavek na připojení ke skupině byl zaslán administrátorovi. Budete upozorněn(a) jakmile zareaguje.</string>
+  <string name="ConversationActivity_cancel_request">Zrušit požadavek</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pro posílání audio zpráv potřebuje Signal přístup k mikrofonu.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal potřebuje oprávnění pro přístup k mikrofonu, aby mohl poslat audio zprávu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Mikrofon\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal potřebuje oprávnění pro přístup k mikrofonu a fotoaparátu, abyste mohli volat %s, ale tato oprávnění jsou nyní zakázána. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Mikrofon\" a \"Fotoaparát\".</string>
@@ -366,6 +370,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Pořídit fotografii</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vybrat z galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Odebrat fotografii</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Pořizování fotografii vyžaduje povolení přístupu ke kameře</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teď</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -428,6 +433,7 @@
   <string name="GroupManagement_access_level_anyone">Kdokoli</string>
   <string name="GroupManagement_access_level_all_members">Všichni členové</string>
   <string name="GroupManagement_access_level_only_admins">Pouze správci</string>
+  <string name="GroupManagement_access_level_no_one">Nikdo</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Pozvánka odeslána</item>
@@ -445,9 +451,18 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Není dostupný žádný náhled odkazu</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Tento odkaz na skupinu není aktivní</string>
+  <string name="LinkPreviewView_domain_date">%1$s . %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$dčlen</item>
+    <item quantity="few">%1$d členové</item>
+    <item quantity="many">%1$d členů</item>
+    <item quantity="other">%1$d členů</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string>
+  <string name="PendingMembersActivity_requests">Požadavky</string>
+  <string name="PendingMembersActivity_invites">Pozvánky</string>
   <string name="PendingMembersActivity_people_you_invited">Osoby, které jste pozvali</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Nemáte žádné nevyřízené pozvánky.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Pozvánky od ostatních členů skupiny</string>
@@ -468,6 +483,8 @@
     <item quantity="other">Chyba při rušení pozvání</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Čekající žádosti o členství</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Ždáné žádosti o členství k zobrazení</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hotovo</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tohoto člověka nemůžete přidat do zastaralých skupin.</string>
@@ -1214,7 +1231,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="UnverifiedSendDialog_send">Odeslat</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Uživatelské jméno</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Odeslat</string> -->
   <string name="UsernameEditFragment_delete">Smazat</string>
   <string name="UsernameEditFragment_successfully_set_username">Uživatelské jméno úspěšně nastaveno.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Uživatelské jméno úspěšně odstraněno.</string>
@@ -1225,7 +1241,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uživatelská jména nesmí začínat číslicí.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uživatelské jméno je neplatné.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uživatelská jména musí mít %1$d až %2$dznaků.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Ostatní uživatelé Signalu mohou poslat požadavek na zprávu na Vaše jedinečné uživatelské jméno, aniž by znali Vaše telefonní číslo. Použití uživatelského jména je volitelné.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou bezpečnostních kódů jej prosím požádejte, aby si aplikaci aktualizoval.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi aplikace Signal s nekompatibilním formátem QR kódu. Prosím aktualizujte svou verzi, abyste mohli QR kódy porovnat.</string>

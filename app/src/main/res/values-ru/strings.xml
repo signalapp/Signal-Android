@@ -51,6 +51,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коды необходимы для блокировки регистрации. Чтобы отключить PIN-коды, пожалуйста, сначала отключите блокировку регистрации.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-код создан.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-код отключён.</string>
+  <string name="ApplicationPreferencesActivity_hide">Скрыть</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Скрыть напоминание?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минута</item>
@@ -629,6 +631,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Отключена</string>
   <string name="ShareableGroupLinkDialogFragment__default">По умолчанию</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ссылка на группа была сброшена</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Требовать принятия администратором новых участников, присоединяющихся по ссылке на группу.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Вы уверены, что хотите сбросить ссылку на группу? Люди больше не смогут присоединиться к группе, используя текущую ссылку.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-код</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Люди, которые сканируют этот код, смогут присоединиться к вашей группе. Администраторам всё равно будет необходимо принять новых участников, если у вас включена та настройка.</string>
@@ -1273,7 +1277,6 @@
   <string name="UnverifiedSendDialog_send">Отправить</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Имя пользователя</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Отправить</string> -->
   <string name="UsernameEditFragment_delete">Удалить</string>
   <string name="UsernameEditFragment_successfully_set_username">Имя пользователя успешно установлено.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Имя пользователя успешно удалено.</string>
@@ -1284,7 +1287,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Имена пользователей не могут начинаться с цифр.</string>
   <string name="UsernameEditFragment_username_is_invalid">Имя пользователя недействительно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Имена пользователей должны содержать от %1$d до %2$d символов.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Другие пользователи Signal могут отправлять запросы на общение вашему уникальному имени пользователя, не зная вашего номера телефона. Выбор имени пользователя необязателен.</string> -->
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Имена пользователей в Signal необязательны. Если вы решите создать имя пользователя, другие пользователи Signal смогут найти вас по этому имени пользователя и связаться с вами, не зная вашего номера телефона.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Пожалуйста, попросите его обновиться, чтобы подтвердить код безопасности.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версия Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
@@ -1918,6 +1921,7 @@
   <string name="preferences_notifications__mentions">Упоминания</string>
   <string name="preferences_notifications__notify_me">Уведомлять меня</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключённым звуком</string>
+  <string name="preferences_setup_a_username">Настройте имя пользователя</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

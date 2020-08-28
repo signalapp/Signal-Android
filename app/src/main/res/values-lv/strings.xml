@@ -976,7 +976,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UnverifiedSendDialog_send">Sūtīt</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Lietotājvārds</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Iesniegt</string> -->
   <string name="UsernameEditFragment_delete">Dzēst</string>
   <string name="UsernameEditFragment_successfully_set_username">Lietotājvārds ir sekmīgi iestatīts.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Lietotājvārds ir sekmīgi noņemts.</string>
@@ -986,7 +985,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Lietotājvārdi nevar sākties ar skaitli.</string>
   <string name="UsernameEditFragment_username_is_invalid">Lietotājvārds nav derīgs.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Lietotājvārdiem jābūt starp %1$d un %2$d rakstzīmēm.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Citi Signal lietotāji var nosūtīt ziņu pieprasījumus Jūsu unikālajam lietotājvārdam, nezinot Jūsu tālruņa numuru. Lietotājvārda izvēle nav obligāta.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsu kontaktpersona izmanto novecojušu Signal versiju. Pirms apstipriniet drošības kodu,  palūdziet, lai to aktualizē.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsu kontaktpersona izmanto jaunāku Signal versiju, ar nesaderīgu QR koda formātu. Lūdzu atjaunojiet Signal lietotni savā ierīcē, lai turpinātu.</string>

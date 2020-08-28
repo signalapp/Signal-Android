@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Un NIP est requis pour le blocage de l’inscription. Pour désactiver le NIP, veuillez d’abord désactiver le blocage de l’inscription.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Le NIP a été créé.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Le NIP a été désactivé.</string>
+  <string name="ApplicationPreferencesActivity_hide">Cacher</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
@@ -1183,7 +1184,6 @@
   <string name="UnverifiedSendDialog_send">Envoyer</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nom d’utilisateur</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Envoyer</string> -->
   <string name="UsernameEditFragment_delete">Supprimer</string>
   <string name="UsernameEditFragment_successfully_set_username">Le nom d’utilisateur a été défini avec succès.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Le nom d’utilisateur a été supprimé avec succès.</string>
@@ -1194,7 +1194,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Les noms d’utilisateur ne peuvent pas commencer par un numéro.</string>
   <string name="UsernameEditFragment_username_is_invalid">Le nom d’utilisateur est invalide.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Les noms d’utilisateur doivent comporter entre %1$d et %2$d caractères.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Les autres utilisateurs de Signal peuvent envoyer des demandes de messages à votre nom d’utilisateur unique sans connaître votre numéro de téléphone. Choisir un nom d’utilisateur est facultatif.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact utilise une ancienne version de Signal. Veuillez lui demander de la mettre à jour avant de confirmer votre numéro de sécurité.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal dont le format de code QR est incompatible. Veuillez mettre Signal à jour pour comparer.</string>

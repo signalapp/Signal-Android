@@ -51,6 +51,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Mae angen PIN ar gyfer y clo cofrestru. I analluogi\'r PIN, analluogwch y clo cofrestru yn gyntaf.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Crëwyd y PIN.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN wedi\'i analluogi</string>
+  <string name="ApplicationPreferencesActivity_hide">Cuddio</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d munud</item>
@@ -1203,7 +1204,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="UnverifiedSendDialog_send">Anfon</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Enw defnyddiwr</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Cyflwyno</string> -->
   <string name="UsernameEditFragment_delete">Dileu</string>
   <string name="UsernameEditFragment_successfully_set_username">Wedi gosod enw defnyddiwr yn llwyddiannus.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Wedi tynnu enw defnyddiwr yn llwyddiannus.</string>
@@ -1214,7 +1214,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nid yw enw defnyddiwr yn gallu cychwyn gyda rhif.</string>
   <string name="UsernameEditFragment_username_is_invalid">Mae\'r enw defnyddiwr yn annilys.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Rhaid i enwau defnyddwyr fod rhwng %1$d a %2$d nod.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Gall defnyddwyr eraill Signal anfon cais am neges i\'ch enw defnyddiwr unigryw heb wybod beth yw eich rhif ffôn. Mae dewis enw defnyddiwr yn ddewisol.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mae eich cyswllt yn rhedeg hen fersiwn o Signal. Gofynnwch iddynt ddiweddaru cyn gwirio eich rhif diogelwch.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mae eich cyswllt yn rhedeg fersiwn newydd o Signal gyda fformat cod QR anghydnaws. Diweddarwch i gymharu.</string>

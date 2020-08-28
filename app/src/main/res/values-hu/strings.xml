@@ -47,6 +47,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">A regisztrációs zárhoz PIN kódra van szükség. A PIN kód letiltásához előbb ki kell kapcsolni a regisztrációs zárat.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN kód létrehozva.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN letiltva.</string>
+  <string name="ApplicationPreferencesActivity_hide">Elrejtés</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Emlékeztető elrejtése?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d perc</item>
@@ -214,6 +216,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nem küldhetsz ebbe a csoportba üzenetet, mivel nem vagy a tagja.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nem található eszközödön megfelelő alkalmazás a hivatkozás kezeléséhez.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">A csatlakozási kérésed el lett küldve a csoportadmin részére. Értesítést fogsz kapni, amint reagálnak rá.</string>
+  <string name="ConversationActivity_cancel_request">Kérés törlése</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Hangüzenetek küldéséhez engedélyezd, hogy a Signal hozzáférhessen a mikrofonhoz!</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">A Signal-nak szüksége van a Mikrofon engedélyre, hogy hangüzeneteket küldhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd az \"Mikrofon\"-t.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">A Signal-nak szüksége van Mikrofon és Kamera engedélyekre %s felhívásához, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Mikrofon\"-t és a \"Kamera\"-t.</string>
@@ -339,6 +343,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Fotó készítése</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Válassz galériából</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fotó eltávolítása</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Kép készítéséhez szükség van a kamera-jogosultságra.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Most</string>
   <string name="DateUtils_minutes_ago">%dp</string>
@@ -401,6 +406,7 @@
   <string name="GroupManagement_access_level_anyone">Bárki</string>
   <string name="GroupManagement_access_level_all_members">Összes tag</string>
   <string name="GroupManagement_access_level_only_admins">Csak adminisztrátorok</string>
+  <string name="GroupManagement_access_level_no_one">Senki</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Meghívó elküldve</item>
@@ -416,9 +422,16 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nem érhető el előnézeti kép</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d tag</item>
+    <item quantity="other">%1$d tag</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
+  <string name="PendingMembersActivity_requests">Kérések</string>
+  <string name="PendingMembersActivity_invites">Meghívók</string>
   <string name="PendingMembersActivity_people_you_invited">Általad meghívott személyek</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Nincsenek függőben lévő meghívóid.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Más tagok csoportmeghívói</string>
@@ -435,6 +448,11 @@
     <item quantity="other">Nem sikerült visszavonni a meghívókat</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Függőben lévő tagsági kérések</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Nincs megjeleníthető tagsági kérés</string>
+  <string name="RequestingMembersFragment_explanation">A listán szereplő felhasználók megosztható csoporthivatkozások használatával szeretnének csatlakozni.</string>
+  <string name="RequestingMembersFragment_added_s">\"%1$s\" hozzáadva</string>
+  <string name="RequestingMembersFragment_denied_s">\"%1$s\" elutasítva</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Befejezés</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ez a személyt nem adható régi típusú csoporthoz.</string>
@@ -469,10 +487,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Eltűnő üzenetek</string>
   <string name="ManageGroupActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Tagsági kérések és meghívók</string>
   <string name="ManageGroupActivity_add_members">Tagok hozzáadása</string>
   <string name="ManageGroupActivity_edit_group_info">Csoportinfó szerkesztése</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Add meg, hogy ki változtathatja meg a csoport nevét, képét és az eltűnő üzenetekkel kapcsolatos beállításokat!</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Add meg, hogy ki adhat hozzá vagy hívhat meg új tagokat!</string>
+  <string name="ManageGroupActivity_sharable_group_link">Megosztható csoporthivatkozás</string>
   <string name="ManageGroupActivity_block_group">Csoport letiltása</string>
   <string name="ManageGroupActivity_unblock_group">Csoport blokkolásának feloldása</string>
   <string name="ManageGroupActivity_leave_group">Kilépés a csoportból</string>
@@ -551,11 +571,23 @@
   <string name="CustomNotificationsDialogFragment__disabled">Letiltva</string>
   <string name="CustomNotificationsDialogFragment__default">Alapértelmezett</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Megosztható csoporthivatkozás</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Kezelés és megosztás</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Csoporthivatkozás</string>
   <string name="ShareableGroupLinkDialogFragment__share">Megosztás</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Hivatkozás cseréje</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Tagsági kérések</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Új tagok jóváhagyása</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Engedélyezve</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Letiltva</string>
   <string name="ShareableGroupLinkDialogFragment__default">Alapértelmezett</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Csoporthivatkozás cseréje</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Admin általi jóváhagyás elvárása csoporthivatkozással csatlakozó tagok felvételéhez.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Biztosan lecseréled a csoporthivatkozást? Utána már nem lehet a jelenlegi hivatkozás használatával csatlakozni a csoporthoz.</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR kód</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">A kódot beolvasó felhasználók csatlakozhatnak a csoporthoz. Az adminok jóváhagyására továbbra is szükség lesz, amennyiben ez a beállítás be van kapcsolva.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Kód megosztása</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Biztosan vissza szeretnéd vonni a %1$s részére küldött meghívót?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -565,16 +597,29 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Már tag vagy</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Csatlakozás</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Csatlakozási igény</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nem sikerült belépni a csoportba. Kérlek próbáld később!</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Hálózati hiba történt.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nem sikerült a csoport információ lekérése. Kérlek próbáld újra később!</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Szeretnél csatlakozni a csoporthoz? Ezzel profilod láthatóvá is válik.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">A csoportba történő belépéshez a csoport egy adminjának jóváhagyása szükséges. A csatlakozási igény elküldésével neved és képed láthatóvá válik a csoport tagjai számára.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Csoport · %1$d tag</item>
+    <item quantity="other">Csoport · %1$d tag</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">A csoporthivatkozások hamarosan megérkeznek</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Frissítsd a Signalt a csoporthivatkozások használatához</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">A csoporthivatkozások általi belépést egyelőre nem támogatja a Signal. Ez a funkció egy jövőbeli frissítéssel lesz elérhető.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Az általad használt verziójú Signal nem támogatja a megosztható csoporthivatkozásokat. Frissíts a legújabb verzióra, hogy a hivatkozás használatával csatlakozhass ehhez a csoporthoz!</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal frissítése</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">A csoporthivatkozás érvénytelen</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" hozzáadása a csoporthoz?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kérésének elutasítása?</string>
   <string name="RequestConfirmationDialog_add">Hozzáadás</string>
+  <string name="RequestConfirmationDialog_deny">Elutasítás</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Csoport avatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -804,14 +849,36 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">A csoporttagságot szerkeszthetők köre megváltozott erre: \"%1$s\"</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_sharable_group_link">Bekapcsoltad a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Bekapcsoltad a megosztható csoporthivatkozást adminisztrátori jóváhagyással.</string>
   <string name="MessageRecord_you_turned_off_the_sharable_group_link">Kikapcsoltad a megosztható csoporthivatkozást.</string>
   <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s bekapcsolta a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s bekapcsolta a megosztható csoporthivatkozást adminisztrátori jóváhagyással.</string>
   <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s kikapcsolta a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">A megosztható csoporthivatkozás be lett kapcsolva.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">A megosztható csoporthivatkozás be lett kapcsolva adminisztrátori jóváhagyással.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">A megosztható csoporthivatkozás ki lett kapcsolva.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Lecserélted a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s lecserélte a megosztható csoporthivatkozást.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">A megosztható csoporthivatkozás le lett cserélve.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Beléptél a csoportba egy megosztható csoporthivatkozás használatával.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s belépett a csoportba egy megosztható csoporthivatkozás használatával.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Elküldted csatlakozási igényedet a csoportnak.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s csatlakozni szeretne megosztható csoporthivatkozás használatával.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s jóváhagyta csatlakozási igényedet a csoporthoz.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s jóváhagyott egy csatlakozási igényt tőle: %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Jóváhagytál egy csatlakozási igényt tőle: %1$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Csatlakozási igényedet elfogadták.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s csatlakozási igénye jóvá lett hagyva.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Csatlakozási igényedet egy admin elutasította.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s elutasította %2$s csatlakozási igényét.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s csatlakozási igényét elutasították.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Visszavontad csatlakozási igényedet.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s visszavonta csatlakozási igényét.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Biztonsági számodat ellenőrzöttnek jelölted a következővel: %s</string>
@@ -1131,7 +1198,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UnverifiedSendDialog_send">Küldés</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Felhasználónév</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Küldés</string> -->
   <string name="UsernameEditFragment_delete">Törlés</string>
   <string name="UsernameEditFragment_successfully_set_username">A felhasználónév beállítása sikeres volt.</string>
   <string name="UsernameEditFragment_successfully_removed_username">A felhasználónév eltávolítása sikeres volt.</string>
@@ -1142,7 +1208,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">A felhasználónevek nem kezdődhetnek számmal.</string>
   <string name="UsernameEditFragment_username_is_invalid">A felhasználónév érvénytelen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">A felhasználóneveknek %1$d és %2$d db karakter közé kell esniük.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Más Signal felhasználók a telefonszámod ismerete nélkül, mindössze a felhasználóneved alapján is küldhetnek számodra üzenetkérést. A felhasználónév kiválasztása nem kötelező.</string> -->
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">A Signalban nem kötelező felhasználónevet választani. Ha mégis beállítod, akkor más felhasználók a telefonszámod ismerete nélkül, akár név alapján is megtalálhatnak.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítse azt biztonsági számotok ellenőrzése előtt!</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja, amelynek QR kód formátuma nem kompatibilis a te verzióddal. Kérlek frissíts az összehasonlításhoz!</string>
@@ -1757,6 +1823,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_notifications__mentions">Említések</string>
   <string name="preferences_notifications__notify_me">Értesítsen</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Értesítsen, ha egy lenémított beszélgetésben megemlítenek</string>
+  <string name="preferences_setup_a_username">Felhasználónév beállítása</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2134,6 +2201,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RecipientBottomSheet_remove">Eltávolítás</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Vágólapra másolva</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <string name="GroupRecipientListItem_approve_description">Jóváhagyás</string>
+  <string name="GroupRecipientListItem_deny_description">Elutasítás</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Régi vs. új csoportok</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Mik azok a régi típusú csoportok?</string>
@@ -2142,8 +2211,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsLearnMore_paragraph_2">A régi típusú csoportokat nem lehet új típusúvá alakítani, viszont lehetőséged van egy új típusú csoport létrehozására a régivel megegyező csoporttagsággal.</string>
   <string name="GroupsLearnMore_paragraph_3">Az új típusú csoport létrehozásához az összes tagnak frissítenie kell a Signal legújabb verziójára.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Megosztás Signallal</string>
   <string name="GroupLinkBottomSheet_copy">Másolás</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR kód</string>
   <string name="GroupLinkBottomSheet_share">Megosztás</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Vágólapra másolva</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">A hivatkozás jelenleg nem aktív</string>
   <!--EOF-->
 </resources>

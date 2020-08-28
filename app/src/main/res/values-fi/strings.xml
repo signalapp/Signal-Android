@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Rekisteröinnin lukitus vaatii PIN-koodin. Poistaaksesi PIN-koodin käytöstä, poista ensin rekisteröinnin lukitus käytöstä.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-koodi luotu.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN poistettu käytöstä.</string>
+  <string name="ApplicationPreferencesActivity_hide">Piilota</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuutti</item>
@@ -1186,7 +1187,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UnverifiedSendDialog_send">Lähetä</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Käyttäjätunnus</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Lähetä</string> -->
   <string name="UsernameEditFragment_delete">Poista</string>
   <string name="UsernameEditFragment_successfully_set_username">Käyttäjätunnuksen asetus onnistui.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Käyttäjätunnuksen poisto onnistui.</string>
@@ -1197,7 +1197,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjätunnukset eivät voi alkaa numerolla.</string>
   <string name="UsernameEditFragment_username_is_invalid">Käyttäjätunnus on virheellinen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjätunnusten on oltava %1$d–%2$d merkkiä.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Muut Signalin käyttäjät voivat lähettää viestipyyntöjä yksilölliselle käyttäjätunnuksellesi tietämättään puhelinnumeroasi. Käyttäjätunnuksen valitseminen on vapaaehtoista.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista, jonka QR-koodi ei toimi oman versiosi kanssa. Päivitä Signalisi uusimpaan versioon.</string>

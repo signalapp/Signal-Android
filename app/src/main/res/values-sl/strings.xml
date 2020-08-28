@@ -51,6 +51,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je potreben za zaklep registracije. Če ga želite odstraniti, morate najprej izklopiti zaklep registracije.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN je bil ustvarjen.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN je bil izklopljen.</string>
+  <string name="ApplicationPreferencesActivity_hide">Skrij</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Želite skriti opomnik?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -629,6 +631,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Vklopljena</string>
   <string name="ShareableGroupLinkDialogFragment__default">Privzeto</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ponastavitev povezave do skupine</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Za pridružitev tej skupini preko deljene povezave je zahtevana odobritev skrbnika.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ste prepričani, da želite ponastaviti povezavo do skupine? Uporabiki/ce se več ne bodo mogli/e pridružiti skupini preko sedanje povezave.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Koda QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Uporabniki/ce, ki bodo skenrali/le to kodo, se bodo lahko pridružili/le vaši skupini. Odobritev skrbnika/ce skupine bo vseeno potrebna, če imate vklopljeno takšno nastavitev.</string>
@@ -1271,7 +1275,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UnverifiedSendDialog_send">Pošlji</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Uporabniško ime</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Oddaj</string> -->
   <string name="UsernameEditFragment_delete">Izbriši</string>
   <string name="UsernameEditFragment_successfully_set_username">Uspešno ste določili uporabniško ime.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Uspešno ste izbrisali uporabniško ime.</string>
@@ -1282,7 +1285,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uporabniška imena se ne smejo začeti s števikami.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uporabniško ime je neveljavno.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uporabniška imena morajo vsebovati od %1$d in%2$d znakov.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Drugi uporabniki/ce storitve Signal lahko pošiljajo prošnje za pogovor na vaše unikatno uporabniško ime tudi brez poznavanja vaše telefonske številke. Uporaba uporabniškega imena je opcijska.</string> -->
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uporabniška imena v aplikaciji Signal so izbirna. Če si boste ustvarili uporabniško ime, vas bodo lahko drugi/e uporabniki/ce Signala našli/e po njem in stopili/e v stik z vami tudi brez poznavanja vaše telefonske številke.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš partner uporablja zastarelo različico aplikacije Signal. Za pregled in potrditev varnostnega števila jo bo moral nadgraditi.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš partner uporablja novejšo različico aplikacije Signal z nekompatibilnimi kodami QR. Prosimo, nadgradite svojo aplikacijo.</string>
@@ -1916,6 +1919,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_notifications__mentions">Omembe</string>
   <string name="preferences_notifications__notify_me">Obveščaj me</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Prejemajte obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali</string>
+  <string name="preferences_setup_a_username">Določite uporabniško ime</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

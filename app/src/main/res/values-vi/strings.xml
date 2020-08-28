@@ -45,6 +45,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN là bắt buộc khi sử dụng Khóa đăng kí. Để tắt PIN, vui lòng tắt Khóa đăng kí trước.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Mã PIN đã được tạo.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Đã tắt PIN.</string>
+  <string name="ApplicationPreferencesActivity_hide">Ẩn</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Ẩn nhắc nhở?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d phút</item>
@@ -210,6 +212,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Bạn không thể nhắn tin cho nhóm này vì bạn không còn là thành viên.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Không ứng dụng nào trên điện thoại bạn có thể xử lí liên kết này.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Yêu cầu tham gia nhóm của bạn đã được gửi tới quản trị viên nhóm. Bạn sẽ được thông báo khi họ đưa ra quyết định.</string>
+  <string name="ConversationActivity_cancel_request">Hủy yêu cầu</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Để gửi tin nhắn âm thanh, hãy cho phép Signal truy cập micro điện thoại.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal cần quyền truy cập Micro để gửi tin nhắn âm thanh, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Micro\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal cần quyền truy cập Micro và Máy ảnh để gọi %s, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Micro\" và \"Máy ảnh\"</string>
@@ -324,6 +328,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Chụp ảnh</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Chọn từ bộ sưu tập</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Gỡ ảnh</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Cần quyền truy cập máy ảnh để chụp ảnh.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Vừa xong</string>
   <string name="DateUtils_minutes_ago">%dph</string>
@@ -386,6 +391,7 @@
   <string name="GroupManagement_access_level_anyone">Bất cứ ai</string>
   <string name="GroupManagement_access_level_all_members">Tất cả thành viên</string>
   <string name="GroupManagement_access_level_only_admins">Chỉ quản trị viên</string>
+  <string name="GroupManagement_access_level_no_one">Không ai</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="other">Đã gửi %d lời mời</item>
@@ -399,9 +405,16 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Từ giờ bạn có thể thêm xem trước liên kết từ bất cứ trang web nào vào trong tin nhắn bạn gửi.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Xem trước liên kết không khả dụng</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="other">%1$d thành viên</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
+  <string name="PendingMembersActivity_requests">Yêu cầu</string>
+  <string name="PendingMembersActivity_invites">Lời mời</string>
   <string name="PendingMembersActivity_people_you_invited">Người dùng bạn đã mời</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Bạn không có lời mời đang chờ nào.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Thư mời bởi các thành viên nhóm khác</string>
@@ -416,6 +429,10 @@
     <item quantity="other">Lỗi khi thu hồi lời mời</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Yêu cầu đang chờ</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Không có yêu cầu tham gia nhóm.</string>
+  <string name="RequestingMembersFragment_added_s">Đã thêm \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">Đã từ chối \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Xong</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Người này không thể được thêm vào nhóm cũ.</string>
@@ -447,10 +464,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Tin nhắn tạm thời</string>
   <string name="ManageGroupActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Yêu cầu tham gia &amp; Lời mời</string>
   <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
   <string name="ManageGroupActivity_edit_group_info">Sửa thông tin nhóm</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Chọn ai có quyền sửa tên nhóm, ảnh nhóm và tin nhắn tự hủy.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string>
+  <string name="ManageGroupActivity_sharable_group_link">Đường dẫn nhóm có thể chia sẻ</string>
   <string name="ManageGroupActivity_block_group">Chặn nhóm</string>
   <string name="ManageGroupActivity_unblock_group">Bỏ chặn nhóm</string>
   <string name="ManageGroupActivity_leave_group">Rời nhóm</string>
@@ -525,11 +544,23 @@
   <string name="CustomNotificationsDialogFragment__disabled">Tắt</string>
   <string name="CustomNotificationsDialogFragment__default">Mặc định</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Đường dẫn nhóm có thể chia sẻ</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Quản lí &amp; chia sẻ</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Đường dẫn nhóm</string>
   <string name="ShareableGroupLinkDialogFragment__share">Chia sẻ</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Cài lại đường dẫn</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Yêu cầu tham gia</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Chấp nhận thành viên mới</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Đã bật</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Tắt</string>
   <string name="ShareableGroupLinkDialogFragment__default">Mặc định</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Đã cài lại đường dẫn</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Cần quản trị viên chấp nhận thành viên tham gia qua đường dẫn nhóm.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Bạn có muốn cài lại đường dẫn nhóm? Người dùng khác sẽ không thể tham gia nhóm bằng đường dẫn hiện tại.</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">Mã QR</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Những người quét mã này có thể tham gia nhóm của bạn. Vẫn cần quản trị viên chấp nhận thành viên mới nếu cài đặt này được bật.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Chia sẻ mã</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Bạn có muốn thu hồi lời mời đã gửi đến %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -537,13 +568,29 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Bạn đã là thành viên</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Tham gia</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Yêu cầu tham gia</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Không thể tham gia nhóm. Vui lòng thử lại sau.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Đường dẫn nhóm không hoạt động</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Không thể lấy thông tin nhóm, vui lòng thử lại sau</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bạn có muốn tham gia nhóm này và công khai tên và ảnh đại diện với các thành viên trong nhóm?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Cần một quản trị viên chấp nhận yêu cầu trước khi bạn tham gia nhóm này. Khi bạn yêu cầu tham gia, tên và ảnh đại diện của bạn sẽ được công khai với các thành viên nhóm.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="other">Nhóm · %1$d thành viên</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Đường dẫn nhóm sẽ có trong tương lai</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Cập nhật Signal để dùng liên kết nhóm</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Tham gia nhóm bằng đường dẫn nhóm hiện chưa được Signal hỗ trợ. Tính năng này sẽ được hoàn thiện trong bản cập nhật tới.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Phiên bản Signal bạn đang dùng không hỗ trợ liên kết nhóm. Vui lòng cập nhật để có thể tham gia nhóm qua liên kết.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Cập nhật Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Đường dẫn nhóm không hợp lệ</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Thêm \"%1$s\" vào nhóm?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Từ chối yêu cầu tham gia của \"%1$s\"?</string>
   <string name="RequestConfirmationDialog_add">Thêm</string>
+  <string name="RequestConfirmationDialog_deny">Từ chối</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ảnh đại diện của nhóm</string>
   <string name="CropImageActivity_profile_avatar">Ảnh đại diện</string>
@@ -1069,7 +1116,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="UnverifiedSendDialog_send">Gửi</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Tên người dùng</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Gửi</string> -->
   <string name="UsernameEditFragment_delete">Xóa</string>
   <string name="UsernameEditFragment_successfully_set_username">Đặt tên người dùng thành công</string>
   <string name="UsernameEditFragment_successfully_removed_username">Xóa tên người dùng thành công.</string>
@@ -1080,7 +1126,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Tên người dùng không thể bắt đầu bằng một số.</string>
   <string name="UsernameEditFragment_username_is_invalid">Tên người dùng không hợp lệ.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Tên người dùng phải nằm trong khoảng từ %1$d đến %2$d kí tự.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Người dùng Signal có thể gửi yêu cầu nhắn tin đến tên người dùng của bạn mà không cần biết số điện thoại. Đặt tên người dùng là không bắt buộc.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Đối tác của bạn đang sử dụng phiên bản Signal cũ. Hãy nhắc họ cập nhật trước khi xác minh mã số an toàn.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Đối tác của bạn đang sử dụng phiên bản Signal mới hơn với định dạng mã QR khác. Hãy cập nhật Signal để so sánh.</string>
@@ -2053,6 +2098,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RecipientBottomSheet_remove">Loại bỏ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="GroupRecipientListItem_admin">Quản trị viên</string>
+  <string name="GroupRecipientListItem_deny_description">Từ chôi</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Nhóm Mới và Nhóm Cũ</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Nhóm Cũ là gì?</string>

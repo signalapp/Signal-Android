@@ -49,6 +49,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Codurile PIN sunt necesare pentru blocarea înregistrării. Pentru a dezactiva codurile PIN, vă rugăm mai întâi să dezactivați blocarea înregistrării.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN creat.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Pin dezactivat.</string>
+  <string name="ApplicationPreferencesActivity_hide">Ascunde</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -1155,7 +1156,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnverifiedSendDialog_send">Trimiteți</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nume utilizator</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Trimite</string> -->
   <string name="UsernameEditFragment_delete">Șterge</string>
   <string name="UsernameEditFragment_successfully_set_username">Numele de utilizator a fost setat cu succes.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Numele de utilizator a fost eliminat cu succes.</string>
@@ -1166,7 +1166,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Numele de utilizator nu pot începe cu un număr.</string>
   <string name="UsernameEditFragment_username_is_invalid">Numele de utilizator este invalid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Numele de utilizator trebuie să aibă între %1$d și %2$d caractere.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Alți utilizatori de Signal pot trimite solicitări de mesaje către numele dvs. de utilizator unic, fără să știe numărul dvs. de telefon. Alegerea unui nume de utilizator este opțională.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>

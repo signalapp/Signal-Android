@@ -1236,7 +1236,6 @@
   <string name="UnverifiedSendDialog_send">Šalji</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Korisničko ime</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Šalji</string> -->
   <string name="UsernameEditFragment_delete">Izbriši</string>
   <string name="UsernameEditFragment_successfully_set_username">Uspješno je kreirano korisničko ime.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Uspješno je uklonjeno korisničko ime.</string>
@@ -1247,7 +1246,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisničko ime ne može početi brojem.</string>
   <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije valjano.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisničko ime mora sadržavati najmanje %1$d, a najviše %2$d znakova.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Korisnici Signala mogu poslati zahtjev za uspostavljanje kontakta putem Vašeg korisničkog imena, a bez znanja Vašeg telefonskog broja. No, upotreba korisničkog imena nije obavezna.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ova osoba koristi stariju verziju Signala. Molimo tražite da instalira novu verziju prije verifikacije sigurnosnog broja.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ova osoba koristi noviju verziju Signala, sa nekompatibilnim QR kōdom. Molimo nadogradite Signal da uporedite.</string>

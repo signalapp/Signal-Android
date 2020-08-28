@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">屏幕锁定 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题：%1$s，语言：%2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN 已创建。</string>
+  <string name="ApplicationPreferencesActivity_hide">隐藏</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分钟</item>
@@ -860,7 +861,6 @@
   <string name="UnverifiedSendDialog_send">发送</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">用户名</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">提交</string> -->
   <string name="UsernameEditFragment_delete">删除</string>
   <string name="UsernameEditFragment_successfully_set_username">成功设置用户名。</string>
   <string name="UsernameEditFragment_successfully_removed_username">成功移除用户名。</string>
@@ -870,7 +870,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用户名不能以数字开头。</string>
   <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用户名所含字符数量必须在 %1$d 与 %2$d 之间。</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">通过唯一用户名，Signal 用户可向你发送消息请求，而无需获悉你的电话号码。用户名设置是可选的。</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">联系人正在使用旧版 Signal。在验证安全码之前，请提示他们升级。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">联系人正在使用较新版本的 Signal，其二维码格式不兼容。请升级并比较。</string>

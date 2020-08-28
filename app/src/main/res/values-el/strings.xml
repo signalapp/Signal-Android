@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Τα PIN χρειάζονται για το κλείδωμα εγγραφής. Για να απενεργοποιήσεις τα PIN, παρακαλώ πρώτα να απενεργοποιήσεις το κλείδωμα εγγραφής.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Το PIN δημιουργήθηκε.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN απενεργοποιημένο.</string>
+  <string name="ApplicationPreferencesActivity_hide">Απόκρυψη</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d λεπτό</item>
@@ -1187,7 +1188,6 @@
   <string name="UnverifiedSendDialog_send">Αποστολή</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Όνομα χρήστη</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Αποστολή</string> -->
   <string name="UsernameEditFragment_delete">Διαγραφή</string>
   <string name="UsernameEditFragment_successfully_set_username">Το όνομα χρήστη ορίστηκε με επιτυχία.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Το όνομα χρήστη αφαιρέθηκε με επιτυχία.</string>
@@ -1198,7 +1198,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Τα ονόματα χρήστη δεν μπορούν να αρχίζουν με αριθμό</string>
   <string name="UsernameEditFragment_username_is_invalid">Το όνομα χρήστη δεν είναι έγκυρο.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Τα ονόματα χρήστη πρέπει να είναι από %1$d εώς %2$d χαρακτήρες.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Άλλοι χρήστες και χρήστριες του Signal θα μπορούν να σου στείλουν αιτήματα μηνυμάτων στο μοναδικό όνομα χρήστη σου χωρίς να γνωρίζουν τον αριθμό σου. Η επιλογή ονόματος χρήστη είναι προαιρετική.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Η επαφή σου χρησιμοποιεί παλιά έκδοση του Signal. Παρακαλούμε ζήτα του/της να ανανεώσει την εφαρμογή πριν επιβεβαιώσεις τον αριθμό ασφαλείας.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Η επαφή σου χρησιμοποιεί μια νεότερη έκδοση του Signal και ο κώδικας QR δεν έχει συμβατή μορφοποίηση. Παρακαλώ ενημέρωσε την εφαρμογή.</string>

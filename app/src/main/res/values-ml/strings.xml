@@ -1033,7 +1033,6 @@ grūpp ap‌ḍē</string>
   <string name="UnverifiedSendDialog_send">അയയ്‌ക്കുക</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">യൂസേർനേമ്</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">സമർപ്പിക്കുക</string> -->
   <string name="UsernameEditFragment_delete">ഇല്ലാതാക്കുക </string>
   <string name="UsernameEditFragment_successfully_set_username">യൂസേർനേമ് വിജയകരമായി സജ്ജമാക്കി.</string>
   <string name="UsernameEditFragment_successfully_removed_username">യൂസേർനേമ് വിജയകരമായി നീക്കംചെയ്തു.</string>
@@ -1044,7 +1043,6 @@ grūpp ap‌ḍē</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">യൂസേർനേമ് ഒരു നമ്പറിൽ ആരംഭിക്കാൻ കഴിയില്ല.</string>
   <string name="UsernameEditFragment_username_is_invalid">യൂസേർനേമ് അസാധുവാണ്.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">യൂസേർനേമ്കൾ %1$d മുതൽ %2$d വരെ പ്രതീകങ്ങൾ ആയിരിക്കണം.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">മറ്റ് Signal ഉപയോക്താക്കൾക്ക് നിങ്ങളുടെ ഫോൺ നമ്പർ അറിയാതെ തന്നെ നിങ്ങളുടെ അദ്വിതീയ യൂസേർനേമ്ലേക്ക് സന്ദേശ അഭ്യർത്ഥനകൾ അയയ്ക്കാൻ കഴിയും. ഒരു ഉപയോക്തൃനാമം തിരഞ്ഞെടുക്കുന്നത് ഓപ്ഷണലാണ്.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ പഴയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. നിങ്ങളുടെ സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിനുമുമ്പ് അപ്‌ഡേറ്റ് ചെയ്യാൻ അവരോട് ആവശ്യപ്പെടുക.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു ഇത് പൊരുത്തപ്പെടാത്ത QR കോഡ് ഫോർ‌മാറ്റാണ്. താരതമ്യം ചെയ്യാൻ അപ്‌ഡേറ്റുചെയ്യുക.</string>

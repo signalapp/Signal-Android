@@ -47,6 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINak beharrezkoak dira erregistratzeko blokeoa aktibatzeko. Pinak desaktibatzeko, mesedez, lehenago desaktibatu erregistratzeko blokeoa.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Sortu da PINa.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PINa desaktibatuta</string>
+  <string name="ApplicationPreferencesActivity_hide">Ezkutatu</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">minutu %d</item>
@@ -1074,7 +1075,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UnverifiedSendDialog_send">Bidali</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Erabiltzailearen izena</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">Bidali</string> -->
   <string name="UsernameEditFragment_delete">Ezabatu</string>
   <string name="UsernameEditFragment_successfully_set_username">Erabiltzaile izena ondo ezarri da.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Erabiltzaile izena ondo ezabatu da.</string>
@@ -1085,7 +1085,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Erabiltzaile izenak ezin dira zenbaki batez hasi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile izena baliogabea da.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Beste Signal erabiltzaile batzuek mezu eskaerak bidali ditzakete zure erabiltzaile izen bakarrari zure telefono zenbakia jakin beharrik izan gabe.  Erabiltzaile izen bat hautatzea aukerakoa da.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Zure kontaktua Signal-en bertsio zahar bat erabiltzen ari da. Mesedez, eskatu iezaiozu eguneratzeko zure segurtasun zenbaki berria egiaztatu baino lehenago.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>

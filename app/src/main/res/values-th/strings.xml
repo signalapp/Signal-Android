@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">ล็อคหน้าจอ %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ธีม %1$s ภาษา %2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">สร้างรหัส PIN แล้ว</string>
+  <string name="ApplicationPreferencesActivity_hide">ซ่อน</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d นาที</item>
@@ -938,7 +939,6 @@
   <string name="UnverifiedSendDialog_send">ส่ง</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">ชื่อผู้ใช้</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">ส่ง</string> -->
   <string name="UsernameEditFragment_delete">ลบ</string>
   <string name="UsernameEditFragment_successfully_set_username">ตั้งชื่อผู้ใช้สำเร็จ</string>
   <string name="UsernameEditFragment_successfully_removed_username">ลบชื่อผู้ใช้สำเร็จ</string>
@@ -948,7 +948,6 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
   <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้จะต้องมี %1$dถึง %2$d ตัวอักษร</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">ผู้ใช้ Signal อื่นสามารถส่งคำขอเพื่อส่งข้อความถึงชื่อผู้ใช้เฉพาะของคุณโดยไม่ต้องรู้เบอร์โทรศัพท์ของคุณ การมีชื่อผู้ใช้นั้นเป็นทางเลือก</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ผู้ติดต่อของคุณใช้ Signal รุ่นเก่า กรุณาขอให้เขาปรับปรุงก่อนที่จะตรวจยืนยันหมายเลขความปลอดภัยของคุณ</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ผู้ติดต่อของคุณใช้ Signal รุ่นใหม่กว่า และมีรูปแบบรหัส QR ที่เข้ากันไม่ได้กับของคุณ กรุณาปรับปรุงเพื่อให้ใช้งานด้วยกันได้</string>
