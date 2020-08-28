@@ -42,7 +42,18 @@
         android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
         android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
-        app:footer_text_color="@color/core_white"
-        app:footer_icon_color="@color/core_white"/>
+        app:footer_text_color="@android:color/white"
+        app:footer_icon_color="@android:color/white"/>
+
+    <ProgressBar
+        android:id="@+id/conversation_thumbnail_load_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:maxWidth="48dp"
+        android:maxHeight="48dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
 </merge>
