@@ -244,7 +244,7 @@ public abstract class GroupMemberEntry {
     boolean sameId(@NonNull GroupMemberEntry newItem) {
       if (getClass() != newItem.getClass()) return false;
 
-      return requester.getId().equals(((GroupMemberEntry.PendingMember) newItem).invitee.getId());
+      return requester.getId().equals(((RequestingMember) newItem).requester.getId());
     }
 
     @Override
