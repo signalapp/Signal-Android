@@ -307,7 +307,7 @@ public final class DecryptedGroupUtil {
   private static void applyAddMemberAction(DecryptedGroup.Builder builder, List<DecryptedMember> newMembersList) {
     builder.addAllMembers(newMembersList);
 
-    removePendingMembersNowInGroup(builder);
+    removePendingAndRequestingMembersNowInGroup(builder);
   }
 
   protected static void applyDeleteMemberActions(DecryptedGroup.Builder builder, List<ByteString> deleteMembersList) {
@@ -509,13 +509,20 @@ public final class DecryptedGroupUtil {
     return pendingMemberCipherTexts;
   }
 
-  private static void removePendingMembersNowInGroup(DecryptedGroup.Builder builder) {
+  private static void removePendingAndRequestingMembersNowInGroup(DecryptedGroup.Builder builder) {
     Set<ByteString> allMembers = membersToUuidByteStringSet(builder.getMembersList());
 
     for (int i = builder.getPendingMembersCount() - 1; i >= 0; i--) {
       DecryptedPendingMember pendingMember = builder.getPendingMembers(i);
       if (allMembers.contains(pendingMember.getUuid())) {
         builder.removePendingMembers(i);
+      }
+    }
+
+    for (int i = builder.getRequestingMembersCount() - 1; i >= 0; i--) {
+      DecryptedRequestingMember requestingMember = builder.getRequestingMembers(i);
+      if (allMembers.contains(requestingMember.getUuid())) {
+        builder.removeRequestingMembers(i);
       }
     }
   }
