@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -199,8 +201,14 @@ public final class LinkPreviewUtil {
       return OptionalUtil.absentIfEmpty(Util.getFirstNonEmpty(values.get(KEY_IMAGE_URL), faviconUrl));
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     public long getDate() {
-      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault());
+      SimpleDateFormat format;
+      if (Build.VERSION.SDK_INT == 0 || Build.VERSION.SDK_INT >= 24) {
+        format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault());
+      } else {
+        format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
+      }
 
       return Stream.of(values.get(KEY_PUBLISHED_TIME_1),
                        values.get(KEY_PUBLISHED_TIME_2),
