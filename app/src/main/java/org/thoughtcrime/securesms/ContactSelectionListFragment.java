@@ -512,7 +512,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   private boolean selectionLimitReached() {
-    return getChipCount() >= selectionLimit;
+    return getChipCount() + currentSelection.size() >= selectionLimit;
   }
 
   private void markContactSelected(@NonNull SelectedContact selectedContact) {

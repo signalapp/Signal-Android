@@ -314,15 +314,15 @@ public class ManageGroupViewModel extends ViewModel {
 
   public void onAddMembersClick(@NonNull Fragment fragment, int resultCode) {
     manageGroupRepository.getGroupCapacity(capacity -> {
-      int remainingCapacity = capacity.getTotalCapacity();
+      int remainingCapacity = capacity.getRemainingCapacity();
       if (remainingCapacity <= 0) {
         Toast.makeText(fragment.requireContext(), R.string.ContactSelectionListFragment_the_group_is_full, Toast.LENGTH_SHORT).show();
       } else {
         Intent intent = new Intent(fragment.requireActivity(), AddMembersActivity.class);
         intent.putExtra(AddMembersActivity.GROUP_ID, manageGroupRepository.getGroupId().toString());
         intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_PUSH);
-        intent.putExtra(ContactSelectionListFragment.TOTAL_CAPACITY, remainingCapacity);
-        intent.putParcelableArrayListExtra(ContactSelectionListFragment.CURRENT_SELECTION, new ArrayList<>(capacity.getMembers()));
+        intent.putExtra(ContactSelectionListFragment.TOTAL_CAPACITY, capacity.getTotalCapacity() - 1);
+        intent.putParcelableArrayListExtra(ContactSelectionListFragment.CURRENT_SELECTION, capacity.getMembersWithoutSelf());
         fragment.startActivityForResult(intent, resultCode);
       }
     });

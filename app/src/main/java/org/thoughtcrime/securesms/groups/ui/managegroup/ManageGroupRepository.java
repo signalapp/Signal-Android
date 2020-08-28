@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -196,6 +197,23 @@ final class ManageGroupRepository {
 
     public int getTotalCapacity() {
       return totalCapacity;
+    }
+
+    public int getRemainingCapacity() {
+      return totalCapacity - members.size();
+    }
+
+    public @NonNull ArrayList<RecipientId> getMembersWithoutSelf() {
+      ArrayList<RecipientId> recipientIds = new ArrayList<>(members.size());
+      RecipientId            selfId       = Recipient.self().getId();
+
+      for (RecipientId recipientId : members) {
+        if (!recipientId.equals(selfId)) {
+          recipientIds.add(recipientId);
+        }
+      }
+
+      return recipientIds;
     }
   }
 
