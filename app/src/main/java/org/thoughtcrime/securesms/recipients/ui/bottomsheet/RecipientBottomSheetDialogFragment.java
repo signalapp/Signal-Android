@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -31,6 +30,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -170,9 +170,15 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
       noteToSelfDescription.setVisibility(recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
 
-      boolean blocked = recipient.isBlocked();
-      blockButton  .setVisibility(recipient.isLocalNumber() ||  blocked ? View.GONE : View.VISIBLE);
-      unblockButton.setVisibility(recipient.isLocalNumber() || !blocked ? View.GONE : View.VISIBLE);
+      if (RecipientUtil.isBlockable(recipient)) {
+        boolean blocked = recipient.isBlocked();
+
+        blockButton  .setVisibility(recipient.isLocalNumber() ||  blocked ? View.GONE : View.VISIBLE);
+        unblockButton.setVisibility(recipient.isLocalNumber() || !blocked ? View.GONE : View.VISIBLE);
+      } else {
+        blockButton  .setVisibility(View.GONE);
+        unblockButton.setVisibility(View.GONE);
+      }
 
       messageButton.setVisibility(!recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
       secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
