@@ -1903,11 +1903,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void initializeLinkPreviewObserver() {
     linkPreviewViewModel = ViewModelProviders.of(this, new LinkPreviewViewModel.Factory(new LinkPreviewRepository())).get(LinkPreviewViewModel.class);
 
-    if (!SignalStore.settings().isLinkPreviewsEnabled()) {
-      linkPreviewViewModel.onUserCancel();
-      return;
-    }
-
     linkPreviewViewModel.getLinkPreviewState().observe(this, previewState -> {
       if (previewState == null) return;
 

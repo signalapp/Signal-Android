@@ -138,9 +138,9 @@ public class LinkPreviewViewModel extends ViewModel {
   }
 
   public void onTransportChanged(boolean isSms) {
-    enabled = !isSms;
+    enabled = SignalStore.settings().isLinkPreviewsEnabled() && !isSms;
 
-    if (isSms) {
+    if (!enabled) {
       onUserCancel();
     }
   }
@@ -159,12 +159,8 @@ public class LinkPreviewViewModel extends ViewModel {
   }
 
   public void onEnabled() {
-    if (!SignalStore.settings().isLinkPreviewsEnabled()) {
-      throw new AssertionError();
-    }
-
     userCanceled = false;
-    enabled      = true;
+    enabled      = SignalStore.settings().isLinkPreviewsEnabled();
   }
 
   @Override
