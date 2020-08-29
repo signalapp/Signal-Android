@@ -132,12 +132,13 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
+  public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
     inflater.inflate(R.menu.log_submit, menu);
-    super.onPrepareOptionsMenu(menu);
+
+    super.onCreateOptionsMenu(menu);
     return true;
   }
 

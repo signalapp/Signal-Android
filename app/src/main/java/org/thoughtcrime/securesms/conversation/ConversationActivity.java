@@ -766,7 +766,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
+  public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
@@ -785,7 +785,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
       else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
-      super.onPrepareOptionsMenu(menu);
+      super.onCreateOptionsMenu(menu);
       return true;
     }
 
@@ -921,7 +921,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     });
 
-    super.onPrepareOptionsMenu(menu);
+    super.onCreateOptionsMenu(menu);
     return true;
   }
 

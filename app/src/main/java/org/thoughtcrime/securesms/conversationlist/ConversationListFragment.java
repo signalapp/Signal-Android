@@ -54,6 +54,7 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
@@ -283,12 +284,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   @Override
-  public void onPrepareOptionsMenu(Menu menu) {
-    MenuInflater inflater = requireActivity().getMenuInflater();
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
     menu.clear();
-
     inflater.inflate(R.menu.text_secure_normal, menu);
+  }
 
+  @Override
+  public void onPrepareOptionsMenu(Menu menu) {
     menu.findItem(R.id.menu_insights).setVisible(TextSecurePreferences.isSmsEnabled(requireContext()));
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(requireContext()));
   }
