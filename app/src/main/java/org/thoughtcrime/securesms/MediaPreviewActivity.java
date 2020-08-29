@@ -431,13 +431,17 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    super.onPrepareOptionsMenu(menu);
-
+  public boolean onCreateOptionsMenu(Menu menu) {
     menu.clear();
     MenuInflater inflater = this.getMenuInflater();
     inflater.inflate(R.menu.media_preview, menu);
 
+    super.onCreateOptionsMenu(menu);
+    return true;
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
     if (!isMediaInDb()) {
       menu.findItem(R.id.media_preview__overview).setVisible(false);
       menu.findItem(R.id.delete).setVisible(false);
@@ -447,6 +451,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       menu.findItem(R.id.media_preview__overview).setVisible(false);
     }
 
+    super.onPrepareOptionsMenu(menu);
     return true;
   }
 

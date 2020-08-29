@@ -138,11 +138,11 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
+  public boolean onCreateOptionsMenu(Menu menu) {
     menu.clear();
     getMenuInflater().inflate(R.menu.new_conversation_activity, menu);
 
-    super.onPrepareOptionsMenu(menu);
+    super.onCreateOptionsMenu(menu);
     return true;
   }
 
