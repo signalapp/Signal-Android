@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+<string name="app_name" translatable="true">老友记</string>
   <string name="yes">是</string>
   <string name="no">否</string>
   <string name="delete">删除</string>
@@ -10,7 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">新消息</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal 正在更新…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">老友记 正在更新…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
@@ -23,17 +24,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">删除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">这将永久解锁 Signal 和消息通知。</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">这将永久解锁 老友记 和消息通知。</string>
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
   <string name="ApplicationPreferencesActivity_unregistering">注销</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">注销 Signal 消息和呼叫…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">禁用 Signal 消息和呼叫？</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">从服务器注销将禁用 Signal 消息和呼叫。如果以后想要使用这些功能，那么需使用手机号码重新注册。</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">注销 老友记 消息和呼叫…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">禁用 老友记 消息和呼叫？</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">从服务器注销将禁用 老友记 消息和呼叫。如果以后想要使用这些功能，那么需使用手机号码重新注册。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务器错误！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">已启用短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击修改默认短信应用</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">已禁用短信</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">点击将 Signal 设置为默认短信应用</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">点击将 老友记 设置为默认短信应用</string>
   <string name="ApplicationPreferencesActivity_on">开</string>
   <string name="ApplicationPreferencesActivity_On">开</string>
   <string name="ApplicationPreferencesActivity_off">关</string>
@@ -43,7 +44,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">屏幕锁定 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题：%1$s，语言：%2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN 已创建。</string>
-  <string name="ApplicationPreferencesActivity_hide">隐藏</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分钟</item>
@@ -60,14 +60,14 @@
   <string name="AttachmentKeyboard_file">文件</string>
   <string name="AttachmentKeyboard_contact">联系人</string>
   <string name="AttachmentKeyboard_location">位置</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需相应权限以显示图片和视频。</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">老友记 需相应权限以显示图片和视频。</string>
   <string name="AttachmentKeyboard_give_access">给予权限</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">未找到选择媒体的应用。</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需“存储”权限，来发送图片、视频和音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需“通讯录”权限，来发送通讯录信息，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“通讯录”。</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需“位置”权限，来发送位置信息，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“位置”。</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需“相机”权限，来拍摄照片，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">老友记 需“存储”权限，来发送图片、视频和音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">老友记 需“通讯录”权限，来发送通讯录信息，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“通讯录”。</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">老友记 需“位置”权限，来发送位置信息，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“位置”。</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">老友记 需“相机”权限，来拍摄照片，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">上传媒体中…</string>
   <string name="AttachmentUploadJob_compressing_video_start">压缩视频中…</string>
@@ -78,10 +78,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">屏蔽并离开%1$s?</string>
   <string name="BlockUnblockDialog_block_s">屏蔽%1$s?</string>
+      <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">你不会再收到任何群消息，并且群成员也将不能再加你入群.</string>
+    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">注意：群成员将不能再加你入群.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">组成员将能够再次将您添加到此组。</string>
+      <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">你可以与对方打电话或发消息，相关的名字与照片也会分享给对方.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被屏蔽后对方将不能发消息或打电话给你.</string>
   <string name="BlockUnblockDialog_unblock_s">解除屏蔽%1$s?</string>
   <string name="BlockUnblockDialog_unblock">取消屏蔽</string>
   <string name="BlockUnblockDialog_block">屏蔽</string>
+      <string name="BlockUnblockDialog_block_and_leave">屏蔽并离群</string>
   <string name="BlockUnblockDialog_block_and_delete">屏蔽并删除</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
@@ -102,12 +107,12 @@
   <string name="CameraXFragment_open_gallery_description">打开相册</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">最近联系人</string>
-  <string name="CameraContacts_signal_contacts">Signal 联系人</string>
-  <string name="CameraContacts_signal_groups">Signal 群组</string>
+  <string name="CameraContacts_signal_contacts">老友记 联系人</string>
+  <string name="CameraContacts_signal_groups">老友记 群组</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">最多可与 %d 个对话分享。</string>
-  <string name="CameraContacts_select_signal_recipients">选择 Signal 收件人</string>
-  <string name="CameraContacts_no_signal_contacts">没有 Signal 联系人</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">仅可通过相机按钮来发送照片给 Signal 联系人。</string>
+  <string name="CameraContacts_select_signal_recipients">选择 老友记 收件人</string>
+  <string name="CameraContacts_no_signal_contacts">没有 老友记 联系人</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">仅可通过相机按钮来发送照片给 老友记 联系人。</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">未找到联系人？</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">邀请联系人加入 Signal</string>
   <string name="CameraContacts__menu_search">搜索</string>
@@ -136,7 +141,7 @@
   <string name="ContactsCursorLoader_username_search">用户名搜索</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">消息 %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal 呼叫 %s</string>
+  <string name="ContactsDatabase_signal_call_s">老友记 呼叫 %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">名</string>
   <string name="ContactNameEditActivity_family_name">姓</string>
@@ -161,14 +166,15 @@
   <string name="ConversationItem_copied_text">已复制 %s</string>
   <string name="ConversationItem_from_s">来自 %s</string>
   <string name="ConversationItem_to_s">发至 %s</string>
-  <string name="ConversationItem_read_more">  查看更多</string>
-  <string name="ConversationItem_download_more">  下载更多</string>
-  <string name="ConversationItem_pending">  等待中</string>
+  <string name="ConversationItem_read_more">  查看更多</string>
+  <string name="ConversationItem_download_more">  下载更多</string>
+  <string name="ConversationItem_pending">  等待中</string>
   <string name="ConversationItem_this_message_was_deleted">消息已删除。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">对话出现加密问题时，可尝试重置。重置不会删除你的消息。</string>
   <string name="ConversationActivity_reset">重置</string>
+      <string name="ConversationActivity_you_cant_send_messages_to_this_group">你不是该群成员，不能发送消息.</string>
   <string name="ConversationActivity_add_attachment">添加附件</string>
   <string name="ConversationActivity_select_contact_info">选择联系人信息</string>
   <string name="ConversationActivity_compose_message">撰写消息</string>
@@ -186,7 +192,7 @@
   <string name="ConversationActivity_transport_insecure_sms">不安全的短信</string>
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">用 Signal 来聊天吧 %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">用 老友记 来聊天吧 %1$s</string>
   <string name="ConversationActivity_specify_recipient">请选择联系人</string>
   <string name="ConversationActivity_unblock_this_contact_question">取消屏蔽该联系人？</string>
   <string name="ConversationActivity_unblock_this_group_question">取消屏蔽该群组？</string>
@@ -197,17 +203,17 @@
   <string name="ConversationActivity_quick_camera_unavailable">相机不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">你的设备上没有处理该链接的应用。</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">如需发送语音，请允许 Signal 使用麦克风。</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需“麦克风”权限，来发送音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”。</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 需“麦克风”和“相机”权限，来呼叫 %s，但这些权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”和“相机”。</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要拍照或录像，请允许 Signal 访问相机。</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需“相机”权限，来拍摄图片或视频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要相机权限以拍摄照片或视频</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">如需发送语音，请允许 老友记 使用麦克风。</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">老友记 需“麦克风”权限，来发送音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”。</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">老友记 需“麦克风”和“相机”权限，来呼叫 %s，但这些权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”和“相机”。</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要拍照或录像，请允许 老友记 访问相机。</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">老友记 需“相机”权限，来拍摄图片或视频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">老友记 需要相机权限以拍摄照片或视频</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">开启麦克风权限以录制有声视频。</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal 需“麦克风”权限，来录制视频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”。</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal 需要麦克风权限以录制视频。</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">老友记 需“麦克风”权限，来录制视频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”。</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">老友记 需要麦克风权限以录制视频。</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 不是默认的短信应用，不能发送短信或彩信。是否修改安卓系统的相应设置？</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">老友记 不是默认的短信应用，不能发送短信或彩信。是否修改安卓系统的相应设置？</string>
   <string name="ConversationActivity_yes">是</string>
   <string name="ConversationActivity_no">否</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d 匹配</string>
@@ -292,6 +298,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">设置个人资料出错</string>
   <string name="CreateProfileActivity_profile_photo">头像</string>
   <string name="CreateProfileActivity_set_up_your_profile">设置个人资料</string>
+   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">当和联系人进行对话聊天，或加入群聊时，你的资料将点对点进行加密传输，所有联系人可以看到你的资料及更新变化的情况.</string>
   <string name="CreateProfileActivity_set_avatar_description">设置头像</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
@@ -329,15 +336,15 @@
   <string name="DocumentView_unnamed_file">未命名文件</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">缺失 Google Play 服务时优化</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 Signal 非活动时无法获取新消息。</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 老友记 非活动时无法获取新消息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享至</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">多个附件只支持图像和视频</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持续连接失效！</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 无法注册 Google Play 服务。Signal 消息和呼叫已禁用。请尝试在设置 &gt; 高级中重新注册。</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">老友记 持续连接失效！</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">老友记 无法注册 Google Play 服务。老友记 消息和呼叫已禁用。请尝试在设置 &gt; 高级中重新注册。</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">获取原始分辨率的 GIF 图片时出错</string>
   <!--GiphyFragmentPageAdapter-->
@@ -381,11 +388,19 @@
   <string name="ManageGroupActivity_leave_group">离开群组</string>
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
+    <string name="ManageGroupActivity_block_group">屏蔽离群</string>
+    <string name="ManageGroupActivity_unblock_group">取消屏蔽</string>
   <string name="ManageGroupActivity_off">关</string>
   <string name="ManageGroupActivity_on">开</string>
   <string name="ManageGroupActivity_view_all_members">查看全体群成员</string>
   <string name="ManageGroupActivity_none">无</string>
+  <string name="ManageGroupActivity_see_all">全部</string>
+  
   <!--GroupMentionSettingDialog-->
+  
+  <!-- preferences.xml -->
+  <string name="preferences__generate_link_previews">生成链接预览</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">发送消息时允许根据链接生成网站预览.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">添加至系统联系人</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">此人是你的联系人</string>
@@ -399,8 +414,26 @@
   <string name="ManageRecipientActivity_off">关</string>
   <string name="ManageRecipientActivity_on">开</string>
   <string name="ManageRecipientActivity_message_description">消息</string>
+    <string name="ManageRecipientActivity_add_to_a_group">加入到群</string>
+    <string name="ManageRecipientActivity_view_all_groups">查看所有群</string>
+    <string name="ManageRecipientActivity_see_all">全部可见</string>
+    <string name="ManageRecipientActivity_no_groups_in_common">没有共同群</string>
+    <plurals name="ManageRecipientActivity_d_groups_in_common">
+        <item quantity="one">%d 个共同群</item>
+        <item quantity="other">%d 个共同群</item>
+    </plurals>
+    <string name="ManageRecipientActivity_edit_name_and_picture">编辑姓名和头像</string>
+    <string name="ManageRecipientActivity_voice_call_description">语音电话</string>
+    <string name="ManageRecipientActivity_insecure_voice_call_description">安全语音电话</string>
+    <string name="ManageRecipientActivity_video_call_description">视频通话</string>
+
+    <plurals name="GroupMemberList_invited">
+        <item quantity="one">%1$s 邀请1个好友</item>
+        <item quantity="other">%1$s 邀请 %2$d 个好友</item>
+    </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">自定义通知</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">使用自定义通知</string>
   <string name="CustomNotificationsDialogFragment__messages">消息</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">通知声音</string>
   <string name="CustomNotificationsDialogFragment__vibrate">振动</string>
@@ -448,7 +481,7 @@
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">发送 %d 个短信邀请？</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">用 Signal 来聊天吧：%1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">用 老友记 来聊天吧：%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起来设备上没有可用于分享的应用。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">朋友之间需要加密聊天工具。</string>
   <!--Job-->
@@ -505,13 +538,13 @@
   <string name="Megaphones_introducing_reactions">新推出“回应”功能</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">长按任何消息，即刻分享感受。</string>
   <string name="Megaphones_remind_me_later">稍后提醒</string>
-  <string name="Megaphones_verify_your_signal_pin">验证 Signal PIN 密码</string>
+  <string name="Megaphones_verify_your_signal_pin">验证 老友记 PIN 密码</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">为了方便记住 PIN 密码，将偶尔提示验证。</string>
   <string name="Megaphones_verify_pin">验证 PIN</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>
-  <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 呼叫</string>
-  <string name="NotificationBarManager__incoming_signal_call">Signal 来电</string>
+  <string name="NotificationBarManager_signal_call_in_progress">正在处理 老友记 呼叫</string>
+  <string name="NotificationBarManager__establishing_signal_call">正在建立 老友记 呼叫</string>
+  <string name="NotificationBarManager__incoming_signal_call">老友记 来电</string>
   <string name="NotificationBarManager__deny_call">拒听</string>
   <string name="NotificationBarManager__answer_call">接听</string>
   <string name="NotificationBarManager__end_call">结束呼叫</string>
@@ -532,8 +565,8 @@
   <string name="MediaSendActivity_message_to_s">发送消息至 %s</string>
   <string name="MediaSendActivity_message">消息</string>
   <string name="MediaSendActivity_select_recipients">选择接收人</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">为了显示联系人，Signal 需其访问权限。</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal 需“联系人”权限，来显示你的联系人，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“联系人”。</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">为了显示联系人，老友记 需其访问权限。</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">老友记 需“联系人”权限，来显示你的联系人，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“联系人”。</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">分享最多不可超过 %d 个条目。</item>
   </plurals>
@@ -543,7 +576,7 @@
   <string name="MediaRepository_all_media">全部媒体</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到来自旧版本 Signal 的加密消息，该版本已不再支持。请提醒发送人升级至最新版本并重发该消息。</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到来自旧版本 老友记 的加密消息，该版本已不再支持。请提醒发送人升级至最新版本并重发该消息。</string>
   <string name="MessageRecord_left_group">您已经退出该群组。</string>
   <string name="MessageRecord_you_updated_group">您已更新该群组</string>
   <string name="MessageRecord_you_called">您曾呼叫</string>
@@ -593,6 +626,10 @@
   <string name="MessageRequestBottomView_delete">删除</string>
   <string name="MessageRequestBottomView_block">屏蔽</string>
   <string name="MessageRequestBottomView_unblock">取消屏蔽</string>
+   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">让 %1$s 能够发送消息并分享资料? 只有你接受了，对方才知道你已经收到了信息.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">让 %1$s 能够发送消息并分享资料? 你只有取消屏蔽才能收到他们的信息.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">想加入群并与成员分享信息? 你只有接受了，对方才知道你已经收到了信息.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">取消群屏蔽并与群成员 分享信息? 你只有取消屏蔽才能收到他们的信息.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s 和 %3$s 的成员</string>
@@ -622,9 +659,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">无效二维码。</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">很抱歉，关联设备过多，请先移除一些。</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，设备关联二维码无效。</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">关联 Signal 设备？</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">您好像在使用第三方扫描应用来关联 Signal 设备。出于安全考量，请使用 Signal 再次扫描二维码。</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需“相机”权限，来扫描二维码，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">关联 老友记 设备？</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">您好像在使用第三方扫描应用来关联 老友记 设备。出于安全考量，请使用 老友记 再次扫描二维码。</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">老友记 需“相机”权限，来扫描二维码，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">没有“相机”权限，无法扫描二维码</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">阅后即焚</string>
@@ -632,7 +669,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">该对话接收和发送的消息将于 %s 后消失。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密码</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal 图标</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">老友记 图标</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">提交密码</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">无效密码！</string>
   <string name="PassphrasePromptActivity_unlock_signal">解锁 Signal</string>
@@ -656,7 +693,7 @@
   <string name="PinRestoreLockedFragment_create_your_pin">创建 PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 老友记 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
   <string name="PinOptOutDialog_disable_pin">禁用 PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
@@ -712,9 +749,9 @@
   <string name="RegistrationActivity_no_browser">无法打开该链接，未找到网络浏览器。</string>
   <string name="RegistrationActivity_more_information">更多信息</string>
   <string name="RegistrationActivity_less_information">简略信息</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">为了联系朋友，交换消息与进行加密呼叫，Signal 需要访问联系人和媒体。</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务，请检查网络连接并重试。</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">为了便于验证你的号码，在允许 Signal 读取短信时，Signal 可自动检测验证码。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">为了联系朋友，交换消息与进行加密呼叫，老友记 需要访问联系人和媒体。</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 老友记 服务，请检查网络连接并重试。</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">为了便于验证你的号码，在允许 老友记 读取短信时，老友记 可自动检测验证码。</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">距离提交调试日志还有 %d 步之遥。</item>
   </plurals>
@@ -732,7 +769,7 @@
   <string name="RegistrationActivity_country_code_description">国家代码</string>
   <string name="RegistrationActivity_call">呼叫</string>
   <!--RegistrationLockV2Dialog-->
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">再次注册 Signal 时，如果忘记 Signal PIN，将在 7 天内无法使用你的帐户。</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">再次注册 老友记 时，如果忘记 老友记 PIN，将在 7 天内无法使用你的帐户。</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">查看图片</string>
   <string name="RevealableMessageView_view_video">查看视频</string>
@@ -748,12 +785,12 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">添加到联系人</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀请使用 Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal 消息</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signal 呼叫</string>
+  <string name="SharedContactDetailsActivity_signal_message">老友记 消息</string>
+  <string name="SharedContactDetailsActivity_signal_call">老友记 呼叫</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">添加到联系人</string>
   <string name="SharedContactView_invite_to_signal">邀请使用 Signal</string>
-  <string name="SharedContactView_message">Signal 消息</string>
+  <string name="SharedContactView_message">老友记 消息</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">稍后提示。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">明天提示。</string>
@@ -776,14 +813,14 @@
   <string name="SmsMessageRecord_secure_session_reset">您已重置安全会话。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 已重置安全会话。</string>
   <string name="SmsMessageRecord_duplicate_message">重复消息。</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">无法处理该消息，因其发自新版 Signal。请更新 Signal 并联系发送人重发。</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">无法处理该消息，因其发自新版 Signal。请更新 老友记 并联系发送人重发。</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">处理传入消息时出错。</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">表情</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">已安装表情</string>
   <string name="StickerManagementAdapter_stickers_you_received">收到的表情</string>
-  <string name="StickerManagementAdapter_signal_artist_series">Signal 艺术家系列</string>
+  <string name="StickerManagementAdapter_signal_artist_series">老友记 艺术家系列</string>
   <string name="StickerManagementAdapter_no_stickers_installed">未安装表情</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">此处将显示传入消息中的表情</string>
   <string name="StickerManagementAdapter_untitled">未命名</string>
@@ -808,7 +845,7 @@
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">主题 :</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Signal Android支持请求</string>
+  <string name="SupportEmailUtil_signal_android_support_request">老友记 Android支持请求</string>
   <string name="SupportEmailUtil_device_info">设备信息：</string>
   <string name="SupportEmailUtil_android_version">Android版本：</string>
   <string name="SupportEmailUtil_signal_version">Signal版本:</string>
@@ -844,8 +881,8 @@
   <string name="ThreadRecord_file">文件</string>
   <string name="ThreadRecord_video">视频</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 新版本可用，点击升级</string>
+  <string name="UpdateApkReadyListener_Signal_update">老友记 更新</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">老友记 新版本可用，点击升级</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">屏蔽 %s？</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">已屏蔽联系人将无法再向您发送消息或呼叫。</string>
@@ -861,6 +898,7 @@
   <string name="UnverifiedSendDialog_send">发送</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">用户名</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">提交</string> -->
   <string name="UsernameEditFragment_delete">删除</string>
   <string name="UsernameEditFragment_successfully_set_username">成功设置用户名。</string>
   <string name="UsernameEditFragment_successfully_removed_username">成功移除用户名。</string>
@@ -870,15 +908,16 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用户名不能以数字开头。</string>
   <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用户名所含字符数量必须在 %1$d 与 %2$d 之间。</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">通过唯一用户名，老友记 用户可向你发送消息请求，而无需获悉你的电话号码。用户名设置是可选的。</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">联系人正在使用旧版 Signal。在验证安全码之前，请提示他们升级。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">联系人正在使用较新版本的 Signal，其二维码格式不兼容。请升级并比较。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">扫描二维码所获的安全码格式有误，请重新扫描。</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">安全码分享方式…</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">我们的 Signal 安全码：</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">我们的 老友记 安全码：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起来设备上没有可用于分享的应用。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">剪切板没有可比较的安全码</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需“相机”权限，来扫描二维码，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">老友记 需“相机”权限，来扫描二维码，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">没有“相机”权限，无法扫描二维码</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
@@ -898,13 +937,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">点击开启。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">点击开启或点击锁定图标关闭。</string>
-  <string name="KeyCachingService_passphrase_cached">Signal 已解锁</string>
+  <string name="KeyCachingService_passphrase_cached">老友记 已解锁</string>
   <string name="KeyCachingService_lock">锁定 Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支持的媒体类型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需“存储”权限，来保存文件至外部存储，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">老友记 需“存储”权限，来保存文件至外部存储，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">没有权限，无法保存至外部存储</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">删除消息？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">这将永久删除该消息。</string>
@@ -924,10 +963,10 @@
   <string name="MessageNotifier_view_once_photo">一次性图片</string>
   <string name="MessageNotifier_view_once_video">一次性图片</string>
   <string name="MessageNotifier_reply">回复</string>
-  <string name="MessageNotifier_signal_message">Signal 消息</string>
+  <string name="MessageNotifier_signal_message">老友记 消息</string>
   <string name="MessageNotifier_unsecured_sms">未加密短信</string>
   <string name="MessageNotifier_you_may_have_new_messages">您有新的消息</string>
-  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">打开 Signal 查看最近通知。</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">打开 老友记 查看最近通知。</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">联系人</string>
   <string name="MessageNotifier_reacted_s_to_s">对：“%2$s”回应 %1$s。</string>
@@ -953,7 +992,7 @@
   <string name="ProfileEditNameFragment_successfully_set_profile_name">设置个人资料名称成功。</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">网络出错。</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 锁定时不可使用快速回复。</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">老友记 锁定时不可使用快速回复。</string>
   <string name="QuickResponseService_problem_sending_message">发送消息时出现问题！</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">已保存至 %s</string>
@@ -979,8 +1018,8 @@
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">播放视频时出错</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">为了接听 %s 的来电，请允许 Signal 访问麦克风。</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需“麦克风”和“相机”权限，来进行通话，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”和“相机”。</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">为了接听 %s 的来电，请允许 老友记 访问麦克风。</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">老友记 需“麦克风”和“相机”权限，来进行通话，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”和“相机”。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">您与 %1$s 对话的安全码已更改。可能有人试图截获你的通信，或者只是 %2$s 重装了 Signal。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可通知该联系人验证安全码。</string>
@@ -1037,19 +1076,19 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">联系人图片</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需“联系人”权限，来显示联系人，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“联系人”。</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">老友记 需“联系人”权限，来显示联系人，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“联系人”。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">获取联系人出错，请检查您的网络连接</string>
   <string name="ContactSelectionListFragment_username_not_found">未找到该用户名</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s”不是 Signal 用户，请检查用户名并重试。</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s”不是 老友记 用户，请检查用户名并重试。</string>
   <string name="ContactSelectionListFragment_okay">好的</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">没有已屏蔽联系人</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">为了显示联系人，Signal 需要其访问权限。</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">为了显示联系人，老友记 需要其访问权限。</string>
   <string name="contact_selection_list_fragment__show_contacts">显示联系人</string>
   <!--contact_selection_list_item-->
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">发送 Signal 消息</string>
+  <string name="conversation_activity__type_message_push">发送 老友记 消息</string>
   <string name="conversation_activity__type_message_sms_insecure">未加密短信</string>
   <string name="conversation_activity__type_message_mms_insecure">未加密彩信</string>
   <string name="conversation_activity__from_sim_name">来自 %1$s</string>
@@ -1061,7 +1100,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切换快速相机附件抽屉</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">录音并分享附件</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">锁定音频附件录音状态</string>
-  <string name="conversation_activity__enable_signal_for_sms">启用 Signal 短信功能</string>
+  <string name="conversation_activity__enable_signal_for_sms">启用 老友记 短信功能</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">滑动取消</string>
   <string name="conversation_input_panel__cancel">取消</string>
@@ -1162,7 +1201,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">请查看日志，来自我的应用：%1$s</string>
   <string name="log_submit_activity__network_failure">网络连接失败。请重试。</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">是否将现有短信导入至 Signal 加密数据库？</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">是否将现有短信导入至 老友记 加密数据库？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">默认系统数据库不会发生任何形式的修改或变更。</string>
   <string name="database_migration_activity__skip">跳过</string>
   <string name="database_migration_activity__import">导入</string>
@@ -1191,7 +1230,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解锁</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">为了通过电信运营商发送媒体和群组消息，Signal 需要访问彩信设置。无法从你的设备获取相关信息。对于锁定设备或限制性配置的设备，有时存在这种情况。</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">为了通过电信运营商发送媒体和群组消息，老友记 需要访问彩信设置。无法从你的设备获取相关信息。对于锁定设备或限制性配置的设备，有时存在这种情况。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">如需发送媒体和群组消息，点击“确定”并完成所需的设置。通常可搜索“运营商 APN”，来找到相应的彩信设置。该操作只需进行一次。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名字（必需）</string>
@@ -1201,13 +1240,14 @@
   <string name="CreateProfileActivity__create_a_username">创建用户名</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__group_name">群组名称</string>
+  <string name="EditProfileFragment__edit_group_name_and_photo">编辑群组名称和图像</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">分享媒体</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal 呼叫</string>
+  <string name="redphone_call_card__signal_call">老友记 呼叫</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">电话号码</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">借助你的电话号码和联系人，Signal 让通信变得便捷。通过电话联系的好友和联系人能够很方便地通过 Signal 与您沟通。\n\n注册过程中某些联系人信息将传输至服务器，但服务器并不保存这些信息。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">借助你的电话号码和联系人，老友记 让通信变得便捷。通过电话联系的好友和联系人能够很方便地通过 老友记 与您沟通。\n\n注册过程中某些联系人信息将传输至服务器，但服务器并不保存这些信息。</string>
   <string name="registration_activity__verify_your_number">验证号码</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">请输入电话号码，接收验证码。可能收费。</string>
   <!--recipients_panel-->
@@ -1267,11 +1307,11 @@
   <string name="HelpFragment__whats_this">这是什么?</string>
   <string name="HelpFragment__how_do_you_feel">你觉得怎么样？ （可选的）</string>
   <string name="HelpFragment__support_info">支持信息</string>
-  <string name="HelpFragment__signal_android_support_request">Signal Android支持请求</string>
+  <string name="HelpFragment__signal_android_support_request">老友记 Android支持请求</string>
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
-  <string name="HelpFragment__signal_support">Signal 支持</string>
+  <string name="HelpFragment__signal_support">老友记 支持</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
   <string name="HelpFragment__no_email_app_found">找不到电子邮件应用程序。</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1309,8 +1349,8 @@
   <string name="preferences__sms_mms">短信和彩信</string>
   <string name="preferences__pref_all_sms_title">接收全部短信</string>
   <string name="preferences__pref_all_mms_title">接收全部彩信</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">使用 Signal 接收全部短信。</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收全部彩信。</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">使用 老友记 接收全部短信。</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 老友记 接收全部彩信。</string>
   <string name="preferences__pref_enter_sends_title">按回车发送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按回车键发送短信</string>
   <string name="preferences__choose_identity">选择联系人</string>
@@ -1320,8 +1360,8 @@
   <string name="preferences__enable_passphrase">启用屏幕密码锁</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密码锁定屏幕和通知</string>
   <string name="preferences__screen_security">屏幕安全</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽最近使用应用和 Signal 截屏</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">如果 Signal 非活动状态超过指定时间，自动锁定</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽最近使用应用和 老友记 截屏</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">如果 老友记 非活动状态超过指定时间，自动锁定</string>
   <string name="preferences__inactivity_timeout_passphrase">非活动逾时密码</string>
   <string name="preferences__inactivity_timeout_interval">非活动逾时时长</string>
   <string name="preferences__notifications">通知</string>
@@ -1376,14 +1416,14 @@
   <string name="preferences__theme">主题</string>
   <string name="preferences__disable_pin">禁用 PIN</string>
   <string name="preferences__enable_pin">启用 PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装之后，可恢复你的个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 老友记 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 用于加密 老友记 存储的信息，这样只有你可以访问。重装之后，可恢复你的个人资料、设置和联系人。打开 老友记 无需使用 PIN。</string>
   <string name="preferences__system_default">系统默认</string>
   <string name="preferences__default">默认</string>
   <string name="preferences__language">语言</string>
-  <string name="preferences__signal_messages_and_calls">Signal 消息和通话</string>
+  <string name="preferences__signal_messages_and_calls">老友记 消息和通话</string>
   <string name="preferences__advanced_pin_settings">高级 PIN 设置</string>
-  <string name="preferences__free_private_messages_and_calls">Signal 用户可使用免费的加密消息和通话</string>
+  <string name="preferences__free_private_messages_and_calls">老友记 用户可使用免费的加密消息和通话</string>
   <string name="preferences__submit_debug_log">提交调试日志</string>
   <string name="preferences__support_wifi_calling">“WiFi 呼叫”兼容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">当你的设备通过 WiFi 发送短信或彩信时，请启用（仅在设备启用“WiFi 通话”时启用该选项）</string>
@@ -1406,8 +1446,8 @@
   <string name="preferences_storage__audio">音频</string>
   <string name="preferences_storage__review_storage">查看存储</string>
   <string name="preferences_advanced__use_system_emoji">使用系统表情符号</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">禁用 Signal 内置表情</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">通过 Signal 服务器中转全部通话，避免向联系人显示 IP 地址。启用该选项会降低通话质量。</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">禁用 老友记 内置表情</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">通过 老友记 服务器中转全部通话，避免向联系人显示 IP 地址。启用该选项会降低通话质量。</string>
   <string name="preferences_advanced__always_relay_calls">总是转发通话</string>
   <string name="preferences_app_protection__app_access">应用访问</string>
   <string name="preferences_app_protection__communication">通信</string>
@@ -1419,7 +1459,7 @@
   <string name="preferences_notifications__calls">通话</string>
   <string name="preferences_notifications__ringtone">铃声</string>
   <string name="preferences_chats__show_invitation_prompts">显示邀请提示</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">对非 Signal 联系人显示邀请提示</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">对非 老友记 联系人显示邀请提示</string>
   <string name="preferences_chats__message_text_size">消息字体大小</string>
   <string name="preferences_events__contact_joined_signal">联系人加入 Signal</string>
   <string name="preferences_notifications__priority">优先级</string>
@@ -1438,8 +1478,8 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">呼叫</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal 呼叫</string>
-  <string name="conversation_callable_secure__menu_video">Signal 视频通话</string>
+  <string name="conversation_callable_secure__menu_call">老友记 呼叫</string>
+  <string name="conversation_callable_secure__menu_video">老友记 视频通话</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">消息详情</string>
   <string name="conversation_context__menu_copy_text">复制文本</string>
@@ -1464,6 +1504,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">取消存档已选择项目</string>
   <string name="conversation_list_batch__menu_unarchive_selected">取消存档已选择项目</string>
   <string name="conversation_list_batch__menu_mark_as_read">标记为已读</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">标记为未读</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">设置快捷方式</string>
   <string name="conversation_list_search_description">搜索</string>
@@ -1511,24 +1552,24 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">复制到剪切板</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">与剪切板中的内容进行比较</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Signal 版本已经过期</string>
+  <string name="reminder_header_outdated_build">老友记 版本已经过期</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">当前所用的 Signal 版本将在 %d 天后过期。请点击升级至最新版。</item>
+    <item quantity="other">当前所用的 老友记 版本将在 %d 天后过期。请点击升级至最新版。</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">当前所用的 Signal 版本将在今天过期。点击升级至最新版。</string>
-  <string name="reminder_header_expired_build">当前所用的 Signal 版本已过期！</string>
+  <string name="reminder_header_outdated_build_details_today">当前所用的 老友记 版本将在今天过期。点击升级至最新版。</string>
+  <string name="reminder_header_expired_build">当前所用的 老友记 版本已过期！</string>
   <string name="reminder_header_expired_build_details">消息将无法成功发送。点击升级至最新版。</string>
   <string name="reminder_header_sms_default_title">设置为默认短信应用</string>
-  <string name="reminder_header_sms_default_text">点击将 Signal 设置为默认短信应用。</string>
+  <string name="reminder_header_sms_default_text">点击将 老友记 设置为默认短信应用。</string>
   <string name="reminder_header_sms_import_title">导入系统短信</string>
-  <string name="reminder_header_sms_import_text">点击将手机短信复制到 Signal 加密数据库。</string>
-  <string name="reminder_header_push_title">启用 Signal 消息和呼叫</string>
+  <string name="reminder_header_sms_import_text">点击将手机短信复制到 老友记 加密数据库。</string>
+  <string name="reminder_header_push_title">启用 老友记 消息和呼叫</string>
   <string name="reminder_header_push_text">升级您的通信体验。</string>
   <string name="reminder_header_invite_title">邀请使用 Signal</string>
   <string name="reminder_header_invite_text">将您与 %1$s 的对话提升到更高层次。</string>
   <string name="reminder_header_share_title">邀请好友！</string>
-  <string name="reminder_header_share_text">使用 Signal 的好友越多，越安全。</string>
-  <string name="reminder_header_service_outage_text">Signal 出现技术故障，我们将努力处理尽快恢复服务。</string>
+  <string name="reminder_header_share_text">使用 老友记 的好友越多，越安全。</string>
+  <string name="reminder_header_service_outage_text">老友记 出现技术故障，我们将努力处理尽快恢复服务。</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">当前 Android 版本不支持最新版 Signal。请升级你的设备，以便安装新版 Signal。</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
@@ -1548,8 +1589,8 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">深入了解</string>
   <string name="InsightsDashboardFragment__title">深入了解</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">在过去 %2$d 天，Signal Protocol 自动保护 %1$d%% 的传出消息。Signal 用户之间的对话一直为端对端加密。</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">提升 Signal 得分</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">在过去 %2$d 天，老友记 Protocol 自动保护 %1$d%% 的传出消息。老友记 用户之间的对话一直为端对端加密。</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">提升 老友记 得分</string>
   <string name="InsightsDashboardFragment__not_enough_data">数据不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">深入了解中计算得到的百分比，来自过去 %1$d 天内未消失或删除的传出消息。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">开始聊天</string>
@@ -1563,7 +1604,7 @@
   <string name="InsightsModalFragment__view_insights">查看“深入了解”</string>
   <string name="FirstInviteReminder__title">邀请加入 Signal</string>
   <string name="FirstInviteReminder__description">可增加发送的加密消息数量：%1$d%%</string>
-  <string name="SecondInviteReminder__title">提升 Signal 得分</string>
+  <string name="SecondInviteReminder__title">提升 老友记 得分</string>
   <string name="SecondInviteReminder__description">邀请 %1$s</string>
   <string name="InsightsReminder__view_insights">查看深入了解</string>
   <string name="InsightsReminder__invite">邀请</string>
@@ -1601,7 +1642,7 @@
   <string name="KbsSplashFragment__learn_more_about_pins">了解更多关于 PIN 的信息</string>
   <string name="KbsSplashFragment__disable_pin">禁用 PIN</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">请输入 Signal 的 PIN 密码</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">请输入 老友记 的 PIN 密码</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">为了便于记住 PIN，我们将定期提示输入该密码。提示次数将逐渐减少。</string>
   <string name="KbsReminderDialog__skip">跳过</string>
   <string name="KbsReminderDialog__submit">提交</string>
@@ -1653,12 +1694,12 @@
   <string name="ConversationListFragment_loading">正在加载…</string>
   <string name="CallNotificationBuilder_connecting">正在连接…</string>
   <string name="Permissions_permission_required">所需权限</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需“短信”权限，来发送短信，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“短信”。</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">老友记 需“短信”权限，来发送短信，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“短信”。</string>
   <string name="Permissions_continue">继续</string>
   <string name="Permissions_not_now">稍后再说</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需“联系人”权限，来搜索联系人，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“联系人”。</string>
-  <string name="conversation_activity__enable_signal_messages">启用 Signal 消息</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">迁移 Signal 数据库</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">老友记 需“联系人”权限，来搜索联系人，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“联系人”。</string>
+  <string name="conversation_activity__enable_signal_messages">启用 老友记 消息</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">迁移 老友记 数据库</string>
   <string name="PushDecryptJob_new_locked_message">新的锁定消息</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解锁查看待处理消息</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">备份密码</string>
@@ -1674,7 +1715,7 @@
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">测试备份密码并验证是否匹配</string>
   <string name="RegistrationActivity_enter_backup_passphrase">输入备份密码</string>
   <string name="RegistrationActivity_restore">恢复</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">无法从较新版本的 Signal 导入备份</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">无法从较新版本的 老友记 导入备份</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">备份密码错误</string>
   <string name="RegistrationActivity_checking">正在检查…</string>
   <string name="RegistrationActivity_d_messages_so_far">已处理 %d 条消息…</string>
@@ -1693,7 +1734,7 @@
   <string name="BackupDialog_verify">验证</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">已成功输入备份密码</string>
   <string name="BackupDialog_passphrase_was_not_correct">密码错误</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需外部存储权限，来创建备份，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">老友记 需外部存储权限，来创建备份，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">最近备份：%s</string>
   <string name="ChatsPreferenceFragment_in_progress">进行中</string>
   <string name="LocalBackupJob_creating_backup">正在创建备份…</string>
@@ -1701,22 +1742,22 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送至 %s 的验证码。</string>
   <string name="RegistrationActivity_wrong_number">号码错误</string>
   <string name="RegistrationActivity_call_me_instead_available_in">电话验证\n（%1$02d:%2$02d 后可用）</string>
-  <string name="RegistrationActivity_contact_signal_support">联系 Signal 支持</string>
-  <string name="RegistrationActivity_code_support_subject">Signal 注册 - 安卓验证码</string>
+  <string name="RegistrationActivity_contact_signal_support">联系 老友记 支持</string>
+  <string name="RegistrationActivity_code_support_subject">老友记 注册 - 安卓验证码</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">使用 Android 锁屏或者指纹锁定 Signal</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">不活跃锁屏逾时</string>
-  <string name="preferences_app_protection__signal_pin">Signal PIN 密码</string>
+  <string name="preferences_app_protection__signal_pin">老友记 PIN 密码</string>
   <string name="preferences_app_protection__create_a_pin">创建你的密码</string>
   <string name="preferences_app_protection__change_your_pin">更改 PIN</string>
   <string name="preferences_app_protection__pin_reminders">PIN 提醒</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装 Signal 之后，可恢复你的个人资料、设置和联系人。</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">再次使用电话号码注册 Signal 时，要求输入 PIN，这样提供了更多安全性。</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 老友记 存储的信息，这样只有你可以访问。重装 老友记 之后，可恢复你的个人资料、设置和联系人。</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">再次使用电话号码注册 老友记 时，要求输入 PIN，这样提供了更多安全性。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN 无法恢复，提醒有助于记住它。提醒频率将逐渐降低。</string>
   <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">请验证你的 Signal 安全码</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">请验证你的 老友记 安全码</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <string name="AppProtectionPreferenceFragment_none">无</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">注册锁定 PIN 密码不是您刚刚收到的短信验证码。请输入之前在应用中设置的 PIN。</string>
@@ -1727,7 +1768,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">确认 PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">输入注册锁定 PIN</string>
   <string name="registration_lock_reminder_view__enter_pin">输入 PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">启用注册锁定 PIN 后，使用该号码重新注册 Signal 时需输入该密码。</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">启用注册锁定 PIN 后，使用该号码重新注册 老友记 时需输入该密码。</string>
   <string name="preferences_app_protection__registration_lock_pin">注册锁定 PIN</string>
   <string name="preferences_app_protection__registration_lock">注册锁定</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">必须输入注册锁定 PIN</string>
@@ -1737,13 +1778,13 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">注册锁定 PIN 输入错误过多，请一天后重试。</string>
   <string name="RegistrationActivity_error_connecting_to_service">连接至服务时出错</string>
   <string name="RegistrationActivity_oh_no">哦不！</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">如果没有锁定注册 PIN，可在上次使用 Signal 后 7 天，再次使用该号码注册。目前还需等待 %d 天。</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">如果没有锁定注册 PIN，可在上次使用 老友记 后 7 天，再次使用该号码注册。目前还需等待 %d 天。</string>
   <string name="RegistrationActivity_registration_lock_pin">注册锁定 PIN</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">该号码已启用注册锁定，请输入注册锁定 PIN。</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">该号码已启用注册锁定。为了便于记住 PIN，Signal 将定期提示输入该密码。</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">该号码已启用注册锁定。为了便于记住 PIN，老友记 将定期提示输入该密码。</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">忘记 PIN 密码。</string>
   <string name="RegistrationLockDialog_forgotten_pin">忘记 PIN？</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">注册锁定可防止他人未经授权使用你的号码注册。可随时在 Signal 隐私设置里禁用该功能。</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">注册锁定可防止他人未经授权使用你的号码注册。可随时在 老友记 隐私设置里禁用该功能。</string>
   <string name="RegistrationLockDialog_enable">启用</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">注册锁定 PIN 必须不少于 %d 位数字。</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">两次输入的 PIN 不匹配。</string>
@@ -1753,7 +1794,7 @@
   <string name="RegistrationActivity_pin_incorrect">PIN 错误</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">还可输入 %d 次</string>
   <string name="preferences_chats__backups">备份</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal 已锁定</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">老友记 已锁定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">点击解锁</string>
   <string name="RegistrationLockDialog_reminder">提醒：</string>
   <string name="recipient_preferences__about">关于</string>
@@ -1765,8 +1806,16 @@
   <string name="RecipientBottomSheet_view_safety_number">查看安全码</string>
   <string name="RecipientBottomSheet_message_description">消息</string>
   <string name="RecipientBottomSheet_remove">删除</string>
+  <string name="RecipientBottomSheet_add_to_a_group">添加到群</string>
+      <string name="RecipientBottomSheet_make_group_admin">设为群管理员</string>
+    <string name="RecipientBottomSheet_remove_as_admin">取消群管理员</string>
+	<string name="RecipientBottomSheet_remove_from_group">从群中移除</string>
+	    <string name="RecipientBottomSheet_remove_s_as_group_admin">取消 %1$s 的群管理员角色?</string>
+    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s 可以对这个群进行管理了.</string>
+    <string name="RecipientBottomSheet_remove_s_from_s">从 "%2$s" 移除 %1$s ?</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">已复制到剪切板</string>
   <string name="GroupRecipientListItem_admin">管理员</string>
+      <string name="RecipientBottomSheet_add_to_another_group">添加到其他群</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_copy">复制</string>
