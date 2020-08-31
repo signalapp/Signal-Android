@@ -24,12 +24,14 @@
 
     <ProgressBar
         android:id="@+id/thumbnail_load_indicator"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_gravity="center"
         android:indeterminate="true"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        android:indeterminateTint="@android:color/white"
+        android:indeterminateTintMode="src_in"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:id="@+id/play_overlay"
