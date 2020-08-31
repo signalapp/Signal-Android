@@ -125,7 +125,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.QRCodeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.CreatePrivateChatActivity"
             android:screenOrientation="portrait" />
@@ -411,7 +412,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest__media_preview"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Session.DayNight"
+            android:theme="@style/Theme.Session.DayNight.NoActionBar"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <activity

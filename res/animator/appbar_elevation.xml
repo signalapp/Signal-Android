@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This seems to be the dirties and the only way to set AppBar's elevation property.
+    God help Android and us all.
+    https://stackoverflow.com/a/45703684/3802890 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <objectAnimator
+            android:duration="1"
+            android:propertyName="elevation"
+            android:valueTo="1dp"
+            android:valueType="floatType" />
+    </item>
+</selector>

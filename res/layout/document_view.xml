@@ -28,7 +28,7 @@
                         android:visibility="gone"
                         android:clickable="false"
                         android:layout_gravity="center"
-                        app:matProg_barColor="@color/white"
+                        app:matProg_barColor="?android:textColorPrimary"
                         app:matProg_linearProgress="true"
                         app:matProg_spinSpeed="0.333"
                         tools:visibility="gone"/>
@@ -42,7 +42,8 @@
                         android:gravity="center"
                         android:visibility="visible"
                         android:clickable="false"
-                        android:focusable="false">
+                        android:focusable="false"
+                        tools:visibility="visible">
 
                     <ImageView
                         android:id="@+id/icon"
@@ -62,7 +63,7 @@
                               style="@style/Signal.Text.Caption"
                               android:textAllCaps="true"
                               android:textSize="10sp"
-                              android:textColor="@color/core_black"
+                              android:textColor="?attachment_document_extension_text_color"
                               tools:visibility="visible"
                               tools:text="PDF" />
 
@@ -75,8 +76,9 @@
                            android:clickable="true"
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_download_circle_fill_white_48dp"
-                           android:contentDescription="@string/audio_view__download_accessibility_description"/>
+                           android:src="@drawable/ic_download_circle_filled_48"
+                           android:contentDescription="@string/audio_view__download_accessibility_description"
+                           tools:visibility="visible"/>
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 

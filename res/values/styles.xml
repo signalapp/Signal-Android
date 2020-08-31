@@ -3,10 +3,9 @@
 
     <!-- Session -->
     <style name="Widget.Session.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="android:elevation">1dp</item>
+        <item name="android:background">?colorPrimary</item>
         <item name="elevation">1dp</item>
         <item name="titleTextStyle">@style/TextAppearance.Session.DarkActionBar.TitleTextStyle</item>
-        <item name="minHeight">?attr/actionBarSize</item>
         <item name="popupTheme">@style/Widget.Session.ActionBar</item>
     </style>
 
@@ -21,7 +20,7 @@
     </style>
 
     <style name="TextSecure.BaseDarkTheme.SearchView" parent="@style/Widget.AppCompat.SearchView">
-        <item name="closeIcon">@drawable/ic_close_white_24dp</item>
+        <item name="closeIcon">@drawable/ic_baseline_clear_24</item>
     </style>
 
     <style name="Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
@@ -41,15 +40,26 @@
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="Session.DarkTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@color/accent</item>
-        <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>
-        <item name="tabBackground">@color/action_bar_background</item>
-        <item name="tabRippleColor">@color/cell_selected</item>
-        <item name="tabTextAppearance">@style/Session.DarkTabLayout.TextAppearance</item>
+    <style name="Widget.Session.AppBarLayout" parent="@style/Widget.Design.AppBarLayout">
+
     </style>
 
-    <style name="Session.DarkTabLayout.TextAppearance" parent="TextAppearance.Design.Tab">
+    <style name="Widget.Session.TabBar" parent="Widget.AppCompat.ActionBar.TabBar">
+        <item name="elevation">1dp</item>
+    </style>
+
+    <style name="Widget.Session.TabLayout" parent="Widget.Design.TabLayout">
+        <!-- TODO Should use the same color as action bar background. -->
+<!--        <item name="android:background">@color/compose_view_background</item>-->
+        <item name="elevation">1dp</item>
+        <item name="tabIndicatorColor">?colorAccent</item>
+        <item name="tabSelectedTextColor">?colorAccent</item>>
+        <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>
+        <item name="tabRippleColor">@color/cell_selected</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Session.Tab</item>
+    </style>
+
+    <style name="TextAppearance.Session.Tab" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="textAllCaps">false</item>
     </style>

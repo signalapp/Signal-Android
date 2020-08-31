@@ -5,6 +5,10 @@ import android.content.Intent;
 
 import network.loki.messenger.R;
 
+/**
+ * @deprecated Use conventional DayNight app themes to support dark/light modes.
+ */
+@Deprecated
 public class DynamicTheme {
 
   public static final String DARK  = "dark";

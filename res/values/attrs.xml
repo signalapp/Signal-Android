@@ -5,6 +5,7 @@
     <attr name="attachment_type_selector_background" format="color"/>
     <attr name="attachment_document_icon_small" format="reference" />
     <attr name="attachment_document_icon_large" format="reference" />
+    <attr name="attachment_document_extension_text_color" format="color" />
 
     <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>

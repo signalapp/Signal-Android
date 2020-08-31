@@ -25,21 +25,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ActionMode;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,7 +34,23 @@ import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
+import com.google.android.material.tabs.TabLayout;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
@@ -62,8 +63,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Util;
@@ -87,7 +86,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   public static final String ADDRESS_EXTRA   = "address";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private Toolbar      toolbar;
@@ -97,14 +95,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   @Override
   protected void onPreCreate() {
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
   }
 
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.media_overview_activity);
-    getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar_background));
 
     initializeResources();
     initializeToolbar();
@@ -116,7 +112,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 
