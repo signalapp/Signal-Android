@@ -73,7 +73,7 @@ public class AlbumThumbnailView extends FrameLayout {
       }
     }
 
-    int sizeClass = sizeClass(slides.size());
+    int sizeClass = Math.min(slides.size(), 6);
 
     if (sizeClass != currentSizeClass) {
       inflateLayout(sizeClass);
@@ -148,11 +148,8 @@ public class AlbumThumbnailView extends FrameLayout {
   private void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide, @IdRes int id) {
     ThumbnailView cell = findViewById(id);
     cell.setImageResource(glideRequests, slide, false, false);
+    cell.setLoadIndicatorVisibile(slide.isInProgress());
     cell.setThumbnailClickListener(defaultThumbnailClickListener);
     cell.setOnLongClickListener(defaultLongClickListener);
-  }
-
-  private int sizeClass(int size) {
-    return Math.min(size, 6);
   }
 }

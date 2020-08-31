@@ -42,7 +42,7 @@
         android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
         android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
-        app:footer_text_color="@color/core_white"
-        app:footer_icon_color="@color/core_white"/>
+        app:footer_text_color="@android:color/white"
+        app:footer_icon_color="@android:color/white"/>
 
 </merge>

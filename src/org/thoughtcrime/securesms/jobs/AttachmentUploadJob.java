@@ -88,13 +88,20 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
     
     // Only upload attachment if necessary
     if (databaseAttachment.getUrl().isEmpty()) {
-      MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
-      Attachment scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
-      SignalServiceAttachment localAttachment = getAttachmentFor(scaledAttachment);
-      SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker(), new SignalServiceAddress(destination.serialize()));
-      Attachment attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+      final Attachment attachment;
+      try {
+        MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
+        Attachment scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
+        SignalServiceAttachment localAttachment = getAttachmentFor(scaledAttachment);
+        SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker(), new SignalServiceAddress(destination.serialize()));
+        attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+      } catch (Exception e) {
+        // On any error make sure we mark the related DB record's transfer state as failed.
+        database.updateAttachmentAfterUploadFailed(databaseAttachment.getAttachmentId());
+        throw e;
+      }
 
-      database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
+      database.updateAttachmentAfterUploadSucceeded(databaseAttachment.getAttachmentId(), attachment);
     }
   }
 

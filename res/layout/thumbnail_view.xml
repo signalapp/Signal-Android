@@ -22,6 +22,15 @@
         android:src="@drawable/ic_caption_28"
         android:visibility="gone" />
 
+    <ProgressBar
+        android:id="@+id/thumbnail_load_indicator"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
     <FrameLayout
         android:id="@+id/play_overlay"
         android:layout_width="48dp"

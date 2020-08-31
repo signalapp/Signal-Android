@@ -3,15 +3,15 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.UiThread;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import network.loki.messenger.R;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
+
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -20,6 +20,8 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
+
+import network.loki.messenger.R;
 
 public class ConversationItemThumbnail extends FrameLayout {
 
@@ -49,12 +51,12 @@ public class ConversationItemThumbnail extends FrameLayout {
   private void init(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.conversation_item_thumbnail, this);
 
-    this.thumbnail  = findViewById(R.id.conversation_thumbnail_image);
-    this.album      = findViewById(R.id.conversation_thumbnail_album);
-    this.shade      = findViewById(R.id.conversation_thumbnail_shade);
-    this.footer     = findViewById(R.id.conversation_thumbnail_footer);
-    this.cornerMask = new CornerMask(this);
-    this.outliner   = new Outliner();
+    this.thumbnail     = findViewById(R.id.conversation_thumbnail_image);
+    this.album         = findViewById(R.id.conversation_thumbnail_album);
+    this.shade         = findViewById(R.id.conversation_thumbnail_shade);
+    this.footer        = findViewById(R.id.conversation_thumbnail_footer);
+    this.cornerMask    = new CornerMask(this);
+    this.outliner      = new Outliner();
 
     outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
 
@@ -126,8 +128,10 @@ public class ConversationItemThumbnail extends FrameLayout {
       thumbnail.setVisibility(VISIBLE);
       album.setVisibility(GONE);
 
-      Attachment attachment = slides.get(0).asAttachment();
-      thumbnail.setImageResource(glideRequests, slides.get(0), showControls, isPreview, attachment.getWidth(), attachment.getHeight());
+      Slide slide = slides.get(0);
+      Attachment attachment = slide.asAttachment();
+      thumbnail.setImageResource(glideRequests, slide, showControls, isPreview, attachment.getWidth(), attachment.getHeight());
+      thumbnail.setLoadIndicatorVisibile(slide.isInProgress());
       setTouchDelegate(thumbnail.getTouchDelegate());
     } else {
       thumbnail.setVisibility(GONE);
