@@ -234,8 +234,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
 
         if (isSSKBasedClosedGroup) {
-            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() },
-                name, admins.map { it.address.serialize() })
+            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
         } else {
             GroupManager.updateGroup(this, groupID, members, null, name, admins)
         }
