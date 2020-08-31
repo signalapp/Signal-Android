@@ -150,7 +150,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
 
   @Override
-  public boolean onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
     SimpleTask.run(this.getLifecycle(), () -> {
       Recipient recipient;
       if (recipientId.isPresent()) {

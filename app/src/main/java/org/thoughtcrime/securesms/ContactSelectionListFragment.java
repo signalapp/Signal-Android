@@ -70,7 +70,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UsernameUtil;
@@ -475,7 +474,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
               SelectedContact selected = SelectedContact.forUsername(recipient.getId(), contact.getNumber());
 
               if (onContactSelectedListener != null) {
-                if (onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null)) {
+                if (onContactSelectedListener.onBeforeContactSelected(Optional.of(recipient.getId()), null)) {
                   markContactSelected(selected);
                   cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
                 }
@@ -493,7 +492,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
           });
         } else {
           if (onContactSelectedListener != null) {
-            if (onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber())) {
+            if (onContactSelectedListener.onBeforeContactSelected(contact.getRecipientId(), contact.getNumber())) {
               markContactSelected(selectedContact);
               cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
             }
@@ -632,7 +631,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
   public interface OnContactSelectedListener {
     /** @return True if the contact is allowed to be selected, otherwise false. */
-    boolean onContactSelected(Optional<RecipientId> recipientId, String number);
+    boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number);
     void onContactDeselected(Optional<RecipientId> recipientId, String number);
   }
 
