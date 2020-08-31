@@ -396,8 +396,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     if (position < 0)               return -1;
 
     MessageRecord record = getRecordForPositionOrThrow(position);
-
-    calendar.setTime(new Date(record.getDateSent()));
+    if (record.getRecipient().getAddress().isOpenGroup()) {
+      calendar.setTime(new Date(record.getDateReceived()));
+    } else {
+      calendar.setTime(new Date(record.getDateSent()));
+    }
     return Util.hashCode(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
   }
 
