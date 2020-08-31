@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -125,7 +126,7 @@ class ViewMyQRCodeFragment : Fragment() {
     }
 
     private fun shareQRCode() {
-        val directory = requireContext().externalCacheDir
+        val directory = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val fileName = "$hexEncodedPublicKey.png"
         val file = File(directory, fileName)
         file.createNewFile()
@@ -137,7 +138,6 @@ class ViewMyQRCodeFragment : Fragment() {
         fos.close()
         val intent = Intent(Intent.ACTION_SEND)
         intent.putExtra(Intent.EXTRA_STREAM, FileProviderUtil.getUriFor(requireActivity(), file))
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         intent.type = "image/png"
         startActivity(Intent.createChooser(intent, resources.getString(R.string.fragment_view_my_qr_code_share_title)))
