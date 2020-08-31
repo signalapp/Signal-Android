@@ -50,6 +50,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN creat.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Pin dezactivat.</string>
   <string name="ApplicationPreferencesActivity_hide">Ascunde</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Ascundeți memento?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -217,6 +218,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu puteți trimite mesaje acestui grup, deoarece nu mai sunteți membru.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Solicitarea dvs. de înscriere a fost trimisă administratorului grupului. Veți fi anunțat când vor lua acțiuni.</string>
+  <string name="ConversationActivity_cancel_request">Anulați cererea</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pentru a trimite mesaje audio, permite-i aplicației Signal accesul la microfonul tău.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal are nevoie de permisiunea pentru Microfon pentru a putea trimite mesaje audio dar i-a fost refuzat accesul permanent. Vă rugăm să navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea apela pe %s dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\" și \"Cameră\".</string>
@@ -353,6 +356,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Faceți o poză</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Alegeți din galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminați poza</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Pentru a face o fotografie este nevoie de permisiunea camerei.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Acum</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -415,6 +419,7 @@
   <string name="GroupManagement_access_level_anyone">Oricine</string>
   <string name="GroupManagement_access_level_all_members">Toți membrii</string>
   <string name="GroupManagement_access_level_only_admins">Doar administratorii</string>
+  <string name="GroupManagement_access_level_no_one">Nimeni</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Invitație trimisă</item>
@@ -430,9 +435,18 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Acum puteți prelua previzualizările link-urilor direct de pe orice site web pentru mesajele pe care le trimiteți.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Previzualizarea link-ului nu este disponibilă</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Acest link de grup nu este activ</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d membru</item>
+    <item quantity="few">%1$d membrii</item>
+    <item quantity="other">%1$d membrii</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Invitații la grup în așteptare</string>
+  <string name="PendingMembersActivity_requests">Cereri</string>
+  <string name="PendingMembersActivity_invites">Invitații</string>
   <string name="PendingMembersActivity_people_you_invited">Persoane pe care le-ați invitat</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Nu aveți invitații în așteptare.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitații de la alți membri ai grupului</string>
@@ -451,6 +465,8 @@
     <item quantity="other">A apărut o eroare la revocarea invitațiilor</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Cereri de membru în așteptare</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Nici o cerere de membru de afișat.</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gata</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
@@ -574,11 +590,19 @@
   <string name="CustomNotificationsDialogFragment__disabled">Dezactivat</string>
   <string name="CustomNotificationsDialogFragment__default">Implicit</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link grup partajabil</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Link grup</string>
   <string name="ShareableGroupLinkDialogFragment__share">Partajați</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Resetare link</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Cereri membrii</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobare noi membrii</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Activat</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Dezactivat</string>
   <string name="ShareableGroupLinkDialogFragment__default">Implicit</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">Cod QR</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Persoanele care scanează acest cod se vor putea alătura grupului dvs. Administratorii vor trebui în continuare să aprobe noi membri dacă aveți setarea activată.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Partajați codul</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Doriți să revocați invitația trimisă la %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -588,13 +612,28 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ești deja membru</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Alăturați-vă</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Cerere de înscriere</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Acest link de grup nu este activ</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Doriți să vă alăturați acestui grup și să vă împărtășiți numele și fotografia cu membrii săi?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să vă aprobe solicitarea înainte de a vă putea alătura acestui grup. Când solicitați să vă înscrieți, numele și fotografia dvs. vor fi partajate membrilor săi.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Grup · %1$d membru</item>
+    <item quantity="few">Grup · %1$d membrii</item>
+    <item quantity="other">Grup · %1$d membrii</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Linkurile de grup vin în curând</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi link-uri la grupuri</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Înscrierea la un grup printr-un link nu este încă suportată de Signal. Această funcționalitate va fi lansată într-o actualizare viitoare.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versiune de Signal pe care o folosiți nu suportă link-uri partajabile către grup. Actualizați la ultima versine pentru a te alătura acestui grup printr-un link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Linkul de grup nu este valid</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Adăugați pe “%1$s” la grup?</string>
   <string name="RequestConfirmationDialog_add">Adaugă</string>
+  <string name="RequestConfirmationDialog_deny">Refuzați</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar de grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -838,8 +877,12 @@
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Ați trimis o cerere de alăturare la grup.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Solicitarea dvs. de a vă alătura grupului a fost aprobată.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">O cerere de alăturare la grup de la %1$s a fost aprobată.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Solicitarea dvs. de a vă alătura grupului a fost respinsă de un administrator.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul dvs. de siguranță pentru %s s-a schimbat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ați marcat numărul tău de siguranță cu %s ca și verificat</string>
@@ -963,6 +1006,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grup fără nume</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Răspundeți…</string>
+  <string name="RedPhone_ending_call">Se închide apelul…</string>
+  <string name="RedPhone_dialing">Se apelează…</string>
   <string name="RedPhone_ringing">Sună…</string>
   <string name="RedPhone_busy">Ocupat</string>
   <string name="RedPhone_connected">Conectat</string>
@@ -1166,6 +1212,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Numele de utilizator nu pot începe cu un număr.</string>
   <string name="UsernameEditFragment_username_is_invalid">Numele de utilizator este invalid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Numele de utilizator trebuie să aibă între %1$d și %2$d caractere.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Numele de utilizator pe Signal sunt opționale. Dacă alegeți să creați un nume de utilizator, alți utilizatori de Signal vă vor putea găsi prin acest nume de utilizator și vă vor contacta fără să vă știe numărul dvs. de telefon.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
@@ -1790,6 +1837,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_notifications__mentions">Mențiuni</string>
   <string name="preferences_notifications__notify_me">Anunță-mă</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Primire notificări atunci când sunteți menționat în convorbiri fără sunet</string>
+  <string name="preferences_setup_a_username">Configurați un nume de utilizator</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2175,6 +2223,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_remove">Eliminați</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
+  <string name="GroupRecipientListItem_approve_description">Aprobați</string>
+  <string name="GroupRecipientListItem_deny_description">Refuzați</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupuri vechi vs. grupuri noi</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Ce sunt grupurile vechi?</string>
@@ -2183,8 +2233,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi convertite la Noul grup, dar puteți creea un nou grup cu aceeași membrii.</string>
   <string name="GroupsLearnMore_paragraph_3">Pentru a creea un grup nou, toți membrii ar trebui să se actualizeze la cea mai recentă versiune a Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Partajează prin Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copy</string>
+  <string name="GroupLinkBottomSheet_qr_code">Cod QR</string>
   <string name="GroupLinkBottomSheet_share">Partajați</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Linkul nu este activ momentan</string>
   <!--EOF-->
 </resources>

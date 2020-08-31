@@ -448,7 +448,7 @@
   </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Ausstehende Beitrittsanfragen</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Keine Beitrittsanfragen verfügbar.</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Keine Beitrittsanfragen vorhanden.</string>
   <string name="RequestingMembersFragment_explanation">Personen auf dieser Liste versuchen der Gruppe über den teilbaren Gruppen-Link beizutreten.</string>
   <string name="RequestingMembersFragment_added_s">»%1$s« hinzugefügt</string>
   <string name="RequestingMembersFragment_denied_s">»%1$s« abgelehnt</string>

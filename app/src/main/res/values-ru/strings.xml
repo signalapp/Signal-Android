@@ -537,7 +537,7 @@
   <string name="ManageGroupActivity_block_group">Заблокировать группу</string>
   <string name="ManageGroupActivity_unblock_group">Разблокировать группу</string>
   <string name="ManageGroupActivity_leave_group">Покинуть группу</string>
-  <string name="ManageGroupActivity_mute_notifications">Откл. звук уведомлений</string>
+  <string name="ManageGroupActivity_mute_notifications">Отключить уведомления</string>
   <string name="ManageGroupActivity_custom_notifications">Пользовательские уведомления</string>
   <string name="ManageGroupActivity_mentions">Упоминания</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
@@ -569,7 +569,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Это Старая группа. Чтобы получить доступ к таким функциям, как администраторы групп, создайте Новую группу.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведомлять меня об упоминаниях</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключённым звуком?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключёнными уведомлениями?</string>
   <string name="GroupMentionSettingDialog_default_notify_me">По умолчанию (Уведомлять меня)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">По умолчанию (Не уведомлять меня)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Всегда уведомлять меня</string>
@@ -582,7 +582,7 @@
   <string name="ManageRecipientActivity_block">Заблокировать</string>
   <string name="ManageRecipientActivity_unblock">Разблокировать</string>
   <string name="ManageRecipientActivity_view_safety_number">Просмотреть код безопасности</string>
-  <string name="ManageRecipientActivity_mute_notifications">Откл. звук уведомлений</string>
+  <string name="ManageRecipientActivity_mute_notifications">Отключить уведомления</string>
   <string name="ManageRecipientActivity_custom_notifications">Пользовательские уведомления</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
   <string name="ManageRecipientActivity_off">Отключено</string>
@@ -1920,7 +1920,7 @@
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
   <string name="preferences_notifications__mentions">Упоминания</string>
   <string name="preferences_notifications__notify_me">Уведомлять меня</string>
-  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключённым звуком</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключёнными уведомлениями</string>
   <string name="preferences_setup_a_username">Настройте имя пользователя</string>
   <!--Internal only preferences-->
   <!--****************************************-->

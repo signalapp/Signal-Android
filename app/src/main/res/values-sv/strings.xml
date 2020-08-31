@@ -48,6 +48,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN-kod skapad.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kod inaktiverad.</string>
   <string name="ApplicationPreferencesActivity_hide">Dölj</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Dölj påminnelse?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -214,6 +215,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan inte skicka meddelanden till den här gruppen eftersom du inte längre är medlem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din begäran om att gå med har skickats till gruppadministratören. Du får ett meddelande när de vidtar åtgärder.</string>
+  <string name="ConversationActivity_cancel_request">Avbryt begäran</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal åtkomst till din mikrofon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörigheterna Mikrofon och Kamera för att ringa%s men de har avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och Kamera\".</string>
@@ -339,6 +342,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ta foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Välj från galleri</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ta bort bild</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">För att ta ett foto krävs kamerabehörigheten.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -401,6 +405,7 @@
   <string name="GroupManagement_access_level_anyone">Någon</string>
   <string name="GroupManagement_access_level_all_members">Alla medlemmar</string>
   <string name="GroupManagement_access_level_only_admins">Endast administratörer</string>
+  <string name="GroupManagement_access_level_no_one">Ingen</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Inbjudan skickad</item>
@@ -416,9 +421,16 @@
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ingen länkförhandsvisning tillgänglig</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmar</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string>
+  <string name="PendingMembersActivity_requests">Förfrågningar</string>
+  <string name="PendingMembersActivity_invites">Inbjudningar</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du bjudit in</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Du har inga väntande inbjudningar.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Inbjudningar från andra gruppmedlemmar</string>
@@ -435,6 +447,11 @@
     <item quantity="other">Fel vid återkallelse av inbjudningar</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Väntande medlemsförfrågningar</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Inga medlemsförfrågningar att visa.</string>
+  <string name="RequestingMembersFragment_explanation">Personer på denna lista försöker gå med i gruppen via den delbara grupplänken.</string>
+  <string name="RequestingMembersFragment_added_s">Lade till \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">Avvisade \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Den här personen kan inte läggas till i äldre grupper.</string>
@@ -469,10 +486,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageGroupActivity_pending_group_invites">Väntande gruppinbjudningar</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Medlemsförfrågningar &amp; inbjudningar</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Redigera gruppinformation</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Välj vem som kan redigera gruppnamn, avatar och försvinnande meddelanden.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Delbar grupplänk</string>
   <string name="ManageGroupActivity_block_group">Blockera grupp</string>
   <string name="ManageGroupActivity_unblock_group">Sluta blockera grupp</string>
   <string name="ManageGroupActivity_leave_group">Lämna grupp</string>
@@ -551,11 +570,23 @@
   <string name="CustomNotificationsDialogFragment__disabled">Inaktiverad</string>
   <string name="CustomNotificationsDialogFragment__default">Standard</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Delbar grupplänk</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Hantera &amp; dela</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Grupplänk</string>
   <string name="ShareableGroupLinkDialogFragment__share">Dela</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Återställ länk</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Medlemsförfrågningar</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Godkänn nya medlemmar</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Aktiverad</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Inaktiverad</string>
   <string name="ShareableGroupLinkDialogFragment__default">Standard</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Återställ grupplänk</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Kräv en administratör för att godkänna nya medlemmar som går med via grupplänken.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Är du säker på att du vill återställa grupplänken? Personer kommer inte längre att kunna gå med i gruppen med den aktuella länken.</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR-kod</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personer som skannar den här koden kan gå med i din grupp. Administratörer måste fortfarande godkänna nya medlemmar om du har aktiverat den inställningen.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Dela kod</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Vill du återkalla inbjudan du skickade till %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -566,6 +597,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du är redan medlem</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Gå med</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Begär att gå med</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Det gick inte att gå med i gruppen. Vänligen försök igen senare</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det går inte att få gruppinformation, försök igen senare</string>
@@ -576,11 +608,17 @@
     <item quantity="other">Grupp · %1$d medlemmar</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupplänkar kommer snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uppdatera Signal för att använda grupplänkar</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Att gå med i en grupp via en länk stöds ännu inte av Signal. Denna funktion kommer att släppas i en kommande uppdatering.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte delbara grupplänkar. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupplänken är inte giltig</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Lägg till \"%1$s\" till gruppen?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Avvisa begäran från \"%1$s\"?</string>
   <string name="RequestConfirmationDialog_add">Lägg till</string>
+  <string name="RequestConfirmationDialog_deny">Avvisa</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -831,12 +869,15 @@
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkände din begäran om att gå med i gruppen.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkände en begäran om att gå med i gruppen från %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Du godkände en begäran om att gå med i gruppen från %1$s.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Din begäran om att gå med i gruppen har godkänts.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En begäran om att gå med i gruppen från %1$s har godkänts.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Din begäran om att gå med i gruppen har avvisats av en administratör.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s avvisade en begäran om att gå med i gruppen från %2$s.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En begäran om att gå med i gruppen från %1$s har blivit avvisad.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du avbröt din begäran om att gå med i gruppen.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s avbröt sin begäran om att gå med i gruppen.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerade ditt säkerhetsnummer med %s som verifierat</string>
@@ -1159,6 +1200,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med ett nummer.</string>
   <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Användarnamn på Signal är valfria. Om du väljer att skapa ett användarnamn kan andra Signal-användare hitta dig med detta användarnamn och kontakta dig utan att veta ditt telefonnummer.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be dem uppdatera innan de verifierar ditt säkerhetsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Vänligen uppdatera för att jämföra dem.</string>
@@ -1772,6 +1814,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_notifications__mentions">Omnämnanden</string>
   <string name="preferences_notifications__notify_me">Meddela mig</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Få aviseringar när du omnämns i tystade konversationer</string>
+  <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2149,6 +2192,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_remove">Ta bort</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupRecipientListItem_admin">Administratör</string>
+  <string name="GroupRecipientListItem_approve_description">Godkänn</string>
+  <string name="GroupRecipientListItem_deny_description">Avvisa</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Äldre vs. Nya grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Vad är Äldre grupper?</string>
@@ -2157,9 +2202,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan inte konverteras till nya grupper, men du kan skapa en ny grupp med samma medlemmar.</string>
   <string name="GroupsLearnMore_paragraph_3">För att skapa en Ny grupp, bör alla medlemmar uppdatera till den senaste versionen av Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Dela via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiera</string>
   <string name="GroupLinkBottomSheet_qr_code">QR Kod</string>
   <string name="GroupLinkBottomSheet_share">Dela</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Länken är för närvarande inte aktiv</string>
   <!--EOF-->
 </resources>

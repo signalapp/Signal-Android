@@ -48,6 +48,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">Le NIP a été créé.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Le NIP a été désactivé.</string>
   <string name="ApplicationPreferencesActivity_hide">Cacher</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Cacher le rappel ?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
@@ -580,6 +581,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Désactivé</string>
   <string name="ShareableGroupLinkDialogFragment__default">Valeur par défaut</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Réinitialisation du lien de groupe</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Exiger qu’un administrateur approuve les nouveaux membres qui se joignent grâce au lien de groupe.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Voulez-vous vraiment réinitialiser le lien du groupe ? Personne ne pourra plus se joindre au groupe grâce au lien actuel.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Code QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Les personnes qui balaieront ce code pourront se joindre à votre groupe. Les administrateurs devront quand même approuver les nouveaux membres si vous avez activé ce paramètre.</string>
@@ -1194,6 +1197,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Les noms d’utilisateur ne peuvent pas commencer par un numéro.</string>
   <string name="UsernameEditFragment_username_is_invalid">Le nom d’utilisateur est invalide.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Les noms d’utilisateur doivent comporter entre %1$d et %2$d caractères.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Sur Signal, les noms d’utilisateur sont facultatifs. Si vous choisissez de créer un nom d’utilisateur, les autres utilisateurs de Signal pourront vous trouver avec ce nom d’utilisateur et vous contacter sans connaître votre numéro de téléphone.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact utilise une ancienne version de Signal. Veuillez lui demander de la mettre à jour avant de confirmer votre numéro de sécurité.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal dont le format de code QR est incompatible. Veuillez mettre Signal à jour pour comparer.</string>
@@ -1806,6 +1810,7 @@
   <string name="preferences_notifications__mentions">Mentions</string>
   <string name="preferences_notifications__notify_me">Me prévenir</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine</string>
+  <string name="preferences_setup_a_username">Définir un nom d’utilisateur</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

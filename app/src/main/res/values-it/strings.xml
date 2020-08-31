@@ -581,6 +581,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Non attiva</string>
   <string name="ShareableGroupLinkDialogFragment__default">Predefinita</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Link del gruppo reimpostato</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Richiedi a un amministratore di approvare i nuovi membri che si uniscono tramite il link del gruppo.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Sei sicuro di voler reimpostare il link del gruppo? Le persone non saranno più in grado di unirsi al gruppo utilizzando il link corrente.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Codice QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Le persone che scansioneranno questo codice potranno unirsi al tuo gruppo. Gli amministratori dovranno comunque approvare i nuovi membri se questa impostazione è attiva.</string>
@@ -1204,6 +1206,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">I nomi utente su Signal sono facoltativi. Se scegli di creare un nome utente, gli altri utenti di Signal potranno trovarti con questo nome utente e contattarti senza conoscere il tuo numero di telefono.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
@@ -1817,6 +1820,7 @@
   <string name="preferences_notifications__mentions">Menzioni</string>
   <string name="preferences_notifications__notify_me">Notificami</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Ricevi le notifiche quando vieni menzionato nelle chat mutate</string>
+  <string name="preferences_setup_a_username">Imposta un nome utente</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

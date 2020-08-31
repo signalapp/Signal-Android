@@ -52,6 +52,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN kodas sukurtas.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN kodas išjungtas.</string>
   <string name="ApplicationPreferencesActivity_hide">Slėpti</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Slėpti priminimą?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutė</item>
@@ -220,6 +221,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Nepavyksta įrašyti garso!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Negalite siųsti žinučių į šią grupę, nes daugiau nebesate jos narys.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Jūsų prašymas prisijungti prie grupės buvo išsiųstas grupės administratoriui. Jums bus pranešta, kai jis atliks tam tikrus veiksmus.</string>
+  <string name="ConversationActivity_cancel_request">Panaikinti prašymą</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Norėdami siųsti garso žinutes, leiskite Signal prieigą prie mikrofono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Signal reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Norint skambinti %s, programai Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
@@ -367,6 +370,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Fotografuoti</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Pasirinkti iš galerijos</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Šalinti nuotrauką</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Nuotraukos darymui reikia leidimo naudoti kamerą.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Dabar</string>
   <string name="DateUtils_minutes_ago">%d min.</string>
@@ -457,6 +461,7 @@
   </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
+  <string name="PendingMembersActivity_requests">Prašymai</string>
   <string name="PendingMembersActivity_invites">Pakvietimai</string>
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Jūs neturite laukiančių pakvietimų.</string>
@@ -478,6 +483,11 @@
     <item quantity="other">Klaida panaikinant pakvietimus</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Laukiantys narių prašymai</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Nėra rodytinų narių prašymų.</string>
+  <string name="RequestingMembersFragment_explanation">Šiame sąraše esantys žmonės bando prisijungti prie šios grupės per bendrinamą grupės nuorodą.</string>
+  <string name="RequestingMembersFragment_added_s">Pridėtas naudotojas „%1$s“</string>
+  <string name="RequestingMembersFragment_denied_s">Naudotojas „%1$s“ atmestas</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Atlikta</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
@@ -518,10 +528,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageGroupActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Narių prašymai ir pakvietimai</string>
   <string name="ManageGroupActivity_add_members">Pridėti narių</string>
   <string name="ManageGroupActivity_edit_group_info">Taisyti grupės informaciją</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Pasirinkite, kas gali taisyti grupės pavadinimą, avatarą bei išnykstančias žinutes.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius.</string>
+  <string name="ManageGroupActivity_sharable_group_link">Bendrinama grupės nuoroda</string>
   <string name="ManageGroupActivity_block_group">Užblokuoti grupę</string>
   <string name="ManageGroupActivity_unblock_group">Atblokuoti grupę</string>
   <string name="ManageGroupActivity_leave_group">Išeiti iš grupės</string>
@@ -608,14 +620,22 @@
   <string name="CustomNotificationsDialogFragment__disabled">Išjungta</string>
   <string name="CustomNotificationsDialogFragment__default">Numatytoji</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Bendrinama grupės nuoroda</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Tvarkyti ir bendrinti</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Grupės nuoroda</string>
   <string name="ShareableGroupLinkDialogFragment__share">Bendrinti</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Atstatyti nuorodą</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Prašymai tapti nariais</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Patvirtinti naujus narius</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Įjungta</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Išjungta</string>
   <string name="ShareableGroupLinkDialogFragment__default">Numatytoji</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Grupės nuorodos atstatymas</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Reikalauti, kad administratorius patvirtintų naujus, per grupės nuorodą prisijungiančius, narius.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ar tikrai norite atstatyti grupės nuorodą? Žmonės daugiau nebegalės prisijungti prie grupės naudodami dabartinę nuorodą.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR kodas</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Žmonės, kurie nuskenuos šį kodą, galės prisijungti prie jūsų grupės. Administratoriams vis tiek reikės patvirtinti naujus narius, jei tą nustatymą turite įjungtą.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Bendrinti kodą</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ar norite panaikinti pakvietimą, kurį išsiuntėte naudotojui %1$s?</string>
@@ -644,11 +664,13 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Greitu metu pasirodys grupių nuorodos</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atnaujinkite Signal norėdami naudoti grupių nuorodas</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal kol kas nepalaiko prisijungimo prie grupių per nuorodas. Ši ypatybė bus išleista būsimajame atnaujinime.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Jūsų naudojama Signal versija nepalaiko bendrinamų grupės nuorodų. Norėdami prisijungti prie šios grupės per nuorodą, atnaujinkite Signal iki naujausios versijos.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atnaujinti Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupės nuoroda negalioja</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Pridėti „%1$s“ į grupę?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Atmesti prašymą, kurį atsiuntė „%1$s“?</string>
   <string name="RequestConfirmationDialog_add">Pridėti</string>
   <string name="RequestConfirmationDialog_deny">Atmesti</string>
   <!--CropImageActivity-->
@@ -903,15 +925,37 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės narystes į „%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Buvo pakeista, kad „%1$s“ gali keisti grupės narystes.</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Jūs įjungėte bendrinamą grupės nuorodą.</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Jūs įjungėte bendrinamą grupės nuorodą su administratoriaus patvirtinimais.</string>
+  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Jūs išjungėte bendrinamą grupės nuorodą.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s įjungė bendrinamą grupės nuorodą.</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s įjungė bendrinamą grupės nuorodą su administratoriaus patvirtinimais.</string>
+  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s išjungė bendrinamą grupės nuorodą.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Bendrinama grupės nuoroda įjungta.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Įjungta bendrinama grupės nuoroda su administratoriaus patvirtinimais.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Bendrinama grupės nuoroda išjungta.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_sharable_group_link">Jūs atstatėte bendrinamą grupės nuorodą.</string>
+  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s atstatė bendrinamą grupės nuorodą.</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Bendrinama grupės nuoroda atstatyta.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Jūs prisijungėte prie grupės per bendrinamą grupės nuorodą.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s prisijungė prie grupės per bendrinamą grupės nuorodą.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Jūs išsiuntėte prašymą prisijungti prie grupės.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s paprašė prisijungti per bendrinamą grupės nuorodą.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s patvirtino jūsų prašymą prisijungti prie grupės.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s patvirtino naudotojo %2$s prašymą prisijungti prie grupės.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Jūs patvirtinote naudotojo %1$s prašymą prisijungti prie grupės.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Jūsų prašymas prisijungti prie grupės buvo patvirtintas.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Patvirtintas naudotojo %1$s prašymas prisijungti prie grupės.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Administratorius atmetė jūsų prašymą prisijungti prie grupės.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s atmetė naudotojo %2$s prašymą prisijungti prie grupės.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Atmestas naudotojo %1$s prašymas prisijungti prie grupės.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Jūs panaikinote savo prašymą prisijungti prie grupės.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s panaikino savo prašymą prisijungti prie grupės.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
@@ -1250,6 +1294,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Naudotojo vardai Signal programėlėje yra nebūtini. Jei pasirinksite susikurti naudotojo vardą, kiti Signal naudotojai galės jus rasti pagal tą naudotojo vardą ir susisiekti su jumis, nežinant jūsų telefono numerio.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų adresatas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų adresatas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norėdami palyginti, atsinaujinkite programėlę.</string>
@@ -1883,6 +1928,7 @@
   <string name="preferences_notifications__mentions">Paminėjimai</string>
   <string name="preferences_notifications__notify_me">Pranešti</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Gauti pranešimus, kai jus pamini pokalbiuose, kuriuose pranešimai yra išjungti</string>
+  <string name="preferences_setup_a_username">Nusistatyti naudotojo vardą</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

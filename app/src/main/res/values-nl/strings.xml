@@ -48,6 +48,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Pincode uitgeschakeld.</string>
   <string name="ApplicationPreferencesActivity_hide">Verbergen</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Herinnering verbergen?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuut</item>
@@ -581,6 +582,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__default">Systeemstandaard</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Groepslink vernieuwd</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis dat een beheerder nodig is om nieuwe leden goed te keuren.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepslink wilt vernieuwen? Dan zullen mensen geen lid meer kunnen worden via de huidige link.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Beheerders moeten deze personen nog steeds goedkeuren als deze instelling aan staat.</string>
@@ -1206,6 +1209,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Signal zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Signal gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Deze contactpersoon gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
@@ -1821,6 +1825,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_notifications__mentions">Vermeldingen</string>
   <string name="preferences_notifications__notify_me">Geef me een melding</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Ontvang meldingen wanneer je gementioned wordt in een gedempt gesprek</string>
+  <string name="preferences_setup_a_username">Gebruikersnaam configureren</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

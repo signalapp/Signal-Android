@@ -49,6 +49,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je neophodan za zaključavanje registracije. Da biste isključili PIN, prvo isključite zaključavanje registracije.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN je kreiran.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN je isključen.</string>
+  <string name="ApplicationPreferencesActivity_hide">Sakrij</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Sakriti podsjetnik?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -604,6 +606,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Onemogućeno</string>
   <string name="ShareableGroupLinkDialogFragment__default">Standardno</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ponovno kreiranje linka za grupu</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Zahtjevaj da administrator odobri novim članovima pristupanje grupi putem linka.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Jeste li sigurni da želite iznova kreirati link za grupu? Novi članovi više neće moći pristupiti grupi putem trenutnog linka.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR kōd</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Osobe koje skeniraju ovaj kod moći će pristupiti Vašoj grupi. Administratori će i dalje trebati dati odobrenje za pristup novim članovima ako ste aktivirali tu opciju.</string>
@@ -1246,6 +1250,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisničko ime ne može početi brojem.</string>
   <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije valjano.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisničko ime mora sadržavati najmanje %1$d, a najviše %2$d znakova.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Korisničko ime na Signalu nije obavezno. Ukoliko se odlučite na kreiranje korisničkog imena, drugi korisnici Signala moći će Vas pronaći i kontaktirati putem tog korisničkog imena, bez potrebe da znaju Vaš telefonski broj.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ova osoba koristi stariju verziju Signala. Molimo tražite da instalira novu verziju prije verifikacije sigurnosnog broja.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ova osoba koristi noviju verziju Signala, sa nekompatibilnim QR kōdom. Molimo nadogradite Signal da uporedite.</string>
@@ -1869,6 +1874,7 @@
   <string name="preferences_notifications__mentions">Spomen</string>
   <string name="preferences_notifications__notify_me">Obavijesti me</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Primiti obavještenja kad Vas neko spomene u prigušenim konverzacijama</string>
+  <string name="preferences_setup_a_username">Podesite korisničko ime</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

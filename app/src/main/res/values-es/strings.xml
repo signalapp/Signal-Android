@@ -582,7 +582,7 @@
   <string name="ShareableGroupLinkDialogFragment__default">Por defecto</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Restablecer enlace del grupo</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un* admin debe aprobar l*s nuev*s participantes que se unan vía enlace.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para copartir el grupo? Si lo restableces, nadie podrá unirse al grupo usando el enlace actual.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para compartir el grupo? Si lo restableces, nadie podrá unirse al grupo usando el enlace actual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escanéen este código podrán unirse al grupo. L*s admins deberán aprobar nuev*s participantes si se ha activado esa opción.</string>

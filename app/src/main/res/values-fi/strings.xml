@@ -48,6 +48,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN-koodi luotu.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN poistettu käytöstä.</string>
   <string name="ApplicationPreferencesActivity_hide">Piilota</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Piilota muistutus?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuutti</item>
@@ -580,6 +581,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Pois päältä</string>
   <string name="ShareableGroupLinkDialogFragment__default">Oletus</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ryhmälinkin uudelleenasetus</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vaadi ylläpitäjän hyväksyä uudet jäsenet, jotka liittyvät ryhmälinkin kautta.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Haluatko varmasti nollata ryhmälinkin? Ryhmään ei voi enää liittyä nykyistä linkkiä käyttäen.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-koodi</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Tämän koodin skannaavat ihmiset voivat liittyä teidän ryhmään. Ylläpitäjien on edelleen hyväksyttävä uudet jäsenet, jos kyseinen asetus on käytössä.</string>
@@ -1197,6 +1200,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjätunnukset eivät voi alkaa numerolla.</string>
   <string name="UsernameEditFragment_username_is_invalid">Käyttäjätunnus on virheellinen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjätunnusten on oltava %1$d–%2$d merkkiä.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Käyttäjätunnukset ovat valinnaisia Signalissa. Jos päätät luoda käyttäjätunnuksen, muut Signal-käyttäjät voivat löytää sinut tämän käyttäjätunnuksen perusteella ja olla yhteydessä sinuun ilman, että he tietävät puhelinnumeroasi.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista, jonka QR-koodi ei toimi oman versiosi kanssa. Päivitä Signalisi uusimpaan versioon.</string>
@@ -1810,6 +1814,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_notifications__mentions">Maininnat</string>
   <string name="preferences_notifications__notify_me">Ilmoita minulle</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Vastaanota ilmoituksia, kun sinut mainitaan mykistetyissä keskusteluissa</string>
+  <string name="preferences_setup_a_username">Aseta käyttäjätunnus</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

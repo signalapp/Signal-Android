@@ -45,7 +45,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">登録ロックを使うにはPINが必要です。PINを無効にするには、まず登録ロックを無効にしてください。</string>
   <string name="ApplicationPreferencesActivity_pin_created">PINを作成しました。</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PINを無効にしました。</string>
-  <string name="ApplicationPreferencesActivity_hide">最小化</string>
+  <string name="ApplicationPreferencesActivity_hide">閉じる</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">リマインダーを閉じますか？</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d分</item>
@@ -404,7 +405,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">送信メッセージにて、どのウェヴサイトからでも直接リンクプレビューを取得できるようになりました。</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">リンクプレビューは使用できません</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">このグループリンクは無効です</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">このグループリンクは利用できません</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -430,7 +431,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">保留中のメンバー申請</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">メンバー申請はありません。</string>
-  <string name="RequestingMembersFragment_explanation">このリストの人々が、共有グループリンクからこのグループに参加しようとしています。</string>
+  <string name="RequestingMembersFragment_explanation">このリストの人々が、共有グループリンク経由でグループ参加を申請しています。</string>
   <string name="RequestingMembersFragment_added_s">「%1$s」を追加しました</string>
   <string name="RequestingMembersFragment_denied_s">「%1$s」を拒否しました</string>
   <!--AddMembersActivity-->
@@ -547,15 +548,19 @@
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">共有グループリンク</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理と共有</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">グループリンク</string>
-  <string name="ShareableGroupLinkDialogFragment__share">共有</string>
+  <string name="ShareableGroupLinkDialogFragment__share">共有する</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">リンクをリセットする</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">メンバー申請</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">新しいメンバーを承認する</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">新メンバーを承認する</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">有効</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">無効</string>
   <string name="ShareableGroupLinkDialogFragment__default">既定</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">グループリンクのリセット</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">グループリンク経由での新メンバー参加時に、管理者の承認を要求します。</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">本当にグループリンクをリセットしますか？リセットすると現在のリンクからグループに参加できなくなります。</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QRコード</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">このコードをスキャンすると、グループに参加できます。設定によっては、新メンバーの参加時に管理者の承認が必要になります。</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">コードを共有する</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s に送った招待を取り消しますか？</string>
@@ -568,7 +573,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">参加を申請する</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">グループに参加できません。あとで再度試してください。</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">このグループリンクは無効です</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">このグループリンクは利用できません</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">グループ情報を取得できません。あとで再度試してください。</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">このグループに参加して、あなたの名前と画像をそのメンバーと共有しますか？</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">このグループに参加するには、管理者の承認が必要です。参加を申請すると、あなたの名前と画像がそのメンバーと共有されます。</string>
@@ -576,7 +581,9 @@
     <item quantity="other">グループ · メンバー %1$d人</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">グループリンクのご案内</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">グループリンクを使用するためSignalをアップデート</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">リンク経由でのグループ参加は、Signalではまだ対応していません。この機能は今後のアップデートで提供されます。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">このバージョンのSignalは、共有グループリンクをサポートしていません。リンク経由でこのグループに参加するには、最新バージョンにアップデートしてください。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signalをアップデート</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">グループリンクが正しくありません</string>
@@ -802,13 +809,13 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">グループ情報を編集できるユーザーが「%1$s」に変更されました。</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_sharable_group_link">共有グループリンクを有効にしました。</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">管理者承認付きの共有グループリンクを有効にしました。</string>
+  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">管理者承認制の共有グループリンクを有効にしました。</string>
   <string name="MessageRecord_you_turned_off_the_sharable_group_link">共有グループリンクを無効にしました。</string>
   <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s が共有グループリンクを有効にしました。</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s が管理者承認付きの共有グループリンクを有効にしました。</string>
+  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s が管理者承認制の共有グループリンクを有効にしました。</string>
   <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s が共有グループリンクを無効にしました。</string>
   <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">共有グループリンクが有効になりました。</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">管理者承認付きの共有グループリンクが有効になりました。</string>
+  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">管理者承認制の共有グループリンクが有効になりました。</string>
   <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">共有グループリンクが無効になりました。</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_sharable_group_link">共有グループリンクをリセットしました。</string>
@@ -841,11 +848,11 @@
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">承認する</string>
   <string name="MessageRequestBottomView_delete">削除する</string>
-  <string name="MessageRequestBottomView_block">ブロックする</string>
-  <string name="MessageRequestBottomView_unblock">ブロックを解除</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s にあなたへのメッセージ送信と、名前と画像の共有を承認しますか？あなたが承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
+  <string name="MessageRequestBottomView_block">ブロック</string>
+  <string name="MessageRequestBottomView_unblock">ブロック解除</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s からメッセージを受信し、あなたの名前と画像を共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s にあなたへのメッセージ送信や、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、あなたの名前と画像をメンバーと共有しますか？あなたが承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、あなたの名前と画像をメンバーと共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
@@ -1145,6 +1152,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザ名の先頭に数字は使用できません。</string>
   <string name="UsernameEditFragment_username_is_invalid">無効なユーザ名です。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザ名は%1$dから%2$d文字にしてください。</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signalのユーザ名設定は任意です。ユーザ名を作成すると、他のSignalユーザはあなたの電話番号を知らなくても、このユーザ名であなたに連絡できるようになります。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Signalをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">連絡先の相手は互換性のないQRコード形式を使った新しいバージョンのSignalを使っています。Signalをアップデートしてから比較してください。</string>
@@ -1635,7 +1643,7 @@
   <string name="preferences__change_your_passphrase">パスフレーズを変更します</string>
   <string name="preferences__enable_passphrase">パスフレーズでの画面ロックを有効にする</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスフレーズで画面と通知をロックします</string>
-  <string name="preferences__screen_security">画面セキュリティ</string>
+  <string name="preferences__screen_security">画面のセキュリティ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">指定した無操作時間経過後にSignalを自動でロックします</string>
   <string name="preferences__inactivity_timeout_passphrase">無操作タイムアウトのパスフレーズ</string>
@@ -1748,6 +1756,7 @@
   <string name="preferences_notifications__mentions">メンション</string>
   <string name="preferences_notifications__notify_me">通知を受け取る</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">ミュートした会話でメンションされた際に通知を受け取る</string>
+  <string name="preferences_setup_a_username">ユーザ名の設定</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2132,5 +2141,6 @@
   <string name="GroupLinkBottomSheet_qr_code">QRコード</string>
   <string name="GroupLinkBottomSheet_share">共有</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">クリップボードにコピーしました</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">このリンクは現在利用できません</string>
   <!--EOF-->
 </resources>
