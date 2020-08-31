@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -30,7 +29,6 @@ public class ConversationItemThumbnail extends FrameLayout {
   private AlbumThumbnailView     album;
   private ImageView              shade;
   private ConversationItemFooter footer;
-  private ProgressBar            loadIndicator;
   private CornerMask             cornerMask;
   private Outliner               outliner;
   private boolean                borderless;
@@ -57,7 +55,6 @@ public class ConversationItemThumbnail extends FrameLayout {
     this.album         = findViewById(R.id.conversation_thumbnail_album);
     this.shade         = findViewById(R.id.conversation_thumbnail_shade);
     this.footer        = findViewById(R.id.conversation_thumbnail_footer);
-    this.loadIndicator = findViewById(R.id.conversation_thumbnail_load_indicator);
     this.cornerMask    = new CornerMask(this);
     this.outliner      = new Outliner();
 
@@ -131,8 +128,10 @@ public class ConversationItemThumbnail extends FrameLayout {
       thumbnail.setVisibility(VISIBLE);
       album.setVisibility(GONE);
 
-      Attachment attachment = slides.get(0).asAttachment();
-      thumbnail.setImageResource(glideRequests, slides.get(0), showControls, isPreview, attachment.getWidth(), attachment.getHeight());
+      Slide slide = slides.get(0);
+      Attachment attachment = slide.asAttachment();
+      thumbnail.setImageResource(glideRequests, slide, showControls, isPreview, attachment.getWidth(), attachment.getHeight());
+      thumbnail.setLoadIndicatorVisibile(slide.isInProgress());
       setTouchDelegate(thumbnail.getTouchDelegate());
     } else {
       thumbnail.setVisibility(GONE);
@@ -140,18 +139,6 @@ public class ConversationItemThumbnail extends FrameLayout {
 
       album.setSlides(glideRequests, slides, showControls);
       setTouchDelegate(album.getTouchDelegate());
-    }
-
-    // Display loading indicator if any attachment is in loading state.
-    {
-      boolean anyLoading = false;
-      for (int i = 0; i < slides.size(); i++) {
-        if (slides.get(i).asAttachment().isInProgress()) {
-          anyLoading = true;
-          break;
-        }
-      }
-      loadIndicator.setVisibility(anyLoading ? VISIBLE : GONE);
     }
   }
 
