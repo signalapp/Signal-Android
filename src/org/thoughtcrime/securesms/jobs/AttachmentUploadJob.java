@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.utilities.HTTP;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,7 +53,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .setMaxAttempts(5)
+                           .setMaxAttempts(10)
                            .build(),
          attachmentId, destination);
   }
@@ -109,7 +110,8 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception exception) {
-    return exception instanceof IOException;
+    return exception instanceof IOException ||
+        exception instanceof HTTP.HTTPRequestFailedException;
   }
 
   private SignalServiceAttachment getAttachmentFor(Attachment attachment) {
