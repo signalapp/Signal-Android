@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.util.Log
 import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.ApplicationContext
@@ -60,6 +59,7 @@ object ClosedGroupsProtocol {
         val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, groupKeyPair.privateKey.serialize(),
             senderKeys, membersAsData, adminsAsData)
         for (member in members) {
+            if (member == userPublicKey) { continue }
             val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
             ApplicationContext.getInstance(context).jobManager.add(job)
         }
@@ -147,19 +147,19 @@ object ClosedGroupsProtocol {
         } else {
             // Generate ratchets for any new members
             val newMembers = members.minus(oldMembers)
-            val senderKeys: List<ClosedGroupSenderKey> = newMembers.map { publicKey ->
+            val newSenderKeys: List<ClosedGroupSenderKey> = newMembers.map { publicKey ->
                 val ratchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, publicKey)
                 ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
             }
             // Send a closed group update message to the existing members with the new members' ratchets (this message is aimed at the group)
             val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey), name,
-                senderKeys, membersAsData, adminsAsData)
+                newSenderKeys, membersAsData, adminsAsData)
             val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
             ApplicationContext.getInstance(context).jobManager.add(job)
             // Establish sessions if needed
             establishSessionsWithMembersIfNeeded(context, newMembers)
             // Send closed group update messages to the new members using established channels
-            val allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey) + senderKeys
+            val allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey) + newSenderKeys
             for (member in newMembers) {
                 @Suppress("NAME_SHADOWING")
                 val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name,
@@ -295,6 +295,7 @@ object ClosedGroupsProtocol {
                 val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
                 val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
                 for (member in members) {
+                    if (member == userPublicKey) { continue }
                     val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
                     val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
                     ApplicationContext.getInstance(context).jobManager.add(job)
