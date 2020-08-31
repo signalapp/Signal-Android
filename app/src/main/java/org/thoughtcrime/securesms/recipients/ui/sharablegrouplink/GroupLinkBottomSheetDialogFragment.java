@@ -18,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
+import org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.qr.GroupLinkShareQrDialogFragment;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -77,8 +78,10 @@ public final class GroupLinkBottomSheetDialogFragment extends BottomSheetDialogF
         dismiss();
       });
 
-      viewQrButton.setOnClickListener(v -> dismiss()); // Todo [Alan] GV2 Add share QR within signal
-      viewQrButton.setVisibility(View.GONE);
+      viewQrButton.setOnClickListener(v -> {
+        GroupLinkShareQrDialogFragment.show(requireFragmentManager(), groupId);
+        dismiss();
+      });
 
       shareBySystemButton.setOnClickListener(v -> {
           ShareCompat.IntentBuilder.from(requireActivity())

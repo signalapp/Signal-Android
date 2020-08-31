@@ -5,33 +5,57 @@ import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.Nullable;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-public class QrCode {
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.Stopwatch;
 
-  public static final String TAG = QrCode.class.getSimpleName();
+public final class QrCode {
 
-  public static @NonNull Bitmap create(String data) {
-    return create(data, Color.BLACK);
+  private QrCode() {
   }
 
-  public static @NonNull Bitmap create(String data, @ColorInt int foregroundColor) {
-    try {
-      BitMatrix result = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, 512, 512);
-      Bitmap    bitmap = Bitmap.createBitmap(result.getWidth(), result.getHeight(), Bitmap.Config.ARGB_8888);
+  public static final String TAG = Log.tag(QrCode.class);
 
-      for (int y = 0; y < result.getHeight(); y++) {
-        for (int x = 0; x < result.getWidth(); x++) {
-          if (result.get(x, y)) {
-            bitmap.setPixel(x, y, foregroundColor);
-          }
+  public static @NonNull Bitmap create(@Nullable String data) {
+    return create(data, Color.BLACK, Color.TRANSPARENT);
+  }
+
+  public static @NonNull Bitmap create(@Nullable String data,
+                                       @ColorInt int foregroundColor,
+                                       @ColorInt int backgroundColor)
+  {
+    if (data == null || data.length() == 0) {
+      Log.w(TAG, "No data");
+      return Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
+    }
+
+    try {
+      Stopwatch    stopwatch    = new Stopwatch("QrGen");
+      QRCodeWriter qrCodeWriter = new QRCodeWriter();
+      BitMatrix    qrData       = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 512, 512);
+      int          qrWidth      = qrData.getWidth();
+      int          qrHeight     = qrData.getHeight();
+      int[]        pixels       = new int[qrWidth * qrHeight];
+
+      for (int y = 0; y < qrHeight; y++) {
+        int offset = y * qrWidth;
+
+        for (int x = 0; x < qrWidth; x++) {
+          pixels[offset + x] = qrData.get(x, y) ? foregroundColor : backgroundColor;
         }
       }
+      stopwatch.split("Write pixels");
+
+      Bitmap bitmap = Bitmap.createBitmap(pixels, qrWidth, qrHeight, Bitmap.Config.ARGB_8888);
+
+      stopwatch.split("Create bitmap");
+      stopwatch.stop(TAG);
 
       return bitmap;
     } catch (WriterException e) {

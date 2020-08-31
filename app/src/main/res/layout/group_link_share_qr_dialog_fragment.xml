@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/group_link_share_qr_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/GroupLinkShareQrDialogFragment__qr_code" />
+
+    <org.thoughtcrime.securesms.components.qr.QrView
+        android:id="@+id/group_link_share_qr_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/group_link_share_code_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_share_qr_toolbar"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintWidth_percent="0.75"
+        app:qr_background_color="?android:windowBackground"
+        app:qr_foreground_color="?title_text_color_primary" />
+
+    <TextView
+        android:id="@+id/group_link_share_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/group_link_share_qr_image"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:text="@string/GroupLinkShareQrDialogFragment__people_who_scan_this_code_will"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/group_link_share_code_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_share_qr_image"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/group_link_share_code_button"
+        style="@style/Button.Primary"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/GroupLinkShareQrDialogFragment__share_code"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
