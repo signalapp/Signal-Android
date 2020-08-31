@@ -11,6 +11,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -75,7 +77,15 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     Set<RecipientId> recipients = Stream.concat(Stream.of(memberUuids), Stream.of(pendingUuids))
                                         .filter(uuid -> !UuidUtil.UNKNOWN_UUID.equals(uuid))
                                         .filter(uuid -> !Recipient.self().getUuid().get().equals(uuid))
-                                        .map(uuid -> RecipientId.from(uuid, null))
+                                        .map(uuid -> Recipient.externalPush(context, uuid, null, false))
+                                        .filter(recipient -> {
+                                          if (FeatureFlags.cds()) {
+                                            return recipient.getRegistered() != RecipientDatabase.RegisteredState.NOT_REGISTERED;
+                                          } else {
+                                            return true;
+                                          }
+                                        })
+                                        .map(Recipient::getId)
                                         .collect(Collectors.toSet());
 
     MessageGroupContext.GroupV2Properties properties   = groupMessage.requireGroupV2Properties();

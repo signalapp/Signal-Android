@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
 
-  private static final long INTERVAL = TimeUnit.HOURS.toMillis(12);
+  private static final long INTERVAL = TimeUnit.HOURS.toMillis(6);
 
   @Override
   protected long getNextScheduledExecutionTime(Context context) {

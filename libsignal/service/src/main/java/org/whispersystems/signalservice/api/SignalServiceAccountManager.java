@@ -368,6 +368,10 @@ public class SignalServiceAccountManager {
   public Map<String, UUID> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String mrenclave)
       throws IOException, Quote.InvalidQuoteFormatException, UnauthenticatedQuoteException, SignatureException, UnauthenticatedResponseException
   {
+    if (e164numbers.isEmpty()) {
+      return Collections.emptyMap();
+    }
+
     try {
       String                         authorization = this.pushServiceSocket.getContactDiscoveryAuthorization();
       Map<String, RemoteAttestation> attestations  = RemoteAttestationUtil.getAndVerifyMultiRemoteAttestation(pushServiceSocket,

@@ -75,7 +75,7 @@ public class ReactionSendJob extends BaseJob {
       throw new AssertionError("We have a message, but couldn't find the thread!");
     }
 
-    List<RecipientId> recipients = conversationRecipient.isGroup() ? Stream.of(conversationRecipient.getParticipants()).map(Recipient::getId).toList()
+    List<RecipientId> recipients = conversationRecipient.isGroup() ? Stream.of(RecipientUtil.getEligibleForSending(conversationRecipient.getParticipants())).map(Recipient::getId).toList()
                                                                    : Stream.of(conversationRecipient.getId()).toList();
 
     recipients.remove(Recipient.self().getId());

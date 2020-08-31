@@ -56,7 +56,7 @@ public class ProfileKeySendJob extends BaseJob {
       throw new AssertionError("Do not send profile keys directly for GV2");
     }
 
-    List<RecipientId> recipients = conversationRecipient.isGroup() ? Stream.of(conversationRecipient.getParticipants()).map(Recipient::getId).toList()
+    List<RecipientId> recipients = conversationRecipient.isGroup() ? Stream.of(RecipientUtil.getEligibleForSending(conversationRecipient.getParticipants())).map(Recipient::getId).toList()
                                                                    : Stream.of(conversationRecipient.getId()).toList();
 
     recipients.remove(Recipient.self().getId());
