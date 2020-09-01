@@ -60,8 +60,8 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="elevation">0dp</item>
-        <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
-        <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
+        <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.Light</item>
+        <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.Light</item>
     </style>
 
     <style name="TextSecure.LightActionBar.DarkText"
@@ -363,6 +363,14 @@
 
     <style name="TextSecure.ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle.Conversation</item>
+        <item name="theme">@style/Signal.ActionModeTheme</item>
+    </style>
+
+    <style name="Signal.ActionModeTheme" parent="ThemeOverlay.AppCompat">
+        <!-- Use the brighter version of the three dot button because
+             ActionMode background is darker regardless of the current theme (light or dark) -->
+        <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
+        <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
     </style>
 
     <style name="Widget.Signal.ArcProgressBar" parent="">
