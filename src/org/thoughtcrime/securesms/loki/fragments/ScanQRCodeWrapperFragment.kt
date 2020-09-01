@@ -27,7 +27,7 @@ class ScanQRCodeWrapperFragment : Fragment(), ScanQRCodePlaceholderFragmentDeleg
 
     private fun update() {
         val fragment: Fragment
-        if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             val scanQRCodeFragment = ScanQRCodeFragment()
             scanQRCodeFragment.scanListener = this
             scanQRCodeFragment.message = message

@@ -49,8 +49,6 @@
     </style>
 
     <style name="Widget.Session.TabLayout" parent="Widget.Design.TabLayout">
-        <!-- TODO Should use the same color as action bar background. -->
-<!--        <item name="android:background">@color/compose_view_background</item>-->
         <item name="elevation">1dp</item>
         <item name="tabIndicatorColor">?colorAccent</item>
         <item name="tabSelectedTextColor">?colorAccent</item>>

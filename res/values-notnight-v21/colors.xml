@@ -2,14 +2,14 @@
 <resources>
 
 <!-- Session -->
-<color name="accent">#00E97B</color>
+<color name="accent">#5df299</color>
 <color name="text">#000000</color>
 <color name="unimportant">#606060</color>
 <color name="cell_background">#FCFCFC</color>
 <color name="cell_selected">#DFDFDF</color>
 <color name="navigation_bar_background">#FCFCFC</color>
 <color name="separator">#B0B0B0</color>
-<color name="unimportant_button_background">@color/transparent</color>
+<color name="unimportant_button_background">#1000</color>
 <color name="unimportant_dialog_button_background">@color/dialog_background</color>
 <color name="dialog_background">#FCFCFC</color>
 <color name="dialog_border">#212121</color>

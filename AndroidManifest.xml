@@ -148,7 +148,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.PrivacySettingsActivity"
-            android:screenOrientation="portrait" />
+            android:label="@string/activity_privacy_settings_title"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.NotificationSettingsActivity"
             android:screenOrientation="portrait" />

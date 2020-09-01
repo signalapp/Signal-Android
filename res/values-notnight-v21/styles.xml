@@ -12,4 +12,9 @@
 <!--        <item name="actionMenuTextColor">@color/text</item>-->
 <!--    </style>-->
 
+    <style name="Widget.Session.Button.Common.ProminentOutline">
+        <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
 </resources>

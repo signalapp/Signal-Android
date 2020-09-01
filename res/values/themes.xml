@@ -46,6 +46,7 @@
 
         <!-- App specific attributes -->
         <item name="dialog_background_color">@color/dialog_background</item>
+
         <item name="media_overview_toolbar_background">@color/transparent</item>
         <item name="media_overview_toolbar_foreground">@color/white</item>
         <item name="media_overview_header_foreground">@color/text</item>
@@ -58,8 +59,6 @@
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_dark</item>
         <item name="attachment_document_extension_text_color">#222</item>
-
-
 
         <item name="home_gradient_start">#00000000</item>
         <item name="home_gradient_end">#FF000000</item>
