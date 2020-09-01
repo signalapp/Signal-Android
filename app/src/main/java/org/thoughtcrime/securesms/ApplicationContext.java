@@ -22,6 +22,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -32,6 +33,7 @@ import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
+import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -127,6 +129,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializePendingMessages();
     initializeBlobProvider();
     initializeCleanup();
+    initializeGlideCodecs();
 
     FeatureFlags.init();
     NotificationChannels.create(this);
@@ -375,6 +378,35 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     SignalExecutors.BOUNDED.execute(() -> {
       int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
+    });
+  }
+
+  private void initializeGlideCodecs() {
+    SignalGlideCodecs.setLogProvider(new org.signal.glide.Log.Provider() {
+      @Override
+      public void v(@NonNull String tag, @NonNull String message) {
+        Log.v(tag, message);
+      }
+
+      @Override
+      public void d(@NonNull String tag, @NonNull String message) {
+        Log.d(tag, message);
+      }
+
+      @Override
+      public void i(@NonNull String tag, @NonNull String message) {
+        Log.i(tag, message);
+      }
+
+      @Override
+      public void w(@NonNull String tag, @NonNull String message) {
+        Log.w(tag, message);
+      }
+
+      @Override
+      public void e(@NonNull String tag, @NonNull String message, @Nullable Throwable throwable) {
+        Log.e(tag, message, throwable);
+      }
     });
   }
 

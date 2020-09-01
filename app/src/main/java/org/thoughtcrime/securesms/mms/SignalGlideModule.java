@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
+
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
@@ -27,14 +29,18 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
+import org.thoughtcrime.securesms.glide.cache.ApngBufferCacheDecoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheEncoder;
 import org.thoughtcrime.securesms.glide.ChunkedImageUrlLoader;
 import org.thoughtcrime.securesms.glide.ContactPhotoLoader;
+import org.thoughtcrime.securesms.glide.cache.ApngFrameDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.OkHttpUrlLoader;
-import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapCacheDecoder;
+import org.thoughtcrime.securesms.glide.cache.ApngStreamCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapResourceEncoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheEncoder;
-import org.thoughtcrime.securesms.glide.cache.EncryptedGifCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedGifDrawableResourceEncoder;
+import org.signal.glide.apng.decode.APNGDecoder;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
@@ -42,6 +48,7 @@ import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 
 @GlideModule
 public class SignalGlideModule extends AppGlideModule {
@@ -63,14 +70,25 @@ public class SignalGlideModule extends AppGlideModule {
     byte[]           secret           = attachmentSecret.getModernKey();
 
     registry.prepend(File.class, File.class, UnitModelLoader.Factory.getInstance());
-    registry.prepend(InputStream.class, new EncryptedCacheEncoder(secret, glide.getArrayPool()));
-    registry.prepend(File.class, Bitmap.class, new EncryptedBitmapCacheDecoder(secret, new StreamBitmapDecoder(new Downsampler(registry.getImageHeaderParsers(), context.getResources().getDisplayMetrics(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));
-    registry.prepend(File.class, GifDrawable.class, new EncryptedGifCacheDecoder(secret, new StreamGifDecoder(registry.getImageHeaderParsers(), new ByteBufferGifDecoder(context, registry.getImageHeaderParsers(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));
 
-    registry.prepend(BlurHash.class, Bitmap.class, new BlurHashResourceDecoder());
+    registry.prepend(InputStream.class, new EncryptedCacheEncoder(secret, glide.getArrayPool()));
 
     registry.prepend(Bitmap.class, new EncryptedBitmapResourceEncoder(secret));
+    registry.prepend(File.class, Bitmap.class, new EncryptedCacheDecoder<>(secret, new StreamBitmapDecoder(new Downsampler(registry.getImageHeaderParsers(), context.getResources().getDisplayMetrics(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));
+
     registry.prepend(GifDrawable.class, new EncryptedGifDrawableResourceEncoder(secret));
+    registry.prepend(File.class, GifDrawable.class, new EncryptedCacheDecoder<>(secret, new StreamGifDecoder(registry.getImageHeaderParsers(), new ByteBufferGifDecoder(context, registry.getImageHeaderParsers(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));
+
+    ApngBufferCacheDecoder apngBufferCacheDecoder = new ApngBufferCacheDecoder();
+    ApngStreamCacheDecoder apngStreamCacheDecoder = new ApngStreamCacheDecoder(apngBufferCacheDecoder);
+
+    registry.prepend(InputStream.class, APNGDecoder.class, apngStreamCacheDecoder);
+    registry.prepend(ByteBuffer.class, APNGDecoder.class, apngBufferCacheDecoder);
+    registry.prepend(APNGDecoder.class, new EncryptedApngCacheEncoder(secret));
+    registry.prepend(File.class, APNGDecoder.class, new EncryptedCacheDecoder<>(secret, apngStreamCacheDecoder));
+    registry.register(APNGDecoder.class, Drawable.class, new ApngFrameDrawableTranscoder());
+
+    registry.prepend(BlurHash.class, Bitmap.class, new BlurHashResourceDecoder());
 
     registry.append(ContactPhoto.class, InputStream.class, new ContactPhotoLoader.Factory(context));
     registry.append(DecryptableUri.class, InputStream.class, new DecryptableStreamUriLoader.Factory(context));
