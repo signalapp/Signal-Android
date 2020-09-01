@@ -1868,7 +1868,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Réinitialiser la session sécurisée</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">Rétablir les notifications</string>
+  <string name="conversation_muted__unmute">Réactiver les notifications</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Notifications en sourdine</string>
   <!--conversation-->

@@ -52,6 +52,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN נוצר.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN הושבת.</string>
   <string name="ApplicationPreferencesActivity_hide">הסתר</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">להסתיר תזכורת?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">דקה %d</item>
@@ -630,6 +631,8 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">מושבת</string>
   <string name="ShareableGroupLinkDialogFragment__default">ברירת מחדל</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">איפוס קישור קבוצה</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">דרוש מנהלן כדי לאשר הצטרפות של חברי קבוצה חדשים באמצעות קישור הקבוצה.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">האם אתה בטוח שאתה רוצה לאפס את קישור הקבוצה? אנשים לא יוכלו עוד להצטרף אל הקבוצה ע״י שימוש בקישור הנוכחי.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">קוד QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">אנשים שיסרקו קוד זה יוכלו להצטרף אל הקבוצה שלך. מנהלנים עדין יצטרכו לאשר חברי קבוצה חדשים אם הגדרה זו מופעלת.</string>
@@ -1291,6 +1294,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
   <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">שמות משתמש ב־Signal הם רשותיים. אם אתה בוחר ליצור שם משתמש, משתמשי Signal אחרים יוכלו למצוא אותך לפי שם משתמש זה וליצור איתך קשר בלי לדעת את מספר הטלפון שלך.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של Signal. אנא בקש ממנו לעדכן לפני וידוא מספר הביטחון שלך.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של Signal עם תסדיר בלתי־תואם של קוד QR. אנא עדכן כדי להשוות.</string>
@@ -1924,6 +1928,7 @@
   <string name="preferences_notifications__mentions">אזכורים</string>
   <string name="preferences_notifications__notify_me">יידע אותי</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">קבל התראות כאשר אתה מוזכר בהתכתבויות מושתקות</string>
+  <string name="preferences_setup_a_username">הגדר שם משתמש</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
