@@ -9,7 +9,7 @@
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlNormal">?android:textColorPrimary</item>
         <item name="colorControlActivated">?colorAccent</item>
-        <item name="colorControlHighlight">?colorAccent</item>
+        <item name="colorControlHighlight">#00f</item>
         <item name="android:textColorPrimary">@color/text</item>
         <item name="android:textColorSecondary">?android:textColorPrimary</item>
         <item name="android:textColorTertiary">@color/unimportant</item>
@@ -82,6 +82,7 @@
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_24</item>
         <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_24</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_baseline_keyboard_24</item>
+        <item name="conversation_input_background">@drawable/compose_background_dark</item>
     </style>
 
     <!-- This should be the default theme for the application. -->
@@ -104,7 +105,6 @@
 
     <!-- TODO Refactor this to use color resources -->
     <style name="Base.Theme.Session.ForceDark" parent="Theme.Session.DayNight">
-        <!-- TODO Use a color resource -->
         <item name="colorPrimary">#171717</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:textColorSecondary">#DFFFFFFF</item>
@@ -502,7 +502,6 @@
         <item name="conversation_background">@color/loki_darkest_gray</item>
         <item name="conversation_editor_background">#22ffffff</item>
         <item name="conversation_editor_text_color">#ffeeeeee</item>
-        <item name="conversation_input_background">@drawable/compose_background_dark</item>
         <item name="conversation_input_inline_attach_icon_tint">@color/core_grey_05</item>
         <item name="conversation_transport_sms_indicator">@drawable/ic_arrow_up_circle_24</item>
         <item name="conversation_transport_push_indicator">@drawable/ic_arrow_up_circle_24</item>

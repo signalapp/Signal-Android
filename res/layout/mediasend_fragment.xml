@@ -95,13 +95,11 @@
                         android:layout_height="@dimen/conversation_compose_height" />
 
                     <org.thoughtcrime.securesms.components.ComposeText
-                        style="@style/ComposeEditText"
+                        style="@style/Widget.EditText.Compose"
                         android:id="@+id/mediasend_compose_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/small_font_size"
-                        android:textCursorDrawable="@drawable/session_edit_text_cursor"
                         android:layout_weight="1"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"

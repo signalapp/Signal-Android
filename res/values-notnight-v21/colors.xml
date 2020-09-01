@@ -3,6 +3,7 @@
 
     <!-- Session -->
     <color name="accent">#5df299</color>
+    <color name="accent50">#805df299</color>
     <color name="text">#000000</color>
     <color name="destructive">#f26f55</color>
     <color name="unimportant">#606060</color>
