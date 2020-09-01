@@ -9,7 +9,7 @@
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlNormal">?android:textColorPrimary</item>
         <item name="colorControlActivated">?colorAccent</item>
-        <item name="colorControlHighlight">#00f</item>
+        <item name="colorControlHighlight">?colorAccent</item>
         <item name="android:textColorPrimary">@color/text</item>
         <item name="android:textColorSecondary">?android:textColorPrimary</item>
         <item name="android:textColorTertiary">@color/unimportant</item>
