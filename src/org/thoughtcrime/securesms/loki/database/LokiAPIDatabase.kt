@@ -137,7 +137,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         return listOf( listOf( path0Snode0, path0Snode1, path0Snode2 ), listOf( path1Snode0, path1Snode1, path1Snode2 ) )
     }
 
-    fun clearOnionRequestPaths() {
+    override fun clearOnionRequestPaths() {
         val database = databaseHelper.writableDatabase
         fun delete(indexPath: String) {
             database.delete(onionRequestPathTable, "${Companion.indexPath} = ?", wrap(indexPath))
