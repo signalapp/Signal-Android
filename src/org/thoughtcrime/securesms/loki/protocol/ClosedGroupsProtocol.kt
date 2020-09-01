@@ -179,6 +179,7 @@ object ClosedGroupsProtocol {
 
     @JvmStatic
     public fun requestSenderKey(context: Context, groupPublicKey: String, senderPublicKey: String) {
+        Log.d("Loki", "Requesting sender key for group public key: $groupPublicKey, sender public key: $senderPublicKey.")
         // Establish session if needed
         ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(senderPublicKey)
         // Send the request
@@ -328,6 +329,7 @@ object ClosedGroupsProtocol {
             return
         }
         // Respond to the request
+        Log.d("Loki", "Responding to sender key request from: $senderPublicKey.")
         ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(senderPublicKey)
         val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
         val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
@@ -363,6 +365,7 @@ object ClosedGroupsProtocol {
             return
         }
         // Store the sender key
+        Log.d("Loki", "Received a sender key from: $senderPublicKey.")
         val ratchet = ClosedGroupRatchet(senderKey.chainKey.toHexString(), senderKey.keyIndex, listOf())
         sskDatabase.setClosedGroupRatchet(groupPublicKey, senderPublicKey, ratchet)
     }
