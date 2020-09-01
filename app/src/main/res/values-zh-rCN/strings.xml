@@ -351,6 +351,12 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF 图片</string>
   <string name="GiphyFragmentPagerAdapter_stickers">表情图片</string>
   <!--AddToGroupActivity-->
+      <string name="AddToGroupActivity_add_member">添加群成员?</string>
+    <string name="AddToGroupActivity_add_s_to_s">将 \"%1$s\" 加入到 \"%2$s\"?</string>
+    <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" 加入到 \"%2$s\".</string>
+    <string name="AddToGroupActivity_add_to_group">加入群</string>
+    <string name="AddToGroupActivity_add_to_groups">加入群</string>
+    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">用户不能加入到传统群。</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">选择新的管理员。</string>
   <string name="ChooseNewAdminActivity_done">完成</string>
@@ -361,6 +367,27 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">您</string>
   <!--GV2 access levels-->
+      <string name="GroupManagement_access_level_anyone">任何人</string>
+    <string name="GroupManagement_access_level_all_members">全部成员</string>
+    <string name="GroupManagement_access_level_only_admins">管理员</string>
+    <string name="GroupManagement_access_level_no_one">不允许</string>
+    <string name="GroupManagement_access_level_unknown">未知</string>
+    <array name="GroupManagement_edit_group_membership_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
+    <array name="GroupManagement_edit_group_info_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
+
+    <!-- GV2 invites sent -->
+    <plurals name="GroupManagement_invitation_sent">
+        <item quantity="one">个邀请已发出</item>
+        <item quantity="other">%d 个邀请已发出</item>
+    </plurals>
+    <string name="GroupManagement_invite_single_user">“%1$s” 不能自动加入你的群。\n\n他们是被邀请入群的，只有他接受邀请才能进群看到消息。</string>
+    <string name="GroupManagement_invite_multiple_users">他们不能自动加入你的群。\n\n他们是被邀请入群的，只有他们接受邀请才能进群看到消息。</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">了解更多</string>
   <!--LinkPreviewsMegaphone-->
@@ -368,12 +395,25 @@
   <!--LinkPreviewView-->
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
+      <string name="PendingMemberInvitesActivity_pending_group_invites">处理群邀请</string>
+    <string name="PendingMembersActivity_requests">请求加入</string>
+	    <string name="PendingMembersActivity_invites">邀请加入</string>
   <string name="PendingMembersActivity_people_you_invited">你邀请的人</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">其他群组成员的邀请</string>
   <string name="PendingMembersActivity_missing_detail_explanation">未显示其他群组成员邀请的人员详情。当受邀者选择加入时，他们的信息将分享至群组。在加入之前，他们不会看到任何消息。</string>
   <!--RequestingMembersFragment-->
+      <string name="RequestingMembersFragment_pending_member_requests">成员请求</string>
+    <string name="RequestingMembersFragment_no_member_requests_to_show">没有成员请求。</string>
+    <string name="RequestingMembersFragment_explanation">用户通过分享的组链接想加入群。</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完成</string>
+  <string name="RequestingMembersFragment_denied_s">拒绝 "%1$s"</string>
+   <string name="RequestingMembersFragment_added_s">同意 "%1$s"</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">此用户不能加入传统组</string>
+    <plurals name="AddMembersActivity__add_d_members_to_s">
+        <item quantity="one">添加 \"%1$s\" 到 \"%2$s\"?</item>
+        <item quantity="other">添加 %3$d 名成员到  \"%2$s\"?</item>
+    </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">命名该群组</string>
   <string name="AddGroupDetailsFragment__create_group">创建群组</string>
@@ -381,12 +421,24 @@
   <string name="AddGroupDetailsFragment__members">成员</string>
   <string name="AddGroupDetailsFragment__group_name_required">群名称（必填）</string>
   <string name="AddGroupDetailsFragment__remove">删除</string>
-  <!--NonGv2MemberDialog-->
+ <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+        <item quantity="one">%d 个成员不支持新样式群，因此只能创建传统样式的群。</item>
+        <item quantity="other">%d 个成员不支持新样式群，因此只能创建传统样式的群。</item>
+    </plurals>
+   <!-- NonGv2MemberDialog -->
+    <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">因为“%1$s”使用的是旧版本的软件，因此将创建传统样式的群。只有在他们更新软件后才可以和他们创建新样式的群。如果继续创建新样式的群，需要先删除他们。</string>
+    <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+        <item quantity="one">因为“%1$s”使用的是旧版本的软件，因此将创建传统样式的群。只有在他们更新软件后才可以和他们创建新样式的群。如果继续创建新样式的群，需要先删除他们。</item>
+        <item quantity="other"> 因为“%1$s”使用的是旧版本的软件，因此将创建传统样式的群。只有在他们更新软件后才可以和他们创建新样式的群。如果继续创建新样式的群，需要先删除他们。</item>
+    </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">阅后即焚</string>
+      <string name="ManageGroupActivity_pending_group_invites">处理邀请</string>
+    <string name="ManageGroupActivity_member_requests_and_invites">处理成员邀请</string>
   <string name="ManageGroupActivity_add_members">添加成员</string>
   <string name="ManageGroupActivity_leave_group">离开群组</string>
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
+    <string name="ManageGroupActivity_sharable_group_link">分享群链接</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
     <string name="ManageGroupActivity_block_group">屏蔽离群</string>
     <string name="ManageGroupActivity_unblock_group">取消屏蔽</string>
@@ -395,9 +447,33 @@
   <string name="ManageGroupActivity_view_all_members">查看全体群成员</string>
   <string name="ManageGroupActivity_none">无</string>
   <string name="ManageGroupActivity_see_all">全部</string>
-  
+  <string name="ManageGroupActivity_mentions">提及提醒</string>
+
+    <plurals name="ManageGroupActivity_invited">
+        <item quantity="one">%d 已邀请</item>
+        <item quantity="other">%d 已邀请</item>
+    </plurals>
+    <plurals name="ManageGroupActivity_added">
+        <item quantity="one">%d 已加入</item>
+        <item quantity="other">%d 已加入</item>
+    </plurals>
+    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">你没有权限。</string>
+    <string name="ManageGroupActivity_not_capable">你添加的成员版本太低，无法加入，请通知他升级软件。</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group">更新群失败</string>
+    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">你不是该群成员</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">更新群失败，请重试。</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">网络错误，更新群失败，请稍后重试。</string>
+
+    <string name="ManageGroupActivity_edit_name_and_picture">编辑名称和头像</string>
+    <string name="ManageGroupActivity_legacy_group">传统群</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">这是个传统群，想拥有类似管理功能，请创建V2新样式群。</string>
   <!--GroupMentionSettingDialog-->
-  
+   <string name="GroupMentionSettingDialog_notify_me_for_mentions">提及提醒</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">提及您的消息，当设置静音时是否进行消息提醒?</string>
+    <string name="GroupMentionSettingDialog_default_notify_me">默认 (提醒我)</string>
+    <string name="GroupMentionSettingDialog_default_dont_notify_me">默认 (不提醒)</string>
+    <string name="GroupMentionSettingDialog_always_notify_me">总是提醒</string>
+    <string name="GroupMentionSettingDialog_dont_notify_me">不要提醒</string>
   <!-- preferences.xml -->
   <string name="preferences__generate_link_previews">生成链接预览</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">发送消息时允许根据链接生成网站预览.</string>
@@ -443,10 +519,20 @@
   <string name="CustomNotificationsDialogFragment__disabled">已禁用</string>
   <string name="CustomNotificationsDialogFragment__default">默认</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__share">分享</string>
-  <string name="ShareableGroupLinkDialogFragment__enabled">已启用</string>
-  <string name="ShareableGroupLinkDialogFragment__disabled">已禁用</string>
-  <string name="ShareableGroupLinkDialogFragment__default">默认</string>
+      <string name="ShareableGroupLinkDialogFragment__shareable_group_link">分享群</string>
+    <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理分享</string>
+    <string name="ShareableGroupLinkDialogFragment__group_link">分享链接</string>
+    <string name="ShareableGroupLinkDialogFragment__share">分享</string>
+    <string name="ShareableGroupLinkDialogFragment__reset_link">刷新</string>
+    <string name="ShareableGroupLinkDialogFragment__member_requests">成员请求</string>
+    <string name="ShareableGroupLinkDialogFragment__approve_new_members">批准新成员</string>
+    <string name="ShareableGroupLinkDialogFragment__enabled">已启用</string>
+    <string name="ShareableGroupLinkDialogFragment__disabled">已禁用</string>
+    <string name="ShareableGroupLinkDialogFragment__default">默认</string>
+    <string name="ShareableGroupLinkDialogFragment__group_link_reset">刷新群链接</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">通过群链接入群需要管理员批准。</string>
+    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">确定要重设群链接吗？当前链接将不能再使用。</string>
+
   <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
@@ -1461,7 +1547,7 @@
   <string name="preferences_chats__show_invitation_prompts">显示邀请提示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">对非 老友记 联系人显示邀请提示</string>
   <string name="preferences_chats__message_text_size">消息字体大小</string>
-  <string name="preferences_events__contact_joined_signal">联系人加入 Signal</string>
+  <string name="preferences_events__contact_joined_signal">联系人加入 老友记</string>
   <string name="preferences_notifications__priority">优先级</string>
   <string name="preferences_communication__category_sealed_sender">保密发送人</string>
   <string name="preferences_communication__sealed_sender_display_indicators">显示状态</string>
@@ -1469,7 +1555,35 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">允许来自任何人</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">对于非联系人和未与其分享个人资料的其他人，启用传入消息的加密发送人功能。</string>
   <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
-  <!--Internal only preferences-->
+  <string name="preferences_notifications__mentions">提及提醒</string>
+    <string name="preferences_notifications__notify_me">提醒我</string>
+    <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">提醒我静音状态提及我的消息。</string>
+    <string name="preferences_setup_a_username">设置用户名</string>
+  <!-- Internal only preferences -->
+    <string name="preferences__internal_preferences" >内部选项</string>
+    <string name="preferences__internal_preferences_groups_v2" >V2新样式群</string>
+    <string name="preferences__internal_do_not_create_gv2" >不使用V2样式创建群</string>
+    <string name="preferences__internal_do_not_create_gv2_description" >不要使用V2样式创建群，只使用V1传统样式的群。</string>
+    <string name="preferences__internal_force_gv2_invites" >邀请进群</string>
+    <string name="preferences__internal_force_gv2_invites_description" >V2群成员只有被邀请才能进群。</string>
+    <string name="preferences__internal_ignore_gv2_server_changes" >忽略服务器更改</string>
+    <string name="preferences__internal_ignore_gv2_server_changes_description" >忽略服务器更改响应，如果下方被选中，则包括P2P的语音在内也会被忽略。</string>
+    <string name="preferences__internal_ignore_gv2_p2p_changes" >忽略P2P更改</string>
+    <string name="preferences__internal_ignore_gv2_p2p_changes_description" >忽略使用P2P发送，加上忽略服务器更改，只能使用被动语音通信。</string>
+    <string name="preferences__internal_account" >帐户</string>
+    <string name="preferences__internal_refresh_attributes" >属性更新</string>
+    <string name="preferences__internal_refresh_attributes_description" >强制将读到的功能写入服务器。</string>
+    <string name="preferences__internal_rotate_profile_key" >转换简介信息</string>
+    <string name="preferences__internal_rotate_profile_key_description" >创立新版本的个人简介信息，并更新到你所属的V2新样式的群内</string>
+    <string name="preferences__internal_refresh_remote_values" >刷新远程数据</string>
+    <string name="preferences__internal_refresh_remote_values_description" >强制本地刷新远程数据，不用等待服务器自动更新。</string>
+    <string name="preferences__internal_display" >显示</string>
+    <string name="preferences__internal_user_details" >用户详细信息</string>
+    <string name="preferences__internal_user_details_description" >浏览对话设置时，显示更多的用户信息。</string>
+    <string name="preferences__internal_storage_service" >存储服务</string>
+    <string name="preferences__internal_force_storage_service_sync" >覆盖远程数据</string>
+    <string name="preferences__internal_force_storage_service_sync_description" >强制覆盖远程数据，使其与本地保持一致。</string>
+
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1823,4 +1937,6 @@
   <string name="GroupLinkBottomSheet_share">分享</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">已复制到剪切板</string>
   <!--EOF-->
+     
+	
 </resources>

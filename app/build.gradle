@@ -415,14 +415,14 @@ def signProductionRelease = { variant ->
         File   inputFile  = new File(output.outputFile.path)
         File   outputFile = new File(output.outputFile.parent, apkName.replace('-unsigned', ''))
 
-        new ApkSignerUtil('sun.security.pkcs11.SunPKCS11',
-                          'pkcs11.config',
-                          'PKCS11',
-                          'file:pkcs11.password').calculateSignature(inputFile.getAbsolutePath(),
-                                                                     outputFile.getAbsolutePath())
+        //new ApkSignerUtil('sun.security.pkcs11.SunPKCS11',
+        //                  'pkcs11.config',
+        //                  'PKCS11',
+        //                  'file:pkcs11.password').calculateSignature(inputFile.getAbsolutePath(),
+        //                                                             outputFile.getAbsolutePath())
 
-        inputFile.delete()
-        outputFile
+        //inputFile.delete()
+        //outputFile
     }
 }
 

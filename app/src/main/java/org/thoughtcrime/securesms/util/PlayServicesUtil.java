@@ -45,7 +45,7 @@ public class PlayServicesUtil {
         } catch (PackageManager.NameNotFoundException e) {
           Log.w(TAG, e);
         }
-
+ 
         return PlayServicesStatus.NEEDS_UPDATE;
       case ConnectionResult.SERVICE_DISABLED:
       case ConnectionResult.SERVICE_MISSING:

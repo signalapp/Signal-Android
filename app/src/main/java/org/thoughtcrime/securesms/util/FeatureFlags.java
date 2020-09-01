@@ -92,6 +92,18 @@ public final class FeatureFlags {
    */
   @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
   private static final Map<String, Object> FORCED_VALUES = new HashMap<String, Object>() {{
+			put(ATTACHMENTS_V3,true);
+            put(REMOTE_DELETE,true);
+            put(GROUPS_V2,true);
+            put( GROUPS_V2_CREATE,true);
+            put( GROUPS_V2_CAPACITY,200);
+            put( GROUPS_V2_JOIN_VERSION,true);
+            put( GROUPS_V2_LINKS_VERSION,true);
+            put( CDS,true);
+            put( INTERNAL_USER,true);
+            put( USERNAMES,true);
+            put( MENTIONS,true);
+            put( VERIFY_V2,true);
   }};
 
   /**
@@ -131,8 +143,8 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(GROUPS_V2, (change) -> {
-      if (change == Change.ENABLED) {
+    put(GROUPS_V2, (change) -> {  //(change == Change.ENABLED) 
+      if (1 == 1) {
         ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
                                .then(new RefreshOwnProfileJob())
                                .enqueue();
@@ -146,11 +158,25 @@ public final class FeatureFlags {
 
   public static synchronized void init() {
     Map<String, Object> current = parseStoredConfig(SignalStore.remoteConfigValues().getCurrentConfig());
-    Map<String, Object> pending = parseStoredConfig(SignalStore.remoteConfigValues().getPendingConfig());
+    Map<String, Object> pending = new HashMap<String, Object>() {{
+			put(ATTACHMENTS_V3,true);
+            put(REMOTE_DELETE,true);
+            put(GROUPS_V2,true);
+            put( GROUPS_V2_CREATE,true);
+            put( GROUPS_V2_CAPACITY,200);
+            put( GROUPS_V2_JOIN_VERSION,true);
+            put( GROUPS_V2_LINKS_VERSION,true);
+            put( CDS,true);
+            put( INTERNAL_USER,true);
+            put( USERNAMES,true);
+            put( MENTIONS,true);
+            put( VERIFY_V2,true);
+  }}; //parseStoredConfig(SignalStore.remoteConfigValues().getPendingConfig());
     Map<String, Change> changes = computeChanges(current, pending);
-
+    SignalStore.remoteConfigValues().setPendingConfig(mapToJson(pending));
     SignalStore.remoteConfigValues().setCurrentConfig(mapToJson(pending));
     REMOTE_VALUES.putAll(pending);
+	REMOTE_VALUES.putAll(pending);
     triggerFlagChangeListeners(changes);
 
     Log.i(TAG, "init() " + REMOTE_VALUES.toString());
@@ -187,51 +213,51 @@ public final class FeatureFlags {
 
   /** Creating usernames, sending messages by username. */
   public static synchronized boolean usernames() {
-    return getBoolean(USERNAMES, false);
+    return true;//getBoolean(USERNAMES, true);
   }
 
   /** Whether or not we use the attachments v3 form. */
   public static boolean attachmentsV3() {
-    return getBoolean(ATTACHMENTS_V3, false);
+    return true;//getBoolean(ATTACHMENTS_V3, true);
   }
 
   /** Send support for remotely deleting a message. */
   public static boolean remoteDelete() {
-    return getBoolean(REMOTE_DELETE, false);
+    return true;//getBoolean(REMOTE_DELETE, true);
   }
 
   /** Groups v2 send and receive. */
   public static boolean groupsV2() {
-    return groupsV2OlderStickyFlags() || groupsV2LatestFlag();
+    return true;//groupsV2OlderStickyFlags() || groupsV2LatestFlag();
   }
 
   /** Attempt groups v2 creation. */
   public static boolean groupsV2create() {
-    return groupsV2LatestFlag() &&
-           getBoolean(GROUPS_V2_CREATE, false) &&
-           !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
+    return  true;//groupsV2LatestFlag() &&
+           //getBoolean(GROUPS_V2_CREATE, true) &&
+           //!SignalStore.internalValues().gv2DoNotCreateGv2Groups();
   }
 
   /** Allow creation and managing of group links. */
   public static boolean groupsV2manageGroupLinks() {
-    return groupsV2() && getVersionFlag(GROUPS_V2_LINKS_VERSION) == VersionFlag.ON;
+    return  true;//groupsV2() && getVersionFlag(GROUPS_V2_LINKS_VERSION) == VersionFlag.ON;
   }
 
   private static boolean groupsV2LatestFlag() {
-    return getBoolean(GROUPS_V2, false);
+    return  true;//getBoolean(GROUPS_V2, true);
   }
 
   /** Clients that previously saw these flags as true must continue to respect that */
   private static boolean groupsV2OlderStickyFlags() {
-    return getBoolean(GROUPS_V2_OLD_1, false) ||
-           getBoolean(GROUPS_V2_OLD_2, false);
+    return  true;//getBoolean(GROUPS_V2_OLD_1, true) ||
+           //getBoolean(GROUPS_V2_OLD_2, true);
   }
 
   /**
    * Maximum number of members allowed in a group.
    */
   public static int gv2GroupCapacity() {
-    return getInteger(GROUPS_V2_CAPACITY, 151);
+    return 200;//0getInteger(GROUPS_V2_CAPACITY, 151);
   }
 
   /**
@@ -241,10 +267,10 @@ public final class FeatureFlags {
    */
   public static GroupJoinStatus clientLocalGroupJoinStatus() {
     switch (getVersionFlag(GROUPS_V2_JOIN_VERSION)) {
-      case ON_IN_FUTURE_VERSION: return GroupJoinStatus.UPDATE_TO_JOIN;
+      case ON_IN_FUTURE_VERSION: return GroupJoinStatus.LOCAL_CAN_JOIN;//return GroupJoinStatus.UPDATE_TO_JOIN;
       case ON                  : return GroupJoinStatus.LOCAL_CAN_JOIN;
       case OFF                 :
-      default                  : return GroupJoinStatus.COMING_SOON;
+      default                  : return GroupJoinStatus.LOCAL_CAN_JOIN;//return GroupJoinStatus.COMING_SOON;
     }
   }
 
@@ -261,22 +287,22 @@ public final class FeatureFlags {
 
   /** Internal testing extensions. */
   public static boolean internalUser() {
-    return getBoolean(INTERNAL_USER, false);
+    return true;//getBoolean(INTERNAL_USER, true);
   }
 
   /** Whether or not to use the new contact discovery service endpoint, which supports UUIDs. */
   public static boolean cds() {
-    return getBoolean(CDS, false);
+    return true;//getBoolean(CDS, true);
   }
 
   /** Whether or not we allow mentions send support in groups. */
   public static boolean mentions() {
-    return groupsV2() && getBoolean(MENTIONS, false);
+    return true;//groupsV2() && getBoolean(MENTIONS, true);
   }
 
   /** Whether or not to use the UUID in verification codes. */
   public static boolean verifyV2() {
-    return getBoolean(VERIFY_V2, false);
+    return true;//getBoolean(VERIFY_V2, true);
   }
 
   /** Only for rendering debug info. */
@@ -396,16 +422,16 @@ public final class FeatureFlags {
   }
 
   private static @NonNull VersionFlag getVersionFlag(@NonNull String key) {
-    int versionFromKey = getInteger(key, 0);
+    int versionFromKey = getInteger(key, 1);/////modi form 0 to 1
 
     if (versionFromKey == 0) {
-      return VersionFlag.OFF;
+      return VersionFlag.ON;//VersionFlag.OFF;
     }
 
     if (BuildConfig.CANONICAL_VERSION_CODE >= versionFromKey) {
       return VersionFlag.ON;
     } else {
-      return VersionFlag.ON_IN_FUTURE_VERSION;
+      return VersionFlag.ON;//VersionFlag.ON_IN_FUTURE_VERSION;
     }
   }
 
@@ -421,37 +447,37 @@ public final class FeatureFlags {
   }
 
   private static boolean getBoolean(@NonNull String key, boolean defaultValue) {
-    Boolean forced = (Boolean) FORCED_VALUES.get(key);
+    Boolean forced = true;//(Boolean) FORCED_VALUES.get(key);
     if (forced != null) {
       return forced;
     }
 
     Object remote = REMOTE_VALUES.get(key);
     if (remote instanceof Boolean) {
-      return (boolean) remote;
+      return forced;//(boolean) remote;
     } else if (remote != null) {
       Log.w(TAG, "Expected a boolean for key '" + key + "', but got something else! Falling back to the default.");
     }
 
-    return defaultValue;
+    return forced;//defaultValue;
   }
 
   private static int getInteger(@NonNull String key, int defaultValue) {
-    Integer forced = (Integer) FORCED_VALUES.get(key);
+    Integer forced = 1;//(Integer) FORCED_VALUES.get(key);
     if (forced != null) {
       return forced;
     }
 
-    String remote = (String) REMOTE_VALUES.get(key);
+    String remote ="1";// (String) REMOTE_VALUES.get(key);
     if (remote != null) {
       try {
-        return Integer.parseInt(remote);
+        //return Integer.parseInt(remote);
       } catch (NumberFormatException e) {
         Log.w(TAG, "Expected an int for key '" + key + "', but got something else! Falling back to the default.");
       }
     }
 
-    return defaultValue;
+    return forced;//defaultValue;
   }
 
   private static Map<String, Object> parseStoredConfig(String stored) {

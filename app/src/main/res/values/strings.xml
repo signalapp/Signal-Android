@@ -2131,29 +2131,29 @@
     <string name="preferences_setup_a_username">Setup a username</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_do_not_create_gv2" translatable="false">Do not create GV2 groups</string>
-    <string name="preferences__internal_do_not_create_gv2_description" translatable="false">Do not attempt to create GV2 groups, i.e. will force creation of GV1 or MMS groups.</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\'s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_values" translatable="false">Refresh remote values</string>
-    <string name="preferences__internal_refresh_remote_values_description" translatable="false">Forces a refresh of remote values locally instead of waiting for the elapsed time</string>
-    <string name="preferences__internal_display" translatable="false">Display</string>
-    <string name="preferences__internal_user_details" translatable="false">User Details</string>
-    <string name="preferences__internal_user_details_description" translatable="false">See more information about a user when viewing conversation settings.</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
+    <string name="preferences__internal_preferences" translatable="true">Internal Preferences</string>
+    <string name="preferences__internal_preferences_groups_v2" translatable="true">Groups V2</string>
+    <string name="preferences__internal_do_not_create_gv2" translatable="true">Do not create GV2 groups</string>
+    <string name="preferences__internal_do_not_create_gv2_description" translatable="true">Do not attempt to create GV2 groups, i.e. will force creation of GV1 or MMS groups.</string>
+    <string name="preferences__internal_force_gv2_invites" translatable="true">Force Invites</string>
+    <string name="preferences__internal_force_gv2_invites_description" translatable="true">Members will not be added directly to a GV2 even if they could be.</string>
+    <string name="preferences__internal_ignore_gv2_server_changes" translatable="true">Ignore server changes</string>
+    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="true">Changes in server\'s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
+    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="true">Ignore P2P changes</string>
+    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="true">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
+    <string name="preferences__internal_account" translatable="true">Account</string>
+    <string name="preferences__internal_refresh_attributes" translatable="true">Refresh attributes</string>
+    <string name="preferences__internal_refresh_attributes_description" translatable="true">Forces a write of capabilities on to the server followed by a read.</string>
+    <string name="preferences__internal_rotate_profile_key" translatable="true">Rotate profile key</string>
+    <string name="preferences__internal_rotate_profile_key_description" translatable="true">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
+    <string name="preferences__internal_refresh_remote_values" translatable="true">Refresh remote values</string>
+    <string name="preferences__internal_refresh_remote_values_description" translatable="true">Forces a refresh of remote values locally instead of waiting for the elapsed time</string>
+    <string name="preferences__internal_display" translatable="true">Display</string>
+    <string name="preferences__internal_user_details" translatable="true">User Details</string>
+    <string name="preferences__internal_user_details_description" translatable="true">See more information about a user when viewing conversation settings.</string>
+    <string name="preferences__internal_storage_service" translatable="true">Storage service</string>
+    <string name="preferences__internal_force_storage_service_sync" translatable="true">Overwrite remote data</string>
+    <string name="preferences__internal_force_storage_service_sync_description" translatable="true">Forces remote storage to match the local device state.</string>
 
     <!-- **************************************** -->
     <!-- menus -->
