@@ -83,6 +83,8 @@
         <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_24</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_baseline_keyboard_24</item>
         <item name="conversation_input_background">@drawable/compose_background_dark</item>
+
+        <item name="quick_camera_icon">@drawable/ic_baseline_photo_camera_24</item>
     </style>
 
     <!-- This should be the default theme for the application. -->
@@ -545,7 +547,7 @@
         <item name="linkpreview_secondary_text_color">@color/text</item>
         <item name="linkpreview_divider_color">@color/transparent</item>
 
-        <item name="quick_camera_icon">@drawable/ic_baseline_photo_camera_24</item>
+<!--        <item name="quick_camera_icon">@drawable/ic_baseline_photo_camera_24</item>-->
         <item name="quick_mic_icon">@drawable/ic_mic_white_24dp</item>
 
         <item name="media_keyboard_button_color">@color/core_grey_25</item>

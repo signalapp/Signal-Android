@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Session.DayNight">
+    <style name="Theme.Session.Light">
         <item name="android:navigationBarColor">?android:navigationBarColor</item>
         <item name="android:textColorHint">@color/gray50</item>
 
@@ -16,7 +16,17 @@
         <item name="attachment_document_icon_small">@drawable/ic_document_small_light</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_light</item>
 
+        <item name="conversation_emoji_toggle">@drawable/ic_emoji_outline_keyboard</item>
+        <item name="conversation_sticker_toggle">@drawable/ic_sticker_outline_keyboard</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_outline_keyboard_24</item>
         <item name="conversation_input_background">@drawable/compose_background_light</item>
+
+        <item name="quick_camera_icon">@drawable/ic_outline_photo_camera_24</item>
+
+    </style>
+
+    <style name="Theme.Session.DayNight" parent="Theme.Session.Light">
+
     </style>
 
     <style name="Theme.TextSecure.DayNight">

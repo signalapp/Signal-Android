@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Session.DayNight">
-        <item name="android:navigationBarColor">?android:navigationBarColor</item>
-        <item name="android:textColorHint">@color/gray50</item>
-
-        <item name="home_gradient_start">#00FFFFFF</item>
-        <item name="home_gradient_end">#FFFFFFFF</item>
-
-        <item name="message_received_background_color">#F5F5F5</item>
-        <item name="message_sent_background_color">?colorAccent</item>
-
+    <style name="Theme.Session.DayNight" parent="Theme.Session.Light">
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
