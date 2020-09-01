@@ -28,5 +28,4 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew qa
-    - name: Build app
-      run: ./gradlew assemblePlayRelease
+
