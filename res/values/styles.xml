@@ -104,10 +104,12 @@
 
     <style name="Widget.Session.Button.Dialog.Prominent">
         <item name="android:background">@drawable/prominent_dialog_button_background</item>
+        <item name="android:textColor">#222</item>
     </style>
 
     <style name="Widget.Session.Button.Dialog.Destructive">
         <item name="android:background">@drawable/destructive_dialog_button_background</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="SessionIDTextView">
