@@ -88,9 +88,9 @@ public class SmsSendJob extends SendJob {
     }
 
     try {
-      log(TAG, "Sending message: " + messageId + " (attempt " + runAttempt + ")");
+      log(TAG, String.valueOf(record.getDateSent()), "Sending message: " + messageId + " (attempt " + runAttempt + ")");
       deliver(record);
-      log(TAG, "Sent message: " + messageId);
+      log(TAG, String.valueOf(record.getDateSent()), "Sent message: " + messageId);
     } catch (UndeliverableMessageException ude) {
       warn(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
@@ -149,8 +149,8 @@ public class SmsSendJob extends SendJob {
       getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException | IllegalArgumentException npe) {
       warn(TAG, npe);
-      log(TAG, "Recipient: " + recipient);
-      log(TAG, "Message Parts: " + messages.size());
+      log(TAG, String.valueOf(message.getDateSent()), "Recipient: " + recipient);
+      log(TAG, String.valueOf(message.getDateSent()), "Message Parts: " + messages.size());
 
       try {
         for (int i=0;i<messages.size();i++) {

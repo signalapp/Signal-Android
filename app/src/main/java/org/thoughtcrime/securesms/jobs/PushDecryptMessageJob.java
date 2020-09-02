@@ -151,6 +151,7 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   private @NonNull List<Job> handleMessage(@NonNull SignalServiceEnvelope envelope) throws NoSenderException {
+    Log.i(TAG, "Processing message ID " + envelope.getTimestamp());
     try {
       SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
       SignalServiceAddress localAddress = new SignalServiceAddress(Optional.of(TextSecurePreferences.getLocalUuid(context)), Optional.of(TextSecurePreferences.getLocalNumber(context)));

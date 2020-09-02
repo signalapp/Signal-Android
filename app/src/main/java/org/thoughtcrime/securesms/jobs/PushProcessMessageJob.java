@@ -338,6 +338,8 @@ public final class PushProcessMessageJob extends BaseJob {
         return;
       }
 
+      Log.i(TAG, "Processing message ID " + content.getTimestamp());
+
       if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent() || message.getMentions().isPresent();

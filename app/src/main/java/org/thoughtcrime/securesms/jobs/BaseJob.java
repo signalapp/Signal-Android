@@ -51,11 +51,19 @@ public abstract class BaseJob extends Job {
   }
 
   protected void log(@NonNull String tag, @NonNull String message) {
-    Log.i(tag, JobLogger.format(this, message));
+    log(tag, "", JobLogger.format(this, message));
+  }
+
+  protected void log(@NonNull String tag, @NonNull String extra, @NonNull String message) {
+    Log.i(tag, JobLogger.format(this, extra, message));
   }
 
   protected void warn(@NonNull String tag, @NonNull String message) {
-    warn(tag, message, null);
+    warn(tag, "", message, null);
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String event, @NonNull String message) {
+    warn(tag, event, message, null);
   }
 
   protected void warn(@NonNull String tag, @Nullable Throwable t) {
@@ -63,6 +71,10 @@ public abstract class BaseJob extends Job {
   }
 
   protected void warn(@NonNull String tag, @NonNull String message, @Nullable Throwable t) {
-    Log.w(tag, JobLogger.format(this, message), t);
+    warn(tag, "", message, t);
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String extra, @NonNull String message, @Nullable Throwable t) {
+    Log.w(tag, JobLogger.format(this, extra, message), t);
   }
 }
