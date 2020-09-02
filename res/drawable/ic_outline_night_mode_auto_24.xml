@@ -6,7 +6,7 @@
     android:tint="?android:colorControlNormal">
   <path
       android:fillColor="#FF000000"
-      android:pathData="M17,2L13.8008,11L15.6992,11L16.4004,9L19.5996,9L20.3008,11L22.1992,11L19,2L17,2zM18,4L19.1504,7.6504L16.8496,7.6504L18,4z"/>
+      android:pathData="m18.170384,1.7399147 -3.199219,9.0000003 h 1.898438 l 0.701172,-2.0000003 h 3.199218 l 0.701172,2.0000003 h 1.898438 L 20.170384,1.7399147 Z m 1,2 1.150391,3.6503906 h -2.300782z"/>
   <path
       android:strokeColor="#FF000000"
       android:strokeWidth="1.5"
