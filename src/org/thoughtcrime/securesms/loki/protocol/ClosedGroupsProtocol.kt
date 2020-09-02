@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.loki.protocol
 import android.content.Context
 import android.util.Log
 import com.google.protobuf.ByteString
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.deferred
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -34,43 +36,48 @@ object ClosedGroupsProtocol {
     val isSharedSenderKeysEnabled = false
     val groupSizeLimit = 10
     
-    public fun createClosedGroup(context: Context, name: String, members: Collection<String>): String {
-        // Prepare
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-        // Generate a key pair for the group
-        val groupKeyPair = Curve.generateKeyPair()
-        val groupPublicKey = groupKeyPair.hexEncodedPublicKey // Includes the "05" prefix
-        val membersAsData = members.map { Hex.fromStringCondensed(it) }
-        // Create ratchets for all members
-        val senderKeys: List<ClosedGroupSenderKey> = members.map { publicKey ->
-            val ratchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, publicKey)
-            ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
-        }
-        // Create the group
-        val groupID = doubleEncodeGroupID(groupPublicKey)
-        val admins = setOf( userPublicKey )
-        DatabaseFactory.getGroupDatabase(context).create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
-            null, null, LinkedList<Address>(admins.map { Address.fromSerialized(it) }))
-        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
-        // Establish sessions if needed
-        establishSessionsWithMembersIfNeeded(context, members)
-        // Send a closed group update message to all members using established channels
-        val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
-        val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, groupKeyPair.privateKey.serialize(),
-            senderKeys, membersAsData, adminsAsData)
-        for (member in members) {
-            if (member == userPublicKey) { continue }
-            val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
-            ApplicationContext.getInstance(context).jobManager.add(job)
-        }
-        // TODO: Wait for the messages to finish sending
-        // Add the group to the user's set of public keys to poll for
-        DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
-        // Notify the user
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+    public fun createClosedGroup(context: Context, name: String, members: Collection<String>): Promise<String, Exception> {
+        val deferred = deferred<String, Exception>()
+        Thread {
+            // Prepare
+            val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+            // Generate a key pair for the group
+            val groupKeyPair = Curve.generateKeyPair()
+            val groupPublicKey = groupKeyPair.hexEncodedPublicKey // Includes the "05" prefix
+            val membersAsData = members.map { Hex.fromStringCondensed(it) }
+            // Create ratchets for all members
+            val senderKeys: List<ClosedGroupSenderKey> = members.map { publicKey ->
+                val ratchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, publicKey)
+                ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
+            }
+            // Create the group
+            val groupID = doubleEncodeGroupID(groupPublicKey)
+            val admins = setOf( userPublicKey )
+            DatabaseFactory.getGroupDatabase(context).create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
+                null, null, LinkedList<Address>(admins.map { Address.fromSerialized(it) }))
+            DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
+            // Establish sessions if needed
+            establishSessionsWithMembersIfNeeded(context, members)
+            // Send a closed group update message to all members using established channels
+            val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
+            val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, groupKeyPair.privateKey.serialize(),
+                senderKeys, membersAsData, adminsAsData)
+            for (member in members) {
+                if (member == userPublicKey) { continue }
+                val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
+                job.setContext(context)
+                job.onRun() // Run the job immediately
+            }
+            // Add the group to the user's set of public keys to poll for
+            DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
+            // Notify the user
+            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+            // Fulfill the promise
+            deferred.resolve(groupID)
+        }.start()
         // Return
-        return groupID
+        return deferred.promise
     }
 
     @JvmStatic
