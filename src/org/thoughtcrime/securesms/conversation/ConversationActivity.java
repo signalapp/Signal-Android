@@ -21,6 +21,8 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -747,6 +749,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else {
         inflater.inflate(R.menu.conversation_block, menu);
       }
+      inflater.inflate(R.menu.conversation_copy_session_id, menu);
     } else if (isGroupConversation() && !isOpenGroupOrRSSFeed) {
 //      inflater.inflate(R.menu.conversation_group_options, menu);
 
@@ -854,6 +857,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 //    case R.id.menu_call_insecure:             handleDial(getRecipient(), false);        return true;
     case R.id.menu_unblock:                   handleUnblock();                                   return true;
     case R.id.menu_block:                     handleBlock();                                     return true;
+    case R.id.menu_copy_session_id:           handleCopySessionID();                             return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
@@ -1081,6 +1085,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 }
               }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }).show();
+  }
+
+  private void handleCopySessionID() {
+    if (recipient.isGroupRecipient()) { return; }
+    String sessionID = recipient.getAddress().toPhoneString();
+    ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipData clip = ClipData.newPlainText("Session ID", sessionID);
+    clipboard.setPrimaryClip(clip);
+    Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show();
   }
 
   private void handleViewMedia() {

@@ -1860,4 +1860,6 @@
     <string name="dialog_ui_mode_option_night">Night</string>
     <string name="dialog_ui_mode_option_system_default">System default</string>
 
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+
 </resources>
