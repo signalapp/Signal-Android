@@ -228,14 +228,13 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
 
         val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocol.groupSizeLimit else Companion.legacyGroupSizeLimit
-        if (members.size > maxGroupMembers) {
+        if (members.size >= maxGroupMembers) {
             // TODO: Update copy for SSK based closed groups
             return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
 
         if (isSSKBasedClosedGroup) {
-            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() },
-                name, admins.map { it.address.serialize() })
+            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
         } else {
             GroupManager.updateGroup(this, groupID, members, null, name, admins)
         }

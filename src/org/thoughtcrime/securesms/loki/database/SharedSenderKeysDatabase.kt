@@ -63,8 +63,8 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     override fun getAllClosedGroupSenderKeys(groupPublicKey: String): Set<ClosedGroupSenderKey> {
         val database = databaseHelper.readableDatabase
-        val query = "${Companion.closedGroupPublicKey} = ? AND ${Companion.senderPublicKey} = ?"
-        return database.getAll(closedGroupRatchetTable, query, arrayOf( groupPublicKey, senderPublicKey )) { cursor ->
+        val query = "${Companion.closedGroupPublicKey} = ?"
+        return database.getAll(closedGroupRatchetTable, query, arrayOf( groupPublicKey )) { cursor ->
             val chainKey = cursor.getString(Companion.chainKey)
             val keyIndex = cursor.getInt(Companion.keyIndex)
             val senderPublicKey = cursor.getString(Companion.senderPublicKey)
