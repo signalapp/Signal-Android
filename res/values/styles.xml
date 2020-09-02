@@ -23,20 +23,20 @@
         <item name="closeIcon">@drawable/ic_baseline_clear_24</item>
     </style>
 
-    <style name="Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
-        <item name="buttonBarNegativeButtonStyle">@style/Session.AlertDialog.NegativeButtonStyle</item>
-        <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>
+    <style name="ThemeOverlay.Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Session.AlertDialog.NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Session.AlertDialog.PositiveButtonStyle</item>
     </style>
 
     <style name="Widget.Session.BottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/default_bottom_sheet_background</item>
     </style>
 
-    <style name="Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+    <style name="Widget.Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="Session.AlertDialog.PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+    <style name="Widget.Session.AlertDialog.PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/accent</item>
     </style>
 
@@ -112,6 +112,30 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="Widget.Session.EditText.Compose" parent="@style/Signal.Text.Body">
+        <item name="android:padding">2dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:maxLength">65536</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:capitalize">sentences</item>
+        <item name="android:autoText">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:imeOptions">flagNoEnterAction</item>
+        <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
+        <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
+        <item name="android:textColorHint">?android:textColorHint</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="ThemeOverlay.Session.Settings" parent="PreferenceThemeOverlay.v14.Material" >
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorSecondary">#99FFFFFF</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+
     <style name="SessionIDTextView">
         <item name="android:background">@drawable/session_id_text_view_background</item>
         <item name="android:padding">@dimen/medium_spacing</item>
@@ -164,12 +188,6 @@
 
     <style name="FakeChatViewMessageBubble.Outgoing">
         <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
-    </style>
-
-    <style name="Session.SettingsTheme" parent="PreferenceThemeOverlay.v14.Material" >
-        <item name="android:textColor">@color/text</item>
-        <item name="android:textColorSecondary">#99FFFFFF</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
     </style>
     <!-- Session -->
 
@@ -341,24 +359,6 @@
         <item name="android:background">@drawable/error_round</item>
     </style>
 
-    <style name="Widget.EditText.Compose" parent="@style/Signal.Text.Body">
-        <item name="android:padding">2dp</item>
-        <item name="android:background">@null</item>
-        <item name="android:maxLines">4</item>
-        <item name="android:maxLength">65536</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:capitalize">sentences</item>
-        <item name="android:autoText">true</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:imeOptions">flagNoEnterAction</item>
-        <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
-        <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
-        <item name="android:textColorHint">?android:textColorHint</item>
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
-        <item name="android:textAlignment">viewStart</item>
-    </style>
-
     <style name="AttachmentTypeLabel">
         <item name="android:textColor">?android:textColorTertiary</item>
         <item name="android:textSize">@dimen/small_font_size</item>
@@ -426,6 +426,11 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:selectable">true</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="StickerPopupAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
 </resources>

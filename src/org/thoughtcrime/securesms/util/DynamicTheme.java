@@ -6,7 +6,9 @@ import android.content.Intent;
 import network.loki.messenger.R;
 
 /**
- * @deprecated Use conventional DayNight app themes to support dark/light modes.
+ * @deprecated Use one of the Theme.Session.DayNight.*
+ * (or Theme.TextSecure.DayNight.* for old Signal activities)
+ * app themes to support dark/light modes.
  */
 @Deprecated
 public class DynamicTheme {

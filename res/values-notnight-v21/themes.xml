@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Session.Light">
+    <style name="Theme.Session.Light" parent="Base.Theme.Session">
         <item name="android:navigationBarColor">?android:navigationBarColor</item>
         <item name="android:textColorHint">@color/gray50</item>
 
@@ -22,13 +22,14 @@
         <item name="conversation_input_background">@drawable/compose_background_light</item>
 
         <item name="quick_camera_icon">@drawable/ic_outline_photo_camera_24</item>
-
     </style>
 
     <style name="Theme.Session.DayNight" parent="Theme.Session.Light">
 
     </style>
 
+
+    <!-- Session light theme (these values overlays their dark theme counterparts from Theme.TextSecure) -->
     <style name="Theme.TextSecure.DayNight">
 
         <item name="android:navigationBarColor">?android:navigationBarColor</item>

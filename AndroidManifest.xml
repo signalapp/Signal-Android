@@ -173,7 +173,6 @@
             android:name="org.thoughtcrime.securesms.InviteActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:parentActivityName="org.thoughtcrime.securesms.loki.activities.HomeActivity"
-            android:theme="@style/TextSecure.HighlightTheme"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -252,7 +251,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
             android:noHistory="true"
-            android:theme="@style/TextSecure.LightNoActionBar"
+            android:theme="@style/Theme.Session.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -296,7 +295,6 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:taskAffinity=""
-            android:theme="@style/TextSecure.LightTheme.Popup"
             android:windowSoftInputMode="stateVisible" />
         <activity
             android:name="org.thoughtcrime.securesms.MessageDetailsActivity"
@@ -330,17 +328,16 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest__create_passphrase"
             android:launchMode="singleTask"
-            android:theme="@style/TextSecure.LightNoActionBar"
+            android:theme="@style/Theme.Session.DayNight.NoActionBar"
             android:windowSoftInputMode="stateUnchanged" />
         <activity
             android:name="org.thoughtcrime.securesms.PassphrasePromptActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/TextSecure.DarkIntroTheme" />
+            android:launchMode="singleTask" />
         <activity
             android:name="org.thoughtcrime.securesms.NewConversationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightNoActionBar"
+            android:theme="@style/Theme.Session.DayNight.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name="org.thoughtcrime.securesms.PushContactSelectionActivity"
@@ -379,13 +376,11 @@
             android:name="org.thoughtcrime.securesms.registration.WelcomeActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
-            android:theme="@style/TextSecure.DarkRegistrationTheme"
             android:windowSoftInputMode="stateUnchanged" />
         <activity
             android:name="org.thoughtcrime.securesms.RegistrationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
-            android:theme="@style/TextSecure.DarkRegistrationTheme"
             android:windowSoftInputMode="stateUnchanged" />
         <activity
             android:name="org.thoughtcrime.securesms.registration.CaptchaActivity"
@@ -401,7 +396,6 @@
             android:name="org.thoughtcrime.securesms.stickers.StickerManagementActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
-            android:theme="@style/TextSecure.LightTheme"
             android:windowSoftInputMode="stateUnchanged" />
         <activity
             android:name="org.thoughtcrime.securesms.LogSubmitActivity"
@@ -472,11 +466,10 @@
         <activity
             android:name="org.thoughtcrime.securesms.RecipientPreferenceActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightNoActionBar" />
+            android:theme="@style/Theme.Session.DayNight.NoActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.BlockedContactsActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightTheme" />
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
         <activity
             android:name="org.thoughtcrime.securesms.scribbles.StickerSelectActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -488,7 +481,6 @@
         <activity
             android:name="org.thoughtcrime.securesms.CreateProfileActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightRegistrationTheme"
             android:windowSoftInputMode="stateVisible" />
         <activity
             android:name="org.thoughtcrime.securesms.ClearProfileAvatarActivity"
@@ -504,21 +496,20 @@
         </activity>
         <activity
             android:name="org.thoughtcrime.securesms.contactshare.ContactShareEditActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightTheme" />
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
         <activity
             android:name="org.thoughtcrime.securesms.contactshare.ContactNameEditActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightNoActionBar" />
+            android:theme="@style/Theme.Session.DayNight.NoActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.LightNoActionBar" />
+            android:theme="@style/Theme.Session.DayNight.NoActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.ShortcutLauncherActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="true"
-            android:theme="@style/TextSecure.LightNoActionBar" />
+            android:theme="@style/Theme.Session.DayNight.NoActionBar" />
         <service
             android:name="org.thoughtcrime.securesms.loki.api.PushNotificationService"
             android:enabled="true"

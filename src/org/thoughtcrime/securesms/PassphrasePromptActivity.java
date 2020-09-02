@@ -55,7 +55,6 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.DynamicIntroTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -70,7 +69,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   private static final String TAG = PassphrasePromptActivity.class.getSimpleName();
 
-  private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
 
   private View                   passphraseAuthContainer;
@@ -92,7 +90,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     Log.i(TAG, "onCreate()");
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
@@ -105,7 +102,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
     setLockTypeVisibility();
