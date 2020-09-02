@@ -77,7 +77,13 @@ class NewConversationButtonSetView : RelativeLayout {
             background.color = ColorStateList.valueOf(resources.getColorWithID(backgroundColorID, context.theme))
             result.scaleType = ImageView.ScaleType.CENTER
             result.setImageResource(iconID)
-            result.imageTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.text, context.theme))
+
+            result.imageTintList = if (isMain)
+                // Always use white icon for the main button.
+                ColorStateList.valueOf(resources.getColorWithID(android.R.color.white, context.theme))
+            else
+                ColorStateList.valueOf(resources.getColorWithID(R.color.text, context.theme))
+
             result
         }
 
