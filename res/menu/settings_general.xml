@@ -6,7 +6,7 @@
     <item
         android:id="@+id/action_change_theme"
         android:title=""
-        android:icon="@drawable/ic_baseline_palette_24"
+        android:icon="@drawable/ic_ui_mode_24"
         app:showAsAction="always" />
 
     <item
