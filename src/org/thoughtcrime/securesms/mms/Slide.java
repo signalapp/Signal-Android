@@ -22,6 +22,7 @@ import android.net.Uri;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
@@ -32,6 +33,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.security.SecureRandom;
+
+import network.loki.messenger.R;
 
 public abstract class Slide {
 
@@ -59,7 +62,31 @@ public abstract class Slide {
 
   @NonNull
   public Optional<String> getBody() {
-    return Optional.absent();
+    String attachmentString = context.getString(R.string.attachment);
+
+    if (MimeTypes.isAudio(attachment.getContentType())) {
+      // a missing filename is the legacy way to determine if an audio attachment is
+      // a voice note vs. other arbitrary audio attachments.
+      if (attachment.isVoiceNote() || !attachment.getFileName().isEmpty()) {
+        attachmentString = context.getString(R.string.attachment_type_voice_message);
+        return Optional.fromNullable("🎤 " + attachmentString);
+      }
+    }
+    return Optional.fromNullable(emojiForMimeType(attachment.getContentType()) + attachmentString);
+  }
+
+  private String emojiForMimeType(String contentType) {
+    if (MimeTypes.isVideo(contentType)) {
+      return "📷 ";
+    } else if (MimeTypes.isVideo(contentType)) {
+      return "🎥 ";
+    } else if (MimeTypes.isAudio(contentType)) {
+      return "🎧 ";
+    } else if (MimeTypes.is) {
+      return "🎡 ";
+    } else {
+      return "📎 ";
+    }
   }
 
   @NonNull

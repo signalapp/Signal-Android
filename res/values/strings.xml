@@ -1855,4 +1855,8 @@
 
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
 
+    <!-- Attachment message -->
+    <string name="attachment">Attachment</string>
+    <string name="attachment_type_voice_message">Voice Message</string>
+
 </resources>

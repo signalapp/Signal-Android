@@ -618,9 +618,13 @@ public class ThreadDatabase extends Database {
   }
 
   private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {
-    if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).getSharedContacts().size() > 0) {
-      Contact contact = ((MmsMessageRecord) messageRecord).getSharedContacts().get(0);
-      return ContactUtil.getStringSummary(context, contact).toString();
+    if (messageRecord.isMms()) {
+      MmsMessageRecord record = (MmsMessageRecord) messageRecord;
+      if (record.getSlideDeck().getBody())
+      if (record.getSharedContacts().size() > 0) {
+        Contact contact = ((MmsMessageRecord) messageRecord).getSharedContacts().get(0);
+        return ContactUtil.getStringSummary(context, contact).toString();
+      }
     }
 
     return messageRecord.getBody();
