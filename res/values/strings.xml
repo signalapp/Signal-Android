@@ -1855,4 +1855,6 @@
 
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
 
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+
 </resources>
