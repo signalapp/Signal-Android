@@ -5,7 +5,6 @@ import android.os.Handler
 import android.util.Log
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
-import nl.komponents.kovenant.then
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
@@ -34,7 +33,7 @@ import java.util.*
 class PublicChatPoller(private val context: Context, private val group: PublicChat) {
     private val handler = Handler()
     private var hasStarted = false
-    private var isPolling = false
+    private var isPollOngoing = false
     public var isCaughtUp = false
 
     // region Convenience
@@ -211,8 +210,8 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
                 }
             }
         }
-        if (isPolling) { return }
-        isPolling = true
+        if (isPollOngoing) { return }
+        isPollOngoing = true
         val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userHexEncodedPublicKey)
         var uniqueDevices = setOf<String>()
         val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
@@ -250,10 +249,10 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
                 }
             }
             isCaughtUp = true
-            isPolling = false
+            isPollOngoing = false
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
-            isPolling = false
+            isPollOngoing = false
         }
     }
 
