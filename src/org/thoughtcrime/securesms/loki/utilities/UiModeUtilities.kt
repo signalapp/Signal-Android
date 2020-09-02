@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import android.content.res.Configuration
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
+import network.loki.messenger.R
 
 /**
  * Day/night UI mode related utilities.
@@ -52,12 +54,12 @@ object UiModeUtilities {
     }
 }
 
-//TODO Use localized string resources.
 enum class UiMode(
-        val displayName: String,
+        @StringRes
+        val displayNameRes: Int,
         val nightModeValue: Int) {
 
-    DAY("Day", AppCompatDelegate.MODE_NIGHT_NO),
-    NIGHT("Night", AppCompatDelegate.MODE_NIGHT_YES),
-    SYSTEM_DEFAULT("System default", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+    DAY(R.string.dialog_ui_mode_option_day, AppCompatDelegate.MODE_NIGHT_NO),
+    NIGHT(R.string.dialog_ui_mode_option_night, AppCompatDelegate.MODE_NIGHT_YES),
+    SYSTEM_DEFAULT(R.string.dialog_ui_mode_option_system_default, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 }
