@@ -22,8 +22,8 @@ public class StickerSlide extends Slide {
     super(context, attachment);
   }
 
-  public StickerSlide(Context context, Uri uri, long size, @NonNull StickerLocator stickerLocator) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_WEBP, size, WIDTH, HEIGHT, true, null, null, stickerLocator, null, null, false, false, false));
+  public StickerSlide(Context context, Uri uri, long size, @NonNull StickerLocator stickerLocator, @NonNull String contentType) {
+    super(context, constructAttachmentFromUri(context, uri, contentType, size, WIDTH, HEIGHT, true, null, null, stickerLocator, null, null, false, false, false));
   }
 
   @Override
@@ -38,6 +38,11 @@ public class StickerSlide extends Slide {
 
   @Override
   public boolean hasSticker() {
+    return true;
+  }
+
+  @Override
+  public boolean isBorderless() {
     return true;
   }
 

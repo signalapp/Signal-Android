@@ -215,6 +215,7 @@ message DataMessage {
     optional bytes             packKey   = 2;
     optional uint32            stickerId = 3;
     optional AttachmentPointer data      = 4;
+    optional string            emoji     = 5;
   }
 
   message Reaction {

@@ -14,12 +14,15 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.Pair;
 
+import java.lang.ref.WeakReference;
+
 public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchListener {
   private final StickerPreviewPopup      popup;
   private final RolloverEventListener    eventListener;
   private final RolloverStickerRetriever stickerRetriever;
 
-  private boolean hoverMode;
+  private WeakReference<View> currentView;
+  private boolean             hoverMode;
 
   StickerRolloverTouchListener(@NonNull Context context,
                                @NonNull GlideRequests glideRequests,
@@ -29,6 +32,8 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
     this.eventListener    = eventListener;
     this.stickerRetriever = stickerRetriever;
     this.popup            = new StickerPreviewPopup(context, glideRequests);
+    this.currentView      = new WeakReference<>(null);
+
     popup.setAnimationStyle(R.style.StickerPopupAnimation);
   }
 
@@ -45,15 +50,19 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
         hoverMode = false;
         popup.dismiss();
         eventListener.onStickerPopupEnded();
+        currentView.clear();
         break;
       default:
         for (int i = 0, len = recyclerView.getChildCount(); i < len; i++) {
           View child = recyclerView.getChildAt(i);
 
           if (ViewUtil.isPointInsideView(recyclerView, motionEvent.getRawX(), motionEvent.getRawY()) &&
-              ViewUtil.isPointInsideView(child, motionEvent.getRawX(), motionEvent.getRawY()))
+              ViewUtil.isPointInsideView(child, motionEvent.getRawX(), motionEvent.getRawY())        &&
+              child != currentView.get())
           {
             showStickerForView(recyclerView, child);
+            currentView = new WeakReference<>(child);
+            break;
           }
         }
     }

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -283,9 +284,11 @@ public abstract class PushSendJob extends SendJob {
       byte[]                  packId     = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackId());
       byte[]                  packKey    = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackKey());
       int                     stickerId  = stickerAttachment.getSticker().getStickerId();
+      StickerRecord           record     = DatabaseFactory.getStickerDatabase(context).getSticker(stickerAttachment.getSticker().getPackId(), stickerId, false);
+      String                  emoji      = record != null ? record.getEmoji() : null;
       SignalServiceAttachment attachment = getAttachmentPointerFor(stickerAttachment);
 
-      return Optional.of(new SignalServiceDataMessage.Sticker(packId, packKey, stickerId, attachment));
+      return Optional.of(new SignalServiceDataMessage.Sticker(packId, packKey, stickerId, emoji, attachment));
     } catch (IOException e) {
       Log.w(TAG, "Failed to decode sticker id/key", e);
       return Optional.absent();

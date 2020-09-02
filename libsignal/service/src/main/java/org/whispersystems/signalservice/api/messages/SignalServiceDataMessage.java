@@ -449,12 +449,14 @@ public class SignalServiceDataMessage {
     private final byte[]                  packId;
     private final byte[]                  packKey;
     private final int                     stickerId;
+    private final String                  emoji;
     private final SignalServiceAttachment attachment;
 
-    public Sticker(byte[] packId, byte[] packKey, int stickerId, SignalServiceAttachment attachment) {
+    public Sticker(byte[] packId, byte[] packKey, int stickerId, String emoji, SignalServiceAttachment attachment) {
       this.packId     = packId;
       this.packKey    = packKey;
       this.stickerId  = stickerId;
+      this.emoji      = emoji;
       this.attachment = attachment;
     }
 
@@ -468,6 +470,10 @@ public class SignalServiceDataMessage {
 
     public int getStickerId() {
       return stickerId;
+    }
+
+    public String getEmoji() {
+      return emoji;
     }
 
     public SignalServiceAttachment getAttachment() {

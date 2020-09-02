@@ -1425,7 +1425,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (stickerLocator != null && draftMedia != null) {
       Log.d(TAG, "Handling shared sticker.");
-      sendSticker(stickerLocator, draftMedia, 0, true);
+      sendSticker(stickerLocator, Objects.requireNonNull(draftContentType), draftMedia, 0, true);
       return new SettableFuture<>(false);
     }
 
@@ -2876,7 +2876,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void sendSticker(@NonNull StickerRecord stickerRecord, boolean clearCompose) {
-    sendSticker(new StickerLocator(stickerRecord.getPackId(), stickerRecord.getPackKey(), stickerRecord.getStickerId()), stickerRecord.getUri(), stickerRecord.getSize(), clearCompose);
+    sendSticker(new StickerLocator(stickerRecord.getPackId(), stickerRecord.getPackKey(), stickerRecord.getStickerId()), stickerRecord.getContentType(), stickerRecord.getUri(), stickerRecord.getSize(), clearCompose);
 
     SignalExecutors.BOUNDED.execute(() ->
      DatabaseFactory.getStickerDatabase(getApplicationContext())
@@ -2884,9 +2884,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
     );
   }
 
-  private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
+  private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull String contentType, @NonNull Uri uri, long size, boolean clearCompose) {
     if (sendButton.getSelectedTransport().isSms()) {
-      Media  media  = new Media(uri, MediaUtil.IMAGE_WEBP, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, Optional.absent(), Optional.absent(), Optional.absent());
+      Media  media  = new Media(uri, contentType, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, Optional.absent(), Optional.absent(), Optional.absent());
       Intent intent = MediaSendActivity.buildEditorIntent(this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
       startActivityForResult(intent, MEDIA_SENDER);
       return;
@@ -2897,7 +2897,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     boolean         initiating     = threadId == -1;
     TransportOption transport      = sendButton.getSelectedTransport();
     SlideDeck       slideDeck      = new SlideDeck();
-    Slide           stickerSlide   = new StickerSlide(this, uri, size, stickerLocator);
+    Slide           stickerSlide   = new StickerSlide(this, uri, size, stickerLocator, contentType);
 
     slideDeck.addSlide(stickerSlide);
 

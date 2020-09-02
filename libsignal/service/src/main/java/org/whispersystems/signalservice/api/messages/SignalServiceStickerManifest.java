@@ -39,10 +39,12 @@ public class SignalServiceStickerManifest {
   public static final class StickerInfo {
     private final int    id;
     private final String emoji;
+    private final String contentType;
 
-    public StickerInfo(int id, String emoji) {
-      this.id    = id;
-      this.emoji = emoji;
+    public StickerInfo(int id, String emoji, String contentType) {
+      this.id          = id;
+      this.emoji       = emoji;
+      this.contentType = contentType;
     }
 
     public int getId() {
@@ -51,6 +53,10 @@ public class SignalServiceStickerManifest {
 
     public String getEmoji() {
       return emoji;
+    }
+
+    public String getContentType() {
+      return contentType;
     }
   }
 }

@@ -314,6 +314,8 @@ public class ShareActivity extends PassphraseRequiredActivity
       intent.putExtra(ConversationActivity.MEDIA_EXTRA, shareData.getMedia());
     } else if (shareData != null && shareData.isForPrimitive()) {
       Log.i(TAG, "Shared data is a primitive type.");
+    } else if (shareData == null && stickerExtra != null) {
+      intent.setType(getIntent().getType());
     } else {
       Log.i(TAG, "Shared data was not external.");
     }

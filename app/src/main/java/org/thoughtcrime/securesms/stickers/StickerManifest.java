@@ -4,6 +4,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
@@ -66,18 +67,20 @@ public final class StickerManifest {
     private final String        packKey;
     private final int           id;
     private final String        emoji;
+    private final String        contentType;
     private final Optional<Uri> uri;
 
-    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @NonNull String emoji) {
-      this(packId, packKey, id, emoji, null);
+    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @NonNull String emoji, @Nullable String contentType) {
+      this(packId, packKey, id, emoji, contentType, null);
     }
 
-    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @NonNull String emoji, @Nullable Uri uri) {
-      this.packId  = packId;
-      this.packKey = packKey;
-      this.id      = id;
-      this.emoji   = emoji;
-      this.uri     = Optional.fromNullable(uri);
+    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @NonNull String emoji, @Nullable String contentType, @Nullable Uri uri) {
+      this.packId      = packId;
+      this.packKey     = packKey;
+      this.id          = id;
+      this.emoji       = emoji;
+      this.contentType = contentType;
+      this.uri         = Optional.fromNullable(uri);
     }
 
     public @NonNull String getPackId() {
@@ -94,6 +97,10 @@ public final class StickerManifest {
 
     public String getEmoji() {
       return emoji;
+    }
+
+    public @Nullable String getContentType() {
+      return contentType;
     }
 
     public Optional<Uri> getUri() {

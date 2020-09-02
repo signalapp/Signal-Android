@@ -660,6 +660,7 @@ public class SignalServiceMessageSender {
       stickerBuilder.setPackId(ByteString.copyFrom(message.getSticker().get().getPackId()));
       stickerBuilder.setPackKey(ByteString.copyFrom(message.getSticker().get().getPackKey()));
       stickerBuilder.setStickerId(message.getSticker().get().getStickerId());
+      stickerBuilder.setEmoji(message.getSticker().get().getEmoji());
 
       if (message.getSticker().get().getAttachment().isStream()) {
         stickerBuilder.setData(createAttachmentPointer(message.getSticker().get().getAttachment().asStream()));

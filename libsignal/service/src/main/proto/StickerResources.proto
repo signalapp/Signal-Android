@@ -12,8 +12,9 @@ option java_outer_classname = "StickerProtos";
 
 message Pack {
     message Sticker {
-        optional uint32 id    = 1;
-        optional string emoji = 2;
+        optional uint32 id          = 1;
+        optional string emoji       = 2;
+        optional string contentType = 3;
     }
 
     optional string  title    = 1;

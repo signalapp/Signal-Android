@@ -126,11 +126,11 @@ public final class StickerPackPreviewRepository {
                                             @NonNull String packKey,
                                             @NonNull SignalServiceStickerManifest.StickerInfo remoteSticker)
   {
-    return new StickerManifest.Sticker(packId, packKey, remoteSticker.getId(), remoteSticker.getEmoji());
+    return new StickerManifest.Sticker(packId, packKey, remoteSticker.getId(), remoteSticker.getEmoji(), remoteSticker.getContentType());
   }
 
   private StickerManifest.Sticker toSticker(@NonNull StickerRecord record) {
-    return new StickerManifest.Sticker(record.getPackId(), record.getPackKey(), record.getStickerId(), record.getEmoji(), record.getUri());
+    return new StickerManifest.Sticker(record.getPackId(), record.getPackKey(), record.getStickerId(), record.getEmoji(), record.getContentType(), record.getUri());
   }
 
   static class StickerManifestResult {

@@ -38,21 +38,22 @@ public class StickerDatabase extends Database {
 
   private static final String TAG = Log.tag(StickerDatabase.class);
 
-  public  static final String TABLE_NAME  = "sticker";
-  public  static final String _ID         = "_id";
-          static final String PACK_ID     = "pack_id";
-  private static final String PACK_KEY    = "pack_key";
-  private static final String PACK_TITLE  = "pack_title";
-  private static final String PACK_AUTHOR = "pack_author";
-  private static final String STICKER_ID  = "sticker_id";
-  private static final String EMOJI       = "emoji";
-  private static final String COVER       = "cover";
-  private static final String PACK_ORDER  = "pack_order";
-  private static final String INSTALLED   = "installed";
-  private static final String LAST_USED   = "last_used";
-  public  static final String FILE_PATH   = "file_path";
-  public  static final String FILE_LENGTH = "file_length";
-  public  static final String FILE_RANDOM = "file_random";
+  public  static final String TABLE_NAME   = "sticker";
+  public  static final String _ID          = "_id";
+          static final String PACK_ID      = "pack_id";
+  private static final String PACK_KEY     = "pack_key";
+  private static final String PACK_TITLE   = "pack_title";
+  private static final String PACK_AUTHOR  = "pack_author";
+  private static final String STICKER_ID   = "sticker_id";
+  private static final String EMOJI        = "emoji";
+  public  static final String CONTENT_TYPE = "content_type";
+  private static final String COVER        = "cover";
+  private static final String PACK_ORDER   = "pack_order";
+  private static final String INSTALLED    = "installed";
+  private static final String LAST_USED    = "last_used";
+  public  static final String FILE_PATH    = "file_path";
+  public  static final String FILE_LENGTH  = "file_length";
+  public  static final String FILE_RANDOM  = "file_random";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + _ID          + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                                                   PACK_ID      + " TEXT NOT NULL, " +
@@ -63,6 +64,7 @@ public class StickerDatabase extends Database {
                                                                                   COVER        + " INTEGER, " +
                                                                                   PACK_ORDER   + " INTEGER, " +
                                                                                   EMOJI        + " TEXT NOT NULL, " +
+                                                                                  CONTENT_TYPE + " TEXT DEFAULT NULL, " +
                                                                                   LAST_USED    + " INTEGER, " +
                                                                                   INSTALLED    + " INTEGER," +
                                                                                   FILE_PATH    + " TEXT NOT NULL, " +
@@ -94,6 +96,7 @@ public class StickerDatabase extends Database {
     contentValues.put(PACK_AUTHOR, sticker.getPackAuthor());
     contentValues.put(STICKER_ID, sticker.getStickerId());
     contentValues.put(EMOJI, sticker.getEmoji());
+    contentValues.put(CONTENT_TYPE, sticker.getContentType());
     contentValues.put(COVER, sticker.isCover() ? 1 : 0);
     contentValues.put(INSTALLED, sticker.isInstalled() ? 1 : 0);
     contentValues.put(FILE_PATH, fileInfo.getFile().getAbsolutePath());
@@ -460,6 +463,7 @@ public class StickerDatabase extends Database {
                                cursor.getString(cursor.getColumnIndexOrThrow(PACK_KEY)),
                                cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)),
                                cursor.getString(cursor.getColumnIndexOrThrow(EMOJI)),
+                               cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
                                cursor.getLong(cursor.getColumnIndexOrThrow(FILE_LENGTH)),
                                cursor.getInt(cursor.getColumnIndexOrThrow(COVER)) == 1);
     }

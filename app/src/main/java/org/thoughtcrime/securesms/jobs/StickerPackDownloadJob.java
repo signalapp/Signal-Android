@@ -135,6 +135,7 @@ public class StickerPackDownloadJob extends BaseJob {
                                                                                               manifest.getAuthor().or(""),
                                                                                               cover.getId(),
                                                                                               "",
+                                                                                              cover.getContentType(),
                                                                                               true,
                                                                                               !isReferencePack),
                                                                           notify));
@@ -151,6 +152,7 @@ public class StickerPackDownloadJob extends BaseJob {
                                                             manifest.getAuthor().or(""),
                                                             stickerInfo.getId(),
                                                             stickerInfo.getEmoji(),
+                                                            stickerInfo.getContentType(),
                                                             false,
                                                             true),
                                         notify));

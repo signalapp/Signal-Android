@@ -23,15 +23,16 @@ public class StickerDownloadJob extends BaseJob {
 
   private static final String TAG = Log.tag(StickerDownloadJob.class);
 
-  private static final String KEY_PACK_ID     = "pack_id";
-  private static final String KEY_PACK_KEY    = "pack_key";
-  private static final String KEY_PACK_TITLE  = "pack_title";
-  private static final String KEY_PACK_AUTHOR = "pack_author";
-  private static final String KEY_STICKER_ID  = "sticker_id";
-  private static final String KEY_EMOJI       = "emoji";
-  private static final String KEY_COVER       = "cover";
-  private static final String KEY_INSTALLED   = "installed";
-  private static final String KEY_NOTIFY      = "notify";
+  private static final String KEY_PACK_ID      = "pack_id";
+  private static final String KEY_PACK_KEY     = "pack_key";
+  private static final String KEY_PACK_TITLE   = "pack_title";
+  private static final String KEY_PACK_AUTHOR  = "pack_author";
+  private static final String KEY_STICKER_ID   = "sticker_id";
+  private static final String KEY_EMOJI        = "emoji";
+  private static final String KEY_CONTENT_TYPE = "content_type";
+  private static final String KEY_COVER        = "cover";
+  private static final String KEY_INSTALLED    = "installed";
+  private static final String KEY_NOTIFY       = "notify";
 
   private final IncomingSticker sticker;
   private final boolean         notify;
@@ -59,6 +60,7 @@ public class StickerDownloadJob extends BaseJob {
                              .putString(KEY_PACK_AUTHOR, sticker.getPackAuthor())
                              .putInt(KEY_STICKER_ID, sticker.getStickerId())
                              .putString(KEY_EMOJI, sticker.getEmoji())
+                             .putString(KEY_CONTENT_TYPE, sticker.getContentType())
                              .putBoolean(KEY_COVER, sticker.isCover())
                              .putBoolean(KEY_INSTALLED, sticker.isInstalled())
                              .putBoolean(KEY_NOTIFY, notify)
@@ -111,6 +113,7 @@ public class StickerDownloadJob extends BaseJob {
                                                     data.getString(KEY_PACK_AUTHOR),
                                                     data.getInt(KEY_STICKER_ID),
                                                     data.getString(KEY_EMOJI),
+                                                    data.getString(KEY_CONTENT_TYPE),
                                                     data.getBoolean(KEY_COVER),
                                                     data.getBoolean(KEY_INSTALLED));
 

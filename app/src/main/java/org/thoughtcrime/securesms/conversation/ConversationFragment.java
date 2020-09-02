@@ -838,6 +838,7 @@ public class ConversationFragment extends LoggingFragment {
 
           if (slide.hasSticker()) {
             composeIntent.putExtra(ConversationActivity.STICKER_EXTRA, slide.asAttachment().getSticker());
+            composeIntent.setType(slide.asAttachment().getContentType());
           }
         }
 

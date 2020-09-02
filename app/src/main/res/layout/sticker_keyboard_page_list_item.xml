@@ -3,7 +3,4 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sticker_keyboard_page_image"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="4dp">
-
-</ImageView>
+    android:layout_height="wrap_content" />
