@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-<!--    <style name="SessionBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">-->
-<!--        <item name="bottomSheetStyle">@style/SessionBottomSheetStyle</item>-->
-<!--    </style>-->
-
-<!--    <style name="Widget.Session.ActionBar" parent="@style/Widget.AppCompat.ActionBar">-->
-<!--        <item name="background">@color/action_bar_background</item>-->
-
-<!--        <item name="titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>-->
-<!--        <item name="actionMenuTextColor">@color/text</item>-->
-<!--    </style>-->
+<resources>
 
     <style name="Widget.Session.Button.Common.ProminentOutline">
         <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
