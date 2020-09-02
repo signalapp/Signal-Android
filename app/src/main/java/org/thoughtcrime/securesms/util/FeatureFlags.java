@@ -442,10 +442,10 @@ public final class FeatureFlags {
       return forced;
     }
 
-    String remote = (String) REMOTE_VALUES.get(key);
-    if (remote != null) {
+    Object remote = REMOTE_VALUES.get(key);
+    if (remote instanceof String) {
       try {
-        return Integer.parseInt(remote);
+        return Integer.parseInt((String) remote);
       } catch (NumberFormatException e) {
         Log.w(TAG, "Expected an int for key '" + key + "', but got something else! Falling back to the default.");
       }
