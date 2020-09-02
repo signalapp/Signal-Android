@@ -75,6 +75,9 @@ public class LinkPreview {
   }
 
   public @NonNull String getDescription() {
+    if (description.equals(title)) {
+      return "";
+    }
     return description;
   }
 
