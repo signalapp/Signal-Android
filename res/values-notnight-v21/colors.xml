@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Session -->
-    <color name="accent">#5df299</color>
-    <color name="accent50">#805df299</color>
+    <color name="accent">#00E97B</color>
+    <color name="accent_alpha50">#8000E97B</color>
     <color name="text">#000000</color>
     <color name="destructive">#f26f55</color>
     <color name="unimportant">#606060</color>

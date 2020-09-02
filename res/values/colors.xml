@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Session -->
-    <color name="accent">#00F782</color>
-    <color name="accent50">#8000F782</color>
+    <color name="accent">#00F702</color>
+    <color name="accent_alpha50">#8000F702</color>
     <color name="text">#FFFFFF</color>
     <color name="destructive">#FF453A</color>
     <color name="unimportant">#D8D8D8</color>
@@ -38,12 +38,10 @@
 
     <color name="signal_primary">@color/accent</color>
     <color name="signal_primary_dark">@color/accent</color>
-    <color name="signal_primary_alpha33">#00F782</color>
     <color name="signal_primary_alpha_focus">#882090ea</color>
 
     <color name="textsecure_primary">@color/signal_primary</color>
     <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
-    <color name="textsecure_primary_alpha33">@color/signal_primary_alpha33</color>
 
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
