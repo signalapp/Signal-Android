@@ -34,6 +34,7 @@ import java.util.*
 class PublicChatPoller(private val context: Context, private val group: PublicChat) {
     private val handler = Handler()
     private var hasStarted = false
+    private var isPolling = false
     public var isCaughtUp = false
 
     // region Convenience
@@ -186,12 +187,10 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
         }
         fun processOutgoingMessage(message: PublicChatMessage) {
             val messageServerID = message.serverID ?: return
-            val isDuplicate = DatabaseFactory.getLokiMessageDatabase(context).getMessageID(messageServerID) != null
-            if (isDuplicate) { return }
             if (message.body.isEmpty() && message.attachments.isEmpty() && message.quote == null) { return }
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val dataMessage = getDataMessage(message)
-            SessionMetaProtocol.dropFromTimestampCacheIfNeeded(dataMessage.timestamp)
+            SessionMetaProtocol.dropFromTimestampCacheIfNeeded(message.serverTimestamp)
             val transcript = SentTranscriptMessage(userHexEncodedPublicKey, message.serverTimestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(userHexEncodedPublicKey, false))
             transcript.messageServerID = messageServerID
             if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
@@ -212,6 +211,8 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
                 }
             }
         }
+        if (isPolling) { return }
+        isPolling = true
         val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userHexEncodedPublicKey)
         var uniqueDevices = setOf<String>()
         val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
@@ -249,8 +250,10 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
                 }
             }
             isCaughtUp = true
+            isPolling = false
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
+            isPolling = false
         }
     }
 
