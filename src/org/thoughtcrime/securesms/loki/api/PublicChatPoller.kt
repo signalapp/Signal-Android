@@ -192,7 +192,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val dataMessage = getDataMessage(message)
             SessionMetaProtocol.dropFromTimestampCacheIfNeeded(dataMessage.timestamp)
-            val transcript = SentTranscriptMessage(userHexEncodedPublicKey, dataMessage.timestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(userHexEncodedPublicKey, false))
+            val transcript = SentTranscriptMessage(userHexEncodedPublicKey, message.serverTimestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(userHexEncodedPublicKey, false))
             transcript.messageServerID = messageServerID
             if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
                 PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)

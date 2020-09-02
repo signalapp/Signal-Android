@@ -972,6 +972,14 @@ public class MmsDatabase extends MessagingDatabase {
   public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
                                   long threadId, boolean forceSms,
                                   @Nullable SmsDatabase.InsertListener insertListener)
+          throws MmsException {
+    return insertMessageOutbox(message, threadId, forceSms, insertListener, 0);
+  }
+
+  public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
+                                  long threadId, boolean forceSms,
+                                  @Nullable SmsDatabase.InsertListener insertListener,
+                                  long serverTimestamp)
       throws MmsException
   {
     long type = Types.BASE_SENDING_TYPE;
@@ -998,7 +1006,10 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(MESSAGE_BOX, type);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(READ, 1);
-    contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
+    // In open groups messages should be sorted by their server timestamp
+    long receivedTimestamp = serverTimestamp;
+    if (serverTimestamp == 0) { receivedTimestamp = System.currentTimeMillis(); }
+    contentValues.put(DATE_RECEIVED, receivedTimestamp);
     contentValues.put(SUBSCRIPTION_ID, message.getSubscriptionId());
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(ADDRESS, message.getRecipient().getAddress().serialize());
