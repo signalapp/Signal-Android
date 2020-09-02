@@ -8,8 +8,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/attachment_selector_shadow"/>
+        android:layout_height="1dp"
+        android:background="?dividerHorizontal"/>
 
     <LinearLayout
         android:id="@+id/contentView"
@@ -245,7 +245,7 @@
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__drawer_description"
                     android:tint="@android:color/white"
-                    app:circleColor="@color/gray50"/>
+                    app:circleColor="?attachment_type_selector_hide_button_background"/>
 
                 <TextView
                     android:layout_marginTop="10dp"

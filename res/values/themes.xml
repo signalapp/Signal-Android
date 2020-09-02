@@ -57,6 +57,7 @@
         <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
 
         <item name="attachment_type_selector_background">?android:windowBackground</item>
+        <item name="attachment_type_selector_hide_button_background">@color/gray50</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_dark</item>
         <item name="attachment_document_extension_text_color">#222</item>

@@ -3,6 +3,7 @@
     <attr name="theme_type" format="string"/>
 
     <attr name="attachment_type_selector_background" format="color"/>
+    <attr name="attachment_type_selector_hide_button_background" format="color"/>
     <attr name="attachment_document_icon_small" format="reference" />
     <attr name="attachment_document_icon_large" format="reference" />
     <attr name="attachment_document_extension_text_color" format="color" />

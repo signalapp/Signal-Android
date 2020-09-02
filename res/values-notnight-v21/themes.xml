@@ -13,6 +13,7 @@
 
         <item name="android:statusBarColor">@android:color/black</item>
 
+        <item name="attachment_type_selector_hide_button_background">@color/gray27</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_light</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_light</item>
 
