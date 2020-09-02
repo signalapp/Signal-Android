@@ -6,4 +6,9 @@
         <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
+    <style name="Widget.Session.Button.Common.ProminentFilled">
+        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
