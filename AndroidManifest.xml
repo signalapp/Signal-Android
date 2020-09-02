@@ -92,25 +92,31 @@
         <!-- Session -->
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.LandingActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.RegisterActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.RestoreActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.LinkDeviceActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"  />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.DisplayNameActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.PNModeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"  />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.HomeActivity"
             android:screenOrientation="portrait"
