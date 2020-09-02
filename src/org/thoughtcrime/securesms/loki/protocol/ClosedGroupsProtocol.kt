@@ -116,9 +116,9 @@ object ClosedGroupsProtocol {
             return
         }
         val wasAnyUserRemoved = members.toSet().intersect(oldMembers) != oldMembers.toSet()
+        val removedMembers = oldMembers.minus(members)
+        val isUserLeaving = removedMembers.contains(userPublicKey)
         if (wasAnyUserRemoved) {
-            val removedMembers = oldMembers.minus(members)
-            val isUserLeaving = removedMembers.contains(userPublicKey)
             if (isUserLeaving && removedMembers.count() != 1) {
                 Log.d("Loki", "Can't remove self and others simultaneously.")
                 return
@@ -136,6 +136,7 @@ object ClosedGroupsProtocol {
             if (isUserLeaving) {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
                 groupDB.setActive(groupID, false)
+                groupDB.remove(groupID, Address.fromSerialized(userPublicKey))
             } else {
                 // Establish sessions if needed
                 establishSessionsWithMembersIfNeeded(context, members)
@@ -178,7 +179,10 @@ object ClosedGroupsProtocol {
         }
         // Update the group
         groupDB.updateTitle(groupID, name)
-        groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        if (!isUserLeaving) {
+            // The call below sets isActive to true, so if the user is leaving we have to use groupDB.remove(...) instead
+            groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        }
         // Notify the user
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
         insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
@@ -298,6 +302,7 @@ object ClosedGroupsProtocol {
             if (wasCurrentUserRemoved) {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
                 groupDB.setActive(groupID, false)
+                groupDB.remove(groupID, Address.fromSerialized(userPublicKey))
             } else {
                 establishSessionsWithMembersIfNeeded(context, members)
                 val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
@@ -312,7 +317,10 @@ object ClosedGroupsProtocol {
         }
         // Update the group
         groupDB.updateTitle(groupID, name)
-        groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        if (!wasCurrentUserRemoved) {
+            // The call below sets isActive to true, so if the user is leaving we have to use groupDB.remove(...) instead
+            groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        }
         // Notify the user
         val type0 = if (wasSenderRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
         val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
