@@ -31,7 +31,7 @@
 
 
     <!-- Session light theme (these values overlays their dark theme counterparts from Theme.TextSecure) -->
-    <style name="Theme.TextSecure.DayNight">
+    <style name="Theme.TextSecure.DayNight" parent="Base.Theme.TextSecure">
 
         <item name="android:navigationBarColor">?android:navigationBarColor</item>
 

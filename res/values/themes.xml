@@ -97,15 +97,18 @@
     <style name="Theme.Session.DayNight.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="Theme.Session.DayNight.FlatActionBar">
         <item name="actionBarStyle">@style/Widget.Session.ActionBar.Flat</item>
     </style>
 
-    <!-- This is a temporary theme that is used by any activity
+    <!--
+    This is a temporary theme that is used by any activity
     which doesn't have support for light theme
-    (like some old Signal screens or third-party libs with white only icons) -->
+    (like some old Signal screens or third-party libs with white only icons)
+    -->
     <!-- TODO Refactor this to use color resources -->
     <style name="Base.Theme.Session.ForceDark" parent="Theme.Session.DayNight">
         <item name="colorPrimary">#171717</item>
@@ -122,6 +125,11 @@
         <item name="actionBarWidgetTheme">@null</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="actionBarStyle">@style/Widget.AppCompat.ActionBar</item>
+
+        <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_24</item>
+        <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_24</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_baseline_keyboard_24</item>
+        <item name="conversation_input_background">@drawable/compose_background_dark</item>
     </style>
     <style name="Theme.Session.ForceDark" parent="Base.Theme.Session.ForceDark">
         <!-- leave empty to allow overriding -->
@@ -129,6 +137,7 @@
     <style name="Theme.Session.ForceDark.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="Theme.Session.BottomSheet" parent="@style/Theme.AppCompat.DayNight.Dialog">
@@ -142,7 +151,7 @@
 
 
     <!--  Original Signal dark theme  -->
-    <style name="Theme.TextSecure" parent="@style/Theme.Session.DayNight">
+    <style name="Base.Theme.TextSecure" parent="@style/Theme.Session.DayNight">
 
         <item name="windowActionModeOverlay">true</item>
 
@@ -309,8 +318,7 @@
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
 
-
-    <style name="Theme.TextSecure.DayNight">
+    <style name="Theme.TextSecure.DayNight" parent="Base.Theme.TextSecure">
         <!-- leave empty to allow overriding -->
     </style>
 
