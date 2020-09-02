@@ -136,10 +136,10 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public long getTimestamp() {
-    if (isPush() && getDateSent() < getDateReceived()) {
-      return getDateSent();
-    }
     if (getRecipient().getAddress().isOpenGroup()) {
+      return getDateReceived();
+    }
+    if (isPush() && getDateSent() < getDateReceived()) {
       return getDateSent();
     }
     return getDateReceived();

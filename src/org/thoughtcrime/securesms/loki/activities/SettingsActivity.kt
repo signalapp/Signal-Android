@@ -97,7 +97,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 //        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
-        versionTextView.text = String.format(getString(R.string.version_s), BuildConfig.VERSION_NAME)
+        versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

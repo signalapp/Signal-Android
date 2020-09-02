@@ -52,6 +52,7 @@ public class ThumbnailView extends FrameLayout {
   private ImageView       image;
   private View            playOverlay;
   private View            captionIcon;
+  private View            loadIndicator;
   private OnClickListener parentClickListener;
 
   private final int[] dimens        = new int[2];
@@ -78,9 +79,10 @@ public class ThumbnailView extends FrameLayout {
 
     inflate(context, R.layout.thumbnail_view, this);
 
-    this.image       = findViewById(R.id.thumbnail_image);
-    this.playOverlay = findViewById(R.id.play_overlay);
-    this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
+    this.image          = findViewById(R.id.thumbnail_image);
+    this.playOverlay    = findViewById(R.id.play_overlay);
+    this.captionIcon    = findViewById(R.id.thumbnail_caption_icon);
+    this.loadIndicator  = findViewById(R.id.thumbnail_load_indicator);
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
@@ -334,6 +336,10 @@ public class ThumbnailView extends FrameLayout {
 
   public void showProgressSpinner() {
     getTransferControls().showProgressSpinner();
+  }
+
+  public void setLoadIndicatorVisibile(boolean visible) {
+    this.loadIndicator.setVisibility(visible ? VISIBLE : GONE);
   }
 
   protected void setRadius(int radius) {

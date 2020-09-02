@@ -374,7 +374,7 @@ public class AttachmentDatabase extends Database {
     thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
   }
 
-  public void updateAttachmentAfterUpload(@NonNull AttachmentId id, @NonNull Attachment attachment) {
+  public void updateAttachmentAfterUploadSucceeded(@NonNull AttachmentId id, @NonNull Attachment attachment) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues();
 
@@ -386,6 +386,15 @@ public class AttachmentDatabase extends Database {
     values.put(SIZE, attachment.getSize());
     values.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
     values.put(URL, attachment.getUrl());
+
+    database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
+  }
+
+  public void updateAttachmentAfterUploadFailed(@NonNull AttachmentId id) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    ContentValues  values   = new ContentValues();
+
+    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_FAILED);
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
   }
