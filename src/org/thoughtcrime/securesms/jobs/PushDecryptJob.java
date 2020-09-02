@@ -834,6 +834,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   public long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
       throws MmsException
   {
+    if (SessionMetaProtocol.shouldIgnoreMessage(message.getTimestamp())) { return -1; }
+
     MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
     Recipient                   recipients      = getSyncMessageMasterDestination(message);
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
@@ -1002,6 +1004,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   public long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
       throws MmsException
   {
+    if (SessionMetaProtocol.shouldIgnoreMessage(message.getTimestamp())) { return -1; }
 
     Recipient recipient       = getSyncMessageMasterDestination(message);
     String    body            = message.getMessage().getBody().or("");
@@ -1459,7 +1462,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return true;
     }
 
-    if (SessionMetaProtocol.shouldIgnoreMessage(content)) {
+    if (SessionMetaProtocol.shouldIgnoreMessage(content.getTimestamp())) {
       Log.d("Loki", "Ignoring duplicate message.");
       return true;
     }
