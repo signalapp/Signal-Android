@@ -53,9 +53,8 @@
             android:paddingTop="10dp"
             android:paddingRight="@dimen/small_spacing"
             android:paddingBottom="6dp"
-            android:tint="@color/text"
             android:elevation="10dp"
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
-            android:src="@drawable/ic_keyboard_arrow_down_white_24dp"/>
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"/>
 
 </FrameLayout>

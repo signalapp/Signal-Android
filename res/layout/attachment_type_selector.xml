@@ -241,9 +241,10 @@
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:paddingTop="4dp"
-                    android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__drawer_description"
+                    android:tint="@android:color/white"
                     app:circleColor="@color/gray50"/>
 
                 <TextView

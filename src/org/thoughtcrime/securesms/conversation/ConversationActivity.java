@@ -70,6 +70,7 @@ import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.loader.app.LoaderManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.annimon.stream.Stream;
@@ -1268,9 +1269,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleAddAttachment() {
     if (this.isMmsEnabled || isSecureText) {
       if (attachmentTypeSelector == null) {
-        attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener(), keyboardHeight);
+        attachmentTypeSelector = new AttachmentTypeSelector(
+                this,
+                LoaderManager.getInstance(this),
+                new AttachmentTypeListener(),
+                keyboardHeight);
       }
-      attachmentTypeSelector.keyboardHeight = keyboardHeight;
       attachmentTypeSelector.show(this, attachButton);
     } else {
       handleManualMmsRequired();
