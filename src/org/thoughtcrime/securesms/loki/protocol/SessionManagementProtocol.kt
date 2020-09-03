@@ -28,7 +28,6 @@ object SessionManagementProtocol {
         val recipient = recipient(context, publicKey)
         if (recipient.isGroupRecipient) { return }
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
-        if (lokiThreadDB.getSessionResetStatus(publicKey) != SessionResetStatus.NONE) { return }
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
         val devices = lokiThreadDB.getSessionRestoreDevices(threadID)
         for (device in devices) {

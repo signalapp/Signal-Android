@@ -30,9 +30,9 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
-    fun shouldErrorMessageShow(context: Context, timestamp: Long): Boolean {
+    fun shouldIgnoreDecryptionException(context: Context, timestamp: Long): Boolean {
         val restorationTimestamp = TextSecurePreferences.getRestorationTime(context)
-        return timestamp > restorationTimestamp
+        return timestamp <= restorationTimestamp
     }
 
     @JvmStatic
