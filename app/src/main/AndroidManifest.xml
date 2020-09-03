@@ -640,6 +640,8 @@
 
     <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />
 
+    <receiver android:name=".service.TrimThreadsByDateManager$TrimThreadsByDateAlarm" />
+
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:exported="false"

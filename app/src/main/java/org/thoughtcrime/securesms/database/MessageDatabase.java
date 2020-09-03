@@ -21,9 +21,9 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList;
-import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -143,6 +143,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   abstract void deleteMessagesInThreadBeforeDate(long threadId, long date);
   abstract void deleteThreads(@NonNull Set<Long> threadIds);
   abstract void deleteAllThreads();
+  abstract void deleteAbandonedMessages();
 
   public abstract SQLiteDatabase beginTransaction();
   public abstract void endTransaction(SQLiteDatabase database);

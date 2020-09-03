@@ -91,7 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     Log.d(TAG, "[" + Log.tag(getClass()) + "] " + event);
   }
 
-  protected final @NonNull ActionBar requireSupportActionBar() {
+  public final @NonNull ActionBar requireSupportActionBar() {
     return Objects.requireNonNull(getSupportActionBar());
   }
 }

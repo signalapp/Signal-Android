@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaMetadataRetrieverUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
@@ -83,10 +84,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -478,6 +481,39 @@ public class AttachmentDatabase extends Database {
       database.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
       deleteAttachmentOnDisk(data, thumbnail, contentType, id);
       notifyAttachmentListeners();
+    }
+  }
+
+  public void trimAllAbandonedAttachments() {
+    SQLiteDatabase db              = databaseHelper.getWritableDatabase();
+    String         selectAllMmsIds = "SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME;
+    String         selectDataInUse = "SELECT DISTINCT " + DATA + " FROM " + TABLE_NAME + " WHERE " + QUOTE + " = 0 AND " + MMS_ID + " IN (" + selectAllMmsIds + ")";
+    String         where           = MMS_ID + " NOT IN (" + selectAllMmsIds + ") AND " + DATA + " NOT IN (" + selectDataInUse + ")";
+
+    db.delete(TABLE_NAME, where, null);
+  }
+
+  public void deleteAbandonedAttachmentFiles() {
+    Set<String> filesOnDisk = new HashSet<>();
+    Set<String> filesInDb   = new HashSet<>();
+
+    File attachmentDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
+    for (File file : attachmentDirectory.listFiles()) {
+      filesOnDisk.add(file.getAbsolutePath());
+    }
+
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(true, TABLE_NAME, new String[] { DATA, THUMBNAIL }, null, null, null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        filesInDb.add(CursorUtil.requireString(cursor, DATA));
+        filesInDb.add(CursorUtil.requireString(cursor, THUMBNAIL));
+      }
+    }
+
+    Set<String> onDiskButNotInDatabase = SetUtil.difference(filesOnDisk, filesInDb);
+
+    for (String filePath : onDiskButNotInDatabase) {
+      //noinspection ResultOfMethodCallIgnored
+      new File(filePath).delete();
     }
   }
 

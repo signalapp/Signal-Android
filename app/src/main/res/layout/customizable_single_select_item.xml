@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:minHeight="?attr/listPreferredItemHeightSmall"
+    android:orientation="horizontal"
+    android:paddingStart="20dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="?attr/dialogPreferredPadding"
+    android:paddingBottom="8dp">
+
+    <RadioButton
+        android:id="@+id/customizable_single_select_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
+
+    <CheckedTextView
+        android:id="@+id/single_select_item_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?attr/textColorAlertDialogListItem"
+        app:layout_constraintBottom_toTopOf="@id/customizable_single_select_summary"
+        app:layout_constraintStart_toEndOf="@id/customizable_single_select_radio"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Pick me!" />
+
+    <TextView
+        android:id="@+id/customizable_single_select_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/core_grey_60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/single_select_item_text"
+        app:layout_constraintTop_toBottomOf="@id/single_select_item_text"
+        tools:text="Test" />
+
+    <ImageView
+        android:id="@+id/customizable_single_select_customize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:contentDescription="@string/configurable_single_select__customize_option"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings_outline_24" />
+
+    <View
+        android:id="@+id/customizable_single_select_divider"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/core_grey_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/customizable_single_select_customize"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/customizable_single_select_customize_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="customizable_single_select_summary,customizable_single_select_customize,customizable_single_select_divider" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

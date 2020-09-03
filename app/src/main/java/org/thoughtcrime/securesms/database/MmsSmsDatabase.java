@@ -272,6 +272,18 @@ public class MmsSmsDatabase extends Database {
     return count;
   }
 
+  public int getMessageCountBeforeDate(long date) {
+    String selection = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " < " + date;
+
+    try (Cursor cursor = queryTables(new String[] { "COUNT(*)" }, selection, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
+  }
+
   public int getSecureMessageCountForInsights() {
     int count = DatabaseFactory.getSmsDatabase(context).getSecureMessageCountForInsights();
     count    += DatabaseFactory.getMmsDatabase(context).getSecureMessageCountForInsights();
@@ -360,6 +372,29 @@ public class MmsSmsDatabase extends Database {
       }
     }
     return -1;
+  }
+
+  public long getTimestampForFirstMessageAfterDate(long date) {
+    String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+    String selection = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + date;
+
+    try (Cursor cursor = queryTables(new String[] { MmsSmsColumns.NORMALIZED_DATE_RECEIVED }, selection, order, "1")) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(0);
+      }
+    }
+
+    return 0;
+  }
+
+  public void deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
+    DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+  }
+
+  public void deleteAbandonedMessages() {
+    DatabaseFactory.getSmsDatabase(context).deleteAbandonedMessages();
+    DatabaseFactory.getMmsDatabase(context).deleteAbandonedMessages();
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String limit) {

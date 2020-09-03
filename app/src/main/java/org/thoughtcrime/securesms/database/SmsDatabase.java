@@ -968,16 +968,18 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   void deleteMessagesInThreadBeforeDate(long threadId, long date) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    String where      = THREAD_ID + " = ? AND (CASE " + TYPE;
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    String         where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < " + date;
 
-    for (long outgoingType : Types.OUTGOING_MESSAGE_TYPES) {
-      where += " WHEN " + outgoingType + " THEN " + DATE_SENT + " < " + date;
-    }
+    db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
+  }
 
-    where += (" ELSE " + DATE_RECEIVED + " < " + date + " END)");
+  @Override
+  void deleteAbandonedMessages() {
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    String         where = THREAD_ID + " NOT IN (SELECT _id FROM " + ThreadDatabase.TABLE_NAME + ")";
 
-    db.delete(TABLE_NAME, where, new String[] {threadId + ""});
+    db.delete(TABLE_NAME, where, null);
   }
 
   @Override

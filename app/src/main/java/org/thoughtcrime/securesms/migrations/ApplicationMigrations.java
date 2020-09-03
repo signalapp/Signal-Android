@@ -39,7 +39,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 17;
+  public static final int CURRENT_VERSION = 18;
 
   private static final class Version {
     static final int LEGACY             = 1;
@@ -59,6 +59,7 @@ public class ApplicationMigrations {
     static final int PIN_REMINDER       = 15;
     static final int VERSIONED_PROFILE  = 16;
     static final int PIN_OPT_OUT        = 17;
+    static final int TRIM_SETTINGS      = 18;
   }
 
   /**
@@ -239,6 +240,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.PIN_OPT_OUT) {
       jobs.put(Version.PIN_OPT_OUT, new PinOptOutMigration());
+    }
+
+    if (lastSeenVersion < Version.TRIM_SETTINGS) {
+      jobs.put(Version.TRIM_SETTINGS, new TrimByLengthSettingsMigrationJob());
     }
 
     return jobs;

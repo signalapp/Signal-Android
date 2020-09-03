@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
@@ -60,6 +61,7 @@ public class ApplicationDependencies {
   private static GroupsV2Operations           groupsV2Operations;
   private static EarlyMessageCache            earlyMessageCache;
   private static MessageNotifier              messageNotifier;
+  private static TrimThreadsByDateManager     trimThreadsByDateManager;
 
   @MainThread
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
@@ -67,9 +69,10 @@ public class ApplicationDependencies {
       throw new IllegalStateException("Already initialized!");
     }
 
-    ApplicationDependencies.application     = application;
-    ApplicationDependencies.provider        = provider;
-    ApplicationDependencies.messageNotifier = provider.provideMessageNotifier();
+    ApplicationDependencies.application              = application;
+    ApplicationDependencies.provider                 = provider;
+    ApplicationDependencies.messageNotifier          = provider.provideMessageNotifier();
+    ApplicationDependencies.trimThreadsByDateManager = provider.provideTrimThreadsByDateManager();
   }
 
   public static @NonNull Application getApplication() {
@@ -257,6 +260,11 @@ public class ApplicationDependencies {
     return incomingMessageObserver;
   }
 
+  public static synchronized @NonNull TrimThreadsByDateManager getTrimThreadsByDateManager() {
+    assertInitialization();
+    return trimThreadsByDateManager;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -279,6 +287,7 @@ public class ApplicationDependencies {
     @NonNull EarlyMessageCache provideEarlyMessageCache();
     @NonNull MessageNotifier provideMessageNotifier();
     @NonNull IncomingMessageObserver provideIncomingMessageObserver();
+    @NonNull TrimThreadsByDateManager provideTrimThreadsByDateManager();
   }
 
   private static class UninitializedException extends IllegalStateException {

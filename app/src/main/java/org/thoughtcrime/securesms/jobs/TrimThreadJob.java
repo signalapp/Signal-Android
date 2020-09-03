@@ -19,10 +19,12 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class TrimThreadJob extends BaseJob {
 
@@ -55,13 +57,15 @@ public class TrimThreadJob extends BaseJob {
 
   @Override
   public void onRun() {
-    boolean trimmingEnabled   = TextSecurePreferences.isThreadLengthTrimmingEnabled(context);
-    int     threadLengthLimit = TextSecurePreferences.getThreadTrimLength(context);
+    KeepMessagesDuration keepMessagesDuration = SignalStore.settings().getKeepMessagesDuration();
 
-    if (!trimmingEnabled)
-      return;
+    int trimLength = SignalStore.settings().isTrimByLengthEnabled() ? SignalStore.settings().getThreadTrimLength()
+                                                                    : ThreadDatabase.NO_TRIM_MESSAGE_COUNT_SET;
 
-    DatabaseFactory.getThreadDatabase(context).trimThread(threadId, threadLengthLimit);
+    long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
+                                                                               : ThreadDatabase.NO_TRIM_BEFORE_DATE_SET;
+
+    DatabaseFactory.getThreadDatabase(context).trimThread(threadId, trimLength, trimBeforeDate);
   }
 
   @Override

@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -41,7 +40,6 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -79,11 +77,9 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Collection;
@@ -1588,29 +1584,18 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   void deleteMessagesInThreadBeforeDate(long threadId, long date) {
-    Cursor cursor = null;
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    String         where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < " + date;
 
-    try {
-      SQLiteDatabase db = databaseHelper.getReadableDatabase();
-      String where      = THREAD_ID + " = ? AND (CASE (" + MESSAGE_BOX + " & " + Types.BASE_TYPE_MASK + ") ";
+    db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
+  }
 
-      for (long outgoingType : Types.OUTGOING_MESSAGE_TYPES) {
-        where += " WHEN " + outgoingType + " THEN " + DATE_SENT + " < " + date;
-      }
+  @Override
+  void deleteAbandonedMessages() {
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    String         where = THREAD_ID + " NOT IN (SELECT _id FROM " + ThreadDatabase.TABLE_NAME + ")";
 
-      where += (" ELSE " + DATE_RECEIVED + " < " + date + " END)");
-
-      cursor = db.query(TABLE_NAME, new String[] {ID}, where, new String[] {threadId+""}, null, null, null);
-
-      while (cursor != null && cursor.moveToNext()) {
-        Log.i(TAG, "Trimming: " + cursor.getLong(0));
-        deleteMessage(cursor.getLong(0));
-      }
-
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
+    db.delete(TABLE_NAME, where, null);
   }
 
   @Override

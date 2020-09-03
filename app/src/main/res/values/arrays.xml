@@ -294,6 +294,14 @@
         <item>604800</item>
     </integer-array>
 
+    <integer-array name="conversation_length_limit">
+        <item>0</item>
+        <item>5000</item>
+        <item>1000</item>
+        <item>500</item>
+        <item>100</item>
+    </integer-array>
+
     <array name="scribble_colors">
         <item>#ffffff</item>
         <item>#ff0000</item>

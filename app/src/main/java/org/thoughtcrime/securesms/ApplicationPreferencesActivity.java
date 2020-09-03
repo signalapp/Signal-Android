@@ -142,6 +142,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     }
   }
 
+  public void pushFragment(@NonNull Fragment fragment) {
+    getSupportFragmentManager().beginTransaction()
+                               .setCustomAnimations(R.anim.slide_from_end, R.anim.slide_to_start, R.anim.slide_from_start, R.anim.slide_to_end)
+                               .replace(android.R.id.content, fragment)
+                               .addToBackStack(null)
+                               .commit();
+  }
+
   public static class ApplicationPreferenceFragment extends CorrectedPreferenceFragment {
 
     @Override
@@ -292,14 +300,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
           Bundle args = new Bundle();
           fragment.setArguments(args);
 
-          FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
-          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-          fragmentTransaction.setCustomAnimations(R.anim.slide_from_end, R.anim.slide_to_start, R.anim.slide_from_start, R.anim.slide_to_end);
-
-          fragmentTransaction.replace(android.R.id.content, fragment);
-          fragmentTransaction.addToBackStack(null);
-          fragmentTransaction.commit();
+          ((ApplicationPreferencesActivity) requireActivity()).pushFragment(fragment);
         }
 
         return true;
