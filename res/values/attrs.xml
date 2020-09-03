@@ -3,8 +3,10 @@
     <attr name="theme_type" format="string"/>
 
     <attr name="attachment_type_selector_background" format="color"/>
+    <attr name="attachment_type_selector_hide_button_background" format="color"/>
     <attr name="attachment_document_icon_small" format="reference" />
     <attr name="attachment_document_icon_large" format="reference" />
+    <attr name="attachment_document_extension_text_color" format="color" />
 
     <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
@@ -144,12 +146,21 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
     <attr name="menu_reply_icon" format="reference" />
+    <attr name="menu_block_icon" format="reference" />
+    <attr name="menu_photo_library_icon" format="reference" />
+    <attr name="menu_delete_icon" format="reference" />
 
     <attr name="pref_icon_tint" format="color"/>
 
     <attr name="pref_divider" format="reference" />
 
     <attr name="quote_missing_icon_color" format="color" />
+
+    <attr name="home_gradient_start" format="color|reference" />
+    <attr name="home_gradient_end" format="color|reference" />
+
+    <attr name="message_received_background_color" format="color|reference" />
+    <attr name="message_sent_background_color" format="color|reference" />
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>

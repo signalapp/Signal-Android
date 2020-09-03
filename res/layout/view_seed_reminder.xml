@@ -58,7 +58,7 @@
             android:layout_marginLeft="4dp" />
 
         <Button
-            style="@style/MediumProminentOutlineButton"
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
@@ -71,6 +71,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/separator" />
+        android:background="?android:dividerHorizontal" />
 
 </LinearLayout>

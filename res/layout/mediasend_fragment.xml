@@ -5,7 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/core_black">
+    android:background="@color/core_black"
+    android:theme="@style/Theme.Session.ForceDark"
+    tools:context="org.thoughtcrime.securesms.mediasend.MediaSendActivity">
 
     <org.thoughtcrime.securesms.components.ControllableViewPager
         android:id="@+id/mediasend_pager"
@@ -56,6 +58,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
+                tools:listitem="@layout/mediarail_media_item"
                 tools:layout_height="64dp"/>
 
             <LinearLayout
@@ -92,13 +95,11 @@
                         android:layout_height="@dimen/conversation_compose_height" />
 
                     <org.thoughtcrime.securesms.components.ComposeText
-                        style="@style/ComposeEditText"
+                        style="@style/Widget.Session.EditText.Compose"
                         android:id="@+id/mediasend_compose_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/small_font_size"
-                        android:textCursorDrawable="@drawable/session_edit_text_cursor"
                         android:layout_weight="1"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
@@ -119,9 +120,9 @@
 
                     <org.thoughtcrime.securesms.components.SendButton
                         android:id="@+id/mediasend_send_button"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitXY"
                         android:contentDescription="@string/conversation_activity__send"
                         android:src="?conversation_transport_sms_indicator"
                         android:background="@drawable/circle_touch_highlight_background" />

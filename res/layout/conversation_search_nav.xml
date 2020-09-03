@@ -33,8 +33,7 @@
         android:layout_marginBottom="8dp"
         android:background="?selectableItemBackgroundBorderless"
         android:padding="8dp"
-        android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
-        android:tint="@color/signal_primary"
+        android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/conversation_search_down"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,8 +47,7 @@
         android:layout_marginBottom="8dp"
         android:background="?selectableItemBackgroundBorderless"
         android:padding="8dp"
-        android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
-        android:tint="@color/signal_primary"
+        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,8 +60,9 @@
         android:padding="8dp"
         android:background="@color/compose_view_background"
         android:visibility="gone"
-        app:SpinKit_Color="@color/text"
+        app:SpinKit_Color="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone"/>
 
 </org.thoughtcrime.securesms.components.ConversationSearchBottomBar>

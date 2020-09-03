@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/default_session_background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/mainContentContainer"
@@ -26,7 +25,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/separator" />
+            android:background="?android:dividerHorizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -51,7 +50,7 @@
             android:text="@string/activity_create_closed_group_empty_state_message" />
 
         <Button
-            style="@style/MediumProminentOutlineButton"
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
             android:id="@+id/btnCreateNewPrivateChat"
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"
@@ -74,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_centerInParent="true"
-            app:SpinKit_Color="@color/text" />
+            app:SpinKit_Color="?android:colorControlNormal" />
 
     </RelativeLayout>
 

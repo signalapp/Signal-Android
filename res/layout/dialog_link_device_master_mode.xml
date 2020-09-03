@@ -74,7 +74,7 @@
         android:orientation="horizontal">
 
         <Button
-            style="@style/UnimportantDialogButton"
+            style="@style/Widget.Session.Button.Dialog.Unimportant"
             android:id="@+id/cancelButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
@@ -82,7 +82,7 @@
             android:text="@string/cancel" />
 
         <Button
-            style="@style/ProminentDialogButton"
+            style="@style/Widget.Session.Button.Dialog.Prominent"
             android:id="@+id/authorizeButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"

@@ -1,7 +1,7 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/emptyStateContainer"
@@ -14,7 +14,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="You don't have any contacts yet"
-            android:textColor="@color/text"
             android:textSize="@dimen/medium_font_size" />
 
     </LinearLayout>
@@ -35,14 +34,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                tools:listitem="@layout/view_user"/>
 
             <TextView
                 android:id="@+id/loadingTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textColor="@color/text"
                 android:text="@string/contact_selection_group_activity__finding_contacts"
                 android:textSize="@dimen/large_font_size" />
 

@@ -27,7 +27,7 @@
 
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:src="@drawable/ic_block_white_24dp"
+                   android:src="?attr/menu_block_icon"
                    android:tint="@color/signal_primary"/>
 
         <TextView android:layout_marginStart="15dp"

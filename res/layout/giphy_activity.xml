@@ -28,7 +28,7 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/Session.DarkTabLayout"
+                    android:theme="@style/Widget.Session.TabLayout"
                     app:tabRippleColor="@color/cell_selected"
                     app:tabIndicatorColor="@color/accent"
                     android:scrollbars="horizontal"/>

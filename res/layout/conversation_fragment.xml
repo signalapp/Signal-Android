@@ -26,8 +26,8 @@
               android:paddingBottom="4dp"
               android:layout_marginTop="8dp"
               android:textSize="@dimen/small_font_size"
-              android:textColor="#99FFFFFF"
-              android:background="?attr/conversation_item_sticky_date_background"
+              android:textColor="?conversation_item_sticky_date_text_color"
+              android:background="?conversation_item_sticky_date_background"
               android:elevation="10dp"
               android:visibility="gone"
               tools:text="March 1, 2015" />
@@ -53,9 +53,8 @@
             android:paddingTop="10dp"
             android:paddingRight="@dimen/small_spacing"
             android:paddingBottom="6dp"
-            android:tint="@color/text"
             android:elevation="10dp"
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
-            android:src="@drawable/ic_keyboard_arrow_down_white_24dp"/>
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"/>
 
 </FrameLayout>

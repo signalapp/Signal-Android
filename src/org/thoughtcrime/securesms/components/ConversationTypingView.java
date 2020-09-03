@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
 
@@ -41,7 +42,10 @@ public class ConversationTypingView extends LinearLayout {
     }
 
     Recipient typist = typists.get(0);
-    bubble.getBackground().setColorFilter(getResources().getColor(R.color.received_message_background), PorterDuff.Mode.MULTIPLY);
+
+    bubble.getBackground().setColorFilter(
+            ThemeUtil.getThemedColor(getContext(), R.attr.message_received_background_color),
+            PorterDuff.Mode.MULTIPLY);
 
     if (isGroupThread) {
       avatar.setAvatar(glideRequests, typist, false);

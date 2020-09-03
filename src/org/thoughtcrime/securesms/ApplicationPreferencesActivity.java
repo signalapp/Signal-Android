@@ -247,7 +247,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       Drawable devices       = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_laptop_white_24dp));
       Drawable advanced      = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_advanced_white_24dp));
       Drawable publicKey     = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_textsms_24dp));
-      Drawable qrCode        = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.icon_qr_code));
+      Drawable qrCode        = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_qr_code_24));
       Drawable linkDevice    = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.icon_link));
       Drawable seed          = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.icon_seedling));
 

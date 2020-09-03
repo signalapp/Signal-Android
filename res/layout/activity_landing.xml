@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background"
     android:orientation="vertical">
 
     <View
@@ -18,7 +17,6 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/large_font_size"
         android:textStyle="bold"
-        android:textColor="@color/text"
         android:text="@string/activity_landing_title_2" />
     
     <org.thoughtcrime.securesms.loki.views.FakeChatView
@@ -33,7 +31,7 @@
         android:layout_weight="1" />
 
     <Button
-        style="@style/MediumProminentFilledButton"
+        style="@style/Widget.Session.Button.Common.ProminentFilled"
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
@@ -42,7 +40,7 @@
         android:text="@string/activity_landing_register_button_title" />
 
     <Button
-        style="@style/MediumProminentOutlineButton"
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
         android:id="@+id/restoreButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
@@ -62,7 +60,6 @@
         android:background="@color/transparent"
         android:textAllCaps="false"
         android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text"
         android:text="@string/activity_landing_link_button_title" />
 
 </LinearLayout>

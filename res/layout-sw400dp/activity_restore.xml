@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background"
     android:orientation="vertical">
 
     <View
@@ -49,7 +48,7 @@
         android:layout_weight="1"/>
 
     <Button
-        style="@style/MediumProminentFilledButton"
+        style="@style/Widget.Session.Button.Common.ProminentFilled"
         android:id="@+id/restoreButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
@@ -64,9 +63,9 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
         android:gravity="center"
-        android:textColorLink="@color/text"
+        android:textColor="?android:textColorTertiary"
+        android:textColorLink="?colorAccent"
         android:textSize="@dimen/very_small_font_size"
-        android:textColor="@color/text"
         android:text="By using this service, you agree to our Terms of Service and Privacy Policy" /> <!-- Intentionally not yet translated -->
 
 </LinearLayout>

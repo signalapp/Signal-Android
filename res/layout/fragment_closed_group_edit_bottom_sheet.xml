@@ -6,15 +6,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:behavior_hideable="true"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:background="@color/dialog_background">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TextView
         android:id="@+id/removeFromGroup"
-        style="@style/ActionItem"
+        style="@style/BottomSheetActionItem"
         android:drawableStart="@drawable/ic_phonelink_erase_white_24dp"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text"
         android:text="@string/fragment_edit_group_bottom_sheet_remove"/>
 
 </LinearLayout>

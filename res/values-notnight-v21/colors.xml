@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+
+    <!-- Session -->
+    <color name="accent">#00E97B</color>
+    <color name="accent_alpha50">#8000E97B</color>
+    <color name="text">#000000</color>
+    <color name="destructive">#f26f55</color>
+    <color name="unimportant">#606060</color>
+    <color name="cell_background">#FCFCFC</color>
+    <color name="cell_selected">#DFDFDF</color>
+    <color name="navigation_bar_background">#FCFCFC</color>
+    <color name="separator">#B0B0B0</color>
+    <color name="unimportant_button_background">@android:color/transparent</color>
+    <color name="unimportant_dialog_button_background">@color/unimportant_button_background</color>
+    <color name="dialog_background">#FCFCFC</color>
+    <color name="dialog_border">#212121</color>
+    <color name="compose_view_background">#FCFCFC</color>
+    <color name="compose_text_view_background">#EDEDED</color>
+    <color name="new_conversation_button_collapsed_background">#F5F5F5</color>
+    <color name="pn_option_background">#FCFCFC</color>
+    <color name="fake_chat_bubble_background">#F5F5F5</color>
+
+
+    <color name="default_background_start">#ffffff</color>
+    <color name="default_background_end">#fcfcfd</color>
+    <color name="action_bar_background">#fcfcfd</color>
+
+
+    <color name="app_icon_background">#333132</color>
+    <color name="progress_bar_background">#0AFFFFFF</color>
+    <color name="quote_not_found_background">#99FFFFFF</color>
+
+</resources>

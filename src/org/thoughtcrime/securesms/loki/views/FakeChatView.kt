@@ -37,7 +37,7 @@ class FakeChatView : ScrollView {
     }
 
     private fun setUpViewHierarchy() {
-        val inflater = context.applicationContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val contentView = inflater.inflate(R.layout.view_fake_chat, null)
         addView(contentView)
         isVerticalScrollBarEnabled = false

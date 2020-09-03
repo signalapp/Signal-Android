@@ -39,10 +39,10 @@
                            android:clickable="true"
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_play_circle_fill_white_48dp"
+                           android:src="@drawable/ic_baseline_play_circle_filled_48"
                            android:scaleType="centerInside"
-                           tools:visibility="gone"
-                           android:contentDescription="@string/audio_view__play_accessibility_description"/>
+                           android:contentDescription="@string/audio_view__play_accessibility_description"
+                           tools:visibility="visible"/>
 
                 <ImageView android:id="@+id/pause"
                            android:layout_width="wrap_content"
@@ -52,9 +52,10 @@
                            android:clickable="true"
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_pause_circle_fill_white_48dp"
+                           android:src="@drawable/ic_baseline_pause_circle_filled_48"
                            android:scaleType="centerInside"
-                           android:contentDescription="@string/audio_view__pause_accessibility_description"/>
+                           android:contentDescription="@string/audio_view__pause_accessibility_description"
+                           tools:visibility="gone"/>
 
                 <ImageView android:id="@+id/download"
                            android:layout_width="wrap_content"
@@ -63,8 +64,9 @@
                            android:clickable="true"
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_download_circle_fill_white_48dp"
-                           android:contentDescription="@string/audio_view__download_accessibility_description"/>
+                           android:src="@drawable/ic_download_circle_filled_48"
+                           android:contentDescription="@string/audio_view__download_accessibility_description"
+                           tools:visibility="gone"/>
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 
