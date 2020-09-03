@@ -1117,8 +1117,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         }
       }
     }
-    // Invalid metadata exception
-    // TODO
     return false;
   }
 
