@@ -1085,7 +1085,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                     @NonNull Optional<Long> smsMessageId, @NonNull Throwable e)
   {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    if (SessionMetaProtocol.shouldErrorMessageShow(context, timestamp)) {
+    if (!SessionMetaProtocol.shouldIgnoreDecryptionException(context, timestamp)) {
       if (!smsMessageId.isPresent()) {
         Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
 
@@ -1098,29 +1098,35 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
     }
 
-    // FIXME: This is a temporary patch for bad mac issues. At least with this people will be able to message again. We have to figure out the root cause of the issue though.
+    if (canRecoverAutomatically(e)) {
+      SessionManagementProtocol.startSessionReset(context, sender);
+    } else {
+      SessionManagementProtocol.triggerSessionRestorationUI(context, sender, timestamp);
+    }
+  }
+
+  private boolean canRecoverAutomatically(Throwable e) {
+    // Corrupt message exception
     if (e.getCause() != null) {
       Throwable e2 = e.getCause();
       if (e2.getCause() != null) {
         Throwable e3 = e2.getCause();
         if (e3 instanceof InvalidMessageException) {
           String message = e3.getMessage();
-          if (message != null && message.startsWith("Bad Mac!")) {
-            SessionManagementProtocol.startSessionReset(context, sender);
-            return; // Don't trigger the session restoration UI
-          }
+          return (message != null && message.startsWith("Bad Mac!"));
         }
       }
     }
-
-    SessionManagementProtocol.triggerSessionRestorationUI(context, sender, timestamp);
+    // Invalid metadata exception
+    // TODO
+    return false;
   }
 
   private void handleNoSessionMessage(@NonNull String sender, int senderDevice, long timestamp,
                                       @NonNull Optional<Long> smsMessageId)
   {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    if (SessionMetaProtocol.shouldErrorMessageShow(context, timestamp)) {
+    if (!SessionMetaProtocol.shouldIgnoreDecryptionException(context, timestamp)) {
       if (!smsMessageId.isPresent()) {
         Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
 
@@ -1132,7 +1138,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         smsDatabase.markAsNoSession(smsMessageId.get());
       }
     }
-    SessionManagementProtocol.triggerSessionRestorationUI(context, sender, timestamp);
+
+    // Attempt to recover automatically
+    ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(sender);
   }
 
   private void handleLegacyMessage(@NonNull String sender, int senderDevice, long timestamp,
