@@ -4,7 +4,6 @@
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -24,7 +23,7 @@
         android:layout_weight="1" />
 
     <Button
-        style="@style/MediumProminentOutlineButton"
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
         android:id="@+id/joinPublicChatButton"
         android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"

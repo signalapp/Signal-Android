@@ -35,7 +35,7 @@
         android:textAlignment="center" />
 
     <Button
-        style="@style/MediumProminentOutlineButton"
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
         android:id="@+id/joinButton"
         android:layout_width="240dp"
         android:layout_height="@dimen/medium_button_height"
@@ -43,7 +43,7 @@
         android:text="Join Public Chat" />
 
     <Button
-        style="@style/MediumUnimportantOutlineButton"
+        style="@style/Widget.Session.Button.Common.UnimportantOutline"
         android:id="@+id/dismissButton"
         android:layout_width="240dp"
         android:layout_height="@dimen/medium_button_height"

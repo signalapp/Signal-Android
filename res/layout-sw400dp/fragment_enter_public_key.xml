@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -55,7 +55,7 @@
         android:textColor="@color/text"
         android:fontFamily="@font/space_mono_regular"
         android:textAlignment="center"
-        android:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+        tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
         android:orientation="horizontal">
 
         <Button
-            style="@style/MediumUnimportantFilledButton"
+            style="@style/Widget.Session.Button.Common.UnimportantFilled"
             android:id="@+id/copyButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/medium_button_height"
@@ -74,7 +74,7 @@
             android:text="@string/copy" />
 
         <Button
-            style="@style/MediumUnimportantFilledButton"
+            style="@style/Widget.Session.Button.Common.UnimportantFilled"
             android:id="@+id/shareButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/medium_button_height"
@@ -90,7 +90,7 @@
         android:layout_weight="1" />
 
     <Button
-        style="@style/MediumProminentOutlineButton"
+        style="@style/Widget.Session.Button.Common.ProminentFilled"
         android:id="@+id/createPrivateChatButton"
         android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"

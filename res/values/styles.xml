@@ -2,135 +2,138 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Session -->
-    <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@color/action_bar_background</item>
-        <item name="android:background">@color/action_bar_background</item>
-        <item name="titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
-        <item name="android:titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
-        <item name="elevation">0dp</item>
-        <item name="android:elevation">0dp</item>
+    <style name="Widget.Session.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:background">?colorPrimary</item>
+        <item name="elevation">1dp</item>
+        <item name="titleTextStyle">@style/TextAppearance.Session.DarkActionBar.TitleTextStyle</item>
+        <item name="popupTheme">@style/Widget.Session.ActionBar</item>
     </style>
 
-    <style name="Session.DarkSubtitleActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@color/action_bar_background</item>
-        <item name="android:background">@color/action_bar_background</item>
-        <item name="titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
-        <item name="android:titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
-        <item name="subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
-        <item name="android:subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
-        <item name="elevation">0dp</item>
+    <style name="Widget.Session.ActionBar.Flat">
         <item name="android:elevation">0dp</item>
+        <item name="elevation">0dp</item>
     </style>
 
-    <style name="Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/text</item>
+    <style name="TextAppearance.Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:textSize">@dimen/very_large_font_size</item>
     </style>
 
-    <style name="Session.DarkSubtitleActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/text</item>
-        <item name="android:textSize">@dimen/large_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="Session.DarkSubtitleActionBar.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/text</item>
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
-    </style>
-
     <style name="TextSecure.BaseDarkTheme.SearchView" parent="@style/Widget.AppCompat.SearchView">
-        <item name="closeIcon">@drawable/ic_close_white_24dp</item>
+        <item name="closeIcon">@drawable/ic_baseline_clear_24</item>
     </style>
 
-    <style name="Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
-        <item name="buttonBarNegativeButtonStyle">@style/Session.AlertDialog.NegativeButtonStyle</item>
-        <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>
+    <style name="ThemeOverlay.Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Session.AlertDialog.NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Session.AlertDialog.PositiveButtonStyle</item>
     </style>
 
-    <style name="SessionBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/SessionBottomSheetStyle</item>
+    <style name="Widget.Session.BottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/default_bottom_sheet_background</item>
     </style>
 
-    <style name="SessionBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
-    <style name="Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+    <style name="Widget.Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="Session.AlertDialog.PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+    <style name="Widget.Session.AlertDialog.PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="Session.DarkTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@color/accent</item>
+    <style name="Widget.Session.AppBarLayout" parent="@style/Widget.Design.AppBarLayout">
+
+    </style>
+
+    <style name="Widget.Session.TabBar" parent="Widget.AppCompat.ActionBar.TabBar">
+        <item name="elevation">1dp</item>
+    </style>
+
+    <style name="Widget.Session.TabLayout" parent="Widget.Design.TabLayout">
+        <item name="elevation">1dp</item>
+        <item name="tabIndicatorColor">?colorAccent</item>
+        <item name="tabSelectedTextColor">?colorAccent</item>>
         <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>
-        <item name="tabBackground">@color/action_bar_background</item>
         <item name="tabRippleColor">@color/cell_selected</item>
-        <item name="tabTextAppearance">@style/Session.DarkTabLayout.TextAppearance</item>
-        <item name="tabSelectedTextColor">@color/text</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Session.Tab</item>
     </style>
 
-    <style name="Session.DarkTabLayout.TextAppearance" parent="TextAppearance.Design.Tab">
+    <style name="TextAppearance.Session.Tab" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textColor">@color/unimportant</item>"
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="MediumProminentFilledButton">
-        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+    <!--  TODO These button styles require proper background selectors for up/down visual state.  -->
+    <style name="Widget.Session.Button.Common" parent="">
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
+        <!-- Helps to get rid of nasty elevation. We want a flat style here. -->
+        <!-- https://stackoverflow.com/a/31003693/3802890 -->
+        <item name ="android:stateListAnimator">@null</item>
     </style>
 
-    <style name="MediumProminentOutlineButton">
+    <style name="Widget.Session.Button.Common.ProminentFilled">
+        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Widget.Session.Button.Common.ProminentOutline">
         <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <style name="MediumUnimportantFilledButton">
+    <style name="Widget.Session.Button.Common.UnimportantFilled">
         <item name="android:background">@drawable/unimportant_filled_button_medium_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
-    <style name="MediumUnimportantOutlineButton">
+    <style name="Widget.Session.Button.Common.UnimportantOutline">
         <item name="android:background">@drawable/unimportant_outline_button_medium_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
-    <style name="UnimportantDialogButton">
+    <style name="Widget.Session.Button.Dialog" parent="">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Widget.Session.Button.Dialog.Unimportant">
         <item name="android:background">@drawable/unimportant_dialog_button_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textColor">@color/text</item>
     </style>
 
-    <style name="ProminentDialogButton">
+    <style name="Widget.Session.Button.Dialog.Prominent">
         <item name="android:background">@drawable/prominent_dialog_button_background</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">#222</item>
     </style>
 
-    <style name="DestructiveDialogButton">
+    <style name="Widget.Session.Button.Dialog.Destructive">
         <item name="android:background">@drawable/destructive_dialog_button_background</item>
-        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Widget.Session.EditText.Compose" parent="@style/Signal.Text.Body">
+        <item name="android:padding">2dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:maxLength">65536</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:capitalize">sentences</item>
+        <item name="android:autoText">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:imeOptions">flagNoEnterAction</item>
+        <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
+        <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
+        <item name="android:textColorHint">?android:textColorHint</item>
         <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="ThemeOverlay.Session.Settings" parent="PreferenceThemeOverlay.v14.Material" >
         <item name="android:textColor">@color/text</item>
+        <item name="android:textColorSecondary">#99FFFFFF</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
     </style>
 
     <style name="SessionIDTextView">
@@ -168,34 +171,23 @@
         <item name="android:maxLines">1</item>
     </style>
 
-    <style name="FakeChatViewIncomingMessageBubble">
+    <style name="FakeChatViewMessageBubble">
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="FakeChatViewMessageBubble.Incoming">
         <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
-        <item name="android:paddingLeft">@dimen/medium_spacing</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingRight">@dimen/medium_spacing</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/fake_chat_bubble_text</item>
-        <item name="android:elevation">20dp</item>
     </style>
 
-    <style name="FakeChatViewOutgoingMessageBubble">
+    <style name="FakeChatViewMessageBubble.Outgoing">
         <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
-        <item name="android:paddingLeft">@dimen/medium_spacing</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingRight">@dimen/medium_spacing</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text</item>
-        <item name="android:elevation">20dp</item>
-    </style>
-
-    <style name="Session.SettingsTheme" parent="PreferenceThemeOverlay.v14.Material" >
-        <item name="android:textColor">@color/text</item>
-        <item name="android:textColorSecondary">#99FFFFFF</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
     </style>
     <!-- Session -->
 
@@ -242,7 +234,7 @@
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/core_grey_90</item>
         <item name="android:popupTheme" tools:ignore="NewApi">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="elevation">4dp</item>
+        <item name="elevation">1dp</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
@@ -252,7 +244,7 @@
     <style name="TextSecure.LightActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/textsecure_primary</item>
-        <item name="elevation">4dp</item>
+        <item name="elevation">1dp</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
@@ -296,13 +288,12 @@
         <item name="android:textColor">#BFffffff</item>
     </style>
 
-    <style name="NotificationText">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
+    <style name="NotificationText" parent="android:TextAppearance.StatusBar.EventContent">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
-
-    <style name="NotificationTitle">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-      <item name="android:textStyle">bold</item>
+    <style name="NotificationTitle" parent="android:TextAppearance.StatusBar.EventContent.Title">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Registration.Description" parent="@android:style/TextAppearance">
@@ -350,7 +341,7 @@
 
     <!-- For Holo Light Dialog Activity Styling Emulation -->
 
-    <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
+    <style name="Widget.ProgressBar.Horizontal" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
     </style>
 
     <style name="MaterialButton">
@@ -368,22 +359,8 @@
         <item name="android:background">@drawable/error_round</item>
     </style>
 
-    <style name="ComposeEditText" parent="@style/Signal.Text.Body">
-        <item name="android:padding">2dp</item>
-        <item name="android:background">@null</item>
-        <item name="android:maxLines">4</item>
-        <item name="android:maxLength">65536</item>
-        <item name="android:textColor">?conversation_item_sent_text_primary_color</item>
-        <item name="android:capitalize">sentences</item>
-        <item name="android:autoText">true</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:imeOptions">flagNoEnterAction</item>
-        <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
-        <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
-    </style>
-
     <style name="AttachmentTypeLabel">
-        <item name="android:textColor">#99FFFFFF</item>
+        <item name="android:textColor">?android:textColorTertiary</item>
         <item name="android:textSize">@dimen/small_font_size</item>
     </style>
 
@@ -440,15 +417,20 @@
         <item name="colorControlActivated">@color/white</item>
     </style>
 
-    <style name="ActionItem">
-        <item name="android:textSize">@dimen/text_size</item>
-        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+    <style name="BottomSheetActionItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/action_item_height</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
         <item name="android:padding">@dimen/normal_padding</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:selectable">true</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="StickerPopupAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
 </resources>

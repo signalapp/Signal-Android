@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/default_session_background">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/mediasend_fragment_container"

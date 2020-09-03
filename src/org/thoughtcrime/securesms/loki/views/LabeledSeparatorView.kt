@@ -9,21 +9,21 @@ import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.view_separator.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.ThemeUtil
 
 class LabeledSeparatorView : RelativeLayout {
 
     private val path = Path()
 
-    private val paint: Paint = {
+    private val paint: Paint by lazy{
         val result = Paint()
         result.style = Paint.Style.STROKE
-        result.color = resources.getColorWithID(R.color.separator, context.theme)
+        result.color = ThemeUtil.getThemedColor(context, R.attr.dividerHorizontal)
         result.strokeWidth = toPx(1, resources).toFloat()
         result.isAntiAlias = true
         result
-    }()
+    }
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -43,7 +43,7 @@ class LabeledSeparatorView : RelativeLayout {
     }
 
     private fun setUpViewHierarchy() {
-        val inflater = context.applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val contentView = inflater.inflate(R.layout.view_separator, null)
         val layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         addView(contentView, layoutParams)
@@ -56,7 +56,7 @@ class LabeledSeparatorView : RelativeLayout {
         super.onDraw(c)
         val w = width.toFloat()
         val h = height.toFloat()
-        val hMargin = toPx(10, resources).toFloat()
+        val hMargin = toPx(16, resources).toFloat()
         path.reset()
         path.moveTo(0.0f, h / 2)
         path.lineTo(titleTextView.left - hMargin, h / 2)

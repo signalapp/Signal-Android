@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -19,8 +18,6 @@ public class TransportOption implements Parcelable {
     TEXTSECURE
   }
 
-  private final int                             drawable;
-  private final int                             backgroundColor;
   private final @NonNull String                 text;
   private final @NonNull Type                   type;
   private final @NonNull String                 composeHint;
@@ -29,19 +26,15 @@ public class TransportOption implements Parcelable {
   private final @NonNull Optional<Integer>      simSubscriptionId;
 
   public TransportOption(@NonNull  Type type,
-                         @DrawableRes int drawable,
-                         int backgroundColor,
                          @NonNull String text,
                          @NonNull String composeHint,
                          @NonNull CharacterCalculator characterCalculator)
   {
-    this(type, drawable, backgroundColor, text, composeHint, characterCalculator,
+    this(type, text, composeHint, characterCalculator,
          Optional.<CharSequence>absent(), Optional.<Integer>absent());
   }
 
   public TransportOption(@NonNull  Type type,
-                         @DrawableRes int drawable,
-                         int backgroundColor,
                          @NonNull String text,
                          @NonNull String composeHint,
                          @NonNull CharacterCalculator characterCalculator,
@@ -49,8 +42,6 @@ public class TransportOption implements Parcelable {
                          @NonNull Optional<Integer> simSubscriptionId)
   {
     this.type                = type;
-    this.drawable            = drawable;
-    this.backgroundColor     = backgroundColor;
     this.text                = text;
     this.composeHint         = composeHint;
     this.characterCalculator = characterCalculator;
@@ -60,8 +51,6 @@ public class TransportOption implements Parcelable {
 
   TransportOption(Parcel in) {
     this(Type.valueOf(in.readString()),
-         in.readInt(),
-         in.readInt(),
          in.readString(),
          in.readString(),
          CharacterCalculator.readFromParcel(in),
@@ -83,14 +72,6 @@ public class TransportOption implements Parcelable {
 
   public CharacterState calculateCharacters(String messageBody) {
     return characterCalculator.calculateCharacters(messageBody);
-  }
-
-  public @DrawableRes int getDrawable() {
-    return R.drawable.ic_arrow_up;
-  }
-
-  public int getBackgroundColor() {
-    return backgroundColor;
   }
 
   public @NonNull String getComposeHint() {
@@ -119,8 +100,6 @@ public class TransportOption implements Parcelable {
   @Override
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(type.name());
-    dest.writeInt(drawable);
-    dest.writeInt(backgroundColor);
     dest.writeString(text);
     dest.writeString(composeHint);
     CharacterCalculator.writeToParcel(dest, characterCalculator);

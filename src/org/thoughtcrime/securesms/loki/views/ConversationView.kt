@@ -38,7 +38,7 @@ class ConversationView : LinearLayout {
     }
 
     private fun setUpViewHierarchy() {
-        val inflater = context.applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val contentView = inflater.inflate(R.layout.view_conversation, null)
         addView(contentView)
     }

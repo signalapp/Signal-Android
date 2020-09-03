@@ -1854,6 +1854,13 @@
     <string name="dialog_seed_disclaimer">*Please note that it is not possible to use the same Session ID on multiple devices simultaneously</string>
 
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+    
+    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_option_day">Day</string>
+    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_option_system_default">System default</string>
+
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
 
     <!-- Attachment message -->
     <string name="attachment">Attachment</string>

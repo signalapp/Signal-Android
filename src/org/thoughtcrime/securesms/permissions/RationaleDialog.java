@@ -47,7 +47,7 @@ public class RationaleDialog {
 
     text.setText(message);
 
-    return new AlertDialog.Builder(context, R.style.RationaleDialog).setView(view);
+    return new AlertDialog.Builder(context, R.style.Theme_TextSecure_Dialog_Rationale).setView(view);
   }
 
 }

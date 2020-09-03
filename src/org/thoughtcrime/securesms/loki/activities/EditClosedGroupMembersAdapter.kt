@@ -13,6 +13,7 @@ class EditClosedGroupMembersAdapter(
     private val glide: GlideRequests,
     private val memberClickListener: ((String) -> Unit)? = null
 ) : RecyclerView.Adapter<EditClosedGroupMembersAdapter.ViewHolder>() {
+
     private val members = ArrayList<String>()
     private val lockedMembers = HashSet<String>()
 

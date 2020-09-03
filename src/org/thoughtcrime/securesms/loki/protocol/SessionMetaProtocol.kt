@@ -23,8 +23,7 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
-    fun shouldIgnoreMessage(content: SignalServiceContent): Boolean {
-        val timestamp = content.timestamp
+    fun shouldIgnoreMessage(timestamp: Long): Boolean {
         val shouldIgnoreMessage = timestamps.contains(timestamp)
         timestamps.add(timestamp)
         return shouldIgnoreMessage

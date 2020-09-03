@@ -5,6 +5,6 @@
         android:id="@+id/audio_view"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        app:foregroundTintColor="@color/black"
-        app:backgroundTintColor="@color/white"
+        app:foregroundTintColor="?android:colorControlNormal"
+        app:backgroundTintColor="?message_sent_background_color"
         android:visibility="gone"/>

@@ -81,7 +81,6 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.exifinterface:exifinterface:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
 
@@ -108,7 +107,7 @@ dependencies {
     implementation 'com.pnikosis:materialish-progress:1.5'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'pl.tajchert:waitingdots:0.1.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'com.melnykov:floatingactionbutton:1.3.0'
     implementation 'com.google.zxing:android-integration:3.1.0'
     implementation 'com.squareup.dagger:dagger:1.2.2'
@@ -152,8 +151,6 @@ dependencies {
     testImplementation 'org.powermock:powermock-classloading-xstream:1.6.1'
 
     testImplementation 'androidx.test:core:1.3.0-rc03'
-    androidTestImplementation 'androidx.multidex:multidex:2.0.1'
-    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0'
     androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
     androidTestImplementation ('org.assertj:assertj-core:1.7.1') {
@@ -185,8 +182,8 @@ dependencies {
     implementation "com.opencsv:opencsv:4.6"
 }
 
-def canonicalVersionCode = 81
-def canonicalVersionName = "1.4.7"
+def canonicalVersionCode = 83
+def canonicalVersionName = "1.5.0"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
@@ -211,7 +208,6 @@ android {
 
         minSdkVersion 21
         targetSdkVersion 29
-        multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
         project.ext.set("archivesBaseName", "Signal")

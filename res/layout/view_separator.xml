@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:textColor="@color/text"
-        android:alpha="0.6"
+        android:textColor="?android:textColorTertiary"
         android:textSize="@dimen/small_font_size"
         android:text="@string/your_session_id" />
 

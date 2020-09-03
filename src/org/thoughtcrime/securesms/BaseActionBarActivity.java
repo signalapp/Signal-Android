@@ -32,7 +32,6 @@ import java.util.Date;
 
 import network.loki.messenger.R;
 
-
 public abstract class BaseActionBarActivity extends AppCompatActivity {
   private static final String TAG = BaseActionBarActivity.class.getSimpleName();
   private BroadcastReceiver broadcastReceiver;
@@ -122,6 +121,9 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
     ActivityCompat.startActivity(this, intent, bundle);
   }
 
+  //TODO AC: I don't think we need this method,
+  // setting any colors directly will most likely clash with the current theme.
+  @Deprecated
   @TargetApi(VERSION_CODES.LOLLIPOP)
   protected void setStatusBarColor(int color) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

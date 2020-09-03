@@ -110,8 +110,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_apply, menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_edit_closed_group, menu)
         return members.isNotEmpty()
     }
     // endregion
@@ -163,7 +163,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.applyButton -> commitChanges()
+            R.id.action_apply -> commitChanges()
         }
         return super.onOptionsItemSelected(item)
     }

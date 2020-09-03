@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid  android:color="@color/accent" />
+    <solid  android:color="?message_received_background_color" />
 
     <corners android:radius="@dimen/fake_chat_view_bubble_corner_radius" />
 </shape>

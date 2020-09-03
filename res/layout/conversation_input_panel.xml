@@ -91,18 +91,14 @@
                         android:layout_height="@dimen/conversation_compose_height" />
 
                     <org.thoughtcrime.securesms.components.ComposeText
-                        style="@style/ComposeEditText"
+                        style="@style/Widget.Session.EditText.Compose"
                         android:id="@+id/embedded_text_editor"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:textAlignment="viewStart"
                         android:layout_weight="1"
-                        android:textColorHint="#99FFFFFF"
-                        android:textSize="@dimen/small_font_size"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
-                        android:textCursorDrawable="@drawable/session_edit_text_cursor"
                         tools:visibility="invisible"
                         tools:hint="Send TextSecure message" >
                         <requestFocus />
@@ -192,6 +188,8 @@
             android:layout_gravity="center"
             android:background="@drawable/circle_touch_highlight_background"
             android:src="@drawable/ic_circle_plus"
+            android:scaleType="fitXY"
+            android:padding="4dp"
             android:contentDescription="@string/ConversationActivity_add_attachment"
             android:nextFocusLeft="@+id/embedded_text_editor" />
 
@@ -199,7 +197,7 @@
             android:id="@+id/send_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"
+            android:scaleType="fitXY"
             android:contentDescription="@string/conversation_activity__send"
             android:nextFocusLeft="@+id/embedded_text_editor"
             android:src="?conversation_transport_sms_indicator"

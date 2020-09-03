@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.fragment_scan_qr_code_v2.*
+import kotlinx.android.synthetic.main.fragment_scan_qr_code.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.qr.ScanningThread
@@ -19,7 +19,7 @@ class ScanQRCodeFragment : Fragment() {
     var message: CharSequence = ""
 
     override fun onCreateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): View? {
-        return layoutInflater.inflate(R.layout.fragment_scan_qr_code_v2, viewGroup, false)
+        return layoutInflater.inflate(R.layout.fragment_scan_qr_code, viewGroup, false)
     }
 
     override fun onViewCreated(view: View, bundle: Bundle?) {

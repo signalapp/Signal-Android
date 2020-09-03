@@ -1,14 +1,14 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.graphics.PorterDuff.Mode;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -60,8 +60,7 @@ public class TransportOptionsAdapter extends BaseAdapter {
     TextView        textView    = ViewUtil.findById(convertView, R.id.text);
     TextView        subtextView = ViewUtil.findById(convertView, R.id.subtext);
 
-    imageView.getBackground().setColorFilter(transport.getBackgroundColor(), Mode.MULTIPLY);
-    imageView.setImageResource(transport.getDrawable());
+    imageView.setImageResource(R.drawable.ic_arrow_up_circle_24);
     textView.setText(transport.getDescription());
 
     if (transport.getSimName().isPresent()) {
