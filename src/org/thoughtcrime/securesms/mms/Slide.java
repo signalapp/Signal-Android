@@ -63,9 +63,10 @@ public abstract class Slide {
     String attachmentString = context.getString(R.string.attachment);
 
     if (MediaUtil.isAudio(attachment)) {
-      // a missing filename is the legacy way to determine if an audio attachment is
+      // A missing file name is the legacy way to determine if an audio attachment is
       // a voice note vs. other arbitrary audio attachments.
-      if (attachment.isVoiceNote() || !attachment.getFileName().isEmpty()) {
+      if (attachment.isVoiceNote() || attachment.getFileName() == null ||
+          attachment.getFileName().isEmpty()) {
         attachmentString = context.getString(R.string.attachment_type_voice_message);
         return Optional.fromNullable("🎤 " + attachmentString);
       }

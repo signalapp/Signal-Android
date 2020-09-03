@@ -1862,7 +1862,6 @@
 
     <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
 
-    <!-- Attachment message -->
     <string name="attachment">Attachment</string>
     <string name="attachment_type_voice_message">Voice Message</string>
 
