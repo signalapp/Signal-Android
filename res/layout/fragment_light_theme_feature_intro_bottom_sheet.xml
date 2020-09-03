@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="Who left the lights on? bla bla bla"
+        android:text="Whoops, who left the lights on?"
         android:textSize="@dimen/medium_font_size"
         android:textAlignment="center" />
 
@@ -36,7 +36,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:text="Feeling the dark side more? Just pop into the in-app settings and tap the app mode button in the top-right to toggle dark mode again."
+        android:text="That’s right, Session has a spiffy new light mode! Take the fresh new color palette for a spin."
+        android:textSize="@dimen/medium_font_size"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:text="Want to go back to the dark side? Just tap the moon symbol in the in-app settings to switch modes."
         android:textSize="@dimen/medium_font_size"
         android:textAlignment="center" />
 
