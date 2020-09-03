@@ -850,21 +850,33 @@ public final class GroupDatabase extends Database {
     }
 
     public boolean isAdmin(@NonNull Recipient recipient) {
-      return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), recipient.getUuid().get())
+      Optional<UUID> uuid = recipient.getUuid();
+
+      if (!uuid.isPresent()) {
+        return false;
+      }
+
+      return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), uuid.get())
                                .transform(t -> t.getRole() == Member.Role.ADMINISTRATOR)
                                .or(false);
     }
 
     public MemberLevel memberLevel(@NonNull Recipient recipient) {
+      Optional<UUID> uuid = recipient.getUuid();
+
+      if (!uuid.isPresent()) {
+        return MemberLevel.NOT_A_MEMBER;
+      }
+
       DecryptedGroup decryptedGroup = getDecryptedGroup();
 
-      return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), recipient.getUuid().get())
+      return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid.get())
                                .transform(member -> member.getRole() == Member.Role.ADMINISTRATOR
                                                     ? MemberLevel.ADMINISTRATOR
                                                     : MemberLevel.FULL_MEMBER)
-                               .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), recipient.getUuid().get())
+                               .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid.get())
                                                            .transform(m -> MemberLevel.PENDING_MEMBER)
-                                                           .or(() -> DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), recipient.getUuid().get())
+                                                           .or(() -> DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), uuid.get())
                                                                                        .transform(m -> MemberLevel.REQUESTING_MEMBER)
                                                                                        .or(MemberLevel.NOT_A_MEMBER)));
     }
