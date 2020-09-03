@@ -22,7 +22,6 @@ import android.net.Uri;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -32,6 +31,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.security.SecureRandom;
+
+import network.loki.messenger.R;
 
 public abstract class Slide {
 
@@ -59,7 +60,31 @@ public abstract class Slide {
 
   @NonNull
   public Optional<String> getBody() {
-    return Optional.absent();
+    String attachmentString = context.getString(R.string.attachment);
+
+    if (MediaUtil.isAudio(attachment)) {
+      // a missing filename is the legacy way to determine if an audio attachment is
+      // a voice note vs. other arbitrary audio attachments.
+      if (attachment.isVoiceNote() || !attachment.getFileName().isEmpty()) {
+        attachmentString = context.getString(R.string.attachment_type_voice_message);
+        return Optional.fromNullable("🎤 " + attachmentString);
+      }
+    }
+    return Optional.fromNullable(emojiForMimeType() + attachmentString);
+  }
+
+  private String emojiForMimeType() {
+    if (MediaUtil.isImage(attachment)) {
+      return "📷 ";
+    } else if (MediaUtil.isVideo(attachment)) {
+      return "🎥 ";
+    } else if (MediaUtil.isAudio(attachment)) {
+      return "🎧 ";
+    } else if (MediaUtil.isFile(attachment)) {
+      return "📎 ";
+    } else {
+      return "🎡 ";
+    }
   }
 
   @NonNull
