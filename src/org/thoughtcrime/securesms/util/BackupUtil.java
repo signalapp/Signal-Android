@@ -2,12 +2,12 @@ package org.thoughtcrime.securesms.util;
 
 
 import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.logging.Log;
+
+import network.loki.messenger.R;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
@@ -16,15 +16,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
-import network.loki.messenger.R;
-
 public class BackupUtil {
 
   private static final String TAG = BackupUtil.class.getSimpleName();
 
   public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
     try {
-      BackupInfo backup = getLatestBackup(context);
+      BackupInfo backup = getLatestBackup();
 
       if (backup == null) return context.getString(R.string.BackupUtil_never);
       else                return DateUtils.getExtendedRelativeTimeSpanString(context, locale, backup.getTimestamp());
@@ -34,8 +32,8 @@ public class BackupUtil {
     }
   }
 
-  public static @Nullable BackupInfo getLatestBackup(Context context) throws NoExternalStorageException {
-    File       backupDirectory = StorageUtil.getBackupDirectory(context);
+  public static @Nullable BackupInfo getLatestBackup() throws NoExternalStorageException {
+    File       backupDirectory = StorageUtil.getBackupDirectory();
     File[]     backups         = backupDirectory.listFiles();
     BackupInfo latestBackup    = null;
 
@@ -51,9 +49,9 @@ public class BackupUtil {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  public static void deleteAllBackups(Context context) {
+  public static void deleteAllBackups() {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupDirectory();
       File[] backups         = backupDirectory.listFiles();
 
       for (File backup : backups) {
@@ -64,9 +62,9 @@ public class BackupUtil {
     }
   }
 
-  public static void deleteOldBackups(Context context) {
+  public static void deleteOldBackups() {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupDirectory();
       File[] backups         = backupDirectory.listFiles();
 
       if (backups != null && backups.length > 2) {

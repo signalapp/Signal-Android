@@ -71,7 +71,7 @@ public class LocalBackupJob extends BaseJob {
 
     try {
       String backupPassword  = BackupPassphrase.get(context);
-      File   backupDirectory = StorageUtil.getBackupDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupDirectory();
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String fileName        = String.format("session-%s.backup", timestamp);
       File   backupFile      = new File(backupDirectory, fileName);
@@ -97,7 +97,7 @@ public class LocalBackupJob extends BaseJob {
         throw new IOException("Renaming temporary backup file failed!");
       }
 
-      BackupUtil.deleteOldBackups(context);
+      BackupUtil.deleteOldBackups();
     } finally {
       GenericForegroundService.stopForegroundTask(context);
     }
