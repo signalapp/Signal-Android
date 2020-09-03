@@ -23,7 +23,7 @@ object AvatarPlaceholderGenerator {
         if (hashString.length >= 12 && hashString.matches(hexRegex)) {
             hash = hashString.substring(0 until 12).toLong(16)
         } else {
-            hash = hashString.toLong()
+            hash = hashString.toLong(16)
         }
 
         // Do not cache color array, it may be different depends on the current theme.
