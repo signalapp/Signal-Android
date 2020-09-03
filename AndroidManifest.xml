@@ -135,7 +135,8 @@
             android:theme="@style/Theme.Session.DayNight.FlatActionBar"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.CreatePrivateChatActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"/>
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.CreateClosedGroupActivity"
             android:screenOrientation="portrait" />
@@ -145,7 +146,8 @@
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.JoinPublicChatActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.SeedActivity"
             android:screenOrientation="portrait" />
