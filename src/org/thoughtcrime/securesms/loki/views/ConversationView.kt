@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
@@ -58,22 +60,29 @@ class ConversationView : LinearLayout {
         if (thread.recipient.isGroupRecipient) {
             if ("Session Public Chat" == thread.recipient.name) {
                 profilePictureView.publicKey = ""
+                profilePictureView.displayName = ""
                 profilePictureView.additionalPublicKey = null
                 profilePictureView.isRSSFeed = true
             } else {
-                val users = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toMutableList() ?: mutableListOf()
-                users.remove(TextSecurePreferences.getLocalNumber(context))
+                val userKeys = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toMutableList() ?: mutableListOf()
+                userKeys.remove(TextSecurePreferences.getLocalNumber(context))
                 val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
                 if (masterPublicKey != null) {
-                    users.remove(masterPublicKey)
+                    userKeys.remove(masterPublicKey)
                 }
-                val randomUsers = users.sorted() // Sort to provide a level of stability
-                profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
+
+                val sortedUserKeys = userKeys.sorted() // Sort to provide a level of stability
+                val userKey0 = sortedUserKeys.getOrNull(0) ?: ""
+                val userKey1 = sortedUserKeys.getOrNull(1) ?: ""
+                profilePictureView.publicKey = userKey0
+                profilePictureView.displayName = getUserDisplayName(userKey0)
+                profilePictureView.additionalPublicKey = userKey1
+                profilePictureView.additionalDisplayName = getUserDisplayName(userKey1)
                 profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
             }
         } else {
             profilePictureView.publicKey = thread.recipient.address.toString()
+            profilePictureView.displayName = thread.recipient.name
             profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
@@ -102,6 +111,11 @@ class ConversationView : LinearLayout {
             thread.isRemoteRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
             else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
         }
+    }
+
+    private fun getUserDisplayName(publicKey: String?): String? {
+        if (TextUtils.isEmpty(publicKey)) return null
+        return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
     }
     // endregion
 }

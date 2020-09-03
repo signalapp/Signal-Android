@@ -1,18 +1,18 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
-import androidx.annotation.DimenRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import androidx.annotation.DimenRes
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.database.Address
-import org.thoughtcrime.securesms.loki.todo.JazzIdenticonDrawable
+import org.thoughtcrime.securesms.loki.todo.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -22,7 +22,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 class ProfilePictureView : RelativeLayout {
     lateinit var glide: GlideRequests
     var publicKey: String? = null
+    var displayName: String? = null
     var additionalPublicKey: String? = null
+    var additionalDisplayName: String? = null
     var isRSSFeed = false
     var isLarge = false
 
@@ -58,28 +60,51 @@ class ProfilePictureView : RelativeLayout {
         singleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && !isLarge) View.VISIBLE else View.INVISIBLE
         largeSingleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && isLarge) View.VISIBLE else View.INVISIBLE
         rssImageView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
-        fun setProfilePictureIfNeeded(imageView: ImageView, hexEncodedPublicKey: String, @DimenRes sizeID: Int) {
-            glide.clear(imageView)
-            if (hexEncodedPublicKey.isNotEmpty()) {
-                val recipient = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
-                val signalProfilePicture = recipient.contactPhoto
-                if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0" && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
-                    glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
-                } else {
-                    val size = resources.getDimensionPixelSize(sizeID)
-                    val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                    val hepk = if (recipient.isLocalNumber && masterHexEncodedPublicKey != null) masterHexEncodedPublicKey else hexEncodedPublicKey
-                    val jazzIcon = JazzIdenticonDrawable(size, size, hepk)
-                    glide.load(jazzIcon).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
-                }
+
+        setProfilePictureIfNeeded(
+                doubleModeImageView1,
+                publicKey,
+                displayName,
+                R.dimen.small_profile_picture_size)
+        setProfilePictureIfNeeded(
+                doubleModeImageView2,
+                additionalPublicKey ?: "",
+                additionalDisplayName,
+                R.dimen.small_profile_picture_size)
+        setProfilePictureIfNeeded(
+                singleModeImageView,
+                publicKey,
+                displayName,
+                R.dimen.medium_profile_picture_size)
+        setProfilePictureIfNeeded(
+                largeSingleModeImageView,
+                publicKey,
+                displayName,
+                R.dimen.large_profile_picture_size)
+    }
+
+    private fun setProfilePictureIfNeeded(imageView: ImageView, hexEncodedPublicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
+        glide.clear(imageView)
+        if (hexEncodedPublicKey.isNotEmpty()) {
+            val recipient = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
+            val signalProfilePicture = recipient.contactPhoto
+            if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0" && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
+                glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
             } else {
-                imageView.setImageDrawable(null)
+                val sizePx = resources.getDimensionPixelSize(sizeResId)
+                val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+                val hepk = if (recipient.isLocalNumber && masterHexEncodedPublicKey != null) masterHexEncodedPublicKey else hexEncodedPublicKey
+//                    val jazzIcon = JazzIdenticonDrawable(size, size, hepk)
+                glide.load(AvatarPlaceholderGenerator.generate(
+                        context,
+                        sizePx,
+                        hepk,
+                        displayName
+                )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
             }
+        } else {
+            imageView.setImageDrawable(null)
         }
-        setProfilePictureIfNeeded(doubleModeImageView1, publicKey, R.dimen.small_profile_picture_size)
-        setProfilePictureIfNeeded(doubleModeImageView2, additionalPublicKey ?: "", R.dimen.small_profile_picture_size)
-        setProfilePictureIfNeeded(singleModeImageView, publicKey, R.dimen.medium_profile_picture_size)
-        setProfilePictureIfNeeded(largeSingleModeImageView, publicKey, R.dimen.large_profile_picture_size)
     }
     // endregion
 }

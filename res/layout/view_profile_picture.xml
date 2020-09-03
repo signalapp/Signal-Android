@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/doubleModeImageViewContainer"
@@ -19,12 +19,8 @@
                 android:id="@+id/doubleModeImageView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:alpha="0.65"
                 android:background="@drawable/profile_picture_view_small_background" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/profile_picture_view_small_foreground" />
 
         </RelativeLayout>
 
@@ -40,11 +36,6 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/profile_picture_view_small_background" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/profile_picture_view_small_foreground" />
-
         </RelativeLayout>
 
     </RelativeLayout>
@@ -59,11 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/profile_picture_view_medium_background" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/profile_picture_view_medium_foreground" />
 
     </RelativeLayout>
 
@@ -86,11 +72,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/profile_picture_view_large_background" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/profile_picture_view_large_foreground" />
 
     </RelativeLayout>
 

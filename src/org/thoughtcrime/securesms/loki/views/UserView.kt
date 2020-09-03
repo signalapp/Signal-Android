@@ -51,6 +51,7 @@ class UserView : LinearLayout {
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
                 profilePictureView.publicKey = ""
+                profilePictureView.displayName = null
                 profilePictureView.additionalPublicKey = null
                 profilePictureView.isRSSFeed = true
             } else {
@@ -58,11 +59,13 @@ class UserView : LinearLayout {
                 val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.displayName = null
                 profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
                 profilePictureView.isRSSFeed = false
             }
         } else {
             profilePictureView.publicKey = address
+            profilePictureView.displayName = null
             profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }

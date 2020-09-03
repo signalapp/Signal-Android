@@ -32,6 +32,7 @@ class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr:
     private fun update() {
         btnGroupNameDisplay.text = mentionCandidate.displayName
         profilePictureView.publicKey = mentionCandidate.publicKey
+        profilePictureView.displayName = mentionCandidate.displayName
         profilePictureView.additionalPublicKey = null
         profilePictureView.isRSSFeed = false
         profilePictureView.glide = glide!!

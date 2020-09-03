@@ -74,14 +74,17 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
         setContentView(R.layout.activity_settings)
 
+        val origUserDisplayName = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
         profilePictureView.publicKey = hexEncodedPublicKey
+        profilePictureView.displayName = displayNameToBeUploaded
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
         ctnGroupNameSection.setOnClickListener { startActionMode(DisplayNameEditActionModeCallback()) }
-        btnGroupNameDisplay.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+        btnGroupNameDisplay.text = origUserDisplayName
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
