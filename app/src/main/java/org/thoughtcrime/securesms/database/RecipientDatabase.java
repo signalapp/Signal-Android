@@ -1736,7 +1736,6 @@ public class RecipientDatabase extends Database {
       for (RecipientId id : unregistered) {
         ContentValues values = new ContentValues(2);
         values.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
-        values.put(UUID, (String) null);
         if (update(id, values)) {
           markDirty(id, DirtyState.DELETE);
         }
