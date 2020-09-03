@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:textSize="@dimen/large_font_size"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/text"
         android:text="@string/activity_display_name_title_2" />
