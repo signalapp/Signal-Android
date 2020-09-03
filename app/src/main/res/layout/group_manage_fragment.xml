@@ -573,7 +573,7 @@
                             android:gravity="center_vertical|start"
                             android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
                             android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:text="@string/ManageGroupActivity_sharable_group_link"
+                            android:text="@string/ManageGroupActivity_group_link"
                             android:textAlignment="viewStart"
                             android:textAppearance="@style/Signal.Text.Body" />
 

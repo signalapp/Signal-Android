@@ -143,7 +143,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .addMember(you)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("You joined the group via the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("You joined the group via the group link.")));
   }
 
   @Test
@@ -152,7 +152,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .addMember(bob)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Bob joined the group via the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("Bob joined the group via the group link.")));
   }
 
   @Test
@@ -209,7 +209,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .addMember(you)
                                     .build();
 
-    assertThat(describeChange(change), is(Arrays.asList("You joined the group via the sharable group link.", "You added Alice.")));
+    assertThat(describeChange(change), is(Arrays.asList("You joined the group via the group link.", "You added Alice.")));
   }
 
   // Member removals
@@ -846,7 +846,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.ANY)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("You turned on the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("You turned on the group link with admin approval off.")));
   }
 
   @Test
@@ -855,7 +855,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.ADMINISTRATOR)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("You turned on the sharable group link with admin approval.")));
+    assertThat(describeChange(change), is(singletonList("You turned on the group link with admin approval on.")));
   }
 
   @Test
@@ -864,7 +864,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.UNSATISFIABLE)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("You turned off the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("You turned off the group link.")));
   }
 
   @Test
@@ -873,7 +873,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.ANY)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Alice turned on the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("Alice turned on the group link with admin approval off.")));
   }
 
   @Test
@@ -882,7 +882,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.ADMINISTRATOR)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Bob turned on the sharable group link with admin approval.")));
+    assertThat(describeChange(change), is(singletonList("Bob turned on the group link with admin approval on.")));
   }
 
   @Test
@@ -891,7 +891,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.UNSATISFIABLE)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Alice turned off the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("Alice turned off the group link.")));
   }
 
   @Test
@@ -900,7 +900,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.ANY)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("The sharable group link has been turned on.")));
+    assertThat(describeChange(change), is(singletonList("The group link has been turned on with admin approval off.")));
   }
 
   @Test
@@ -909,7 +909,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.ADMINISTRATOR)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("The sharable group link has been turned on with admin approval.")));
+    assertThat(describeChange(change), is(singletonList("The group link has been turned on with admin approval on.")));
   }
 
   @Test
@@ -918,7 +918,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .inviteLinkAccess(AccessControl.AccessRequired.UNSATISFIABLE)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("The sharable group link has been turned off.")));
+    assertThat(describeChange(change), is(singletonList("The group link has been turned off.")));
   }
 
   // Group link reset
@@ -929,7 +929,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .resetGroupLink()
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("You reset the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("You reset the group link.")));
   }
 
   @Test
@@ -938,7 +938,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .resetGroupLink()
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Alice reset the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("Alice reset the group link.")));
   }
 
   @Test
@@ -947,7 +947,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .resetGroupLink()
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("The sharable group link has been reset.")));
+    assertThat(describeChange(change), is(singletonList("The group link has been reset.")));
   }
 
   /**
@@ -961,7 +961,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .resetGroupLink()
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Alice turned on the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("Alice turned on the group link with admin approval off.")));
   }
 
   /**
@@ -975,7 +975,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .resetGroupLink()
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("You turned on the sharable group link with admin approval.")));
+    assertThat(describeChange(change), is(singletonList("You turned on the group link with admin approval on.")));
   }
 
   @Test
@@ -985,7 +985,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .resetGroupLink()
                                     .build();
 
-    assertThat(describeChange(change), is(Arrays.asList("You turned off the sharable group link.", "You reset the sharable group link.")));
+    assertThat(describeChange(change), is(Arrays.asList("You turned off the group link.", "You reset the group link.")));
   }
 
   // Group link request
@@ -1005,7 +1005,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .requestJoin()
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Bob requested to join via the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("Bob requested to join via the group link.")));
   }
 
   @Test
@@ -1014,7 +1014,7 @@ public final class GroupsV2UpdateMessageProducerTest {
                                     .requestJoin(alice)
                                     .build();
 
-    assertThat(describeChange(change), is(singletonList("Alice requested to join via the sharable group link.")));
+    assertThat(describeChange(change), is(singletonList("Alice requested to join via the group link.")));
   }
 
   @Test
