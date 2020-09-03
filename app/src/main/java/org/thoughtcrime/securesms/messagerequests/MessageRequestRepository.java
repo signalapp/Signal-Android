@@ -212,12 +212,9 @@ final class MessageRequestRepository {
 
   void unblockAndAccept(@NonNull LiveRecipient liveRecipient, long threadId, @NonNull Runnable onMessageRequestUnblocked) {
     executor.execute(() -> {
-      Recipient         recipient         = liveRecipient.resolve();
-      RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+      Recipient recipient = liveRecipient.resolve();
 
       RecipientUtil.unblock(context, recipient);
-      recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
-      liveRecipient.refresh();
 
       List<MessageDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
                                                                           .setEntireThreadRead(threadId);
