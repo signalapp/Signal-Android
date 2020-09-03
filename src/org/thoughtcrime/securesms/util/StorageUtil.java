@@ -10,8 +10,8 @@ import java.io.File;
 
 public class StorageUtil {
 
-  public static File getBackupDirectory() throws NoExternalStorageException {
-    File storage = Environment.getExternalStorageDirectory();
+  public static File getBackupDirectory(Context context) throws NoExternalStorageException {
+    File storage = context.getExternalFilesDir(null);
 
     if (!storage.canWrite()) {
       throw new NoExternalStorageException();
@@ -33,8 +33,8 @@ public class StorageUtil {
     return context.getExternalCacheDir();
   }
 
-  private static File getSessionStorageDir() throws NoExternalStorageException {
-    final File storage = Environment.getExternalStorageDirectory();
+  private static File getSessionStorageDir(Context context) throws NoExternalStorageException {
+    final File storage = context.getExternalFilesDir(null);
 
     if (!storage.canWrite()) {
       throw new NoExternalStorageException();
@@ -43,11 +43,11 @@ public class StorageUtil {
     return storage;
   }
 
-  public static boolean canWriteInSessionStorageDir() {
+  public static boolean canWriteInSessionStorageDir(Context context) {
     File storage;
 
     try {
-      storage = getSessionStorageDir();
+      storage = getSessionStorageDir(context);
     } catch (NoExternalStorageException e) {
       return false;
     }
@@ -55,24 +55,24 @@ public class StorageUtil {
     return storage.canWrite();
   }
 
-  public static File getLegacyBackupDirectory() throws NoExternalStorageException {
-    return getSessionStorageDir();
+  public static File getLegacyBackupDirectory(Context context) throws NoExternalStorageException {
+    return getSessionStorageDir(context);
   }
 
-  public static File getVideoDir() throws NoExternalStorageException {
-    return new File(getSessionStorageDir(), Environment.DIRECTORY_MOVIES);
+  public static File getVideoDir(Context context) throws NoExternalStorageException {
+    return new File(getSessionStorageDir(context), Environment.DIRECTORY_MOVIES);
   }
 
-  public static File getAudioDir() throws NoExternalStorageException {
-    return new File(getSessionStorageDir(), Environment.DIRECTORY_MUSIC);
+  public static File getAudioDir(Context context) throws NoExternalStorageException {
+    return new File(getSessionStorageDir(context), Environment.DIRECTORY_MUSIC);
   }
 
-  public static File getImageDir() throws NoExternalStorageException {
-    return new File(getSessionStorageDir(), Environment.DIRECTORY_PICTURES);
+  public static File getImageDir(Context context) throws NoExternalStorageException {
+    return new File(getSessionStorageDir(context), Environment.DIRECTORY_PICTURES);
   }
 
-  public static File getDownloadDir() throws NoExternalStorageException {
-    return new File(getSessionStorageDir(), Environment.DIRECTORY_DOWNLOADS);
+  public static File getDownloadDir(Context context) throws NoExternalStorageException {
+    return new File(getSessionStorageDir(context), Environment.DIRECTORY_DOWNLOADS);
   }
 
   public static @Nullable String getCleanFileName(@Nullable String fileName) {

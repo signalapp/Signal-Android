@@ -4,14 +4,14 @@ import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -25,6 +25,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
+
+import network.loki.messenger.R;
 
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = SaveAttachmentTask.class.getSimpleName();
@@ -59,7 +61,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       Context      context      = contextReference.get();
       String       directory    = null;
 
-      if (!StorageUtil.canWriteInSessionStorageDir()) {
+      if (!StorageUtil.canWriteInSessionStorageDir(context)) {
         return new Pair<>(WRITE_ACCESS_FAILURE, null);
       }
 
@@ -111,16 +113,17 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   private File createOutputDirectoryFromContentType(@NonNull String contentType)
       throws NoExternalStorageException
   {
+    Context context = contextReference.get();
     File outputDirectory;
 
     if (contentType.startsWith("video/")) {
-      outputDirectory = StorageUtil.getVideoDir();
+      outputDirectory = StorageUtil.getVideoDir(context);
     } else if (contentType.startsWith("audio/")) {
-      outputDirectory = StorageUtil.getAudioDir();
+      outputDirectory = StorageUtil.getAudioDir(context);
     } else if (contentType.startsWith("image/")) {
-      outputDirectory = StorageUtil.getImageDir();
+      outputDirectory = StorageUtil.getImageDir(context);
     } else {
-      outputDirectory = StorageUtil.getDownloadDir();
+      outputDirectory = StorageUtil.getDownloadDir(context);
     }
 
     if (!outputDirectory.mkdirs()) Log.w(TAG, "mkdirs() returned false, attempting to continue");

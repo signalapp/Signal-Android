@@ -4,19 +4,21 @@ package org.thoughtcrime.securesms.backup;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+
+import network.loki.messenger.R;
 
 public class BackupDialog {
 
@@ -77,7 +79,7 @@ public class BackupDialog {
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
                      BackupPassphrase.set(context, null);
                      TextSecurePreferences.setBackupEnabled(context, false);
-                     BackupUtil.deleteAllBackups();
+                     BackupUtil.deleteAllBackups(context);
                      preference.setChecked(false);
                    })
                    .create()
