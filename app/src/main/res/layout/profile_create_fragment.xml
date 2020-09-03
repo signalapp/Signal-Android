@@ -165,7 +165,8 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/name_container" />
+                    app:layout_constraintTop_toBottomOf="@id/name_container"
+                    tools:visibility="visible" />
 
                 <EditText
                     android:id="@+id/profile_overview_username"
@@ -182,7 +183,8 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@id/profile_overview_username_edit_button"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/profile_overview_username_label" />
+                    app:layout_constraintTop_toBottomOf="@id/profile_overview_username_label"
+                    tools:visibility="visible" />
 
                 <ImageView
                     android:id="@+id/profile_overview_username_edit_button"
@@ -196,7 +198,8 @@
                     app:layout_constraintBottom_toBottomOf="@id/profile_overview_username"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/profile_overview_username"
-                    app:srcCompat="@drawable/ic_compose_solid_24" />
+                    app:srcCompat="@drawable/ic_compose_solid_24"
+                    tools:visibility="visible" />
 
                 <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                     android:id="@+id/description_text"

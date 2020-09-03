@@ -2106,6 +2106,7 @@
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
     <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
+    <string name="preferences_app_protection__who_can">Who can…</string>
     <string name="preferences_app_protection__app_access">App access</string>
     <string name="preferences_app_protection__communication">Communication</string>
     <string name="preferences_chats__chats">Chats</string>
@@ -2505,6 +2506,14 @@
     <string name="RegistrationActivity_code_support_subject">Signal Registration - Verification Code for Android</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
+    <string name="preferences_app_protection__see_my_phone_number">See my phone number</string>
+    <string name="preferences_app_protection__find_me_by_phone_number">Find me by phone number</string>
+    <string name="PhoneNumberPrivacy_everyone">Everyone</string>
+    <string name="PhoneNumberPrivacy_my_contacts">My contacts</string>
+    <string name="PhoneNumberPrivacy_nobody">Nobody</string>
+    <string name="PhoneNumberPrivacy_everyone_see_description">Your phone number will be visible to all people and groups you message.</string>
+    <string name="PhoneNumberPrivacy_everyone_find_description">Anyone who has your phone number in their contacts will see you as a contact on Signal. Others will be able to find you in search.</string>
+    <string name="PhoneNumberPrivacy_my_contacts_see_description">Only your contacts will see your phone number on Signal.</string>
     <string name="preferences_app_protection__screen_lock">Screen lock</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Signal access with Android screen lock or fingerprint</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>

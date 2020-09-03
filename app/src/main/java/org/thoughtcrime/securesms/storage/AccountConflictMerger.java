@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -55,16 +56,18 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
       familyName = local.getFamilyName().or("");
     }
 
-    byte[]  unknownFields          = remote.serializeUnknownFields();
-    String  avatarUrlPath          = remote.getAvatarUrlPath().or(local.getAvatarUrlPath()).or("");
-    byte[]  profileKey             = remote.getProfileKey().or(local.getProfileKey()).orNull();
-    boolean noteToSelfArchived     = remote.isNoteToSelfArchived();
-    boolean readReceipts           = remote.isReadReceiptsEnabled();
-    boolean typingIndicators       = remote.isTypingIndicatorsEnabled();
-    boolean sealedSenderIndicators = remote.isSealedSenderIndicatorsEnabled();
-    boolean linkPreviews           = remote.isLinkPreviewsEnabled();
-    boolean matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews);
-    boolean matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews);
+    byte[]                               unknownFields          = remote.serializeUnknownFields();
+    String                               avatarUrlPath          = remote.getAvatarUrlPath().or(local.getAvatarUrlPath()).or("");
+    byte[]                               profileKey             = remote.getProfileKey().or(local.getProfileKey()).orNull();
+    boolean                              noteToSelfArchived     = remote.isNoteToSelfArchived();
+    boolean                              readReceipts           = remote.isReadReceiptsEnabled();
+    boolean                              typingIndicators       = remote.isTypingIndicatorsEnabled();
+    boolean                              sealedSenderIndicators = remote.isSealedSenderIndicatorsEnabled();
+    boolean                              linkPreviews           = remote.isLinkPreviewsEnabled();
+    boolean                              unlisted               = remote.isPhoneNumberUnlisted();
+    AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode = remote.getPhoneNumberSharingMode();
+    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted);
+    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted );
 
     if (matchesRemote) {
       return remote;
@@ -82,6 +85,9 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
                                     .setTypingIndicatorsEnabled(typingIndicators)
                                     .setSealedSenderIndicatorsEnabled(sealedSenderIndicators)
                                     .setLinkPreviewsEnabled(linkPreviews)
+                                    .setUnlistedPhoneNumber(unlisted)
+                                    .setPhoneNumberSharingMode(phoneNumberSharingMode)
+                                    .setUnlistedPhoneNumber(unlisted)
                                     .build();
     }
   }
@@ -96,7 +102,9 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
                                        boolean readReceipts,
                                        boolean typingIndicators,
                                        boolean sealedSenderIndicators,
-                                       boolean linkPreviewsEnabled)
+                                       boolean linkPreviewsEnabled,
+                                       AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode,
+                                       boolean unlistedPhoneNumber)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)      &&
            Objects.equals(contact.getGivenName().or(""), givenName)            &&
@@ -107,6 +115,8 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
            contact.isReadReceiptsEnabled() == readReceipts                     &&
            contact.isTypingIndicatorsEnabled() == typingIndicators             &&
            contact.isSealedSenderIndicatorsEnabled() == sealedSenderIndicators &&
-           contact.isLinkPreviewsEnabled() == linkPreviewsEnabled;
+           contact.isLinkPreviewsEnabled() == linkPreviewsEnabled              &&
+           contact.getPhoneNumberSharingMode() == phoneNumberSharingMode       &&
+           contact.isPhoneNumberUnlisted() == unlistedPhoneNumber;
   }
 }

@@ -49,20 +49,21 @@ public final class FeatureFlags {
 
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
-  private static final String USERNAMES                  = "android.usernames";
-  private static final String ATTACHMENTS_V3             = "android.attachmentsV3.2";
-  private static final String REMOTE_DELETE              = "android.remoteDelete";
-  private static final String GROUPS_V2_OLD_1            = "android.groupsv2";
-  private static final String GROUPS_V2_OLD_2            = "android.groupsv2.2";
-  private static final String GROUPS_V2                  = "android.groupsv2.3";
-  private static final String GROUPS_V2_CREATE           = "android.groupsv2.create.3";
-  private static final String GROUPS_V2_JOIN_VERSION     = "android.groupsv2.joinVersion";
-  private static final String GROUPS_V2_LINKS_VERSION    = "android.groupsv2.manageGroupLinksVersion";
-  private static final String GROUPS_V2_CAPACITY         = "global.groupsv2.maxGroupSize";
-  private static final String CDS_VERSION                = "android.cdsVersion";
-  private static final String INTERNAL_USER              = "android.internalUser";
-  private static final String MENTIONS                   = "android.mentions";
-  private static final String VERIFY_V2                  = "android.verifyV2";
+  private static final String USERNAMES                    = "android.usernames";
+  private static final String ATTACHMENTS_V3               = "android.attachmentsV3.2";
+  private static final String REMOTE_DELETE                = "android.remoteDelete";
+  private static final String GROUPS_V2_OLD_1              = "android.groupsv2";
+  private static final String GROUPS_V2_OLD_2              = "android.groupsv2.2";
+  private static final String GROUPS_V2                    = "android.groupsv2.3";
+  private static final String GROUPS_V2_CREATE             = "android.groupsv2.create.3";
+  private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
+  private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
+  private static final String GROUPS_V2_CAPACITY           = "global.groupsv2.maxGroupSize";
+  private static final String CDS_VERSION                  = "android.cdsVersion";
+  private static final String INTERNAL_USER                = "android.internalUser";
+  private static final String MENTIONS                     = "android.mentions";
+  private static final String VERIFY_V2                    = "android.verifyV2";
+  private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -277,6 +278,14 @@ public final class FeatureFlags {
   /** Whether or not to use the UUID in verification codes. */
   public static boolean verifyV2() {
     return getBoolean(VERIFY_V2, false);
+  }
+
+  /**
+   * Whether the user can choose phone number privacy settings, and;
+   * Whether to fetch and store the secondary certificate
+   */
+  public static boolean phoneNumberPrivacy() {
+    return getVersionFlag(PHONE_NUMBER_PRIVACY_VERSION) == VersionFlag.ON;
   }
 
   /** Only for rendering debug info. */

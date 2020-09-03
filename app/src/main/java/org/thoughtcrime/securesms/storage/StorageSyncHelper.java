@@ -14,11 +14,11 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.nio.ByteBuffer;
@@ -398,9 +399,20 @@ public final class StorageSyncHelper {
                                                          .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
                                                          .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
                                                          .setLinkPreviewsEnabled(SignalStore.settings().isLinkPreviewsEnabled())
+                                                         .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode() == PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED)
+                                                         .setPhoneNumberSharingMode(localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
+  }
+
+  private static AccountRecord.PhoneNumberSharingMode localToRemotePhoneNumberSharingMode(PhoneNumberPrivacyValues.PhoneNumberSharingMode phoneNumberPhoneNumberSharingMode) {
+    switch (phoneNumberPhoneNumberSharingMode) {
+      case EVERYONE: return AccountRecord.PhoneNumberSharingMode.EVERYBODY;
+      case CONTACTS: return AccountRecord.PhoneNumberSharingMode.CONTACTS_ONLY;
+      case NOBODY  : return AccountRecord.PhoneNumberSharingMode.NOBODY;
+      default      : throw new AssertionError();
+    }
   }
 
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, Optional<StorageSyncHelper.RecordUpdate<SignalAccountRecord>> update) {

@@ -174,7 +174,7 @@ public final class CodeVerificationRequest {
   private static void handleSuccessfulRegistration(@NonNull Context context) {
     JobManager jobManager = ApplicationDependencies.getJobManager();
     jobManager.add(new DirectoryRefreshJob(false));
-    jobManager.add(new RotateCertificateJob(context));
+    jobManager.add(new RotateCertificateJob());
 
     DirectoryRefreshListener.schedule(context);
     RotateSignedPreKeyListener.schedule(context);

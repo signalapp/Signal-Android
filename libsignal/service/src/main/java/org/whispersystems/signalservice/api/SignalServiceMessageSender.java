@@ -586,6 +586,7 @@ public class SignalServiceMessageSender {
         quoteBuilder.setAuthorUuid(message.getQuote().get().getAuthor().getUuid().get().toString());
       }
 
+      // TODO [Alan] PhoneNumberPrivacy: Do not set this number
       if (message.getQuote().get().getAuthor().getNumber().isPresent()) {
         quoteBuilder.setAuthorE164(message.getQuote().get().getAuthor().getNumber().get());
       }
@@ -682,6 +683,7 @@ public class SignalServiceMessageSender {
                                                                          .setRemove(message.getReaction().get().isRemove())
                                                                          .setTargetSentTimestamp(message.getReaction().get().getTargetSentTimestamp());
 
+      // TODO [Alan] PhoneNumberPrivacy: Do not set this number
       if (message.getReaction().get().getTargetAuthor().getNumber().isPresent()) {
         reactionBuilder.setTargetAuthorE164(message.getReaction().get().getTargetAuthor().getNumber().get());
       }

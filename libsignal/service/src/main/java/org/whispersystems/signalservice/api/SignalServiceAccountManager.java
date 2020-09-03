@@ -9,7 +9,6 @@ package org.whispersystems.signalservice.api;
 
 import com.google.protobuf.ByteString;
 
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.whispersystems.libsignal.IdentityKey;
@@ -80,13 +79,10 @@ import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -148,8 +144,8 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.getSenderCertificate();
   }
 
-  public byte[] getSenderCertificateLegacy() throws IOException {
-    return this.pushServiceSocket.getSenderCertificateLegacy();
+  public byte[] getSenderCertificateForPhoneNumberPrivacy() throws IOException {
+    return this.pushServiceSocket.getUuidOnlySenderCertificate();
   }
 
   /**

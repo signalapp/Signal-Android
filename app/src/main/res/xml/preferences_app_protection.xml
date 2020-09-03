@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory
+      android:key="category_phone_number_privacy"
+      android:title="@string/preferences_app_protection__who_can">
+
+    <Preference
+        android:key="pref_who_can_see_phone_number"
+        android:title="@string/preferences_app_protection__see_my_phone_number" />
+
+    <Preference
+        android:key="pref_who_can_find_by_phone_number"
+        android:title="@string/preferences_app_protection__find_me_by_phone_number" />
+
+  </PreferenceCategory>
+
   <PreferenceCategory android:title="@string/preferences_app_protection__app_access">
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat

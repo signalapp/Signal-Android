@@ -182,7 +182,6 @@ public class TextSecurePreferences {
   private static final String NEEDS_MESSAGE_PULL = "pref_needs_message_pull";
 
   private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
-  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE                    = "pref_unidentified_access_certificate_uuid";
   public  static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
   public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
@@ -596,26 +595,6 @@ public class TextSecurePreferences {
 
   public static void setUnidentifiedAccessCertificateRotationTime(Context context, long value) {
     setLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, value);
-  }
-
-  public static void setUnidentifiedAccessCertificate(Context context, byte[] value) {
-    setStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, Base64.encodeBytes(value));
-  }
-
-  public static byte[] getUnidentifiedAccessCertificate(Context context) {
-    return parseCertificate(getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, null));
-  }
-
-  private static byte[] parseCertificate(String raw) {
-    try {
-      if (raw != null) {
-        return Base64.decode(raw);
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    }
-
-    return null;
   }
 
   public static boolean isUniversalUnidentifiedAccess(Context context) {

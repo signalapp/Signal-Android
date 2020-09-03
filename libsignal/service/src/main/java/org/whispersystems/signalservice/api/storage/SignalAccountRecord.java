@@ -80,6 +80,14 @@ public final class SignalAccountRecord implements SignalRecord {
     return proto.getLinkPreviews();
   }
 
+  public AccountRecord.PhoneNumberSharingMode getPhoneNumberSharingMode() {
+    return proto.getPhoneNumberSharingMode();
+  }
+
+  public boolean isPhoneNumberUnlisted() {
+    return proto.getUnlistedPhoneNumber();
+  }
+
   AccountRecord toProto() {
     return proto;
   }
@@ -156,6 +164,16 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setLinkPreviewsEnabled(boolean enabled) {
       builder.setLinkPreviews(enabled);
+      return this;
+    }
+
+    public Builder setPhoneNumberSharingMode(AccountRecord.PhoneNumberSharingMode mode) {
+      builder.setPhoneNumberSharingMode(mode);
+      return this;
+    }
+
+    public Builder setUnlistedPhoneNumber(boolean unlisted) {
+      builder.setUnlistedPhoneNumber(unlisted);
       return this;
     }
 

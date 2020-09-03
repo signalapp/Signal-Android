@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.service;
 import android.content.Context;
 import android.content.Intent;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -22,7 +21,7 @@ public class RotateSenderCertificateListener extends PersistentAlarmManagerListe
 
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
-    ApplicationDependencies.getJobManager().add(new RotateCertificateJob(context));
+    ApplicationDependencies.getJobManager().add(new RotateCertificateJob());
 
     long nextTime = System.currentTimeMillis() + INTERVAL;
     TextSecurePreferences.setUnidentifiedAccessCertificateRotationTime(context, nextTime);

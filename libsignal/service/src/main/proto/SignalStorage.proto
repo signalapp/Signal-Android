@@ -97,15 +97,24 @@ message GroupV2Record {
 }
 
 message AccountRecord {
-  bytes  profileKey             = 1;
-  string givenName              = 2;
-  string familyName             = 3;
-  string avatarUrlPath          = 4;
-  bool   noteToSelfArchived     = 5;
-  bool   readReceipts           = 6;
-  bool   sealedSenderIndicators = 7;
-  bool   typingIndicators       = 8;
-  bool   proxiedLinkPreviews    = 9;
+
+  enum PhoneNumberSharingMode {
+    EVERYBODY     = 0;
+    CONTACTS_ONLY = 1;
+    NOBODY        = 2;
+  }
+
+  bytes                  profileKey             = 1;
+  string                 givenName              = 2;
+  string                 familyName             = 3;
+  string                 avatarUrlPath          = 4;
+  bool                   noteToSelfArchived     = 5;
+  bool                   readReceipts           = 6;
+  bool                   sealedSenderIndicators = 7;
+  bool                   typingIndicators       = 8;
+  bool                   proxiedLinkPreviews    = 9;
   // 10 is reserved for unread
-  bool   linkPreviews           = 11;
+  bool                   linkPreviews           = 11;
+  PhoneNumberSharingMode phoneNumberSharingMode = 12;
+  bool                   unlistedPhoneNumber    = 13;
 }
