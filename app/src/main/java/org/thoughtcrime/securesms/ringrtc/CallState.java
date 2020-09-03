@@ -10,10 +10,10 @@ public enum CallState {
   /** Idle, setting up objects */
   IDLE,
 
-  /** Dialing.  Outgoing call is signaling the remote peer */
+  /** Dialing. Outgoing call is signaling the remote peer */
   DIALING,
 
-  /** Answering.  Incoming call is responding to remote peer */
+  /** Answering. Incoming call is responding to remote peer */
   ANSWERING,
 
   /** Remote ringing. Outgoing call, ICE negotiation is complete */
@@ -25,10 +25,9 @@ public enum CallState {
   /** Connected. Incoming/Outgoing call, the call is connected */
   CONNECTED,
 
-  /** Terminated.  Incoming/Outgoing call, the call is terminated */
+  /** Terminated. Incoming/Outgoing call, the call is terminated */
   TERMINATED,
 
-  /** Busy.  Outgoing call received a busy notification */
+  /** Busy. Outgoing call received a busy notification */
   RECEIVED_BUSY;
-
 }

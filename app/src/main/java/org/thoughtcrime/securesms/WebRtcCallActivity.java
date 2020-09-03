@@ -64,7 +64,6 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   private static final String TAG = WebRtcCallActivity.class.getSimpleName();
 
   private static final int STANDARD_DELAY_FINISH    = 1000;
-  public  static final int BUSY_SIGNAL_DELAY_FINISH = 5500;
 
   public static final String ANSWER_ACTION   = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_ACTION";
   public static final String DENY_ACTION     = WebRtcCallActivity.class.getCanonicalName() + ".DENY_ACTION";
@@ -408,8 +407,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
     callScreen.setRecipient(event.getRecipient());
     callScreen.setStatus(getString(R.string.RedPhone_busy));
-
-    delayedFinish(BUSY_SIGNAL_DELAY_FINISH);
+    delayedFinish(WebRtcCallService.BUSY_TONE_LENGTH);
   }
 
   private void handleCallConnected(@NonNull WebRtcViewModel event) {

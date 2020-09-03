@@ -40,6 +40,10 @@ public final class RemotePeer implements Remote, Parcelable
     return callId;
   }
 
+  public void setCallId(@NonNull CallId callId) {
+    this.callId = callId;
+  }
+
   public @NonNull CallState getState() {
     return callState;
   }
@@ -73,21 +77,19 @@ public final class RemotePeer implements Remote, Parcelable
     return remotePeer != null && this.callId.equals(remotePeer.callId);
   }
 
-  public void dialing(@NonNull CallId callId) {
+  public void dialing() {
     if (callState != CallState.IDLE) {
       throw new IllegalStateException("Cannot transition to DIALING from state: " + callState);
     }
 
-    this.callId = callId;
     this.callState = CallState.DIALING;
   }
 
-  public void answering(@NonNull CallId callId) {
+  public void answering() {
     if (callState != CallState.IDLE) {
       throw new IllegalStateException("Cannot transition to ANSWERING from state: " + callState);
     }
 
-    this.callId = callId;
     this.callState = CallState.ANSWERING;
   }
 
@@ -97,14 +99,6 @@ public final class RemotePeer implements Remote, Parcelable
     }
 
     this.callState = CallState.REMOTE_RINGING;
-  }
-
-  public void receivedBusy() {
-    if (callState != CallState.DIALING) {
-      Log.w(TAG, "RECEIVED_BUSY from unexpected state: " + callState);
-    }
-
-    this.callState = CallState.RECEIVED_BUSY;
   }
 
   public void localRinging() {
@@ -121,6 +115,14 @@ public final class RemotePeer implements Remote, Parcelable
     }
 
     this.callState = CallState.CONNECTED;
+  }
+
+  public void receivedBusy() {
+    if (callState != CallState.DIALING) {
+      Log.w(TAG, "RECEIVED_BUSY from unexpected state: " + callState);
+    }
+
+    this.callState = CallState.RECEIVED_BUSY;
   }
 
   @Override
