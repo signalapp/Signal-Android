@@ -81,7 +81,6 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.exifinterface:exifinterface:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
 
@@ -152,8 +151,6 @@ dependencies {
     testImplementation 'org.powermock:powermock-classloading-xstream:1.6.1'
 
     testImplementation 'androidx.test:core:1.3.0-rc03'
-    androidTestImplementation 'androidx.multidex:multidex:2.0.1'
-    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0'
     androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
     androidTestImplementation ('org.assertj:assertj-core:1.7.1') {
@@ -211,7 +208,6 @@ android {
 
         minSdkVersion 21
         targetSdkVersion 29
-        multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
         project.ext.set("archivesBaseName", "Signal")

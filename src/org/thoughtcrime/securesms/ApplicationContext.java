@@ -16,17 +16,18 @@
  */
 package org.thoughtcrime.securesms;
 
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ProcessLifecycleOwner;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.multidex.MultiDexApplication;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -115,10 +116,10 @@ import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderK
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities;
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink;
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol;
 
 import java.io.File;
@@ -144,11 +145,10 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate,
+public class ApplicationContext extends Application implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate,
       SessionManagementProtocolDelegate, SharedSenderKeysImplementationDelegate {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
-  private final static int OK_HTTP_CACHE_SIZE = 10 * 1024 * 1024; // 10 MB
 
   private ExpiringMessageManager  expiringMessageManager;
   private TypingStatusRepository  typingStatusRepository;
