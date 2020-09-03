@@ -55,7 +55,7 @@ public final class FeatureFlags {
   private static final String GROUPS_V2_OLD_1              = "android.groupsv2";
   private static final String GROUPS_V2_OLD_2              = "android.groupsv2.2";
   private static final String GROUPS_V2                    = "android.groupsv2.3";
-  private static final String GROUPS_V2_CREATE             = "android.groupsv2.create.3";
+  private static final String GROUPS_V2_CREATE_VERSION     = "android.groupsv2.createVersion";
   private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
   private static final String GROUPS_V2_CAPACITY           = "global.groupsv2.maxGroupSize";
@@ -74,7 +74,7 @@ public final class FeatureFlags {
       ATTACHMENTS_V3,
       REMOTE_DELETE,
       GROUPS_V2,
-      GROUPS_V2_CREATE,
+      GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_CAPACITY,
       GROUPS_V2_JOIN_VERSION,
       GROUPS_V2_LINKS_VERSION,
@@ -104,7 +104,7 @@ public final class FeatureFlags {
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       ATTACHMENTS_V3,
-      GROUPS_V2_CREATE,
+      GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
       CDS_VERSION
@@ -209,7 +209,7 @@ public final class FeatureFlags {
   /** Attempt groups v2 creation. */
   public static boolean groupsV2create() {
     return groupsV2LatestFlag() &&
-           getBoolean(GROUPS_V2_CREATE, false) &&
+           getVersionFlag(GROUPS_V2_CREATE_VERSION) == VersionFlag.ON &&
            !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
   }
 
