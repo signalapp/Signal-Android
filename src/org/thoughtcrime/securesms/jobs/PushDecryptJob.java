@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
@@ -1099,6 +1100,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (canRecoverAutomatically(e)) {
+      Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
+      LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
+      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+      threadDB.addSessionRestoreDevice(threadID, sender);
       SessionManagementProtocol.startSessionReset(context, sender);
     } else {
       SessionManagementProtocol.triggerSessionRestorationUI(context, sender, timestamp);
