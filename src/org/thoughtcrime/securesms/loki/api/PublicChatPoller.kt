@@ -186,6 +186,13 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
         }
         fun processOutgoingMessage(message: PublicChatMessage) {
             val messageServerID = message.serverID ?: return
+            val messageID = DatabaseFactory.getLokiMessageDatabase(context).getMessageID(messageServerID)
+            var isDuplicate = false
+            if (messageID != null) {
+                isDuplicate = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageID) > 0
+                    || DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageID) > 0
+            }
+            if (isDuplicate) { return }
             if (message.body.isEmpty() && message.attachments.isEmpty() && message.quote == null) { return }
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val dataMessage = getDataMessage(message)

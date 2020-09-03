@@ -479,13 +479,13 @@ public class DefaultMessageNotifier implements MessageNotifier {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
         slideDeck = ((MmsMessageRecord) record).getSlideDeck();
       } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
-        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
+        body = SpanUtil.italic(slideDeck.getBody());
       } else if (record.isMms() && !record.isMmsNotification() && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
-        String message      = context.getString(R.string.MessageNotifier_media_message_with_text, body);
+        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
+        String message      = slideDeck.getBody() + ": " + record.getBody();
         int    italicLength = message.length() - body.length();
         body = SpanUtil.italic(message, italicLength);
-        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
