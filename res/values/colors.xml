@@ -108,11 +108,10 @@
     <color name="default_background_end">#171717</color>
 
     <array name="user_pic_placeholder_primary">
-        <item>#18da80</item>
-        <item>#ee8917</item>
+        <item>#2bca81</item>
+        <item>#ee7117</item>
         <item>#239edf</item>
-        <item>#c33fe9</item>
-        <item>#83b433</item>
+        <item>#bb35e9</item>
     </array>
 
 </resources>

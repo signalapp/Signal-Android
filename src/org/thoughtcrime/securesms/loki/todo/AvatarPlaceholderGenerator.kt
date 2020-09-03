@@ -29,7 +29,7 @@ object AvatarPlaceholderGenerator {
         // Do not cache color array, it may be different depends on the current theme.
         val colorArray = context.resources.getIntArray(R.array.user_pic_placeholder_primary)
         val colorPrimary = colorArray[(hash % colorArray.size).toInt()]
-        val colorSecondary = changeColorHueBy(colorPrimary, 16f)
+        val colorSecondary = changeColorHueBy(colorPrimary, 12f)
 
         val labelText = when {
             !TextUtils.isEmpty(displayName) -> extractLabel(displayName!!)
@@ -41,8 +41,7 @@ object AvatarPlaceholderGenerator {
         val canvas = Canvas(bitmap)
 
         // Draw background/frame
-        val paint = Paint()
-        paint.isAntiAlias = true
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.shader = LinearGradient(0f, 0f, 0f, pixelSize.toFloat(),
                 colorPrimary,
                 colorSecondary,
@@ -50,9 +49,8 @@ object AvatarPlaceholderGenerator {
         canvas.drawCircle(pixelSize.toFloat() / 2, pixelSize.toFloat() / 2, pixelSize.toFloat() / 2, paint)
 
         // Draw text
-        val textPaint = TextPaint()
+        val textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
         textPaint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-        textPaint.isAntiAlias = true
         textPaint.textSize = pixelSize * 0.5f
         textPaint.color = Color.WHITE
         val areaRect = Rect(0, 0, pixelSize, pixelSize)

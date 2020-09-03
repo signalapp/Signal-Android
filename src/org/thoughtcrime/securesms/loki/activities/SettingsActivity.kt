@@ -79,7 +79,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
         profilePictureView.publicKey = hexEncodedPublicKey
-        profilePictureView.displayName = displayNameToBeUploaded
+        profilePictureView.displayName = origUserDisplayName
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
