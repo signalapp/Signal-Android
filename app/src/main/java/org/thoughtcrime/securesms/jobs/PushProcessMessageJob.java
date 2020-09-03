@@ -1660,7 +1660,8 @@ public final class PushProcessMessageJob extends BaseJob {
     String          packId          = Hex.toStringCondensed(sticker.get().getPackId());
     String          packKey         = Hex.toStringCondensed(sticker.get().getPackKey());
     int             stickerId       = sticker.get().getStickerId();
-    StickerLocator  stickerLocator  = new StickerLocator(packId, packKey, stickerId);
+    String          emoji           = sticker.get().getEmoji();
+    StickerLocator  stickerLocator  = new StickerLocator(packId, packKey, stickerId, emoji);
     StickerDatabase stickerDatabase = DatabaseFactory.getStickerDatabase(context);
     StickerRecord   stickerRecord   = stickerDatabase.getSticker(stickerLocator.getPackId(), stickerLocator.getStickerId(), false);
 

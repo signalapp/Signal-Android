@@ -4,9 +4,11 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.Emoji;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -15,7 +17,11 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.util.Objects;
 
 public final class ThreadBodyUtil {
 
@@ -42,7 +48,8 @@ public final class ThreadBodyUtil {
     } else if (record.getSlideDeck().getAudioSlide() != null) {
       return format(context, record, EmojiStrings.AUDIO, R.string.ThreadRecord_voice_message);
     } else if (MessageRecordUtil.hasSticker(record)) {
-      return format(context, record, EmojiStrings.STICKER, R.string.ThreadRecord_sticker);
+      String emoji = getStickerEmoji(record);
+      return format(context, record, emoji, R.string.ThreadRecord_sticker);
     }
 
     boolean hasImage = false;
@@ -80,5 +87,12 @@ public final class ThreadBodyUtil {
 
   private static @NonNull String getBody(@NonNull Context context, @NonNull MessageRecord record) {
     return MentionUtil.updateBodyWithDisplayNames(context, record, record.getBody()).toString();
+  }
+
+  private static @NonNull String getStickerEmoji(@NonNull MessageRecord record) {
+    StickerSlide slide = Objects.requireNonNull(((MmsMessageRecord) record).getSlideDeck().getStickerSlide());
+
+    return Util.isEmpty(slide.getEmoji()) ? EmojiStrings.STICKER
+                                          : slide.getEmoji();
   }
 }

@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientDetails;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -67,6 +68,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -1109,7 +1111,8 @@ public class ThreadDatabase extends Database {
     } else if (record.isRemoteDelete()) {
       return Extra.forRemoteDelete();
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
-      return Extra.forSticker();
+      StickerSlide slide = Objects.requireNonNull(((MmsMessageRecord) record).getSlideDeck().getStickerSlide());
+      return Extra.forSticker(slide.getEmoji());
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getSlides().size() > 1) {
       return Extra.forAlbum();
     }
@@ -1275,6 +1278,7 @@ public class ThreadDatabase extends Database {
 
     @JsonProperty private final boolean isRevealable;
     @JsonProperty private final boolean isSticker;
+    @JsonProperty private final String  stickerEmoji;
     @JsonProperty private final boolean isAlbum;
     @JsonProperty private final boolean isRemoteDelete;
     @JsonProperty private final boolean isMessageRequestAccepted;
@@ -1283,6 +1287,7 @@ public class ThreadDatabase extends Database {
 
     public Extra(@JsonProperty("isRevealable") boolean isRevealable,
                  @JsonProperty("isSticker") boolean isSticker,
+                 @JsonProperty("stickerEmoji") String stickerEmoji,
                  @JsonProperty("isAlbum") boolean isAlbum,
                  @JsonProperty("isRemoteDelete") boolean isRemoteDelete,
                  @JsonProperty("isMessageRequestAccepted") boolean isMessageRequestAccepted,
@@ -1291,6 +1296,7 @@ public class ThreadDatabase extends Database {
     {
       this.isRevealable             = isRevealable;
       this.isSticker                = isSticker;
+      this.stickerEmoji             = stickerEmoji;
       this.isAlbum                  = isAlbum;
       this.isRemoteDelete           = isRemoteDelete;
       this.isMessageRequestAccepted = isMessageRequestAccepted;
@@ -1299,31 +1305,31 @@ public class ThreadDatabase extends Database {
     }
 
     public static @NonNull Extra forViewOnce() {
-      return new Extra(true, false, false, false, true, false, null);
+      return new Extra(true, false, null, false, false, true, false, null);
     }
 
-    public static @NonNull Extra forSticker() {
-      return new Extra(false, true, false, false, true, false, null);
+    public static @NonNull Extra forSticker(@Nullable String emoji) {
+      return new Extra(false, true, emoji, false, false, true, false, null);
     }
 
     public static @NonNull Extra forAlbum() {
-      return new Extra(false, false, true, false, true, false, null);
+      return new Extra(false, false, null, true, false, true, false, null);
     }
 
     public static @NonNull Extra forRemoteDelete() {
-      return new Extra(false, false, false, true, true, false, null);
+      return new Extra(false, false, null, false, true, true, false, null);
     }
 
     public static @NonNull Extra forMessageRequest() {
-      return new Extra(false, false, false, false, false, false, null);
+      return new Extra(false, false, null, false, false, false, false, null);
     }
 
     public static @NonNull Extra forGroupMessageRequest(RecipientId recipientId) {
-      return new Extra(false, false, false, false, false, false, recipientId.serialize());
+      return new Extra(false, false, null, false, false, false, false, recipientId.serialize());
     }
 
     public static @NonNull Extra forGroupV2invite(RecipientId recipientId) {
-      return new Extra(false, false, false, false, false, true, recipientId.serialize());
+      return new Extra(false, false, null, false, false, false, true, recipientId.serialize());
     }
 
     public boolean isViewOnce() {
@@ -1332,6 +1338,10 @@ public class ThreadDatabase extends Database {
 
     public boolean isSticker() {
       return isSticker;
+    }
+
+    public @Nullable String getStickerEmoji() {
+      return stickerEmoji;
     }
 
     public boolean isAlbum() {

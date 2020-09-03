@@ -3,23 +3,27 @@ package org.thoughtcrime.securesms.stickers;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class StickerLocator implements Parcelable {
 
   private final String packId;
   private final String packKey;
   private final int    stickerId;
+  private final String emoji;
 
-  public StickerLocator(@NonNull String packId, @NonNull String packKey, int stickerId) {
+  public StickerLocator(@NonNull String packId, @NonNull String packKey, int stickerId, @Nullable String emoji) {
     this.packId    = packId;
     this.packKey   = packKey;
     this.stickerId = stickerId;
+    this.emoji     = emoji;
   }
 
   private StickerLocator(Parcel in) {
     packId    = in.readString();
     packKey   = in.readString();
     stickerId = in.readInt();
+    emoji     = in.readString();
   }
 
   public @NonNull String getPackId() {
@@ -30,8 +34,12 @@ public class StickerLocator implements Parcelable {
     return packKey;
   }
 
-  public @NonNull int getStickerId() {
+  public int getStickerId() {
     return stickerId;
+  }
+
+  public @Nullable String getEmoji() {
+    return emoji;
   }
 
   @Override
@@ -44,6 +52,7 @@ public class StickerLocator implements Parcelable {
     dest.writeString(packId);
     dest.writeString(packKey);
     dest.writeInt(stickerId);
+    dest.writeString(emoji);
   }
 
   public static final Creator<StickerLocator> CREATOR = new Creator<StickerLocator>() {
