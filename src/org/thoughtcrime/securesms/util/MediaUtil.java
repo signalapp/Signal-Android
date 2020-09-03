@@ -226,7 +226,9 @@ public class MediaUtil {
   }
 
   public static boolean isImageType(String contentType) {
-    return (null != contentType) && contentType.startsWith("image/");
+    return (null != contentType)
+            && contentType.startsWith("image/")
+            && !contentType.contains("svg");  // Do not treat SVGs as regular images.
   }
 
   public static boolean isAudioType(String contentType) {
