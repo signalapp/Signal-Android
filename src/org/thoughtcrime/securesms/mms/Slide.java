@@ -22,8 +22,6 @@ import android.net.Uri;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.exoplayer2.util.MimeTypes;
-
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -64,7 +62,7 @@ public abstract class Slide {
   public Optional<String> getBody() {
     String attachmentString = context.getString(R.string.attachment);
 
-    if (MimeTypes.isAudio(attachment.getContentType())) {
+    if (MediaUtil.isAudio(attachment)) {
       // a missing filename is the legacy way to determine if an audio attachment is
       // a voice note vs. other arbitrary audio attachments.
       if (attachment.isVoiceNote() || !attachment.getFileName().isEmpty()) {
@@ -72,20 +70,20 @@ public abstract class Slide {
         return Optional.fromNullable("🎤 " + attachmentString);
       }
     }
-    return Optional.fromNullable(emojiForMimeType(attachment.getContentType()) + attachmentString);
+    return Optional.fromNullable(emojiForMimeType() + attachmentString);
   }
 
-  private String emojiForMimeType(String contentType) {
-    if (MimeTypes.isVideo(contentType)) {
+  private String emojiForMimeType() {
+    if (MediaUtil.isImage(attachment)) {
       return "📷 ";
-    } else if (MimeTypes.isVideo(contentType)) {
+    } else if (MediaUtil.isVideo(attachment)) {
       return "🎥 ";
-    } else if (MimeTypes.isAudio(contentType)) {
+    } else if (MediaUtil.isAudio(attachment)) {
       return "🎧 ";
-    } else if (MimeTypes.is) {
-      return "🎡 ";
-    } else {
+    } else if (MediaUtil.isFile(attachment)) {
       return "📎 ";
+    } else {
+      return "🎡 ";
     }
   }
 
