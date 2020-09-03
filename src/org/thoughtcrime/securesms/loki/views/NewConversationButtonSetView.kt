@@ -7,19 +7,20 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.graphics.PointF
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.VibrationEffect.DEFAULT_AMPLITUDE
 import android.os.Vibrator
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.*
 
@@ -70,10 +71,19 @@ class NewConversationButtonSetView : RelativeLayout {
             result.layoutParams = LayoutParams(size, size)
             result.setBackgroundResource(R.drawable.new_conversation_button_background)
             val background = result.background as GradientDrawable
-            val colorID = if (isMain) R.color.accent else R.color.new_conversation_button_collapsed_background
-            background.color = ColorStateList.valueOf(resources.getColorWithID(colorID, context.theme))
+            @ColorRes val backgroundColorID = if (isMain)
+                R.color.accent else
+                R.color.new_conversation_button_collapsed_background
+            background.color = ColorStateList.valueOf(resources.getColorWithID(backgroundColorID, context.theme))
             result.scaleType = ImageView.ScaleType.CENTER
             result.setImageResource(iconID)
+
+            result.imageTintList = if (isMain)
+                // Always use white icon for the main button.
+                ColorStateList.valueOf(resources.getColorWithID(android.R.color.white, context.theme))
+            else
+                ColorStateList.valueOf(resources.getColorWithID(R.color.text, context.theme))
+
             result
         }
 

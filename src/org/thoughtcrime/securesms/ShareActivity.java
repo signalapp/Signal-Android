@@ -74,7 +74,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public static final String EXTRA_ADDRESS_MARSHALLED = "address_marshalled";
   public static final String EXTRA_DISTRIBUTION_TYPE  = "distribution_type";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ContactSelectionListFragment contactsFragment;
@@ -87,7 +86,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onPreCreate() {
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
   }
 
@@ -121,7 +119,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public void onResume() {
     Log.i(TAG, "onResume()");
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 

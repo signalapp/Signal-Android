@@ -3,6 +3,7 @@
 
     <!-- Session -->
     <color name="accent">#00F782</color>
+    <color name="accent_alpha50">#8000F782</color>
     <color name="text">#FFFFFF</color>
     <color name="destructive">#FF453A</color>
     <color name="unimportant">#D8D8D8</color>
@@ -15,15 +16,13 @@
     <color name="unimportant_button_background">#323232</color>
     <color name="dialog_background">#101011</color>
     <color name="dialog_border">#212121</color>
-    <color name="unimportant_dialog_button_background">#1B1B1B</color>
+    <color name="unimportant_dialog_button_background">@color/unimportant_button_background</color>
     <color name="fake_chat_bubble_background">#3F4146</color>
     <color name="fake_chat_bubble_text">#000000</color>
     <color name="app_icon_background">#333132</color>
     <color name="progress_bar_background">#0AFFFFFF</color>
     <color name="compose_view_background">#1B1B1B</color>
     <color name="compose_text_view_background">#141414</color>
-    <color name="received_message_background">#222325</color>
-    <color name="sent_message_background">#3F4146</color>
     <color name="quote_not_found_background">#99FFFFFF</color>
     <color name="new_conversation_button_collapsed_background">#1F1F1F</color>
     <color name="pn_option_background">#1B1B1B</color>
@@ -39,12 +38,10 @@
 
     <color name="signal_primary">@color/accent</color>
     <color name="signal_primary_dark">@color/accent</color>
-    <color name="signal_primary_alpha33">#00F782</color>
     <color name="signal_primary_alpha_focus">#882090ea</color>
 
     <color name="textsecure_primary">@color/signal_primary</color>
     <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
-    <color name="textsecure_primary_alpha33">@color/signal_primary_alpha33</color>
 
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
@@ -82,7 +79,7 @@
     <color name="conversation_compose_divider">#32000000</color>
 
     <color name="action_mode_status_bar">@color/gray65</color>
-    <color name="touch_highlight">#400099cc</color>
+    <color name="touch_highlight">#22000000</color>
 
     <color name="device_link_item_background_light">#ffffffff</color>
     <color name="device_link_item_background_dark">#ff333333</color>
@@ -106,5 +103,8 @@
     <color name="logsubmit_confirmation_background">#44ff2d00</color>
 
     <color name="avatar_background">@color/transparent_black_90</color>
+
+    <color name="default_background_start">#121212</color>
+    <color name="default_background_end">#171717</color>
 
 </resources>

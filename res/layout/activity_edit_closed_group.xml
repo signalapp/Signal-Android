@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/default_session_background"
     tools:context="org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity">
 
     <LinearLayout
@@ -27,13 +26,13 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="invisible"
-                tools:visibility="visible">
+                tools:visibility="invisible">
 
                 <ImageView
                     android:id="@+id/btnCancelGroupNameEdit"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_close_white_24dp"/>
+                    android:src="@drawable/ic_baseline_clear_24"/>
 
                 <EditText
                     style="@style/SessionEditText"
@@ -56,7 +55,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_check_white_24dp"/>
+                    android:src="@drawable/ic_baseline_done_24"/>
 
             </LinearLayout>
 
@@ -66,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:visibility="visible"
-                tools:visibility="invisible">
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/lblGroupNameDisplay"
@@ -79,7 +78,7 @@
                     android:textAlignment="center"
                     android:paddingStart="24dp"
                     android:paddingEnd="0dp"
-                    android:drawableEnd="@drawable/ic_edit_white_24dp"
+                    android:drawableEnd="@drawable/ic_baseline_edit_24"
                     android:drawablePadding="@dimen/small_spacing"
                     tools:text="SomeGroupName"/>
 
@@ -90,7 +89,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/separator" />
+            android:background="?android:dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,7 +110,7 @@
 
             <Button
                 android:id="@+id/addMembersClosedGroupButton"
-                style="@style/MediumProminentOutlineButton"
+                style="@style/Widget.Session.Button.Common.ProminentOutline"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/small_button_height"
                 android:layout_marginTop="@dimen/small_spacing"
@@ -127,12 +126,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/separator" />
+            android:background="?android:dividerHorizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/view_user"/>
 
     </LinearLayout>
 

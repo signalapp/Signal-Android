@@ -6,23 +6,18 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:behavior_hideable="true"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:background="@color/dialog_background">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TextView
         android:id="@+id/editDisplayNameText"
-        style="@style/ActionItem"
-        android:drawableStart="@drawable/ic_edit_white_24dp"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text"
+        style="@style/BottomSheetActionItem"
+        android:drawableStart="@drawable/ic_baseline_edit_24"
         android:text="@string/fragment_device_list_bottom_sheet_change_name_button_title"/>
 
     <TextView
         android:id="@+id/unlinkDeviceText"
-        style="@style/ActionItem"
+        style="@style/BottomSheetActionItem"
         android:drawableStart="@drawable/ic_phonelink_erase_white_24dp"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text"
         android:text="@string/fragment_device_list_bottom_sheet_unlink_device_button_title" />
 
 </LinearLayout>

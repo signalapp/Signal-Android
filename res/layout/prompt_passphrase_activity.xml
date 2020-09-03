@@ -6,7 +6,6 @@
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/default_session_background"
                 android:orientation="vertical">
 
     <View android:id="@+id/shim"
@@ -54,14 +53,13 @@
             android:textStyle="bold"
             android:textSize="@dimen/large_font_size"
             android:textAlignment="center"
-            android:textColor="@color/text"
             android:layout_marginBottom="32dp" />
 
         <ImageView
             android:id="@+id/fingerprint_auth_container"
             android:src="@drawable/ic_fingerprint_white_48dp"
             android:background="@drawable/circle_tintable"
-            android:backgroundTint="@color/accent"
+            android:backgroundTint="?colorAccent"
             android:padding="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +68,7 @@
             tools:visibility="visible"/>
 
         <Button
-            style="@style/MediumProminentOutlineButton"
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
             android:id="@+id/lock_screen_auth_container"
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"

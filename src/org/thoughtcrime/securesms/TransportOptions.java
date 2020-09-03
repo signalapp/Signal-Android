@@ -2,6 +2,10 @@ package org.thoughtcrime.securesms;
 
 import android.Manifest;
 import android.content.Context;
+import android.util.TypedValue;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -147,8 +151,7 @@ public class TransportOptions {
   private List<TransportOption> initializeAvailableTransports(boolean isMediaMessage) {
     List<TransportOption> results = new LinkedList<>();
 
-    results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
-                                    context.getResources().getColor(R.color.textsecure_primary),
+    results.add(new TransportOption(Type.TEXTSECURE,
                                     context.getString(R.string.ConversationActivity_transport_signal),
                                     context.getString(R.string.conversation_activity__type_message_push),
                                     new PushCharacterCalculator()));
@@ -171,13 +174,11 @@ public class TransportOptions {
     }
 
     if (subscriptions.size() < 2) {
-      results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
-                                      context.getResources().getColor(R.color.grey_600),
+      results.add(new TransportOption(Type.SMS,
                                       text, composeHint, characterCalculator));
     } else {
       for (SubscriptionInfoCompat subscriptionInfo : subscriptions) {
-        results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
-                                        context.getResources().getColor(R.color.grey_600),
+        results.add(new TransportOption(Type.SMS,
                                         text, composeHint, characterCalculator,
                                         Optional.of(subscriptionInfo.getDisplayName()),
                                         Optional.of(subscriptionInfo.getSubscriptionId())));
@@ -202,6 +203,6 @@ public class TransportOptions {
   }
 
   public interface OnTransportChangedListener {
-    public void onChange(TransportOption newTransport, boolean manuallySelected);
+    void onChange(TransportOption newTransport, boolean manuallySelected);
   }
 }

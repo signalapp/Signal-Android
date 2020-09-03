@@ -51,7 +51,7 @@
         android:textAlignment="center" />
 
     <Button
-        style="@style/UnimportantDialogButton"
+        style="@style/Widget.Session.Button.Dialog.Unimportant"
         android:id="@+id/cancelButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/small_button_height"

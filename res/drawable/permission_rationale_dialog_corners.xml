@@ -3,5 +3,5 @@
 
     <solid android:color="@color/compose_view_background"/>
 
-    <corners android:radius="12dp"/>
+    <corners android:radius="@dimen/dialog_corner_radius"/>
 </shape>

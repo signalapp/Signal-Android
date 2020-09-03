@@ -12,11 +12,6 @@ class OpenGroupSuggestionBottomSheet : BottomSheetDialogFragment() {
     var onJoinTapped: (() -> Unit)? = null
     var onDismissTapped: (() -> Unit)? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.SessionBottomSheetDialogTheme)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_open_group_suggestion_bottom_sheet, container, false)
     }

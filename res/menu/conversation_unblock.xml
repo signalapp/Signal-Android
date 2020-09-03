@@ -3,6 +3,6 @@
 
     <item android:title="@string/ConversationActivity_unblock"
         android:id="@+id/menu_unblock"
-        android:icon="@drawable/ic_check_white_24dp" />
+        android:icon="?menu_accept_icon" />
 
 </menu>

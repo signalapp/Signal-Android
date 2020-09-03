@@ -3,6 +3,6 @@
 
     <item android:title="@string/recipient_preferences__block"
           android:id="@+id/menu_block"
-          android:icon="@drawable/ic_block_white_24dp" />
+          android:icon="?attr/menu_block_icon" />
 
 </menu>

@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -150,7 +152,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   @Override
   public void onModified(Recipient recipient) {
-    Util.runOnMain(this::initializeActionBar);
+    Util.runOnMain(this::updateActionBar);
   }
 
   @Override
@@ -164,7 +166,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   @SuppressWarnings("ConstantConditions")
-  private void initializeActionBar() {
+  private void updateActionBar() {
     MediaItem mediaItem = getCurrentMediaItem();
 
     if (mediaItem != null) {
@@ -222,6 +224,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     caption                   = findViewById(R.id.media_preview_caption);
     captionContainer          = findViewById(R.id.media_preview_caption_container);
     playbackControlsContainer = findViewById(R.id.media_preview_playback_controls_container);
+
+
+    setSupportActionBar(findViewById(R.id.toolbar));
   }
 
   private void initializeResources() {
@@ -476,7 +481,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
         MediaItem item = adapter.getMediaItemFor(position);
         if (item.recipient != null) item.recipient.addListener(MediaPreviewActivity.this);
         viewModel.setActiveAlbumRailItem(MediaPreviewActivity.this, position);
-        initializeActionBar();
+        updateActionBar();
       }
     }
 

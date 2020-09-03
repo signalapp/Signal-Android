@@ -352,11 +352,10 @@ public class ConversationItem extends LinearLayout
   /// MessageRecord Attribute Parsers
 
   private void setBubbleState(MessageRecord messageRecord) {
-    if (messageRecord.isOutgoing()) {
-      bodyBubble.getBackground().setColorFilter(getResources().getColor(R.color.sent_message_background), PorterDuff.Mode.MULTIPLY);
-    } else {
-      bodyBubble.getBackground().setColorFilter(getResources().getColor(R.color.received_message_background), PorterDuff.Mode.MULTIPLY);
-    }
+    int bubbleColor = ThemeUtil.getThemedColor(getContext(), messageRecord.isOutgoing() ?
+            R.attr.message_sent_background_color :
+            R.attr.message_received_background_color);
+    bodyBubble.getBackground().setColorFilter(bubbleColor, PorterDuff.Mode.MULTIPLY);
 
     if (audioViewStub.resolved()) {
       setAudioViewTint(messageRecord, this.conversationRecipient);
@@ -364,7 +363,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setAudioViewTint(MessageRecord messageRecord, Recipient recipient) {
-    audioViewStub.get().setTint(Color.WHITE, getResources().getColor(R.color.action_bar_background));
+//    audioViewStub.get().setTint(Color.WHITE, getResources().getColor(R.color.action_bar_background));
   }
 
   private void setInteractionState(MessageRecord messageRecord, boolean pulseHighlight) {

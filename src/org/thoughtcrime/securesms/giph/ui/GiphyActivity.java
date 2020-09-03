@@ -1,34 +1,34 @@
 package org.thoughtcrime.securesms.giph.ui;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import org.thoughtcrime.securesms.logging.Log;
-import android.view.View;
-import android.widget.Toast;
+
+import com.google.android.material.tabs.TabLayout;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import network.loki.messenger.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
+
+import network.loki.messenger.R;
 
 public class GiphyActivity extends PassphraseRequiredActionBarActivity
     implements GiphyActivityToolbar.OnLayoutChangedListener,
@@ -42,7 +42,6 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   public static final String EXTRA_WIDTH  = "extra_width";
   public static final String EXTRA_HEIGHT = "extra_height";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private GiphyGifFragment     gifFragment;
@@ -53,7 +52,6 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onPreCreate() {
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
   }
 

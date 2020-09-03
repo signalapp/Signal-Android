@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
@@ -129,8 +128,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    return ThemeUtil.getThemedInflater(requireActivity(), inflater, R.style.TextSecure_DarkTheme)
-                    .inflate(R.layout.mediasend_fragment, container, false);
+    return inflater.inflate(R.layout.mediasend_fragment, container, false);
   }
 
   @Override
@@ -449,7 +447,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
       protected void onPreExecute() {
         renderTimer   = new Stopwatch("ProcessMedia");
         progressTimer = () -> {
-          dialog = new AlertDialog.Builder(new ContextThemeWrapper(requireContext(), R.style.TextSecure_MediaSendProgressDialog))
+          dialog = new AlertDialog.Builder(new ContextThemeWrapper(requireContext(), R.style.Theme_TextSecure_Dialog_MediaSendProgress))
                                   .setView(R.layout.progress_dialog)
                                   .setCancelable(false)
                                   .create();

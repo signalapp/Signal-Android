@@ -2,9 +2,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background">
+    tools:context="org.thoughtcrime.securesms.loki.activities.SettingsActivity"
+    tools:theme="@style/Theme.Session.DayNight.NoActionBar"
+    tools:menu="@menu/settings_general">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,59 +19,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
-                app:contentInsetLeft="20dp"
-                app:contentInsetRight="20dp"
-                android:theme="?attr/actionBarStyle">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cancelButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_close_white_24dp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/titleTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_settings_title"
-                        android:textColor="@color/text"
-                        android:textSize="@dimen/very_large_font_size"
-                        android:fontFamily="sans-serif-medium" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/saveButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_check_white_24dp"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/showQRCodeButton"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_qr_code" />
-
-                </LinearLayout>
-
-            </androidx.appcompat.widget.Toolbar>
 
             <org.thoughtcrime.securesms.loki.views.ProfilePictureView
                 android:id="@+id/profilePictureView"
@@ -137,7 +87,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    style="@style/MediumProminentOutlineButton"
+                    style="@style/Widget.Session.Button.Common.ProminentOutline"
                     android:id="@+id/copyButton"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/medium_button_height"
@@ -145,7 +95,7 @@
                     android:text="@string/copy" />
 
                 <Button
-                    style="@style/MediumUnimportantOutlineButton"
+                    style="@style/Widget.Session.Button.Common.UnimportantOutline"
                     android:id="@+id/shareButton"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/medium_button_height"
@@ -159,7 +109,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginTop="@dimen/large_spacing"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/privacyButton"
@@ -175,7 +130,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/notificationsButton"
@@ -191,7 +146,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/chatsButton"
@@ -208,7 +163,7 @@
                 android:id="@+id/linkedDevicesButtonTopSeparator"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/linkedDevicesButton"
@@ -225,7 +180,7 @@
                 android:id="@+id/seedButtonTopSeparator"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/seedButton"
@@ -241,7 +196,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/clearAllDataButton"
@@ -258,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="@dimen/medium_spacing"
-                android:background="@color/separator" />
+                android:background="?android:dividerHorizontal" />
 
             <TextView
                 android:id="@+id/versionTextView"

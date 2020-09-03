@@ -1,69 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/default_session_background"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context="org.thoughtcrime.securesms.loki.activities.HomeActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:minHeight="?attr/actionBarSize"
-        app:contentInsetLeft="20dp"
-        app:contentInsetRight="20dp"
-        android:theme="?attr/actionBarStyle">
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:elevation="1dp"
+        app:contentInsetStart="0dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
-                android:id="@+id/profileButton"
-                android:layout_width="@dimen/small_profile_picture_size"
-                android:layout_height="@dimen/small_profile_picture_size"
-                android:layout_marginLeft="9dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Session"
-                android:textColor="@color/text"
-                android:textSize="@dimen/very_large_font_size"
-                android:fontFamily="sans-serif-medium"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/pathStatusViewContainer"
-                android:layout_width="@dimen/small_profile_picture_size"
-                android:layout_height="@dimen/small_profile_picture_size"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" >
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
-                <org.thoughtcrime.securesms.loki.views.PathStatusView
-                    android:layout_width="@dimen/path_status_view_size"
-                    android:layout_height="@dimen/path_status_view_size"
+                <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+                    android:id="@+id/profileButton"
+                    android:layout_width="@dimen/small_profile_picture_size"
+                    android:layout_height="@dimen/small_profile_picture_size"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="9dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="64dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Session"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/very_large_font_size" />
+
+                <RelativeLayout
+                    android:id="@+id/pathStatusViewContainer"
+                    android:layout_width="@dimen/small_profile_picture_size"
+                    android:layout_height="@dimen/small_profile_picture_size"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="8dp" />
+                    android:layout_centerVertical="true">
+
+                    <org.thoughtcrime.securesms.loki.views.PathStatusView
+                        android:layout_width="@dimen/path_status_view_size"
+                        android:layout_height="@dimen/path_status_view_size"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
-        </RelativeLayout>
+            <org.thoughtcrime.securesms.loki.views.SeedReminderView
+                android:id="@+id/seedReminderView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
-
-    <org.thoughtcrime.securesms.loki.views.SeedReminderView
-        android:id="@+id/seedReminderView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -74,7 +83,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="172dp"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            tools:listitem="@layout/view_conversation"/>
 
         <View
             android:id="@+id/gradientView"
@@ -106,7 +116,7 @@
                 android:text="@string/activity_home_empty_state_message" />
 
             <Button
-                style="@style/MediumProminentOutlineButton"
+                style="@style/Widget.Session.Button.Common.ProminentOutline"
                 android:id="@+id/btnCreateNewPrivateChat"
                 android:layout_width="196dp"
                 android:layout_height="@dimen/medium_button_height"

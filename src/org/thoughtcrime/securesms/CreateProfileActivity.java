@@ -48,8 +48,6 @@ import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -85,7 +83,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
   public static final String NEXT_INTENT    = "next_intent";
   public static final String EXCLUDE_SYSTEM = "exclude_system";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicRegistrationTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Inject SignalServiceAccountManager accountManager;
@@ -107,7 +104,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
 
     setContentView(R.layout.profile_create_activity);
@@ -125,7 +121,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 
