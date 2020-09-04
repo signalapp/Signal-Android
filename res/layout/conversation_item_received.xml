@@ -59,8 +59,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/massive_spacing"
                 android:layout_marginStart="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
+                android:paddingTop="@dimen/medium_spacing"
+                android:paddingBottom="@dimen/medium_spacing"
                 android:orientation="vertical"
                 android:clipToPadding="false"
                 android:clipChildren="false"
@@ -71,9 +71,9 @@
                     android:id="@+id/group_sender_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                    android:layout_marginBottom="@dimen/medium_spacing"
+                    android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                     android:orientation="horizontal"
                     android:visibility="gone"
                     tools:visibility="visible">
@@ -113,9 +113,9 @@
                     android:id="@+id/quote_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="@dimen/large_spacing"
+                    android:layout_marginBottom="@dimen/medium_spacing"
+                    android:layout_marginEnd="@dimen/large_spacing"
                     android:visibility="gone"
                     app:message_type="incoming"
                     app:quote_colorPrimary="@color/text"
@@ -127,7 +127,7 @@
                     android:layout="@layout/conversation_item_received_shared_contact"
                     android:layout_width="@dimen/media_bubble_default_dimens"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/message_bubble_top_padding"
                     android:visibility="gone"/>
 
                 <ViewStub
@@ -153,9 +153,9 @@
                     android:layout="@layout/conversation_item_received_audio"
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginEnd="12dp" />
+                    android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginEnd="@dimen/message_bubble_horizontal_padding" />
 
                 <ViewStub
                     android:id="@+id/document_view_stub"
@@ -163,15 +163,15 @@
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp" />
+                    android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                    android:layout_marginEnd="@dimen/message_bubble_horizontal_padding" />
 
                 <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                    android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                     style="@style/Signal.Text.Body"
                     android:textColor="?conversation_item_received_text_primary_color"
                     android:textColorLink="?conversation_item_received_text_primary_color"
@@ -185,8 +185,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                    android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:alpha="0.6"
@@ -197,9 +197,9 @@
                     android:id="@+id/conversation_item_sticker_footer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                    android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:visibility="gone"

@@ -9,7 +9,6 @@
                       android:layout_height="wrap_content"
                       android:clickable="false"
                       android:focusable="false"
-                      android:layout_marginBottom="-4dp"
                       android:gravity="center_vertical"
                       android:orientation="horizontal">
 

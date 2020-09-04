@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         style="@style/Signal.Text.Body"
                         android:textColor="@color/text"
-                        android:textSize="@dimen/small_font_size"
+                        android:textSize="@dimen/medium_font_size"
                         android:maxLines="1"
                         android:ellipsize="end"
                         tools:text="The-Amazing-Spider-Man.cba" />
@@ -99,7 +99,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     style="@style/Signal.Text.Body"
-                    android:textSize="@dimen/small_font_size"
                     android:ellipsize="end"
                     android:maxLines="2"
                     tools:text="With great power comes great responsibility."
