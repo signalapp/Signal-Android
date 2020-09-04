@@ -33,6 +33,11 @@ import java.util.Map;
 
 /**
  * Handles the retrieval of media present on the user's device.
+ * @deprecated Usage of this class is unsafe on Android API 30 and up,
+ * the public external directory is no longer exposed to the apps.
+ * <p><b>
+ * The functionality of this class should be refactored to use
+ * <a href="https://developer.android.com/reference/android/provider/MediaStore">MediaStore</a>.
  */
 class MediaRepository {
 
