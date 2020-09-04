@@ -19,11 +19,10 @@ object AvatarPlaceholderGenerator {
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
         //TODO That should be replaced with a proper hash extraction code.
         val hash: Long
-        val hexRegex = Regex("^[0-9A-Fa-f]+\$")
-        if (hashString.length >= 12 && hashString.matches(hexRegex)) {
+        if (hashString.length >= 12 && hashString.matches(Regex("^[0-9A-Fa-f]+\$"))) {
             hash = hashString.substring(0 until 12).toLong(16)
         } else {
-            hash = hashString.toLong(16)
+            hash = 0
         }
 
         // Do not cache color array, it may be different depends on the current theme.
