@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -56,16 +58,20 @@ class UserView : LinearLayout {
                 profilePictureView.isRSSFeed = true
             } else {
                 val threadID = GroupManager.getThreadIDFromGroupID(address, context)
-                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
-                val randomUsers = users.sorted() // Sort to provide a level of stability
-                profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.displayName = null
-                profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
+                val userKeys = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
+                val sortedUserKeys = userKeys.sorted() // Sort to provide a level of stability
+                val userKey0 = sortedUserKeys.getOrNull(0) ?: ""
+                val userKey1 = sortedUserKeys.getOrNull(1) ?: ""
+
+                profilePictureView.publicKey = userKey0
+                profilePictureView.displayName = getUserDisplayName(userKey0)
+                profilePictureView.additionalPublicKey = userKey1
+                profilePictureView.additionalDisplayName = getUserDisplayName(userKey1)
                 profilePictureView.isRSSFeed = false
             }
         } else {
             profilePictureView.publicKey = address
-            profilePictureView.displayName = null
+            profilePictureView.displayName = getUserDisplayName(address)
             profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
@@ -86,6 +92,11 @@ class UserView : LinearLayout {
                 actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
             }
         }
+    }
+
+    private fun getUserDisplayName(publicKey: String?): String? {
+        if (TextUtils.isEmpty(publicKey)) return null
+        return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
     }
     // endregion
 }
