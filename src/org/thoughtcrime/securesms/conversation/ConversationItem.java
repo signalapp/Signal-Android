@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -502,23 +503,23 @@ public class ConversationItem extends LinearLayout
     if (hasOnlyThumbnail(messageRecord)) {
       int topPadding = 0;
       if (groupSenderHolder.getVisibility() == VISIBLE) {
-        topPadding = (int)getResources().getDimension(R.dimen.medium_spacing);
+        topPadding = GeneralUtilitiesKt.toPx(12, getResources());
       }
       int bottomPadding = 0;
       if (messageRecord.getBody().length() > 0) {
-        bodyTextLayoutParams.topMargin = (int)getResources().getDimension(R.dimen.medium_spacing);
-        bottomPadding = (int)getResources().getDimension(R.dimen.medium_spacing);
+        bodyTextLayoutParams.topMargin = GeneralUtilitiesKt.toPx(12, getResources());
+        bottomPadding = GeneralUtilitiesKt.toPx(12, getResources());
       }
       bodyBubble.setPadding(0, topPadding, 0, bottomPadding);
     } else {
-      bodyBubble.setPadding(0, (int)getResources().getDimension(R.dimen.medium_spacing), 0, (int)getResources().getDimension(R.dimen.medium_spacing));
+      bodyBubble.setPadding(0, GeneralUtilitiesKt.toPx(12, getResources()), 0, GeneralUtilitiesKt.toPx(12, getResources()));
     }
     bodyText.setLayoutParams(bodyTextLayoutParams);
     LinearLayout.LayoutParams senderHolderLayoutParams = (LinearLayout.LayoutParams)groupSenderHolder.getLayoutParams();
     if (groupSenderHolder.getVisibility() == VISIBLE && hasOnlyText(messageRecord)) {
       senderHolderLayoutParams.bottomMargin = (int)(getResources().getDisplayMetrics().density * 4);
     } else {
-      senderHolderLayoutParams.bottomMargin = (int)getResources().getDimension(R.dimen.medium_spacing);
+      senderHolderLayoutParams.bottomMargin = GeneralUtilitiesKt.toPx(12, getResources());
     }
     groupSenderHolder.setLayoutParams(senderHolderLayoutParams);
     if (documentViewStub.resolved()) {
