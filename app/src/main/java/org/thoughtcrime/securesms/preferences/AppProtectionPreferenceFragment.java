@@ -599,6 +599,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
                        phoneNumberPrivacyValues.setPhoneNumberListingMode(phoneNumberListingMode);
                        Log.i(TAG, String.format("PhoneNumberListingMode changed to %s. Scheduling storage value sync", phoneNumberListingMode));
                        StorageSyncHelper.scheduleSyncForDataChange();
+                       ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
                        initializePhoneNumberPrivacyWhoCanFindSummary();
                      })
                      .setNegativeButton(android.R.string.cancel, null)

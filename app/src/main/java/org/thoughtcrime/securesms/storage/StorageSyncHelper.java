@@ -399,7 +399,7 @@ public final class StorageSyncHelper {
                                                          .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
                                                          .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
                                                          .setLinkPreviewsEnabled(SignalStore.settings().isLinkPreviewsEnabled())
-                                                         .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode() == PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED)
+                                                         .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isUnlisted())
                                                          .setPhoneNumberSharingMode(localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
                                                          .build();
 

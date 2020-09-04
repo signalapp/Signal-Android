@@ -81,6 +81,14 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
    */
   public enum PhoneNumberListingMode {
     LISTED,
-    UNLISTED
+    UNLISTED;
+
+    public boolean isDiscoverable() {
+      return this == LISTED;
+    }
+
+    public boolean isUnlisted() {
+      return this == UNLISTED;
+    }
   }
 }

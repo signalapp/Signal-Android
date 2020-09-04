@@ -40,6 +40,9 @@ public class AccountAttributes {
   private boolean unrestrictedUnidentifiedAccess;
 
   @JsonProperty
+  private boolean discoverableByPhoneNumber;
+
+  @JsonProperty
   private SignalServiceProfile.Capabilities capabilities;
 
   public AccountAttributes(String signalingKey,
@@ -49,7 +52,8 @@ public class AccountAttributes {
                            String registrationLock,
                            byte[] unidentifiedAccessKey,
                            boolean unrestrictedUnidentifiedAccess,
-                           SignalServiceProfile.Capabilities capabilities)
+                           SignalServiceProfile.Capabilities capabilities,
+                           boolean discoverableByPhoneNumber)
   {
     this.signalingKey                   = signalingKey;
     this.registrationId                 = registrationId;
@@ -61,6 +65,7 @@ public class AccountAttributes {
     this.unidentifiedAccessKey          = unidentifiedAccessKey;
     this.unrestrictedUnidentifiedAccess = unrestrictedUnidentifiedAccess;
     this.capabilities                   = capabilities;
+    this.discoverableByPhoneNumber      = discoverableByPhoneNumber;
   }
 
   public AccountAttributes() {}
@@ -99,6 +104,10 @@ public class AccountAttributes {
 
   public boolean isUnrestrictedUnidentifiedAccess() {
     return unrestrictedUnidentifiedAccess;
+  }
+
+  public boolean isDiscoverableByPhoneNumber() {
+    return discoverableByPhoneNumber;
   }
 
   public SignalServiceProfile.Capabilities getCapabilities() {

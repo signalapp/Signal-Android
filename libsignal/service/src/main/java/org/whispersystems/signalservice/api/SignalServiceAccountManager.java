@@ -244,7 +244,8 @@ public class SignalServiceAccountManager {
   public VerifyAccountResponse verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
                                                      String pin, String registrationLock,
                                                      byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                                     SignalServiceProfile.Capabilities capabilities)
+                                                     SignalServiceProfile.Capabilities capabilities,
+                                                     boolean discoverableByPhoneNumber)
       throws IOException
   {
     return this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,
@@ -253,7 +254,8 @@ public class SignalServiceAccountManager {
                                                     pin, registrationLock,
                                                     unidentifiedAccessKey,
                                                     unrestrictedUnidentifiedAccess,
-                                                    capabilities);
+                                                    capabilities,
+                                                    discoverableByPhoneNumber);
   }
 
   /**
@@ -272,13 +274,15 @@ public class SignalServiceAccountManager {
   public void setAccountAttributes(String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
                                    String pin, String registrationLock,
                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                   SignalServiceProfile.Capabilities capabilities)
+                                   SignalServiceProfile.Capabilities capabilities,
+                                   boolean discoverableByPhoneNumber)
       throws IOException
   {
     this.pushServiceSocket.setAccountAttributes(signalingKey, signalProtocolRegistrationId, fetchesMessages,
                                                 pin, registrationLock,
                                                 unidentifiedAccessKey, unrestrictedUnidentifiedAccess,
-                                                capabilities);
+                                                capabilities,
+                                                discoverableByPhoneNumber);
   }
 
   /**

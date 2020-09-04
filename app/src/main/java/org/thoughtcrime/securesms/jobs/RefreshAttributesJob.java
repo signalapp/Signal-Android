@@ -71,18 +71,22 @@ public class RefreshAttributesJob extends BaseJob {
       registrationLockV1 = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
     }
 
+    boolean phoneNumberDiscoverable = SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isDiscoverable();
+
     SignalServiceProfile.Capabilities capabilities = AppCapabilities.getCapabilities(kbsValues.hasPin() && !kbsValues.hasOptedOut());
     Log.i(TAG, "Calling setAccountAttributes() reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + kbsValues.hasPin() +
+               "\n    Phone number discoverable : " + phoneNumberDiscoverable +
                "\n  Capabilities:" +
                "\n    Storage? " + capabilities.isStorage() +
                "\n    GV2? " + capabilities.isGv2() +
-               "\n    UUID? " + capabilities.isUuid())  ;
+               "\n    UUID? " + capabilities.isUuid());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
     signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages,
                                               registrationLockV1, registrationLockV2,
                                               unidentifiedAccessKey, universalUnidentifiedAccess,
-                                              capabilities);
+                                              capabilities,
+                                              phoneNumberDiscoverable);
   }
 
   @Override

@@ -292,10 +292,11 @@ public class PushServiceSocket {
   public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,
                                                  String pin, String registrationLock,
                                                  byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                                 SignalServiceProfile.Capabilities capabilities)
+                                                 SignalServiceProfile.Capabilities capabilities,
+                                                 boolean discoverableByPhoneNumber)
       throws IOException
   {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities);
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities, discoverableByPhoneNumber);
     String            requestBody        = JsonUtil.toJson(signalingKeyEntity);
     String            responseBody       = makeServiceRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode), "PUT", requestBody);
 
@@ -305,7 +306,8 @@ public class PushServiceSocket {
   public void setAccountAttributes(String signalingKey, int registrationId, boolean fetchesMessages,
                                    String pin, String registrationLock,
                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                   SignalServiceProfile.Capabilities capabilities)
+                                   SignalServiceProfile.Capabilities capabilities,
+                                   boolean discoverableByPhoneNumber)
       throws IOException
   {
     if (registrationLock != null && pin != null) {
@@ -313,7 +315,8 @@ public class PushServiceSocket {
     }
 
     AccountAttributes accountAttributes = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock,
-                                                                unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities);
+                                                                unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities,
+                                                                discoverableByPhoneNumber);
     makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
 

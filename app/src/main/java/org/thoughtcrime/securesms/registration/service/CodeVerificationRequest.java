@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -220,7 +221,8 @@ public final class CodeVerificationRequest {
                                                                           registrationLockV2,
                                                                           unidentifiedAccessKey,
                                                                           universalUnidentifiedAccess,
-                                                                          AppCapabilities.getCapabilities(true));
+                                                                          AppCapabilities.getCapabilities(true),
+                                                                          SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isDiscoverable());
 
     UUID    uuid   = UuidUtil.parseOrThrow(response.getUuid());
     boolean hasPin = response.isStorageCapable();
