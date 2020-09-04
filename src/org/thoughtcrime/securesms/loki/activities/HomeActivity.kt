@@ -202,7 +202,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             seedReminderView.visibility = View.GONE
         }
 
-        // Multiple device removal notification
+        // Multi device removal sheet
         if (!TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)) {
             TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
             val userPublicKey = TextSecurePreferences.getLocalNumber(this)
@@ -223,7 +223,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             }
         }
 
-        // Light theme introduction
+        // Light theme introduction sheet
         if (!TextSecurePreferences.hasSeenLightThemeIntroSheet(this) &&
                 UiModeUtilities.isDayUiMode(this)) {
             TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
