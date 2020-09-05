@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupCandidate;
+import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
@@ -188,7 +189,11 @@ final class GroupManagerV2 {
         groupDatabase.onAvatarUpdated(groupId, avatar != null);
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
 
-        RecipientAndThread recipientAndThread = sendGroupUpdate(masterKey, decryptedGroup, null, null);
+        DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder(GroupChangeReconstruct.reconstructGroupChange(DecryptedGroup.newBuilder().build(), decryptedGroup))
+                                                               .setEditor(UuidUtil.toByteString(selfUuid))
+                                                               .build();
+
+        RecipientAndThread recipientAndThread = sendGroupUpdate(masterKey, decryptedGroup, groupChange, null);
 
         return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient,
                                                   recipientAndThread.threadId,

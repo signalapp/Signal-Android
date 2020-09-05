@@ -1119,19 +1119,19 @@ public class ThreadDatabase extends Database {
       Recipient resolved = Recipient.resolved(threadRecipientId);
       if (resolved.isPushGroup()) {
         if (resolved.isPushV2Group()) {
-          DecryptedGroup decryptedGroup = DatabaseFactory.getGroupDatabase(context).requireGroup(resolved.requireGroupId().requireV2()).requireV2GroupProperties().getDecryptedGroup();
-          Optional<UUID> inviter        = DecryptedGroupUtil.findInviter(decryptedGroup.getPendingMembersList(), Recipient.self().getUuid().get());
-
-          if (inviter.isPresent()) {
-            RecipientId recipientId = RecipientId.from(inviter.get(), null);
-            return Extra.forGroupV2invite(recipientId);
-          } else if (decryptedGroup.getRevision() == 0) {
-            Optional<DecryptedMember> foundingMember = DecryptedGroupUtil.firstMember(decryptedGroup.getMembersList());
-
-            if (foundingMember.isPresent()) {
-              return Extra.forGroupMessageRequest(RecipientId.from(UuidUtil.fromByteString(foundingMember.get().getUuid()), null));
+          MessageRecord.InviteAddState inviteAddState = record.getGv2AddInviteState();
+          if (inviteAddState != null) {
+            RecipientId from = RecipientId.from(inviteAddState.getAddedOrInvitedBy(), null);
+            if (inviteAddState.isInvited()) {
+              Log.i(TAG, "GV2 invite message request from " + from);
+              return Extra.forGroupV2invite(from);
+            } else {
+              Log.i(TAG, "GV2 message request from " + from);
+              return Extra.forGroupMessageRequest(from);
             }
           }
+          Log.w(TAG, "Falling back to unknown message request state for GV2 message");
+          return Extra.forMessageRequest();
         } else {
           RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getGroupAddedBy(record.getThreadId());
 

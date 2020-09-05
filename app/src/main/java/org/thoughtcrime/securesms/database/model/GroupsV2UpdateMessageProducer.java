@@ -53,23 +53,24 @@ final class GroupsV2UpdateMessageProducer {
   /**
    * Describes a group that is new to you, use this when there is no available change record.
    * <p>
-   * Invitation and groups you create are the most common cases where no change is available.
+   * Invitation and revision 0 groups are the most common use cases for this.
+   * <p>
+   * When invited, it's possible there's no change available.
+   * <p>
+   * When the revision of the group is 0, the change is very noisy and only the editor is useful.
    */
-  UpdateDescription describeNewGroup(@NonNull DecryptedGroup group) {
+  UpdateDescription describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange decryptedGroupChange) {
     Optional<DecryptedPendingMember> selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfUuid);
     if (selfPending.isPresent()) {
       return updateDescription(selfPending.get().getAddedByUuid(), inviteBy -> context.getString(R.string.MessageRecord_s_invited_you_to_the_group, inviteBy));
     }
 
-    if (group.getRevision() == 0) {
-      Optional<DecryptedMember> foundingMember = DecryptedGroupUtil.firstMember(group.getMembersList());
-      if (foundingMember.isPresent()) {
-        ByteString foundingMemberUuid = foundingMember.get().getUuid();
-        if (selfUuidBytes.equals(foundingMemberUuid)) {
-          return updateDescription(context.getString(R.string.MessageRecord_you_created_the_group));
-        } else {
-          return updateDescription(foundingMemberUuid, creator -> context.getString(R.string.MessageRecord_s_added_you, creator));
-        }
+    ByteString foundingMemberUuid = decryptedGroupChange.getEditor();
+    if (!foundingMemberUuid.isEmpty()) {
+      if (selfUuidBytes.equals(foundingMemberUuid)) {
+        return updateDescription(context.getString(R.string.MessageRecord_you_created_the_group));
+      } else {
+        return updateDescription(foundingMemberUuid, creator -> context.getString(R.string.MessageRecord_s_added_you, creator));
       }
     }
 

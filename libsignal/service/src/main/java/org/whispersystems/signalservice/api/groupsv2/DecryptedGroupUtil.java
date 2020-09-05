@@ -160,16 +160,6 @@ public final class DecryptedGroupUtil {
     return Optional.absent();
   }
 
-  public static Optional<DecryptedMember> firstMember(Collection<DecryptedMember> members) {
-    Iterator<DecryptedMember> iterator = members.iterator();
-
-    if (iterator.hasNext()) {
-      return Optional.of(iterator.next());
-    } else {
-      return Optional.absent();
-    }
-  }
-
   public static Optional<DecryptedPendingMember> findPendingByUuid(Collection<DecryptedPendingMember> members, UUID uuid) {
     ByteString uuidBytes = UuidUtil.toByteString(uuid);
 

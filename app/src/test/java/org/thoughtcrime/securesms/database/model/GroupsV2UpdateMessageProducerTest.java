@@ -1197,11 +1197,35 @@ public final class GroupsV2UpdateMessageProducerTest {
   // Group state without a change record
 
   @Test
+  public void you_created_a_group_change_not_found() {
+    DecryptedGroup group = newGroupBy(you, 0)
+                             .build();
+
+    assertThat(describeNewGroup(group), is("You joined the group."));
+  }
+
+  @Test
   public void you_created_a_group() {
     DecryptedGroup group = newGroupBy(you, 0)
                              .build();
 
-    assertThat(describeNewGroup(group), is("You created the group."));
+    DecryptedGroupChange change = changeBy(you)
+                                    .addMember(alice)
+                                    .addMember(you)
+                                    .addMember(bob)
+                                    .title("New title")
+                                    .build();
+
+    assertThat(describeNewGroup(group, change), is("You created the group."));
+  }
+
+  @Test
+  public void alice_created_a_group_change_not_found() {
+    DecryptedGroup group = newGroupBy(alice, 0)
+                             .member(you)
+                             .build();
+
+    assertThat(describeNewGroup(group), is("You joined the group."));
   }
 
   @Test
@@ -1210,7 +1234,14 @@ public final class GroupsV2UpdateMessageProducerTest {
                              .member(you)
                              .build();
 
-    assertThat(describeNewGroup(group), is("Alice added you to the group."));
+    DecryptedGroupChange change = changeBy(alice)
+                                    .addMember(you)
+                                    .addMember(alice)
+                                    .addMember(bob)
+                                    .title("New title")
+                                    .build();
+
+    assertThat(describeNewGroup(group, change), is("Alice added you to the group."));
   }
 
   @Test
@@ -1247,8 +1278,12 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private @NonNull String describeNewGroup(@NonNull DecryptedGroup group) {
+    return describeNewGroup(group, DecryptedGroupChange.getDefaultInstance());
+  }
+
+  private @NonNull String describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange groupChange) {
     MainThreadUtil.setMainThread(false);
-    return producer.describeNewGroup(group).getString();
+    return producer.describeNewGroup(group, groupChange).getString();
   }
 
   private static GroupStateBuilder newGroupBy(UUID foundingMember, int revision) {

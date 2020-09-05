@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Stream;
+
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
@@ -209,6 +211,7 @@ public final class GroupsV2StateProcessor {
       }
 
       updateLocalDatabaseGroupState(inputGroupState, newLocalState);
+      determineProfileSharing(inputGroupState, newLocalState);
       insertUpdateMessages(timestamp, advanceGroupStateResult.getProcessedLogEntries());
       persistLearnedProfileKeys(inputGroupState);
 
@@ -293,30 +296,52 @@ public final class GroupsV2StateProcessor {
         jobManager.add(new AvatarGroupsV2DownloadJob(groupId, newLocalState.getAvatar()));
       }
 
-      boolean fullMemberPostUpdate = GroupProtoUtil.isMember(Recipient.self().getUuid().get(), newLocalState.getMembersList());
-      boolean trustedAdder         = false;
+      determineProfileSharing(inputGroupState, newLocalState);
+    }
 
-      if (newLocalState.getRevision() == 0) {
-        Optional<DecryptedMember> foundingMember = DecryptedGroupUtil.firstMember(newLocalState.getMembersList());
+    private void determineProfileSharing(@NonNull GlobalGroupState inputGroupState,
+                                         @NonNull DecryptedGroup newLocalState)
+    {
+      if (inputGroupState.getLocalState() != null) {
+        boolean wasAMemberAlready = DecryptedGroupUtil.findMemberByUuid(inputGroupState.getLocalState().getMembersList(), Recipient.self().getUuid().get()).isPresent();
 
-        if (foundingMember.isPresent()) {
-          UUID      foundingMemberUuid = UuidUtil.fromByteString(foundingMember.get().getUuid());
-          Recipient foundingRecipient  = Recipient.externalPush(context, foundingMemberUuid, null, false);
-
-          if (foundingRecipient.isSystemContact() || foundingRecipient.isProfileSharing()) {
-            Log.i(TAG, "Group 'adder' is trusted. contact: " + foundingRecipient.isSystemContact() + ", profileSharing: " + foundingRecipient.isProfileSharing());
-            trustedAdder = true;
-          }
-        } else {
-          Log.i(TAG, "Could not find founding member during gv2 create. Not enabling profile sharing.");
+        if (wasAMemberAlready) {
+          Log.i(TAG, "Skipping profile sharing detection as was already a full member before update");
+          return;
         }
       }
 
-      if (fullMemberPostUpdate && trustedAdder) {
-        Log.i(TAG, "Added to a group and auto-enabling profile sharing");
-        recipientDatabase.setProfileSharing(Recipient.externalGroup(context, groupId).getId(), true);
+      Optional<DecryptedMember> selfAsMemberOptional = DecryptedGroupUtil.findMemberByUuid(newLocalState.getMembersList(), Recipient.self().getUuid().get());
+
+      if (selfAsMemberOptional.isPresent()) {
+        DecryptedMember     selfAsMember     = selfAsMemberOptional.get();
+        int                 revisionJoinedAt = selfAsMember.getJoinedAtRevision();
+
+        Optional<Recipient> addedByOptional  = Stream.of(inputGroupState.getServerHistory())
+                                                     .map(ServerGroupLogEntry::getChange)
+                                                     .filter(c -> c != null && c.getRevision() == revisionJoinedAt)
+                                                     .findFirst()
+                                                     .map(c -> Optional.fromNullable(UuidUtil.fromByteStringOrNull(c.getEditor()))
+                                                                       .transform(a -> Recipient.externalPush(context, UuidUtil.fromByteStringOrNull(c.getEditor()), null, false)))
+                                                     .orElse(Optional.absent());
+
+        if (addedByOptional.isPresent()) {
+          Recipient addedBy = addedByOptional.get();
+
+          Log.i(TAG, String.format("Added as a full member of %s by %s", groupId, addedBy.getId()));
+
+          if (addedBy.isSystemContact() || addedBy.isProfileSharing()) {
+            Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact() + ", profileSharing: " + addedBy.isProfileSharing());
+            Log.i(TAG, "Added to a group and auto-enabling profile sharing");
+            recipientDatabase.setProfileSharing(Recipient.externalGroup(context, groupId).getId(), true);
+          } else {
+            Log.i(TAG, "Added to a group, but not enabling profile sharing, as 'adder' is not trusted");
+          }
+        } else {
+          Log.w(TAG, "Could not find founding member during gv2 create. Not enabling profile sharing.");
+        }
       } else {
-        Log.i(TAG, "Added to a group, but not enabling profile sharing. fullMember: " + fullMemberPostUpdate + ", trustedAdded: " + trustedAdder);
+        Log.i(TAG, String.format("Added to %s, but not enabling profile sharing as not a fullMember.", groupId));
       }
     }
 
