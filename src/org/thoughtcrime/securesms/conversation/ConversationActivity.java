@@ -160,6 +160,7 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
+import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -234,6 +235,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -300,6 +302,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AnimatingToggle             buttonToggle;
   private   SendButton                  sendButton;
   private   ImageButton                 attachButton;
+  private   ProfilePictureView          profilePictureView;
   private   TextView                    titleTextView;
   private   TextView                    charactersLeft;
   private   ConversationFragment        fragment;
@@ -527,6 +530,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setTransport(sendButton.getSelectedTransport());
 
     updateTitleTextView(recipient);
+    updateProfilePicture();
     updateSubtitleTextView();
     setActionBarColor(recipient.getColor());
     updateInputUI(recipient, isSecureText, isDefaultSms);
@@ -621,6 +625,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       recipient = Recipient.from(this, data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
       recipient.addListener(this);
       updateTitleTextView(recipient);
+      updateProfilePicture();
       updateSubtitleTextView();
       NotificationChannels.updateContactChannelName(this, recipient);
       updateInputUI(recipient, isSecureText, isDefaultSms);
@@ -1654,6 +1659,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
+    profilePictureView                     = findViewById(R.id.profilePictureView);
     titleTextView                          = findViewById(R.id.titleTextView);
     buttonToggle                           = ViewUtil.findById(this, R.id.button_toggle);
     sendButton                             = ViewUtil.findById(this, R.id.send_button);
@@ -1872,6 +1878,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Util.runOnMain(() -> {
       Log.i(TAG, "onModifiedRun(): " + recipient.getRegistered());
       updateTitleTextView(recipient);
+      updateProfilePicture();
       updateSubtitleTextView();
 //      titleView.setVerified(identityRecords.isVerified());
       updateInputUI(recipient, isSecureText, isDefaultSms);
@@ -3098,6 +3105,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       boolean hasName = (recipient.getName() != null && !recipient.getName().isEmpty());
       titleTextView.setText(hasName ? recipient.getName() : recipient.getAddress().toString());
     }
+  }
+
+  private void updateProfilePicture() {
+    profilePictureView.glide = GlideApp.with(this);
+    profilePictureView.update(recipient, threadId);
   }
 
   private void updateSubtitleTextView() {
