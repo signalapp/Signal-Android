@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.activities
 
+import android.Manifest
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
@@ -153,6 +155,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             }
         }
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+    }
     // endregion
 
     // region Updating
@@ -246,7 +253,13 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun showEditProfilePictureUI() {
-        tempFile = AvatarSelection.startAvatarSelection(this, false, true)
+        // Ask for an optional camera permission.
+        Permissions.with(this)
+                .request(Manifest.permission.CAMERA)
+                .onAnyResult {
+                    tempFile = AvatarSelection.startAvatarSelection(this, false, true)
+                }
+                .execute()
     }
 
     private fun copyPublicKey() {

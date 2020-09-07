@@ -4,23 +4,20 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.MediaStore;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import network.loki.messenger.R;
-
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.IntentUtils;
@@ -29,6 +26,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
+import network.loki.messenger.R;
 
 import static android.provider.MediaStore.EXTRA_OUTPUT;
 
@@ -69,7 +68,9 @@ public final class AvatarSelection {
    */
   public static File startAvatarSelection(Activity activity, boolean includeClear, boolean attemptToIncludeCamera) {
     File captureFile = null;
-    if (attemptToIncludeCamera) {
+    boolean hasCameraPermission = ContextCompat
+            .checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    if (attemptToIncludeCamera && hasCameraPermission) {
       try {
         captureFile = File.createTempFile("avatar-capture", ".jpg", ExternalStorageUtil.getImageDir(activity));
       } catch (IOException | NoExternalStorageException e) {
@@ -84,7 +85,7 @@ public final class AvatarSelection {
 
   private static Intent createAvatarSelectionIntent(Context context, @Nullable File tempCaptureFile, boolean includeClear) {
     List<Intent> extraIntents  = new LinkedList<>();
-    Intent       galleryIntent = new Intent(Intent.ACTION_PICK);
+    Intent galleryIntent = new Intent(Intent.ACTION_PICK);
     galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
     if (!IntentUtils.isResolvable(context, galleryIntent)) {

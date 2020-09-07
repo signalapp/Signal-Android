@@ -171,7 +171,7 @@ public class Permissions {
       }
 
       for (String permission : requestedPermissions) {
-        request.addMapping(permission, permissionObject.shouldShouldPermissionRationale(permission));
+        request.addMapping(permission, permissionObject.shouldShowPermissionRationale(permission));
       }
 
       permissionObject.requestPermissions(requestCode, requestedPermissions);
@@ -240,7 +240,7 @@ public class Permissions {
 
     for (int i=0;i<permissions.length;i++) {
       if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-        shouldShowRationaleDialog[i] = context.shouldShouldPermissionRationale(permissions[i]);
+        shouldShowRationaleDialog[i] = context.shouldShowPermissionRationale(permissions[i]);
       }
     }
 
@@ -259,7 +259,7 @@ public class Permissions {
   private abstract static class PermissionObject {
 
     abstract Context getContext();
-    abstract boolean shouldShouldPermissionRationale(String permission);
+    abstract boolean shouldShowPermissionRationale(String permission);
     abstract boolean hasAll(String... permissions);
     abstract void requestPermissions(int requestCode, String... permissions);
 
@@ -287,7 +287,7 @@ public class Permissions {
     }
 
     @Override
-    public boolean shouldShouldPermissionRationale(String permission) {
+    public boolean shouldShowPermissionRationale(String permission) {
       return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
@@ -316,7 +316,7 @@ public class Permissions {
     }
 
     @Override
-    public boolean shouldShouldPermissionRationale(String permission) {
+    public boolean shouldShowPermissionRationale(String permission) {
       return fragment.shouldShowRequestPermissionRationale(permission);
     }
 
