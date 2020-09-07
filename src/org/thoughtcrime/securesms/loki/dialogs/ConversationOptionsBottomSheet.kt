@@ -20,6 +20,7 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
     // if we want to use dialog fragments properly.
     lateinit var recipient: Recipient
 
+    var onViewDetailsTapped: (() -> Unit?)? = null
     var onBlockTapped: (() -> Unit)? = null
     var onUnblockTapped: (() -> Unit)? = null
     var onDeleteTapped: (() -> Unit)? = null
@@ -30,18 +31,16 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if (!this::recipient.isInitialized) {
-            dismiss()
-            return
-        }
-
+        if (!this::recipient.isInitialized) { return dismiss() }
         if (!recipient.isGroupRecipient && !recipient.isLocalNumber) {
+            detailsTextView.visibility = View.VISIBLE
             unblockTextView.visibility = if (recipient.isBlocked) View.VISIBLE else View.GONE
             blockTextView.visibility = if (recipient.isBlocked) View.GONE else View.VISIBLE
-
+            detailsTextView.setOnClickListener { onViewDetailsTapped?.invoke() }
             blockTextView.setOnClickListener { onBlockTapped?.invoke() }
             unblockTextView.setOnClickListener { onUnblockTapped?.invoke() }
+        } else {
+            detailsTextView.visibility = View.GONE
         }
         deleteTextView.setOnClickListener { onDeleteTapped?.invoke() }
     }

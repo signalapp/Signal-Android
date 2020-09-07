@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
+import org.thoughtcrime.securesms.loki.dialogs.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -271,6 +272,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val thread = view.thread ?: return
         val bottomSheet = ConversationOptionsBottomSheet()
         bottomSheet.recipient = thread.recipient
+        bottomSheet.onViewDetailsTapped = {
+            bottomSheet.dismiss()
+            val userDetailsBottomSheet = UserDetailsBottomSheet()
+            userDetailsBottomSheet.show(supportFragmentManager, userDetailsBottomSheet.tag)
+        }
         bottomSheet.onBlockTapped = {
             bottomSheet.dismiss()
             if (!thread.recipient.isBlocked) {
