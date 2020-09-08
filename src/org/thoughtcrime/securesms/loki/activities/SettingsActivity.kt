@@ -256,6 +256,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         // Ask for an optional camera permission.
         Permissions.with(this)
                 .request(Manifest.permission.CAMERA)
+                .ifNecessary()
                 .onAnyResult {
                     tempFile = AvatarSelection.startAvatarSelection(this, false, true)
                 }
