@@ -184,10 +184,12 @@
 
     <style name="FakeChatViewMessageBubble.Incoming">
         <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+        <item name="android:elevation">10dp</item>
     </style>
 
     <style name="FakeChatViewMessageBubble.Outgoing">
         <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
+        <item name="android:elevation">10dp</item>
     </style>
     <!-- Session -->
 

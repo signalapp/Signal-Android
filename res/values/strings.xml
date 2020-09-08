@@ -1864,5 +1864,6 @@
 
     <string name="attachment">Attachment</string>
     <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
 
 </resources>

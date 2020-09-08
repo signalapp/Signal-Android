@@ -16,10 +16,13 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.ColorRes
 import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
+import org.thoughtcrime.securesms.loki.views.PathDotView
 import org.whispersystems.signalservice.loki.api.Snode
 import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
 
@@ -31,6 +34,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_path)
         supportActionBar!!.title = resources.getString(R.string.activity_path_title)
+        pathRowsContainer.disableClipping()
         learnMoreButton.setOnClickListener { learnMore() }
         update(false)
         registerObservers()
@@ -111,6 +115,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         val mainContainer = LinearLayout(this)
         mainContainer.orientation = LinearLayout.HORIZONTAL
         mainContainer.gravity = Gravity.CENTER_VERTICAL
+        mainContainer.disableClipping()
         val mainContainerLayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         mainContainer.layoutParams = mainContainerLayoutParams
         val lineView = LineView(this, location, dotAnimationStartDelay, dotAnimationRepeatInterval)
@@ -170,8 +175,9 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         private var dotAnimationRepeatInterval: Long = 0
 
         private val dotView by lazy {
-            val result = View(context)
+            val result = PathDotView(context)
             result.setBackgroundResource(R.drawable.accent_dot)
+            result.mainColor = resources.getColorWithID(R.color.accent, context.theme)
             result
         }
 
@@ -203,6 +209,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         }
 
         private fun setUpViewHierarchy() {
+            disableClipping()
             val lineView = View(context)
             lineView.setBackgroundColor(resources.getColorWithID(R.color.text, context.theme))
             val lineViewHeight = when (location) {
@@ -239,10 +246,14 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
 
         private fun expand() {
             dotView.animateSizeChange(R.dimen.path_row_dot_size, R.dimen.path_row_expanded_dot_size)
+            @ColorRes val startColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.transparent_black_30 else R.color.black
+            GlowViewUtilities.animateShadowColorChange(context, dotView, startColorID, R.color.accent)
         }
 
         private fun collapse() {
             dotView.animateSizeChange(R.dimen.path_row_expanded_dot_size, R.dimen.path_row_dot_size)
+            @ColorRes val endColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.transparent_black_30 else R.color.black
+            GlowViewUtilities.animateShadowColorChange(context, dotView, R.color.accent, endColorID)
         }
     }
     // endregion
