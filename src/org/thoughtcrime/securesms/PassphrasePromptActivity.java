@@ -76,8 +76,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private Button                 lockScreenButton;
 
   private EditText        passphraseText;
-  private ImageButton     showButton;
-  private ImageButton     hideButton;
+//  private ImageButton     showButton;
+//  private ImageButton     hideButton;
   private AnimatingToggle visibilityToggle;
 
   private FingerprintManagerCompat fingerprintManager;
@@ -203,11 +203,11 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   private void initializeResources() {
 
-    ImageButton okButton = findViewById(R.id.ok_button);
+//    ImageButton okButton = findViewById(R.id.ok_button);
     Toolbar     toolbar  = findViewById(R.id.toolbar);
 
-    showButton                    = findViewById(R.id.passphrase_visibility);
-    hideButton                    = findViewById(R.id.passphrase_visibility_off);
+//    showButton                    = findViewById(R.id.passphrase_visibility);
+//    hideButton                    = findViewById(R.id.passphrase_visibility_off);
     visibilityToggle              = findViewById(R.id.button_toggle);
     passphraseText                = findViewById(R.id.passphrase_edit);
     passphraseAuthContainer       = findViewById(R.id.password_auth_container);
@@ -217,17 +217,17 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     fingerprintCancellationSignal = new CancellationSignal();
     fingerprintListener           = new FingerprintListener();
 
-    setSupportActionBar(toolbar);
-    getSupportActionBar().setTitle("");
+//    setSupportActionBar(toolbar);
+//    getSupportActionBar().setTitle("");
 
     SpannableString hint = new SpannableString("  " + getString(R.string.PassphrasePromptActivity_enter_passphrase));
     hint.setSpan(new RelativeSizeSpan(0.9f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
     passphraseText.setHint(hint);
-    okButton.setOnClickListener(new OkButtonClickListener());
-    showButton.setOnClickListener(new ShowButtonOnClickListener());
-    hideButton.setOnClickListener(new HideButtonOnClickListener());
+//    okButton.setOnClickListener(new OkButtonClickListener());
+//    showButton.setOnClickListener(new ShowButtonOnClickListener());
+//    hideButton.setOnClickListener(new HideButtonOnClickListener());
     passphraseText.setOnEditorActionListener(new PassphraseActionListener());
     passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock),
                                      EditorInfo.IME_ACTION_DONE);
@@ -316,7 +316,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private class ShowButtonOnClickListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      visibilityToggle.display(hideButton);
+//      visibilityToggle.display(hideButton);
       setPassphraseVisibility(true);
     }
   }
@@ -324,7 +324,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private class HideButtonOnClickListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      visibilityToggle.display(showButton);
+//      visibilityToggle.display(showButton);
       setPassphraseVisibility(false);
     }
   }
