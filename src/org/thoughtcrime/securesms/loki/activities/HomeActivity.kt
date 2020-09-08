@@ -101,6 +101,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         profileButton.publicKey = publicKey
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
+        pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
         // Set up seed reminder view
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
