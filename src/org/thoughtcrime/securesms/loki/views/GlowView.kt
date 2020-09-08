@@ -90,3 +90,36 @@ class PNModeView : LinearLayout, GlowView {
     }
     // endregion
 }
+
+class NewConversationButtonImageView : androidx.appcompat.widget.AppCompatImageView, GlowView {
+    @ColorInt override var mainColor: Int = 0
+        set(newValue) { field = newValue; paint.color = newValue }
+    @ColorInt override var sessionShadowColor: Int = 0
+        set(newValue) { field = newValue; paint.setShadowLayer(toPx(6, resources).toFloat(), 0.0f, 0.0f, newValue) }
+
+    private val paint: Paint by lazy {
+        val result = Paint()
+        result.style = Paint.Style.FILL
+        result.isAntiAlias = true
+        result
+    }
+
+    // region Lifecycle
+    constructor(context: Context) : super(context) { }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { }
+
+    init {
+        setWillNotDraw(false)
+    }
+    // endregion
+
+    // region Updating
+    override fun onDraw(c: Canvas) {
+        val w = width.toFloat()
+        val h = height.toFloat()
+        c.drawCircle(w / 2, h / 2, w / 2, paint)
+        super.onDraw(c)
+    }
+    // endregion
+}
