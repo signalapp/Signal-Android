@@ -8,6 +8,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String MESSAGE_REQUEST_ENABLE_TIME = "message_request_enable_time";
   private static final String LAST_PROFILE_REFRESH_TIME   = "misc.last_profile_refresh_time";
   private static final String USERNAME_SHOW_REMINDER      = "username.show.reminder";
+  private static final String CLIENT_DEPRECATED           = "misc.client_deprecated";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -44,5 +45,13 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public boolean shouldShowUsernameReminder() {
     return getBoolean(USERNAME_SHOW_REMINDER, true);
+  }
+
+  public boolean isClientDeprecated() {
+    return getBoolean(CLIENT_DEPRECATED, false);
+  }
+
+  public void markDeprecated() {
+    putBoolean(CLIENT_DEPRECATED, true);
   }
 }

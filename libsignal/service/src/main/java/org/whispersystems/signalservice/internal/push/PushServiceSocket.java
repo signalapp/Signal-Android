@@ -49,6 +49,7 @@ import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedE
 import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.push.exceptions.ContactManifestMismatchException;
+import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
@@ -1459,6 +1460,8 @@ public class PushServiceSocket {
         throw new LockedException(accountLockFailure.length,
                                   accountLockFailure.timeRemaining,
                                   basicStorageCredentials);
+      case 499:
+        throw new DeprecatedVersionException();
     }
 
     if (responseCode != 200 && responseCode != 204) {
@@ -1688,6 +1691,8 @@ public class PushServiceSocket {
         }
       case 429:
         throw new RateLimitException("Rate limit exceeded: " + response.code());
+      case 499:
+        throw new DeprecatedVersionException();
     }
 
     throw new NonSuccessfulResponseCodeException("Response: " + response);

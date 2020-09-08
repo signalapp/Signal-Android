@@ -64,6 +64,7 @@ public final class FeatureFlags {
   private static final String MENTIONS                     = "android.mentions";
   private static final String VERIFY_V2                    = "android.verifyV2";
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
+  private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -82,7 +83,8 @@ public final class FeatureFlags {
       INTERNAL_USER,
       USERNAMES,
       MENTIONS,
-      VERIFY_V2
+      VERIFY_V2,
+      CLIENT_EXPIRATION
   );
 
   /**
@@ -107,7 +109,8 @@ public final class FeatureFlags {
       GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
-      CDS_VERSION
+      CDS_VERSION,
+      CLIENT_EXPIRATION
   );
 
   /**
@@ -278,6 +281,11 @@ public final class FeatureFlags {
   /** Whether or not to use the UUID in verification codes. */
   public static boolean verifyV2() {
     return getBoolean(VERIFY_V2, false);
+  }
+
+  /** The raw client expiration JSON string. */
+  public static String clientExpiration() {
+    return getString(CLIENT_EXPIRATION, null);
   }
 
   /**
@@ -463,6 +471,20 @@ public final class FeatureFlags {
     return defaultValue;
   }
 
+  private static String getString(@NonNull String key, String defaultValue) {
+    String forced = (String) FORCED_VALUES.get(key);
+    if (forced != null) {
+      return forced;
+    }
+
+    Object remote = REMOTE_VALUES.get(key);
+    if (remote instanceof String) {
+      return (String) remote;
+    }
+
+    return defaultValue;
+  }
+
   private static Map<String, Object> parseStoredConfig(String stored) {
     Map<String, Object> parsed = new HashMap<>();
 
@@ -511,14 +533,11 @@ public final class FeatureFlags {
     }
   }
 
-  private static final class MissingFlagRequirementError extends Error {
-  }
-
   @VisibleForTesting
   static final class UpdateResult {
     private final Map<String, Object> memory;
     private final Map<String, Object> disk;
-    private final Map<String, Change>  memoryChanges;
+    private final Map<String, Change> memoryChanges;
 
     UpdateResult(@NonNull Map<String, Object> memory, @NonNull Map<String, Object> disk, @NonNull Map<String, Change> memoryChanges) {
       this.memory        = memory;

@@ -6,6 +6,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.concurrent.TimeUnit;
+
 public class OutdatedBuildReminder extends Reminder {
 
   public OutdatedBuildReminder(final Context context) {
@@ -15,7 +17,7 @@ public class OutdatedBuildReminder extends Reminder {
   }
 
   private static CharSequence getPluralsText(final Context context) {
-    int days = Util.getDaysTillBuildExpiry() - 1;
+    int days = getDaysUntilExpiry() - 1;
     if (days == 0) {
       return context.getString(R.string.reminder_header_outdated_build_details_today);
     }
@@ -28,7 +30,10 @@ public class OutdatedBuildReminder extends Reminder {
   }
 
   public static boolean isEligible() {
-    return Util.getDaysTillBuildExpiry() <= 10;
+    return getDaysUntilExpiry() <= 10;
   }
 
+  private static int getDaysUntilExpiry() {
+    return (int) TimeUnit.MILLISECONDS.toDays(Util.getTimeUntilBuildExpiry());
+  }
 }

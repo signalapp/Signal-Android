@@ -17,6 +17,7 @@ import com.google.android.collect.Sets;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -203,18 +204,11 @@ public final class LinkPreviewUtil {
 
     @SuppressLint("ObsoleteSdkInt")
     public long getDate() {
-      SimpleDateFormat format;
-      if (Build.VERSION.SDK_INT == 0 || Build.VERSION.SDK_INT >= 24) {
-        format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault());
-      } else {
-        format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
-      }
-
       return Stream.of(values.get(KEY_PUBLISHED_TIME_1),
                        values.get(KEY_PUBLISHED_TIME_2),
                        values.get(KEY_MODIFIED_TIME_1),
                        values.get(KEY_MODIFIED_TIME_2))
-                   .map(dateString -> parseDate(format, dateString))
+                   .map(DateUtils::parseIso8601)
                    .filter(time -> time > 0)
                    .findFirst()
                    .orElse(0L);
@@ -222,19 +216,6 @@ public final class LinkPreviewUtil {
 
     public @NonNull Optional<String> getDescription() {
       return OptionalUtil.absentIfEmpty(values.get(KEY_DESCRIPTION_URL));
-    }
-
-    private static long parseDate(DateFormat dateFormat, String dateString) {
-      if (Util.isEmpty(dateString)) {
-        return 0;
-      }
-
-      try {
-        return dateFormat.parse(dateString).getTime();
-      } catch (ParseException e) {
-        Log.w(TAG, "Failed to parse date.", e);
-        return 0;
-      }
     }
   }
 

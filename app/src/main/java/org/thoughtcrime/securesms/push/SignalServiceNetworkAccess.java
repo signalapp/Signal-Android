@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.net.CustomDns;
+import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor;
+import org.thoughtcrime.securesms.net.DeprecatedClientPreventionInterceptor;
 import org.thoughtcrime.securesms.net.SequentialDns;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.util.Base64;
@@ -21,6 +23,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -161,7 +164,7 @@ public class SignalServiceNetworkAccess {
     final SignalStorageUrl omanGoogleStorage     = new SignalStorageUrl("https://www.google.com.om/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
     final SignalStorageUrl qatarGoogleStorage    = new SignalStorageUrl("https://www.google.com.qa/storage", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
-    final List<Interceptor> interceptors = Collections.singletonList(new StandardUserAgentInterceptor());
+    final List<Interceptor> interceptors = Arrays.asList(new StandardUserAgentInterceptor(), new RemoteDeprecationDetectorInterceptor(), new DeprecatedClientPreventionInterceptor());
     final Optional<Dns>     dns          = Optional.of(DNS);
 
     final byte[] zkGroupServerPublicParams;
