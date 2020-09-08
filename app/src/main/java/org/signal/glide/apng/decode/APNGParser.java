@@ -96,9 +96,7 @@ public class APNGParser {
                 }
             }
         } catch (IOException e) {
-            if (!(e instanceof FormatException)) {
-                e.printStackTrace();
-            }
+            return false;
         }
         return false;
     }
