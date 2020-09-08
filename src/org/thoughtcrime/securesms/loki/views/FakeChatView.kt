@@ -1,14 +1,18 @@
 package org.thoughtcrime.securesms.loki.views
 
+import android.animation.FloatEvaluator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import kotlinx.android.synthetic.main.view_fake_chat.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.loki.utilities.disableClipping
 
 class FakeChatView : ScrollView {
 
@@ -38,7 +42,8 @@ class FakeChatView : ScrollView {
 
     private fun setUpViewHierarchy() {
         val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val contentView = inflater.inflate(R.layout.view_fake_chat, null)
+        val contentView = inflater.inflate(R.layout.view_fake_chat, null) as LinearLayout
+        contentView.disableClipping()
         addView(contentView)
         isVerticalScrollBarEnabled = false
     }
@@ -47,8 +52,13 @@ class FakeChatView : ScrollView {
     // region Animation
     fun startAnimating() {
         listOf( bubble1, bubble2, bubble3, bubble4, bubble5 ).forEach { it.alpha = 0.0f }
-        fun show(view: View) {
-            view.animate().alpha(1.0f).setDuration(animationDuration).start()
+        fun show(bubble: View) {
+            val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
+            animation.duration = animationDuration
+            animation.addUpdateListener { animator ->
+                bubble.alpha = animator.animatedValue as Float
+            }
+            animation.start()
         }
         Handler().postDelayed({
             show(bubble1)
